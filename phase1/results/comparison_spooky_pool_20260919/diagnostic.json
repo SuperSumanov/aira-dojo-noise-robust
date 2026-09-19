@@ -1,0 +1,190 @@
+{
+  "summary_sha256": "721f995ca597568303f65c32e9d04667bcdd173c174b2e6af99bb78e765c0eb1",
+  "rows": [
+    {
+      "seed": 1,
+      "slot": 0,
+      "node": "e4ecc3bf9f19482781c40c8a8f9b25a8",
+      "original_selected": false,
+      "status": "returned",
+      "valid": true
+    },
+    {
+      "seed": 1,
+      "slot": 1,
+      "node": "1368c211e847436fb32301b125c39a76",
+      "original_selected": false,
+      "status": "returned",
+      "valid": true
+    },
+    {
+      "seed": 1,
+      "slot": 2,
+      "node": "e9292e0a154f41adb7e6c2a6c6bdbe1d",
+      "original_selected": true,
+      "status": "returned",
+      "valid": false,
+      "failure_category": "unclassified_program_failure",
+      "historical_buggy": true,
+      "historical_recorded_grade": null,
+      "fresh_grade": null,
+      "caveat": "Historical grade/buggy state is not identical to fresh validation; environments/hardware differ."
+    },
+    {
+      "seed": 1,
+      "slot": 3,
+      "node": "bc14d75cae454970ae588d066500a351",
+      "original_selected": false,
+      "status": "returned",
+      "valid": true
+    },
+    {
+      "seed": 1,
+      "slot": 4,
+      "node": "abd782484bc6453aa688f4420309535b",
+      "original_selected": true,
+      "status": "returned",
+      "valid": false,
+      "failure_category": "TypeError",
+      "historical_buggy": true,
+      "historical_recorded_grade": null,
+      "fresh_grade": null,
+      "caveat": "Historical grade/buggy state is not identical to fresh validation; environments/hardware differ."
+    },
+    {
+      "seed": 1,
+      "slot": 5,
+      "node": "76eb6d81ae5046d4ad48027b9a5a1e41",
+      "original_selected": false,
+      "status": "returned",
+      "valid": false,
+      "failure_category": "ValueError"
+    },
+    {
+      "seed": 2,
+      "slot": 0,
+      "node": "03e046a643bc4b969a873c6d28b0a71b",
+      "original_selected": false,
+      "status": "returned",
+      "valid": false,
+      "failure_category": "ValueError"
+    },
+    {
+      "seed": 2,
+      "slot": 1,
+      "node": "a95f3a1a09754008bd019dbb5955584e",
+      "original_selected": true,
+      "status": "returned",
+      "valid": false,
+      "failure_category": "TypeError",
+      "historical_buggy": true,
+      "historical_recorded_grade": null,
+      "fresh_grade": null,
+      "caveat": "Historical grade/buggy state is not identical to fresh validation; environments/hardware differ."
+    },
+    {
+      "seed": 2,
+      "slot": 2,
+      "node": "0a528eaed9514ff9bd242506f70552d3",
+      "original_selected": false,
+      "status": "returned",
+      "valid": false,
+      "failure_category": "TypeError"
+    },
+    {
+      "seed": 2,
+      "slot": 3,
+      "node": "2f3e6dfcb8e44046955a4d739823c778",
+      "original_selected": false,
+      "status": "returned",
+      "valid": false,
+      "failure_category": "AttributeError"
+    },
+    {
+      "seed": 2,
+      "slot": 4,
+      "node": "87174b313139424e81402d79a64b53d1",
+      "original_selected": true,
+      "status": "returned",
+      "valid": false,
+      "failure_category": "TypeError",
+      "historical_buggy": true,
+      "historical_recorded_grade": null,
+      "fresh_grade": null,
+      "caveat": "Historical grade/buggy state is not identical to fresh validation; environments/hardware differ."
+    },
+    {
+      "seed": 2,
+      "slot": 5,
+      "node": "069d763a2d2547488ffc21ac39308f3a",
+      "original_selected": false,
+      "status": "returned",
+      "valid": false,
+      "failure_category": "NameError"
+    },
+    {
+      "seed": 3,
+      "slot": 0,
+      "node": "5b9cd32204c3440dac7fa60cd214150e",
+      "original_selected": false,
+      "status": "not_started",
+      "valid": null
+    },
+    {
+      "seed": 3,
+      "slot": 1,
+      "node": "4f611c2460c24fed9a438ad06361e90c",
+      "original_selected": true,
+      "status": "not_started",
+      "valid": null,
+      "historical_buggy": true,
+      "historical_recorded_grade": null,
+      "fresh_grade": null,
+      "caveat": "Historical grade/buggy state is not identical to fresh validation; environments/hardware differ."
+    },
+    {
+      "seed": 3,
+      "slot": 2,
+      "node": "215ddc7cc09d4c9b803c5e907a0febab",
+      "original_selected": false,
+      "status": "not_started",
+      "valid": null
+    },
+    {
+      "seed": 3,
+      "slot": 3,
+      "node": "6c16e24474e2420aa84749cca7ec4fcc",
+      "original_selected": true,
+      "status": "not_started",
+      "valid": null,
+      "historical_buggy": true,
+      "historical_recorded_grade": null,
+      "fresh_grade": null,
+      "caveat": "Historical grade/buggy state is not identical to fresh validation; environments/hardware differ."
+    },
+    {
+      "seed": 3,
+      "slot": 4,
+      "node": "f2fe279e88d24765b17acf70142cb64f",
+      "original_selected": false,
+      "status": "not_started",
+      "valid": null
+    },
+    {
+      "seed": 3,
+      "slot": 5,
+      "node": "7fd543de108e48eaa44f25c5fb17cbc7",
+      "original_selected": false,
+      "status": "not_started",
+      "valid": null
+    }
+  ],
+  "failure_categories": {
+    "unclassified_program_failure": 1,
+    "TypeError": 4,
+    "ValueError": 2,
+    "AttributeError": 1,
+    "NameError": 1
+  },
+  "caveat": "Exception names are coarse diagnostics, not proven causes; no program has been repaired or replaced."
+}

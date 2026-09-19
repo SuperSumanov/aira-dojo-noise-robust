@@ -1,0 +1,95 @@
+{
+  "summary_sha256": "721f995ca597568303f65c32e9d04667bcdd173c174b2e6af99bb78e765c0eb1",
+  "pools": [
+    {
+      "seed": 1,
+      "status": "bounded_not_recovered_rank",
+      "uniform_any_valid_probability": 0.8,
+      "possibilities": [
+        {
+          "unknown_third_slot": 0,
+          "top3_any_valid_probability": 0.6666666666666666,
+          "any_valid_probability_gain": -0.13333333333333341,
+          "superiority_minus_inferiority": 0.17777777777777778
+        },
+        {
+          "unknown_third_slot": 1,
+          "top3_any_valid_probability": 0.6666666666666666,
+          "any_valid_probability_gain": -0.13333333333333341,
+          "superiority_minus_inferiority": -0.2222222222222222
+        },
+        {
+          "unknown_third_slot": 3,
+          "top3_any_valid_probability": 0.6666666666666666,
+          "any_valid_probability_gain": -0.13333333333333341,
+          "superiority_minus_inferiority": -0.5333333333333333
+        },
+        {
+          "unknown_third_slot": 5,
+          "top3_any_valid_probability": 0.0,
+          "any_valid_probability_gain": -0.8,
+          "superiority_minus_inferiority": -0.8
+        }
+      ],
+      "ranges": {
+        "any_valid_probability_gain": [
+          -0.8,
+          -0.13333333333333341
+        ],
+        "superiority_minus_inferiority": [
+          -0.8,
+          0.17777777777777778
+        ]
+      },
+      "conclusion": "retention_sign_not_identified",
+      "caveat": "Single-pool exploration; original third unknown; post-execution best-of-two, not deployment/E2E utility."
+    },
+    {
+      "seed": 2,
+      "status": "bounded_not_recovered_rank",
+      "uniform_any_valid_probability": 0.0,
+      "possibilities": [
+        {
+          "unknown_third_slot": 0,
+          "top3_any_valid_probability": 0.0,
+          "any_valid_probability_gain": 0.0,
+          "superiority_minus_inferiority": 0.0
+        },
+        {
+          "unknown_third_slot": 2,
+          "top3_any_valid_probability": 0.0,
+          "any_valid_probability_gain": 0.0,
+          "superiority_minus_inferiority": 0.0
+        },
+        {
+          "unknown_third_slot": 3,
+          "top3_any_valid_probability": 0.0,
+          "any_valid_probability_gain": 0.0,
+          "superiority_minus_inferiority": 0.0
+        },
+        {
+          "unknown_third_slot": 5,
+          "top3_any_valid_probability": 0.0,
+          "any_valid_probability_gain": 0.0,
+          "superiority_minus_inferiority": 0.0
+        }
+      ],
+      "ranges": {
+        "any_valid_probability_gain": [
+          0.0,
+          0.0
+        ],
+        "superiority_minus_inferiority": [
+          0.0,
+          0.0
+        ]
+      },
+      "conclusion": "retention_sign_not_identified",
+      "caveat": "Single-pool exploration; original third unknown; post-execution best-of-two, not deployment/E2E utility."
+    },
+    {
+      "seed": 3,
+      "status": "unknown"
+    }
+  ]
+}

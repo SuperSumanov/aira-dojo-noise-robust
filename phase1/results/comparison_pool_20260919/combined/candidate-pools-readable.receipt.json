@@ -1,0 +1,10 @@
+{
+  "role": "descriptive_plot_no_new_endpoint",
+  "output_sha256": "a3813f0bcede5a40920ae2c0f8176762389ae1dbe66d6d350ef8d538db8b7478",
+  "panels": [
+    {
+      "task": "leaf-classification",
+      "summary_sha256": "41e42fbff91ca970e8f5ee19a1ffdf57c31ffe0ddd6a24182e5e304c1225ef4f"
+    }
+  ]
+}

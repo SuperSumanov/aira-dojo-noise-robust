@@ -1,0 +1,4 @@
+candidates,conditional_quality_gain,losses,pairs,pool_best_loss,retention_advantage_lower,retention_advantage_upper,seed,selected_best_loss,selected_valid,status,task,ties,valid,wins
+6,,12,15,0.40975,-0.8,0.17777777777777778,1,,0,COMPLETE_EXPLORATORY_POOL,spooky-author-identification,3,3,0
+6,,0,15,,0.0,0.0,2,,0,COMPLETE_EXPLORATORY_POOL,spooky-author-identification,15,0,0
+,,,,,,,3,,,unknown,,,,

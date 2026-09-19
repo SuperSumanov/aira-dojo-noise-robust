@@ -1,0 +1,51 @@
+{
+  "summary_sha256": "721f995ca597568303f65c32e9d04667bcdd173c174b2e6af99bb78e765c0eb1",
+  "rows": [
+    {
+      "seed": 2,
+      "slot": 4,
+      "node": "87174b313139424e81402d79a64b53d1",
+      "same_code_sha256": "26c65de3fd654d092560cb2097f7d6548ed17336854fcf06e359f202a873d8fa",
+      "historical_buggy": true,
+      "historical_execution_seconds": 2.985691216774285,
+      "fresh_terminal_error": "TypeError: TfidfVectorizer.__init__() got an unexpected keyword argument 'lower_case'",
+      "exact_error_line_in_historical_output": true,
+      "historical_kernel_readiness_marker": false
+    },
+    {
+      "seed": 2,
+      "slot": 1,
+      "node": "a95f3a1a09754008bd019dbb5955584e",
+      "same_code_sha256": "defd0cca8c58217b51c2f08fd17bcac812f82c25b255afbded1640ce9a20005e",
+      "historical_buggy": true,
+      "historical_execution_seconds": 4.4956487668678164,
+      "fresh_terminal_error": "TypeError: TfidfVectorizer.__init__() got an unexpected keyword argument 'n_jobs'",
+      "exact_error_line_in_historical_output": true,
+      "historical_kernel_readiness_marker": false
+    },
+    {
+      "seed": 1,
+      "slot": 4,
+      "node": "abd782484bc6453aa688f4420309535b",
+      "same_code_sha256": "01edc95c44c3402bfa664bb584d9f8968c5378e43e9f9ba159824bccbd713a67",
+      "historical_buggy": true,
+      "historical_execution_seconds": 11.8289894759655,
+      "fresh_terminal_error": "TypeError: LogisticRegression.__init__() got an unexpected keyword argument 'multi_class'",
+      "exact_error_line_in_historical_output": true,
+      "historical_kernel_readiness_marker": false
+    },
+    {
+      "seed": 1,
+      "slot": 2,
+      "node": "e9292e0a154f41adb7e6c2a6c6bdbe1d",
+      "same_code_sha256": "c2d57e68d325a012b02b56c3b25a1ad59c95a6db8ecedb140bd1771410857641",
+      "historical_buggy": true,
+      "historical_execution_seconds": 4.791727110743523,
+      "fresh_terminal_error": "error: nothing to repeat at position 0",
+      "exact_error_line_in_historical_output": true,
+      "historical_kernel_readiness_marker": false
+    }
+  ],
+  "all_same_error_line": true,
+  "caveat": "Exact bounded error-line recurrence, not a controlled runtime-version attribution or repair."
+}

@@ -1,0 +1,14 @@
+{
+  "role": "descriptive_plot_no_new_endpoint",
+  "output_sha256": "e0b328a3ee24371c18cf18c7719311835a560697a5e972f8326aa6a2e2954dce",
+  "panels": [
+    {
+      "task": "leaf-classification",
+      "summary_sha256": "41e42fbff91ca970e8f5ee19a1ffdf57c31ffe0ddd6a24182e5e304c1225ef4f"
+    },
+    {
+      "task": "spooky-author-identification",
+      "summary_sha256": "721f995ca597568303f65c32e9d04667bcdd173c174b2e6af99bb78e765c0eb1"
+    }
+  ]
+}

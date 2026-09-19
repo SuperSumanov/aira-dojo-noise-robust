@@ -375,45 +375,345 @@ python -m dojo.main_run ... interpreter=chroot_python
 自己的 workspace，但不能破坏 workspace 之外的宿主文件。实现重点是 mount 白名单验证、降权顺序、
 子进程统一回收和精确 cleanup；其余资源管理功能不进入本次设计。
 
-## 12. 实现记录（2026-07-30）
+## 12. 实现记录（2026-07-30 起，含后续修复）
 
 Phase 1 和 Phase 2 已完成，Spaceship Titanic 端到端验证已通过。实现保持
 `interpreter=python` 不变；只有显式设置 `interpreter=chroot_python` 才会进入本节的 Linux sandbox。
 这既方便逐步部署，也保留了在不具备所需 capabilities 的环境中回退到原 interpreter 的能力。
 
-### 12.1 实际进程与文件系统结构
+下面按"原语 → 结构 → runtime 目录 → private tmp → 一次运行的过程 → 文件改动 → 安全边界 →
+踩过的坑 → 验证"组织。代码位置写成 `chroot_python.py:288` 时指的是
+`src/dojo/core/interpreters/chroot_python.py:288`，`linux_sandbox.py` 同理。
 
-实际结构与第 6 节的目标一致，但 supervisor 使用 `multiprocessing` 的 `spawn` 而非直接从主进程
-`fork`：主进程常已启动 logger/HTTP 线程，直接 fork 会触发 Python 3.12 的多线程 fork 风险。spawn
-产生一个干净的 supervisor；后续 namespace init 和 executor 的 fork 都发生在单线程子进程中。
+### 12.1 先补概念：这份实现用到的 Linux 原语
+
+这一节只讲后面读代码需要的部分。每条的写法是：它是什么、在这里干什么、代码在哪。
+
+**系统调用与 ctypes（`linux_sandbox.py:17-89`）**
+
+`mount`、`umount2`、`unshare`、`prctl` 都是内核系统调用，glibc 提供了同名 C 函数；Python 标准库
+只封装了其中一小部分（`os.chroot`、`os.setuid` 有，3.12 起还有 `os.unshare`，但
+`mount`/`umount2`/`prctl` 一直没有）。`ctypes` 是 Python 调 C 函数的通用入口：
+
+- `ctypes.CDLL(None)` 打开的是"当前进程自己"，在 Linux 上等于拿到 libc 的符号表，
+  于是 `_libc.mount(...)` 就是调 libc 的 `mount()`。
+- `use_errno=True` 配合 `ctypes.get_errno()`：出错后读 `errno`，像 C 一样拿到 `EROFS`、`EPERM`
+  这种具体原因，再由 `_check_syscall()` 包成 Python 异常。
+- `argtypes`/`restype` 是显式的参数和返回类型声明。不声明的话 ctypes 会把 Python int 当 C int
+  传，指针或长整型参数在 64 位平台上就会出错。
+
+不用 `subprocess` 跑 `mount` 命令的原因：路径作为 syscall 参数原样传入，不经过 shell 解释空格、
+引号和通配符；每个失败点都带 errno 和确切的操作名；也不依赖镜像里装了 util-linux 的 `mount`。
+（namespace 是进程属性，子进程执行命令时仍在同一张挂载表里，所以"必须用 syscall"不是硬限制，
+主要是可控性和错误信息。）
+
+**mount 和 bind mount（`linux_sandbox.py:65-81, 142-157`）**
+
+`mount(source, target, fstype, flags, data)` 把 source 上的文件系统挂到 target 上。target 叫挂载点，
+必须是已存在的目录（或文件）；挂上之后 target 目录原本的内容被遮住（没有被删除），umount 之后
+重新露出来。
+
+bind mount 是 `fstype = NULL` 的特例：source 不是设备而是另一个目录，效果是"把那个目录原样接到
+target 上"。本方案"给 agent 一份同路径的宿主文件系统视图"就是一次
+`mount("/", runtime/root, MS_BIND | MS_REC)`（`chroot_python.py:288`），**不复制任何文件**。
+
+用到的 flag：
+
+| flag | 含义 |
+| --- | --- |
+| `MS_BIND` | 这次挂载是 bind mount |
+| `MS_REC` | 递归，把 source 下已有的子挂载（`/data`、`/dev`、`/proc` 等）也一起接过去 |
+| `MS_REMOUNT` | 改一条已存在挂载的属性，而不是新建挂载 |
+| `MS_RDONLY` | 只读 |
+| `MS_NOSUID` / `MS_NODEV` / `MS_NOEXEC` | 忽略 setuid/setgid 位 / 不允许访问设备节点 / 不允许执行 |
+| `MS_PRIVATE` | 这条挂载的传播属性，见下一段 |
+
+两个容易踩的点：
+
+1. 每条挂载有自己独立的属性。把 `/` 设成只读**不会**连带把 `/data` 这个子挂载设成只读，所以
+   代码要遍历整张挂载表逐条处理（`remount_tree_readonly()`）。顺序是先深后浅，但每条挂载都是
+   独立对象，先处理哪条不影响结果。
+2. 改一条已有挂载的属性要用 bind 技巧。单独 `mount(NULL, target, MS_REMOUNT | MS_RDONLY)` 改的是
+   底层文件系统（superblock，宿主和其他 namespace 共用），会把宿主一起改成只读；
+   `MS_BIND | MS_REMOUNT` 只改本次 namespace 里这一个挂载点自己的属性。`bind_mount()` 就是这个
+   两步：先 `MS_BIND[|MS_REC]` 建立新挂载，再 `MS_BIND | MS_REMOUNT[|MS_RDONLY]` 设属性。
+
+**mount namespace（`chroot_python.py:286-288`）**
+
+`unshare(CLONE_NEWNS)` 把当前进程的挂载表复制一份；此后这个进程和它 fork 出来的孩子看到的挂载表
+与宿主其他进程无关，改动只影响自己。复制之后还要 `mount(NULL, "/", MS_REC | MS_PRIVATE)`：默认的
+挂载带 propagation 属性，mount/umount 事件会沿父子关系传播，标成 private 才彻底和宿主断开。
+
+为什么必须有它：同一个 Pod 上有别的用户和任务，直接在宿主挂载表上把 `/` 改成只读会把所有人一起
+搞坏。
+
+生命周期：namespace 里最后一个进程退出后，内核把它挂载表里的所有挂载销毁。所以这些挂载不需要、
+也不应该在宿主上手动 umount（`umount()` 只在 PID 1 替换 `/proc` 时用过一次）。
+
+**chroot（`chroot_python.py:84-85`）**
+
+`chroot(dir)` 把当前进程的 `/` 换到 dir，之后所有绝对路径都从 dir 开始解析。两个要点：
+
+- chroot 只改"路径怎么解析"，**不提供写保护，也不复制文件**。写保护来自只读 mount，进程回收来自
+  PID namespace，降权来自 setuid/setgroups/prctl，四件事是分开做的。
+- chroot 本身不是安全边界：进程自己保留的 cwd 和已经打开的目录 fd 仍然能走到新根之外。所以代码在
+  chroot 之后立刻 `chdir("/")`，并在降权前用 `close_fds_except()` 关掉除 stdio 和 Queue 之外的
+  所有继承 fd。
+
+为什么是"把整个 `/` bind 到同路径再 chroot"，而不是"只 bind 需要的几个目录"：Conda prefix、仓库
+路径、`/data` 在代码里都是绝对路径（例如 `/data/public/.../miniconda3/envs/aira-dojo`），保持同路径
+存在就不需要改 `PATH`、`sys.path` 或任何路径映射；`working_dir` 也一样，宿主和 sandbox 里是同一个
+字符串，agent 写出的文件直接落在真实 workspace 里，事后不需要搬运。
+
+**PID namespace（`chroot_python.py:53-57, 350-353`）**
+
+`unshare(CLONE_NEWPID)` 有个反直觉点：**它不改变调用者自己，只影响之后 fork 出来的孩子**。所以代码
+是先 unshare 再马上 fork，孩子就是新 namespace 里的 PID 1。
+
+PID 1 在三件事上和其他进程不同，正好是这里需要的：
+
+- 它退出时，内核把它这个 namespace 里剩下的所有进程一起杀掉，天然完成统一回收。
+- namespace 内的孤儿进程会被重新挂到 PID 1 上，所以它必须持续 `waitpid` 回收，否则会积累僵尸。
+- 内核不给 PID 1 应用信号的默认动作。它收到 SIGTERM 不会自己退出，必须显式装 handler 转发给
+  executor（`forward_signal`）。
+
+为什么不能只记下 pid 再 kill：agent 会 fork、double-fork、`setsid()`，进程会脱离进程组和父进程，
+按 pid、进程组或进程名清理都会漏；按 UID 清理会误伤同一 Pod 上其他用户。`_kill_namespace_descendants()`
+里 `os.kill(-1, sig)` 的含义是"给我在这个 namespace 里能看到的每个进程发信号"，namespace 外的进程
+根本不在它的视野里，所以这个"广播"是安全的。
+
+**prctl：三个进程开关（`linux_sandbox.py:320-336`）**
+
+`prctl(2)` 是"杂项进程属性"的系统调用，这里用了三个选项：
+
+- `PR_SET_PDEATHSIG`：父进程死的时候给我发信号。它是"主进程被强杀时不留野进程"的兜底。
+  设置完要复查一次 `getppid()`：检查和设置之间存在竞态，父进程可能刚好在这中间死了。注意 PID 1
+  的父进程在新 namespace 之外，它看到的 `getppid()` 是 0，所以判断写成 `not in (0, parent_pid)`。
+- `PR_CAPBSET_DROP`：从 capability bounding set 里删掉一个 capability。只 setuid 是不够的：宿主 `/`
+  本身是只读可见的，里面有 setuid-root 程序（`/bin/su`、`/usr/bin/passwd` 之类），也有带 file
+  capability 的程序，执行它们就可能把 root 权限拿回来。清空 bounding set 之后这些程序拿不到
+  capability。
+- `PR_SET_NO_NEW_PRIVS`：保证 exec 不带来任何新权限（setuid 位、file capability 全部失效）。
+
+`drop_privileges()` 的顺序不能乱，每一步都依赖上一步还没丢掉的权限：
+
+1. `setgroups([])` 清空附加组（必须是 root 才能调）。
+2. 逐个 `PR_CAPBSET_DROP` 清空 capability 上限。
+3. `setresgid`/`setresuid` 把 real/effective/saved 三个 ID 一起切成租用的数字 ID。只改 effective
+   的话进程随时能 `setuid` 回 root。
+4. `PR_SET_NO_NEW_PRIVS` 收尾。
+
+**`/proc/self/mountinfo` 和 tmpfs（`linux_sandbox.py:92-169`）**
+
+mountinfo 是内核给出的当前 namespace 的挂载表，一行一条挂载，字段包含 mount id、父 id、挂载点、
+挂载选项（`rw`/`ro`）和文件系统类型。路径里的空格、制表符、换行、反斜杠被转义成八进制写法
+（`\040` 是空格），所以 `parse_mountinfo()` 要解码。代码用它做两件事：找出 clone 里所有挂载并逐条
+设成只读；装完之后复核"还有没有意外的可写挂载"（`verify_writable_mounts()`）。后者是自我检查：
+任何没有被白名单**精确**覆盖的可写挂载都会让启动直接失败，而不是安静地留个洞。
+
+tmpfs 是内容放在内存/swap 的文件系统，不落地磁盘。这里用它造三种"全新的一块地盘"：sandbox 私有的
+`/home`（1MB，放说明文件和 `/home/data`）、`/dev/shm`（给 PyTorch DataLoader 和 multiprocessing
+用），以及新 PID namespace 里的 `/proc`。tmpfs 的内容在最后一个引用它的挂载消失时丢掉。
+
+**flock 和数字 UID 租约（`linux_sandbox.py:188-227`）**
+
+不用 `useradd/userdel`：改 `/etc/passwd` 是全局共享状态，并发会冲突，异常退出还会留下垃圾用户。
+直接用一个数字 UID（默认池 200000–299999，UID 和 GID 取同一个值）。唯一需要协调的是"两个并发
+sandbox 不要选到同一个号"，用 `flock` 就够了：对 `runtime_base_dir/uid-locks/<uid>.lock` 做非阻塞
+排他锁，抢到就归自己用，进程死掉内核自动释放。父进程在整个 sandbox 生命周期持有这个 fd；它带
+`O_CLOEXEC`，所以 spawn 出来的子进程不会继承。
+
+### 12.2 整体结构和文件系统视图
+
+进程树（带权限标注）：
 
 ```text
-可信主进程（root）
-  -> spawn sandbox supervisor（设置 parent-death signal）
-       -> private mount namespace：/ 的 recursive bind clone 只读
-       -> private PID namespace 的 init（PID 1，chroot 到 clone）
-            -> executor（数字 UID/GID、无 capability）
-                 -> agent 及其训练/DataLoader/subprocess 子进程
+可信主进程（root，有 CAP_SYS_ADMIN / CAP_SYS_CHROOT）
+  └─ spawn: sandbox supervisor（root；单线程；持有 UID 锁；PDEATHSIG=SIGTERM）
+       ├─ 私有 mount namespace（自己的挂载表）
+       └─ unshare(CLONE_NEWPID) + fork
+            └─ namespace init（新 namespace 的 PID 1；chroot 后是 root，但只转发信号和回收子进程）
+                 └─ fork
+                      └─ executor（数字 UID/GID 20 万+、无附加组、CapEff 为 0、no_new_privs）
+                           └─ agent 代码、DataLoader worker、subprocess …
 ```
 
-具体挂载顺序为：先 unshare mount namespace 并将 `/` 设为 private；recursive bind `/` 到 runtime 的
-`root/`；按 mountinfo 从深到浅将 clone 内每个 mount remount 为只读；将 workspace、私有 `/tmp` 和
-`/run` 显式 bind 回可写；最后用新的、带 `nosuid,nodev,noexec` 的 procfs 覆盖 clone 的
-`/proc`，再 chroot。procfs 本身必须是读写挂载：NVIDIA CUDA driver 在设备枚举时需要 procfs operation，
-只读 procfs 会使 `cudaGetDeviceCount()` 返回 Error 304。它是 PID namespace 内的新 procfs，
-而 executor 已失去 root UID、groups 与 capabilities；因此该例外不提供对宿主文件系统的写入能力。这样
-`/data`、Conda prefix、仓库和任何独立 submount 都不会因为只 remount 顶层 `/` 而意外保持可写。
+agent 看到的文件系统：
 
-### 12.2 各文件的代码改动和原因
+| 路径 | agent 视角 | 怎么做的 |
+| --- | --- | --- |
+| `/` 及其下所有目录 | 只读 | 宿主 `/` 的 recursive bind clone，逐条 remount 成只读 |
+| `working_dir`（宿主同路径） | **可写** | 单独 bind 回可写，这是唯一持久可写的目录 |
+| `/tmp`、`/run`（`private_tmp=True`） | 可写 | runtime 下新建的目录 bind 过去，见 12.4 |
+| `/dev/shm` | 可写 | 新 tmpfs，容量取宿主 `/dev/shm` 的上限 |
+| `/home` | 只读 | 1MB tmpfs，放 `/home/data`（真实 data 目录只读 bind）和 `instructions.txt` |
+| `/etc/passwd`、`/etc/group` | 只读 | runtime 下生成的最小文件 |
+| `/proc` | 可写 | 新 PID namespace 里的新 procfs，只包含本 namespace 的进程 |
 
-以下按实现依赖顺序说明每个文件的职责、具体改动和它解决的问题。
+磁盘上的实际布局（与第 7 节的草图略有出入，以下面这份代码产生的为准）：
 
-#### 12.2.1 配置入口：dataclass、Hydra group 与 factory
+```text
+${runtime_base_dir}/                     默认 /tmp/dojo-python-sandboxes，0700 root
+├── uid-locks/
+│   └── 200000.lock …                    flock 锁文件，长期存在；文件存在 ≠ 号被占用
+└── sandbox-XXXXXX/                      每次运行一个，退出时整个删掉
+    ├── root/                            空目录，chroot 的挂载点（宿主 / bind 到它上面）
+    ├── writable/
+    │   ├── tmp/                         私有 /tmp 的落点（chown 给租用的 UID）
+    │   └── run/                         私有 /run 的落点
+    ├── passwd / group                   sandbox 内的假用户记录
+    └── state.json                       workspace、uid、supervisor pid，供残留排查
+```
+
+`root/` 里没有文件。运行中它是宿主 `/` 的镜像（`du` 会跟着挂载点一路走进宿主文件系统），sandbox
+退出、namespace 消失之后又变回空目录，所以创建和删除成本都接近 0。
+
+### 12.3 runtime_base_dir：为什么要一个瞬态目录
+
+这个目录不是工作区，也不是缓存，它只用来放"隔离机制需要、但既不能放进 agent 的 workspace、也不能
+放进共享宿主目录"的东西。逐条对应上面的布局：
+
+1. **mount 和 chroot 需要真实存在的目录当挂载点**。bind mount 的 target 必须存在，chroot 的目标
+   也必须存在。它们不能建在 workspace 里：workspace 是 agent 可写的地方，挂载点被改名或删除就会
+   把挂载变成悬空；何况把宿主 `/` 挂上去正好会盖住 workspace 自己。所以要在别处准备一个空目录，
+   也就是 `sandbox-XXXX/root/`。
+2. **它同时是 namespace 的"外壳"**。所有 mount 都发生在它之上，namespace 消失时挂载也一起消失。
+   目录本身是一次性的：每次运行随机名字，退出时 `SandboxRuntime.cleanup()` 整个 `rmtree`
+   （`chroot_python.py:535-545`）。这也是它不放在 repo 或数据目录里的原因——那里要求长期存在，
+   而这里天生是垃圾。
+3. **私有 `/tmp`、`/run` 需要真实可写的落点**（见 12.4）。它们必须落在宿主某个真实目录上，而那个
+   目录绝不能是共享的宿主 `/tmp`，于是放在 `sandbox-XXXX/writable/{tmp,run}`，再 bind 到
+   sandbox 内的 `/tmp`、`/run`。
+4. **需要一小块 agent 摸不到、宿主 root 进程能用的小空间放元数据**：给 sandbox 用的假
+   `passwd`/`group`（稍后只读 bind 到 `/etc/passwd`）、`state.json`（记录 workspace/uid/pid，
+   出问题时用来判断残留），以及跨 run 协调 UID 的 `uid-locks/`。这些既不能放在 workspace（agent
+   可写等于可改），也不能放在 `/etc`（不能污染宿主）。
+
+约束在 `ensure_runtime_base()`（`linux_sandbox.py:172-185`）：必须是本机文件系统上的目录、权限
+`0700`、owner 是启动者；目录已存在但不是 0700 或 owner 不符就直接报错。agent 从 clone 里也进不去，
+因为 runtime_base 是 0700 且属于 root。
+
+两个隐含代价值得知道：
+
+- 私有 `/tmp` 落在 runtime_base_dir 所在的文件系统（默认就是 `/tmp`）上，agent 往 `/tmp` 写多少
+  就占多少。本方案不做磁盘配额也不监控。
+- `uid-locks/` 里的锁文件不会被删除（每个几十字节）。占用状态由 `flock` 表示，"文件存在"不代表号
+  被占用。
+
+### 12.4 private_tmp：为什么要私有 /tmp 和 /run
+
+1. **不私有就会直接坏掉**。clone 之后宿主 `/tmp` 也是只读的，任何写 `/tmp` 的代码都直接拿到
+   `EROFS`。写 `/tmp` 的库很多：matplotlib 的字体缓存、pip、torch、numba、`multiprocessing` 的
+   临时目录，以及各种"先把结果 dump 到 /tmp"的脚本。
+2. **不能简单把宿主 `/tmp` 重新挂成可写**。`/tmp` 是同一个 Pod 上所有用户共享的：agent 可以覆盖
+   别人的临时文件、抢别人的文件名（symlink 攻击），也可以读到别人留在 `/tmp` 里的东西。
+3. **做法**：在 runtime 里准备两个真实目录，chown 给本次租用的 UID，bind 到 sandbox 的 `/tmp` 和
+   `/run` 并设成可写（`chroot_python.py:329-333`）。agent 写的 `/tmp` 是它自己的一份，namespace
+   外看不到，退出时随 runtime 目录一起删掉。executor 里 `TMPDIR`/`TMP`/`TEMP` 也都指到 `/tmp`
+   （`chroot_python.py:101-114`），代码写临时文件自然落到这里。
+4. **为什么连 `/run` 一起**：同一个模式，不少程序会往 `/run`、`/var/run` 写 pid 文件、socket 和锁
+   文件，不私有的话它们同样会撞上只读。
+5. **workspace 不能位于 `/tmp` 或 `/run` 之下**：私有 `/tmp` 会盖在 clone 的 `/tmp` 上，正好把
+   workspace 藏起来，所以配置校验直接拒绝这种组合（`chroot_python.py:410-414`）。
+6. `private_tmp=False` 是留给调试的退路：不挂 `/tmp`、`/run`，executor 把 `TMPDIR` 指到
+   `workspace/.tmp`，sandbox 里的 `/tmp` 仍然是宿主 `/tmp` 的只读副本。
+
+### 12.5 一次 sandbox 启动的完整过程
+
+**第 0 步：可信主进程的检查和准备（`chroot_python.py:398-510`）**
+
+1. `__init__` 确认是 Linux、`/proc/self/mountinfo` 存在、`geteuid() == 0`。然后做路径校验
+   （`linux_sandbox.py:258-284`）：workspace 必须是真目录（不是 symlink），目录名必须是
+   `workspace_agent`，不能是 `/`、runtime 目录、仓库或其祖先，不能和只读 data 目录互相包含；配了
+   `allowed_working_root` 时还必须是它的真子目录。通过后记下 `(st_dev, st_ino)` 作为身份指纹。
+2. `create_process()` 先复核 workspace 还是那个 inode、还不是 symlink（从校验到启动之间可能被换
+   掉，也就是 TOCTOU），再记录 workspace 原本的 owner。
+3. 取一个 UID 租约，在 runtime_base 下建 `sandbox-XXXX/`，写 `state.json`。
+4. `ensure_uniform_ownership_no_follow()` 拒绝 workspace 里预存的混合 owner 和 hard link（hard
+   link 会让后面的 `chown` 改到 workspace 之外的 inode）；然后预建 `.cache`、`.config`、
+   `.local`、`.conda` 等目录，最后把整棵 workspace 树 chown 给租用的 UID/GID——降权后的 executor
+   就是靠这个数字 UID 写 workspace 的。
+5. 用 `multiprocessing.get_context("spawn")` 起 supervisor，而不是直接 fork：主进程这时通常已经
+   起了 logger、HTTP 线程，Python 3.12 里多线程 fork 会出问题（子进程可能卡死、锁状态被复制），
+   spawn 出来的则是干净的、单线程的 Python 进程。三条 Queue 也由这个 context 创建，启动阶段的
+   错误才有通道回传主进程。
+   `__getstate__()` 会把 logger、process、Queue、runtime、UID 租约从序列化状态里清掉，保证 spawn
+   的子进程只拿到能安全重建的 executor 状态。
+
+**第 1 步：supervisor 构建文件系统视图（`chroot_python.py:282-345`）**
+
+| 顺序 | 操作 | 代码 | 为什么 |
+| --- | --- | --- | --- |
+| 1 | `PDEATHSIG = SIGTERM` | 285 | 主进程异常退出时，supervisor 还能停下来恢复 owner |
+| 2 | `unshare(CLONE_NEWNS)`，再把 `/` 设为 `MS_REC\|MS_PRIVATE` | 286-287 | 独立挂载表，且不让改动传播到宿主 |
+| 3 | bind 宿主 `/` 到 `runtime/root` | 288 | 同路径的文件系统视图 |
+| 4 | `/home`：1MB tmpfs + `/home/data` 只读 bind + 写 `instructions.txt` | 295-303 | MLE-bench 提示词里写的是 `/home/data` |
+| 5 | `remount_tree_readonly(root)` | 304 | 逐条把 clone 里每个挂载设成只读 |
+| 6 | workspace 按同路径 bind 回可写 | 307-309 | 唯一持久可写的目录 |
+| 7 | `/dev/shm` 换成新的 tmpfs | 315-327 | 见 12.8.2 |
+| 8 | `private_tmp`：把 `writable/{tmp,run}` bind 到 `/tmp`、`/run` | 329-333 | 见 12.4 |
+| 9 | 生成 `passwd`/`group` 并只读 bind 到 `/etc/` | 335-343 | 让需要用户名的工具能用 |
+| 10 | `verify_writable_mounts()` | 344 | 白名单复核：除 workspace/shm/tmp/run 外还有可写挂载就直接失败 |
+
+这一步整体放在 PID namespace 之前：等所有可能失败的 mount 都做完再切 namespace，出错时还能通过
+Queue 把失败原因送回主进程。顺序本身也是设计的一部分：`/home` 的 tmpfs 挂在第 5 步**之前**，
+所以它随后被一起设成只读（这就是 `/home` 可读但不可写的来源）；workspace、`/dev/shm`、`/tmp`、
+`/run` 都挂在第 5 步**之后**，所以它们保持可写。
+
+**第 2 步：进入 PID namespace 并 chroot（`chroot_python.py:347-367, 60-89`）**
+
+- `unshare(CLONE_NEWPID)` 之后立刻 `fork()`：父进程（supervisor）等结果，子进程成为新 namespace
+  的 PID 1。
+- PID 1 先 `umount` 掉 clone 里继承来的宿主 `/proc`，再挂一个新的 procfs。换掉它的原因：agent
+  应该看到自己 namespace 的进程视图，而不是宿主全部进程；而 procfs 的内容由读它的进程所在的 PID
+  namespace 决定，所以必须在进入新 namespace 之后重新挂载。
+- 这个 procfs 是唯一非只读的例外，而且必须可写：NVIDIA 驱动枚举设备时会做 procfs 操作，只读
+  procfs 会让 `cudaGetDeviceCount()` 返回 Error 304，从而 `torch.cuda.is_available()` 变成 False。
+  它是 PID namespace 自己的新 procfs，不是宿主 `/proc` 的 bind，而 executor 已经没有 root UID、
+  附加组和 capability，所以这个例外拿不到宿主文件系统的写权限。把它加进白名单后再复核一次。
+- 最后 `chroot(root)` + `chdir("/")`，此后一切按新根解析。
+
+**第 3 步：executor 降权运行 agent（`chroot_python.py:91-188`）**
+
+1. 把 SIGINT/SIGTERM/SIGHUP 恢复成默认行为。不恢复的话会继承 PID 1 的转发 handler：空闲会话收到
+   SIGTERM 只会把它转发给自己然后继续活着，直到被强杀。
+2. `chdir(working_dir)`（宿主和 sandbox 同路径），把 `HOME`、`XDG_*`、`MPLCONFIGDIR`、`HF_HOME`、
+   `TORCH_HOME`、`NUMBA_CACHE_DIR`、`PIP_CACHE_DIR`、`PYTHONUSERBASE`、`CONDA_PKGS_DIRS`、
+   `CONDA_ENVS_PATH` 全部指到 workspace 或私有 `/tmp`，并打开 `PIP_USER=1`
+   （`chroot_python.py:101-140`）。这些都是库会写文件的位置，不重定向就会撞上只读挂载。
+3. `close_fds_except()` 只留 stdio 和三条 Queue，其余继承 fd 全关。否则主进程早些时候打开的宿主
+   文件 fd 可以绕过只读挂载直接写；集成测试专门验证了这条。
+4. 清掉 multiprocessing 继承下来的缓存：父进程的 resource-tracker fd/pid，以及缓存过的临时目录
+   （见 12.8.2）。
+5. `drop_privileges()`：附加组、capability、UID/GID 依次丢掉。
+6. 把 multiprocessing 默认启动方式强制回 `fork`（`spawn` 是 supervisor 自己用的，不该泄漏给
+   agent，见 12.8.3），然后调用原有的 `PythonInterpreter._run_session()`——会话协议、持久
+   globals、traceback、timeout 全部复用，agent 看不出区别。
+
+**第 4 步：退出和回收（`chroot_python.py:190-238, 372-387, 529-545`）**
+
+- PID 1 平时阻塞在 `waitpid(-1)`：一边回收孤儿，一边等 executor。收到信号就转发；SIGTERM/SIGHUP
+  之后 2 秒内没等到 executor，升级成 SIGKILL。
+- executor 退出后，先给 namespace 内剩余进程 SIGTERM，短暂回收，再 SIGKILL，最后把还活着的全部
+  `waitpid` 收干净。double-fork + `setsid()` 的后台进程也逃不掉。
+- supervisor 等到 PID 1 退出，把 workspace 的 owner 交还原 owner，然后退出。
+- 主进程侧 `cleanup_session()` 无论正常与否都会在 `finally` 里恢复 owner（幂等）、删除 runtime
+  目录、释放 UID 锁。
+- 主进程被强杀时，PDEATHSIG 让 supervisor 收到 SIGTERM，链条照走一遍；如果连 supervisor 都没机会
+  跑完，私有挂载会随 namespace 消失，最多留下一个小 runtime 目录和一个临时 owner，下次按
+  `state.json` 保守清理。
+
+### 12.6 各文件的代码改动和原因
+
+12.1 和 12.5 讲的是机制和流程，这一节按文件列出改动明细；两者对照看，代码里的每个
+syscall 都能在前面找到它对应的概念。以下按实现依赖顺序说明每个文件的职责和它解决的问题。
+
+#### 12.6.1 配置入口：dataclass、Hydra group 与 factory
 
 - `src/dojo/config_dataclasses/interpreter/chroot_python.py` 新增
   `ChrootPythonInterpreterConfig`，并继承已有
   `PythonInterpreterConfig`。因此代码执行协议、超时、工作目录和输出格式仍沿用
-  Python interpreter；仅增加隔离所必需的五项参数：
+  Python interpreter（并把 `startup_timeout` 从 10 秒改成 60 秒）；新增隔离所必需的五项参数：
   `runtime_base_dir`（sandbox 瞬态目录的父目录）、
   `allowed_working_root`（workspace 的可信边界）、
   `uid_min`/`uid_max`（临时低权限数字 UID/GID 池）和
@@ -433,7 +733,7 @@ Phase 1 和 Phase 2 已完成，Spaceship Titanic 端到端验证已通过。实
   导入配置时加载 Linux syscall 模块；同时让现有 `build(..., INTERPRETER_MAP)` 管线不需要
   特判新 interpreter。
 
-#### 12.2.2 Linux 安全基元：`src/dojo/core/interpreters/linux_sandbox.py`
+#### 12.6.2 Linux 安全基元：`src/dojo/core/interpreters/linux_sandbox.py`
 
 - 该文件将所有 Linux 特定逻辑集中起来，而不是散落在 interpreter 的会话代码中。它用
   `ctypes` 对 `unshare(2)`、`mount(2)`、
@@ -444,8 +744,9 @@ Phase 1 和 Phase 2 已完成，Spaceship Titanic 端到端验证已通过。实
 - `parse_mountinfo()` 解析 Linux 的 `/proc/self/mountinfo`，包括其中的
   八进制转义，并将 mount point、mount option、filesystem 类型保存为结构化记录。
   `remount_tree_readonly()` 不是只 remount clone 的顶层 `/`：它筛出 clone
-  下的每一个 mount，按路径深度从深到浅执行 bind-remount read-only。这样 Conda prefix、仓库、
-  `/data` 及宿主本来就独立挂载的子树不会因嵌套 mount 而保留写权限。
+  下的每一个 mount，各自执行一次 bind-remount read-only。每一条挂载都是独立对象（把父挂载设成
+  只读不会传给子挂载），所以必须逐条处理，Conda prefix、仓库、`/data` 及宿主本来就独立挂载的
+  子树才不会保留写权限。
   在切换 root 前，`verify_writable_mounts()` 再读取 mount table，要求可写 mount 的目标
   恰好等于 allowlist 中的 workspace、私有 `/tmp`/`/run` 或新 PID namespace
   的 `/proc`；任何意外 rw 挂载都会令启动失败。`/proc` 是 CUDA 可用性的必要
@@ -472,7 +773,7 @@ Phase 1 和 Phase 2 已完成，Spaceship Titanic 端到端验证已通过。实
   `no_new_privs`；切换后 executor 不能借 setuid file 或保留 capability 回到 root。
   `set_parent_death_signal()` 还在设置信号后复查父 PID，消除“父进程恰在调用间死亡”的竞态。
 
-#### 12.2.3 沙盒生命周期：`src/dojo/core/interpreters/chroot_python.py`
+#### 12.6.3 沙盒生命周期：`src/dojo/core/interpreters/chroot_python.py`
 
 - `ChrootPythonInterpreter.__init__()` 只接受 Linux、`/proc/self/mountinfo`
   存在且启动者为 root 的场景。它首先调用 workspace 校验，随后拒绝仓库本身及其祖先作为 workspace、
@@ -523,7 +824,7 @@ Phase 1 和 Phase 2 已完成，Spaceship Titanic 端到端验证已通过。实
   多出的时间用于 PID 1 转发 SIGTERM、回收 descendants，以及 supervisor 完成 owner 恢复；它避免正常的
   sandbox 级 shutdown 被过早升级成强杀。
 
-#### 12.2.4 通用 Python interpreter 的收口：`src/dojo/core/interpreters/python.py`
+#### 12.6.4 通用 Python interpreter 的收口：`src/dojo/core/interpreters/python.py`
 
 - 新增 `resolve_workspace_path()`。agent 提供的 `file_name` 必须相对，
   不能含 `..`；解析后的真实路径还必须严格位于 workspace 内。会话循环写入、设置
@@ -539,7 +840,7 @@ Phase 1 和 Phase 2 已完成，Spaceship Titanic 端到端验证已通过。实
   process 创建前和 cleanup 后都会运行它，避免已退出 child 遗留的 Queue feeder 让父进程 cleanup
   卡住。cleanup 的 join 超时也从硬编码 2 秒改为类属性，以便 chroot 子类覆盖为 5 秒。
 
-#### 12.2.5 顶层异常路径：`src/dojo/main_run.py`
+#### 12.6.5 顶层异常路径：`src/dojo/main_run.py`
 
 `_main()` 现在把 task 创建、interpreter 创建、prepare、solver 和最终评估置于
 `try/finally`。finally 中优先调用 `task.close(state)`，因为 task 最清楚
@@ -547,7 +848,7 @@ workspace 和 evaluator 的正常清理顺序；若 prepare 前便失败、尚�
 `solver_interpreter.cleanup_session()`。最外层 finally 始终停止 logger。这样 LLM、
 数据准备、评测或 solver 抛异常时，不会跳过 chroot 的进程终止、owner 恢复和 runtime 删除。
 
-#### 12.2.6 运维诊断与回归测试
+#### 12.6.6 运维诊断与回归测试
 
 - `src/mle_critic/scripts/check_isolation.sh` 的 namespace probe 改为测试本实现实际所需的
   mount + PID namespace，不再把 user namespace 当作前提；chroot probe 使用每次 `mktemp`
@@ -572,7 +873,7 @@ workspace 和 evaluator 的正常清理顺序；若 prepare 前便失败、尚�
   后消失；宿主 mount table 与每次运行的 `sandbox-*` runtime 目录不会残留。该测试同时覆盖“能运行研究代码”与“退出后不污染
   Pod”的两个目标。
 
-### 12.3 明确的安全边界和操作约束
+### 12.7 明确的安全边界和操作约束
 
 - 启动端必须是 root，并具备 `CAP_SYS_ADMIN`、`CAP_SYS_CHROOT`、`SETUID`、`SETGID`；不满足时 sandbox 不会降级为不安全模式，而会在启动时失败。
 - `allowed_working_root` 应设为本次 run 的 output directory 或其可信父目录。它不能是 `/`；workspace 必须叫 `workspace_agent`，并且是该 root 下的子目录。
@@ -582,24 +883,116 @@ workspace 和 evaluator 的正常清理顺序；若 prepare 前便失败、尚�
   `/proc` 的 bind，且 executor 已移除 root UID、附加组与 capabilities。agent 因而可调整少数自身
   进程状态，但不能将该 procfs 例外变成宿主文件系统写权限。
 - 正常退出和 parent-death 路径会恢复 workspace owner。若整个 Pod/内核强制 SIGKILL 所有进程，私有 mounts 会随进程消失，但 runtime 中可能留下很小的状态/锁文件；它们不包含 agent 工作结果，后续可保守清理。
+- 私有 `/tmp` 和 `/run` 用的是 `runtime_base_dir` 所在文件系统上的真实目录，不是 tmpfs（只有 `/dev/shm`、`/home` 和 `/proc` 是 tmpfs）。agent 在 `/tmp` 写的量会占这块盘，方案本身不做配额和监控。
+- runtime_base_dir、UID 池和 workspace 路径都属于部署约定：同一台机器上的并发 run 必须用同一个 runtime_base_dir 才能通过 `uid-locks/` 协调。
 
-### 12.4 验证结论
+### 12.8 端到端跑起来之后补的修复
 
-此前的 Spaceship Titanic 直接 interpreter 端到端验证已通过。批量验证现改用
-`main_runner_job_array` 与单 worker 的 `local_gpu_pool`；其 Hydra 展开、源码 snapshot、
-manifest 创建、GPU UUID 注入和 worker 启动均已验证。完整 pool run 必须只在独占空闲 GPU 上进行：最近一次启动时
-8 张 Pod 可见 GPU 均已被其他用户占用，controller 已按 SIGTERM 路径将自己的 attempt 标记为
-`cancelled`，没有继续竞争设备。因此本节不把该已取消 attempt 表述为完整 Spaceship pool 验证通过；
-待有空闲设备后直接运行 12.5 的命令即可完成该最终验证。
+真实 agent 跑起来之后暴露了几个基础隔离测试覆盖不到的兼容问题。每条按"症状 → 原因 → 修复"写。
 
-### 12.5 可复现的 Spaceship Titanic demo 命令
+**12.8.1 `/home` 路径、OpenCL 和 cache 环境变量（2026-07-30）**
 
-本验证改用 `python -m dojo.main_runner_job_array`；它会先固定当前源码 snapshot、展开
-`RunnerConfig`，再交给 `local_gpu_pool` 启动独立 worker。pool controller 为每个
-worker 按 GPU UUID 写入 `CUDA_VISIBLE_DEVICES`、保存 manifest、attempt stdout/stderr 和
-result JSON，并在 worker 完成后汇总状态。
-以下命令适用于当前具备上述 capabilities、已准备 MLE-bench 数据、并在 `.env` 中配置有效 LLM key 的 Pod。
-它是单 seed、单 GPU 的完整 pool smoke run；
+症状：MLE-bench 的 prompt 承诺 `/home/instructions.txt` 存在，数据的正式约定是 workspace 下的
+`./data`，但部分生成代码仍会写传统容器路径 `/home/data/*.csv`；需要 LightGBM `device="gpu"` 的
+任务起不来；另外 Matplotlib、Hugging Face、Torch、Numba、pip、Conda 会尝试写宿主 cache。
+
+原因：
+
+- 同路径视图里的 `/home` 是宿主 `/home`，那是别人的目录，不能往里写东西。
+- `/etc/OpenCL/vendors/nvidia.icd` 在当前 Pod 里不存在。这不是 chroot 的必然要求，而是当前 K8s
+  驱动注入方式的兼容问题，跟隔离机制无关。
+- launcher 会把提交者的 `XDG_CONFIG_HOME`、`XDG_DATA_HOME` 等绝对路径原样继承给 executor，只改
+  `HOME` 挡不住这些库。
+
+修复：
+
+- supervisor 在私有 namespace 里用 1MB tmpfs 造一个极小的 `/home`，把真实 data 目录只读 bind 到
+  `/home/data`，再写一个说明文件；它随后和其他挂载一起被设成只读（`chroot_python.py:295-303`）。
+  宿主 `/home` 一个文件都不会被创建；workspace 里原有的 `./data` symlink 照常可用。
+- OpenCL 默认不动。需要时应用 `src/mle_critic/patches/chroot_nvidia_opencl_runtime.patch`，在
+  workspace 里提供 NVIDIA ICD 并跑真实的 OpenCL 训练测试。
+- executor 把 cache/config/package 目录统一指向 workspace，并设置 workspace 内的 Python user
+  site（`chroot_python.py:101-140`，见 12.5 第 3 步）。额外的 pip package 因此可以装进本次
+  agent 的 `.local`，Conda 的 package/env cache 也不会写共享 prefix。这是**黑名单式**兼容：父
+  环境其他变量仍然继承，只覆盖已经确认会产生写入的那些。只读挂载仍能阻止遗漏变量改到 workspace
+  之外，但新库如果用没覆盖的 cache/config 变量，还是可能出现 `PermissionError`，按真实日志补映射。
+  它不等价于环境变量或凭据隔离。
+
+**12.8.2 PyTorch DataLoader 和 `/dev/shm`（2026-07-31）**
+
+症状：Dog Breed Identification 的多 seed 真实任务稳定报
+`multiprocessing.SemLock: OSError [Errno 30] Read-only file system`。
+
+原因：Python 的 POSIX semaphore、`multiprocessing.Queue`、`multiprocessing.shared_memory` 和
+PyTorch 多 worker 的 `DataLoader` 都依赖 `/dev/shm`。早期实现把 recursive bind clone 里的所有
+submount 一律设成只读，于是克隆过来的宿主 `/dev/shm` 也变成只读了。
+
+修复：
+
+- 不重新开放宿主 `/dev/shm`，而是在 private mount namespace 里把一个新的 tmpfs 挂到 clone 的
+  `/dev/shm`（`chroot_python.py:315-327`）：`mode=1777,nosuid,nodev,noexec`，容量沿用宿主
+  `/dev/shm` 的上限，并作为一个精确路径加进 writable 白名单。不同 sandbox 不共享 POSIX IPC
+  对象，内容随 namespace 消失。集成测试会真的建 `multiprocessing.Queue`、跑
+  `DataLoader(num_workers=2)`，并确认 sandbox 的 shm marker 在宿主 `/dev/shm` 里看不到。
+- 修完 SemLock 之后还有下一层问题：PyTorch 把 tensor storage 从 worker 传回父进程时会用
+  `multiprocessing.resource_sharer` 的 AF_UNIX socket。spawn 出来的 supervisor 可能从主进程继承
+  了已经缓存的 resource-tracker fd 和临时目录：前者被 `close_fds_except()` 关掉了（正好不能再用），
+  后者可能指向 chroot 之外，也可能落在不支持 Unix socket 的共享文件系统上。所以 executor 把这两类
+  缓存都清掉（`resource_tracker` 的 `_fd`/`_pid` 和
+  `current_process()._config["tempdir"]`），让 resource tracker 在降权后的 PID namespace 内重新
+  启动，并把 resource-sharer 的小控制目录固定到 `/dev/shm/dojo-multiprocessing`。普通 `TMPDIR`
+  不变，训练过程的一般临时文件不会因此挤占 shm。
+
+**12.8.3 spawn 和动态 `__main__` 的 pickle 语义（2026-07-31）**
+
+症状：8 个 seed 都能跑到 DataLoader worker 启动，然后稳定报
+`Can't pickle <class '__main__.DogDataset'>: attribute lookup DogDataset on __main__ failed`。
+
+原因：和文件可见性无关。DataLoader 需要把用户定义的 Dataset 类 pickle 给 worker，而 spawn 出来的
+worker 会重新加载主脚本，再按模块名 `__main__` 回查这个类。原 `PythonInterpreter` 只是给一个普通
+`exec()` 的 globals dict 设了 `__name__ = "__main__"`，这个 dict 并不是真正的
+`sys.modules["__main__"].__dict__`；pickle 回查时看到的其实是 Dojo/pytest launcher 的主模块，自然
+找不到同一个类。另外 spawn 是 supervisor 自己用的启动方式，会顺着 executor 泄漏成 agent 的默认
+值，这和普通 Linux Python 进程不一样，不带 `if __name__ == "__main__"` guard 的脚本会被反复
+重新执行一遍。
+
+修复：executor 为 agent session 建一个真正的 `ModuleType("__main__")`，同时维护 multiprocessing
+约定的 `__mp_main__` alias，用这个模块的 dict 执行 agent 代码；并把默认启动方式强制改回 `fork`
+（12.5 第 3 步第 6 条）。这样带 guard 的完整 solution script 可以被 spawn worker 安全重新加载；
+agent 显式要求 spawn context 时仍然按 spawn 的语义走，也就仍然需要 guard。测试会真的通过 spawn
+往返一个用户定义的对象，并让 chroot 里的 DataLoader 使用定义在 agent 脚本中的自定义 Dataset，
+而不是只测可以 import 的 `TensorDataset`。
+
+### 12.9 验证结论和 demo 命令
+
+已经通过的部分：
+
+- `tests/test_linux_sandbox.py`（不需要特权）：mountinfo 解析（含转义路径）、rw/ro 识别、workspace
+  必须是专属名字且不能是 symlink、白名单不能宽到 `/`、两个并发 UID 租约必然拿到不同 UID、
+  范围耗尽时明确报错。
+- `tests/test_python_interpreter.py`：原有的 persistent globals 和 traceback 语义；新增
+  `../escape.py`、绝对 `file_name` 被拒绝，`fetch_file()` 只认 workspace 内的普通文件。
+- `tests/test_chroot_python_interpreter.py`（需要 root + `CAP_SYS_ADMIN` + `CAP_SYS_CHROOT`）：
+  agent 视角的 uid/groups/`CapEff`；workspace 可写；外部 0666 sentinel、workspace 内指向外部文件
+  的 symlink、data 目录（`./data` 和 `/home/data`）以及继承来的宿主可写 fd 全部写失败；
+  `/home/data` 可读而 `/home` 不可写；XDG/cache/user-site 可写且能 import；NumPy、pandas、
+  scikit-learn、PyTorch 可用，`torch.cuda.is_available()` 与宿主一致；subprocess、
+  `multiprocessing.Queue`、`DataLoader(num_workers=2)` 正常；sandbox 的 `/dev/shm` marker 在宿主
+  `/dev/shm` 里不可见；`setsid()` 双重 fork 的后台进程在 cleanup 后消失（测试把它的宿主 PID 写进
+  workspace 文件，再轮询确认）；宿主 mountinfo 前后一致，runtime 下不留 `sandbox-*`。
+- Spaceship Titanic 的直接 interpreter 端到端验证已通过。
+
+还没完成的部分：批量验证改用 `main_runner_job_array` 加单 worker 的 `local_gpu_pool`，其 Hydra
+展开、源码 snapshot、manifest 创建、GPU UUID 注入和 worker 启动都已验证。完整 pool run 必须只在
+独占空闲 GPU 上跑：最近一次启动时 8 张 Pod 可见 GPU 都被其他用户占用，controller 按 SIGTERM 路径
+把自己的 attempt 标成 `cancelled`，没有继续竞争设备。所以这里不把那次已取消的 attempt 说成完整
+pool 验证通过；等有空闲设备时直接跑下面的命令即可补上。
+
+`python -m dojo.main_runner_job_array` 会先固定当前源码 snapshot、展开 `RunnerConfig`，再交给
+`local_gpu_pool` 启动独立 worker。pool controller 为每个 worker 按 GPU UUID 写
+`CUDA_VISIBLE_DEVICES`，保存 manifest、attempt 的 stdout/stderr 和 result JSON，并在 worker 完成后
+汇总状态。以下命令适用于具备上述 capabilities、已准备 MLE-bench 数据、并在 `.env` 里配好 LLM key
+的 Pod；它是单 seed、单 GPU 的完整 pool smoke run：
 
 ```bash
 python -m dojo.main_runner_job_array \
@@ -621,65 +1014,3 @@ python -m dojo.main_runner_job_array \
   solver.step_limit=5 \
   logger.use_wandb=false
 ```
-
-### 12.6 端到端运行后补充修复（2026-07-30）
-
-`local_gpu_pool` 的真实 agent 日志进一步暴露了三项仅靠基础隔离测试没有覆盖的兼容问题，现已补齐：
-
-- MLE-bench prompt 明确承诺 `/home/instructions.txt` 存在；数据的正式约定是 `./data`，但部分
-  生成代码仍会沿用传统容器路径 `/home/data/*.csv`。sandbox 现在在 private mount namespace 中用
-  只读 tmpfs 构造一个极小的
-  `/home`，把真实 data directory 只读 bind 到 `/home/data`，并生成说明文件。该操作不会在共享宿主
-  `/home` 中创建文件；workspace 中原有的 `./data` symlink 仍然可用。
-- 当前 Pod 有 `libnvidia-opencl.so.1` 和匹配的 `libnvidia-nvvm.so.4`，但没有
-  `/etc/OpenCL/vendors/nvidia.icd`。这不是 chroot 的必然要求，而是当前 K8s 驱动注入方式的兼容
-  问题；默认 interpreter 不修改 OpenCL 环境。需要 LightGBM `device="gpu"` 时，可应用
-  `src/mle_critic/patches/chroot_nvidia_opencl_runtime.patch`，在 workspace 中提供 NVIDIA ICD 并运行
-  真实 OpenCL 训练测试。
-- launcher 会继承提交者的 `XDG_CONFIG_HOME`、`XDG_DATA_HOME` 等绝对路径；只改 `HOME` 仍会让
-  Matplotlib、Hugging Face、Torch、Numba、pip 和 Conda 尝试写宿主 cache。executor 现在把这些
-  cache/config/package 目录统一指向 workspace，并设置 workspace-local Python user site；额外 pip
-  package 因而可以安装到本次 agent 的 `.local`，Conda 的 package/env cache 也不会写共享 prefix。
-  这里继续采用黑名单式兼容策略：父环境仍会继承，只覆盖已经确认会产生写入的变量。只读 mount 仍能
-  阻止遗漏变量修改 workspace 外文件，但新的库若使用未覆盖的 cache/config 环境变量，仍可能出现
-  `PermissionError`，应根据真实日志补充映射。该策略不等价于环境变量或凭据隔离。
-
-默认集成断言同时验证 `/home/data` 可读不可写、`/home` 不可写、workspace user-site 可 import、
-所有 cache 路径可写，以及宿主 mount table 和 workspace 外 sentinel 保持不变。OpenCL 训练断言仅由
-上述可选 patch 增加。
-
-### 12.7 PyTorch DataLoader 与 `/dev/shm`（2026-07-31）
-
-Dog Breed Identification 的多 seed 真实任务稳定复现了
-`multiprocessing.SemLock: OSError [Errno 30] Read-only file system`。Python 的 POSIX semaphore、
-`multiprocessing.Queue`、`multiprocessing.shared_memory` 及 PyTorch 多 worker `DataLoader` 都依赖
-`/dev/shm`；早期实现将 recursive bind clone 的全部 submount 设为只读，因此也错误地把克隆的宿主
-`/dev/shm` 变成了只读。
-
-sandbox 现在不会重新开放宿主 `/dev/shm`，而是在 private mount namespace 中将一个新的 tmpfs 精确
-挂载到 clone 的 `/dev/shm`。该 tmpfs 使用 `mode=1777,nosuid,nodev,noexec`，容量沿用宿主
-`/dev/shm` 的上限，并作为一个精确路径加入 writable mount allowlist。不同 sandbox 不共享 POSIX IPC
-对象；namespace 最后一个进程退出后内容自动销毁。集成测试会实际创建 `multiprocessing.Queue`、运行
-`DataLoader(num_workers=2)`，并确认 sandbox 的 shm marker 在宿主 `/dev/shm` 中不可见。
-
-修复 `SemLock` 后，PyTorch tensor storage 的 worker-to-parent 传递还会使用
-`multiprocessing.resource_sharer` 的 AF_UNIX socket。spawn supervisor 可能从可信父进程复制已经缓存的
-`multiprocessing` resource-tracker FD 和临时目录；前者会被 executor 的 FD 清理关闭，后者可能位于
-chroot 外或位于不支持 Unix socket 的共享文件系统。因此 executor 会同时清除这两类继承缓存，让
-resource tracker 在降权后的 PID namespace 内重新启动，并把 resource-sharer 的小型控制目录固定到
-private `/dev/shm/dojo-multiprocessing`。普通 `TMPDIR` 不变，训练过程的一般临时文件不会因此占用 shm。
-
-### 12.8 `spawn` 与动态 `__main__` 的 pickle 语义（2026-07-31）
-
-修复 IPC mount 后，Dog Breed Identification 的 8 个 seed 都进一步运行到 DataLoader worker 启动，
-随后稳定报错 `Can't pickle <class '__main__.DogDataset'>: attribute lookup DogDataset on __main__ failed`。
-这不是 chroot 文件可见性问题：chroot supervisor 由 multiprocessing `spawn` 创建，而该 start method
-会被 executor 继承；DataLoader 因此需要 pickle 用户定义的 Dataset，并在 worker 中重新加载主脚本。
-
-原 `PythonInterpreter` 只给一个普通 `exec()` globals dict 设置了 `__name__="__main__"`，但该 dict
-并不是真正的 `sys.modules["__main__"].__dict__`。pickle 按模块名回查 `DogDataset` 时实际看到的是
-Dojo/pytest launcher 的主模块，自然无法找到同一个类。executor 现在为 agent session 建立真实的
-`ModuleType("__main__")`，同时维护 multiprocessing 约定的 `__mp_main__` alias，再用该模块的 dict
-执行代码。这样带标准 `if __name__ == "__main__"` guard 的完整 solution script 可以由 spawn worker
-安全重新加载；测试会实际通过 spawn 往返一个用户定义对象，并让 chroot DataLoader 使用定义在 agent
-脚本中的自定义 Dataset，而不是只测试可 import 的 `TensorDataset`。

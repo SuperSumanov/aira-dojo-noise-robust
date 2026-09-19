@@ -1,0 +1,15 @@
+{
+  "status": "PASS",
+  "programs": 30,
+  "pools": 5,
+  "checks": [
+    "closed_local_labels_exact",
+    "all_failed_pool_retained",
+    "rank_ties_by_slot",
+    "independent_pair_enumeration",
+    "oracle_quality_scope",
+    "macro_and_per_task",
+    "all_attempts_gpu_cost"
+  ],
+  "summary_sha256": "a1f7f22787e306512f715948d9abc25cbd499d8370880d4f0e286b35c63a68d9"
+}

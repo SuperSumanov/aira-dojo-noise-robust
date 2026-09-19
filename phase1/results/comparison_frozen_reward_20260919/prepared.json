@@ -1,0 +1,348 @@
+{
+  "amendment": "Final diagnosed interpreter correction before any inference; same model/rows/encoder, all allocations together <=0.5 GPUh. No further automatic retry.",
+  "attempt_seconds": 1784,
+  "commit": "7d5c31c706c4bb18faeda18a27243ff7be539c93",
+  "files": {
+    "comparison_frozen_reward_plan_20260919.json": "be29c16b20dfcdb9a055f26a291eb20a76b9132f077a3d76b6b9734ef2e839ba",
+    "forets_e2e_critic_service.py": "92e6820484d08b259c893db83f2d9ed38645fe496449e37de039b77a4d089790",
+    "local_generator_runtime_20260914.py": "ca26efff1beb49053f127e7f80e4cf33730b819cae0eb43a0627052b320873e1",
+    "run.sbatch": "c1d66a06864deba8b6ac84030c63748790cd145a1389eb4d9938d7a625f3be2c",
+    "run_comparison_frozen_reward_20260919.py": "86ab8b71b7b6729c2e109fc7736a4860af08fe9802c37621f96da7f6d347e8fe"
+  },
+  "gpu_hours_cap": 0.5,
+  "interpreter": {
+    "cuda_build": "12.8",
+    "executable": "/research/d7/spc/yzyang4/venvs/exp/bin/python",
+    "torch_version": "2.11.0+cu128"
+  },
+  "model": {
+    "adapter": "/research/d7/spc/yzyang4/forets-critic-incoming-20260908-3lcjjcwq/unpacked/Qwen3-8B_reward_seed1/checkpoint-100",
+    "adapter_file_stat": {
+      "model.safetensors": {
+        "mtime_ns": 1788869741299202493,
+        "size": 15136866890
+      }
+    },
+    "loader_sha256": {
+      "bradley_terry_evaluation.py": "31ecf62ecd92a88ee2a4a7b9a3f723081c8075adb448c592b4c62cd2303bd99d",
+      "bradley_terry_server.py": "ebe289b5d22ac8186c8a13c9462aa62782d12cd32c628283081b488468d35fad"
+    },
+    "offline_base": "/research/d7/spc/yzyang4/forets-critic-incoming-20260908-3lcjjcwq/base-metadata"
+  },
+  "prior_startup_failure": {
+    "jobs": [
+      "14168",
+      "14169"
+    ],
+    "model_loaded": false,
+    "original_roots": [
+      "/research/d7/spc/yzyang4/comparison-frozen-reward-20260919-72slmwzt",
+      "/research/d7/spc/yzyang4/comparison-frozen-reward-20260919-zobjollo"
+    ],
+    "predictions": 0,
+    "reason": "CPU-only aira interpreter mistakenly used; confirmed torch 2.12.1+cpu. Existing critic exp interpreter is torch 2.11.0+cu128.",
+    "seconds": 16
+  },
+  "rows": [
+    {
+      "code_path": "/research/d7/spc/yzyang4/comparison-pool-20260919-7ujiaajp/codes/0.private.py",
+      "code_sha256": "47466aea4a889943fa27df0af58e653fba3b5cff93f82b74cc3e914a6551efa9",
+      "node": "c11a2b77d5d14a9d9702fb6b31359327",
+      "run": "8b601e5efea310e7",
+      "seed": 1,
+      "slot": 0,
+      "source_prepared_sha256": "394470c82755bdebf02d34c86f7474ef950a178f5718c4c0ca87ac24882e98a5",
+      "task": "leaf-classification"
+    },
+    {
+      "code_path": "/research/d7/spc/yzyang4/comparison-pool-20260919-7ujiaajp/codes/1.private.py",
+      "code_sha256": "c8c7c304144736d2670fa207b9ae3f7540acc9be708b13d2fee8a012347ecd45",
+      "node": "c4ae6e85ce3245bb89cbde1218b7e3bf",
+      "run": "8b601e5efea310e7",
+      "seed": 1,
+      "slot": 1,
+      "source_prepared_sha256": "394470c82755bdebf02d34c86f7474ef950a178f5718c4c0ca87ac24882e98a5",
+      "task": "leaf-classification"
+    },
+    {
+      "code_path": "/research/d7/spc/yzyang4/comparison-pool-20260919-7ujiaajp/codes/2.private.py",
+      "code_sha256": "14dbaf26f6fbd058b7f56d93fd5be6c9d61de45a5672595a2d2b7adee3606843",
+      "node": "b80bf773fd0e49b7abebaa177cdcc9a9",
+      "run": "8b601e5efea310e7",
+      "seed": 1,
+      "slot": 2,
+      "source_prepared_sha256": "394470c82755bdebf02d34c86f7474ef950a178f5718c4c0ca87ac24882e98a5",
+      "task": "leaf-classification"
+    },
+    {
+      "code_path": "/research/d7/spc/yzyang4/comparison-pool-20260919-7ujiaajp/codes/3.private.py",
+      "code_sha256": "5e411e522ba8341e2f93a13323cb35ceff998b37cee57bf65019e25c9b2c7f7c",
+      "node": "993581de014f44f7aa5acb44fdeb13db",
+      "run": "8b601e5efea310e7",
+      "seed": 1,
+      "slot": 3,
+      "source_prepared_sha256": "394470c82755bdebf02d34c86f7474ef950a178f5718c4c0ca87ac24882e98a5",
+      "task": "leaf-classification"
+    },
+    {
+      "code_path": "/research/d7/spc/yzyang4/comparison-pool-20260919-7ujiaajp/codes/4.private.py",
+      "code_sha256": "1925153811ce735d540af94f74efe1ccd17774e423b4df8dabca64864d91f635",
+      "node": "33eea251c4504974a9384184eb8b9649",
+      "run": "8b601e5efea310e7",
+      "seed": 1,
+      "slot": 4,
+      "source_prepared_sha256": "394470c82755bdebf02d34c86f7474ef950a178f5718c4c0ca87ac24882e98a5",
+      "task": "leaf-classification"
+    },
+    {
+      "code_path": "/research/d7/spc/yzyang4/comparison-pool-20260919-7ujiaajp/codes/5.private.py",
+      "code_sha256": "7290ba6dfb9632672dad4dc3d7e85e85496f89ca687371197b7824be978cbb9c",
+      "node": "b40b339df8464514b6e2ba0adb82c379",
+      "run": "8b601e5efea310e7",
+      "seed": 1,
+      "slot": 5,
+      "source_prepared_sha256": "394470c82755bdebf02d34c86f7474ef950a178f5718c4c0ca87ac24882e98a5",
+      "task": "leaf-classification"
+    },
+    {
+      "code_path": "/research/d7/spc/yzyang4/comparison-pool-20260919-7ujiaajp/codes/6.private.py",
+      "code_sha256": "7e6182fc0f74a9c0b7c774d1fe057b68f6e19b0a7ce1eb97dbd2f27da2c02ad0",
+      "node": "d2563b5278ec4af69c063832ed1dcde8",
+      "run": "aa600099292ca506",
+      "seed": 2,
+      "slot": 0,
+      "source_prepared_sha256": "394470c82755bdebf02d34c86f7474ef950a178f5718c4c0ca87ac24882e98a5",
+      "task": "leaf-classification"
+    },
+    {
+      "code_path": "/research/d7/spc/yzyang4/comparison-pool-20260919-7ujiaajp/codes/7.private.py",
+      "code_sha256": "46ef0c50a6566856396d65e3710f6996df6f41ac14dbdf079b8740415d388b7f",
+      "node": "4a80ab2ca9b74a9a8038dbd3ef29b96c",
+      "run": "aa600099292ca506",
+      "seed": 2,
+      "slot": 1,
+      "source_prepared_sha256": "394470c82755bdebf02d34c86f7474ef950a178f5718c4c0ca87ac24882e98a5",
+      "task": "leaf-classification"
+    },
+    {
+      "code_path": "/research/d7/spc/yzyang4/comparison-pool-20260919-7ujiaajp/codes/8.private.py",
+      "code_sha256": "368eef018eac143324eb97382d45d5ccdb645b370519ca087f2329a287d47f63",
+      "node": "91495f06c68e473f8cfc94af6efcb1ed",
+      "run": "aa600099292ca506",
+      "seed": 2,
+      "slot": 2,
+      "source_prepared_sha256": "394470c82755bdebf02d34c86f7474ef950a178f5718c4c0ca87ac24882e98a5",
+      "task": "leaf-classification"
+    },
+    {
+      "code_path": "/research/d7/spc/yzyang4/comparison-pool-20260919-7ujiaajp/codes/9.private.py",
+      "code_sha256": "5e9124f9bec1ade198c3042f50d812504c4004b365c3904c0ebe2ae14a0ae620",
+      "node": "00c67eb1c3df48d2a32260d93fc66acf",
+      "run": "aa600099292ca506",
+      "seed": 2,
+      "slot": 3,
+      "source_prepared_sha256": "394470c82755bdebf02d34c86f7474ef950a178f5718c4c0ca87ac24882e98a5",
+      "task": "leaf-classification"
+    },
+    {
+      "code_path": "/research/d7/spc/yzyang4/comparison-pool-20260919-7ujiaajp/codes/10.private.py",
+      "code_sha256": "031b135e2f688c61e860583a048e4020fe106960598b399a50ce4742172268c5",
+      "node": "5f33dda3bedf49b588840685a2490716",
+      "run": "aa600099292ca506",
+      "seed": 2,
+      "slot": 4,
+      "source_prepared_sha256": "394470c82755bdebf02d34c86f7474ef950a178f5718c4c0ca87ac24882e98a5",
+      "task": "leaf-classification"
+    },
+    {
+      "code_path": "/research/d7/spc/yzyang4/comparison-pool-20260919-7ujiaajp/codes/11.private.py",
+      "code_sha256": "4f117f80277b95ac8417699f3ffb07e1cab235df9b177ce05473253ca0f95c04",
+      "node": "4b6c4844dccd474b90705ebecd74f167",
+      "run": "aa600099292ca506",
+      "seed": 2,
+      "slot": 5,
+      "source_prepared_sha256": "394470c82755bdebf02d34c86f7474ef950a178f5718c4c0ca87ac24882e98a5",
+      "task": "leaf-classification"
+    },
+    {
+      "code_path": "/research/d7/spc/yzyang4/comparison-pool-20260919-7ujiaajp/codes/12.private.py",
+      "code_sha256": "b5a22dd3b98ab9bfcf248897f3ff01bcdeaa3fcddca17cd371c504f61bf90035",
+      "node": "846bbddaf98744858ff209f98dbc10aa",
+      "run": "f70d132bf8fd755c",
+      "seed": 3,
+      "slot": 0,
+      "source_prepared_sha256": "394470c82755bdebf02d34c86f7474ef950a178f5718c4c0ca87ac24882e98a5",
+      "task": "leaf-classification"
+    },
+    {
+      "code_path": "/research/d7/spc/yzyang4/comparison-pool-20260919-7ujiaajp/codes/13.private.py",
+      "code_sha256": "78c598b44805c861ed844d5e81ee43a73ef3d066681f45dbea119d2e4dcd6d59",
+      "node": "c65439f731ee49eebdc270d81a1f868d",
+      "run": "f70d132bf8fd755c",
+      "seed": 3,
+      "slot": 1,
+      "source_prepared_sha256": "394470c82755bdebf02d34c86f7474ef950a178f5718c4c0ca87ac24882e98a5",
+      "task": "leaf-classification"
+    },
+    {
+      "code_path": "/research/d7/spc/yzyang4/comparison-pool-20260919-7ujiaajp/codes/14.private.py",
+      "code_sha256": "34e8d369a0483cdaf355e33d6bc684368499f545604da198c39612c84da562eb",
+      "node": "0aa23cb9716541eb8914b5a3dfe4fe6d",
+      "run": "f70d132bf8fd755c",
+      "seed": 3,
+      "slot": 2,
+      "source_prepared_sha256": "394470c82755bdebf02d34c86f7474ef950a178f5718c4c0ca87ac24882e98a5",
+      "task": "leaf-classification"
+    },
+    {
+      "code_path": "/research/d7/spc/yzyang4/comparison-pool-20260919-7ujiaajp/codes/15.private.py",
+      "code_sha256": "b3715f3830b104cc2bc86f24ccce87e9f7c3a1e07518e767ceee84fbb6e41a33",
+      "node": "8831780d791b4c36bd98765b65a6b1ae",
+      "run": "f70d132bf8fd755c",
+      "seed": 3,
+      "slot": 3,
+      "source_prepared_sha256": "394470c82755bdebf02d34c86f7474ef950a178f5718c4c0ca87ac24882e98a5",
+      "task": "leaf-classification"
+    },
+    {
+      "code_path": "/research/d7/spc/yzyang4/comparison-pool-20260919-7ujiaajp/codes/16.private.py",
+      "code_sha256": "3ac8e8029aacd3a25f5feca5d87a638a43357468cb8689f986b6ec59c6e173de",
+      "node": "fd8b74bf2095492785a07a7d8a5adf14",
+      "run": "f70d132bf8fd755c",
+      "seed": 3,
+      "slot": 4,
+      "source_prepared_sha256": "394470c82755bdebf02d34c86f7474ef950a178f5718c4c0ca87ac24882e98a5",
+      "task": "leaf-classification"
+    },
+    {
+      "code_path": "/research/d7/spc/yzyang4/comparison-pool-20260919-7ujiaajp/codes/17.private.py",
+      "code_sha256": "39be504802f52016579387499df75693482aef32f57021b37ce603cbc6393886",
+      "node": "194578f79e634ef287ce314fc186dc8c",
+      "run": "f70d132bf8fd755c",
+      "seed": 3,
+      "slot": 5,
+      "source_prepared_sha256": "394470c82755bdebf02d34c86f7474ef950a178f5718c4c0ca87ac24882e98a5",
+      "task": "leaf-classification"
+    },
+    {
+      "code_path": "/research/d7/spc/yzyang4/comparison-spooky-pool-20260919-04qsl2xc/codes/0.private.py",
+      "code_sha256": "33cda1f377275936a54e7191947af1063f1e45aa712b20be976c65ca5cbc8ba5",
+      "node": "e4ecc3bf9f19482781c40c8a8f9b25a8",
+      "run": "3277c81be72a1c30",
+      "seed": 1,
+      "slot": 0,
+      "source_prepared_sha256": "e3337e7affc534e6e0c3e4e2a75571fc08a9b4a7c271877a71073dda5e8917d6",
+      "task": "spooky-author-identification"
+    },
+    {
+      "code_path": "/research/d7/spc/yzyang4/comparison-spooky-pool-20260919-04qsl2xc/codes/1.private.py",
+      "code_sha256": "2daa7a5e7ab42cf0ace5ad035484bdee19f54ee37774386656691a9ce74cd2e7",
+      "node": "1368c211e847436fb32301b125c39a76",
+      "run": "3277c81be72a1c30",
+      "seed": 1,
+      "slot": 1,
+      "source_prepared_sha256": "e3337e7affc534e6e0c3e4e2a75571fc08a9b4a7c271877a71073dda5e8917d6",
+      "task": "spooky-author-identification"
+    },
+    {
+      "code_path": "/research/d7/spc/yzyang4/comparison-spooky-pool-20260919-04qsl2xc/codes/2.private.py",
+      "code_sha256": "c2d57e68d325a012b02b56c3b25a1ad59c95a6db8ecedb140bd1771410857641",
+      "node": "e9292e0a154f41adb7e6c2a6c6bdbe1d",
+      "run": "3277c81be72a1c30",
+      "seed": 1,
+      "slot": 2,
+      "source_prepared_sha256": "e3337e7affc534e6e0c3e4e2a75571fc08a9b4a7c271877a71073dda5e8917d6",
+      "task": "spooky-author-identification"
+    },
+    {
+      "code_path": "/research/d7/spc/yzyang4/comparison-spooky-pool-20260919-04qsl2xc/codes/3.private.py",
+      "code_sha256": "bc36d982619920bfd97225e293464ef942011b386a745403c5ed404318ec1848",
+      "node": "bc14d75cae454970ae588d066500a351",
+      "run": "3277c81be72a1c30",
+      "seed": 1,
+      "slot": 3,
+      "source_prepared_sha256": "e3337e7affc534e6e0c3e4e2a75571fc08a9b4a7c271877a71073dda5e8917d6",
+      "task": "spooky-author-identification"
+    },
+    {
+      "code_path": "/research/d7/spc/yzyang4/comparison-spooky-pool-20260919-04qsl2xc/codes/4.private.py",
+      "code_sha256": "01edc95c44c3402bfa664bb584d9f8968c5378e43e9f9ba159824bccbd713a67",
+      "node": "abd782484bc6453aa688f4420309535b",
+      "run": "3277c81be72a1c30",
+      "seed": 1,
+      "slot": 4,
+      "source_prepared_sha256": "e3337e7affc534e6e0c3e4e2a75571fc08a9b4a7c271877a71073dda5e8917d6",
+      "task": "spooky-author-identification"
+    },
+    {
+      "code_path": "/research/d7/spc/yzyang4/comparison-spooky-pool-20260919-04qsl2xc/codes/5.private.py",
+      "code_sha256": "cbead0dea29f12b62ec30ed844e872b14435bb2204c36dba67313e7518448b8e",
+      "node": "76eb6d81ae5046d4ad48027b9a5a1e41",
+      "run": "3277c81be72a1c30",
+      "seed": 1,
+      "slot": 5,
+      "source_prepared_sha256": "e3337e7affc534e6e0c3e4e2a75571fc08a9b4a7c271877a71073dda5e8917d6",
+      "task": "spooky-author-identification"
+    },
+    {
+      "code_path": "/research/d7/spc/yzyang4/comparison-spooky-pool-20260919-04qsl2xc/codes/6.private.py",
+      "code_sha256": "1b40bb3ec8f2fb3ec7df903d11bababc5bbc26f59fd913b310918a028795685a",
+      "node": "03e046a643bc4b969a873c6d28b0a71b",
+      "run": "58d3914785a2cfe1",
+      "seed": 2,
+      "slot": 0,
+      "source_prepared_sha256": "e3337e7affc534e6e0c3e4e2a75571fc08a9b4a7c271877a71073dda5e8917d6",
+      "task": "spooky-author-identification"
+    },
+    {
+      "code_path": "/research/d7/spc/yzyang4/comparison-spooky-pool-20260919-04qsl2xc/codes/7.private.py",
+      "code_sha256": "defd0cca8c58217b51c2f08fd17bcac812f82c25b255afbded1640ce9a20005e",
+      "node": "a95f3a1a09754008bd019dbb5955584e",
+      "run": "58d3914785a2cfe1",
+      "seed": 2,
+      "slot": 1,
+      "source_prepared_sha256": "e3337e7affc534e6e0c3e4e2a75571fc08a9b4a7c271877a71073dda5e8917d6",
+      "task": "spooky-author-identification"
+    },
+    {
+      "code_path": "/research/d7/spc/yzyang4/comparison-spooky-pool-20260919-04qsl2xc/codes/8.private.py",
+      "code_sha256": "6cdd9882b4b94b715aafc0a8a431d215f33f0ad21589af01d3394cd36a70da6d",
+      "node": "0a528eaed9514ff9bd242506f70552d3",
+      "run": "58d3914785a2cfe1",
+      "seed": 2,
+      "slot": 2,
+      "source_prepared_sha256": "e3337e7affc534e6e0c3e4e2a75571fc08a9b4a7c271877a71073dda5e8917d6",
+      "task": "spooky-author-identification"
+    },
+    {
+      "code_path": "/research/d7/spc/yzyang4/comparison-spooky-pool-20260919-04qsl2xc/codes/9.private.py",
+      "code_sha256": "f373a41ff5e4f07faaae7ce7e3d0cfe69c6e97fbfb6717257fa47ff70782a2df",
+      "node": "2f3e6dfcb8e44046955a4d739823c778",
+      "run": "58d3914785a2cfe1",
+      "seed": 2,
+      "slot": 3,
+      "source_prepared_sha256": "e3337e7affc534e6e0c3e4e2a75571fc08a9b4a7c271877a71073dda5e8917d6",
+      "task": "spooky-author-identification"
+    },
+    {
+      "code_path": "/research/d7/spc/yzyang4/comparison-spooky-pool-20260919-04qsl2xc/codes/10.private.py",
+      "code_sha256": "26c65de3fd654d092560cb2097f7d6548ed17336854fcf06e359f202a873d8fa",
+      "node": "87174b313139424e81402d79a64b53d1",
+      "run": "58d3914785a2cfe1",
+      "seed": 2,
+      "slot": 4,
+      "source_prepared_sha256": "e3337e7affc534e6e0c3e4e2a75571fc08a9b4a7c271877a71073dda5e8917d6",
+      "task": "spooky-author-identification"
+    },
+    {
+      "code_path": "/research/d7/spc/yzyang4/comparison-spooky-pool-20260919-04qsl2xc/codes/11.private.py",
+      "code_sha256": "29fc3380f37a38ace20fb209db79037d3cedd37fddb0b8a550426faa4000e5e6",
+      "node": "069d763a2d2547488ffc21ac39308f3a",
+      "run": "58d3914785a2cfe1",
+      "seed": 2,
+      "slot": 5,
+      "source_prepared_sha256": "e3337e7affc534e6e0c3e4e2a75571fc08a9b4a7c271877a71073dda5e8917d6",
+      "task": "spooky-author-identification"
+    }
+  ]
+}

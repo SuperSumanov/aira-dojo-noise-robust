@@ -664,3 +664,7 @@ phase1/results/comparison_pizza_selected_second_20260919/*.json -text diff white
 phase1/results/comparison_pizza_selected_second_20260919/*.csv -text diff whitespace=cr-at-eol
 phase1/results/comparison_native_batch_order_20260919/*.json -text diff whitespace=cr-at-eol
 phase1/results/comparison_native_batch_order_20260919/*.csv -text diff whitespace=cr-at-eol
+phase1/results/comparison_frozen_reward_20260919/*.json -text diff whitespace=cr-at-eol
+phase1/results/comparison_frozen_reward_20260919/*.csv -text diff whitespace=cr-at-eol
+phase1/results/forets_ready_source_20260919/*.json -text diff whitespace=cr-at-eol
+phase1/results/forets_local_reward_source_20260919/*.json -text diff whitespace=cr-at-eol

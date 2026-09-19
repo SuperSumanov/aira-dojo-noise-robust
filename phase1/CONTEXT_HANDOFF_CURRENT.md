@@ -36,9 +36,10 @@ comparison/0912五包已下载703326526bytes，不重下；ROOT=/research/d7/spc
 structure SHA2d87541d73a597b0d487285949b1c8f306e756ae97dc9fde7c175f83783d7d94；只读新Qwen46配置/43journal，旧API28未读、env未读。新起始09-12以后与保护LATEST1b44e898bbae7ffc9098bbfa584ba842e0db2be5ae6bb8b5da0475d8ab34239f的日期/journalhash隔离已过。
 原始排名info日志未随包给出，不能从异步顺序/新checkpoint分数猜原rank。25完整初始六候选池的安全导出在results/comparison_qwen_20260919。
 0918共享视图10:03双读0文件，不等于学长没上传；回执comparison-0918-metadata-20260919-zoc4kjov，SHAd36f39e6e9476279df19da46f006f182236737f29e64e5808e93733d676ae239。
-公开head最后确认0a393f07d3499f2c55a8c501b58739eeb51a09dc；后续d561/bb779/93cf及本轮结果待正常push。只myfork HEAD:phase1-value-critic，不改学长分支、不force。保留无关untracked。
+11:05已正常push并ls-remote确认ea6e55fd184cf2936d79286378e8bf842dc9ed98（47个outgoing blob扫描0shape/0敏感文件名）；包含Leaf主结果及报告/反馈修复。随后CDF/质量成本/硬筛选辅助分析尚待发布。只myfork HEAD:phase1-value-critic，不改学长分支、不force。保留无关untracked。
 14099整个allocation终态后，只运行ROOT内readout_comparison_spooky_pool_20260919.py一次；下载安全summary/runs至results/comparison_spooky_pool_20260919，再运行verify_comparison_pool_results_20260919.py、analyze_comparison_topk_bounds_20260919.py、summarize_comparison_pool_20260919.py。未知不填分，不自动补池。
-当前主要待办：推送Leaf报告/安全结果/反馈补丁；在会话里核14099、完成跨任务读出，按真实结果裁决。新稿未完成前不把待验证方案称正结论。
+辅助方法已在读Spooky分数前写成并测试：verify_comparison_stochastic_dominance、analyze_comparison_quality_cost、analyze_comparison_pruning_loss（均20260919）；分别6/5/4测试。Leaf事后结果：seed1/3对所有第三条在全部质量门槛CDF占优；seed2硬筛选必排除至少2更好有效程序、边界错误4–9/9，但top3净效应仍不可识别。不是新策略或E2E；不要把只知净效应不识别误写成完全不知筛选有错。
+当前主要待办：发布辅助诊断；在会话里核14099、完成跨任务读出，再运行以上三项原代码，按真实结果裁决。11:08核过Spooky真值文件/公开sample仅表头均id/EAP/HPL/MWS，0真值数据行，numeric接口一致。
 
 ## 固定环境/不要重做
 SSH linux5；BASE=/research/d7/spc/yzyang4；Python venvs/aira做任务/分析，venvs/exp有gdown；SLURM_CONF=/opt1/slurm/gpu-slurm.conf。

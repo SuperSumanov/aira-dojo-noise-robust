@@ -1,0 +1,595 @@
+{
+  "role": "auxiliary_quality_cost_not_primary_endpoint",
+  "summary_sha256": "41e42fbff91ca970e8f5ee19a1ffdf57c31ffe0ddd6a24182e5e304c1225ef4f",
+  "pools": [
+    {
+      "seed": 1,
+      "status": "complete_exploratory_quality_cost_diagnostic",
+      "selected_pair": {
+        "slots": [
+          1,
+          3
+        ],
+        "program_wall_seconds": 52.79459411997232,
+        "best_loss": 0.06983,
+        "original": true
+      },
+      "uniform_expected_program_wall_seconds": 303.79172901131096,
+      "selected_to_uniform_cost_ratio": 0.173785488801134,
+      "pairs_dominating_selected": [],
+      "pairs_dominated_by_selected": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          4,
+          5
+        ]
+      ],
+      "selected_is_pareto_undominated": true,
+      "all_pairs": [
+        {
+          "slots": [
+            0,
+            1
+          ],
+          "program_wall_seconds": 748.2654306559707,
+          "best_loss": 0.06983,
+          "original": false
+        },
+        {
+          "slots": [
+            0,
+            2
+          ],
+          "program_wall_seconds": 737.6940232489724,
+          "best_loss": 0.72433,
+          "original": false
+        },
+        {
+          "slots": [
+            0,
+            3
+          ],
+          "program_wall_seconds": 725.2568583859538,
+          "best_loss": 0.72433,
+          "original": false
+        },
+        {
+          "slots": [
+            0,
+            4
+          ],
+          "program_wall_seconds": 798.8094613679859,
+          "best_loss": 0.72433,
+          "original": false
+        },
+        {
+          "slots": [
+            0,
+            5
+          ],
+          "program_wall_seconds": 742.8048032189545,
+          "best_loss": 0.72433,
+          "original": false
+        },
+        {
+          "slots": [
+            1,
+            2
+          ],
+          "program_wall_seconds": 65.23175898299087,
+          "best_loss": 0.06983,
+          "original": false
+        },
+        {
+          "slots": [
+            1,
+            3
+          ],
+          "program_wall_seconds": 52.79459411997232,
+          "best_loss": 0.06983,
+          "original": true
+        },
+        {
+          "slots": [
+            1,
+            4
+          ],
+          "program_wall_seconds": 126.34719710200443,
+          "best_loss": 0.06983,
+          "original": false
+        },
+        {
+          "slots": [
+            1,
+            5
+          ],
+          "program_wall_seconds": 70.34253895297297,
+          "best_loss": 0.06983,
+          "original": false
+        },
+        {
+          "slots": [
+            2,
+            3
+          ],
+          "program_wall_seconds": 42.223186712973984,
+          "best_loss": null,
+          "original": false
+        },
+        {
+          "slots": [
+            2,
+            4
+          ],
+          "program_wall_seconds": 115.7757896950061,
+          "best_loss": null,
+          "original": false
+        },
+        {
+          "slots": [
+            2,
+            5
+          ],
+          "program_wall_seconds": 59.77113154597464,
+          "best_loss": null,
+          "original": false
+        },
+        {
+          "slots": [
+            3,
+            4
+          ],
+          "program_wall_seconds": 103.33862483198754,
+          "best_loss": null,
+          "original": false
+        },
+        {
+          "slots": [
+            3,
+            5
+          ],
+          "program_wall_seconds": 47.33396668295609,
+          "best_loss": null,
+          "original": false
+        },
+        {
+          "slots": [
+            4,
+            5
+          ],
+          "program_wall_seconds": 120.8865696649882,
+          "best_loss": null,
+          "original": false
+        }
+      ],
+      "limitation": "Post-execution oracle-best quality; replay per-program times with shared six-way load. No measured policy latency/GPU saving or deployable benefit."
+    },
+    {
+      "seed": 2,
+      "status": "complete_exploratory_quality_cost_diagnostic",
+      "selected_pair": {
+        "slots": [
+          2,
+          5
+        ],
+        "program_wall_seconds": 1201.620721327985,
+        "best_loss": 1.80818,
+        "original": true
+      },
+      "uniform_expected_program_wall_seconds": 1024.6437885316554,
+      "selected_to_uniform_cost_ratio": 1.1727204466343788,
+      "pairs_dominating_selected": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          2,
+          3
+        ]
+      ],
+      "pairs_dominated_by_selected": [
+        [
+          4,
+          5
+        ]
+      ],
+      "selected_is_pareto_undominated": false,
+      "all_pairs": [
+        {
+          "slots": [
+            0,
+            1
+          ],
+          "program_wall_seconds": 257.0933587359905,
+          "best_loss": 0.12444,
+          "original": false
+        },
+        {
+          "slots": [
+            0,
+            2
+          ],
+          "program_wall_seconds": 90.45259731300757,
+          "best_loss": 1.35081,
+          "original": false
+        },
+        {
+          "slots": [
+            0,
+            3
+          ],
+          "program_wall_seconds": 777.7023595339851,
+          "best_loss": 0.49656,
+          "original": false
+        },
+        {
+          "slots": [
+            0,
+            4
+          ],
+          "program_wall_seconds": 960.5498072750052,
+          "best_loss": 1.35081,
+          "original": false
+        },
+        {
+          "slots": [
+            0,
+            5
+          ],
+          "program_wall_seconds": 1234.2030052929767,
+          "best_loss": 1.35081,
+          "original": false
+        },
+        {
+          "slots": [
+            1,
+            2
+          ],
+          "program_wall_seconds": 224.51107477099868,
+          "best_loss": 0.12444,
+          "original": false
+        },
+        {
+          "slots": [
+            1,
+            3
+          ],
+          "program_wall_seconds": 911.7608369919762,
+          "best_loss": 0.12444,
+          "original": false
+        },
+        {
+          "slots": [
+            1,
+            4
+          ],
+          "program_wall_seconds": 1094.6082847329963,
+          "best_loss": 0.12444,
+          "original": false
+        },
+        {
+          "slots": [
+            1,
+            5
+          ],
+          "program_wall_seconds": 1368.2614827509678,
+          "best_loss": 0.12444,
+          "original": false
+        },
+        {
+          "slots": [
+            2,
+            3
+          ],
+          "program_wall_seconds": 745.1200755689933,
+          "best_loss": 0.49656,
+          "original": false
+        },
+        {
+          "slots": [
+            2,
+            4
+          ],
+          "program_wall_seconds": 927.9675233100133,
+          "best_loss": null,
+          "original": false
+        },
+        {
+          "slots": [
+            2,
+            5
+          ],
+          "program_wall_seconds": 1201.620721327985,
+          "best_loss": 1.80818,
+          "original": true
+        },
+        {
+          "slots": [
+            3,
+            4
+          ],
+          "program_wall_seconds": 1615.217285530991,
+          "best_loss": 0.49656,
+          "original": false
+        },
+        {
+          "slots": [
+            3,
+            5
+          ],
+          "program_wall_seconds": 1888.8704835489625,
+          "best_loss": 0.49656,
+          "original": false
+        },
+        {
+          "slots": [
+            4,
+            5
+          ],
+          "program_wall_seconds": 2071.7179312899825,
+          "best_loss": 1.80818,
+          "original": false
+        }
+      ],
+      "limitation": "Post-execution oracle-best quality; replay per-program times with shared six-way load. No measured policy latency/GPU saving or deployable benefit."
+    },
+    {
+      "seed": 3,
+      "status": "complete_exploratory_quality_cost_diagnostic",
+      "selected_pair": {
+        "slots": [
+          3,
+          5
+        ],
+        "program_wall_seconds": 1090.3977174920146,
+        "best_loss": 0.11709,
+        "original": true
+      },
+      "uniform_expected_program_wall_seconds": 909.8070918660184,
+      "selected_to_uniform_cost_ratio": 1.1984933149461432,
+      "pairs_dominating_selected": [
+        [
+          0,
+          5
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          4,
+          5
+        ]
+      ],
+      "pairs_dominated_by_selected": [
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          2,
+          5
+        ]
+      ],
+      "selected_is_pareto_undominated": false,
+      "all_pairs": [
+        {
+          "slots": [
+            0,
+            1
+          ],
+          "program_wall_seconds": 234.79286121603218,
+          "best_loss": null,
+          "original": false
+        },
+        {
+          "slots": [
+            0,
+            2
+          ],
+          "program_wall_seconds": 1404.485872293997,
+          "best_loss": 1.0125,
+          "original": false
+        },
+        {
+          "slots": [
+            0,
+            3
+          ],
+          "program_wall_seconds": 569.9354550450225,
+          "best_loss": 0.53537,
+          "original": false
+        },
+        {
+          "slots": [
+            0,
+            4
+          ],
+          "program_wall_seconds": 22.108947356027784,
+          "best_loss": null,
+          "original": false
+        },
+        {
+          "slots": [
+            0,
+            5
+          ],
+          "program_wall_seconds": 542.8263852070086,
+          "best_loss": 0.11709,
+          "original": false
+        },
+        {
+          "slots": [
+            1,
+            2
+          ],
+          "program_wall_seconds": 1616.9146107500128,
+          "best_loss": 1.0125,
+          "original": false
+        },
+        {
+          "slots": [
+            1,
+            3
+          ],
+          "program_wall_seconds": 782.3641935010382,
+          "best_loss": 0.53537,
+          "original": false
+        },
+        {
+          "slots": [
+            1,
+            4
+          ],
+          "program_wall_seconds": 234.5376858120435,
+          "best_loss": null,
+          "original": false
+        },
+        {
+          "slots": [
+            1,
+            5
+          ],
+          "program_wall_seconds": 755.2551236630243,
+          "best_loss": 0.11709,
+          "original": false
+        },
+        {
+          "slots": [
+            2,
+            3
+          ],
+          "program_wall_seconds": 1952.0572045790032,
+          "best_loss": 0.53537,
+          "original": false
+        },
+        {
+          "slots": [
+            2,
+            4
+          ],
+          "program_wall_seconds": 1404.2306968900084,
+          "best_loss": 1.0125,
+          "original": false
+        },
+        {
+          "slots": [
+            2,
+            5
+          ],
+          "program_wall_seconds": 1924.9481347409892,
+          "best_loss": 0.11709,
+          "original": false
+        },
+        {
+          "slots": [
+            3,
+            4
+          ],
+          "program_wall_seconds": 569.6802796410338,
+          "best_loss": 0.53537,
+          "original": false
+        },
+        {
+          "slots": [
+            3,
+            5
+          ],
+          "program_wall_seconds": 1090.3977174920146,
+          "best_loss": 0.11709,
+          "original": true
+        },
+        {
+          "slots": [
+            4,
+            5
+          ],
+          "program_wall_seconds": 542.5712098030199,
+          "best_loss": 0.11709,
+          "original": false
+        }
+      ],
+      "limitation": "Post-execution oracle-best quality; replay per-program times with shared six-way load. No measured policy latency/GPU saving or deployable benefit."
+    }
+  ]
+}

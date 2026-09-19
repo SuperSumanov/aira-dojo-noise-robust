@@ -1,0 +1,278 @@
+{
+  "role": "post_hoc_hard_pruning_diagnostic",
+  "summary_sha256": "41e42fbff91ca970e8f5ee19a1ffdf57c31ffe0ddd6a24182e5e304c1225ef4f",
+  "pools": [
+    {
+      "seed": 1,
+      "status": "partial_identification_from_original_selected_set",
+      "possibilities": [
+        {
+          "third_slot": 0,
+          "boundary_pairs": 9,
+          "strict_quality_errors": [],
+          "pruned_valid_better_than_worst_selected_valid": []
+        },
+        {
+          "third_slot": 2,
+          "boundary_pairs": 9,
+          "strict_quality_errors": [
+            {
+              "retained_slot": 3,
+              "discarded_better_slot": 0
+            },
+            {
+              "retained_slot": 2,
+              "discarded_better_slot": 0
+            }
+          ],
+          "pruned_valid_better_than_worst_selected_valid": []
+        },
+        {
+          "third_slot": 4,
+          "boundary_pairs": 9,
+          "strict_quality_errors": [
+            {
+              "retained_slot": 3,
+              "discarded_better_slot": 0
+            },
+            {
+              "retained_slot": 4,
+              "discarded_better_slot": 0
+            }
+          ],
+          "pruned_valid_better_than_worst_selected_valid": []
+        },
+        {
+          "third_slot": 5,
+          "boundary_pairs": 9,
+          "strict_quality_errors": [
+            {
+              "retained_slot": 3,
+              "discarded_better_slot": 0
+            },
+            {
+              "retained_slot": 5,
+              "discarded_better_slot": 0
+            }
+          ],
+          "pruned_valid_better_than_worst_selected_valid": []
+        }
+      ],
+      "boundary_error_count_range": [
+        0,
+        2
+      ],
+      "pruned_better_valid_count_range": [
+        0,
+        0
+      ],
+      "caveat": "Boundary decisions on fresh observed program outcomes, not reconstructed scores, all-pair accuracy, expected set utility or E2E effect."
+    },
+    {
+      "seed": 2,
+      "status": "partial_identification_from_original_selected_set",
+      "possibilities": [
+        {
+          "third_slot": 0,
+          "boundary_pairs": 9,
+          "strict_quality_errors": [
+            {
+              "retained_slot": 2,
+              "discarded_better_slot": 1
+            },
+            {
+              "retained_slot": 2,
+              "discarded_better_slot": 3
+            },
+            {
+              "retained_slot": 5,
+              "discarded_better_slot": 1
+            },
+            {
+              "retained_slot": 5,
+              "discarded_better_slot": 3
+            },
+            {
+              "retained_slot": 0,
+              "discarded_better_slot": 1
+            },
+            {
+              "retained_slot": 0,
+              "discarded_better_slot": 3
+            }
+          ],
+          "pruned_valid_better_than_worst_selected_valid": [
+            1,
+            3
+          ]
+        },
+        {
+          "third_slot": 1,
+          "boundary_pairs": 9,
+          "strict_quality_errors": [
+            {
+              "retained_slot": 2,
+              "discarded_better_slot": 0
+            },
+            {
+              "retained_slot": 2,
+              "discarded_better_slot": 3
+            },
+            {
+              "retained_slot": 5,
+              "discarded_better_slot": 0
+            },
+            {
+              "retained_slot": 5,
+              "discarded_better_slot": 3
+            }
+          ],
+          "pruned_valid_better_than_worst_selected_valid": [
+            0,
+            3
+          ]
+        },
+        {
+          "third_slot": 3,
+          "boundary_pairs": 9,
+          "strict_quality_errors": [
+            {
+              "retained_slot": 2,
+              "discarded_better_slot": 0
+            },
+            {
+              "retained_slot": 2,
+              "discarded_better_slot": 1
+            },
+            {
+              "retained_slot": 5,
+              "discarded_better_slot": 0
+            },
+            {
+              "retained_slot": 5,
+              "discarded_better_slot": 1
+            },
+            {
+              "retained_slot": 3,
+              "discarded_better_slot": 1
+            }
+          ],
+          "pruned_valid_better_than_worst_selected_valid": [
+            0,
+            1
+          ]
+        },
+        {
+          "third_slot": 4,
+          "boundary_pairs": 9,
+          "strict_quality_errors": [
+            {
+              "retained_slot": 2,
+              "discarded_better_slot": 0
+            },
+            {
+              "retained_slot": 2,
+              "discarded_better_slot": 1
+            },
+            {
+              "retained_slot": 2,
+              "discarded_better_slot": 3
+            },
+            {
+              "retained_slot": 5,
+              "discarded_better_slot": 0
+            },
+            {
+              "retained_slot": 5,
+              "discarded_better_slot": 1
+            },
+            {
+              "retained_slot": 5,
+              "discarded_better_slot": 3
+            },
+            {
+              "retained_slot": 4,
+              "discarded_better_slot": 0
+            },
+            {
+              "retained_slot": 4,
+              "discarded_better_slot": 1
+            },
+            {
+              "retained_slot": 4,
+              "discarded_better_slot": 3
+            }
+          ],
+          "pruned_valid_better_than_worst_selected_valid": [
+            0,
+            1,
+            3
+          ]
+        }
+      ],
+      "boundary_error_count_range": [
+        4,
+        9
+      ],
+      "pruned_better_valid_count_range": [
+        2,
+        3
+      ],
+      "caveat": "Boundary decisions on fresh observed program outcomes, not reconstructed scores, all-pair accuracy, expected set utility or E2E effect."
+    },
+    {
+      "seed": 3,
+      "status": "partial_identification_from_original_selected_set",
+      "possibilities": [
+        {
+          "third_slot": 0,
+          "boundary_pairs": 9,
+          "strict_quality_errors": [
+            {
+              "retained_slot": 0,
+              "discarded_better_slot": 2
+            }
+          ],
+          "pruned_valid_better_than_worst_selected_valid": []
+        },
+        {
+          "third_slot": 1,
+          "boundary_pairs": 9,
+          "strict_quality_errors": [
+            {
+              "retained_slot": 1,
+              "discarded_better_slot": 2
+            }
+          ],
+          "pruned_valid_better_than_worst_selected_valid": []
+        },
+        {
+          "third_slot": 2,
+          "boundary_pairs": 9,
+          "strict_quality_errors": [],
+          "pruned_valid_better_than_worst_selected_valid": []
+        },
+        {
+          "third_slot": 4,
+          "boundary_pairs": 9,
+          "strict_quality_errors": [
+            {
+              "retained_slot": 4,
+              "discarded_better_slot": 2
+            }
+          ],
+          "pruned_valid_better_than_worst_selected_valid": []
+        }
+      ],
+      "boundary_error_count_range": [
+        0,
+        1
+      ],
+      "pruned_better_valid_count_range": [
+        0,
+        0
+      ],
+      "caveat": "Boundary decisions on fresh observed program outcomes, not reconstructed scores, all-pair accuracy, expected set utility or E2E effect."
+    }
+  ]
+}

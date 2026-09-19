@@ -1,0 +1,345 @@
+{
+  "role": "post_hoc_robustness_not_a_replacement_endpoint",
+  "summary_sha256": "41e42fbff91ca970e8f5ee19a1ffdf57c31ffe0ddd6a24182e5e304c1225ef4f",
+  "pools": [
+    {
+      "seed": 1,
+      "status": "exact_finite_distribution_check",
+      "possibilities": [
+        {
+          "third_slot": 0,
+          "cdf": [
+            {
+              "loss_threshold": "0.06983",
+              "retained_cdf": "2/3",
+              "uniform_cdf": "1/3",
+              "difference": "1/3"
+            },
+            {
+              "loss_threshold": "0.72433",
+              "retained_cdf": "1",
+              "uniform_cdf": "3/5",
+              "difference": "2/5"
+            }
+          ],
+          "dominates": true,
+          "dominated": false,
+          "equivalent": false
+        },
+        {
+          "third_slot": 2,
+          "cdf": [
+            {
+              "loss_threshold": "0.06983",
+              "retained_cdf": "2/3",
+              "uniform_cdf": "1/3",
+              "difference": "1/3"
+            },
+            {
+              "loss_threshold": "0.72433",
+              "retained_cdf": "2/3",
+              "uniform_cdf": "3/5",
+              "difference": "1/15"
+            }
+          ],
+          "dominates": true,
+          "dominated": false,
+          "equivalent": false
+        },
+        {
+          "third_slot": 4,
+          "cdf": [
+            {
+              "loss_threshold": "0.06983",
+              "retained_cdf": "2/3",
+              "uniform_cdf": "1/3",
+              "difference": "1/3"
+            },
+            {
+              "loss_threshold": "0.72433",
+              "retained_cdf": "2/3",
+              "uniform_cdf": "3/5",
+              "difference": "1/15"
+            }
+          ],
+          "dominates": true,
+          "dominated": false,
+          "equivalent": false
+        },
+        {
+          "third_slot": 5,
+          "cdf": [
+            {
+              "loss_threshold": "0.06983",
+              "retained_cdf": "2/3",
+              "uniform_cdf": "1/3",
+              "difference": "1/3"
+            },
+            {
+              "loss_threshold": "0.72433",
+              "retained_cdf": "2/3",
+              "uniform_cdf": "3/5",
+              "difference": "1/15"
+            }
+          ],
+          "dominates": true,
+          "dominated": false,
+          "equivalent": false
+        }
+      ],
+      "dominates_for_every_possible_third": true,
+      "dominated_for_every_possible_third": false,
+      "caveat": "Observed fixed-pool post-execution oracle distributions only. No population, repeatability, deployed selection or E2E claim."
+    },
+    {
+      "seed": 2,
+      "status": "exact_finite_distribution_check",
+      "possibilities": [
+        {
+          "third_slot": 0,
+          "cdf": [
+            {
+              "loss_threshold": "0.12444",
+              "retained_cdf": "0",
+              "uniform_cdf": "1/3",
+              "difference": "-1/3"
+            },
+            {
+              "loss_threshold": "0.49656",
+              "retained_cdf": "0",
+              "uniform_cdf": "3/5",
+              "difference": "-3/5"
+            },
+            {
+              "loss_threshold": "1.35081",
+              "retained_cdf": "2/3",
+              "uniform_cdf": "4/5",
+              "difference": "-2/15"
+            },
+            {
+              "loss_threshold": "1.80818",
+              "retained_cdf": "1",
+              "uniform_cdf": "14/15",
+              "difference": "1/15"
+            }
+          ],
+          "dominates": false,
+          "dominated": false,
+          "equivalent": false
+        },
+        {
+          "third_slot": 1,
+          "cdf": [
+            {
+              "loss_threshold": "0.12444",
+              "retained_cdf": "2/3",
+              "uniform_cdf": "1/3",
+              "difference": "1/3"
+            },
+            {
+              "loss_threshold": "0.49656",
+              "retained_cdf": "2/3",
+              "uniform_cdf": "3/5",
+              "difference": "1/15"
+            },
+            {
+              "loss_threshold": "1.35081",
+              "retained_cdf": "2/3",
+              "uniform_cdf": "4/5",
+              "difference": "-2/15"
+            },
+            {
+              "loss_threshold": "1.80818",
+              "retained_cdf": "1",
+              "uniform_cdf": "14/15",
+              "difference": "1/15"
+            }
+          ],
+          "dominates": false,
+          "dominated": false,
+          "equivalent": false
+        },
+        {
+          "third_slot": 3,
+          "cdf": [
+            {
+              "loss_threshold": "0.12444",
+              "retained_cdf": "0",
+              "uniform_cdf": "1/3",
+              "difference": "-1/3"
+            },
+            {
+              "loss_threshold": "0.49656",
+              "retained_cdf": "2/3",
+              "uniform_cdf": "3/5",
+              "difference": "1/15"
+            },
+            {
+              "loss_threshold": "1.35081",
+              "retained_cdf": "2/3",
+              "uniform_cdf": "4/5",
+              "difference": "-2/15"
+            },
+            {
+              "loss_threshold": "1.80818",
+              "retained_cdf": "1",
+              "uniform_cdf": "14/15",
+              "difference": "1/15"
+            }
+          ],
+          "dominates": false,
+          "dominated": false,
+          "equivalent": false
+        },
+        {
+          "third_slot": 4,
+          "cdf": [
+            {
+              "loss_threshold": "0.12444",
+              "retained_cdf": "0",
+              "uniform_cdf": "1/3",
+              "difference": "-1/3"
+            },
+            {
+              "loss_threshold": "0.49656",
+              "retained_cdf": "0",
+              "uniform_cdf": "3/5",
+              "difference": "-3/5"
+            },
+            {
+              "loss_threshold": "1.35081",
+              "retained_cdf": "0",
+              "uniform_cdf": "4/5",
+              "difference": "-4/5"
+            },
+            {
+              "loss_threshold": "1.80818",
+              "retained_cdf": "2/3",
+              "uniform_cdf": "14/15",
+              "difference": "-4/15"
+            }
+          ],
+          "dominates": false,
+          "dominated": true,
+          "equivalent": false
+        }
+      ],
+      "dominates_for_every_possible_third": false,
+      "dominated_for_every_possible_third": false,
+      "caveat": "Observed fixed-pool post-execution oracle distributions only. No population, repeatability, deployed selection or E2E claim."
+    },
+    {
+      "seed": 3,
+      "status": "exact_finite_distribution_check",
+      "possibilities": [
+        {
+          "third_slot": 0,
+          "cdf": [
+            {
+              "loss_threshold": "0.11709",
+              "retained_cdf": "2/3",
+              "uniform_cdf": "1/3",
+              "difference": "1/3"
+            },
+            {
+              "loss_threshold": "0.53537",
+              "retained_cdf": "1",
+              "uniform_cdf": "3/5",
+              "difference": "2/5"
+            },
+            {
+              "loss_threshold": "1.0125",
+              "retained_cdf": "1",
+              "uniform_cdf": "4/5",
+              "difference": "1/5"
+            }
+          ],
+          "dominates": true,
+          "dominated": false,
+          "equivalent": false
+        },
+        {
+          "third_slot": 1,
+          "cdf": [
+            {
+              "loss_threshold": "0.11709",
+              "retained_cdf": "2/3",
+              "uniform_cdf": "1/3",
+              "difference": "1/3"
+            },
+            {
+              "loss_threshold": "0.53537",
+              "retained_cdf": "1",
+              "uniform_cdf": "3/5",
+              "difference": "2/5"
+            },
+            {
+              "loss_threshold": "1.0125",
+              "retained_cdf": "1",
+              "uniform_cdf": "4/5",
+              "difference": "1/5"
+            }
+          ],
+          "dominates": true,
+          "dominated": false,
+          "equivalent": false
+        },
+        {
+          "third_slot": 2,
+          "cdf": [
+            {
+              "loss_threshold": "0.11709",
+              "retained_cdf": "2/3",
+              "uniform_cdf": "1/3",
+              "difference": "1/3"
+            },
+            {
+              "loss_threshold": "0.53537",
+              "retained_cdf": "1",
+              "uniform_cdf": "3/5",
+              "difference": "2/5"
+            },
+            {
+              "loss_threshold": "1.0125",
+              "retained_cdf": "1",
+              "uniform_cdf": "4/5",
+              "difference": "1/5"
+            }
+          ],
+          "dominates": true,
+          "dominated": false,
+          "equivalent": false
+        },
+        {
+          "third_slot": 4,
+          "cdf": [
+            {
+              "loss_threshold": "0.11709",
+              "retained_cdf": "2/3",
+              "uniform_cdf": "1/3",
+              "difference": "1/3"
+            },
+            {
+              "loss_threshold": "0.53537",
+              "retained_cdf": "1",
+              "uniform_cdf": "3/5",
+              "difference": "2/5"
+            },
+            {
+              "loss_threshold": "1.0125",
+              "retained_cdf": "1",
+              "uniform_cdf": "4/5",
+              "difference": "1/5"
+            }
+          ],
+          "dominates": true,
+          "dominated": false,
+          "equivalent": false
+        }
+      ],
+      "dominates_for_every_possible_third": true,
+      "dominated_for_every_possible_third": false,
+      "caveat": "Observed fixed-pool post-execution oracle distributions only. No population, repeatability, deployed selection or E2E claim."
+    }
+  ]
+}

@@ -20,6 +20,8 @@
 
 ## 运行前核验
 
+2026-09-19执行中、尚未读取Spooky新成绩的辅助分析登记：沿用Leaf上事后写成的完整支持集CDF检查（verify_comparison_stochastic_dominance_20260919.py）、质量/逐程序耗时二维诊断（analyze_comparison_quality_cost_20260919.py）和保留/淘汰边界错误范围（analyze_comparison_pruning_loss_20260919.py）。无手调阈值或成本兑换常数，不替换本节前面的原定终点；不是新增策略、真实延迟测量或E2E收益。测试分别6项、5项、4项。
+
 1. 原候选hash与已准入导出逐条一致，18唯一节点；此批与保护cohort已做日期及journal身份隔离，不新增训练切分。
 2. 独立新目录，源码固定commit、原镜像身份、Spooky公开train.csv与sample_submission.csv可读；真实GPU隔离沿用既有入口，不重复G0。
 3. 18实际代码交付路径CPU mock；Spooky独立数值toy测试覆盖id/列序、错误列、NaN/非法概率。测试不接触真实标签、不冒称真实模型结果。

@@ -67,5 +67,17 @@ class ReuseTests(unittest.TestCase):
             driver.coordinate(Path(temp));popen.assert_not_called()
             self.assertEqual(writer.call_args.args[1]['unstarted_seeds'],[1,2])
 
+    def test_explicit_completion_executes_only_original_unstarted_seed(self):
+        p=dict(allocation_seconds=7800,schedule=[2],rows=[dict(index=i,seed=i//6+1) for i in range(12)])
+        process=Mock();process.wait.return_value=0
+        with tempfile.TemporaryDirectory() as temp,patch.dict(driver.os.environ,SLURM_JOB_ID='124'),\
+             patch.object(driver,'prepared',return_value=p),patch.object(driver,'source_check'),\
+             patch.object(driver,'read',return_value={'job':'124'}),patch.object(driver,'write') as writer,\
+             patch.object(driver.socket,'gethostname',return_value='gpu28'),\
+             patch.object(driver.time,'monotonic',return_value=0),patch.object(driver.subprocess,'Popen',return_value=process) as popen:
+            driver.coordinate(Path(temp))
+            self.assertEqual([int(c.args[0][-1]) for c in popen.call_args_list],list(range(6,12)))
+            self.assertEqual(writer.call_args.args[1]['attempted_seeds'],[2])
+
 
 if __name__=='__main__':unittest.main()

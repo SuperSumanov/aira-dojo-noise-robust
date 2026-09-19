@@ -1,0 +1,17 @@
+{
+  "protocol": "explicit_seed2_completion_after_original_allocation_closed",
+  "decision_utc": "2026-09-19T13:07:03Z",
+  "original_job": "14115",
+  "original_summary_sha256": "f3ea334c94257bbbbc06229a8a3aeea609e2516879bdf9a32822e176897ee9ce",
+  "schedule": [2],
+  "selection": "Only the originally fixed, wholly unstarted second six-program bank. No repetition of seed1, no new seed, no new policy.",
+  "allocation_seconds": 7800,
+  "program_seconds": 7200,
+  "gpus": 6,
+  "cpus": 36,
+  "node": "gpu28",
+  "gpu_hours_cap": 13,
+  "api_calls": 0,
+  "automatic_continuation": false,
+  "disclosure": "This separately budgeted completion was decided after seeing seed1's exploratory result. It is not silently part of the original cap or blinded confirmation. Keep both original and new receipts. No further continuation."
+}

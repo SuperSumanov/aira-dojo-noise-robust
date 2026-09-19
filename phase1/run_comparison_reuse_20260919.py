@@ -62,7 +62,11 @@ def root_check(root):
 def prepared(root):
     root_check(root)
     p = read(root / 'prepared.json')
-    if len(p['rows']) != 12 or (p['execution_seconds'], p['allocation_seconds']) != (7200, 9000):
+    remainder = p.get('completion_of') == 'f3ea334c94257bbbbc06229a8a3aeea609e2516879bdf9a32822e176897ee9ce'
+    expected_allocation = 7800 if remainder else 9000
+    if remainder and p.get('schedule') != [2]:
+        raise ValueError('completion schedule changed')
+    if len(p['rows']) != 12 or (p['execution_seconds'], p['allocation_seconds']) != (7200, expected_allocation):
         raise ValueError('protocol drift')
     for seed in (1, 2):
         roles = [r['role'] for r in p['rows'] if r['seed'] == seed]
@@ -84,10 +88,17 @@ def binding_context(env):
     return identity.with_suffix('.native-binding.json')
 
 
-def prepare(commit):
+def prepare(commit, remainder=False):
     if not re.fullmatch('[a-f0-9]{40}', commit):
         raise ValueError('commit identity')
     source_check()
+    if remainder:
+        prior_result = read(BASE/'comparison-reuse-20260919-5m6jrtah/summary.json',
+                            'f3ea334c94257bbbbc06229a8a3aeea609e2516879bdf9a32822e176897ee9ce')
+        if prior_result['job'] != '14115' or prior_result['allocation_state'] != 'COMPLETED':
+            raise ValueError('original allocation not closed')
+        if any(r['status'] != 'not_started' for r in prior_result['rows'] if r['seed'] == 2):
+            raise ValueError('second group previously attempted')
     root = Path(tempfile.mkdtemp(prefix='comparison-reuse-20260919-', dir=BASE))
     setup(root, commit)
     from dojo.core.solvers.utils.response import extract_code
@@ -162,13 +173,19 @@ export PYTHON_DOTENV_DISABLED=1 PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1
 timeout --signal=TERM --kill-after=10s 8950s /research/d7/spc/yzyang4/venvs/aira/bin/python -B ROOT/run_comparison_reuse_20260919.py coordinate --root ROOT
 '''.replace('ROOT', str(root))
     (root / 'run.sbatch').write_text(batch)
+    if remainder:
+        (root/'run.sbatch').write_text(batch.replace('--time=02:30:00','--time=02:10:00').replace('8950s','7750s'))
+        shutil.copy2(Path(__file__).with_name('comparison_reuse_remainder_plan_20260919.json'),root/'comparison_reuse_remainder_plan_20260919.json')
     files = {str(p.relative_to(root)): sha(p.read_bytes()) for p in root.rglob('*') if p.is_file()}
     p = dict(commit=commit, source_tree=TREE, utc=now(), rows=rows, files=files,
              execution_seconds=7200, allocation_seconds=9000, gpu_hours_cap=15, api_calls=0,
              role='exploratory_historical_continuation_actions_not_live_e2e')
+    if remainder:
+        p.update(allocation_seconds=7800,gpu_hours_cap=13,schedule=[2],
+                 completion_of='f3ea334c94257bbbbc06229a8a3aeea609e2516879bdf9a32822e176897ee9ce')
     receipt = write(root / 'prepared.json', p)
     print(json.dumps(dict(status='PREPARED_NOT_SUBMITTED', root=str(root), prepared_sha256=receipt,
-                          candidates=len(rows), gpu_hours_cap=15)), flush=True)
+                          candidates=6 if remainder else len(rows), gpu_hours_cap=p['gpu_hours_cap'])), flush=True)
 
 
 def coordinate(root):
@@ -180,7 +197,8 @@ def coordinate(root):
     write(root / 'execution-claim.json', dict(job=job, utc=now()))
     start = time.monotonic()
     completed, deferred = [], []
-    for seed in (1, 2):
+    schedule = tuple(p.get('schedule', (1, 2)))
+    for seed in schedule:
         if p['allocation_seconds'] - 100 - (time.monotonic() - start) < 7500:
             deferred.append(seed)
             continue
@@ -196,13 +214,15 @@ def coordinate(root):
         write(root / f'pool-finished-{seed}.json', dict(seed=seed, worker_returncodes=codes, utc=now()))
         completed.append(seed)
         if any(codes):
-            deferred.extend(s for s in (1, 2) if s > seed)
+            deferred.extend(s for s in schedule if s > seed)
             break
     write(root / 'finished.json', dict(job=job, attempted_seeds=completed, unstarted_seeds=deferred, utc=now(), api_calls=0))
 
 
 def execute(root, index):
     p = prepared(root)
+    if p['rows'][index]['seed'] not in p.get('schedule',(1,2)):
+        raise ValueError('candidate outside this allocation schedule')
     setup(root, p['commit'])
     if not os.environ.get('SLURM_STEP_ID', '').isdigit() or read(root / 'execution-claim.json')['job'] != os.environ['SLURM_JOB_ID']:
         raise ValueError('native step required')
@@ -229,7 +249,7 @@ def submit(root):
     queue = subprocess.check_output(['squeue', '-u', 'yzyang4', '-h', '-o', '%i'], env=env, text=True, timeout=25)
     if len(queue.strip().splitlines()) >= 4:
         raise ValueError('job count cap')
-    write(root / 'submit-intent.json', dict(utc=now(), prepared_sha256=sha((root / 'prepared.json').read_bytes()), gpu_hours_cap=15))
+    write(root / 'submit-intent.json', dict(utc=now(), prepared_sha256=sha((root / 'prepared.json').read_bytes()), gpu_hours_cap=p['gpu_hours_cap']))
     result = subprocess.run(['sbatch', '--parsable', '--output=' + str(root / 'allocation-%j.out'),
                              '--error=' + str(root / 'allocation-%j.err'), str(root / 'run.sbatch')],
                             env=env, capture_output=True, text=True, timeout=25)
@@ -247,8 +267,9 @@ if __name__ == '__main__':
     parser.add_argument('--root', type=Path)
     parser.add_argument('--commit')
     parser.add_argument('--index', type=int)
+    parser.add_argument('--remainder', action='store_true')
     args = parser.parse_args()
-    if args.mode == 'prepare': prepare(args.commit)
+    if args.mode == 'prepare': prepare(args.commit,args.remainder)
     elif args.mode == 'submit': submit(args.root)
     elif args.mode == 'coordinate': coordinate(args.root)
     else: execute(args.root, args.index)

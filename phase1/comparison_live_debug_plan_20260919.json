@@ -1,0 +1,23 @@
+{
+  "protocol": "two_fresh_native_debug_draws_v1",
+  "role": "exploratory_conditional_actions_not_e2e_confirmation",
+  "source_runs": ["3277c81be72a1c30", "58d3914785a2cfe1"],
+  "request_seeds": [501, 502],
+  "selection": "One new debug request for the first failed original draft of each fixed Spooky forets-1 run; no retry, resampling, or outcome-based source selection.",
+  "prefix_execution_source": "Closed job 14099 same-code fresh execution logs; do not read running job 14115 results prematurely.",
+  "operator": "Original archived debug prompt and ancestral memory; native operator and pinned local transport source; public task preview only.",
+  "model": "cyankiwi/Qwen3.8-27B-AWQ-BF16-INT4",
+  "revision": "dc430725f831dd90d9271738b877879a46a82239",
+  "sampling": {"temperature": 0.6, "top_p": 0.95, "max_tokens": 32768, "thinking": true},
+  "generation_seconds_per_request": 1200,
+  "requests_max": 2,
+  "warmup_calls": 0,
+  "generation_allocation": {"node": "gpu28", "gpus": 2, "cpus": 12, "seconds": 5400, "gpu_hours_cap": 3},
+  "execution_allocation_after_generation": {"node": "gpu28", "gpus": 2, "cpus": 12, "seconds": 7800, "gpu_hours_cap": 4.333333333333333},
+  "program_seconds": 7200,
+  "paid_api_calls": 0,
+  "training": false,
+  "automatic_retry": false,
+  "readout": "Report each new draw including failure/truncation, generation cost separately from execution, and single-action comparison to the corresponding complete fresh cache bank if available. No best-of-cache selection or replacement of historical debug results.",
+  "limitations": ["Two fixed development prefixes, not two independently randomized E2E runs", "Locally hosted generation, fresh workspace and fresh seed differ from historical producer", "Generation and execution are separate bounded resources, not a demonstrated common-total-budget policy", "Private external scores cannot enter prompt or candidate selection"]
+}

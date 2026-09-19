@@ -1,0 +1,22 @@
+{
+  "question": "After the same first chosen draft fails, does completing the already chosen sibling before repair improve the actual internal-metric-selected batch incumbent under the same total budget?",
+  "task": "random-acts-of-pizza",
+  "fixed_runs": {"1": "5c3f818a9595bd79", "2": "1eee3186d26dcbcd"},
+  "arms": ["native_repair_then_original_second", "original_second_then_native_repair"],
+  "only_intervention": "Order of the same second-selected program and the same original-first debug cycle; no extra candidate, critic, model, training, or API",
+  "episode_seconds": 2100,
+  "maximum_debug_depth": 20,
+  "gpus": 6,
+  "cpus": 24,
+  "allocation_seconds": 6000,
+  "gpu_hours_cap": 10,
+  "layout": "gpu28, two dedicated 2-GPU generators and two original-image 1-GPU workers, second seed crosses arm/lane",
+  "generation": "Full-deadline policy frozen in a37e3595: original template, ancestral memory, 27B revision and sampling; no max_tokens; one attempt with remaining episode time",
+  "repair_stop": "Stop the original-first debug cycle at its first native nonbuggy executed submission, or depth20, deadline, incomplete generation or infrastructure failure. Independently execute the original second sibling once when its turn arrives and time remains.",
+  "final_selection": "Among native accepted finite internal-metric submissions available before deadline, keep maximum internal metric for this higher-better task; ties keep first accepted. Never use official grade or select posthoc best grade. Persist incumbent atomically before any further generation.",
+  "metrics": "Primary: final actual incumbent official AUROC and valid-submission availability. Secondary: first native accepted submission latency. Only read external grades after all four episodes/allocation close.",
+  "initial_cost": "Both arms share the existing generated/critic-selected initial pool; previous generation is a common sunk prefix, not free full-search E2E compute. Include all newly allocated startup, idle, generation and execution GPU hours.",
+  "scope": "Exploratory conditional single original-batch completion, NOT full-search E2E or an independent confirmation cohort. Historical scheduling analysis and feasibility outcomes have been inspected; both fixed seeds, including the failed sibling, retained.",
+  "feasibility_job": "14166: one sibling valid and one failed; no swapping or repairing those fixed sibling code files",
+  "prohibited": ["changing running or closed roots", "external scores into selection", "extra candidate sampling", "paid APIs", "agent finetuning", "protected cohorts", "concurrent second six-GPU allocation"]
+}

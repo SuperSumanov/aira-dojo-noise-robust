@@ -1,4 +1,9 @@
-# 当前短交接 — 2026-09-19 21:33 UTC
+# 当前短交接 — 2026-09-19 21:59 UTC
+
+最新补充：14166已COMPLETED/88秒2GPU，唯一readout版本7ae3622574c926e9e044ca686b7dd1fc7c9c1ad6已执行；ROOT BASE/comparison-pizza-selected-second-20260919-u2nkqs5y，prepared51f32ba6bc25e6e25a58f8a1f8c4594206c2780c6cdcc5c9cbdd96b6e4400103。两个原第二入选程序：seed1有效AUC .74184/87.09747589100152s，seed2失败，无unknown；未做native接受，非在线效果。禁止重跑reader。
+新批次次序对照正在实现/预检，未提交：repair→同原second 与 second→repair；两阶段都跑、共同35min，不首个成功即停，最终按内部metric选实际incumbent。相同两个seed含失败second，6GPU100min≤10GPUh，必须等14165闭合，无API付费/fit。入口run_comparison_native_batch_order_20260919.py，protocol同名plan。CPU需覆盖次序、两阶段、内部优选持久化、repair截断后仍执行就绪second。全部开发条件结果，不称全E2E。
+原25池阻塞诊断20有等待，但严格全失败修复链正机会0；次级事后成本/质量7组更快就绪有效兄弟、质量3胜4负，不能只看等待称浪费。两份JSON分开保留。旧全文回归发现器误导入不相关包报2错，根目录明确模块重跑142tests PASS，非产品bug；一次状态查询忘配SLURM_CONF失败，已改正确env，不影响任务。
+14165在21:57前后最后观察RUNNING/1847秒，第一wave双生成未完成，未读结果。reader e7d969f1102a589cc2d887df9eb02cf48dad9047已上传，闭合后唯一运行。公开HEAD已推并核e7d969f1102a589cc2d887df9eb02cf48dad9047，扫描32files/凭据形状0/敏感路径0；后续c65c5fb8/4f0699b4/7ae36225未推。
 
 ## 授权、边界
 

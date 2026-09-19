@@ -7,6 +7,7 @@ PREFIX=driver.BASE/'comparison-pizza-prefix-20260919-0guhqznb'
 SUMMARY='b3fff2aa4228b7b09e82296c0f3929e4fa7b9083a6bb510cdfcef63f28ddaa29'
 RUNS={1:'5c3f818a9595bd79',2:'1eee3186d26dcbcd'}
 CONFIG={1:'4d6c28270e919f607537ca78467b73ce85f6c7a23e92195dcfff097d72e470f0',2:'2131b8994f1991c23e4cb6bd1ee997da3d2ffcdc18204b3b4d2ec197534737f2'}
+CHOOSE_ORIGINAL_SECOND=False
 
 def configure():
     driver.SCRIPT=Path(__file__).name
@@ -30,9 +31,15 @@ def inputs():
     for seed,run in RUNS.items():
         row,=[r for r in summary['rows'] if r['seed']==seed]
         prefixes[seed]=row;wanted[row['node']]=row['raw_code_sha256']
-        pool=sorted([r for r in nodes if r['run']==run and r['group']=='unselected' and r['parents']==[0] and 'draft' in r['operators_used']],key=lambda r:(r['creation_time'],r['id']))
-        selected=driver.select_cache([dict(node=r['id'],index=i,role='cache') for i,r in enumerate(pool)],seed)
-        node=next(r for r in pool if r['id']==selected['node']);cached[seed]=node;wanted[node['id']]=node['code_sha256']
+        if CHOOSE_ORIGINAL_SECOND:
+            pool=sorted([r for r in nodes if r['run']==run and r['group']=='executed' and r['parents']==[0] and 'draft' in r['operators_used']],key=lambda r:r['step'])
+            if len(pool)!=2 or pool[0]['step']!=1:raise ValueError('original two chosen siblings')
+            node=pool[1]
+        else:
+            pool=sorted([r for r in nodes if r['run']==run and r['group']=='unselected' and r['parents']==[0] and 'draft' in r['operators_used']],key=lambda r:(r['creation_time'],r['id']))
+            selected=driver.select_cache([dict(node=r['id'],index=i,role='cache') for i,r in enumerate(pool)],seed)
+            node=next(r for r in pool if r['id']==selected['node'])
+        cached[seed]=node;wanted[node['id']]=node['code_sha256']
     originals={};configs={}
     with tarfile.open(base/'archives/random-acts-of-pizza.tar.gz','r|gz') as archive:
         for member in archive:

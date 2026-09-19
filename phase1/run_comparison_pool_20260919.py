@@ -48,7 +48,8 @@ def setup(root,commit):
     sys.path[:0]=[str(root),str(SOURCE/'src')];logging.disable(logging.CRITICAL)
 def prepared(root):
     root_check(root);p=read(root/'prepared.json')
-    if len(p['rows'])!=18 or p['execution_seconds']!=7200 or p['allocation_seconds']!=9000:raise ValueError('protocol')
+    if len(p['rows'])!=18 or p['execution_seconds']!=7200:raise ValueError('protocol')
+    if (p['allocation_seconds'],p.get('only_seed')) not in ((9000,None),(7800,3)):raise ValueError('schedule protocol')
     for n,h in p['files'].items():
         if sha((root/n).read_bytes())!=h:raise ValueError('prepared drift')
     return p
@@ -58,8 +59,14 @@ def binding_context(env):
     if read(root/'execution-claim.json')['job']!=env['SLURM_JOB_ID']:raise ValueError('allocation')
     return identity.with_suffix('.native-binding.json')
 
-def prepare(commit):
+def prepare(commit,remainder_of=None):
     if not re.fullmatch('[a-f0-9]{40}',commit):raise ValueError('commit')
+    continuation=None
+    if remainder_of is not None:
+        previous=prepared(remainder_of);closed=read(remainder_of/'finished.json')
+        if previous.get('only_seed') is not None or closed['attempted_seeds']!=[1,2] or closed['unstarted_seeds']!=[3]:raise ValueError('not the unstarted third pool')
+        if any((remainder_of/f'result-{i}.json').exists() for i in range(12,18)):raise ValueError('third pool already attempted')
+        continuation=dict(root=str(remainder_of),job=read(remainder_of/'launch.json')['job'],prepared_sha256=sha((remainder_of/'prepared.json').read_bytes()))
     source_check()
     root=Path(tempfile.mkdtemp(prefix='comparison-pool-20260919-',dir=BASE))
     setup(root,commit)
@@ -92,7 +99,7 @@ def prepare(commit):
         src=DONOR/name
         if sha(src.read_bytes())!=prior['files'][name]:raise ValueError('adapter changed')
         dst=root/name;dst.parent.mkdir(parents=True,exist_ok=True);shutil.copy2(src,dst)
-    for name in (SCRIPT,'COMPARISON_POOL_EXECUTION_20260919.md','readout_comparison_pool_20260919.py','readout_forets_generation_capacity_20260912.py'):
+    for name in (SCRIPT,'COMPARISON_POOL_EXECUTION_20260919.md','COMPARISON_POOL_REMAINDER_20260919.md','readout_comparison_pool_20260919.py','readout_forets_generation_capacity_20260912.py'):
         shutil.copy2(Path(__file__).with_name(name),root/name)
     (root/'forets_current_pool_20260912.py').write_text('from run_comparison_pool_20260919 import binding_context\n')
     (root/'opencl-vendors/nvidia.icd').write_text('libnvidia-opencl.so.1\n')
@@ -128,11 +135,15 @@ export SLURM_CONF=/opt1/slurm/gpu-slurm.conf
 export PYTHON_DOTENV_DISABLED=1 PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1
 timeout --signal=TERM --kill-after=10s 8950s /research/d7/spc/yzyang4/venvs/aira/bin/python -B ROOT/run_comparison_pool_20260919.py coordinate --root ROOT
 '''.replace('ROOT',str(root))
+    if continuation:batch=batch.replace('--time=02:30:00','--time=02:10:00').replace(' 8950s ',' 7750s ')
     (root/'run.sbatch').write_text(batch)
     files={str(p.relative_to(root)):sha(p.read_bytes()) for p in root.rglob('*') if p.is_file()}
     p=dict(commit=commit,source_tree=TREE,utc=now(),rows=rows,files=files,execution_seconds=7200,allocation_seconds=9000,gpu_hours_cap=15,api_calls=0)
+    if continuation:
+        if p['rows']!=previous['rows']:raise ValueError('continuation candidate identities changed')
+        p.update(only_seed=3,remainder_of=continuation,allocation_seconds=7800,gpu_hours_cap=13)
     h=write(root/'prepared.json',p)
-    print(json.dumps(dict(status='PREPARED_NOT_SUBMITTED',root=str(root),prepared_sha256=h,candidates=18,gpu_hours_cap=15)),flush=True)
+    print(json.dumps(dict(status='PREPARED_NOT_SUBMITTED',root=str(root),prepared_sha256=h,candidates=6 if continuation else 18,gpu_hours_cap=p['gpu_hours_cap'])),flush=True)
 
 def one(root,row,factory=None):
     from dojo.config_dataclasses.interpreter.fresh_container import FreshContainerInterpreterConfig
@@ -174,8 +185,9 @@ def coordinate(root):
     if socket.gethostname().split('.')[0]!='gpu28' or read(root/'launch.json')['job']!=job:raise ValueError('allocation')
     write(root/'execution-claim.json',dict(job=job,utc=now()))
     started=time.monotonic();completed=[];deferred=[]
-    for seed in (1,2,3):
-        if 8900-(time.monotonic()-started)<7500:deferred.append(seed);continue
+    schedule=(3,) if p.get('only_seed')==3 else (1,2,3)
+    for seed in schedule:
+        if p['allocation_seconds']-100-(time.monotonic()-started)<7500:deferred.append(seed);continue
         rows=[r for r in p['rows'] if r['seed']==seed];processes=[]
         write(root/f'pool-start-{seed}.json',dict(seed=seed,job=job,utc=now(),indices=[r['index'] for r in rows]))
         print(json.dumps(dict(event='POOL_START',seed=seed,programs=len(rows))),flush=True)
@@ -189,7 +201,7 @@ def coordinate(root):
         completed.append(seed)
         print(json.dumps(dict(event='POOL_CLOSED',seed=seed,worker_returncodes=codes)),flush=True)
         if any(codes):
-            deferred.extend(s for s in (1,2,3) if s>seed);break
+            deferred.extend(s for s in schedule if s>seed);break
     write(root/'finished.json',dict(job=job,utc=now(),attempted_seeds=completed,unstarted_seeds=deferred,api_calls=0))
 
 def execute(root,index):
@@ -210,18 +222,18 @@ def submit(root):
     env=dict(os.environ,SLURM_CONF='/opt1/slurm/gpu-slurm.conf')
     queue=subprocess.check_output(['squeue','-u','yzyang4','-h','-o','%i'],env=env,text=True,timeout=25)
     if len(queue.strip().splitlines())>=4:raise ValueError('job slot cap')
-    write(root/'submit-intent.json',dict(utc=now(),prepared_sha256=sha((root/'prepared.json').read_bytes()),gpu_hours_cap=15))
+    write(root/'submit-intent.json',dict(utc=now(),prepared_sha256=sha((root/'prepared.json').read_bytes()),gpu_hours_cap=p['gpu_hours_cap']))
     result=subprocess.run(['sbatch','--parsable','--output='+str(root/'allocation-%j.out'),'--error='+str(root/'allocation-%j.err'),str(root/'run.sbatch')],env=env,capture_output=True,text=True,timeout=25)
     job=result.stdout.strip().split(';')[0]
     if result.returncode or not job.isdigit():raise RuntimeError('ambiguous submit; do not retry')
     write(root/'launch.json',dict(job=job,utc=now(),prepared_sha256=sha((root/'prepared.json').read_bytes())))
-    print(json.dumps(dict(job=job,root=str(root),gpu_hours_cap=15)),flush=True)
+    print(json.dumps(dict(job=job,root=str(root),gpu_hours_cap=p['gpu_hours_cap'])),flush=True)
 
 if __name__=='__main__':
     os.umask(0o077);a=argparse.ArgumentParser();a.add_argument('mode',choices=('prepare','submit','coordinate','execute'))
-    a.add_argument('--root',type=Path);a.add_argument('--commit');a.add_argument('--index',type=int);args=a.parse_args()
+    a.add_argument('--root',type=Path);a.add_argument('--commit');a.add_argument('--index',type=int);a.add_argument('--remainder-of',type=Path);args=a.parse_args()
     try:
-        if args.mode=='prepare':prepare(args.commit)
+        if args.mode=='prepare':prepare(args.commit,args.remainder_of)
         elif args.mode=='submit':submit(args.root)
         elif args.mode=='coordinate':coordinate(args.root)
         else:execute(args.root,args.index)

@@ -4,9 +4,11 @@
 
 ## 不能再当创新点的表述
 
+- **MLE执行前偏好与同框架在线选择**已有最直接竞品：[AI Research Preference Models v2](https://arxiv.org/html/2608.13940v2)。这是项目此前已记录的竞品，本轮重新核对，并非新发现。它已在AIRA-dojo比较未执行child并报告E2E；其局限部分也明确讨论推理延迟，不能声称对方完全没有计成本。本轮记录的高生成延迟是不同部署/任务中的现象，不能当作推翻其结果。
 - **廉价critic配合昂贵执行、自适应决定生成和验证数量**已有直接工作：[Adaptive Generate-Rank-Verify](https://arxiv.org/html/2605.17609v1)（2026-05-17）。其目标是最低成本找到第一个通过二元验证的候选，假设分数与成功概率单调，并使用固定的生成/验证单次成本。不是仅有概念相似；后续方法必须与其明确对照。
 - **不执行代码的reward model提高best-of-N选择**也已有工作：[CodeScaler](https://arxiv.org/abs/2602.17684)。因此训练critic或用它少执行一些候选，本身不足以支撑新颖性；其底座RL部分不在本项目授权内。
 - **用历史rollout的结构化信息进行选择及改进**已有研究：[Scaling Test-Time Compute for Agentic Coding](https://arxiv.org/abs/2604.16529)。不能把摘要、比较或再修一轮单独包装成新方法。
+- **MLE耗时感知搜索及跨分支修复记忆**也不是空白：[MARS](https://arxiv.org/html/2602.02660v1)有预算感知搜索与模块化反思；[Recovering Wasted Compute](https://arxiv.org/abs/2608.10424)及其[作者代码](https://github.com/tingtang2/autoresearch-compute-recovery)研究跨分支debug记忆等干预。二者也是近期项目记录中的已知工作，不能将旧失败方案换名恢复。
 
 ## 尚可检验的具体问题——不是已经成立的创新
 

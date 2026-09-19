@@ -17,10 +17,11 @@ full-deadline策略在14146效果前冻结：API不传max_tokens，vLLM默认/�
 ## 准备中：同原生批次只换顺序
 
 run_comparison_native_batch_order_20260919.py / comparison_native_batch_order_plan_20260919.json：同原第二入选程序和first debug cycle，只换repair→second / second→repair；两阶段均做（不因首成功停止），共同35分钟、按有限内部metric最大选最终提交（ties保首个）、首有效延迟单独记录。2seed×2arm、6GPU/100min≤10GPUh，必须等14165结束。开发条件单batch而非完整搜索E2E。
-22:05 CPU prepare c2c4e21b失败ROOT comparison-native-batch-order-20260919-8pdj0u_r，未提交GPU：模拟分类用字符串pass注释，原生formatter改空格使之误识别为sibling；改AST只识别单Pass。新ROOT comparison-native-batch-order-20260919-hz3c589n，部署commit dc4a7dbc6951f5bd8d24b49ca7eb2e2de3d5ccec，prepared25d55a42517e586b677dd72a7296a4453c0c68bfda03c551eeb30570e8274428；真实原生CPU预检通过，尚未提交。160相关单测通过（一次显式点名不存在测试文件失败，按实际模块重跑全过）。新batch reader会审计每次内部metric incumbent更新与首有效时间，未知不当失败。14165须先用远端BASE现有e7d969 reader闭合，再上传本地更新shared reader，禁混版本。
+22:05 CPU prepare c2c4e21b失败ROOT comparison-native-batch-order-20260919-8pdj0u_r，未提交GPU：模拟分类用字符串pass注释，原生formatter改空格使之误识别为sibling；改AST只识别单Pass。新ROOT comparison-native-batch-order-20260919-hz3c589n，部署commit dc4a7dbc6951f5bd8d24b49ca7eb2e2de3d5ccec，prepared25d55a42517e586b677dd72a7296a4453c0c68bfda03c551eeb30570e8274428；真实原生CPU预检通过，尚未提交。168相关单测通过，随后计时新增2项测试所在20测试模块组通过。独立batch reader已上传到BASE/comparison-batch-reader-20260919-Pt3BsrGK，commit ee3c6da24bfdf453dbdf0e124deca9b06500b10e，wrapper SHAe833ab7a130c61f78d91c02f9a770624ebb4bb3c83e4f4421124e0ddb527d105，shared SHA2a6e57da3bfcef9d157d8abdcc7e1e3a6a727789bf002c9555457fd7b35cd948；四依赖本远端hash逐一匹配，不改BASE旧reader。审计每次内部metric incumbent更新、首原生接受而非首官方有效的时延；只累计已完成请求的实测latency，下界非全量耗时，不给截断调用补值。14165仍只用BASE e7d969 reader，禁混版本。
 14166 original-second闭合88秒2GPU/.04888888888888889GPUh，ROOT comparison-pizza-selected-second-20260919-u2nkqs5y，prepared51f32ba6bc25e6e25a58f8a1f8c4594206c2780c6cdcc5c9cbdd96b6e4400103，reader7ae3622574c926e9e044ca686b7dd1fc7c9c1ad6已唯一读出。seed1第二原选有效AUC .74184/87.09747589100152s，seed2 exit1失败；未native分析，非策略收益。本地results/comparison_pizza_selected_second_20260919，summary19668b47b51cbcec7c99af1ea9d16e7d8559ad02274b28c5c65ef74bb9da0d0f；仅安全summary/runs/cpu-preflight，无原始代码。不重跑。
 全25初始池严格延迟有效兄弟机会0；独立事后次级7组成本较小但质量3胜4负，所以不用首成功替代最终质量。不修改零结果或称普遍更优。
 未来完整ForeTS候选批次开关已写为forets_ready_batch_patch_20260919.py：只对exact be933生产fixture返回补丁bytes，native默认关闭，ready_first仅推迟debug。7CPU测试覆盖不同成功/失败/步数门的默认等价路径、无bug时启用等价、同候选/critic/生成；未修改远端源、未部署，不当E2E收益。下一实际完整搜索仍须预算/环境/源码接入，无条件正收益或方法新颖性尚未证明。
+新增真实config默认/验证测试亦通过。注意当前ASSETS/source基于b7f8批次ledger接入、与be933 fixture不同；不能把此补丁直接声称已接入当前完整运行器。完整E2E还须统一逐动作incumbent记录与硬截止，原wallclock仅整轮存结果；不让两臂提交持久化规则不同，不自动投未核矩阵。
 旧Pizza root comparison-pizza-online-20260919-1qiyjkqy（prepared8192d964d11b042d49724c854947839faa01153ea2a96fe84500a9dc00966e6f）从未提交，禁投/改旧root。
 
 ## 已完成，不要重做
@@ -34,6 +35,7 @@ summary a958946c49bca5248c0ca7e647c71b22a493231657ee18f73ffd219ecb5c196e；本�
 ## 并行核查
 
 AGR-V已有未验证池和动态生成/验证，Recovering Wasted Compute已有回溯+兄弟选择，AI Research Preference Models已在AIRA排序/E2E。缓存/排序本身不是新颖；先验证公平预算下的真实收益，不把小样本升级成论文主张。
+22:26补充只读primary核查：AGR-V(https://arxiv.org/html/2605.17609v1)建模固定标量成本、找首个二值通过者；其结尾明确变量成本/并行扩展。Recovering Wasted Compute(https://arxiv.org/html/2608.10424v1)已有同draft规模消融和MLEvolve严格TS对照，不能批评它只靠多draft。Matryoshka Agent(https://arxiv.org/html/2607.25090v1)已有层次调度、下游分支偏好和orchestrator/RL训练；不是我方新颖性，更不能借其恢复K>=1或agent微调。本次窄问题是同原选批次执行先后在实际最终提交上的影响，未证明重要/新颖/普适。
 21:30学长head仍e4181fac5edb319e14d4d819088778d5d2708912；0918目录双读仍0可见文件，listingSHA d36f39e6e9476279df19da46f006f182236737f29e64e5808e93733d676ae239，仅当前可见列表，非学长没上传。
 
 ## 环境、发布

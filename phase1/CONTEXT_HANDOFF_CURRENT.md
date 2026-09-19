@@ -1,12 +1,17 @@
-# 当前短交接 — 2026-09-19 11:45 UTC
+# 当前短交接 — 2026-09-19 12:23 UTC
 只记最后观察；恢复顺序为fetch后CURRENT_DIRECTION顶部→本文件→现场。详细历史留Git/dated reports，不重复旧实验。
 
 ## 当前授权和方向
-用户明确恢复09-14暂停、允许新comparison报告/脚本/脱敏逐run成绩与候选ID/hash正常push，并要求本轮三小时内实质进展（09:26 UTC起，约12:26 UTC）。
+本轮新请求12:10 UTC开始，目标15:10 UTC前实质结果；用户明确不要每次写汇报（需其再要求），只更新必要短交接/实验配置。原发布授权继续，不改学长分支。
 主问题仍为固定生成器/总资源下ForeTS/critic能否改善真实E2E；目前先补完整候选池反事实。27B为降API成本替代，不能称已验证更强。
 不重复G0、旧失败选择器或关闭HCE/多保真/Probe/score-channel/K>=1；first960/Target300/522结果仍封，不更新agent底座。
 
-## 最新闭合（本轮无继续运行/排队的新作业）
+## 当前推进（尚未提交）
+comparison_reuse_plan_20260919.json固定首个失败后的动作对照：Spooky forets-1 seed1/2，每组六程序＝原首个失败draft＋其首个直接debug＋四条未选初始程序。总12程序、原7200秒/原镜像、6GPU/36CPU/150min≤15GPUh，零API/训练，不自动续跑。
+12:13队列只旧12535 PENDING未动。新driver/readout与9个CPU测试已写并通过，接下来固定commit→新目录prepare→12实际交付mock→submit。不重复旧14099/旧reader，不把历史debug代码复跑当新LLM调用或E2E；首个前缀必须复现原错误，单cache均匀选择不得用oracle挑最好。生成时延只做独立/符号分析。
+父索引是journal整数step，不是node ID；已核每run index1初始draft/index2直接debug，避免错配。已知缓存结果使本轮只能探索，两个原始run不是12独立seed。
+
+## 上轮已闭合
 Spooky完整池job14099已COMPLETED，1960秒/6GPU=3.2666666666666666GPUh。前两池共12执行，3有效9无有效提交；seed3六条因固定剩余时间门未启动，无续跑或换seed。11:41队列只见旧12535 PENDING，未动。
 ROOT=/research/d7/spc/yzyang4/comparison-spooky-pool-20260919-04qsl2xc
 commit=93cf17a16f4dc9cefeb3ea003c5ac3beb6ec57e4

@@ -1,0 +1,23 @@
+{
+  "protocol": "failed_first_draft_reuse_vs_first_debug_v1",
+  "frozen_at_utc": "2026-09-19T12:22:50Z",
+  "role": "exploratory_continuation_action_bank_not_e2e_confirmation",
+  "motivation": "Test one uniformly sampled already-generated unselected candidate before spending on another debug generation.",
+  "source_scope": "comparison/0912 Qwen Spooky forets-1 seed1 and seed2; already admitted development data",
+  "selection": "For each seed, executed journal index 1 must be an original selected initial draft; index 2 must be its first direct debug. Include all four unselected initial drafts, without selecting by their outcomes.",
+  "prefix_gate": "Fresh original-first-draft must fail with the same terminal error as production; otherwise the continuation effect is not identified for that seed.",
+  "primary_readout": "One recorded first-debug candidate versus a uniform single candidate from the four cached alternatives: valid-output probability and single-program oriented quality, per seed. No best-of-four oracle.",
+  "cost_readout": "Fresh per-program execution wall seconds reported separately from historical generation latency. For cache-first then original debug on cache failure, derive symbolic generation-latency break-even; not measured live policy speedup.",
+  "unit": "original physical run, two exploratory units; candidate permutations are not seeds",
+  "hardware": "gpu28 six RTX3090 GPUs, 36 CPUs, six CPUs per program; original task image unchanged",
+  "program_seconds": 7200,
+  "allocation_seconds": 9000,
+  "gpu_hours_cap": 15,
+  "programs_max": 12,
+  "schedule": "seed1 then seed2, six concurrent programs each; start a whole group only with >=7500 seconds remaining after allocation safety allowance",
+  "api_calls": 0,
+  "training": false,
+  "automatic_continuation": false,
+  "no_changes": ["candidate code", "original model RNG", "task image", "program limit", "protected cohorts", "agent base model"],
+  "limitations": ["Cached-program outcomes and prior reports have already been seen; not blinded confirmation", "One historical debug generation per seed, not a new sampled generator distribution", "Fresh workspace differs from historical Jupyter state", "Successful reuse does not establish same-total-resource E2E or novelty"]
+}

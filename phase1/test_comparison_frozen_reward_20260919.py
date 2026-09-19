@@ -1,8 +1,14 @@
 import hashlib,tempfile,unittest
 from pathlib import Path
-from run_comparison_frozen_reward_20260919 import infer
+from run_comparison_frozen_reward_20260919 import infer,batch_script,ATTEMPT_SECONDS,PRIOR_SECONDS
 
 class FrozenRewardDispatch(unittest.TestCase):
+    def test_exclusive_step_resets_parent_mask_and_accounts_failed_start(self):
+        script=batch_script(Path('/synthetic/root'))
+        self.assertLess(script.index('unset CUDA_VISIBLE_DEVICES'),script.index('exec srun'))
+        self.assertIn('--exclusive --nodes=1 --ntasks=1 --cpus-per-task=6 --gres=gpu:1',script)
+        self.assertEqual(ATTEMPT_SECONDS+PRIOR_SECONDS,1800)
+        self.assertNotIn('ROOT',script)
     def test_fixed_code_and_task_only_reach_scorer(self):
         with tempfile.TemporaryDirectory() as directory:
             p=Path(directory)/'code.py';raw=b'pass\n';p.write_bytes(raw)

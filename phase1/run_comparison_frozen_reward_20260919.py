@@ -10,6 +10,31 @@ SOURCES=[('comparison-pool-20260919-7ujiaajp','394470c82755bdebf02d34c86f7474ef9
          ('comparison-spooky-pool-20260919-04qsl2xc','e3337e7affc534e6e0c3e4e2a75571fc08a9b4a7c271877a71073dda5e8917d6',(1,2))]
 LOADER={'bradley_terry_server.py':'ebe289b5d22ac8186c8a13c9462aa62782d12cd32c628283081b488468d35fad',
         'bradley_terry_evaluation.py':'31ecf62ecd92a88ee2a4a7b9a3f723081c8075adb448c592b4c62cd2303bd99d'}
+PRIOR_ROOT=rt.BASE/'comparison-frozen-reward-20260919-72slmwzt'
+PRIOR_SECONDS=12
+ATTEMPT_SECONDS=1800-PRIOR_SECONDS
+
+def closed_launch_failure():
+    env=dict(os.environ,SLURM_CONF='/opt1/slurm/gpu-slurm.conf')
+    raw=subprocess.check_output(['sacct','-X','-j','14168','-nP','-o','JobIDRaw,State%32,ElapsedRaw'],env=env,text=True,timeout=25)
+    row,=[line.split('|') for line in raw.splitlines() if line.split('|')[0]=='14168']
+    if row[:3]!=['14168','FAILED',str(PRIOR_SECONDS)] or (PRIOR_ROOT/'model-ready.json').exists() or list(PRIOR_ROOT.glob('prediction-*.json')):raise ValueError('prior is not the exact zero-inference startup failure')
+    if rt.sha(PRIOR_ROOT/'allocation-14168.private.err')!='0ae94fc43aaa8ac31c953967cb8854a5d5874eb8e1fa01b9079bdbbe899beb6d':raise ValueError('prior diagnosis drift')
+    return dict(job='14168',seconds=PRIOR_SECONDS,predictions=0,model_loaded=False,reason='single-device guard before model; previous launcher had no exclusive Slurm step',original_root=str(PRIOR_ROOT))
+
+def batch_script(root):
+    return '''#!/bin/bash
+#SBATCH -p gpu_24h
+#SBATCH -w gpu28
+#SBATCH --gres=gpu:1
+#SBATCH -c 6
+#SBATCH --time=00:29:48
+#SBATCH --job-name=frozen-reward-pools
+set -euo pipefail
+export SLURM_CONF=/opt1/slurm/gpu-slurm.conf
+unset CUDA_VISIBLE_DEVICES SLURM_STEP_ID SLURM_STEP_GPUS GPU_DEVICE_ORDINAL
+exec srun --exclusive --nodes=1 --ntasks=1 --cpus-per-task=6 --gres=gpu:1 --time=00:29:00 timeout --signal=TERM --kill-after=10s 1720s /research/d7/spc/yzyang4/venvs/aira/bin/python -u -B ROOT/run_comparison_frozen_reward_20260919.py worker --root ROOT
+'''.replace('ROOT',str(root))
 
 def rows_from_sources():
     rows=[]
@@ -57,21 +82,12 @@ def check(root):
 
 def prepare(commit):
     if not re.fullmatch('[a-f0-9]{40}',commit):raise ValueError('commit')
+    prior=closed_launch_failure()
     rows=rows_from_sources();model=model_files();root=Path(tempfile.mkdtemp(prefix='comparison-frozen-reward-20260919-',dir=rt.BASE))
     for name in (SCRIPT,PLAN,'local_generator_runtime_20260914.py','forets_e2e_critic_service.py'):shutil.copy2(Path(__file__).with_name(name),root/name)
-    batch='''#!/bin/bash
-#SBATCH -p gpu_24h
-#SBATCH -w gpu28
-#SBATCH --gres=gpu:1
-#SBATCH -c 6
-#SBATCH --time=00:30:00
-#SBATCH --job-name=frozen-reward-pools
-set -euo pipefail
-export SLURM_CONF=/opt1/slurm/gpu-slurm.conf
-exec timeout --signal=TERM --kill-after=10s 1750s /research/d7/spc/yzyang4/venvs/aira/bin/python -u -B ROOT/run_comparison_frozen_reward_20260919.py worker --root ROOT
-'''.replace('ROOT',str(root))
+    batch=batch_script(root)
     (root/'run.sbatch').write_text(batch)
-    p=dict(commit=commit,rows=rows,model=model,files={f.name:rt.sha(f) for f in root.iterdir() if f.is_file()},gpu_hours_cap=.5)
+    p=dict(commit=commit,rows=rows,model=model,files={f.name:rt.sha(f) for f in root.iterdir() if f.is_file()},gpu_hours_cap=.5,attempt_seconds=ATTEMPT_SECONDS,prior_startup_failure=prior,amendment='Explicit once-only operational repair before any inference; same model/rows/encoder, both allocations together <=0.5 GPUh. Not an automatic resampling retry.')
     rt.write(root/'prepared.json',p)
     mocked=list(infer(rows,lambda task,code:float(len(code))))
     if len(mocked)!=30 or any(set(r)&{'valid','score','independent_score'} for r in rows):raise ValueError('dispatch/outcome isolation')
@@ -80,6 +96,7 @@ exec timeout --signal=TERM --kill-after=10s 1750s /research/d7/spc/yzyang4/venvs
 
 def submit(root):
     p=check(root)
+    if closed_launch_failure()!=p['prior_startup_failure']:raise ValueError('prior receipt')
     if rt.read(root/'cpu.json')['prepared_sha256']!=rt.sha(root/'prepared.json'):raise ValueError('cpu gate')
     env=dict(os.environ,SLURM_CONF='/opt1/slurm/gpu-slurm.conf')
     raw=subprocess.check_output(['squeue','-u','yzyang4','-h','-o','%i'],env=env,text=True,timeout=25)
@@ -95,11 +112,14 @@ def submit(root):
 def worker(root):
     p=check(root)
     if socket.gethostname().split('.')[0]!='gpu28' or rt.read(root/'launch.json')['job']!=os.environ['SLURM_JOB_ID']:raise ValueError('allocation')
+    if not os.environ.get('SLURM_STEP_ID','').isdigit():raise ValueError('exclusive Slurm step required')
     for name in tuple(os.environ):
         if name.startswith('PRIMARY_KEY') or name in ('OPENROUTER_API_KEY','OPENAI_API_KEY'):os.environ.pop(name,None)
     os.environ.update(HF_HUB_OFFLINE='1',TRANSFORMERS_OFFLINE='1',HF_DATASETS_OFFLINE='1',PYTHON_DOTENV_DISABLED='1',OMP_NUM_THREADS='6',TOKENIZERS_PARALLELISM='false')
     import torch
-    if torch.cuda.device_count()!=1 or '3090' not in torch.cuda.get_device_name(0):raise ValueError('single RTX3090 required')
+    count=torch.cuda.device_count();names=[torch.cuda.get_device_name(i) for i in range(count)]
+    rt.write(root/'cuda-visibility.json',dict(device_count=count,names=names,step=os.environ['SLURM_STEP_ID'],visible=os.environ.get('CUDA_VISIBLE_DEVICES')))
+    if count!=1 or '3090' not in names[0]:raise ValueError('single RTX3090 required')
     driver=ctypes.CDLL('libcuda.so.1');device=ctypes.c_int();raw_uuid=(ctypes.c_ubyte*16)()
     if driver.cuInit(0) or driver.cuDeviceGet(ctypes.byref(device),0) or driver.cuDeviceGetUuid(ctypes.byref(raw_uuid),device):raise ValueError('CUDA identity')
     physical='GPU-'+str(uuid.UUID(bytes=bytes(raw_uuid)))

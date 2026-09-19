@@ -1,4 +1,4 @@
-# 当前短交接 — 2026-09-19 12:23 UTC
+# 当前短交接 — 2026-09-19 12:50 UTC
 只记最后观察；恢复顺序为fetch后CURRENT_DIRECTION顶部→本文件→现场。详细历史留Git/dated reports，不重复旧实验。
 
 ## 当前授权和方向
@@ -6,10 +6,15 @@
 主问题仍为固定生成器/总资源下ForeTS/critic能否改善真实E2E；目前先补完整候选池反事实。27B为降API成本替代，不能称已验证更强。
 不重复G0、旧失败选择器或关闭HCE/多保真/Probe/score-channel/K>=1；first960/Target300/522结果仍封，不更新agent底座。
 
-## 当前推进（尚未提交）
+## 当前推进
 comparison_reuse_plan_20260919.json固定首个失败后的动作对照：Spooky forets-1 seed1/2，每组六程序＝原首个失败draft＋其首个直接debug＋四条未选初始程序。总12程序、原7200秒/原镜像、6GPU/36CPU/150min≤15GPUh，零API/训练，不自动续跑。
-12:13队列只旧12535 PENDING未动。新driver/readout与9个CPU测试已写并通过，接下来固定commit→新目录prepare→12实际交付mock→submit。不重复旧14099/旧reader，不把历史debug代码复跑当新LLM调用或E2E；首个前缀必须复现原错误，单cache均匀选择不得用oracle挑最好。生成时延只做独立/符号分析。
+14115已实际提交并执行，12:30观察第一组4结果、6唯一GPU、全部namespace绑定正确。ROOT=/research/d7/spc/yzyang4/comparison-reuse-20260919-5m6jrtah；prepare SHA5d7e98280f3b223bbf8c6968ebd3c84857b5329eac0744a51d3c16d3ced24518；execution commitef41925bed94b5de01efd1b95eab652720c81bb8（已push）。9CPU测试及12实际配置/代码交付mock通过，无准备失败或GPU重投。
+不得重投14115；所有已启动组及allocation终态前不读新成绩。完成后仅调用ROOT/readout_comparison_reuse_20260919.py ROOT一次，保存安全summary/runs至新的comparison_reuse_20260919结果目录，独立核单候选概率和代数。不能把历史debug代码复跑当新LLM调用或E2E；首个前缀必须复现原错误，单cache均匀选择不得用oracle挑最好。生成时延只做独立/符号分析。
 父索引是journal整数step，不是node ID；已核每run index1初始draft/index2直接debug，避免错配。已知缓存结果使本轮只能探索，两个原始run不是12独立seed。
+
+12:49最后观察14115第一组5结果，未闭合；未读新成绩。独立读出核验器verify_comparison_reuse_results_20260919.py已写，5测试含1024种质量/有效性组合通过；完成后对safe summary运行一次。
+forets_cached_continuation_20260919.py开发适配器已完成10项CPU控制流测试，使用be9335348b实际扩展函数（仅任务/生成传输mock）。关闭开关返回原类；每池最多均匀尝试一未选兄弟，独立RNG、正常执行/分析计步，成功回传兄弟路径而非失败节点。尚未部署；需两臂共同外层时间/步数门，不能将官方validity回放等同LLM分析接受率；不支持中途expansion恢复。首次时钟测试因全局mock干扰asyncio失败，已隔离时钟重过，未产生GPU作业。
+12:37学长新head67e371960802d804bdab8b9b55f3dde2ed98f125；三篇文档差异远端凭据扫描0hit后读（read_senior_delta_20260919.py）。是小任务集训练/评估用法/可视化更新，无新效果结论，不改14115配置。12:45共享comparison/0918双读仍0可见文件，不代表未上传；回执comparison-0918-metadata-20260919-y5ulx468，listing SHA仍d36f39e6e9476279df19da46f006f182236737f29e64e5808e93733d676ae239。
 
 ## 上轮已闭合
 Spooky完整池job14099已COMPLETED，1960秒/6GPU=3.2666666666666666GPUh。前两池共12执行，3有效9无有效提交；seed3六条因固定剩余时间门未启动，无续跑或换seed。11:41队列只见旧12535 PENDING，未动。
@@ -48,7 +53,7 @@ structure SHA2d87541d73a597b0d487285949b1c8f306e756ae97dc9fde7c175f83783d7d94；
 11:24已正常push并ls-remote确认05c577c8535040775e4e9065ccfdfec98f88efa9；新增14文件扫描0shape/0敏感文件名，包含CDF/质量成本/硬筛选辅助分析。前一发布ea6e55fd包括Leaf主结果及反馈修复。只myfork HEAD:phase1-value-critic，不改学长分支、不force。保留无关untracked。
 14099 root reader和本地verify/topk/summarize/CDF/quality-cost/pruning均完成，输出exclusive，不重跑。Spooky概率行和最大偏差1.200000001588819e-07，在原容差内，未归一化改分。
 辅助方法已在读Spooky分数前写成并测试：verify_comparison_stochastic_dominance、analyze_comparison_quality_cost、analyze_comparison_pruning_loss（均20260919）；分别6/5/4测试。Leaf事后结果：seed1/3对所有第三条在全部质量门槛CDF占优；seed2硬筛选必排除至少2更好有效程序、边界错误4–9/9，但top3净效应仍不可识别。不是新策略或E2E；不要把只知净效应不识别误写成完全不知筛选有错。
-本次新增发布包为Spooky结果、图及跨任务裁决，23文件已扫描0凭据形状/0敏感文件名，暂存summary与原SHA一致；发布完成以远端与本地HEAD一致为准。不追加作业、不重复reader或辅助分析。leaf-spooky-candidate-pools.png已视觉核验，SHAe0b328a3ee24371c18cf18c7719311835a560697a5e972f8326aa6a2e2954dce；Leaf最初裁剪差的candidate-pools.png不发布，readable版已核。
+此前Spooky结果、图及跨任务裁决已发布c3a35d6db3da896c5cdd76ce2acc3efac27760f3，23文件扫描0凭据形状/0敏感文件名，summary与原SHA一致。此前作业不重复reader或辅助分析。leaf-spooky-candidate-pools.png已视觉核验，SHAe0b328a3ee24371c18cf18c7719311835a560697a5e972f8326aa6a2e2954dce；Leaf最初裁剪差的candidate-pools.png不发布，readable版已核。
 11:45复查误用unittest discover导入无关critics/mock相对路径报错；改直接运行四个目标文件，7/6/5/4项全部通过，未修改无关包。不把发现命令整体称通过。短暂SSH中断只读重连成功，未重投作业。
 
 ## 固定环境/不要重做

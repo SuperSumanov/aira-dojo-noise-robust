@@ -2,7 +2,7 @@
 import json,sys
 from pathlib import Path
 root=Path(sys.argv[1]).resolve(strict=True)
-if root.parent!=Path('/research/d7/spc/yzyang4') or not root.name.startswith(('comparison-pool-20260919-','comparison-spooky-pool-20260919-')):
+if root.parent!=Path('/research/d7/spc/yzyang4') or not root.name.startswith(('comparison-pool-20260919-','comparison-spooky-pool-20260919-','comparison-reuse-20260919-')):
     raise ValueError('scope')
 bindings=[]
 for p in sorted(root.glob('identity-*.native-binding.json')):

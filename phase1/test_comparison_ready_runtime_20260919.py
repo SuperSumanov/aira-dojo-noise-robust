@@ -62,7 +62,7 @@ class NoPaidGuard:
     def __init__(self,*args):pass
     def slot(self,*args):return contextlib.nullcontext()
 
-def run(sources,order,**kwargs):
+def run(sources,order,local_reward=False,**kwargs):
     led=namespace(sources[build.LEDGER]);witness=namespace(source('src/dojo/solvers/fore_ts/execution_witness.py'))
     selector=namespace(source('src/dojo/solvers/fore_ts/selection.py'))
     tree=ast.parse(sources[build.RUNTIME]);tree.body=[n for n in tree.body if not isinstance(n,(ast.Import,ast.ImportFrom))]
@@ -70,11 +70,17 @@ def run(sources,order,**kwargs):
              CandidateLedger=led['CandidateLedger'],LedgerError=led['LedgerError'],digest=led['digest'],POLICIES=selector['POLICIES'],choose_slots=selector['choose_slots'])
     with tempfile.TemporaryDirectory() as directory:
         solver=Harness(Path(directory),order,**kwargs)
+        if local_reward:
+            from forets_local_reward_transport_20260919 import validate_config
+            solver.cfg.critic_max_attempts=1;solver.critic_host='127.0.0.1';solver.critic_port=8765
+            env['validate_reward_config']=validate_config
+            async def rank_nodes(s,nodes):s.trace.append(('critic',tuple(n.code for n in nodes)));return list(range(len(nodes)))
+            env['rank_nodes']=rank_nodes
         async def rank_pool(task,codes,*args,**kw):solver.trace.append(('critic',tuple(codes)));return list(range(len(codes)))
         env['rank_pool']=rank_pool
         common=types.SimpleNamespace(initial=lambda *_:False,make_node=None,digest=None)
         refs=types.SimpleNamespace(reference_context=lambda *_ ,**kw:None)
-        wall=types.SimpleNamespace(budget=lambda:None)
+        wall=types.SimpleNamespace(budget=lambda:None,checkpoint_incumbent=lambda s:None)
         with patch.dict('sys.modules',{'dojo.solvers.fore_ts.common_start':common,'dojo.solvers.fore_ts.reference_context':refs,'dojo.solvers.fore_ts.wallclock':wall}):
             exec(compile(tree,'actual-batch-runtime','exec'),env)
             env['expand_batch'](solver,[solver.root],{'solver_interpreter':types.SimpleNamespace(timeout=30)},solver,Node,lambda x:x,dict(order=order))

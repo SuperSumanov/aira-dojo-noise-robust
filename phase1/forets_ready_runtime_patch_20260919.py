@@ -54,10 +54,10 @@ def patched_sources(sources):
         '    if batch_order not in ("native", "ready_first"):\n'
         '        raise LedgerError("chosen batch order before generation")\n'
         '    parent = path[-1]\n')
-    runtime=once(runtime,"    if bootstrap:\n        binding['common_start']", 
+    runtime=once(runtime,"    if bootstrap:\n        binding['common_start']",
         "    if batch_order != 'native':\n        binding['chosen_batch_order'] = batch_order\n"
         "    if bootstrap:\n        binding['common_start']")
-    runtime=once(runtime,"        for slot in ledger.data['selected']:\n", 
+    runtime=once(runtime,"        for slot in ledger.data['selected']:\n",
         "        pending_debug = []\n        for slot in ledger.data['selected']:\n")
     runtime=once(runtime,'            else:\n                state, debug_path, fixed_metric = solver.debug_cycle',
         '            elif batch_order == "ready_first":\n'

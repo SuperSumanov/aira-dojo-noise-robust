@@ -8,6 +8,9 @@ import run_comparison_live_debug_20260919 as first
 BASE=rt.BASE
 SCRIPT=Path(__file__).name
 PLAN='comparison_online_continuation_plan_20260919.json'
+TASK='spooky-author-identification'
+ROOT_PREFIX='comparison-online-continuation-20260919-'
+CONTEXT_MODULE='run_comparison_online_continuation_20260919'
 EPISODE=2100
 CAP=6000
 FILES=(SCRIPT,PLAN,'local_generator_runtime_20260914.py','run_comparison_live_debug_20260919.py')
@@ -16,7 +19,7 @@ PREPARED={1:'5d7e98280f3b223bbf8c6968ebd3c84857b5329eac0744a51d3c16d3ced24518',2
 
 def scope(root):
     root=root.resolve(strict=True)
-    if root.parent!=BASE or not re.fullmatch(r'comparison-online-continuation-20260919-[a-z0-9_]+',root.name):raise ValueError('root scope')
+    if root.parent!=BASE or not re.fullmatch(re.escape(ROOT_PREFIX)+r'[a-z0-9_]+',root.name):raise ValueError('root scope')
     return root
 
 def check(root):
@@ -103,10 +106,10 @@ async def call_native(case,kind,lane,depth,remaining,node,journal,preview):
     else:value=debug_op(llm,solver,create_memory_op(OmegaConf.create(case['debug_memory'])),case['description'],journal,node,len(journal.nodes),remaining,data_preview=preview)
     return await asyncio.wait_for(first.resolve(value),timeout=max(1,min(remaining,310 if kind=='analyze' else 1210)))
 
-def apply_native(node,result,response):
+def apply_native(node,result,response,*,lower_is_better=True):
     from dojo.solvers.mcts.mcts import MCTS
     from dojo.core.tasks.constants import EXECUTION_OUTPUT
-    solver=types.SimpleNamespace(cfg=types.SimpleNamespace(use_test_score=False),lower_is_better=True,
+    solver=types.SimpleNamespace(cfg=types.SimpleNamespace(use_test_score=False),lower_is_better=lower_is_better,
         logger=logging.getLogger('episode'),_analyze=lambda _:copy.deepcopy(response))
     MCTS.parse_eval_result(solver,node,{EXECUTION_OUTPUT:result})
     return not node.is_buggy
@@ -127,7 +130,7 @@ def execute(ep,code,index,remaining):
     cfg=FreshContainerInterpreterConfig(working_dir=str(work),timeout=max(1,min(7200,int(remaining))),
         container_runtime='singularity',superimage_directory=str(BASE/'aira-dojo/build/superimage'),superimage_version='2026-07-macos-v1',
         env={n:'6' for n in ('OMP_NUM_THREADS','OPENBLAS_NUM_THREADS','MKL_NUM_THREADS','NUMEXPR_NUM_THREADS')})
-    cfg.validate();worker=FreshContainerInterpreter(cfg,data_dir=BASE/'mle-bench-data/spooky-author-identification/prepared/public')
+    cfg.validate();worker=FreshContainerInterpreter(cfg,data_dir=BASE/'mle-bench-data'/TASK/'prepared/public')
     try:
         result=worker.run(code,file_name='solution.py',include_exec_time=False)
         raw=''.join(result.term_out).encode()
@@ -153,7 +156,7 @@ def episode(root,index,*,cpu_only=False):
     from dojo.core.solvers.utils.response import extract_code,extract_text_up_to_code
     from dojo.core.solvers.utils.journal import Node
     from dojo.core.solvers.utils.metric import WorstMetricValue
-    preview=data_preview.generate(BASE/'mle-bench-data/spooky-author-identification/prepared/public')
+    preview=data_preview.generate(BASE/'mle-bench-data'/TASK/'prepared/public')
     if rt.SHAPES.search(preview.encode()):raise ValueError('unsafe preview')
     journal,parent,failed=new_journal(case);deadline=start['monotonic']+EPISODE
     def remaining():return deadline-time.monotonic()
@@ -186,7 +189,7 @@ def episode(root,index,*,cpu_only=False):
                     rt.write(ep/f'analysis-{depth}.private.json',dict(response=response,info=info));action['analysis_status']='returned'
                 except Exception as exc:
                     action.update(analysis_status='unknown',analysis_error_type=type(exc).__name__);response={}
-                accepted=apply_native(node,result,response) and bool(submission) and not result.timed_out
+                accepted=apply_native(node,result,response,lower_is_better=case.get('lower_is_better',True)) and bool(submission) and not result.timed_out
                 journal.append(node)
                 action.update(status='returned',native_accepted=accepted,completed_seconds=time.monotonic()-start['monotonic'])
                 if remaining()<=0:action['native_accepted']=False;accepted=False;status='deadline'
@@ -257,6 +260,17 @@ def controller(root):
 
 def cpu(root):
     p=check(root);cases=rt.read(root/'inputs.private.json')['cases'];count=0;engine_cases=[]
+    # Exercise the exact module imported by the task GPU wrapper, including
+    # future task-specific binding-context configuration, without a Slurm job.
+    import importlib.util
+    bridge_spec=importlib.util.spec_from_file_location('cpu_exact_binding_bridge',root/'forets_current_pool_20260912.py')
+    bridge=importlib.util.module_from_spec(bridge_spec);bridge_spec.loader.exec_module(bridge)
+    read_original=rt.read
+    def cpu_read(path):
+        return {'job':'cpu-only'} if path==root/'execution-claim.json' else read_original(path)
+    with patch.object(rt,'read',cpu_read):
+        bound=bridge.binding_context(dict(FORETS_CURRENT_POOL_ROOT=str(root/'episode-0'),DOJO_WORKER_IDENTITY_PATH=str(root/'episode-0/identity-0.json'),SLURM_JOB_ID='cpu-only'))
+    assert bound==root/'episode-0/identity-0.native-binding.json'
     for lane in (0,1):
         lane_setup(root,lane)
         import dojo.core.solvers.llm_helpers.backends.lite_llm as backend
@@ -306,17 +320,17 @@ def cpu(root):
             assert closed['actions']==(3 if cached else 2)
             engine_cases.append(dict(lane=lane,cache=cached,actions=closed['actions'],debug_depths=debug_depths))
     subprocess.run(['bash','-n',str(root/'run.sbatch')],check=True,timeout=10)
-    rt.write(root/'cpu.json',dict(status='PASS_ACTUAL_NATIVE_OPERATORS_TWO_LANES',mock_calls=count,engine_cases=engine_cases,real_calls=0,prepared_sha256=rt.sha(root/'prepared.json')))
+    rt.write(root/'cpu.json',dict(status='PASS_ACTUAL_NATIVE_OPERATORS_TWO_LANES',mock_calls=count,engine_cases=engine_cases,actual_binding_bridge_checked=True,real_calls=0,prepared_sha256=rt.sha(root/'prepared.json')))
 
 def prepare(commit):
     if not re.fullmatch('[a-f0-9]{40}',commit):raise ValueError('commit')
-    cases=inputs();root=Path(tempfile.mkdtemp(prefix='comparison-online-continuation-20260919-',dir=BASE))
+    cases=inputs();root=Path(tempfile.mkdtemp(prefix=ROOT_PREFIX,dir=BASE))
     for name in FILES:shutil.copy2(Path(__file__).with_name(name),root/name)
     prior=rt.read(rt.DONOR/'prepared.json')
     for name in rt.HELPERS:
         if rt.sha(rt.DONOR/name)!=prior['files'][name]:raise ValueError('GPU helper drift')
         target=root/name;target.parent.mkdir(exist_ok=True,parents=True);shutil.copy2(rt.DONOR/name,target)
-    (root/'forets_current_pool_20260912.py').write_text('from run_comparison_online_continuation_20260919 import binding_context\n')
+    (root/'forets_current_pool_20260912.py').write_text('from '+CONTEXT_MODULE+' import binding_context\n')
     (root/'opencl-vendors').mkdir();(root/'opencl-vendors/nvidia.icd').write_text('libnvidia-opencl.so.1\n')
     rt.write(root/'inputs.private.json',dict(cases=cases))
     for lane in (0,1):
@@ -346,7 +360,7 @@ timeout --signal=TERM --kill-after=20s 5940s {rt.PYTHON} -B {root}/{SCRIPT} cont
 '''
     (root/'run.sbatch').write_text(batch)
     files={str(f.relative_to(root)):rt.sha(f) for f in root.rglob('*') if f.is_file() and f.name!='.service.env'}
-    rt.write(root/'prepared.json',dict(commit=commit,utc=rt.utc(),files=files,episode_seconds=EPISODE,allocation_seconds=CAP,gpu_hours_cap=10,
+    rt.write(root/'prepared.json',dict(commit=commit,utc=rt.utc(),files=files,task=TASK,episode_seconds=EPISODE,allocation_seconds=CAP,gpu_hours_cap=10,
         model='cyankiwi/Qwen3.8-27B-AWQ-BF16-INT4',revision='dc430725f831dd90d9271738b877879a46a82239'))
     cpu(root);print(json.dumps(dict(status='PREPARED_NOT_SUBMITTED',root=str(root),prepared_sha256=rt.sha(root/'prepared.json'))),flush=True)
 

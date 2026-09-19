@@ -1,0 +1,20 @@
+{
+  "question": "Does the same single-uniform-cache fallback transfer to a second task under a fixed 35-minute live rescue budget?",
+  "task": "random-acts-of-pizza",
+  "fixed_physical_runs": {"1": "5c3f818a9595bd79", "2": "1eee3186d26dcbcd"},
+  "scope": "Exploratory cross-task conditioned rescue, not full-search E2E or held-out confirmation",
+  "arms": ["native_debug", "uniform_cache_then_native_debug"],
+  "episode_seconds": 2100,
+  "maximum_debug_depth": 20,
+  "whole_allocation_seconds": 6000,
+  "gpus": 6,
+  "gpu_hours_cap": 10,
+  "layout": "gpu28, 24 CPUs, two dedicated 2-GPU local generators plus two 1-GPU original-image workers; crossover lanes for second seed",
+  "policy": "Same fixed independent cache RNG and request seed mapping as the Spooky pilot; no fitting or tuning after its results",
+  "initial_state": "Same source code and newly reproduced error log in both arms. Original prefix gate is preserved, with separately recorded exact native humanize timing-trailer equivalence.",
+  "selection": "Fixed seeds 1 and 2 chosen before fresh cached candidate outcomes; no switching seeds to find positive results",
+  "stopping": "First native accepted submission, 35-minute common hard deadline, depth 20, or incomplete generation. No truncated-code salvage, retries, or late incumbents.",
+  "evaluation": "Only grade the actual accepted incumbent after all four episodes close. Pizza ROC AUC is higher-better. No external scores or validity into model decisions. Include full generator startup and all idle/reserved allocation GPU cost.",
+  "prohibited": ["paid API", "training", "protected cohorts", "changing running or closed experiment inputs", "starting alongside the existing six-GPU job"],
+  "limitations": ["Two physical runs", "existing development task reports have been seen", "conditional sunk generation cost not a free full-search resource", "fresh isolated task workspaces", "first-valid objective not full final-score optimization"]
+}

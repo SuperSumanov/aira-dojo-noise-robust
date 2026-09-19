@@ -140,7 +140,7 @@ timeout --signal=TERM --kill-after=10s 8950s /research/d7/spc/yzyang4/venvs/aira
     files={str(p.relative_to(root)):sha(p.read_bytes()) for p in root.rglob('*') if p.is_file()}
     p=dict(commit=commit,source_tree=TREE,utc=now(),rows=rows,files=files,execution_seconds=7200,allocation_seconds=9000,gpu_hours_cap=15,api_calls=0)
     h=write(root/'prepared.json',p)
-    print(json.dumps(dict(status='PREPARED_NOT_SUBMITTED',root=str(root),prepared_sha256=h,candidates=6 if continuation else 18,gpu_hours_cap=p['gpu_hours_cap'])),flush=True)
+    print(json.dumps(dict(status='PREPARED_NOT_SUBMITTED',root=str(root),prepared_sha256=h,candidates=18,gpu_hours_cap=p['gpu_hours_cap'])),flush=True)
 
 def one(root,row,factory=None):
     from dojo.config_dataclasses.interpreter.fresh_container import FreshContainerInterpreterConfig

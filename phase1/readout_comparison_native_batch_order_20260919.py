@@ -74,6 +74,9 @@ def configure():
     shared.ROOT=ROOT;shared.PREPARED=PREPARED;shared.TASK='random-acts-of-pizza'
     shared.ROLE='conditioned_native_batch_order_not_full_e2e';shared.NUMERICAL=numerical
     shared.METRIC_DELTA='auc_delta_cache_minus_baseline';shared.LATENCY_FIELD='first_native_accept_seconds';shared.EPISODE_AUDIT=audit
+    shared.READOUT_CONTEXT=dict(previous_frozen_reader_commit='ee3c6da24bfdf453dbdf0e124deca9b06500b10e',
+        amendment='CSV round_trip parsing to match official MLE-bench; metric, incumbent selection, budget, and run population unchanged.',
+        amendment_before_batch_outcome_read=True)
 
 if __name__=='__main__':
     parser=argparse.ArgumentParser();parser.add_argument('--reader-commit',required=True);args=parser.parse_args()

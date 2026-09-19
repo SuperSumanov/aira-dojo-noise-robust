@@ -11,6 +11,14 @@ NUMERICAL=None
 ROLE='live_conditioned_rescue_not_full_e2e'
 EPISODE_AUDIT=None
 LATENCY_FIELD='accepted_seconds'
+OUTPUT_ROOT=None
+READOUT_CONTEXT={}
+
+
+def read_metric_frame(path):
+    """Match MLE-bench's documented float input semantics, not its metric code."""
+    import pandas as pd
+    return pd.read_csv(path,float_precision='round_trip')
 
 def safe(path,expected=None):
     raw=path.read_bytes()
@@ -55,7 +63,9 @@ def main(reader_commit):
     job=safe(ROOT/'launch.json')['job'];allocation=closed_allocation(job)
     closure=safe(ROOT/'closed.json') if (ROOT/'closed.json').exists() else {'status':'absent'}
     complete=closure['status']=='all_four_episodes_closed'
-    rt.write(ROOT/'readout-claim.json',dict(reader_commit=reader_commit,reader_sha256=rt.sha(Path(__file__)),prepared_sha256=PREPARED,utc=rt.utc()))
+    output=ROOT if OUTPUT_ROOT is None else OUTPUT_ROOT
+    if output!=ROOT:output.mkdir(exist_ok=False)
+    rt.write(output/'readout-claim.json',dict(reader_commit=reader_commit,reader_sha256=rt.sha(Path(__file__)),prepared_sha256=PREPARED,utc=rt.utc(),context=READOUT_CONTEXT))
     os.environ.update(PYTHON_DOTENV_DISABLED='1',MLE_BENCH_DATA_DIR=str(rt.BASE/'mle-bench-data'),LOGGING_DIR=str(ROOT))
     sys.path.insert(0,str(rt.ASSETS/'source/src'))
     from dojo.tasks.mlebench.evaluate import evaluate_submission
@@ -113,10 +123,11 @@ def main(reader_commit):
             if submission.is_symlink() or rt.sha(submission)!=incumbent['submission_sha256']:raise ValueError('submission drift')
             valid,_=validate_submission(submission,competition)
             if valid:
-                grade,_=evaluate_submission(submission,rt.BASE/'mle-bench-data',TASK,ep/'closed-grade')
+                grade_dir=ep/'closed-grade' if output==ROOT else output/f'episode-{index}-closed-grade'
+                grade,_=evaluate_submission(submission,rt.BASE/'mle-bench-data',TASK,grade_dir)
                 if grade is not None and math.isfinite(float(grade)):
-                    if truth is None:truth=pd.read_csv(competition.answers)
-                    numeric=numerical(TASK,pd.read_csv(submission),truth)
+                    if truth is None:truth=read_metric_frame(competition.answers)
+                    numeric=numerical(TASK,read_metric_frame(submission),truth)
                     if round(numeric,5)!=float(grade):raise ValueError('independent numerical grade')
                     row.update(valid_accepted_submission=True,score=float(grade),independent_score=numeric)
             if rt.sha(submission)!=incumbent['submission_sha256']:raise ValueError('submission changed while grading')
@@ -128,9 +139,10 @@ def main(reader_commit):
             if a['monotonic']!=b['monotonic']:raise ValueError('unequal start clock')
     result=dict(role=ROLE,utc=rt.utc(),prepared_sha256=PREPARED,
         reader_commit=reader_commit,reader_sha256=rt.sha(Path(__file__)),allocation=allocation,closure=closure['status'],rows=rows,
-        task=TASK,metric_delta_field=METRIC_DELTA,latency_field=LATENCY_FIELD,comparison=compare(rows,METRIC_DELTA,LATENCY_FIELD),external_grades_read_only_after_closure=True,paid_api_calls=0,model_training=False)
-    rt.write(ROOT/'summary.json',result)
-    with (ROOT/'runs.csv').open('x',newline='') as handle:
+        task=TASK,metric_delta_field=METRIC_DELTA,latency_field=LATENCY_FIELD,comparison=compare(rows,METRIC_DELTA,LATENCY_FIELD),external_grades_read_only_after_closure=True,paid_api_calls=0,model_training=False,
+        numeric_csv_precision='round_trip',readout_context=READOUT_CONTEXT)
+    rt.write(output/'summary.json',result)
+    with (output/'runs.csv').open('x',newline='') as handle:
         writer=csv.DictWriter(handle,fieldnames=sorted({k for row in rows for k in row}));writer.writeheader();writer.writerows(rows)
     print(json.dumps(result,indent=2))
 

@@ -8,6 +8,9 @@ BUDGET=2100
 TASK='spooky-author-identification'
 METRIC_DELTA='loss_delta_cache_minus_baseline'
 NUMERICAL=None
+ROLE='live_conditioned_rescue_not_full_e2e'
+EPISODE_AUDIT=None
+LATENCY_FIELD='accepted_seconds'
 
 def safe(path,expected=None):
     raw=path.read_bytes()
@@ -22,7 +25,7 @@ def closed_allocation(job):
     if row[3]!='gpu28' or dict(p.split('=',1) for p in row[4].split(','))['gres/gpu']!='6':raise ValueError('hardware/resources')
     return dict(job=job,state=row[1],seconds=int(row[2]),gpus=6,gpu_hours=int(row[2])*6/3600)
 
-def compare(rows,metric_delta='loss_delta_cache_minus_baseline'):
+def compare(rows,metric_delta='loss_delta_cache_minus_baseline',latency_field='accepted_seconds'):
     if len(rows)!=4 or {r['index'] for r in rows}!={0,1,2,3}:raise ValueError('fixed four episodes')
     groups=[]
     for seed in (1,2):
@@ -36,7 +39,7 @@ def compare(rows,metric_delta='loss_delta_cache_minus_baseline'):
             delta=int(cache['valid_accepted_submission'])-int(baseline['valid_accepted_submission'])
             both=cache['valid_accepted_submission'] and baseline['valid_accepted_submission']
             group.update(status='CLOSED_EXPLORATORY_EPISODE_PAIR',validity_delta=delta,
-                first_accept_seconds_delta=(cache['accepted_seconds']-baseline['accepted_seconds']) if both else None)
+                first_accept_seconds_delta=(cache[latency_field]-baseline[latency_field]) if both else None)
             group[metric_delta]=(cache['score']-baseline['score']) if both else None
         groups.append(group)
     return dict(physical_runs=2,groups=groups,
@@ -95,6 +98,7 @@ def main(reader_commit):
                 if device in services[0]+services[1]:raise ValueError('task and generator overlap')
                 wave_devices.setdefault(index,set()).add(device)
         if len(wave_devices.get(index,set()))>1:raise ValueError('worker switched GPU mid-episode')
+        if EPISODE_AUDIT is not None:row.update(EPISODE_AUDIT(ep,actions,start,finished))
         if finished and finished['status']=='unknown':rows.append(row);continue
         row.update(status=finished['status'] if finished else 'hard_deadline',valid_accepted_submission=False,
                    elapsed_seconds=finished['elapsed_seconds'] if finished else BUDGET,worker_returncode=returncode)
@@ -122,9 +126,9 @@ def main(reader_commit):
         if (ROOT/f'episode-{wave*2}/start.json').exists() and (ROOT/f'episode-{wave*2+1}/start.json').exists():
             a=safe(ROOT/f'episode-{wave*2}/start.json');b=safe(ROOT/f'episode-{wave*2+1}/start.json')
             if a['monotonic']!=b['monotonic']:raise ValueError('unequal start clock')
-    result=dict(role='live_conditioned_rescue_not_full_e2e',utc=rt.utc(),prepared_sha256=PREPARED,
+    result=dict(role=ROLE,utc=rt.utc(),prepared_sha256=PREPARED,
         reader_commit=reader_commit,reader_sha256=rt.sha(Path(__file__)),allocation=allocation,closure=closure['status'],rows=rows,
-        task=TASK,metric_delta_field=METRIC_DELTA,comparison=compare(rows,METRIC_DELTA),external_grades_read_only_after_closure=True,paid_api_calls=0,model_training=False)
+        task=TASK,metric_delta_field=METRIC_DELTA,latency_field=LATENCY_FIELD,comparison=compare(rows,METRIC_DELTA,LATENCY_FIELD),external_grades_read_only_after_closure=True,paid_api_calls=0,model_training=False)
     rt.write(ROOT/'summary.json',result)
     with (ROOT/'runs.csv').open('x',newline='') as handle:
         writer=csv.DictWriter(handle,fieldnames=sorted({k for row in rows for k in row}));writer.writeheader();writer.writerows(rows)

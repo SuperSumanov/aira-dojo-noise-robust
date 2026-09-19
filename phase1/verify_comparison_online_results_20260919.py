@@ -6,7 +6,7 @@ def verify(data):
     batch=data['role']=='conditioned_native_batch_order_not_full_e2e'
     if not batch and data['role']!='live_conditioned_rescue_not_full_e2e':raise ValueError('estimand')
     latency=data.get('latency_field','accepted_seconds')
-    if latency!=('first_valid_seconds' if batch else 'accepted_seconds'):raise ValueError('latency estimand')
+    if latency!=('first_native_accept_seconds' if batch else 'accepted_seconds'):raise ValueError('latency estimand')
     allocation=data['allocation']
     if allocation['gpus']!=6 or not math.isclose(allocation['gpu_hours'],allocation['seconds']/600):raise ValueError('all resources')
     rows=data['rows'];expected={(1,False),(1,True),(2,False),(2,True)}
@@ -24,7 +24,7 @@ def verify(data):
             valid+=1
             if not (0<=row['accepted_seconds']<=2100):raise ValueError('late success')
             if not math.isfinite(row['independent_score']) or round(row['independent_score'],5)!=row['score']:raise ValueError('official numeric consistency')
-            if batch and (row.get('selection_audit')!='PASS_INTERNAL_METRIC_FINAL_INCUMBENT' or not 0<=row['first_valid_seconds']<=row['accepted_seconds']):raise ValueError('native incumbent/latency verification')
+            if batch and (row.get('selection_audit')!='PASS_INTERNAL_METRIC_FINAL_INCUMBENT' or not 0<=row['first_native_accept_seconds']<=row['accepted_seconds']):raise ValueError('native incumbent/latency verification')
         if outcome is not True and row['score'] is not None:raise ValueError('unaccepted score used')
     for seed in (1,2):
         treatment=next(r for r in rows if r['seed']==seed and r['cache']);baseline=next(r for r in rows if r['seed']==seed and not r['cache'])

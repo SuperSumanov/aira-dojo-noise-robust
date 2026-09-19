@@ -48,14 +48,14 @@ def audit(ep,actions,start,finished):
         if finished['first_valid_seconds']!=first_seconds:raise ValueError('closure latency disagrees')
         if finished['status']=='batch_complete' and finished['completed_stages']!=expected:raise ValueError('premature first-success stop')
     return dict(arm='original_second_then_native_repair' if start['cache'] else 'native_repair_then_original_second',
-                selection_audit='PASS_INTERNAL_METRIC_FINAL_INCUMBENT',first_valid_seconds=first_seconds,
+                selection_audit='PASS_INTERNAL_METRIC_FINAL_INCUMBENT',first_native_accept_seconds=first_seconds,
                 native_accepted_actions=sum(a.get('native_accepted') is True for a in actions),
                 incumbent_updates=len(decisions),completed_stages=finished['completed_stages'] if finished else None)
 
 def configure():
     shared.ROOT=ROOT;shared.PREPARED=PREPARED;shared.TASK='random-acts-of-pizza'
     shared.ROLE='conditioned_native_batch_order_not_full_e2e';shared.NUMERICAL=numerical
-    shared.METRIC_DELTA='auc_delta_cache_minus_baseline';shared.LATENCY_FIELD='first_valid_seconds';shared.EPISODE_AUDIT=audit
+    shared.METRIC_DELTA='auc_delta_cache_minus_baseline';shared.LATENCY_FIELD='first_native_accept_seconds';shared.EPISODE_AUDIT=audit
 
 if __name__=='__main__':
     parser=argparse.ArgumentParser();parser.add_argument('--reader-commit',required=True);args=parser.parse_args()

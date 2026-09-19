@@ -28,18 +28,18 @@ class BatchReadout(unittest.TestCase):
             (ep/'first-accepted.json').write_text(json.dumps(dict(action_index=0,accepted_seconds=50)))
             finished=dict(actions=2,native_accepted=True,first_valid_seconds=50,status='batch_complete',completed_stages=['sibling','repair'])
             out=audit(ep,rows,{'cache':True},finished)
-            self.assertEqual(out['incumbent_updates'],2);self.assertEqual(out['first_valid_seconds'],50)
+            self.assertEqual(out['incumbent_updates'],2);self.assertEqual(out['first_native_accept_seconds'],50)
             bad=json.loads((ep/'incumbent-decision-0.json').read_text());(ep/'incumbent.json').write_text(json.dumps(bad))
             with self.assertRaises(ValueError):audit(ep,rows,{'cache':True},finished)
     def test_wrong_order_rejected(self):
         with tempfile.TemporaryDirectory() as d:
             with self.assertRaises(ValueError):audit(Path(d),[dict(kind='sibling',depth=0)],{'cache':False},None)
     def test_first_and_best_times_differ(self):
-        data=make();data.update(role='conditioned_native_batch_order_not_full_e2e',latency_field='first_valid_seconds',metric_delta_field='auc_delta_cache_minus_baseline')
-        for r in data['rows']:r.update(first_valid_seconds=None)
+        data=make();data.update(role='conditioned_native_batch_order_not_full_e2e',latency_field='first_native_accept_seconds',metric_delta_field='auc_delta_cache_minus_baseline')
+        for r in data['rows']:r.update(first_native_accept_seconds=None)
         for i,first,best,score in ((0,50,1000,.7),(1,100,200,.8)):
-            data['rows'][i].update(valid_accepted_submission=True,first_valid_seconds=first,accepted_seconds=best,score=score,independent_score=score,selection_audit='PASS_INTERNAL_METRIC_FINAL_INCUMBENT')
-        data['comparison']=compare(data['rows'],'auc_delta_cache_minus_baseline','first_valid_seconds')
+            data['rows'][i].update(valid_accepted_submission=True,first_native_accept_seconds=first,accepted_seconds=best,score=score,independent_score=score,selection_audit='PASS_INTERNAL_METRIC_FINAL_INCUMBENT')
+        data['comparison']=compare(data['rows'],'auc_delta_cache_minus_baseline','first_native_accept_seconds')
         self.assertEqual(data['comparison']['groups'][0]['first_accept_seconds_delta'],-50)
         self.assertEqual(verify(data)['valid_accepted'],2)
 

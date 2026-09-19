@@ -1,4 +1,4 @@
-# 当前短交接 — 2026-09-19 12:50 UTC
+# 当前短交接 — 2026-09-19 13:14 UTC
 只记最后观察；恢复顺序为fetch后CURRENT_DIRECTION顶部→本文件→现场。详细历史留Git/dated reports，不重复旧实验。
 
 ## 当前授权和方向
@@ -8,11 +8,14 @@
 
 ## 当前推进
 comparison_reuse_plan_20260919.json固定首个失败后的动作对照：Spooky forets-1 seed1/2，每组六程序＝原首个失败draft＋其首个直接debug＋四条未选初始程序。总12程序、原7200秒/原镜像、6GPU/36CPU/150min≤15GPUh，零API/训练，不自动续跑。
-14115已实际提交并执行，12:30观察第一组4结果、6唯一GPU、全部namespace绑定正确。ROOT=/research/d7/spc/yzyang4/comparison-reuse-20260919-5m6jrtah；prepare SHA5d7e98280f3b223bbf8c6968ebd3c84857b5329eac0744a51d3c16d3ced24518；execution commitef41925bed94b5de01efd1b95eab652720c81bb8（已push）。9CPU测试及12实际配置/代码交付mock通过，无准备失败或GPU重投。
-不得重投14115；所有已启动组及allocation终态前不读新成绩。完成后仅调用ROOT/readout_comparison_reuse_20260919.py ROOT一次，保存安全summary/runs至新的comparison_reuse_20260919结果目录，独立核单候选概率和代数。不能把历史debug代码复跑当新LLM调用或E2E；首个前缀必须复现原错误，单cache均匀选择不得用oracle挑最好。生成时延只做独立/符号分析。
+14115已COMPLETED，1686秒/六卡=2.81GPUh，第一组闭合、第二组六条整组未启动。ROOT=/research/d7/spc/yzyang4/comparison-reuse-20260919-5m6jrtah；prepare SHA5d7e98280f3b223bbf8c6968ebd3c84857b5329eac0744a51d3c16d3ced24518；execution commitef41925bed94b5de01efd1b95eab652720c81bb8。
+reader已完成一次，不重跑！summary SHAf3ea334c94257bbbbc06229a8a3aeea609e2516879bdf9a32822e176897ee9ce，安全副本results/comparison_reuse_20260919；官方/独立数值/独立路径枚举PASS。seed1前缀同错误复现，历史debug仍失败，四cache三有效，均匀单条3胜1平0负/.75有效率；均时cache471.1243743110026秒、debug23.66096251300769秒；符号G临界604.5048699016625秒，非E2E提速。seed2原结果仍unknown，不能写成两run均确认。
+14128已提交，只补原未启动seed2，不重跑seed1、不换seed；额外6GPU/36CPU/130min≤13GPUh，10CPU测试和12实交付mock通过。ROOT=/research/d7/spc/yzyang4/comparison-reuse-20260919-851fmp2v；prepare40b291747042f3a1e04781870e3d67e33342a29ac1aea896c1a1a93d2a65c399；commitcb3b8ecfc52c0fb5e8cae64709421ae5402aa515。此为见seed1结果后的独立预算补齐，不隐藏追加。不得再自动续跑；完成后root/readout_comparison_reuse_20260919.py一次，再安全下载和独立验证，原first summary保留，合并只取两个不同seed的完整组。
+14127真实本地27B生成已RUNNING，13:13最后观察claimed/service identity有、ready无、0生成回执、未closed。ROOT=/research/d7/spc/yzyang4/comparison-live-debug-20260919-kksebq_4；prepare329beee61b95b79430ba95eba45d4da95f170e93a0f0b159848a18aef73b5283；commit630dc60e3a389b5e0f06e15a9a2777616556b9cd。固定源seed1/2、请求seed501/502，各一次原模板/native debug/ancestral memory，32768tokens/1200s无重试。双卡90min≤3GPUh，无warmup调用/付费API/训练；不修改运行中文件。前两次CPU预检失败因不应假定原模板渲染2hours（不是代码/凭据错误），第三次通过；失败准备目录保留且未GPU提交。
+生成闭合后run_comparison_live_debug_execute_20260919.py（尚未完成测试/提交）准备两条真实代码：2GPU/12CPU/130min≤4.333333333333333GPUh、原7200s，reader正在完善。GEN被固定到上述root；全部失败/截断保留，不重采样，既有debug与新debug分开，不冒充E2E。先看stage状态再操作，禁止重复14127/14128。
 父索引是journal整数step，不是node ID；已核每run index1初始draft/index2直接debug，避免错配。已知缓存结果使本轮只能探索，两个原始run不是12独立seed。
 
-12:49最后观察14115第一组5结果，未闭合；未读新成绩。独立读出核验器verify_comparison_reuse_results_20260919.py已写，5测试含1024种质量/有效性组合通过；完成后对safe summary运行一次。
+独立读出核验器verify_comparison_reuse_results_20260919.py已写，5测试含1024种质量/有效性组合通过；first summary独立receipt已写，不覆盖。
 forets_cached_continuation_20260919.py开发适配器已完成10项CPU控制流测试，使用be9335348b实际扩展函数（仅任务/生成传输mock）。关闭开关返回原类；每池最多均匀尝试一未选兄弟，独立RNG、正常执行/分析计步，成功回传兄弟路径而非失败节点。尚未部署；需两臂共同外层时间/步数门，不能将官方validity回放等同LLM分析接受率；不支持中途expansion恢复。首次时钟测试因全局mock干扰asyncio失败，已隔离时钟重过，未产生GPU作业。
 12:37学长新head67e371960802d804bdab8b9b55f3dde2ed98f125；三篇文档差异远端凭据扫描0hit后读（read_senior_delta_20260919.py）。是小任务集训练/评估用法/可视化更新，无新效果结论，不改14115配置。12:45共享comparison/0918双读仍0可见文件，不代表未上传；回执comparison-0918-metadata-20260919-y5ulx468，listing SHA仍d36f39e6e9476279df19da46f006f182236737f29e64e5808e93733d676ae239。
 

@@ -1,0 +1,132 @@
+{
+  "allocation": {
+    "gpu_hours": 8.021666666666667,
+    "gpus": 6,
+    "job": "14165",
+    "seconds": 4813,
+    "state": "COMPLETED"
+  },
+  "closure": "all_four_episodes_closed",
+  "comparison": {
+    "groups": [
+      {
+        "auc_delta_cache_minus_baseline": null,
+        "baseline_valid": false,
+        "cache_valid": false,
+        "first_accept_seconds_delta": null,
+        "seed": 1,
+        "status": "CLOSED_EXPLORATORY_EPISODE_PAIR",
+        "validity_delta": 0
+      },
+      {
+        "auc_delta_cache_minus_baseline": null,
+        "baseline_valid": false,
+        "cache_valid": true,
+        "first_accept_seconds_delta": null,
+        "seed": 2,
+        "status": "CLOSED_EXPLORATORY_EPISODE_PAIR",
+        "validity_delta": 1
+      }
+    ],
+    "limitation": "Two seen development prefixes; no population significance, complete-search improvement, paid-cost reduction, or independent confirmation is established.",
+    "paired_validity_mean_delta": 0.5,
+    "physical_runs": 2
+  },
+  "external_grades_read_only_after_closure": true,
+  "latency_field": "accepted_seconds",
+  "metric_delta_field": "auc_delta_cache_minus_baseline",
+  "model_training": false,
+  "numeric_csv_precision": "round_trip",
+  "paid_api_calls": 0,
+  "prepared_sha256": "a153be4e55a98da9e07fb75f60cee4d320da5aa91b551ce7b65bbf7967ef4ee3",
+  "reader_commit": "530d5739960b29fae03fccd5f1c4740ee6719c8c",
+  "reader_sha256": "c9a83c66e02c104193a81570f4c38726c9db973a65a13529c3f129dbbba16c76",
+  "readout_context": {
+    "official_grade_not_redefined": true,
+    "original_failed_claim_sha256": "e792e7fe0667055fdf5792e499ce0d4e2822d6e3dd96cf936778e9b118aa0490",
+    "original_failed_reader_preserved": true,
+    "reason": "Independent verifier previously used default pandas float parsing; MLE-bench uses round_trip. No submission, policy, official metric, or experimental data changed."
+  },
+  "role": "live_conditioned_rescue_not_full_e2e",
+  "rows": [
+    {
+      "accepted_seconds": null,
+      "action_count": 2,
+      "budget_seconds": 2100,
+      "cache": true,
+      "debug_completion_tokens_recorded": 51647,
+      "elapsed_seconds": 2100,
+      "independent_score": null,
+      "index": 0,
+      "job": "14165",
+      "lane": 0,
+      "model_calls_completed": 3,
+      "score": null,
+      "seed": 1,
+      "source_commit": "a37e3595a62989746c5ffb96943bbfea8ec65e96",
+      "status": "hard_deadline",
+      "valid_accepted_submission": false,
+      "worker_returncode": 124
+    },
+    {
+      "accepted_seconds": null,
+      "action_count": 1,
+      "budget_seconds": 2100,
+      "cache": false,
+      "debug_completion_tokens_recorded": 88230,
+      "elapsed_seconds": 2100,
+      "independent_score": null,
+      "index": 1,
+      "job": "14165",
+      "lane": 1,
+      "model_calls_completed": 2,
+      "score": null,
+      "seed": 1,
+      "source_commit": "a37e3595a62989746c5ffb96943bbfea8ec65e96",
+      "status": "hard_deadline",
+      "valid_accepted_submission": false,
+      "worker_returncode": 124
+    },
+    {
+      "accepted_seconds": null,
+      "action_count": 1,
+      "budget_seconds": 2100,
+      "cache": false,
+      "debug_completion_tokens_recorded": 61276,
+      "elapsed_seconds": 2100,
+      "independent_score": null,
+      "index": 2,
+      "job": "14165",
+      "lane": 0,
+      "model_calls_completed": 2,
+      "score": null,
+      "seed": 2,
+      "source_commit": "a37e3595a62989746c5ffb96943bbfea8ec65e96",
+      "status": "hard_deadline",
+      "valid_accepted_submission": false,
+      "worker_returncode": 124
+    },
+    {
+      "accepted_seconds": 49.211306715995306,
+      "action_count": 1,
+      "budget_seconds": 2100,
+      "cache": true,
+      "debug_completion_tokens_recorded": 0,
+      "elapsed_seconds": 49.21741102699889,
+      "incumbent_code_sha256": "db2b9bedbb1eb0e678a1ded029001f5f7570c7b413ccb413bacf696ba2a4ff43",
+      "independent_score": 0.6688342527307931,
+      "index": 3,
+      "job": "14165",
+      "lane": 1,
+      "model_calls_completed": 1,
+      "score": 0.66883,
+      "seed": 2,
+      "source_commit": "a37e3595a62989746c5ffb96943bbfea8ec65e96",
+      "status": "native_accepted",
+      "valid_accepted_submission": true,
+      "worker_returncode": 0
+    }
+  ],
+  "task": "random-acts-of-pizza",
+  "utc": "2026-09-19T22:54:15.562058+00:00"
+}

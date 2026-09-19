@@ -1,23 +1,25 @@
-# 当前短交接 — 2026-09-19 22:49 UTC
+# 当前短交接 — 2026-09-19 22:56 UTC
 
-14165已完整关闭，4813秒/6卡；唯一读出在独立AUC一致性检查失败，原readout-claim保留、无summary，不能报胜负。只读diagnose_closed_pizza_auc_20260919.py正在定位，不重跑GPU/不改提交。随后已提交同原选batch顺序对照14167，22:47最后观察RUNNING/47秒、服务加载中。精确身份、版本和边界分节如下；未复核动态状态仅称最后观察。
+14165已完整关闭并补充校验通过：两pair一胜一平，seed2直接缓存49.211306715995306s有效/.66883，baseline35min未接受；seed1两臂失败，非总体/完整E2E。原reader精度错误已保留、独立补充目录不覆盖旧证据。14167同原选batch顺序对照22:52最后观察RUNNING/310秒、服务加载中；新值未读。精确身份、版本和边界分节如下；未复核动态状态仅称最后观察。
 
 ## 授权、边界
 
 用户21:15UTC恢复三小时会话内工作，目标09-20 00:15UTC。不新建任务/自动化，不例行写报告；自主实验和正常push有效。先fetch、CURRENT_DIRECTION顶部、此文件、核现场。目标为固定总资源的真实MLE收益；缓存条件续跑只是开发检验，不是完整E2E。27B为较弱低成本生成器。
 first960/Target300/522仍封；不恢复HCE/多保真/Probe/score-channel/K>=1/G0/旧失败cheap选择器；不微调agent底座。不改学长分支、共享source、既有冻结root；代码/日志/回答远端私有，密钥仅远端.env，不回显/本地/Git。
 
-## 已闭合、评分待诊断：14165 Pizza完整时限
+## 已闭合并复核：14165 Pizza完整时限
 
-ROOT=BASE/comparison-pizza-full-deadline-20260919-yaywhbo1；commit a37e3595a62989746c5ffb96943bbfea8ec65e96；prepared a153be4e55a98da9e07fb75f60cee4d320da5aa91b551ce7b65bbf7967ef4ee3。22:46核COMPLETED/4813秒/all_four_episodes_closed，0/1/2由共同硬截止关闭、3正常结束。唯一e7d969读出报independent numerical grade，不能重跑主reader或覆盖claim。先诊断精度/官方定义，不放宽门凑通过。
+ROOT=BASE/comparison-pizza-full-deadline-20260919-yaywhbo1；commit a37e3595a62989746c5ffb96943bbfea8ec65e96；prepared a153be4e55a98da9e07fb75f60cee4d320da5aa91b551ce7b65bbf7967ef4ee3。22:46核COMPLETED/4813秒/all_four_episodes_closed，0/1/2共同硬截止、3正常原生接受。8.021666666666667GPUh，0API/fit。官方读入round_trip与默认pandas改变极近概率并列关系；原e7d969 claim e792e7fe0667055fdf5792e499ce0d4e2822d6e3dd96cf936778e9b118aa0490及原grades保留，禁止重跑/覆盖。22:54补充唯一读出530d5739960b29fae03fccd5f1c4740ee6719c8c在ROOT/readout-roundtrip-v1通过，官方不变；summary b9630d42453652391bc68544afad350ad40da636215a6ad7c7dea6651c080725，runs e7e94cd8a8be2e7ad0f197b19d0741aa531d5ca6b0f5beedd042f658eb9ec340。本地results/comparison_pizza_online_20260919含独立核验与精度诊断，1胜0负1平/sign p=1/0unknown；仅条件开发正例，不重跑。
 固定Pizza原seed1/2×native debug / uniform-cache-then-debug，35分钟每episode/20debug，首次原生接受即停，第二组交换lane；gpu28六卡24CPU100min≤10GPUh，0API/fit。两独立双卡服务+各一任务卡；启动不计episode但全allocation成本计入。cache RNG预先固定，未按新分数选。
 full-deadline策略在14146效果前冻结：API不传max_tokens，vLLM默认/上下文限制；debug/analyze均用episode剩余时间，无额外1200s/300s上限、无重试/截断代码抢救。exact-source进程级overlay只改local，共享文件不动。原model generation_config无max_new_tokens，镜像get_max_tokens源码已核。实接线26mock/四完整循环/绑定桥CPU PASS，非效果。
-监控status_comparison_pizza_online_20260919.py，未闭合不读结果/incumbent。闭合后readout_comparison_pizza_online_20260919.py --reader-commit e7d969f1102a589cc2d887df9eb02cf48dad9047唯一读出；该版本已上传BASE。评分AUC higher-better，独立rank_auc/穷举测试；独立verify_comparison_online_results_20260919.py支持auc_delta。旧Spooky reader已闭合不重跑。
+已闭合，禁止再跑任何14165主reader或补充reader。评分AUC higher-better，独立rank_auc/穷举测试；独立verify_comparison_online_results_20260919.py通过。旧Spooky reader也已闭合不重跑。
 
 ## 正在运行：14167同原生批次只换顺序
 
 run_comparison_native_batch_order_20260919.py / comparison_native_batch_order_plan_20260919.json：同原第二入选程序和first debug cycle，只换repair→second / second→repair；两阶段均做（不因首成功停止），共同35分钟、按有限内部metric最大选最终提交（ties保首个）、首有效延迟单独记录。2seed×2arm、6GPU/100min≤10GPUh，已在14165终态后用冻结root driver提交14167；22:47观察RUNNING，预计若正常预热则约00:07UTC闭合。开发条件单batch而非完整搜索E2E。
 22:05 CPU prepare c2c4e21b失败ROOT comparison-native-batch-order-20260919-8pdj0u_r，未提交GPU：模拟分类用字符串pass注释，原生formatter改空格使之误识别为sibling；改AST只识别单Pass。新ROOT comparison-native-batch-order-20260919-hz3c589n，部署commit dc4a7dbc6951f5bd8d24b49ca7eb2e2de3d5ccec，prepared25d55a42517e586b677dd72a7296a4453c0c68bfda03c551eeb30570e8274428；真实原生CPU预检通过，尚未提交。168相关单测通过，随后计时新增2项测试所在20测试模块组通过。独立batch reader已上传到BASE/comparison-batch-reader-20260919-Pt3BsrGK，commit ee3c6da24bfdf453dbdf0e124deca9b06500b10e，wrapper SHAe833ab7a130c61f78d91c02f9a770624ebb4bb3c83e4f4421124e0ddb527d105，shared SHA2a6e57da3bfcef9d157d8abdcc7e1e3a6a727789bf002c9555457fd7b35cd948；四依赖本远端hash逐一匹配，不改BASE旧reader。审计每次内部metric incumbent更新、首原生接受而非首官方有效的时延；只累计已完成请求的实测latency，下界非全量耗时，不给截断调用补值。14165仍只用BASE e7d969 reader，禁混版本。
+22:53在任何14167值读取前对reader作唯一精度修正：不再用旧Pt3BsrGK/ee3c6da版本，使用BASE/comparison-roundtrip-reader-20260919-Ral9kyiB/readout_comparison_native_batch_order_20260919.py --reader-commit 530d5739960b29fae03fccd5f1c4740ee6719c8c。shared SHA c9a83c66e02c104193a81570f4c38726c9db973a65a13529c3f129dbbba16c76，batch wrapper SHA d083528f31078b41854aa90475b92edce225a56936120482392873a24a276a03；本远端一致。仍须四episode/allocation关闭才读；方法/选择/预算/官方评分不变，只将独立复核CSV读入对齐官方round_trip。172测试PASS。
+
 14166 original-second闭合88秒2GPU/.04888888888888889GPUh，ROOT comparison-pizza-selected-second-20260919-u2nkqs5y，prepared51f32ba6bc25e6e25a58f8a1f8c4594206c2780c6cdcc5c9cbdd96b6e4400103，reader7ae3622574c926e9e044ca686b7dd1fc7c9c1ad6已唯一读出。seed1第二原选有效AUC .74184/87.09747589100152s，seed2 exit1失败；未native分析，非策略收益。本地results/comparison_pizza_selected_second_20260919，summary19668b47b51cbcec7c99af1ea9d16e7d8559ad02274b28c5c65ef74bb9da0d0f；仅安全summary/runs/cpu-preflight，无原始代码。不重跑。
 全25初始池严格延迟有效兄弟机会0；独立事后次级7组成本较小但质量3胜4负，所以不用首成功替代最终质量。不修改零结果或称普遍更优。
 未来完整ForeTS候选批次开关已写为forets_ready_batch_patch_20260919.py：只对exact be933生产fixture返回补丁bytes，native默认关闭，ready_first仅推迟debug。7CPU测试覆盖不同成功/失败/步数门的默认等价路径、无bug时启用等价、同候选/critic/生成；未修改远端源、未部署，不当E2E收益。下一实际完整搜索仍须预算/环境/源码接入，无条件正收益或方法新颖性尚未证明。

@@ -1,0 +1,81 @@
+{
+  "original_readout_claim_sha256": "e792e7fe0667055fdf5792e499ce0d4e2822d6e3dd96cf936778e9b118aa0490",
+  "role": "read_only_failed_readout_diagnostic",
+  "rows": [
+    {
+      "incumbent": false,
+      "index": 0
+    },
+    {
+      "incumbent": false,
+      "index": 1
+    },
+    {
+      "incumbent": false,
+      "index": 2
+    },
+    {
+      "accepted_seconds": 49.211306715995306,
+      "difference": 0.0,
+      "grade_files": [
+        {
+          "relative": "closed-grade/grading_report.json",
+          "safe_fields": {
+            "is_lower_better": false,
+            "score": 0.66883,
+            "valid_submission": true
+          },
+          "sha256": "f428aa05fc75d3ee4bf63b19f4c49e84b681b697e4811964431b66040ac15a67"
+        },
+        {
+          "relative": "closed-grade/submission-escrow/grade-a805k959/report.json",
+          "safe_fields": {
+            "is_lower_better": false,
+            "score": 0.66883,
+            "valid_submission": true
+          },
+          "sha256": "34543ed17ea1ded6796401a6c571083c9a36e4eef453837f953aca4d513d1cc1"
+        },
+        {
+          "relative": "closed-grade/submission-escrow/grade-a805k959/complete.json",
+          "safe_fields": {},
+          "sha256": "bd2e35ea5aa8d5c632367a89643a5ae15ebd5508c2f698e937d9a2e0861bfb1b"
+        }
+      ],
+      "incumbent": true,
+      "index": 3,
+      "max_prediction_read_difference": 1.1102230246251565e-16,
+      "official_direct": 0.6688362823057595,
+      "official_dtype": "float64",
+      "official_input_direct": 0.6688342527307932,
+      "official_input_rank": 0.6688342527307931,
+      "official_input_wrapped": 0.66883,
+      "pd_dtype": "float64",
+      "rank_auc": 0.6688362823057595,
+      "rounded_rank": 0.66884
+    }
+  ],
+  "sources": {
+    "evaluate_submission": {
+      "sha256": "733f2441e221c18cc4597927dfb850025a9859f0003411aa45f79a791e5aab92",
+      "source": "def evaluate_submission(submission_path: Path, data_dir: Path, competition_id: Path, results_output_dir: Path):\n    # Load competition data\n    new_registry = registry.set_data_dir(data_dir)\n    competition = new_registry.get_competition(competition_id)\n\n    if not is_dataset_prepared(competition, grading_only=True):\n        raise ValueError(\n            f\"Dataset for competition `{competition.id}` is not prepared! \"\n            f\"Please run `mlebench prepare -c {competition.id}` to prepare the dataset.\"\n        )\n\n    score = None\n    submission_exists = submission_path.is_file() and submission_path.suffix.lower() == \".csv\"\n\n    if submission_exists:\n        submission_raw = snapshot_submission(submission_path)\n        submission_df = read_csv(submission_path)\n        answers = load_answers(competition.answers)\n        score = competition.grader(submission_df, answers)\n    else:\n        logger.warning(\n            f\"Invalid submission file: {submission_path}. Please check that the file exists and it is a CSV.\"\n        )\n\n    valid_submission = score is not None\n    competition_leaderboard = get_leaderboard(competition)\n    rank_info = competition.grader.rank_score(score, competition_leaderboard)\n    is_lower_better = competition.grader.is_lower_better(competition_leaderboard)\n\n    report = CompetitionReport(\n        competition_id=competition.id,\n        score=score,\n        gold_threshold=rank_info[\"gold_threshold\"],\n        silver_threshold=rank_info[\"silver_threshold\"],\n        bronze_threshold=rank_info[\"bronze_threshold\"],\n        median_threshold=rank_info[\"median_threshold\"],\n        any_medal=rank_info[\"gold_medal\"] or rank_info[\"silver_medal\"] or rank_info[\"bronze_medal\"],\n        gold_medal=rank_info[\"gold_medal\"],\n        silver_medal=rank_info[\"silver_medal\"],\n        bronze_medal=rank_info[\"bronze_medal\"],\n        above_median=rank_info[\"above_median\"],\n        submission_exists=submission_exists,\n        valid_submission=valid_submission,\n        is_lower_better=is_lower_better,\n        created_at=datetime.now(),\n        submission_path=str(submission_path),\n    )\n\n    # Ensure the output directory exists and write the report to disk.\n    results_output_dir.mkdir(exist_ok=True)\n    if submission_exists:\n        archive_submission(submission_path, submission_raw, report.to_dict(),\n                           results_output_dir / \"submission-escrow\")\n    save_path = results_output_dir / f\"grading_report.json\"\n    with open(save_path, \"w\") as f:\n        json.dump(report.to_dict(), f, indent=2)\n\n    score = report.score\n    score = float(score) if score is not None else None\n    return score, report.to_dict()\n"
+    },
+    "grader_call": {
+      "sha256": "596a005933ddba3471ec773345d5d5232f2ef9ce93801e9ec1cb3292cd373235",
+      "source": "    def __call__(self, submission: pd.DataFrame, answers: Any) -> Optional[float]:\n        \"\"\"\n        Runs the grading function on a submission, returning the score rounded to 5 decimal places.\n        \"\"\"\n        try:\n            score = self.grade_fn(submission, answers)\n        except InvalidSubmissionError as e:\n            logger.warning(f\"Invalid submission: {e}\")\n            return None\n        except Exception as e:\n            try:\n                fpath = inspect.getfile(self.grade_fn)\n                line_number = inspect.getsourcelines(self.grade_fn)[1]\n                fn_info = f\"{fpath}:{line_number}\"\n            except TypeError:\n                fn_info = str(self.grade_fn)\n            logger.error(f\"Unexpected error during grading: {e}. Check {fn_info}\")\n            return None\n        rounded_score = round(score, 5)\n        return rounded_score\n"
+    },
+    "load_answers": {
+      "sha256": "27afa5af23d75d157bce3e05477343f73bc19541a99dc5d3b45df4a936483696",
+      "source": "def load_answers(path_to_answers: Path) -> Any:\n    if path_to_answers.suffix == \".csv\":\n        return read_csv(path_to_answers)\n\n    if path_to_answers.suffix == \".jsonl\":\n        return read_jsonl(str(path_to_answers))\n\n    raise ValueError(f\"Unsupported file format for answers: {path_to_answers}\")\n"
+    },
+    "prepare_for_auroc_metric": {
+      "sha256": "9b486ec187f2e14ab0cf22b7a980c6b0755fce3c0fd58fe2b1ebf6f2f0af6638",
+      "source": "def prepare_for_auroc_metric(\n    submission: pd.DataFrame, answers: pd.DataFrame, id_col: str, target_col: str\n) -> dict:\n\n    # Answers checks\n    assert id_col in answers.columns, f\"answers dataframe should have an {id_col} column\"\n    assert target_col in answers.columns, f\"answers dataframe should have a {target_col} column\"\n\n    # Submission checks\n    if id_col not in submission.columns:\n        raise InvalidSubmissionError(f\"Submission should have an {id_col} column\")\n    if target_col not in submission.columns:\n        raise InvalidSubmissionError(f\"Submission should have a {target_col} column\")\n    if len(submission) != len(answers):\n        raise InvalidSubmissionError(f\"Submission and answers should have the same number of rows\")\n    try:\n        pd.to_numeric(submission[target_col])\n    except ValueError:\n        raise InvalidSubmissionError(\n            f\"Expected {target_col} column to be numeric, got {submission[target_col].dtype} instead\"\n        )\n    if submission[target_col].min() < 0 or submission[target_col].max() > 1:\n        raise InvalidSubmissionError(\n            f\"Submission {target_col} column should contain probabilities,\"\n            \" and therefore contain values between 0 and 1 inclusive\"\n        )\n    # Sort\n    submission = submission.sort_values(id_col)\n    answers = answers.sort_values(id_col)\n\n    if (submission[id_col].values != answers[id_col].values).any():\n        raise InvalidSubmissionError(f\"Submission and answers should have the same {id_col} values\")\n\n    roc_auc_inputs = {\n        \"y_true\": answers[target_col].to_numpy(),\n        \"y_score\": submission[target_col].to_numpy(),\n    }\n\n    return roc_auc_inputs\n"
+    },
+    "read_csv": {
+      "sha256": "c4fc7541b38e21a33d3c758580f712a46dc7325a7c418d3ba4e6952d828131b1",
+      "source": "def read_csv(*args, **kwargs) -> DataFrame:\n    \"\"\"Reads a CSV file and returns a DataFrame with custom default kwargs.\"\"\"\n\n    try:\n        new_default_kwargs = {\"float_precision\": \"round_trip\"}\n        new_kwargs = {**new_default_kwargs, **kwargs}\n        return pd.read_csv(*args, **new_kwargs)\n    except pd.errors.EmptyDataError:\n        logger.warning(f\"CSV file empty! {args[0]}\")\n        return pd.DataFrame()\n"
+    }
+  },
+  "utc": "2026-09-19T22:53:26.636934+00:00"
+}

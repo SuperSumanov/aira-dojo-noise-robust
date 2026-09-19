@@ -1,0 +1,14 @@
+{
+  "status": "PASS_INDEPENDENT_PAIRED_ARITHMETIC",
+  "physical_runs": 2,
+  "episodes": 4,
+  "valid_accepted": 1,
+  "unknown": 0,
+  "validity_wins": 1,
+  "validity_losses": 0,
+  "validity_ties": 1,
+  "paired_sign_two_sided_p": 1.0,
+  "no_population_confirmation": true,
+  "full_e2e_claim": false,
+  "summary_sha256": "b9630d42453652391bc68544afad350ad40da636215a6ad7c7dea6651c080725"
+}

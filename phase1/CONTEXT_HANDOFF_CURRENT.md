@@ -27,11 +27,11 @@ history-check已独立核：seed1四cache的有效性/已报精度成绩与14099
 14133已COMPLETED且reader闭合，ROOT=BASE/comparison-fresh-debug-exec-20260919-53mn3zh0，commit2837df6873403ddc688b7034af1c0a43b19f373f，prepared3784b1515bda79d306cd893f1a2857e7e67580c9bae9cb675d4a7684c07543bb。两条exit1/liblinear多分类错误、非超时/infra；25秒2GPU，连同14127总.7994444444444444GPUh。summary71302cc7321a42ec592f90a367738f935ec4ff60130fa8fb83ed79a317d7e86b；本地results/comparison_live_debug_20260919。固定分析已完成：seed1缓存单条.75对新debug0，seed2都是0；代入实测G后两组都不提速，不称E2E。reader/错误分析已各一次，勿重跑。
 GEN硬固定上述root；生成闭合后prepare --commit精确最新SHA→实际交付CPU检查→submit。全部runnable新回答各一次，不重采样；最多2GPU/12CPU130min≤4.333333333333333GPUh，原7200s/原镜像，不能把新回答最好者替代历史debug。
 depth2原生分析+再次调试已提交14134，ROOT=BASE/comparison-depth2-debug-20260919-ffunn8gg，commit824d8d066d8a7d0166abfdfeface90d155bc91a1，prepared217f72c4c0a4a6e421538a265d7208e714c9ec07570afb47424408b29cd7db06，四个native CPU mock通过；13:59 RUNNING/未ready。生成2GPU80分钟，后续执行2GPU130分钟，原7200秒；零API，analysis701/702/debug601/602，累计全部成本。执行入口run_comparison_depth2_execute_20260919.py（已固定ROOT，尚未prepare）；reader readout_comparison_depth2_20260919.py。累计比较analyze_comparison_depth2_20260919.py提前写好，8测试过；首次测试仅fixture参数漏传，已修，未看新结果。非完整原生产debug_cycle/E2E。学长e4181fac为解释器文档整理，远端安全读取0hit，未改镜像。
-14:06决定并行补原定Spooky seed3起点（e4a4275f2df8028e）：前缀+首次debug+四cache各原代码一次、6GPU130min≤13GPUh，零API/fit。历史首次debug成功，不挑弱对照。原14099 seed3仍保留未启动；新矩阵为单独探索性动作银行，不称原完整六初始池补齐（原第二selected未含）。plan comparison_third_bank_plan_20260919.json，driver run_comparison_third_bank_20260919.py，预检/提交待做。不会重跑seed1/2；与14134最多共8GPU。总41回归测试通过。
+14:10已提交14135补原定Spooky seed3（e4a4275f2df8028e）：前缀+首次debug+四cache各原代码一次、6GPU130min≤13GPUh，零API/fit。ROOT=BASE/comparison-third-bank-20260919-7b544kbs，commit0541579f42b910bca5df756ef03504fce0a93a36，preparedfe53f6772b78a05d98011d86e496c0d1406172cd4382c09b0d930394718ccad7。6实际交付CPU mock过，历史首次debug成功，不挑弱对照。原14099 seed3仍保留未启动；新矩阵为单独动作银行，不称原完整六初始池补齐（原第二selected未含）。plan comparison_third_bank_plan_20260919.json/driver run_comparison_third_bank_20260919.py/reader readout_comparison_third_bank_20260919.py。不会重跑1/2；与14134共最多8GPU。原41回归测试通过。
 
 ## 开发适配器与科学边界
 forets_cached_continuation_20260919.py每池最多随机一条未选兄弟，失败回原debug，成功回传兄弟而非失败节点路径；独立RNG、正常分析/执行计步。关闭开关返回原类。
-使用be9335348b实际ForeTS扩展函数的10CPU控制流测试通过（任务/LLM mock），尚未部署；需两臂共同外层wall/step门，LLM分析接受率不等于官方validity，中途expansion恢复不支持。
+使用be9335348b实际ForeTS扩展函数的10CPU控制流测试通过，尚未部署。新增forets_common_admission_20260919.py对两臂同样施加step/观察到deadline后的新动作门，6测试含20个step边界场景通过；最后一步只选一条避免原sample两条的边界错误，两臂一致。不能抢占在途调用，仍必须用共同外层supervisor硬截止；LLM分析接受率不等于官方validity，中途expansion恢复不支持。
 首个正例只能说明这个固定失败起点有可复用机会；第二组说明不能普遍缓存优先。新生成是敏感性测试，非完整同资源确认/新颖性证明。不得用已知cache成绩选候选；全部4条只用于均匀抽一条的枚举，不取oracle。
 判定前缀父索引是journal整数step，非node ID。step1原draft，step2首次直接debug。
 
@@ -48,6 +48,6 @@ source=BASE/forets-wallclock-20260912-km65uuej/source，tree61b48862532d048f5f04
 
 ## Git与禁止重复
 分支codex-prospective-decision-v1-20260814；只正常push myfork HEAD:phase1-value-critic，myfork已核为用户指定SuperSumanov/aira-dojo-noise-robust。
-最近已push且ls-remote确认02737d8d0d2414cf2bc31628912921345bc7a279；上次16文件全范围扫描0凭据形状/0敏感文件名。后续源文件/新结果未全push，以git status为准；无关untracked不动。
+14:09已push且ls-remote确认0541579f42b910bca5df756ef03504fce0a93a36；38文件全范围扫描0凭据形状/0敏感文件名。后续源文件/新结果未全push，以git status为准；无关untracked不动。
 一次发布被安全检查拦截fixture来源；只读证明be933是同目标仓库已存在学长分支祖先后重新获准，未绕过。没有修改学长分支。
 结果JSON/CSV记得.gitattributes -text保字节SHA；提交标题只粘已打印数字或不含数字。每次push扫描全部待发布范围。

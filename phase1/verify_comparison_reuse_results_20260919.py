@@ -54,15 +54,18 @@ def enumerate_paths(rows):
                 ec=sum(Fraction(str(c['wall_seconds'])) for c in cache)/4)
 
 
-def verify(summary):
+def verify(summary,expected_seeds=(1,2)):
+    if expected_seeds not in ((1,2),(3,)):
+        raise ValueError('only the original bank or fixed third extension is supported')
     assert summary['role']=='exploratory_continuation_action_bank_not_live_e2e'
-    assert len(summary['rows'])==12 and len({r['index'] for r in summary['rows']})==12
-    assert len({r['node'] for r in summary['rows']})==12
+    size=6*len(expected_seeds)
+    assert len(summary['rows'])==size and len({r['index'] for r in summary['rows']})==size
+    assert len({r['node'] for r in summary['rows']})==size
     assert summary['api_calls']==0
     close(summary['gpu_hours'],Fraction(summary['allocation_seconds']*summary['allocated_gpus'],3600))
     for field, status in [('valid',True),('no_valid_output',False),('unknown',None)]:
         assert summary[field]==sum(r['valid'] is status for r in summary['rows'])
-    assert sorted(g['seed'] for g in summary['groups'])==[1,2]
+    assert sorted(g['seed'] for g in summary['groups'])==list(expected_seeds)
     verified=[]
     for group in summary['groups']:
         rows=[r for r in summary['rows'] if r['seed']==group['seed']]

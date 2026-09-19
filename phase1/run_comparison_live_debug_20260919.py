@@ -227,7 +227,7 @@ def generate(root):
     asyncio.run(calls());runtime.write(root/'generation-summary.json',dict(rows=rows,live_requests=2,paid_api_calls=0,training=False))
 
 
-def controller(root,service_seconds=5280):
+def controller(root,service_seconds=5280,closed_status='two_draws_closed'):
     p=runtime.check_files();runtime.asset_check(p)
     if socket.gethostname().split('.')[0]!='gpu28' or runtime.read(root/'launch.json')['job']!=os.environ['SLURM_JOB_ID']:raise ValueError('allocation identity')
     with socket.socket() as sock:sock.bind(('127.0.0.1',8000))
@@ -250,7 +250,7 @@ def controller(root,service_seconds=5280):
                 time.sleep(2)
             else:raise RuntimeError('service startup deadline')
             runtime.write(root/'ready.json',dict(startup_seconds=time.monotonic()-start,utc=runtime.utc()))
-            generate(root);status='two_draws_closed'
+            generate(root);status=closed_status
         finally:
             runtime.stop_owned(process)
             runtime.write(root/'closed.json',dict(status=status,utc=runtime.utc(),controller_seconds=time.monotonic()-start,job=os.environ['SLURM_JOB_ID']))

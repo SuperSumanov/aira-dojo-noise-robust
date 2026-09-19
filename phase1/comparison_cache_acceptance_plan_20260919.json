@@ -1,0 +1,18 @@
+{
+  "role": "native_cache_acceptance_sensitivity_not_e2e",
+  "banks": ["14115 seed 1", "14128 seed 2"],
+  "selection": "Every one of the four fixed cached alternatives per bank, including program failures. No success-conditioned sampling.",
+  "requests": 8,
+  "request_seeds": [801,802,803,804,805,806,807,808],
+  "operator": "Original archived native analyze operator and bounded local 27B transport. Exact executed code and its output log only. External score and validity never enter the model prompt.",
+  "seconds_per_request": 300,
+  "max_tokens": 32768,
+  "allocation": {"node":"gpu28","gpus":2,"cpus":12,"seconds":4200,"gpu_hours_cap":2.3333333333333335},
+  "program_executions": 0,
+  "warmup_calls": 0,
+  "retries": 0,
+  "paid_api_calls": 0,
+  "training": false,
+  "readout": "After job closure compare native bug/metric parsing and acceptance with the separately held official validity. Keep unknowns and errors. Report native analysis latency and all allocated cost separately.",
+  "limitations": ["Known development caches, not a new independent cohort", "Acceptance component test, not a full live search or same-budget effect", "No claim that code execution result plus native acceptance guarantees future search utility"]
+}

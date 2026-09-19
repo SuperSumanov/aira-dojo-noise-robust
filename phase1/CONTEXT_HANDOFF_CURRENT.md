@@ -1,65 +1,35 @@
-# 当前短交接 — 2026-09-19 15:04 UTC
+# 当前短交接 — 2026-09-19 15:55 UTC
 
-## 最新现场（覆盖下方历史最后观察）
-15:04：14135仍RUNNING/3229秒/5结果6绑定，不提前读值。此前sstat显示剩余14135.4有累计CPU活动，非排队；保留7200秒原程序上限/7800秒allocation，不按三小时汇报节点裁短。最后正常公开head已核653ea4966bdcfc0bcab981f3e2446ad62ca24e2e；27文件全范围安全扫描0hit。新增真实生产debug_cycle+ForeTS扩展体5回归测试，全套83通过；不是模型效果。
-尚需工作：14135终止后唯一执行ROOT/readout_comparison_third_bank_20260919.py ROOT，安全summary/runs到results/comparison_third_bank_20260919，再verify_comparison_third_bank_20260919.py独立核验。没有提交新E2E，没有启动额外模型或付费API；新共用外层/缓存适配器仍未部署。inspect_comparison_service_progress_20260919.py仅支持旧live-debug ROOT，不能传cache-acceptance（一次被scope门正确拒绝）；当前已闭合接受率不再需要该监控。
-14136已COMPLETED/585秒2GPU=.325GPUh，8分析全部已尝试、7返回1未知。官方有效3条中原生接受2条、1条BoundedAttemptError无可用响应，五条官方无效全部拒绝，未补采样。仅一固定起点的2个可用cache机会，不是总体/E2E效果。summary203ffd2cca3763d5aea7bdf4c200c644797c3624f0b02e85981c5bdae7169557；本地results/comparison_cache_acceptance_20260919。7条已返回响应用be933原生MCTS.parse_eval_result独立复核通过，native-independent.json保留1unknown；无外部score进模型。唯一reader已闭合，勿重跑。原“格式未通过”只是初步判断，结构诊断确认是BoundedAttemptError，不是官方判无效。
-14134零代码closeout已完成，summary facfb52f7ce675a8006ba2a3b147c89793a240416a019eb6fafb0057f5372d29，本地results/comparison_depth2_20260919；14134实耗1.1227777777777779GPUh，连第一生成/执行累计1.9222222222222223GPUh，预定contrast两组均UNKNOWN_NO_EFFECT_CLAIM。不要重跑reader/模型。
-14135第三银行14:55最后观察RUNNING/2717秒/5结果6绑定；尚未读结果值。14136不再占卡。0918学长比较目录14:46仍双读0可见文件/原listing SHA不变，不能说学长未上传。
-新共用预算适配器已修原生外层<=与remaining_steps=0的空转边界，两臂同一外层停止/检查点/最终原选择器；78统一CPU回归通过（含原生解析5与整轮边界5）。只是开发实现，未部署/没有真实E2E收益。
-14134已COMPLETED/2021秒2GPU，第二轮两回答均finish_reason=length/32768tokens，无完整代码；不补采样或回收截断回答。两条结果未知，不是程序失败，也不能推缓存更优。执行预检ROOT=BASE/comparison-depth2-debug-exec-20260919-126ifhtp，prepared a6cdef6122f7d5c4c693ac41c9e426e20ca1f0c2f30cfd3a3723528e96943834，runnable=0，未submit且不得submit。新增readout_comparison_unrunnable_20260919.py专门闭合未知并保留真实生成成本，尚待运行。
-14136缓存原生接受率已提交，ROOT与下方prepare相同，2GPU70min；只模型分析，无任务再执行/付费API。安全状态status_comparison_cache_acceptance_20260919.py。readout上传到BASE，使用--reader-commit 86dc5061ddd3c50de87cc563c1307361e4e2d288（6测试），只在allocation终止后读出。14135第三银行14:41最后观察RUNNING/1836秒/4结果6绑定，未读结果值。
-14:44统一68离线测试通过，包括零完整代码闭合5测试。此前一条测试模块名拼错仅导入失败，改为仓库实际test_comparison_fresh_contrast_20260919后重跑通过，未涉及远端实验。
+## 授权与方向
 
-## 立即入口与授权
-用户本轮12:10UTC要求在会话内继续三小时，目标15:10UTC前有价值结果；不要每轮写报告，需其明确要求才写。只维护本文件、CURRENT_DIRECTION和实验配置/真实结果。自主实验/正常push授权有效，不改学长分支。
-先fetch→CURRENT_DIRECTION顶部最新裁决→本文件→现场。日期优先，不恢复旧HCE/多保真/Probe/score-channel/K>=1/G0/失败cheap选择器，不微调agent底座；first960/Target300/522结果仍封。当前是同资源E2E方向下的开发候选复用动作验证，不是已证明E2E。
-工作区C:/Research/New/my_project/MLEvolve/aira-dojo-codex-20260813；SSH linux5；BASE=/research/d7/spc/yzyang4；Python BASE/venvs/aira/bin/python（gdown在venvs/exp）。
-SLURM_CONF=/opt1/slurm/gpu-slurm.conf；MLE只能gpu27/gpu28 RTX3090原镜像，不能projgpu39/改Torch/CPUfallback。4jobs/8GPU；旧held12535不动。所有凭据只远端.env；不回显/不存本地Git，tar credential-first，原始程序/日志不下载。
+用户本轮15:29UTC要求在会话内继续三小时，目标18:29UTC；自主实验/正常push授权有效，不每轮写报告、不新建任务/自动化、不改学长分支。先fetch→CURRENT_DIRECTION顶部→本文件→核现场。当前为同资源真实收益目标下的缓存条件续跑，不是已证明完整E2E。27B是较弱低成本生成器。
+first960/Target300/522仍封；不恢复HCE/多保真/Probe/score-channel/K>=1/G0/旧失败cheap选择器；不微调agent底座。
 
-## 已闭合动作对照——不要重复reader或重投
-14115 ROOT=BASE/comparison-reuse-20260919-5m6jrtah，commit ef41925bed94b5de01efd1b95eab652720c81bb8，prepared 5d7e98280f3b223bbf8c6968ebd3c84857b5329eac0744a51d3c16d3ced24518。
-COMPLETED，1686秒/6卡=2.81GPUh。只seed1六程序闭合；seed2因预设剩余7500s门完全未启动。
-首次debug失败，四cache三有效，均匀单条有效率.75、3胜1平0负；cache均时471.1243743110026s/debug23.66096251300769s。符号G临界604.5048699016625s，非实测E2E提速或成功延迟。
-summary f3ea334c94257bbbbc06229a8a3aeea609e2516879bdf9a32822e176897ee9ce；safe local results/comparison_reuse_20260919。
+## 正在准备的在线对照（尚未提交）
 
-14128 ROOT=BASE/comparison-reuse-20260919-851fmp2v，commit cb3b8ecfc52c0fb5e8cae64709421ae5402aa515，prepared40b291747042f3a1e04781870e3d67e33342a29ac1aea896c1a1a93d2a65c399。
-单独追加预算，只补seed2、不重跑seed1/换seed；6GPU130min≤13GPUh，实际653s=1.0883333333333334GPUh，COMPLETED。原前缀同错误；debug和四cache全失败，cache只增加282.3882801755026s平均执行耗时。
-summary54154a13de4d5dbcb34ba09a47adf24162382fd0818669fb914856dc6ce15ded；safe local results/comparison_reuse_20260919/remainder。
-两组12执行3有效9失败0未知、3.8983333333333334GPUh、零API。合并summary8fb886426df3b73caecd5adf8d1ba6375c6d437728d6c31f1f7313c550bac720在combined目录，独立verify PASS。原两文件保留；合并决定在看过seed1后，不能称盲确认。均为2个原始run，不是12独立seed。
-history-check已独立核：seed1四cache的有效性/已报精度成绩与14099一致；原debug生产时也同liblinear多分类错误，strict equality false（仅多框架计时后缀），core equality true。原receipt debug-history.redacted.json不修改，不重跑读取器。
+comparison_online_continuation_plan_20260919.json：Spooky固定开发prefix seed1/2×原生算子多步debug / uniform-cache-then-debug，35分钟每轨迹，原debug depth20。gpu28六GPU24CPU100分钟≤10GPUh；独立双卡生成服务各一任务卡，第二组交换arm/lane。原镜像/模板/祖先memory，共同硬截止，首次原生接受即停。生成启动排除episode但全GPU成本计入；0付费API/训练。cache RNG预先固定、不按已知成绩选。
+driver run_comparison_online_continuation_20260919.py；CPU实际网络mock+完整循环假执行预检后再submit。两端口只在本实验进程显式桥接8000/8001，不改既有源码/旧服务。fresh独立代码工作区，两臂一致；非production checkpoint恢复/完整搜索基线。原前缀和cache已见结果，仅探索。
+截至15:55只有10本地协议/前缀测试PASS；代码上传、实交付预检待核。未提交新GPU；动态状态以launch回执为准。
 
-## 正在推进——两次真实新debug生成
-14127 ROOT=BASE/comparison-live-debug-20260919-kksebq_4，commit630dc60e3a389b5e0f06e15a9a2777616556b9cd，prepared329beee61b95b79430ba95eba45d4da95f170e93a0f0b159848a18aef73b5283。
-13:35已核sacct COMPLETED、1414秒/2GPU；两次请求均code_ready/finish_reason=stop，生成耗时370.0123324659944秒与450.0056974760082秒。code SHA依次56cde15d0638f352185edbfabe5ddc3ad7b6d903f7d85293d141744343862e92、c0d1f6152c0896b28ac4982e189a5d53afd671139af7a9a7b134b4edaedccdd2；尚不是任务执行有效性。
-固定源seed1/2、请求seed501/502，各一次native debug，原模板/ancestral memory/.6/.95、32768tokens/1200s无重试；已闭合14099前缀同代码错误日志，公开preview，use_test_score=false。2GPU/12CPU90min≤3GPUh，无warmup调用/付费API/训练。
-前两次CPU预检失败源于错误假定原模板渲染2hours，保持原模板、核实际7200s配置后通过；失败准备目录保留且0GPU。不能改变运行中/已闭合14127文件。
-安全状态：BASE/status_comparison_live_debug_20260919.py ROOT；粗编译状态BASE/inspect_comparison_service_progress_20260919.py ROOT。不tail原服务日志/读取key。
-14133已COMPLETED且reader闭合，ROOT=BASE/comparison-fresh-debug-exec-20260919-53mn3zh0，commit2837df6873403ddc688b7034af1c0a43b19f373f，prepared3784b1515bda79d306cd893f1a2857e7e67580c9bae9cb675d4a7684c07543bb。两条exit1/liblinear多分类错误、非超时/infra；25秒2GPU，连同14127总.7994444444444444GPUh。summary71302cc7321a42ec592f90a367738f935ec4ff60130fa8fb83ed79a317d7e86b；本地results/comparison_live_debug_20260919。固定分析已完成：seed1缓存单条.75对新debug0，seed2都是0；代入实测G后两组都不提速，不称E2E。reader/错误分析已各一次，勿重跑。
-GEN硬固定上述root；生成闭合后prepare --commit精确最新SHA→实际交付CPU检查→submit。全部runnable新回答各一次，不重采样；最多2GPU/12CPU130min≤4.333333333333333GPUh，原7200s/原镜像，不能把新回答最好者替代历史debug。
-depth2原生分析+再次调试已提交14134，ROOT=BASE/comparison-depth2-debug-20260919-ffunn8gg，commit824d8d066d8a7d0166abfdfeface90d155bc91a1，prepared217f72c4c0a4a6e421538a265d7208e714c9ec07570afb47424408b29cd7db06，四个native CPU mock通过；13:59 RUNNING/未ready。生成2GPU80分钟，后续执行2GPU130分钟，原7200秒；零API，analysis701/702/debug601/602，累计全部成本。执行入口run_comparison_depth2_execute_20260919.py（已固定ROOT，尚未prepare）；reader readout_comparison_depth2_20260919.py。累计比较analyze_comparison_depth2_20260919.py提前写好，8测试过；首次测试仅fixture参数漏传，已修，未看新结果。非完整原生产debug_cycle/E2E。学长e4181fac为解释器文档整理，远端安全读取0hit，未改镜像。
-14:10已提交14135补原定Spooky seed3（e4a4275f2df8028e）：前缀+首次debug+四cache各原代码一次、6GPU130min≤13GPUh，零API/fit。ROOT=BASE/comparison-third-bank-20260919-7b544kbs，commit0541579f42b910bca5df756ef03504fce0a93a36，preparedfe53f6772b78a05d98011d86e496c0d1406172cd4382c09b0d930394718ccad7。6实际交付CPU mock过，历史首次debug成功，不挑弱对照。原14099 seed3仍保留未启动；新矩阵为单独动作银行，不称原完整六初始池补齐（原第二selected未含）。plan comparison_third_bank_plan_20260919.json/driver run_comparison_third_bank_20260919.py/reader readout_comparison_third_bank_20260919.py。不会重跑1/2；与14134共最多8GPU。原41回归测试通过。
-14:29缓存原生接受率已prepare但尚未submit：ROOT=BASE/comparison-cache-acceptance-20260919-tsefctlz，commit072bde00362132235cac7ce76be0110e830012f3，prepared5644666183b54bb0f04430a606934c7db33ff94bcbb6cab01b8db40af1a239df。原两银行全部8cache，原生analyze各一次/request seeds801–808，8实际CPU请求预检过。2GPU70min≤2.3333333333333335GPUh，无新程序执行/付费API，必须等14134模型服务退出再submit；不要更改正在跑的服务追加请求。driver run_comparison_cache_acceptance_20260919.py；reader readout_comparison_cache_acceptance_20260919.py在BASE执行并显式--reader-commit，回执含reader SHA；6离线读出测试过。模型输入严格不含外部grade/valid字段，闭合后才join官方有效性。新生成程序执行优先，QOS最多8GPU/4job。
+## 本轮新证据
 
-## 开发适配器与科学边界
-forets_cached_continuation_20260919.py每池最多随机一条未选兄弟，失败回原debug，成功回传兄弟而非失败节点路径；独立RNG、正常分析/执行计步。关闭开关返回原类。
-使用be9335348b实际ForeTS扩展函数的10CPU控制流测试通过，尚未部署。新增forets_common_admission_20260919.py对两臂同样施加step/观察到deadline后的新动作门，6测试含20个step边界场景通过；最后一步只选一条避免原sample两条的边界错误，两臂一致。不能抢占在途调用，仍必须用共同外层supervisor硬截止；LLM分析接受率不等于官方validity，中途expansion恢复不支持。
-首个正例只能说明这个固定失败起点有可复用机会；第二组说明不能普遍缓存优先。新生成是敏感性测试，非完整同资源确认/新颖性证明。不得用已知cache成绩选候选；全部4条只用于均匀抽一条的枚举，不取oracle。
-判定前缀父索引是journal整数step，非node ID。step1原draft，step2首次直接debug。
+14135 COMPLETED，4013秒6GPU=6.6883333333333335GPUh，6程序2有效4无效0unknown。ROOT=BASE/comparison-third-bank-20260919-7b544kbs；commit0541579f42b910bca5df756ef03504fce0a93a36；prepared fe53f6772b78a05d98011d86e496c0d1406172cd4382c09b0d930394718ccad7。唯一reader已执行，勿重跑；summary7dd466d42627e642ded6cd34af5660e0d0f6f76ed1150fb423565e13f7fb9371，local results/comparison_third_bank_20260919。
+原前缀门false：历史TypeError后紧接无空格Execution time计时尾缀，旧regex只去有空格的。原summary不改；prefix-supplement.json已一次生成，严格锚定尾缀剥除后core_error_equal=true，6测试过。事后门修正，不冒称原预注册通过。
+第三组历史debug有效loss .38821，四cache一条有效.35692、三失败；单次cache对debug1胜3负，cache失败再用固定历史debug代数1胜3平0负。非实时调度/E2E/原生接受确认。
 
-## 已有证据与资料位置
-学长新head67e371960802d804bdab8b9b55f3dde2ed98f125，三文档差异远端扫描0hit后读：小任务集训练/评估用法/可视化，无新效果结论。12:45 comparison/0918双读0可见文件，不代表未上传；receipt BASE/comparison-0918-metadata-20260919-y5ulx468，listing d36f39e6e9476279df19da46f006f182236737f29e64e5808e93733d676ae239。
-0912五包已在BASE/comparison-quarantine-20260919-_tda9fh6（703326526bytes），不重下；manifest d2e9f41bc697651d266a2574f7b9d4a2d7e474c3851b92d504763e9b535c80cb，structure2d87541d73a597b0d487285949b1c8f306e756ae97dc9fde7c175f83783d7d94。
-只准入新Qwen46配置/43journal，旧API28未读/env未读。新09-12后，与保护LATEST1b44e898bbae7ffc9098bbfa584ba842e0db2be5ae6bb8b5da0475d8ab34239f的日期/journal hash已隔离。
-nodes安全导出phase1/results/comparison_qwen_20260919/nodes.json，SHA370976e31c8a9f501bc75fb7826f529f85b0e34059146291f2e7bb3cab4062c9。25完整初始池，每池2选+4未选；历史top3第三名/critic checkpoint身份未提供，不猜排名。
-此前完整池30执行/12有效/18失败/6整池未知，8.738333333333333GPUh。Leaf3池summary41e42fbff91ca970e8f5ee19a1ffdf57c31ffe0ddd6a24182e5e304c1225ef4f；Spooky2池summary721f995ca597568303f65c32e9d04667bcdd173c174b2e6af99bb78e765c0eb1。所有旧reader/辅助分析已闭合，不重跑。
-Leaf2池内正例，跨任务一致优势未过；Spooky原选2全失败而另3有效的池存在硬筛选漏优。完整细节ADVISOR_PROGRESS_20260919.md（用户未要求勿改写报告）、CURRENT_DIRECTION、results。
-已有相关工作AGRV/RPM/CodeScaler/MARS/RecoveringWastedCompute/SpeculativeActions/PASTE，宽泛rank/verify/缓存/调度不自动原创。详COMPARISON_NOVELTY_CHECK_20260919.md。
-source=BASE/forets-wallclock-20260912-km65uuej/source，tree61b48862532d048f5f04a517e3f89b211c59bd3d；原MLE image BASE/aira-dojo/build/superimage/superimage.root.2026-07-macos-v1.sif。
-27B资产BASE/local-qwen27b-20260914-zcx1k1dy，18文件36808331288bytes，revision dc430725f831dd90d9271738b877879a46a82239。旧13368用户取消，只一draft无MLE；不重复下载/G0。研究盘1TB至09-29，续期未知，旧清理已做不重删。
+## 已闭合不要重跑
 
-## Git与禁止重复
-分支codex-prospective-decision-v1-20260814；只正常push myfork HEAD:phase1-value-critic，myfork已核为用户指定SuperSumanov/aira-dojo-noise-robust。
-14:09已push且ls-remote确认0541579f42b910bca5df756ef03504fce0a93a36；38文件全范围扫描0凭据形状/0敏感文件名。后续源文件/新结果未全push，以git status为准；无关untracked不动。
-一次发布被安全检查拦截fixture来源；只读证明be933是同目标仓库已存在学长分支祖先后重新获准，未绕过。没有修改学长分支。
-结果JSON/CSV记得.gitattributes -text保字节SHA；提交标题只粘已打印数字或不含数字。每次push扫描全部待发布范围。
+14115/14128两银行BASE/comparison-reuse-20260919-5m6jrtah /851fmp2v；combined summary8fb886426df3b73caecd5adf8d1ba6375c6d437728d6c31f1f7313c550bac720，3.8983333333333334GPUh。seed1 cache3/4有效debug失败，seed2 cache/debug全失败。非普遍cache优先。
+14127生成+14133执行：两新debug均失败，summary71302cc7321a42ec592f90a367738f935ec4ff60130fa8fb83ed79a317d7e86b，.7994444444444444GPUh。实测G代入不提速，local results/comparison_live_debug_20260919。
+14134两二轮回答均32768token截断，无完整代码、不抢救/重采样；1.1227777777777779GPUh。零执行closeout summaryfacfb52f7ce675a8006ba2a3b147c89793a240416a019eb6fafb0057f5372d29；results/comparison_depth2_20260919。contrast两组UNKNOWN，未提交空GPU。
+14136八cache原生分析7返回1调用失败：三官方有效中2被原生接受1未知；五官方无效均拒绝。summary203ffd2cca3763d5aea7bdf4c200c644797c3624f0b02e85981c5bdae7169557，.325GPUh，results/comparison_cache_acceptance_20260919。七响应已用be933原生parser独立核。不重跑reader/模型。
+旧Leaf3池和Spooky2完整池及reader全部闭合。原14099seed3六初始候选未启动；14135并非补齐它（包含debug而非第二selected）。旧详细证据见CURRENT_DIRECTION/results，不堆进短交接。
+
+## 环境、资料、Git
+
+本地C:/Research/New/my_project/MLEvolve/aira-dojo-codex-20260813；SSH linux5；BASE=/research/d7/spc/yzyang4；Python BASE/venvs/aira/bin/python。SLURM_CONF=/opt1/slurm/gpu-slurm.conf；4jobs/8GPU，旧held12535不动。
+MLE现有镜像只用gpu27/gpu28 RTX3090（适配器gpu28），不能projgpu39/改Torch/CPUfallback。任务镜像BASE/aira-dojo/build/superimage/superimage.root.2026-07-macos-v1.sif。
+27B资产BASE/local-qwen27b-20260914-zcx1k1dy，revision dc430725f831dd90d9271738b877879a46a82239，18文件36808331288bytes。不重下/验收。ASSETS/source原生算子/FreshContainer/local transport；DONOR=BASE/forets-fresh-integration-20260914-ih6u0mpw。
+0912五包BASE/comparison-quarantine-20260919-_tda9fh6，703326526bytes，只准入新Qwen46config/43journal，nodesSHA370976e31c8a9f501bc75fb7826f529f85b0e34059146291f2e7bb3cab4062c9。保护LATEST日期/journal隔离已核。原程序/日志/模型回答远端留存；tar credential-first，密钥只远端.env绝不回显/本地/Git。
+最后观察学长head e4181fac5edb319e14d4d819088778d5d2708912，无新效果报告；0918目录14:46双读0可见文件，不等于未上传。研究盘1TB至09-29，续期未知，当前无需新清理。
+分支codex-prospective-decision-v1-20260814；只正常push myfork HEAD:phase1-value-critic。最新已核公开ca2f49f272363cee86362e87234619aaf9837150，本轮新增未发布。无关untracked保留。push前扫描全部待发布blob凭据形状及敏感文件名，只报数量；结果JSON/CSV保持-text；commit标题无数字或只复制打印数。

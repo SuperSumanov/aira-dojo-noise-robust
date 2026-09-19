@@ -1,0 +1,18 @@
+{
+  "question": "On two fixed development failure prefixes, does one uniform cached sibling before native repair improve first accepted valid submission within the same wall budget?",
+  "scope": "Exploratory conditioned repair episode, not full search, not a held-out confirmation",
+  "prefix_seeds": [1, 2],
+  "arms": ["native_debug", "uniform_cache_then_native_debug"],
+  "episode_seconds": 2100,
+  "maximum_debug_depth": 20,
+  "whole_allocation_seconds": 6000,
+  "gpus": 6,
+  "gpu_hours_cap": 10,
+  "layout": "Two dedicated 2-GPU generator services and two 1-GPU MLE workers on gpu28; crossover arm-to-lane assignment in second pair",
+  "seeds": {"cache_rng": "continuation-online-v1:20260919:{prefix_seed}", "debug_request": "100000+100*prefix_seed+depth", "analysis_request": "200000+100*prefix_seed+depth", "cache_analysis_request": "300000+prefix_seed"},
+  "controls": ["same original task image", "same original operators and ancestor memory", "same local 27B revision", "same public data and initial error", "same resource reservation and stopping rule", "first native accepted candidate only", "max_tokens=32768", "one request attempt, zero retries", "temperature=.6, top_p=.95 for debug", "original analyzer sampling"],
+  "stopping": "Stop on first native accepted submission or episode deadline or max debug depth. In-flight work is killed at common deadline; it cannot become a late incumbent. No truncated-answer salvage. Cache failure falls back to the original failed prefix, not the failed sibling.",
+  "measurement": "Whole episode clock includes imports, public preview, generation, program execution, native analysis, and cleanup. Generator startup excluded from episode but all allocation GPU-hours reported. No external score or validity provided to the model; external validation and grading after all episodes close.",
+  "prohibited": ["outcome-based cache choice", "retry failed draws", "paid API", "training", "read protected cohorts", "change frozen old receipts"],
+  "limitations": ["Both prefixes and cache outcomes already seen in development", "two physical runs, not four independent trials", "shared generation sunk cost conditional on existing pool; does not prove full-search savings", "local native-operator loop rather than resumed production checkpoint", "fresh isolated code execution workspaces in both arms", "node-wide contention possible despite dedicated GPU/CPU partitions"]
+}

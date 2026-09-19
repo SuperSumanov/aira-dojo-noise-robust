@@ -1,0 +1,12 @@
+{
+  "status": "PASS",
+  "groups": [
+    {
+      "seed": 3,
+      "status": "prefix_not_reproduced"
+    }
+  ],
+  "unit": "two exploratory physical runs; four cache alternatives are not seeds",
+  "boundary": "Arithmetic verification only; no live E2E or fresh-generation claim",
+  "source_summary_sha256": "7dd466d42627e642ded6cd34af5660e0d0f6f76ed1150fb423565e13f7fb9371"
+}

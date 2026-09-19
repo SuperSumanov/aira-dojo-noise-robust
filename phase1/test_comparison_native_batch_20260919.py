@@ -1,8 +1,13 @@
 import json,tempfile,unittest
 from pathlib import Path
-from run_comparison_native_batch_order_20260919 import stages,improves,keep_incumbent
+from run_comparison_native_batch_order_20260919 import stages,improves,keep_incumbent,cpu_debug_code
 
 class NativeBatch(unittest.TestCase):
+    def test_mock_action_recognizes_native_formatting(self):
+        for code in ('pass #debug','pass  # debug\n','pass\n'):
+            self.assertTrue(cpu_debug_code(code))
+        self.assertFalse(cpu_debug_code('x = 1'))
+        self.assertFalse(cpu_debug_code('pass\nx = 1'))
     def test_same_stages_only_order_changes(self):
         self.assertEqual(stages(False),tuple(reversed(stages(True))))
         self.assertEqual(set(stages(False)),{'repair','sibling'})

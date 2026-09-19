@@ -12,10 +12,17 @@ first960/Target300/522仍封；不恢复HCE/多保真/Probe/score-channel/K>=1/G
 
 ## 正在运行：14165 Pizza完整时限
 
-ROOT=BASE/comparison-pizza-full-deadline-20260919-yaywhbo1；commit a37e3595a62989746c5ffb96943bbfea8ec65e96；prepared a153be4e55a98da9e07fb75f60cee4d320da5aa91b551ce7b65bbf7967ef4ee3。21:29最后观察RUNNING/190秒，服务未ready、0episode；以现场覆盖，勿重投。
+ROOT=BASE/comparison-pizza-full-deadline-20260919-yaywhbo1；commit a37e3595a62989746c5ffb96943bbfea8ec65e96；prepared a153be4e55a98da9e07fb75f60cee4d320da5aa91b551ce7b65bbf7967ef4ee3。22:05最后观察RUNNING/2268秒，服务ready，前两episode进行中，后两未开始；不提前读结果，勿重投。
 固定Pizza原seed1/2×native debug / uniform-cache-then-debug，35分钟每episode/20debug，首次原生接受即停，第二组交换lane；gpu28六卡24CPU100min≤10GPUh，0API/fit。两独立双卡服务+各一任务卡；启动不计episode但全allocation成本计入。cache RNG预先固定，未按新分数选。
 full-deadline策略在14146效果前冻结：API不传max_tokens，vLLM默认/上下文限制；debug/analyze均用episode剩余时间，无额外1200s/300s上限、无重试/截断代码抢救。exact-source进程级overlay只改local，共享文件不动。原model generation_config无max_new_tokens，镜像get_max_tokens源码已核。实接线26mock/四完整循环/绑定桥CPU PASS，非效果。
-监控status_comparison_pizza_online_20260919.py，未闭合不读结果/incumbent。闭合后readout_comparison_pizza_online_20260919.py --reader-commit精确SHA唯一读出；新reader须commit上传。评分AUC higher-better，独立rank_auc/穷举测试；独立verify_comparison_online_results_20260919.py支持auc_delta。旧Spooky reader已闭合不重跑。
+监控status_comparison_pizza_online_20260919.py，未闭合不读结果/incumbent。闭合后readout_comparison_pizza_online_20260919.py --reader-commit e7d969f1102a589cc2d887df9eb02cf48dad9047唯一读出；该版本已上传BASE。评分AUC higher-better，独立rank_auc/穷举测试；独立verify_comparison_online_results_20260919.py支持auc_delta。旧Spooky reader已闭合不重跑。
+
+## 准备中：同原生批次只换顺序
+
+run_comparison_native_batch_order_20260919.py / comparison_native_batch_order_plan_20260919.json：同原第二入选程序和first debug cycle，只换repair→second / second→repair；两阶段均做（不因首成功停止），共同35分钟、按有限内部metric最大选最终提交（ties保首个）、首有效延迟单独记录。2seed×2arm、6GPU/100min≤10GPUh，必须等14165结束。开发条件单batch而非完整搜索E2E。
+22:05 CPU prepare c2c4e21b失败ROOT comparison-native-batch-order-20260919-8pdj0u_r，未提交GPU：模拟分类用字符串pass注释，原生formatter改空格使之误识别为sibling；改AST只识别单Pass，8单测通过，下一新root重做真实CPU预检，旧root不改。
+14166 original-second闭合88秒2GPU/.04888888888888889GPUh，ROOT comparison-pizza-selected-second-20260919-u2nkqs5y，prepared51f32ba6bc25e6e25a58f8a1f8c4594206c2780c6cdcc5c9cbdd96b6e4400103，reader7ae3622574c926e9e044ca686b7dd1fc7c9c1ad6已唯一读出。seed1第二原选有效AUC .74184/87.09747589100152s，seed2 exit1失败；未native分析，非策略收益。只下载安全summary/runs/cpu，不重跑。
+全25初始池严格延迟有效兄弟机会0；独立事后次级7组成本较小但质量3胜4负，所以不用首成功替代最终质量。不修改零结果或称普遍更优。
 旧Pizza root comparison-pizza-online-20260919-1qiyjkqy（prepared8192d964d11b042d49724c854947839faa01153ea2a96fe84500a9dc00966e6f）从未提交，禁投/改旧root。
 
 ## 已完成，不要重做
@@ -37,4 +44,4 @@ AGR-V已有未验证池和动态生成/验证，Recovering Wasted Compute已有�
 MLE原镜像在gpu28 RTX3090（gpu27兼容、adapter锁gpu28），禁projgpu39/改Torch/CPUfallback。镜像BASE/aira-dojo/build/superimage/superimage.root.2026-07-macos-v1.sif。
 ASSETS=BASE/local-qwen27b-20260914-zcx1k1dy；27B revisiondc430725f831dd90d9271738b877879a46a82239，18文件36808331288bytes，不重下载/验收。ASSETS/source原生算子/FreshContainer；DONOR=BASE/forets-fresh-integration-20260914-ih6u0mpw。研究盘1TB至09-29，延期未知，容量门通过、无需清理。
 0912五包BASE/comparison-quarantine-20260919-_tda9fh6，703326526bytes；只新Qwen46config/43journal，nodesSHA370976e31c8a9f501bc75fb7826f529f85b0e34059146291f2e7bb3cab4062c9；保护LATEST/日期/journal隔离已核。
-分支codex-prospective-decision-v1-20260814，只正常push myfork HEAD:phase1-value-critic。21:22公开HEAD f54967ca48f1d7c2174d77f5ec5dc0d01ebd1157；本地新增待推。无关untracked保留。发布前扫全部待推blob凭据形状及敏感文件名，仅报数量；结果JSON/CSV -text；标题无数字或只复制已打印值。
+分支codex-prospective-decision-v1-20260814，只正常push myfork HEAD:phase1-value-critic。21:36公开HEAD e7d969f1102a589cc2d887df9eb02cf48dad9047，ls-remote匹配；本地后续新增待推。无关untracked保留。发布前扫全部待推blob凭据形状及敏感文件名，仅报数量；结果JSON/CSV -text；标题无数字或只复制已打印值。

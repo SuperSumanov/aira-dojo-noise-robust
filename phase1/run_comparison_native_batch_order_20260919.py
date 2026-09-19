@@ -1,5 +1,5 @@
 """Same original chosen batch, same repair; only change action order."""
-import argparse,asyncio,hashlib,json,math,os,subprocess,time,types
+import argparse,ast,asyncio,hashlib,json,math,os,subprocess,time,types
 from pathlib import Path
 from unittest.mock import patch
 import run_comparison_pizza_online_20260919 as pizza
@@ -19,6 +19,10 @@ def stages(sibling_first):return ('sibling','repair') if sibling_first else ('re
 def improves(metric,best):
     if type(metric) not in (int,float) or not math.isfinite(metric):return False
     return best is None or metric>best
+
+def cpu_debug_code(code):
+    tree=ast.parse(code)
+    return len(tree.body)==1 and isinstance(tree.body[0],ast.Pass)
 
 def keep_incumbent(ep,value,metric,previous):
     if not improves(metric,previous):return previous
@@ -104,7 +108,7 @@ def cpu(root):
         seen=[];debugs=0;last_kind=None;last_success=False
         def fake_execute(where,code,index,remaining):
             nonlocal last_kind,last_success,debugs
-            last_kind='repair' if code.strip()=='pass #debug' else 'sibling'
+            last_kind='repair' if cpu_debug_code(code) else 'sibling'
             if last_kind=='repair':debugs+=1
             last_success=last_kind=='sibling' or debugs==2;seen.append(last_kind)
             result=types.SimpleNamespace(term_out=['mock'],exit_code=0 if last_success else 1,timed_out=False,exec_time=.001)

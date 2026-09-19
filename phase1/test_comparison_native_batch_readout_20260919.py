@@ -1,6 +1,6 @@
 import json,tempfile,unittest
 from pathlib import Path
-from readout_comparison_native_batch_order_20260919 import audit,selection_history
+from readout_comparison_native_batch_order_20260919 import audit,selection_history,completed_request_time
 from run_comparison_native_batch_order_20260919 import keep_incumbent
 from readout_comparison_online_continuation_20260919 import compare
 from verify_comparison_online_results_20260919 import verify
@@ -26,7 +26,7 @@ class BatchReadout(unittest.TestCase):
             for i,a in enumerate(rows):
                 best=keep_incumbent(ep,dict(action_index=i,submission_sha256=a['submission_sha256'],accepted_seconds=a['completed_seconds'],code_sha256=a['code_sha256']),a['internal_metric'],best)
             (ep/'first-accepted.json').write_text(json.dumps(dict(action_index=0,accepted_seconds=50)))
-            finished=dict(actions=2,native_accepted=True,first_valid_seconds=50,status='batch_complete',completed_stages=['sibling','repair'])
+            finished=dict(actions=2,native_accepted=True,first_valid_seconds=50,status='batch_complete',completed_stages=['sibling','repair'],elapsed_seconds=210)
             out=audit(ep,rows,{'cache':True},finished)
             self.assertEqual(out['incumbent_updates'],2);self.assertEqual(out['first_native_accept_seconds'],50)
             bad=json.loads((ep/'incumbent-decision-0.json').read_text());(ep/'incumbent.json').write_text(json.dumps(bad))
@@ -42,5 +42,14 @@ class BatchReadout(unittest.TestCase):
         data['comparison']=compare(data['rows'],'auc_delta_cache_minus_baseline','first_native_accept_seconds')
         self.assertEqual(data['comparison']['groups'][0]['first_accept_seconds_delta'],-50)
         self.assertEqual(verify(data)['valid_accepted'],2)
+    def test_completed_request_time_never_imputes_missing_calls(self):
+        records=[('generation',{'info':{'usage':{'latency':40.}}}),('analysis',{'info':{'usage':{'latency':5.}}})]
+        out=completed_request_time(records)
+        self.assertEqual(out['observed_model_request_seconds'],45.)
+        self.assertTrue(out['request_time_is_lower_bound']);self.assertTrue(out['unrecorded_time_not_assigned_to_model'])
+        self.assertEqual(completed_request_time([])['observed_model_request_seconds'],0.)
+    def test_unknown_or_nonfinite_request_time_is_not_zero(self):
+        for value in (None,float('nan'),float('inf'),-1,True):
+            with self.assertRaises(ValueError):completed_request_time([('analysis',{'info':{'usage':{'latency':value}}})])
 
 if __name__=='__main__':unittest.main()

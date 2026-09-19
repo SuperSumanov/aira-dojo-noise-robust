@@ -7,6 +7,18 @@ from readout_comparison_pizza_online_20260919 import numerical
 ROOT=shared.rt.BASE/'comparison-native-batch-order-20260919-hz3c589n'
 PREPARED='25d55a42517e586b677dd72a7296a4453c0c68bfda03c551eeb30570e8274428'
 
+def completed_request_time(records):
+    seconds={'generation':0.,'analysis':0.};counts={'generation':0,'analysis':0}
+    for kind,record in records:
+        if kind not in seconds:raise ValueError('model request kind')
+        value=(record.get('info',{}).get('usage') or {}).get('latency')
+        if type(value) not in (float,int) or not math.isfinite(value) or value<0:raise ValueError('missing/nonfinite measured request time')
+        seconds[kind]+=value;counts[kind]+=1
+    return dict(completed_generation_request_seconds=seconds['generation'],completed_analysis_request_seconds=seconds['analysis'],
+                completed_generation_requests=counts['generation'],completed_analysis_requests=counts['analysis'],
+                observed_model_request_seconds=sum(seconds.values()),request_time_is_lower_bound=True,
+                unrecorded_time_not_assigned_to_model=True)
+
 def selection_history(actions):
     """Independent plain scan; does not import the execution selector."""
     best=None;decisions=[];first=None
@@ -47,10 +59,16 @@ def audit(ep,actions,start,finished):
         if finished['actions']!=len(actions) or finished['native_accepted'] is not (best is not None):raise ValueError('closure disagrees')
         if finished['first_valid_seconds']!=first_seconds:raise ValueError('closure latency disagrees')
         if finished['status']=='batch_complete' and finished['completed_stages']!=expected:raise ValueError('premature first-success stop')
+    # Only completed response timing metadata is exported, never model content.
+    # Timed-out/killed calls have no completed receipt and are NOT imputed.
+    requests=[(kind,shared.safe(p)) for kind,stem in (('generation','generation'),('analysis','analysis')) for p in sorted(ep.glob(stem+'-*.private.json'))]
+    timing=completed_request_time(requests)
+    elapsed=finished['elapsed_seconds'] if finished else 2100
+    if timing['observed_model_request_seconds']>elapsed+1:raise ValueError('request timing exceeds sequential episode')
     return dict(arm='original_second_then_native_repair' if start['cache'] else 'native_repair_then_original_second',
                 selection_audit='PASS_INTERNAL_METRIC_FINAL_INCUMBENT',first_native_accept_seconds=first_seconds,
                 native_accepted_actions=sum(a.get('native_accepted') is True for a in actions),
-                incumbent_updates=len(decisions),completed_stages=finished['completed_stages'] if finished else None)
+                incumbent_updates=len(decisions),completed_stages=finished['completed_stages'] if finished else None,**timing)
 
 def configure():
     shared.ROOT=ROOT;shared.PREPARED=PREPARED;shared.TASK='random-acts-of-pizza'

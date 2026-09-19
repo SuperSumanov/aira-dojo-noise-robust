@@ -67,7 +67,7 @@ def main(reader_commit):
         seed=index//2+1;lane=index%2;ep=ROOT/f'episode-{index}'
         row=dict(index=index,seed=seed,lane=lane,cache=lane==index//2,budget_seconds=BUDGET,
             status='infrastructure_unknown',valid_accepted_submission=None,score=None,independent_score=None,accepted_seconds=None,
-            source_commit=p['commit'],job=job,action_count=0,model_calls_completed=0,completion_tokens=0)
+            source_commit=p['commit'],job=job,action_count=0,model_calls_completed=0,debug_completion_tokens_recorded=0)
         if not complete or not (ep/'start.json').exists():rows.append(row);continue
         start=safe(ep/'start.json')
         if any(start[k]!=row[k] for k in ('index','seed','lane','cache','budget_seconds')):raise ValueError('episode identity')
@@ -79,7 +79,7 @@ def main(reader_commit):
         for file in sorted(ep.glob('action-*.json'),key=lambda f:int(f.stem.split('-')[1])):
             action=safe(file);actions.append(action)
             for name in ('generation_usage',):
-                usage=action.get(name) or {};row['completion_tokens']+=usage.get('completion_tokens') or 0
+                usage=action.get(name) or {};row['debug_completion_tokens_recorded']+=usage.get('completion_tokens') or 0
         row['action_count']=len(actions);row['model_calls_completed']=len(list(ep.glob('generation-*.private.json')))+len(list(ep.glob('analysis-*.private.json')))
         # Analyze response payloads and raw programs are not emitted or used to select.
         for action_index,action in enumerate(actions):

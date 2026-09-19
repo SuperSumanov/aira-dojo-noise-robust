@@ -1,6 +1,10 @@
-# 当前短交接 — 2026-09-19 14:44 UTC
+# 当前短交接 — 2026-09-19 14:56 UTC
 
 ## 最新现场（覆盖下方历史最后观察）
+14136已COMPLETED/585秒2GPU=.325GPUh，8分析全部已尝试、7返回1未知。官方有效3条中原生接受2条、1条BoundedAttemptError无可用响应，五条官方无效全部拒绝，未补采样。仅一固定起点的2个可用cache机会，不是总体/E2E效果。summary203ffd2cca3763d5aea7bdf4c200c644797c3624f0b02e85981c5bdae7169557；本地results/comparison_cache_acceptance_20260919。7条已返回响应用be933原生MCTS.parse_eval_result独立复核通过，native-independent.json保留1unknown；无外部score进模型。唯一reader已闭合，勿重跑。原“格式未通过”只是初步判断，结构诊断确认是BoundedAttemptError，不是官方判无效。
+14134零代码closeout已完成，summary facfb52f7ce675a8006ba2a3b147c89793a240416a019eb6fafb0057f5372d29，本地results/comparison_depth2_20260919；14134实耗1.1227777777777779GPUh，连第一生成/执行累计1.9222222222222223GPUh，预定contrast两组均UNKNOWN_NO_EFFECT_CLAIM。不要重跑reader/模型。
+14135第三银行14:55最后观察RUNNING/2717秒/5结果6绑定；尚未读结果值。14136不再占卡。0918学长比较目录14:46仍双读0可见文件/原listing SHA不变，不能说学长未上传。
+新共用预算适配器已修原生外层<=与remaining_steps=0的空转边界，两臂同一外层停止/检查点/最终原选择器；78统一CPU回归通过（含原生解析5与整轮边界5）。只是开发实现，未部署/没有真实E2E收益。
 14134已COMPLETED/2021秒2GPU，第二轮两回答均finish_reason=length/32768tokens，无完整代码；不补采样或回收截断回答。两条结果未知，不是程序失败，也不能推缓存更优。执行预检ROOT=BASE/comparison-depth2-debug-exec-20260919-126ifhtp，prepared a6cdef6122f7d5c4c693ac41c9e426e20ca1f0c2f30cfd3a3723528e96943834，runnable=0，未submit且不得submit。新增readout_comparison_unrunnable_20260919.py专门闭合未知并保留真实生成成本，尚待运行。
 14136缓存原生接受率已提交，ROOT与下方prepare相同，2GPU70min；只模型分析，无任务再执行/付费API。安全状态status_comparison_cache_acceptance_20260919.py。readout上传到BASE，使用--reader-commit 86dc5061ddd3c50de87cc563c1307361e4e2d288（6测试），只在allocation终止后读出。14135第三银行14:41最后观察RUNNING/1836秒/4结果6绑定，未读结果值。
 14:44统一68离线测试通过，包括零完整代码闭合5测试。此前一条测试模块名拼错仅导入失败，改为仓库实际test_comparison_fresh_contrast_20260919后重跑通过，未涉及远端实验。

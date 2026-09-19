@@ -1,0 +1,25 @@
+{
+  "status": "PASS_NATIVE_PARSER_COMPONENT_ONLY",
+  "verified_indices": [
+    0,
+    1,
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "unknown_indices": [
+    2
+  ],
+  "no_external_metric_used": true,
+  "full_search_executed": false,
+  "source_commit": "be9335348b569086ef9b0af36a15b13e61fec45c",
+  "source_path": "src/dojo/solvers/mcts/mcts.py",
+  "source_sha256": "f75a93f69fd79029ae4d3ce5b9dad81520480cbf36b56b05d8719a8b84c2a63d",
+  "summary_sha256": "203ffd2cca3763d5aea7bdf4c200c644797c3624f0b02e85981c5bdae7169557",
+  "bank_sha256": {
+    "1": "f3ea334c94257bbbbc06229a8a3aeea609e2516879bdf9a32822e176897ee9ce",
+    "2": "54154a13de4d5dbcb34ba09a47adf24162382fd0818669fb914856dc6ce15ded"
+  }
+}

@@ -14,6 +14,25 @@ def make_comparable_continuation(base_class, *, cache_enabled, seed, clock=monot
     inner=make_cached_continuation(base_class,enabled=cache_enabled,seed=seed)
 
     class CommonAdmission(inner):
+        def __call__(self,task,state):
+            # Native MCTS uses <= step_limit while remaining_steps becomes zero
+            # at equality. With admission guards that can otherwise busy-loop.
+            # Both arms use this same outer boundary, accounting and exporter.
+            from dojo.core.solvers.utils.search_exporter import export_search_results
+            self.logger.info(f'Starting {self.search_name} search')
+            self.create_root_node()
+            while self.remaining_steps>0 and self.state.running_time<self.cfg.time_limit_secs:
+                started=clock();before=self.state.current_step
+                state=self.step(task,state)
+                self.state.running_time+=clock()-started
+                self.save_checkpoint()
+                if self.state.current_step==before and self.state.running_time<self.cfg.time_limit_secs:
+                    raise RuntimeError('search expansion made no progress before deadline')
+            best=self.journal.get_best_node()
+            try:export_search_results(self.cfg,self.journal,self.logger,self.search_name)
+            except Exception as exc:self.logger.error(f'Error exporting search results: {exc}')
+            return (state,best.code,best) if best else (state,None,None)
+
         def _continuation_admits(self):
             context=getattr(self,'_common_admission_context',None)
             if context is None:raise RuntimeError('admission outside expansion')

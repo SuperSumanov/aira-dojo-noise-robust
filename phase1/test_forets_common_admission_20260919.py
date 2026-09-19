@@ -73,4 +73,53 @@ class AdmissionTests(unittest.TestCase):
         result=solver._expand_leaf_and_backprop([solver.root],0,task)
         self.assertEqual(len(task.executed),2);self.assertEqual(solver.debugged,[]);self.assertEqual(result,2)
 
+    def outer(self,enabled,limit,clock=lambda:0):
+        class OuterBase(FakeBase):
+            search_name='ForeTS'
+            def create_root_node(self):self.root_calls+=1
+            def step(self,task,state):
+                self.step_calls+=1
+                if self.step_calls>2:raise AssertionError('outer loop did not stop')
+                return self._expand_leaf_and_backprop([self.root],state,task)
+            def save_checkpoint(self):self.saved+=1
+        solver=make_comparable_continuation(OuterBase,cache_enabled=enabled,seed=7,clock=clock)()
+        solver.cfg.step_limit=limit;solver.root_calls=solver.step_calls=solver.saved=0
+        solver.journal.get_best_node=lambda:next((node for node in solver.journal.nodes if node.metric.value is not None),None)
+        module=ModuleType('dojo.core.solvers.utils.search_exporter');module.export_search_results=lambda *args:None
+        temporary=patch.dict(sys.modules,{'dojo.core.solvers.utils.search_exporter':module});temporary.start();self.addCleanup(temporary.stop)
+        return solver
+
+    def test_whole_search_stops_at_exact_budget_without_busy_loop(self):
+        for enabled in (False,True):
+            solver=self.outer(enabled,2);task=Task()
+            result=solver(task,0)
+            self.assertEqual(result,(1,None,None));self.assertEqual(solver.step_calls,1)
+            self.assertEqual(solver.saved,1);self.assertEqual(solver.state.current_step,2)
+
+    def test_whole_search_with_no_remaining_actions_never_enters_expansion(self):
+        for enabled in (False,True):
+            solver=self.outer(enabled,1);task=Task()
+            self.assertEqual(solver(task,8),(8,None,None))
+            self.assertEqual(solver.step_calls,0);self.assertEqual(task.executed,[])
+
+    def test_whole_search_records_last_state_and_elapsed_cost_at_deadline(self):
+        for enabled in (False,True):
+            ticks=[0];solver=self.outer(enabled,30,clock=lambda:ticks[0]);solver.cfg.time_limit_secs=5
+            task=Task();original=task.step_task
+            def run(state,code):
+                result=original(state,code);ticks[0]=6;return result
+            task.step_task=run
+            self.assertEqual(solver(task,0),(1,None,None))
+            self.assertEqual(solver.state.running_time,6);self.assertEqual(solver.saved,1)
+
+    def test_whole_search_keeps_original_best_node_contract(self):
+        for enabled in (False,True):
+            solver=self.outer(enabled,6);task=Task();state,code,node=solver(task,0)
+            self.assertEqual(state,len(task.executed));self.assertIs(node,solver.journal.get_best_node())
+            self.assertEqual(code,node.code);self.assertLessEqual(solver.state.current_step,6)
+
+    def test_whole_search_no_progress_is_an_error_not_spin(self):
+        solver=self.outer(True,6);solver.step=lambda task,state:state
+        with self.assertRaisesRegex(RuntimeError,'no progress'):solver(Task(),0)
+
 if __name__=='__main__':unittest.main()

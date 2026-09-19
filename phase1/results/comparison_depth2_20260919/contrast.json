@@ -1,0 +1,27 @@
+{
+  "role": "cumulative_two_repair_sensitivity_not_e2e",
+  "groups": [
+    {
+      "seed": 1,
+      "status": "UNKNOWN_NO_EFFECT_CLAIM"
+    },
+    {
+      "seed": 2,
+      "status": "UNKNOWN_NO_EFFECT_CLAIM"
+    }
+  ],
+  "jobs": {
+    "banks": "14115+14128",
+    "first_generation": "14127",
+    "first_execution": "14133",
+    "second_generation": "14134",
+    "second_execution": null
+  },
+  "generation_and_execution_gpu_hours": 1.9222222222222223,
+  "caveat": "Two existing development prefixes. Second repairs were commissioned after first repairs failed; no independent confirmation or deployment acceptance claim. All failed work retained in cumulative cost.",
+  "source_sha256": {
+    "banks": "8fb886426df3b73caecd5adf8d1ba6375c6d437728d6c31f1f7313c550bac720",
+    "first": "71302cc7321a42ec592f90a367738f935ec4ff60130fa8fb83ed79a317d7e86b",
+    "second": "facfb52f7ce675a8006ba2a3b147c89793a240416a019eb6fafb0057f5372d29"
+  }
+}

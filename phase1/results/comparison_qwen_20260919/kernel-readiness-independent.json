@@ -1,0 +1,34 @@
+{
+  "independent_identity_and_count_checks": true,
+  "raw_log_marker_reparse": false,
+  "marker_nodes": 16,
+  "denominator": 957,
+  "node_fraction": 0.01671891327063741,
+  "affected_runs": 11,
+  "by_arm": {
+    "forets": {
+      "markers": 3,
+      "nonroot_nodes": 141,
+      "affected_runs": 2
+    },
+    "forets-1": {
+      "markers": 6,
+      "nonroot_nodes": 198,
+      "affected_runs": 3
+    },
+    "forets-2": {
+      "markers": 4,
+      "nonroot_nodes": 208,
+      "affected_runs": 3
+    },
+    "mcts": {
+      "markers": 3,
+      "nonroot_nodes": 410,
+      "affected_runs": 3
+    }
+  },
+  "exec_seconds_min": 120.05724292201921,
+  "exec_seconds_median": 120.06093958253041,
+  "exec_seconds_max": 120.06777003197931,
+  "limitation": "Not an independent reparse of logs; no recovery rate or causal arm comparison implied."
+}

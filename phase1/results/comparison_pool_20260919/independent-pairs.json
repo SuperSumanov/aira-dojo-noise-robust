@@ -1,0 +1,24 @@
+{
+  "status": "INDEPENDENT_PAIR_ENUMERATION_PASS",
+  "pools": [
+    {
+      "seed": 1,
+      "status": "verified",
+      "wins": 10,
+      "ties": 5,
+      "losses": 0
+    },
+    {
+      "seed": 2,
+      "status": "verified",
+      "wins": 1,
+      "ties": 2,
+      "losses": 12
+    },
+    {
+      "seed": 3,
+      "status": "unknown"
+    }
+  ],
+  "summary_sha256": "238bd65e00edd0f678b1f9dc6fbce0c92bf49247030765b64c703ed4d469547a"
+}

@@ -153,7 +153,10 @@ class JupyterInterpreter(Interpreter):
         outputs = [self.cleanup_line(line) for line in results.term_out.copy()]
         # if we timed out, show that in the output
         if results.timed_out:
-            outputs.append(f"TimeoutError: Execution exceeded the time limit of {humanize.naturaldelta(self.timeout)}")
+            if results.timeout_phase == "kernel_readiness":
+                outputs.append("TimeoutError: Kernel readiness timed out before candidate execution began.")
+            else:
+                outputs.append(f"TimeoutError: Execution exceeded the time limit of {humanize.naturaldelta(self.timeout)}")
         elif include_exec_time:
             outputs.append(
                 f"Execution time: {humanize.naturaldelta(results.exec_time)} (time limit is {humanize.naturaldelta(self.timeout)})."
@@ -165,6 +168,7 @@ class JupyterInterpreter(Interpreter):
             exec_time=results.exec_time,
             eval_return=results.eval_return,
             timed_out=results.timed_out,
+            timeout_phase=results.timeout_phase,
         )
 
     def cleanup_session(self) -> None:

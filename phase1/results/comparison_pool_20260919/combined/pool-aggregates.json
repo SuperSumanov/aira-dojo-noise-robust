@@ -1,0 +1,13 @@
+{
+  "summary_sha256": "41e42fbff91ca970e8f5ee19a1ffdf57c31ffe0ddd6a24182e5e304c1225ef4f",
+  "completed_pools": 3,
+  "unknown_pools": 0,
+  "selected_contains_pool_best": 2,
+  "equal_pool_retention_bound": [
+    -0.029629629629629645,
+    0.37777777777777777
+  ],
+  "conditional_quality_gain_mean": -0.13997469576719576,
+  "conditional_quality_gain_median": 0.2908888888888889,
+  "caveat": "Complete pools only; no cross-task averaging, significance claim or deployable/E2E effect. Conditional quality uses different valid-pair subsets in each pool."
+}

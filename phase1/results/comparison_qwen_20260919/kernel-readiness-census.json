@@ -1,0 +1,441 @@
+{
+  "role": "runtime_metadata_diagnostic_no_outcome_reclassification",
+  "runs": 43,
+  "nonroot_executed_nodes": 957,
+  "marker_nodes": 16,
+  "affected_runs": 11,
+  "generic_timeout_messages": 16,
+  "by_task": {
+    "random-acts-of-pizza": 2,
+    "AI4Code": 2,
+    "spooky-author-identification": 11,
+    "leaf-classification": 1
+  },
+  "rows": [
+    {
+      "run": "514320462b1e1536",
+      "commit": "be9335348b569086ef9b0af36a15b13e61fec45c",
+      "task": "random-acts-of-pizza",
+      "nodes": 17,
+      "readiness_failures": []
+    },
+    {
+      "run": "620f3b971818de16",
+      "commit": "be9335348b569086ef9b0af36a15b13e61fec45c",
+      "task": "random-acts-of-pizza",
+      "nodes": 20,
+      "readiness_failures": []
+    },
+    {
+      "run": "5c3f818a9595bd79",
+      "commit": "be9335348b569086ef9b0af36a15b13e61fec45c",
+      "task": "random-acts-of-pizza",
+      "nodes": 15,
+      "readiness_failures": []
+    },
+    {
+      "run": "1eee3186d26dcbcd",
+      "commit": "be9335348b569086ef9b0af36a15b13e61fec45c",
+      "task": "random-acts-of-pizza",
+      "nodes": 22,
+      "readiness_failures": [
+        {
+          "node": "f241b4cce0154a97886aa06cfa0b2992",
+          "exec_time": 120.06777003197931,
+          "exit_code": 1,
+          "generic_program_timeout_message": true,
+          "recorded_buggy": true
+        }
+      ]
+    },
+    {
+      "run": "adc09c14eda018c4",
+      "commit": "be9335348b569086ef9b0af36a15b13e61fec45c",
+      "task": "random-acts-of-pizza",
+      "nodes": 16,
+      "readiness_failures": []
+    },
+    {
+      "run": "817f8d5f4ca7979e",
+      "commit": "be9335348b569086ef9b0af36a15b13e61fec45c",
+      "task": "random-acts-of-pizza",
+      "nodes": 21,
+      "readiness_failures": []
+    },
+    {
+      "run": "7a9056cf3c6744ea",
+      "commit": "be9335348b569086ef9b0af36a15b13e61fec45c",
+      "task": "random-acts-of-pizza",
+      "nodes": 21,
+      "readiness_failures": []
+    },
+    {
+      "run": "2b7183932e4e50dc",
+      "commit": "be9335348b569086ef9b0af36a15b13e61fec45c",
+      "task": "random-acts-of-pizza",
+      "nodes": 14,
+      "readiness_failures": []
+    },
+    {
+      "run": "4cc32ca4dfbf20a2",
+      "commit": "be9335348b569086ef9b0af36a15b13e61fec45c",
+      "task": "random-acts-of-pizza",
+      "nodes": 20,
+      "readiness_failures": []
+    },
+    {
+      "run": "72dcad0e0ccc9a02",
+      "commit": "be9335348b569086ef9b0af36a15b13e61fec45c",
+      "task": "random-acts-of-pizza",
+      "nodes": 18,
+      "readiness_failures": []
+    },
+    {
+      "run": "497a569c07cfcd0a",
+      "commit": "be9335348b569086ef9b0af36a15b13e61fec45c",
+      "task": "random-acts-of-pizza",
+      "nodes": 33,
+      "readiness_failures": []
+    },
+    {
+      "run": "471e39f496385df7",
+      "commit": "be9335348b569086ef9b0af36a15b13e61fec45c",
+      "task": "random-acts-of-pizza",
+      "nodes": 23,
+      "readiness_failures": []
+    },
+    {
+      "run": "1d3748752fe4bfa7",
+      "commit": "be9335348b569086ef9b0af36a15b13e61fec45c",
+      "task": "random-acts-of-pizza",
+      "nodes": 36,
+      "readiness_failures": [
+        {
+          "node": "384560060d27464db06acc005016866e",
+          "exec_time": 120.06045602390077,
+          "exit_code": 1,
+          "generic_program_timeout_message": true,
+          "recorded_buggy": true
+        }
+      ]
+    },
+    {
+      "run": "81bf893e100a84c2",
+      "commit": "be9335348b569086ef9b0af36a15b13e61fec45c",
+      "task": "random-acts-of-pizza",
+      "nodes": 22,
+      "readiness_failures": []
+    },
+    {
+      "run": "e94aee6abd2a7d49",
+      "commit": "be9335348b569086ef9b0af36a15b13e61fec45c",
+      "task": "random-acts-of-pizza",
+      "nodes": 30,
+      "readiness_failures": []
+    },
+    {
+      "run": "aa55d4185496ed55",
+      "commit": "be9335348b569086ef9b0af36a15b13e61fec45c",
+      "task": "random-acts-of-pizza",
+      "nodes": 29,
+      "readiness_failures": []
+    },
+    {
+      "run": "e4a4275f2df8028e",
+      "commit": "be9335348b569086ef9b0af36a15b13e61fec45c",
+      "task": "spooky-author-identification",
+      "nodes": 20,
+      "readiness_failures": []
+    },
+    {
+      "run": "58d3914785a2cfe1",
+      "commit": "be9335348b569086ef9b0af36a15b13e61fec45c",
+      "task": "spooky-author-identification",
+      "nodes": 32,
+      "readiness_failures": [
+        {
+          "node": "213fdb0c09a0454e9cf45024eeb4a718",
+          "exec_time": 120.05724292201921,
+          "exit_code": 1,
+          "generic_program_timeout_message": true,
+          "recorded_buggy": true
+        },
+        {
+          "node": "92140a36ae9243b0a3ceb693fbc7d231",
+          "exec_time": 120.06225073896348,
+          "exit_code": 1,
+          "generic_program_timeout_message": true,
+          "recorded_buggy": true
+        },
+        {
+          "node": "538b9e7161534298afdf4aff73318b9c",
+          "exec_time": 120.06075923610479,
+          "exit_code": 1,
+          "generic_program_timeout_message": true,
+          "recorded_buggy": true
+        }
+      ]
+    },
+    {
+      "run": "ddbcf032862f7a29",
+      "commit": "be9335348b569086ef9b0af36a15b13e61fec45c",
+      "task": "spooky-author-identification",
+      "nodes": 32,
+      "readiness_failures": [
+        {
+          "node": "eec095ad02974193ab22e8c1faf2a631",
+          "exec_time": 120.06075253523886,
+          "exit_code": 1,
+          "generic_program_timeout_message": true,
+          "recorded_buggy": true
+        },
+        {
+          "node": "9b67665c04794d66ad8c1ee495760375",
+          "exec_time": 120.05927004525438,
+          "exit_code": 1,
+          "generic_program_timeout_message": true,
+          "recorded_buggy": true
+        }
+      ]
+    },
+    {
+      "run": "3277c81be72a1c30",
+      "commit": "be9335348b569086ef9b0af36a15b13e61fec45c",
+      "task": "spooky-author-identification",
+      "nodes": 16,
+      "readiness_failures": []
+    },
+    {
+      "run": "a6072b4db8c338ca",
+      "commit": "be9335348b569086ef9b0af36a15b13e61fec45c",
+      "task": "spooky-author-identification",
+      "nodes": 8,
+      "readiness_failures": []
+    },
+    {
+      "run": "4d46a9e0202e9b41",
+      "commit": "bc49bb8d7cb58a2656339e45bf7eab5ef447131c",
+      "task": "spooky-author-identification",
+      "nodes": 25,
+      "readiness_failures": []
+    },
+    {
+      "run": "0cb301ad08da9727",
+      "commit": "bc49bb8d7cb58a2656339e45bf7eab5ef447131c",
+      "task": "spooky-author-identification",
+      "nodes": 28,
+      "readiness_failures": [
+        {
+          "node": "29af05bbf7ff44fba203f51e0fc0c8f7",
+          "exec_time": 120.05848961602896,
+          "exit_code": 1,
+          "generic_program_timeout_message": true,
+          "recorded_buggy": true
+        }
+      ]
+    },
+    {
+      "run": "7edcb3de5325b2e8",
+      "commit": "bc49bb8d7cb58a2656339e45bf7eab5ef447131c",
+      "task": "spooky-author-identification",
+      "nodes": 20,
+      "readiness_failures": [
+        {
+          "node": "d1c60af7fb3d479ab41685345d90202b",
+          "exec_time": 120.05835023103282,
+          "exit_code": 1,
+          "generic_program_timeout_message": true,
+          "recorded_buggy": true
+        },
+        {
+          "node": "938b3a58f5294402bb4be972088b18b0",
+          "exec_time": 120.06111992895603,
+          "exit_code": 1,
+          "generic_program_timeout_message": true,
+          "recorded_buggy": true
+        }
+      ]
+    },
+    {
+      "run": "b84b91e419d4d831",
+      "commit": "bc49bb8d7cb58a2656339e45bf7eab5ef447131c",
+      "task": "spooky-author-identification",
+      "nodes": 23,
+      "readiness_failures": []
+    },
+    {
+      "run": "b916b2861e14060c",
+      "commit": "bc49bb8d7cb58a2656339e45bf7eab5ef447131c",
+      "task": "spooky-author-identification",
+      "nodes": 18,
+      "readiness_failures": [
+        {
+          "node": "9ed7cf92cd7c4137b40a4d80486d8cc8",
+          "exec_time": 120.06559318397194,
+          "exit_code": 1,
+          "generic_program_timeout_message": true,
+          "recorded_buggy": true
+        }
+      ]
+    },
+    {
+      "run": "4b0680116e89cc52",
+      "commit": "be9335348b569086ef9b0af36a15b13e61fec45c",
+      "task": "spooky-author-identification",
+      "nodes": 21,
+      "readiness_failures": []
+    },
+    {
+      "run": "42fcc427b8d4cc1e",
+      "commit": "be9335348b569086ef9b0af36a15b13e61fec45c",
+      "task": "spooky-author-identification",
+      "nodes": 30,
+      "readiness_failures": []
+    },
+    {
+      "run": "bbb1b4f44a6cd82a",
+      "commit": "be9335348b569086ef9b0af36a15b13e61fec45c",
+      "task": "spooky-author-identification",
+      "nodes": 28,
+      "readiness_failures": [
+        {
+          "node": "f0d77975a5c04d28bc9430da4a8ef1d1",
+          "exec_time": 120.06277039996348,
+          "exit_code": 1,
+          "generic_program_timeout_message": true,
+          "recorded_buggy": true
+        }
+      ]
+    },
+    {
+      "run": "74ea1e47b9783a2c",
+      "commit": "be9335348b569086ef9b0af36a15b13e61fec45c",
+      "task": "spooky-author-identification",
+      "nodes": 29,
+      "readiness_failures": [
+        {
+          "node": "14b3106c6d9341a981cf10189b54bf5d",
+          "exec_time": 120.06355439312756,
+          "exit_code": 1,
+          "generic_program_timeout_message": true,
+          "recorded_buggy": true
+        }
+      ]
+    },
+    {
+      "run": "631c7eb6ebb346f9",
+      "commit": "be9335348b569086ef9b0af36a15b13e61fec45c",
+      "task": "spooky-author-identification",
+      "nodes": 26,
+      "readiness_failures": []
+    },
+    {
+      "run": "ca381a5db4f50746",
+      "commit": "be9335348b569086ef9b0af36a15b13e61fec45c",
+      "task": "spooky-author-identification",
+      "nodes": 17,
+      "readiness_failures": []
+    },
+    {
+      "run": "da669e32571030b0",
+      "commit": "113e25e7fa2570cb5f60401d051a1de3cce307c2",
+      "task": "AI4Code",
+      "nodes": 20,
+      "readiness_failures": []
+    },
+    {
+      "run": "99ad755aca17e8b5",
+      "commit": "113e25e7fa2570cb5f60401d051a1de3cce307c2",
+      "task": "AI4Code",
+      "nodes": 9,
+      "readiness_failures": []
+    },
+    {
+      "run": "00b3c850f50017f5",
+      "commit": "be9335348b569086ef9b0af36a15b13e61fec45c",
+      "task": "AI4Code",
+      "nodes": 21,
+      "readiness_failures": [
+        {
+          "node": "bef2adcca6bb42e785d776e31c3c03bd",
+          "exec_time": 120.06012265617028,
+          "exit_code": 1,
+          "generic_program_timeout_message": true,
+          "recorded_buggy": true
+        },
+        {
+          "node": "5c29ac65fba942abb2a5f62fe1aefdf7",
+          "exec_time": 120.0663308496587,
+          "exit_code": 1,
+          "generic_program_timeout_message": true,
+          "recorded_buggy": true
+        }
+      ]
+    },
+    {
+      "run": "46f0b562dbc0a74e",
+      "commit": "be9335348b569086ef9b0af36a15b13e61fec45c",
+      "task": "AI4Code",
+      "nodes": 18,
+      "readiness_failures": []
+    },
+    {
+      "run": "8b601e5efea310e7",
+      "commit": "be9335348b569086ef9b0af36a15b13e61fec45c",
+      "task": "leaf-classification",
+      "nodes": 41,
+      "readiness_failures": [
+        {
+          "node": "c4ae6e85ce3245bb89cbde1218b7e3bf",
+          "exec_time": 120.06161448499188,
+          "exit_code": 1,
+          "generic_program_timeout_message": true,
+          "recorded_buggy": true
+        }
+      ]
+    },
+    {
+      "run": "f70d132bf8fd755c",
+      "commit": "be9335348b569086ef9b0af36a15b13e61fec45c",
+      "task": "leaf-classification",
+      "nodes": 28,
+      "readiness_failures": []
+    },
+    {
+      "run": "aa600099292ca506",
+      "commit": "be9335348b569086ef9b0af36a15b13e61fec45c",
+      "task": "leaf-classification",
+      "nodes": 33,
+      "readiness_failures": []
+    },
+    {
+      "run": "ae52a7403c4b81c5",
+      "commit": "be9335348b569086ef9b0af36a15b13e61fec45c",
+      "task": "leaf-classification",
+      "nodes": 18,
+      "readiness_failures": []
+    },
+    {
+      "run": "cc07081dc892f06c",
+      "commit": "be9335348b569086ef9b0af36a15b13e61fec45c",
+      "task": "leaf-classification",
+      "nodes": 14,
+      "readiness_failures": []
+    },
+    {
+      "run": "de9ce9f1f9b7d861",
+      "commit": "be9335348b569086ef9b0af36a15b13e61fec45c",
+      "task": "leaf-classification",
+      "nodes": 19,
+      "readiness_failures": []
+    },
+    {
+      "run": "2daccc65ef67faaa",
+      "commit": "be9335348b569086ef9b0af36a15b13e61fec45c",
+      "task": "leaf-classification",
+      "nodes": 6,
+      "readiness_failures": []
+    }
+  ],
+  "limitation": "Exact historical harness marker, not proof every error was transient/recoverable; no failed candidate is dropped or rescored."
+}

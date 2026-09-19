@@ -1,0 +1,4 @@
+candidates,conditional_quality_gain,losses,pairs,pool_best_loss,retention_advantage_lower,retention_advantage_upper,seed,selected_best_loss,selected_valid,status,task,ties,valid,wins
+6,0.2908888888888889,0,15,0.06983,0.24444444444444444,0.4666666666666667,1,0.06983,1,COMPLETE_EXPLORATORY_POOL,leaf-classification,5,2,10
+6,-1.0740921428571428,12,15,0.12444,-0.8,0.2,2,1.80818,1,COMPLETE_EXPLORATORY_POOL,leaf-classification,2,4,1
+6,0.36327916666666665,0,15,0.11709,0.4666666666666667,0.4666666666666667,3,0.11709,2,COMPLETE_EXPLORATORY_POOL,leaf-classification,5,3,10

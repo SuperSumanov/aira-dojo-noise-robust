@@ -1,0 +1,69 @@
+{
+  "rows": [
+    {
+      "seed": 1,
+      "slot": 0,
+      "max_row_sum_absolute_deviation": 5.88418203051333e-15,
+      "all_finite": true,
+      "within_independent_tolerance": true
+    },
+    {
+      "seed": 1,
+      "slot": 1,
+      "max_row_sum_absolute_deviation": 2.55351295663786e-15,
+      "all_finite": true,
+      "within_independent_tolerance": true
+    },
+    {
+      "seed": 2,
+      "slot": 0,
+      "max_row_sum_absolute_deviation": 5.88418203051333e-15,
+      "all_finite": true,
+      "within_independent_tolerance": true
+    },
+    {
+      "seed": 2,
+      "slot": 1,
+      "max_row_sum_absolute_deviation": 4.218847493575595e-15,
+      "all_finite": true,
+      "within_independent_tolerance": true
+    },
+    {
+      "seed": 2,
+      "slot": 3,
+      "max_row_sum_absolute_deviation": 5.662137425588298e-15,
+      "all_finite": true,
+      "within_independent_tolerance": true
+    },
+    {
+      "seed": 2,
+      "slot": 5,
+      "max_row_sum_absolute_deviation": 5.773159728050814e-15,
+      "all_finite": true,
+      "within_independent_tolerance": true
+    },
+    {
+      "seed": 3,
+      "slot": 2,
+      "max_row_sum_absolute_deviation": 6.106226635438361e-15,
+      "all_finite": true,
+      "within_independent_tolerance": true
+    },
+    {
+      "seed": 3,
+      "slot": 3,
+      "max_row_sum_absolute_deviation": 5.995204332975845e-15,
+      "all_finite": true,
+      "within_independent_tolerance": true
+    },
+    {
+      "seed": 3,
+      "slot": 5,
+      "max_row_sum_absolute_deviation": 1.850020151517029e-07,
+      "all_finite": true,
+      "within_independent_tolerance": true
+    }
+  ],
+  "no_labels_read": true,
+  "no_normalization_or_results_changed": true
+}

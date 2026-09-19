@@ -29,6 +29,8 @@ class ExecutionResult(DataClassJsonMixin):
     exit_code: int | None = None
     eval_return: Any | None = None
     timed_out: bool = False
+    # None preserves compatibility with interpreters without stage information.
+    timeout_phase: str | None = None
 
     @staticmethod
     def get_empty():

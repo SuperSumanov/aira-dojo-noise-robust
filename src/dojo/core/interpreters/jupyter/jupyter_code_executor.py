@@ -108,6 +108,7 @@ class JupyterCodeExecutor(CodeExecutor):
                 exit_code=1,
                 exec_time=time.monotonic() - start_time,
                 timed_out=True,
+                timeout_phase="kernel_readiness",
             )
         log.warning(f"Ready")
         output_lines = []
@@ -131,6 +132,7 @@ class JupyterCodeExecutor(CodeExecutor):
                 exit_code=1,
                 exec_time=elapsed_time,
                 timed_out=result.timed_out,
+                timeout_phase="code_execution" if result.timed_out else None,
             )
 
         output_lines = result.output
@@ -148,6 +150,7 @@ class JupyterCodeExecutor(CodeExecutor):
             exit_code=0,
             exec_time=elapsed_time,
             timed_out=result.timed_out,
+            timeout_phase="code_execution" if result.timed_out else None,
         )
 
     def fetch_file(

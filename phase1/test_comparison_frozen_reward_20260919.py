@@ -8,6 +8,8 @@ class FrozenRewardDispatch(unittest.TestCase):
         self.assertLess(script.index('unset CUDA_VISIBLE_DEVICES'),script.index('exec srun'))
         self.assertIn('--exclusive --nodes=1 --ntasks=1 --cpus-per-task=6 --gres=gpu:1',script)
         self.assertEqual(ATTEMPT_SECONDS+PRIOR_SECONDS,1800)
+        self.assertIn('/venvs/exp/bin/python',script)
+        self.assertNotIn('/venvs/aira/bin/python',script)
         self.assertNotIn('ROOT',script)
     def test_fixed_code_and_task_only_reach_scorer(self):
         with tempfile.TemporaryDirectory() as directory:

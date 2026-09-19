@@ -11,16 +11,29 @@ SOURCES=[('comparison-pool-20260919-7ujiaajp','394470c82755bdebf02d34c86f7474ef9
 LOADER={'bradley_terry_server.py':'ebe289b5d22ac8186c8a13c9462aa62782d12cd32c628283081b488468d35fad',
         'bradley_terry_evaluation.py':'31ecf62ecd92a88ee2a4a7b9a3f723081c8075adb448c592b4c62cd2303bd99d'}
 PRIOR_ROOT=rt.BASE/'comparison-frozen-reward-20260919-72slmwzt'
-PRIOR_SECONDS=12
+GPU_PYTHON=rt.BASE/'venvs/exp/bin/python'
+PRIOR_SECONDS=16
 ATTEMPT_SECONDS=1800-PRIOR_SECONDS
 
 def closed_launch_failure():
     env=dict(os.environ,SLURM_CONF='/opt1/slurm/gpu-slurm.conf')
     raw=subprocess.check_output(['sacct','-X','-j','14168','-nP','-o','JobIDRaw,State%32,ElapsedRaw'],env=env,text=True,timeout=25)
     row,=[line.split('|') for line in raw.splitlines() if line.split('|')[0]=='14168']
-    if row[:3]!=['14168','FAILED',str(PRIOR_SECONDS)] or (PRIOR_ROOT/'model-ready.json').exists() or list(PRIOR_ROOT.glob('prediction-*.json')):raise ValueError('prior is not the exact zero-inference startup failure')
+    if row[:3]!=['14168','FAILED','12'] or (PRIOR_ROOT/'model-ready.json').exists() or list(PRIOR_ROOT.glob('prediction-*.json')):raise ValueError('prior is not the exact zero-inference startup failure')
     if rt.sha(PRIOR_ROOT/'allocation-14168.private.err')!='0ae94fc43aaa8ac31c953967cb8854a5d5874eb8e1fa01b9079bdbbe899beb6d':raise ValueError('prior diagnosis drift')
-    return dict(job='14168',seconds=PRIOR_SECONDS,predictions=0,model_loaded=False,reason='single-device guard before model; previous launcher had no exclusive Slurm step',original_root=str(PRIOR_ROOT))
+    repair=rt.BASE/'comparison-frozen-reward-20260919-zobjollo'
+    raw=subprocess.check_output(['sacct','-X','-j','14169','-nP','-o','JobIDRaw,State%32,ElapsedRaw'],env=env,text=True,timeout=25)
+    row,=[line.split('|') for line in raw.splitlines() if line.split('|')[0]=='14169']
+    if row[:3]!=['14169','FAILED','4'] or (repair/'model-ready.json').exists() or list(repair.glob('prediction-*.json')):raise ValueError('repair not exact zero-inference failure')
+    if rt.sha(repair/'allocation-14169.private.err')!='953126e1540abf54e27fb046e161dd644f3fbdf875cb52a69483d837436b7aa9':raise ValueError('repair diagnosis drift')
+    return dict(jobs=['14168','14169'],seconds=PRIOR_SECONDS,predictions=0,model_loaded=False,reason='CPU-only aira interpreter mistakenly used; confirmed torch 2.12.1+cpu. Existing critic exp interpreter is torch 2.11.0+cu128.',original_roots=[str(PRIOR_ROOT),str(repair)])
+
+def interpreter_receipt():
+    command=[str(GPU_PYTHON),'-c','import torch,json,sys; print(json.dumps(dict(executable=sys.executable,torch_version=torch.__version__,cuda_build=torch.version.cuda)))']
+    result=subprocess.run(command,capture_output=True,text=True,timeout=90,check=True)
+    data=json.loads(result.stdout)
+    if data!=dict(executable=str(GPU_PYTHON),torch_version='2.11.0+cu128',cuda_build='12.8'):raise ValueError('not the existing GPU critic interpreter')
+    return data
 
 def batch_script(root):
     return '''#!/bin/bash
@@ -28,12 +41,12 @@ def batch_script(root):
 #SBATCH -w gpu28
 #SBATCH --gres=gpu:1
 #SBATCH -c 6
-#SBATCH --time=00:29:48
+#SBATCH --time=00:29:44
 #SBATCH --job-name=frozen-reward-pools
 set -euo pipefail
 export SLURM_CONF=/opt1/slurm/gpu-slurm.conf
 unset CUDA_VISIBLE_DEVICES SLURM_STEP_ID SLURM_STEP_GPUS GPU_DEVICE_ORDINAL
-exec srun --exclusive --nodes=1 --ntasks=1 --cpus-per-task=6 --gres=gpu:1 --time=00:29:00 timeout --signal=TERM --kill-after=10s 1720s /research/d7/spc/yzyang4/venvs/aira/bin/python -u -B ROOT/run_comparison_frozen_reward_20260919.py worker --root ROOT
+exec srun --exclusive --nodes=1 --ntasks=1 --cpus-per-task=6 --gres=gpu:1 --time=00:29:00 timeout --signal=TERM --kill-after=10s 1720s /research/d7/spc/yzyang4/venvs/exp/bin/python -u -B ROOT/run_comparison_frozen_reward_20260919.py worker --root ROOT
 '''.replace('ROOT',str(root))
 
 def rows_from_sources():
@@ -81,13 +94,13 @@ def check(root):
     return p
 
 def prepare(commit):
-    if not re.fullmatch('[a-f0-9]{40}',commit):raise ValueError('commit')
-    prior=closed_launch_failure()
+    if not re.fullmatch('[a-f0-9]{40}',commit) or commit=='0'*40:raise ValueError('commit')
+    prior=closed_launch_failure();interpreter=interpreter_receipt()
     rows=rows_from_sources();model=model_files();root=Path(tempfile.mkdtemp(prefix='comparison-frozen-reward-20260919-',dir=rt.BASE))
     for name in (SCRIPT,PLAN,'local_generator_runtime_20260914.py','forets_e2e_critic_service.py'):shutil.copy2(Path(__file__).with_name(name),root/name)
     batch=batch_script(root)
     (root/'run.sbatch').write_text(batch)
-    p=dict(commit=commit,rows=rows,model=model,files={f.name:rt.sha(f) for f in root.iterdir() if f.is_file()},gpu_hours_cap=.5,attempt_seconds=ATTEMPT_SECONDS,prior_startup_failure=prior,amendment='Explicit once-only operational repair before any inference; same model/rows/encoder, both allocations together <=0.5 GPUh. Not an automatic resampling retry.')
+    p=dict(commit=commit,rows=rows,model=model,files={f.name:rt.sha(f) for f in root.iterdir() if f.is_file()},gpu_hours_cap=.5,attempt_seconds=ATTEMPT_SECONDS,prior_startup_failure=prior,interpreter=interpreter,amendment='Final diagnosed interpreter correction before any inference; same model/rows/encoder, all allocations together <=0.5 GPUh. No further automatic retry.')
     rt.write(root/'prepared.json',p)
     mocked=list(infer(rows,lambda task,code:float(len(code))))
     if len(mocked)!=30 or any(set(r)&{'valid','score','independent_score'} for r in rows):raise ValueError('dispatch/outcome isolation')
@@ -111,6 +124,7 @@ def submit(root):
 
 def worker(root):
     p=check(root)
+    if sys.executable!=str(GPU_PYTHON):raise ValueError('wrong worker interpreter')
     if socket.gethostname().split('.')[0]!='gpu28' or rt.read(root/'launch.json')['job']!=os.environ['SLURM_JOB_ID']:raise ValueError('allocation')
     if not os.environ.get('SLURM_STEP_ID','').isdigit():raise ValueError('exclusive Slurm step required')
     for name in tuple(os.environ):

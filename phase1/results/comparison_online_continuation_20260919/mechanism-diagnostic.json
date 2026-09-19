@@ -1,0 +1,194 @@
+{
+  "raw_text_exported": false,
+  "rows": [
+    {
+      "actions": [
+        {
+          "analysis_status": "returned",
+          "code_sha256": "cbead0dea29f12b62ec30ed844e872b14435bb2204c36dba67313e7518448b8e",
+          "completed_seconds": 51.55986697101616,
+          "depth": 0,
+          "exit_code": 1,
+          "kind": "cache",
+          "native_accepted": false,
+          "started_seconds": 11.940065916016465,
+          "status": "returned",
+          "timed_out": false
+        },
+        {
+          "analysis_status": "returned",
+          "code_sha256": "8810ccde925b8971e08ed59b01b135dd7fe153d8bdf3dc64811f1f084c83ad6b",
+          "completed_seconds": 320.85970980502316,
+          "depth": 1,
+          "exit_code": 1,
+          "kind": "debug",
+          "native_accepted": false,
+          "started_seconds": 51.56235244302661,
+          "status": "returned",
+          "timed_out": false
+        },
+        {
+          "analysis_status": "returned",
+          "code_sha256": "60fafdbd3ea1f135027ee9d713ed98291bec8ca0ac4122dc99c4358fb8e505ac",
+          "completed_seconds": 795.8959797470015,
+          "depth": 2,
+          "exit_code": 0,
+          "kind": "debug",
+          "native_accepted": true,
+          "started_seconds": 320.8629966500157,
+          "status": "returned",
+          "timed_out": false
+        }
+      ],
+      "index": 0,
+      "requests": [
+        {
+          "depth": 1,
+          "prompt_sha256": "953bfbd8e2e93362c5df5a67afd9a6a93c213ff7aafd6c0b2ad30c39f1ceffd9",
+          "response_sha256": "2bc9a33e06f9cb7209dee59cf95648332104ff55eb469d48f1ac901f4d945331",
+          "usage": {
+            "completion_tokens": 11232,
+            "finish_reason": "stop",
+            "prompt_tokens": 4877
+          }
+        },
+        {
+          "depth": 2,
+          "prompt_sha256": "4e306d78182ad0c5247ccdc1ed429d79f5589d70c75266e86dc0dd9c37e2c6fd",
+          "response_sha256": "8ac5efaeb925f89dd290526bbfa36d2e32ef71c5042f948944566fba16a89c6e",
+          "usage": {
+            "completion_tokens": 15214,
+            "finish_reason": "stop",
+            "prompt_tokens": 14318
+          }
+        }
+      ]
+    },
+    {
+      "actions": [
+        {
+          "analysis_status": "returned",
+          "code_sha256": "349bba6a1b576a44334e175039b8bdea618cae037437290126b12e305d7667b4",
+          "completed_seconds": 317.03905707702506,
+          "depth": 1,
+          "exit_code": 1,
+          "kind": "debug",
+          "native_accepted": false,
+          "started_seconds": 11.947914864023915,
+          "status": "returned",
+          "timed_out": false
+        },
+        {
+          "depth": 2,
+          "kind": "debug",
+          "started_seconds": 317.04113087200676,
+          "status": "truncated"
+        }
+      ],
+      "index": 1,
+      "requests": [
+        {
+          "depth": 1,
+          "prompt_sha256": "953bfbd8e2e93362c5df5a67afd9a6a93c213ff7aafd6c0b2ad30c39f1ceffd9",
+          "response_sha256": "3a89d72511136d0fcf7a7d66b53921f664b2588bd425c4deba0944936883185c",
+          "usage": {
+            "completion_tokens": 12763,
+            "finish_reason": "stop",
+            "prompt_tokens": 4877
+          }
+        },
+        {
+          "depth": 2,
+          "prompt_sha256": "012035f460a52ca28c038d0782375229e5d7a3bcc397fc77f96947e1019702e9",
+          "response_sha256": "acb1864a195e37c0b1ee2bed63d0bf9e7695cfec5292d5ffd507c29664a4d487",
+          "usage": {
+            "completion_tokens": 32768,
+            "finish_reason": "length",
+            "prompt_tokens": 11628
+          }
+        }
+      ]
+    },
+    {
+      "actions": [
+        {
+          "depth": 1,
+          "kind": "debug",
+          "started_seconds": 9.034312406001845,
+          "status": "truncated"
+        }
+      ],
+      "index": 2,
+      "requests": [
+        {
+          "depth": 1,
+          "prompt_sha256": "7bd5419e7d7bf843ef13c89d64a0afca1a494d3820d64f4289e01e591342ca8a",
+          "response_sha256": "2619715c6e41041cbb2057cd5136eb13fac880cce5716ff9856e89948ff26b1d",
+          "usage": {
+            "completion_tokens": 32768,
+            "finish_reason": "length",
+            "prompt_tokens": 5664
+          }
+        }
+      ]
+    },
+    {
+      "actions": [
+        {
+          "analysis_status": "returned",
+          "code_sha256": "6cdd9882b4b94b715aafc0a8a431d215f33f0ad21589af01d3394cd36a70da6d",
+          "completed_seconds": 20.274568095977884,
+          "depth": 0,
+          "exit_code": 1,
+          "kind": "cache",
+          "native_accepted": false,
+          "started_seconds": 9.047032940987265,
+          "status": "returned",
+          "timed_out": false
+        },
+        {
+          "analysis_status": "returned",
+          "code_sha256": "b7480edd9c997eb21dcc876ddc0ed7aed8452302aa4b34c0a96c1af17b9c309d",
+          "completed_seconds": 620.8159732320055,
+          "depth": 1,
+          "exit_code": 1,
+          "kind": "debug",
+          "native_accepted": false,
+          "started_seconds": 20.27787427799194,
+          "status": "returned",
+          "timed_out": false
+        },
+        {
+          "depth": 2,
+          "kind": "debug",
+          "started_seconds": 620.8185926229926,
+          "status": "truncated"
+        }
+      ],
+      "index": 3,
+      "requests": [
+        {
+          "depth": 1,
+          "prompt_sha256": "7bd5419e7d7bf843ef13c89d64a0afca1a494d3820d64f4289e01e591342ca8a",
+          "response_sha256": "3aab299fa0a4dad55ee7f4c2faed93ea0bbc40a3901f31d7ca8f814c66e553e8",
+          "usage": {
+            "completion_tokens": 27138,
+            "finish_reason": "stop",
+            "prompt_tokens": 5664
+          }
+        },
+        {
+          "depth": 2,
+          "prompt_sha256": "e79695568b7438117b696f72d049932e34aa72c7acd3c848ae44cb4c645d2557",
+          "response_sha256": "9b15171ed50dc8b10d0e8fee6ad59d207fd610bb9bbe5047135370602e269feb",
+          "usage": {
+            "completion_tokens": 32768,
+            "finish_reason": "length",
+            "prompt_tokens": 16122
+          }
+        }
+      ]
+    }
+  ],
+  "summary_sha256": "a958946c49bca5248c0ca7e647c71b22a493231657ee18f73ffd219ecb5c196e"
+}

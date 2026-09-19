@@ -1,0 +1,5 @@
+accepted_seconds,action_count,budget_seconds,cache,debug_completion_tokens_recorded,elapsed_seconds,incumbent_code_sha256,independent_score,index,job,lane,model_calls_completed,score,seed,source_commit,status,valid_accepted_submission,worker_returncode
+795.8959797470015,3,2100,True,26446,795.9025441570266,60fafdbd3ea1f135027ee9d713ed98291bec8ca0ac4122dc99c4358fb8e505ac,0.503380269579874,0,14146,0,5,0.50338,1,8b117df27026cf2eef7920bd2332cc03fcbab48e,native_accepted,True,0
+,2,2100,False,45531,1040.9037938560068,,,1,14146,1,3,,1,8b117df27026cf2eef7920bd2332cc03fcbab48e,generation_incomplete,False,0
+,1,2100,False,32768,728.3193619129888,,,2,14146,0,1,,2,8b117df27026cf2eef7920bd2332cc03fcbab48e,generation_incomplete,False,0
+,3,2100,True,59906,1346.5155388059793,,,3,14146,1,4,,2,8b117df27026cf2eef7920bd2332cc03fcbab48e,generation_incomplete,False,0

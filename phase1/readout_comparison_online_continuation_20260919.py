@@ -5,6 +5,9 @@ import local_generator_runtime_20260914 as rt
 ROOT=rt.BASE/'comparison-online-continuation-20260919-qpw9ys94'
 PREPARED='99cff06463fa986bfa6a5d732d81cc1b392b4d08b61a194bf78c12cd4bc9783b'
 BUDGET=2100
+TASK='spooky-author-identification'
+METRIC_DELTA='loss_delta_cache_minus_baseline'
+NUMERICAL=None
 
 def safe(path,expected=None):
     raw=path.read_bytes()
@@ -19,7 +22,7 @@ def closed_allocation(job):
     if row[3]!='gpu28' or dict(p.split('=',1) for p in row[4].split(','))['gres/gpu']!='6':raise ValueError('hardware/resources')
     return dict(job=job,state=row[1],seconds=int(row[2]),gpus=6,gpu_hours=int(row[2])*6/3600)
 
-def compare(rows):
+def compare(rows,metric_delta='loss_delta_cache_minus_baseline'):
     if len(rows)!=4 or {r['index'] for r in rows}!={0,1,2,3}:raise ValueError('fixed four episodes')
     groups=[]
     for seed in (1,2):
@@ -33,8 +36,8 @@ def compare(rows):
             delta=int(cache['valid_accepted_submission'])-int(baseline['valid_accepted_submission'])
             both=cache['valid_accepted_submission'] and baseline['valid_accepted_submission']
             group.update(status='CLOSED_EXPLORATORY_EPISODE_PAIR',validity_delta=delta,
-                loss_delta_cache_minus_baseline=(cache['score']-baseline['score']) if both else None,
                 first_accept_seconds_delta=(cache['accepted_seconds']-baseline['accepted_seconds']) if both else None)
+            group[metric_delta]=(cache['score']-baseline['score']) if both else None
         groups.append(group)
     return dict(physical_runs=2,groups=groups,
         paired_validity_mean_delta=statistics.mean(g['validity_delta'] for g in groups) if all('validity_delta' in g for g in groups) else None,
@@ -45,7 +48,7 @@ def main(reader_commit):
     p=safe(ROOT/'prepared.json',PREPARED)
     for name,digest in p['files'].items():
         if rt.sha(ROOT/name)!=digest:raise ValueError('frozen input drift')
-    if p['episode_seconds']!=BUDGET or p['gpu_hours_cap']!=10:raise ValueError('frozen budget')
+    if p['episode_seconds']!=BUDGET or p['gpu_hours_cap']!=10 or p['task']!=TASK:raise ValueError('frozen budget/task')
     job=safe(ROOT/'launch.json')['job'];allocation=closed_allocation(job)
     closure=safe(ROOT/'closed.json') if (ROOT/'closed.json').exists() else {'status':'absent'}
     complete=closure['status']=='all_four_episodes_closed'
@@ -55,9 +58,11 @@ def main(reader_commit):
     from dojo.tasks.mlebench.evaluate import evaluate_submission
     from mlebench.grade import validate_submission
     from mlebench.registry import registry
-    from readout_comparison_spooky_pool_20260919 import numerical
+    if NUMERICAL is None:
+        from readout_comparison_spooky_pool_20260919 import numerical
+    else:numerical=NUMERICAL
     import pandas as pd
-    competition=registry.set_data_dir(rt.BASE/'mle-bench-data').get_competition('spooky-author-identification')
+    competition=registry.set_data_dir(rt.BASE/'mle-bench-data').get_competition(TASK)
     services=[]
     if (ROOT/'services-ready.json').exists():
         services=safe(ROOT/'services-ready.json')['uuids']
@@ -104,10 +109,10 @@ def main(reader_commit):
             if submission.is_symlink() or rt.sha(submission)!=incumbent['submission_sha256']:raise ValueError('submission drift')
             valid,_=validate_submission(submission,competition)
             if valid:
-                grade,_=evaluate_submission(submission,rt.BASE/'mle-bench-data','spooky-author-identification',ep/'closed-grade')
+                grade,_=evaluate_submission(submission,rt.BASE/'mle-bench-data',TASK,ep/'closed-grade')
                 if grade is not None and math.isfinite(float(grade)):
                     if truth is None:truth=pd.read_csv(competition.answers)
-                    numeric=numerical('spooky-author-identification',pd.read_csv(submission),truth)
+                    numeric=numerical(TASK,pd.read_csv(submission),truth)
                     if round(numeric,5)!=float(grade):raise ValueError('independent numerical grade')
                     row.update(valid_accepted_submission=True,score=float(grade),independent_score=numeric)
             if rt.sha(submission)!=incumbent['submission_sha256']:raise ValueError('submission changed while grading')
@@ -119,7 +124,7 @@ def main(reader_commit):
             if a['monotonic']!=b['monotonic']:raise ValueError('unequal start clock')
     result=dict(role='live_conditioned_rescue_not_full_e2e',utc=rt.utc(),prepared_sha256=PREPARED,
         reader_commit=reader_commit,reader_sha256=rt.sha(Path(__file__)),allocation=allocation,closure=closure['status'],rows=rows,
-        comparison=compare(rows),external_grades_read_only_after_closure=True,paid_api_calls=0,model_training=False)
+        task=TASK,metric_delta_field=METRIC_DELTA,comparison=compare(rows,METRIC_DELTA),external_grades_read_only_after_closure=True,paid_api_calls=0,model_training=False)
     rt.write(ROOT/'summary.json',result)
     with (ROOT/'runs.csv').open('x',newline='') as handle:
         writer=csv.DictWriter(handle,fieldnames=sorted({k for row in rows for k in row}));writer.writeheader();writer.writerows(rows)

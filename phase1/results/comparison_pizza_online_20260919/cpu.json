@@ -1,0 +1,45 @@
+{
+  "actual_binding_bridge_checked": true,
+  "engine_cases": [
+    {
+      "actions": 2,
+      "cache": false,
+      "debug_depths": [
+        1,
+        2
+      ],
+      "lane": 0
+    },
+    {
+      "actions": 3,
+      "cache": true,
+      "debug_depths": [
+        1,
+        2
+      ],
+      "lane": 0
+    },
+    {
+      "actions": 2,
+      "cache": false,
+      "debug_depths": [
+        1,
+        2
+      ],
+      "lane": 1
+    },
+    {
+      "actions": 3,
+      "cache": true,
+      "debug_depths": [
+        1,
+        2
+      ],
+      "lane": 1
+    }
+  ],
+  "mock_calls": 26,
+  "prepared_sha256": "a153be4e55a98da9e07fb75f60cee4d320da5aa91b551ce7b65bbf7967ef4ee3",
+  "real_calls": 0,
+  "status": "PASS_ACTUAL_NATIVE_OPERATORS_TWO_LANES"
+}

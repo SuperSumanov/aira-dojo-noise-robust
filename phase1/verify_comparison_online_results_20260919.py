@@ -8,6 +8,8 @@ def verify(data):
     if allocation['gpus']!=6 or not math.isclose(allocation['gpu_hours'],allocation['seconds']/600):raise ValueError('all resources')
     rows=data['rows'];expected={(1,False),(1,True),(2,False),(2,True)}
     if len(rows)!=4 or {(r['seed'],r['cache']) for r in rows}!=expected:raise ValueError('fixed pairs')
+    metric=data.get('metric_delta_field','loss_delta_cache_minus_baseline')
+    if metric not in ('loss_delta_cache_minus_baseline','auc_delta_cache_minus_baseline'):raise ValueError('metric direction')
     deltas=[];unknown=0;valid=0
     for row in rows:
         if row['budget_seconds']!=2100:raise ValueError('same budget')
@@ -29,9 +31,9 @@ def verify(data):
         delta=int(treatment['valid_accepted_submission'])-int(baseline['valid_accepted_submission']);deltas.append(delta)
         if delta!=group['validity_delta']:raise ValueError('delta')
         if treatment['valid_accepted_submission'] and baseline['valid_accepted_submission']:
-            for name,a,b in [('loss_delta_cache_minus_baseline',treatment['score'],baseline['score']),('first_accept_seconds_delta',treatment['accepted_seconds'],baseline['accepted_seconds'])]:
+            for name,a,b in [(metric,treatment['score'],baseline['score']),('first_accept_seconds_delta',treatment['accepted_seconds'],baseline['accepted_seconds'])]:
                 if not math.isclose(group[name],a-b,abs_tol=1e-10):raise ValueError('paired arithmetic')
-        elif group['loss_delta_cache_minus_baseline'] is not None or group['first_accept_seconds_delta'] is not None:raise ValueError('undefined conditional difference')
+        elif group[metric] is not None or group['first_accept_seconds_delta'] is not None:raise ValueError('undefined conditional difference')
     mean=sum(deltas)/2 if len(deltas)==2 else None
     if data['comparison']['paired_validity_mean_delta']!=mean:raise ValueError('unknown denominator or paired mean')
     wins=deltas.count(1);losses=deltas.count(-1);ties=deltas.count(0);n=wins+losses

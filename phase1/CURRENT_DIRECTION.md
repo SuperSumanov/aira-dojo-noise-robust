@@ -7,7 +7,10 @@
 > [CONTEXT_HANDOFF_CURRENT.md](CONTEXT_HANDOFF_CURRENT.md)，注明最后观察时间、证据及下一步；
 > 本文件保留方向/历史权威，短入口不重复堆历史。没有重新核验的作业状态不得称为实时状态。
 
-## 0L222. 2026-09-19 21:30 UTC：完整读出旧对照前冻结更充分的跨任务生成预算
+## 0L222. 2026-09-19 21:23 UTC：完整读出旧对照前冻结更充分的跨任务生成预算
+
+21:33补充：14146已唯一读出并独立算术核验通过，summary a958946c49bca5248c0ca7e647c71b22a493231657ee18f73ffd219ecb5c196e，5.013333333333334GPUh。两pair一胜一平、exact sign p=1；唯一有效提交loss .50338/795.8959797470015秒。关键机制限制：两个实际抽到的cache都失败，成功来自后续debug；两臂首次debug提示SHA逐组相同但回答不同，因此不能把单次优势当缓存机制收益，且三条轨迹被32k截断。原回执不改、不重跑reader。
+新Pizza完整时限14165已提交（commit a37e3595a62989746c5ffb96943bbfea8ec65e96），ROOT comparison-pizza-full-deadline-20260919-yaywhbo1，prepared a153be4e55a98da9e07fb75f60cee4d320da5aa91b551ce7b65bbf7967ef4ee3。实际原生算子/双路由/完整循环CPU预检通过，原镜像/容量/队列门通过。旧源文件不改，真实网络调用前的kwargs已确认不含max_tokens，两算子使用剩余时限。结果未读。完整代码统计等候闭合；外部AUC独立排名公式与穷举定义测试通过。新颖性边界：AGR-V已有未验证池+动态生成/验证，Recovering Wasted Compute已有回溯并选择兄弟；单独“缓存/回溯”不是新贡献，不拿目前窄实验冒称论文已成。
 
 用户恢复并要求会话内继续三小时。14146现场已COMPLETED/3008秒、四episode完整闭合，效果尚未读。源配置generation_kwargs无输出上限，model generation_config亦无max_new_tokens；我方旧有界接入额外施加32768token及debug1200秒/analysis300秒。旧结果只回答该受限策略，不冒称生产debug已被击败。
 下一组Pizza固定原seed1/2×两臂、同35分钟/原镜像/27B/随机候选规则/6GPU100分钟≤10GPUh；两臂都不传max_tokens，单请求使用episode剩余时间，由共同硬截止约束，禁截断代码抢救。只在新实验进程对exact-SHA本地backend方法覆盖本地时间门与输出限制，非本地路由不改，共享源码不改。准备中的旧Pizza root `comparison-pizza-online-20260919-1qiyjkqy`不投、不改；另建full-deadline root。此协议在14146效果读出前固定，不用它调参；跨任务且配置不同，不能把差异归因于单一上限。

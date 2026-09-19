@@ -655,3 +655,5 @@ phase1/results/comparison_third_bank_20260919/*.json -text diff whitespace=cr-at
 phase1/results/comparison_third_bank_20260919/*.csv -text diff whitespace=cr-at-eol
 phase1/results/comparison_cache_acceptance_20260919/*.json -text diff whitespace=cr-at-eol
 phase1/results/comparison_cache_acceptance_20260919/*.csv -text diff whitespace=cr-at-eol
+phase1/results/comparison_online_continuation_20260919/*.json -text diff whitespace=cr-at-eol
+phase1/results/comparison_online_continuation_20260919/*.csv -text diff whitespace=cr-at-eol

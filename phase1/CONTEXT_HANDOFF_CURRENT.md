@@ -5,11 +5,11 @@
 用户本轮15:29UTC要求在会话内继续三小时，目标18:29UTC；自主实验/正常push授权有效，不每轮写报告、不新建任务/自动化、不改学长分支。先fetch→CURRENT_DIRECTION顶部→本文件→核现场。当前为同资源真实收益目标下的缓存条件续跑，不是已证明完整E2E。27B是较弱低成本生成器。
 first960/Target300/522仍封；不恢复HCE/多保真/Probe/score-channel/K>=1/G0/旧失败cheap选择器；不微调agent底座。
 
-## 正在准备的在线对照（尚未提交）
+## 在线对照已提交
 
 comparison_online_continuation_plan_20260919.json：Spooky固定开发prefix seed1/2×原生算子多步debug / uniform-cache-then-debug，35分钟每轨迹，原debug depth20。gpu28六GPU24CPU100分钟≤10GPUh；独立双卡生成服务各一任务卡，第二组交换arm/lane。原镜像/模板/祖先memory，共同硬截止，首次原生接受即停。生成启动排除episode但全GPU成本计入；0付费API/训练。cache RNG预先固定、不按已知成绩选。
 driver run_comparison_online_continuation_20260919.py；CPU实际网络mock+完整循环假执行预检后再submit。两端口只在本实验进程显式桥接8000/8001，不改既有源码/旧服务。fresh独立代码工作区，两臂一致；非production checkpoint恢复/完整搜索基线。原前缀和cache已见结果，仅探索。
-截至15:55只有10本地协议/前缀测试PASS；代码上传、实交付预检待核。未提交新GPU；动态状态以launch回执为准。
+15:57 UTC已提交14146，ROOT=BASE/comparison-online-continuation-20260919-qpw9ys94，commit8b117df27026cf2eef7920bd2332cc03fcbab48e，prepared99cff06463fa986bfa6a5d732d81cc1b392b4d08b61a194bf78c12cd4bc9783b。16:01最后观察RUNNING/250秒，两个服务尚未ready、0episode启动。远端真实算子双路由及四条完整假执行循环CPU预检PASS，26 mock calls/0真实模型调用；首次prepare在创建root前因银行清单含两seed、缺seed过滤被阻止，修复后通过，0GPU失败。提交前原镜像/权重/4GiB容量/队列检查通过。旧held12535保留。结构监控status_comparison_online_continuation_20260919.py；严禁提前读答案/incumbent/分数。等allocation终止后readout_comparison_online_continuation_20260919.py --reader-commit 精确SHA唯一读出；不得修改已prepare根目录脚本。99统一CPU测试过；CPU回执local results/comparison_online_continuation_20260919/cpu.json。只评分原生接受的incumbent，不事后挑最好中间提交。
 
 ## 本轮新证据
 

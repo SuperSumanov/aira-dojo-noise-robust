@@ -1,0 +1,44 @@
+{
+  "engine_cases": [
+    {
+      "actions": 2,
+      "cache": false,
+      "debug_depths": [
+        1,
+        2
+      ],
+      "lane": 0
+    },
+    {
+      "actions": 3,
+      "cache": true,
+      "debug_depths": [
+        1,
+        2
+      ],
+      "lane": 0
+    },
+    {
+      "actions": 2,
+      "cache": false,
+      "debug_depths": [
+        1,
+        2
+      ],
+      "lane": 1
+    },
+    {
+      "actions": 3,
+      "cache": true,
+      "debug_depths": [
+        1,
+        2
+      ],
+      "lane": 1
+    }
+  ],
+  "mock_calls": 26,
+  "prepared_sha256": "99cff06463fa986bfa6a5d732d81cc1b392b4d08b61a194bf78c12cd4bc9783b",
+  "real_calls": 0,
+  "status": "PASS_ACTUAL_NATIVE_OPERATORS_TWO_LANES"
+}

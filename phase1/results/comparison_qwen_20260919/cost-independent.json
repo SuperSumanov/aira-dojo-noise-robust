@@ -1,0 +1,142 @@
+{
+  "status": "INDEPENDENT_COST_JOIN_PASS",
+  "pools": 25,
+  "selected_grade_counts": {
+    "0": 13,
+    "1": 9,
+    "2": 3
+  },
+  "detail": [
+    {
+      "run": "514320462b1e1536",
+      "stratum": "random-acts-of-pizza/7200/qwen",
+      "selected_with_nonbuggy_finite_external_grade": 0
+    },
+    {
+      "run": "620f3b971818de16",
+      "stratum": "random-acts-of-pizza/7200/qwen",
+      "selected_with_nonbuggy_finite_external_grade": 1
+    },
+    {
+      "run": "5c3f818a9595bd79",
+      "stratum": "random-acts-of-pizza/7200/qwen",
+      "selected_with_nonbuggy_finite_external_grade": 1
+    },
+    {
+      "run": "1eee3186d26dcbcd",
+      "stratum": "random-acts-of-pizza/7200/qwen",
+      "selected_with_nonbuggy_finite_external_grade": 0
+    },
+    {
+      "run": "adc09c14eda018c4",
+      "stratum": "random-acts-of-pizza/7200/qwen",
+      "selected_with_nonbuggy_finite_external_grade": 1
+    },
+    {
+      "run": "817f8d5f4ca7979e",
+      "stratum": "random-acts-of-pizza/7200/qwen",
+      "selected_with_nonbuggy_finite_external_grade": 1
+    },
+    {
+      "run": "7a9056cf3c6744ea",
+      "stratum": "random-acts-of-pizza/7200/qwen",
+      "selected_with_nonbuggy_finite_external_grade": 2
+    },
+    {
+      "run": "2b7183932e4e50dc",
+      "stratum": "random-acts-of-pizza/7200/qwen",
+      "selected_with_nonbuggy_finite_external_grade": 2
+    },
+    {
+      "run": "4cc32ca4dfbf20a2",
+      "stratum": "random-acts-of-pizza/7200/qwen",
+      "selected_with_nonbuggy_finite_external_grade": 0
+    },
+    {
+      "run": "72dcad0e0ccc9a02",
+      "stratum": "random-acts-of-pizza/7200/qwen",
+      "selected_with_nonbuggy_finite_external_grade": 0
+    },
+    {
+      "run": "e4a4275f2df8028e",
+      "stratum": "spooky-author-identification/7200/qwen",
+      "selected_with_nonbuggy_finite_external_grade": 0
+    },
+    {
+      "run": "58d3914785a2cfe1",
+      "stratum": "spooky-author-identification/7200/qwen",
+      "selected_with_nonbuggy_finite_external_grade": 0
+    },
+    {
+      "run": "ddbcf032862f7a29",
+      "stratum": "spooky-author-identification/7200/qwen",
+      "selected_with_nonbuggy_finite_external_grade": 1
+    },
+    {
+      "run": "3277c81be72a1c30",
+      "stratum": "spooky-author-identification/7200/qwen",
+      "selected_with_nonbuggy_finite_external_grade": 0
+    },
+    {
+      "run": "a6072b4db8c338ca",
+      "stratum": "spooky-author-identification/7200/qwen",
+      "selected_with_nonbuggy_finite_external_grade": 0
+    },
+    {
+      "run": "4d46a9e0202e9b41",
+      "stratum": "spooky-author-identification/7200/qwen",
+      "selected_with_nonbuggy_finite_external_grade": 0
+    },
+    {
+      "run": "0cb301ad08da9727",
+      "stratum": "spooky-author-identification/7200/qwen",
+      "selected_with_nonbuggy_finite_external_grade": 0
+    },
+    {
+      "run": "7edcb3de5325b2e8",
+      "stratum": "spooky-author-identification/7200/qwen",
+      "selected_with_nonbuggy_finite_external_grade": 1
+    },
+    {
+      "run": "b84b91e419d4d831",
+      "stratum": "spooky-author-identification/7200/qwen",
+      "selected_with_nonbuggy_finite_external_grade": 1
+    },
+    {
+      "run": "b916b2861e14060c",
+      "stratum": "spooky-author-identification/7200/qwen",
+      "selected_with_nonbuggy_finite_external_grade": 1
+    },
+    {
+      "run": "00b3c850f50017f5",
+      "stratum": "AI4Code/7200/qwen",
+      "selected_with_nonbuggy_finite_external_grade": 0
+    },
+    {
+      "run": "46f0b562dbc0a74e",
+      "stratum": "AI4Code/7200/qwen",
+      "selected_with_nonbuggy_finite_external_grade": 0
+    },
+    {
+      "run": "8b601e5efea310e7",
+      "stratum": "leaf-classification/7200/qwen",
+      "selected_with_nonbuggy_finite_external_grade": 0
+    },
+    {
+      "run": "f70d132bf8fd755c",
+      "stratum": "leaf-classification/7200/qwen",
+      "selected_with_nonbuggy_finite_external_grade": 2
+    },
+    {
+      "run": "aa600099292ca506",
+      "stratum": "leaf-classification/7200/qwen",
+      "selected_with_nonbuggy_finite_external_grade": 1
+    }
+  ],
+  "sha256": {
+    "cost-diagnostic.json": "94be76a3f54b9689beabc9bbdcf306d849f6251b966f2abd22d2df8fbc6329d3",
+    "root_pool_inventory.csv": "e6bb2f0b632cb2d80d8cf49a1041f90ccf093bb08705558722462faaad9be391",
+    "operator-cost-metadata.json": "129d30afe6b9cc1006dc7d7c01cafb8f5af3395f4b5cb5c6f05f60b5ac9d4236",
+    "nodes.json": "370976e31c8a9f501bc75fb7826f529f85b0e34059146291f2e7bb3cab4062c9"
+  }
+}

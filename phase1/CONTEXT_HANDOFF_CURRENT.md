@@ -26,12 +26,14 @@
 
 ## 下一执行点
 1. 主比较读出/独立复核/下载/推送均完成，不重跑reader或覆盖结果。报告COMPARISON_FINDINGS_20260919.md；保留无关untracked。
-2. 继续当前14087，不另起重复作业：ROOT=/research/d7/spc/yzyang4/comparison-pool-20260919-7ujiaajp，prepared SHA394470c82755bdebf02d34c86f7474ef950a178f5718c4c0ca87ac24882e98a5，源码0adcf0f365b0ba68475cb79ed28cff77ab6cd407。最后观察09:39 UTC已RUNNING/gpu28/52秒、seed1六程序池开始。
+2. 继续当前14087，不另起重复作业：ROOT=/research/d7/spc/yzyang4/comparison-pool-20260919-7ujiaajp，prepared SHA394470c82755bdebf02d34c86f7474ef950a178f5718c4c0ca87ac24882e98a5，源码0adcf0f365b0ba68475cb79ed28cff77ab6cd407。最后观察09:56 UTC seed1六程序池闭合、seed2已启动；9条程序结果文件、12份GPU隔离回执，第一池六物理GPU不同。新成绩未读。
    矩阵Leaf seed1→2→3每池6原程序、7200s，gpu28六GPU/36CPU/150min≤15GPUh，0API/训练；仅剩余≥7500s才开下一整个池，否则未启动。新fresh-container干净工作区、原镜像，不冒称学长历史环境。18路径CPU mock及8组合测试通过；首次宽泛unittest discover误导入旧包，直接跑本测试文件已通过，非结果修改。
    全allocation结束后readout_comparison_pool_20260919.py读出，原选二vs均匀15组合。best-of-two为oracle诊断，不是部署策略/E2E；新结果未读，不按中间胜负调度。
 3. 原选择的两个候选已知，故同池uniform对照不依赖重建原完整rank；缺原rank就不声称top3召回。原任务7200秒上限不可静默缩成低保真评测。
 4. 检查comparison/0918的新可解析共享内容可按元数据续查；未解析不等于未上传。新outcome已读，因此只称探索性复核。RL63.37 vs BT60.01非matched算法效果。
 5. 先核未来实验真实完成时间、GPU总资源、镜像/数据；同池效果和fresh-seed同预算E2E分开。不重做G0、不以审计报告取代效果实验。
+6. 新成绩前已冻结top-3第三条缺失的四种可能分析，不猜完整rank；13单测通过。全allocation终态后运行prepared目录原reader，独立pair verifier及topk bounds；见COMPARISON_TOPK_BOUND_PLAN_20260919.md。
+7. 并行历史成本诊断完成：25/25池最慢生成请求长于原选两程序exec_time之和，Leaf逐池比值中位5.12。客户端含排队/重试且13池原选无非buggy有限grade；不是GPU服务时间、缩宽收益或E2E正结果。25池独立join与6单测通过，见COMPARISON_COST_FINDING_20260919.md，相关工作强重叠见COMPARISON_NOVELTY_CHECK_20260919.md；不把廉价critic+昂贵验证当原创。
 
 ## 保留的27B接入（不重下载、不重跑旧任务）
 ASSETS=/research/d7/spc/yzyang4/local-qwen27b-20260914-zcx1k1dy，17模型文件+镜像共18资产，模型revision dc430725f831dd90d9271738b877879a46a82239。

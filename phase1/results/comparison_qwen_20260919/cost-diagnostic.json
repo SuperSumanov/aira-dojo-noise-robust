@@ -1,0 +1,2183 @@
+{
+  "role": "historical_descriptive_cost_diagnostic",
+  "runs": [
+    {
+      "run": "514320462b1e1536",
+      "stratum": "random-acts-of-pizza/7200/qwen",
+      "arm": "forets-1",
+      "seed": 4,
+      "journal_present": true,
+      "requests": 29,
+      "request_latency_seconds": {
+        "n": 29,
+        "median": 3566.256219094037,
+        "mean": 3758.8227395115878,
+        "sd": 2433.224954280093,
+        "minimum": 1042.069571755943,
+        "maximum": 12310.581136518042
+      },
+      "executed_request_latency_seconds": {
+        "n": 17,
+        "median": 2923.969064295059,
+        "mean": 3777.4824238840133,
+        "sd": 2722.10231269598,
+        "minimum": 1042.069571755943,
+        "maximum": 12310.581136518042
+      },
+      "unselected_request_latency_seconds": {
+        "n": 12,
+        "median": 3923.297804130474,
+        "mean": 3732.3881866506513,
+        "sd": 2071.5515139217578,
+        "minimum": 1121.1548844409408,
+        "maximum": 6614.032262079883
+      },
+      "zero_logged_costs": 29
+    },
+    {
+      "run": "620f3b971818de16",
+      "stratum": "random-acts-of-pizza/7200/qwen",
+      "arm": "forets-1",
+      "seed": 5,
+      "journal_present": true,
+      "requests": 40,
+      "request_latency_seconds": {
+        "n": 40,
+        "median": 3347.547213651007,
+        "mean": 4026.585825606168,
+        "sd": 2371.364357139352,
+        "minimum": 898.4131239219569,
+        "maximum": 9534.913149036001
+      },
+      "executed_request_latency_seconds": {
+        "n": 20,
+        "median": 3185.0955092860386,
+        "mean": 3845.499258788256,
+        "sd": 2493.5142175295364,
+        "minimum": 898.4131239219569,
+        "maximum": 9534.913149036001
+      },
+      "unselected_request_latency_seconds": {
+        "n": 20,
+        "median": 3426.1189291939954,
+        "mean": 4207.67239242408,
+        "sd": 2292.608764147052,
+        "minimum": 1048.704507210059,
+        "maximum": 8218.82978303614
+      },
+      "zero_logged_costs": 40
+    },
+    {
+      "run": "5c3f818a9595bd79",
+      "stratum": "random-acts-of-pizza/7200/qwen",
+      "arm": "forets-1",
+      "seed": 1,
+      "journal_present": true,
+      "requests": 23,
+      "request_latency_seconds": {
+        "n": 23,
+        "median": 4020.960818795953,
+        "mean": 4160.814132537997,
+        "sd": 2017.0508874836714,
+        "minimum": 1153.1546149188653,
+        "maximum": 8656.995502543985
+      },
+      "executed_request_latency_seconds": {
+        "n": 15,
+        "median": 3621.268169561983,
+        "mean": 3665.2842655831946,
+        "sd": 1765.6149801078006,
+        "minimum": 1153.1546149188653,
+        "maximum": 6507.126956569031
+      },
+      "unselected_request_latency_seconds": {
+        "n": 8,
+        "median": 4328.657893111522,
+        "mean": 5089.93263307825,
+        "sd": 2244.803184742252,
+        "minimum": 2516.5920754600083,
+        "maximum": 8656.995502543985
+      },
+      "zero_logged_costs": 23
+    },
+    {
+      "run": "1eee3186d26dcbcd",
+      "stratum": "random-acts-of-pizza/7200/qwen",
+      "arm": "forets-1",
+      "seed": 2,
+      "journal_present": true,
+      "requests": 42,
+      "request_latency_seconds": {
+        "n": 42,
+        "median": 3669.423351502919,
+        "mean": 3791.3271681573046,
+        "sd": 1880.3662119262008,
+        "minimum": 937.2421059719054,
+        "maximum": 9312.421694430988
+      },
+      "executed_request_latency_seconds": {
+        "n": 22,
+        "median": 2928.4343760474585,
+        "mean": 3331.5991298324875,
+        "sd": 1501.7787122865977,
+        "minimum": 937.2421059719054,
+        "maximum": 5558.095358298859
+      },
+      "unselected_request_latency_seconds": {
+        "n": 20,
+        "median": 3892.7087730090134,
+        "mean": 4297.028010314604,
+        "sd": 2150.1575395993727,
+        "minimum": 1184.8938582409173,
+        "maximum": 9312.421694430988
+      },
+      "zero_logged_costs": 42
+    },
+    {
+      "run": "adc09c14eda018c4",
+      "stratum": "random-acts-of-pizza/7200/qwen",
+      "arm": "forets-1",
+      "seed": 3,
+      "journal_present": true,
+      "requests": 36,
+      "request_latency_seconds": {
+        "n": 36,
+        "median": 4020.1873385069775,
+        "mean": 5282.206126368304,
+        "sd": 3284.440088262186,
+        "minimum": 1353.0475728089223,
+        "maximum": 13596.13856455509
+      },
+      "executed_request_latency_seconds": {
+        "n": 16,
+        "median": 3247.014076009975,
+        "mean": 4807.121182717259,
+        "sd": 3503.383041262288,
+        "minimum": 1353.0475728089223,
+        "maximum": 13596.13856455509
+      },
+      "unselected_request_latency_seconds": {
+        "n": 20,
+        "median": 4661.922851738927,
+        "mean": 5662.27408128914,
+        "sd": 3136.8641649304404,
+        "minimum": 2100.2938711160095,
+        "maximum": 12547.24845630594
+      },
+      "zero_logged_costs": 36
+    },
+    {
+      "run": "817f8d5f4ca7979e",
+      "stratum": "random-acts-of-pizza/7200/qwen",
+      "arm": "forets-2",
+      "seed": 9,
+      "journal_present": true,
+      "requests": 41,
+      "request_latency_seconds": {
+        "n": 41,
+        "median": 2798.428418722935,
+        "mean": 2987.1718971846317,
+        "sd": 1441.9029293501205,
+        "minimum": 962.4103228049353,
+        "maximum": 6355.20473612193
+      },
+      "executed_request_latency_seconds": {
+        "n": 21,
+        "median": 2551.7068379139528,
+        "mean": 3078.32194627419,
+        "sd": 1748.7546670404558,
+        "minimum": 962.4103228049353,
+        "maximum": 6355.20473612193
+      },
+      "unselected_request_latency_seconds": {
+        "n": 20,
+        "median": 2987.003733876976,
+        "mean": 2891.464345640596,
+        "sd": 1067.2845752790274,
+        "minimum": 989.5729677758645,
+        "maximum": 5458.260013420135
+      },
+      "zero_logged_costs": 41
+    },
+    {
+      "run": "7a9056cf3c6744ea",
+      "stratum": "random-acts-of-pizza/7200/qwen",
+      "arm": "forets-2",
+      "seed": 11,
+      "journal_present": true,
+      "requests": 37,
+      "request_latency_seconds": {
+        "n": 37,
+        "median": 4727.94985535997,
+        "mean": 5079.139721669672,
+        "sd": 3105.923289760301,
+        "minimum": 1249.399379804032,
+        "maximum": 15135.06623678701
+      },
+      "executed_request_latency_seconds": {
+        "n": 21,
+        "median": 3642.134623649996,
+        "mean": 4075.3586786856895,
+        "sd": 2101.2303893491107,
+        "minimum": 1509.1732380390167,
+        "maximum": 9255.237272904953
+      },
+      "unselected_request_latency_seconds": {
+        "n": 16,
+        "median": 6446.134967577062,
+        "mean": 6396.602340586149,
+        "sd": 3742.0986117580374,
+        "minimum": 1249.399379804032,
+        "maximum": 15135.06623678701
+      },
+      "zero_logged_costs": 37
+    },
+    {
+      "run": "2b7183932e4e50dc",
+      "stratum": "random-acts-of-pizza/7200/qwen",
+      "arm": "forets-2",
+      "seed": 13,
+      "journal_present": true,
+      "requests": 30,
+      "request_latency_seconds": {
+        "n": 30,
+        "median": 2656.8284034889657,
+        "mean": 3050.090528283222,
+        "sd": 1806.2373964601875,
+        "minimum": 474.07764566503465,
+        "maximum": 8152.150605919072
+      },
+      "executed_request_latency_seconds": {
+        "n": 14,
+        "median": 2810.3036091374233,
+        "mean": 3428.869734114485,
+        "sd": 2211.179979981462,
+        "minimum": 474.07764566503465,
+        "maximum": 8152.150605919072
+      },
+      "unselected_request_latency_seconds": {
+        "n": 16,
+        "median": 2528.475943657919,
+        "mean": 2718.658723180866,
+        "sd": 1348.7032886129202,
+        "minimum": 861.5200927439146,
+        "maximum": 6340.905618980061
+      },
+      "zero_logged_costs": 30
+    },
+    {
+      "run": "4cc32ca4dfbf20a2",
+      "stratum": "random-acts-of-pizza/7200/qwen",
+      "arm": "forets-2",
+      "seed": 10,
+      "journal_present": true,
+      "requests": 32,
+      "request_latency_seconds": {
+        "n": 32,
+        "median": 3784.8467113759834,
+        "mean": 3897.3226084956987,
+        "sd": 2515.0411037076938,
+        "minimum": 394.63099003606476,
+        "maximum": 9374.069861178985
+      },
+      "executed_request_latency_seconds": {
+        "n": 20,
+        "median": 2456.179700399982,
+        "mean": 3372.194861401769,
+        "sd": 2340.5701278660604,
+        "minimum": 394.63099003606476,
+        "maximum": 8977.529324679868
+      },
+      "unselected_request_latency_seconds": {
+        "n": 12,
+        "median": 4387.022084723576,
+        "mean": 4772.535520318915,
+        "sd": 2650.7996683706233,
+        "minimum": 1177.9686114389915,
+        "maximum": 9374.069861178985
+      },
+      "zero_logged_costs": 32
+    },
+    {
+      "run": "72dcad0e0ccc9a02",
+      "stratum": "random-acts-of-pizza/7200/qwen",
+      "arm": "forets-2",
+      "seed": 12,
+      "journal_present": true,
+      "requests": 30,
+      "request_latency_seconds": {
+        "n": 30,
+        "median": 3345.5231589199975,
+        "mean": 3671.6354033545203,
+        "sd": 1938.6216674639425,
+        "minimum": 913.2714665748645,
+        "maximum": 9024.782165853074
+      },
+      "executed_request_latency_seconds": {
+        "n": 18,
+        "median": 3234.800638395478,
+        "mean": 3315.680196544621,
+        "sd": 1767.2024062181754,
+        "minimum": 913.2714665748645,
+        "maximum": 8368.637270413805
+      },
+      "unselected_request_latency_seconds": {
+        "n": 12,
+        "median": 3903.233850531047,
+        "mean": 4205.568213569369,
+        "sd": 2136.194712429831,
+        "minimum": 1286.325812927913,
+        "maximum": 9024.782165853074
+      },
+      "zero_logged_costs": 30
+    },
+    {
+      "run": "497a569c07cfcd0a",
+      "stratum": "random-acts-of-pizza/7200/qwen",
+      "arm": "mcts",
+      "seed": 6,
+      "journal_present": true,
+      "requests": 33,
+      "request_latency_seconds": {
+        "n": 33,
+        "median": 1992.9171558029484,
+        "mean": 2125.83566241148,
+        "sd": 926.8050257817089,
+        "minimum": 1032.6128620359814,
+        "maximum": 4196.0065008739475
+      },
+      "executed_request_latency_seconds": {
+        "n": 33,
+        "median": 1992.9171558029484,
+        "mean": 2125.83566241148,
+        "sd": 926.8050257817089,
+        "minimum": 1032.6128620359814,
+        "maximum": 4196.0065008739475
+      },
+      "unselected_request_latency_seconds": {
+        "n": 0,
+        "median": null,
+        "mean": null,
+        "sd": null,
+        "minimum": null,
+        "maximum": null
+      },
+      "zero_logged_costs": 33
+    },
+    {
+      "run": "471e39f496385df7",
+      "stratum": "random-acts-of-pizza/7200/qwen",
+      "arm": "mcts",
+      "seed": 3,
+      "journal_present": true,
+      "requests": 23,
+      "request_latency_seconds": {
+        "n": 23,
+        "median": 2229.561012435006,
+        "mean": 2466.7938629835235,
+        "sd": 1038.2341402143607,
+        "minimum": 771.8073823529994,
+        "maximum": 4288.7418716959655
+      },
+      "executed_request_latency_seconds": {
+        "n": 23,
+        "median": 2229.561012435006,
+        "mean": 2466.7938629835235,
+        "sd": 1038.2341402143607,
+        "minimum": 771.8073823529994,
+        "maximum": 4288.7418716959655
+      },
+      "unselected_request_latency_seconds": {
+        "n": 0,
+        "median": null,
+        "mean": null,
+        "sd": null,
+        "minimum": null,
+        "maximum": null
+      },
+      "zero_logged_costs": 23
+    },
+    {
+      "run": "1d3748752fe4bfa7",
+      "stratum": "random-acts-of-pizza/7200/qwen",
+      "arm": "mcts",
+      "seed": 4,
+      "journal_present": true,
+      "requests": 36,
+      "request_latency_seconds": {
+        "n": 36,
+        "median": 1699.1239267674973,
+        "mean": 1911.8178329053335,
+        "sd": 809.7617441387594,
+        "minimum": 536.3468735369388,
+        "maximum": 4216.186814583023
+      },
+      "executed_request_latency_seconds": {
+        "n": 36,
+        "median": 1699.1239267674973,
+        "mean": 1911.8178329053335,
+        "sd": 809.7617441387594,
+        "minimum": 536.3468735369388,
+        "maximum": 4216.186814583023
+      },
+      "unselected_request_latency_seconds": {
+        "n": 0,
+        "median": null,
+        "mean": null,
+        "sd": null,
+        "minimum": null,
+        "maximum": null
+      },
+      "zero_logged_costs": 36
+    },
+    {
+      "run": "81bf893e100a84c2",
+      "stratum": "random-acts-of-pizza/7200/qwen",
+      "arm": "mcts",
+      "seed": 5,
+      "journal_present": true,
+      "requests": 22,
+      "request_latency_seconds": {
+        "n": 22,
+        "median": 1923.8488722444745,
+        "mean": 1990.8936364914937,
+        "sd": 800.4083442563222,
+        "minimum": 890.6599564399803,
+        "maximum": 4038.491101013031
+      },
+      "executed_request_latency_seconds": {
+        "n": 22,
+        "median": 1923.8488722444745,
+        "mean": 1990.8936364914937,
+        "sd": 800.4083442563222,
+        "minimum": 890.6599564399803,
+        "maximum": 4038.491101013031
+      },
+      "unselected_request_latency_seconds": {
+        "n": 0,
+        "median": null,
+        "mean": null,
+        "sd": null,
+        "minimum": null,
+        "maximum": null
+      },
+      "zero_logged_costs": 22
+    },
+    {
+      "run": "e94aee6abd2a7d49",
+      "stratum": "random-acts-of-pizza/7200/qwen",
+      "arm": "mcts",
+      "seed": 2,
+      "journal_present": true,
+      "requests": 30,
+      "request_latency_seconds": {
+        "n": 30,
+        "median": 2028.7388994090143,
+        "mean": 2407.2185499162297,
+        "sd": 1095.3974209369849,
+        "minimum": 784.783939274028,
+        "maximum": 4168.392658681027
+      },
+      "executed_request_latency_seconds": {
+        "n": 30,
+        "median": 2028.7388994090143,
+        "mean": 2407.2185499162297,
+        "sd": 1095.3974209369849,
+        "minimum": 784.783939274028,
+        "maximum": 4168.392658681027
+      },
+      "unselected_request_latency_seconds": {
+        "n": 0,
+        "median": null,
+        "mean": null,
+        "sd": null,
+        "minimum": null,
+        "maximum": null
+      },
+      "zero_logged_costs": 30
+    },
+    {
+      "run": "aa55d4185496ed55",
+      "stratum": "random-acts-of-pizza/7200/qwen",
+      "arm": "mcts",
+      "seed": 1,
+      "journal_present": true,
+      "requests": 29,
+      "request_latency_seconds": {
+        "n": 29,
+        "median": 1918.36732183001,
+        "mean": 1996.5164309926652,
+        "sd": 658.4908963755129,
+        "minimum": 279.8099527839804,
+        "maximum": 3722.3520839780103
+      },
+      "executed_request_latency_seconds": {
+        "n": 29,
+        "median": 1918.36732183001,
+        "mean": 1996.5164309926652,
+        "sd": 658.4908963755129,
+        "minimum": 279.8099527839804,
+        "maximum": 3722.3520839780103
+      },
+      "unselected_request_latency_seconds": {
+        "n": 0,
+        "median": null,
+        "mean": null,
+        "sd": null,
+        "minimum": null,
+        "maximum": null
+      },
+      "zero_logged_costs": 29
+    },
+    {
+      "run": "e4a4275f2df8028e",
+      "stratum": "spooky-author-identification/7200/qwen",
+      "arm": "forets-1",
+      "seed": 3,
+      "journal_present": true,
+      "requests": 32,
+      "request_latency_seconds": {
+        "n": 32,
+        "median": 1594.6800084016286,
+        "mean": 1877.1125531000143,
+        "sd": 1143.5949275075359,
+        "minimum": 547.5476600872353,
+        "maximum": 4300.63583954284
+      },
+      "executed_request_latency_seconds": {
+        "n": 20,
+        "median": 1509.0445574324112,
+        "mean": 1893.9525413767435,
+        "sd": 1208.256411267067,
+        "minimum": 547.5476600872353,
+        "maximum": 4300.63583954284
+      },
+      "unselected_request_latency_seconds": {
+        "n": 12,
+        "median": 1618.1506182879675,
+        "mean": 1849.0459059721325,
+        "sd": 1078.2636719443171,
+        "minimum": 744.5423892419785,
+        "maximum": 4159.454875207972
+      },
+      "zero_logged_costs": 32
+    },
+    {
+      "run": "58d3914785a2cfe1",
+      "stratum": "spooky-author-identification/7200/qwen",
+      "arm": "forets-1",
+      "seed": 2,
+      "journal_present": true,
+      "requests": 56,
+      "request_latency_seconds": {
+        "n": 56,
+        "median": 1674.9975397586823,
+        "mean": 1974.234125331967,
+        "sd": 1227.666498900323,
+        "minimum": 463.4657179391943,
+        "maximum": 7287.608268232085
+      },
+      "executed_request_latency_seconds": {
+        "n": 32,
+        "median": 1379.6172048985027,
+        "mean": 1689.4287860162003,
+        "sd": 987.6858999395884,
+        "minimum": 463.4657179391943,
+        "maximum": 4054.9130596769974
+      },
+      "unselected_request_latency_seconds": {
+        "n": 24,
+        "median": 1903.3680181975942,
+        "mean": 2353.9745777529897,
+        "sd": 1423.3507950544522,
+        "minimum": 857.7988502201624,
+        "maximum": 7287.608268232085
+      },
+      "zero_logged_costs": 56
+    },
+    {
+      "run": "ddbcf032862f7a29",
+      "stratum": "spooky-author-identification/7200/qwen",
+      "arm": "forets-1",
+      "seed": 4,
+      "journal_present": true,
+      "requests": 60,
+      "request_latency_seconds": {
+        "n": 60,
+        "median": 1848.5577943995595,
+        "mean": 1989.9477911744189,
+        "sd": 926.49021724813,
+        "minimum": 250.4569144938141,
+        "maximum": 4200.627958143596
+      },
+      "executed_request_latency_seconds": {
+        "n": 32,
+        "median": 1659.098816090962,
+        "mean": 1844.3668660259427,
+        "sd": 1004.9837848565942,
+        "minimum": 250.4569144938141,
+        "maximum": 4200.627958143596
+      },
+      "unselected_request_latency_seconds": {
+        "n": 28,
+        "median": 2082.9130772920325,
+        "mean": 2156.325991344106,
+        "sd": 813.8069899450637,
+        "minimum": 772.2638127529062,
+        "maximum": 3584.314220118802
+      },
+      "zero_logged_costs": 60
+    },
+    {
+      "run": "3277c81be72a1c30",
+      "stratum": "spooky-author-identification/7200/qwen",
+      "arm": "forets-1",
+      "seed": 1,
+      "journal_present": true,
+      "requests": 32,
+      "request_latency_seconds": {
+        "n": 32,
+        "median": 2278.9689449074212,
+        "mean": 2321.238228333372,
+        "sd": 1220.3264959722399,
+        "minimum": 345.709595778957,
+        "maximum": 4923.387298644055
+      },
+      "executed_request_latency_seconds": {
+        "n": 16,
+        "median": 1892.7876886511222,
+        "mean": 1850.2930020670756,
+        "sd": 1103.6137604302194,
+        "minimum": 345.709595778957,
+        "maximum": 4215.7641110848635
+      },
+      "unselected_request_latency_seconds": {
+        "n": 16,
+        "median": 2697.9793932905886,
+        "mean": 2792.183454599668,
+        "sd": 1177.522497454948,
+        "minimum": 594.2347672628239,
+        "maximum": 4923.387298644055
+      },
+      "zero_logged_costs": 32
+    },
+    {
+      "run": "a6072b4db8c338ca",
+      "stratum": "spooky-author-identification/7200/qwen",
+      "arm": "forets-1",
+      "seed": 5,
+      "journal_present": true,
+      "requests": 16,
+      "request_latency_seconds": {
+        "n": 16,
+        "median": 1711.8732669048477,
+        "mean": 1985.344484956062,
+        "sd": 1447.113204157738,
+        "minimum": 352.90940189594403,
+        "maximum": 5535.436577732675
+      },
+      "executed_request_latency_seconds": {
+        "n": 8,
+        "median": 1777.2359970835969,
+        "mean": 2182.684414718591,
+        "sd": 1767.268584461777,
+        "minimum": 352.90940189594403,
+        "maximum": 5535.436577732675
+      },
+      "unselected_request_latency_seconds": {
+        "n": 8,
+        "median": 1711.8732669048477,
+        "mean": 1788.0045551935327,
+        "sd": 1129.240760819759,
+        "minimum": 733.3656218461692,
+        "maximum": 4241.024574910756
+      },
+      "zero_logged_costs": 16
+    },
+    {
+      "run": "4d46a9e0202e9b41",
+      "stratum": "spooky-author-identification/7200/qwen",
+      "arm": "forets-2",
+      "seed": 11,
+      "journal_present": true,
+      "requests": 41,
+      "request_latency_seconds": {
+        "n": 41,
+        "median": 2249.151798841078,
+        "mean": 2534.133301419274,
+        "sd": 1305.2120210232915,
+        "minimum": 420.3035453329794,
+        "maximum": 5565.714142951649
+      },
+      "executed_request_latency_seconds": {
+        "n": 25,
+        "median": 2137.872668925207,
+        "mean": 2380.9953281277417,
+        "sd": 1294.6598875692823,
+        "minimum": 420.3035453329794,
+        "maximum": 5565.714142951649
+      },
+      "unselected_request_latency_seconds": {
+        "n": 16,
+        "median": 2558.803952827584,
+        "mean": 2773.4113846872933,
+        "sd": 1326.984813168355,
+        "minimum": 1102.8764520413242,
+        "maximum": 5387.476238153875
+      },
+      "zero_logged_costs": 41
+    },
+    {
+      "run": "0cb301ad08da9727",
+      "stratum": "spooky-author-identification/7200/qwen",
+      "arm": "forets-2",
+      "seed": 12,
+      "journal_present": true,
+      "requests": 48,
+      "request_latency_seconds": {
+        "n": 48,
+        "median": 1862.124941477552,
+        "mean": 2201.4533608504084,
+        "sd": 1710.1246472471598,
+        "minimum": 260.6848311908543,
+        "maximum": 8242.622568394989
+      },
+      "executed_request_latency_seconds": {
+        "n": 28,
+        "median": 1576.1145071601495,
+        "mean": 1924.5649790133882,
+        "sd": 1240.6688682343724,
+        "minimum": 260.6848311908543,
+        "maximum": 4549.034709037282
+      },
+      "unselected_request_latency_seconds": {
+        "n": 20,
+        "median": 1983.3582497376483,
+        "mean": 2589.097095422237,
+        "sd": 2185.3664368804875,
+        "minimum": 485.76269977819175,
+        "maximum": 8242.622568394989
+      },
+      "zero_logged_costs": 48
+    },
+    {
+      "run": "7edcb3de5325b2e8",
+      "stratum": "spooky-author-identification/7200/qwen",
+      "arm": "forets-2",
+      "seed": 13,
+      "journal_present": true,
+      "requests": 40,
+      "request_latency_seconds": {
+        "n": 40,
+        "median": 1873.464972587768,
+        "mean": 2113.7380811067646,
+        "sd": 1130.7668528287188,
+        "minimum": 450.1448009512387,
+        "maximum": 6266.718829763122
+      },
+      "executed_request_latency_seconds": {
+        "n": 20,
+        "median": 1731.8917059404776,
+        "mean": 1985.658374746307,
+        "sd": 1252.4188945774988,
+        "minimum": 450.1448009512387,
+        "maximum": 6266.718829763122
+      },
+      "unselected_request_latency_seconds": {
+        "n": 20,
+        "median": 2038.818954522023,
+        "mean": 2241.817787467223,
+        "sd": 1010.6805480294074,
+        "minimum": 705.6352128400467,
+        "maximum": 4450.001132505946
+      },
+      "zero_logged_costs": 40
+    },
+    {
+      "run": "b84b91e419d4d831",
+      "stratum": "spooky-author-identification/7200/qwen",
+      "arm": "forets-2",
+      "seed": 9,
+      "journal_present": true,
+      "requests": 43,
+      "request_latency_seconds": {
+        "n": 43,
+        "median": 2115.646264717914,
+        "mean": 2402.964479279596,
+        "sd": 1700.2059844190564,
+        "minimum": 469.1200798731297,
+        "maximum": 9222.17110474594
+      },
+      "executed_request_latency_seconds": {
+        "n": 23,
+        "median": 2115.646264717914,
+        "mean": 2272.717985656416,
+        "sd": 1313.4322504078013,
+        "minimum": 642.8267279518768,
+        "maximum": 4864.2191583951935
+      },
+      "unselected_request_latency_seconds": {
+        "n": 20,
+        "median": 2094.6315276278183,
+        "mean": 2552.7479469462533,
+        "sd": 2085.264656975401,
+        "minimum": 469.1200798731297,
+        "maximum": 9222.17110474594
+      },
+      "zero_logged_costs": 43
+    },
+    {
+      "run": "b916b2861e14060c",
+      "stratum": "spooky-author-identification/7200/qwen",
+      "arm": "forets-2",
+      "seed": 10,
+      "journal_present": true,
+      "requests": 34,
+      "request_latency_seconds": {
+        "n": 34,
+        "median": 2234.9994277372025,
+        "mean": 2706.398340819938,
+        "sd": 1681.549707153886,
+        "minimum": 853.3864420251921,
+        "maximum": 8208.932852271944
+      },
+      "executed_request_latency_seconds": {
+        "n": 18,
+        "median": 1667.05284594791,
+        "mean": 2738.4421498746506,
+        "sd": 2064.2912213426207,
+        "minimum": 853.3864420251921,
+        "maximum": 8208.932852271944
+      },
+      "unselected_request_latency_seconds": {
+        "n": 16,
+        "median": 2343.618198662298,
+        "mean": 2670.3490556333854,
+        "sd": 1178.4103776722097,
+        "minimum": 1049.6289784731343,
+        "maximum": 5119.630502160173
+      },
+      "zero_logged_costs": 34
+    },
+    {
+      "run": "4b0680116e89cc52",
+      "stratum": "spooky-author-identification/7200/qwen",
+      "arm": "mcts",
+      "seed": 4,
+      "journal_present": true,
+      "requests": 21,
+      "request_latency_seconds": {
+        "n": 21,
+        "median": 1511.3806318361312,
+        "mean": 1982.205132011812,
+        "sd": 1293.3157213073591,
+        "minimum": 616.7404841999523,
+        "maximum": 5198.501427371055
+      },
+      "executed_request_latency_seconds": {
+        "n": 21,
+        "median": 1511.3806318361312,
+        "mean": 1982.205132011812,
+        "sd": 1293.3157213073591,
+        "minimum": 616.7404841999523,
+        "maximum": 5198.501427371055
+      },
+      "unselected_request_latency_seconds": {
+        "n": 0,
+        "median": null,
+        "mean": null,
+        "sd": null,
+        "minimum": null,
+        "maximum": null
+      },
+      "zero_logged_costs": 21
+    },
+    {
+      "run": "42fcc427b8d4cc1e",
+      "stratum": "spooky-author-identification/7200/qwen",
+      "arm": "mcts",
+      "seed": 6,
+      "journal_present": true,
+      "requests": 30,
+      "request_latency_seconds": {
+        "n": 30,
+        "median": 1673.7914110219572,
+        "mean": 1884.7439836778212,
+        "sd": 1111.4134043842241,
+        "minimum": 533.107592604123,
+        "maximum": 5152.829430258134
+      },
+      "executed_request_latency_seconds": {
+        "n": 30,
+        "median": 1673.7914110219572,
+        "mean": 1884.7439836778212,
+        "sd": 1111.4134043842241,
+        "minimum": 533.107592604123,
+        "maximum": 5152.829430258134
+      },
+      "unselected_request_latency_seconds": {
+        "n": 0,
+        "median": null,
+        "mean": null,
+        "sd": null,
+        "minimum": null,
+        "maximum": null
+      },
+      "zero_logged_costs": 30
+    },
+    {
+      "run": "bbb1b4f44a6cd82a",
+      "stratum": "spooky-author-identification/7200/qwen",
+      "arm": "mcts",
+      "seed": 2,
+      "journal_present": true,
+      "requests": 28,
+      "request_latency_seconds": {
+        "n": 28,
+        "median": 1977.4723846969428,
+        "mean": 2210.3109905166784,
+        "sd": 1295.6438607002956,
+        "minimum": 537.8438348670024,
+        "maximum": 5199.295920084929
+      },
+      "executed_request_latency_seconds": {
+        "n": 28,
+        "median": 1977.4723846969428,
+        "mean": 2210.3109905166784,
+        "sd": 1295.6438607002956,
+        "minimum": 537.8438348670024,
+        "maximum": 5199.295920084929
+      },
+      "unselected_request_latency_seconds": {
+        "n": 0,
+        "median": null,
+        "mean": null,
+        "sd": null,
+        "minimum": null,
+        "maximum": null
+      },
+      "zero_logged_costs": 28
+    },
+    {
+      "run": "74ea1e47b9783a2c",
+      "stratum": "spooky-author-identification/7200/qwen",
+      "arm": "mcts",
+      "seed": 1,
+      "journal_present": true,
+      "requests": 29,
+      "request_latency_seconds": {
+        "n": 29,
+        "median": 1751.6669464071747,
+        "mean": 1893.9557476995417,
+        "sd": 1130.9683948332474,
+        "minimum": 197.30316830100492,
+        "maximum": 4828.763225550996
+      },
+      "executed_request_latency_seconds": {
+        "n": 29,
+        "median": 1751.6669464071747,
+        "mean": 1893.9557476995417,
+        "sd": 1130.9683948332474,
+        "minimum": 197.30316830100492,
+        "maximum": 4828.763225550996
+      },
+      "unselected_request_latency_seconds": {
+        "n": 0,
+        "median": null,
+        "mean": null,
+        "sd": null,
+        "minimum": null,
+        "maximum": null
+      },
+      "zero_logged_costs": 29
+    },
+    {
+      "run": "631c7eb6ebb346f9",
+      "stratum": "spooky-author-identification/7200/qwen",
+      "arm": "mcts",
+      "seed": 5,
+      "journal_present": true,
+      "requests": 26,
+      "request_latency_seconds": {
+        "n": 26,
+        "median": 1790.2183919328963,
+        "mean": 2018.8129709037648,
+        "sd": 1238.8322473031171,
+        "minimum": 556.92365075415,
+        "maximum": 5113.468672526069
+      },
+      "executed_request_latency_seconds": {
+        "n": 26,
+        "median": 1790.2183919328963,
+        "mean": 2018.8129709037648,
+        "sd": 1238.8322473031171,
+        "minimum": 556.92365075415,
+        "maximum": 5113.468672526069
+      },
+      "unselected_request_latency_seconds": {
+        "n": 0,
+        "median": null,
+        "mean": null,
+        "sd": null,
+        "minimum": null,
+        "maximum": null
+      },
+      "zero_logged_costs": 26
+    },
+    {
+      "run": "ca381a5db4f50746",
+      "stratum": "spooky-author-identification/7200/qwen",
+      "arm": "mcts",
+      "seed": 3,
+      "journal_present": true,
+      "requests": 17,
+      "request_latency_seconds": {
+        "n": 17,
+        "median": 1999.0127837019973,
+        "mean": 2352.5314184336867,
+        "sd": 1624.0376334272553,
+        "minimum": 421.7453378268983,
+        "maximum": 5260.257976948982
+      },
+      "executed_request_latency_seconds": {
+        "n": 17,
+        "median": 1999.0127837019973,
+        "mean": 2352.5314184336867,
+        "sd": 1624.0376334272553,
+        "minimum": 421.7453378268983,
+        "maximum": 5260.257976948982
+      },
+      "unselected_request_latency_seconds": {
+        "n": 0,
+        "median": null,
+        "mean": null,
+        "sd": null,
+        "minimum": null,
+        "maximum": null
+      },
+      "zero_logged_costs": 17
+    },
+    {
+      "run": "8b55b1226cf17dc7",
+      "stratum": "AI4Code/7200/qwen",
+      "arm": "mcts",
+      "seed": 3,
+      "journal_present": false,
+      "requests": 0,
+      "request_latency_seconds": {
+        "n": 0,
+        "median": null,
+        "mean": null,
+        "sd": null,
+        "minimum": null,
+        "maximum": null
+      },
+      "executed_request_latency_seconds": {
+        "n": 0,
+        "median": null,
+        "mean": null,
+        "sd": null,
+        "minimum": null,
+        "maximum": null
+      },
+      "unselected_request_latency_seconds": {
+        "n": 0,
+        "median": null,
+        "mean": null,
+        "sd": null,
+        "minimum": null,
+        "maximum": null
+      },
+      "zero_logged_costs": 0
+    },
+    {
+      "run": "96728bdbc9891046",
+      "stratum": "AI4Code/7200/qwen",
+      "arm": "mcts",
+      "seed": 2,
+      "journal_present": false,
+      "requests": 0,
+      "request_latency_seconds": {
+        "n": 0,
+        "median": null,
+        "mean": null,
+        "sd": null,
+        "minimum": null,
+        "maximum": null
+      },
+      "executed_request_latency_seconds": {
+        "n": 0,
+        "median": null,
+        "mean": null,
+        "sd": null,
+        "minimum": null,
+        "maximum": null
+      },
+      "unselected_request_latency_seconds": {
+        "n": 0,
+        "median": null,
+        "mean": null,
+        "sd": null,
+        "minimum": null,
+        "maximum": null
+      },
+      "zero_logged_costs": 0
+    },
+    {
+      "run": "da669e32571030b0",
+      "stratum": "AI4Code/7200/qwen",
+      "arm": "mcts",
+      "seed": 4,
+      "journal_present": true,
+      "requests": 20,
+      "request_latency_seconds": {
+        "n": 20,
+        "median": 1833.8294790245127,
+        "mean": 2193.753196496982,
+        "sd": 794.0455480530778,
+        "minimum": 1259.4589438186958,
+        "maximum": 3660.646011515055
+      },
+      "executed_request_latency_seconds": {
+        "n": 20,
+        "median": 1833.8294790245127,
+        "mean": 2193.753196496982,
+        "sd": 794.0455480530778,
+        "minimum": 1259.4589438186958,
+        "maximum": 3660.646011515055
+      },
+      "unselected_request_latency_seconds": {
+        "n": 0,
+        "median": null,
+        "mean": null,
+        "sd": null,
+        "minimum": null,
+        "maximum": null
+      },
+      "zero_logged_costs": 20
+    },
+    {
+      "run": "99ad755aca17e8b5",
+      "stratum": "AI4Code/7200/qwen",
+      "arm": "mcts",
+      "seed": 1,
+      "journal_present": true,
+      "requests": 9,
+      "request_latency_seconds": {
+        "n": 9,
+        "median": 2225.13582611084,
+        "mean": 2186.824494289752,
+        "sd": 680.5259032695384,
+        "minimum": 797.8525343327783,
+        "maximum": 3240.189060464967
+      },
+      "executed_request_latency_seconds": {
+        "n": 9,
+        "median": 2225.13582611084,
+        "mean": 2186.824494289752,
+        "sd": 680.5259032695384,
+        "minimum": 797.8525343327783,
+        "maximum": 3240.189060464967
+      },
+      "unselected_request_latency_seconds": {
+        "n": 0,
+        "median": null,
+        "mean": null,
+        "sd": null,
+        "minimum": null,
+        "maximum": null
+      },
+      "zero_logged_costs": 9
+    },
+    {
+      "run": "00b3c850f50017f5",
+      "stratum": "AI4Code/7200/qwen",
+      "arm": "forets",
+      "seed": 3,
+      "journal_present": true,
+      "requests": 37,
+      "request_latency_seconds": {
+        "n": 37,
+        "median": 2150.776755692903,
+        "mean": 2225.803969173302,
+        "sd": 1075.3647192502394,
+        "minimum": 323.1793862488121,
+        "maximum": 4243.575828901026
+      },
+      "executed_request_latency_seconds": {
+        "n": 21,
+        "median": 1630.4508899189532,
+        "mean": 1815.6529870188042,
+        "sd": 1012.2725909908611,
+        "minimum": 323.1793862488121,
+        "maximum": 4143.519013935234
+      },
+      "unselected_request_latency_seconds": {
+        "n": 16,
+        "median": 2734.7263268181123,
+        "mean": 2764.1271332510805,
+        "sd": 929.7830726979486,
+        "minimum": 1302.067230596207,
+        "maximum": 4243.575828901026
+      },
+      "zero_logged_costs": 37
+    },
+    {
+      "run": "46f0b562dbc0a74e",
+      "stratum": "AI4Code/7200/qwen",
+      "arm": "forets",
+      "seed": 1,
+      "journal_present": true,
+      "requests": 26,
+      "request_latency_seconds": {
+        "n": 26,
+        "median": 2516.896931802854,
+        "mean": 3497.624802567853,
+        "sd": 2861.961266654294,
+        "minimum": 210.13884400296956,
+        "maximum": 9956.837542050052
+      },
+      "executed_request_latency_seconds": {
+        "n": 18,
+        "median": 2136.8677001981996,
+        "mean": 2598.490319831452,
+        "sd": 2163.5602090588054,
+        "minimum": 210.13884400296956,
+        "maximum": 8933.950034223031
+      },
+      "unselected_request_latency_seconds": {
+        "n": 8,
+        "median": 5435.461150348419,
+        "mean": 5520.677388724755,
+        "sd": 3335.946539702713,
+        "minimum": 1927.6995335421525,
+        "maximum": 9956.837542050052
+      },
+      "zero_logged_costs": 26
+    },
+    {
+      "run": "c0070688ea304c3f",
+      "stratum": "AI4Code/7200/qwen",
+      "arm": "forets",
+      "seed": 2,
+      "journal_present": false,
+      "requests": 0,
+      "request_latency_seconds": {
+        "n": 0,
+        "median": null,
+        "mean": null,
+        "sd": null,
+        "minimum": null,
+        "maximum": null
+      },
+      "executed_request_latency_seconds": {
+        "n": 0,
+        "median": null,
+        "mean": null,
+        "sd": null,
+        "minimum": null,
+        "maximum": null
+      },
+      "unselected_request_latency_seconds": {
+        "n": 0,
+        "median": null,
+        "mean": null,
+        "sd": null,
+        "minimum": null,
+        "maximum": null
+      },
+      "zero_logged_costs": 0
+    },
+    {
+      "run": "8b601e5efea310e7",
+      "stratum": "leaf-classification/7200/qwen",
+      "arm": "forets",
+      "seed": 1,
+      "journal_present": true,
+      "requests": 81,
+      "request_latency_seconds": {
+        "n": 81,
+        "median": 1835.7498995419592,
+        "mean": 2036.2655903541506,
+        "sd": 937.2086718938493,
+        "minimum": 607.6116670351475,
+        "maximum": 5437.932379209902
+      },
+      "executed_request_latency_seconds": {
+        "n": 41,
+        "median": 1576.6623832681216,
+        "mean": 1924.9247369253667,
+        "sd": 949.3143202919772,
+        "minimum": 607.6116670351475,
+        "maximum": 4629.687973854132
+      },
+      "unselected_request_latency_seconds": {
+        "n": 40,
+        "median": 1967.1790832362603,
+        "mean": 2150.389965118654,
+        "sd": 922.5335418464447,
+        "minimum": 865.4918512389995,
+        "maximum": 5437.932379209902
+      },
+      "zero_logged_costs": 81
+    },
+    {
+      "run": "f70d132bf8fd755c",
+      "stratum": "leaf-classification/7200/qwen",
+      "arm": "forets",
+      "seed": 3,
+      "journal_present": true,
+      "requests": 72,
+      "request_latency_seconds": {
+        "n": 72,
+        "median": 1952.3833595453762,
+        "mean": 2417.13039658564,
+        "sd": 1224.1327894296264,
+        "minimum": 633.6882402631454,
+        "maximum": 6544.386948280968
+      },
+      "executed_request_latency_seconds": {
+        "n": 28,
+        "median": 1938.2879021728877,
+        "mean": 2421.798695848473,
+        "sd": 1287.2431147795896,
+        "minimum": 1267.1570365610532,
+        "maximum": 6544.386948280968
+      },
+      "unselected_request_latency_seconds": {
+        "n": 44,
+        "median": 1996.7618905976415,
+        "mean": 2414.15966069111,
+        "sd": 1197.4169681743244,
+        "minimum": 633.6882402631454,
+        "maximum": 6372.487051841337
+      },
+      "zero_logged_costs": 72
+    },
+    {
+      "run": "aa600099292ca506",
+      "stratum": "leaf-classification/7200/qwen",
+      "arm": "forets",
+      "seed": 2,
+      "journal_present": true,
+      "requests": 69,
+      "request_latency_seconds": {
+        "n": 69,
+        "median": 1718.8829511646181,
+        "mean": 1870.2235370664926,
+        "sd": 767.2443038456435,
+        "minimum": 253.8784638568759,
+        "maximum": 4503.335038925987
+      },
+      "executed_request_latency_seconds": {
+        "n": 33,
+        "median": 1601.9986732671969,
+        "mean": 1718.7831462979684,
+        "sd": 685.8247224052405,
+        "minimum": 619.001985928975,
+        "maximum": 3981.2957858010195
+      },
+      "unselected_request_latency_seconds": {
+        "n": 36,
+        "median": 1917.4462721589953,
+        "mean": 2009.0438952709728,
+        "sd": 819.8810827442833,
+        "minimum": 253.8784638568759,
+        "maximum": 4503.335038925987
+      },
+      "zero_logged_costs": 69
+    },
+    {
+      "run": "ae52a7403c4b81c5",
+      "stratum": "leaf-classification/7200/qwen",
+      "arm": "mcts",
+      "seed": 2,
+      "journal_present": true,
+      "requests": 18,
+      "request_latency_seconds": {
+        "n": 18,
+        "median": 1298.8354325734545,
+        "mean": 1326.1286248704419,
+        "sd": 378.1632608259014,
+        "minimum": 354.47329554567114,
+        "maximum": 2129.2420472628437
+      },
+      "executed_request_latency_seconds": {
+        "n": 18,
+        "median": 1298.8354325734545,
+        "mean": 1326.1286248704419,
+        "sd": 378.1632608259014,
+        "minimum": 354.47329554567114,
+        "maximum": 2129.2420472628437
+      },
+      "unselected_request_latency_seconds": {
+        "n": 0,
+        "median": null,
+        "mean": null,
+        "sd": null,
+        "minimum": null,
+        "maximum": null
+      },
+      "zero_logged_costs": 18
+    },
+    {
+      "run": "cc07081dc892f06c",
+      "stratum": "leaf-classification/7200/qwen",
+      "arm": "mcts",
+      "seed": 4,
+      "journal_present": true,
+      "requests": 14,
+      "request_latency_seconds": {
+        "n": 14,
+        "median": 1483.8333809913602,
+        "mean": 1961.2845887781586,
+        "sd": 848.7028624066546,
+        "minimum": 1128.226954902988,
+        "maximum": 3539.8955276678316
+      },
+      "executed_request_latency_seconds": {
+        "n": 14,
+        "median": 1483.8333809913602,
+        "mean": 1961.2845887781586,
+        "sd": 848.7028624066546,
+        "minimum": 1128.226954902988,
+        "maximum": 3539.8955276678316
+      },
+      "unselected_request_latency_seconds": {
+        "n": 0,
+        "median": null,
+        "mean": null,
+        "sd": null,
+        "minimum": null,
+        "maximum": null
+      },
+      "zero_logged_costs": 14
+    },
+    {
+      "run": "de9ce9f1f9b7d861",
+      "stratum": "leaf-classification/7200/qwen",
+      "arm": "mcts",
+      "seed": 1,
+      "journal_present": true,
+      "requests": 19,
+      "request_latency_seconds": {
+        "n": 19,
+        "median": 1300.020878431853,
+        "mean": 1556.236416036459,
+        "sd": 854.9646169023177,
+        "minimum": 667.9815538739786,
+        "maximum": 3403.3062470499426
+      },
+      "executed_request_latency_seconds": {
+        "n": 19,
+        "median": 1300.020878431853,
+        "mean": 1556.236416036459,
+        "sd": 854.9646169023177,
+        "minimum": 667.9815538739786,
+        "maximum": 3403.3062470499426
+      },
+      "unselected_request_latency_seconds": {
+        "n": 0,
+        "median": null,
+        "mean": null,
+        "sd": null,
+        "minimum": null,
+        "maximum": null
+      },
+      "zero_logged_costs": 19
+    },
+    {
+      "run": "2daccc65ef67faaa",
+      "stratum": "leaf-classification/7200/qwen",
+      "arm": "mcts",
+      "seed": 3,
+      "journal_present": true,
+      "requests": 6,
+      "request_latency_seconds": {
+        "n": 6,
+        "median": 814.2735397750512,
+        "mean": 1670.2259355365143,
+        "sd": 1435.46655463193,
+        "minimum": 627.9958974490874,
+        "maximum": 3539.910619438626
+      },
+      "executed_request_latency_seconds": {
+        "n": 6,
+        "median": 814.2735397750512,
+        "mean": 1670.2259355365143,
+        "sd": 1435.46655463193,
+        "minimum": 627.9958974490874,
+        "maximum": 3539.910619438626
+      },
+      "unselected_request_latency_seconds": {
+        "n": 0,
+        "median": null,
+        "mean": null,
+        "sd": null,
+        "minimum": null,
+        "maximum": null
+      },
+      "zero_logged_costs": 6
+    }
+  ],
+  "root_pools": [
+    {
+      "run": "514320462b1e1536",
+      "stratum": "random-acts-of-pizza/7200/qwen",
+      "arm": "forets-1",
+      "seed": 4,
+      "six_request_latencies_seconds": [
+        1121.1548844409408,
+        1165.2993836930254,
+        1206.0796845599543,
+        1283.8675636330154,
+        1842.1195126899984,
+        2654.0277876949403
+      ],
+      "longest_request_seconds": 2654.0277876949403,
+      "selected_two_execution_seconds": [
+        13.239631786942482,
+        4.286192187923007
+      ],
+      "selected_execution_sum_seconds": 17.52582397486549,
+      "longest_generation_over_selected_execution": 151.43526441331326
+    },
+    {
+      "run": "620f3b971818de16",
+      "stratum": "random-acts-of-pizza/7200/qwen",
+      "arm": "forets-1",
+      "seed": 5,
+      "six_request_latencies_seconds": [
+        6585.019066105015,
+        7080.526595414034,
+        7085.818941802019,
+        8212.644421022967,
+        9107.281334056985,
+        9534.913149036001
+      ],
+      "longest_request_seconds": 9534.913149036001,
+      "selected_two_execution_seconds": [
+        0.31174370099324733,
+        83.11118994501885
+      ],
+      "selected_execution_sum_seconds": 83.4229336460121,
+      "longest_generation_over_selected_execution": 114.29606622916698
+    },
+    {
+      "run": "5c3f818a9595bd79",
+      "stratum": "random-acts-of-pizza/7200/qwen",
+      "arm": "forets-1",
+      "seed": 1,
+      "six_request_latencies_seconds": [
+        4020.2950556050055,
+        4550.690720263054,
+        5265.483418341959,
+        6507.126956569031,
+        8338.442615280976,
+        8656.995502543985
+      ],
+      "longest_request_seconds": 8656.995502543985,
+      "selected_two_execution_seconds": [
+        5.003255152027123,
+        61.00700963195413
+      ],
+      "selected_execution_sum_seconds": 66.01026478398126,
+      "longest_generation_over_selected_execution": 131.14620174413818
+    },
+    {
+      "run": "1eee3186d26dcbcd",
+      "stratum": "random-acts-of-pizza/7200/qwen",
+      "arm": "forets-1",
+      "seed": 2,
+      "six_request_latencies_seconds": [
+        1832.1580804029945,
+        2172.1805285270093,
+        2791.0695503570605,
+        2989.2876179030864,
+        5295.187922318932,
+        9312.421694430988
+      ],
+      "longest_request_seconds": 9312.421694430988,
+      "selected_two_execution_seconds": [
+        0.4601800600066781,
+        6.15073442494031
+      ],
+      "selected_execution_sum_seconds": 6.6109144849469885,
+      "longest_generation_over_selected_execution": 1408.6434963930203
+    },
+    {
+      "run": "adc09c14eda018c4",
+      "stratum": "random-acts-of-pizza/7200/qwen",
+      "arm": "forets-1",
+      "seed": 3,
+      "six_request_latencies_seconds": [
+        9963.544848358026,
+        11045.193184186006,
+        11213.719335238915,
+        11406.668137169094,
+        12547.24845630594,
+        13596.13856455509
+      ],
+      "longest_request_seconds": 13596.13856455509,
+      "selected_two_execution_seconds": [
+        8.54334971390199,
+        27.108799982001074
+      ],
+      "selected_execution_sum_seconds": 35.65214969590306,
+      "longest_generation_over_selected_execution": 381.35536511890837
+    },
+    {
+      "run": "817f8d5f4ca7979e",
+      "stratum": "random-acts-of-pizza/7200/qwen",
+      "arm": "forets-2",
+      "seed": 9,
+      "six_request_latencies_seconds": [
+        989.5729677758645,
+        1112.6017280130181,
+        1337.8892549299635,
+        1902.1200959268026,
+        2233.8206412410364,
+        4036.7594694830477
+      ],
+      "longest_request_seconds": 4036.7594694830477,
+      "selected_two_execution_seconds": [
+        0.3680610600858927,
+        63.36232039285824
+      ],
+      "selected_execution_sum_seconds": 63.73038145294413,
+      "longest_generation_over_selected_execution": 63.341209913573536
+    },
+    {
+      "run": "7a9056cf3c6744ea",
+      "stratum": "random-acts-of-pizza/7200/qwen",
+      "arm": "forets-2",
+      "seed": 11,
+      "six_request_latencies_seconds": [
+        7820.566069880035,
+        9108.176700335927,
+        9255.237272904953,
+        9395.122018890921,
+        11388.785039304988,
+        15135.06623678701
+      ],
+      "longest_request_seconds": 15135.06623678701,
+      "selected_two_execution_seconds": [
+        11.42700247419998,
+        66.59269566694275
+      ],
+      "selected_execution_sum_seconds": 78.01969814114273,
+      "longest_generation_over_selected_execution": 193.99032035995177
+    },
+    {
+      "run": "2b7183932e4e50dc",
+      "stratum": "random-acts-of-pizza/7200/qwen",
+      "arm": "forets-2",
+      "seed": 13,
+      "six_request_latencies_seconds": [
+        1867.9509613760747,
+        2235.0524292308837,
+        3208.7527792369947,
+        4084.6666001591366,
+        4201.84773438517,
+        7327.055542326998
+      ],
+      "longest_request_seconds": 7327.055542326998,
+      "selected_two_execution_seconds": [
+        27.59418252715841,
+        68.41618307307363
+      ],
+      "selected_execution_sum_seconds": 96.01036560023203,
+      "longest_generation_over_selected_execution": 76.31525509271981
+    },
+    {
+      "run": "4cc32ca4dfbf20a2",
+      "stratum": "random-acts-of-pizza/7200/qwen",
+      "arm": "forets-2",
+      "seed": 10,
+      "six_request_latencies_seconds": [
+        5550.1392256838735,
+        6629.585083479062,
+        6771.37877320312,
+        7094.254947928945,
+        7172.4882431440055,
+        9374.069861178985
+      ],
+      "longest_request_seconds": 9374.069861178985,
+      "selected_two_execution_seconds": [
+        7.969423623988405,
+        59.66440836386755
+      ],
+      "selected_execution_sum_seconds": 67.63383198785596,
+      "longest_generation_over_selected_execution": 138.6003067645517
+    },
+    {
+      "run": "72dcad0e0ccc9a02",
+      "stratum": "random-acts-of-pizza/7200/qwen",
+      "arm": "forets-2",
+      "seed": 12,
+      "six_request_latencies_seconds": [
+        4534.582789441105,
+        5091.284307681024,
+        5207.657098602969,
+        5239.784925285028,
+        5459.0983237491455,
+        6337.49957107706
+      ],
+      "longest_request_seconds": 6337.49957107706,
+      "selected_two_execution_seconds": [
+        4.192910765996203,
+        12.75679120188579
+      ],
+      "selected_execution_sum_seconds": 16.949701967881992,
+      "longest_generation_over_selected_execution": 373.90035430038796
+    },
+    {
+      "run": "e4a4275f2df8028e",
+      "stratum": "spooky-author-identification/7200/qwen",
+      "arm": "forets-1",
+      "seed": 3,
+      "six_request_latencies_seconds": [
+        744.5423892419785,
+        772.4011030602269,
+        781.5750922509469,
+        913.4490121649578,
+        1035.3359755142592,
+        4159.454875207972
+      ],
+      "longest_request_seconds": 4159.454875207972,
+      "selected_two_execution_seconds": [
+        4.628514241427183,
+        7.344739568885416
+      ],
+      "selected_execution_sum_seconds": 11.973253810312599,
+      "longest_generation_over_selected_execution": 347.39553183324495
+    },
+    {
+      "run": "58d3914785a2cfe1",
+      "stratum": "spooky-author-identification/7200/qwen",
+      "arm": "forets-1",
+      "seed": 2,
+      "six_request_latencies_seconds": [
+        981.440820963122,
+        1256.6694626039825,
+        1361.593793389853,
+        1549.8804543600418,
+        1724.6065005511045,
+        4300.560214934405
+      ],
+      "longest_request_seconds": 4300.560214934405,
+      "selected_two_execution_seconds": [
+        2.985691216774285,
+        4.4956487668678164
+      ],
+      "selected_execution_sum_seconds": 7.481339983642101,
+      "longest_generation_over_selected_execution": 574.8382274214981
+    },
+    {
+      "run": "ddbcf032862f7a29",
+      "stratum": "spooky-author-identification/7200/qwen",
+      "arm": "forets-1",
+      "seed": 4,
+      "six_request_latencies_seconds": [
+        2767.961453651078,
+        3012.6834021341056,
+        3081.2335037202574,
+        3207.289408835117,
+        3584.314220118802,
+        4200.627958143596
+      ],
+      "longest_request_seconds": 4200.627958143596,
+      "selected_two_execution_seconds": [
+        133.80081941187382,
+        7.332789714913815
+      ],
+      "selected_execution_sum_seconds": 141.13360912678763,
+      "longest_generation_over_selected_execution": 29.763484290761344
+    },
+    {
+      "run": "3277c81be72a1c30",
+      "stratum": "spooky-author-identification/7200/qwen",
+      "arm": "forets-1",
+      "seed": 1,
+      "six_request_latencies_seconds": [
+        2352.990252251737,
+        2493.598184341099,
+        2581.3049162630923,
+        2816.6011268272996,
+        2994.458072335925,
+        3490.945554909762
+      ],
+      "longest_request_seconds": 3490.945554909762,
+      "selected_two_execution_seconds": [
+        11.8289894759655,
+        4.791727110743523
+      ],
+      "selected_execution_sum_seconds": 16.620716586709023,
+      "longest_generation_over_selected_execution": 210.03580301112547
+    },
+    {
+      "run": "a6072b4db8c338ca",
+      "stratum": "spooky-author-identification/7200/qwen",
+      "arm": "forets-1",
+      "seed": 5,
+      "six_request_latencies_seconds": [
+        1573.4546194276772,
+        1850.2919143820181,
+        2048.1301118610427,
+        2059.8897314732894,
+        2197.406811789144,
+        5535.436577732675
+      ],
+      "longest_request_seconds": 5535.436577732675,
+      "selected_two_execution_seconds": [
+        2.5392069509252906,
+        5.152795203961432
+      ],
+      "selected_execution_sum_seconds": 7.692002154886723,
+      "longest_generation_over_selected_execution": 719.6353389235619
+    },
+    {
+      "run": "4d46a9e0202e9b41",
+      "stratum": "spooky-author-identification/7200/qwen",
+      "arm": "forets-2",
+      "seed": 11,
+      "six_request_latencies_seconds": [
+        2937.6992239132524,
+        3723.8885901109315,
+        3820.2235621241853,
+        3889.9683874063194,
+        4208.965376293752,
+        5387.476238153875
+      ],
+      "longest_request_seconds": 5387.476238153875,
+      "selected_two_execution_seconds": [
+        8.364455877803266,
+        4.700971174053848
+      ],
+      "selected_execution_sum_seconds": 13.065427051857114,
+      "longest_generation_over_selected_execution": 412.34597359663815
+    },
+    {
+      "run": "0cb301ad08da9727",
+      "stratum": "spooky-author-identification/7200/qwen",
+      "arm": "forets-2",
+      "seed": 12,
+      "six_request_latencies_seconds": [
+        485.76269977819175,
+        510.2620308632031,
+        556.7902780151926,
+        706.6869625020772,
+        968.417579210829,
+        1491.713129542768
+      ],
+      "longest_request_seconds": 1491.713129542768,
+      "selected_two_execution_seconds": [
+        12.10956235602498,
+        14.280489209108055
+      ],
+      "selected_execution_sum_seconds": 26.390051565133035,
+      "longest_generation_over_selected_execution": 56.52558600960233
+    },
+    {
+      "run": "7edcb3de5325b2e8",
+      "stratum": "spooky-author-identification/7200/qwen",
+      "arm": "forets-2",
+      "seed": 13,
+      "six_request_latencies_seconds": [
+        1411.570419440046,
+        1541.6050872337073,
+        1875.8420143509284,
+        1988.4017276060767,
+        2089.236181437969,
+        2207.6027931189165
+      ],
+      "longest_request_seconds": 2207.6027931189165,
+      "selected_two_execution_seconds": [
+        56.45187439303845,
+        5.816454674117267
+      ],
+      "selected_execution_sum_seconds": 62.26832906715572,
+      "longest_generation_over_selected_execution": 35.45305978482321
+    },
+    {
+      "run": "b84b91e419d4d831",
+      "stratum": "spooky-author-identification/7200/qwen",
+      "arm": "forets-2",
+      "seed": 9,
+      "six_request_latencies_seconds": [
+        469.1200798731297,
+        1075.918156596832,
+        1096.6450530216098,
+        1207.3131406558678,
+        1313.1290187244304,
+        4451.480326576158
+      ],
+      "longest_request_seconds": 4451.480326576158,
+      "selected_two_execution_seconds": [
+        4.810491682030261,
+        152.4992625201121
+      ],
+      "selected_execution_sum_seconds": 157.30975420214236,
+      "longest_generation_over_selected_execution": 28.29754803923999
+    },
+    {
+      "run": "b916b2861e14060c",
+      "stratum": "spooky-author-identification/7200/qwen",
+      "arm": "forets-2",
+      "seed": 10,
+      "six_request_latencies_seconds": [
+        2170.7821671226993,
+        2299.2166883517057,
+        2814.414517786354,
+        2850.0737997470424,
+        3717.7966947839595,
+        6532.970022474881
+      ],
+      "longest_request_seconds": 6532.970022474881,
+      "selected_two_execution_seconds": [
+        0.25690887589007616,
+        466.508879060857
+      ],
+      "selected_execution_sum_seconds": 466.7657879367471,
+      "longest_generation_over_selected_execution": 13.99624863542952
+    },
+    {
+      "run": "00b3c850f50017f5",
+      "stratum": "AI4Code/7200/qwen",
+      "arm": "forets",
+      "seed": 3,
+      "six_request_latencies_seconds": [
+        2155.083214560058,
+        2425.6086796158925,
+        2828.4823127249256,
+        3338.5017109247856,
+        3557.4545151791535,
+        4143.519013935234
+      ],
+      "longest_request_seconds": 4143.519013935234,
+      "selected_two_execution_seconds": [
+        12.844653372652829,
+        0.3937471257522702
+      ],
+      "selected_execution_sum_seconds": 13.238400498405099,
+      "longest_generation_over_selected_execution": 312.99242037846085
+    },
+    {
+      "run": "46f0b562dbc0a74e",
+      "stratum": "AI4Code/7200/qwen",
+      "arm": "forets",
+      "seed": 1,
+      "six_request_latencies_seconds": [
+        6297.265832354315,
+        7129.053282611072,
+        7202.802491541021,
+        8933.950034223031,
+        9549.081061819103,
+        9956.837542050052
+      ],
+      "longest_request_seconds": 9956.837542050052,
+      "selected_two_execution_seconds": [
+        439.96112408908084,
+        0.19620447466149926
+      ],
+      "selected_execution_sum_seconds": 440.15732856374234,
+      "longest_generation_over_selected_execution": 22.62108772456377
+    },
+    {
+      "run": "8b601e5efea310e7",
+      "stratum": "leaf-classification/7200/qwen",
+      "arm": "forets",
+      "seed": 1,
+      "six_request_latencies_seconds": [
+        2106.820977297146,
+        2865.8875952898525,
+        3148.6050599394366,
+        4117.000371894799,
+        4156.095543154981,
+        5437.932379209902
+      ],
+      "longest_request_seconds": 5437.932379209902,
+      "selected_two_execution_seconds": [
+        2.0190107710659504,
+        120.06161448499188
+      ],
+      "selected_execution_sum_seconds": 122.08062525605783,
+      "longest_generation_over_selected_execution": 44.543778898609986
+    },
+    {
+      "run": "f70d132bf8fd755c",
+      "stratum": "leaf-classification/7200/qwen",
+      "arm": "forets",
+      "seed": 3,
+      "six_request_latencies_seconds": [
+        633.6882402631454,
+        1344.3970026811585,
+        1395.194816690404,
+        1619.39639131492,
+        2730.23614289565,
+        3017.8900247421116
+      ],
+      "longest_request_seconds": 3017.8900247421116,
+      "selected_two_execution_seconds": [
+        336.5100636309944,
+        253.29971246095374
+      ],
+      "selected_execution_sum_seconds": 589.8097760919482,
+      "longest_generation_over_selected_execution": 5.116717536861645
+    },
+    {
+      "run": "aa600099292ca506",
+      "stratum": "leaf-classification/7200/qwen",
+      "arm": "forets",
+      "seed": 2,
+      "six_request_latencies_seconds": [
+        253.8784638568759,
+        728.995886515826,
+        823.3551411391236,
+        1133.5723062097095,
+        1182.8404965768568,
+        2081.504503937904
+      ],
+      "longest_request_seconds": 2081.504503937904,
+      "selected_two_execution_seconds": [
+        18.522909767460078,
+        859.4737175861374
+      ],
+      "selected_execution_sum_seconds": 877.9966273535974,
+      "longest_generation_over_selected_execution": 2.3707431658500155
+    }
+  ],
+  "by_task": [
+    {
+      "stratum": "AI4Code/7200/qwen",
+      "pools": 2,
+      "longest_generation_seconds": {
+        "n": 2,
+        "median": 7050.178277992643,
+        "mean": 7050.178277992643,
+        "sd": 4110.636952427387,
+        "minimum": 4143.519013935234,
+        "maximum": 9956.837542050052
+      },
+      "selected_execution_sum_seconds": {
+        "n": 2,
+        "median": 226.69786453107372,
+        "mean": 226.69786453107372,
+        "sd": 301.87726905189186,
+        "minimum": 13.238400498405099,
+        "maximum": 440.15732856374234
+      },
+      "per_pool_ratio": {
+        "n": 2,
+        "median": 167.8067540515123,
+        "mean": 167.8067540515123,
+        "sd": 205.3235383817454,
+        "minimum": 22.62108772456377,
+        "maximum": 312.99242037846085
+      },
+      "longest_generation_exceeds_execution": 2
+    },
+    {
+      "stratum": "leaf-classification/7200/qwen",
+      "pools": 3,
+      "longest_generation_seconds": {
+        "n": 3,
+        "median": 3017.8900247421116,
+        "mean": 3512.4423026299723,
+        "sd": 1732.0041821972543,
+        "minimum": 2081.504503937904,
+        "maximum": 5437.932379209902
+      },
+      "selected_execution_sum_seconds": {
+        "n": 3,
+        "median": 589.8097760919482,
+        "mean": 529.9623429005345,
+        "sd": 381.4951336537367,
+        "minimum": 122.08062525605783,
+        "maximum": 877.9966273535974
+      },
+      "per_pool_ratio": {
+        "n": 3,
+        "median": 5.116717536861645,
+        "mean": 17.34374653377388,
+        "sd": 23.59589825155342,
+        "minimum": 2.3707431658500155,
+        "maximum": 44.543778898609986
+      },
+      "longest_generation_exceeds_execution": 3
+    },
+    {
+      "stratum": "random-acts-of-pizza/7200/qwen",
+      "pools": 10,
+      "longest_generation_seconds": {
+        "n": 10,
+        "median": 8984.708598487487,
+        "mean": 8596.494737911411,
+        "sd": 3837.960305843757,
+        "minimum": 2654.0277876949403,
+        "maximum": 15135.06623678701
+      },
+      "selected_execution_sum_seconds": {
+        "n": 10,
+        "median": 64.8703231184627,
+        "mean": 53.156606573576575,
+        "sd": 31.46546592353646,
+        "minimum": 6.6109144849469885,
+        "maximum": 96.01036560023203
+      },
+      "per_pool_ratio": {
+        "n": 10,
+        "median": 145.0177855889325,
+        "mean": 303.3023840329732,
+        "sd": 404.07101968417857,
+        "minimum": 63.341209913573536,
+        "maximum": 1408.6434963930203
+      },
+      "longest_generation_exceeds_execution": 10
+    },
+    {
+      "stratum": "spooky-author-identification/7200/qwen",
+      "pools": 10,
+      "longest_generation_seconds": {
+        "n": 10,
+        "median": 4250.594086539,
+        "mean": 4175.826769079501,
+        "sd": 1509.6952586495602,
+        "minimum": 1491.713129542768,
+        "maximum": 6532.970022474881
+      },
+      "selected_execution_sum_seconds": {
+        "n": 10,
+        "median": 21.50538407592103,
+        "mean": 91.07002714853733,
+        "sd": 143.32445170714638,
+        "minimum": 7.481339983642101,
+        "maximum": 466.7657879367471
+      },
+      "per_pool_ratio": {
+        "n": 10,
+        "median": 133.2806945103639,
+        "mean": 242.8286801545925,
+        "sd": 258.1598983881364,
+        "minimum": 13.99624863542952,
+        "maximum": 719.6353389235619
+      },
+      "longest_generation_exceeds_execution": 10
+    }
+  ],
+  "limitations": [
+    "Client-observed latency includes queuing/retries; not exclusive GPU service time.",
+    "Concurrent request latencies cannot be summed into wall-clock time.",
+    "Longest request is a lower bound on the gather stage; critic/setup overhead not recovered.",
+    "Execution times are original selected programs only; selection/runtime confounding remains.",
+    "Zero logged currency cost is not proof of zero compute cost.",
+    "This is not evidence that shrinking width improves final quality."
+  ],
+  "input_sha256": {
+    "runs.json": "040c4463a967a34667dd1943735e923d0193a4f50c4c5eae24e9ada3a2da68c8",
+    "nodes.json": "370976e31c8a9f501bc75fb7826f529f85b0e34059146291f2e7bb3cab4062c9",
+    "operator-cost-metadata.json": "129d30afe6b9cc1006dc7d7c01cafb8f5af3395f4b5cb5c6f05f60b5ac9d4236"
+  },
+  "analysis_commit": "3e0d05c5061b3089b2736e0473503f7af333d761",
+  "analysis_file_sha256": "57d86543643b27847147c1f6b3ff2b27740580c5be914f6f1841db158d8a3940"
+}

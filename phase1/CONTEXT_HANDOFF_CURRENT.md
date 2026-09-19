@@ -3,7 +3,8 @@
 ## 最新授权与方向
 用户09-19明确“你继续推进”，覆盖09-14暂停；学长新指定共享盘 mle/comparison，约3–4天更新。
 先核ForeTS/MCTS真实同预算端到端数据，不恢复G0、旧失败选择器或关闭的HCE/多保真/Probe/score-channel/K>=1。27B是降API成本替代，“更弱”为学长判断，非我方matched测量。
-读取顺序：fetch后的CURRENT_DIRECTION顶部→本文件→现场。当前无新GPU/API/训练提交。
+09-19用户明确允许本轮报告/脚本/脱敏逐run成绩与候选ID/hash推送，并要求三小时内有价值进展。
+读取顺序：fetch后的CURRENT_DIRECTION顶部→本文件→现场。新14087已提交；API/模型训练为0。
 
 ## 本轮已做（最后观察，不冒充持续状态）
 09-19 08:30 UTC队列只有旧12535 JobHeldUser，未动。我方公开HEAD eecc178b29dfff084267c593d34d77e93c2b674d。
@@ -20,12 +21,14 @@
 独立核验已完成（independent.json SHA da5667d1973f678125c26f0186a17bc9775ae7270b49304412cc027038bf092d）。共享seed描述比较：Pizza2胜3负，Spooky1胜4负，Leaf2胜1负，AI4Code仅1可读配对1胜；硬件/实际时长不配平，无稳定同预算效应结论。F2的9–13与MCTS1–6不能配对。
 25完整初始六候选池（Pizza10/Spooky10/Leaf3/AI4Code2），每池2已执行+4未选、6distinct raw code hash；100初始未执行程序，整段搜索480未选节点。不是语义多样性或可执行性证明。清单及逐run安全导出在phase1/results/comparison_qwen_20260919；未运行新replay。
 排名日志元数据检查：46个新Qwen根仅配置/env/JOURNAL/评分/checkpoint文件，0文本日志。未读env；源码info中的critic数值日志未随包提供，不能从异步顺序猜rank。现有original_ranks_available字段仅指journal顶层字段。回执SHA6c2eb42e29a44dc591aa509873e9d999256aa2113893a12e87700c6f18a36c81。
-发布前8测试重跑通过，另目录独立重算independent.json/root_pool_inventory.csv均字节相同。明确stage22文件、敏感文件名0、credential-shape0、diff检查通过。自动权限审查在命令执行前拒绝GitHub推送（含逐run新成绩/候选标识，需明确发布许可），该合并commit/push命令未执行；不绕过，不称已push。仅完成本地提交，远端公开head最后核验仍eecc178b；等待本轮数据发布确认。
+发布前8测试重跑通过，另目录独立重算independent.json/root_pool_inventory.csv均字节相同。明确stage22文件、敏感文件名0、credential-shape0、diff检查通过。先前推送被安全审查拦截，用户随后明确许可；09-19已正常推送并ls-remote核对公开head abb79d1f936d9e93d35a999ba88a3e0f9010744e，无学长分支修改。
 曾遇子目录无链接导致发现脚本拒绝，现保留其他已核目录、子目录标未知；首次下载用aira环境缺gdown，零下载，改用既有exp环境完成。不安装/升级依赖。
 
 ## 下一执行点
-1. 本轮主读出/独立复核/下载均完成，不再跑同一reader或覆盖结果。报告COMPARISON_FINDINGS_20260919.md，README含确切哈希；本地提交可继续，但推送因安全审查拒绝，等待本轮报告/脚本/脱敏逐run结果与候选ID/hash到指定myfork分支的发布许可。保留无关untracked。
-2. 后续有限完整同池replay需先固定结构选池、原环境与预算矩阵；不得按已见胜负选pool。100未执行候选不是免费GPU任务，不直接启动25池全量。
+1. 主比较读出/独立复核/下载/推送均完成，不重跑reader或覆盖结果。报告COMPARISON_FINDINGS_20260919.md；保留无关untracked。
+2. 继续当前14087，不另起重复作业：ROOT=/research/d7/spc/yzyang4/comparison-pool-20260919-7ujiaajp，prepared SHA394470c82755bdebf02d34c86f7474ef950a178f5718c4c0ca87ac24882e98a5，源码0adcf0f365b0ba68475cb79ed28cff77ab6cd407。最后观察09:39 UTC已RUNNING/gpu28/52秒、seed1六程序池开始。
+   矩阵Leaf seed1→2→3每池6原程序、7200s，gpu28六GPU/36CPU/150min≤15GPUh，0API/训练；仅剩余≥7500s才开下一整个池，否则未启动。新fresh-container干净工作区、原镜像，不冒称学长历史环境。18路径CPU mock及8组合测试通过；首次宽泛unittest discover误导入旧包，直接跑本测试文件已通过，非结果修改。
+   全allocation结束后readout_comparison_pool_20260919.py读出，原选二vs均匀15组合。best-of-two为oracle诊断，不是部署策略/E2E；新结果未读，不按中间胜负调度。
 3. 原选择的两个候选已知，故同池uniform对照不依赖重建原完整rank；缺原rank就不声称top3召回。原任务7200秒上限不可静默缩成低保真评测。
 4. 检查comparison/0918的新可解析共享内容可按元数据续查；未解析不等于未上传。新outcome已读，因此只称探索性复核。RL63.37 vs BT60.01非matched算法效果。
 5. 先核未来实验真实完成时间、GPU总资源、镜像/数据；同池效果和fresh-seed同预算E2E分开。不重做G0、不以审计报告取代效果实验。

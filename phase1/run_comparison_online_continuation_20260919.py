@@ -49,7 +49,7 @@ def inputs():
         case['analysis_sampling']={k:cfg['operators']['analyze']['llm']['generation_kwargs'].get(k) for k in ('temperature','top_p')}
         root=BANKS[case['seed']]
         if rt.sha(root/'prepared.json')!=PREPARED[case['seed']]:raise ValueError('bank identity')
-        rows=[r for r in rt.read(root/'prepared.json')['rows'] if r['role']=='cache']
+        rows=[r for r in rt.read(root/'prepared.json')['rows'] if r['role']=='cache' and r['seed']==case['seed']]
         row=select_cache(rows,case['seed']);raw=(root/'codes'/f'{row["index"]}.private.py').read_bytes()
         if hashlib.sha256(raw).hexdigest()!=row['code_sha256'] or rt.SHAPES.search(raw):raise ValueError('cache code identity/security')
         # No outcome table, score, native-analysis or external grade is loaded here.

@@ -124,6 +124,27 @@ python -m dojo.main_runner_job_array \
 
 这里有两层并发：ForeTS 在一次扩展中并发生成多个候选；当前 `_query_critic` 使用同步 `urllib`，因此同一个 ForeTS 进程内的 critic 请求实际会逐个发送。server 用 `batch-size` 控制来自多个任务或客户端的请求在一次模型前向中的数量。`launcher.max_parallel` 控制同时运行的任务数，`launcher.gpus_per_step` 控制每个任务使用的 GPU 数。若 4 个任务同时运行、每个任务一次产生 8 个 child，server 的队列可能持续积压 32 个请求；这不会并发执行 32 次 forward，但会增加等待时间。实际使用时先固定 `max_parallel=1` 验证流程，再逐步提高并发。
 
+## 结果可视化
+
+完成了一对实验之后，可以使用`src/dojo/analysis_utils/journal_to_fig.py`来进行结果的可视化和分析。
+
+* max_score：整个实验中最好的score
+* avg_max_score：每个run最好的score，取平均
+* max_metric：整个实验最好的validation
+* avg_max_metric：每个run最好的validation，取平均
+* max_score @ max_metric：用max_metric来挑选node作为max_score
+* avg score @ max_metric：用max_metric来挑选node作为max_score，每个run单独进行并平均
+
+```bash
+python src/dojo/analysis_utils/journal_to_fig.py \
+  tmp/comparison/us-patent-phrase-to-phrase-matching/7200/minimax/forets \
+  tmp/comparison/us-patent-phrase-to-phrase-matching/7200/minimax/mcts \
+  --interval 1800 \
+  --output tmp/comparison/us-patent-phrase-to-phrase-matching/7200/minimax/us-patent-phrase-to-phrase-matching-7200-visualization.png
+```
+
+也可以使用`--text`令其输出纯文本
+
 ## 日志、结果和常见问题
 
 critic 日志在 `tmp/critic_<jobid>.log` 和 `tmp/critic_<jobid>.err`。ForeTS/Dojo 的日志和输出目录由 launcher、实验配置和 logger 设置决定；`export_search_results: true` 时会保存搜索树或节点结果，最终任务结果由 `dojo.main_runner_job_array` 的输出记录。

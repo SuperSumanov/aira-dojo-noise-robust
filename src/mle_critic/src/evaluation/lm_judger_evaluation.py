@@ -52,6 +52,7 @@ def evaluate(
     temperature: float,
     votes: int,
     *,
+    tp: int = 1,
     max_tokens: int = 1024,
 ) -> dict[str, Any]:
     if votes < 1:
@@ -63,7 +64,7 @@ def evaluate(
 
     with open(messages_path) as f:
         records = [json.loads(line) for line in f]
-    llm = LLM(model=checkpoint)
+    llm = LLM(model=checkpoint, tensor_parallel_size=tp)
     tokenizer = llm.get_tokenizer()
     prompts = [
         tokenizer.apply_chat_template(
@@ -162,7 +163,8 @@ def main() -> None:
     parser.add_argument("--messages", required=True, help="test JSONL containing message and solution")
     parser.add_argument("--temperature", required=True, type=float)
     parser.add_argument("--m", type=int, default=1, help="number of generations per example")
-    parser.add_argument("--max-tokens", type=int, default=16384)
+    parser.add_argument("--max-tokens", type=int, default=32768)
+    parser.add_argument("--tp", type=int, default=1, help="tensor parallelism")
     parser.add_argument("--output", default="", help="optional JSON output path")
     args = parser.parse_args()
     result = evaluate(
@@ -170,6 +172,7 @@ def main() -> None:
         args.messages,
         args.temperature,
         args.m,
+        tp = args.tp,
         max_tokens=args.max_tokens,
     )
     print(json.dumps(result, indent=2, ensure_ascii=False))

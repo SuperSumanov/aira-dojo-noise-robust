@@ -519,6 +519,13 @@ python src/mle_critic/src/postprocess/rl/build_judger_messages.py \
   --prompts data/augmented_mle_critic/rl_judger_system_prompts.json \
   --train-output data/augmented_mle_critic/rl_judger_messages_train.jsonl \
   --test-output data/augmented_mle_critic/rl_judger_messages_test.jsonl
+
+python src/mle_critic/src/postprocess/rl/build_judger_messages.py \
+  --pairs data/augmented_mle_critic/merged_decision_pairs_filtered_runsplit.jsonl \
+  --cards data/augmented_mle_critic/augmented_cards_current.json \
+  --prompts data/augmented_mle_critic/rl_judger_system_prompts.json \
+  --train-output data/augmented_mle_critic/experimental/rl_decision_judger_messages_train.jsonl \
+  --test-output data/augmented_mle_critic/experimental/rl_decision_judger_messages_test.jsonl
 ```
 
 这将导致极长的context，而qwen3-14B模型仅有40K的context，所以建议最后过一遍context长度统计和过滤（如果后面换用更长context的模型，可以不做）
@@ -539,4 +546,68 @@ python src/mle_critic/src/postprocess/rl/measure_context.py \
   --max-context-length 32768 \
   --trust-remote-code \
   --output tmp/rl_context_stats.json
+
+python src/mle_critic/src/postprocess/rl/measure_context.py \
+  --model Qwen/Qwen3-0.6B-Base \
+  --messages data/augmented_mle_critic/experimental/rl_decision_judger_messages_train.jsonl \
+  --expected-context-length 32768 \
+  --max-context-length 32768 \
+  --trust-remote-code \
+  --output tmp/rl_context_stats.json
+
+python src/mle_critic/src/postprocess/rl/measure_context.py \
+  --model Qwen/Qwen3-0.6B-Base \
+  --messages data/augmented_mle_critic/experimental/rl_decision_judger_messages_test.jsonl \
+  --expected-context-length 32768 \
+  --max-context-length 32768 \
+  --trust-remote-code \
+  --output tmp/rl_context_stats.json
+```
+
+## Small Dataset
+
+我们推测拟合数十个任务平均组成的训练数据可能过于困难了，0819到0916的train loss和eval pair acc的变化就是一个很好的佐证。所以，我们从大集合中挑选了一小批任务出来，pair 只在这些任务的 batch 上构建，其他任务的 batch 直接跳过。
+
+挑选方式很简单：脚本递归找到的每个 `batch_cards.json`，只要它的完整路径里包含任意一个传入的任务名就处理，路径里没有的就忽略。所以任务名出现在哪一层目录都行，例如 `comparison/0912-17/AI4Code/7200/qwen/...` 和 `0916/user_zjchen_issue_google-quest-challenge-4seeds/...` 都能匹配上，命令行里写 `AI4Code`、`google-quest-challenge` 就够了。
+
+脚本：
+
+```text
+src/mle_critic/scripts/preprocess/build_batch_value_pairs_selected.sh
+```
+
+用法就是在 `build_batch_value_pairs.sh` 的 `DIRECTORY` 后面多传若干个任务名：
+
+```bash
+bash src/mle_critic/scripts/preprocess/build_batch_value_pairs_selected.sh \
+  data/augmented_mle_critic/raw_journal \
+  AI4Code google-quest-challenge learning-agency-lab-automated-essay-scoring-2 \
+  spooky-author-identification petfinder-pawpularity-score whale-categorization-playground \
+  dog-breed-identification random-acts-of-pizza tweet-sentiment-extraction \
+  --cap 400 --seed 7 --budget-steps -1
+```
+
+每个被选中的 batch 仍然在自己的目录写 `batch_value_pairs.jsonl`，聚合结果写到另一个文件名，避免覆盖全量数据的结果：
+
+```text
+data/augmented_mle_critic/raw_journal/batch_value_pairs_selected.jsonl
+```
+
+如果某个传入的任务名一个 batch 都没匹配到，脚本会在 stderr 里打印一条提示，一般是任务名写错了（注意大小写和连字符）。
+
+后面和全量流程一样，依次过 gap filter 和 frozen physical-run split：
+
+```bash
+PYTHONPATH=src/mle_critic python \
+  -m src.postprocess.gap_filter \
+  --value-pairs data/augmented_mle_critic/raw_journal/batch_value_pairs_selected.jsonl \
+  --gap-filter data/augmented_mle_critic/gap_filter.json \
+  --output data/augmented_mle_critic/raw_journal/batch_value_pairs_selected_filtered.jsonl
+
+PYTHONPATH=src/mle_critic python \
+  -m src.preprocess.build_bt_pairs.apply_runsplit \
+  data/augmented_mle_critic/augmented_cards_current.json \
+  data/augmented_mle_critic/runsplit_holdruns.json \
+  data/augmented_mle_critic/raw_journal/batch_value_pairs_selected_filtered.jsonl \
+  data/augmented_mle_critic/batch_value_pairs_selected_filtered_runsplit.jsonl
 ```

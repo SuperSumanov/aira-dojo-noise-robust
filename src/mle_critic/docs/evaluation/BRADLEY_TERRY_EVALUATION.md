@@ -48,3 +48,21 @@ cards 文件是 JSON 对象：run ID 映射到 card 列表，每个 card 使用 
 `--split` 支持 `test`、`train`、`all`。train/test 使用同一个 `--seed` 随机数生成器，先 shuffle train pool，再 shuffle test pool；test 随后按 `(better, worse, budget)` 去重。`--eval-cap` 在这些步骤之后生效，`0` 表示不限制。每个 batch 实际处理 `2 * batch-size` 段输入。输出包含总体 JSON 和 task/budget 分组准确率；指定 `--output` 会写入 JSON，覆盖同路径旧结果。
 
 旧文档中的 `--eval-len-control` 和 `--flip-eval` 不属于当前脚本支持的参数，不能继续使用。当前参数可通过 `--help` 查看。
+
+## RL Checkpoint
+
+RL直接使用原有的语言头，其checkpoint和原模型完全相同，可以直接使用vllm进行推理
+
+```bash
+python3 src/mle_critic/src/evaluation/lm_judger_evaluation.py \
+  --checkpoint models/mle_judger \
+  --messages data/augmented_mle_critic/rl_judger_messages_test.jsonl \
+  --temperature 1.0 --tp 2 --output tmp/mle_judger_qwen3.8_27B.json
+```
+
+有时候verl merge的权重会有问题，自行修复
+
+```bash
+python3 src/mle_critic/src/evaluation/fix_merged_checkpoint_keys.py \
+  --checkpoint  /research/d2/gds/zzchen2/transformerscache/hub/models--VOXXXX1874--mle_judger/snapshots/0685bd5e47360ba6fc322a0805b683e3d9ceaccd/ --output models/mle_judger
+```

@@ -1,0 +1,97 @@
+{
+  "role": "exploratory_fresh_response_sensitivity_not_e2e",
+  "groups": [
+    {
+      "status": "COMPLETE_EXPLORATORY_CONTINUATION_BANK",
+      "debug_valid": false,
+      "debug_score": null,
+      "cache_valid_probability": 0.75,
+      "cache_valid_probability_gain": 0.75,
+      "one_action_cache_vs_debug": {
+        "wins": 3,
+        "ties": 1,
+        "losses": 0,
+        "alternatives": 4
+      },
+      "mean_cache_execution_seconds": 471.1243743110026,
+      "debug_execution_seconds": 22.55664640298346,
+      "symbolic_cache_first_then_debug": {
+        "terminal_valid_probability": 0.75,
+        "terminal_quality_vs_debug": {
+          "wins": 3,
+          "ties": 1,
+          "losses": 0
+        },
+        "expected_latency_intercept_seconds": 476.7635359117485,
+        "expected_latency_generation_coefficient": 0.25,
+        "baseline_latency_intercept_seconds": 22.55664640298346,
+        "baseline_latency_generation_coefficient": 1,
+        "strict_latency_gain_if_generation_seconds_greater_than": 605.6091860116867,
+        "expected_additional_executions": 0.25,
+        "caveat": "Algebra on observed per-program times, not a measured live scheduler. G is fresh debug generation latency, not historical queue time. No benefit if cache validity is zero."
+      },
+      "caveat": "One new native debug draw for each of two fixed exploratory prefixes. Neither independent cache alternatives nor a live same-budget E2E comparison.",
+      "seed": 1,
+      "request_seed": 501,
+      "generation_status": "code_ready",
+      "generation_seconds": 370.0123324659944,
+      "historical_debug_result_retained_separately": true,
+      "plug_in_latency_not_live_policy": {
+        "baseline_seconds": 392.56897886897787,
+        "mean_cache_first_seconds": 569.2666190282471,
+        "mean_seconds_difference_baseline_minus_cache_first": -176.6976401592692,
+        "caveat": "Fresh measured generation latency inserted into a fixed-code replay formula. Does not include analysis calls, changed continuation prompts, global budget censoring or service opportunity costs. Not E2E speedup."
+      }
+    },
+    {
+      "status": "COMPLETE_EXPLORATORY_CONTINUATION_BANK",
+      "debug_valid": false,
+      "debug_score": null,
+      "cache_valid_probability": 0.0,
+      "cache_valid_probability_gain": 0.0,
+      "one_action_cache_vs_debug": {
+        "wins": 0,
+        "ties": 4,
+        "losses": 0,
+        "alternatives": 4
+      },
+      "mean_cache_execution_seconds": 282.3882801755026,
+      "debug_execution_seconds": 19.028182965994347,
+      "symbolic_cache_first_then_debug": {
+        "terminal_valid_probability": 0.0,
+        "terminal_quality_vs_debug": {
+          "wins": 0,
+          "ties": 4,
+          "losses": 0
+        },
+        "expected_latency_intercept_seconds": 301.41646314149693,
+        "expected_latency_generation_coefficient": 1.0,
+        "baseline_latency_intercept_seconds": 19.028182965994347,
+        "baseline_latency_generation_coefficient": 1,
+        "strict_latency_gain_if_generation_seconds_greater_than": null,
+        "expected_additional_executions": 1.0,
+        "caveat": "Algebra on observed per-program times, not a measured live scheduler. G is fresh debug generation latency, not historical queue time. No benefit if cache validity is zero."
+      },
+      "caveat": "One new native debug draw for each of two fixed exploratory prefixes. Neither independent cache alternatives nor a live same-budget E2E comparison.",
+      "seed": 2,
+      "request_seed": 502,
+      "generation_status": "code_ready",
+      "generation_seconds": 450.0056974760082,
+      "historical_debug_result_retained_separately": true,
+      "plug_in_latency_not_live_policy": {
+        "baseline_seconds": 469.03388044200256,
+        "mean_cache_first_seconds": 751.4221606175051,
+        "mean_seconds_difference_baseline_minus_cache_first": -282.3882801755026,
+        "caveat": "Fresh measured generation latency inserted into a fixed-code replay formula. Does not include analysis calls, changed continuation prompts, global budget censoring or service opportunity costs. Not E2E speedup."
+      }
+    }
+  ],
+  "source_banks_jobs": "14115+14128",
+  "fresh_generation_job": "14127",
+  "fresh_execution_job": "14133",
+  "caveat": "Every planned new response retained; no successful-response selection. Two original prefixes, not four independent trials.",
+  "source_sha256": {
+    "banks": "8fb886426df3b73caecd5adf8d1ba6375c6d437728d6c31f1f7313c550bac720",
+    "fresh": "71302cc7321a42ec592f90a367738f935ec4ff60130fa8fb83ed79a317d7e86b"
+  }
+}

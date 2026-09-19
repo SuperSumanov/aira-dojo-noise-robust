@@ -1,0 +1,30 @@
+{
+  "protocol": "fixed_two_prefixes_native_second_debug_v1",
+  "role": "stronger_continuation_baseline_sensitivity_not_e2e",
+  "parent_generation_job": "14127",
+  "parent_execution_job": "14133",
+  "parent_execution_summary_sha256": "71302cc7321a42ec592f90a367738f935ec4ff60130fa8fb83ed79a317d7e86b",
+  "prefix_seeds": [1, 2],
+  "analysis_request_seeds": [701, 702],
+  "debug_request_seeds": [601, 602],
+  "selection": "Continue both newly failed first-debug answers once; do not select a successful response or discard a failed prefix.",
+  "operators": "Original archived analysis and debug templates, native operators, ancestral memory including original draft and first new debug. Use public preview and execution logs, never external grades.",
+  "model": "cyankiwi/Qwen3.8-27B-AWQ-BF16-INT4",
+  "revision": "dc430725f831dd90d9271738b877879a46a82239",
+  "request_timeouts": {"analysis": 300, "debug": 1200, "combined": 1510},
+  "max_tokens_per_request": 32768,
+  "max_real_requests": 4,
+  "retries": 0,
+  "generation_allocation": {"node": "gpu28", "gpus": 2, "cpus": 12, "seconds": 4800, "gpu_hours_cap": 2.6666666666666665},
+  "execution_allocation": {"node": "gpu28", "gpus": 2, "cpus": 12, "seconds": 7800, "gpu_hours_cap": 4.333333333333333},
+  "program_seconds": 7200,
+  "paid_api_calls": 0,
+  "training": false,
+  "limitations": [
+    "Escalation was chosen after observing both first responses fail; exploratory, not pre-registered independent confirmation.",
+    "Include first-generation, first-execution, analysis, second-generation and second-execution costs; not just the successful action.",
+    "The compared cache bank is known development data, not an untouched effect cohort.",
+    "Native continuation operators with bounded transport, not a complete original ForeTS run or equal-total-resource E2E trial.",
+    "If native analysis fails, preserve unknown rather than fabricate a repair suggestion or retry."
+  ]
+}

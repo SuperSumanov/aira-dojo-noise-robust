@@ -1,0 +1,3 @@
+code_sha256,execution_status,exit_code,generation_seconds,generation_status,independent_score,index,node,request_seed,role,run,runnable,score,seed,task,timed_out,valid,wall_seconds
+56cde15d0638f352185edbfabe5ddc3ad7b6d903f7d85293d141744343862e92,returned,1,370.0123324659944,code_ready,,0,fresh-debug-501,501,fresh_debug,3277c81be72a1c30,True,,1,spooky-author-identification,False,False,22.55664640298346
+c0d1f6152c0896b28ac4982e189a5d53afd671139af7a9a7b134b4edaedccdd2,returned,1,450.0056974760082,code_ready,,1,fresh-debug-502,502,fresh_debug,58d3914785a2cfe1,True,,2,spooky-author-identification,False,False,19.028182965994347

@@ -1,8 +1,8 @@
-# 当前短交接 — 2026-09-19 13:32 UTC
+# 当前短交接 — 2026-09-19 13:53 UTC
 
 ## 立即入口与授权
 用户本轮12:10UTC要求在会话内继续三小时，目标15:10UTC前有价值结果；不要每轮写报告，需其明确要求才写。只维护本文件、CURRENT_DIRECTION和实验配置/真实结果。自主实验/正常push授权有效，不改学长分支。
-先fetch→CURRENT_DIRECTION顶部0L219→本文件→现场。日期优先，不恢复旧HCE/多保真/Probe/score-channel/K>=1/G0/失败cheap选择器，不微调agent底座；first960/Target300/522结果仍封。当前是同资源E2E方向下的开发候选复用动作验证，不是已证明E2E。
+先fetch→CURRENT_DIRECTION顶部最新裁决→本文件→现场。日期优先，不恢复旧HCE/多保真/Probe/score-channel/K>=1/G0/失败cheap选择器，不微调agent底座；first960/Target300/522结果仍封。当前是同资源E2E方向下的开发候选复用动作验证，不是已证明E2E。
 工作区C:/Research/New/my_project/MLEvolve/aira-dojo-codex-20260813；SSH linux5；BASE=/research/d7/spc/yzyang4；Python BASE/venvs/aira/bin/python（gdown在venvs/exp）。
 SLURM_CONF=/opt1/slurm/gpu-slurm.conf；MLE只能gpu27/gpu28 RTX3090原镜像，不能projgpu39/改Torch/CPUfallback。4jobs/8GPU；旧held12535不动。所有凭据只远端.env；不回显/不存本地Git，tar credential-first，原始程序/日志不下载。
 
@@ -24,9 +24,9 @@ history-check已独立核：seed1四cache的有效性/已报精度成绩与14099
 固定源seed1/2、请求seed501/502，各一次native debug，原模板/ancestral memory/.6/.95、32768tokens/1200s无重试；已闭合14099前缀同代码错误日志，公开preview，use_test_score=false。2GPU/12CPU90min≤3GPUh，无warmup调用/付费API/训练。
 前两次CPU预检失败源于错误假定原模板渲染2hours，保持原模板、核实际7200s配置后通过；失败准备目录保留且0GPU。不能改变运行中/已闭合14127文件。
 安全状态：BASE/status_comparison_live_debug_20260919.py ROOT；粗编译状态BASE/inspect_comparison_service_progress_20260919.py ROOT。不tail原服务日志/读取key。
-下一执行：phase1/run_comparison_live_debug_execute_20260919.py与readout_comparison_live_debug_20260919.py，6CPU控制流测试通过，尚未prepare/submit。最近修正依赖复制和sacct GPU数检查需重新scp最新driver后运行。
+14133已COMPLETED且reader闭合，ROOT=BASE/comparison-fresh-debug-exec-20260919-53mn3zh0，commit2837df6873403ddc688b7034af1c0a43b19f373f，prepared3784b1515bda79d306cd893f1a2857e7e67580c9bae9cb675d4a7684c07543bb。两条exit1/liblinear多分类错误、非超时/infra；25秒2GPU，连同14127总.7994444444444444GPUh。summary71302cc7321a42ec592f90a367738f935ec4ff60130fa8fb83ed79a317d7e86b；本地results/comparison_live_debug_20260919。固定分析已完成：seed1缓存单条.75对新debug0，seed2都是0；代入实测G后两组都不提速，不称E2E。reader/错误分析已各一次，勿重跑。
 GEN硬固定上述root；生成闭合后prepare --commit精确最新SHA→实际交付CPU检查→submit。全部runnable新回答各一次，不重采样；最多2GPU/12CPU130min≤4.333333333333333GPUh，原7200s/原镜像，不能把新回答最好者替代历史debug。
-分析analyze_comparison_fresh_debug_20260919.py已在执行前写好、7测试过；含新回答能推翻旧正例、失败保留unknown。官方+独立评分后与combined银行比较，不把代入实测G的代数当真实调度/E2E；另计LLM分析、全局截尾、GPU服务机会成本。
+分析analyze_comparison_fresh_debug_20260919.py已在执行前写好、7测试过；新旧结果分别保留。下一为depth2原生分析+再次调试两个固定失败回答，协议comparison_depth2_debug_plan_20260919.json，driver run_comparison_depth2_debug_20260919.py。生成2GPU80分钟，后续执行2GPU130分钟，原7200秒；零API，analysis seed701/702/debug601/602，无重试或替换，累计全部成本；尚未prepare/submit。不是完整原生产debug_cycle/E2E，明确追加探索性。学长最新e4181fac为解释器文档整理，已远端安全读取0hit，未改当前镜像。
 
 ## 开发适配器与科学边界
 forets_cached_continuation_20260919.py每池最多随机一条未选兄弟，失败回原debug，成功回传兄弟而非失败节点路径；独立RNG、正常分析/执行计步。关闭开关返回原类。

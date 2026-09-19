@@ -227,7 +227,7 @@ def generate(root):
     asyncio.run(calls());runtime.write(root/'generation-summary.json',dict(rows=rows,live_requests=2,paid_api_calls=0,training=False))
 
 
-def controller(root):
+def controller(root,service_seconds=5280):
     p=runtime.check_files();runtime.asset_check(p)
     if socket.gethostname().split('.')[0]!='gpu28' or runtime.read(root/'launch.json')['job']!=os.environ['SLURM_JOB_ID']:raise ValueError('allocation identity')
     with socket.socket() as sock:sock.bind(('127.0.0.1',8000))
@@ -237,7 +237,7 @@ def controller(root):
     env=dict(os.environ)
     for k in ('CUDA_VISIBLE_DEVICES','SLURM_STEP_GPUS','SLURM_STEP_ID','GPU_DEVICE_ORDINAL','PRIMARY_KEY','OPENROUTER_API_KEY'):env.pop(k,None)
     cmd=['srun','--jobid='+os.environ['SLURM_JOB_ID'],'--exclusive','--nodes=1','--ntasks=1','--cpus-per-task=6',
-         '--gres=gpu:2','--time=01:28:00',str(runtime.PYTHON),'-B',str(root/SCRIPT),'server','--root',str(root)]
+         '--gres=gpu:2','--time='+runtime.slurm_duration(service_seconds),str(runtime.PYTHON),'-B',str(root/SCRIPT),'server','--root',str(root)]
     start=time.monotonic();status='startup_failed'
     with (root/'service.private.log').open('xb') as log:
         process=subprocess.Popen(cmd,env=env,stdout=log,stderr=log,stdin=subprocess.DEVNULL,start_new_session=True)

@@ -1,6 +1,8 @@
-# 当前短交接 — 2026-09-19 14:56 UTC
+# 当前短交接 — 2026-09-19 15:04 UTC
 
 ## 最新现场（覆盖下方历史最后观察）
+15:04：14135仍RUNNING/3229秒/5结果6绑定，不提前读值。此前sstat显示剩余14135.4有累计CPU活动，非排队；保留7200秒原程序上限/7800秒allocation，不按三小时汇报节点裁短。最后正常公开head已核653ea4966bdcfc0bcab981f3e2446ad62ca24e2e；27文件全范围安全扫描0hit。新增真实生产debug_cycle+ForeTS扩展体5回归测试，全套83通过；不是模型效果。
+尚需工作：14135终止后唯一执行ROOT/readout_comparison_third_bank_20260919.py ROOT，安全summary/runs到results/comparison_third_bank_20260919，再verify_comparison_third_bank_20260919.py独立核验。没有提交新E2E，没有启动额外模型或付费API；新共用外层/缓存适配器仍未部署。inspect_comparison_service_progress_20260919.py仅支持旧live-debug ROOT，不能传cache-acceptance（一次被scope门正确拒绝）；当前已闭合接受率不再需要该监控。
 14136已COMPLETED/585秒2GPU=.325GPUh，8分析全部已尝试、7返回1未知。官方有效3条中原生接受2条、1条BoundedAttemptError无可用响应，五条官方无效全部拒绝，未补采样。仅一固定起点的2个可用cache机会，不是总体/E2E效果。summary203ffd2cca3763d5aea7bdf4c200c644797c3624f0b02e85981c5bdae7169557；本地results/comparison_cache_acceptance_20260919。7条已返回响应用be933原生MCTS.parse_eval_result独立复核通过，native-independent.json保留1unknown；无外部score进模型。唯一reader已闭合，勿重跑。原“格式未通过”只是初步判断，结构诊断确认是BoundedAttemptError，不是官方判无效。
 14134零代码closeout已完成，summary facfb52f7ce675a8006ba2a3b147c89793a240416a019eb6fafb0057f5372d29，本地results/comparison_depth2_20260919；14134实耗1.1227777777777779GPUh，连第一生成/执行累计1.9222222222222223GPUh，预定contrast两组均UNKNOWN_NO_EFFECT_CLAIM。不要重跑reader/模型。
 14135第三银行14:55最后观察RUNNING/2717秒/5结果6绑定；尚未读结果值。14136不再占卡。0918学长比较目录14:46仍双读0可见文件/原listing SHA不变，不能说学长未上传。

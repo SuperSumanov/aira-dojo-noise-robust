@@ -125,10 +125,15 @@ def cpu(root):
                     seed=kwargs['seed']==case['request_seed'],tokens=kwargs['max_tokens']==32768,
                     timeout=kwargs['request_timeout'].read==1200,retries=kwargs['max_retries']==kwargs['num_retries']==0,
                     code=case['code'].strip() in content,preview='CPU_PUBLIC_PREVIEW' in content,
-                    budget=humanize.naturaldelta(7200) in content)
-        print(json.dumps(dict(event='CPU_REQUEST_CHECKS',seed=case['request_seed'],checks=checks)),flush=True)
+                    configured_execution_limit=case['solver']['execution_timeout']==7200)
+        # Archived templates need not render every supplied query_data field.
+        # Preserve the template, enforce the actual interpreter limit, and record
+        # rather than silently invent a prompt-visible time budget.
+        budget_visible=humanize.naturaldelta(7200) in content
+        print(json.dumps(dict(event='CPU_REQUEST_CHECKS',seed=case['request_seed'],checks=checks,
+                              humanized_budget_visible=budget_visible)),flush=True)
         assert all(checks.values())
-        calls.append(dict(seed=case['request_seed'],prompt_sha256=hashlib.sha256(text.encode()).hexdigest()))
+        calls.append(dict(seed=case['request_seed'],prompt_sha256=hashlib.sha256(text.encode()).hexdigest(),humanized_budget_visible=budget_visible))
         choice=types.SimpleNamespace(message=types.SimpleNamespace(content='```python\npass\n```'),finish_reason='stop')
         return types.SimpleNamespace(choices=[choice],to_dict=lambda:{'usage':{'prompt_tokens':1,'completion_tokens':1}})
     async def test():

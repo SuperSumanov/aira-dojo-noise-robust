@@ -13,6 +13,7 @@ ROOT_PREFIX='comparison-online-continuation-20260919-'
 CONTEXT_MODULE='run_comparison_online_continuation_20260919'
 EPISODE=2100
 CAP=6000
+FULL_DEADLINE=False
 FILES=(SCRIPT,PLAN,'local_generator_runtime_20260914.py','run_comparison_live_debug_20260919.py')
 BANKS={1:BASE/'comparison-reuse-20260919-5m6jrtah',2:BASE/'comparison-reuse-20260919-851fmp2v'}
 PREPARED={1:'5d7e98280f3b223bbf8c6968ebd3c84857b5329eac0744a51d3c16d3ced24518',2:'40b291747042f3a1e04781870e3d67e33342a29ac1aea896c1a1a93d2a65c399'}
@@ -70,6 +71,10 @@ def lane_setup(root,lane):
         if url!=f'http://127.0.0.1:{port}/v1':raise ValueError('wrong dedicated lane endpoint')
         return original(model,'http://127.0.0.1:8000/v1',env)
     guard.selfhosted_key=local_key
+    if FULL_DEADLINE:
+        import dojo.core.solvers.llm_helpers.backends.lite_llm as backend
+        from comparison_full_deadline_policy_20260919 import install
+        install(backend)
     return p
 
 def operator(case,kind,lane,depth,remaining):
@@ -77,7 +82,8 @@ def operator(case,kind,lane,depth,remaining):
     cfg['llm']['client']=dict(api='litellm',model_id='qwen3.8-27b',base_url=f'http://127.0.0.1:{8000+lane}/v1',provider='selfhosted',use_azure_client=False)
     seed=(300000+case['seed']) if kind=='analyze' and depth==0 else (200000 if kind=='analyze' else 100000)+100*case['seed']+depth
     sampling=case['analysis_sampling'] if kind=='analyze' else dict(temperature=.6,top_p=.95)
-    cfg['llm']['generation_kwargs']=dict(bounded_transport=True,bounded_max_attempts=1,bounded_request_timeout_seconds=max(1,min(300 if kind=='analyze' else 1200,remaining)),
+    request_limit=EPISODE if FULL_DEADLINE else (300 if kind=='analyze' else 1200)
+    cfg['llm']['generation_kwargs']=dict(bounded_transport=True,bounded_max_attempts=1,bounded_request_timeout_seconds=max(1,min(request_limit,remaining)),
         max_tokens=32768,temperature=.6 if sampling.get('temperature') is None else sampling['temperature'],top_p=.95 if sampling.get('top_p') is None else sampling['top_p'],seed=seed,
         extra_body={'chat_template_kwargs':{'enable_thinking':True}},structured_output_retries=0)
     if kind=='analyze':cfg['llm']['generation_kwargs']['structured_output_mode']='json'
@@ -104,7 +110,8 @@ async def call_native(case,kind,lane,depth,remaining,node,journal,preview):
     llm=generic.GenericLLM(OmegaConf.create(cfg));solver=OmegaConf.create(copy.deepcopy(case['solver']))
     if kind=='analyze':value=analyze_op(llm,solver,case['description'],node)
     else:value=debug_op(llm,solver,create_memory_op(OmegaConf.create(case['debug_memory'])),case['description'],journal,node,len(journal.nodes),remaining,data_preview=preview)
-    return await asyncio.wait_for(first.resolve(value),timeout=max(1,min(remaining,310 if kind=='analyze' else 1210)))
+    outer_limit=EPISODE if FULL_DEADLINE else (310 if kind=='analyze' else 1210)
+    return await asyncio.wait_for(first.resolve(value),timeout=max(1,min(remaining,outer_limit)))
 
 def apply_native(node,result,response,*,lower_is_better=True):
     from dojo.solvers.mcts.mcts import MCTS
@@ -279,7 +286,8 @@ def cpu(root):
             nonlocal count
             assert kwargs['base_url']==f'http://127.0.0.1:{8000+lane}/v1'
             assert kwargs['max_retries']==kwargs['num_retries']==0
-            assert kwargs['max_tokens']==32768
+            assert ('max_tokens' not in kwargs) if FULL_DEADLINE else (kwargs['max_tokens']==32768)
+            if FULL_DEADLINE:assert kwargs['request_timeout'].read in (1900,1500)
             text=json.dumps(dict(is_bug=True,summary='CPU native',metric=None)) if 'response_format' in kwargs else '```python\npass\n```'
             count+=1
             return types.SimpleNamespace(choices=[types.SimpleNamespace(message=types.SimpleNamespace(content=text),finish_reason='stop')],to_dict=lambda:{'usage':{'prompt_tokens':1,'completion_tokens':1}})

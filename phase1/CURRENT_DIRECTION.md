@@ -7,6 +7,12 @@
 > [CONTEXT_HANDOFF_CURRENT.md](CONTEXT_HANDOFF_CURRENT.md)，注明最后观察时间、证据及下一步；
 > 本文件保留方向/历史权威，短入口不重复堆历史。没有重新核验的作业状态不得称为实时状态。
 
+## 0L222. 2026-09-19 21:30 UTC：完整读出旧对照前冻结更充分的跨任务生成预算
+
+用户恢复并要求会话内继续三小时。14146现场已COMPLETED/3008秒、四episode完整闭合，效果尚未读。源配置generation_kwargs无输出上限，model generation_config亦无max_new_tokens；我方旧有界接入额外施加32768token及debug1200秒/analysis300秒。旧结果只回答该受限策略，不冒称生产debug已被击败。
+下一组Pizza固定原seed1/2×两臂、同35分钟/原镜像/27B/随机候选规则/6GPU100分钟≤10GPUh；两臂都不传max_tokens，单请求使用episode剩余时间，由共同硬截止约束，禁截断代码抢救。只在新实验进程对exact-SHA本地backend方法覆盖本地时间门与输出限制，非本地路由不改，共享源码不改。准备中的旧Pizza root `comparison-pizza-online-20260919-1qiyjkqy`不投、不改；另建full-deadline root。此协议在14146效果读出前固定，不用它调参；跨任务且配置不同，不能把差异归因于单一上限。
+14149两Pizza前缀已实际复跑，10秒/双GPU。原门seed1通过、seed2因精确humanize尾缀“a moment”不通过；独立按原exec_time重建尾缀后核心错误一致，原summary不改。尚未读四缓存效果。优先完成真实在线同资源验证，不例行写报告。
+
 ## 0L221. 2026-09-19 15:55 UTC：固定同预算在线条件续跑，不以动作银行替代E2E
 
 用户要求继续三小时、不例行写报告。固定两开发prefix seed1/2×两臂：原生算子多步debug，与随机一条未选缓存失败再debug；每轨迹35分钟、最大debug depth20、原镜像/模板/memory/本地27B，两独立双卡生成服务+各一任务卡，第二组交换臂/设备lane。gpu28六卡24CPU100分钟≤10GPUh、0API/训练。共同硬截止、首次原生接受停止；只有闭合后外部评分，结果未知和截断不补样。协议comparison_online_continuation_plan_20260919.json；实交付CPU预检通过后提交。不是完整搜索/确认性结果，既有池生成沉没成本不得当作免费E2E收益；探索数据已见分数，cache选择只用先固定的独立RNG。

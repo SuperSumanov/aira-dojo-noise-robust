@@ -11,6 +11,8 @@
   "gpu_hours_cap": 10,
   "layout": "gpu28, 24 CPUs, two dedicated 2-GPU local generators plus two 1-GPU original-image workers; crossover lanes for second seed",
   "policy": "Same fixed independent cache RNG and request seed mapping as the Spooky pilot; no fitting or tuning after its results",
+  "generation_policy_revision": "Full-deadline v2, frozen before reading job14146 effects: neither arm sends an output token cap; original vLLM default/context applies. Both debug and analysis use remaining episode time, at most 2100 seconds, one attempt/no retries. Shared backend file remains unmodified; exact-source local-only method overlay raises local timeout guard and removes placeholder max_tokens before network delivery. Nonlocal routes unchanged.",
+  "supersedes_unsubmitted_only": "comparison-pizza-online-20260919-1qiyjkqy remains never submitted; do not modify its frozen files. This revision is a new configuration, not an exact replication of production or the 32k Spooky pilot.",
   "initial_state": "Same source code and newly reproduced error log in both arms. Original prefix gate is preserved, with separately recorded exact native humanize timing-trailer equivalence.",
   "selection": "Fixed seeds 1 and 2 chosen before fresh cached candidate outcomes; no switching seeds to find positive results",
   "stopping": "First native accepted submission, 35-minute common hard deadline, depth 20, or incomplete generation. No truncated-code salvage, retries, or late incumbents.",

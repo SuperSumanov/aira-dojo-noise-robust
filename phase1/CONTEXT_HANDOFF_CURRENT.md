@@ -1,4 +1,12 @@
-# 当前短交接 — 2026-09-19 15:55 UTC
+# 当前短交接 — 2026-09-19 21:30 UTC
+
+## 最新现场（覆盖下面最后观察）
+
+21:15用户恢复新三小时窗口，目标09-20 00:15UTC；不新写报告/自动化。14146已COMPLETED/3008秒、all_four_episodes_closed，四episode均finished，尚未读效果。唯一readout脚本版本9822af286bd900389f52960575b1f902f1a5c2a7，先核readout-claim未存在，再执行一次；独立verify_comparison_online_results_20260919.py。
+关键公平性：旧32768token、debug1200s/analysis300s限制是开发接入添加，原config/model generation_config均无输出上限。新Pizza full-deadline策略在旧效果读出前固定：不传max_tokens，两类请求使用剩余episode时间，共同35分钟硬截止；exact-source进程级overlay只改本地路由，原source/root不动。6GPU/100min≤10GPUh，同旧两个Pizza prefix与RNG，非production原样复制、非完整E2E。先CPU实际请求验证再提交。
+Pizza前缀14149已闭合10秒2GPU，ROOT=BASE/comparison-pizza-prefix-20260919-0guhqznb，commit9822af286bd900389f52960575b1f902f1a5c2a7；prepared0581d1ac911f6152caff200c6f11ad5eca3ec49e76ec655afbe2da78df23c68e，summaryb3fff2aa4228b7b09e82296c0f3929e4fa7b9083a6bb510cdfcef63f28ddaa29。唯一reader已跑勿重跑；seed2仅原humanize“a moment”尾缀不匹配，prefix-format-supplement.json用原exec_time精确核尾缀，两核心NameError均匹配。原summary保留，缓存效果未读。
+旧Pizza在线ROOT=BASE/comparison-pizza-online-20260919-1qiyjkqy，prepared8192d964d11b042d49724c854947839faa01153ea2a96fe84500a9dc00966e6f，5c3e5a59版本，CPU过但从未提交；因人为输出上限暂废弃，严禁投旧root。新root待准备。Pizza评分AUC higher-better，不能沿用Spooky loss方向。
+最新已核公开HEAD f54967ca48f1d7c2174d77f5ec5dc0d01ebd1157；本地新增9822af28/5c3e5a59及当前改动未推。0918目录16:06UTC双读0可见文件，非学长未上传结论；学长head最后e4181fac。下方旧运行观察不作实时状态。
 
 ## 授权与方向
 

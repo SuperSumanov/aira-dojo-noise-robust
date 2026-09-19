@@ -10,10 +10,11 @@ CONFIG={1:'4d6c28270e919f607537ca78467b73ce85f6c7a23e92195dcfff097d72e470f0',2:'
 
 def configure():
     driver.SCRIPT=Path(__file__).name
-    driver.TASK='random-acts-of-pizza';driver.ROOT_PREFIX='comparison-pizza-online-20260919-'
+    driver.TASK='random-acts-of-pizza';driver.ROOT_PREFIX='comparison-pizza-full-deadline-20260919-'
+    driver.FULL_DEADLINE=True
     driver.CONTEXT_MODULE='run_comparison_pizza_online_20260919'
     driver.PLAN='comparison_pizza_online_plan_20260919.json'
-    driver.FILES=(driver.SCRIPT,driver.PLAN,'run_comparison_online_continuation_20260919.py','local_generator_runtime_20260914.py','run_comparison_live_debug_20260919.py')
+    driver.FILES=(driver.SCRIPT,driver.PLAN,'run_comparison_online_continuation_20260919.py','local_generator_runtime_20260914.py','run_comparison_live_debug_20260919.py','comparison_full_deadline_policy_20260919.py')
     driver.inputs=inputs
 
 def inputs():

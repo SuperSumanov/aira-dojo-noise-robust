@@ -628,3 +628,7 @@ phase1/results/forets_class_gate_s48_20260914/*.json -text diff
 phase1/results/forets_class_gate_s48_20260914/*.csv -text diff whitespace=cr-at-eol
 phase1/results/forets_first_pool_replay_20260914/*.json -text diff
 phase1/results/forets_first_pool_replay_20260914/*.csv -text diff whitespace=cr-at-eol
+# Preserve the new comparison receipts and executed reader bytes under autocrlf.
+phase1/results/comparison_qwen_20260919/*.json -text diff whitespace=cr-at-eol
+phase1/results/comparison_qwen_20260919/*.csv -text diff whitespace=cr-at-eol
+phase1/scripts/*comparison*20260919.py -text diff whitespace=cr-at-eol

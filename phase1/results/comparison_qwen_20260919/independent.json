@@ -1,0 +1,545 @@
+{
+  "status": "INDEPENDENT_PASS",
+  "runs": 46,
+  "journals_checked": 43,
+  "choice_mismatches": 0,
+  "shared_journal_hashes": 0,
+  "contrasts": [
+    {
+      "stratum": "AI4Code/7200/qwen",
+      "arm": "forets",
+      "paired": 1,
+      "unknown_shared_seeds": [
+        2,
+        3
+      ],
+      "unpaired_forets_seeds": [],
+      "wins": 1,
+      "losses": 0,
+      "ties": 0,
+      "median_oriented_difference": 0.02318000000000009,
+      "mean_oriented_difference": 0.02318000000000009,
+      "sd_oriented_difference": null,
+      "descriptive_two_sided_sign_p": 1.0,
+      "pairs": [
+        {
+          "seed": 1,
+          "forets": 0.75553,
+          "mcts": 0.73235,
+          "oriented_difference": 0.02318000000000009,
+          "forets_seconds": 65314.57067555096,
+          "mcts_seconds": 37838.955695636105,
+          "commit_equal": false
+        }
+      ],
+      "caveat": "Shared seed and nominal budget only; actual duration/hardware not matched. Not causal confirmation."
+    },
+    {
+      "stratum": "leaf-classification/7200/qwen",
+      "arm": "forets",
+      "paired": 3,
+      "unknown_shared_seeds": [],
+      "unpaired_forets_seeds": [],
+      "wins": 2,
+      "losses": 1,
+      "ties": 0,
+      "median_oriented_difference": 0.009909999999999999,
+      "mean_oriented_difference": -0.10516333333333334,
+      "sd_oriented_difference": 0.2522594530108502,
+      "descriptive_two_sided_sign_p": 1.0,
+      "pairs": [
+        {
+          "seed": 1,
+          "forets": 0.02432,
+          "mcts": 0.09336,
+          "oriented_difference": 0.06903999999999999,
+          "forets_seconds": 83482.38297337899,
+          "mcts_seconds": 36876.02838590229,
+          "commit_equal": true
+        },
+        {
+          "seed": 2,
+          "forets": 0.00415,
+          "mcts": 0.01406,
+          "oriented_difference": 0.009909999999999999,
+          "forets_seconds": 75582.05240442138,
+          "mcts_seconds": 46295.750291309785,
+          "commit_equal": true
+        },
+        {
+          "seed": 3,
+          "forets": 0.54296,
+          "mcts": 0.14852,
+          "oriented_difference": -0.39444,
+          "forets_seconds": 80677.4144660295,
+          "mcts_seconds": 13282.273257314228,
+          "commit_equal": true
+        }
+      ],
+      "caveat": "Shared seed and nominal budget only; actual duration/hardware not matched. Not causal confirmation."
+    },
+    {
+      "stratum": "random-acts-of-pizza/7200/qwen",
+      "arm": "forets-1",
+      "paired": 5,
+      "unknown_shared_seeds": [],
+      "unpaired_forets_seeds": [],
+      "wins": 2,
+      "losses": 3,
+      "ties": 0,
+      "median_oriented_difference": -0.00772000000000006,
+      "mean_oriented_difference": -0.021710000000000028,
+      "sd_oriented_difference": 0.12853874610404442,
+      "descriptive_two_sided_sign_p": 1.0,
+      "pairs": [
+        {
+          "seed": 1,
+          "forets": 0.79577,
+          "mcts": 0.68186,
+          "oriented_difference": 0.11390999999999996,
+          "forets_seconds": 64423.98010521592,
+          "mcts_seconds": 62875.72517113609,
+          "commit_equal": true
+        },
+        {
+          "seed": 2,
+          "forets": 0.79181,
+          "mcts": 0.70596,
+          "oriented_difference": 0.08584999999999998,
+          "forets_seconds": 75048.118013395,
+          "mcts_seconds": 81968.97687965084,
+          "commit_equal": true
+        },
+        {
+          "seed": 3,
+          "forets": 0.60025,
+          "mcts": 0.78838,
+          "oriented_difference": -0.18813000000000002,
+          "forets_seconds": 65370.60769084515,
+          "mcts_seconds": 73069.81311137602,
+          "commit_equal": true
+        },
+        {
+          "seed": 4,
+          "forets": 0.68684,
+          "mcts": 0.7993,
+          "oriented_difference": -0.11246,
+          "forets_seconds": 72814.48413279303,
+          "mcts_seconds": 83574.1176433271,
+          "commit_equal": true
+        },
+        {
+          "seed": 5,
+          "forets": 0.67724,
+          "mcts": 0.68496,
+          "oriented_difference": -0.00772000000000006,
+          "forets_seconds": 81256.21490406012,
+          "mcts_seconds": 53209.29965871398,
+          "commit_equal": true
+        }
+      ],
+      "caveat": "Shared seed and nominal budget only; actual duration/hardware not matched. Not causal confirmation."
+    },
+    {
+      "stratum": "random-acts-of-pizza/7200/qwen",
+      "arm": "forets-2",
+      "paired": 0,
+      "unknown_shared_seeds": [],
+      "unpaired_forets_seeds": [
+        9,
+        10,
+        11,
+        12,
+        13
+      ],
+      "wins": 0,
+      "losses": 0,
+      "ties": 0,
+      "median_oriented_difference": null,
+      "mean_oriented_difference": null,
+      "sd_oriented_difference": null,
+      "descriptive_two_sided_sign_p": null,
+      "pairs": [],
+      "caveat": "Shared seed and nominal budget only; actual duration/hardware not matched. Not causal confirmation."
+    },
+    {
+      "stratum": "spooky-author-identification/7200/qwen",
+      "arm": "forets-1",
+      "paired": 5,
+      "unknown_shared_seeds": [],
+      "unpaired_forets_seeds": [],
+      "wins": 1,
+      "losses": 4,
+      "ties": 0,
+      "median_oriented_difference": -0.031299999999999994,
+      "mean_oriented_difference": -0.026917999999999997,
+      "sd_oriented_difference": 0.046591110418190286,
+      "descriptive_two_sided_sign_p": 0.375,
+      "pairs": [
+        {
+          "seed": 1,
+          "forets": 0.34024,
+          "mcts": 0.28101,
+          "oriented_difference": -0.059230000000000005,
+          "forets_seconds": 78809.88807372935,
+          "mcts_seconds": 65343.19542708667,
+          "commit_equal": true
+        },
+        {
+          "seed": 2,
+          "forets": 0.31905,
+          "mcts": 0.28775,
+          "oriented_difference": -0.031299999999999994,
+          "forets_seconds": 84999.80976469768,
+          "mcts_seconds": 85508.49099909584,
+          "commit_equal": true
+        },
+        {
+          "seed": 3,
+          "forets": 0.3494,
+          "mcts": 0.32053,
+          "oriented_difference": -0.028870000000000007,
+          "forets_seconds": 64502.577799854334,
+          "mcts_seconds": 48148.68628265406,
+          "commit_equal": true
+        },
+        {
+          "seed": 4,
+          "forets": 0.2971,
+          "mcts": 0.34811,
+          "oriented_difference": 0.05101,
+          "forets_seconds": 71699.44699143386,
+          "mcts_seconds": 68187.889148738,
+          "commit_equal": true
+        },
+        {
+          "seed": 5,
+          "forets": 0.36445,
+          "mcts": 0.29825,
+          "oriented_difference": -0.06619999999999998,
+          "forets_seconds": 27227.659149722196,
+          "mcts_seconds": 65385.307861523004,
+          "commit_equal": true
+        }
+      ],
+      "caveat": "Shared seed and nominal budget only; actual duration/hardware not matched. Not causal confirmation."
+    },
+    {
+      "stratum": "spooky-author-identification/7200/qwen",
+      "arm": "forets-2",
+      "paired": 0,
+      "unknown_shared_seeds": [],
+      "unpaired_forets_seeds": [
+        9,
+        10,
+        11,
+        12,
+        13
+      ],
+      "wins": 0,
+      "losses": 0,
+      "ties": 0,
+      "median_oriented_difference": null,
+      "mean_oriented_difference": null,
+      "sd_oriented_difference": null,
+      "descriptive_two_sided_sign_p": null,
+      "pairs": [],
+      "caveat": "Shared seed and nominal budget only; actual duration/hardware not matched. Not causal confirmation."
+    }
+  ],
+  "root_pools": [
+    {
+      "run": "514320462b1e1536",
+      "stratum": "random-acts-of-pizza/7200/qwen",
+      "arm": "forets-1",
+      "seed": 4,
+      "executed": 2,
+      "unselected": 4,
+      "complete_6_candidate_pool": true,
+      "unique_codes": 6,
+      "original_ranks_available": false
+    },
+    {
+      "run": "620f3b971818de16",
+      "stratum": "random-acts-of-pizza/7200/qwen",
+      "arm": "forets-1",
+      "seed": 5,
+      "executed": 2,
+      "unselected": 4,
+      "complete_6_candidate_pool": true,
+      "unique_codes": 6,
+      "original_ranks_available": false
+    },
+    {
+      "run": "5c3f818a9595bd79",
+      "stratum": "random-acts-of-pizza/7200/qwen",
+      "arm": "forets-1",
+      "seed": 1,
+      "executed": 2,
+      "unselected": 4,
+      "complete_6_candidate_pool": true,
+      "unique_codes": 6,
+      "original_ranks_available": false
+    },
+    {
+      "run": "1eee3186d26dcbcd",
+      "stratum": "random-acts-of-pizza/7200/qwen",
+      "arm": "forets-1",
+      "seed": 2,
+      "executed": 2,
+      "unselected": 4,
+      "complete_6_candidate_pool": true,
+      "unique_codes": 6,
+      "original_ranks_available": false
+    },
+    {
+      "run": "adc09c14eda018c4",
+      "stratum": "random-acts-of-pizza/7200/qwen",
+      "arm": "forets-1",
+      "seed": 3,
+      "executed": 2,
+      "unselected": 4,
+      "complete_6_candidate_pool": true,
+      "unique_codes": 6,
+      "original_ranks_available": false
+    },
+    {
+      "run": "817f8d5f4ca7979e",
+      "stratum": "random-acts-of-pizza/7200/qwen",
+      "arm": "forets-2",
+      "seed": 9,
+      "executed": 2,
+      "unselected": 4,
+      "complete_6_candidate_pool": true,
+      "unique_codes": 6,
+      "original_ranks_available": false
+    },
+    {
+      "run": "7a9056cf3c6744ea",
+      "stratum": "random-acts-of-pizza/7200/qwen",
+      "arm": "forets-2",
+      "seed": 11,
+      "executed": 2,
+      "unselected": 4,
+      "complete_6_candidate_pool": true,
+      "unique_codes": 6,
+      "original_ranks_available": false
+    },
+    {
+      "run": "2b7183932e4e50dc",
+      "stratum": "random-acts-of-pizza/7200/qwen",
+      "arm": "forets-2",
+      "seed": 13,
+      "executed": 2,
+      "unselected": 4,
+      "complete_6_candidate_pool": true,
+      "unique_codes": 6,
+      "original_ranks_available": false
+    },
+    {
+      "run": "4cc32ca4dfbf20a2",
+      "stratum": "random-acts-of-pizza/7200/qwen",
+      "arm": "forets-2",
+      "seed": 10,
+      "executed": 2,
+      "unselected": 4,
+      "complete_6_candidate_pool": true,
+      "unique_codes": 6,
+      "original_ranks_available": false
+    },
+    {
+      "run": "72dcad0e0ccc9a02",
+      "stratum": "random-acts-of-pizza/7200/qwen",
+      "arm": "forets-2",
+      "seed": 12,
+      "executed": 2,
+      "unselected": 4,
+      "complete_6_candidate_pool": true,
+      "unique_codes": 6,
+      "original_ranks_available": false
+    },
+    {
+      "run": "e4a4275f2df8028e",
+      "stratum": "spooky-author-identification/7200/qwen",
+      "arm": "forets-1",
+      "seed": 3,
+      "executed": 2,
+      "unselected": 4,
+      "complete_6_candidate_pool": true,
+      "unique_codes": 6,
+      "original_ranks_available": false
+    },
+    {
+      "run": "58d3914785a2cfe1",
+      "stratum": "spooky-author-identification/7200/qwen",
+      "arm": "forets-1",
+      "seed": 2,
+      "executed": 2,
+      "unselected": 4,
+      "complete_6_candidate_pool": true,
+      "unique_codes": 6,
+      "original_ranks_available": false
+    },
+    {
+      "run": "ddbcf032862f7a29",
+      "stratum": "spooky-author-identification/7200/qwen",
+      "arm": "forets-1",
+      "seed": 4,
+      "executed": 2,
+      "unselected": 4,
+      "complete_6_candidate_pool": true,
+      "unique_codes": 6,
+      "original_ranks_available": false
+    },
+    {
+      "run": "3277c81be72a1c30",
+      "stratum": "spooky-author-identification/7200/qwen",
+      "arm": "forets-1",
+      "seed": 1,
+      "executed": 2,
+      "unselected": 4,
+      "complete_6_candidate_pool": true,
+      "unique_codes": 6,
+      "original_ranks_available": false
+    },
+    {
+      "run": "a6072b4db8c338ca",
+      "stratum": "spooky-author-identification/7200/qwen",
+      "arm": "forets-1",
+      "seed": 5,
+      "executed": 2,
+      "unselected": 4,
+      "complete_6_candidate_pool": true,
+      "unique_codes": 6,
+      "original_ranks_available": false
+    },
+    {
+      "run": "4d46a9e0202e9b41",
+      "stratum": "spooky-author-identification/7200/qwen",
+      "arm": "forets-2",
+      "seed": 11,
+      "executed": 2,
+      "unselected": 4,
+      "complete_6_candidate_pool": true,
+      "unique_codes": 6,
+      "original_ranks_available": false
+    },
+    {
+      "run": "0cb301ad08da9727",
+      "stratum": "spooky-author-identification/7200/qwen",
+      "arm": "forets-2",
+      "seed": 12,
+      "executed": 2,
+      "unselected": 4,
+      "complete_6_candidate_pool": true,
+      "unique_codes": 6,
+      "original_ranks_available": false
+    },
+    {
+      "run": "7edcb3de5325b2e8",
+      "stratum": "spooky-author-identification/7200/qwen",
+      "arm": "forets-2",
+      "seed": 13,
+      "executed": 2,
+      "unselected": 4,
+      "complete_6_candidate_pool": true,
+      "unique_codes": 6,
+      "original_ranks_available": false
+    },
+    {
+      "run": "b84b91e419d4d831",
+      "stratum": "spooky-author-identification/7200/qwen",
+      "arm": "forets-2",
+      "seed": 9,
+      "executed": 2,
+      "unselected": 4,
+      "complete_6_candidate_pool": true,
+      "unique_codes": 6,
+      "original_ranks_available": false
+    },
+    {
+      "run": "b916b2861e14060c",
+      "stratum": "spooky-author-identification/7200/qwen",
+      "arm": "forets-2",
+      "seed": 10,
+      "executed": 2,
+      "unselected": 4,
+      "complete_6_candidate_pool": true,
+      "unique_codes": 6,
+      "original_ranks_available": false
+    },
+    {
+      "run": "00b3c850f50017f5",
+      "stratum": "AI4Code/7200/qwen",
+      "arm": "forets",
+      "seed": 3,
+      "executed": 2,
+      "unselected": 4,
+      "complete_6_candidate_pool": true,
+      "unique_codes": 6,
+      "original_ranks_available": false
+    },
+    {
+      "run": "46f0b562dbc0a74e",
+      "stratum": "AI4Code/7200/qwen",
+      "arm": "forets",
+      "seed": 1,
+      "executed": 2,
+      "unselected": 4,
+      "complete_6_candidate_pool": true,
+      "unique_codes": 6,
+      "original_ranks_available": false
+    },
+    {
+      "run": "c0070688ea304c3f",
+      "stratum": "AI4Code/7200/qwen",
+      "arm": "forets",
+      "seed": 2,
+      "executed": 0,
+      "unselected": 0,
+      "complete_6_candidate_pool": false,
+      "unique_codes": 0,
+      "original_ranks_available": false
+    },
+    {
+      "run": "8b601e5efea310e7",
+      "stratum": "leaf-classification/7200/qwen",
+      "arm": "forets",
+      "seed": 1,
+      "executed": 2,
+      "unselected": 4,
+      "complete_6_candidate_pool": true,
+      "unique_codes": 6,
+      "original_ranks_available": false
+    },
+    {
+      "run": "f70d132bf8fd755c",
+      "stratum": "leaf-classification/7200/qwen",
+      "arm": "forets",
+      "seed": 3,
+      "executed": 2,
+      "unselected": 4,
+      "complete_6_candidate_pool": true,
+      "unique_codes": 6,
+      "original_ranks_available": false
+    },
+    {
+      "run": "aa600099292ca506",
+      "stratum": "leaf-classification/7200/qwen",
+      "arm": "forets",
+      "seed": 2,
+      "executed": 2,
+      "unselected": 4,
+      "complete_6_candidate_pool": true,
+      "unique_codes": 6,
+      "original_ranks_available": false
+    }
+  ],
+  "complete_root_pools": 25,
+  "unselected_nodes": 480,
+  "source_sha256": {
+    "runs.json": "040c4463a967a34667dd1943735e923d0193a4f50c4c5eae24e9ada3a2da68c8",
+    "nodes.json": "370976e31c8a9f501bc75fb7826f529f85b0e34059146291f2e7bb3cab4062c9",
+    "summary.json": "7abae01493742907a37104bd979b7206439692a1a834ec2f6c0c64359c2d62bc"
+  }
+}

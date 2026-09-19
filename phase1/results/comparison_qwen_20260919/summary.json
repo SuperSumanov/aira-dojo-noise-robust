@@ -1,0 +1,335 @@
+{
+  "utc": "2026-09-19T08:58:52.413761+00:00",
+  "scope": "new local-Qwen comparison only; exploratory, not same-hardware causal effect",
+  "runs": 46,
+  "skipped_configurations": 28,
+  "protected_latest": "1b44e898bbae7ffc9098bbfa584ba842e0db2be5ae6bb8b5da0475d8ab34239f",
+  "protected_identity_sha256": "245c3a78a0571c5b09a46f1bf546443cde28c0fbc01719b2b8ce934da6f77708",
+  "protected_latest_start_date": "2026-09-07",
+  "credential_shapes_redacted": 0,
+  "groups": [
+    {
+      "stratum": "AI4Code/7200/qwen",
+      "arm": "forets",
+      "runs": 3,
+      "with_journal": 2,
+      "selected": {
+        "n": 2,
+        "mean": 0.715565,
+        "median": 0.715565,
+        "sd": 0.056519045020240785
+      },
+      "plot_selected_all": {
+        "n": 2,
+        "mean": 0.715565,
+        "median": 0.715565,
+        "sd": 0.056519045020240785
+      },
+      "oracle": {
+        "n": 2,
+        "mean": 0.715565,
+        "median": 0.715565,
+        "sd": 0.056519045020240785
+      },
+      "selection_changed": 0,
+      "running_hours": {
+        "n": 2,
+        "mean": 20.524611387135163,
+        "median": 20.524611387135163,
+        "sd": 3.368197211140419
+      },
+      "unselected": 24
+    },
+    {
+      "stratum": "AI4Code/7200/qwen",
+      "arm": "mcts",
+      "runs": 4,
+      "with_journal": 2,
+      "selected": {
+        "n": 2,
+        "mean": 0.733325,
+        "median": 0.733325,
+        "sd": 0.0013788582233137728
+      },
+      "plot_selected_all": {
+        "n": 2,
+        "mean": 0.733325,
+        "median": 0.733325,
+        "sd": 0.0013788582233137728
+      },
+      "oracle": {
+        "n": 2,
+        "mean": 0.733325,
+        "median": 0.733325,
+        "sd": 0.0013788582233137728
+      },
+      "selection_changed": 0,
+      "running_hours": {
+        "n": 2,
+        "mean": 16.323641930221605,
+        "median": 16.323641930221605,
+        "sd": 8.220570157596175
+      },
+      "unselected": 0
+    },
+    {
+      "stratum": "leaf-classification/7200/qwen",
+      "arm": "forets",
+      "runs": 3,
+      "with_journal": 3,
+      "selected": {
+        "n": 3,
+        "mean": 0.19047666666666666,
+        "median": 0.02432,
+        "sd": 0.30542606704951253
+      },
+      "plot_selected_all": {
+        "n": 3,
+        "mean": 0.19047666666666666,
+        "median": 0.02432,
+        "sd": 0.30542606704951253
+      },
+      "oracle": {
+        "n": 3,
+        "mean": 0.008096666666666667,
+        "median": 0.00831,
+        "sd": 0.004134130299510809
+      },
+      "selection_changed": 0,
+      "running_hours": {
+        "n": 3,
+        "mean": 22.198319429984245,
+        "median": 22.410392907230417,
+        "sd": 1.1125325743422207
+      },
+      "unselected": 120
+    },
+    {
+      "stratum": "leaf-classification/7200/qwen",
+      "arm": "mcts",
+      "runs": 4,
+      "with_journal": 4,
+      "selected": {
+        "n": 4,
+        "mean": 0.066975,
+        "median": 0.05371,
+        "sd": 0.06626311870112966
+      },
+      "plot_selected_all": {
+        "n": 4,
+        "mean": 0.066975,
+        "median": 0.05371,
+        "sd": 0.06626311870112966
+      },
+      "oracle": {
+        "n": 4,
+        "mean": 0.059542500000000005,
+        "median": 0.03995,
+        "sd": 0.06496169557259622
+      },
+      "selection_changed": 0,
+      "running_hours": {
+        "n": 4,
+        "mean": 9.930176517950734,
+        "median": 11.551635927390567,
+        "sd": 4.344105199729093
+      },
+      "unselected": 0
+    },
+    {
+      "stratum": "random-acts-of-pizza/7200/qwen",
+      "arm": "forets-1",
+      "runs": 5,
+      "with_journal": 5,
+      "selected": {
+        "n": 5,
+        "mean": 0.710382,
+        "median": 0.68684,
+        "sd": 0.08322154931266303
+      },
+      "plot_selected_all": {
+        "n": 5,
+        "mean": 0.710382,
+        "median": 0.68684,
+        "sd": 0.08322154931266303
+      },
+      "oracle": {
+        "n": 5,
+        "mean": 0.734502,
+        "median": 0.69743,
+        "sd": 0.057668531019959224
+      },
+      "selection_changed": 0,
+      "running_hours": {
+        "n": 5,
+        "mean": 19.939633602572734,
+        "median": 20.22624559244251,
+        "sd": 1.948115107764605
+      },
+      "unselected": 80
+    },
+    {
+      "stratum": "random-acts-of-pizza/7200/qwen",
+      "arm": "forets-2",
+      "runs": 5,
+      "with_journal": 5,
+      "selected": {
+        "n": 5,
+        "mean": 0.71157,
+        "median": 0.69265,
+        "sd": 0.07517693629032779
+      },
+      "plot_selected_all": {
+        "n": 5,
+        "mean": 0.71157,
+        "median": 0.69265,
+        "sd": 0.07517693629032779
+      },
+      "oracle": {
+        "n": 5,
+        "mean": 0.749504,
+        "median": 0.77292,
+        "sd": 0.055204843356357794
+      },
+      "selection_changed": 0,
+      "running_hours": {
+        "n": 5,
+        "mean": 20.209998751514007,
+        "median": 20.767458840263618,
+        "sd": 2.4912663198541902
+      },
+      "unselected": 76
+    },
+    {
+      "stratum": "random-acts-of-pizza/7200/qwen",
+      "arm": "mcts",
+      "runs": 6,
+      "with_journal": 6,
+      "selected": {
+        "n": 6,
+        "mean": 0.7269966666666667,
+        "median": 0.70374,
+        "sd": 0.05270993745648599
+      },
+      "plot_selected_all": {
+        "n": 6,
+        "mean": 0.7269966666666667,
+        "median": 0.70374,
+        "sd": 0.05270993745648599
+      },
+      "oracle": {
+        "n": 6,
+        "mean": 0.7330166666666666,
+        "median": 0.704375,
+        "sd": 0.0525125202848489
+      },
+      "selection_changed": 0,
+      "running_hours": {
+        "n": 6,
+        "mean": 20.28236367188143,
+        "median": 21.53316527653151,
+        "sd": 3.5017937776929817
+      },
+      "unselected": 0
+    },
+    {
+      "stratum": "spooky-author-identification/7200/qwen",
+      "arm": "forets-1",
+      "runs": 5,
+      "with_journal": 5,
+      "selected": {
+        "n": 5,
+        "mean": 0.334048,
+        "median": 0.34024,
+        "sd": 0.026402656495133216
+      },
+      "plot_selected_all": {
+        "n": 5,
+        "mean": 0.334048,
+        "median": 0.34024,
+        "sd": 0.026402656495133216
+      },
+      "oracle": {
+        "n": 5,
+        "mean": 0.333598,
+        "median": 0.34024,
+        "sd": 0.02673921315222271
+      },
+      "selection_changed": 0,
+      "running_hours": {
+        "n": 5,
+        "mean": 18.17996565441319,
+        "median": 19.91651305317607,
+        "sd": 6.306201302635959
+      },
+      "unselected": 88
+    },
+    {
+      "stratum": "spooky-author-identification/7200/qwen",
+      "arm": "forets-2",
+      "runs": 5,
+      "with_journal": 5,
+      "selected": {
+        "n": 5,
+        "mean": 0.32418199999999997,
+        "median": 0.32866,
+        "sd": 0.010678114065695321
+      },
+      "plot_selected_all": {
+        "n": 5,
+        "mean": 0.32418199999999997,
+        "median": 0.32866,
+        "sd": 0.010678114065695321
+      },
+      "oracle": {
+        "n": 5,
+        "mean": 0.32418199999999997,
+        "median": 0.32866,
+        "sd": 0.010678114065695321
+      },
+      "selection_changed": 0,
+      "running_hours": {
+        "n": 5,
+        "mean": 20.742322674232742,
+        "median": 21.060338224584573,
+        "sd": 1.0443076078295557
+      },
+      "unselected": 92
+    },
+    {
+      "stratum": "spooky-author-identification/7200/qwen",
+      "arm": "mcts",
+      "runs": 6,
+      "with_journal": 6,
+      "selected": {
+        "n": 6,
+        "mean": 0.3105133333333333,
+        "median": 0.30939,
+        "sd": 0.025841911436011583
+      },
+      "plot_selected_all": {
+        "n": 6,
+        "mean": 0.3105133333333333,
+        "median": 0.30939,
+        "sd": 0.025841911436011583
+      },
+      "oracle": {
+        "n": 6,
+        "mean": 0.3097,
+        "median": 0.30706500000000003,
+        "sd": 0.026398290853765508
+      },
+      "selection_changed": 0,
+      "running_hours": {
+        "n": 6,
+        "mean": 19.197025574896305,
+        "median": 18.551832918091804,
+        "sd": 3.7381028094820254
+      },
+      "unselected": 0
+    }
+  ],
+  "output": "/research/d7/spc/yzyang4/comparison-quarantine-20260919-_tda9fh6/qwen-readout-v1",
+  "gpu_jobs": 0,
+  "model_calls": 0
+}

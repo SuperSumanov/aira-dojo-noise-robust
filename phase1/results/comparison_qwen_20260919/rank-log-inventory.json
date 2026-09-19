@@ -1,0 +1,18 @@
+{
+  "log_files": [],
+  "all_basenames": {
+    "dojo_config.json": 46,
+    "env_variables.json": 46,
+    "JOURNAL.jsonl": 46,
+    "grading_report.json": 46,
+    "state.json": 43,
+    "journal.jsonl": 43,
+    "journal_for_unselected.jsonl": 25
+  },
+  "parent_paths": {
+    ".": 92,
+    "json": 46,
+    "results": 46,
+    "checkpoint": 111
+  }
+}

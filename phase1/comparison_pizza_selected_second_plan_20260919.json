@@ -1,0 +1,17 @@
+{
+  "question": "Are the two original second-selected siblings from the already fixed Pizza seeds executable in the current matched task environment?",
+  "fixed_runs": {"1": "5c3f818a9595bd79", "2": "1eee3186d26dcbcd"},
+  "selection_rule": "Second original executed initial draft by recorded execution step; no score-based or validity-based selection; both fixed seeds retained.",
+  "programs": 2,
+  "execution_seconds_per_program": 7200,
+  "allocation_seconds": 7800,
+  "gpus": 2,
+  "cpus": 12,
+  "gpu_hours_cap": 4.333333333333333,
+  "hardware": "gpu28 RTX3090, one original-image fresh worker per program",
+  "generation_api_training": "None; do not send any requests to job14165 services or alter its frozen environment",
+  "readout": "Grade both programs only after the full two-worker allocation is closed. Use independent tied-rank AUROC. Invalid and unknown retained.",
+  "scope": "Exploratory action feasibility, NOT online policy gain, earlier success guarantee, or full-search E2E. Historical selected outcomes have already been inspected.",
+  "reason": "Observed serial debug can block already selected siblings; strict all-failed-chain rescue criterion had zero opportunities. Secondary time-quality evidence is mixed and post-hoc, so direct feasibility precedes any new scheduling intervention.",
+  "stop": "No automatic retry, no replacing code, no switching seeds or additional candidate sampling. Original held job untouched. Concurrent owned allocation at most eight GPUs."
+}

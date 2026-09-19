@@ -6,10 +6,19 @@ import run_comparison_spooky_pool_20260919 as old
 BASE=old.BASE;SCRIPT=Path(__file__).name
 RUNS={1:'5c3f818a9595bd79',2:'1eee3186d26dcbcd'}
 TASK='random-acts-of-pizza'
+ROOT_PREFIX='comparison-pizza-prefix-20260919-'
+SELECT_SECOND=False
+PLAN=None
+ALLOWED_JOBS={'12535','14146'}
+
+def select_fixed_node(nodes,run):
+    candidates=sorted([r for r in nodes if r['run']==run and r['group']=='executed' and r['parents']==[0] and 'draft' in r['operators_used']],key=lambda n:n['step'])
+    if len(candidates)!=2 or candidates[0]['step']!=1:raise ValueError('original selected pair')
+    return candidates[1 if SELECT_SECOND else 0]
 
 def scope(root):
     root=root.resolve(strict=True)
-    if root.parent!=BASE or not re.fullmatch('comparison-pizza-prefix-20260919-[a-z0-9_]+',root.name):raise ValueError('scope')
+    if root.parent!=BASE or not re.fullmatch(re.escape(ROOT_PREFIX)+'[a-z0-9_]+',root.name):raise ValueError('scope')
     return root
 
 def prepared(root):
@@ -29,7 +38,7 @@ def prepare(commit):
     if not re.fullmatch('[a-f0-9]{40}',commit):raise ValueError('commit')
     old.source_check();nodes=old.read(old.INPUT/'qwen-readout-v1/nodes.json',old.NODES);selected={}
     for seed,run in RUNS.items():
-        n,=[r for r in nodes if r['run']==run and r['group']=='executed' and r['step']==1]
+        n=select_fixed_node(nodes,run)
         if n['parents']!=[0] or 'draft' not in n['operators_used']:raise ValueError('prefix structure')
         selected[n['id']]=(seed,n)
     raw_cases={}
@@ -42,15 +51,17 @@ def prepare(commit):
                 n=json.loads(line)
                 if n.get('id') not in selected:continue
                 seed,known=selected[n['id']];code=(n.get('code') or '').encode()
-                if old.sha(code)!=known['code_sha256'] or n.get('exit_code')!=1:raise ValueError('original failure identity')
+                if old.sha(code)!=known['code_sha256'] or (not SELECT_SECOND and n.get('exit_code')!=1):raise ValueError('original node identity')
                 if re.search(rb'/prepared/private|/data/private|/research/[^\s\"\x27]+',code):raise ValueError('unapproved path')
                 term=n.get('_term_out') or n.get('term_out') or '';term=''.join(term) if isinstance(term,list) else term
-                from audit_comparison_third_prefix_20260919 import core
-                error=core(term)
-                if not error.startswith('NameError:'):raise ValueError('preobserved fixed failure class')
+                error=None
+                if not SELECT_SECOND:
+                    from audit_comparison_third_prefix_20260919 import core
+                    error=core(term)
+                    if not error.startswith('NameError:'):raise ValueError('preobserved fixed failure class')
                 raw_cases[seed]=(n,code,error)
     if set(raw_cases)!={1,2}:raise ValueError('complete extraction')
-    root=Path(tempfile.mkdtemp(prefix='comparison-pizza-prefix-20260919-',dir=BASE));old.setup(root,commit)
+    root=Path(tempfile.mkdtemp(prefix=ROOT_PREFIX,dir=BASE));old.setup(root,commit)
     from dojo.core.solvers.utils.response import extract_code
     from dojo.config_dataclasses.interpreter.fresh_container import FreshContainerInterpreterConfig
     for name in ('codes','configs','opencl-vendors'):(root/name).mkdir()
@@ -58,9 +69,9 @@ def prepare(commit):
     for name in old.HELPERS:
         if old.sha((old.DONOR/name).read_bytes())!=prior['files'][name]:raise ValueError('GPU helper drift')
         dst=root/name;dst.parent.mkdir(parents=True,exist_ok=True);shutil.copy2(old.DONOR/name,dst)
-    for name in (SCRIPT,'run_comparison_spooky_pool_20260919.py','run_comparison_reuse_20260919.py','verify_comparison_reuse_driver_20260919.py','audit_comparison_third_prefix_20260919.py'):
+    for name in dict.fromkeys((SCRIPT,'run_comparison_pizza_prefix_20260919.py','run_comparison_spooky_pool_20260919.py','run_comparison_reuse_20260919.py','verify_comparison_reuse_driver_20260919.py','audit_comparison_third_prefix_20260919.py')+((PLAN,) if PLAN else ())):
         shutil.copy2(Path(__file__).with_name(name),root/name)
-    (root/'forets_current_pool_20260912.py').write_text('from run_comparison_pizza_prefix_20260919 import binding_context\n')
+    (root/'forets_current_pool_20260912.py').write_text('from '+SCRIPT[:-3]+' import binding_context\n')
     (root/'opencl-vendors/nvidia.icd').write_text('libnvidia-opencl.so.1\n')
     rows=[]
     for seed in (1,2):
@@ -102,7 +113,7 @@ def submit(root):
     if (st.st_size,st.st_mtime_ns)!=(19717783552,1784638286000000000):raise ValueError('image')
     env=dict(os.environ,SLURM_CONF='/opt1/slurm/gpu-slurm.conf')
     ids=subprocess.check_output(['squeue','-u','yzyang4','-h','-o','%i'],env=env,text=True,timeout=20).split()
-    if set(ids)-{'12535','14146'}:raise ValueError('concurrency/QOS')
+    if set(ids)-ALLOWED_JOBS:raise ValueError('concurrency/QOS')
     old.write(root/'submit-intent.json',dict(utc=old.now(),gpu_hours_cap=p['gpu_hours_cap']))
     result=subprocess.run(['sbatch','--parsable','--chdir='+str(root),'--output='+str(root/'allocation-%j.out'),'--error='+str(root/'allocation-%j.err'),str(root/'run.sbatch')],env=env,capture_output=True,text=True,timeout=25)
     job=result.stdout.strip().split(';')[0]

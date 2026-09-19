@@ -32,6 +32,12 @@ def analyze(runs,nodes,metadata):
             if any(type(x) not in (int,float) or not math.isfinite(x) or x<0 for x in (g,a,e)):raise ValueError('missing component cost')
             generation+=g;analysis+=a;execution+=e
         repaired=[n for n in between if n['is_buggy'] is False]
+        if len(repaired)>1 or (repaired and repaired[0] is not between[-1]):raise ValueError('unexpected post-success repair sequence')
+        second_analysis=meta[(second['run'],second['id'])]['numeric_operator_fields'].get('.1.usage.latency')
+        second_cost=second['exec_time']+second_analysis if isinstance(second_analysis,(int,float)) and isinstance(second['exec_time'],(int,float)) else None
+        first_repair=repaired[0] if repaired else None
+        comparable=first_repair is not None and first_repair['score'] is not None and second['score'] is not None
+        gain=((first_repair['score']-second['score']) if run.get('lower_better') else (second['score']-first_repair['score'])) if comparable else None
         rows.append(dict(run=run['run'],task=run['stratum'].split('/')[0],arm=run['arm'],seed=run['seed'],
             first_buggy=first['is_buggy'],second_buggy=second['is_buggy'],first_step=first['step'],second_step=second['step'],
             intervening_debug_nodes=len(between),native_nonbuggy_repairs=len(repaired),
@@ -40,19 +46,28 @@ def analyze(runs,nodes,metadata):
             logged_debug_generation_seconds=generation,logged_debug_analysis_seconds=analysis,logged_debug_execution_seconds=execution,
             logged_serial_components_seconds=generation+analysis+execution,
             second_reported_execution_seconds=second['exec_time'],second_external_score_present=second['score'] is not None,
-            second_external_score=second['score'],first_external_score=first['score']))
+            second_external_score=second['score'],first_external_score=first['score'],
+            second_exec_plus_analyze_seconds=second_cost,first_successful_repair_score=first_repair['score'] if first_repair else None,
+            second_vs_first_successful_repair_oriented_score_gain=gain,
+            secondary_ready_valid_sibling_cost_less_than_repair=bool(between) and second['is_buggy'] is False and second_cost is not None and second_cost<generation+analysis+execution))
     groups=[]
     for task in sorted({r['task'] for r in rows}):
         group=[r for r in rows if r['task']==task];blocked=[r for r in group if r['intervening_debug_nodes']]
         strong=[r for r in group if r['delayed_nonbuggy_second_after_only_failed_repairs']]
+        secondary=[r for r in group if r['secondary_ready_valid_sibling_cost_less_than_repair']]
         groups.append(dict(task=task,physical_runs=len(group),blocked_second_siblings=len(blocked),
             blocked_ready=sum(r['ready_second_sibling'] for r in blocked),positive_opportunity_runs=len(strong),
             blocker_component_seconds=stats([r['logged_serial_components_seconds'] for r in blocked]),
-            positive_opportunity_component_seconds=stats([r['logged_serial_components_seconds'] for r in strong])))
+            positive_opportunity_component_seconds=stats([r['logged_serial_components_seconds'] for r in strong]),
+            secondary_faster_ready_nonbuggy_sibling=len(secondary),
+            secondary_quality_wins=sum(r['second_vs_first_successful_repair_oriented_score_gain'] is not None and r['second_vs_first_successful_repair_oriented_score_gain']>0 for r in secondary),
+            secondary_quality_losses=sum(r['second_vs_first_successful_repair_oriented_score_gain'] is not None and r['second_vs_first_successful_repair_oriented_score_gain']<0 for r in secondary),
+            secondary_quality_ties=sum(r['second_vs_first_successful_repair_oriented_score_gain']==0 for r in secondary)))
     return dict(role='historical_selected_sibling_blocking_not_causal_gain',rows=rows,by_task=groups,
         physical_runs=len(rows),blocked=sum(r['intervening_debug_nodes']>0 for r in rows),
         positive_opportunity_runs=sum(r['delayed_nonbuggy_second_after_only_failed_repairs'] for r in rows),
         limitations=['Native nonbuggy is not independently verified correctness.',
+            'Secondary time/quality comparison was added after strict failed-repair-chain opportunity count was zero; exploratory, not a revised primary success rule.',
             'Serial recorded component times include queuing/retries; not exclusive GPU service time or exact wall savings.',
             'Counterfactual execution order can change workspace, feedback, search state and final quality.',
             'No historical reordering is reported as an online outcome or confirmed speedup.',

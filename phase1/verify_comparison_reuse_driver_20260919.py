@@ -26,8 +26,8 @@ def main(root):
                 def close(self):counts['cleanups']+=1
             outcome=one(target,row,Fake)
             if outcome['status']!='returned' or not outcome['submission_sha256']:raise ValueError('actual driver failed')
-    if counts!={'calls':12,'cleanups':12}:raise ValueError('incomplete actual delivery matrix')
-    receipt=dict(status='PASS',kind='CPU_MOCK_NOT_GPU_ACCEPTANCE',cases=12,counts=counts,
+    if counts!={'calls':len(p['rows']),'cleanups':len(p['rows'])}:raise ValueError('incomplete actual delivery matrix')
+    receipt=dict(status='PASS',kind='CPU_MOCK_NOT_GPU_ACCEPTANCE',cases=len(p['rows']),counts=counts,
                  prepared_sha256=sha((root/'prepared.json').read_bytes()))
     write(root/'cpu-preflight.json',receipt);print(json.dumps(receipt),flush=True)
 

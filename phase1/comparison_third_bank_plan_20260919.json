@@ -1,0 +1,15 @@
+{
+  "role": "third_original_development_prefix_continuation_bank_not_e2e",
+  "source_run": "e4a4275f2df8028e",
+  "seed": 3,
+  "selection": "The original Spooky forets-1 seed 3 initial pool was wholly unstarted in job 14099. Execute its first draft, first direct debug, and every unselected initial draft. Do not substitute a more favorable run.",
+  "known_before_test": "Historical first debug is marked successful. Prior seed 1 and 2 replay outcomes have been seen; this is an explicitly exploratory completion, not blind confirmation.",
+  "programs": 6,
+  "program_seconds": 7200,
+  "allocation": {"node": "gpu28", "gpus": 6, "cpus": 36, "seconds": 7800, "gpu_hours_cap": 13},
+  "paid_api_calls": 0,
+  "training": false,
+  "automatic_retry": false,
+  "changes": "Same original MLE image, code bytes, and native per-program GPU execution. Only expands the development prefix set; does not overwrite the original unstarted receipt.",
+  "readout": "Closed allocation only. Require same terminal prefix error, compare a uniform single cache candidate against first debug, with all candidates and errors retained. Independent grade and exact finite-pool enumeration."
+}

@@ -8,11 +8,16 @@ from run_comparison_spooky_pool_20260919 import BASE,DONOR,HELPERS,TREE,setup,so
 GEN=BASE/'comparison-live-debug-20260919-kksebq_4'
 GEN_PREPARED='329beee61b95b79430ba95eba45d4da95f170e93a0f0b159848a18aef73b5283'
 SCRIPT=Path(__file__).name
+ROOT_PREFIX='comparison-fresh-debug-exec-20260919-'
+REQUEST_SEEDS=[501,502]
+READER='readout_comparison_live_debug_20260919.py'
+CONTEXT_MODULE='run_comparison_live_debug_execute_20260919'
+EXTRA_FILES=()
 
 
 def check(root):
     root=root.resolve(strict=True)
-    if root.parent!=BASE or not re.fullmatch('comparison-fresh-debug-exec-20260919-[a-z0-9_]+',root.name):raise ValueError('scope')
+    if root.parent!=BASE or not re.fullmatch(re.escape(ROOT_PREFIX)+'[a-z0-9_]+',root.name):raise ValueError('scope')
     p=read(root/'prepared.json')
     if [r['seed'] for r in p['rows']]!=[1,2] or p['program_seconds']!=7200:raise ValueError('matrix')
     for name,digest in p['files'].items():
@@ -35,23 +40,22 @@ def prepare(commit):
         if sha((GEN/name).read_bytes())!=digest:raise ValueError('generation preparation changed')
     if read(GEN/'closed.json')['status']!='two_draws_closed':raise ValueError('generation not normally closed')
     rows=read(GEN/'generation-summary.json')['rows']
-    if [r['seed'] for r in rows]!=[1,2] or [r['request_seed'] for r in rows]!=[501,502]:raise ValueError('generation matrix')
+    if [r['seed'] for r in rows]!=[1,2] or [r['request_seed'] for r in rows]!=REQUEST_SEEDS:raise ValueError('generation matrix')
     env=dict(os.environ,SLURM_CONF='/opt1/slurm/gpu-slurm.conf');job=read(GEN/'launch.json')['job']
     acc=subprocess.check_output(['sacct','-X','-j',job,'-nP','-o','JobIDRaw,State%24,ElapsedRaw,AllocTRES%120'],env=env,text=True,timeout=25)
     allocation,=[line.split('|') for line in acc.splitlines() if line.split('|')[0]==job]
     if allocation[1]!='COMPLETED':raise ValueError('generation allocation not COMPLETED')
     if dict(item.split('=',1) for item in allocation[3].split(','))['gres/gpu']!='2':raise ValueError('generation GPU accounting')
-    root=Path(tempfile.mkdtemp(prefix='comparison-fresh-debug-exec-20260919-',dir=BASE));setup(root,commit)
+    root=Path(tempfile.mkdtemp(prefix=ROOT_PREFIX,dir=BASE));setup(root,commit)
     from dojo.config_dataclasses.interpreter.fresh_container import FreshContainerInterpreterConfig
     for name in ('codes','configs','opencl-vendors'):(root/name).mkdir()
     prior=read(DONOR/'prepared.json')
     for name in HELPERS:
         if sha((DONOR/name).read_bytes())!=prior['files'][name]:raise ValueError('adapter drift')
         dst=root/name;dst.parent.mkdir(parents=True,exist_ok=True);shutil.copy2(DONOR/name,dst)
-    for name in (SCRIPT,'readout_comparison_live_debug_20260919.py',
-                 'run_comparison_spooky_pool_20260919.py','readout_comparison_spooky_pool_20260919.py'):
+    for name in (SCRIPT,READER,'run_comparison_spooky_pool_20260919.py','readout_comparison_spooky_pool_20260919.py')+EXTRA_FILES:
         shutil.copy2(Path(__file__).with_name(name),root/name)
-    (root/'forets_current_pool_20260912.py').write_text('from run_comparison_live_debug_execute_20260919 import binding_context\n')
+    (root/'forets_current_pool_20260912.py').write_text('from '+CONTEXT_MODULE+' import binding_context\n')
     (root/'opencl-vendors/nvidia.icd').write_text('libnvidia-opencl.so.1\n')
     exported=[]
     for index,row in enumerate(rows):
@@ -59,6 +63,8 @@ def prepare(commit):
         result=dict(index=index,seed=row['seed'],request_seed=row['request_seed'],run=row['source_run'],
                     task='spooky-author-identification',node=f'fresh-debug-{row["request_seed"]}',role='fresh_debug',
                     generation_status=row['status'],generation_seconds=row['generation_seconds'],runnable=ready)
+        for key in ('analysis_request_seed','analysis_seconds','debug_seconds'):
+            if key in row:result[key]=row[key]
         if ready:
             code=(GEN/f'code-{row["seed"]}.private.py').read_bytes()
             if sha(code)!=row['code_sha256'] or SECRET.search(code) or re.search(rb'/prepared/private|/data/private|/research/',code):raise ValueError('generated code identity/security')

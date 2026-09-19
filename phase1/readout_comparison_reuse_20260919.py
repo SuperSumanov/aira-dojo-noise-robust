@@ -10,6 +10,7 @@ import subprocess
 from pathlib import Path
 from run_comparison_reuse_20260919 import BASE, PREFIX_ERRORS, prepared, read, write, sha, setup, source_check, now
 from readout_comparison_spooky_pool_20260919 import numerical
+SEEDS=(1,2)
 
 
 def compare(rows, prefix_matches):
@@ -109,7 +110,7 @@ def main(root):
                         raise ValueError('submission changed during grading')
         rows.append(row)
     groups = []
-    for seed in (1,2):
+    for seed in SEEDS:
         rr = [r for r in rows if r['seed'] == seed]
         complete = all(r['valid'] is not None for r in rr)
         if complete and len({bindings[r['index']] for r in rr}) != 6:

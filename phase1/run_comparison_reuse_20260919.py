@@ -20,6 +20,12 @@ from run_comparison_spooky_pool_20260919 import (
 
 SCRIPT = 'run_comparison_reuse_20260919.py'
 PLAN = 'comparison_reuse_plan_20260919.json'
+ROOT_PREFIX = 'comparison-reuse-20260919-'
+ALLOCATION_SECONDS = 9000
+READER = 'readout_comparison_reuse_20260919.py'
+CONTEXT_MODULE = 'run_comparison_reuse_20260919'
+EXTRA_FILES = ()
+PREPARED_METADATA = {}
 RUNS = {1: '3277c81be72a1c30', 2: '58d3914785a2cfe1'}
 PREFIX_ERRORS = {
     1: "TypeError: LogisticRegression.__init__() got an unexpected keyword argument 'multi_class'",
@@ -47,14 +53,14 @@ def select_rows(nodes):
             rows.append(dict(index=len(rows), seed=seed, run=run, slot=slot, role=role,
                              task='spooky-author-identification', node=n['id'],
                              raw_code_sha256=n['code_sha256']))
-    if len({r['node'] for r in rows}) != 12:
+    if len({r['node'] for r in rows}) != 6*len(RUNS):
         raise ValueError('unique source candidates required')
     return rows
 
 
 def root_check(root):
     root = root.resolve(strict=True)
-    if root.parent != BASE or not re.fullmatch(r'comparison-reuse-20260919-[a-z0-9_]+', root.name):
+    if root.parent != BASE or not re.fullmatch(re.escape(ROOT_PREFIX)+r'[a-z0-9_]+', root.name):
         raise ValueError('root scope')
     return root
 
@@ -63,12 +69,12 @@ def prepared(root):
     root_check(root)
     p = read(root / 'prepared.json')
     remainder = p.get('completion_of') == 'f3ea334c94257bbbbc06229a8a3aeea609e2516879bdf9a32822e176897ee9ce'
-    expected_allocation = 7800 if remainder else 9000
+    expected_allocation = 7800 if remainder else ALLOCATION_SECONDS
     if remainder and p.get('schedule') != [2]:
         raise ValueError('completion schedule changed')
-    if len(p['rows']) != 12 or (p['execution_seconds'], p['allocation_seconds']) != (7200, expected_allocation):
+    if len(p['rows']) != 6*len(RUNS) or (p['execution_seconds'], p['allocation_seconds']) != (7200, expected_allocation):
         raise ValueError('protocol drift')
-    for seed in (1, 2):
+    for seed in RUNS:
         roles = [r['role'] for r in p['rows'] if r['seed'] == seed]
         if roles != ['prefix', 'debug', 'cache', 'cache', 'cache', 'cache']:
             raise ValueError('action bank drift')
@@ -99,7 +105,7 @@ def prepare(commit, remainder=False):
             raise ValueError('original allocation not closed')
         if any(r['status'] != 'not_started' for r in prior_result['rows'] if r['seed'] == 2):
             raise ValueError('second group previously attempted')
-    root = Path(tempfile.mkdtemp(prefix='comparison-reuse-20260919-', dir=BASE))
+    root = Path(tempfile.mkdtemp(prefix=ROOT_PREFIX, dir=BASE))
     setup(root, commit)
     from dojo.core.solvers.utils.response import extract_code
     from dojo.config_dataclasses.interpreter.fresh_container import FreshContainerInterpreterConfig
@@ -138,9 +144,9 @@ def prepare(commit, remainder=False):
         dst.parent.mkdir(parents=True, exist_ok=True)
         shutil.copy2(src, dst)
     for name in (SCRIPT, PLAN, 'run_comparison_spooky_pool_20260919.py',
-                 'readout_comparison_spooky_pool_20260919.py', 'readout_comparison_reuse_20260919.py'):
+                 'readout_comparison_spooky_pool_20260919.py', READER)+EXTRA_FILES:
         shutil.copy2(Path(__file__).with_name(name), root / name)
-    (root / 'forets_current_pool_20260912.py').write_text('from run_comparison_reuse_20260919 import binding_context\n')
+    (root / 'forets_current_pool_20260912.py').write_text('from '+CONTEXT_MODULE+' import binding_context\n')
     (root / 'opencl-vendors/nvidia.icd').write_text('libnvidia-opencl.so.1\n')
     for row in rows:
         i = row['index']
@@ -171,15 +177,18 @@ set -euo pipefail
 export SLURM_CONF=/opt1/slurm/gpu-slurm.conf
 export PYTHON_DOTENV_DISABLED=1 PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1
 timeout --signal=TERM --kill-after=10s 8950s /research/d7/spc/yzyang4/venvs/aira/bin/python -B ROOT/run_comparison_reuse_20260919.py coordinate --root ROOT
-'''.replace('ROOT', str(root))
+'''.replace('ROOT', str(root)).replace('run_comparison_reuse_20260919.py',SCRIPT)
+    if ALLOCATION_SECONDS == 7800:
+        batch=batch.replace('--time=02:30:00','--time=02:10:00').replace('8950s','7750s')
     (root / 'run.sbatch').write_text(batch)
     if remainder:
         (root/'run.sbatch').write_text(batch.replace('--time=02:30:00','--time=02:10:00').replace('8950s','7750s'))
         shutil.copy2(Path(__file__).with_name('comparison_reuse_remainder_plan_20260919.json'),root/'comparison_reuse_remainder_plan_20260919.json')
     files = {str(p.relative_to(root)): sha(p.read_bytes()) for p in root.rglob('*') if p.is_file()}
     p = dict(commit=commit, source_tree=TREE, utc=now(), rows=rows, files=files,
-             execution_seconds=7200, allocation_seconds=9000, gpu_hours_cap=15, api_calls=0,
+             execution_seconds=7200, allocation_seconds=ALLOCATION_SECONDS, gpu_hours_cap=ALLOCATION_SECONDS*6/3600, api_calls=0,
              role='exploratory_historical_continuation_actions_not_live_e2e')
+    if PREPARED_METADATA:p['extension_context']=dict(PREPARED_METADATA)
     if remainder:
         p.update(allocation_seconds=7800,gpu_hours_cap=13,schedule=[2],
                  completion_of='f3ea334c94257bbbbc06229a8a3aeea609e2516879bdf9a32822e176897ee9ce')
@@ -197,7 +206,7 @@ def coordinate(root):
     write(root / 'execution-claim.json', dict(job=job, utc=now()))
     start = time.monotonic()
     completed, deferred = [], []
-    schedule = tuple(p.get('schedule', (1, 2)))
+    schedule = tuple(p.get('schedule', tuple(RUNS)))
     for seed in schedule:
         if p['allocation_seconds'] - 100 - (time.monotonic() - start) < 7500:
             deferred.append(seed)
@@ -221,7 +230,7 @@ def coordinate(root):
 
 def execute(root, index):
     p = prepared(root)
-    if p['rows'][index]['seed'] not in p.get('schedule',(1,2)):
+    if p['rows'][index]['seed'] not in p.get('schedule',tuple(RUNS)):
         raise ValueError('candidate outside this allocation schedule')
     setup(root, p['commit'])
     if not os.environ.get('SLURM_STEP_ID', '').isdigit() or read(root / 'execution-claim.json')['job'] != os.environ['SLURM_JOB_ID']:
@@ -233,7 +242,7 @@ def submit(root):
     p = prepared(root)
     source_check()
     cpu = read(root / 'cpu-preflight.json')
-    if cpu['status'] != 'PASS' or cpu['cases'] != 12 or cpu['prepared_sha256'] != sha((root / 'prepared.json').read_bytes()):
+    if cpu['status'] != 'PASS' or cpu['cases'] != len(p['rows']) or cpu['prepared_sha256'] != sha((root / 'prepared.json').read_bytes()):
         raise ValueError('actual CPU driver preflight required')
     st = (BASE / 'aira-dojo/build/superimage/superimage.root.2026-07-macos-v1.sif').stat()
     if (st.st_size, st.st_mtime_ns) != (19717783552, 1784638286000000000):

@@ -1,0 +1,26 @@
+{
+  "role": "closed_fresh_debug_error_diagnosis",
+  "source_summary_sha256": "71302cc7321a42ec592f90a367738f935ec4ff60130fa8fb83ed79a317d7e86b",
+  "rows": [
+    {
+      "seed": 1,
+      "request_seed": 501,
+      "code_sha256": "56cde15d0638f352185edbfabe5ddc3ad7b6d903f7d85293d141744343862e92",
+      "log_sha256": "421788cfbcef7471871f042ff1c30370251d7f4aa66e9653c234d86de432f91e",
+      "credential_shape_hits": 0,
+      "terminal_error": "ValueError: The 'liblinear' solver does not support multiclass classification (n_classes >= 3). Either use another solver or wrap the estimator in a OneVsRestClassifier to keep applying a one-versus-rest scheme.",
+      "exit_code": 1,
+      "timed_out": false
+    },
+    {
+      "seed": 2,
+      "request_seed": 502,
+      "code_sha256": "c0d1f6152c0896b28ac4982e189a5d53afd671139af7a9a7b134b4edaedccdd2",
+      "log_sha256": "3e4b5b8eec1477713c1098cb5d5b1e0640eaa36586a1a46078f7ec8c3a7c1e46",
+      "credential_shape_hits": 0,
+      "terminal_error": "ValueError: The 'liblinear' solver does not support multiclass classification (n_classes >= 3). Either use another solver or wrap the estimator in a OneVsRestClassifier to keep applying a one-versus-rest scheme.",
+      "exit_code": 1,
+      "timed_out": false
+    }
+  ]
+}

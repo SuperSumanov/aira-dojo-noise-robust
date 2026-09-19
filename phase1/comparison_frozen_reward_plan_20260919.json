@@ -1,0 +1,14 @@
+{
+  "question": "Does the as-delivered frozen 8B reward model retain useful programs in all five already completed six-candidate development pools?",
+  "population": {"leaf-classification": [1, 2, 3], "spooky-author-identification": [1, 2]},
+  "programs": 30,
+  "model": "Existing Qwen3-8B_reward_seed1/checkpoint-100 and offline base-metadata; no model selection or training",
+  "encoder": {"max_len": 16384, "head_frac": 0.25, "task_cond": true, "code_input": "full normalized executed code; existing encoder truncation only", "batch_size": 1, "seed": 20260919},
+  "policies": ["uniform_two_of_six", "frozen_top_two", "frozen_top_three_then_uniform_two"],
+  "ties": "original slot ascending, fixed before new predictions",
+  "analysis": "All five pools retained. Per-pool valid-retention and official-quality oracle diagnostics compared with exact 15 uniform pairs; no learned thresholds, refits, candidate edits or significance from treating candidates as independent runs.",
+  "scope": "Exploratory predictor diagnostic on already seen development outcomes, not a new test set, complete E2E improvement or reproduction of the senior's unknown original model/template.",
+  "budget": {"gpu_node": "gpu28", "gpus": 1, "cpus": 6, "allocation_seconds": 1800, "gpu_hours_cap": 0.5, "api_calls": 0, "fit": false},
+  "failure": "Missing or nonfinite predictions stay unknown; no partial-pool claims, automatic retry, or replacement seeds.",
+  "protected_cohorts": "No first-960, Target-300 or Target-522 files accessed"
+}

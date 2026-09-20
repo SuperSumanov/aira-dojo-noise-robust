@@ -1,15 +1,16 @@
-# 当前短交接 — 2026-09-19 23:55 UTC
+# 当前短交接 — 2026-09-20 00:12 UTC
 
 ## 当前任务、边界
 
 用户21:15:49 UTC要求会话内推进三小时，里程碑09-20 00:15 UTC/08:15香港。不要新任务/自动化/代理，不例行写报告；正常push及合理实验已有授权。先fetch、方向顶部、此文件、现场；旧动态仅称最后观察。
 first960/Target300/522仍封；不恢复HCE/多保真/Probe/score-channel/K>=1/G0/旧失败cheap选择器，不微调agent底座。不改学长分支、共享source、冻结root。原始代码/回答/日志仅远端私有，密钥不回显/下载/Git。条件单batch不是完整E2E，初始候选生成不是免费。
 
-## 活跃14167：原入选batch只改执行次序
+## 已闭合14167：原入选batch次序无收益，不重跑reader
 
-ROOT=BASE/comparison-native-batch-order-20260919-hz3c589n；deployment dc4a7dbc6951f5bd8d24b49ca7eb2e2de3d5ccec；prepared25d55a42517e586b677dd72a7296a4453c0c68bfda03c551eeb30570e8274428。gpu28六卡24CPU100min≤10GPUh，0API/fit。23:34:38最后观察RUNNING、第二wave23:32:01开始，预计00:07 UTC闭合。新值未读。
+ROOT=BASE/comparison-native-batch-order-20260919-hz3c589n；deployment dc4a7dbc6951f5bd8d24b49ca7eb2e2de3d5ccec；prepared25d55a42517e586b677dd72a7296a4453c0c68bfda03c551eeb30570e8274428。00:07:23核COMPLETED4815秒/六卡24CPU=8.025GPUh，四episode硬截止，0API/fit。最终原生有效提交0/4、两pair均平、0unknown，独立配对预算核验PASS，不扩大该顺序策略。
 Pizza原seed1/2、同失败prefix/原第二入选程序/first debug cycle，只换repair→second / second→repair。两阶段均做，不因首成功停止；共同35min、有限内部metric最大为实际最终提交、平分保首个。debug到首次原生有效/20步/时限/完整回答限制；无额外max_tokens、无重试/截断抢救。第二seed交换lane。
-四episode及allocation闭合后仅用BASE/comparison-roundtrip-reader-20260919-Ral9kyiB/readout_comparison_native_batch_order_20260919.py --reader-commit 530d5739960b29fae03fccd5f1c4740ee6719c8c。shared SHA c9a83c66e02c104193a81570f4c38726c9db973a65a13529c3f129dbbba16c76；wrapper d083528f31078b41854aa90475b92edce225a56936120482392873a24a276a03。不用旧Pt3BsrGK/ee3c6da。CSV独立AUC必须round_trip；闭合后再独立verify_comparison_online_results_20260919.py。status_comparison_native_batch_20260919.py只查结构。
+唯一reader已在00:07:47完成：BASE/comparison-roundtrip-reader-20260919-Ral9kyiB/readout_comparison_native_batch_order_20260919.py，commit530d5739960b29fae03fccd5f1c4740ee6719c8c。shared SHA c9a83c66e02c104193a81570f4c38726c9db973a65a13529c3f129dbbba16c76；wrapper d083528f31078b41854aa90475b92edce225a56936120482392873a24a276a03。summary711475eed488632b604f4f4c4506223427758b5d3398c5a5f31515619e8c03fb；本地results/comparison_native_batch_order_20260919含summary/runs/independent-check/closed-action-diagnostic。禁止重跑主reader及已保存结构补充，不用旧Pt3BsrGK/ee3c6da。
+闭合结构诊断：seed1 sibling-first首动作exit0/有submission，124.26931807899382秒，但native analyze is_bug=true/metric=null；未被接受，后续生成没在截止前返回。其余六动作exit1/无提交。不能据此称本轮产物外部有效或分析器误判；尚需安全阅读该条分析summary及内部指标打印逻辑。**接手优先做这项小诊断，不重跑次序实验，不使用隐藏/外部分数替换实际最终选择。** 保留14170 Leaf正信号与Spooky负例，以此准备真正能兑现的critic验证，不恢复旧关闭方向。
 
 ## 已闭合14170：冻结8B对完整30候选评分，禁止重读
 
@@ -38,10 +39,11 @@ ROOT BASE/comparison-pizza-full-deadline-20260919-yaywhbo1；deployment a37e3595
 205本轮明确模块CPU回归通过；宽泛discover额外导入旧critics/mock包因相对导入报错，未改旧包，后用明确模块列表重跑。新transport首测仅字符串引号假设失败，改AST检查默认native后通过；没有因此启动GPU。
 23:00:27同gdown双列表正控制PASS：0912五可见/listing c02e5001cbfbddd4e096d1d6921a78132cc22b1b971222c6375912b51312cdec；0918零可见/d36f39e6e9476279df19da46f006f182236737f29e64e5808e93733d676ae239，不等于没上传。22:59学长head仍e4181fac5edb319e14d4d819088778d5d2708912。
 AGR-V动态生成/验证、Recovering Wasted Compute回溯兄弟及固定draft消融、AI Research Preference Models critic/E2E均强相关；缓存/排序本身非新颖，尚未证明独特普适的方法主张。
+09-20新增原文核查：https://arxiv.org/html/2608.13940v2 Appendix A.1明确有bug-tolerance与潜在质量；其limitations已报告并校正inference latency，不能说它完全忽略推理成本。小模型质量保留、失败容忍或成本诊断本身不自动构成原创方法；差异须用当前资源条件下的实际最终成绩证明。未因此恢复agent微调/多保真。
 
 ## 环境、发布
 
 本地C:/Research/New/my_project/MLEvolve/aira-dojo-codex-20260813；SSH linux5；BASE=/research/d7/spc/yzyang4。编排Python venvs/aira/bin/python（CPU），**critic GPU必须venvs/exp/bin/python**。SLURM_CONF=/opt1/slurm/gpu-slurm.conf；4jobs/8GPU；旧held12535不动。MLE原镜像gpu28 RTX3090，禁projgpu39/改Torch/CPUfallback。
 ASSETS BASE/local-qwen27b-20260914-zcx1k1dy；revisiondc430725f831dd90d9271738b877879a46a82239，18文件36808331288bytes不重下载。DONOR BASE/forets-fresh-integration-20260914-ih6u0mpw。8B BASE/forets-critic-incoming-20260908-3lcjjcwq；loader BASE/forets-e2e-dev-20260908-IMuJx6/critic-offline-v1/src/mle_critic/src/evaluation。盘1TB至09-29、延期未知，无需清理。
 0912五包BASE/comparison-quarantine-20260919-_tda9fh6，703326526bytes；仅新Qwen46config/43journal、保护集隔离已核。
-只正常push myfork HEAD:phase1-value-critic；22:58已验证公开173c9fd8caa8e15c1c87b0b2cf2468ba379e42c5，后续待推。全部待推blob凭据/敏感文件名扫描只报数量，JSON/CSV -text，无关untracked保留。数字标题只复制打印结果。
+只正常push myfork HEAD:phase1-value-critic；23:58已验证公开f9c065860ebbbb7b8bb7895e7c8b40a9c6f1b964。29待推文件凭据/敏感路径命中均0；结果JSON/CSV -text字节保真已核，无关untracked保留。数字标题只复制打印结果。

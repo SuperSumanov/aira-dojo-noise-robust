@@ -1,0 +1,209 @@
+{
+  "role": "posthoc_closed_action_metadata_no_grading",
+  "rows": [
+    {
+      "action": "action-0.json",
+      "episode": 0,
+      "metadata": {
+        "analysis_status": "returned",
+        "completed_seconds": 124.26931807899382,
+        "depth": 0,
+        "exit_code": 0,
+        "internal_metric": null,
+        "kind": "sibling",
+        "native_accepted": false,
+        "started_seconds": 17.59969808498863,
+        "status": "returned",
+        "submission_sha256": "2941d4647346e2c3814852516430fc6df98935f7aacf8e2ab0be40051d315e88",
+        "timed_out": false
+      },
+      "parsed_analysis_structure": {
+        "fields": {
+          "is_bug": "bool",
+          "metric": "NoneType",
+          "summary": "str"
+        },
+        "nontext_scalars": {
+          "is_bug": true,
+          "metric": null
+        },
+        "type": "dict"
+      }
+    },
+    {
+      "action": "action-0.json",
+      "episode": 1,
+      "metadata": {
+        "analysis_status": "returned",
+        "completed_seconds": 619.2219613280031,
+        "depth": 1,
+        "exit_code": 1,
+        "internal_metric": null,
+        "kind": "repair",
+        "native_accepted": false,
+        "started_seconds": 17.599763498990797,
+        "status": "returned",
+        "submission_sha256": null,
+        "timed_out": false
+      },
+      "parsed_analysis_structure": {
+        "fields": {
+          "is_bug": "bool",
+          "metric": "NoneType",
+          "summary": "str"
+        },
+        "nontext_scalars": {
+          "is_bug": true,
+          "metric": null
+        },
+        "type": "dict"
+      }
+    },
+    {
+      "action": "action-1.json",
+      "episode": 1,
+      "metadata": {
+        "analysis_status": "returned",
+        "completed_seconds": 1273.30107837799,
+        "depth": 2,
+        "exit_code": 1,
+        "internal_metric": null,
+        "kind": "repair",
+        "native_accepted": false,
+        "started_seconds": 619.2248327950074,
+        "status": "returned",
+        "submission_sha256": null,
+        "timed_out": false
+      },
+      "parsed_analysis_structure": {
+        "fields": {
+          "is_bug": "bool",
+          "metric": "NoneType",
+          "summary": "str"
+        },
+        "nontext_scalars": {
+          "is_bug": true,
+          "metric": null
+        },
+        "type": "dict"
+      }
+    },
+    {
+      "action": "action-2.json",
+      "episode": 1,
+      "metadata": {
+        "analysis_status": "returned",
+        "completed_seconds": 1700.4203521989984,
+        "depth": 3,
+        "exit_code": 1,
+        "internal_metric": null,
+        "kind": "repair",
+        "native_accepted": false,
+        "started_seconds": 1273.3041541150014,
+        "status": "returned",
+        "submission_sha256": null,
+        "timed_out": false
+      },
+      "parsed_analysis_structure": {
+        "fields": {
+          "is_bug": "bool",
+          "metric": "NoneType",
+          "summary": "str"
+        },
+        "nontext_scalars": {
+          "is_bug": true,
+          "metric": null
+        },
+        "type": "dict"
+      }
+    },
+    {
+      "action": "action-0.json",
+      "episode": 2,
+      "metadata": {
+        "analysis_status": "returned",
+        "completed_seconds": 1112.2710772099963,
+        "depth": 1,
+        "exit_code": 1,
+        "internal_metric": null,
+        "kind": "repair",
+        "native_accepted": false,
+        "started_seconds": 11.042948755988618,
+        "status": "returned",
+        "submission_sha256": null,
+        "timed_out": false
+      },
+      "parsed_analysis_structure": {
+        "fields": {
+          "is_bug": "bool",
+          "metric": "NoneType",
+          "summary": "str"
+        },
+        "nontext_scalars": {
+          "is_bug": true,
+          "metric": null
+        },
+        "type": "dict"
+      }
+    },
+    {
+      "action": "action-1.json",
+      "episode": 2,
+      "metadata": {
+        "analysis_status": "returned",
+        "completed_seconds": 1702.6002891690005,
+        "depth": 2,
+        "exit_code": 1,
+        "internal_metric": null,
+        "kind": "repair",
+        "native_accepted": false,
+        "started_seconds": 1112.273861679976,
+        "status": "returned",
+        "submission_sha256": null,
+        "timed_out": false
+      },
+      "parsed_analysis_structure": {
+        "fields": {
+          "is_bug": "bool",
+          "metric": "NoneType",
+          "summary": "str"
+        },
+        "nontext_scalars": {
+          "is_bug": true,
+          "metric": null
+        },
+        "type": "dict"
+      }
+    },
+    {
+      "action": "action-0.json",
+      "episode": 3,
+      "metadata": {
+        "analysis_status": "returned",
+        "completed_seconds": 29.504514988977462,
+        "depth": 0,
+        "exit_code": 1,
+        "internal_metric": null,
+        "kind": "sibling",
+        "native_accepted": false,
+        "started_seconds": 11.048176957003307,
+        "status": "returned",
+        "submission_sha256": null,
+        "timed_out": false
+      },
+      "parsed_analysis_structure": {
+        "fields": {
+          "is_bug": "bool",
+          "metric": "NoneType",
+          "summary": "str"
+        },
+        "nontext_scalars": {
+          "is_bug": true,
+          "metric": null
+        },
+        "type": "dict"
+      }
+    }
+  ],
+  "summary_sha256": "711475eed488632b604f4f4c4506223427758b5d3398c5a5f31515619e8c03fb"
+}

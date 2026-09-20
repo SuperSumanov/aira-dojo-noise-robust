@@ -55,14 +55,23 @@ def create_snapshot() -> Path:
 
     try:
         os.chdir(git_root)
+        included_src = [
+            p for p in glob.glob("./src/**", recursive=True)
+            if not p.startswith("./src/verl")
+        ]
         with RsyncSnapshot(
             snapshot_dir=snapshot_path,
             root_dir=git_root,
-            with_submodules=True,
-            exclude=["*.ipynb", "*__pycache__", "*.mypy_cache"],
+            exclude=[
+                "*.ipynb",
+                "*__pycache__",
+                "*.mypy_cache",
+                "src/verl/**",
+                "src/verl",
+            ],
             # RsyncSnapshot otherwise ignores untracked source files, which is
             # surprising and breaks freshly-added worker/launcher modules.
-            include=glob.glob("./src/**", recursive=True),
+            include=included_src,
         ):
             pass
     finally:

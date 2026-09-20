@@ -582,7 +582,7 @@ src/mle_critic/scripts/preprocess/build_batch_value_pairs_selected.sh
 bash src/mle_critic/scripts/preprocess/build_batch_value_pairs_selected.sh \
   data/augmented_mle_critic/raw_journal \
   AI4Code google-quest-challenge learning-agency-lab-automated-essay-scoring-2 \
-  spooky-author-identification petfinder-pawpularity-score whale-categorization-playground \
+  spooky-author-identification petfinder-pawpularity-score whale-categorization-playground chaii-hindi-and-tamil-question-answering \
   dog-breed-identification random-acts-of-pizza tweet-sentiment-extraction \
   --cap 400 --seed 7 --budget-steps -1
 ```

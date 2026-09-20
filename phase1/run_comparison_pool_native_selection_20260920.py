@@ -80,7 +80,9 @@ def load_cases():
         operator=copy.deepcopy(solver['operators']['analyze']);old=operator['llm']['generation_kwargs']
         operator['llm']['client']=dict(api='litellm',model_id='qwen3.8-27b',base_url='http://127.0.0.1:8000/v1',provider='selfhosted',use_azure_client=False)
         operator['llm']['generation_kwargs']=dict(bounded_transport=True,bounded_max_attempts=1,bounded_request_timeout_seconds=120,
-            temperature=old.get('temperature',.6),top_p=old.get('top_p',.95),seed=2026092000+i,
+            # The pinned transport validates this field before the existing
+            # full-deadline overlay removes it from actual network kwargs.
+            max_tokens=32768,temperature=old.get('temperature',.6),top_p=old.get('top_p',.95),seed=2026092000+i,
             extra_body={'chat_template_kwargs':{'enable_thinking':True}},structured_output_retries=0,structured_output_mode='json')
         description=safe(rt.BASE/'mle-bench-data'/case['task']/'prepared/public/description.md')
         case.update(index=i,request_seed=2026092000+i,operator=operator,config_sha256=digest,description=description.decode(),
@@ -161,6 +163,7 @@ timeout --signal=TERM --kill-after=20s 2940s {rt.PYTHON} -u -B {root}/{SCRIPT} c
     rt.write(root/'prepared.json',dict(commit=commit,utc=rt.utc(),files=files,cases=30,reward_summary_sha256=REWARD_SHA,
         model='cyankiwi/Qwen3.8-27B-AWQ-BF16-INT4',revision='dc430725f831dd90d9271738b877879a46a82239',gpu_hours_cap=3000*2/3600))
     with (root/'.service.env').open('x') as file:file.write('PRIMARY_KEY_QWEN3_8_27B='+'0'*64+'\n')
+    print(json.dumps(dict(status='CPU_PREFLIGHT_START',root=str(root),prepared_sha256=rt.sha(root/'prepared.json'))),flush=True)
     cpu(root)
     print(json.dumps(dict(status='PREPARED',root=str(root),prepared_sha256=rt.sha(root/'prepared.json'),cases=30,gpu_hours_cap=3000*2/3600)))
 

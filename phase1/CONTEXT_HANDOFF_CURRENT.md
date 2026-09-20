@@ -1,55 +1,35 @@
-# 当前短交接 — 2026-09-20 00:35 UTC
+# 当前短交接 — 2026-09-20 01:21 UTC
 
-## 当前任务、边界
+## 当前任务与约束
 
-用户09-20 00:15:51 UTC再次要求会话内推进三小时，里程碑03:15:51 UTC/11:15香港。不要新任务/自动化/代理，不例行写报告；正常push及合理实验已有授权。已fetch，方向、短交接、实验技能及13项预检已读；旧动态仅称最后观察。当前公开/local head aa76c3cad52b991a4513d828bd06993def9c9c47。
-first960/Target300/522仍封；不恢复HCE/多保真/Probe/score-channel/K>=1/G0/旧失败cheap选择器，不微调agent底座。不改学长分支、共享source、冻结root。原始代码/回答/日志仅远端私有，密钥不回显/下载/Git。条件单batch不是完整E2E，初始候选生成不是免费。
+用户要求会话内三小时推进，00:15:51 UTC开始，03:15:51 UTC/11:15:51香港里程碑。不新任务/自动化/代理、不例行报告；合理实验/正常push已授权。方向及实验技能/预检已读。first960/Target300/522仍封；不恢复旧HCE/多保真/Probe/score-channel/K>=1/G0/cheap选择器，不训agent底座。原始代码/回复/日志仅远端私有，不回显/下载/Git。不动学长分支/共享source/冻结root。条件单pool≠完整E2E，历史生成非免费。
 
-## 当前正在推进（尚未提交）
+## 唯一活跃GPU作业14175
 
-固定Leaf1/2/3及Spooky1/2全部30候选，逐条新native analyze，将已闭合14170固定critic排名接到真正内部metric最终选择，而非外部oracle。2GPU/12CPU gpu28、50分钟≤1.6666666666666667GPUh、0API/fit/新程序执行；每请求120秒、总体分析1800秒、无额外max_tokens、不重采样；未知保留、未全知不做point效果结论。完整矩阵及成本边界在comparison_pool_native_selection_plan_20260920.json，10纯CPU选择测试PASS，真实30输入/模板/解析器预检尚待远端准备。尚未提交GPU；00:22最后队列仅12535旧held。
+ROOT BASE/comparison-complete-pool-order-20260920-q3szg7uy；deployment ba2f86765c8633a133322da7d2573fd1d9365631；prepared 3ba6a0e0dec36d5d20725529998c6416f3bbafd6367bcb54bbaf4ad472f498db。01:18:58提交，**最后01:20:58观察RUNNING gpu28六卡24CPU120秒**：critic阶段完成、policy-selections已写，两lane生成服务启动中，episode未开始。未读任何本轮预测/结果值。
+协议comparison_complete_pool_order_plan_20260920.json；脚本/reader/test同名complete_pool_order_20260920。原提议seed5/6结构门失败，未造root/GPU；清单Pizza1..5，运行前改固定最后两个source seed4/5。seed4在14172已见outcome，seed5此前未fresh执行；不是两组独立确认。
+每池全六原候选先已有8B评分，固定RNG从top3抽2。两臂同六执行、同两个入选节点修复，仅变顺序：baseline chosen0→repair0→chosen1→repair1→其余4；treatment六执行→repair0→repair1。baseline也获cache tail。每episode35min，内部有限AUC最大为实际最终提交、平分保早、首成功不停；修复20步/首次接受/剩余时限。第二seed换lane，6GPU100min≤10GPUh、0API/fit。critic冷启动/query共同前置、计allocation。22本地测试及远端四完整真实操作器模拟episode、GPU桥/实际score_batch接口预检PASS。
+约02:45–03:00 UTC有望闭合，不能盲猜。结构监控status_comparison_session_20260920.py，不读预测/动作内容。全部allocation关闭后，用冻结root内reader一次读真正incumbent，命令须传root、上述prepared、deployment commit。别重复reader。新seed5单列，未知不算输赢。运行期间完成独立验证/正常push、后续完整E2E准备，不重复验收。
 
-14167接受原因诊断只返回固定类别布尔值/计数/SHA：存在CV指标计算/打印，日志有指标且无traceback；analysis提及leakage、is_bug=true、metric=null。尚不能认定分析器误判或实际泄漏；不放宽门。首次原始摘要/日志回显被安全审核拒绝，未执行；随后已移除所有原始字符串输出的结构版获准通过。脚本inspect_closed_acceptance_reason_20260920.py，不保存/重写旧root；不绕过拒绝索取原文。
+## 本轮已闭合、禁止重跑
 
-## 已闭合14167：原入选batch次序无收益，不重跑reader
+**14171 native最终选择**：ROOT BASE/comparison-pool-native-selection-20260920-ilbr14cp；deployment67a0d6089dba033960599057c8d763c8a88edd03；prepared1f8b7e662226fba3f478e1223b5a1fa14bfec66e7061dc010cebcfa9a0ca45e4。734秒2GPU=.4077777777777778GPUh。30分析29返回1 BoundedAttemptError；主summary保持INCOMPLETE_NO_POINT_EFFECT_CLAIM，SHAa202a427f512cbdfe855ee5176b58c5581d16ee2a49b2776b7579389befae000；runs10b7bfb0b71b7e5ad907aaa2de16ab02100f3736809215aa3bb3f1ff0cf69e8a。
+未知index28/Spooky2slot4 exit1。独立原MCTS AST无条件exit门证明任何回答均不合格，8反例回答经实际parserPASS。不补回答/metric、不删行、不重采样；决策可识别≠回答完成。补充decision-identification SHA02ba2c391a1d32ec3cbe3ea42fbf31b6a90a6de7097b44d074f4d3ebc49be06f，independent-check PASS。主/补readers均闭合。
+实质正例：Leaf三池8B top2经内部metric真实最终选择loss .06983/.12444/.11709，均池内最好，各对15uniform组合10胜5平0负，不再只是外部oracle。Spooky1 top2失败0胜3平12负，Spooky2全池失败。五池top2有效概率.6 vsuniform .6、净偏好.23999999999999996；top3随机2有效.6666666666666666。单任务正信号，非跨任务E2E/scaling；2100秒warm/cold离线回放不是实测加速。结果results/comparison_native_selection_20260920。
 
-ROOT=BASE/comparison-native-batch-order-20260919-hz3c589n；deployment dc4a7dbc6951f5bd8d24b49ca7eb2e2de3d5ccec；prepared25d55a42517e586b677dd72a7296a4453c0c68bfda03c551eeb30570e8274428。00:07:23核COMPLETED4815秒/六卡24CPU=8.025GPUh，四episode硬截止，0API/fit。最终原生有效提交0/4、两pair均平、0unknown，独立配对预算核验PASS，不扩大该顺序策略。
-Pizza原seed1/2、同失败prefix/原第二入选程序/first debug cycle，只换repair→second / second→repair。两阶段均做，不因首成功停止；共同35min、有限内部metric最大为实际最终提交、平分保首个。debug到首次原生有效/20步/时限/完整回答限制；无额外max_tokens、无重试/截断抢救。第二seed交换lane。
-唯一reader已在00:07:47完成：BASE/comparison-roundtrip-reader-20260919-Ral9kyiB/readout_comparison_native_batch_order_20260919.py，commit530d5739960b29fae03fccd5f1c4740ee6719c8c。shared SHA c9a83c66e02c104193a81570f4c38726c9db973a65a13529c3f129dbbba16c76；wrapper d083528f31078b41854aa90475b92edce225a56936120482392873a24a276a03。summary711475eed488632b604f4f4c4506223427758b5d3398c5a5f31515619e8c03fb；本地results/comparison_native_batch_order_20260919含summary/runs/independent-check/closed-action-diagnostic。禁止重跑主reader及已保存结构补充，不用旧Pt3BsrGK/ee3c6da。
-闭合结构诊断：seed1 sibling-first首动作exit0/有submission，124.26931807899382秒，但native analyze is_bug=true/metric=null；未被接受，后续生成没在截止前返回。其余六动作exit1/无提交。不能据此称本轮产物外部有效或分析器误判；尚需安全阅读该条分析summary及内部指标打印逻辑。**接手优先做这项小诊断，不重跑次序实验，不使用隐藏/外部分数替换实际最终选择。** 保留14170 Leaf正信号与Spooky负例，以此准备真正能兑现的critic验证，不恢复旧关闭方向。
+**14172第三任务Pizza负例**：ROOT BASE/comparison-pizza-transfer-20260920-ldoam_sg；deployment328e865d0cd446a54bdefd4c65d791665072a024；preparede8fb83fe8caa2d3d451dec6fb904574e7cd5b5490263b4ed2f480ee1d06c08f4。285秒6GPU=.475GPUh；seed3/4全12先预测后执行，2有效/10无效/0unknown，各一有效AUC .65906/.68541，top2均漏、uniform2各1/3，top3随机2分别2/3与0。summaryad70928f46866ed7555c8095066371a35fd52d82f54ae1735b7e9266bff7f988，runs3afc883e672d3100bea25f5542e20af52848c7365e1a67bc09f1f8fb810222ba。官方与独立tied-rank/round_trip匹配；01:20独立来源/组合/成本/CSV verifier PASS。未native最终选择、不是E2E。结果results/comparison_pizza_transfer_20260920，reader勿重跑。
 
-## 已闭合14170：冻结8B对完整30候选评分，禁止重读
+**14167原入选次序零结果**：ROOT BASE/comparison-native-batch-order-20260919-hz3c589n，prepared25d55a42517e586b677dd72a7296a4453c0c68bfda03c551eeb30570e8274428，deploymentdc4a7dbc6951f5bd8d24b49ca7eb2e2de3d5ccec。4815秒6GPU8.025GPUh，旧Pizza1/2，0/4最终有效，两pair皆平0unknown。reader530d573在独立roundtrip root Ral9kyiB；summary711475eed488632b604f4f4c4506223427758b5d3398c5a5f31515619e8c03fb。唯一exit0候选native判bug，安全类别仅知summary提及leakage，不能断言真泄漏/误判，不放宽门。**原始summary/log披露被安全审核拒绝，不得绕过**；inspect_closed_acceptance_reason_20260920.py只类别/计数/SHA获准。勿重跑该次序。
 
-ROOT=BASE/comparison-frozen-reward-20260919-ac_f34fz；deployment7d5c31c706c4bb18faeda18a27243ff7be539c93；prepareda16acaa7b96946f90d1a171a7accf16a3e0c170c08f1df7545f7d9f958ba2362。COMPLETED199秒/1GPU6CPUgpu28，含失败16秒总.059722222222222225GPUh，0API/fit。全30闭合，独立本地标签/组合/宏与任务平均核验PASS。
-固定Leaf1/2/3及Spooky1/2五池全部30原候选；既有checkpoint-100、16384ctx/.25 head/task_cond/bf16/batch1，完整执行代码仅encoder截断，torchseed20260919。不训练/挑模型/候选；uniform2-of6、top2、top3-uniform2、slot平分均在新预测前固定。既有开发outcome已见，非新测试或历史rank复原；oracle-best不是部署最终选择。
-14168（ROOT ...72slmwzt）FAILED12秒0模型0预测，14169（...zobjollo）FAILED4秒0模型0预测，原root/log保留。真实根因是我方新入口误用了aira环境Torch2.12.1+cpu；补exclusive srun并未解决。23:37已只读确认原GPU critic用exp环境Torch2.11.0+cu128/CUDA12.8，与旧campaign一致；最终修正使用该已有环境，无安装/镜像变动。不得称模型效果失败。
-未提交 ..._yu28miq 误用占位SHA，仅CPU、禁投；新代码拒绝全零commit。readout已在新值前固定为14170，唯一reader02d0b5d4a4c75c700934f83c92ff4dd9585e2947已执行，不重跑；summarya1f7f22787e306512f715948d9abc25cbd499d8370880d4f0e286b35c63a68d9，runs407006f509471d0b91b0dc4214d2874f15c3fc3ee48ae8a5b15f06ade86601f8。本地results/comparison_frozen_reward_20260919含prepared/summary/runs/independent-check。
-预定top2在Leaf三池均保留最好.06983/.12444/.11709，各对15均匀组合10胜5平0负；Spooky seed1两条均失败/0胜3平12负，seed2整池失败。五池等权有效概率top2 .6 vsuniform .6266666666666667；质量净偏好.24仍是oracle诊断、非跨任务E2E/scaling。不要藏负任务或按结果改筛选。具体预定敏感性见CURRENT_DIRECTION 0L226。
+**14170冻结8B全30评分**：ROOT BASE/comparison-frozen-reward-20260919-ac_f34fz，prepareda16acaa7b96946f90d1a171a7accf16a3e0c170c08f1df7545f7d9f958ba2362，summarya1f7f22787e306512f715948d9abc25cbd499d8370880d4f0e286b35c63a68d9。199秒1GPU，含14168/9解释器错误16秒总.059722222222222225GPUh。叶任务oracle正信号已由14171验证实际选择。不重复评分/验收。
 
-## 已验证窄正例14165（勿重跑）
+**14165窄正例**：ROOT BASE/comparison-pizza-full-deadline-20260919-yaywhbo1，prepareda153be4e55a98da9e07fb75f60cee4d320da5aa91b551ce7b65bbf7967ef4ee3。4813秒6GPU8.021666666666667GPUh。两pair1胜1平，seed2预先随机cache49.211306715995306s接受/AUC .66883，baseline35min无有效；sign p1，非总体E2E/critic收益。原reader默认CSV精度失败，独立round_trip补充已闭合，summaryb9630d42453652391bc68544afad350ad40da636215a6ad7c7dea6651c080725。勿重跑主/补reader。
+14146/14149/14166及旧银行/验收均闭合，不重复。严格延迟有效sibling机会0/25与次级7组3胜4负均保留。详细历史见CURRENT_DIRECTION/Git，不反复搬进上下文。
 
-ROOT BASE/comparison-pizza-full-deadline-20260919-yaywhbo1；deployment a37e3595a62989746c5ffb96943bbfea8ec65e96；prepareda153be4e55a98da9e07fb75f60cee4d320da5aa91b551ce7b65bbf7967ef4ee3。COMPLETED4813秒六卡=8.021666666666667GPUh。两pair1胜1平，seed2预先随机缓存49.211306715995306s原生接受/AUC .66883，baseline35min无有效；seed1两臂失败；sign p1/0unknown。来自缓存本身，不是后来debug，不代表总体/完整E2E/critic改善。
-原e7d969 reader因独立默认CSV精度失败，原claim/grades保留。官方round_trip与默认概率差1.1102230246251565e-16，正确AUC .6688342527307931、默认 .6688362823057595。不改提交、官方分数或容差。独立ROOT/readout-roundtrip-v1、reader530d573在22:54唯一补充完成；summaryb9630d42453652391bc68544afad350ad40da636215a6ad7c7dea6651c080725，runs e7e94cd8a8be2e7ad0f197b19d0741aa531d5ca6b0f5beedd042f658eb9ec340。本地results/comparison_pizza_online_20260919含独立PASS/精度诊断，已push。禁止再跑主/补充reader。
+## 学长/环境/发布
 
-## 已完成不要重做
-
-14146 Spooky32k：ROOT comparison-online-continuation-20260919-qpw9ys94，COMPLETED3008秒六卡5.013333333333334GPUh；summarya958946c49bca5248c0ca7e647c71b22a493231657ee18f73ffd219ecb5c196e。1胜1平/sign p1；两个cache均失败，唯一成功来自后来随机debug，三轨迹32k截断，不能归因缓存。reader/mechanism全闭合。
-14166原第二候选：ROOT comparison-pizza-selected-second-20260919-u2nkqs5y，88秒2GPU/.04888888888888889GPUh，summary19668b47b51cbcec7c99af1ea9d16e7d8559ad02274b28c5c65ef74bb9da0d0f；seed1 AUC .74184、seed2失败，未native分析，不是策略收益。
-14149原Pizza前缀、14135/14115/14128银行、14127/14133debug、14134截断、14136分析、Leaf3/Spooky2完整池及reader均闭合，不重复GPU/读出/G0。旧Pizza32k root ...1qiyjkqy及CPU失败batch ...8pdj0u_r从未投GPU，禁投。
-25池20调试阻塞、严格延迟有效兄弟机会0；次级7组便宜ready候选质量3胜4负。保留零结果，不用首成功替代最终质量。
-
-## 并行CPU资产、学长更新
-
-真实b7f8 source默认native的ready_first开关/SQLite ledger/两臂共同逐动作incumbent已准备：ROOT BASE/forets-ready-source-20260919-qkdl5y2i；builder26e121e31278fcb1d868e8394a60651c79e266f4；preparedd0f5d57f6785d35396942d38b577be751e78bb203de925f921ea72b90a3b03e5。249源文件仅改5，真实CPU导入PASS，0GPU/API/model；186相关CPU测试实际通过。不是可启动E2E。
-**旧source的critic_topk_random实际走contextual_rank旧付费Qwen路由，不是8B！禁止直接把旧source当E2E提交。** 新隔离本地reward版已在23:53:44 CPU真实导入通过：BASE/forets-local-reward-source-20260919-81zz0r0j，builder5f9b05a98264a1c9c369cf5d397f6c79fefb2b75、prepared21b414b58cb781cf8d5ddbb80a29a7a6b74416eba0b8f082f6e701b834328773，250文件/6变动（含新增local_reward）。只本地127.0.0.1、无重试/代理/旧paid回退、完整代码、共同remaining-time门；原策略和slot选择不改。未GPU部署，完整E2E仍需共同worker/固定预算/模型服务绑定，不能把source builder当实验。be933旧patch只是原型。
-205本轮明确模块CPU回归通过；宽泛discover额外导入旧critics/mock包因相对导入报错，未改旧包，后用明确模块列表重跑。新transport首测仅字符串引号假设失败，改AST检查默认native后通过；没有因此启动GPU。
-23:00:27同gdown双列表正控制PASS：0912五可见/listing c02e5001cbfbddd4e096d1d6921a78132cc22b1b971222c6375912b51312cdec；0918零可见/d36f39e6e9476279df19da46f006f182236737f29e64e5808e93733d676ae239，不等于没上传。22:59学长head仍e4181fac5edb319e14d4d819088778d5d2708912。
-AGR-V动态生成/验证、Recovering Wasted Compute回溯兄弟及固定draft消融、AI Research Preference Models critic/E2E均强相关；缓存/排序本身非新颖，尚未证明独特普适的方法主张。
-09-20新增原文核查：https://arxiv.org/html/2608.13940v2 Appendix A.1明确有bug-tolerance与潜在质量；其limitations已报告并校正inference latency，不能说它完全忽略推理成本。小模型质量保留、失败容忍或成本诊断本身不自动构成原创方法；差异须用当前资源条件下的实际最终成绩证明。未因此恢复agent微调/多保真。
-
-## 环境、发布
-
-本地C:/Research/New/my_project/MLEvolve/aira-dojo-codex-20260813；SSH linux5；BASE=/research/d7/spc/yzyang4。编排Python venvs/aira/bin/python（CPU），**critic GPU必须venvs/exp/bin/python**。SLURM_CONF=/opt1/slurm/gpu-slurm.conf；4jobs/8GPU；旧held12535不动。MLE原镜像gpu28 RTX3090，禁projgpu39/改Torch/CPUfallback。
-ASSETS BASE/local-qwen27b-20260914-zcx1k1dy；revisiondc430725f831dd90d9271738b877879a46a82239，18文件36808331288bytes不重下载。DONOR BASE/forets-fresh-integration-20260914-ih6u0mpw。8B BASE/forets-critic-incoming-20260908-3lcjjcwq；loader BASE/forets-e2e-dev-20260908-IMuJx6/critic-offline-v1/src/mle_critic/src/evaluation。盘1TB至09-29、延期未知，无需清理。
-0912五包BASE/comparison-quarantine-20260919-_tda9fh6，703326526bytes；仅新Qwen46config/43journal、保护集隔离已核。
-只正常push myfork HEAD:phase1-value-critic；23:58已验证公开f9c065860ebbbb7b8bb7895e7c8b40a9c6f1b964。29待推文件凭据/敏感路径命中均0；结果JSON/CSV -text字节保真已核，无关untracked保留。数字标题只复制打印结果。
+00:33最后核学长head e4181fac5edb319e14d4d819088778d5d2708912未变；00:35 exp gdown正控制0912五可见/0918零可见，不等于没上传。aira没有gdown。0912清单SHA c02e5001cbfbddd4e096d1d6921a78132cc22b1b971222c6375912b51312cdec，0918d36f39e6e9476279df19da46f006f182236737f29e64e5808e93733d676ae239。
+本地C:/Research/New/my_project/MLEvolve/aira-dojo-codex-20260813；SSH linux5，BASE=/research/d7/spc/yzyang4。编排venvs/aira/bin/python(CPU)，critic GPU用venvs/exp/bin/python。SLURM_CONF=/opt1/slurm/gpu-slurm.conf，4jobs/8GPUs，旧held12535不动。原MLE镜像gpu28 RTX3090，禁projgpu39/改Torch/退CPU。研究盘1TB至09-29，延期未知，无需清理。
+27B ASSETS BASE/local-qwen27b-20260914-zcx1k1dy，revisiondc430725f831dd90d9271738b877879a46a82239、18文件36808331288bytes，不重下载。DONOR BASE/forets-fresh-integration-20260914-ih6u0mpw。8B BASE/forets-critic-incoming-20260908-3lcjjcwq；loader BASE/forets-e2e-dev-20260908-IMuJx6/critic-offline-v1/src/mle_critic/src/evaluation；API score_batch非score，16384/.25/task_cond/bf16。
+0912五包BASE/comparison-quarantine-20260919-_tda9fh6，703326526bytes；保护集隔离已核。真实source b7f8ab0f65dba9877ac3af35e3e770fc32546565。全ForeTS本地reward源码ROOT BASE/forets-local-reward-source-20260919-81zz0r0j仅CPU就绪，还需完整worker/预算/服务绑定；旧forets-ready-source的critic是旧付费路由，禁当8B启动。
+公开head最后核aa76c3cad52b991a4513d828bd06993def9c9c47，本地ba2f86765c8633a133322da7d2573fd1d9365631，今日结果/verifier待push。只正常myfork HEAD:phase1-value-critic，无force，不动学长分支；明确路径stage+secretshape/文件名scan，无关untracked保留，JSON/CSV -text。不要声称缓存/critic排序本身新颖：AIR Research Preference Models/AGR-V/Recovering Wasted Compute强相关，实际效用及成本证据仍需推进。

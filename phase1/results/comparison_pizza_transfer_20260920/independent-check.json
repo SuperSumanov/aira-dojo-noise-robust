@@ -1,0 +1,19 @@
+{
+  "status": "PASS",
+  "programs": 12,
+  "pools": 2,
+  "checks": [
+    "source identity",
+    "complete pool including failures",
+    "independent pair enumeration",
+    "higher AUC orientation",
+    "official independent score roundtrip",
+    "GPU accounting",
+    "no native-final/E2E claim"
+  ],
+  "artifacts": {
+    "summary.json": "ad70928f46866ed7555c8095066371a35fd52d82f54ae1735b7e9266bff7f988",
+    "prepared.json": "e8fb83fe8caa2d3d451dec6fb904574e7cd5b5490263b4ed2f480ee1d06c08f4",
+    "runs.csv": "3afc883e672d3100bea25f5542e20af52848c7365e1a67bc09f1f8fb810222ba"
+  }
+}

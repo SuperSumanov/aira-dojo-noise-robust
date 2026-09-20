@@ -45,4 +45,28 @@ class Selection(unittest.TestCase):
         self.assertEqual(summarize(allrows,160)['status'],'INCOMPLETE_NO_POINT_EFFECT_CLAIM')
         with self.assertRaises(ValueError):summarize(allrows[:-1],160)
 
+    def test_independent_verifier_and_final_slot_mutation(self):
+        from verify_comparison_native_selection_20260920 import verify
+        allrows=[]
+        for task,seeds in [('leaf-classification',[1,2,3]),('spooky-author-identification',[1,2])]:
+            for seed in seeds:
+                for r in rows():
+                    allrows.append(r|dict(task=task,seed=seed,node=f'{task}-{seed}-{r["slot"]}',run=f'{task}-{seed}',code_sha256=str(r['slot'])*64,
+                        native_is_bug=False,independent_score=r['score'],exit_code=0,timed_out=False))
+        result=summarize(allrows,160.)|dict(rows=allrows,training=False,paid_api_calls=0,gpu_hours=100*2/3600,allocation_seconds=100)
+        reward=dict(rows=allrows,encoder=dict(load_seconds=160.))
+        self.assertEqual(verify(result,reward,allrows)['status'],'PASS')
+        changed=copy.deepcopy(result);changed['pools'][0]['scenarios']['two_evaluations']['frozen_top_two']['final_slots']=[5]
+        with self.assertRaises(ValueError):verify(changed,reward,allrows)
+
+    def test_missing_reply_decision_identification(self):
+        from resolve_native_decision_identification_20260920 import proof,resolve
+        self.assertTrue(proof()['unconditional_or_gate'])
+        original=[dict(node='failed',task='task',seed=1,slot=0,exit_code=1,analysis_status='unknown',native_accepted=None,native_metric=None),
+                  dict(node='succeeded',task='task',seed=1,slot=1,exit_code=0,analysis_status='unknown',native_accepted=None,native_metric=None)]
+        projected,resolved,unresolved=resolve(original)
+        self.assertEqual(len(resolved),1);self.assertEqual(unresolved,['succeeded'])
+        self.assertIs(projected[0]['native_accepted'],False);self.assertIsNone(projected[1]['native_accepted'])
+        self.assertIsNone(original[0]['native_accepted']);self.assertEqual(original[0]['analysis_status'],'unknown')
+
 if __name__=='__main__':unittest.main()

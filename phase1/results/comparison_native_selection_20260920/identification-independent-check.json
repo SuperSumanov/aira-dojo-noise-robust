@@ -1,0 +1,21 @@
+{
+  "status": "PASS",
+  "programs": 30,
+  "pools": 5,
+  "source_sha256": "f81203004ca873cc46a958a1fb9eba3b8dfabe5531f290453bcfc6f523f594d0",
+  "checks": [
+    "exact_closed_labels_and_frozen_predictions",
+    "actual_source_native_parser",
+    "independent_final_choice_enumeration",
+    "never_external_oracle",
+    "query_and_cold_cost",
+    "failed_task_retained",
+    "macro_and_task_variance"
+  ],
+  "supplement_sha256": "02ba2c391a1d32ec3cbe3ea42fbf31b6a90a6de7097b44d074f4d3ebc49be06f",
+  "primary_sha256": "a202a427f512cbdfe855ee5176b58c5581d16ee2a49b2776b7579389befae000",
+  "missing_analysis_responses_still": 1,
+  "decision_invariance_cases": 8,
+  "parser_sha256": "f81203004ca873cc46a958a1fb9eba3b8dfabe5531f290453bcfc6f523f594d0",
+  "original_unmodified": true
+}

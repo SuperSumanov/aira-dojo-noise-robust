@@ -7,6 +7,14 @@
 > [CONTEXT_HANDOFF_CURRENT.md](CONTEXT_HANDOFF_CURRENT.md)，注明最后观察时间、证据及下一步；
 > 本文件保留方向/历史权威，短入口不重复堆历史。没有重新核验的作业状态不得称为实时状态。
 
+## 0L229. 2026-09-20 01:21 UTC：Leaf原生选择保优兑现；Pizza硬筛不迁移，转同动作集合顺序对照
+
+14171完成30条新native analyze，29返回1失败。主未知结论保留；未知条执行exit1，原MCTS无条件exit门使所有可能回答均拒绝，独立AST及8反例实际parser证明决策可识别，未补造回复或metric。逻辑识别补充经独立来源/组合复核PASS。Leaf三个池固定8B top2后内部metric真实最终选择得到loss .06983/.12444/.11709（各对15均匀组合10胜5平0负），不再只是外部oracle。Spooky反例保留，五池有效最终概率top2 .6与uniform .6持平，不能称跨任务普适或E2E/scaling。
+
+14172先冻结8B再fresh执行Pizza seed3/4全12，2有效10无效0unknown；各池有效AUC .65906/.68541，top2均漏。官方与独立round_trip/tied-rank及全组合复核PASS。不能继续将硬剪枝top2作为通用方案。两项实际耗时分别734秒2GPU/.4077777777777778GPUh、285秒6GPU/.475GPUh；0API/fit。
+
+新受控14175在01:18:58提交，01:20:58已RUNNING、8B前置完成。Pizza可用结构seed1..5：原提议5/6在任何GPU前因6不存在拒绝，运行前固定最后两seed4/5，明确4已见开发outcome，5尚未fresh执行，不宣称两组独立确认。全六原候选与同两个修复循环两臂共有，仅换顺序；baseline亦保留四条cache tail，防止候选数变化混淆。每episode35min、最终内部有限AUC最大提交、首成功不停；两seed两臂、第二seed换lane，6GPU100min≤10GPUh。协议comparison_complete_pool_order_plan_20260920.json，deploymentba2f86765c8633a133322da7d2573fd1d9365631，prepared3ba6a0e0dec36d5d20725529998c6416f3bbafd6367bcb54bbaf4ad472f498db，ROOT comparison-complete-pool-order-20260920-q3szg7uy。22本地及真实CPU原生调用链预检PASS；全部闭合再唯一读实际incumbent。新结果未读，不提前宣称收益，条件历史prefix不是全E2E。原14167两入选顺序零结果/14172硬筛负例不删。
+
 ## 0L228. 2026-09-20 00:35 UTC：把固定critic池内信号接到真实原生最终选择
 
 新三小时窗口至03:15:51 UTC。原14167结构诊断发现并非没有CV打印：代码有指标调用/打印、日志含指标且无traceback，但分析summary提及leakage。仅结构类别，不据此认定分析器错或实际泄漏；原结果与门不改。原始私有文本输出被安全审核拦截，改用固定布尔/计数回执，不回显私有内容。

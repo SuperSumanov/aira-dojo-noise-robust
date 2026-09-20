@@ -1,0 +1,14 @@
+{
+ "question": "Does the delivered frozen critic retain quality on a third task's complete initial pools?",
+ "task": "random-acts-of-pizza", "seeds": [3,4], "programs": 12,
+ "source": "0912 new local-Qwen forets-1 development runs; all six root draft candidates in each exact seed",
+ "selection": ["uniform_two_of_six","frozen_top_two","frozen_top_three_then_uniform_two"],
+ "inference_before_execution": true,
+ "model": "Existing delivered Qwen3-8B_reward_seed1/checkpoint-100; unchanged 16384 context/.25 head/task conditioning/bf16; no fit or tuning",
+ "execution": {"node":"gpu28","gpus":6,"cpus":36,"allocation_seconds":9000,"gpu_hours_cap":15,"candidate_seconds":7200,"image":"2026-07-macos-v1","order":[3,4]},
+ "scheduling": "Critic on one allocated GPU first; six parallel full candidate executions per seed. Do not start a pool with less than 7500 seconds remaining. Deferred pools remain unknown, no automatic refill.",
+ "scoring": "Only after terminal allocation and complete predictions; original official grader and independent rank-based AUC with round_trip CSV precision",
+ "analysis": "Full-pool oracle diagnostic with AUC higher-better; not deployed final selection. Native final-selection followup must include all twelve, not only successful candidates.",
+ "limitations": "Previously exposed development collection, no clean held-out confirmation; initial generation is a common sunk prefix and not free full-E2E cost.",
+ "paid_api_calls":0,"training":false,"protected_cohorts_read":false
+}

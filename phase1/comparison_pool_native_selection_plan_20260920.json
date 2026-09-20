@@ -1,0 +1,20 @@
+{
+  "question": "Does the fixed frozen-8B pool quality signal survive native acceptance and internal-metric final selection?",
+  "scope": "Conditional replay of all five already-seen development pools, not fresh full-search E2E or held-out confirmation",
+  "tasks_seeds": {"leaf-classification": [1, 2, 3], "spooky-author-identification": [1, 2]},
+  "candidates_per_pool": 6,
+  "native_analysis_calls": 30,
+  "request_seed": "2026092000 + canonical task/seed/slot index",
+  "policies": ["uniform_two_of_six", "frozen_top_two", "frozen_top_three_then_uniform_two"],
+  "critic_predictions": "All 30 previously closed 14170 scores; no re-inference or tuning",
+  "final_selection": "Native accepted finite internal metric, lower is better for both tasks; ties original slot. Never external-best or validation oracle",
+  "missing": "Unknown native analyses retained; no point effect claim unless all 30 known. No sampling substitution or retry",
+  "primary": "Unconstrained two-candidate conditional final-quality preference and actual native/external final validity, with per-pool and per-task breakdown",
+  "secondary": "Conditional serial replay at 2100 seconds including all-six critic query cost; cold-model load shown separately. Not measured E2E speedup",
+  "resource": {"node": "gpu28", "gpus": 2, "cpus": 12, "allocation_seconds": 3000, "analysis_total_seconds": 1800, "per_request_seconds": 120, "gpu_hours_cap": 1.6666666666666667},
+  "generation": "Existing local 27B INT4, original analysis template/sampling, no max_tokens override, no retry, no code generation or execution",
+  "protected_cohorts_read": false,
+  "agent_training": false,
+  "paid_api_calls": 0,
+  "prohibition": "Do not attribute task heterogeneity to model capacity or use pair combinations as independent runs. Do not revise previous closed results."
+}

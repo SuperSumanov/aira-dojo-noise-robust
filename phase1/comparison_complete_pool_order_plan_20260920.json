@@ -1,7 +1,8 @@
 {
  "question":"Can scheduling already-generated candidates before costly repair improve the actual final submission at the same conditional wall-clock cap?",
- "task":"random-acts-of-pizza","source_seeds":[5,6],"pair_ids":[1,2],"arms":2,"episode_seconds":2100,
- "common_pool":"All six original initial draft programs per seed, no program chosen by observed execution outcome; new seeds fixed before execution",
+ "task":"random-acts-of-pizza","source_seeds":[4,5],"pair_ids":[1,2],"arms":2,"episode_seconds":2100,
+ "population_amendment_before_submission":"Originally proposed seeds5/6 failed structural availability before root creation, GPU or new values. Exact credential-safe source inventory contains Pizza1..5 only. Use its two largest available seeds4/5; seed4 outcomes are already seen development data, seed5 has not been freshly executed here. No independent-confirmation claim.",
+ "common_pool":"All six original initial draft programs per seed, no within-pool program selected by observed execution outcome",
  "common_selection":"Delivered 8B frozen score on all six first; uniformly sample two from top three with fixed per-source-seed RNG; execute chosen pair in critic order, remaining four in original slot order",
  "baseline":"Execute chosen0, repair it if native rejected; execute chosen1, repair it if rejected; then execute remaining four without repair. This includes a cache tail and is stronger than discarding unchosen candidates.",
  "treatment":"Execute the same chosen pair and remaining four first; then the exact same two chosen-node repair cycles if those nodes were rejected. The only intervention is this scheduling order.",
@@ -12,5 +13,5 @@
  "common_cost":"Critic cold load and all-six score stage are common, before paired episode clocks and included in allocation GPU accounting. Initial generation is historical sunk prefix; no full-E2E or free-generation claim.",
  "outputs":"Four closed episodes, actual selected submission only, official and independent AUC, all failures and unknowns retained; no extension or seed replacement",
  "protected_cohorts_read":false,"training":false,"paid_api_calls":0,
- "scope":"New conditional single-pool scheduler test, not full search, originality claim, or clean held-out confirmation. Old two-selected order null result and third-task hard-pruning negatives stay reported."
+ "scope":"Conditional single-pool scheduler test on one seen and one not-yet-freshly-executed source seed, not full search, originality claim, or clean held-out confirmation. Old two-selected order null result and third-task hard-pruning negatives stay reported."
 }

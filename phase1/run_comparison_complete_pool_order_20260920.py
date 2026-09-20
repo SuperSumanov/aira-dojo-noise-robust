@@ -6,7 +6,7 @@ import run_comparison_online_continuation_20260919 as driver
 import run_comparison_pizza_transfer_20260920 as bank
 rt=driver.rt
 SCRIPT=Path(__file__).name
-SOURCE_SEEDS=(5,6)
+SOURCE_SEEDS=(4,5)
 
 def configure():
     driver.SCRIPT=SCRIPT;driver.TASK=bank.TASK;driver.ROOT_PREFIX='comparison-complete-pool-order-20260920-'

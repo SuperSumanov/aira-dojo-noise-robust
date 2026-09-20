@@ -43,7 +43,7 @@ def main(root,prepared,commit):
     p=reader.safe(root/'prepared.json',prepared)
     if reader.rt.sha(root/Path(__file__).name)!=p['files'][Path(__file__).name] or reader.rt.sha(Path(__file__))!=p['files'][Path(__file__).name]:raise ValueError('frozen reader')
     cases=reader.safe(root/'inputs.private.json')['cases'];selections=reader.safe(root/'policy-selections.json')
-    if [c['seed'] for c in cases]!=[5,6] or [s['seed'] for s in selections['selections']]!=[5,6]:raise ValueError('source seeds')
+    if [c['seed'] for c in cases]!=[4,5] or [s['seed'] for s in selections['selections']]!=[4,5]:raise ValueError('source seeds')
     # Recompute deterministic treatment assignment before inspecting actions.
     import random
     for case,s in zip(cases,selections['selections']):
@@ -66,9 +66,9 @@ def main(root,prepared,commit):
     reader.ROOT=root;reader.PREPARED=prepared;reader.TASK='random-acts-of-pizza';reader.NUMERICAL=lambda task,pred,truth:numerical(pred,truth)
     reader.METRIC_DELTA='auc_delta_ready_minus_interleaved';reader.LATENCY_FIELD='first_valid_seconds';reader.EPISODE_AUDIT=audit
     reader.ROLE='same_complete_pool_and_repair_set_order_only_conditional_final_submission'
-    reader.READOUT_CONTEXT=dict(wrapper_commit=commit,wrapper_sha256=reader.rt.sha(Path(__file__)),source_seeds=[5,6],pair_ids=[1,2],
+    reader.READOUT_CONTEXT=dict(wrapper_commit=commit,wrapper_sha256=reader.rt.sha(Path(__file__)),source_seeds=[4,5],pair_ids=[1,2],
         primary='actual final native-selected submission',cold_critic_seconds=selections['load_seconds'],query_seconds=sum(s['query_seconds'] for s in selections['selections']),
-        boundary='Historical draft-generation sunk prefix, exploratory new seeds, not full E2E or population confirmation; baseline also receives all six candidates.')
+        boundary='Historical draft-generation sunk prefix. Source seed4 has seen execution outcomes; seed5 has not been freshly executed here. Exploratory development test, not full E2E or population confirmation; baseline also receives all six candidates.')
     reader.main(commit)
 
 

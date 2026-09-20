@@ -1,0 +1,41 @@
+tools:
+  - class_name: verl.tools.base_tool.BaseTool
+    config:
+      type: native
+    tool_schema:
+      type: function
+      function:
+        name: bash
+        description: Run a small CPU-only diagnostic shell command in /workspace. No network, GPU, package installation or heavy training. Each call starts a fresh shell; files persist.
+        parameters:
+          type: object
+          properties:
+            command:
+              type: string
+              description: Bash command, with explicit environment activation if needed.
+          required: [command]
+  - class_name: verl.tools.base_tool.BaseTool
+    config:
+      type: native
+    tool_schema:
+      type: function
+      function:
+        name: text_editor
+        description: View or edit small files under /workspace. str_replace must match exactly once. insert_line is the number of existing lines before the insertion (0 means prepend).
+        parameters:
+          type: object
+          properties:
+            command:
+              type: string
+              enum: [view, create, str_replace, insert]
+            path:
+              type: string
+            old_str:
+              type: string
+            new_str:
+              type: string
+            insert_line:
+              type: integer
+            file_text:
+              type: string
+          required: [command, path]

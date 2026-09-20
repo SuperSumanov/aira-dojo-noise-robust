@@ -1,0 +1,13 @@
+- name: mle_agent
+  _target_: src.mle_critic.src.agentic.mle_agent_loop.MLEAgentLoop
+  trace_dir: ${oc.env:MLE_TRACE_DIR}
+  sandbox:
+    runtime_base: /tmp/mle-agent-sandboxes
+    mlebench_data_root: ${oc.env:MLE_DATA_ROOT}
+    conda_roots:
+      - /public/hk-research/users/jiqian/miniconda3
+    command_timeout_s: 120
+    trajectory_timeout_s: 1200
+    max_output_bytes: 65536
+    max_concurrent_sandboxes: 80
+    cpu_cores_per_sandbox: 1

@@ -7,7 +7,7 @@
     conda_roots:
       - /public/hk-research/users/jiqian/miniconda3
     command_timeout_s: 120
-    trajectory_timeout_s: 1200
+    trajectory_timeout_s: 7200
     max_output_bytes: 65536
     max_concurrent_sandboxes: 80
     cpu_cores_per_sandbox: 1

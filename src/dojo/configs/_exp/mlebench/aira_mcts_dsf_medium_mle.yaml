@@ -1,0 +1,38 @@
+# @package _global_
+defaults:
+  - override /benchmark: mlebench/dev
+  - override /interpreter: jupyter
+  - override /solver: mlebench/mcts
+  - override /solver/client@solver.operators.analyze.llm.client: litellm_deepseek_flash
+  - override /solver/client@solver.operators.debug.llm.client: litellm_deepseek_flash
+  - override /solver/client@solver.operators.draft.llm.client: litellm_deepseek_flash
+  - override /solver/client@solver.operators.improve.llm.client: litellm_deepseek_flash
+
+solver:
+  operators:
+    draft:
+      llm:
+        generation_kwargs:
+          allowed_openai_params: ["reasoning_effort"]
+          reasoning_effort: medium
+    improve:
+      llm:
+        generation_kwargs:
+          allowed_openai_params: ["reasoning_effort"]
+          reasoning_effort: medium
+    debug:
+      llm:
+        generation_kwargs:
+          allowed_openai_params: ["reasoning_effort"]
+          reasoning_effort: medium
+    analyze:
+      llm:
+        generation_kwargs:
+          allowed_openai_params: ["reasoning_effort"]
+          reasoning_effort: medium
+
+metadata:
+  git_issue_id: to_be_determined
+
+vars:
+  metadata.seed: [1,2,3,4,5,6,7,8]

@@ -92,7 +92,10 @@ def evaluate(
         candidates = list(request_output.outputs)
         by_answer: dict[str, list[float]] = defaultdict(list)
         raw_answers = []
+        raw_responses = []
         for candidate in candidates:
+            raw_response = candidate.text
+            raw_responses.append(raw_response)
             answer = extract_answer(candidate.text)
             raw_answers.append(answer)
             if answer in ("A", "B"):
@@ -124,6 +127,7 @@ def evaluate(
                 "prediction": prediction,
                 "gold": gold,
                 "correct": hit,
+                "responses": raw_responses,
                 "answers": raw_answers,
             }
         )

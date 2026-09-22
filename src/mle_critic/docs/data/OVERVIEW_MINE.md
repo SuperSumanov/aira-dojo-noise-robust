@@ -526,6 +526,13 @@ python src/mle_critic/src/postprocess/rl/build_judger_messages.py \
   --prompts data/augmented_mle_critic/rl_judger_system_prompts.json \
   --train-output data/augmented_mle_critic/experimental/rl_decision_judger_messages_train.jsonl \
   --test-output data/augmented_mle_critic/experimental/rl_decision_judger_messages_test.jsonl
+
+python src/mle_critic/src/postprocess/rl/build_judger_messages.py \
+  --pairs data/augmented_mle_critic/batch_value_pairs_selected_filtered_runsplit.jsonl \
+  --cards data/augmented_mle_critic/augmented_cards_current.json \
+  --prompts data/augmented_mle_critic/rl_judger_system_prompts.json \
+  --train-output data/augmented_mle_critic/rl_judger_messages_train.jsonl \
+  --test-output data/augmented_mle_critic/rl_judger_messages_test.jsonl
 ```
 
 这将导致极长的context，而qwen3-14B模型仅有40K的context，所以建议最后过一遍context长度统计和过滤（如果后面换用更长context的模型，可以不做）

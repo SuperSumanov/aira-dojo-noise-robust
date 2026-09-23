@@ -631,7 +631,7 @@ class Evolutionary(Solver):
         Returns:
             Node: A new node containing the drafted solution
         """
-        thinking, plan, code, metrics = execute_op_plan_code(
+        plan, code, metrics = execute_op_plan_code(
             self.draft_fn,
             self.task_desc,
             self.journal,
@@ -662,7 +662,7 @@ class Evolutionary(Solver):
         Returns:
             Node: A new node containing the improved solution
         """
-        thinking, plan, code, metrics = execute_op_plan_code(
+        plan, code, metrics = execute_op_plan_code(
             self.improve_fn,
             self.task_desc,
             self.journal,
@@ -693,7 +693,7 @@ class Evolutionary(Solver):
         Returns:
             Node: A new node containing the debugged solution
         """
-        thinking, plan, code, metrics = execute_op_plan_code(
+        plan, code, metrics = execute_op_plan_code(
             self.debug_fn,
             self.task_desc,
             self.journal,
@@ -728,7 +728,7 @@ class Evolutionary(Solver):
         return analysis
 
     def _crossover(self, parent_node1: Node, parent_node2: Node) -> Node:
-        thinking, plan, code, metrics = execute_op_plan_code(
+        plan, code, metrics = execute_op_plan_code(
             self.crossover_fn,
             self.task_desc,
             parent_node1,

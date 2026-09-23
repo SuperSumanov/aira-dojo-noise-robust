@@ -12,7 +12,7 @@ def test_execute_op_plan_code_retries_none_response():
         ]
     )
 
-    thinking, plan, code, metrics = execute_op_plan_code(lambda: next(responses), max_operator_tries=2)
+    plan, code, metrics = execute_op_plan_code(lambda: next(responses), max_operator_tries=2)
 
     assert plan == "Plan"
     assert code == 'print("ok")\n'
@@ -27,7 +27,7 @@ def test_execute_op_plan_code_exhausts_empty_responses():
         calls += 1
         return None, {"attempt": calls}
 
-    thinking, plan, code, metrics = execute_op_plan_code(operator, max_operator_tries=3)
+    plan, code, metrics = execute_op_plan_code(operator, max_operator_tries=3)
 
     assert calls == 3
     assert plan == ""

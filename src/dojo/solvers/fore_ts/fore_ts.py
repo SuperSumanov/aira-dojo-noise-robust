@@ -148,7 +148,7 @@ class ForeTS(MCTS):
         Returns:
             Node: A new node containing the drafted solution
         """
-        thinking, plan, code, metrics = await async_execute_op_plan_code(
+        plan, code, metrics = await async_execute_op_plan_code(
             self.draft_fn,
             self.task_desc,
             self.journal,
@@ -159,7 +159,7 @@ class ForeTS(MCTS):
             self.root_node,
             max_operator_tries=self.cfg.max_llm_call_retries,
         )
-        node = MCTSNode(thinking=thinking, plan=plan, code=code, parents=[parent], operators_used=["draft"], operators_metrics=[metrics])
+        node = MCTSNode(plan=plan, code=code, parents=[parent], operators_used=["draft"], operators_metrics=[metrics])
 
         value_estimate = await self._query_critic(node)
         self.logger.info(f"One Draft Node Created - Metrics: {metrics}, Estimated Value: {value_estimate}")
@@ -179,7 +179,7 @@ class ForeTS(MCTS):
         Returns:
             Node: A new node containing the improved solution
         """
-        thinking, plan, code, metrics = await async_execute_op_plan_code(
+        plan, code, metrics = await async_execute_op_plan_code(
             self.improve_fn,
             self.task_desc,
             self.journal,
@@ -191,7 +191,7 @@ class ForeTS(MCTS):
             max_operator_tries=self.cfg.max_llm_call_retries,
         )
         node = MCTSNode(
-            thinking=thinking, plan=plan, code=code, parents=[parent_node], operators_used=["improve"], operators_metrics=[metrics]
+            plan=plan, code=code, parents=[parent_node], operators_used=["improve"], operators_metrics=[metrics]
         )
 
         value_estimate = await self._query_critic(node)

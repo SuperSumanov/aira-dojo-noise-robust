@@ -66,12 +66,3 @@ python3 src/mle_critic/src/evaluation/lm_judger_evaluation.py \
 python3 src/mle_critic/src/evaluation/fix_merged_checkpoint_keys.py \
   --checkpoint  /research/d2/gds/zzchen2/transformerscache/hub/models--VOXXXX1874--mle_judger/snapshots/0685bd5e47360ba6fc322a0805b683e3d9ceaccd/ --output models/mle_judger
 ```
-
-与未训练的模型对比 (FP8只有hopper或blackwell架构可以使用，3090请使用INT4量化版本)
-
-```bash
-python3 src/mle_critic/src/evaluation/lm_judger_evaluation.py \
-  --checkpoint Qwen/Qwen3.8-27B-FP8 \
-  --messages data/augmented_mle_critic/experimental/rl_judger_messages_test.jsonl \
-  --temperature 1.0 --tp 2 --output tmp/orginal_judger_qwen3.8_27B.json
-```

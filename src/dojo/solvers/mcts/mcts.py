@@ -293,7 +293,7 @@ class MCTS(Solver):
         Returns:
             Node: A new node containing the drafted solution
         """
-        thinking, plan, code, metrics = execute_op_plan_code(
+        plan, code, metrics = execute_op_plan_code(
             self.draft_fn,
             self.task_desc,
             self.journal,
@@ -304,7 +304,7 @@ class MCTS(Solver):
             self.root_node,
             max_operator_tries=self.cfg.max_llm_call_retries,
         )
-        node = MCTSNode(thinking=thinking, plan=plan, code=code, parents=[parent], operators_used=["draft"], operators_metrics=[metrics])
+        node = MCTSNode(plan=plan, code=code, parents=[parent], operators_used=["draft"], operators_metrics=[metrics])
         self.logger.info(f"Draft Node Created - Metrics: {metrics}")
         self.logger.info(f"Draft Code: {code}")
         return node
@@ -322,7 +322,7 @@ class MCTS(Solver):
         Returns:
             Node: A new node containing the improved solution
         """
-        thinking, plan, code, metrics = execute_op_plan_code(
+        plan, code, metrics = execute_op_plan_code(
             self.improve_fn,
             self.task_desc,
             self.journal,
@@ -334,7 +334,7 @@ class MCTS(Solver):
             max_operator_tries=self.cfg.max_llm_call_retries,
         )
         node = MCTSNode(
-            thinking=thinking, plan=plan, code=code, parents=[parent_node], operators_used=["improve"], operators_metrics=[metrics]
+            plan=plan, code=code, parents=[parent_node], operators_used=["improve"], operators_metrics=[metrics]
         )
         self.logger.info(f"Improve Node Created - Metrics: {metrics}")
         self.logger.info(f"Improve Code: {code}")
@@ -353,7 +353,7 @@ class MCTS(Solver):
         Returns:
             Node: A new node containing the debugged solution
         """
-        thinking, plan, code, metrics = execute_op_plan_code(
+        plan, code, metrics = execute_op_plan_code(
             self.debug_fn,
             self.task_desc,
             self.journal,
@@ -364,7 +364,7 @@ class MCTS(Solver):
             max_operator_tries=self.cfg.max_llm_call_retries,
         )
         node = MCTSNode(
-            thinking=thinking, plan=plan, code=code, parents=[parent_node], operators_used=["debug"], operators_metrics=[metrics]
+            plan=plan, code=code, parents=[parent_node], operators_used=["debug"], operators_metrics=[metrics]
         )
         self.logger.info(f"Debug Node Created - Metrics: {metrics}")
         self.logger.info(f"Debug Code: {code}")

@@ -42,6 +42,7 @@ class Node(DataClassJsonMixin):
     """A single node in the solution tree. Contains code, execution results, and evaluation information."""
 
     # ---- code & plan ----
+    thinking: str = field(default=None, kw_only=True, compare=False)  # type: ignore
     code: str = field(compare=False)
     plan: str = field(default=None, kw_only=True, compare=False)  # type: ignore
 
@@ -282,6 +283,7 @@ class Journal(DataClassJsonMixin):
             node_data = {
                 "step": node.step,
                 "id": node.id,
+                "thinking": node.thinking,
                 "plan": node.plan,
                 "code": node.code,
                 "metric": metric_value,
@@ -304,6 +306,7 @@ class Journal(DataClassJsonMixin):
             node_data = {
                 "step": node.step,
                 "id": node.id,
+                "thinking": node.thinking,
                 "plan": node.plan,
                 "code": node.code,
                 "metric": metric_value,

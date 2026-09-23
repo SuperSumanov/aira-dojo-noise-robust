@@ -35,11 +35,11 @@ def execute_op_plan_code(
             if requires_plan and not plan:
                 print("Plan extraction failed, retrying...")
                 continue
-            return plan, code, metrics
+            return thinking_text, plan, code, metrics
 
         print("Retrying Extraction...")
 
-    return "", text_without_thinking, metrics
+    return thinking_text, "", text_without_thinking, metrics
 
 
 async def async_execute_op_plan_code(
@@ -68,8 +68,8 @@ async def async_execute_op_plan_code(
             if requires_plan and not plan:
                 print("Plan extraction failed, retrying...")
                 continue
-            return plan, code, metrics
+            return thinking_text, plan, code, metrics
 
         print("Retrying Extraction...")
 
-    return "", text_without_thinking, metrics
+    return thinking_text, "", text_without_thinking, metrics

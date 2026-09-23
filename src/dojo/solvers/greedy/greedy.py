@@ -250,7 +250,7 @@ class Greedy(Solver):
             Node: A new node containing the drafted solution
         """
         self.logger.info(f"Step {self.state.current_step}: Starting to drafting new solution")
-        plan, code, metrics = execute_op_plan_code(
+        thinking, plan, code, metrics = execute_op_plan_code(
             self.draft_fn,
             self.task_desc,
             self.journal,
@@ -262,7 +262,7 @@ class Greedy(Solver):
             max_operator_tries=self.cfg.max_llm_call_retries,
         )
         node = Node(
-            plan=plan, code=code, operators_used=["draft"], operators_metrics=[metrics], parents=[self.root_node]
+            thinking=thinking, plan=plan, code=code, operators_used=["draft"], operators_metrics=[metrics], parents=[self.root_node]
         )
         self.logger.info(f"Draft Node Created - Metrics: {metrics}")
         self.logger.info(f"Draft Code: {code}")
@@ -283,7 +283,7 @@ class Greedy(Solver):
             Node: A new node containing the improved solution
         """
         self.logger.info(f"Step {self.state.current_step}: Starting to improve existing solution")
-        plan, code, metrics = execute_op_plan_code(
+        thinking, plan, code, metrics = execute_op_plan_code(
             self.improve_fn,
             self.task_desc,
             self.journal,
@@ -295,7 +295,7 @@ class Greedy(Solver):
             max_operator_tries=self.cfg.max_llm_call_retries,
         )
         node = Node(
-            plan=plan, code=code, parents=[parent_node], operators_used=["improve"], operators_metrics=[metrics]
+            thinking=thinking, plan=plan, code=code, parents=[parent_node], operators_used=["improve"], operators_metrics=[metrics]
         )
 
         self.logger.info(f"Improve Node Created - Metrics: {metrics}")
@@ -317,7 +317,7 @@ class Greedy(Solver):
             Node: A new node containing the debugged solution
         """
         self.logger.info(f"Step {self.state.current_step}: Starting to debug buggy solution")
-        plan, code, metrics = execute_op_plan_code(
+        thinking, plan, code, metrics = execute_op_plan_code(
             self.debug_fn,
             self.task_desc,
             self.journal,
@@ -327,7 +327,7 @@ class Greedy(Solver):
             self.data_preview,
             max_operator_tries=self.cfg.max_llm_call_retries,
         )
-        node = Node(plan=plan, code=code, parents=[parent_node], operators_used=["debug"], operators_metrics=[metrics])
+        node = Node(thinking=thinking, plan=plan, code=code, parents=[parent_node], operators_used=["debug"], operators_metrics=[metrics])
 
         self.logger.info(f"Debug Node Created - Metrics: {metrics}")
         self.logger.info(f"Debug Code: {code}")

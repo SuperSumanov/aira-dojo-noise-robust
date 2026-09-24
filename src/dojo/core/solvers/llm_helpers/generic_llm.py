@@ -95,7 +95,7 @@ class GenericLLM:
 
         # If query_data is not provided, directly query the client with the provided messages
         if query_data is None:
-            reasoning_output, output, usage_stats = await self.client.query(
+            output, usage_stats = await self.client.query(
                 messages,
                 json_schema=json_schema,
                 function_name=function_name,
@@ -103,7 +103,7 @@ class GenericLLM:
                 **self.generation_kwargs,
             )
             usage_stats["cumulative_num_llm_calls"] = self.call_tracker
-            return output, {"usage": usage_stats, "prompt_messages": messages, "completion_text": str(output), "reasoning_content": reasoning_output}
+            return output, {"usage": usage_stats, "prompt_messages": messages, "completion_text": str(output)}
 
         # If messages are not provided, initialize them with a system message using the query_data
         if messages is None:
@@ -130,7 +130,7 @@ class GenericLLM:
         messages.append(user_message)
 
         # Query the client with the updated messages
-        reasoning_output, output, usage_stats = await self.client.query(
+        output, usage_stats = await self.client.query(
             messages,
             json_schema=json_schema,
             function_name=function_name,
@@ -140,4 +140,4 @@ class GenericLLM:
         usage_stats["cumulative_num_llm_calls"] = self.call_tracker
 
         log.warning("got response from llm")
-        return output, {"usage": usage_stats, "prompt_messages": messages, "completion_text": str(output), "reasoning_content": reasoning_output}
+        return output, {"usage": usage_stats, "prompt_messages": messages, "completion_text": str(output)}

@@ -284,4 +284,4 @@ class GDMClient:
             function_description=function_description,
         )
 
-        return "", output, usage_stats
+        return output, usage_stats

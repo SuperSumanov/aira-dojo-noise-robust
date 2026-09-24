@@ -366,9 +366,8 @@ class LiteLLMClient:
 
         if func_spec is None:
             output = choice.message.content
-            reasoning_output = choice.message.reasoning_content
 
-        return reasoning_output,output, usage_stats
+        return output, usage_stats
 
     async def query(
         self,
@@ -400,7 +399,7 @@ class LiteLLMClient:
             if "temperature" in model_kwargs:
                 model_kwargs.pop("temperature")
 
-        reasoning_output, output, usage_stats = await self._query_client(
+        output, usage_stats = await self._query_client(
             messages=messages,
             model_kwargs=model_kwargs,
             json_schema=json_schema,
@@ -408,4 +407,4 @@ class LiteLLMClient:
             function_description=function_description,
         )
 
-        return reasoning_output,output, usage_stats
+        return output, usage_stats

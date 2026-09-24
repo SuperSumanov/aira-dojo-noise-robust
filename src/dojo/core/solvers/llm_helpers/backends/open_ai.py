@@ -136,6 +136,7 @@ class OpenAIClient:
         if func_spec is None or "functions" not in filtered_kwargs:
             # No function calling was used
             output = choice.message.content
+            reasoning_output = choice.message.reasoning_content
         else:
             # Attempt to extract function call
             function_call = choice.message.function_call
@@ -159,7 +160,7 @@ class OpenAIClient:
                         logger.error(f"Error decoding function arguments:\n{function_call.arguments}")
                         raise ex
 
-        return output, usage_stats
+        return reasoning_output, output, usage_stats
 
     def query(
         self,
@@ -191,7 +192,7 @@ class OpenAIClient:
             if "temperature" in model_kwargs:
                 model_kwargs.pop("temperature")
 
-        output, usage_stats = self._query_client(
+        reasoning_output, output, usage_stats = self._query_client(
             messages=messages,
             model_kwargs=model_kwargs,
             json_schema=json_schema,
@@ -199,4 +200,4 @@ class OpenAIClient:
             function_description=function_description,
         )
 
-        return output, usage_stats
+        return reasoning_output, output, usage_stats

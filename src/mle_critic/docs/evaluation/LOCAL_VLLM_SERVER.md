@@ -357,3 +357,13 @@ python -m dojo.main_runner_job_array \
 | 单卡起 26.9GB 的 AWQ-BF16-INT4 权重 | 那是两卡专用权重，单卡请用 AWQ-INT4（21GB） |
 | 想清掉 server | `scancel 13150.20`（step id 用 `squeue -s -j <jobid>` 查），或者直接 `scancel <jobid>` 结束整个 allocation |
 | 缓存写不进去 | 检查 `VLLM_CACHE_ROOT`/`TRITON_HOME`/`TORCH_HOME`/`HF_HOME` 是否都在 `/research` 下 |
+
+## 9. 其他问题
+
+Cse Server强行给每个用户的进程数设置了上限，如果出现了resource unavailable类似的报错和反复重试，可以打下面的patch
+
+```bash
+git apply src/mle_critic/patches/mlebench_multiprocessing_resource_limits.patch
+```
+
+这会明确prompt agent限制torch和其他计算库的进程上限。

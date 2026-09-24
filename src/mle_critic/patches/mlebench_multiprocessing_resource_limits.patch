@@ -1,18 +1,36 @@
-diff --git a/src/dojo/configs/solver/operators/mlebench/aira_operators/draft.yaml b/src/dojo/configs/solver/operators/mlebench/aira_operators/draft.yaml
---- a/src/dojo/configs/solver/operators/mlebench/aira_operators/draft.yaml
-+++ b/src/dojo/configs/solver/operators/mlebench/aira_operators/draft.yaml
-@@ -41,0 +42,2 @@
-+        - If using multiprocessing/DataLoader workers, put executable workflow code in `main()` and call it only under `if __name__ == "__main__":`; keep worker classes/functions at module scope.
-+        - Before importing numerical libraries, cap `OMP_NUM_THREADS`, `MKL_NUM_THREADS`, and `OPENBLAS_NUM_THREADS` at 4; call `torch.set_num_threads(4)` and use at most 2 DataLoader workers.
-diff --git a/src/dojo/configs/solver/operators/mlebench/aira_operators/improve.yaml b/src/dojo/configs/solver/operators/mlebench/aira_operators/improve.yaml
---- a/src/dojo/configs/solver/operators/mlebench/aira_operators/improve.yaml
-+++ b/src/dojo/configs/solver/operators/mlebench/aira_operators/improve.yaml
-@@ -41,0 +42,2 @@
-+        - If using multiprocessing/DataLoader workers, put executable workflow code in `main()` and call it only under `if __name__ == "__main__":`; keep worker classes/functions at module scope.
-+        - Before importing numerical libraries, cap `OMP_NUM_THREADS`, `MKL_NUM_THREADS`, and `OPENBLAS_NUM_THREADS` at 4; call `torch.set_num_threads(4)` and use at most 2 DataLoader workers.
 diff --git a/src/dojo/configs/solver/operators/mlebench/aira_operators/crossover.yaml b/src/dojo/configs/solver/operators/mlebench/aira_operators/crossover.yaml
+index 01222cd3..5ebd4daa 100644
 --- a/src/dojo/configs/solver/operators/mlebench/aira_operators/crossover.yaml
 +++ b/src/dojo/configs/solver/operators/mlebench/aira_operators/crossover.yaml
-@@ -60,0 +61,2 @@
-+        - If using multiprocessing/DataLoader workers, put executable workflow code in `main()` and call it only under `if __name__ == "__main__":`; keep worker classes/functions at module scope.
-+        - Before importing numerical libraries, cap `OMP_NUM_THREADS`, `MKL_NUM_THREADS`, and `OPENBLAS_NUM_THREADS` at 4; call `torch.set_num_threads(4)` and use at most 2 DataLoader workers.
+@@ -63,6 +63,7 @@ crossover:
+         - Replace the deprecated `early_stopping_rounds` argument in `lightgbm.train()` with the `lightgbm.early_stopping(stopping_rounds=…)` callback.
+         - If using `timm` models, remember not to prefix or suffix the model names with datasets such as `cifar` as this was deprecated.
+         - As much as possible, keep the stdout clean.
++        - Before importing numerical libraries, cap `OMP_NUM_THREADS`, `MKL_NUM_THREADS`, and `OPENBLAS_NUM_THREADS` at 4; call `torch.set_num_threads(8)` and use at most 4 DataLoader workers.
+ 
+       **DATA**: The data is already prepared and available in the read-only `./data` directory. Do not make another full copy or cache, otherwise you will overflow the allocated disk space. You should not unzip any files.
+ 
+diff --git a/src/dojo/configs/solver/operators/mlebench/aira_operators/draft.yaml b/src/dojo/configs/solver/operators/mlebench/aira_operators/draft.yaml
+index 519008a1..36b49b96 100644
+--- a/src/dojo/configs/solver/operators/mlebench/aira_operators/draft.yaml
++++ b/src/dojo/configs/solver/operators/mlebench/aira_operators/draft.yaml
+@@ -44,6 +44,7 @@ draft:
+         - Replace the deprecated `early_stopping_rounds` argument in `lightgbm.train()` with the `lightgbm.early_stopping(stopping_rounds=…)` callback.
+         - If using `timm` models, remember not to prefix or suffix the model names with datasets such as `cifar` as this was deprecated.
+         - As much as possible, keep the stdout clean.
++        - Before importing numerical libraries, cap `OMP_NUM_THREADS`, `MKL_NUM_THREADS`, and `OPENBLAS_NUM_THREADS` at 4; call `torch.set_num_threads(8)` and use at most 4 DataLoader workers.
+       
+       **DATA**: The data is already prepared and available in the read-only `./data` directory. Do not make another full copy or cache, otherwise you will overflow the allocated disk space. You should not unzip any files.
+       
+diff --git a/src/dojo/configs/solver/operators/mlebench/aira_operators/improve.yaml b/src/dojo/configs/solver/operators/mlebench/aira_operators/improve.yaml
+index 24744d45..0248fe63 100644
+--- a/src/dojo/configs/solver/operators/mlebench/aira_operators/improve.yaml
++++ b/src/dojo/configs/solver/operators/mlebench/aira_operators/improve.yaml
+@@ -51,6 +51,7 @@ improve:
+         - Replace the deprecated `early_stopping_rounds` argument in `lightgbm.train()` with the `lightgbm.early_stopping(stopping_rounds=…)` callback.
+         - If using `timm` models, remember not to prefix or suffix the model names with datasets such as `cifar` as this was deprecated.
+         - As much as possible, keep the stdout clean.
++        - Before importing numerical libraries, cap `OMP_NUM_THREADS`, `MKL_NUM_THREADS`, and `OPENBLAS_NUM_THREADS` at 4; call `torch.set_num_threads(8)` and use at most 4 DataLoader workers.
+       
+       **DATA**: The data is already prepared and available in the read-only `./data` directory. Do not make another full copy or cache, otherwise you will overflow the allocated disk space. You should not unzip any files. 
+       

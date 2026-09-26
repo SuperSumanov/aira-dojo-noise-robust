@@ -7,6 +7,7 @@
 用于从任务配置到实际采集运行的端到端说明。
 
 - [Spaceship Titanic 主流程](workflows/AIRA_DOJO_MLEBENCH_SPACESHIP_WORKFLOW.md)：当前 checkout 的 AIRA-Dojo × MLEBench 复现、Slurm/Singularity smoke test 和采数流程。
+- [Hydra 配置合并流程](workflows/DOJO_HYDRA_CONFIG_COMPOSITION.md)：`main_runner_job_array` 怎么把 `defaults`、`override`、`group@package`、`???` 和 `vars` 拼成一次运行；含实测的合并树、报错对照和排查命令。
 - [Spaceship Titanic 学生研究流程](workflows/AIRA_DOJO_MLEBENCH_SPACESHIP_STUDENT_WORKFLOW.md)：历史 `phase1-value-critic` 等研究分支的差异说明；不代表当前分支代码。
 - [Lookahead reward model 实验](train/LOOKAHEAD_REWARD_MODEL_EXPERIMENTS.md)：L1、L2、LOTO、rescue、checkpoint sidecar 的运行命令和注意事项。
 - [Lookahead 数据来源](train/LOOKAHEAD_DATA_PROVENANCE.md)：7,190-card corpus、迁移文件清单，以及未提交 L2 v2 数据的复原边界。

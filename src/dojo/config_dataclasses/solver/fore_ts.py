@@ -13,6 +13,9 @@ from dojo.config_dataclasses.solver.mcts import MCTSSolverConfig
 
 @dataclass
 class ForeTSSolverConfig(MCTSSolverConfig):
+    critic_type: str = field(
+        default=MISSING, metadata={"description": "Type of critic to use for evaluating child nodes"}
+    )
     critic_host: str = field(
         default=MISSING, metadata={"description": "Host address for the critic service"}
     )

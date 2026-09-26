@@ -25,6 +25,7 @@ class ForeTS(MCTS):
     def __init__(self, cfg: ForeTSSolverConfig, task_info):
         super().__init__(cfg, task_info)
         self.journal_for_unselected = Journal()
+        self.critic_type = cfg.critic_type
         self.critic_host = cfg.critic_host
         self.critic_port = cfg.critic_port
         self.critic_top_k = cfg.critic_top_k
@@ -118,25 +119,32 @@ class ForeTS(MCTS):
             node: The node for which to query the critic
         """
         # Query the critic for a value estimate of the node
-        key = id(node)
-        for _ in range(self.critic_max_attempts):
-            try:
-                request = _rq.Request(
-                    f"http://{self.critic_host}:{self.critic_port}/score",
-                    json.dumps({
-                        "task": self.task_name,
-                        "code": (node.code or "")[:40000],
-                    }).encode(),
-                    {"Content-Type": "application/json"},
-                )
-                with _rq.urlopen(request, timeout=600) as response:
-                    response_data = json.loads(response.read().decode())
-                    value_estimate = float(response_data["score"])
-                return value_estimate
-            except Exception as e:
-                self.logger.warning(f"Critic query failed for node {key}: {e}. Retrying...")
-                await asyncio.sleep(1)  # Wait a bit before retrying
-                continue
+        if self.critic_type == "model":
+            key = id(node)
+            for _ in range(self.critic_max_attempts):
+                try:
+                    request = _rq.Request(
+                        f"http://{self.critic_host}:{self.critic_port}/score",
+                        json.dumps({
+                            "task": self.task_name,
+                            "code": (node.code or ""),
+                        }).encode(),
+                        {"Content-Type": "application/json"},
+                    )
+                    with _rq.urlopen(request, timeout=600) as response:
+                        response_data = json.loads(response.read().decode())
+                        value_estimate = float(response_data["score"])
+                    return value_estimate
+                except Exception as e:
+                    self.logger.warning(f"Critic query failed for node {key}: {e}. Retrying...")
+                    await asyncio.sleep(1)  # Wait a bit before retrying
+                    continue
+        elif self.critic_type == "random":
+            return random.random()
+        elif self.critic_type == "short":
+            return -len(node.code or "") / 1000.0  # Shorter code gets higher score
+        else:
+            raise ValueError(f"Unknown critic type: {self.critic_type}")
                 
     async def _draft(self, parent: Optional[MCTSNode] = None) -> MCTSNode:
         """

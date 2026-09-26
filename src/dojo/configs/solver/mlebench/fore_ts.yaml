@@ -19,6 +19,7 @@ max_debug_depth: 20
 data_preview: true
 max_debug_time: 1e9
 
+critic_type: "model"
 critic_host: "127.0.0.1"
 critic_port: 8765
 critic_max_attempts: 5

@@ -1,7 +1,7 @@
 diff --git a/src/dojo/configs/solver/operators/mlebench/aide_operators/draft.yaml b/src/dojo/configs/solver/operators/mlebench/aide_operators/draft.yaml
 --- a/src/dojo/configs/solver/operators/mlebench/aide_operators/draft.yaml
 +++ b/src/dojo/configs/solver/operators/mlebench/aide_operators/draft.yaml
-@@ -56,5 +56,5 @@ system_message_prompt_template:
+@@ -62,5 +62,5 @@ system_message_prompt_template:
        ## Environment:
 -      You have access to Python and the following packages (already installed): {{packages}}. Feel free to use additional libraries that fit the problem.
 +      You have access to Python and the following packages (already installed): {{packages}}. Use only these installed packages; do not install, download, vendor, or otherwise add Python packages or system dependencies (including via `pip`, `conda`, `apt`, `subprocess`, or `pip --target`).
@@ -11,8 +11,8 @@ diff --git a/src/dojo/configs/solver/operators/mlebench/aide_operators/draft.yam
 diff --git a/src/dojo/configs/solver/operators/mlebench/aira_operators/crossover.yaml b/src/dojo/configs/solver/operators/mlebench/aira_operators/crossover.yaml
 --- a/src/dojo/configs/solver/operators/mlebench/aira_operators/crossover.yaml
 +++ b/src/dojo/configs/solver/operators/mlebench/aira_operators/crossover.yaml
-@@ -61,5 +61,5 @@ system_message_prompt_template:
-       **DATA**: The data is already prepared and available in the read-only `./data` directory. You should not unzip any files.
+@@ -67,5 +67,5 @@ system_message_prompt_template:
+       **DATA**: The data is already prepared and available in the read-only `./data` directory. Do not make another full copy or cache, otherwise you will overflow the allocated disk space. You should not unzip any files.
  
 -      **COMPUTE**: You have access to {{hardware}} with the appropriate drivers, and the following packages installed: {{packages}}. If you need to, feel free to use additional libraries that fit the problem.
 +      **COMPUTE**: You have access to {{hardware}} with the appropriate drivers, and the following packages installed: {{packages}}. Use only these installed packages; do not install, download, vendor, or otherwise add Python packages or system dependencies (including via `pip`, `conda`, `apt`, `subprocess`, or `pip --target`).
@@ -21,7 +21,7 @@ diff --git a/src/dojo/configs/solver/operators/mlebench/aira_operators/crossover
 diff --git a/src/dojo/configs/solver/operators/mlebench/aira_operators/debug.yaml b/src/dojo/configs/solver/operators/mlebench/aira_operators/debug.yaml
 --- a/src/dojo/configs/solver/operators/mlebench/aira_operators/debug.yaml
 +++ b/src/dojo/configs/solver/operators/mlebench/aira_operators/debug.yaml
-@@ -41,7 +41,7 @@ system_message_prompt_template:
+@@ -47,7 +47,7 @@ system_message_prompt_template:
        # Compute Environment:
        - Hardware: {{hardware}}
        - Available Packages: {{packages}}
@@ -33,9 +33,9 @@ diff --git a/src/dojo/configs/solver/operators/mlebench/aira_operators/debug.yam
 diff --git a/src/dojo/configs/solver/operators/mlebench/aira_operators/draft.yaml b/src/dojo/configs/solver/operators/mlebench/aira_operators/draft.yaml
 --- a/src/dojo/configs/solver/operators/mlebench/aira_operators/draft.yaml
 +++ b/src/dojo/configs/solver/operators/mlebench/aira_operators/draft.yaml
-@@ -41,6 +41,6 @@ system_message_prompt_template:
+@@ -47,6 +47,6 @@ system_message_prompt_template:
        
-       **DATA**: The data is already prepared and available in the read-only `./data` directory. You should not unzip any files.
+       **DATA**: The data is already prepared and available in the read-only `./data` directory. Do not make another full copy or cache, otherwise you will overflow the allocated disk space. You should not unzip any files.
        
 -      **COMPUTE**: You have access to {{hardware}} with the appropriate drivers, and the following packages installed: {{packages}}. If you need to, feel free to use additional libraries that fit the problem.
 +      **COMPUTE**: You have access to {{hardware}} with the appropriate drivers, and the following packages installed: {{packages}}. Use only these installed packages; do not install, download, vendor, or otherwise add Python packages or system dependencies (including via `pip`, `conda`, `apt`, `subprocess`, or `pip --target`).
@@ -44,9 +44,9 @@ diff --git a/src/dojo/configs/solver/operators/mlebench/aira_operators/draft.yam
 diff --git a/src/dojo/configs/solver/operators/mlebench/aira_operators/improve.yaml b/src/dojo/configs/solver/operators/mlebench/aira_operators/improve.yaml
 --- a/src/dojo/configs/solver/operators/mlebench/aira_operators/improve.yaml
 +++ b/src/dojo/configs/solver/operators/mlebench/aira_operators/improve.yaml
-@@ -48,6 +48,6 @@ system_message_prompt_template:
+@@ -54,6 +54,6 @@ system_message_prompt_template:
        
-       **DATA**: The data is already prepared and available in the read-only `./data` directory. You should not unzip any files.
+       **DATA**: The data is already prepared and available in the read-only `./data` directory. Do not make another full copy or cache, otherwise you will overflow the allocated disk space. You should not unzip any files. 
        
 -      **COMPUTE**: You have access to {{hardware}} with the appropriate drivers, and the following packages installed: {{packages}}. If you need to, feel free to use additional libraries that fit the problem.
 +      **COMPUTE**: You have access to {{hardware}} with the appropriate drivers, and the following packages installed: {{packages}}. Use only these installed packages; do not install, download, vendor, or otherwise add Python packages or system dependencies (including via `pip`, `conda`, `apt`, `subprocess`, or `pip --target`).

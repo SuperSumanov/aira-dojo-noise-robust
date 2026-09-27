@@ -23,6 +23,41 @@ python src/mle_critic/src/preprocess/download_and_resolve/download_journals.py \
 python src/mle_critic/src/preprocess/download_and_resolve/unzip.py data/augmented_mle_critic/raw_journal/0817
 ```
 
+后续的comparison实验也加入训练，下载到
+
+```bash
+python src/mle_critic/src/preprocess/download_and_resolve/download_journals.py \
+  --url https://drive.google.com/drive/folders/1KFzGFZAAKR6Lw-TpqaTvlJOdfTBUw5UB?usp=drive_link \
+  --output-dir data/augmented_mle_critic/raw_journal/comparison/0912
+```
+
+解压缩
+
+```bash
+python src/mle_critic/src/preprocess/download_and_resolve/unzip.py data/augmented_mle_critic/raw_journal/comparison/0912
+```
+
+0912中某些与前面重复的实验需要手动删除，最后的文件结构类似于
+
+```text
+| -- data/augmented_mle_critic/raw_journal
+|   | -- 0726
+|       | -- user_hcyang_issue_spooky-author-identification-8seeds
+|       | -- user_s1155173938_issue_google-quest-challenge-2seeds
+|       | -- ...
+|   | -- 0727
+|   | -- ...
+|   | -- comparison
+|       | -- 0912
+|           | -- AI4Code/7200/qwen/mcts
+|           | -- AI4Code/7200/qwen/forets
+|           | -- leaf-classification/7200/qwen/mcts
+|           | -- leaf-classification/7200/qwen/forets
+|           | -- ...
+|       | -- 0918
+|       | -- ...
+```
+
 ## 1. 原始 journal 和 Card
 
 每个 run 的输入结构是：

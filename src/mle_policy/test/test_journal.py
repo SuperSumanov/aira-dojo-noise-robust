@@ -38,6 +38,25 @@ def test_prompt_key_ignores_package_order_only_when_normalising():
     assert prompt_key(messages, True) != prompt_key(other, True)
 
 
+@pytest.mark.parametrize("role", ["system", "user"])
+def test_prompt_key_ignores_previous_ideas_but_preserves_following_section(role):
+    prefix = "# TASK\nPredict the target.\n\n"
+    suffix = "# DATA OVERVIEW\ntrain.csv has 100 rows.\n"
+    with_ideas = [
+        {"role": role, "content": prefix + "# PREVIOUSLY EXPLORED IMPROVEMENT IDEAS\nold idea\n\n" + suffix}
+    ]
+    other_ideas = [
+        {"role": role, "content": prefix + "# PREVIOUSLY EXPLORED IMPROVEMENT IDEAS\nnew idea\n\n" + suffix}
+    ]
+    no_ideas = [{"role": role, "content": prefix + suffix}]
+    changed_data = [{"role": role, "content": prefix + "# DATA OVERVIEW\ntrain.csv has 200 rows.\n"}]
+
+    assert prompt_key(with_ideas, True) == prompt_key(other_ideas, True) == prompt_key(no_ideas, True)
+    assert prompt_key(with_ideas, False) == prompt_key(other_ideas, False)
+    assert prompt_key(with_ideas, True) != prompt_key(changed_data, True)
+    assert "old idea" in with_ideas[0]["content"]
+
+
 def test_reward_is_direction_aware():
     higher = {"median_threshold": 0.5, "gold_threshold": 0.8, "is_lower_better": False}
     assert reward_from_score(0.9, higher) == pytest.approx((0.9 - 0.5) / 0.3)

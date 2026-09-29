@@ -91,7 +91,9 @@ bash src/mle_policy/scripts/data/to_grpo.sh "$OUT_ROOT"
 
 `prompt_messages` 有两种形态：自建模型是"一条短 system + 一条渲染好的 user"，
 走 openai 协议的 API 只有"一条 system（里面就是整个渲染好的模板）"。
-分组按 role + content 完整列表算哈希，**两种形态不会互相合并**。
+分组按 role + content 列表算哈希，先排序随机顺序的包列表，再从用于计算哈希的文本中
+去掉 `# PREVIOUSLY EXPLORED IMPROVEMENT IDEAS` 到 `# DATA OVERVIEW` 之间的搜索记忆。
+两种消息形态仍不会互相合并；`samples.jsonl` 保留原始 prompt。
 
 ### 1.1 三个踩过的坑
 
@@ -314,8 +316,9 @@ reward = (score - median_threshold) / (gold_threshold - median_threshold)
 
 ## 9. 跑全量的实测数字
 
-命令见开头的分步示例（`BATCH_ROOT=data/augmented_mle_critic/raw_journal`，
-全量约 18 分钟）。
+命令见开头的分步示例（`BATCH_ROOT=data/augmented_mle_critic/raw_journal`）。
+以下是 2026-09-28 去掉搜索记忆后重跑的结果；旧版按完整 prompt 分组时，
+`non_thinking` / `thinking` 分别有 116,364 / 6,925 个 group。
 
 ### 9.1 分桶结果
 
@@ -323,8 +326,8 @@ reward = (score - median_threshold) / (gold_threshold - median_threshold)
 
 | 桶 | journal | 样本（LLM 调用） | group | 环境数 | episode（走通的） |
 | --- | ---: | ---: | ---: | ---: | ---: |
-| `non_thinking` | 1504 | 120,434 | 116,364 | 395 | 29,617（25,792） |
-| `thinking` | 156 | 7,451 | 6,925 | 22 | 1,557（1,556） |
+| `non_thinking` | 1504 | 120,434 | 15,371 | 395 | 29,617（25,792） |
+| `thinking` | 156 | 7,451 | 751 | 22 | 1,557（1,556） |
 | `other` | 0 | — | — | — | — |
 
 （`raw_journal` 下带 `dojo_config.json` 的 run 目录一共 1838 个，其中 1660 个写了
@@ -334,29 +337,29 @@ reward = (score - median_threshold) / (gold_threshold - median_threshold)
 
 | 视角 | `non_thinking` | `thinking` |
 | --- | ---: | ---: |
-| `sft.jsonl`（每组一条） | 25,833（train 22,054 / val 3,779） | 1,484（train 1,202 / val 282） |
-| `dpo.jsonl`（每个组内配对） | 1,024（其中 730 对是"能跑 vs 跑挂"） | 501（321） |
-| `grpo.jsonl`（每组一行，组内 ≥2 条走通） | 406 组 / 1,369 条回复 | 352 组 / 866 条回复 |
+| `sft.jsonl`（每组一条） | 13,543（train 12,205 / val 1,338） | 751（train 693 / val 58） |
+| `dpo.jsonl`（每个组内配对） | 12,282（其中 4,866 对的 rejected 没跑通） | 814（496） |
+| `grpo.jsonl`（每组一行，组内 ≥2 条走通） | 9,732 组 / 22,197 条回复 | 666 组 / 1,494 条回复 |
 
-**episode 这一步把 GRPO 的数据量从"几乎为 0"救回来了。** 改造之前（按节点自己的分数
-算 reward、不连 debug 链），同一份数据只有 196 个 GRPO 组；现在两个桶合计 758 组。
-原因见第 2 节：一个挂掉的 draft 后面往往还有 1~3 步 debug，链子走通之后这一组
-才算"有结果"。
+单成员 group 共 3,847 个（`non_thinking` 3,770，`thinking` 77）；其余 12,275 个
+都有至少两个 episode。GRPO 可用组由旧版的 758 个增至 10,398 个。这里同时用了
+第 2 节的 episode 结局奖励和新的搜索记忆忽略规则。
 
 ### 9.3 时间和体积
 
-* 全量流水线约 **18 分钟**（其中 stage 1 扫 journal 约 12 分钟）；
-* 输出约 **30 GB**：`batches/` 8.7 GB（每个 batch 一份）、两个桶的
-  `samples.jsonl` 合计约 9 GB、`sft.jsonl` 约 3.6 GB、Parquet 文件和其他文件若干。
+* 本次输出约 **25 GB**：`batches/` 8.7 GB（每个 batch 一份）、两个桶的
+  `samples.jsonl` 合计约 9 GB、`sft.jsonl`、Parquet 文件和其他文件若干。
   `samples.jsonl` 占大头是因为 prompt 被重复存了很多次
   （同一个竞赛的每个样本都带一份任务描述），实测 prompt 占全部字符的 ~83%
   —— 这也是 `groups.jsonl` 里不放 prompt 的原因。
 
 ## 10. 已知问题
 
-1. **多成员 group 依然不多。** 搜索树里每个节点的上下文（历史记忆）都不一样，
-   能成组的只有"同一个父节点并行展开的兄弟候选"和"不同 seed 在同一决策点的展开"。
-   用上 episode 之后 GRPO 可用的组涨了不少，但这个瓶颈的本质是**执行成功率**，不是分组方式。
+1. **合并后的候选实际看到的搜索记忆不同。** `prompt_key` 忽略搜索记忆，
+   但 `samples.jsonl` 和 SFT/DPO/GRPO 导出的 prompt 仍保留它。实测 DPO 导出中
+   `non_thinking` 12,282 对里的 11,344 对、`thinking` 814 对里的 628 对的训练 prompt
+   带有这一节；GRPO 两桶分别是 9,384/9,732 组和 630/666 组。记忆可能提到组内其他
+   候选的运行结果，因此这些组的回答不能严格视为在完全相同输入下生成，训练前需要处理这个问题。
 2. **`analysis` 算子没有靠谱的 reward。** 官方分数是打给节点产出的代码的，不是打给分析文本的。
    它留在 `samples.jsonl` 里，但默认不进三种训练视角（`--operators` 里没有它）。
 3. **`journal_for_unselected.jsonl` 没有收。** 那是 ForeTS 被 critic 淘汰、根本没执行的候选，

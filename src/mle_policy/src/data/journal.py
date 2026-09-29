@@ -37,6 +37,16 @@ CODE_OPERATORS = ("draft", "debug", "improve", "crossover")
 # crossover all do ``random.shuffle(cfg.available_packages)`` before rendering.
 PACKAGES_RE = re.compile(r"(the following packages installed: )([^\n]+?)(\. If you need)")
 
+# Search memory changes after every sibling is evaluated.  It is useful to the
+# model, but should not make otherwise identical decision points separate groups.
+# Stop at the next template section; never consume the following data overview.
+PREVIOUS_IMPROVEMENT_IDEAS_RE = re.compile(
+    r"(?ms)^# PREVIOUSLY EXPLORED IMPROVEMENT IDEAS[ \t]*\n.*?(?=^# DATA OVERVIEW[ \t]*$)"
+)
+PREVIOUS_IDEAS_RE = re.compile(
+    r"(?ms)^# PREVIOUSLY EXPLORED IDEAS[ \t]*\n.*?(?=^# DATA OVERVIEW[ \t]*$)"
+)
+
 DEFAULT_JOURNAL_GLOB = "**/journal.jsonl"
 
 # Run settings that decide whether two runs are the same experiment.  The
@@ -80,8 +90,12 @@ def canonical_prompt(messages: list[dict[str, Any]], normalize_packages: bool) -
 
 
 def prompt_key(messages: list[dict[str, Any]], normalize_packages: bool) -> str:
-    """Hash the full chat prompt (roles *and* contents)."""
-    blob = json.dumps(canonical_prompt(messages, normalize_packages), ensure_ascii=False, sort_keys=True)
+    """Hash roles and contents after removing the changing search-memory section."""
+    prompt = canonical_prompt(messages, normalize_packages)
+    for message in prompt:
+        message["content"] = PREVIOUS_IDEAS_RE.sub("", message["content"])
+        message["content"] = PREVIOUS_IMPROVEMENT_IDEAS_RE.sub("", message["content"])
+    blob = json.dumps(prompt, ensure_ascii=False, sort_keys=True)
     return hashlib.blake2b(blob.encode("utf-8"), digest_size=16).hexdigest()
 
 

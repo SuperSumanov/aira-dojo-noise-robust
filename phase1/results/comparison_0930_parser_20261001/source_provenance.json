@@ -1,0 +1,57 @@
+{
+  "status": "PASS",
+  "reference_commit": "e385f863cb531904e611e987f7f71606796db656",
+  "producer_refs": [
+    {
+      "metadata_commit": "0bcf1764791d2864e038e3346f456409a152a610",
+      "resolved_commit": "0bcf1764791d2864e038e3346f456409a152a610",
+      "directories": 17,
+      "git_blobs": {
+        "src/dojo/core/solvers/utils/response.py": "0183385348ae51a68d3b8618d76ccf000be4c4cf",
+        "src/dojo/utils/code_parsing.py": "5ce9248dffc897ec2592aefc3b69a9e6e14fabce",
+        "src/dojo/tasks/mlebench/task.py": "a20362851f5917084dde9255738ee4be2e566777",
+        "src/dojo/core/interpreters/base.py": "5919572aeeedb2d57209676f69cbf354a28f703a"
+      },
+      "all_reference_blobs_equal": true
+    },
+    {
+      "metadata_commit": "4896f76142fe5df8e16290d1efb8c69ff72827fe",
+      "resolved_commit": "4896f76142fe5df8e16290d1efb8c69ff72827fe",
+      "directories": 4,
+      "git_blobs": {
+        "src/dojo/core/solvers/utils/response.py": "0183385348ae51a68d3b8618d76ccf000be4c4cf",
+        "src/dojo/utils/code_parsing.py": "5ce9248dffc897ec2592aefc3b69a9e6e14fabce",
+        "src/dojo/tasks/mlebench/task.py": "a20362851f5917084dde9255738ee4be2e566777",
+        "src/dojo/core/interpreters/base.py": "5919572aeeedb2d57209676f69cbf354a28f703a"
+      },
+      "all_reference_blobs_equal": true
+    },
+    {
+      "metadata_commit": "bef8c3ac0c0e15bdd528ba6ff53202b31691c638",
+      "resolved_commit": "bef8c3ac0c0e15bdd528ba6ff53202b31691c638",
+      "directories": 3,
+      "git_blobs": {
+        "src/dojo/core/solvers/utils/response.py": "0183385348ae51a68d3b8618d76ccf000be4c4cf",
+        "src/dojo/utils/code_parsing.py": "5ce9248dffc897ec2592aefc3b69a9e6e14fabce",
+        "src/dojo/tasks/mlebench/task.py": "a20362851f5917084dde9255738ee4be2e566777",
+        "src/dojo/core/interpreters/base.py": "5919572aeeedb2d57209676f69cbf354a28f703a"
+      },
+      "all_reference_blobs_equal": true
+    },
+    {
+      "metadata_commit": "f6f49818c46eebbfc7650a77f417b04fb10dc732",
+      "resolved_commit": "f6f49818c46eebbfc7650a77f417b04fb10dc732",
+      "directories": 15,
+      "git_blobs": {
+        "src/dojo/core/solvers/utils/response.py": "0183385348ae51a68d3b8618d76ccf000be4c4cf",
+        "src/dojo/utils/code_parsing.py": "5ce9248dffc897ec2592aefc3b69a9e6e14fabce",
+        "src/dojo/tasks/mlebench/task.py": "a20362851f5917084dde9255738ee4be2e566777",
+        "src/dojo/core/interpreters/base.py": "5919572aeeedb2d57209676f69cbf354a28f703a"
+      },
+      "all_reference_blobs_equal": true
+    }
+  ],
+  "per_run_sha256": "085f7692180a19b937490af285e41aeffa88ab08a7f46daace54fa1e5f1306dd",
+  "script_sha256": "6977ef0a1969024c8e9492316deb22a29f56fa3e4287f4fb4162e02dba56c15d",
+  "boundary": "Recorded commit source equality, not proof of absence of uncommitted production edits or exact historical Python/package environment."
+}

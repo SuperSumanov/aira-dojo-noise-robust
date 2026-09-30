@@ -1,0 +1,25 @@
+{
+  "status": "PASS",
+  "reference_commit": "e385f863cb531904e611e987f7f71606796db656",
+  "baseline_git_blobs": {
+    "src/dojo/core/solvers/utils/response.py": "0183385348ae51a68d3b8618d76ccf000be4c4cf",
+    "src/dojo/utils/code_parsing.py": "5ce9248dffc897ec2592aefc3b69a9e6e14fabce",
+    "src/dojo/tasks/mlebench/task.py": "a20362851f5917084dde9255738ee4be2e566777",
+    "src/dojo/core/interpreters/base.py": "5919572aeeedb2d57209676f69cbf354a28f703a"
+  },
+  "baseline_source_bytes_exact": true,
+  "changed_production_paths": [
+    "src/dojo/core/solvers/utils/response.py",
+    "src/dojo/utils/code_parsing.py",
+    "src/dojo/utils/python_code_blocks.py"
+  ],
+  "patch_sha256": "fdf86fb96b57453154c3ebbcf1315da158874b8a5c6d1841c2f5560b2d246237",
+  "post_apply_file_sha256": {
+    "src/dojo/core/solvers/utils/response.py": "c71cb69fee8c628a0332c7b3c65244b09d3b4d10aabc9d85349ab2aee3a881d9",
+    "src/dojo/utils/code_parsing.py": "8587a340eaab35e5d83047a311008fca9ef0543555560b2fc529b9c17f73afee",
+    "src/dojo/utils/python_code_blocks.py": "7b07bfe8621b36cf7ed867e6957b10ddcdba7df1184ac7c5a57fbbd66bdb5620"
+  },
+  "actual_apply_verified": true,
+  "script_sha256": "85fc4f5cb1f2623af55b439ce12b7527aeb60b9c856bec97689d1ef9d558e398",
+  "scope": "Only an isolated temporary repository was patched. No production job or candidate execution."
+}

@@ -1,0 +1,21 @@
+{
+  "status": "PASS",
+  "tests_run": 17,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "python": "3.12.13 (main, Jun 23 2026, 15:18:55) [Clang 22.1.3 ]",
+  "black": "26.5.1",
+  "source_file_sha256": {
+    "baseline/src/dojo/core/interpreters/base.py": "355a8831986c753f46a5c3e13597ebf67a2060142a5986f25b4cbbdfd216b529",
+    "baseline/src/dojo/core/solvers/utils/response.py": "dbbf56cf58b9597be44afa1b146909fb724281b8793e85cddead13ef7f9b7dca",
+    "baseline/src/dojo/tasks/mlebench/task.py": "3beec5506196912f8074206880d2feb0cbb80b6da7c2e209b09c89c6ad944306",
+    "baseline/src/dojo/utils/code_parsing.py": "2509c6774b759a1943ff113235fc277fafd87742d2229da63590164cb723dfa6",
+    "candidate/src/dojo/core/solvers/utils/response.py": "c71cb69fee8c628a0332c7b3c65244b09d3b4d10aabc9d85349ab2aee3a881d9",
+    "candidate/src/dojo/utils/code_parsing.py": "8587a340eaab35e5d83047a311008fca9ef0543555560b2fc529b9c17f73afee",
+    "candidate/src/dojo/utils/python_code_blocks.py": "7b07bfe8621b36cf7ed867e6957b10ddcdba7df1184ac7c5a57fbbd66bdb5620",
+    "test_parser_fix.py": "bb010c8513176c72836cba91137fbfd4c891dcc1671914af06999a5bdf4ffda5"
+  },
+  "runner_sha256": "24edf8c71c4fe1b91738c5a12489792d526383c97e38e002eb06fb94d3da9a0b",
+  "scope": "Synthetic regression and real task admission with intercepted interpreter. No candidate execution or MLE score."
+}

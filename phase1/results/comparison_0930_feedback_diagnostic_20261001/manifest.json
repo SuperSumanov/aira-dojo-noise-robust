@@ -1,13 +1,13 @@
 {
   "status": "PASS",
   "files_scanned": 22,
-  "bytes_scanned": 2060060,
+  "bytes_scanned": 2062096,
   "credential_hits": 0,
   "private_payload_fields": 0,
   "script_hash_links_checked": 6,
   "files": {
-    ".gitattributes": "732b1d2709b01edce21d38835222132a72cf353e991d2db136a6d4e3902a0d8d",
-    "phase1/CURRENT_DIRECTION.md": "641484cbd5d12a30de6103d2c8680c234971370758981a48a431b4abec4ba6d5",
+    ".gitattributes": "bdb53d6d8deebf388c2159e30c6a87b4285bd7cc77c76b2cd6c267bc3aa377dc",
+    "phase1/CURRENT_DIRECTION.md": "7f9ffee304217e1848b974cd22466cb2a590ab5d3a9061ea08e8ec7950b0a31b",
     "phase1/results/comparison_0930_feedback_diagnostic_20261001/independent_raw_receipt.json": "83d06467d603498af1cea5230f4c42d722052b99999ff3b86969792b607b9870",
     "phase1/results/comparison_0930_feedback_diagnostic_20261001/numeric_trace.json": "b419063798df48d75875e28c4d8f32143a851ac362f0e6cdba1715f5825ed7c8",
     "phase1/results/comparison_0930_feedback_diagnostic_20261001/original_per_run.json": "3bea537b22bd2a0dba6a3258c86c1a60bd5546a25e6e79d3e8fef9ec5b53b805",

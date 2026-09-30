@@ -68,6 +68,7 @@ def create_snapshot() -> Path:
                 "*.mypy_cache",
                 "src/verl/**",
                 "src/verl",
+                "data"
             ],
             # RsyncSnapshot otherwise ignores untracked source files, which is
             # surprising and breaks freshly-added worker/launcher modules.

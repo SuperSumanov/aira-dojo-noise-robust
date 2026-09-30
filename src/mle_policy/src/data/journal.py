@@ -35,7 +35,8 @@ CODE_OPERATORS = ("draft", "debug", "improve", "crossover")
 
 # The only non-deterministic part of a rendered prompt: draft/debug/improve/
 # crossover all do ``random.shuffle(cfg.available_packages)`` before rendering.
-PACKAGES_RE = re.compile(r"(the following packages installed: )([^\n]+?)(\. If you need)")
+PACKAGES_RE_V1 = re.compile(r"(the following packages installed: )([^\n]+?)(\. If you need)")
+PACKAGES_RE_V2 = re.compile(r"(the following packages installed: )([^\n]+?)(\. Use only these installed packages)")
 
 # Search memory changes after every sibling is evaluated.  It is useful to the
 # model, but should not make otherwise identical decision points separate groups.
@@ -77,7 +78,9 @@ def canonicalize_packages(text: str) -> str:
         listing = ", ".join(f"`{name}`" for name in sorted(set(packages)))
         return f"{match.group(1)}{listing}{match.group(3)}"
 
-    return PACKAGES_RE.sub(replace, text)
+    text = PACKAGES_RE_V1.sub(replace, text)
+    text = PACKAGES_RE_V2.sub(replace, text)
+    return text
 
 
 def canonical_prompt(messages: list[dict[str, Any]], normalize_packages: bool) -> list[dict[str, Any]]:

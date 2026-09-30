@@ -68,6 +68,7 @@ def create_snapshot() -> Path:
                 "*.mypy_cache",
                 "src/verl/**",
                 "src/verl",
+                "data/**",
                 "data"
             ],
             # RsyncSnapshot otherwise ignores untracked source files, which is

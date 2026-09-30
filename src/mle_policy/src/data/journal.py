@@ -31,7 +31,7 @@ from pathlib import Path
 from typing import Any, Iterator
 
 # Operators whose completion is the solution the node gets scored for.
-CODE_OPERATORS = ("draft", "debug", "improve", "crossover")
+CODE_OPERATORS = ("draft", "debug", "improve", "crossover", "analysis")
 
 # The only non-deterministic part of a rendered prompt: draft/debug/improve/
 # crossover all do ``random.shuffle(cfg.available_packages)`` before rendering.

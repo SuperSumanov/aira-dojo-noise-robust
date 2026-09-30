@@ -25,13 +25,13 @@ journal.jsonl
    │  3. assign_splits.py        归总之后再决定 train/val
    ▼
 <out>/<bucket>/splits.jsonl
-   │  4. to_sft.py / to_dpo.py / to_grpo.py
+   │  4. to_sft.py / to_grpo.py
    ▼
-<out>/<bucket>/{sft,dpo,grpo}.jsonl + parquet
+<out>/<bucket>/{sft,grpo}.jsonl + parquet
 ```
 
 `scripts/data/build_all_batches.sh` 负责第 1 步的循环和分桶。后面的归总、切分、
-SFT、DPO、GRPO 各有独立脚本，可以从任意一步重新运行：
+SFT、GRPO 各有独立脚本，可以从任意一步重新运行：
 
 ```bash
 source /research/d2/gds/zzchen2/anaconda/bin/activate aira-dojo
@@ -40,7 +40,6 @@ bash src/mle_policy/scripts/data/build_all_batches.sh data/augmented_mle_critic/
 bash src/mle_policy/scripts/data/aggregate_batches.sh "$OUT_ROOT"
 bash src/mle_policy/scripts/data/assign_splits.sh "$OUT_ROOT" run 0.1
 bash src/mle_policy/scripts/data/to_sft.sh "$OUT_ROOT"
-bash src/mle_policy/scripts/data/to_dpo.sh "$OUT_ROOT"
 bash src/mle_policy/scripts/data/to_grpo.sh "$OUT_ROOT"
 ```
 
@@ -234,43 +233,29 @@ prompt 做一次包排序就能得到。要看完整内容就看 `samples.jsonl`
 | `source_path` | 来自哪个 journal 文件 |
 
 `groups.jsonl` 的成员是一整个 episode，包含 `root_sample_id` 和 `sample_ids`，以及 root
-动作和 episode 的结果摘要。DPO/GRPO 只拿 `root_sample_id` 做同输入比较；SFT 先选最好的
-episode，再从该 episode 里选一个能运行的动作。因此 episode 内的 debug/improve call 不会
-被错误地当成 root prompt 的并列候选。
+动作和 episode 的结果摘要。GRPO 按 `root_sample_id` 找到完整的 `sample_ids` 序列；SFT
+和 GRPO 都不会把 episode 内的 debug/analysis call 当成独立候选。
 
-## 6. 三种训练视角
+## 6. 两种训练视角
 
-三个程序各自读同一份中间件，各自写自己的输出。共同的选择逻辑在 `selection.py`：
+两个程序各自读同一份中间件，各自写自己的输出。共同的选择逻辑在 `selection.py`：
 成员按 `episode_reward` 排序，没走通的排在最后。
 
 ### 6.1 `to_sft.py`
 
-每个 group 先挑 episode reward 最高的 episode，再从这个 episode 里挑一条**能跑**的
-code action，写成
+每个 group 先挑 episode reward 最高的 episode，然后将整个episode内所有operation写成一系列
 `[system, user, assistant]`。输出 `sft.jsonl` + `sft_{train,val}.parquet`
 （只有一列 `messages`，可以直接喂 `src/verl` 的 `multiturn_sft_dataset`）。
 
-**为什么 SFT 选完 episode 还要单独挑 action？** 一个挂掉的 draft 可能有很高的
-episode reward（后面的 debug 救回来了），但 SFT 不应该直接模仿这段跑不起来的代码。
-所以 episode 用最终 reward 排名，真正写入 SFT 的却必须是该 episode 里实际跑通的 code action。
-
-### 6.2 `to_dpo.py`
-
-每个 group 在 episode 的 root action 之间出若干对：`chosen` 是 root 输入下
-`episode_reward` 最高的 episode，`rejected` 是所有结局更差的 episode（包括根本没走通的）。
-输出 `dpo.jsonl`；episode 后续的 debug/improve call 不参与这个 root 决策点的配对。
-
-**`chosen` 不要求自己能跑。** 在 draft 这种决策点上，一组候选往往全是挂的，
-真正有意义的比较是"哪个挂掉的 draft 是能救回来的"。所以默认按 episode return 排序；
-想要保守版本（只拿自己能跑的当正例）加 `--require-node-result`。
-
-`rejected.failed == true` 的对是"能跑通的解 vs 跑挂的解"，教的是"别写崩"；
-按 `rejected.failed == false` 过滤就只剩质量对。
+**root step的system和user prompt改成该组内最早一步的system和user prompt** 我们将后续加入的
+memory视作一种扰动，目的是为了让模型输出不一样的代码。而这里训练的目的是让模型一开始就找到更好的代码
+所以将后续episode的root step的prompt改成group内最早的一步的prompt。
 
 ### 6.3 `to_grpo.py`
 
-每个 group 一行，只出"组内至少两个 episode 走通"的组，使用各 episode 的 root action，
-`responses` 按 reward 从高到低。
+每个 group 一行，只出"组内至少两个 episode 走通"的组。公共 `prompt` 使用 group 内
+最早 episode 的 root prompt；每个 `responses` 成员保存完整 episode：root completion
+之后依次放入后续 operation 的 prompt 和 completion，按 episode reward 从高到低排列。
 输出 `grpo.jsonl` + `grpo_{train,val}.parquet`。
 
 **说清楚一件事：这不是 `src/verl` 现成的 GRPO 输入格式。** verl 的 `RLHFDataset` 只吃
@@ -326,8 +311,8 @@ reward = (score - median_threshold) / (gold_threshold - median_threshold)
 
 | 桶 | journal | 样本（LLM 调用） | group | 环境数 | episode（走通的） |
 | --- | ---: | ---: | ---: | ---: | ---: |
-| `non_thinking` | 1504 | 120,434 | 15,371 | 395 | 29,617（25,792） |
-| `thinking` | 156 | 7,451 | 751 | 22 | 1,557（1,556） |
+| `non_thinking` | 1504 | 120,434 | 12,519 | 395 | 29,617（25,792） |
+| `thinking` | 156 | 7,451 | 677 | 22 | 1,557（1,556） |
 | `other` | 0 | — | — | — | — |
 
 （`raw_journal` 下带 `dojo_config.json` 的 run 目录一共 1838 个，其中 1660 个写了
@@ -338,11 +323,10 @@ reward = (score - median_threshold) / (gold_threshold - median_threshold)
 | 视角 | `non_thinking` | `thinking` |
 | --- | ---: | ---: |
 | `sft.jsonl`（每组一条） | 13,543（train 12,205 / val 1,338） | 751（train 693 / val 58） |
-| `dpo.jsonl`（每个组内配对） | 12,282（其中 4,866 对的 rejected 没跑通） | 814（496） |
-| `grpo.jsonl`（每组一行，组内 ≥2 条走通） | 9,732 组 / 22,197 条回复 | 666 组 / 1,494 条回复 |
+| `grpo.jsonl`（每组一行，组内 ≥2 条走通） | 10,612 组 / 25,900 条回复 | 669 组 / 1,571 条回复 |
 
-单成员 group 共 3,847 个（`non_thinking` 3,770，`thinking` 77）；其余 12,275 个
-都有至少两个 episode。GRPO 可用组由旧版的 758 个增至 10,398 个。这里同时用了
+单成员 group 共 44 个（`non_thinking` 44，`thinking` 0）；其余 13,152 个
+都有至少两个 episode。GRPO 可用组由旧版的 758 个增至 11,281 个。这里同时用了
 第 2 节的 episode 结局奖励和新的搜索记忆忽略规则。
 
 ### 9.3 时间和体积
@@ -356,12 +340,7 @@ reward = (score - median_threshold) / (gold_threshold - median_threshold)
 ## 10. 已知问题
 
 1. **合并后的候选实际看到的搜索记忆不同。** `prompt_key` 忽略搜索记忆，
-   但 `samples.jsonl` 和 SFT/DPO/GRPO 导出的 prompt 仍保留它。实测 DPO 导出中
-   `non_thinking` 12,282 对里的 11,344 对、`thinking` 814 对里的 628 对的训练 prompt
-   带有这一节；GRPO 两桶分别是 9,384/9,732 组和 630/666 组。记忆可能提到组内其他
-   候选的运行结果，因此这些组的回答不能严格视为在完全相同输入下生成，训练前需要处理这个问题。
-2. **`analysis` 算子没有靠谱的 reward。** 官方分数是打给节点产出的代码的，不是打给分析文本的。
-   它留在 `samples.jsonl` 里，但默认不进三种训练视角（`--operators` 里没有它）。
+   但 `samples.jsonl` 和 SFT/GRPO 导出的 prompt 仍保留它。
 3. **`journal_for_unselected.jsonl` 没有收。** 那是 ForeTS 被 critic 淘汰、根本没执行的候选，
    正好是"同一个 prompt 的多个回答"，而且一组候选的生成条件完全一致，对 GRPO 的价值可能
    比 `journal.jsonl` 还高。但它们的 `score` 一律为空，需要单独的 reward 设计。

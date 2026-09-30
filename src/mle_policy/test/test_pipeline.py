@@ -6,7 +6,6 @@ from src.mle_policy.src.data import groupdata
 from src.mle_policy.src.data.aggregate_groups import aggregate
 from src.mle_policy.src.data.assign_splits import assign_dataset_splits, assign_splits
 from src.mle_policy.src.data.build_batch_groups import build_batch
-from src.mle_policy.src.data.to_dpo import to_dpo
 from src.mle_policy.src.data.to_grpo import to_grpo
 from src.mle_policy.src.data.to_sft import to_sft
 
@@ -136,17 +135,76 @@ def test_aggregate_then_split_then_views(tmp_path, node_builder, run_writer):
     assert sft_rows["spaceship-titanic"]["messages"][-1]["content"] == "good"
     assert sft_rows["spaceship-titanic"]["reward"] == pytest.approx((0.9 - 0.5) / 0.3)
 
-    dpo = to_dpo(merged, merged, verbose=False)
-    assert dpo["pairs"] == 1
-    (pair,) = read_jsonl(merged / "dpo.jsonl")
-    assert pair["chosen"]["completion"] == "good"
-    assert pair["rejected"]["completion"] == "bad"
-
     grpo = to_grpo(merged, merged, verbose=False)
     assert grpo["groups"] == 1
     (row,) = read_jsonl(merged / "grpo.jsonl")
     assert [response["completion"] for response in row["responses"]] == ["good", "bad"]
     assert row["responses"][0]["reward"] > row["responses"][1]["reward"]
+    assert [turn["role"] for turn in row["responses"][0]["messages"]] == ["assistant"]
+
+
+def test_grpo_keeps_the_complete_episode_and_uses_earliest_group_prompt(
+    tmp_path, node_builder, run_writer
+):
+    for run, root_completion, debug_prompt, debug_completion in (
+        ("run-a", "root-a", "debug prompt a", "debug-a"),
+        ("run-b", "root-b", "debug prompt b", "debug-b"),
+    ):
+        run_writer(
+            tmp_path / "batch",
+            run,
+            [
+                node_builder(1, calls=[("draft", "shared root", root_completion)], buggy=True),
+                node_builder(
+                    2,
+                    calls=[("debug", debug_prompt, debug_completion)],
+                    buggy=False,
+                    score=0.6 if run == "run-a" else 0.55,
+                    parents=(1,),
+                ),
+            ],
+        )
+    build_batch(tmp_path / "batch", tmp_path / "out", verbose=False)
+    assign_dataset_splits(tmp_path / "out", val_fraction=0.0, verbose=False)
+
+    summary = to_grpo(tmp_path / "out", tmp_path / "out", verbose=False)
+    assert summary["groups"] == 1
+    (row,) = read_jsonl(tmp_path / "out" / "grpo.jsonl")
+    assert row["prompt"][0]["content"] == "shared root"
+    by_root = {response["sample_id"]: response for response in row["responses"]}
+    assert all(len(response["messages"]) == 3 for response in by_root.values())
+    assert {turn["content"] for response in by_root.values() for turn in response["messages"]} >= {
+        "root-a",
+        "debug-a",
+        "root-b",
+        "debug-b",
+    }
+
+
+def test_views_use_unresolved_episode_as_earliest_prompt(tmp_path, node_builder, run_writer):
+    # The earliest episode is unresolved, but its prompt is still the group's
+    # initial input and must be used for the two later resolved episodes.
+    run_writer(
+        tmp_path / "batch",
+        "run-earliest",
+        [node_builder(0, calls=[("draft", "shared root\n# PREVIOUSLY EXPLORED IMPROVEMENT IDEAS\nold\n# DATA OVERVIEW\nsame", "bad")], buggy=True)],
+    )
+    for run, completion, score in (("run-a", "good-a", 0.9), ("run-b", "good-b", 0.8)):
+        run_writer(
+            tmp_path / "batch",
+            run,
+                [node_builder(1, calls=[("draft", "shared root\n# DATA OVERVIEW\nsame", completion)], buggy=False, score=score)],
+        )
+    build_batch(tmp_path / "batch", tmp_path / "out", verbose=False)
+    assign_dataset_splits(tmp_path / "out", val_fraction=0.0, verbose=False)
+
+    to_sft(tmp_path / "out", tmp_path / "out", verbose=False)
+    sft_rows = read_jsonl(tmp_path / "out" / "sft.jsonl")
+    assert sft_rows[0]["messages"][0]["content"].startswith("shared root\n# PREVIOUSLY")
+
+    to_grpo(tmp_path / "out", tmp_path / "out", verbose=False)
+    (grpo_row,) = read_jsonl(tmp_path / "out" / "grpo.jsonl")
+    assert grpo_row["prompt"][0]["content"].startswith("shared root\n# PREVIOUSLY")
 
 
 def merged_manifest(path):
@@ -173,26 +231,12 @@ def test_broken_drafts_still_form_a_preference_pair(tmp_path, node_builder, run_
     build_batch(tmp_path / "batch", tmp_path / "out", verbose=False)
     assign_dataset_splits(tmp_path / "out", val_fraction=0.0, verbose=False)
 
-    # SFT still refuses to imitate a draft that never ran; the only runnable
-    # solution here is run-a's debug output.
+    # SFT keeps the complete best episode, including its broken root and the
+    # debug action that eventually ran.
     sft = to_sft(tmp_path / "out", tmp_path / "out", verbose=False)
-    assert sft["rows"] == 1
-    (row,) = read_jsonl(tmp_path / "out" / "sft.jsonl")
-    assert row["messages"][-1]["content"] == "clean"
-
-    # DPO pairs the two drafts and prefers the one whose process was recoverable.
-    dpo = to_dpo(tmp_path / "out", tmp_path / "out", verbose=False)
-    assert dpo["pairs"] == 1
-    (pair,) = read_jsonl(tmp_path / "out" / "dpo.jsonl")
-    assert pair["chosen"]["completion"] == "broken-but-recoverable"
-    assert pair["chosen"]["reward"] == pytest.approx((0.9 - 0.5) / 0.3)
-    assert pair["rejected"]["completion"] == "broken-unrecoverable"
-    assert pair["rejected"]["reward"] is None
-    assert pair["rejected"]["failed"] is True
-
-    # ... and --require-node-result gives the conservative variant instead.
-    conservative = to_dpo(tmp_path / "out", tmp_path / "out", require_node_result=True, verbose=False)
-    assert conservative["pairs"] == 0
+    assert sft["rows"] == 2
+    rows = read_jsonl(tmp_path / "out" / "sft.jsonl")
+    assert [row["messages"][-1]["content"] for row in rows] == ["broken-but-recoverable", "clean"]
 
 
 def test_views_carry_the_canonical_prompt(tmp_path, node_builder, run_writer):

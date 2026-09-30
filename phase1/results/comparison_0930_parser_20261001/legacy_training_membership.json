@@ -1,0 +1,76 @@
+{
+  "status": "TRAINING_MEMBERSHIP_ONLY",
+  "folds_checked": 9,
+  "row_digest": "f04eba2a8986d2db3805e296ba43dcb079ac8923ce1a698754a0ec1e32915c9c",
+  "rows": [
+    {
+      "fold": "run_0",
+      "source_run_in_train": true,
+      "source_run_heldout": false,
+      "input_hash_in_train": true,
+      "bad_debug_row_in_repair_and_mixed_training": true
+    },
+    {
+      "fold": "run_1",
+      "source_run_in_train": false,
+      "source_run_heldout": true,
+      "input_hash_in_train": false,
+      "bad_debug_row_in_repair_and_mixed_training": false
+    },
+    {
+      "fold": "run_2",
+      "source_run_in_train": true,
+      "source_run_heldout": false,
+      "input_hash_in_train": true,
+      "bad_debug_row_in_repair_and_mixed_training": true
+    },
+    {
+      "fold": "run_3",
+      "source_run_in_train": true,
+      "source_run_heldout": false,
+      "input_hash_in_train": true,
+      "bad_debug_row_in_repair_and_mixed_training": true
+    },
+    {
+      "fold": "run_4",
+      "source_run_in_train": true,
+      "source_run_heldout": false,
+      "input_hash_in_train": true,
+      "bad_debug_row_in_repair_and_mixed_training": true
+    },
+    {
+      "fold": "loto_0",
+      "source_run_in_train": true,
+      "source_run_heldout": false,
+      "input_hash_in_train": true,
+      "bad_debug_row_in_repair_and_mixed_training": true
+    },
+    {
+      "fold": "loto_1",
+      "source_run_in_train": true,
+      "source_run_heldout": false,
+      "input_hash_in_train": true,
+      "bad_debug_row_in_repair_and_mixed_training": true
+    },
+    {
+      "fold": "loto_2",
+      "source_run_in_train": false,
+      "source_run_heldout": true,
+      "input_hash_in_train": false,
+      "bad_debug_row_in_repair_and_mixed_training": false
+    },
+    {
+      "fold": "loto_3",
+      "source_run_in_train": true,
+      "source_run_heldout": false,
+      "input_hash_in_train": true,
+      "bad_debug_row_in_repair_and_mixed_training": true
+    }
+  ],
+  "affected_folds": 7,
+  "potentially_affected_fitted_models": 14,
+  "folds_sha256": "1b6c96e62e13c24a4aee778e1c2054fed0a16c08fd51ff703825b38265bf3b04",
+  "case_sha256": "a88415a54fa624f175e022451fcd68ddf07df521b933a020696e5e702a62ea70",
+  "script_sha256": "1ef8a45b277ee3d143e8123309de66a76cf1419b3f3924b62ecec5068157c55f",
+  "boundary": "Only the original 36-fit study: repair/mixed fit membership, not influence magnitude or sign. Derived prior adjustments may also change; later matched/contrast studies not enumerated. No model files, prediction values, metrics or refits."
+}

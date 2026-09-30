@@ -1,0 +1,28 @@
+{
+  "status": "FIXED_SINGLE_ROW_REPLAY",
+  "rows": [
+    {
+      "row_digest": "f04eba2a8986d2db3805e296ba43dcb079ac8923ce1a698754a0ec1e32915c9c",
+      "run_digest": "2b7183932e4e50dc",
+      "journal_sha256": "1b87d6bdfc5d55476821010b9be1115d8b47db03ab72d66726f53afe791e3508",
+      "stored_code_sha256": "00327571a62e4984f48e2e07c66071e271b6a5df37562db22106ee991e4e1d68",
+      "input_20000_sha256": "6f0c9c17cc6d58aa2076f7472c7d0f9e89e83f3a10aa5b07d09ea36b9f92c6eb",
+      "stored_code_chars": 298045,
+      "old_admitted": false,
+      "new_admitted": false
+    }
+  ],
+  "source_reference_commit": "e385f863cb531904e611e987f7f71606796db656",
+  "script_sha256": "66f2ddcf6f78970bf7f3dc93c1ac404b1693f29bfaa30076e847674599df8225",
+  "package_hashes": {
+    "test_parser_fix.py": "bb010c8513176c72836cba91137fbfd4c891dcc1671914af06999a5bdf4ffda5",
+    "candidate/src/dojo/utils/code_parsing.py": "8587a340eaab35e5d83047a311008fca9ef0543555560b2fc529b9c17f73afee",
+    "candidate/src/dojo/utils/python_code_blocks.py": "7b07bfe8621b36cf7ed867e6957b10ddcdba7df1184ac7c5a57fbbd66bdb5620",
+    "candidate/src/dojo/core/solvers/utils/response.py": "c71cb69fee8c628a0332c7b3c65244b09d3b4d10aabc9d85349ab2aee3a881d9",
+    "baseline/src/dojo/utils/code_parsing.py": "2509c6774b759a1943ff113235fc277fafd87742d2229da63590164cb723dfa6",
+    "baseline/src/dojo/tasks/mlebench/task.py": "3beec5506196912f8074206880d2feb0cbb80b6da7c2e209b09c89c6ad944306",
+    "baseline/src/dojo/core/interpreters/base.py": "355a8831986c753f46a5c3e13597ebf67a2060142a5986f25b4cbbdfd216b529",
+    "baseline/src/dojo/core/solvers/utils/response.py": "dbbf56cf58b9597be44afa1b146909fb724281b8793e85cddead13ef7f9b7dca"
+  },
+  "boundary": "Existing failed label case only, not a quality-selected candidate or an efficacy trial. No model calls or candidate execution."
+}

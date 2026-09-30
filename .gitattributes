@@ -1,4 +1,5 @@
 # This diagnostic's receipts bind exact bytes across operating systems.
+/.gitattributes text eol=lf
 phase1/scripts/comparison_0930_parser/*.py -text
 phase1/results/comparison_0930_parser_20261001/** -text
 phase1/patches/python_fence_parser_20261001/** -text

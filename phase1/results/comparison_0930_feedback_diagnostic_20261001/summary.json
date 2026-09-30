@@ -1,0 +1,164 @@
+{
+  "kind": "EXPLORATORY_ARCHIVE_DIAGNOSTIC_NOT_METHOD_BENEFIT",
+  "all": {
+    "run_directories": 39,
+    "root_segments": 40,
+    "events": 1023,
+    "original_actions": 268,
+    "original_finite_grade": 67,
+    "debug_actions": 715,
+    "last_choice_finite_grade": 36,
+    "last_choice_is_debug": 23,
+    "last_choice_finite_origin_ungraded": 22,
+    "measurable_replacements": 111,
+    "external_regressions": 25,
+    "run_directories_with_external_regression": 16,
+    "observed_chains_first_ungraded_later_graded": 167,
+    "execution_seconds": 2370769.8636068897,
+    "debug_execution_seconds": 1797723.971913225,
+    "pooled_debug_execution_share": 0.75828700183415,
+    "per_run_debug_execution_share": {
+      "n": 37,
+      "mean": 0.720172742514546,
+      "median": 0.7356981890261513,
+      "sd": 0.21588504505345726
+    }
+  },
+  "by_task": {
+    "google-quest-challenge": {
+      "run_directories": 15,
+      "root_segments": 15,
+      "events": 596,
+      "original_actions": 129,
+      "original_finite_grade": 25,
+      "debug_actions": 452,
+      "last_choice_finite_grade": 15,
+      "last_choice_is_debug": 12,
+      "last_choice_finite_origin_ungraded": 11,
+      "measurable_replacements": 51,
+      "external_regressions": 12,
+      "run_directories_with_external_regression": 8,
+      "observed_chains_first_ungraded_later_graded": 86,
+      "execution_seconds": 1024610.6706732651,
+      "debug_execution_seconds": 791546.4531988078,
+      "pooled_debug_execution_share": 0.7725338763831999,
+      "per_run_debug_execution_share": {
+        "n": 15,
+        "mean": 0.7670077105694045,
+        "median": 0.7844078336988399,
+        "sd": 0.16832542538817838
+      }
+    },
+    "petfinder-pawpularity-score": {
+      "run_directories": 24,
+      "root_segments": 25,
+      "events": 427,
+      "original_actions": 139,
+      "original_finite_grade": 42,
+      "debug_actions": 263,
+      "last_choice_finite_grade": 21,
+      "last_choice_is_debug": 11,
+      "last_choice_finite_origin_ungraded": 11,
+      "measurable_replacements": 60,
+      "external_regressions": 13,
+      "run_directories_with_external_regression": 8,
+      "observed_chains_first_ungraded_later_graded": 81,
+      "execution_seconds": 1346159.1929336246,
+      "debug_execution_seconds": 1006177.5187144172,
+      "pooled_debug_execution_share": 0.7474431879945042,
+      "per_run_debug_execution_share": {
+        "n": 22,
+        "mean": 0.6882398097498696,
+        "median": 0.7342125034176998,
+        "sd": 0.24160416574079074
+      }
+    }
+  },
+  "syntax": {
+    "raw_parse_coverage": {
+      "parsed": 779,
+      "parse_failures": 204,
+      "improve_debug_origins": 138,
+      "run_directories": 39
+    },
+    "groups": [
+      {
+        "task": "google-quest-challenge",
+        "endpoint": "first_finite_grade_debug",
+        "all_chains": 63,
+        "usable_ast": 63,
+        "exact_ast_revert_to_parent": 0,
+        "has_novel_call_targets": 63,
+        "all_novel_call_targets_absent": 0,
+        "some_novel_call_targets_absent": 38,
+        "retained_fraction": {
+          "n": 63,
+          "mean": 0.9403765408940122,
+          "median": 0.9705882352941176,
+          "sd": 0.07911929548092071
+        }
+      },
+      {
+        "task": "google-quest-challenge",
+        "endpoint": "last_logged_debug",
+        "all_chains": 76,
+        "usable_ast": 66,
+        "exact_ast_revert_to_parent": 0,
+        "has_novel_call_targets": 66,
+        "all_novel_call_targets_absent": 0,
+        "some_novel_call_targets_absent": 40,
+        "retained_fraction": {
+          "n": 66,
+          "mean": 0.9382920193118159,
+          "median": 0.9629629629629629,
+          "sd": 0.08134239906906468
+        }
+      },
+      {
+        "task": "petfinder-pawpularity-score",
+        "endpoint": "first_finite_grade_debug",
+        "all_chains": 55,
+        "usable_ast": 55,
+        "exact_ast_revert_to_parent": 0,
+        "has_novel_call_targets": 55,
+        "all_novel_call_targets_absent": 0,
+        "some_novel_call_targets_absent": 33,
+        "retained_fraction": {
+          "n": 55,
+          "mean": 0.9207859650013928,
+          "median": 0.9545454545454546,
+          "sd": 0.11947395401854966
+        }
+      },
+      {
+        "task": "petfinder-pawpularity-score",
+        "endpoint": "last_logged_debug",
+        "all_chains": 62,
+        "usable_ast": 62,
+        "exact_ast_revert_to_parent": 0,
+        "has_novel_call_targets": 62,
+        "all_novel_call_targets_absent": 0,
+        "some_novel_call_targets_absent": 38,
+        "retained_fraction": {
+          "n": 62,
+          "mean": 0.9185721010476978,
+          "median": 0.9534632034632035,
+          "sd": 0.1329360020451295
+        }
+      }
+    ]
+  },
+  "input_sha256": {
+    "raw_receipt": "83d06467d603498af1cea5230f4c42d722052b99999ff3b86969792b607b9870",
+    "syntax": "ade100ecaea85243fc8dd1c4b98c8b2ebef06201664a430a49fe14c9eddc67c1"
+  },
+  "script_sha256": "36c13d13f840ba777dccb0b905e8ecac7cc2f12a30d62c9c8aba1e5e8769e511",
+  "limitations": [
+    "Run directories are not independently certified physical runs.",
+    "Last logged native choices are not certified final deliveries.",
+    "Execution seconds exclude generation and other search overhead.",
+    "Syntax disappearance is not semantic intent loss.",
+    "Successful repair endpoints are a selected subset; no causal repair effect.",
+    "Scores are descriptive only, never training or controller feedback."
+  ]
+}

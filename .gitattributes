@@ -1,3 +1,7 @@
+# This diagnostic's receipts bind exact bytes across operating systems.
+phase1/scripts/comparison_0930_feedback/*.py -text
+phase1/results/comparison_0930_feedback_diagnostic_20261001/** -text
+
 # Corpus LFS paths are intentionally narrow.  The old cards_*.jsonl glob also
 # matched 16 historical ordinary Git blobs and made fresh worktrees emit false
 # "should have been pointers" warnings.  Add each new immutable batch family here.

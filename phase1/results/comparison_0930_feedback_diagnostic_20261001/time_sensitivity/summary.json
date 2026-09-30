@@ -1,0 +1,823 @@
+{
+  "kind": "POSTHOC_LOGGED_TIME_SENSITIVITY_NOT_BUDGET_CERTIFICATE",
+  "fixed_grid_seconds": [
+    3600,
+    10800,
+    21600,
+    43200,
+    64800,
+    86400
+  ],
+  "input_sha256": {
+    "rows.json": "f48c30558572dc6512a39301fe3914626c70a45c2dc9d97f1879d280fb2bf993",
+    "numeric_trace.json": "b419063798df48d75875e28c4d8f32143a851ac362f0e6cdba1715f5825ed7c8"
+  },
+  "script_sha256": "27025da402ed7d27227064f11eb21d95798d66cb20d513e65b7eb07be711d5bf",
+  "groups": [
+    {
+      "task": "google-quest-challenge",
+      "arm_a": "forets-selected",
+      "arm_b": "random",
+      "horizon_kind": "3600",
+      "matched_seeds": 3,
+      "both_observed": 3,
+      "a_only_finite": 0,
+      "b_only_finite": 1,
+      "difference": {
+        "n": 0,
+        "mean": null,
+        "median": null,
+        "sd": null
+      },
+      "a_wins": 0,
+      "ties": 0,
+      "b_wins": 0
+    },
+    {
+      "task": "google-quest-challenge",
+      "arm_a": "forets-selected",
+      "arm_b": "random",
+      "horizon_kind": "10800",
+      "matched_seeds": 3,
+      "both_observed": 3,
+      "a_only_finite": 0,
+      "b_only_finite": 1,
+      "difference": {
+        "n": 1,
+        "mean": 0.05241000000000001,
+        "median": 0.05241000000000001,
+        "sd": null
+      },
+      "a_wins": 1,
+      "ties": 0,
+      "b_wins": 0
+    },
+    {
+      "task": "google-quest-challenge",
+      "arm_a": "forets-selected",
+      "arm_b": "random",
+      "horizon_kind": "21600",
+      "matched_seeds": 3,
+      "both_observed": 3,
+      "a_only_finite": 1,
+      "b_only_finite": 0,
+      "difference": {
+        "n": 2,
+        "mean": -0.005209999999999992,
+        "median": -0.005209999999999992,
+        "sd": 0.0029132799384885845
+      },
+      "a_wins": 0,
+      "ties": 0,
+      "b_wins": 2
+    },
+    {
+      "task": "google-quest-challenge",
+      "arm_a": "forets-selected",
+      "arm_b": "random",
+      "horizon_kind": "43200",
+      "matched_seeds": 3,
+      "both_observed": 3,
+      "a_only_finite": 0,
+      "b_only_finite": 0,
+      "difference": {
+        "n": 3,
+        "mean": -0.00547333333333333,
+        "median": -0.003149999999999986,
+        "sd": 0.004401776156659194
+      },
+      "a_wins": 0,
+      "ties": 0,
+      "b_wins": 3
+    },
+    {
+      "task": "google-quest-challenge",
+      "arm_a": "forets-selected",
+      "arm_b": "random",
+      "horizon_kind": "64800",
+      "matched_seeds": 3,
+      "both_observed": 3,
+      "a_only_finite": 0,
+      "b_only_finite": 0,
+      "difference": {
+        "n": 3,
+        "mean": -0.003423333333333334,
+        "median": -0.0014099999999999668,
+        "sd": 0.0044093801529617735
+      },
+      "a_wins": 0,
+      "ties": 0,
+      "b_wins": 3
+    },
+    {
+      "task": "google-quest-challenge",
+      "arm_a": "forets-selected",
+      "arm_b": "random",
+      "horizon_kind": "86400",
+      "matched_seeds": 3,
+      "both_observed": 0,
+      "a_only_finite": 0,
+      "b_only_finite": 0,
+      "difference": {
+        "n": 0,
+        "mean": null,
+        "median": null,
+        "sd": null
+      },
+      "a_wins": 0,
+      "ties": 0,
+      "b_wins": 0
+    },
+    {
+      "task": "google-quest-challenge",
+      "arm_a": "forets-selected",
+      "arm_b": "random",
+      "horizon_kind": "pair_overlap",
+      "matched_seeds": 3,
+      "both_observed": 3,
+      "a_only_finite": 0,
+      "b_only_finite": 0,
+      "difference": {
+        "n": 3,
+        "mean": 0.016483333333333332,
+        "median": 0.01981999999999995,
+        "sd": 0.009590674289815776
+      },
+      "a_wins": 3,
+      "ties": 0,
+      "b_wins": 0
+    },
+    {
+      "task": "google-quest-challenge",
+      "arm_a": "short",
+      "arm_b": "random",
+      "horizon_kind": "3600",
+      "matched_seeds": 4,
+      "both_observed": 4,
+      "a_only_finite": 1,
+      "b_only_finite": 2,
+      "difference": {
+        "n": 0,
+        "mean": null,
+        "median": null,
+        "sd": null
+      },
+      "a_wins": 0,
+      "ties": 0,
+      "b_wins": 0
+    },
+    {
+      "task": "google-quest-challenge",
+      "arm_a": "short",
+      "arm_b": "random",
+      "horizon_kind": "10800",
+      "matched_seeds": 4,
+      "both_observed": 4,
+      "a_only_finite": 1,
+      "b_only_finite": 2,
+      "difference": {
+        "n": 1,
+        "mean": 0.03669,
+        "median": 0.03669,
+        "sd": null
+      },
+      "a_wins": 1,
+      "ties": 0,
+      "b_wins": 0
+    },
+    {
+      "task": "google-quest-challenge",
+      "arm_a": "short",
+      "arm_b": "random",
+      "horizon_kind": "21600",
+      "matched_seeds": 4,
+      "both_observed": 4,
+      "a_only_finite": 1,
+      "b_only_finite": 0,
+      "difference": {
+        "n": 3,
+        "mean": -0.013019999999999995,
+        "median": -0.014390000000000014,
+        "sd": 0.029608780792190658
+      },
+      "a_wins": 1,
+      "ties": 0,
+      "b_wins": 2
+    },
+    {
+      "task": "google-quest-challenge",
+      "arm_a": "short",
+      "arm_b": "random",
+      "horizon_kind": "43200",
+      "matched_seeds": 4,
+      "both_observed": 4,
+      "a_only_finite": 0,
+      "b_only_finite": 0,
+      "difference": {
+        "n": 4,
+        "mean": 0.005642499999999995,
+        "median": 0.005025000000000002,
+        "sd": 0.014961400057035681
+      },
+      "a_wins": 3,
+      "ties": 0,
+      "b_wins": 1
+    },
+    {
+      "task": "google-quest-challenge",
+      "arm_a": "short",
+      "arm_b": "random",
+      "horizon_kind": "64800",
+      "matched_seeds": 4,
+      "both_observed": 4,
+      "a_only_finite": 0,
+      "b_only_finite": 0,
+      "difference": {
+        "n": 4,
+        "mean": 0.006777499999999992,
+        "median": 0.005039999999999961,
+        "sd": 0.014105404106228221
+      },
+      "a_wins": 2,
+      "ties": 0,
+      "b_wins": 2
+    },
+    {
+      "task": "google-quest-challenge",
+      "arm_a": "short",
+      "arm_b": "random",
+      "horizon_kind": "86400",
+      "matched_seeds": 4,
+      "both_observed": 0,
+      "a_only_finite": 0,
+      "b_only_finite": 0,
+      "difference": {
+        "n": 0,
+        "mean": null,
+        "median": null,
+        "sd": null
+      },
+      "a_wins": 0,
+      "ties": 0,
+      "b_wins": 0
+    },
+    {
+      "task": "google-quest-challenge",
+      "arm_a": "short",
+      "arm_b": "random",
+      "horizon_kind": "pair_overlap",
+      "matched_seeds": 4,
+      "both_observed": 4,
+      "a_only_finite": 0,
+      "b_only_finite": 0,
+      "difference": {
+        "n": 4,
+        "mean": 0.010717500000000005,
+        "median": 0.011564999999999992,
+        "sd": 0.010706466503940497
+      },
+      "a_wins": 3,
+      "ties": 0,
+      "b_wins": 1
+    },
+    {
+      "task": "google-quest-challenge",
+      "arm_a": "short",
+      "arm_b": "forets-selected",
+      "horizon_kind": "3600",
+      "matched_seeds": 3,
+      "both_observed": 3,
+      "a_only_finite": 1,
+      "b_only_finite": 0,
+      "difference": {
+        "n": 0,
+        "mean": null,
+        "median": null,
+        "sd": null
+      },
+      "a_wins": 0,
+      "ties": 0,
+      "b_wins": 0
+    },
+    {
+      "task": "google-quest-challenge",
+      "arm_a": "short",
+      "arm_b": "forets-selected",
+      "horizon_kind": "10800",
+      "matched_seeds": 3,
+      "both_observed": 3,
+      "a_only_finite": 1,
+      "b_only_finite": 0,
+      "difference": {
+        "n": 1,
+        "mean": -0.015720000000000012,
+        "median": -0.015720000000000012,
+        "sd": null
+      },
+      "a_wins": 0,
+      "ties": 0,
+      "b_wins": 1
+    },
+    {
+      "task": "google-quest-challenge",
+      "arm_a": "short",
+      "arm_b": "forets-selected",
+      "horizon_kind": "21600",
+      "matched_seeds": 3,
+      "both_observed": 3,
+      "a_only_finite": 0,
+      "b_only_finite": 0,
+      "difference": {
+        "n": 3,
+        "mean": 0.012543333333333314,
+        "median": 0.020399999999999974,
+        "sd": 0.017143092875363336
+      },
+      "a_wins": 2,
+      "ties": 0,
+      "b_wins": 1
+    },
+    {
+      "task": "google-quest-challenge",
+      "arm_a": "short",
+      "arm_b": "forets-selected",
+      "horizon_kind": "43200",
+      "matched_seeds": 3,
+      "both_observed": 3,
+      "a_only_finite": 0,
+      "b_only_finite": 0,
+      "difference": {
+        "n": 3,
+        "mean": 0.016803333333333337,
+        "median": 0.020309999999999995,
+        "sd": 0.012417090373083911
+      },
+      "a_wins": 3,
+      "ties": 0,
+      "b_wins": 0
+    },
+    {
+      "task": "google-quest-challenge",
+      "arm_a": "short",
+      "arm_b": "forets-selected",
+      "horizon_kind": "64800",
+      "matched_seeds": 3,
+      "both_observed": 3,
+      "a_only_finite": 0,
+      "b_only_finite": 0,
+      "difference": {
+        "n": 3,
+        "mean": 0.014059999999999998,
+        "median": 0.015259999999999996,
+        "sd": 0.010501547505010856
+      },
+      "a_wins": 3,
+      "ties": 0,
+      "b_wins": 0
+    },
+    {
+      "task": "google-quest-challenge",
+      "arm_a": "short",
+      "arm_b": "forets-selected",
+      "horizon_kind": "86400",
+      "matched_seeds": 3,
+      "both_observed": 0,
+      "a_only_finite": 0,
+      "b_only_finite": 0,
+      "difference": {
+        "n": 0,
+        "mean": null,
+        "median": null,
+        "sd": null
+      },
+      "a_wins": 0,
+      "ties": 0,
+      "b_wins": 0
+    },
+    {
+      "task": "google-quest-challenge",
+      "arm_a": "short",
+      "arm_b": "forets-selected",
+      "horizon_kind": "pair_overlap",
+      "matched_seeds": 3,
+      "both_observed": 3,
+      "a_only_finite": 0,
+      "b_only_finite": 0,
+      "difference": {
+        "n": 3,
+        "mean": 0.005460000000000002,
+        "median": 0.0025800000000000267,
+        "sd": 0.008724127463534678
+      },
+      "a_wins": 2,
+      "ties": 0,
+      "b_wins": 1
+    },
+    {
+      "task": "petfinder-pawpularity-score",
+      "arm_a": "forets-selected",
+      "arm_b": "random",
+      "horizon_kind": "3600",
+      "matched_seeds": 5,
+      "both_observed": 3,
+      "a_only_finite": 1,
+      "b_only_finite": 1,
+      "difference": {
+        "n": 0,
+        "mean": null,
+        "median": null,
+        "sd": null
+      },
+      "a_wins": 0,
+      "ties": 0,
+      "b_wins": 0
+    },
+    {
+      "task": "petfinder-pawpularity-score",
+      "arm_a": "forets-selected",
+      "arm_b": "random",
+      "horizon_kind": "10800",
+      "matched_seeds": 5,
+      "both_observed": 3,
+      "a_only_finite": 2,
+      "b_only_finite": 1,
+      "difference": {
+        "n": 0,
+        "mean": null,
+        "median": null,
+        "sd": null
+      },
+      "a_wins": 0,
+      "ties": 0,
+      "b_wins": 0
+    },
+    {
+      "task": "petfinder-pawpularity-score",
+      "arm_a": "forets-selected",
+      "arm_b": "random",
+      "horizon_kind": "21600",
+      "matched_seeds": 5,
+      "both_observed": 3,
+      "a_only_finite": 0,
+      "b_only_finite": 1,
+      "difference": {
+        "n": 2,
+        "mean": 0.32241999999999926,
+        "median": 0.32241999999999926,
+        "sd": 0.4987365549064935
+      },
+      "a_wins": 1,
+      "ties": 0,
+      "b_wins": 1
+    },
+    {
+      "task": "petfinder-pawpularity-score",
+      "arm_a": "forets-selected",
+      "arm_b": "random",
+      "horizon_kind": "43200",
+      "matched_seeds": 5,
+      "both_observed": 3,
+      "a_only_finite": 0,
+      "b_only_finite": 0,
+      "difference": {
+        "n": 3,
+        "mean": -0.6105400000000003,
+        "median": -0.2769799999999982,
+        "sd": 0.7318438095659496
+      },
+      "a_wins": 0,
+      "ties": 0,
+      "b_wins": 3
+    },
+    {
+      "task": "petfinder-pawpularity-score",
+      "arm_a": "forets-selected",
+      "arm_b": "random",
+      "horizon_kind": "64800",
+      "matched_seeds": 5,
+      "both_observed": 3,
+      "a_only_finite": 0,
+      "b_only_finite": 0,
+      "difference": {
+        "n": 3,
+        "mean": -0.6254733333333343,
+        "median": -0.2769799999999982,
+        "sd": 0.7166670795657731
+      },
+      "a_wins": 0,
+      "ties": 0,
+      "b_wins": 3
+    },
+    {
+      "task": "petfinder-pawpularity-score",
+      "arm_a": "forets-selected",
+      "arm_b": "random",
+      "horizon_kind": "86400",
+      "matched_seeds": 5,
+      "both_observed": 0,
+      "a_only_finite": 0,
+      "b_only_finite": 0,
+      "difference": {
+        "n": 0,
+        "mean": null,
+        "median": null,
+        "sd": null
+      },
+      "a_wins": 0,
+      "ties": 0,
+      "b_wins": 0
+    },
+    {
+      "task": "petfinder-pawpularity-score",
+      "arm_a": "forets-selected",
+      "arm_b": "random",
+      "horizon_kind": "pair_overlap",
+      "matched_seeds": 5,
+      "both_observed": 5,
+      "a_only_finite": 0,
+      "b_only_finite": 0,
+      "difference": {
+        "n": 3,
+        "mean": -0.6513900000000005,
+        "median": -0.2769799999999982,
+        "sd": 0.7613891627150989
+      },
+      "a_wins": 0,
+      "ties": 0,
+      "b_wins": 3
+    },
+    {
+      "task": "petfinder-pawpularity-score",
+      "arm_a": "short",
+      "arm_b": "random",
+      "horizon_kind": "3600",
+      "matched_seeds": 6,
+      "both_observed": 4,
+      "a_only_finite": 2,
+      "b_only_finite": 1,
+      "difference": {
+        "n": 0,
+        "mean": null,
+        "median": null,
+        "sd": null
+      },
+      "a_wins": 0,
+      "ties": 0,
+      "b_wins": 0
+    },
+    {
+      "task": "petfinder-pawpularity-score",
+      "arm_a": "short",
+      "arm_b": "random",
+      "horizon_kind": "10800",
+      "matched_seeds": 6,
+      "both_observed": 4,
+      "a_only_finite": 1,
+      "b_only_finite": 1,
+      "difference": {
+        "n": 1,
+        "mean": -0.1299299999999981,
+        "median": -0.1299299999999981,
+        "sd": null
+      },
+      "a_wins": 0,
+      "ties": 0,
+      "b_wins": 1
+    },
+    {
+      "task": "petfinder-pawpularity-score",
+      "arm_a": "short",
+      "arm_b": "random",
+      "horizon_kind": "21600",
+      "matched_seeds": 6,
+      "both_observed": 4,
+      "a_only_finite": 0,
+      "b_only_finite": 2,
+      "difference": {
+        "n": 2,
+        "mean": 0.3443500000000004,
+        "median": 0.3443500000000004,
+        "sd": 0.4960919755448554
+      },
+      "a_wins": 1,
+      "ties": 0,
+      "b_wins": 1
+    },
+    {
+      "task": "petfinder-pawpularity-score",
+      "arm_a": "short",
+      "arm_b": "random",
+      "horizon_kind": "43200",
+      "matched_seeds": 6,
+      "both_observed": 4,
+      "a_only_finite": 0,
+      "b_only_finite": 1,
+      "difference": {
+        "n": 3,
+        "mean": -0.23582333333333358,
+        "median": -0.2367299999999979,
+        "sd": 0.13675225421664394
+      },
+      "a_wins": 0,
+      "ties": 0,
+      "b_wins": 3
+    },
+    {
+      "task": "petfinder-pawpularity-score",
+      "arm_a": "short",
+      "arm_b": "random",
+      "horizon_kind": "64800",
+      "matched_seeds": 6,
+      "both_observed": 4,
+      "a_only_finite": 0,
+      "b_only_finite": 0,
+      "difference": {
+        "n": 4,
+        "mean": -0.14065500000000064,
+        "median": -0.11380999999999908,
+        "sd": 0.24034068340586817
+      },
+      "a_wins": 1,
+      "ties": 0,
+      "b_wins": 3
+    },
+    {
+      "task": "petfinder-pawpularity-score",
+      "arm_a": "short",
+      "arm_b": "random",
+      "horizon_kind": "86400",
+      "matched_seeds": 6,
+      "both_observed": 0,
+      "a_only_finite": 0,
+      "b_only_finite": 0,
+      "difference": {
+        "n": 0,
+        "mean": null,
+        "median": null,
+        "sd": null
+      },
+      "a_wins": 0,
+      "ties": 0,
+      "b_wins": 0
+    },
+    {
+      "task": "petfinder-pawpularity-score",
+      "arm_a": "short",
+      "arm_b": "random",
+      "horizon_kind": "pair_overlap",
+      "matched_seeds": 6,
+      "both_observed": 6,
+      "a_only_finite": 0,
+      "b_only_finite": 0,
+      "difference": {
+        "n": 4,
+        "mean": -0.21602750000000004,
+        "median": -0.12817499999999882,
+        "sd": 0.3567655201365922
+      },
+      "a_wins": 1,
+      "ties": 0,
+      "b_wins": 3
+    },
+    {
+      "task": "petfinder-pawpularity-score",
+      "arm_a": "short",
+      "arm_b": "forets-selected",
+      "horizon_kind": "3600",
+      "matched_seeds": 5,
+      "both_observed": 4,
+      "a_only_finite": 2,
+      "b_only_finite": 1,
+      "difference": {
+        "n": 0,
+        "mean": null,
+        "median": null,
+        "sd": null
+      },
+      "a_wins": 0,
+      "ties": 0,
+      "b_wins": 0
+    },
+    {
+      "task": "petfinder-pawpularity-score",
+      "arm_a": "short",
+      "arm_b": "forets-selected",
+      "horizon_kind": "10800",
+      "matched_seeds": 5,
+      "both_observed": 4,
+      "a_only_finite": 1,
+      "b_only_finite": 1,
+      "difference": {
+        "n": 1,
+        "mean": 0.020060000000000855,
+        "median": 0.020060000000000855,
+        "sd": null
+      },
+      "a_wins": 1,
+      "ties": 0,
+      "b_wins": 0
+    },
+    {
+      "task": "petfinder-pawpularity-score",
+      "arm_a": "short",
+      "arm_b": "forets-selected",
+      "horizon_kind": "21600",
+      "matched_seeds": 5,
+      "both_observed": 4,
+      "a_only_finite": 0,
+      "b_only_finite": 1,
+      "difference": {
+        "n": 2,
+        "mean": 0.5996550000000003,
+        "median": 0.5996550000000003,
+        "sd": 0.8196711096836332
+      },
+      "a_wins": 2,
+      "ties": 0,
+      "b_wins": 0
+    },
+    {
+      "task": "petfinder-pawpularity-score",
+      "arm_a": "short",
+      "arm_b": "forets-selected",
+      "horizon_kind": "43200",
+      "matched_seeds": 5,
+      "both_observed": 4,
+      "a_only_finite": 0,
+      "b_only_finite": 1,
+      "difference": {
+        "n": 3,
+        "mean": 0.4448166666666668,
+        "median": 0.17835999999999785,
+        "sd": 0.7464394697718845
+      },
+      "a_wins": 2,
+      "ties": 0,
+      "b_wins": 1
+    },
+    {
+      "task": "petfinder-pawpularity-score",
+      "arm_a": "short",
+      "arm_b": "forets-selected",
+      "horizon_kind": "64800",
+      "matched_seeds": 5,
+      "both_observed": 4,
+      "a_only_finite": 0,
+      "b_only_finite": 0,
+      "difference": {
+        "n": 4,
+        "mean": 0.725252499999999,
+        "median": 0.6446999999999985,
+        "sd": 0.5514835985095115
+      },
+      "a_wins": 4,
+      "ties": 0,
+      "b_wins": 0
+    },
+    {
+      "task": "petfinder-pawpularity-score",
+      "arm_a": "short",
+      "arm_b": "forets-selected",
+      "horizon_kind": "86400",
+      "matched_seeds": 5,
+      "both_observed": 0,
+      "a_only_finite": 0,
+      "b_only_finite": 0,
+      "difference": {
+        "n": 0,
+        "mean": null,
+        "median": null,
+        "sd": null
+      },
+      "a_wins": 0,
+      "ties": 0,
+      "b_wins": 0
+    },
+    {
+      "task": "petfinder-pawpularity-score",
+      "arm_a": "short",
+      "arm_b": "forets-selected",
+      "horizon_kind": "pair_overlap",
+      "matched_seeds": 5,
+      "both_observed": 5,
+      "a_only_finite": 1,
+      "b_only_finite": 0,
+      "difference": {
+        "n": 4,
+        "mean": 0.7241825000000004,
+        "median": 0.6335850000000001,
+        "sd": 0.5644983155791228
+      },
+      "a_wins": 4,
+      "ties": 0,
+      "b_wins": 0
+    }
+  ],
+  "limitations": [
+    "Censor after last recorded event; no evidence of completion.",
+    "Elapsed logging time is not necessarily active compute time.",
+    "Same seed does not imply common randomness.",
+    "Different producer commits and hardware uncertainty remain.",
+    "No inference to same-budget causal benefit."
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "status": "PASS",
+  "paired_horizons": 182,
+  "prefix_selections": 364,
+  "method": "Independently slice each full event prefix, reset at latest root, sort native metrics, then compare external score.",
+  "paired_sha256": "9e652c91abfa3c7163e8816df6de9cf0550f6ed8d8d9b74819eb40e1d0b068fc",
+  "verifier_sha256": "8d9622e76cb177968b10b5865baff83fe0605a21364f53487fa405cd601c6f6c"
+}

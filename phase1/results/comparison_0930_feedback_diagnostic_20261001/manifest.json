@@ -1,0 +1,33 @@
+{
+  "status": "PASS",
+  "files_scanned": 22,
+  "bytes_scanned": 2060060,
+  "credential_hits": 0,
+  "private_payload_fields": 0,
+  "script_hash_links_checked": 6,
+  "files": {
+    ".gitattributes": "732b1d2709b01edce21d38835222132a72cf353e991d2db136a6d4e3902a0d8d",
+    "phase1/CURRENT_DIRECTION.md": "641484cbd5d12a30de6103d2c8680c234971370758981a48a431b4abec4ba6d5",
+    "phase1/results/comparison_0930_feedback_diagnostic_20261001/independent_raw_receipt.json": "83d06467d603498af1cea5230f4c42d722052b99999ff3b86969792b607b9870",
+    "phase1/results/comparison_0930_feedback_diagnostic_20261001/numeric_trace.json": "b419063798df48d75875e28c4d8f32143a851ac362f0e6cdba1715f5825ed7c8",
+    "phase1/results/comparison_0930_feedback_diagnostic_20261001/original_per_run.json": "3bea537b22bd2a0dba6a3258c86c1a60bd5546a25e6e79d3e8fef9ec5b53b805",
+    "phase1/results/comparison_0930_feedback_diagnostic_20261001/per_run.csv": "085f7692180a19b937490af285e41aeffa88ab08a7f46daace54fa1e5f1306dd",
+    "phase1/results/comparison_0930_feedback_diagnostic_20261001/raw_comparison_reproduced.json": "670334fcc1392e4f268111c560cf289bf651067c9e2f0204eaf19f55f00b5747",
+    "phase1/results/comparison_0930_feedback_diagnostic_20261001/README.md": "c07f68530822e9aafa429bab625033978d8073e6dea1b2dbcc6d35ac43c1d2eb",
+    "phase1/results/comparison_0930_feedback_diagnostic_20261001/rows.json": "f48c30558572dc6512a39301fe3914626c70a45c2dc9d97f1879d280fb2bf993",
+    "phase1/results/comparison_0930_feedback_diagnostic_20261001/summary.json": "6a5b96b4e7896a5f9d6435f7fc0f1ff984743454db145810080148a39870a7f9",
+    "phase1/results/comparison_0930_feedback_diagnostic_20261001/syntax_survival.json": "ade100ecaea85243fc8dd1c4b98c8b2ebef06201664a430a49fe14c9eddc67c1",
+    "phase1/results/comparison_0930_feedback_diagnostic_20261001/time_sensitivity/independent.json": "c7c791b1fae89fad2ecd450cda917dd47b6db1d7e4d3b02e13cb28cb31002b0d",
+    "phase1/results/comparison_0930_feedback_diagnostic_20261001/time_sensitivity/paired.csv": "9e652c91abfa3c7163e8816df6de9cf0550f6ed8d8d9b74819eb40e1d0b068fc",
+    "phase1/results/comparison_0930_feedback_diagnostic_20261001/time_sensitivity/summary.json": "a9aa0e35571fc779fb54c36cc783e4f53d68d3d8d1167adfe379c7976d3ac3ac",
+    "phase1/scripts/comparison_0930_feedback/compare_raw_readers.py": "4a6a8614e373cdccffa849373f3852c3516f991a2d03bb39ade7b3dd3a7fd3c3",
+    "phase1/scripts/comparison_0930_feedback/comparison_0930_time_sensitivity.py": "27025da402ed7d27227064f11eb21d95798d66cb20d513e65b7eb07be711d5bf",
+    "phase1/scripts/comparison_0930_feedback/independent_raw_comparison_0930.py": "7e65ffbdac9cf4975cc6e329d272bc1995f6e1d954b56e100b91bc767c5c24a0",
+    "phase1/scripts/comparison_0930_feedback/repair_edit_survival_0930.py": "fa9285e35393dab14e68f2b2e188f8b54acbdc56a20a438c07b00963e1945ab8",
+    "phase1/scripts/comparison_0930_feedback/summarize_feedback_diagnostic_0930.py": "36c13d13f840ba777dccb0b905e8ecac7cc2f12a30d62c9c8aba1e5e8769e511",
+    "phase1/scripts/comparison_0930_feedback/test_comparison_0930_time_sensitivity.py": "34ee7d44b925cf03e854bcefbedd708b408932d2c2416b62abddd98916558dd3",
+    "phase1/scripts/comparison_0930_feedback/test_repair_edit_survival_0930.py": "aec73669fe05bf6548f299a4e72f1b622d4f047748d2ca34d648cce507c6bd26",
+    "phase1/scripts/comparison_0930_feedback/verify_time_sensitivity_0930.py": "8d9622e76cb177968b10b5865baff83fe0605a21364f53487fa405cd601c6f6c"
+  },
+  "scope": "Only the new diagnostic package, scripts, and two publication navigation/attribute changes."
+}

@@ -1,0 +1,16 @@
+{
+  "status": "PASS",
+  "run_directories": 39,
+  "field_comparisons": 1092,
+  "events": 1023,
+  "segments": 40,
+  "input_sha256": {
+    "original_per_run.json": "3bea537b22bd2a0dba6a3258c86c1a60bd5546a25e6e79d3e8fef9ec5b53b805",
+    "independent_raw_receipt.json": "83d06467d603498af1cea5230f4c42d722052b99999ff3b86969792b607b9870",
+    "rows.json": "f48c30558572dc6512a39301fe3914626c70a45c2dc9d97f1879d280fb2bf993"
+  },
+  "verifier_sha256": "4a6a8614e373cdccffa849373f3852c3516f991a2d03bb39ade7b3dd3a7fd3c3",
+  "python": "3.11.7 (main, Dec  7 2023, 09:09:57)  [GCC UCRT 13.2.0 64 bit (AMD64)]",
+  "platform": "Windows-10-10.0.26200-SP0",
+  "boundary": "Two separate raw-archive extraction implementations agree; not new samples or efficacy evidence."
+}

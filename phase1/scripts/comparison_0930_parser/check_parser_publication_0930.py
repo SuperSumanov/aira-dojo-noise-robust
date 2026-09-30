@@ -47,7 +47,9 @@ def main():
            ('legacy_label_audit.json','script_sha256','audit_legacy_exit_labels_20261001.py'),
            ('legacy_one_parser_replay.json','script_sha256','check_one_legacy_rejection_20261001.py'),
            ('legacy_training_membership.json','script_sha256','legacy_bad_label_membership_20261001.py'),
-           ('contract_matrix.json','script_sha256','parser_contract_matrix_20261001.py')]
+           ('contract_matrix.json','script_sha256','parser_contract_matrix_20261001.py'),
+           ('label_route.json','script_sha256','parser_label_route_20261001.py'),
+           ('published_d11beb74_readback.json','script_sha256','verify_published_package_20261001.py')]
     for name,key,script in links:assert read(name)[key]==sha(s/script),script
     native=read('native_independent.json');assert native['status']=='PASS'
     assert native['counts']=={'actions':983,'previously_admitted_ast_preserved':779,
@@ -117,6 +119,20 @@ def main():
         condition=(x['new']['task_admitted'] and x['new']['intended_ast_preserved']) if x['expected_new_contract']=='intended_ast' else not x['new']['task_admitted']
         assert condition==x['new_contract_met']
     for path,pin in matrix['bundle_sha256'].items():assert sha(b/path)==pin
+    route=read('label_route.json')
+    assert len(route['rows'])==route['rows_checked']==204
+    assert route['input_sha256']['compiler_census.json']==sha(r/'compiler_census.json')
+    trace=a.root/'phase1/results/comparison_0930_feedback_diagnostic_20261001/numeric_trace.json'
+    assert route['input_sha256']['numeric_trace.json']==sha(trace)
+    expected_rejects={key(x) for x in fence['rows'] if x['native_generic_reject']}
+    assert {key(x) for x in route['rows']}==expected_rejects
+    assert {k:sum(bool(x[k]) for x in route['rows']) for k in route['counts']}==route['counts']
+    assert route['counts']=={'score_missing':204,'grade_nonfinite':0,'valid':0,'buggy':204,'exit_zero':204,'execution_zero':204}
+    readback=read('published_d11beb74_readback.json')
+    assert readback['status']=='PASS' and readback['source_commit']=='d11beb748f1f1fa654a88debd03b64f6457fbdfa'
+    assert readback['manifest_exact_match'] and readback['contract_matrix_exact_match']
+    assert readback['native_regression_tests']==17 and len(readback['commands'])==5
+    assert all(x['returncode']==0 for x in readback['commands'])
     old=a.root/'phase1/results/comparison_0930_feedback_diagnostic_20261001/manifest.json'
     for path,pin in json.loads(old.read_text())['files'].items():assert sha(a.root/path)==pin, path
     result={'status':'PASS','files_scanned':len(selected),'bytes_scanned':total,'credential_hits':0,
@@ -124,6 +140,7 @@ def main():
             'legacy_audit_rows':len(rows),'legacy_unknown_execution_rows':len(bad),
             'legacy_training_membership_folds':included,
             'synthetic_contract_cases':matrix['cases'],'stricter_rejection_cases':matrix['old_admitted_new_rejected'],
+            'missing_score_route_rows':route['rows_checked'],'published_d11beb74_readback_valid':True,
             'old_package_manifest_valid':True,'files':hashes,
             'scanner_sha256':sha(Path(__file__))}
     with a.output.open('x') as f:json.dump(result,f,indent=2)

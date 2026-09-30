@@ -1,0 +1,87 @@
+{
+  "status": "PASS",
+  "source_commit": "d11beb748f1f1fa654a88debd03b64f6457fbdfa",
+  "archive_sha256": "eb94f34d74be507418948e05bba9ff5a4a2ead9b5ded56f49dbb4f93bc723224",
+  "extracted_members": 91,
+  "manifest_exact_match": true,
+  "contract_matrix_exact_match": true,
+  "native_regression_tests": 17,
+  "commands": [
+    {
+      "command": [
+        "/research/d7/spc/yzyang4/venvs/aira/bin/python",
+        "-B",
+        "/tmp/mle-progress-20260930-NRPr0f/published-d11beb74-clean-verification/repo/phase1/scripts/comparison_0930_parser/check_parser_publication_0930.py",
+        "--root",
+        "/tmp/mle-progress-20260930-NRPr0f/published-d11beb74-clean-verification/repo",
+        "--output",
+        "/tmp/mle-progress-20260930-NRPr0f/published-d11beb74-clean-verification/verified_manifest.json"
+      ],
+      "returncode": 0,
+      "stdout": "{\"status\": \"PASS\", \"files_scanned\": 43, \"bytes_scanned\": 3408436, \"credential_hits\": 0, \"private_payload_fields\": 0, \"artifact_script_links\": 12, \"raw_native_lexical_join_rows\": 204, \"legacy_audit_rows\": 547, \"legacy_unknown_execution_rows\": 1, \"legacy_training_membership_folds\": 7, \"synthetic_contract_cases\": 60, \"stricter_rejection_cases\": 12, \"old_package_manifest_valid\": true, \"scanner_sha256\": \"9bf9cccf81d3b7af669ed8ba48ba5261bf0a230b13aaad6c217f0ef19e907a9a\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/research/d7/spc/yzyang4/venvs/aira/bin/python",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "/tmp/mle-progress-20260930-NRPr0f/published-d11beb74-clean-verification/repo/phase1/scripts/comparison_0930_feedback",
+        "-p",
+        "test_*.py"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ".............\n----------------------------------------------------------------------\nRan 13 tests in 0.004s\n\nOK\n"
+    },
+    {
+      "command": [
+        "/research/d7/spc/yzyang4/venvs/aira/bin/python",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "/tmp/mle-progress-20260930-NRPr0f/published-d11beb74-clean-verification/repo/phase1/scripts/comparison_0930_parser",
+        "-p",
+        "test_*.py"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ".......................\n----------------------------------------------------------------------\nRan 23 tests in 0.003s\n\nOK\n"
+    },
+    {
+      "command": [
+        "/research/d7/spc/yzyang4/venvs/aira/bin/python",
+        "-B",
+        "/tmp/mle-progress-20260930-NRPr0f/published-d11beb74-clean-verification/repo/phase1/scripts/comparison_0930_parser/run_parser_regression_0930.py",
+        "--bundle",
+        "/tmp/mle-progress-20260930-NRPr0f/published-d11beb74-clean-verification/repo/phase1/patches/python_fence_parser_20261001",
+        "--output",
+        "/tmp/mle-progress-20260930-NRPr0f/published-d11beb74-clean-verification/native_regression.json"
+      ],
+      "returncode": 0,
+      "stdout": "{\"status\": \"PASS\", \"tests_run\": 17, \"failures\": 0, \"errors\": 0, \"skipped\": 0, \"python\": \"3.12.13 (main, Jun 23 2026, 15:18:55) [Clang 22.1.3 ]\", \"black\": \"26.5.1\", \"runner_sha256\": \"24edf8c71c4fe1b91738c5a12489792d526383c97e38e002eb06fb94d3da9a0b\", \"scope\": \"Synthetic regression and real task admission with intercepted interpreter. No candidate execution or MLE score.\"}\n",
+      "stderr": "test_crlf_source_bytes_preserved_before_format (parser_fix_test_suite.ParserTests.test_crlf_source_bytes_preserved_before_format) ... ok\ntest_empty_not_accepted (parser_fix_test_suite.ParserTests.test_empty_not_accepted) ... ok\ntest_existing_plain_and_fenced_code_unchanged (parser_fix_test_suite.ParserTests.test_existing_plain_and_fenced_code_unchanged) ... ok\ntest_fixed_operator_preserves_ast (parser_fix_test_suite.ParserTests.test_fixed_operator_preserves_ast) ... ok\ntest_fixed_second_extraction_is_idempotent (parser_fix_test_suite.ParserTests.test_fixed_second_extraction_is_idempotent) ... ok\ntest_fixed_task_admits_exact_program_without_executing (parser_fix_test_suite.ParserTests.test_fixed_task_admits_exact_program_without_executing) ... ok\ntest_invalid_body_is_not_repaired (parser_fix_test_suite.ParserTests.test_invalid_body_is_not_repaired) ... ok\ntest_long_fence_retains_short_fence_inside_string (parser_fix_test_suite.ParserTests.test_long_fence_retains_short_fence_inside_string) ... ok\ntest_multiple_valid_blocks_keep_existing_concatenation_policy (parser_fix_test_suite.ParserTests.test_multiple_valid_blocks_keep_existing_concatenation_policy) ... ok\ntest_original_bug_reproduces_in_operator (parser_fix_test_suite.ParserTests.test_original_bug_reproduces_in_operator) ... ok\ntest_original_bug_reproduces_in_task (parser_fix_test_suite.ParserTests.test_original_bug_reproduces_in_task) ... ok\ntest_original_task_admission_is_rejection_before_interpreter (parser_fix_test_suite.ParserTests.test_original_task_admission_is_rejection_before_interpreter) ... ok\ntest_raw_string_containing_standalone_fence_preserved (parser_fix_test_suite.ParserTests.test_raw_string_containing_standalone_fence_preserved) ... ok\ntest_raw_whitespace_not_accepted (parser_fix_test_suite.ParserTests.test_raw_whitespace_not_accepted) ... ok\ntest_unclosed_fence_fails_closed (parser_fix_test_suite.ParserTests.test_unclosed_fence_fails_closed) ... ok\ntest_unknown_language_skipped (parser_fix_test_suite.ParserTests.test_unknown_language_skipped) ... ok\ntest_untrusted_program_never_executed (parser_fix_test_suite.ParserTests.test_untrusted_program_never_executed) ... ok\n\n----------------------------------------------------------------------\nRan 17 tests in 0.048s\n\nOK\n"
+    },
+    {
+      "command": [
+        "/research/d7/spc/yzyang4/venvs/aira/bin/python",
+        "-B",
+        "/tmp/mle-progress-20260930-NRPr0f/published-d11beb74-clean-verification/repo/phase1/scripts/comparison_0930_parser/parser_contract_matrix_20261001.py",
+        "--bundle",
+        "/tmp/mle-progress-20260930-NRPr0f/published-d11beb74-clean-verification/repo/phase1/patches/python_fence_parser_20261001",
+        "--output",
+        "/tmp/mle-progress-20260930-NRPr0f/published-d11beb74-clean-verification/contract_matrix.json"
+      ],
+      "returncode": 0,
+      "stdout": "{\"status\": \"SYNTHETIC_CONTRACT_MATRIX\", \"cases\": 60, \"contract_checks_passed\": 60, \"old_admitted_new_rejected\": 12, \"new_admitted_wrong_ast\": 0, \"python\": \"3.12.13\", \"black\": \"26.5.1\", \"script_sha256\": \"163829c3ffa28ef9f473c353ec77bfece876656d1de0472a19f1391d587b7cc9\", \"candidate_executions\": 0, \"model_calls\": 0, \"boundary\": \"Synthetic format cases are not independent empirical trials or exhaustive parser proof. Stricter rejection of formerly accepted envelopes is a compatibility change, not efficacy.\"}\n",
+      "stderr": ""
+    }
+  ],
+  "script_sha256": "ad7423f8a2dc374b953271477e8dfb49bc8a128776936c41f84480515510d074",
+  "boundary": "Only the public package was extracted and tested under remote /tmp. No original journals, protected cohorts, models or candidate executions."
+}

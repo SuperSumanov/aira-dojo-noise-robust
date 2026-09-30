@@ -46,7 +46,8 @@ def main():
            ('native_independent.json','verifier_sha256','verify_native_parser_replay_resumable_0930.py'),
            ('legacy_label_audit.json','script_sha256','audit_legacy_exit_labels_20261001.py'),
            ('legacy_one_parser_replay.json','script_sha256','check_one_legacy_rejection_20261001.py'),
-           ('legacy_training_membership.json','script_sha256','legacy_bad_label_membership_20261001.py')]
+           ('legacy_training_membership.json','script_sha256','legacy_bad_label_membership_20261001.py'),
+           ('contract_matrix.json','script_sha256','parser_contract_matrix_20261001.py')]
     for name,key,script in links:assert read(name)[key]==sha(s/script),script
     native=read('native_independent.json');assert native['status']=='PASS'
     assert native['counts']=={'actions':983,'previously_admitted_ast_preserved':779,
@@ -107,12 +108,22 @@ def main():
         included+=retained
     assert included==membership['affected_folds']==7
     assert 2*included==membership['potentially_affected_fitted_models']==14
+    matrix=read('contract_matrix.json')
+    assert matrix['cases']==len(matrix['rows'])==60
+    assert matrix['contract_checks_passed']==sum(x['new_contract_met'] for x in matrix['rows'])==60
+    assert matrix['old_admitted_new_rejected']==sum(x['old']['task_admitted'] and not x['new']['task_admitted'] for x in matrix['rows'])==12
+    assert matrix['new_admitted_wrong_ast']==sum(x['new']['task_admitted'] and not x['new']['intended_ast_preserved'] for x in matrix['rows'])==0
+    for x in matrix['rows']:
+        condition=(x['new']['task_admitted'] and x['new']['intended_ast_preserved']) if x['expected_new_contract']=='intended_ast' else not x['new']['task_admitted']
+        assert condition==x['new_contract_met']
+    for path,pin in matrix['bundle_sha256'].items():assert sha(b/path)==pin
     old=a.root/'phase1/results/comparison_0930_feedback_diagnostic_20261001/manifest.json'
     for path,pin in json.loads(old.read_text())['files'].items():assert sha(a.root/path)==pin, path
     result={'status':'PASS','files_scanned':len(selected),'bytes_scanned':total,'credential_hits':0,
             'private_payload_fields':0,'artifact_script_links':len(links),'raw_native_lexical_join_rows':len(asts),
             'legacy_audit_rows':len(rows),'legacy_unknown_execution_rows':len(bad),
             'legacy_training_membership_folds':included,
+            'synthetic_contract_cases':matrix['cases'],'stricter_rejection_cases':matrix['old_admitted_new_rejected'],
             'old_package_manifest_valid':True,'files':hashes,
             'scanner_sha256':sha(Path(__file__))}
     with a.output.open('x') as f:json.dump(result,f,indent=2)

@@ -1,0 +1,1045 @@
+{
+  "status": "SYNTHETIC_CONTRACT_MATRIX",
+  "rows": [
+    {
+      "body": "plain",
+      "envelope": "raw",
+      "expected_new_contract": "intended_ast",
+      "response_sha256": "98752ee28d5484bdc2814fb70adb6a0b2fb31f6a9b8ee7ae81fd2fc9cf300b3b",
+      "old": {
+        "operator_admitted": true,
+        "task_admitted": true,
+        "intended_ast_preserved": true
+      },
+      "new": {
+        "operator_admitted": true,
+        "task_admitted": true,
+        "intended_ast_preserved": true
+      },
+      "new_contract_met": true
+    },
+    {
+      "body": "plain",
+      "envelope": "line_fence_indent_0",
+      "expected_new_contract": "intended_ast",
+      "response_sha256": "31f7ae4132732b200cdb7236bb234e39b4eff4c117d134b61babc137acf0e225",
+      "old": {
+        "operator_admitted": true,
+        "task_admitted": true,
+        "intended_ast_preserved": true
+      },
+      "new": {
+        "operator_admitted": true,
+        "task_admitted": true,
+        "intended_ast_preserved": true
+      },
+      "new_contract_met": true
+    },
+    {
+      "body": "plain",
+      "envelope": "line_fence_indent_1",
+      "expected_new_contract": "intended_ast",
+      "response_sha256": "6825cb0be9872e8c0a3eef93d6227d424881a8263c3b39571dff6965d5c92cbf",
+      "old": {
+        "operator_admitted": true,
+        "task_admitted": true,
+        "intended_ast_preserved": true
+      },
+      "new": {
+        "operator_admitted": true,
+        "task_admitted": true,
+        "intended_ast_preserved": true
+      },
+      "new_contract_met": true
+    },
+    {
+      "body": "plain",
+      "envelope": "line_fence_indent_2",
+      "expected_new_contract": "intended_ast",
+      "response_sha256": "d99db60ec9ba28c79c4f3fe9dc46d90ac132ee9339fd732b84ea1e18e95be5a5",
+      "old": {
+        "operator_admitted": true,
+        "task_admitted": true,
+        "intended_ast_preserved": true
+      },
+      "new": {
+        "operator_admitted": true,
+        "task_admitted": true,
+        "intended_ast_preserved": true
+      },
+      "new_contract_met": true
+    },
+    {
+      "body": "plain",
+      "envelope": "line_fence_indent_3",
+      "expected_new_contract": "intended_ast",
+      "response_sha256": "9ea52ab8a7dc868e035934b36ff98c71dfb7a2f88b0c0b70a8579e8e4df47c6b",
+      "old": {
+        "operator_admitted": true,
+        "task_admitted": true,
+        "intended_ast_preserved": true
+      },
+      "new": {
+        "operator_admitted": true,
+        "task_admitted": true,
+        "intended_ast_preserved": true
+      },
+      "new_contract_met": true
+    },
+    {
+      "body": "plain",
+      "envelope": "long_outer_fence",
+      "expected_new_contract": "intended_ast",
+      "response_sha256": "93052fc6ef6ea5f0a657cbdbeeb7d5dc22bd7212265544048bad5468cd7d64dc",
+      "old": {
+        "operator_admitted": false,
+        "task_admitted": false,
+        "intended_ast_preserved": false
+      },
+      "new": {
+        "operator_admitted": true,
+        "task_admitted": true,
+        "intended_ast_preserved": true
+      },
+      "new_contract_met": true
+    },
+    {
+      "body": "plain",
+      "envelope": "crlf",
+      "expected_new_contract": "intended_ast",
+      "response_sha256": "807ad90d0aa946d5441fd2180d472dff2f41413d9fc80a25e30835b079f26278",
+      "old": {
+        "operator_admitted": true,
+        "task_admitted": true,
+        "intended_ast_preserved": true
+      },
+      "new": {
+        "operator_admitted": true,
+        "task_admitted": true,
+        "intended_ast_preserved": true
+      },
+      "new_contract_met": true
+    },
+    {
+      "body": "plain",
+      "envelope": "four_space_indent",
+      "expected_new_contract": "reject",
+      "response_sha256": "d9041e321a47d797d6a209a643537daac28bbdbbf405af1d64bcf4d904302ce0",
+      "old": {
+        "operator_admitted": true,
+        "task_admitted": true,
+        "intended_ast_preserved": true
+      },
+      "new": {
+        "operator_admitted": false,
+        "task_admitted": false,
+        "intended_ast_preserved": false
+      },
+      "new_contract_met": true
+    },
+    {
+      "body": "plain",
+      "envelope": "inline_closing",
+      "expected_new_contract": "reject",
+      "response_sha256": "e8dcc1959932824041b7ae1bfea837b5da8add3fcea6ae8c4264629e4c5621cc",
+      "old": {
+        "operator_admitted": true,
+        "task_admitted": true,
+        "intended_ast_preserved": true
+      },
+      "new": {
+        "operator_admitted": false,
+        "task_admitted": false,
+        "intended_ast_preserved": false
+      },
+      "new_contract_met": true
+    },
+    {
+      "body": "plain",
+      "envelope": "unclosed",
+      "expected_new_contract": "reject",
+      "response_sha256": "5ee38772997cd6b86dc07bd2d2325c6bc34d90cfe364d4a4b966e78812bd709f",
+      "old": {
+        "operator_admitted": false,
+        "task_admitted": false,
+        "intended_ast_preserved": false
+      },
+      "new": {
+        "operator_admitted": false,
+        "task_admitted": false,
+        "intended_ast_preserved": false
+      },
+      "new_contract_met": true
+    },
+    {
+      "body": "plain",
+      "envelope": "unknown_language",
+      "expected_new_contract": "reject",
+      "response_sha256": "e349035ee1cd7c5775f619b2739b6ee4c4c54a3dc4c2929f4fdba848f310d993",
+      "old": {
+        "operator_admitted": true,
+        "task_admitted": true,
+        "intended_ast_preserved": false
+      },
+      "new": {
+        "operator_admitted": false,
+        "task_admitted": false,
+        "intended_ast_preserved": false
+      },
+      "new_contract_met": true
+    },
+    {
+      "body": "plain",
+      "envelope": "closed_then_unclosed",
+      "expected_new_contract": "reject",
+      "response_sha256": "5edc9ff02112d702abc8ba5c7179b731b1c42c3a2599dba495e0f4e99e4fdd0b",
+      "old": {
+        "operator_admitted": true,
+        "task_admitted": true,
+        "intended_ast_preserved": true
+      },
+      "new": {
+        "operator_admitted": false,
+        "task_admitted": false,
+        "intended_ast_preserved": false
+      },
+      "new_contract_met": true
+    },
+    {
+      "body": "unicode",
+      "envelope": "raw",
+      "expected_new_contract": "intended_ast",
+      "response_sha256": "668c3340859c71f1acaca04527baf09cb82cef29c743eee0ae2192f34ce6026c",
+      "old": {
+        "operator_admitted": true,
+        "task_admitted": true,
+        "intended_ast_preserved": true
+      },
+      "new": {
+        "operator_admitted": true,
+        "task_admitted": true,
+        "intended_ast_preserved": true
+      },
+      "new_contract_met": true
+    },
+    {
+      "body": "unicode",
+      "envelope": "line_fence_indent_0",
+      "expected_new_contract": "intended_ast",
+      "response_sha256": "139c71a75acdb0824cb646402662ae00cc5119a96f4d1cb58aeaeb9bb1a23482",
+      "old": {
+        "operator_admitted": true,
+        "task_admitted": true,
+        "intended_ast_preserved": true
+      },
+      "new": {
+        "operator_admitted": true,
+        "task_admitted": true,
+        "intended_ast_preserved": true
+      },
+      "new_contract_met": true
+    },
+    {
+      "body": "unicode",
+      "envelope": "line_fence_indent_1",
+      "expected_new_contract": "intended_ast",
+      "response_sha256": "54a7f99f93b227d53435fa807f308e138c2f476feaf3de0f8826dec96f5f6475",
+      "old": {
+        "operator_admitted": true,
+        "task_admitted": true,
+        "intended_ast_preserved": true
+      },
+      "new": {
+        "operator_admitted": true,
+        "task_admitted": true,
+        "intended_ast_preserved": true
+      },
+      "new_contract_met": true
+    },
+    {
+      "body": "unicode",
+      "envelope": "line_fence_indent_2",
+      "expected_new_contract": "intended_ast",
+      "response_sha256": "ef9abc524d55722206b2be9e3c196e5478ba8978490d62e7d5b73b27bfb61068",
+      "old": {
+        "operator_admitted": true,
+        "task_admitted": true,
+        "intended_ast_preserved": true
+      },
+      "new": {
+        "operator_admitted": true,
+        "task_admitted": true,
+        "intended_ast_preserved": true
+      },
+      "new_contract_met": true
+    },
+    {
+      "body": "unicode",
+      "envelope": "line_fence_indent_3",
+      "expected_new_contract": "intended_ast",
+      "response_sha256": "6cd2232556eaf5d628a4284ebdfd3df4424a113ecf95a98ab117defbb8170d94",
+      "old": {
+        "operator_admitted": true,
+        "task_admitted": true,
+        "intended_ast_preserved": true
+      },
+      "new": {
+        "operator_admitted": true,
+        "task_admitted": true,
+        "intended_ast_preserved": true
+      },
+      "new_contract_met": true
+    },
+    {
+      "body": "unicode",
+      "envelope": "long_outer_fence",
+      "expected_new_contract": "intended_ast",
+      "response_sha256": "9cdeb2a6aef70ce7ec97190c31183d919f142fba1b8f2e98dc0fb43a8e03a8a1",
+      "old": {
+        "operator_admitted": false,
+        "task_admitted": false,
+        "intended_ast_preserved": false
+      },
+      "new": {
+        "operator_admitted": true,
+        "task_admitted": true,
+        "intended_ast_preserved": true
+      },
+      "new_contract_met": true
+    },
+    {
+      "body": "unicode",
+      "envelope": "crlf",
+      "expected_new_contract": "intended_ast",
+      "response_sha256": "24d7e71f761c67253bd26c2d549aec3df2acc53a514ef387fdd65d16ebcb1fff",
+      "old": {
+        "operator_admitted": true,
+        "task_admitted": true,
+        "intended_ast_preserved": true
+      },
+      "new": {
+        "operator_admitted": true,
+        "task_admitted": true,
+        "intended_ast_preserved": true
+      },
+      "new_contract_met": true
+    },
+    {
+      "body": "unicode",
+      "envelope": "four_space_indent",
+      "expected_new_contract": "reject",
+      "response_sha256": "2e9104ee8767ab7f36e53a6d31ad9b333231daebe855bf4b3761cfc5f0034d4e",
+      "old": {
+        "operator_admitted": true,
+        "task_admitted": true,
+        "intended_ast_preserved": true
+      },
+      "new": {
+        "operator_admitted": false,
+        "task_admitted": false,
+        "intended_ast_preserved": false
+      },
+      "new_contract_met": true
+    },
+    {
+      "body": "unicode",
+      "envelope": "inline_closing",
+      "expected_new_contract": "reject",
+      "response_sha256": "0466bb3d64861bab9da442090ab07c6b2361125db79a9de47740a2dcd89e0427",
+      "old": {
+        "operator_admitted": true,
+        "task_admitted": true,
+        "intended_ast_preserved": true
+      },
+      "new": {
+        "operator_admitted": false,
+        "task_admitted": false,
+        "intended_ast_preserved": false
+      },
+      "new_contract_met": true
+    },
+    {
+      "body": "unicode",
+      "envelope": "unclosed",
+      "expected_new_contract": "reject",
+      "response_sha256": "a9c3a47fd2d5eac61be2135c330497583f344df5d94aca2b1216dfb2bc83bba7",
+      "old": {
+        "operator_admitted": false,
+        "task_admitted": false,
+        "intended_ast_preserved": false
+      },
+      "new": {
+        "operator_admitted": false,
+        "task_admitted": false,
+        "intended_ast_preserved": false
+      },
+      "new_contract_met": true
+    },
+    {
+      "body": "unicode",
+      "envelope": "unknown_language",
+      "expected_new_contract": "reject",
+      "response_sha256": "53e7538640c09cd7cb8332a8c74bcc1efa3b9dc8381661d7a4b1289c923f3109",
+      "old": {
+        "operator_admitted": true,
+        "task_admitted": true,
+        "intended_ast_preserved": false
+      },
+      "new": {
+        "operator_admitted": false,
+        "task_admitted": false,
+        "intended_ast_preserved": false
+      },
+      "new_contract_met": true
+    },
+    {
+      "body": "unicode",
+      "envelope": "closed_then_unclosed",
+      "expected_new_contract": "reject",
+      "response_sha256": "e703933c3c6b58586fbe9df363d2b4979f5e0aea9307aca32a2225dd8bdae42d",
+      "old": {
+        "operator_admitted": true,
+        "task_admitted": true,
+        "intended_ast_preserved": true
+      },
+      "new": {
+        "operator_admitted": false,
+        "task_admitted": false,
+        "intended_ast_preserved": false
+      },
+      "new_contract_met": true
+    },
+    {
+      "body": "never_execute",
+      "envelope": "raw",
+      "expected_new_contract": "intended_ast",
+      "response_sha256": "11f33d5fa87cf29cd274246c00e7b529a24574e76f566635b33ee132baf6fdcb",
+      "old": {
+        "operator_admitted": true,
+        "task_admitted": true,
+        "intended_ast_preserved": true
+      },
+      "new": {
+        "operator_admitted": true,
+        "task_admitted": true,
+        "intended_ast_preserved": true
+      },
+      "new_contract_met": true
+    },
+    {
+      "body": "never_execute",
+      "envelope": "line_fence_indent_0",
+      "expected_new_contract": "intended_ast",
+      "response_sha256": "230f7872fde5e9ea0688c187831abc0f102de5f618df310ec7ac7452d00c27aa",
+      "old": {
+        "operator_admitted": true,
+        "task_admitted": true,
+        "intended_ast_preserved": true
+      },
+      "new": {
+        "operator_admitted": true,
+        "task_admitted": true,
+        "intended_ast_preserved": true
+      },
+      "new_contract_met": true
+    },
+    {
+      "body": "never_execute",
+      "envelope": "line_fence_indent_1",
+      "expected_new_contract": "intended_ast",
+      "response_sha256": "9df0365a89687cfe7c5afdd4ae5d6ed8b25602cdb82f4b815efae607496b89b5",
+      "old": {
+        "operator_admitted": true,
+        "task_admitted": true,
+        "intended_ast_preserved": true
+      },
+      "new": {
+        "operator_admitted": true,
+        "task_admitted": true,
+        "intended_ast_preserved": true
+      },
+      "new_contract_met": true
+    },
+    {
+      "body": "never_execute",
+      "envelope": "line_fence_indent_2",
+      "expected_new_contract": "intended_ast",
+      "response_sha256": "6dbabba9a3a33d9f39014a2513ddbbb779830ac4a094698e7f620afd2f788a2c",
+      "old": {
+        "operator_admitted": true,
+        "task_admitted": true,
+        "intended_ast_preserved": true
+      },
+      "new": {
+        "operator_admitted": true,
+        "task_admitted": true,
+        "intended_ast_preserved": true
+      },
+      "new_contract_met": true
+    },
+    {
+      "body": "never_execute",
+      "envelope": "line_fence_indent_3",
+      "expected_new_contract": "intended_ast",
+      "response_sha256": "f28d14ebad9d811124943d50ebedd42f24284f8bad19fcc5709ca82c84b8578b",
+      "old": {
+        "operator_admitted": true,
+        "task_admitted": true,
+        "intended_ast_preserved": true
+      },
+      "new": {
+        "operator_admitted": true,
+        "task_admitted": true,
+        "intended_ast_preserved": true
+      },
+      "new_contract_met": true
+    },
+    {
+      "body": "never_execute",
+      "envelope": "long_outer_fence",
+      "expected_new_contract": "intended_ast",
+      "response_sha256": "4056ef680da2cfcfea5a84040d715b84c8abf3281a15c894e1b32adf6e3dd70a",
+      "old": {
+        "operator_admitted": false,
+        "task_admitted": false,
+        "intended_ast_preserved": false
+      },
+      "new": {
+        "operator_admitted": true,
+        "task_admitted": true,
+        "intended_ast_preserved": true
+      },
+      "new_contract_met": true
+    },
+    {
+      "body": "never_execute",
+      "envelope": "crlf",
+      "expected_new_contract": "intended_ast",
+      "response_sha256": "720ad389311a2932330525bea4e7a0a7732af9d16b8d7426cc065e840aad27cf",
+      "old": {
+        "operator_admitted": true,
+        "task_admitted": true,
+        "intended_ast_preserved": true
+      },
+      "new": {
+        "operator_admitted": true,
+        "task_admitted": true,
+        "intended_ast_preserved": true
+      },
+      "new_contract_met": true
+    },
+    {
+      "body": "never_execute",
+      "envelope": "four_space_indent",
+      "expected_new_contract": "reject",
+      "response_sha256": "44b2f61bcae3c537651ffb7e71b367d3e6459cdf18c759df92c0661ca1b56077",
+      "old": {
+        "operator_admitted": true,
+        "task_admitted": true,
+        "intended_ast_preserved": true
+      },
+      "new": {
+        "operator_admitted": false,
+        "task_admitted": false,
+        "intended_ast_preserved": false
+      },
+      "new_contract_met": true
+    },
+    {
+      "body": "never_execute",
+      "envelope": "inline_closing",
+      "expected_new_contract": "reject",
+      "response_sha256": "bb172a19690f45aacacbf95dd64a553ca10fbe55852a3b664a605e066dec643c",
+      "old": {
+        "operator_admitted": true,
+        "task_admitted": true,
+        "intended_ast_preserved": true
+      },
+      "new": {
+        "operator_admitted": false,
+        "task_admitted": false,
+        "intended_ast_preserved": false
+      },
+      "new_contract_met": true
+    },
+    {
+      "body": "never_execute",
+      "envelope": "unclosed",
+      "expected_new_contract": "reject",
+      "response_sha256": "daa44a2852ad69f52ea1addce4482c783005119bc56ad45f5a59f1a27006f40f",
+      "old": {
+        "operator_admitted": false,
+        "task_admitted": false,
+        "intended_ast_preserved": false
+      },
+      "new": {
+        "operator_admitted": false,
+        "task_admitted": false,
+        "intended_ast_preserved": false
+      },
+      "new_contract_met": true
+    },
+    {
+      "body": "never_execute",
+      "envelope": "unknown_language",
+      "expected_new_contract": "reject",
+      "response_sha256": "12d48d698b952d5742fb330e23794faa31848bffe58cf1fc7f7a4ef3af8de326",
+      "old": {
+        "operator_admitted": true,
+        "task_admitted": true,
+        "intended_ast_preserved": false
+      },
+      "new": {
+        "operator_admitted": false,
+        "task_admitted": false,
+        "intended_ast_preserved": false
+      },
+      "new_contract_met": true
+    },
+    {
+      "body": "never_execute",
+      "envelope": "closed_then_unclosed",
+      "expected_new_contract": "reject",
+      "response_sha256": "49e945f084ef9ab1c7a12cd7f702ea1dfb8b80955024f8caa485338af9f38791",
+      "old": {
+        "operator_admitted": true,
+        "task_admitted": true,
+        "intended_ast_preserved": true
+      },
+      "new": {
+        "operator_admitted": false,
+        "task_admitted": false,
+        "intended_ast_preserved": false
+      },
+      "new_contract_met": true
+    },
+    {
+      "body": "inline_string",
+      "envelope": "raw",
+      "expected_new_contract": "intended_ast",
+      "response_sha256": "41b3b1ad262541ddb9d2dd297da8bfdaf26d37ee197a3e951cab1008403e12b0",
+      "old": {
+        "operator_admitted": false,
+        "task_admitted": false,
+        "intended_ast_preserved": false
+      },
+      "new": {
+        "operator_admitted": true,
+        "task_admitted": true,
+        "intended_ast_preserved": true
+      },
+      "new_contract_met": true
+    },
+    {
+      "body": "inline_string",
+      "envelope": "line_fence_indent_0",
+      "expected_new_contract": "intended_ast",
+      "response_sha256": "f114106e2b52ad0431a5bbe02ba7545af241b7c4b3e1e1af959bcb50e0f5b2a9",
+      "old": {
+        "operator_admitted": false,
+        "task_admitted": false,
+        "intended_ast_preserved": false
+      },
+      "new": {
+        "operator_admitted": true,
+        "task_admitted": true,
+        "intended_ast_preserved": true
+      },
+      "new_contract_met": true
+    },
+    {
+      "body": "inline_string",
+      "envelope": "line_fence_indent_1",
+      "expected_new_contract": "intended_ast",
+      "response_sha256": "9144e01f8f35edb9e1bd6344a006880ab06edbe7c240098641040389049ece7b",
+      "old": {
+        "operator_admitted": false,
+        "task_admitted": false,
+        "intended_ast_preserved": false
+      },
+      "new": {
+        "operator_admitted": true,
+        "task_admitted": true,
+        "intended_ast_preserved": true
+      },
+      "new_contract_met": true
+    },
+    {
+      "body": "inline_string",
+      "envelope": "line_fence_indent_2",
+      "expected_new_contract": "intended_ast",
+      "response_sha256": "2a0f4ea383e4b29052c02b3acb92929bbd95c79aef273c101418a1cb37cf2e78",
+      "old": {
+        "operator_admitted": false,
+        "task_admitted": false,
+        "intended_ast_preserved": false
+      },
+      "new": {
+        "operator_admitted": true,
+        "task_admitted": true,
+        "intended_ast_preserved": true
+      },
+      "new_contract_met": true
+    },
+    {
+      "body": "inline_string",
+      "envelope": "line_fence_indent_3",
+      "expected_new_contract": "intended_ast",
+      "response_sha256": "f68524d24d93f76b7bcd0544359d76e9c54a2bc3b664d553ec457ef7c48d83df",
+      "old": {
+        "operator_admitted": false,
+        "task_admitted": false,
+        "intended_ast_preserved": false
+      },
+      "new": {
+        "operator_admitted": true,
+        "task_admitted": true,
+        "intended_ast_preserved": true
+      },
+      "new_contract_met": true
+    },
+    {
+      "body": "inline_string",
+      "envelope": "long_outer_fence",
+      "expected_new_contract": "intended_ast",
+      "response_sha256": "9b9b68b695d3e1819eab9a4a64aa45174c758659539feee58fd670c9849e52f1",
+      "old": {
+        "operator_admitted": false,
+        "task_admitted": false,
+        "intended_ast_preserved": false
+      },
+      "new": {
+        "operator_admitted": true,
+        "task_admitted": true,
+        "intended_ast_preserved": true
+      },
+      "new_contract_met": true
+    },
+    {
+      "body": "inline_string",
+      "envelope": "crlf",
+      "expected_new_contract": "intended_ast",
+      "response_sha256": "0b9d7c6e7808691f9d7ec1c22eb5e145db724abee8ef3be8cbedebbbc0b71be6",
+      "old": {
+        "operator_admitted": false,
+        "task_admitted": false,
+        "intended_ast_preserved": false
+      },
+      "new": {
+        "operator_admitted": true,
+        "task_admitted": true,
+        "intended_ast_preserved": true
+      },
+      "new_contract_met": true
+    },
+    {
+      "body": "inline_string",
+      "envelope": "four_space_indent",
+      "expected_new_contract": "reject",
+      "response_sha256": "b315bfaee91e8a210b7f496a3d67419002fea994ad78d16baf102bf249ffa73a",
+      "old": {
+        "operator_admitted": false,
+        "task_admitted": false,
+        "intended_ast_preserved": false
+      },
+      "new": {
+        "operator_admitted": false,
+        "task_admitted": false,
+        "intended_ast_preserved": false
+      },
+      "new_contract_met": true
+    },
+    {
+      "body": "inline_string",
+      "envelope": "inline_closing",
+      "expected_new_contract": "reject",
+      "response_sha256": "6f972791916787797510846affb0b210f62555f09e11559a990d7260eeaedf71",
+      "old": {
+        "operator_admitted": false,
+        "task_admitted": false,
+        "intended_ast_preserved": false
+      },
+      "new": {
+        "operator_admitted": false,
+        "task_admitted": false,
+        "intended_ast_preserved": false
+      },
+      "new_contract_met": true
+    },
+    {
+      "body": "inline_string",
+      "envelope": "unclosed",
+      "expected_new_contract": "reject",
+      "response_sha256": "f54625107901a3134b8b5e0e57499a7af9e17ac3e64feae2b4285d451b142922",
+      "old": {
+        "operator_admitted": false,
+        "task_admitted": false,
+        "intended_ast_preserved": false
+      },
+      "new": {
+        "operator_admitted": false,
+        "task_admitted": false,
+        "intended_ast_preserved": false
+      },
+      "new_contract_met": true
+    },
+    {
+      "body": "inline_string",
+      "envelope": "unknown_language",
+      "expected_new_contract": "reject",
+      "response_sha256": "9c2394feeab28cdc06802340827d14c0c537499da6322ed6d9b777caa9a286c4",
+      "old": {
+        "operator_admitted": false,
+        "task_admitted": false,
+        "intended_ast_preserved": false
+      },
+      "new": {
+        "operator_admitted": false,
+        "task_admitted": false,
+        "intended_ast_preserved": false
+      },
+      "new_contract_met": true
+    },
+    {
+      "body": "inline_string",
+      "envelope": "closed_then_unclosed",
+      "expected_new_contract": "reject",
+      "response_sha256": "d2e57a48b7b1b40bae69d6eb3b1010046c5bc1211f070b4d0987d36fbc1d9d47",
+      "old": {
+        "operator_admitted": false,
+        "task_admitted": false,
+        "intended_ast_preserved": false
+      },
+      "new": {
+        "operator_admitted": false,
+        "task_admitted": false,
+        "intended_ast_preserved": false
+      },
+      "new_contract_met": true
+    },
+    {
+      "body": "multiline_string",
+      "envelope": "raw",
+      "expected_new_contract": "intended_ast",
+      "response_sha256": "ffb4c7c22a83ad06595be75a2b0caf0b3d8156a069af487a35f7437e9bc998cc",
+      "old": {
+        "operator_admitted": true,
+        "task_admitted": true,
+        "intended_ast_preserved": true
+      },
+      "new": {
+        "operator_admitted": true,
+        "task_admitted": true,
+        "intended_ast_preserved": true
+      },
+      "new_contract_met": true
+    },
+    {
+      "body": "multiline_string",
+      "envelope": "line_fence_indent_0",
+      "expected_new_contract": "reject",
+      "response_sha256": "5d06a4601b5e4002e42bb2a3407db4fb8f278e69621db25d39a0bfa506256824",
+      "old": {
+        "operator_admitted": false,
+        "task_admitted": false,
+        "intended_ast_preserved": false
+      },
+      "new": {
+        "operator_admitted": false,
+        "task_admitted": false,
+        "intended_ast_preserved": false
+      },
+      "new_contract_met": true
+    },
+    {
+      "body": "multiline_string",
+      "envelope": "line_fence_indent_1",
+      "expected_new_contract": "reject",
+      "response_sha256": "03ab4c9e49e5dc7a9fa5799a4fe16d9cbc03e832fbfb2aac94028347c5d83740",
+      "old": {
+        "operator_admitted": false,
+        "task_admitted": false,
+        "intended_ast_preserved": false
+      },
+      "new": {
+        "operator_admitted": false,
+        "task_admitted": false,
+        "intended_ast_preserved": false
+      },
+      "new_contract_met": true
+    },
+    {
+      "body": "multiline_string",
+      "envelope": "line_fence_indent_2",
+      "expected_new_contract": "reject",
+      "response_sha256": "1c990314e858611e61f1cf55ffae0a444b2cb64ee63ae04e278b87c6f001c42e",
+      "old": {
+        "operator_admitted": false,
+        "task_admitted": false,
+        "intended_ast_preserved": false
+      },
+      "new": {
+        "operator_admitted": false,
+        "task_admitted": false,
+        "intended_ast_preserved": false
+      },
+      "new_contract_met": true
+    },
+    {
+      "body": "multiline_string",
+      "envelope": "line_fence_indent_3",
+      "expected_new_contract": "reject",
+      "response_sha256": "8898cfa85de839b6a36ffd834de3b132d1629b9d26f158a692186f6b42e3e593",
+      "old": {
+        "operator_admitted": false,
+        "task_admitted": false,
+        "intended_ast_preserved": false
+      },
+      "new": {
+        "operator_admitted": false,
+        "task_admitted": false,
+        "intended_ast_preserved": false
+      },
+      "new_contract_met": true
+    },
+    {
+      "body": "multiline_string",
+      "envelope": "long_outer_fence",
+      "expected_new_contract": "intended_ast",
+      "response_sha256": "c3274b55d59adb443159536c3f5b6f51b314c99aaf1b70591433d4e3d25878cd",
+      "old": {
+        "operator_admitted": false,
+        "task_admitted": false,
+        "intended_ast_preserved": false
+      },
+      "new": {
+        "operator_admitted": true,
+        "task_admitted": true,
+        "intended_ast_preserved": true
+      },
+      "new_contract_met": true
+    },
+    {
+      "body": "multiline_string",
+      "envelope": "crlf",
+      "expected_new_contract": "reject",
+      "response_sha256": "90106d8a64ab43ad64e63303d6338309866da68dbeda657134d3ea02b2a319c0",
+      "old": {
+        "operator_admitted": false,
+        "task_admitted": false,
+        "intended_ast_preserved": false
+      },
+      "new": {
+        "operator_admitted": false,
+        "task_admitted": false,
+        "intended_ast_preserved": false
+      },
+      "new_contract_met": true
+    },
+    {
+      "body": "multiline_string",
+      "envelope": "four_space_indent",
+      "expected_new_contract": "reject",
+      "response_sha256": "005549dd1ec311b19bf7065f23774621d503a8f6e58f16c35a9b772587e14201",
+      "old": {
+        "operator_admitted": false,
+        "task_admitted": false,
+        "intended_ast_preserved": false
+      },
+      "new": {
+        "operator_admitted": false,
+        "task_admitted": false,
+        "intended_ast_preserved": false
+      },
+      "new_contract_met": true
+    },
+    {
+      "body": "multiline_string",
+      "envelope": "inline_closing",
+      "expected_new_contract": "reject",
+      "response_sha256": "f9f01939096b6e11c5f5d0322d0896d6e7571601f8b7cf069de75fa018e59ce0",
+      "old": {
+        "operator_admitted": false,
+        "task_admitted": false,
+        "intended_ast_preserved": false
+      },
+      "new": {
+        "operator_admitted": false,
+        "task_admitted": false,
+        "intended_ast_preserved": false
+      },
+      "new_contract_met": true
+    },
+    {
+      "body": "multiline_string",
+      "envelope": "unclosed",
+      "expected_new_contract": "reject",
+      "response_sha256": "de3a259d6d3dc02d4e5df42195157a10307d7f0ea3d9b8b9ed9180343a183106",
+      "old": {
+        "operator_admitted": false,
+        "task_admitted": false,
+        "intended_ast_preserved": false
+      },
+      "new": {
+        "operator_admitted": false,
+        "task_admitted": false,
+        "intended_ast_preserved": false
+      },
+      "new_contract_met": true
+    },
+    {
+      "body": "multiline_string",
+      "envelope": "unknown_language",
+      "expected_new_contract": "reject",
+      "response_sha256": "0ce9845d715775b2bb6ffd569627f9a7a9c0449521abd9587556d898463869d9",
+      "old": {
+        "operator_admitted": false,
+        "task_admitted": false,
+        "intended_ast_preserved": false
+      },
+      "new": {
+        "operator_admitted": false,
+        "task_admitted": false,
+        "intended_ast_preserved": false
+      },
+      "new_contract_met": true
+    },
+    {
+      "body": "multiline_string",
+      "envelope": "closed_then_unclosed",
+      "expected_new_contract": "reject",
+      "response_sha256": "b14d91bfb93a90977d262089af7263765b7da0600733e886504239fb23309260",
+      "old": {
+        "operator_admitted": false,
+        "task_admitted": false,
+        "intended_ast_preserved": false
+      },
+      "new": {
+        "operator_admitted": false,
+        "task_admitted": false,
+        "intended_ast_preserved": false
+      },
+      "new_contract_met": true
+    }
+  ],
+  "cases": 60,
+  "contract_checks_passed": 60,
+  "old_admitted_new_rejected": 12,
+  "new_admitted_wrong_ast": 0,
+  "python": "3.12.13",
+  "black": "26.5.1",
+  "script_sha256": "163829c3ffa28ef9f473c353ec77bfece876656d1de0472a19f1391d587b7cc9",
+  "bundle_sha256": {
+    "baseline/src/dojo/core/interpreters/base.py": "355a8831986c753f46a5c3e13597ebf67a2060142a5986f25b4cbbdfd216b529",
+    "baseline/src/dojo/core/solvers/utils/response.py": "dbbf56cf58b9597be44afa1b146909fb724281b8793e85cddead13ef7f9b7dca",
+    "baseline/src/dojo/tasks/mlebench/task.py": "3beec5506196912f8074206880d2feb0cbb80b6da7c2e209b09c89c6ad944306",
+    "baseline/src/dojo/utils/code_parsing.py": "2509c6774b759a1943ff113235fc277fafd87742d2229da63590164cb723dfa6",
+    "candidate/src/dojo/core/solvers/utils/response.py": "c71cb69fee8c628a0332c7b3c65244b09d3b4d10aabc9d85349ab2aee3a881d9",
+    "candidate/src/dojo/utils/code_parsing.py": "8587a340eaab35e5d83047a311008fca9ef0543555560b2fc529b9c17f73afee",
+    "candidate/src/dojo/utils/python_code_blocks.py": "7b07bfe8621b36cf7ed867e6957b10ddcdba7df1184ac7c5a57fbbd66bdb5620",
+    "test_parser_fix.py": "bb010c8513176c72836cba91137fbfd4c891dcc1671914af06999a5bdf4ffda5"
+  },
+  "candidate_executions": 0,
+  "model_calls": 0,
+  "boundary": "Synthetic format cases are not independent empirical trials or exhaustive parser proof. Stricter rejection of formerly accepted envelopes is a compatibility change, not efficacy."
+}

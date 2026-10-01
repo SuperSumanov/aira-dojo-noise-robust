@@ -1,5 +1,9 @@
 # This diagnostic's receipts bind exact bytes across operating systems.
 /.gitattributes text eol=lf
+phase1/FEEDBACK_QUALIFICATION_20261001.md -text
+phase1/scripts/task_local_feedback_20261001.py -text
+phase1/tests/test_task_local_feedback_20261001.py -text
+phase1/results/task_local_feedback_qualification_20261001/** -text diff whitespace=cr-at-eol
 phase1/scripts/comparison_0930_parser/*.py -text
 phase1/results/comparison_0930_parser_20261001/** -text
 phase1/patches/python_fence_parser_20261001/** -text

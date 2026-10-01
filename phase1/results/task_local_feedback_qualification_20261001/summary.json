@@ -1,0 +1,244 @@
+{
+  "alpha": 0.05,
+  "api_calls": 0,
+  "base_commit": "c1d007a4d478a807507182c864e82d8625754ffe",
+  "boundary": "Known statistical qualification only. No LLM treatment, real MLE data, adaptive validity guarantee or new method benefit.",
+  "checks": [
+    {
+      "expected": 0.45587586333545005,
+      "observed": 0.4484,
+      "passed": true,
+      "rule": "posthoc_any_uncorrected",
+      "tolerance": 0.02998295530949021
+    },
+    {
+      "expected": 0.03625999420724524,
+      "observed": 0.0351,
+      "passed": true,
+      "rule": "family_any_bonferroni",
+      "tolerance": 0.011316182296058172
+    },
+    {
+      "expected": 0.029970594783499616,
+      "observed": 0.0277,
+      "passed": true,
+      "rule": "predeclared_target_only",
+      "tolerance": 0.010330370943155599
+    },
+    {
+      "expected": 0.0018449821382700243,
+      "observed": 0.0015,
+      "passed": true,
+      "rule": "family_target_bonferroni",
+      "tolerance": 0.002674816778927417
+    }
+  ],
+  "command": [
+    "phase1/scripts/task_local_feedback_20261001.py",
+    "--output",
+    "phase1/results/task_local_feedback_qualification_20261001",
+    "--base-commit",
+    "c1d007a4d478a807507182c864e82d8625754ffe",
+    "--protocol",
+    "phase1/FEEDBACK_QUALIFICATION_20261001.md"
+  ],
+  "gpu_hours": 0,
+  "groups": 20,
+  "measured_wall_seconds": 0.3242358999996213,
+  "model_fits": 0,
+  "n_per_group": 64,
+  "platform": "Windows-10-10.0.26200-SP0",
+  "protocol_sha256": "06df9060106bbed562676fb85dbb8194cc63fd053492dca2d267b01e3c67b69e",
+  "python": "3.11.7 (main, Dec  7 2023, 09:09:57)  [GCC UCRT 13.2.0 64 bit (AMD64)]",
+  "real_candidate_executions": 0,
+  "replicates": 2000,
+  "schema": "feedback-qualification-synthetic-v1",
+  "seeds": [
+    61001,
+    61002,
+    61003,
+    61004,
+    61005
+  ],
+  "source_sha256": "26e8f00772ac2db32780e0bcef1823438a7a5d8681117ff18e3b041533f85380",
+  "summary": [
+    {
+      "claim_rate_mean": 0.4484,
+      "claim_rate_median": 0.4475,
+      "claim_rate_seed_sd": 0.007144928271158507,
+      "claims": 4484,
+      "global_negative_rate": 0.5005,
+      "rule": "posthoc_any_uncorrected",
+      "scenario": "null",
+      "target_supported_global_negative_rate": 0.0004,
+      "total_replicates": 10000
+    },
+    {
+      "claim_rate_mean": 0.0351,
+      "claim_rate_median": 0.034,
+      "claim_rate_seed_sd": 0.006288879073412051,
+      "claims": 351,
+      "global_negative_rate": 0.5005,
+      "rule": "family_any_bonferroni",
+      "scenario": "null",
+      "target_supported_global_negative_rate": 0.0004,
+      "total_replicates": 10000
+    },
+    {
+      "claim_rate_mean": 0.0277,
+      "claim_rate_median": 0.0285,
+      "claim_rate_seed_sd": 0.0037848381735551126,
+      "claims": 277,
+      "global_negative_rate": 0.5005,
+      "rule": "predeclared_target_only",
+      "scenario": "null",
+      "target_supported_global_negative_rate": 0.0004,
+      "total_replicates": 10000
+    },
+    {
+      "claim_rate_mean": 0.0015,
+      "claim_rate_median": 0.0015,
+      "claim_rate_seed_sd": 0.0010606601717798212,
+      "claims": 15,
+      "global_negative_rate": 0.5005,
+      "rule": "family_target_bonferroni",
+      "scenario": "null",
+      "target_supported_global_negative_rate": 0.0004,
+      "total_replicates": 10000
+    },
+    {
+      "claim_rate_mean": 0.9539,
+      "claim_rate_median": 0.953,
+      "claim_rate_seed_sd": 0.0032287768581926116,
+      "claims": 9539,
+      "global_negative_rate": 0.224,
+      "rule": "posthoc_any_uncorrected",
+      "scenario": "target_strong",
+      "target_supported_global_negative_rate": 0.123,
+      "total_replicates": 10000
+    },
+    {
+      "claim_rate_mean": 0.6633,
+      "claim_rate_median": 0.6715,
+      "claim_rate_seed_sd": 0.016080267410711786,
+      "claims": 6633,
+      "global_negative_rate": 0.224,
+      "rule": "family_any_bonferroni",
+      "scenario": "target_strong",
+      "target_supported_global_negative_rate": 0.123,
+      "total_replicates": 10000
+    },
+    {
+      "claim_rate_mean": 0.9215,
+      "claim_rate_median": 0.924,
+      "claim_rate_seed_sd": 0.005099019513592797,
+      "claims": 9215,
+      "global_negative_rate": 0.224,
+      "rule": "predeclared_target_only",
+      "scenario": "target_strong",
+      "target_supported_global_negative_rate": 0.123,
+      "total_replicates": 10000
+    },
+    {
+      "claim_rate_mean": 0.6486,
+      "claim_rate_median": 0.6535,
+      "claim_rate_seed_sd": 0.014227613995326155,
+      "claims": 6486,
+      "global_negative_rate": 0.224,
+      "rule": "family_target_bonferroni",
+      "scenario": "target_strong",
+      "target_supported_global_negative_rate": 0.123,
+      "total_replicates": 10000
+    },
+    {
+      "claim_rate_mean": 0.5177999999999999,
+      "claim_rate_median": 0.5165,
+      "claim_rate_seed_sd": 0.014007141035914538,
+      "claims": 5178,
+      "global_negative_rate": 0.4161,
+      "rule": "posthoc_any_uncorrected",
+      "scenario": "target_weak",
+      "target_supported_global_negative_rate": 0.0032,
+      "total_replicates": 10000
+    },
+    {
+      "claim_rate_mean": 0.0535,
+      "claim_rate_median": 0.0525,
+      "claim_rate_seed_sd": 0.004401704215414751,
+      "claims": 535,
+      "global_negative_rate": 0.4161,
+      "rule": "family_any_bonferroni",
+      "scenario": "target_weak",
+      "target_supported_global_negative_rate": 0.0032,
+      "total_replicates": 10000
+    },
+    {
+      "claim_rate_mean": 0.1422,
+      "claim_rate_median": 0.136,
+      "claim_rate_seed_sd": 0.012848151618034398,
+      "claims": 1422,
+      "global_negative_rate": 0.4161,
+      "rule": "predeclared_target_only",
+      "scenario": "target_weak",
+      "target_supported_global_negative_rate": 0.0032,
+      "total_replicates": 10000
+    },
+    {
+      "claim_rate_mean": 0.0202,
+      "claim_rate_median": 0.0215,
+      "claim_rate_seed_sd": 0.0033279122584587467,
+      "claims": 202,
+      "global_negative_rate": 0.4161,
+      "rule": "family_target_bonferroni",
+      "scenario": "target_weak",
+      "target_supported_global_negative_rate": 0.0032,
+      "total_replicates": 10000
+    },
+    {
+      "claim_rate_mean": 0.9306,
+      "claim_rate_median": 0.931,
+      "claim_rate_seed_sd": 0.0017102631376486857,
+      "claims": 9306,
+      "global_negative_rate": 0.9966,
+      "rule": "posthoc_any_uncorrected",
+      "scenario": "target_better_global_worse",
+      "target_supported_global_negative_rate": 0.646,
+      "total_replicates": 10000
+    },
+    {
+      "claim_rate_mean": 0.6492,
+      "claim_rate_median": 0.6465,
+      "claim_rate_seed_sd": 0.005415256226624949,
+      "claims": 6492,
+      "global_negative_rate": 0.9966,
+      "rule": "family_any_bonferroni",
+      "scenario": "target_better_global_worse",
+      "target_supported_global_negative_rate": 0.646,
+      "total_replicates": 10000
+    },
+    {
+      "claim_rate_mean": 0.9259000000000001,
+      "claim_rate_median": 0.9275,
+      "claim_rate_seed_sd": 0.00330529877620769,
+      "claims": 9259,
+      "global_negative_rate": 0.9966,
+      "rule": "predeclared_target_only",
+      "scenario": "target_better_global_worse",
+      "target_supported_global_negative_rate": 0.646,
+      "total_replicates": 10000
+    },
+    {
+      "claim_rate_mean": 0.6488,
+      "claim_rate_median": 0.646,
+      "claim_rate_seed_sd": 0.005298584716695609,
+      "claims": 6488,
+      "global_negative_rate": 0.9966,
+      "rule": "family_target_bonferroni",
+      "scenario": "target_better_global_worse",
+      "target_supported_global_negative_rate": 0.646,
+      "total_replicates": 10000
+    }
+  ],
+  "timestamp_utc": "2026-10-01T04:13:05.957146+00:00",
+  "warmup_draws": 100
+}

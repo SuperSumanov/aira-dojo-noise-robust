@@ -1,0 +1,12 @@
+{
+  "distinct_predictions": 6,
+  "export_sha256": "4f99ac1ccce2e6b8aae3b726f6bdf0dfa4da7b6e8f530b1600a8571e2630b775",
+  "missing": 2,
+  "plan_sha256": "6001ffff3f773d30b5cb5b0fc20338e5625e8e9eba533723c1cdec72b1942972",
+  "review_sha256": "81b3db12d8e792208048e7e3c3c30a5ad54a8bcf695473828fa969af0d3d0b30",
+  "scope": "Independent arithmetic verification, not independent data or prospective replication.",
+  "source_script_sha256": "70b20adc41b416873f1f745ca72c8ec8c606cfcf3eeec5c5383f7d6a983afcc9",
+  "status": "PASS",
+  "verified_endpoints": 7,
+  "verifier_script_sha256": "ecd5093fb3b863f74d7fdf0579ec31cb7a99af7ecae00671c5f3d7a824849c5a"
+}

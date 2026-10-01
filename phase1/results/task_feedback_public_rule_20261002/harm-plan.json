@@ -1,0 +1,22 @@
+{
+  "allowed_labels": "previously scored D_search only",
+  "analysis": "POSTHOC_FROZEN_RULE_HARM",
+  "llm_calls": 0,
+  "metrics": [
+    "covered",
+    "text_changed",
+    "improved",
+    "harmed",
+    "ties",
+    "positive_contribution",
+    "negative_contribution",
+    "finite_set_loss_bound"
+  ],
+  "new_fit": 0,
+  "new_gpu": 0,
+  "rule_sha256": "2beaad25ab591c957f1183de5b17457ff738b25130d13075df500c36bb4fbfc0",
+  "scope": "No rule reselection; no independent validation or generalization claim; no confidence interval over dependent predictions.",
+  "script_sha256": "70b20adc41b416873f1f745ca72c8ec8c606cfcf3eeec5c5383f7d6a983afcc9",
+  "source_count": 9,
+  "summary_sha256": "7445f0c59ade28985cc039ba78c6e7663d8abf57464b2772405ee596837e46f7"
+}

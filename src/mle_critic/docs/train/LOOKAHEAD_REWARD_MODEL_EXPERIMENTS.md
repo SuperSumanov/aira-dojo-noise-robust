@@ -286,3 +286,54 @@ accelerate launch \
 --config src/mle_critic/recipes/trl/Qwen3-4B/GRPO_inst_csipo.yaml \
 > ./outputs/Qwen3-4B/GRPO_mlejudger_easy_inst_csipo_sampling.log 2>&1
 ```
+
+## 10. VeRL RL训练
+
+VeRL是一个更加生产的RL库，有很多更好的设计，所以训出来的效果一般会明显优于TRL，先根据readme里面的指引安装conda或容器。如果选择用conda，cd到verl路径下就可以了。如果选用容器，则要注意一下各种目录的挂载。我常用的是：
+
+```bash
+singularity shell --nv --cleanenv \
+--env PYTHONUSERBASE=/auxstore/cse/d10/data/s1155173938/aira-dojo-noise-robust/src/verl/verl_env/packages \
+--env LD_LIBRARY_PATH=/usr/local/cuda/compat:$LD_LIBRARY_PATH \
+--env PATH=/opt/nodejs/bin:\$PATH \
+-B /auxstore/cse/d10/data/s1155173938/aira-dojo-noise-robust/src/verl:/workspace/verl \
+-B /auxstore/cse/d10/data/s1155173938:/auxstore/cse/d10/data/s1155173938 \
+-B /auxstore/cse/d10/data/s1155173938/software/nodejs:/opt/nodejs \
+-B /auxstore/cse/ssd/s1155173938:/tmp \
+/auxstore/cse/d10/data/s1155173938/singularity_images/verl_vllm.sif
+```
+
+启动interactive shell之后再挂一些必要的环境变量
+
+```bash
+ulimit -n 65536
+ulimit -u 65536
+export TRITON_HOME=/auxstore/cse/d10/data/s1155173938/triton_home
+export TORCH_HOME=/auxstore/cse/d10/data/s1155173938/torchhome
+export HF_HOME="/auxstore/cse/d10/data/s1155173938/transformerscache"
+export HF_DATASETS_CACHE="/auxstore/cse/d10/data/s1155173938/transformerscache"
+export PIP_CACHE_DIR="/auxstore/cse/d10/data/s1155173938/pipcache"
+```
+
+你可以以此为模板来写。要进行训练，首先要把jsonl数据转成VeRL接受的parquet格式
+
+```bash
+python my_recipes/dataset/mlejudge.py \
+  --train_file ../../data/augmented_mle_critic/rl_judger_messages_train.jsonl \
+  --test_file ../../data/augmented_mle_critic/rl_judger_messages_test.jsonl \
+  --local_dir data/mlejudge 
+```
+
+如果有hgx 8xh200的话，可以用
+
+```bash
+base my_scripts/train/mle_judge/8xh200/run_qwen3_8_27b_fsdp.sh
+```
+
+启动训练，一步大概在40分钟左右，刚好卡在140G显存不会oom，但如果只有4xh200，则需要使用lora
+
+```bash
+base my_scripts/train/mle_judge/4xh200/run_qwen3_8_27b_fsdp_lora.sh
+```
+
+否则一步迭代的速度和利用率都奇慢无比

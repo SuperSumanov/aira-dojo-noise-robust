@@ -1,0 +1,93 @@
+{
+  "checks": [
+    {
+      "action": "action-2",
+      "conditional_fallback_check": {
+        "condition": "only if actual fasttext branch unavailable",
+        "max_pair_cosine_distance": 0.0004800558090209961,
+        "norm_max": 4.943984508514404,
+        "norm_min": 4.893805027008057,
+        "rank": 10,
+        "words": 10
+      },
+      "episode": 6,
+      "node_sha256": "32de4ba58c78597e06fb3d458cd07e83880e7f54145670565dd3f62b8212193d",
+      "public_train_sha256": "201b0a89896e32434c777af221bd05de37ea56af57c3504057a040ad9f04e5e7",
+      "raw_code_sha256": "446ca618c20f5dbd0526fb96b35490f0f260ff5fd470b6d954ad6577c0e13bcf",
+      "role": "public_train_and_public_unlabeled_input_only",
+      "runtime_markers": [
+        "Training fasttext embeddings (dim=100, min_count=2, epoch=5)...",
+        "OOF log-loss  TF-IDF model: 0.403006",
+        "OOF log-loss  Embedding model: 0.867408",
+        "Best blend weight w (embedding): 0.00  ->  OOF log-loss: 0.403006",
+        "  TF-IDF model OOF log-loss:  0.403006",
+        "  Embedding model OOF log-loss: 0.867408",
+        "  Best blend (w=0.00) OOF log-loss: 0.403006"
+      ],
+      "task": "spooky-author-identification",
+      "valid_source_rule": "prior A incumbent; first A start if valid else second A start; no new result used"
+    },
+    {
+      "action": "action-4",
+      "batch_invariance": {
+        "full_batch_days": 845.0,
+        "origin_difference_days": 14.262314814814815,
+        "public_prediction_origin": 1307414814.0,
+        "public_prediction_rows": 300,
+        "same_record_changed_columns": [
+          "days_since_start"
+        ],
+        "singleton_days": 0.0,
+        "train_origin": 1306182550.0
+      },
+      "episode": 7,
+      "node_sha256": "d69ce4eb64e3e5bde58e0b68d65cfb82aa98daf93e91cc5ce453876ba357c273",
+      "public_train_sha256": "1e19fe3dbe314ff4f71c716c60036d62e4ca4943ce0c1eb650d0a6219a03913d",
+      "public_unlabeled_sha256": "6cec69c8401eb2c4f12f451eea4ea283a05a1e4f7a9fb282f28cd0bf368d4e11",
+      "raw_code_sha256": "897591b5678d90555cae8a66bfd3589a5302a8495f5d44ab93c8009b37f548fb",
+      "role": "public_train_and_public_unlabeled_input_only",
+      "task": "random-acts-of-pizza",
+      "valid_source_rule": "prior A incumbent; first A start if valid else second A start; no new result used"
+    },
+    {
+      "action": "action-1",
+      "episode": 11,
+      "input_contract": {
+        "full_text_reference_by_sentiment": {
+          "negative": {
+            "copy_full_mean_jaccard": 0.3368899448374565,
+            "exact_wordset_matches": 825,
+            "rows": 5628
+          },
+          "neutral": {
+            "copy_full_mean_jaccard": 0.9757107882534224,
+            "exact_wordset_matches": 7205,
+            "rows": 8019
+          },
+          "positive": {
+            "copy_full_mean_jaccard": 0.31352966394311,
+            "exact_wordset_matches": 799,
+            "rows": 6230
+          }
+        },
+        "located_targets": 19875,
+        "max_chars": 128,
+        "reference_is_training_description_not_generalization": true,
+        "sentiment_used_by_dataset": false,
+        "targets_extend_beyond_model_window": 572,
+        "train_rows": 19877
+      },
+      "node_sha256": "971f347a4c4c4d5055f32b0aacad7be396df29d688729469688c65b94c39d27f",
+      "public_train_sha256": "fd0cd390376c2fcb1e762937cd292cc754ab0939c7dec3ddf4b33e5e86d9957a",
+      "raw_code_sha256": "e76cc2730f9314921abbc0f0e85cb4bc6651d2c8a6d729186e2c791de22223d2",
+      "role": "public_train_and_public_unlabeled_input_only",
+      "task": "tweet-sentiment-extraction",
+      "valid_source_rule": "prior A incumbent; first A start if valid else second A start; no new result used"
+    }
+  ],
+  "code_sha256": "37be1828435cfca7415a6bcbfcc9400c76936860b0abcd01605018f09828c6c7",
+  "fit": 0,
+  "new_gpu": 0,
+  "private_label_reads": 0,
+  "seconds": 1.962578405160457
+}

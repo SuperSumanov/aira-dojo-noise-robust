@@ -1,0 +1,20 @@
+{
+  "candidate_execution": false,
+  "checks": [
+    {
+      "fixed_origin_batch_invariance_algebra": true,
+      "original_witness_reproduced": true,
+      "score_benefit_tested": false,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "missing_condition_and_coverage_reproduced": true,
+      "score_benefit_tested": false,
+      "task": "tweet-sentiment-extraction",
+      "training_aggregates_reproduced": true
+    }
+  ],
+  "evidence_sha256": "9f238ebcb5cb7ce7ec4384ec10f6c7d892d3338f3e198357b26328b22d9a0814",
+  "private_labels_opened": false,
+  "status": "PASS"
+}

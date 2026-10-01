@@ -1,0 +1,7 @@
+{
+  "plan_sha256": "9fe231e1b9e2da8cb51fadb7ff9844b074c10e8e3dc64d1d1f3be170fb0703a0",
+  "protected_reads": 0,
+  "real_calls": 0,
+  "status": "PASS",
+  "typed_configs": 18
+}

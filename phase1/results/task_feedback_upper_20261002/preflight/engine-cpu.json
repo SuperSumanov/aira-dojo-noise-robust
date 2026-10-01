@@ -1,0 +1,26 @@
+{
+  "api": 0,
+  "gpu": 0,
+  "plan_sha256": "9fe231e1b9e2da8cb51fadb7ff9844b074c10e8e3dc64d1d1f3be170fb0703a0",
+  "rows": [
+    {
+      "actions": 5,
+      "arm": "A",
+      "native_prompts": 4,
+      "regression_and_failure_retained": true
+    },
+    {
+      "actions": 5,
+      "arm": "B",
+      "native_prompts": 4,
+      "regression_and_failure_retained": true
+    },
+    {
+      "actions": 5,
+      "arm": "C",
+      "native_prompts": 4,
+      "regression_and_failure_retained": true
+    }
+  ],
+  "status": "PASS"
+}

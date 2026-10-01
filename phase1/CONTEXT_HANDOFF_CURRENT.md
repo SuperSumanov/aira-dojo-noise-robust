@@ -1,45 +1,29 @@
 # 当前短交接
 
-最后核验2026-10-01 08:34 UTC（香港16:34）。本轮全部完成；不要重复提交或重跑一次性读出。
+最后观察2026-10-01 19:01 UTC（香港10月2日03:01）。用户本轮要求六小时持续实验，目标至00:40 UTC/08:40香港；不以automation替代会话。研究盘续期已确认。15204于19:00:24提交、19:00:27 controller claim，19:01队列RUNNING/gpu28；服务在初始化，尚无实际续改。
 
-## 最新裁决与用户授权
+## 当前新实验（勿重复提交）
 
-用户要求真实续跑并三小时提供有价值信号；04:33 UTC开始，07:33已交付首批并push，现已完成原定18条。用户已确认研究盘续期，不能再询问或当作待审批。唯一方向入口CURRENT_DIRECTION.md顶部0L395；同任务冻结生成器、可信事实A/B/C。本轮结果不支持扩大当前长度分组+证据格式约束版本。不恢复critic训练前置、旧HCE/多保真/Probe/K≥1或底座更新。不读first-960/Target-300/Target-522、D_val/官方test。
+方向顶部0L396/FEEDBACK_UPPER_BOUND_20261002.md。验证人工辅助可执行证据是否改善冻结27B续改，不是自动analyzer/E2E/终评，不扩旧长度分组C。Pizza/Tweet各1个旧A有效incumbent×3续改seed×A/B/C=18条；每条1200秒、最多4修改，5张gpu28 RTX3090（2服务+3执行），最多3h10，毛15.833333333333334GPUh。无paid API/critic fit/底座更新。仅D_search开发，保护cohort/D_val/test不读。
 
-## 已完成的真实运行（勿重投）
+新root /research/d7/spc/yzyang4/task-feedback-upper-20261002-v1；plan SHA9fe231e1b9e2da8cb51fadb7ff9844b074c10e8e3dc64d1d1f3be170fb0703a0。18 typed config、12实际SDK编码mock HTTP、三臂15动作CPU主循环PASS，无真实模型调用。prepare/cpu/transport/engine测试均已完成不可重做同输出；submit已完成，大文件hash通过，**job15204 SUBMITTED**。exec session96256已结束，不能再次提交。旧12535 JobHeldUser勿触碰。公开证据第二实现PASS：evidence-independent.json，证据SHA9f238ebcb5cb7ce7ec4384ec10f6c7d892d3338f3e198357b26328b22d9a0814。
 
-- 15140 v6：05:48:58提交，05:58:43本地27B服务ready；08:27:27全部18条闭合、08:27:30服务关闭。Slurm最终COMPLETED，9512秒×5GPU；无controller/infrastructure error。唯一根目录 /research/d7/spc/yzyang4/task-feedback-real-20261001-v6。
-- 冻结plan SHA 15751d3b52bdc42617df02006ce724635f4bf49df6e477686769fd1979d53403。18=3任务×2旧代码起点×A/B/C，每条1800秒且最多4次原生修改，固定RTX3090 gpu28、2服务+3任务GPU。不是完整历史状态恢复。
-- 先前15135 v5在首次生成前接口失败，05:33停止，790秒×5GPU；证据保留。v6连同它总实际14.308333333333334GPUh，低于原20。无付费API、无fit、无新追加作业。
-- 最后队列只剩原owned12535 PENDING JobHeldUser，不触碰。没有活跃functions单元、SSH会话或新automation。
-- 所有prepare/submit/stop/finalize脚本均不可重复运行。不要重验G0、权重或旧GPU隔离。
+只读状态：ssh linux5 /research/d7/spc/yzyang4/venvs/aira/bin/python -B /tmp/feedback_upper_status_20261002.py。已上传的新读出/独立核验在/tmp/task-feedback-stage-20261001/task_feedback_upper_{readout,verify}_20261002.py；读出输出须新路径，不覆盖。CPU检查/tmp/feedback_upper_cpu_20261002.py。新wrapper复用原v6 immutable runtime SHA4b155d927c12f063e0838b5708085fe1bc55c4983197a3d8d2453696d73c55ad，只改新root/port19442/1200秒/新schedule/新facts模块。旧15140不可重投。
 
-## 完整结果与边界
+## 证据/公平与后续
 
-完整目录 phase1/results/task_feedback_pilot_20261001/complete/：
-runs.csv（18行）、comparisons.csv、summary.json、verify-complete.json、exposure-complete.json、initial_state.json、public_view_identity.json、descriptive_analysis.json、accounting.json、closure.json。
+A普通反思；B加定向事实；C逐字B事实加人工具体建议，额外人工建议本身是处理，不冒称同信息自主算法。事实绑定旧初始code，不能宣称每个新子程序仍有该缺陷。Pizza同record日期特征845→0，Tweet未使用sentiment/训练neutral全文Jaccard0.9757；只有公开train/无标签输入用于核验，不喂旧D_search复制分。Spooky备用词向量未触发，剔除假线索。证据/tmp/task-feedback-upper-evidence-20261002-v2/checks.json；v1凭据regex误中task-路径后停止，v2加边界，失败目录保留。
 
-89返回动作、31有效提交独立原生评分和聚合重算全部PASS，pending为空。18条16最终有效，A5/6、B6/6、C5/6；72次生成全部返回，1个最后执行在截止前未形成结果。六起点初始代码hash一致，B/C首事实相同；仅两起点初始有效，不能把其他null置0。
-预定主收益：B-A两负；C-B一平一负。次指标5个双方有效配对：B-A/C-A各1胜1平3负，C-B2胜2平1负，另有C无效/B有效1对。完整六行表见0L395，不按有效子集宣称胜出。
+读出保留18分母、按task/seed配对自身初分增益+最终分；每任务仅一个代码origin，三seed不等于三新任务。全分配成本含idle/startup/failure，人工成本另列。固定不追有利seed、不增加建议、不按采用建议筛样本。先做源码/公开反例第二实现验证，再完整比较与决定是否止损；C若好B不好仅说明人工指导有用。
 
-Tweet第二起点A0.5226682748344275、B0.5731426197663997、C0.5853067573584102，有局部相对提升但仍低于全文复制参考0.593357488208652。参考是07:38的一次事后固定规则，0GPU/API/fit、2454行，独立重算0.5933574882086521；未喂agent，不是第四臂。两起点公开view逐字相同，不能误称独立数据。勿重跑/tmp/task-feedback-tweet-copy-reference-20261001或改规则追分。
+## 已完成旧实验
 
-B/C各24生成仅10次有聚合事实（合计20/48），valid-parent为处理依赖中间变量，不据此筛选估效。部分失败修复没有切片证据，不能把修复归因于切片诊断。A在两个Pizza起点都高于B/C；不能拿B自我改善替代胜A。C当前证据格式prompt不是已证明的新analyzer算法。
+15140/18条/89返回动作/31有效提交全部独立复验，0L395完整表；旧批16最终有效，预定主收益仅两有效初态，B-A两负、C-B平负。Tweet局部C增益仍低于全文复制0.593357488208652。不能作为新正主张。总连旧失败14.308333333333334GPUh，全部关闭。
 
-本轮仅D_search开发筛查、两种停止上限、3文本任务、2不同代码起点且每起点1seed、共享服务相关。不是跨seed/全E2E/独立终评。actual elapsed不同、exec_seconds包含内核准备且遗漏未返回动作；总成本采用完整Slurm分配。下一大实验前先明确可执行修改与额外证据的关系及强简单基线，不围绕最新失败无限加补丁。本轮不再提交GPU。
+## 本地/Git
 
-## 保存/发布
+主checkout aira-dojo-codex-20260813 HEAD14188f8956d5becfc1f192455647d7c4aedd1f82有大量旧脏改，禁止整体stage/push/reset/rebase。新源码/协议优先在干净发布worktree C:/Research/New/my_project/MLEvolve/_codex_tmp/publication-feedback-20261001，HEAD4af5723c7a98b25a75c7771695a19ac96f90935d；正常推HEAD:phase1-value-critic，不新branch，不改学长branch。新代码未push。主/公开方向历史不同，0L396分别插入，禁止整文件互盖。
 
-主目录 aira-dojo-codex-20260813 HEAD14188f8956d5becfc1f192455647d7c4aedd1f82有大量旧脏改，不整体stage/push/reset/rebase。
-干净发布工作树 C:/Research/New/my_project/MLEvolve/_codex_tmp/publication-feedback-20261001，detached HEAD；只正常推HEAD:phase1-value-critic，不新建分支、不动学长分支。
-本次发布基线5cbab426461f8ef3c01d0708f15388655fa07751（首批+全文参考），完整结果随本次限定路径提交保存。发布前14路径安全核验通过，敏感文件名/凭据形状命中均0；10产物和1源码暂存字节与原文件一致，CSV/JSON及统计独立算术复核通过。推送后以git log/ls-remote确认，不以本文件自引用commit作为远端证明。
-主/公开CURRENT_DIRECTION历史相差很多，不能整份复制；本次0L395分别插入。学长dojo-reproduce最后核验e385f863cb531904e611e987f7f71606796db656，未修改。
-只上传指定聚合、验证hash与代码；不上传.env、原始私有generation/node/submission/标签。scripts/analyze_task_feedback_exposure_20261001.py实际SHA67c0e1afab2833950530f2982a526143cfb06198f1d12ed2efc503edc3aad598，仅读既有反馈收据，无新执行。
-14既有诊断/读出单测通过；11项源码/结果暂存字节校验已通过。summary SHA50f43b5ce3b7ec9e724d3a58f2283263d8842797592e389d3d31b39f41a206fe，verifier SHA23713e5f5eaa1f06037328d2454ea4d3be52d8f578f2941caa9ccd71beab8319。
+本轮fetch学长到4ee7afd9970974f4bfae4b7a9d51591aca5c0b48（10月1日23:01香港）；三个改动文档先credential-shape零命中后读diff，只是policy数据/训练路径更新，不是已核新效果。不恢复底座训练。
 
-## 只读核验入口
-
-SSH linux5；Python /research/d7/spc/yzyang4/venvs/aira/bin/python；SLURM_CONF=/opt1/slurm/gpu-slurm.conf。
-安全现场：Python -B /tmp/task-feedback-stage-20261001/task_feedback_status_20261001.py --errors。
-一次性已完成输出：readout-complete/、verify-complete.json、exposure-complete.json。不要相同路径重跑；需要查看直接读安全汇总。
-私有日志先远端脱敏；凭据只留远端变量/位置，不回显值。
+相关研究上轮已查Gome2603.01692、MLE-STAR2506.15692、Malena最简harness2609.40303（9/30）；targeted reflection/genericanalyzer不新颖，只有可重复实际收益或不同机制才值得扩大。experiment-prompting技能已读；13项preflight已对照。长期经验在phase1/memory/MEMORY.md，动态以本文件和现场为准。

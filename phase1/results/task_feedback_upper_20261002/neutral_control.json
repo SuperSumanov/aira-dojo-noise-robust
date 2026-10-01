@@ -1,0 +1,26 @@
+{
+  "baseline": 0.5226682748344275,
+  "difference": 0.11052748540550938,
+  "elapsed_seconds": 4.315875777043402,
+  "independent_modified": 0.6331957602399368,
+  "independent_original": 0.5226682748344275,
+  "modified_rows": 669,
+  "neutral_only": 0.6331957602399368,
+  "neutral_rows": 996,
+  "other_sentiments_unchanged": true,
+  "plan": {
+    "agent_calls": 0,
+    "model_fits": 0,
+    "new_gpu": 0,
+    "not_equal_budget_arm": true,
+    "not_sent_to_running_agents": true,
+    "public_input_sha256": "16f38536c9a6a8cdbcfac981d443f006c57dc585a8b8e03f13c5da9187ecbf7e",
+    "rule": "replace only public sentiment == neutral with full public input text; all other source predictions byte-value unchanged",
+    "script_sha256": "b260df99b612105f7f6c1d35e200701a618d187b182b39fed3e096d491bab5fa",
+    "source": "/research/d7/spc/yzyang4/task-feedback-real-20261001-v6/episode-11/action-1/submission.private.csv",
+    "source_sha256": "9a2ad15b08e32dfd877232dadb2887a76de3d3d495cc4214eb3eb030e60ad91d"
+  },
+  "prediction_sha256": "ea8c8127807aab0ec420d62c1cd56510e7dea5cf74c8342f0bca3a389b629256",
+  "scope": "posthoc prior-prediction paired development control; not a new trained model, full agent run, or independent final evaluation",
+  "source_rows": 2454
+}

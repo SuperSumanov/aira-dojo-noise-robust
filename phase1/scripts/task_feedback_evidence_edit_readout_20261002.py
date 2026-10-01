@@ -9,6 +9,13 @@ def close(a,b):return math.isclose(a,b,abs_tol=1e-11,rel_tol=1e-11)
 def stats(v):
     x=[y for y in v if y is not None]
     return dict(n=len(x),values=v,median=statistics.median(x) if x else None,sample_variance=statistics.variance(x) if len(x)>1 else None)
+def finish_classification(finished,closed,failure_present):
+    if finished is not None:return finished.get('status','unknown')
+    # Before effects were read: a controller-attested deadline retains the
+    # incumbent under the frozen protocol. An actual worker exception stays unknown.
+    if not failure_present and closed.get('worker_deadline_reached') is True:return 'budget_exhausted'
+    return 'unknown'
+
 def run():
     if sha(ROOT/'plan.json')!=PLAN_SHA or not (ROOT/'all-closed.json').exists():raise ValueError('frozen all-closed gate')
     sys.path.insert(0,str(ROOT));from task_feedback_real_20261001 import m
@@ -68,12 +75,16 @@ def run():
             assert fmt['result_sha256']==hashlib.sha256(expect.encode()).hexdigest()
             assert actual==extract_code(expect)
             assert fmt['parent_sha256']==hashlib.sha256(initial.encode()).hexdigest()
-        status=read(ep/'finished.json')['status'] if (ep/'finished.json').exists() else 'unknown'
+        finished=read(ep/'finished.json') if (ep/'finished.json').exists() else None
+        closed=read(ep/'closed.json')
+        status=finish_classification(finished,closed,(ep/'failure.json').exists())
         selected=max(values) if values else None
         if (ep/'completed.json').exists():assert read(ep/'completed.json')['selected_metric']==selected
         revised=next((x for x in actions if x['step']==1),{})
         usage=generation.get('usage',{})
-        rows.append(dict(**s,base_commit=plan['base_commit'],plan_sha256=PLAN_SHA,status=status,initial=initial_score,
+        rows.append(dict(**s,base_commit=plan['base_commit'],plan_sha256=PLAN_SHA,status=status,
+            raw_worker_status=finished.get('status') if finished else None,worker_deadline_reached=closed.get('worker_deadline_reached'),
+            revision_result_returned=bool(revised),returned_execution_seconds=sum(r['exec_seconds'] for r in actions),initial=initial_score,
             selected=selected,gain=selected-initial_score if selected is not None and initial_score is not None else None,
             revised_valid=revised.get('valid'),revised_metric=revised.get('metric'),format_status=fmt.get('status'),
             changed_lines=fmt.get('changed_lines'),parent_lines=fmt.get('parent_lines'),edit_count=fmt.get('edit_count'),

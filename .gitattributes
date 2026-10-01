@@ -707,3 +707,4 @@ phase1/results/task_feedback_local_edit_20261002/** -text diff whitespace=cr-at-
 phase1/scripts/task_feedback_evidence_edit*_20261002.py -text diff whitespace=cr-at-eol
 phase1/FEEDBACK_EVIDENCE_EDIT_20261002.md -text diff whitespace=cr-at-eol
 phase1/results/task_feedback_evidence_edit_20261002/** -text diff whitespace=cr-at-eol
+phase1/tests/test_feedback_evidence_readout_20261002.py -text diff whitespace=cr-at-eol

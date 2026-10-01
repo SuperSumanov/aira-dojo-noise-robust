@@ -1,0 +1,20 @@
+{
+  "agent_calls": 0,
+  "categorical_cardinality": [
+    2,
+    16
+  ],
+  "family": "copy full public input text conditioned on one non-ID/input/target categorical column value",
+  "gpu": 0,
+  "minimum_confirmation_rows": 100,
+  "minimum_mining_rows": 200,
+  "model_optimizer_fits": 0,
+  "private_labels_opened": false,
+  "retrospective": true,
+  "script_sha256": "f421526f8c4f41261bd3a1e4f4a13a2cdc63fd1bd8d36810f9dc52c6adb89650",
+  "selection": "largest qualifying mining group, then highest mining mean, then lexical; confirm once, no fallback",
+  "source": "/research/d7/spc/yzyang4/tweet-search-only-20260927-a4d1/public/train.csv",
+  "source_sha256": "fd0cd390376c2fcb1e762937cd292cc754ab0939c7dec3ddf4b33e5e86d9957a",
+  "split": "SHA256(public-rule-20261002:textID) mod5, zero confirmation, others mining",
+  "threshold": 0.95
+}

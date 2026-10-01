@@ -1,0 +1,107 @@
+{
+  "denominator": 9,
+  "public_input_sha256": "16f38536c9a6a8cdbcfac981d443f006c57dc585a8b8e03f13c5da9187ecbf7e",
+  "rule_sha256": "2beaad25ab591c957f1183de5b17457ff738b25130d13075df500c36bb4fbfc0",
+  "selection": "all6 original Tweet endpoints + all3 later F endpoints; no new-gain selection",
+  "sources": [
+    {
+      "arm": "C",
+      "batch": "task-feedback-real-20261001-v6",
+      "index": 2,
+      "seed": 101003,
+      "source": null,
+      "source_sha256": null,
+      "start": 2,
+      "task": "tweet-sentiment-extraction",
+      "wave": 0
+    },
+    {
+      "arm": "B",
+      "batch": "task-feedback-real-20261001-v6",
+      "index": 5,
+      "seed": 101003,
+      "source": "/research/d7/spc/yzyang4/task-feedback-real-20261001-v6/episode-5/action-2/submission.private.csv",
+      "source_sha256": "8ec8652ff3fb33c3940ee5026c1e34c597ac28164dcab88add3bfcded1630c2b",
+      "start": 2,
+      "task": "tweet-sentiment-extraction",
+      "wave": 1
+    },
+    {
+      "arm": "A",
+      "batch": "task-feedback-real-20261001-v6",
+      "index": 8,
+      "seed": 101003,
+      "source": null,
+      "source_sha256": null,
+      "start": 2,
+      "task": "tweet-sentiment-extraction",
+      "wave": 2
+    },
+    {
+      "arm": "A",
+      "batch": "task-feedback-real-20261001-v6",
+      "index": 11,
+      "seed": 101006,
+      "source": "/research/d7/spc/yzyang4/task-feedback-real-20261001-v6/episode-11/action-1/submission.private.csv",
+      "source_sha256": "9a2ad15b08e32dfd877232dadb2887a76de3d3d495cc4214eb3eb030e60ad91d",
+      "start": 5,
+      "task": "tweet-sentiment-extraction",
+      "wave": 3
+    },
+    {
+      "arm": "B",
+      "batch": "task-feedback-real-20261001-v6",
+      "index": 14,
+      "seed": 101006,
+      "source": "/research/d7/spc/yzyang4/task-feedback-real-20261001-v6/episode-14/action-1/submission.private.csv",
+      "source_sha256": "40f43844a820f6a52c18865664ef44b3b6addbbe5e701bda4ed07a00688f5be1",
+      "start": 5,
+      "task": "tweet-sentiment-extraction",
+      "wave": 4
+    },
+    {
+      "arm": "C",
+      "batch": "task-feedback-real-20261001-v6",
+      "index": 17,
+      "seed": 101006,
+      "source": "/research/d7/spc/yzyang4/task-feedback-real-20261001-v6/episode-17/action-3/submission.private.csv",
+      "source_sha256": "1f5a638c2faa236bf48e0038912e9fe4565c9dd7138dce60d898dbede0d2a58b",
+      "start": 5,
+      "task": "tweet-sentiment-extraction",
+      "wave": 5
+    },
+    {
+      "arm": "F",
+      "batch": "task-feedback-local-edit-20261002-v1",
+      "index": 4,
+      "seed": 102202,
+      "source": "/research/d7/spc/yzyang4/task-feedback-local-edit-20261002-v1/episode-4/action-0/submission.private.csv",
+      "source_sha256": "9a2ad15b08e32dfd877232dadb2887a76de3d3d495cc4214eb3eb030e60ad91d",
+      "start": 1,
+      "task": "tweet-sentiment-extraction",
+      "wave": 1
+    },
+    {
+      "arm": "F",
+      "batch": "task-feedback-local-edit-20261002-v1",
+      "index": 6,
+      "seed": 102204,
+      "source": "/research/d7/spc/yzyang4/task-feedback-local-edit-20261002-v1/episode-6/action-1/submission.private.csv",
+      "source_sha256": "a2690a99553b34deaca0830774d12eb039f47b75cdf6591a903507127b9eb68f",
+      "start": 3,
+      "task": "tweet-sentiment-extraction",
+      "wave": 2
+    },
+    {
+      "arm": "F",
+      "batch": "task-feedback-local-edit-20261002-v1",
+      "index": 8,
+      "seed": 102206,
+      "source": "/research/d7/spc/yzyang4/task-feedback-local-edit-20261002-v1/episode-8/action-1/submission.private.csv",
+      "source_sha256": "e9f9e2062bd87e6cc740152e9e455953642ea7e46710a93bcf9875d9f9ea82c1",
+      "start": 5,
+      "task": "tweet-sentiment-extraction",
+      "wave": 2
+    }
+  ]
+}

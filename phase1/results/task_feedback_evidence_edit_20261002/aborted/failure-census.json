@@ -1,0 +1,197 @@
+{
+  "counts": {
+    "errors": {
+      "AssertionError": 1,
+      "ImportError": 1,
+      "KeyError": 2,
+      "LightGBMError": 1,
+      "TypeError": 2,
+      "ValueError": 1
+    },
+    "generations": 11,
+    "planned": 12,
+    "returned": 8,
+    "valid": 2
+  },
+  "rows": [
+    {
+      "arm": "B",
+      "classes": [
+        "KeyError",
+        "TypeError"
+      ],
+      "execution_started": true,
+      "generation_returned": true,
+      "index": 0,
+      "returned": true,
+      "seed": 102301,
+      "start": 0,
+      "task": "random-acts-of-pizza",
+      "timed_out": false,
+      "valid": false,
+      "wave": 0
+    },
+    {
+      "arm": "B",
+      "classes": [],
+      "generation_returned": true,
+      "index": 1,
+      "returned": false,
+      "scope": "deadline before return",
+      "seed": 102302,
+      "start": 1,
+      "task": "tweet-sentiment-extraction",
+      "valid": null,
+      "wave": 0
+    },
+    {
+      "arm": "B",
+      "classes": [
+        "LightGBMError"
+      ],
+      "execution_started": true,
+      "generation_returned": true,
+      "index": 2,
+      "returned": true,
+      "seed": 102303,
+      "start": 2,
+      "task": "random-acts-of-pizza",
+      "timed_out": false,
+      "valid": false,
+      "wave": 0
+    },
+    {
+      "arm": "A",
+      "classes": [
+        "KeyError",
+        "TypeError"
+      ],
+      "execution_started": true,
+      "generation_returned": true,
+      "index": 3,
+      "returned": true,
+      "seed": 102301,
+      "start": 0,
+      "task": "random-acts-of-pizza",
+      "timed_out": false,
+      "valid": false,
+      "wave": 1
+    },
+    {
+      "arm": "A",
+      "classes": [],
+      "generation_returned": true,
+      "index": 4,
+      "returned": false,
+      "scope": "deadline before return",
+      "seed": 102302,
+      "start": 1,
+      "task": "tweet-sentiment-extraction",
+      "valid": null,
+      "wave": 1
+    },
+    {
+      "arm": "A",
+      "classes": [],
+      "execution_started": true,
+      "generation_returned": true,
+      "index": 5,
+      "returned": true,
+      "seed": 102303,
+      "start": 2,
+      "task": "random-acts-of-pizza",
+      "timed_out": false,
+      "valid": true,
+      "wave": 1
+    },
+    {
+      "arm": "A",
+      "classes": [
+        "ValueError"
+      ],
+      "execution_started": true,
+      "generation_returned": true,
+      "index": 6,
+      "returned": true,
+      "seed": 102304,
+      "start": 3,
+      "task": "tweet-sentiment-extraction",
+      "timed_out": false,
+      "valid": false,
+      "wave": 2
+    },
+    {
+      "arm": "A",
+      "classes": [],
+      "execution_started": true,
+      "generation_returned": true,
+      "index": 7,
+      "returned": true,
+      "seed": 102305,
+      "start": 4,
+      "task": "random-acts-of-pizza",
+      "timed_out": false,
+      "valid": true,
+      "wave": 2
+    },
+    {
+      "arm": "A",
+      "classes": [
+        "AssertionError"
+      ],
+      "execution_started": true,
+      "generation_returned": true,
+      "index": 8,
+      "returned": true,
+      "seed": 102306,
+      "start": 5,
+      "task": "tweet-sentiment-extraction",
+      "timed_out": false,
+      "valid": false,
+      "wave": 2
+    },
+    {
+      "arm": "B",
+      "classes": [
+        "ImportError"
+      ],
+      "execution_started": true,
+      "generation_returned": true,
+      "index": 9,
+      "returned": true,
+      "seed": 102304,
+      "start": 3,
+      "task": "tweet-sentiment-extraction",
+      "timed_out": false,
+      "valid": false,
+      "wave": 3
+    },
+    {
+      "arm": "B",
+      "classes": [],
+      "generation_returned": false,
+      "index": 10,
+      "returned": false,
+      "scope": "startup missing",
+      "seed": 102305,
+      "start": 4,
+      "task": "random-acts-of-pizza",
+      "valid": null,
+      "wave": 3
+    },
+    {
+      "arm": "B",
+      "classes": [],
+      "generation_returned": true,
+      "index": 11,
+      "returned": false,
+      "scope": "deadline before return",
+      "seed": 102306,
+      "start": 5,
+      "task": "tweet-sentiment-extraction",
+      "valid": null,
+      "wave": 3
+    }
+  ],
+  "scope": "coarse error classes, no new root-cause or effect attribution; full12 denominator"
+}

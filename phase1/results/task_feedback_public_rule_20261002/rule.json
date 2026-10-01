@@ -1,0 +1,57 @@
+{
+  "candidates": [
+    {
+      "column": "sentiment",
+      "mining": {
+        "mean": 0.33829143924478955,
+        "median": 0.2,
+        "n": 4523,
+        "sample_variance": 0.10801069435442233
+      },
+      "mining_pass": false,
+      "value": "negative"
+    },
+    {
+      "column": "sentiment",
+      "mining": {
+        "mean": 0.9756182029038648,
+        "median": 1.0,
+        "n": 6408,
+        "sample_variance": 0.009761918758863434
+      },
+      "mining_pass": true,
+      "value": "neutral"
+    },
+    {
+      "column": "sentiment",
+      "mining": {
+        "mean": 0.3150572630723093,
+        "median": 0.16666666666666666,
+        "n": 5018,
+        "sample_variance": 0.10462921573962973
+      },
+      "mining_pass": false,
+      "value": "positive"
+    }
+  ],
+  "chosen": {
+    "column": "sentiment",
+    "operation": "copy_full_text",
+    "value": "neutral"
+  },
+  "confirmation": {
+    "mean": 0.9760790607052939,
+    "median": 1.0,
+    "n": 1611,
+    "sample_variance": 0.00947648487563911
+  },
+  "confirmation_rows": 3928,
+  "elapsed_seconds": 0.3425276856869459,
+  "features": [
+    "sentiment"
+  ],
+  "mining_rows": 15949,
+  "plan_sha256": "b7baa7d53b6441dbe6764f154c57b3938dcc70a66a20efd6c3889bbe9a231802",
+  "scope": "empirical public-only screen, not a statistical guarantee or independent discovery",
+  "threshold": 0.95
+}

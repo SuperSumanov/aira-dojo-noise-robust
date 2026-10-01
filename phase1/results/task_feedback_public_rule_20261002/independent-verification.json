@@ -1,0 +1,18 @@
+{
+  "confirmation_reproduced": true,
+  "development_input_rows": 2454,
+  "distinct_prediction_files": 6,
+  "mining_reproduced": true,
+  "missing_endpoints": 2,
+  "planned_endpoints": 9,
+  "positive_distinct": 6,
+  "public_train_rows": 19877,
+  "rule_sha256": "2beaad25ab591c957f1183de5b17457ff738b25130d13075df500c36bb4fbfc0",
+  "scope": "single task; six different prediction files are NOT six independent datasets, tasks or original starting programs; retrospective feasibility only",
+  "scored_endpoints": 7,
+  "shared_ids": 0,
+  "status": "PASS",
+  "summary_sha256": "7445f0c59ade28985cc039ba78c6e7663d8abf57464b2772405ee596837e46f7",
+  "unique_difference_median": 0.009719693735586177,
+  "unique_difference_sample_variance": 0.0018925118261789698
+}

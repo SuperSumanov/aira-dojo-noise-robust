@@ -1,24 +1,26 @@
 # 当前短交接
 
-最后观察2026-10-01 21:49 UTC（香港10月2日05:49）。用户六小时目标00:40 UTC/香港08:40，继续会话内实验而非automation。研究盘续期确认。方向顶部0L398。不要重复已有GPU作业/一次性输出。
+更新2026-10-01 23:02:38 UTC；用户本轮六小时目标00:40UTC/08:40香港，并要求最终深度判断是否值得做、最值得下注哪里。实际远端队列/账本最后核22:39UTC，本轮GPU全部结束，不需要再监视已完作业。研究盘续期确认。方向顶部0L399，旧critic前置/HCE/多保真/Probe/K>=1均不恢复。技能experiment-prompting已读；文档核验按write-page执行，既有仓库文件是目的地、不建云Page。
 
-## 正在跑15213（唯一当前GPU）
-root /research/d7/spc/yzyang4/task-feedback-evidence-edit-20261002-v1，plan SHA5ef4fa98529f70662cadf14e3f9a4ec4427c823d4a9fd723c9b6c25dd6806814，RUNNING/gpu28/1:18。两任务各单一历史有效起点×3新生成seed×A普通反思/B公开核验事实=12；两臂无人工修复答案，同完整Python输出、保留组件指令、27B INT4/no-thinking、原3090镜像，480秒一次生成/修改，无Debug补跑。5GPU最多65min。首次12 SDKmock+4动作CPU循环+无效Python拒绝检查PASS。提交会话85305已exit0，绝不重投。
-只全闭合读新效果。预备读出 /tmp/task-feedback-stage-20261001/task_feedback_evidence_edit_readout_20261002.py 已上传，输出新目录，勿覆盖。状态工具尚未从local_edit状态脚本派生，检查时用正确root/12条/作业15213，不能再监测已完15208。旧12535 JobHeldUser不碰。当前没有遗留exec session。
+## 这轮真实结果和科学裁决
+15204三臂18条完整闭合，88动作45有效独立复算；各任务各臂gain median0。15205固定日期原点修复4次执行通过，但内部seed42，不是跨训练seed。15208人工建议+完整代码F每任务2/3改善：Pizza gain median.001435063381966084；Tweet median.1058631868013804，selected=[.5226682748344275,.6285314616358079,.6520018889176848]。P格式有JSON/Python提示冲突，不能归因为精确编辑方式劣势。
+新15213（无人工答案A普通/B事实）FAILED，11原closed+episode10启动取消，无all-closed。原主试验未完成，不补造回执或补跑。独立terminal verifier确认12steps全部终止、两次产物稳定。按效果读取前冻结的FEEDBACK_ABORTED_READOUT_20261002.md另做aborted描述：19返回动作13有效提交全部复算PASS；Pizza2对、Tweet3对B-A已保存gain差全0，缺失1对null。11generation仅2修订有效，6修订无效、3修订未返回，另1无generation。**停止扩大当前事实包**，不能称等效/完整确认，也不能把人工C成功当自动B优势。
+15213 root /research/d7/spc/yzyang4/task-feedback-evidence-edit-20261002-v1，plan SHA5ef4fa98529f70662cadf14e3f9a4ec4427c823d4a9fd723c9b6c25dd6806814。22:25UTCservice_closed，sacct FAILED1:0/2229秒5卡，四批总52064GPU秒=14.462222222222222GPUh，原上限16.833333333333334。0paidAPI/底座更新/新模型优化器fit。保护cohort/D_val/官方test未读。
 
-## 已完成本轮结果与关键限制
-15204(root task-feedback-upper-20261002-v1，plan SHA9fe231e1b9e2da8cb51fadb7ff9844b074c10e8e3dc64d1d1f3be170fb0703a0)：18条定向反馈ABC闭合，88返回动作45有效提交复算PASS。各任务各臂收益median0。episode2截止传输异常保留unknown、不补跑；原primary和补充all-saved表分开。Pizza初0.681296340588376，仅A102003→0.6844654388902176、C102005→0.6867376225783306；Tweet初0.5226682748344275，仅C102006→0.5894553395588319。成功Tweet中性贡献+0.11037930432823297被负/正组退步抵消，低于固定neutral-only0.6331957602399368。首次Tweet9修改全无效且改动多只是描述，不是幅度致失败的因果结论。main/readout-complete-v1、verification-complete-v1、tweet-decomposition-v1、edit-scope-v1都完成勿重写。
+## 新自动简单基线 已闭合勿重跑
+root /research/d7/spc/yzyang4/task-feedback-public-rule-20261002-v1。
+仅公开训练数据枚举低基数列取值的全文复制规则，80%内部挖掘、20%内部确认，均值Jaccard阈值.95、min counts200/100。自动选sentiment=neutral，6408挖掘行mean.9756182029038648，1611确认行mean.9760790607052939。public train19877/search inputs2454，ID交集0。规则族在见过旧中性规律后设计，**回顾性自动化基线，非独立新发现**。一次经验规则拟合，不宜笼统说0fit。
+固定9历史Tweet端点，2缺失7有效6不同预测；6均正，增量median.009719693735586177，样本方差.0018925118261789698。单任务两个旧代码起点，共用D_search，不是6独立任务。原A .5226682748344275→.6331957602399368，最佳人工F .6520018889176848→.6528215327792606。0新增GPU/调用；继承初始模型成本并不免费。独立选择/隔离/评分核验PASS，规则SHA2beaad25ab591c957f1183de5b17457ff738b25130d13075df500c36bb4fbfc0。
+CSV第一行缺失导致optional independent_match导出失败；summary已经完整，保留原rows.csv，export脚本只写rows-v2与review，不重新拟合/评分。规则脚本SHAf421526f8c4f41261bd3a1e4f4a13a2cdc63fd1bd8d36810f9dc52c6adb89650冻结不改。
+强参照复核strong-reference-review：人工F Tweet median.6285314616358079，比原解+规则.6331957602399368低.00466429860412898，仅1/3超过；F后再加规则median等于.6331957602399368。不得只报最好.6528当稳定胜强基线。
 
-15205(root task-feedback-pizza-control-20261002-v1，plan SHAd384e0db9e14bfe0a2b48a4d47f4b98169e86ac3d7ed00be5733ad2ef429eb37)：单行日期原点原/修×2执行，4有效复算PASS，均0.681296340588376→0.682731403970342。程序自身seed42，执行重复非训练seed。公开训练特征2295行不变；批次不变性非所有ML算法必然契约。
+## 不再重复工程 调查限制
+15213直接异常为worker_cutoff clock-binding ValueError，finally杀自有step，ep10无初始评分。now在读receipt前采样可能竞态；CPU5例复现该可能，但实际父spawned/now未记录，不声称已证真实根因。冻结运行包未改。未来如修须保持精确ownstep/samehost/预算校验。无额外GPU验收/重跑授权由此产生。
+15208 AST核查Pizza第三F还改TFIDF min_df/max_features，actualrevision .6728055489117436（-.008490791676632359）被初态拒绝；不要把retainedgain0当修订无伤。其他两F局部修复成功。Tweet更好seed的非中性也改善，但仅描述不作因果归因。
 
-15208(root task-feedback-local-edit-20261002-v1，plan SHA7bd84ff0e867043b2787d5c07af867eff50370f4e7b6bafa811ef215196c4139)：21:39:34全12闭合，COMPLETED0:0/1577秒/5GPU；24动作18有效提交独立核验PASS。F完整程序每任务2/3改善；Pizza增益[.001435063381966084,.001435063381966084,0]；Tweet[0,.1058631868013804,.1293336140832574]，最终[.5226682748344275,.6285314616358079,.6520018889176848]。是人工指导可行性，非自动方法或独立终评。新提示与旧ABC不同，不以历史差异归因。
-**P格式结果不能泛化**：1/6有效，5次输出Python被拒；共享反馈仍写Before the Python block，与P的JSON输出要求冲突。format-review-v1.json已核并取回。保留原始分数与成本，不修改源、不救回5次重计、不宣称精确编辑本身劣势。新15213两臂同Python无此冲突。新批共同catch原生extract_code的generic Exception，CPU已测，未改变旧批。
-readout-complete-v1已完成并下载。新posthoc sentiment分解脚本task_feedback_local_edit_decompose_20261002.py已上传/tmp/task-feedback-stage-20261001但尚未运行，可只读解释F收益来自哪里。
+## 文件与发布
+主checkout aira-dojo-codex-20260813 HEAD14188f8956d5becfc1f192455647d7c4aedd1f82大量旧脏改，不whole-stage/reset/push。发布worktree _codex_tmp/publication-feedback-20261001，最后已核公开HEAD e38e538ab50048ad2bde7b29c39247f90ff1135d；0L399、aborted/public-rule结果和源码、强参照、计划前置裁决尚待本次scoped发布。只正常push HEAD:phase1-value-critic，不改学长分支。
+CURRENT_DIRECTION主/公开历史不同，各自prepend，不能整份复制。结果均在phase1/results/task_feedback_evidence_edit_20261002/aborted、task_feedback_public_rule_20261002、local_edit.../preservation-review-v1.json。单测readout11+public-rule6PASS。审计_codex_tmp/audit_feedback_local_complete_20261002.py需扩新白名单/新结果和中文路径支持，byte绑定plan/runtime与public-rule/source，credential0后才push。不要提交private预测/标签/源码/凭据日志。未知异步exec session目前没有。
 
-## 成本与发布
-15204 6560秒×5GPU，15205 117秒×2，15208 1577秒×5，前三批40919GPU秒=11.366388888888888GPUh。15213新增最坏5.416666666666667，总16.783055555555556<本轮原16.833333333333334。0paidAPI/critic fit/底座更新。保护first960/Target300/522、D_val、官方test不读，仅批准D_search开发分。
-
-主checkout aira-dojo-codex-20260813 HEAD14188f8956d5becfc1f192455647d7c4aedd1f82有大量历史脏改，不整体stage/push/reset/rebase。发布worktree C:/Research/New/my_project/MLEvolve/_codex_tmp/publication-feedback-20261001。
-公开HEAD **c7b9ce25f0893cf4ef49249979183be5cc73541e**已正常push且ls-remote一致，35指定文件/32字节核验/3源-plan绑定/credential0。现在15208完整结果、格式限制、新15213协议源码preflight、0L398/新交接、upper edit-scope尚未发布。新文件补.gitattributes -text再scoped stage/hash/security审计。旧审计脚本白名单需按新批扩充，勿whole add或push主checkout。主/公开CURRENT_DIRECTION历史不同，只分别prepend。
-学长最后fetch4ee7afd9970974f4bfae4b7a9d51591aca5c0b48，仅policy路径文档更新并已凭据零命中，不是核实的新E2E结果。技能experiment-prompting已读；本地memory/EXPERIMENT_LESSONS.md已补当前经验。
-新颖性：MLE-STAR局部改进、Aider/AdaEdit编辑格式、2609.38257定位与编辑落差、ExecCritic2609.09133冻结测试指导修复均已有，不能靠“反馈+局部修改”命名当创新。本轮后须给深度下注判断，不因为用户要正结果隐瞒混杂或失败。
+## 深度判断
+已有MLE-STAR局部改、Gome诊断推理、ExecCritic冻结测试、iML数据剖析/模块契约、Do Code LMs Follow Tests的能力/采用落差、DAAF干预收益归因。不能把这些组件换名当创新。最值得有限验证：将任务内有根据的规律变成保留非目标行为的可执行修正，在同事实、完整成本下胜普通反思和简单规则库。尚缺自动发现不同类型规律、新代码来源/新任务与独立终评；不值得立刻按旧计划开24run或承诺一个月顶会。三天资格验证建议而非已跑新矩阵。

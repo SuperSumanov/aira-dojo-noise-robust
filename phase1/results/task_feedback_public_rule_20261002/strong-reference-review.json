@@ -1,0 +1,35 @@
+{
+  "initial": 0.5226682748344275,
+  "manual_median": 0.6285314616358079,
+  "manual_median_minus_reference": -0.00466429860412898,
+  "manual_minus_reference": [
+    -0.11052748540550938,
+    -0.00466429860412898,
+    0.018806128677748002
+  ],
+  "manual_plus_rule_median": 0.6331957602399368,
+  "manual_plus_rule_values": [
+    0.6331957602399368,
+    0.6286796427130843,
+    0.6528215327792606
+  ],
+  "manual_sample_variance": 0.004747509834729132,
+  "manual_selected_values": [
+    0.5226682748344275,
+    0.6285314616358079,
+    0.6520018889176848
+  ],
+  "manual_strictly_above_reference": 1,
+  "same_program_generation_seeds": [
+    102202,
+    102204,
+    102206
+  ],
+  "scope": "reference selected without these new gains but constructed after earlier same-task evidence; not new randomized arm or independent test. Zero NEW GPU postprocessing inherits nonzero initial-program cost. Same initial code and development set; three generation seeds not three tasks.",
+  "source_sha256": [
+    "17557b62adf1e5e7244ef3e37e6826ece7069a6ef7697ccfb4d8c156e512c8ab",
+    "7445f0c59ade28985cc039ba78c6e7663d8abf57464b2772405ee596837e46f7"
+  ],
+  "task": "tweet-sentiment-extraction",
+  "unchanged_initial_plus_public_rule": 0.6331957602399368
+}

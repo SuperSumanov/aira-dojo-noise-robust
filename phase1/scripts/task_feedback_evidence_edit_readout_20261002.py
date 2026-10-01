@@ -16,8 +16,27 @@ def finish_classification(finished,closed,failure_present):
     if not failure_present and closed.get('worker_deadline_reached') is True:return 'budget_exhausted'
     return 'unknown'
 
-def run():
-    if sha(ROOT/'plan.json')!=PLAN_SHA or not (ROOT/'all-closed.json').exists():raise ValueError('frozen all-closed gate')
+def terminal_gate(certificate=None,certificate_sha256=None):
+    if sha(ROOT/'plan.json')!=PLAN_SHA:raise ValueError('frozen plan drift')
+    if certificate is None:
+        if not (ROOT/'all-closed.json').exists():raise ValueError('frozen all-closed gate')
+        return None
+    if not certificate_sha256 or sha(certificate)!=certificate_sha256:raise ValueError('unbound aborted certificate')
+    c=read(certificate)
+    assert c['status']=='INDEPENDENT_TERMINAL_VERIFIED_ORIGINAL_PRIMARY_FAILED'
+    assert c['plan_sha256']==PLAN_SHA and c['original_primary_gate_passed'] is False
+    assert c['missing_original_closed']==[10] and c['stable_censuses']==2
+    assert not (ROOT/'all-closed.json').exists()
+    for rel,h in c['artifact_bindings'].items():assert sha(ROOT/rel)==h,rel
+    assert not list((ROOT/'episode-10').glob('action-*'))
+    current={str(p.relative_to(ROOT)) for i in range(12) for p in (ROOT/f'episode-{i}').glob('action-*/*')
+             if p.name in {'result.json','submission.private.csv','node.private.json','generation.private.json','format.json','started.json','binding.json','selected.json'}}
+    bound={rel for rel in c['artifact_bindings'] if '/action-' in rel}
+    assert current==bound,'new or missing action artifact'
+    return c
+
+def run(certificate=None,certificate_sha256=None):
+    terminal=terminal_gate(certificate,certificate_sha256)
     sys.path.insert(0,str(ROOT));from task_feedback_real_20261001 import m
     m.check();m.setup()
     from dojo.config_dataclasses.run import RunConfig
@@ -29,7 +48,7 @@ def run():
     plan=read(ROOT/'plan.json');job=read(ROOT/'launch.json')['job'];serv=read(ROOT/'service-native.json')
     rows=[];verified=[];assert len(plan['schedule'])==12
     for s in plan['schedule']:
-        ep=ROOT/f'episode-{s["index"]}';assert (ep/'closed.json').exists()
+        ep=ROOT/f'episode-{s["index"]}';assert (ep/'closed.json').exists() or (terminal and s['index']==10)
         native=read(ep/'native.json');assert native['job']==job and not set(native['gpu_uuids'])&set(serv['gpu_uuids'])
         assert native['config_sha256']==sha(ROOT/'configs'/f'{s["index"]}.json')
         task=MLEBenchTask(RunConfig.load_from_json(ROOT/'configs'/f'{s["index"]}.json').task)
@@ -76,7 +95,7 @@ def run():
             assert actual==extract_code(expect)
             assert fmt['parent_sha256']==hashlib.sha256(initial.encode()).hexdigest()
         finished=read(ep/'finished.json') if (ep/'finished.json').exists() else None
-        closed=read(ep/'closed.json')
+        closed=read(ep/'closed.json') if (ep/'closed.json').exists() else {}
         status=finish_classification(finished,closed,(ep/'failure.json').exists())
         selected=max(values) if values else None
         if (ep/'completed.json').exists():assert read(ep/'completed.json')['selected_metric']==selected
@@ -106,10 +125,14 @@ def run():
                 changed_lines=stats([r['changed_lines'] for r in subset]),completion_tokens=stats([r['completion_tokens'] for r in subset])))
     contrasts=[dict(task=task,strict=stats([r['saved_gain_difference'] if r['strict_estimable'] else None for r in pairs if r['task']==task]),
                     all_saved=stats([r['saved_gain_difference'] for r in pairs if r['task']==task])) for task in sorted({r['task'] for r in rows})]
-    return dict(status='PASS',plan_sha256=PLAN_SHA,job=job,planned=12,rows=rows,pairs=pairs,groups=groups,contrasts=contrasts,verified_actions=verified,
+    if terminal:terminal_gate(certificate,certificate_sha256)  # no output mutation while reading
+    return dict(status='ABORTED_DESCRIPTIVE' if terminal else 'PASS',original_primary_gate_passed=terminal is None,
+        terminal_certificate_sha256=certificate_sha256,plan_sha256=PLAN_SHA,job=job,planned=12,rows=rows,pairs=pairs,groups=groups,contrasts=contrasts,verified_actions=verified,
         valid_actions_verified=sum(r['valid'] for r in verified),scope='two curated code instances, curated public facts, no human repair answer, development only; no automatic-method/novelty/generalization claim')
 if __name__=='__main__':
-    p=argparse.ArgumentParser();p.add_argument('--out',type=Path,required=True);a=p.parse_args();result=run();a.out.mkdir()
+    p=argparse.ArgumentParser();p.add_argument('--out',type=Path,required=True)
+    p.add_argument('--aborted-certificate',type=Path);p.add_argument('--certificate-sha256')
+    a=p.parse_args();result=run(a.aborted_certificate,a.certificate_sha256);a.out.mkdir()
     (a.out/'summary.json').write_text(json.dumps(result,sort_keys=True,indent=2,allow_nan=False)+'\n')
     for key in ('rows','pairs'):
         with (a.out/(key+'.csv')).open('w',newline='') as f:

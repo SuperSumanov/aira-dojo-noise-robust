@@ -1,0 +1,66 @@
+{
+  "plan_sha256": "7bd84ff0e867043b2787d5c07af867eff50370f4e7b6bafa811ef215196c4139",
+  "rows": [
+    {
+      "code_sha256": [
+        "5f582932f00e2c83c6ac3f57f66cce569da147a213113eab3ec7cb887fe3651e",
+        "2fbbb80563ed9c2c4a3fd2342ea6cceb043a8d2fbae176aa8f11b734ee834d89"
+      ],
+      "index": 3,
+      "initial": 0.681296340588376,
+      "other_feature_function_ast_equal": true,
+      "parent_feature_rule": "batch_min",
+      "revised": 0.682731403970342,
+      "revised_feature_rule": "fixed_global",
+      "revised_minus_initial": 0.001435063381966084,
+      "saved": 0.682731403970342,
+      "seed": 102201,
+      "text_feature_helper_ast_equal": true,
+      "vectorizer_changes": {}
+    },
+    {
+      "code_sha256": [
+        "5f582932f00e2c83c6ac3f57f66cce569da147a213113eab3ec7cb887fe3651e",
+        "c06c07891f43c70be13ca359770550866fad165bf08d0cf3a983f90117f7f260"
+      ],
+      "index": 5,
+      "initial": 0.681296340588376,
+      "other_feature_function_ast_equal": true,
+      "parent_feature_rule": "batch_min",
+      "revised": 0.682731403970342,
+      "revised_feature_rule": "fixed_argument",
+      "revised_minus_initial": 0.001435063381966084,
+      "saved": 0.682731403970342,
+      "seed": 102203,
+      "text_feature_helper_ast_equal": true,
+      "vectorizer_changes": {}
+    },
+    {
+      "code_sha256": [
+        "5f582932f00e2c83c6ac3f57f66cce569da147a213113eab3ec7cb887fe3651e",
+        "494e211a563e980ec2df933b40ec389f0e611770516e40cc5519f2c47e777387"
+      ],
+      "index": 7,
+      "initial": 0.681296340588376,
+      "other_feature_function_ast_equal": true,
+      "parent_feature_rule": "batch_min",
+      "revised": 0.6728055489117436,
+      "revised_feature_rule": "fixed_global",
+      "revised_minus_initial": -0.008490791676632359,
+      "saved": 0.681296340588376,
+      "seed": 102205,
+      "text_feature_helper_ast_equal": true,
+      "vectorizer_changes": {
+        "max_features": {
+          "parent": 2000,
+          "revised": 5000
+        },
+        "min_df": {
+          "parent": 2,
+          "revised": 1
+        }
+      }
+    }
+  ],
+  "scope": "posthoc all three Pizza F revisions; AST evidence of unchanged numeric feature body apart from target rule, and changed TFIDF parameters. No new execution; not a formal proof of whole-program equivalence or causal attribution of score loss."
+}

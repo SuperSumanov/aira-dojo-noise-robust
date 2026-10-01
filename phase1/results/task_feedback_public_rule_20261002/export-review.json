@@ -1,0 +1,11 @@
+{
+  "corrected_csv_sha256": "c4431c2269068fe51c0950afaeb130c35502a6152a065ee0a848cf0bf1634833",
+  "experiment_rerun": false,
+  "original_partial_csv_sha256": "30de93130c3b6e9d86c8067626783ff7a073b568cdbbf79c293306fbfa7fdfb7",
+  "original_preserved": true,
+  "reason": "first row was a missing endpoint; optional independent_match appeared only on scored rows; writer used first-row keys",
+  "rows": 9,
+  "rule_or_score_changed": false,
+  "status": "EXPORT_ONLY_FIXED",
+  "summary_sha256": "7445f0c59ade28985cc039ba78c6e7663d8abf57464b2772405ee596837e46f7"
+}

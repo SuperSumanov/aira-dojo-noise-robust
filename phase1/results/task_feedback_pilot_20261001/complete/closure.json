@@ -1,0 +1,506 @@
+{
+  "job": "15140",
+  "plan_sha256": "15751d3b52bdc42617df02006ce724635f4bf49df6e477686769fd1979d53403",
+  "all_closed": {
+    "attempts": 18,
+    "utc": "2026-10-01T08:27:27.343299+00:00"
+  },
+  "controller_closed": {
+    "elapsed_seconds": 9509.647284360835,
+    "service_closed": true,
+    "utc": "2026-10-01T08:27:30.617679+00:00"
+  },
+  "safe_error_lines": [],
+  "observed_queue": [
+    "12535|PENDING|0:00||(JobHeldUser)"
+  ],
+  "episodes": [
+    {
+      "index": 0,
+      "launch": {
+        "arm": "C",
+        "index": 0,
+        "seed": 101001,
+        "start": 0,
+        "task": "spooky-author-identification",
+        "utc": "2026-10-01T05:58:43.636315+00:00",
+        "wave": 0
+      },
+      "finished": {
+        "elapsed_seconds": 1802.5083172670566,
+        "status": "budget_exhausted",
+        "utc": "2026-10-01T06:28:47.411966+00:00"
+      },
+      "closed": {
+        "image_cleanup_certified": false,
+        "index": 0,
+        "srun_returncode": 0,
+        "step": "15140.2",
+        "step_connection_closed": true,
+        "supervisor_elapsed_seconds": 1806.7998784959782,
+        "worker_clock_seen": true,
+        "worker_deadline_reached": true
+      }
+    },
+    {
+      "index": 1,
+      "launch": {
+        "arm": "C",
+        "index": 1,
+        "seed": 101002,
+        "start": 1,
+        "task": "random-acts-of-pizza",
+        "utc": "2026-10-01T05:58:43.637023+00:00",
+        "wave": 0
+      },
+      "finished": {
+        "elapsed_seconds": 497.37751517095603,
+        "status": "completed",
+        "utc": "2026-10-01T06:07:02.188996+00:00"
+      },
+      "closed": {
+        "image_cleanup_certified": false,
+        "index": 1,
+        "srun_returncode": 0,
+        "step": "15140.1",
+        "step_connection_closed": true,
+        "supervisor_elapsed_seconds": 500.08750775805674,
+        "worker_clock_seen": true,
+        "worker_deadline_reached": false
+      }
+    },
+    {
+      "index": 2,
+      "launch": {
+        "arm": "C",
+        "index": 2,
+        "seed": 101003,
+        "start": 2,
+        "task": "tweet-sentiment-extraction",
+        "utc": "2026-10-01T05:58:43.637727+00:00",
+        "wave": 0
+      },
+      "finished": {
+        "elapsed_seconds": 1111.7044620800298,
+        "status": "completed",
+        "utc": "2026-10-01T06:17:16.389058+00:00"
+      },
+      "closed": {
+        "image_cleanup_certified": false,
+        "index": 2,
+        "srun_returncode": 0,
+        "step": "15140.3",
+        "step_connection_closed": true,
+        "supervisor_elapsed_seconds": 1113.7548013569321,
+        "worker_clock_seen": true,
+        "worker_deadline_reached": false
+      }
+    },
+    {
+      "index": 3,
+      "launch": {
+        "arm": "B",
+        "index": 3,
+        "seed": 101001,
+        "start": 0,
+        "task": "spooky-author-identification",
+        "utc": "2026-10-01T06:28:50.582112+00:00",
+        "wave": 1
+      },
+      "finished": {
+        "elapsed_seconds": 1589.8574462549295,
+        "status": "completed",
+        "utc": "2026-10-01T06:55:22.113551+00:00"
+      },
+      "closed": {
+        "image_cleanup_certified": false,
+        "index": 3,
+        "srun_returncode": 0,
+        "step": "15140.6",
+        "step_connection_closed": true,
+        "supervisor_elapsed_seconds": 1592.5992609269451,
+        "worker_clock_seen": true,
+        "worker_deadline_reached": false
+      }
+    },
+    {
+      "index": 4,
+      "launch": {
+        "arm": "B",
+        "index": 4,
+        "seed": 101002,
+        "start": 1,
+        "task": "random-acts-of-pizza",
+        "utc": "2026-10-01T06:28:50.582650+00:00",
+        "wave": 1
+      },
+      "finished": {
+        "elapsed_seconds": 548.8426640289836,
+        "status": "completed",
+        "utc": "2026-10-01T06:38:00.372384+00:00"
+      },
+      "closed": {
+        "image_cleanup_certified": false,
+        "index": 4,
+        "srun_returncode": 0,
+        "step": "15140.4",
+        "step_connection_closed": true,
+        "supervisor_elapsed_seconds": 550.8942894670181,
+        "worker_clock_seen": true,
+        "worker_deadline_reached": false
+      }
+    },
+    {
+      "index": 5,
+      "launch": {
+        "arm": "B",
+        "index": 5,
+        "seed": 101003,
+        "start": 2,
+        "task": "tweet-sentiment-extraction",
+        "utc": "2026-10-01T06:28:50.583137+00:00",
+        "wave": 1
+      },
+      "finished": {
+        "elapsed_seconds": 1082.4571553000715,
+        "status": "completed",
+        "utc": "2026-10-01T06:46:54.826607+00:00"
+      },
+      "closed": {
+        "image_cleanup_certified": false,
+        "index": 5,
+        "srun_returncode": 0,
+        "step": "15140.5",
+        "step_connection_closed": true,
+        "supervisor_elapsed_seconds": 1085.3630992069375,
+        "worker_clock_seen": true,
+        "worker_deadline_reached": false
+      }
+    },
+    {
+      "index": 6,
+      "launch": {
+        "arm": "A",
+        "index": 6,
+        "seed": 101001,
+        "start": 0,
+        "task": "spooky-author-identification",
+        "utc": "2026-10-01T06:55:23.309577+00:00",
+        "wave": 2
+      },
+      "finished": {
+        "elapsed_seconds": 1773.181121797068,
+        "status": "completed",
+        "utc": "2026-10-01T07:24:57.417049+00:00"
+      },
+      "closed": {
+        "image_cleanup_certified": false,
+        "index": 6,
+        "srun_returncode": 0,
+        "step": "15140.9",
+        "step_connection_closed": true,
+        "supervisor_elapsed_seconds": 1776.2437773770653,
+        "worker_clock_seen": true,
+        "worker_deadline_reached": false
+      }
+    },
+    {
+      "index": 7,
+      "launch": {
+        "arm": "A",
+        "index": 7,
+        "seed": 101002,
+        "start": 1,
+        "task": "random-acts-of-pizza",
+        "utc": "2026-10-01T06:55:23.310100+00:00",
+        "wave": 2
+      },
+      "finished": {
+        "elapsed_seconds": 446.095372504089,
+        "status": "completed",
+        "utc": "2026-10-01T07:02:50.431025+00:00"
+      },
+      "closed": {
+        "image_cleanup_certified": false,
+        "index": 7,
+        "srun_returncode": 0,
+        "step": "15140.8",
+        "step_connection_closed": true,
+        "supervisor_elapsed_seconds": 448.04857271001674,
+        "worker_clock_seen": true,
+        "worker_deadline_reached": false
+      }
+    },
+    {
+      "index": 8,
+      "launch": {
+        "arm": "A",
+        "index": 8,
+        "seed": 101003,
+        "start": 2,
+        "task": "tweet-sentiment-extraction",
+        "utc": "2026-10-01T06:55:23.310612+00:00",
+        "wave": 2
+      },
+      "finished": {
+        "elapsed_seconds": 671.1455170160625,
+        "status": "completed",
+        "utc": "2026-10-01T07:06:35.600681+00:00"
+      },
+      "closed": {
+        "image_cleanup_certified": false,
+        "index": 8,
+        "srun_returncode": 0,
+        "step": "15140.7",
+        "step_connection_closed": true,
+        "supervisor_elapsed_seconds": 673.3913446040824,
+        "worker_clock_seen": true,
+        "worker_deadline_reached": false
+      }
+    },
+    {
+      "index": 9,
+      "launch": {
+        "arm": "A",
+        "index": 9,
+        "seed": 101004,
+        "start": 3,
+        "task": "spooky-author-identification",
+        "utc": "2026-10-01T07:24:59.683490+00:00",
+        "wave": 3
+      },
+      "finished": {
+        "elapsed_seconds": 546.3515082660597,
+        "status": "completed",
+        "utc": "2026-10-01T07:34:07.009162+00:00"
+      },
+      "closed": {
+        "image_cleanup_certified": false,
+        "index": 9,
+        "srun_returncode": 0,
+        "step": "15140.10",
+        "step_connection_closed": true,
+        "supervisor_elapsed_seconds": 548.2958021869417,
+        "worker_clock_seen": true,
+        "worker_deadline_reached": false
+      }
+    },
+    {
+      "index": 10,
+      "launch": {
+        "arm": "A",
+        "index": 10,
+        "seed": 101005,
+        "start": 4,
+        "task": "random-acts-of-pizza",
+        "utc": "2026-10-01T07:24:59.683948+00:00",
+        "wave": 3
+      },
+      "finished": {
+        "elapsed_seconds": 1094.8304097678047,
+        "status": "completed",
+        "utc": "2026-10-01T07:43:15.593384+00:00"
+      },
+      "closed": {
+        "image_cleanup_certified": false,
+        "index": 10,
+        "srun_returncode": 0,
+        "step": "15140.11",
+        "step_connection_closed": true,
+        "supervisor_elapsed_seconds": 1096.9201524069067,
+        "worker_clock_seen": true,
+        "worker_deadline_reached": false
+      }
+    },
+    {
+      "index": 11,
+      "launch": {
+        "arm": "A",
+        "index": 11,
+        "seed": 101006,
+        "start": 5,
+        "task": "tweet-sentiment-extraction",
+        "utc": "2026-10-01T07:24:59.684408+00:00",
+        "wave": 3
+      },
+      "finished": {
+        "elapsed_seconds": 1159.9208444729447,
+        "status": "completed",
+        "utc": "2026-10-01T07:44:20.807268+00:00"
+      },
+      "closed": {
+        "image_cleanup_certified": false,
+        "index": 11,
+        "srun_returncode": 0,
+        "step": "15140.12",
+        "step_connection_closed": true,
+        "supervisor_elapsed_seconds": 1162.2014985028654,
+        "worker_clock_seen": true,
+        "worker_deadline_reached": false
+      }
+    },
+    {
+      "index": 12,
+      "launch": {
+        "arm": "B",
+        "index": 12,
+        "seed": 101004,
+        "start": 3,
+        "task": "spooky-author-identification",
+        "utc": "2026-10-01T07:44:22.010114+00:00",
+        "wave": 4
+      },
+      "finished": {
+        "elapsed_seconds": 951.4392300290056,
+        "status": "completed",
+        "utc": "2026-10-01T08:00:14.322496+00:00"
+      },
+      "closed": {
+        "image_cleanup_certified": false,
+        "index": 12,
+        "srun_returncode": 0,
+        "step": "15140.14",
+        "step_connection_closed": true,
+        "supervisor_elapsed_seconds": 953.3928141780198,
+        "worker_clock_seen": true,
+        "worker_deadline_reached": false
+      }
+    },
+    {
+      "index": 13,
+      "launch": {
+        "arm": "B",
+        "index": 13,
+        "seed": 101005,
+        "start": 4,
+        "task": "random-acts-of-pizza",
+        "utc": "2026-10-01T07:44:22.010591+00:00",
+        "wave": 4
+      },
+      "finished": {
+        "elapsed_seconds": 602.6940062250942,
+        "status": "completed",
+        "utc": "2026-10-01T07:54:25.681536+00:00"
+      },
+      "closed": {
+        "image_cleanup_certified": false,
+        "index": 13,
+        "srun_returncode": 0,
+        "step": "15140.13",
+        "step_connection_closed": true,
+        "supervisor_elapsed_seconds": 604.5765566260088,
+        "worker_clock_seen": true,
+        "worker_deadline_reached": false
+      }
+    },
+    {
+      "index": 14,
+      "launch": {
+        "arm": "B",
+        "index": 14,
+        "seed": 101006,
+        "start": 5,
+        "task": "tweet-sentiment-extraction",
+        "utc": "2026-10-01T07:44:22.011498+00:00",
+        "wave": 4
+      },
+      "finished": {
+        "elapsed_seconds": 1171.0172638960648,
+        "status": "completed",
+        "utc": "2026-10-01T08:03:54.123845+00:00"
+      },
+      "closed": {
+        "image_cleanup_certified": false,
+        "index": 14,
+        "srun_returncode": 0,
+        "step": "15140.15",
+        "step_connection_closed": true,
+        "supervisor_elapsed_seconds": 1173.2717188049573,
+        "worker_clock_seen": true,
+        "worker_deadline_reached": false
+      }
+    },
+    {
+      "index": 15,
+      "launch": {
+        "arm": "C",
+        "index": 15,
+        "seed": 101004,
+        "start": 3,
+        "task": "spooky-author-identification",
+        "utc": "2026-10-01T08:03:55.413919+00:00",
+        "wave": 5
+      },
+      "finished": {
+        "elapsed_seconds": 1409.6968166248407,
+        "status": "completed",
+        "utc": "2026-10-01T08:27:26.069545+00:00"
+      },
+      "closed": {
+        "image_cleanup_certified": false,
+        "index": 15,
+        "srun_returncode": 0,
+        "step": "15140.17",
+        "step_connection_closed": true,
+        "supervisor_elapsed_seconds": 1411.8047715940047,
+        "worker_clock_seen": true,
+        "worker_deadline_reached": false
+      }
+    },
+    {
+      "index": 16,
+      "launch": {
+        "arm": "C",
+        "index": 16,
+        "seed": 101005,
+        "start": 4,
+        "task": "random-acts-of-pizza",
+        "utc": "2026-10-01T08:03:55.414444+00:00",
+        "wave": 5
+      },
+      "finished": {
+        "elapsed_seconds": 618.6399112320505,
+        "status": "completed",
+        "utc": "2026-10-01T08:14:15.119864+00:00"
+      },
+      "closed": {
+        "image_cleanup_certified": false,
+        "index": 16,
+        "srun_returncode": 0,
+        "step": "15140.16",
+        "step_connection_closed": true,
+        "supervisor_elapsed_seconds": 620.6648344560526,
+        "worker_clock_seen": true,
+        "worker_deadline_reached": false
+      }
+    },
+    {
+      "index": 17,
+      "launch": {
+        "arm": "C",
+        "index": 17,
+        "seed": 101006,
+        "start": 5,
+        "task": "tweet-sentiment-extraction",
+        "utc": "2026-10-01T08:03:55.414924+00:00",
+        "wave": 5
+      },
+      "finished": {
+        "elapsed_seconds": 1119.8738730079494,
+        "status": "completed",
+        "utc": "2026-10-01T08:22:36.437948+00:00"
+      },
+      "closed": {
+        "image_cleanup_certified": false,
+        "index": 17,
+        "srun_returncode": 0,
+        "step": "15140.18",
+        "step_connection_closed": true,
+        "supervisor_elapsed_seconds": 1122.556421049172,
+        "worker_clock_seen": true,
+        "worker_deadline_reached": false
+      }
+    }
+  ],
+  "scope": "Post-completion snapshot. Per-episode closure follows frozen controller worker/container identity and GPU-empty checks; service process closed and allocation state separately verified with sacct."
+}

@@ -1,0 +1,22 @@
+{
+  "source": "sacct -X -j 15140,15135 -n -P -o JobIDRaw,State,ElapsedRaw,AllocTRES",
+  "observed_utc": "2026-10-01T08:28Z",
+  "records": [
+    {
+      "job": "15135",
+      "state": "CANCELLED by 7542",
+      "elapsed_seconds": 790,
+      "gpus": 5
+    },
+    {
+      "job": "15140",
+      "state": "COMPLETED",
+      "elapsed_seconds": 9512,
+      "gpus": 5
+    }
+  ],
+  "total_gpu_hours": 14.308333333333334,
+  "pilot_gpu_hours": 13.21111111111111,
+  "approved_cap_gpu_hours": 20,
+  "scope": "Full allocations, including initialization, idle reservations and the prior failed allocation; not pure task execution compute."
+}

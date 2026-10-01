@@ -1,0 +1,185 @@
+{
+  "comparisons": [
+    {
+      "both_initial_valid": true,
+      "contrast": "C-B",
+      "executed_code_equal": true,
+      "first_feedback_facts_equal": true,
+      "initial_score_equal": true,
+      "initial_validity_equal": true,
+      "raw_code_equal": true,
+      "start": 0
+    },
+    {
+      "both_initial_valid": true,
+      "contrast": "B-A",
+      "executed_code_equal": true,
+      "first_feedback_facts_equal": null,
+      "initial_score_equal": true,
+      "initial_validity_equal": true,
+      "raw_code_equal": true,
+      "start": 0
+    },
+    {
+      "both_initial_valid": true,
+      "contrast": "C-A",
+      "executed_code_equal": true,
+      "first_feedback_facts_equal": null,
+      "initial_score_equal": true,
+      "initial_validity_equal": true,
+      "raw_code_equal": true,
+      "start": 0
+    },
+    {
+      "both_initial_valid": true,
+      "contrast": "C-B",
+      "executed_code_equal": true,
+      "first_feedback_facts_equal": true,
+      "initial_score_equal": true,
+      "initial_validity_equal": true,
+      "raw_code_equal": true,
+      "start": 1
+    },
+    {
+      "both_initial_valid": true,
+      "contrast": "B-A",
+      "executed_code_equal": true,
+      "first_feedback_facts_equal": null,
+      "initial_score_equal": true,
+      "initial_validity_equal": true,
+      "raw_code_equal": true,
+      "start": 1
+    },
+    {
+      "both_initial_valid": true,
+      "contrast": "C-A",
+      "executed_code_equal": true,
+      "first_feedback_facts_equal": null,
+      "initial_score_equal": true,
+      "initial_validity_equal": true,
+      "raw_code_equal": true,
+      "start": 1
+    },
+    {
+      "both_initial_valid": false,
+      "contrast": "C-B",
+      "executed_code_equal": true,
+      "first_feedback_facts_equal": true,
+      "initial_score_equal": null,
+      "initial_validity_equal": true,
+      "raw_code_equal": true,
+      "start": 2
+    },
+    {
+      "both_initial_valid": false,
+      "contrast": "B-A",
+      "executed_code_equal": true,
+      "first_feedback_facts_equal": null,
+      "initial_score_equal": null,
+      "initial_validity_equal": true,
+      "raw_code_equal": true,
+      "start": 2
+    },
+    {
+      "both_initial_valid": false,
+      "contrast": "C-A",
+      "executed_code_equal": true,
+      "first_feedback_facts_equal": null,
+      "initial_score_equal": null,
+      "initial_validity_equal": true,
+      "raw_code_equal": true,
+      "start": 2
+    },
+    {
+      "both_initial_valid": false,
+      "contrast": "C-B",
+      "executed_code_equal": true,
+      "first_feedback_facts_equal": true,
+      "initial_score_equal": null,
+      "initial_validity_equal": true,
+      "raw_code_equal": true,
+      "start": 3
+    },
+    {
+      "both_initial_valid": false,
+      "contrast": "B-A",
+      "executed_code_equal": true,
+      "first_feedback_facts_equal": null,
+      "initial_score_equal": null,
+      "initial_validity_equal": true,
+      "raw_code_equal": true,
+      "start": 3
+    },
+    {
+      "both_initial_valid": false,
+      "contrast": "C-A",
+      "executed_code_equal": true,
+      "first_feedback_facts_equal": null,
+      "initial_score_equal": null,
+      "initial_validity_equal": true,
+      "raw_code_equal": true,
+      "start": 3
+    },
+    {
+      "both_initial_valid": false,
+      "contrast": "C-B",
+      "executed_code_equal": true,
+      "first_feedback_facts_equal": true,
+      "initial_score_equal": null,
+      "initial_validity_equal": true,
+      "raw_code_equal": true,
+      "start": 4
+    },
+    {
+      "both_initial_valid": false,
+      "contrast": "B-A",
+      "executed_code_equal": true,
+      "first_feedback_facts_equal": null,
+      "initial_score_equal": null,
+      "initial_validity_equal": true,
+      "raw_code_equal": true,
+      "start": 4
+    },
+    {
+      "both_initial_valid": false,
+      "contrast": "C-A",
+      "executed_code_equal": true,
+      "first_feedback_facts_equal": null,
+      "initial_score_equal": null,
+      "initial_validity_equal": true,
+      "raw_code_equal": true,
+      "start": 4
+    },
+    {
+      "both_initial_valid": false,
+      "contrast": "C-B",
+      "executed_code_equal": true,
+      "first_feedback_facts_equal": true,
+      "initial_score_equal": null,
+      "initial_validity_equal": true,
+      "raw_code_equal": true,
+      "start": 5
+    },
+    {
+      "both_initial_valid": false,
+      "contrast": "B-A",
+      "executed_code_equal": true,
+      "first_feedback_facts_equal": null,
+      "initial_score_equal": null,
+      "initial_validity_equal": true,
+      "raw_code_equal": true,
+      "start": 5
+    },
+    {
+      "both_initial_valid": false,
+      "contrast": "C-A",
+      "executed_code_equal": true,
+      "first_feedback_facts_equal": null,
+      "initial_score_equal": null,
+      "initial_validity_equal": true,
+      "raw_code_equal": true,
+      "start": 5
+    }
+  ],
+  "scope": "Only first-action state; never implies identical subsequent trajectories or final gains."
+}

@@ -1,0 +1,228 @@
+{
+  "plan_sha256": "15751d3b52bdc42617df02006ce724635f4bf49df6e477686769fd1979d53403",
+  "rows": [
+    {
+      "arm": "C",
+      "attempts_with_aggregate_facts": 2,
+      "execution_result_returned": 3,
+      "generation_attempts": 4,
+      "generation_returned": 4,
+      "index": 0,
+      "start": 0,
+      "task": "spooky-author-identification",
+      "valid_parent_attempts": 2
+    },
+    {
+      "arm": "C",
+      "attempts_with_aggregate_facts": 2,
+      "execution_result_returned": 4,
+      "generation_attempts": 4,
+      "generation_returned": 4,
+      "index": 1,
+      "start": 1,
+      "task": "random-acts-of-pizza",
+      "valid_parent_attempts": 2
+    },
+    {
+      "arm": "C",
+      "attempts_with_aggregate_facts": 0,
+      "execution_result_returned": 4,
+      "generation_attempts": 4,
+      "generation_returned": 4,
+      "index": 2,
+      "start": 2,
+      "task": "tweet-sentiment-extraction",
+      "valid_parent_attempts": 0
+    },
+    {
+      "arm": "B",
+      "attempts_with_aggregate_facts": 2,
+      "execution_result_returned": 4,
+      "generation_attempts": 4,
+      "generation_returned": 4,
+      "index": 3,
+      "start": 0,
+      "task": "spooky-author-identification",
+      "valid_parent_attempts": 2
+    },
+    {
+      "arm": "B",
+      "attempts_with_aggregate_facts": 2,
+      "execution_result_returned": 4,
+      "generation_attempts": 4,
+      "generation_returned": 4,
+      "index": 4,
+      "start": 1,
+      "task": "random-acts-of-pizza",
+      "valid_parent_attempts": 2
+    },
+    {
+      "arm": "B",
+      "attempts_with_aggregate_facts": 1,
+      "execution_result_returned": 4,
+      "generation_attempts": 4,
+      "generation_returned": 4,
+      "index": 5,
+      "start": 2,
+      "task": "tweet-sentiment-extraction",
+      "valid_parent_attempts": 1
+    },
+    {
+      "arm": "A",
+      "attempts_with_aggregate_facts": 0,
+      "execution_result_returned": 4,
+      "generation_attempts": 4,
+      "generation_returned": 4,
+      "index": 6,
+      "start": 0,
+      "task": "spooky-author-identification",
+      "valid_parent_attempts": 2
+    },
+    {
+      "arm": "A",
+      "attempts_with_aggregate_facts": 0,
+      "execution_result_returned": 4,
+      "generation_attempts": 4,
+      "generation_returned": 4,
+      "index": 7,
+      "start": 1,
+      "task": "random-acts-of-pizza",
+      "valid_parent_attempts": 2
+    },
+    {
+      "arm": "A",
+      "attempts_with_aggregate_facts": 0,
+      "execution_result_returned": 4,
+      "generation_attempts": 4,
+      "generation_returned": 4,
+      "index": 8,
+      "start": 2,
+      "task": "tweet-sentiment-extraction",
+      "valid_parent_attempts": 0
+    },
+    {
+      "arm": "A",
+      "attempts_with_aggregate_facts": 0,
+      "execution_result_returned": 4,
+      "generation_attempts": 4,
+      "generation_returned": 4,
+      "index": 9,
+      "start": 3,
+      "task": "spooky-author-identification",
+      "valid_parent_attempts": 1
+    },
+    {
+      "arm": "A",
+      "attempts_with_aggregate_facts": 0,
+      "execution_result_returned": 4,
+      "generation_attempts": 4,
+      "generation_returned": 4,
+      "index": 10,
+      "start": 4,
+      "task": "random-acts-of-pizza",
+      "valid_parent_attempts": 2
+    },
+    {
+      "arm": "A",
+      "attempts_with_aggregate_facts": 0,
+      "execution_result_returned": 4,
+      "generation_attempts": 4,
+      "generation_returned": 4,
+      "index": 11,
+      "start": 5,
+      "task": "tweet-sentiment-extraction",
+      "valid_parent_attempts": 1
+    },
+    {
+      "arm": "B",
+      "attempts_with_aggregate_facts": 1,
+      "execution_result_returned": 4,
+      "generation_attempts": 4,
+      "generation_returned": 4,
+      "index": 12,
+      "start": 3,
+      "task": "spooky-author-identification",
+      "valid_parent_attempts": 1
+    },
+    {
+      "arm": "B",
+      "attempts_with_aggregate_facts": 2,
+      "execution_result_returned": 4,
+      "generation_attempts": 4,
+      "generation_returned": 4,
+      "index": 13,
+      "start": 4,
+      "task": "random-acts-of-pizza",
+      "valid_parent_attempts": 2
+    },
+    {
+      "arm": "B",
+      "attempts_with_aggregate_facts": 2,
+      "execution_result_returned": 4,
+      "generation_attempts": 4,
+      "generation_returned": 4,
+      "index": 14,
+      "start": 5,
+      "task": "tweet-sentiment-extraction",
+      "valid_parent_attempts": 2
+    },
+    {
+      "arm": "C",
+      "attempts_with_aggregate_facts": 1,
+      "execution_result_returned": 4,
+      "generation_attempts": 4,
+      "generation_returned": 4,
+      "index": 15,
+      "start": 3,
+      "task": "spooky-author-identification",
+      "valid_parent_attempts": 1
+    },
+    {
+      "arm": "C",
+      "attempts_with_aggregate_facts": 2,
+      "execution_result_returned": 4,
+      "generation_attempts": 4,
+      "generation_returned": 4,
+      "index": 16,
+      "start": 4,
+      "task": "random-acts-of-pizza",
+      "valid_parent_attempts": 2
+    },
+    {
+      "arm": "C",
+      "attempts_with_aggregate_facts": 3,
+      "execution_result_returned": 4,
+      "generation_attempts": 4,
+      "generation_returned": 4,
+      "index": 17,
+      "start": 5,
+      "task": "tweet-sentiment-extraction",
+      "valid_parent_attempts": 3
+    }
+  ],
+  "scope": "Post-hoc descriptive exposure counts. Valid-parent status is treatment-dependent; do not condition on it to claim an effect. No new scoring, generation or execution.",
+  "source_sha256": "67c0e1afab2833950530f2982a526143cfb06198f1d12ed2efc503edc3aad598",
+  "totals_by_arm": {
+    "A": {
+      "attempts_with_aggregate_facts": 0,
+      "execution_result_returned": 24,
+      "generation_attempts": 24,
+      "generation_returned": 24,
+      "valid_parent_attempts": 8
+    },
+    "B": {
+      "attempts_with_aggregate_facts": 10,
+      "execution_result_returned": 24,
+      "generation_attempts": 24,
+      "generation_returned": 24,
+      "valid_parent_attempts": 10
+    },
+    "C": {
+      "attempts_with_aggregate_facts": 10,
+      "execution_result_returned": 23,
+      "generation_attempts": 24,
+      "generation_returned": 24,
+      "valid_parent_attempts": 10
+    }
+  }
+}

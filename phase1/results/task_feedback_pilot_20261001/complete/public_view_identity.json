@@ -1,0 +1,136 @@
+{
+  "distinct_views_per_task": {
+    "random-acts-of-pizza": 1,
+    "spooky-author-identification": 1,
+    "tweet-sentiment-extraction": 1
+  },
+  "rows": [
+    {
+      "arm": "C",
+      "index": 0,
+      "public_input_sha256": "72ac7c7efe695e6ab94a725841df133bdc3f0a8a69512bf8f847198edbc10fbf",
+      "start": 0,
+      "task": "spooky-author-identification"
+    },
+    {
+      "arm": "C",
+      "index": 1,
+      "public_input_sha256": "6cec69c8401eb2c4f12f451eea4ea283a05a1e4f7a9fb282f28cd0bf368d4e11",
+      "start": 1,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "arm": "C",
+      "index": 2,
+      "public_input_sha256": "16f38536c9a6a8cdbcfac981d443f006c57dc585a8b8e03f13c5da9187ecbf7e",
+      "start": 2,
+      "task": "tweet-sentiment-extraction"
+    },
+    {
+      "arm": "B",
+      "index": 3,
+      "public_input_sha256": "72ac7c7efe695e6ab94a725841df133bdc3f0a8a69512bf8f847198edbc10fbf",
+      "start": 0,
+      "task": "spooky-author-identification"
+    },
+    {
+      "arm": "B",
+      "index": 4,
+      "public_input_sha256": "6cec69c8401eb2c4f12f451eea4ea283a05a1e4f7a9fb282f28cd0bf368d4e11",
+      "start": 1,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "arm": "B",
+      "index": 5,
+      "public_input_sha256": "16f38536c9a6a8cdbcfac981d443f006c57dc585a8b8e03f13c5da9187ecbf7e",
+      "start": 2,
+      "task": "tweet-sentiment-extraction"
+    },
+    {
+      "arm": "A",
+      "index": 6,
+      "public_input_sha256": "72ac7c7efe695e6ab94a725841df133bdc3f0a8a69512bf8f847198edbc10fbf",
+      "start": 0,
+      "task": "spooky-author-identification"
+    },
+    {
+      "arm": "A",
+      "index": 7,
+      "public_input_sha256": "6cec69c8401eb2c4f12f451eea4ea283a05a1e4f7a9fb282f28cd0bf368d4e11",
+      "start": 1,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "arm": "A",
+      "index": 8,
+      "public_input_sha256": "16f38536c9a6a8cdbcfac981d443f006c57dc585a8b8e03f13c5da9187ecbf7e",
+      "start": 2,
+      "task": "tweet-sentiment-extraction"
+    },
+    {
+      "arm": "A",
+      "index": 9,
+      "public_input_sha256": "72ac7c7efe695e6ab94a725841df133bdc3f0a8a69512bf8f847198edbc10fbf",
+      "start": 3,
+      "task": "spooky-author-identification"
+    },
+    {
+      "arm": "A",
+      "index": 10,
+      "public_input_sha256": "6cec69c8401eb2c4f12f451eea4ea283a05a1e4f7a9fb282f28cd0bf368d4e11",
+      "start": 4,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "arm": "A",
+      "index": 11,
+      "public_input_sha256": "16f38536c9a6a8cdbcfac981d443f006c57dc585a8b8e03f13c5da9187ecbf7e",
+      "start": 5,
+      "task": "tweet-sentiment-extraction"
+    },
+    {
+      "arm": "B",
+      "index": 12,
+      "public_input_sha256": "72ac7c7efe695e6ab94a725841df133bdc3f0a8a69512bf8f847198edbc10fbf",
+      "start": 3,
+      "task": "spooky-author-identification"
+    },
+    {
+      "arm": "B",
+      "index": 13,
+      "public_input_sha256": "6cec69c8401eb2c4f12f451eea4ea283a05a1e4f7a9fb282f28cd0bf368d4e11",
+      "start": 4,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "arm": "B",
+      "index": 14,
+      "public_input_sha256": "16f38536c9a6a8cdbcfac981d443f006c57dc585a8b8e03f13c5da9187ecbf7e",
+      "start": 5,
+      "task": "tweet-sentiment-extraction"
+    },
+    {
+      "arm": "C",
+      "index": 15,
+      "public_input_sha256": "72ac7c7efe695e6ab94a725841df133bdc3f0a8a69512bf8f847198edbc10fbf",
+      "start": 3,
+      "task": "spooky-author-identification"
+    },
+    {
+      "arm": "C",
+      "index": 16,
+      "public_input_sha256": "6cec69c8401eb2c4f12f451eea4ea283a05a1e4f7a9fb282f28cd0bf368d4e11",
+      "start": 4,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "arm": "C",
+      "index": 17,
+      "public_input_sha256": "16f38536c9a6a8cdbcfac981d443f006c57dc585a8b8e03f13c5da9187ecbf7e",
+      "start": 5,
+      "task": "tweet-sentiment-extraction"
+    }
+  ],
+  "scope": "Unlabeled public inputs only; identity across starts does not make them independent replicates."
+}

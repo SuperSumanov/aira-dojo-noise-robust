@@ -692,3 +692,5 @@ phase1/FEEDBACK_REAL_PILOT_20261001.md -text diff whitespace=cr-at-eol
 phase1/results/task_feedback_pilot_20261001/first_start/* -text diff whitespace=cr-at-eol
 phase1/results/task_feedback_pilot_20261001/tweet_copy_reference.json -text diff whitespace=cr-at-eol
 phase1/scripts/task_feedback_tweet_reference_20261001.py -text diff whitespace=cr-at-eol
+phase1/results/task_feedback_pilot_20261001/complete/* -text diff whitespace=cr-at-eol
+phase1/scripts/analyze_task_feedback_exposure_20261001.py -text diff whitespace=cr-at-eol

@@ -1,0 +1,227 @@
+{
+  "scope": "Descriptive only; two different code starts per task with one continuation seed each, not same-start cross-seed replication. Conditional score summaries retain validity denominators and are not a causal comparison. No cross-task metric averaging, no significance claim.",
+  "plan_sha256": "15751d3b52bdc42617df02006ce724635f4bf49df6e477686769fd1979d53403",
+  "tasks": [
+    {
+      "task": "spooky-author-identification",
+      "arms": {
+        "A": {
+          "planned": 2,
+          "final_valid": 2,
+          "selected_score_among_valid_descriptive_only": {
+            "n": 2,
+            "median": 0.40126149572930137,
+            "min": 0.37976945033064013,
+            "max": 0.42275354112796265,
+            "sample_variance": 0.0009238160308362331
+          },
+          "episode_elapsed_seconds": {
+            "n": 2,
+            "median": 1159.7663150315639,
+            "min": 546.3515082660597,
+            "max": 1773.181121797068,
+            "sample_variance": 752555.4503183217
+          }
+        },
+        "B": {
+          "planned": 2,
+          "final_valid": 2,
+          "selected_score_among_valid_descriptive_only": {
+            "n": 2,
+            "median": 0.40536472681447133,
+            "min": 0.38797591250098007,
+            "max": 0.42275354112796265,
+            "sample_variance": 0.0006047417264581593
+          },
+          "episode_elapsed_seconds": {
+            "n": 2,
+            "median": 1270.6483381419675,
+            "min": 951.4392300290056,
+            "max": 1589.8574462549295,
+            "sample_variance": 203788.9094045453
+          }
+        },
+        "C": {
+          "planned": 2,
+          "final_valid": 2,
+          "selected_score_among_valid_descriptive_only": {
+            "n": 2,
+            "median": 0.40536472681447133,
+            "min": 0.38797591250098007,
+            "max": 0.42275354112796265,
+            "sample_variance": 0.0006047417264581593
+          },
+          "episode_elapsed_seconds": {
+            "n": 2,
+            "median": 1606.1025669459486,
+            "min": 1409.6968166248407,
+            "max": 1802.5083172670566,
+            "sample_variance": 77150.43751839477
+          }
+        }
+      }
+    },
+    {
+      "task": "random-acts-of-pizza",
+      "arms": {
+        "A": {
+          "planned": 2,
+          "final_valid": 2,
+          "selected_score_among_valid_descriptive_only": {
+            "n": 2,
+            "median": 0.6833891413537432,
+            "min": 0.681296340588376,
+            "max": 0.6854819421191103,
+            "sample_variance": 0.000008759630087042778
+          },
+          "episode_elapsed_seconds": {
+            "n": 2,
+            "median": 770.4628911359468,
+            "min": 446.095372504089,
+            "max": 1094.8304097678047,
+            "sample_variance": 210428.57428677726
+          }
+        },
+        "B": {
+          "planned": 2,
+          "final_valid": 2,
+          "selected_score_among_valid_descriptive_only": {
+            "n": 2,
+            "median": 0.6587538866299929,
+            "min": 0.6402774455871801,
+            "max": 0.6772303276728056,
+            "sample_variance": 0.0006827577472170679
+          },
+          "episode_elapsed_seconds": {
+            "n": 2,
+            "median": 575.7683351270389,
+            "min": 548.8426640289836,
+            "max": 602.6940062250942,
+            "sample_variance": 1449.983528161303
+          }
+        },
+        "C": {
+          "planned": 2,
+          "final_valid": 2,
+          "selected_score_among_valid_descriptive_only": {
+            "n": 2,
+            "median": 0.6531033245635015,
+            "min": 0.6281392011480507,
+            "max": 0.6780674479789524,
+            "sample_variance": 0.0012464149158037223
+          },
+          "episode_elapsed_seconds": {
+            "n": 2,
+            "median": 558.0087132015033,
+            "min": 497.37751517095603,
+            "max": 618.6399112320505,
+            "sample_variance": 7352.284349238871
+          }
+        }
+      }
+    },
+    {
+      "task": "tweet-sentiment-extraction",
+      "arms": {
+        "A": {
+          "planned": 2,
+          "final_valid": 1,
+          "selected_score_among_valid_descriptive_only": {
+            "n": 1,
+            "median": 0.5226682748344275,
+            "min": 0.5226682748344275,
+            "max": 0.5226682748344275,
+            "sample_variance": null
+          },
+          "episode_elapsed_seconds": {
+            "n": 2,
+            "median": 915.5331807445036,
+            "min": 671.1455170160625,
+            "max": 1159.9208444729447,
+            "sample_variance": 119450.66036529122
+          }
+        },
+        "B": {
+          "planned": 2,
+          "final_valid": 2,
+          "selected_score_among_valid_descriptive_only": {
+            "n": 2,
+            "median": 0.5487900751415842,
+            "min": 0.5244375305167687,
+            "max": 0.5731426197663997,
+            "sample_variance": 0.0011860928594072614
+          },
+          "episode_elapsed_seconds": {
+            "n": 2,
+            "median": 1126.7372095980681,
+            "min": 1082.4571553000715,
+            "max": 1171.0172638960648,
+            "sample_variance": 3921.4464172670696
+          }
+        },
+        "C": {
+          "planned": 2,
+          "final_valid": 1,
+          "selected_score_among_valid_descriptive_only": {
+            "n": 1,
+            "median": 0.5853067573584102,
+            "min": 0.5853067573584102,
+            "max": 0.5853067573584102,
+            "sample_variance": null
+          },
+          "episode_elapsed_seconds": {
+            "n": 2,
+            "median": 1115.7891675439896,
+            "min": 1111.7044620800298,
+            "max": 1119.8738730079494,
+            "sample_variance": 33.36963745460667
+          }
+        }
+      }
+    }
+  ],
+  "contrasts": [
+    {
+      "contrast": "C-B",
+      "total_pairs": 6,
+      "primary_gain_evaluable": 2,
+      "primary_gain_wins": 0,
+      "primary_gain_ties": 1,
+      "primary_gain_losses": 1,
+      "secondary_both_final_valid": 5,
+      "secondary_selected_wins": 2,
+      "secondary_selected_ties": 2,
+      "secondary_selected_losses": 1,
+      "validity_wins": 0,
+      "validity_losses": 1
+    },
+    {
+      "contrast": "B-A",
+      "total_pairs": 6,
+      "primary_gain_evaluable": 2,
+      "primary_gain_wins": 0,
+      "primary_gain_ties": 0,
+      "primary_gain_losses": 2,
+      "secondary_both_final_valid": 5,
+      "secondary_selected_wins": 1,
+      "secondary_selected_ties": 1,
+      "secondary_selected_losses": 3,
+      "validity_wins": 1,
+      "validity_losses": 0
+    },
+    {
+      "contrast": "C-A",
+      "total_pairs": 6,
+      "primary_gain_evaluable": 2,
+      "primary_gain_wins": 0,
+      "primary_gain_ties": 0,
+      "primary_gain_losses": 2,
+      "secondary_both_final_valid": 5,
+      "secondary_selected_wins": 1,
+      "secondary_selected_ties": 1,
+      "secondary_selected_losses": 3,
+      "validity_wins": 0,
+      "validity_losses": 0
+    }
+  ]
+}

@@ -686,3 +686,6 @@ phase1/results/comparison_pizza_transfer_20260920/*.json -text diff whitespace=c
 phase1/results/comparison_pizza_transfer_20260920/*.csv -text diff whitespace=cr-at-eol
 phase1/results/comparison_complete_pool_order_20260920/*.json -text diff whitespace=cr-at-eol
 phase1/results/comparison_complete_pool_order_20260920/*.csv -text diff whitespace=cr-at-eol
+phase1/scripts/task_feedback_real_20261001.py -text diff whitespace=cr-at-eol
+phase1/scripts/task_feedback_facts_20261001.py -text diff whitespace=cr-at-eol
+phase1/FEEDBACK_REAL_PILOT_20261001.md -text diff whitespace=cr-at-eol

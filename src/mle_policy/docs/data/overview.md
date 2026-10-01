@@ -247,9 +247,28 @@ prompt 做一次包排序就能得到。要看完整内容就看 `samples.jsonl`
 `[system, user, assistant]`。输出 `sft.jsonl` + `sft_{train,val}.parquet`
 （只有一列 `messages`，可以直接喂 `src/verl` 的 `multiturn_sft_dataset`）。
 
+`sft.jsonl` 每行还带 `sample_id` / `group_id` / `task` / `split` / `batch` / `reward` /
+`episode_reward`，以及 `operator`（这个 operation 是 draft / debug / improve /
+crossover / analysis 里的哪一个）。verl 侧的转换脚本用 `operator` 报告各算子的**长度
+过滤保留率**，parquet 里仍然只有 `messages` 这一列。
+
 **root step的system和user prompt改成该组内最早一步的system和user prompt** 我们将后续加入的
 memory视作一种扰动，目的是为了让模型输出不一样的代码。而这里训练的目的是让模型一开始就找到更好的代码
 所以将后续episode的root step的prompt改成group内最早的一步的prompt。
+
+**只有一条 system 消息的老 run 会补回 operator 的 system message。** 走 openai 协议的
+run 把整个 prompt 记在一条 system 消息里（内容其实是渲染好的 user prompt），Qwen3.5
+的 SFT 需要 `[system, user, assistant]`，所以 `to_sft.py` 按 operator 从
+`src/dojo/configs/solver/operators/mlebench/{aira,aide}_operators/*.yaml` 的
+`system_message_prompt_template` 读回那段固定的 system message（`analysis` 对应
+`aide_operators/analyze.yaml`），把原来那条降级成 user。两种协议记下来的 system
+message 文本本来就一样（抽查过），补完是统一的 `[system, user, assistant]`。
+
+**draft / improve / crossover 的 prompt 会把 "PREVIOUSLY EXPLORED ..." 这段搜索记忆删掉**
+（`journal.strip_search_memory`，和分组时忽略搜索记忆用的是同一组正则；`debug` /
+`analysis` 不动，它们带的是代码和报错）。目的是把这些选择和记忆直接训进模型参数，
+而不是让模型每步都从 prompt 里读别人试过什么。这一刀让 16k 长度过滤的保留率从
+train 63.9% 提到 75.6%，`sft.jsonl` 从 2.7 GB 缩到 1.7 GB。
 
 ### 6.3 `to_grpo.py`
 
@@ -318,11 +337,11 @@ reward = (score - median_threshold) / (gold_threshold - median_threshold)
 （`raw_journal` 下带 `dojo_config.json` 的 run 目录一共 1838 个，其中 1660 个写了
 `checkpoint/journal.jsonl`；剩下的是被 kill 之前没写出 checkpoint 的，按约定不读。）
 
-### 9.2 三种视角
+### 9.2 两种视角
 
 | 视角 | `non_thinking` | `thinking` |
 | --- | ---: | ---: |
-| `sft.jsonl`（每组一条） | 13,543（train 12,205 / val 1,338） | 751（train 693 / val 58） |
+| `sft.jsonl`（每组一条epsodic内所有operation） | 35,433（train 32,066 / val 3,367） | 2,897（train 2,692 / val 205） |
 | `grpo.jsonl`（每组一行，组内 ≥2 条走通） | 10,612 组 / 25,900 条回复 | 669 组 / 1,571 条回复 |
 
 单成员 group 共 44 个（`non_thinking` 44，`thinking` 0）；其余 13,152 个

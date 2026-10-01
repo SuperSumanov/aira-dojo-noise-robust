@@ -3,6 +3,22 @@
 Each group contributes every operation from its highest-reward episode that
 contains a runnable operation.  The root operation uses the earliest root
 prompt in the group; later operations keep their recorded prompts.
+
+Proposal prompts (draft / improve / crossover) carry a "PREVIOUSLY EXPLORED ..."
+section listing what the other candidates in the search already tried.  That
+search memory is removed here: the training target is the choice itself, and the
+model should learn the selection in its weights instead of reading the log of
+previous attempts.  ``debug`` and ``analysis`` prompts are left alone -- they
+carry the code and the error that the fix is about.
+
+Rows whose run only recorded one ``system`` message (the OpenAI-protocol clients)
+get the operator's system message back from its dojo config, so every row is a
+``[system, user, assistant]`` conversation -- Qwen expects one, and a bare user
+turn makes the chat template unhappy.
+
+``operator`` (draft / debug / improve / crossover / analysis) is carried into
+``sft.jsonl`` so the Verl converter can report how many rows of each operator
+survive the length filter.
 """
 
 from __future__ import annotations
@@ -14,10 +30,36 @@ from typing import Any
 import pyarrow as pa
 
 from . import groupdata
+from .journal import strip_search_memory
+from .operator_prompts import system_message
 from .parquetwriter import MESSAGE_TYPE, SplitParquetWriter
 from .selection import default_operators, eligible_members, ranked_members, training_prompt
 
 SFT_SCHEMA = pa.schema([("messages", MESSAGE_TYPE)])
+
+# Operators whose prompt carries the search memory.  debug/analysis keep theirs.
+MEMORY_OPERATORS = ("draft", "improve", "crossover")
+
+
+def _prompt_for(sample: dict[str, Any], normalize_packages: bool) -> list[dict[str, Any]]:
+    """The prompt a training row carries: canonical packages, no search memory.
+
+    A recorded single ``system`` turn is the rendered user message of an
+    OpenAI-protocol run: it becomes the user turn and the operator's own system
+    message is put back in front of it.
+    """
+    prompt = training_prompt(sample, normalize_packages)
+    if sample["operator"] in MEMORY_OPERATORS:
+        prompt = [
+            {"role": message["role"], "content": strip_search_memory(message["content"])}
+            for message in prompt
+        ]
+    if len(prompt) == 1 and prompt[0]["role"] == "system":
+        prompt = [
+            {"role": "system", "content": system_message(sample["operator"])},
+            {"role": "user", "content": prompt[0]["content"]},
+        ]
+    return prompt
 
 
 def to_sft(
@@ -45,9 +87,7 @@ def to_sft(
                 continue
             init_episode = min(all_episodes, key=lambda e: (e["node_step"], e["sample_id"]))
             init_sample = samples_by_id[init_episode["root_sample_id"]]
-            init_prompt = training_prompt(init_sample, normalize_packages)
-            if len(init_prompt) == 1 and init_prompt[0]["role"] == "system":
-                init_prompt[0]["role"] = "user"
+            init_prompt = _prompt_for(init_sample, normalize_packages)
 
             episodes = all_episodes
             runnable_by_episode = {
@@ -67,10 +107,7 @@ def to_sft(
             for sample_id in best_episode["sample_ids"]:
                 sample = samples_by_id.get(sample_id)
                 split = splits.get(sample["group_id"], "train") if splits else "train"
-                prompt = training_prompt(sample, normalize_packages)
-                # if there is only system prompt, then we will convert it to user prompt
-                if len(prompt) == 1 and prompt[0]["role"] == "system":
-                    prompt[0]["role"] = "user"
+                prompt = _prompt_for(sample, normalize_packages)
                 if sample_id == best_episode["root_sample_id"]:
                     messages = init_prompt + [{"role": "assistant", "content": sample["completion"]}]
                 else:
@@ -81,6 +118,7 @@ def to_sft(
                         "sample_id": sample["sample_id"],
                         "group_id": sample["group_id"],
                         "task": sample["task"],
+                        "operator": sample["operator"],
                         "split": split,
                         "batch": sample["batch"],
                         "reward": sample["node_reward"],

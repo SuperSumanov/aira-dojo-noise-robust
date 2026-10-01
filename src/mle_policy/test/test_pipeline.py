@@ -6,12 +6,19 @@ from src.mle_policy.src.data import groupdata
 from src.mle_policy.src.data.aggregate_groups import aggregate
 from src.mle_policy.src.data.assign_splits import assign_dataset_splits, assign_splits
 from src.mle_policy.src.data.build_batch_groups import build_batch
+from src.mle_policy.src.data.operator_prompts import system_message
 from src.mle_policy.src.data.to_grpo import to_grpo
 from src.mle_policy.src.data.to_sft import to_sft
 
 
 def read_jsonl(path):
     return [json.loads(line) for line in path.read_text().splitlines() if line.strip()]
+
+
+def user_turn(row):
+    """The user message of an SFT row: turn 0 is the operator's system message."""
+    assert [message["role"] for message in row["messages"]] == ["system", "user", "assistant"]
+    return row["messages"][1]["content"]
 
 
 def test_groups_never_cross_batches(tmp_path, node_builder, run_writer):
@@ -183,7 +190,9 @@ def test_grpo_keeps_the_complete_episode_and_uses_earliest_group_prompt(
 
 def test_views_use_unresolved_episode_as_earliest_prompt(tmp_path, node_builder, run_writer):
     # The earliest episode is unresolved, but its prompt is still the group's
-    # initial input and must be used for the two later resolved episodes.
+    # initial input and must be used for the two later resolved episodes.  The
+    # SFT row drops the search memory from it; GRPO keeps the prompt as recorded
+    # and is where the "earliest prompt" rule stays observable.
     run_writer(
         tmp_path / "batch",
         "run-earliest",
@@ -199,8 +208,8 @@ def test_views_use_unresolved_episode_as_earliest_prompt(tmp_path, node_builder,
     assign_dataset_splits(tmp_path / "out", val_fraction=0.0, verbose=False)
 
     to_sft(tmp_path / "out", tmp_path / "out", verbose=False)
-    sft_rows = read_jsonl(tmp_path / "out" / "sft.jsonl")
-    assert sft_rows[0]["messages"][0]["content"].startswith("shared root\n# PREVIOUSLY")
+    (sft_row,) = read_jsonl(tmp_path / "out" / "sft.jsonl")
+    assert user_turn(sft_row) == "shared root\n# DATA OVERVIEW\nsame"
 
     to_grpo(tmp_path / "out", tmp_path / "out", verbose=False)
     (grpo_row,) = read_jsonl(tmp_path / "out" / "grpo.jsonl")
@@ -239,6 +248,81 @@ def test_broken_drafts_still_form_a_preference_pair(tmp_path, node_builder, run_
     assert [row["messages"][-1]["content"] for row in rows] == ["broken-but-recoverable", "clean"]
 
 
+def test_to_sft_drops_the_search_memory_of_proposals_only(tmp_path, node_builder, run_writer):
+    # draft/improve prompts list what the search already tried; that memory is
+    # not part of the training target.  The debug prompt is the fix's context
+    # (code + error) and must survive untouched.
+    memory = "# PREVIOUSLY EXPLORED IMPROVEMENT IDEAS\n- tried a linear model\n\n"
+    run_writer(
+        tmp_path / "batch",
+        "run-a",
+        [
+            node_builder(
+                1,
+                calls=[("improve", f"task\n{memory}# DATA OVERVIEW\ndraft me one", "broken")],
+                buggy=True,
+            ),
+            node_builder(
+                2,
+                calls=[("debug", f"task\n{memory}# DATA OVERVIEW\ndraft me one\nTraceback: boom", "fixed")],
+                buggy=False,
+                score=0.9,
+                parents=(1,),
+            ),
+        ],
+    )
+    build_batch(tmp_path / "batch", tmp_path / "out", verbose=False)
+    assign_dataset_splits(tmp_path / "out", val_fraction=0.0, verbose=False)
+    to_sft(tmp_path / "out", tmp_path / "out", verbose=False)
+
+    rows = {row["operator"]: row for row in read_jsonl(tmp_path / "out" / "sft.jsonl")}
+    assert set(rows) == {"improve", "debug"}
+    improve_prompt = user_turn(rows["improve"])
+    assert "PREVIOUSLY EXPLORED" not in improve_prompt
+    # only the memory section went away
+    assert improve_prompt == "task\n# DATA OVERVIEW\ndraft me one"
+    debug_prompt = user_turn(rows["debug"])
+    assert debug_prompt.startswith(f"task\n{memory}# DATA OVERVIEW")
+
+
+def test_to_sft_restores_the_operator_system_message(tmp_path, node_builder, run_writer):
+    # The OpenAI-protocol clients recorded everything in one system turn, so the
+    # operator's system message has to come back from its dojo config.
+    run_writer(
+        tmp_path / "batch",
+        "run-a",
+        [node_builder(1, calls=[("draft", "task description", "solution")], buggy=False, score=0.9)],
+    )
+    build_batch(tmp_path / "batch", tmp_path / "out", verbose=False)
+    assign_dataset_splits(tmp_path / "out", val_fraction=0.0, verbose=False)
+    to_sft(tmp_path / "out", tmp_path / "out", verbose=False)
+
+    (row,) = read_jsonl(tmp_path / "out" / "sft.jsonl")
+    assert [message["role"] for message in row["messages"]] == ["system", "user", "assistant"]
+    assert row["messages"][0]["content"] == system_message("draft")
+    assert user_turn(row) == "task description"
+
+
+def test_to_sft_keeps_a_recorded_system_message(tmp_path, node_builder, run_writer):
+    # Runs that did record the conversation keep their own system message.
+    node = node_builder(1, calls=[("draft", "ignored", "solution")], buggy=False, score=0.9)
+    node["operators_metrics"][0]["prompt_messages"] = [
+        {"role": "system", "content": "recorded system"},
+        {"role": "user", "content": "task description"},
+    ]
+    run_writer(tmp_path / "batch", "run-a", [node])
+    build_batch(tmp_path / "batch", tmp_path / "out", verbose=False)
+    assign_dataset_splits(tmp_path / "out", val_fraction=0.0, verbose=False)
+    to_sft(tmp_path / "out", tmp_path / "out", verbose=False)
+
+    (row,) = read_jsonl(tmp_path / "out" / "sft.jsonl")
+    assert [message["content"] for message in row["messages"]] == [
+        "recorded system",
+        "task description",
+        "solution",
+    ]
+
+
 def test_views_carry_the_canonical_prompt(tmp_path, node_builder, run_writer):
     def package_prompt(packages):
         return (
@@ -262,7 +346,7 @@ def test_views_carry_the_canonical_prompt(tmp_path, node_builder, run_writer):
     assign_dataset_splits(tmp_path / "out", val_fraction=0.0, verbose=False)
     to_sft(tmp_path / "out", tmp_path / "out", verbose=False)
     (row,) = read_jsonl(tmp_path / "out" / "sft.jsonl")
-    assert row["messages"][0]["content"] == package_prompt("`numpy`, `torch`")
+    assert user_turn(row) == package_prompt("`numpy`, `torch`")
 
 
 def test_assign_splits_moves_whole_tasks_and_always_has_val():

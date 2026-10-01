@@ -92,6 +92,17 @@ def canonical_prompt(messages: list[dict[str, Any]], normalize_packages: bool) -
     ]
 
 
+def strip_search_memory(content: str) -> str:
+    """Drop the "PREVIOUSLY EXPLORED ..." section from a proposal prompt.
+
+    The section is the search memory: what the other candidates already tried.
+    SFT should teach the choice itself, so the training prompt does not carry the
+    log of previous attempts.
+    """
+    content = PREVIOUS_IMPROVEMENT_IDEAS_RE.sub("", content)
+    return PREVIOUS_IDEAS_RE.sub("", content)
+
+
 def prompt_key(messages: list[dict[str, Any]], normalize_packages: bool) -> str:
     """Hash roles and contents after removing the changing search-memory section."""
     prompt = canonical_prompt(messages, normalize_packages)

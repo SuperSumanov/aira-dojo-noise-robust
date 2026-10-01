@@ -718,3 +718,6 @@ phase1/FEEDBACK_ABORTED_READOUT_20261002.md -text diff whitespace=cr-at-eol
 phase1/scripts/task_feedback_strong_reference_20261002.py -text diff whitespace=cr-at-eol
 phase1/scripts/task_feedback_rule_harm*_20261002.py -text diff whitespace=cr-at-eol
 phase1/tests/test_feedback_rule_harm_20261002.py -text diff whitespace=cr-at-eol
+phase1/scripts/task_span_reference*_20261002.py -text diff whitespace=cr-at-eol
+phase1/tests/test_task_span_reference_20261002.py -text diff whitespace=cr-at-eol
+phase1/results/task_span_reference_20261002/* -text diff whitespace=cr-at-eol

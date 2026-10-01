@@ -1,0 +1,64 @@
+{
+  "baselines": {
+    "historical_strong_F_plus_rule": 0.6528215327792606,
+    "original_plus_rule": 0.6331957602399368
+  },
+  "fit_complete_sha256": "c6c4de0ae78baa73981010b778fcc4aac9028466b473b2d025453e0cb4e608d3",
+  "full_denominator": 3,
+  "readout_elapsed_seconds": 4.49112342717126,
+  "rows": [
+    {
+      "chosen_bias": 0.0,
+      "difference_original": -0.009654153548766531,
+      "difference_strong": -0.02927992608809027,
+      "fit_elapsed_seconds": 1.849716401193291,
+      "negative_rows": 688,
+      "negative_score": 0.3515920528371342,
+      "neutral_rows": 996,
+      "neutral_score": 0.9787429490244451,
+      "plan_sha256": "dcf8dc88fbeb6559b1ec66de20958c5136732870017eb097e1a2c31500ae9073",
+      "positive_rows": 770,
+      "positive_score": 0.4070750561556315,
+      "prediction_sha256": "d4bf3407fbdb4e34b0216b01bcad2665b61bfcec88df1c59e2bbf4d57f02b34a",
+      "score": 0.6235416066911703,
+      "seed": 102401
+    },
+    {
+      "chosen_bias": 0.0,
+      "difference_original": -0.007697123147031748,
+      "difference_strong": -0.027322895686355486,
+      "fit_elapsed_seconds": 1.8531165244057775,
+      "negative_rows": 688,
+      "negative_score": 0.35522194115349826,
+      "neutral_rows": 996,
+      "neutral_score": 0.9787429490244451,
+      "plan_sha256": "dcf8dc88fbeb6559b1ec66de20958c5136732870017eb097e1a2c31500ae9073",
+      "positive_rows": 770,
+      "positive_score": 0.4100688086805649,
+      "prediction_sha256": "5b8c7f6b03a55f0e4a9fbe1ff4a1a13493193e6f73f93a44090d82ca374ed714",
+      "score": 0.6254986370929051,
+      "seed": 102402
+    },
+    {
+      "chosen_bias": -1.0,
+      "difference_original": -0.0043010742905014165,
+      "difference_strong": -0.023926846829825155,
+      "fit_elapsed_seconds": 1.9825968258082867,
+      "negative_rows": 688,
+      "negative_score": 0.3649744249071808,
+      "neutral_rows": 996,
+      "neutral_score": 0.9787429490244451,
+      "plan_sha256": "dcf8dc88fbeb6559b1ec66de20958c5136732870017eb097e1a2c31500ae9073",
+      "positive_rows": 770,
+      "positive_score": 0.4121781529291258,
+      "prediction_sha256": "c999e2a6edd284d33f53a03e899d7ed2f75af2c7970ce65dbeb24d72fb30aa76",
+      "score": 0.6288946859494354,
+      "seed": 102403
+    }
+  ],
+  "scope": "single previously observed task/dev set; standalone classical task model with existing neutral rule; not a new agent method or matched same-budget contrast",
+  "seed_score_median": 0.6254986370929051,
+  "seed_score_sample_variance": 7.336428895753894e-06,
+  "seeds_above_strong": 0,
+  "status": "COMPLETE_DEVELOPMENT_REFERENCE"
+}

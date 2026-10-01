@@ -1,0 +1,18 @@
+{
+  "chosen_bias": -1.0,
+  "elapsed_seconds": 1.9825968258082867,
+  "mining_token_rows": 204769,
+  "model_sha256": "72fcf5089d59e3a136adc2738bda5d2a1a2dba5a38ceb9eb9ee657397544ed4b",
+  "prediction_sha256": "c999e2a6edd284d33f53a03e899d7ed2f75af2c7970ce65dbeb24d72fb30aa76",
+  "public_validation_rows": 3997,
+  "public_validation_scores": [
+    0.6352349354519663,
+    0.636628441266067,
+    0.6354421571174547,
+    0.637222011556976,
+    0.6327240214441265
+  ],
+  "refit_token_rows": 256252,
+  "seed": 102403,
+  "unmatched_or_empty_training_rows": 0
+}

@@ -1,0 +1,63 @@
+{
+  "elapsed_seconds": 10.335100647062063,
+  "fits": 6,
+  "metric_private_read": false,
+  "plan_sha256": "dcf8dc88fbeb6559b1ec66de20958c5136732870017eb097e1a2c31500ae9073",
+  "rows": [
+    {
+      "chosen_bias": 0.0,
+      "elapsed_seconds": 1.849716401193291,
+      "mining_token_rows": 205032,
+      "model_sha256": "3849af150a0be9bb5f1d4c6f212c99ca4bcae2658b29008767cb341b296d2289",
+      "prediction_sha256": "d4bf3407fbdb4e34b0216b01bcad2665b61bfcec88df1c59e2bbf4d57f02b34a",
+      "public_validation_rows": 4008,
+      "public_validation_scores": [
+        0.6453207656442704,
+        0.643654443286807,
+        0.6428159289291857,
+        0.6398343878897066,
+        0.6421937345019544
+      ],
+      "refit_token_rows": 256252,
+      "seed": 102401,
+      "unmatched_or_empty_training_rows": 0
+    },
+    {
+      "chosen_bias": 0.0,
+      "elapsed_seconds": 1.8531165244057775,
+      "mining_token_rows": 204523,
+      "model_sha256": "8185979b7637a1094f0b74683825d2281b80baea5b572d288bfc929d6c3acaf4",
+      "prediction_sha256": "5b8c7f6b03a55f0e4a9fbe1ff4a1a13493193e6f73f93a44090d82ca374ed714",
+      "public_validation_rows": 3990,
+      "public_validation_scores": [
+        0.6296487764355377,
+        0.6250213517136486,
+        0.6277358294421614,
+        0.6239077499478818,
+        0.6279253621468135
+      ],
+      "refit_token_rows": 256252,
+      "seed": 102402,
+      "unmatched_or_empty_training_rows": 0
+    },
+    {
+      "chosen_bias": -1.0,
+      "elapsed_seconds": 1.9825968258082867,
+      "mining_token_rows": 204769,
+      "model_sha256": "72fcf5089d59e3a136adc2738bda5d2a1a2dba5a38ceb9eb9ee657397544ed4b",
+      "prediction_sha256": "c999e2a6edd284d33f53a03e899d7ed2f75af2c7970ce65dbeb24d72fb30aa76",
+      "public_validation_rows": 3997,
+      "public_validation_scores": [
+        0.6352349354519663,
+        0.636628441266067,
+        0.6354421571174547,
+        0.637222011556976,
+        0.6327240214441265
+      ],
+      "refit_token_rows": 256252,
+      "seed": 102403,
+      "unmatched_or_empty_training_rows": 0
+    }
+  ],
+  "status": "PREDICTIONS_FROZEN_LABELS_NOT_OPENED"
+}

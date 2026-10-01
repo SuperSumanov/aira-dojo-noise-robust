@@ -1,0 +1,15 @@
+{
+  "exact_text_query_overlap": 0,
+  "models_replayed": 3,
+  "normalized_text_query_overlap": 1,
+  "prediction_rows_per_seed": 2454,
+  "scope": "saved model, exhaustive decoder and independent metric; no new fit/selection/test",
+  "seeds": [
+    102401,
+    102402,
+    102403
+  ],
+  "status": "PASS",
+  "summary_sha256": "2b5ed25b2bc953cc4fa2f6a04c05d69c1f5f0c38eea7db59e8b75485db84179f",
+  "verifier_sha256": "2f3ed2e03393f1c2275c6f2eaa68e49d31a302845fb54ac2c77a65b74812ea1a"
+}

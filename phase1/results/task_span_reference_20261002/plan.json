@@ -1,0 +1,62 @@
+{
+  "agent_calls": 0,
+  "bias_selection": "highest public internal mean Jaccard; ties first configured bias",
+  "biases": [
+    0.0,
+    -0.5,
+    0.5,
+    -1.0,
+    1.0
+  ],
+  "comparison": "against fixed original+rule and strongest historical F+rule; all seeds retained, no post-readout tuning",
+  "cpu_threads": 1,
+  "features": "word, sentiment, sentiment-word, previous/next token, position, length, sentiment-position bin",
+  "fits_per_seed": 2,
+  "hard_wall_seconds": 240,
+  "host": "linux5",
+  "input_sha256": "16f38536c9a6a8cdbcfac981d443f006c57dc585a8b8e03f13c5da9187ecbf7e",
+  "invocation": [
+    "/tmp/task-feedback-stage-20261001/task_span_reference_20261002.py",
+    "fit"
+  ],
+  "limitation": "exploratory known task/dev set, not matched E2E or new task generalization; public validation not independent of research history",
+  "model": {
+    "alpha": 1e-05,
+    "alternate_sign": false,
+    "average": true,
+    "hash_features": 262144,
+    "loss": "log_loss",
+    "max_iter": 8,
+    "tol": null
+  },
+  "new_gpu": 0,
+  "output": "neutral uses existing frozen full-text rule; other sentiments use one maximum-sum contiguous token span",
+  "platform": "Linux-6.8.0-134-generic-x86_64-with-glibc2.39",
+  "query_rows": 2454,
+  "role": "CLASSICAL_TASK_REFERENCE_NOT_CRITIC_OR_AGENT_METHOD",
+  "rule_sha256": "2beaad25ab591c957f1183de5b17457ff738b25130d13075df500c36bb4fbfc0",
+  "script_sha256": "8e0ca2d88cf555faacb8bf2a76a8246ef578d95ce244ecab7f4f17480fdc52ee",
+  "seeds": [
+    102401,
+    102402,
+    102403
+  ],
+  "shared_ids": 0,
+  "source_commit": "ba99b5f4999d4a15149e1fcecbfc0e4d2557435a",
+  "threads": {
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1"
+  },
+  "total_fits": 6,
+  "train_rows": 19877,
+  "train_sha256": "fd0cd390376c2fcb1e762937cd292cc754ab0939c7dec3ddf4b33e5e86d9957a",
+  "validation": "SHA256(seed:textID) mod5 == 0; public training only",
+  "versions": {
+    "numpy": "2.2.4",
+    "python": "3.12.13",
+    "scipy": "1.15.2",
+    "sklearn": "1.6.1"
+  }
+}

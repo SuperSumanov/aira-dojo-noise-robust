@@ -689,3 +689,4 @@ phase1/results/comparison_complete_pool_order_20260920/*.csv -text diff whitespa
 phase1/scripts/task_feedback_real_20261001.py -text diff whitespace=cr-at-eol
 phase1/scripts/task_feedback_facts_20261001.py -text diff whitespace=cr-at-eol
 phase1/FEEDBACK_REAL_PILOT_20261001.md -text diff whitespace=cr-at-eol
+phase1/results/task_feedback_pilot_20261001/first_start/* -text diff whitespace=cr-at-eol

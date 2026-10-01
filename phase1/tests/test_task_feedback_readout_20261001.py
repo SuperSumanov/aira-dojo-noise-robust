@@ -28,4 +28,20 @@ class ReadoutTest(unittest.TestCase):
    r=Path(d);self.fixture(r);self.result(r,1,metric=None);self.result(r,2,metric=.4)
    out=m.collect(r);pair=out['comparisons'][0]
    self.assertTrue(pair['both_closed']);self.assertFalse(pair['both_valid']);self.assertIsNone(pair['oriented_selected_difference']);self.assertEqual(pair['validity_difference'],1)
+ def test_failed_request_usage_is_unknown_not_zero(self):
+  with tempfile.TemporaryDirectory() as d:
+   r=Path(d);self.fixture(r);self.result(r,0,metric=.5)
+   a=r/'episode-0/action-1';a.mkdir();(a/'feedback.json').write_text('{}')
+   row=m.collect(r)['rows'][0]
+   self.assertEqual(row['generation_attempts'],1);self.assertEqual(row['unknown_usage_attempts'],1);self.assertIsNone(row['prompt_tokens']);self.assertIsNone(row['completion_tokens'])
+ def test_two_missing_initial_metrics_are_not_equality_evidence(self):
+  with tempfile.TemporaryDirectory() as d:
+   r=Path(d);self.fixture(r);self.result(r,1,metric=None);self.result(r,2,metric=None)
+   self.assertIsNone(m.collect(r)['comparisons'][0]['initial_metric_equal'])
+ def test_gain_contrast_is_separate_from_raw_final_difference(self):
+  with tempfile.TemporaryDirectory() as d:
+   r=Path(d);self.fixture(r);self.result(r,1,metric=.5);self.result(r,2,metric=.6)
+   a=r/'episode-2/action-1';a.mkdir();v=json.loads((r/'episode-2/action-0/result.json').read_text());v.update(step=1,metric=.3,elapsed_seconds=2);(a/'result.json').write_text(json.dumps(v))
+   c=m.collect(r)['comparisons'][0]
+   self.assertAlmostEqual(c['oriented_gain_difference'],.3);self.assertAlmostEqual(c['oriented_selected_difference'],.2);self.assertFalse(c['initial_metric_equal'])
 if __name__=='__main__':unittest.main()

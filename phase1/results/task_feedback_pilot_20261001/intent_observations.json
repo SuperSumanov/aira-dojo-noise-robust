@@ -1,0 +1,83 @@
+{
+  "scope": "Exploratory manual reading of first generated intents; each entry states whether later outcomes had been read. Not preregistered annotation or causal evidence.",
+  "observed_utc": "2026-10-01T06:04:26Z",
+  "pilot_plan_sha256": "15751d3b52bdc42617df02006ce724635f4bf49df6e477686769fd1979d53403",
+  "entries": [
+    {
+      "episode": 1,
+      "task": "random-acts-of-pizza",
+      "arm": "C",
+      "action": 1,
+      "prior_valid": true,
+      "numeric_observation_matches_supplied_facts": true,
+      "explicitly_uses_short_text_slice": true,
+      "proposed_changes_as_stated": ["frozen sentence-transformer features", "tree-plus-linear ensemble"],
+      "interpretation": "Shows receipt use, not that the inferred missing semantics is causal or that the added dependency fits the execution environment and budget.",
+      "later_candidate_outcome_read": false,
+      "text_was_truncated_at_1800_characters": true
+    },
+    {
+      "episode": 2,
+      "task": "tweet-sentiment-extraction",
+      "arm": "C",
+      "action": 1,
+      "prior_valid": false,
+      "aggregate_diagnostics_supplied": false,
+      "proposed_changes_as_stated": ["tokenizer fallback and explicit model download", "span labeling corrections", "ensemble correction", "full-data retraining"],
+      "interpretation": "A debug response with several changes and no slice facts. It cannot be evidence that slice diagnostics improved this action. Whether network/cache limitations permit the proposed repair is not yet checked here.",
+      "later_candidate_outcome_read": false,
+      "text_was_truncated_at_1800_characters": false
+    },
+    {
+      "observed_utc": "2026-10-01T06:31:48Z",
+      "episode": 4,
+      "task": "random-acts-of-pizza",
+      "arm": "B",
+      "action": 1,
+      "prior_valid": true,
+      "proposed_changes_as_stated": ["TF-IDF title and body features", "LightGBM plus XGBoost ensemble", "OOF blend selection"],
+      "interpretation": "The visible prefix motivates lexical features and ensembling, contrasting with C's pretrained embeddings at the same initial score. Whether either is executable or useful is a separate outcome; this is not a preregistered mechanism annotation.",
+      "later_candidate_outcome_read": false,
+      "text_was_truncated_at_1800_characters": true
+    },
+    {
+      "observed_utc": "2026-10-01T06:31:48Z",
+      "episode": 5,
+      "task": "tweet-sentiment-extraction",
+      "arm": "B",
+      "action": 1,
+      "prior_valid": false,
+      "aggregate_diagnostics_supplied": false,
+      "proposed_changes_as_stated": ["replace unavailable pretrained BERT with a from-scratch character CNN", "repair LightGBM validation target", "full-data retraining and span reconstruction"],
+      "interpretation": "Unlike C's attempted download, B explicitly removes the missing pretrained dependency. No subsequent execution outcome has been read at annotation time. Neither had slice evidence, so this is a repair-instruction contrast, not proof of diagnostic slice benefit.",
+      "later_candidate_outcome_read": false,
+      "text_was_truncated_at_1800_characters": false
+    },
+    {
+      "observed_utc": "2026-10-01T06:58:08Z",
+      "episode": 7,
+      "task": "random-acts-of-pizza",
+      "arm": "A",
+      "action": 1,
+      "prior_valid": true,
+      "aggregate_diagnostics_supplied": false,
+      "proposed_changes_as_stated": ["TF-IDF title and body features", "augmented LightGBM plus text logistic regression", "OOF blend selection"],
+      "interpretation": "A proposes the same broad lexical-feature axis as B without receiving length-slice metrics. B's within-episode gain alone cannot establish added diagnostic value. The generated prose calls the exposed score test AUC, but its verified source is D_search development, not independent test evaluation.",
+      "later_candidate_outcome_read": false,
+      "text_was_truncated_at_1800_characters": true
+    },
+    {
+      "recorded_utc": "2026-10-01T07:19:10Z",
+      "episode": 8,
+      "task": "tweet-sentiment-extraction",
+      "arm": "A",
+      "action": 1,
+      "prior_valid": false,
+      "aggregate_diagnostics_supplied": false,
+      "proposed_changes_as_stated": ["retain BERT with alternate tokenizer/model lookups and local vocabulary fallback", "span alignment and substring repair", "validation guard and ensemble repair"],
+      "interpretation": "Post-outcome exploratory reading: A and C initially retain a pretrained dependency, whereas B explicitly replaces it with a from-scratch CNN. This single example does not establish a general bottleneck, causal mediation, or a reason to add a new controller. All three started without slice facts.",
+      "later_candidate_outcome_read": true,
+      "text_was_truncated_at_1800_characters": false
+    }
+  ]
+}

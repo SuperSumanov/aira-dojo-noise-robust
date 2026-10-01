@@ -1,21 +1,24 @@
 # 当前短交接
 
-最后核验2026-10-01 21:14 UTC（香港10月2日05:14）。本轮目标00:40 UTC/香港08:40。15204/15205完成；新15208已RUNNING/gpu28、0:45，初始化中。根目录task-feedback-local-edit-20261002-v1，plan SHA7bd84ff0e867043b2787d5c07af867eff50370f4e7b6bafa811ef215196c4139；12条两任务×三新seed×完整代码F/精确编辑P，900秒/一次修改，85分钟5GPU上限7.083333333333333GPUh；连已完成两批上限16.259444444444444。12SDK mock+两臂4动作CPU循环+8拒绝反例PASS；提交会话6525已exit0，不重复提交。只全闭合读效果，禁止运行期改协议/追补。旧12535不碰。续期已确认。
+最后观察2026-10-01 21:49 UTC（香港10月2日05:49）。用户六小时目标00:40 UTC/香港08:40，继续会话内实验而非automation。研究盘续期确认。方向顶部0L398。不要重复已有GPU作业/一次性输出。
 
-## 本轮完成结果
-15204：root /research/d7/spc/yzyang4/task-feedback-upper-20261002-v1，plan SHA9fe231e1b9e2da8cb51fadb7ff9844b074c10e8e3dc64d1d1f3be170fb0703a0。Pizza/Tweet各一个历史A有效初解×3续改seed×A普通反思/B公开核验事实/C同事实加人工建议=18条闭合，18初/终有效。88返回动作、45有效提交独立重算PASS。6560秒×5GPU。episode2在1199.5356秒bounded transport RuntimeError且supervisor deadline，保留unknown不补跑不丢弃。冻结主读出排除涉及unknown的比较；补充表保留全部已保存incumbent，不能替代主读出。
-Pizza初0.681296340588376；A seed102003为0.6844654388902176，C seed102005为0.6867376225783306，其余保留初解。Tweet初0.5226682748344275；仅C seed102006为0.5894553395588319，其余保留。各臂各任务相对初始收益中位数均0，不称反馈方法成功或稳定跨seed优势。
-成功Tweet C中性组贡献+0.11037930432823297、负向-0.011951839177181076、正向-0.0316404004266474，净+0.06678706472440443；低于自身初预测只应用固定neutral规则的0.6331957602399367/8。C落实sentiment但广泛改网络。只限两任务/每任务单代码/人工建议/开发集，不是自动analyzer或终评。
+## 正在跑15213（唯一当前GPU）
+root /research/d7/spc/yzyang4/task-feedback-evidence-edit-20261002-v1，plan SHA5ef4fa98529f70662cadf14e3f9a4ec4427c823d4a9fd723c9b6c25dd6806814，RUNNING/gpu28/1:18。两任务各单一历史有效起点×3新生成seed×A普通反思/B公开核验事实=12；两臂无人工修复答案，同完整Python输出、保留组件指令、27B INT4/no-thinking、原3090镜像，480秒一次生成/修改，无Debug补跑。5GPU最多65min。首次12 SDKmock+4动作CPU循环+无效Python拒绝检查PASS。提交会话85305已exit0，绝不重投。
+只全闭合读新效果。预备读出 /tmp/task-feedback-stage-20261001/task_feedback_evidence_edit_readout_20261002.py 已上传，输出新目录，勿覆盖。状态工具尚未从local_edit状态脚本派生，检查时用正确root/12条/作业15213，不能再监测已完15208。旧12535 JobHeldUser不碰。当前没有遗留exec session。
 
-15205：root /research/d7/spc/yzyang4/task-feedback-pizza-control-20261002-v1，plan SHAd384e0db9e14bfe0a2b48a4d47f4b98169e86ac3d7ed00be5733ad2ef429eb37。原/固定训练时间原点×两执行=4有效且复算PASS；每次0.681296340588376→0.682731403970342，delta0.001435063381966084。117秒×2GPU。程序内部seed42，两个执行重复而非独立训练seed。训练2295行特征不变；同公开预测行原481/0、修改496/496。批次不变性不是所有ML方法的必然契约。
-本轮上述两批合计9.176111111111112GPUh（工具算术），原毛上限16.833333333333334。0paidAPI/critic fit/底座更新。
+## 已完成本轮结果与关键限制
+15204(root task-feedback-upper-20261002-v1，plan SHA9fe231e1b9e2da8cb51fadb7ff9844b074c10e8e3dc64d1d1f3be170fb0703a0)：18条定向反馈ABC闭合，88返回动作45有效提交复算PASS。各任务各臂收益median0。episode2截止传输异常保留unknown、不补跑；原primary和补充all-saved表分开。Pizza初0.681296340588376，仅A102003→0.6844654388902176、C102005→0.6867376225783306；Tweet初0.5226682748344275，仅C102006→0.5894553395588319。成功Tweet中性贡献+0.11037930432823297被负/正组退步抵消，低于固定neutral-only0.6331957602399368。首次Tweet9修改全无效且改动多只是描述，不是幅度致失败的因果结论。main/readout-complete-v1、verification-complete-v1、tweet-decomposition-v1、edit-scope-v1都完成勿重写。
 
-旧Tweet复查：六旧终点两无效保留，四有效固定neutral规则全正，median0.03177693961835826/sample variance0.002281049130666186，只有三个新程序，共用D_search非独立任务。plan SHA7c6c318ad3bb82663930637030001093d7a4885d7c93cf68a68f2b90508e0520。原independent_match完全浮点相等导致两个false；单独tolerance receipt确认1.11e-16舍入，原件保留。
+15205(root task-feedback-pizza-control-20261002-v1，plan SHAd384e0db9e14bfe0a2b48a4d47f4b98169e86ac3d7ed00be5733ad2ef429eb37)：单行日期原点原/修×2执行，4有效复算PASS，均0.681296340588376→0.682731403970342。程序自身seed42，执行重复非训练seed。公开训练特征2295行不变；批次不变性非所有ML算法必然契约。
 
-## 接下来，不重复已有输出
-43个无效返回动作具体错误已安全读：张量维度/函数参数/模型下载等，不是已核单一环境故障。0L397记录新“完整改写vs精确局部编辑”试验；两个新匹配臂均加强保留组件提示，不与历史C做因果比较。patch不新颖，MLE-STAR/Aider等已有。读出源码task_feedback_local_edit_readout_20261002.py待上传，绑定冻结plan/all-closed，独立复算评分+重应用patch；当前只运行状态，未读新值。
-remote一次性输出均完成勿覆盖重跑：readout-complete-v1/、verification-complete-v1.json、tweet-decomposition-v1.json、selected-source-review.private.json、failure-census-v1.json；Pizza/readout-complete-v1/。最后一项仅错误类签名，非根因。私有源码/原始日志不下载发布。
+15208(root task-feedback-local-edit-20261002-v1，plan SHA7bd84ff0e867043b2787d5c07af867eff50370f4e7b6bafa811ef215196c4139)：21:39:34全12闭合，COMPLETED0:0/1577秒/5GPU；24动作18有效提交独立核验PASS。F完整程序每任务2/3改善；Pizza增益[.001435063381966084,.001435063381966084,0]；Tweet[0,.1058631868013804,.1293336140832574]，最终[.5226682748344275,.6285314616358079,.6520018889176848]。是人工指导可行性，非自动方法或独立终评。新提示与旧ABC不同，不以历史差异归因。
+**P格式结果不能泛化**：1/6有效，5次输出Python被拒；共享反馈仍写Before the Python block，与P的JSON输出要求冲突。format-review-v1.json已核并取回。保留原始分数与成本，不修改源、不救回5次重计、不宣称精确编辑本身劣势。新15213两臂同Python无此冲突。新批共同catch原生extract_code的generic Exception，CPU已测，未改变旧批。
+readout-complete-v1已完成并下载。新posthoc sentiment分解脚本task_feedback_local_edit_decompose_20261002.py已上传/tmp/task-feedback-stage-20261001但尚未运行，可只读解释F收益来自哪里。
 
-## 本地/Git/边界
-主checkout aira-dojo-codex-20260813 HEAD14188f8956d5becfc1f192455647d7c4aedd1f82有大量历史脏改，禁止整体stage/push/reset/rebase。发布worktree C:/Research/New/my_project/MLEvolve/_codex_tmp/publication-feedback-20261001；公开HEAD ca65a10641e469846576e354d0ea512abea3498d已正常push/ls-remote确认。新单行对照/旧预测复查/完整结果/分解源码产物未提交；精确stage+credential/bytes审计，旧17文件审计器不能直接复用。主/公开CURRENT_DIRECTION历史不同，分别prepend新裁决，不整文件互盖。
-学长fetch至4ee7afd9970974f4bfae4b7a9d51591aca5c0b48，文档credential零命中，仅policy数据路径更新，不是已核E2E效果。只用gpu28原RTX3090镜像+冻结本地27B；first-960/Target-300/Target-522、D_val、官方test封存。D_search只用当前批准开发评价。长期经验已记主checkout phase1/memory/EXPERIMENT_LESSONS.md，公开worktree无此文件。experiment-prompting已读。所有exec会话已结束。
+## 成本与发布
+15204 6560秒×5GPU，15205 117秒×2，15208 1577秒×5，前三批40919GPU秒=11.366388888888888GPUh。15213新增最坏5.416666666666667，总16.783055555555556<本轮原16.833333333333334。0paidAPI/critic fit/底座更新。保护first960/Target300/522、D_val、官方test不读，仅批准D_search开发分。
+
+主checkout aira-dojo-codex-20260813 HEAD14188f8956d5becfc1f192455647d7c4aedd1f82有大量历史脏改，不整体stage/push/reset/rebase。发布worktree C:/Research/New/my_project/MLEvolve/_codex_tmp/publication-feedback-20261001。
+公开HEAD **c7b9ce25f0893cf4ef49249979183be5cc73541e**已正常push且ls-remote一致，35指定文件/32字节核验/3源-plan绑定/credential0。现在15208完整结果、格式限制、新15213协议源码preflight、0L398/新交接、upper edit-scope尚未发布。新文件补.gitattributes -text再scoped stage/hash/security审计。旧审计脚本白名单需按新批扩充，勿whole add或push主checkout。主/公开CURRENT_DIRECTION历史不同，只分别prepend。
+学长最后fetch4ee7afd9970974f4bfae4b7a9d51591aca5c0b48，仅policy路径文档更新并已凭据零命中，不是核实的新E2E结果。技能experiment-prompting已读；本地memory/EXPERIMENT_LESSONS.md已补当前经验。
+新颖性：MLE-STAR局部改进、Aider/AdaEdit编辑格式、2609.38257定位与编辑落差、ExecCritic2609.09133冻结测试指导修复均已有，不能靠“反馈+局部修改”命名当创新。本轮后须给深度下注判断，不因为用户要正结果隐瞒混杂或失败。

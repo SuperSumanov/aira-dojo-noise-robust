@@ -1,0 +1,144 @@
+{
+  "limitation": "Shared legacy memory requests a Python block whereas P system requests JSON. This is a prompt-contract tension; cannot attribute P failure to a generic inferiority of exact editing.",
+  "rows": [
+    {
+      "arm": "P",
+      "error_type": "ValueError",
+      "fence_languages": [
+        "python",
+        ""
+      ],
+      "index": 0,
+      "memory_requests_python_block": true,
+      "status": "rejected"
+    },
+    {
+      "arm": "P",
+      "edit_count": 3,
+      "error_type": null,
+      "fence_languages": [
+        "json",
+        ""
+      ],
+      "index": 1,
+      "memory_requests_python_block": true,
+      "search_counts": [
+        1,
+        1,
+        1
+      ],
+      "status": "accepted"
+    },
+    {
+      "arm": "P",
+      "error_type": "ValueError",
+      "fence_languages": [
+        "python",
+        ""
+      ],
+      "index": 2,
+      "memory_requests_python_block": true,
+      "status": "rejected"
+    },
+    {
+      "arm": "F",
+      "error_type": null,
+      "fence_languages": [
+        "python",
+        ""
+      ],
+      "index": 3,
+      "memory_requests_python_block": true,
+      "status": "accepted"
+    },
+    {
+      "arm": "F",
+      "error_type": null,
+      "fence_languages": [
+        "python",
+        ""
+      ],
+      "index": 4,
+      "memory_requests_python_block": true,
+      "status": "accepted"
+    },
+    {
+      "arm": "F",
+      "error_type": null,
+      "fence_languages": [
+        "python",
+        ""
+      ],
+      "index": 5,
+      "memory_requests_python_block": true,
+      "status": "accepted"
+    },
+    {
+      "arm": "F",
+      "error_type": null,
+      "fence_languages": [
+        "python",
+        ""
+      ],
+      "index": 6,
+      "memory_requests_python_block": true,
+      "status": "accepted"
+    },
+    {
+      "arm": "F",
+      "error_type": null,
+      "fence_languages": [
+        "python",
+        ""
+      ],
+      "index": 7,
+      "memory_requests_python_block": true,
+      "status": "accepted"
+    },
+    {
+      "arm": "F",
+      "error_type": null,
+      "fence_languages": [
+        "python",
+        ""
+      ],
+      "index": 8,
+      "memory_requests_python_block": true,
+      "status": "accepted"
+    },
+    {
+      "arm": "P",
+      "error_type": "ValueError",
+      "fence_languages": [
+        "python",
+        ""
+      ],
+      "index": 9,
+      "memory_requests_python_block": true,
+      "status": "rejected"
+    },
+    {
+      "arm": "P",
+      "error_type": "ValueError",
+      "fence_languages": [
+        "python",
+        ""
+      ],
+      "index": 10,
+      "memory_requests_python_block": true,
+      "status": "rejected"
+    },
+    {
+      "arm": "P",
+      "error_type": "ValueError",
+      "fence_languages": [
+        "python",
+        ""
+      ],
+      "index": 11,
+      "memory_requests_python_block": true,
+      "status": "rejected"
+    }
+  ],
+  "scope": "posthoc actual output-interface qualification; no rerun or source modification"
+}

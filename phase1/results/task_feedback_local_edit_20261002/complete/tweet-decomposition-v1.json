@@ -1,0 +1,253 @@
+{
+  "plan_sha256": "7bd84ff0e867043b2787d5c07af867eff50370f4e7b6bafa811ef215196c4139",
+  "planned_tweet_trajectories": 6,
+  "public_group_counts": {
+    "negative": 688,
+    "neutral": 996,
+    "positive": 770
+  },
+  "reference_scope": "same already-fixed neutral rule on each initial prediction; descriptive no-call reference, not fourth arm or final test",
+  "rows": [
+    {
+      "arm": "P",
+      "finish_status": "completed",
+      "group_delta": {
+        "negative": 0.0,
+        "neutral": 0.2719586474111282,
+        "positive": 0.0
+      },
+      "index": 1,
+      "initial": {
+        "aggregate": 0.5226682748344275,
+        "negative": 0.36318494118867545,
+        "neutral": 0.7064192048626781,
+        "neutral_exact_text_rows": 327,
+        "neutral_exact_wordset_rows": 589,
+        "neutral_rule_aggregate_direct": 0.6331957602399368,
+        "positive": 0.42748464787356993
+      },
+      "own_initial_neutral_only_reference": 0.6331957602399367,
+      "seed": 102202,
+      "selected": {
+        "aggregate": 0.6330475791626604,
+        "negative": 0.36318494118867545,
+        "neutral": 0.9783778522738062,
+        "neutral_exact_text_rows": 573,
+        "neutral_exact_wordset_rows": 995,
+        "neutral_rule_aggregate_direct": 0.6331957602399368,
+        "positive": 0.42748464787356993
+      },
+      "selected_minus_own_initial_reference": -0.00014818107727632146,
+      "selected_step": 1,
+      "start": 1,
+      "task": "tweet-sentiment-extraction",
+      "wave": 0,
+      "weighted_contribution_to_gain": {
+        "negative": 0.0,
+        "neutral": 0.11037930432823297,
+        "positive": 0.0
+      }
+    },
+    {
+      "arm": "F",
+      "finish_status": "completed",
+      "group_delta": {
+        "negative": 0.0,
+        "neutral": 0.0,
+        "positive": 0.0
+      },
+      "index": 4,
+      "initial": {
+        "aggregate": 0.5226682748344275,
+        "negative": 0.36318494118867545,
+        "neutral": 0.7064192048626781,
+        "neutral_exact_text_rows": 327,
+        "neutral_exact_wordset_rows": 589,
+        "neutral_rule_aggregate_direct": 0.6331957602399368,
+        "positive": 0.42748464787356993
+      },
+      "own_initial_neutral_only_reference": 0.6331957602399367,
+      "seed": 102202,
+      "selected": {
+        "aggregate": 0.5226682748344275,
+        "negative": 0.36318494118867545,
+        "neutral": 0.7064192048626781,
+        "neutral_exact_text_rows": 327,
+        "neutral_exact_wordset_rows": 589,
+        "neutral_rule_aggregate_direct": 0.6331957602399368,
+        "positive": 0.42748464787356993
+      },
+      "selected_minus_own_initial_reference": -0.11052748540550927,
+      "selected_step": 0,
+      "start": 1,
+      "task": "tweet-sentiment-extraction",
+      "wave": 1,
+      "weighted_contribution_to_gain": {
+        "negative": 0.0,
+        "neutral": 0.0,
+        "positive": 0.0
+      }
+    },
+    {
+      "arm": "F",
+      "finish_status": "completed",
+      "group_delta": {
+        "negative": -0.011370036457109767,
+        "neutral": 0.2719586474111282,
+        "positive": -0.0042337238031227575
+      },
+      "index": 6,
+      "initial": {
+        "aggregate": 0.5226682748344275,
+        "negative": 0.36318494118867545,
+        "neutral": 0.7064192048626781,
+        "neutral_exact_text_rows": 327,
+        "neutral_exact_wordset_rows": 589,
+        "neutral_rule_aggregate_direct": 0.6331957602399368,
+        "positive": 0.42748464787356993
+      },
+      "own_initial_neutral_only_reference": 0.6331957602399367,
+      "seed": 102204,
+      "selected": {
+        "aggregate": 0.6285314616358079,
+        "negative": 0.3518149047315657,
+        "neutral": 0.9783778522738062,
+        "neutral_exact_text_rows": 573,
+        "neutral_exact_wordset_rows": 995,
+        "neutral_rule_aggregate_direct": 0.6286796427130843,
+        "positive": 0.4232509240704472
+      },
+      "selected_minus_own_initial_reference": -0.004664298604128869,
+      "selected_step": 1,
+      "start": 3,
+      "task": "tweet-sentiment-extraction",
+      "wave": 2,
+      "weighted_contribution_to_gain": {
+        "negative": -0.003187687482677881,
+        "neutral": 0.11037930432823297,
+        "positive": -0.0013284300441746223
+      }
+    },
+    {
+      "arm": "F",
+      "finish_status": "completed",
+      "group_delta": {
+        "negative": 0.023713879354482992,
+        "neutral": 0.27030426018957154,
+        "positive": 0.041359086773527454
+      },
+      "index": 8,
+      "initial": {
+        "aggregate": 0.5226682748344275,
+        "negative": 0.36318494118867545,
+        "neutral": 0.7064192048626781,
+        "neutral_exact_text_rows": 327,
+        "neutral_exact_wordset_rows": 589,
+        "neutral_rule_aggregate_direct": 0.6331957602399368,
+        "positive": 0.42748464787356993
+      },
+      "own_initial_neutral_only_reference": 0.6331957602399367,
+      "seed": 102206,
+      "selected": {
+        "aggregate": 0.6520018889176848,
+        "negative": 0.38689882054315844,
+        "neutral": 0.9767234650522496,
+        "neutral_exact_text_rows": 563,
+        "neutral_exact_wordset_rows": 982,
+        "neutral_rule_aggregate_direct": 0.6528215327792606,
+        "positive": 0.4688437346470974
+      },
+      "selected_minus_own_initial_reference": 0.018806128677748113,
+      "selected_step": 1,
+      "start": 5,
+      "task": "tweet-sentiment-extraction",
+      "wave": 2,
+      "weighted_contribution_to_gain": {
+        "negative": 0.006648389973872983,
+        "neutral": 0.10970784154393368,
+        "positive": 0.01297738256545075
+      }
+    },
+    {
+      "arm": "P",
+      "finish_status": "completed",
+      "group_delta": {
+        "negative": 0.0,
+        "neutral": 0.0,
+        "positive": 0.0
+      },
+      "index": 9,
+      "initial": {
+        "aggregate": 0.5226682748344275,
+        "negative": 0.36318494118867545,
+        "neutral": 0.7064192048626781,
+        "neutral_exact_text_rows": 327,
+        "neutral_exact_wordset_rows": 589,
+        "neutral_rule_aggregate_direct": 0.6331957602399368,
+        "positive": 0.42748464787356993
+      },
+      "own_initial_neutral_only_reference": 0.6331957602399367,
+      "seed": 102204,
+      "selected": {
+        "aggregate": 0.5226682748344275,
+        "negative": 0.36318494118867545,
+        "neutral": 0.7064192048626781,
+        "neutral_exact_text_rows": 327,
+        "neutral_exact_wordset_rows": 589,
+        "neutral_rule_aggregate_direct": 0.6331957602399368,
+        "positive": 0.42748464787356993
+      },
+      "selected_minus_own_initial_reference": -0.11052748540550927,
+      "selected_step": 0,
+      "start": 3,
+      "task": "tweet-sentiment-extraction",
+      "wave": 3,
+      "weighted_contribution_to_gain": {
+        "negative": 0.0,
+        "neutral": 0.0,
+        "positive": 0.0
+      }
+    },
+    {
+      "arm": "P",
+      "finish_status": "completed",
+      "group_delta": {
+        "negative": 0.0,
+        "neutral": 0.0,
+        "positive": 0.0
+      },
+      "index": 11,
+      "initial": {
+        "aggregate": 0.5226682748344275,
+        "negative": 0.36318494118867545,
+        "neutral": 0.7064192048626781,
+        "neutral_exact_text_rows": 327,
+        "neutral_exact_wordset_rows": 589,
+        "neutral_rule_aggregate_direct": 0.6331957602399368,
+        "positive": 0.42748464787356993
+      },
+      "own_initial_neutral_only_reference": 0.6331957602399367,
+      "seed": 102206,
+      "selected": {
+        "aggregate": 0.5226682748344275,
+        "negative": 0.36318494118867545,
+        "neutral": 0.7064192048626781,
+        "neutral_exact_text_rows": 327,
+        "neutral_exact_wordset_rows": 589,
+        "neutral_rule_aggregate_direct": 0.6331957602399368,
+        "positive": 0.42748464787356993
+      },
+      "selected_minus_own_initial_reference": -0.11052748540550927,
+      "selected_step": 0,
+      "start": 5,
+      "task": "tweet-sentiment-extraction",
+      "wave": 3,
+      "weighted_contribution_to_gain": {
+        "negative": 0.0,
+        "neutral": 0.0,
+        "positive": 0.0
+      }
+    }
+  ],
+  "scope": "posthoc descriptive decomposition in fixed three public sentiment strata, descriptive mechanism only; not an adaptive subgroup success claim or a replacement endpoint"
+}

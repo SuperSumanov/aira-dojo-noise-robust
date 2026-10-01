@@ -1,0 +1,7 @@
+task,seed,initial_equal,strict_estimable,saved_gain_difference,F_gain,P_gain,F_status,P_status
+random-acts-of-pizza,102201,True,True,-0.001435063381966084,0.001435063381966084,0.0,completed,completed
+random-acts-of-pizza,102203,True,True,-0.001435063381966084,0.001435063381966084,0.0,completed,completed
+random-acts-of-pizza,102205,True,True,0.0,0.0,0.0,completed,completed
+tweet-sentiment-extraction,102202,True,True,0.11037930432823295,0.0,0.11037930432823295,completed,completed
+tweet-sentiment-extraction,102204,True,True,-0.1058631868013804,0.1058631868013804,0.0,completed,completed
+tweet-sentiment-extraction,102206,True,True,-0.1293336140832574,0.1293336140832574,0.0,completed,completed

@@ -1,0 +1,693 @@
+{
+  "groups": [
+    {
+      "arm": "A",
+      "edit_fraction_median": 0.1936056838365897,
+      "edit_fraction_sample_variance": 0.067774730751196,
+      "planned": 3,
+      "task": "random-acts-of-pizza",
+      "valid_revisions": 3,
+      "values": [
+        0.5796676441837733,
+        0.08407871198568873,
+        0.1936056838365897
+      ]
+    },
+    {
+      "arm": "B",
+      "edit_fraction_median": 0.24281150159744408,
+      "edit_fraction_sample_variance": 0.006955556453498939,
+      "planned": 3,
+      "task": "random-acts-of-pizza",
+      "valid_revisions": 1,
+      "values": [
+        0.36363636363636365,
+        0.20363636363636364,
+        0.24281150159744408
+      ]
+    },
+    {
+      "arm": "C",
+      "edit_fraction_median": 0.2837370242214533,
+      "edit_fraction_sample_variance": 0.0063422885108619965,
+      "planned": 3,
+      "task": "random-acts-of-pizza",
+      "valid_revisions": 3,
+      "values": [
+        0.2527881040892193,
+        0.4035714285714286,
+        0.2837370242214533
+      ]
+    },
+    {
+      "arm": "A",
+      "edit_fraction_median": 0.6346153846153846,
+      "edit_fraction_sample_variance": 0.00014888281397633873,
+      "planned": 3,
+      "task": "tweet-sentiment-extraction",
+      "valid_revisions": 0,
+      "values": [
+        0.6346153846153846,
+        0.655536028119508,
+        0.6341948310139165
+      ]
+    },
+    {
+      "arm": "B",
+      "edit_fraction_median": 0.5701906412478336,
+      "edit_fraction_sample_variance": 0.006697566731847958,
+      "planned": 3,
+      "task": "tweet-sentiment-extraction",
+      "valid_revisions": 0,
+      "values": [
+        0.6889848812095032,
+        0.5701906412478336,
+        0.5320754716981132
+      ]
+    },
+    {
+      "arm": "C",
+      "edit_fraction_median": 0.32289628180039137,
+      "edit_fraction_sample_variance": 0.0354696523222557,
+      "planned": 3,
+      "task": "tweet-sentiment-extraction",
+      "valid_revisions": 0,
+      "values": [
+        0.32289628180039137,
+        0.2845849802371542,
+        0.6282527881040892
+      ]
+    }
+  ],
+  "rows": [
+    {
+      "added_lines": 167,
+      "arm": "B",
+      "child_code_sha256": "2e7e9b224570c16e63787e9ba347259956d4ac0790c318cfe0c77821b04f22b0",
+      "child_imports": [
+        "catboost",
+        "json",
+        "lightgbm",
+        "numpy",
+        "pandas",
+        "sklearn",
+        "xgboost"
+      ],
+      "child_nonblank_lines": 370,
+      "edit_fraction": 0.36363636363636365,
+      "first_revision_valid": false,
+      "generated": true,
+      "index": 0,
+      "parent_code_sha256": "5f582932f00e2c83c6ac3f57f66cce569da147a213113eab3ec7cb887fe3651e",
+      "parent_imports": [
+        "catboost",
+        "json",
+        "lightgbm",
+        "numpy",
+        "pandas",
+        "sklearn",
+        "xgboost"
+      ],
+      "parent_nonblank_lines": 268,
+      "removed_lines": 65,
+      "seed": 102001,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "added_lines": 164,
+      "arm": "B",
+      "child_code_sha256": "19a59b77443e020e56b5f531cda6458e0c4eb96bf98ee07e8b1e5971dcffe529",
+      "child_imports": [
+        "numpy",
+        "os",
+        "pandas",
+        "re",
+        "sklearn",
+        "time",
+        "torch",
+        "transformers"
+      ],
+      "child_nonblank_lines": 236,
+      "edit_fraction": 0.6889848812095032,
+      "first_revision_valid": false,
+      "generated": true,
+      "index": 1,
+      "parent_code_sha256": "06b5fd65df7a59129a2eebe6e6ae8772ec15a55db0ea9356f987a8ec128ac687",
+      "parent_imports": [
+        "numpy",
+        "os",
+        "pandas",
+        "re",
+        "sklearn",
+        "time",
+        "torch"
+      ],
+      "parent_nonblank_lines": 227,
+      "removed_lines": 155,
+      "seed": 102002,
+      "task": "tweet-sentiment-extraction"
+    },
+    {
+      "added_lines": 63,
+      "arm": "B",
+      "child_code_sha256": "45a72588096a9d3d305e503119464357e856ba4093811d19bf64c2b3978493d1",
+      "child_imports": [
+        "catboost",
+        "json",
+        "lightgbm",
+        "numpy",
+        "pandas",
+        "sklearn",
+        "xgboost"
+      ],
+      "child_nonblank_lines": 282,
+      "edit_fraction": 0.20363636363636364,
+      "first_revision_valid": true,
+      "generated": true,
+      "index": 2,
+      "parent_code_sha256": "5f582932f00e2c83c6ac3f57f66cce569da147a213113eab3ec7cb887fe3651e",
+      "parent_imports": [
+        "catboost",
+        "json",
+        "lightgbm",
+        "numpy",
+        "pandas",
+        "sklearn",
+        "xgboost"
+      ],
+      "parent_nonblank_lines": 268,
+      "removed_lines": 49,
+      "seed": 102003,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "added_lines": 69,
+      "arm": "C",
+      "child_code_sha256": "104b85ab96d2a40ab4385f27b75d3b96eaa0e03a59969b1baa7d5049b692a0f0",
+      "child_imports": [
+        "catboost",
+        "json",
+        "lightgbm",
+        "numpy",
+        "pandas",
+        "sklearn",
+        "xgboost"
+      ],
+      "child_nonblank_lines": 270,
+      "edit_fraction": 0.2527881040892193,
+      "first_revision_valid": true,
+      "generated": true,
+      "index": 3,
+      "parent_code_sha256": "5f582932f00e2c83c6ac3f57f66cce569da147a213113eab3ec7cb887fe3651e",
+      "parent_imports": [
+        "catboost",
+        "json",
+        "lightgbm",
+        "numpy",
+        "pandas",
+        "sklearn",
+        "xgboost"
+      ],
+      "parent_nonblank_lines": 268,
+      "removed_lines": 67,
+      "seed": 102001,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "added_lines": 111,
+      "arm": "C",
+      "child_code_sha256": "5db269994168226b672b1d4f0925c1809b3c544982b76df6fae36df4f20cf426",
+      "child_imports": [
+        "numpy",
+        "os",
+        "pandas",
+        "re",
+        "sklearn",
+        "time",
+        "torch"
+      ],
+      "child_nonblank_lines": 284,
+      "edit_fraction": 0.32289628180039137,
+      "first_revision_valid": false,
+      "generated": true,
+      "index": 4,
+      "parent_code_sha256": "06b5fd65df7a59129a2eebe6e6ae8772ec15a55db0ea9356f987a8ec128ac687",
+      "parent_imports": [
+        "numpy",
+        "os",
+        "pandas",
+        "re",
+        "sklearn",
+        "time",
+        "torch"
+      ],
+      "parent_nonblank_lines": 227,
+      "removed_lines": 54,
+      "seed": 102002,
+      "task": "tweet-sentiment-extraction"
+    },
+    {
+      "added_lines": 125,
+      "arm": "C",
+      "child_code_sha256": "8a1e335d7186079054eb8e52d4067afe52386f91aae70cc3f459bb48558887c0",
+      "child_imports": [
+        "json",
+        "lightgbm",
+        "numpy",
+        "pandas",
+        "sklearn",
+        "xgboost"
+      ],
+      "child_nonblank_lines": 292,
+      "edit_fraction": 0.4035714285714286,
+      "first_revision_valid": true,
+      "generated": true,
+      "index": 5,
+      "parent_code_sha256": "5f582932f00e2c83c6ac3f57f66cce569da147a213113eab3ec7cb887fe3651e",
+      "parent_imports": [
+        "catboost",
+        "json",
+        "lightgbm",
+        "numpy",
+        "pandas",
+        "sklearn",
+        "xgboost"
+      ],
+      "parent_nonblank_lines": 268,
+      "removed_lines": 101,
+      "seed": 102003,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "added_lines": 540,
+      "arm": "A",
+      "child_code_sha256": "75ce37ce3f8a7d5b05f5385bcf3044770ac6ab238ed03325f7bf1c310a478125",
+      "child_imports": [
+        "catboost",
+        "json",
+        "lightgbm",
+        "numpy",
+        "pandas",
+        "sklearn",
+        "warnings",
+        "xgboost"
+      ],
+      "child_nonblank_lines": 755,
+      "edit_fraction": 0.5796676441837733,
+      "first_revision_valid": true,
+      "generated": true,
+      "index": 6,
+      "parent_code_sha256": "5f582932f00e2c83c6ac3f57f66cce569da147a213113eab3ec7cb887fe3651e",
+      "parent_imports": [
+        "catboost",
+        "json",
+        "lightgbm",
+        "numpy",
+        "pandas",
+        "sklearn",
+        "xgboost"
+      ],
+      "parent_nonblank_lines": 268,
+      "removed_lines": 53,
+      "seed": 102001,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "added_lines": 283,
+      "arm": "A",
+      "child_code_sha256": "d41617fd6617716d4b2a25b6d4fad8ac9a8ee50912fad278cb4dfe434b454305",
+      "child_imports": [
+        "numpy",
+        "os",
+        "pandas",
+        "re",
+        "sklearn",
+        "time",
+        "torch",
+        "transformers",
+        "warnings"
+      ],
+      "child_nonblank_lines": 397,
+      "edit_fraction": 0.6346153846153846,
+      "first_revision_valid": false,
+      "generated": true,
+      "index": 7,
+      "parent_code_sha256": "06b5fd65df7a59129a2eebe6e6ae8772ec15a55db0ea9356f987a8ec128ac687",
+      "parent_imports": [
+        "numpy",
+        "os",
+        "pandas",
+        "re",
+        "sklearn",
+        "time",
+        "torch"
+      ],
+      "parent_nonblank_lines": 227,
+      "removed_lines": 113,
+      "seed": 102002,
+      "task": "tweet-sentiment-extraction"
+    },
+    {
+      "added_lines": 35,
+      "arm": "A",
+      "child_code_sha256": "797a42d90773e6210ff049e065232278a7a791e8e77a688c6fbf95940bfba025",
+      "child_imports": [
+        "catboost",
+        "json",
+        "lightgbm",
+        "numpy",
+        "pandas",
+        "sentence_transformers",
+        "sklearn",
+        "torch",
+        "xgboost"
+      ],
+      "child_nonblank_lines": 291,
+      "edit_fraction": 0.08407871198568873,
+      "first_revision_valid": true,
+      "generated": true,
+      "index": 8,
+      "parent_code_sha256": "5f582932f00e2c83c6ac3f57f66cce569da147a213113eab3ec7cb887fe3651e",
+      "parent_imports": [
+        "catboost",
+        "json",
+        "lightgbm",
+        "numpy",
+        "pandas",
+        "sklearn",
+        "xgboost"
+      ],
+      "parent_nonblank_lines": 268,
+      "removed_lines": 12,
+      "seed": 102003,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "added_lines": 244,
+      "arm": "A",
+      "child_code_sha256": "6f1aa13003ec0ef126f9f1adc63c9e0f77dd7847cc58219f6013a0132d5aa641",
+      "child_imports": [
+        "math",
+        "numpy",
+        "os",
+        "pandas",
+        "re",
+        "sklearn",
+        "time",
+        "torch",
+        "transformers"
+      ],
+      "child_nonblank_lines": 342,
+      "edit_fraction": 0.655536028119508,
+      "first_revision_valid": false,
+      "generated": true,
+      "index": 9,
+      "parent_code_sha256": "06b5fd65df7a59129a2eebe6e6ae8772ec15a55db0ea9356f987a8ec128ac687",
+      "parent_imports": [
+        "numpy",
+        "os",
+        "pandas",
+        "re",
+        "sklearn",
+        "time",
+        "torch"
+      ],
+      "parent_nonblank_lines": 227,
+      "removed_lines": 129,
+      "seed": 102004,
+      "task": "tweet-sentiment-extraction"
+    },
+    {
+      "added_lines": 68,
+      "arm": "A",
+      "child_code_sha256": "b36c828c839720a0ee970e07965c1b9460e879c3fb11d112850f92a5a70bf151",
+      "child_imports": [
+        "catboost",
+        "json",
+        "lightgbm",
+        "numpy",
+        "pandas",
+        "sklearn",
+        "xgboost"
+      ],
+      "child_nonblank_lines": 295,
+      "edit_fraction": 0.1936056838365897,
+      "first_revision_valid": true,
+      "generated": true,
+      "index": 10,
+      "parent_code_sha256": "5f582932f00e2c83c6ac3f57f66cce569da147a213113eab3ec7cb887fe3651e",
+      "parent_imports": [
+        "catboost",
+        "json",
+        "lightgbm",
+        "numpy",
+        "pandas",
+        "sklearn",
+        "xgboost"
+      ],
+      "parent_nonblank_lines": 268,
+      "removed_lines": 41,
+      "seed": 102005,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "added_lines": 184,
+      "arm": "A",
+      "child_code_sha256": "b1181d6dc3dd15f98d634dc0721347bb33f8f3d9c5e85e35991ce685455b899a",
+      "child_imports": [
+        "math",
+        "numpy",
+        "os",
+        "pandas",
+        "re",
+        "sklearn",
+        "time",
+        "torch",
+        "transformers"
+      ],
+      "child_nonblank_lines": 276,
+      "edit_fraction": 0.6341948310139165,
+      "first_revision_valid": false,
+      "generated": true,
+      "index": 11,
+      "parent_code_sha256": "06b5fd65df7a59129a2eebe6e6ae8772ec15a55db0ea9356f987a8ec128ac687",
+      "parent_imports": [
+        "numpy",
+        "os",
+        "pandas",
+        "re",
+        "sklearn",
+        "time",
+        "torch"
+      ],
+      "parent_nonblank_lines": 227,
+      "removed_lines": 135,
+      "seed": 102006,
+      "task": "tweet-sentiment-extraction"
+    },
+    {
+      "added_lines": 98,
+      "arm": "C",
+      "child_code_sha256": "f395d20fb660401abe97c445e2c0093081fdc59d4adc08addaf61368ee8559be",
+      "child_imports": [
+        "numpy",
+        "os",
+        "pandas",
+        "re",
+        "sklearn",
+        "time",
+        "torch"
+      ],
+      "child_nonblank_lines": 279,
+      "edit_fraction": 0.2845849802371542,
+      "first_revision_valid": false,
+      "generated": true,
+      "index": 12,
+      "parent_code_sha256": "06b5fd65df7a59129a2eebe6e6ae8772ec15a55db0ea9356f987a8ec128ac687",
+      "parent_imports": [
+        "numpy",
+        "os",
+        "pandas",
+        "re",
+        "sklearn",
+        "time",
+        "torch"
+      ],
+      "parent_nonblank_lines": 227,
+      "removed_lines": 46,
+      "seed": 102004,
+      "task": "tweet-sentiment-extraction"
+    },
+    {
+      "added_lines": 103,
+      "arm": "C",
+      "child_code_sha256": "160f5caa4d019d022267a49243d6f63e5c4a7403daf3ad6a0795217531a7477e",
+      "child_imports": [
+        "catboost",
+        "json",
+        "lightgbm",
+        "numpy",
+        "pandas",
+        "sklearn",
+        "warnings",
+        "xgboost"
+      ],
+      "child_nonblank_lines": 310,
+      "edit_fraction": 0.2837370242214533,
+      "first_revision_valid": true,
+      "generated": true,
+      "index": 13,
+      "parent_code_sha256": "5f582932f00e2c83c6ac3f57f66cce569da147a213113eab3ec7cb887fe3651e",
+      "parent_imports": [
+        "catboost",
+        "json",
+        "lightgbm",
+        "numpy",
+        "pandas",
+        "sklearn",
+        "xgboost"
+      ],
+      "parent_nonblank_lines": 268,
+      "removed_lines": 61,
+      "seed": 102005,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "added_lines": 211,
+      "arm": "C",
+      "child_code_sha256": "b69f57c9c42ec94060bf639a8594f8c9b4a07063e035c1babaa7aea775f51e88",
+      "child_imports": [
+        "numpy",
+        "os",
+        "pandas",
+        "re",
+        "sklearn",
+        "time",
+        "torch",
+        "transformers"
+      ],
+      "child_nonblank_lines": 311,
+      "edit_fraction": 0.6282527881040892,
+      "first_revision_valid": false,
+      "generated": true,
+      "index": 14,
+      "parent_code_sha256": "06b5fd65df7a59129a2eebe6e6ae8772ec15a55db0ea9356f987a8ec128ac687",
+      "parent_imports": [
+        "numpy",
+        "os",
+        "pandas",
+        "re",
+        "sklearn",
+        "time",
+        "torch"
+      ],
+      "parent_nonblank_lines": 227,
+      "removed_lines": 127,
+      "seed": 102006,
+      "task": "tweet-sentiment-extraction"
+    },
+    {
+      "added_lines": 226,
+      "arm": "B",
+      "child_code_sha256": "c2eb47990c282b27cec7660a33a8bce648a1f066705ae780d655cefa31a105da",
+      "child_imports": [
+        "math",
+        "numpy",
+        "os",
+        "pandas",
+        "re",
+        "sklearn",
+        "time",
+        "torch",
+        "transformers"
+      ],
+      "child_nonblank_lines": 350,
+      "edit_fraction": 0.5701906412478336,
+      "first_revision_valid": false,
+      "generated": true,
+      "index": 15,
+      "parent_code_sha256": "06b5fd65df7a59129a2eebe6e6ae8772ec15a55db0ea9356f987a8ec128ac687",
+      "parent_imports": [
+        "numpy",
+        "os",
+        "pandas",
+        "re",
+        "sklearn",
+        "time",
+        "torch"
+      ],
+      "parent_nonblank_lines": 227,
+      "removed_lines": 103,
+      "seed": 102004,
+      "task": "tweet-sentiment-extraction"
+    },
+    {
+      "added_lines": 121,
+      "arm": "B",
+      "child_code_sha256": "84501581007819bdedaec5aaa65a1c7fb5aa4bf69488d3d183f445cd884d03b0",
+      "child_imports": [
+        "catboost",
+        "json",
+        "lightgbm",
+        "numpy",
+        "pandas",
+        "sklearn",
+        "xgboost"
+      ],
+      "child_nonblank_lines": 358,
+      "edit_fraction": 0.24281150159744408,
+      "first_revision_valid": false,
+      "generated": true,
+      "index": 16,
+      "parent_code_sha256": "5f582932f00e2c83c6ac3f57f66cce569da147a213113eab3ec7cb887fe3651e",
+      "parent_imports": [
+        "catboost",
+        "json",
+        "lightgbm",
+        "numpy",
+        "pandas",
+        "sklearn",
+        "xgboost"
+      ],
+      "parent_nonblank_lines": 268,
+      "removed_lines": 31,
+      "seed": 102005,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "added_lines": 179,
+      "arm": "B",
+      "child_code_sha256": "6cee3742999047a2b30c87b3fa92c04673598375a3fb715fc3875022abccd2f9",
+      "child_imports": [
+        "collections",
+        "numpy",
+        "os",
+        "pandas",
+        "re",
+        "sklearn",
+        "time",
+        "torch"
+      ],
+      "child_nonblank_lines": 303,
+      "edit_fraction": 0.5320754716981132,
+      "first_revision_valid": false,
+      "generated": true,
+      "index": 17,
+      "parent_code_sha256": "06b5fd65df7a59129a2eebe6e6ae8772ec15a55db0ea9356f987a8ec128ac687",
+      "parent_imports": [
+        "numpy",
+        "os",
+        "pandas",
+        "re",
+        "sklearn",
+        "time",
+        "torch"
+      ],
+      "parent_nonblank_lines": 227,
+      "removed_lines": 103,
+      "seed": 102006,
+      "task": "tweet-sentiment-extraction"
+    }
+  ],
+  "scope": "Posthoc first-revision text-change proxy, not semantic correctness, proof of collateral harm, or causally adjusted treatment effect; retain all arms"
+}

@@ -1,8 +1,8 @@
 """All-closed readout + independent scoring; never feeds results back to agents."""
 import argparse,csv,hashlib,json,math,re,statistics,sys
 from pathlib import Path
-ROOT=Path('/research/d7/spc/yzyang4/task-feedback-local-edit-20261002-v1')
-PLAN_SHA='7bd84ff0e867043b2787d5c07af867eff50370f4e7b6bafa811ef215196c4139'
+ROOT=Path('/research/d7/spc/yzyang4/task-feedback-evidence-edit-20261002-v1')
+PLAN_SHA='5ef4fa98529f70662cadf14e3f9a4ec4427c823d4a9fd723c9b6c25dd6806814'
 def read(p):return json.loads(p.read_bytes())
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
 def close(a,b):return math.isclose(a,b,abs_tol=1e-11,rel_tol=1e-11)
@@ -82,13 +82,13 @@ def run():
     pairs=[];groups=[]
     for task in sorted({r['task'] for r in rows}):
         for seed in sorted({r['seed'] for r in rows if r['task']==task}):
-            z={r['arm']:r for r in rows if r['task']==task and r['seed']==seed};f,p=z['F'],z['P']
+            z={r['arm']:r for r in rows if r['task']==task and r['seed']==seed};f,p=z['A'],z['B']
             initial_equal=f['initial'] is not None and p['initial'] is not None and close(f['initial'],p['initial'])
             strict=initial_equal and all(x['status'] in ('completed','budget_exhausted') for x in (f,p))
             pairs.append(dict(task=task,seed=seed,initial_equal=initial_equal,strict_estimable=strict,
                 saved_gain_difference=p['gain']-f['gain'] if p['gain'] is not None and f['gain'] is not None else None,
-                F_gain=f['gain'],P_gain=p['gain'],F_status=f['status'],P_status=p['status']))
-        for arm in 'FP':
+                A_gain=f['gain'],B_gain=p['gain'],A_status=f['status'],B_status=p['status']))
+        for arm in 'AB':
             subset=sorted((r for r in rows if r['task']==task and r['arm']==arm),key=lambda r:r['seed'])
             groups.append(dict(task=task,arm=arm,planned=3,valid_revisions=sum(r['revised_valid'] is True for r in subset),
                 gain=stats([r['gain'] for r in subset]),generation_seconds=stats([r['generation_seconds'] for r in subset]),
@@ -96,7 +96,7 @@ def run():
     contrasts=[dict(task=task,strict=stats([r['saved_gain_difference'] if r['strict_estimable'] else None for r in pairs if r['task']==task]),
                     all_saved=stats([r['saved_gain_difference'] for r in pairs if r['task']==task])) for task in sorted({r['task'] for r in rows})]
     return dict(status='PASS',plan_sha256=PLAN_SHA,job=job,planned=12,rows=rows,pairs=pairs,groups=groups,contrasts=contrasts,verified_actions=verified,
-        valid_actions_verified=sum(r['valid'] for r in verified),scope='two curated code instances, human guidance, development only; no automatic-method/novelty/generalization claim')
+        valid_actions_verified=sum(r['valid'] for r in verified),scope='two curated code instances, curated public facts, no human repair answer, development only; no automatic-method/novelty/generalization claim')
 if __name__=='__main__':
     p=argparse.ArgumentParser();p.add_argument('--out',type=Path,required=True);a=p.parse_args();result=run();a.out.mkdir()
     (a.out/'summary.json').write_text(json.dumps(result,sort_keys=True,indent=2,allow_nan=False)+'\n')

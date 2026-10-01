@@ -1,0 +1,26 @@
+{
+  "candidate_fits": 0,
+  "gpu": 0,
+  "public_unlabeled_rows": 300,
+  "reads_hidden_labels": false,
+  "records": [
+    {
+      "batch_date_value": 481.0,
+      "changed_columns": [
+        "days_since_start"
+      ],
+      "singleton_date_value": 0.0,
+      "source_sha256": "897591b5678d90555cae8a66bfd3589a5302a8495f5d44ab93c8009b37f548fb",
+      "variant": "original"
+    },
+    {
+      "batch_date_value": 496.0,
+      "changed_columns": [],
+      "singleton_date_value": 496.0,
+      "source_sha256": "3ede6e11658789e22928f83abf24d69f6bfe6d0fe694031605ff792276fc01b9",
+      "variant": "fixed"
+    }
+  ],
+  "status": "PASS_TRAIN_UNCHANGED_FIXED_BATCH_INVARIANT",
+  "training_rows": 2295
+}

@@ -1,0 +1,702 @@
+{
+  "groups": [
+    {
+      "arm": "A",
+      "final": {
+        "median": 0.681296340588376,
+        "n": 3,
+        "sample_variance": 3.347728015578531e-06,
+        "values": [
+          0.681296340588376,
+          0.6844654388902176,
+          0.681296340588376
+        ]
+      },
+      "generation_seconds": {
+        "median": 510.8435406202916,
+        "n": 3,
+        "sample_variance": 15651.095780532589,
+        "values": [
+          510.8435406202916,
+          634.6798291942105,
+          384.4754199653398
+        ]
+      },
+      "own_initial_gain": {
+        "median": 0.0,
+        "n": 3,
+        "sample_variance": 3.347728015578531e-06,
+        "values": [
+          0.0,
+          0.003169098301841644,
+          0.0
+        ]
+      },
+      "planned": 3,
+      "states": [
+        "completed",
+        "budget_exhausted",
+        "completed"
+      ],
+      "task": "random-acts-of-pizza",
+      "valid_saved_incumbents": 3
+    },
+    {
+      "arm": "B",
+      "final": {
+        "median": 0.681296340588376,
+        "n": 3,
+        "sample_variance": 0.0,
+        "values": [
+          0.681296340588376,
+          0.681296340588376,
+          0.681296340588376
+        ]
+      },
+      "generation_seconds": {
+        "median": 440.5622119740583,
+        "n": 3,
+        "sample_variance": 3956.4817760839633,
+        "values": [
+          440.5622119740583,
+          341.90177869191393,
+          458.82662904518656
+        ]
+      },
+      "own_initial_gain": {
+        "median": 0.0,
+        "n": 3,
+        "sample_variance": 0.0,
+        "values": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "planned": 3,
+      "states": [
+        "completed",
+        "unknown",
+        "completed"
+      ],
+      "task": "random-acts-of-pizza",
+      "valid_saved_incumbents": 3
+    },
+    {
+      "arm": "C",
+      "final": {
+        "median": 0.681296340588376,
+        "n": 3,
+        "sample_variance": 9.86918323140157e-06,
+        "values": [
+          0.681296340588376,
+          0.681296340588376,
+          0.6867376225783306
+        ]
+      },
+      "generation_seconds": {
+        "median": 399.3488312487025,
+        "n": 3,
+        "sample_variance": 1894.901737231411,
+        "values": [
+          364.912740085274,
+          399.3488312487025,
+          451.3790486829821
+        ]
+      },
+      "own_initial_gain": {
+        "median": 0.0,
+        "n": 3,
+        "sample_variance": 9.86918323140157e-06,
+        "values": [
+          0.0,
+          0.0,
+          0.005441281989954638
+        ]
+      },
+      "planned": 3,
+      "states": [
+        "completed",
+        "completed",
+        "completed"
+      ],
+      "task": "random-acts-of-pizza",
+      "valid_saved_incumbents": 3
+    },
+    {
+      "arm": "A",
+      "final": {
+        "median": 0.5226682748344275,
+        "n": 3,
+        "sample_variance": 0.0,
+        "values": [
+          0.5226682748344275,
+          0.5226682748344275,
+          0.5226682748344275
+        ]
+      },
+      "generation_seconds": {
+        "median": 450.40248379460536,
+        "n": 3,
+        "sample_variance": 4517.719527812274,
+        "values": [
+          530.3014046100434,
+          450.40248379460536,
+          396.72886786516756
+        ]
+      },
+      "own_initial_gain": {
+        "median": 0.0,
+        "n": 3,
+        "sample_variance": 0.0,
+        "values": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "planned": 3,
+      "states": [
+        "completed",
+        "completed",
+        "completed"
+      ],
+      "task": "tweet-sentiment-extraction",
+      "valid_saved_incumbents": 3
+    },
+    {
+      "arm": "B",
+      "final": {
+        "median": 0.5226682748344275,
+        "n": 3,
+        "sample_variance": 0.0,
+        "values": [
+          0.5226682748344275,
+          0.5226682748344275,
+          0.5226682748344275
+        ]
+      },
+      "generation_seconds": {
+        "median": 439.8770762309432,
+        "n": 3,
+        "sample_variance": 893.2730671202153,
+        "values": [
+          436.68617688212544,
+          489.9747868620325,
+          439.8770762309432
+        ]
+      },
+      "own_initial_gain": {
+        "median": 0.0,
+        "n": 3,
+        "sample_variance": 0.0,
+        "values": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "planned": 3,
+      "states": [
+        "completed",
+        "completed",
+        "completed"
+      ],
+      "task": "tweet-sentiment-extraction",
+      "valid_saved_incumbents": 3
+    },
+    {
+      "arm": "C",
+      "final": {
+        "median": 0.5226682748344275,
+        "n": 3,
+        "sample_variance": 0.0014868373381672624,
+        "values": [
+          0.5226682748344275,
+          0.5226682748344275,
+          0.5894553395588319
+        ]
+      },
+      "generation_seconds": {
+        "median": 434.54795123590156,
+        "n": 3,
+        "sample_variance": 1580.5587940803334,
+        "values": [
+          376.1489413159434,
+          452.0800534868613,
+          434.54795123590156
+        ]
+      },
+      "own_initial_gain": {
+        "median": 0.0,
+        "n": 3,
+        "sample_variance": 0.0014868373381672624,
+        "values": [
+          0.0,
+          0.0,
+          0.06678706472440443
+        ]
+      },
+      "planned": 3,
+      "states": [
+        "completed",
+        "completed",
+        "completed"
+      ],
+      "task": "tweet-sentiment-extraction",
+      "valid_saved_incumbents": 3
+    }
+  ],
+  "independent_units_warning": "two task/code instances, three continuation seeds per task; no across-task significance claim",
+  "pairs": [
+    {
+      "contrast": "B-A",
+      "finish_states": [
+        [
+          "completed",
+          "completed"
+        ],
+        [
+          "unknown",
+          "budget_exhausted"
+        ],
+        [
+          "completed",
+          "completed"
+        ]
+      ],
+      "gain_difference": {
+        "median": 0.0,
+        "n": 3,
+        "sample_variance": 3.347728015578531e-06,
+        "values": [
+          0.0,
+          -0.003169098301841644,
+          0.0
+        ]
+      },
+      "saved_incumbent_difference": {
+        "median": 0.0,
+        "n": 3,
+        "sample_variance": 3.347728015578531e-06,
+        "values": [
+          0.0,
+          -0.003169098301841644,
+          0.0
+        ]
+      },
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "contrast": "C-B",
+      "finish_states": [
+        [
+          "completed",
+          "completed"
+        ],
+        [
+          "completed",
+          "unknown"
+        ],
+        [
+          "completed",
+          "completed"
+        ]
+      ],
+      "gain_difference": {
+        "median": 0.0,
+        "n": 3,
+        "sample_variance": 9.86918323140157e-06,
+        "values": [
+          0.0,
+          0.0,
+          0.005441281989954638
+        ]
+      },
+      "saved_incumbent_difference": {
+        "median": 0.0,
+        "n": 3,
+        "sample_variance": 9.86918323140157e-06,
+        "values": [
+          0.0,
+          0.0,
+          0.005441281989954638
+        ]
+      },
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "contrast": "C-A",
+      "finish_states": [
+        [
+          "completed",
+          "completed"
+        ],
+        [
+          "completed",
+          "budget_exhausted"
+        ],
+        [
+          "completed",
+          "completed"
+        ]
+      ],
+      "gain_difference": {
+        "median": 0.0,
+        "n": 3,
+        "sample_variance": 1.8964897085049024e-05,
+        "values": [
+          0.0,
+          -0.003169098301841644,
+          0.005441281989954638
+        ]
+      },
+      "saved_incumbent_difference": {
+        "median": 0.0,
+        "n": 3,
+        "sample_variance": 1.8964897085049024e-05,
+        "values": [
+          0.0,
+          -0.003169098301841644,
+          0.005441281989954638
+        ]
+      },
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "contrast": "B-A",
+      "finish_states": [
+        [
+          "completed",
+          "completed"
+        ],
+        [
+          "completed",
+          "completed"
+        ],
+        [
+          "completed",
+          "completed"
+        ]
+      ],
+      "gain_difference": {
+        "median": 0.0,
+        "n": 3,
+        "sample_variance": 0.0,
+        "values": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "saved_incumbent_difference": {
+        "median": 0.0,
+        "n": 3,
+        "sample_variance": 0.0,
+        "values": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "task": "tweet-sentiment-extraction"
+    },
+    {
+      "contrast": "C-B",
+      "finish_states": [
+        [
+          "completed",
+          "completed"
+        ],
+        [
+          "completed",
+          "completed"
+        ],
+        [
+          "completed",
+          "completed"
+        ]
+      ],
+      "gain_difference": {
+        "median": 0.0,
+        "n": 3,
+        "sample_variance": 0.0014868373381672624,
+        "values": [
+          0.0,
+          0.0,
+          0.06678706472440443
+        ]
+      },
+      "saved_incumbent_difference": {
+        "median": 0.0,
+        "n": 3,
+        "sample_variance": 0.0014868373381672624,
+        "values": [
+          0.0,
+          0.0,
+          0.06678706472440443
+        ]
+      },
+      "task": "tweet-sentiment-extraction"
+    },
+    {
+      "contrast": "C-A",
+      "finish_states": [
+        [
+          "completed",
+          "completed"
+        ],
+        [
+          "completed",
+          "completed"
+        ],
+        [
+          "completed",
+          "completed"
+        ]
+      ],
+      "gain_difference": {
+        "median": 0.0,
+        "n": 3,
+        "sample_variance": 0.0014868373381672624,
+        "values": [
+          0.0,
+          0.0,
+          0.06678706472440443
+        ]
+      },
+      "saved_incumbent_difference": {
+        "median": 0.0,
+        "n": 3,
+        "sample_variance": 0.0014868373381672624,
+        "values": [
+          0.0,
+          0.0,
+          0.06678706472440443
+        ]
+      },
+      "task": "tweet-sentiment-extraction"
+    }
+  ],
+  "plan_sha256": "9fe231e1b9e2da8cb51fadb7ff9844b074c10e8e3dc64d1d1f3be170fb0703a0",
+  "planned": 18,
+  "scope": "supplementary all-closed saved-incumbent description, not strict completed-run primary; no missing value imputation",
+  "strict_original_comparisons": [
+    {
+      "both_closed": true,
+      "both_valid": true,
+      "contrast": "C-B",
+      "initial_code_equal": true,
+      "initial_metric_equal": true,
+      "oriented_gain_difference": 0.0,
+      "oriented_selected_difference": 0.0,
+      "start": 0,
+      "task": "random-acts-of-pizza",
+      "validity_difference": 0
+    },
+    {
+      "both_closed": true,
+      "both_valid": true,
+      "contrast": "B-A",
+      "initial_code_equal": true,
+      "initial_metric_equal": true,
+      "oriented_gain_difference": 0.0,
+      "oriented_selected_difference": 0.0,
+      "start": 0,
+      "task": "random-acts-of-pizza",
+      "validity_difference": 0
+    },
+    {
+      "both_closed": true,
+      "both_valid": true,
+      "contrast": "C-A",
+      "initial_code_equal": true,
+      "initial_metric_equal": true,
+      "oriented_gain_difference": 0.0,
+      "oriented_selected_difference": 0.0,
+      "start": 0,
+      "task": "random-acts-of-pizza",
+      "validity_difference": 0
+    },
+    {
+      "both_closed": true,
+      "both_valid": true,
+      "contrast": "C-B",
+      "initial_code_equal": true,
+      "initial_metric_equal": true,
+      "oriented_gain_difference": 0.0,
+      "oriented_selected_difference": 0.0,
+      "start": 1,
+      "task": "tweet-sentiment-extraction",
+      "validity_difference": 0
+    },
+    {
+      "both_closed": true,
+      "both_valid": true,
+      "contrast": "B-A",
+      "initial_code_equal": true,
+      "initial_metric_equal": true,
+      "oriented_gain_difference": 0.0,
+      "oriented_selected_difference": 0.0,
+      "start": 1,
+      "task": "tweet-sentiment-extraction",
+      "validity_difference": 0
+    },
+    {
+      "both_closed": true,
+      "both_valid": true,
+      "contrast": "C-A",
+      "initial_code_equal": true,
+      "initial_metric_equal": true,
+      "oriented_gain_difference": 0.0,
+      "oriented_selected_difference": 0.0,
+      "start": 1,
+      "task": "tweet-sentiment-extraction",
+      "validity_difference": 0
+    },
+    {
+      "both_closed": false,
+      "both_valid": false,
+      "contrast": "C-B",
+      "initial_code_equal": null,
+      "initial_metric_equal": null,
+      "oriented_gain_difference": null,
+      "oriented_selected_difference": null,
+      "start": 2,
+      "task": "random-acts-of-pizza",
+      "validity_difference": null
+    },
+    {
+      "both_closed": false,
+      "both_valid": false,
+      "contrast": "B-A",
+      "initial_code_equal": null,
+      "initial_metric_equal": null,
+      "oriented_gain_difference": null,
+      "oriented_selected_difference": null,
+      "start": 2,
+      "task": "random-acts-of-pizza",
+      "validity_difference": null
+    },
+    {
+      "both_closed": true,
+      "both_valid": true,
+      "contrast": "C-A",
+      "initial_code_equal": true,
+      "initial_metric_equal": true,
+      "oriented_gain_difference": -0.003169098301841644,
+      "oriented_selected_difference": -0.003169098301841644,
+      "start": 2,
+      "task": "random-acts-of-pizza",
+      "validity_difference": 0
+    },
+    {
+      "both_closed": true,
+      "both_valid": true,
+      "contrast": "C-B",
+      "initial_code_equal": true,
+      "initial_metric_equal": true,
+      "oriented_gain_difference": 0.0,
+      "oriented_selected_difference": 0.0,
+      "start": 3,
+      "task": "tweet-sentiment-extraction",
+      "validity_difference": 0
+    },
+    {
+      "both_closed": true,
+      "both_valid": true,
+      "contrast": "B-A",
+      "initial_code_equal": true,
+      "initial_metric_equal": true,
+      "oriented_gain_difference": 0.0,
+      "oriented_selected_difference": 0.0,
+      "start": 3,
+      "task": "tweet-sentiment-extraction",
+      "validity_difference": 0
+    },
+    {
+      "both_closed": true,
+      "both_valid": true,
+      "contrast": "C-A",
+      "initial_code_equal": true,
+      "initial_metric_equal": true,
+      "oriented_gain_difference": 0.0,
+      "oriented_selected_difference": 0.0,
+      "start": 3,
+      "task": "tweet-sentiment-extraction",
+      "validity_difference": 0
+    },
+    {
+      "both_closed": true,
+      "both_valid": true,
+      "contrast": "C-B",
+      "initial_code_equal": true,
+      "initial_metric_equal": true,
+      "oriented_gain_difference": 0.005441281989954638,
+      "oriented_selected_difference": 0.005441281989954638,
+      "start": 4,
+      "task": "random-acts-of-pizza",
+      "validity_difference": 0
+    },
+    {
+      "both_closed": true,
+      "both_valid": true,
+      "contrast": "B-A",
+      "initial_code_equal": true,
+      "initial_metric_equal": true,
+      "oriented_gain_difference": 0.0,
+      "oriented_selected_difference": 0.0,
+      "start": 4,
+      "task": "random-acts-of-pizza",
+      "validity_difference": 0
+    },
+    {
+      "both_closed": true,
+      "both_valid": true,
+      "contrast": "C-A",
+      "initial_code_equal": true,
+      "initial_metric_equal": true,
+      "oriented_gain_difference": 0.005441281989954638,
+      "oriented_selected_difference": 0.005441281989954638,
+      "start": 4,
+      "task": "random-acts-of-pizza",
+      "validity_difference": 0
+    },
+    {
+      "both_closed": true,
+      "both_valid": true,
+      "contrast": "C-B",
+      "initial_code_equal": true,
+      "initial_metric_equal": true,
+      "oriented_gain_difference": 0.06678706472440443,
+      "oriented_selected_difference": 0.06678706472440443,
+      "start": 5,
+      "task": "tweet-sentiment-extraction",
+      "validity_difference": 0
+    },
+    {
+      "both_closed": true,
+      "both_valid": true,
+      "contrast": "B-A",
+      "initial_code_equal": true,
+      "initial_metric_equal": true,
+      "oriented_gain_difference": 0.0,
+      "oriented_selected_difference": 0.0,
+      "start": 5,
+      "task": "tweet-sentiment-extraction",
+      "validity_difference": 0
+    },
+    {
+      "both_closed": true,
+      "both_valid": true,
+      "contrast": "C-A",
+      "initial_code_equal": true,
+      "initial_metric_equal": true,
+      "oriented_gain_difference": 0.06678706472440443,
+      "oriented_selected_difference": 0.06678706472440443,
+      "start": 5,
+      "task": "tweet-sentiment-extraction",
+      "validity_difference": 0
+    }
+  ]
+}

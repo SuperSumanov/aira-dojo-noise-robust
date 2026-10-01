@@ -1,0 +1,72 @@
+{
+  "agent_calls": 0,
+  "model_fits": 0,
+  "new_gpu": 0,
+  "not_sent_to_running_agents": true,
+  "rule": "same already-fixed neutral-only full-text rule; no new thresholds or exclusions",
+  "rule_module_sha256": "b260df99b612105f7f6c1d35e200701a618d187b182b39fed3e096d491bab5fa",
+  "script_sha256": "092940954a4ae17fd0097fc078bac10f8ddfbe7cf8348e529dbbc1d0be478ab3",
+  "selection": "old final selected submission fixed under original scores, not best after applying rule",
+  "sources": [
+    {
+      "arm": "C",
+      "index": 2,
+      "seed": 101003,
+      "source": null,
+      "source_sha256": null,
+      "start": 2,
+      "task": "tweet-sentiment-extraction",
+      "wave": 0
+    },
+    {
+      "arm": "B",
+      "index": 5,
+      "seed": 101003,
+      "source": "/research/d7/spc/yzyang4/task-feedback-real-20261001-v6/episode-5/action-2/submission.private.csv",
+      "source_sha256": "8ec8652ff3fb33c3940ee5026c1e34c597ac28164dcab88add3bfcded1630c2b",
+      "start": 2,
+      "task": "tweet-sentiment-extraction",
+      "wave": 1
+    },
+    {
+      "arm": "A",
+      "index": 8,
+      "seed": 101003,
+      "source": null,
+      "source_sha256": null,
+      "start": 2,
+      "task": "tweet-sentiment-extraction",
+      "wave": 2
+    },
+    {
+      "arm": "A",
+      "index": 11,
+      "seed": 101006,
+      "source": "/research/d7/spc/yzyang4/task-feedback-real-20261001-v6/episode-11/action-1/submission.private.csv",
+      "source_sha256": "9a2ad15b08e32dfd877232dadb2887a76de3d3d495cc4214eb3eb030e60ad91d",
+      "start": 5,
+      "task": "tweet-sentiment-extraction",
+      "wave": 3
+    },
+    {
+      "arm": "B",
+      "index": 14,
+      "seed": 101006,
+      "source": "/research/d7/spc/yzyang4/task-feedback-real-20261001-v6/episode-14/action-1/submission.private.csv",
+      "source_sha256": "40f43844a820f6a52c18865664ef44b3b6addbbe5e701bda4ed07a00688f5be1",
+      "start": 5,
+      "task": "tweet-sentiment-extraction",
+      "wave": 4
+    },
+    {
+      "arm": "C",
+      "index": 17,
+      "seed": 101006,
+      "source": "/research/d7/spc/yzyang4/task-feedback-real-20261001-v6/episode-17/action-3/submission.private.csv",
+      "source_sha256": "1f5a638c2faa236bf48e0038912e9fe4565c9dd7138dce60d898dbede0d2a58b",
+      "start": 5,
+      "task": "tweet-sentiment-extraction",
+      "wave": 5
+    }
+  ]
+}

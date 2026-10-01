@@ -1,0 +1,21 @@
+{
+  "frozen_before_main_outcome_read": true,
+  "purpose": "Exploratory mechanism coding, not a primary endpoint or a filter on outcome comparisons",
+  "unit": "Each generated program, followed separately by the final selected program",
+  "pizza": {
+    "intent_only": "Prose mentions date origin or batching; not counted as implemented",
+    "source_implementation": "Inference date features use a train-fitted or other fixed shared origin, not the inference batch minimum",
+    "behavior_verified": "A safely isolated deterministic feature transform gives the same date value for the same public input alone and within its original batch",
+    "removed_feature": "Report separately if the date feature is dropped; do not call this the prescribed origin repair",
+    "unknown": "If source semantics cannot be established without executing arbitrary training, mark unknown rather than regex success"
+  },
+  "tweet": {
+    "intent_only": "Prose mentions sentiment, neutral, or truncation; not counted as implemented",
+    "sentiment_conditioning": "Sentiment affects actual training, inference, or postprocessing, not only being loaded as a column",
+    "neutral_full_text": "Inference explicitly maps neutral rows to the complete public input text; confirm actual output on those rows separately",
+    "coverage_change": "Changes maximum length, windowing or alignment; report separately from sentiment use",
+    "unknown": "An unexecuted or unparsable generated program can show intent but cannot establish a working implementation"
+  },
+  "causal_boundary": "Adoption is post-treatment and possibly confounded by program success. Do not estimate treatment benefit by dropping non-adopters or failed executions.",
+  "score_boundary": "Truth of evidence, successful implementation, D_search gain, and unseen evaluation gain are distinct; only the first three are in scope of this development pilot."
+}

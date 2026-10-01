@@ -1,0 +1,12 @@
+{
+  "source": "sacct -X final allocations, observed 2026-10-01T21:03Z",
+  "jobs": [
+    {"job": "15204", "state": "COMPLETED", "exit_code": "0:0", "elapsed_seconds": 6560, "allocated_gpus": 5, "gpu_seconds": 32800},
+    {"job": "15205", "state": "COMPLETED", "exit_code": "0:0", "elapsed_seconds": 117, "allocated_gpus": 2, "gpu_seconds": 234}
+  ],
+  "gpu_seconds": 33034,
+  "gpu_hours": 9.176111111111112,
+  "scope": "Whole allocation including startup, idle and failed actions; curator cost not included or claimed free. Prior 15135/15140 are separate older experiments.",
+  "paid_api_calls": 0,
+  "base_weight_updates": 0
+}

@@ -1,0 +1,28 @@
+{
+  "median_difference_independently_reaggregated": 0.03177693961835826,
+  "note": "The original independent_match field used bitwise float equality; two false values represent only rounding (<=1e-12), not failed scientific reproduction. Original artifact left unchanged.",
+  "records": [
+    {
+      "index": 5,
+      "max_independent_error": 1.1102230246251565e-16,
+      "within_tolerance": true
+    },
+    {
+      "index": 11,
+      "max_independent_error": 0.0,
+      "within_tolerance": true
+    },
+    {
+      "index": 14,
+      "max_independent_error": 1.1102230246251565e-16,
+      "within_tolerance": true
+    },
+    {
+      "index": 17,
+      "max_independent_error": 0.0,
+      "within_tolerance": true
+    }
+  ],
+  "status": "PASS_ALL_FOUR_WITHIN_1e-12",
+  "summary_sha256": "36a95a860a8c63cff019ed9eb9a0a1085e265ad04266c30137cb1a2bdf808503"
+}

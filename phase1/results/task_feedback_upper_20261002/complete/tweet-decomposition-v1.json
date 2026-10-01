@@ -1,0 +1,373 @@
+{
+  "plan_sha256": "9fe231e1b9e2da8cb51fadb7ff9844b074c10e8e3dc64d1d1f3be170fb0703a0",
+  "planned_tweet_trajectories": 9,
+  "public_group_counts": {
+    "negative": 688,
+    "neutral": 996,
+    "positive": 770
+  },
+  "reference_scope": "same already-fixed neutral rule on each initial prediction; descriptive no-call reference, not fourth arm or final test",
+  "rows": [
+    {
+      "arm": "B",
+      "finish_status": "completed",
+      "group_delta": {
+        "negative": 0.0,
+        "neutral": 0.0,
+        "positive": 0.0
+      },
+      "index": 1,
+      "initial": {
+        "aggregate": 0.5226682748344275,
+        "negative": 0.36318494118867545,
+        "neutral": 0.7064192048626781,
+        "neutral_exact_text_rows": 327,
+        "neutral_exact_wordset_rows": 589,
+        "neutral_rule_aggregate_direct": 0.6331957602399368,
+        "positive": 0.42748464787356993
+      },
+      "own_initial_neutral_only_reference": 0.6331957602399367,
+      "seed": 102002,
+      "selected": {
+        "aggregate": 0.5226682748344275,
+        "negative": 0.36318494118867545,
+        "neutral": 0.7064192048626781,
+        "neutral_exact_text_rows": 327,
+        "neutral_exact_wordset_rows": 589,
+        "neutral_rule_aggregate_direct": 0.6331957602399368,
+        "positive": 0.42748464787356993
+      },
+      "selected_minus_own_initial_reference": -0.11052748540550927,
+      "selected_step": 0,
+      "start": 1,
+      "task": "tweet-sentiment-extraction",
+      "wave": 0,
+      "weighted_contribution_to_gain": {
+        "negative": 0.0,
+        "neutral": 0.0,
+        "positive": 0.0
+      }
+    },
+    {
+      "arm": "C",
+      "finish_status": "completed",
+      "group_delta": {
+        "negative": 0.0,
+        "neutral": 0.0,
+        "positive": 0.0
+      },
+      "index": 4,
+      "initial": {
+        "aggregate": 0.5226682748344275,
+        "negative": 0.36318494118867545,
+        "neutral": 0.7064192048626781,
+        "neutral_exact_text_rows": 327,
+        "neutral_exact_wordset_rows": 589,
+        "neutral_rule_aggregate_direct": 0.6331957602399368,
+        "positive": 0.42748464787356993
+      },
+      "own_initial_neutral_only_reference": 0.6331957602399367,
+      "seed": 102002,
+      "selected": {
+        "aggregate": 0.5226682748344275,
+        "negative": 0.36318494118867545,
+        "neutral": 0.7064192048626781,
+        "neutral_exact_text_rows": 327,
+        "neutral_exact_wordset_rows": 589,
+        "neutral_rule_aggregate_direct": 0.6331957602399368,
+        "positive": 0.42748464787356993
+      },
+      "selected_minus_own_initial_reference": -0.11052748540550927,
+      "selected_step": 0,
+      "start": 1,
+      "task": "tweet-sentiment-extraction",
+      "wave": 1,
+      "weighted_contribution_to_gain": {
+        "negative": 0.0,
+        "neutral": 0.0,
+        "positive": 0.0
+      }
+    },
+    {
+      "arm": "A",
+      "finish_status": "completed",
+      "group_delta": {
+        "negative": 0.0,
+        "neutral": 0.0,
+        "positive": 0.0
+      },
+      "index": 7,
+      "initial": {
+        "aggregate": 0.5226682748344275,
+        "negative": 0.36318494118867545,
+        "neutral": 0.7064192048626781,
+        "neutral_exact_text_rows": 327,
+        "neutral_exact_wordset_rows": 589,
+        "neutral_rule_aggregate_direct": 0.6331957602399368,
+        "positive": 0.42748464787356993
+      },
+      "own_initial_neutral_only_reference": 0.6331957602399367,
+      "seed": 102002,
+      "selected": {
+        "aggregate": 0.5226682748344275,
+        "negative": 0.36318494118867545,
+        "neutral": 0.7064192048626781,
+        "neutral_exact_text_rows": 327,
+        "neutral_exact_wordset_rows": 589,
+        "neutral_rule_aggregate_direct": 0.6331957602399368,
+        "positive": 0.42748464787356993
+      },
+      "selected_minus_own_initial_reference": -0.11052748540550927,
+      "selected_step": 0,
+      "start": 1,
+      "task": "tweet-sentiment-extraction",
+      "wave": 2,
+      "weighted_contribution_to_gain": {
+        "negative": 0.0,
+        "neutral": 0.0,
+        "positive": 0.0
+      }
+    },
+    {
+      "arm": "A",
+      "finish_status": "completed",
+      "group_delta": {
+        "negative": 0.0,
+        "neutral": 0.0,
+        "positive": 0.0
+      },
+      "index": 9,
+      "initial": {
+        "aggregate": 0.5226682748344275,
+        "negative": 0.36318494118867545,
+        "neutral": 0.7064192048626781,
+        "neutral_exact_text_rows": 327,
+        "neutral_exact_wordset_rows": 589,
+        "neutral_rule_aggregate_direct": 0.6331957602399368,
+        "positive": 0.42748464787356993
+      },
+      "own_initial_neutral_only_reference": 0.6331957602399367,
+      "seed": 102004,
+      "selected": {
+        "aggregate": 0.5226682748344275,
+        "negative": 0.36318494118867545,
+        "neutral": 0.7064192048626781,
+        "neutral_exact_text_rows": 327,
+        "neutral_exact_wordset_rows": 589,
+        "neutral_rule_aggregate_direct": 0.6331957602399368,
+        "positive": 0.42748464787356993
+      },
+      "selected_minus_own_initial_reference": -0.11052748540550927,
+      "selected_step": 0,
+      "start": 3,
+      "task": "tweet-sentiment-extraction",
+      "wave": 3,
+      "weighted_contribution_to_gain": {
+        "negative": 0.0,
+        "neutral": 0.0,
+        "positive": 0.0
+      }
+    },
+    {
+      "arm": "A",
+      "finish_status": "completed",
+      "group_delta": {
+        "negative": 0.0,
+        "neutral": 0.0,
+        "positive": 0.0
+      },
+      "index": 11,
+      "initial": {
+        "aggregate": 0.5226682748344275,
+        "negative": 0.36318494118867545,
+        "neutral": 0.7064192048626781,
+        "neutral_exact_text_rows": 327,
+        "neutral_exact_wordset_rows": 589,
+        "neutral_rule_aggregate_direct": 0.6331957602399368,
+        "positive": 0.42748464787356993
+      },
+      "own_initial_neutral_only_reference": 0.6331957602399367,
+      "seed": 102006,
+      "selected": {
+        "aggregate": 0.5226682748344275,
+        "negative": 0.36318494118867545,
+        "neutral": 0.7064192048626781,
+        "neutral_exact_text_rows": 327,
+        "neutral_exact_wordset_rows": 589,
+        "neutral_rule_aggregate_direct": 0.6331957602399368,
+        "positive": 0.42748464787356993
+      },
+      "selected_minus_own_initial_reference": -0.11052748540550927,
+      "selected_step": 0,
+      "start": 5,
+      "task": "tweet-sentiment-extraction",
+      "wave": 3,
+      "weighted_contribution_to_gain": {
+        "negative": 0.0,
+        "neutral": 0.0,
+        "positive": 0.0
+      }
+    },
+    {
+      "arm": "C",
+      "finish_status": "completed",
+      "group_delta": {
+        "negative": 0.0,
+        "neutral": 0.0,
+        "positive": 0.0
+      },
+      "index": 12,
+      "initial": {
+        "aggregate": 0.5226682748344275,
+        "negative": 0.36318494118867545,
+        "neutral": 0.7064192048626781,
+        "neutral_exact_text_rows": 327,
+        "neutral_exact_wordset_rows": 589,
+        "neutral_rule_aggregate_direct": 0.6331957602399368,
+        "positive": 0.42748464787356993
+      },
+      "own_initial_neutral_only_reference": 0.6331957602399367,
+      "seed": 102004,
+      "selected": {
+        "aggregate": 0.5226682748344275,
+        "negative": 0.36318494118867545,
+        "neutral": 0.7064192048626781,
+        "neutral_exact_text_rows": 327,
+        "neutral_exact_wordset_rows": 589,
+        "neutral_rule_aggregate_direct": 0.6331957602399368,
+        "positive": 0.42748464787356993
+      },
+      "selected_minus_own_initial_reference": -0.11052748540550927,
+      "selected_step": 0,
+      "start": 3,
+      "task": "tweet-sentiment-extraction",
+      "wave": 4,
+      "weighted_contribution_to_gain": {
+        "negative": 0.0,
+        "neutral": 0.0,
+        "positive": 0.0
+      }
+    },
+    {
+      "arm": "C",
+      "finish_status": "completed",
+      "group_delta": {
+        "negative": -0.04263054264651506,
+        "neutral": 0.2719586474111282,
+        "positive": -0.1008383670740165
+      },
+      "index": 14,
+      "initial": {
+        "aggregate": 0.5226682748344275,
+        "negative": 0.36318494118867545,
+        "neutral": 0.7064192048626781,
+        "neutral_exact_text_rows": 327,
+        "neutral_exact_wordset_rows": 589,
+        "neutral_rule_aggregate_direct": 0.6331957602399368,
+        "positive": 0.42748464787356993
+      },
+      "own_initial_neutral_only_reference": 0.6331957602399367,
+      "seed": 102006,
+      "selected": {
+        "aggregate": 0.5894553395588319,
+        "negative": 0.3205543985421604,
+        "neutral": 0.9783778522738062,
+        "neutral_exact_text_rows": 573,
+        "neutral_exact_wordset_rows": 995,
+        "neutral_rule_aggregate_direct": 0.5896035206361083,
+        "positive": 0.32664628079955343
+      },
+      "selected_minus_own_initial_reference": -0.04374042068110484,
+      "selected_step": 3,
+      "start": 5,
+      "task": "tweet-sentiment-extraction",
+      "wave": 4,
+      "weighted_contribution_to_gain": {
+        "negative": -0.011951839177181076,
+        "neutral": 0.11037930432823297,
+        "positive": -0.0316404004266474
+      }
+    },
+    {
+      "arm": "B",
+      "finish_status": "completed",
+      "group_delta": {
+        "negative": 0.0,
+        "neutral": 0.0,
+        "positive": 0.0
+      },
+      "index": 15,
+      "initial": {
+        "aggregate": 0.5226682748344275,
+        "negative": 0.36318494118867545,
+        "neutral": 0.7064192048626781,
+        "neutral_exact_text_rows": 327,
+        "neutral_exact_wordset_rows": 589,
+        "neutral_rule_aggregate_direct": 0.6331957602399368,
+        "positive": 0.42748464787356993
+      },
+      "own_initial_neutral_only_reference": 0.6331957602399367,
+      "seed": 102004,
+      "selected": {
+        "aggregate": 0.5226682748344275,
+        "negative": 0.36318494118867545,
+        "neutral": 0.7064192048626781,
+        "neutral_exact_text_rows": 327,
+        "neutral_exact_wordset_rows": 589,
+        "neutral_rule_aggregate_direct": 0.6331957602399368,
+        "positive": 0.42748464787356993
+      },
+      "selected_minus_own_initial_reference": -0.11052748540550927,
+      "selected_step": 0,
+      "start": 3,
+      "task": "tweet-sentiment-extraction",
+      "wave": 5,
+      "weighted_contribution_to_gain": {
+        "negative": 0.0,
+        "neutral": 0.0,
+        "positive": 0.0
+      }
+    },
+    {
+      "arm": "B",
+      "finish_status": "completed",
+      "group_delta": {
+        "negative": 0.0,
+        "neutral": 0.0,
+        "positive": 0.0
+      },
+      "index": 17,
+      "initial": {
+        "aggregate": 0.5226682748344275,
+        "negative": 0.36318494118867545,
+        "neutral": 0.7064192048626781,
+        "neutral_exact_text_rows": 327,
+        "neutral_exact_wordset_rows": 589,
+        "neutral_rule_aggregate_direct": 0.6331957602399368,
+        "positive": 0.42748464787356993
+      },
+      "own_initial_neutral_only_reference": 0.6331957602399367,
+      "seed": 102006,
+      "selected": {
+        "aggregate": 0.5226682748344275,
+        "negative": 0.36318494118867545,
+        "neutral": 0.7064192048626781,
+        "neutral_exact_text_rows": 327,
+        "neutral_exact_wordset_rows": 589,
+        "neutral_rule_aggregate_direct": 0.6331957602399368,
+        "positive": 0.42748464787356993
+      },
+      "selected_minus_own_initial_reference": -0.11052748540550927,
+      "selected_step": 0,
+      "start": 5,
+      "task": "tweet-sentiment-extraction",
+      "wave": 5,
+      "weighted_contribution_to_gain": {
+        "negative": 0.0,
+        "neutral": 0.0,
+        "positive": 0.0
+      }
+    }
+  ],
+  "scope": "fixed three public sentiment strata, descriptive mechanism only; not an adaptive subgroup success claim or a replacement endpoint"
+}

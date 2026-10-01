@@ -1,0 +1,531 @@
+{
+  "classes": {
+    "AttributeError": 2,
+    "AxisError": 1,
+    "IndexError": 5,
+    "KeyError": 3,
+    "NameError": 2,
+    "OSError": 7,
+    "RuntimeError": 3,
+    "TimeoutError": 2,
+    "TypeError": 14,
+    "ValueError": 5
+  },
+  "rows": [
+    {
+      "arm": "B",
+      "classes": [
+        "NameError"
+      ],
+      "execution_started": true,
+      "index": 0,
+      "missing_modules": [],
+      "step": 1,
+      "task": "random-acts-of-pizza",
+      "timed_out": false
+    },
+    {
+      "arm": "B",
+      "classes": [
+        "KeyError",
+        "TypeError"
+      ],
+      "execution_started": true,
+      "index": 0,
+      "missing_modules": [],
+      "step": 4,
+      "task": "random-acts-of-pizza",
+      "timed_out": false
+    },
+    {
+      "arm": "B",
+      "classes": [
+        "TypeError"
+      ],
+      "execution_started": true,
+      "index": 1,
+      "missing_modules": [],
+      "step": 1,
+      "task": "tweet-sentiment-extraction",
+      "timed_out": false
+    },
+    {
+      "arm": "B",
+      "classes": [
+        "OSError"
+      ],
+      "execution_started": true,
+      "index": 1,
+      "missing_modules": [],
+      "step": 2,
+      "task": "tweet-sentiment-extraction",
+      "timed_out": false
+    },
+    {
+      "arm": "B",
+      "classes": [],
+      "execution_started": false,
+      "index": 1,
+      "missing_modules": [],
+      "step": 4,
+      "task": "tweet-sentiment-extraction",
+      "timed_out": false
+    },
+    {
+      "arm": "B",
+      "classes": [
+        "AxisError"
+      ],
+      "execution_started": true,
+      "index": 2,
+      "missing_modules": [],
+      "step": 2,
+      "task": "random-acts-of-pizza",
+      "timed_out": false
+    },
+    {
+      "arm": "C",
+      "classes": [
+        "ValueError"
+      ],
+      "execution_started": true,
+      "index": 4,
+      "missing_modules": [],
+      "step": 1,
+      "task": "tweet-sentiment-extraction",
+      "timed_out": false
+    },
+    {
+      "arm": "C",
+      "classes": [
+        "ValueError"
+      ],
+      "execution_started": true,
+      "index": 4,
+      "missing_modules": [],
+      "step": 2,
+      "task": "tweet-sentiment-extraction",
+      "timed_out": false
+    },
+    {
+      "arm": "C",
+      "classes": [
+        "ValueError"
+      ],
+      "execution_started": true,
+      "index": 4,
+      "missing_modules": [],
+      "step": 3,
+      "task": "tweet-sentiment-extraction",
+      "timed_out": false
+    },
+    {
+      "arm": "C",
+      "classes": [
+        "OSError"
+      ],
+      "execution_started": true,
+      "index": 4,
+      "missing_modules": [],
+      "step": 4,
+      "task": "tweet-sentiment-extraction",
+      "timed_out": false
+    },
+    {
+      "arm": "A",
+      "classes": [
+        "KeyError",
+        "TypeError"
+      ],
+      "execution_started": true,
+      "index": 6,
+      "missing_modules": [],
+      "step": 2,
+      "task": "random-acts-of-pizza",
+      "timed_out": false
+    },
+    {
+      "arm": "A",
+      "classes": [
+        "TypeError"
+      ],
+      "execution_started": true,
+      "index": 7,
+      "missing_modules": [],
+      "step": 1,
+      "task": "tweet-sentiment-extraction",
+      "timed_out": false
+    },
+    {
+      "arm": "A",
+      "classes": [
+        "RuntimeError"
+      ],
+      "execution_started": true,
+      "index": 7,
+      "missing_modules": [],
+      "step": 2,
+      "task": "tweet-sentiment-extraction",
+      "timed_out": false
+    },
+    {
+      "arm": "A",
+      "classes": [
+        "TimeoutError"
+      ],
+      "execution_started": true,
+      "index": 7,
+      "missing_modules": [],
+      "step": 3,
+      "task": "tweet-sentiment-extraction",
+      "timed_out": true
+    },
+    {
+      "arm": "A",
+      "classes": [
+        "OSError"
+      ],
+      "execution_started": true,
+      "index": 7,
+      "missing_modules": [],
+      "step": 4,
+      "task": "tweet-sentiment-extraction",
+      "timed_out": false
+    },
+    {
+      "arm": "A",
+      "classes": [],
+      "execution_started": false,
+      "index": 8,
+      "missing_modules": [],
+      "step": 2,
+      "task": "random-acts-of-pizza",
+      "timed_out": false
+    },
+    {
+      "arm": "A",
+      "classes": [
+        "KeyError",
+        "TypeError"
+      ],
+      "execution_started": true,
+      "index": 8,
+      "missing_modules": [],
+      "step": 3,
+      "task": "random-acts-of-pizza",
+      "timed_out": false
+    },
+    {
+      "arm": "A",
+      "classes": [
+        "OSError"
+      ],
+      "execution_started": true,
+      "index": 9,
+      "missing_modules": [],
+      "step": 1,
+      "task": "tweet-sentiment-extraction",
+      "timed_out": false
+    },
+    {
+      "arm": "A",
+      "classes": [
+        "OSError"
+      ],
+      "execution_started": true,
+      "index": 9,
+      "missing_modules": [],
+      "step": 2,
+      "task": "tweet-sentiment-extraction",
+      "timed_out": false
+    },
+    {
+      "arm": "A",
+      "classes": [
+        "AttributeError"
+      ],
+      "execution_started": true,
+      "index": 9,
+      "missing_modules": [],
+      "step": 3,
+      "task": "tweet-sentiment-extraction",
+      "timed_out": false
+    },
+    {
+      "arm": "A",
+      "classes": [
+        "IndexError"
+      ],
+      "execution_started": true,
+      "index": 9,
+      "missing_modules": [],
+      "step": 4,
+      "task": "tweet-sentiment-extraction",
+      "timed_out": false
+    },
+    {
+      "arm": "A",
+      "classes": [
+        "TypeError"
+      ],
+      "execution_started": true,
+      "index": 11,
+      "missing_modules": [],
+      "step": 1,
+      "task": "tweet-sentiment-extraction",
+      "timed_out": false
+    },
+    {
+      "arm": "A",
+      "classes": [
+        "RuntimeError"
+      ],
+      "execution_started": true,
+      "index": 11,
+      "missing_modules": [],
+      "step": 2,
+      "task": "tweet-sentiment-extraction",
+      "timed_out": false
+    },
+    {
+      "arm": "A",
+      "classes": [
+        "TimeoutError"
+      ],
+      "execution_started": true,
+      "index": 11,
+      "missing_modules": [],
+      "step": 3,
+      "task": "tweet-sentiment-extraction",
+      "timed_out": true
+    },
+    {
+      "arm": "A",
+      "classes": [
+        "TypeError"
+      ],
+      "execution_started": true,
+      "index": 11,
+      "missing_modules": [],
+      "step": 4,
+      "task": "tweet-sentiment-extraction",
+      "timed_out": false
+    },
+    {
+      "arm": "C",
+      "classes": [
+        "AttributeError"
+      ],
+      "execution_started": true,
+      "index": 12,
+      "missing_modules": [],
+      "step": 1,
+      "task": "tweet-sentiment-extraction",
+      "timed_out": false
+    },
+    {
+      "arm": "C",
+      "classes": [
+        "RuntimeError"
+      ],
+      "execution_started": true,
+      "index": 12,
+      "missing_modules": [],
+      "step": 3,
+      "task": "tweet-sentiment-extraction",
+      "timed_out": false
+    },
+    {
+      "arm": "C",
+      "classes": [
+        "IndexError"
+      ],
+      "execution_started": true,
+      "index": 12,
+      "missing_modules": [],
+      "step": 4,
+      "task": "tweet-sentiment-extraction",
+      "timed_out": false
+    },
+    {
+      "arm": "C",
+      "classes": [
+        "TypeError"
+      ],
+      "execution_started": true,
+      "index": 13,
+      "missing_modules": [],
+      "step": 2,
+      "task": "random-acts-of-pizza",
+      "timed_out": false
+    },
+    {
+      "arm": "C",
+      "classes": [
+        "ValueError"
+      ],
+      "execution_started": true,
+      "index": 13,
+      "missing_modules": [],
+      "step": 4,
+      "task": "random-acts-of-pizza",
+      "timed_out": false
+    },
+    {
+      "arm": "C",
+      "classes": [
+        "OSError"
+      ],
+      "execution_started": true,
+      "index": 14,
+      "missing_modules": [],
+      "step": 1,
+      "task": "tweet-sentiment-extraction",
+      "timed_out": false
+    },
+    {
+      "arm": "C",
+      "classes": [
+        "OSError"
+      ],
+      "execution_started": true,
+      "index": 14,
+      "missing_modules": [],
+      "step": 4,
+      "task": "tweet-sentiment-extraction",
+      "timed_out": false
+    },
+    {
+      "arm": "B",
+      "classes": [
+        "TypeError"
+      ],
+      "execution_started": true,
+      "index": 15,
+      "missing_modules": [],
+      "step": 1,
+      "task": "tweet-sentiment-extraction",
+      "timed_out": false
+    },
+    {
+      "arm": "B",
+      "classes": [
+        "TypeError"
+      ],
+      "execution_started": true,
+      "index": 15,
+      "missing_modules": [],
+      "step": 2,
+      "task": "tweet-sentiment-extraction",
+      "timed_out": false
+    },
+    {
+      "arm": "B",
+      "classes": [
+        "TypeError"
+      ],
+      "execution_started": true,
+      "index": 15,
+      "missing_modules": [],
+      "step": 3,
+      "task": "tweet-sentiment-extraction",
+      "timed_out": false
+    },
+    {
+      "arm": "B",
+      "classes": [
+        "TypeError"
+      ],
+      "execution_started": true,
+      "index": 15,
+      "missing_modules": [],
+      "step": 4,
+      "task": "tweet-sentiment-extraction",
+      "timed_out": false
+    },
+    {
+      "arm": "B",
+      "classes": [
+        "ValueError"
+      ],
+      "execution_started": true,
+      "index": 16,
+      "missing_modules": [],
+      "step": 1,
+      "task": "random-acts-of-pizza",
+      "timed_out": false
+    },
+    {
+      "arm": "B",
+      "classes": [],
+      "execution_started": false,
+      "index": 16,
+      "missing_modules": [],
+      "step": 2,
+      "task": "random-acts-of-pizza",
+      "timed_out": false
+    },
+    {
+      "arm": "B",
+      "classes": [
+        "TypeError"
+      ],
+      "execution_started": true,
+      "index": 16,
+      "missing_modules": [],
+      "step": 3,
+      "task": "random-acts-of-pizza",
+      "timed_out": false
+    },
+    {
+      "arm": "B",
+      "classes": [
+        "IndexError"
+      ],
+      "execution_started": true,
+      "index": 17,
+      "missing_modules": [],
+      "step": 1,
+      "task": "tweet-sentiment-extraction",
+      "timed_out": false
+    },
+    {
+      "arm": "B",
+      "classes": [
+        "IndexError"
+      ],
+      "execution_started": true,
+      "index": 17,
+      "missing_modules": [],
+      "step": 2,
+      "task": "tweet-sentiment-extraction",
+      "timed_out": false
+    },
+    {
+      "arm": "B",
+      "classes": [
+        "IndexError"
+      ],
+      "execution_started": true,
+      "index": 17,
+      "missing_modules": [],
+      "step": 3,
+      "task": "tweet-sentiment-extraction",
+      "timed_out": false
+    },
+    {
+      "arm": "B",
+      "classes": [
+        "NameError",
+        "TypeError"
+      ],
+      "execution_started": true,
+      "index": 17,
+      "missing_modules": [],
+      "step": 4,
+      "task": "tweet-sentiment-extraction",
+      "timed_out": false
+    }
+  ],
+  "scope": "coarse error signatures, not root-cause attribution"
+}

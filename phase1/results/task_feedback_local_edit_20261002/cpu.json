@@ -1,0 +1,20 @@
+{
+  "api": 0,
+  "engine": [
+    {
+      "actions": 2,
+      "arm": "F",
+      "generations": 1
+    },
+    {
+      "actions": 2,
+      "arm": "P",
+      "generations": 1
+    }
+  ],
+  "gpu": 0,
+  "parser_invalid_cases": 8,
+  "plan_sha256": "7bd84ff0e867043b2787d5c07af867eff50370f4e7b6bafa811ef215196c4139",
+  "status": "PASS",
+  "typed_configs": 12
+}

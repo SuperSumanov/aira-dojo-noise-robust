@@ -2,7 +2,7 @@
 import argparse,csv,hashlib,json,math,statistics
 from pathlib import Path
 
-ROOT=Path('/research/d7/spc/yzyang4/task-feedback-real-20261001-v5')
+ROOT=Path('/research/d7/spc/yzyang4/task-feedback-real-20261001-v6')
 def read(p):return json.loads(p.read_bytes())
 def digest(p):return hashlib.sha256(p.read_bytes()).hexdigest()
 

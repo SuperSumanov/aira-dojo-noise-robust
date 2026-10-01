@@ -5,15 +5,15 @@ from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 os.environ['PYTHON_DOTENV_DISABLED']='1'
 B=Path('/research/d7/spc/yzyang4')
-ROOT=B/'task-feedback-real-20261001-v5'
+ROOT=B/'task-feedback-real-20261001-v6'
 SOURCE=B/'root-failure-four-task-source-feedback-20260928-v2'
 PY=B/'venvs/aira/bin/python'
 ASSETS=B/'local-qwen27b-20260914-zcx1k1dy'
 INFRA=B/'repair-replace-dev-20260927-v1/tests/fresh_first_slot_gpu27_20260927.py'
 PORT=19441
 SECONDS=1800
-CAP=14400
-COMMIT='bc74d8774eadbf3f82773bb456badde6e3b77f7f'
+CAP=13200
+COMMIT='42f504632b2cbb0f4e24692e685275dbc98c2af8'
 TASKS=('spooky-author-identification','random-acts-of-pizza','tweet-sentiment-extraction')
 DONORS=(('root-failure-randomized-gpu27-20260927-v1',0),('root-failure-randomized-gpu27-20260927-v1',1),('root-failure-text-tasks-gpu27-20260928-v2',1),('root-failure-randomized-gpu27-20260927-v1',3),('root-failure-randomized-gpu27-20260927-v1',2),('root-failure-text-unstarted-gpu27-20260928-v1',0))
 SECRET=re.compile(rb'(?i)(?<![a-z0-9])(?:sk-[a-z0-9_.-]{12,}|hf_[a-z0-9]{20,}|gh[pousr]_[a-z0-9]{20,}|Bearer\s+[a-z0-9_.-]{20,})')
@@ -27,6 +27,16 @@ read=infra.read
 write=infra.write
 
 def utc():return datetime.datetime.now(datetime.timezone.utc).isoformat()
+def prior_accounting():
+    old=B/'task-feedback-real-20261001-v5';assert read(old/'launch.json')['job']=='15135'
+    env=dict(os.environ,SLURM_CONF='/opt1/slurm/gpu-slurm.conf')
+    rows=subprocess.check_output(['sacct','-X','-j','15135','-n','-P','-o','JobIDRaw,State,ElapsedRaw,AllocTRES'],env=env,text=True,timeout=25).strip().splitlines()
+    if len(rows)!=1:raise ValueError('prior accounting not final')
+    job,state,elapsed,tres,*_=rows[0].split('|')
+    if job!='15135' or not state.startswith(('CANCELLED','FAILED','COMPLETED')) or 'gres/gpu=5' not in tres:raise ValueError('prior allocation not closed')
+    spent=5*int(elapsed)
+    if spent+5*CAP>20*3600:raise ValueError('combined resource cap')
+    return dict(job=job,state=state,elapsed_seconds=int(elapsed),allocated_gpus=5,gpu_seconds=spent,combined_gpu_hours_cap=(spent+5*CAP)/3600)
 def setup():
     sys.path.insert(0,str(ROOT/'source/src'));sys.path.insert(0,str(ROOT))
     os.environ.update(LOGGING_DIR=str(ROOT),SUPERIMAGE_DIR=str(B/'aira-dojo/build/superimage'),MLE_BENCH_DATA_DIR=str(ROOT/'no-official-data'),HF_HUB_OFFLINE='1',TRANSFORMERS_OFFLINE='1',WANDB_DISABLED='true',PYTHON_DOTENV_DISABLED='1')
@@ -38,6 +48,7 @@ def schedule():
             for s in range(2) for j,a in enumerate(order if s==0 else order[::-1]) for t in range(3)]
 
 def prepare():
+    prior=prior_accounting()
     if ROOT.exists():raise FileExistsError('one-shot experiment root exists')
     ROOT.mkdir(mode=0o700);(ROOT/'source').mkdir();(ROOT/'starts').mkdir();(ROOT/'configs').mkdir();(ROOT/'service-cache/tmp').mkdir(parents=True)
     for tree in ('src','tests'):
@@ -54,6 +65,12 @@ def prepare():
         if (ROOT/'source'/rel).read_bytes()!=(here/'parser-baseline'/rel).read_bytes():raise ValueError('parser baseline drift: '+rel)
     for rel in ('src/dojo/core/solvers/utils/response.py','src/dojo/utils/code_parsing.py','src/dojo/utils/python_code_blocks.py'):
         shutil.copyfile(here/'parser-candidate'/rel,ROOT/'source'/rel)
+    # Common transport correction, not a treatment: JSON cannot encode DictConfig.
+    p=ROOT/'source/src/dojo/core/solvers/llm_helpers/generic_llm.py'
+    raw=p.read_text();needle='self.generation_kwargs = self.cfg.llm.generation_kwargs'
+    if raw.count(needle)!=1:raise ValueError('transport baseline drift')
+    p.write_text(raw.replace(needle,'self.generation_kwargs = OmegaConf.to_container(self.cfg.llm.generation_kwargs, resolve=True) if OmegaConf.is_config(self.cfg.llm.generation_kwargs) else self.cfg.llm.generation_kwargs'))
+    install_transport(here)
     shutil.copyfile(B/'root-failure-text-unstarted-gpu27-20260928-v1/root_trial_step_supervisor_20260927.py',ROOT/'root_trial_step_supervisor_20260927.py')
     donor=B/'forets-fresh-integration-20260914-ih6u0mpw';pinned=read(donor/'prepared.json')['files']
     for name in ('forets_gpu_binding_20260911.py','forets_native_cuda_identity_20260911.py','forets_native_gpu_binding_20260911.py','forets_opencl_allowlist_20260911.py','forets_opencl_readonly_ab.py'):
@@ -86,7 +103,7 @@ def prepare():
         cfg['id']=f'feedback-20261001-{s["index"]}'
         cfg['logger'].update(output_dir=str(ep/'native-log'),write_env_vars=False,use_wandb=False,print_config=False,use_console=False)
         cfg['metadata'].update(seed=s['seed'],script_id='task-feedback-real-20261001',git_commit_id=COMMIT,base_path=str(ROOT/'source'))
-        cfg['solver'].update(root_failure_randomization=False,acquisition_first_slot=False,record_slate_hashes=False,use_test_score=False,time_limit_secs=SECONDS,execution_timeout=480,checkpoint_path=str(ep/'unused-checkpoint'),max_debug_depth=2)
+        cfg['solver'].update(root_failure_randomization=False,acquisition_first_slot=False,record_slate_hashes=False,use_test_score=False,time_limit_secs=SECONDS,execution_timeout=480,step_limit=5,checkpoint_path=str(ep/'unused-checkpoint'),max_debug_depth=2)
         cfg['interpreter']['working_dir']=str(ep/'unused-work')
         cfg['interpreter']['timeout']=480
         cfg['interpreter'].setdefault('env',{}).update(PYTHONHASHSEED=str(s['seed']),OMP_NUM_THREADS='6',OPENBLAS_NUM_THREADS='6',MKL_NUM_THREADS='6',NUMEXPR_NUM_THREADS='6')
@@ -105,17 +122,17 @@ def prepare():
 #SBATCH --ntasks=1
 #SBATCH --gres=gpu:5
 #SBATCH --cpus-per-task=30
-#SBATCH --time=04:00:00
+#SBATCH --time=03:40:00
 #SBATCH --no-requeue
 set -euo pipefail
 umask 077
 export SLURM_CONF=/opt1/slurm/gpu-slurm.conf
 export PYTHON_DOTENV_DISABLED=1 PYTHONDONTWRITEBYTECODE=1
-timeout --signal=TERM --kill-after=20s 14340s {PY} -B {ROOT}/task_feedback_real_20261001.py controller
+timeout --signal=TERM --kill-after=20s 13140s {PY} -B {ROOT}/task_feedback_real_20261001.py controller
 '''
     (ROOT/'run.sbatch').write_text(batch)
     files={str(p.relative_to(ROOT)):sha(p) for p in ROOT.rglob('*') if p.is_file() and p.name!='.service.env'}
-    write(ROOT/'plan.json',dict(protocol='code-start-feedback-ABC-v1',base_commit=COMMIT,source_donor=str(SOURCE),utc=utc(),schedule=schedule(),starts=starts,files=files,run_seconds=SECONDS,allocation_seconds=CAP,gpu_hours_cap=20,paid_api=0,training=False,renewal='user confirmed 2026-10-01',protected_opened=False,final_evaluation=False))
+    write(ROOT/'plan.json',dict(protocol='code-start-feedback-ABC-v1',base_commit=COMMIT,source_donor=str(SOURCE),utc=utc(),schedule=schedule(),starts=starts,files=files,run_seconds=SECONDS,allocation_seconds=CAP,gpu_hours_cap=5*CAP/3600,prior_failed_allocation=prior,paid_api=0,training=False,renewal='user confirmed 2026-10-01',protected_opened=False,final_evaluation=False))
     setup();cpu();print(json.dumps({'status':'PREPARED','root':str(ROOT),'plan_sha256':sha(ROOT/'plan.json')}))
 
 def check():
@@ -124,6 +141,20 @@ def check():
     for f,h in p['files'].items():
         if sha(ROOT/f)!=h:raise ValueError('frozen file drift: '+f)
     return p
+
+def install_transport(here):
+    # Reuse the previously reviewed opt-in adapter; source donor lacked this patch.
+    patch=here/'0011-ForeTS-bounded-single-transport-20260909.patch'
+    shutil.copyfile(patch,ROOT/patch.name)
+    subprocess.run(['patch','--batch','--fuzz=0','--dry-run','-p1','-i',str(patch)],cwd=ROOT/'source',check=True,capture_output=True)
+    subprocess.run(['patch','--batch','--fuzz=0','-p1','-i',str(patch)],cwd=ROOT/'source',check=True,capture_output=True)
+    p=ROOT/'source/src/dojo/core/solvers/llm_helpers/backends/lite_llm.py';raw=p.read_text()
+    if raw.count('<= 300:')!=1 or raw.count('(0, 300]')!=1:raise ValueError('bounded adapter baseline')
+    raw=raw.replace('<= 300:','<= 600:').replace('(0, 300]','(0, 600]')
+    needle="        bounded = model_kwargs.pop('bounded_transport', False)"
+    if raw.count(needle)!=1:raise ValueError('bounded flag baseline')
+    raw=raw.replace(needle,needle+"\n        if model_kwargs.pop('bounded_max_attempts', 1) != 1:\n            raise ValueError('pilot permits one transport attempt only')")
+    p.write_text(raw)
 
 def cpu():
     p=check();setup()
@@ -163,7 +194,9 @@ def cpu():
 
 def submit():
     p=check()
+    if prior_accounting()!=p['prior_failed_allocation']:raise ValueError('prior accounting drift')
     if read(ROOT/'cpu.json')['plan_sha256']!=sha(ROOT/'plan.json'):raise ValueError('CPU check stale')
+    if read(ROOT/'transport-cpu.json')['plan_sha256']!=sha(ROOT/'plan.json'):raise ValueError('transport check stale')
     # Reuse exact previously validated images; hash before new real allocation.
     if sha(infra.TASK_IMAGE)!=infra.IMAGE_SHA or sha(ASSETS/'vllm.sif')!=infra.VLLM_SHA:raise ValueError('image drift')
     receipt=read(ASSETS/'complete.json')
@@ -178,7 +211,7 @@ def submit():
     r=subprocess.run(['sbatch','--parsable','--chdir='+str(ROOT),'--output='+str(ROOT/'allocation-%j.out'),'--error='+str(ROOT/'allocation-%j.err'),str(ROOT/'run.sbatch')],env=env,capture_output=True,text=True,timeout=25)
     job=r.stdout.strip().split(';')[0]
     if r.returncode or not job.isdigit():raise RuntimeError('submission ambiguous; no retry')
-    write(ROOT/'launch.json',dict(job=job,utc=utc(),plan_sha256=sha(ROOT/'plan.json')));print(json.dumps({'job':job,'status':'SUBMITTED','gpu_hours_cap':20}))
+    write(ROOT/'launch.json',dict(job=job,utc=utc(),plan_sha256=sha(ROOT/'plan.json')));print(json.dumps({'job':job,'status':'SUBMITTED','gpu_hours_cap':p['gpu_hours_cap'],'combined_gpu_hours_cap':p['prior_failed_allocation']['combined_gpu_hours_cap']}))
 
 def service():
     check()
@@ -335,7 +368,7 @@ def controller():
     write(ROOT/'claim.json',dict(job=job,utc=utc()));env=infra.clean_env();began=time.monotonic()
     base=['srun','--exclusive','--nodes=1','--ntasks=1']
     with (ROOT/'service.private.log').open('xb') as log:
-        server=subprocess.Popen(base+['--cpus-per-task=12','--gres=gpu:2','--time=03:59:00',str(PY),'-B',str(ROOT/'task_feedback_real_20261001.py'),'service'],env=env,stdout=log,stderr=log,start_new_session=True)
+        server=subprocess.Popen(base+['--cpus-per-task=12','--gres=gpu:2','--time=03:39:00',str(PY),'-B',str(ROOT/'task_feedback_real_20261001.py'),'service'],env=env,stdout=log,stderr=log,start_new_session=True)
         try:
             while time.monotonic()-began<900:
                 if server.poll() is not None:raise RuntimeError('service exited')

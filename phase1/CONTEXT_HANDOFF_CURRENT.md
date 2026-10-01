@@ -1,6 +1,6 @@
 # 当前短交接
 
-更新时间2026-10-01 07:30 UTC（香港15:30）。以下动态状态为最后观察，恢复后重核；不要重复提交。
+更新时间2026-10-01 07:40 UTC（香港15:40）。以下动态状态为最后观察，恢复后重核；不要重复提交。
 
 ## 用户请求与方向
 
@@ -9,7 +9,7 @@
 ## 正在运行，禁止重投
 
 - **15140 RUNNING gpu28**，唯一根目录 /research/d7/spc/yzyang4/task-feedback-real-20261001-v6。05:48:58提交、05:58:43服务ready（582.625秒）。冻结plan SHA 15751d3b52bdc42617df02006ce724635f4bf49df6e477686769fd1979d53403。
-- 07:26最后观察：首起点9条闭合/7条有效；第二起点A的episode9/10/11已启动，随后B12/13/14、C15/16/17自动按固定顺序运行。全18分母保留；并非全批完成。
+- 07:39最后观察：首起点9条闭合/7条有效；第二起点A的episode9也闭合，10/11仍运行，B12/13/14、C15/16/17尚未启动。总12启动/10闭合，随后按固定顺序自动继续；并非全批完成。
 - 5GPU（2服务+3任务）、30CPU、3h40 allocation上限；加失败15135总毛上限19.430555555555557 GPUh，不追加预算。其余owned12535 JobHeldUser，不触碰。
 - SSH linux5可用；Python /research/d7/spc/yzyang4/venvs/aira/bin/python；SLURM_CONF=/opt1/slurm/gpu-slurm.conf。任务镜像留在RTX3090 gpu28，不升级/换CPU/改投projgpu39。
 - 状态：远端Python -B /tmp/task-feedback-stage-20261001/task_feedback_status_20261001.py --errors。只看安全回执，勿cat私有日志；--v5仅旧失败包。
@@ -26,6 +26,8 @@
 B-A收益差：Spooky -0.008206462170339934，Pizza -0.04101889500119582。Tweet只有B修复成功，不能把初始缺分当零。B首次无切片事实，因此也不能把修复归因于切片信息。C目前没有额外优势，不追加提示补丁或追seed；原定第二起点继续，不能因正负换任务/起点/预算。A/B都自主提议TF-IDF，不能拿B自我改善宣传诊断收益。解释性的意图观察不是因果证明。
 
 readout-first-start / verify-first-start.json已复制到本地phase1/results/task_feedback_pilot_20261001/first_start/：18行完整分母，12启动/9闭合；独立复核当时47返回动作、13有效提交全部PASS（含第二起点初始动作）。initial_first_start.json证明实际原始/执行代码hash相同、两个有效任务初分相同、三任务B/C首条facts逐字相同；两个null不算数值相同。第二起点尚未形成完整配对，不能叫跨seed确认。
+
+07:38新增重要反证：单一事后参考“逐行复制整个tweet原文”在同一D_search为0.593357488208652（独立0.5933574882086521），高于B首起点修复0.5244375305167687。0GPU/API/fit，2454行，源码task_feedback_tweet_reference_20261001.py、回执tweet_copy_reference.json。参考结果未给运行agent，不是第四臂/同成本比较；不能再把B单次修复称有竞争力的提升。一次性远端输出/tmp/task-feedback-tweet-copy-reference-20261001，勿重跑或改规则追分。
 
 ## 试验契约与正确读法
 
@@ -49,7 +51,7 @@ A只见可信整体D_search分+日志+强普通反思；B/C额外事实同状态
 - task_feedback_initial_check_20261001.py：起点比较；其发布版为scripts/check_task_feedback_initial_state_20261001.py。
 - 意图/错误类助手只辅助解释，不构成根因或处理效应结论。
 - 主目录HEAD14188f8956d5becfc1f192455647d7c4aedd1f82有大量旧脏改，绝不整体stage/push/reset/rebase。
-- 干净发布工作树C:/Research/New/my_project/MLEvolve/_codex_tmp/publication-feedback-20261001，仅发布限定路径；上一公开head4d839e9dd205ab03c7b2b22cddd30b20c89c6af2。本次0L394与首批结果准备发布，成功后记录确切新SHA。
+- 干净发布工作树C:/Research/New/my_project/MLEvolve/_codex_tmp/publication-feedback-20261001，仅发布限定路径。首批结果07:33 UTC已push并ls-remote核对4ea4113f5ba70f9458681edcf8fe2442be04993a；12文件凭据命中0、4份结果原字节验证。当前补充全文复制参考，不能遗漏这一不利证据；未动学长分支或主目录旧积压。
 - 学长dojo-reproduce最后fetch e385f863cb531904e611e987f7f71606796db656，未修改学长分支。
 - 主目录CURRENT_DIRECTION与公开历史有1427行差异，**不可整份复制**；本次只分别插入0L394。
 - 原始token/密钥仍只在远端，不复制.env或generation.private、node.private、submission.private。

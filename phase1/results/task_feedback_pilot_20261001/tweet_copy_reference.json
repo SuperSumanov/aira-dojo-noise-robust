@@ -1,0 +1,18 @@
+{
+  "api_calls": 0,
+  "development_metric": 0.593357488208652,
+  "elapsed_seconds": 0.4781679487787187,
+  "gpu": 0,
+  "independent_metric": 0.5933574882086521,
+  "model_fit": false,
+  "n": 2454,
+  "observed_utc": "2026-10-01T07:38:51.705810+00:00",
+  "pilot_plan_sha256": "15751d3b52bdc42617df02006ce724635f4bf49df6e477686769fd1979d53403",
+  "public_input_sha256": "16f38536c9a6a8cdbcfac981d443f006c57dc585a8b8e03f13c5da9187ecbf7e",
+  "rule": "copy entire supplied tweet text, unchanged, for every row",
+  "scope": "Post-hoc diagnostic floor, chosen after observing the first-start repair result. Not a preregistered A/B/C arm, not fed to any running agent, no D_val/test/protected-cohort access. Does not match continuation compute cost.",
+  "script_sha256": "690e0aa70719c19ef8fa0a432b34f7030993648eff98f10aa71ee9891ac1f826",
+  "status": "PASS_NATIVE_AND_INDEPENDENT",
+  "submission_sha256": "0902ac7cb6019f791759cf216e7132476ac61e9d521bca3c5ff22281d7398185",
+  "task": "tweet-sentiment-extraction"
+}

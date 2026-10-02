@@ -1,0 +1,80 @@
+{
+  "classes": [
+    "EAP",
+    "HPL",
+    "MWS"
+  ],
+  "command": [
+    "/tmp/task-feedback-stage-20261001/spooky_classic_reference_20261002.py",
+    "fit"
+  ],
+  "exact_text_overlap": 0,
+  "feature_scope": "text only, train-fitted vocabulary and IDF; no IDs or query distributions or external task solutions",
+  "historical_reference_logloss": 0.37976945033064013,
+  "historical_reference_note": "Already development-selected best, not equal-budget prospective comparison",
+  "input_hashes": {
+    "test.csv": "72ac7c7efe695e6ab94a725841df133bdc3f0a8a69512bf8f847198edbc10fbf",
+    "train.csv": "201b0a89896e32434c777af221bd05de37ea56af57c3504057a040ad9f04e5e7"
+  },
+  "models": [
+    "word_nb",
+    "word_char_logistic"
+  ],
+  "normalized_text_overlap": 0,
+  "parameters": {
+    "char": {
+      "analyzer": "char",
+      "max_features": 50000,
+      "min_df": 2,
+      "ngram_range": [
+        3,
+        5
+      ],
+      "sublinear_tf": true
+    },
+    "logistic": {
+      "C": 4.0,
+      "max_iter": 300,
+      "solver": "lbfgs"
+    },
+    "nb": {
+      "alpha": 0.5
+    },
+    "word": {
+      "max_features": 30000,
+      "min_df": 2,
+      "ngram_range": [
+        1,
+        2
+      ],
+      "sublinear_tf": true
+    }
+  },
+  "public_dir": "/research/d7/spc/yzyang4/search-only-dev-spooky-20260927-v1/public",
+  "public_source_commit": "79cf7c6c02afc261e600cc1f88093d4f6ffb2bae",
+  "query_rows": 1761,
+  "resources": {
+    "cpu_threads": 1,
+    "gpu": 0,
+    "hard_fit_seconds": 240,
+    "paid_api": 0
+  },
+  "role": "CLASSICAL_TEXT_REFERENCE_NOT_NOVEL_AGENT_METHOD",
+  "seeds": [
+    102701,
+    102702,
+    102703
+  ],
+  "selection": "public stratified80/20 lowest logloss, fixed model-order ties; refit only winner; no later grid or calibration",
+  "shared_ids": 0,
+  "source_sha256": "6daff8177755dd809c5c204b5fb14d2d06a48c9947d4bac307ed18630dad902b",
+  "task": "spooky-author-identification",
+  "total_classifier_fits": 9,
+  "train_rows": 14099,
+  "versions": {
+    "numpy": "2.2.4",
+    "python": "3.12.13",
+    "scipy": "1.15.2",
+    "sklearn": "1.6.1"
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "above_historical": 0,
+  "baseline": 0.37976945033064013,
+  "boundary": "Task-model reference only. No new automatic correction, agent effect, independent generalization or same-budget E2E claim.",
+  "distinct_predictions": 1,
+  "fit_complete_sha256": "1b095a6afc034f40587ee795ccc167db2e5465e201b1056a85b3d21328ea0f89",
+  "median_logloss": 0.40026260614330406,
+  "rows": [
+    {
+      "fit_seconds": 24.523031275253743,
+      "improvement_over_historical": -0.02049315581266392,
+      "logloss": 0.40026260614330406,
+      "model": "word_char_logistic",
+      "plan_sha256": "330d772af84c56a9583001482437bb5b4d94fb11ecc2ee62d1ce6f2285d0d2cd",
+      "prediction_sha256": "2bf7d272783feaaf1b17310687c62ad2e721809cf6bd87372e7e56ddac43a469",
+      "public_source_commit": "79cf7c6c02afc261e600cc1f88093d4f6ffb2bae",
+      "seed": 102701
+    },
+    {
+      "fit_seconds": 23.860598650295287,
+      "improvement_over_historical": -0.02049315581266392,
+      "logloss": 0.40026260614330406,
+      "model": "word_char_logistic",
+      "plan_sha256": "330d772af84c56a9583001482437bb5b4d94fb11ecc2ee62d1ce6f2285d0d2cd",
+      "prediction_sha256": "2bf7d272783feaaf1b17310687c62ad2e721809cf6bd87372e7e56ddac43a469",
+      "public_source_commit": "79cf7c6c02afc261e600cc1f88093d4f6ffb2bae",
+      "seed": 102702
+    },
+    {
+      "fit_seconds": 23.92935093631968,
+      "improvement_over_historical": -0.02049315581266392,
+      "logloss": 0.40026260614330406,
+      "model": "word_char_logistic",
+      "plan_sha256": "330d772af84c56a9583001482437bb5b4d94fb11ecc2ee62d1ce6f2285d0d2cd",
+      "prediction_sha256": "2bf7d272783feaaf1b17310687c62ad2e721809cf6bd87372e7e56ddac43a469",
+      "public_source_commit": "79cf7c6c02afc261e600cc1f88093d4f6ffb2bae",
+      "seed": 102703
+    }
+  ],
+  "sample_variance": 0.0,
+  "status": "COMPLETE_EXPLORATORY_REFERENCE"
+}

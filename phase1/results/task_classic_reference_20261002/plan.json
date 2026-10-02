@@ -1,0 +1,74 @@
+{
+  "api_calls": 0,
+  "baseline_context": 0.6867376225783305,
+  "baseline_note": "historical best developer-selected program, not a matched-cost prospective arm",
+  "cpu_threads": 1,
+  "exact_shared_texts": 0,
+  "excluded": "identifiers, usernames, outcome/giver/flair, all at_retrieval, all fields not available at request; no external competition solutions",
+  "extra_numeric": "character and word count of title and edit-aware text",
+  "gpu": 0,
+  "hard_fit_seconds": 240,
+  "input_hashes": {
+    "test.json": "6cec69c8401eb2c4f12f451eea4ea283a05a1e4f7a9fb282f28cd0bf368d4e11",
+    "train.json": "1e19fe3dbe314ff4f71c716c60036d62e4ca4943ce0c1eb650d0a6219a03913d"
+  },
+  "invocation": [
+    "/tmp/task-feedback-stage-20261001/task_classic_reference_20261002.py",
+    "fit"
+  ],
+  "limitation": "known development task, exploratory reference only; no new held-out or same-budget agent effect",
+  "model_parameters": {
+    "histgbm": {
+      "early_stopping": false,
+      "l2_regularization": 1.0,
+      "learning_rate": 0.1,
+      "max_iter": 200,
+      "max_leaf_nodes": 15,
+      "min_samples_leaf": 20
+    },
+    "logistic": {
+      "C": 1.0,
+      "max_iter": 300,
+      "solver": "liblinear"
+    }
+  },
+  "models": [
+    "metadata_histgbm",
+    "text_metadata_logistic"
+  ],
+  "normalized_shared_texts": 0,
+  "numeric_columns": [
+    "requester_account_age_in_days_at_request",
+    "requester_days_since_first_post_on_raop_at_request",
+    "requester_number_of_comments_at_request",
+    "requester_number_of_comments_in_raop_at_request",
+    "requester_number_of_posts_at_request",
+    "requester_number_of_posts_on_raop_at_request",
+    "requester_number_of_subreddits_at_request",
+    "requester_upvotes_minus_downvotes_at_request",
+    "requester_upvotes_plus_downvotes_at_request",
+    "unix_timestamp_of_request",
+    "unix_timestamp_of_request_utc"
+  ],
+  "public_dir": "/research/d7/spc/yzyang4/search-only-dev-pizza-20260927-v1/public",
+  "public_source_commit": "79cf7c6c02afc261e600cc1f88093d4f6ffb2bae",
+  "query_rows": 300,
+  "role": "CLASSICAL_TASK_REFERENCE_NOT_AGENT_METHOD_OR_AUTOMATIC_REPAIR",
+  "seeds": [
+    102601,
+    102602,
+    102603
+  ],
+  "selection": "stratified public train80/20; highest validation AUC, model order breaks ties; refit ONLY chosen model on full public train",
+  "shared_ids": 0,
+  "source_sha256": "12e23489e4be56518935bfa14480ef2dc7500ab336e7d4e6d72c66c2d82345a6",
+  "text": "title + edit-aware request, TF-IDF word1-2,min_df2,max_features20000,train-fit only",
+  "total_task_model_fits": 9,
+  "train_rows": 2295,
+  "versions": {
+    "numpy": "2.2.4",
+    "python": "3.12.13",
+    "scipy": "1.15.2",
+    "sklearn": "1.6.1"
+  }
+}

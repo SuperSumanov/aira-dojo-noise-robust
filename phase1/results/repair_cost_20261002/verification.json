@@ -1,0 +1,19 @@
+{
+  "bindings": 356,
+  "correction": "Producer generation_unfinished counts explicit generation_failed.json only. It does not count all attempts lacking a completion; use this verifier supplement. Source timings and metric summaries unchanged.",
+  "episodes": 48,
+  "limitation": "An ideal invalid-reject timing ceiling on recorded actions is not actual wall-clock/GPU savings or an efficacy result.",
+  "plan_sha256": "518d84bee5464a6e411089b50f495bf7337b5428db78cb8315bed8fe0cfddd47",
+  "prepared_without_generation_receipt": [
+    {
+      "arm": "B",
+      "batch": "task-feedback-upper-20261002-v1",
+      "index": 2,
+      "prepared_without_generation_receipt": 1,
+      "task": "random-acts-of-pizza"
+    }
+  ],
+  "source_sha256": "17d0ebbe7b3461647be5509e834186e12a1e2e10c5e94406650d8b38086403a7",
+  "status": "PASS_WITH_CENSORING_CLARIFICATION",
+  "summary_sha256": "fe35321b9b0f356adcfed8755174e7c59365906aab98abf61f62af379aa8e746"
+}

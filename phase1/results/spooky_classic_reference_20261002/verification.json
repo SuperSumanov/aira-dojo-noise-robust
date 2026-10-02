@@ -1,0 +1,10 @@
+{
+  "distinct_predictions": 1,
+  "limitation": "Three selection seeds yield identical final predictions; not three independent outcomes. This is a classical task reference, not a new method.",
+  "plan_sha256": "330d772af84c56a9583001482437bb5b4d94fb11ecc2ee62d1ce6f2285d0d2cd",
+  "scope": "Independent saved split replay, model-selection check, linear logits/softmax and per-row log loss; shared TFIDF transform, no full fitting rerun.",
+  "seeds": 3,
+  "source_sha256": "92749f7070c6e7b45a0005d4dab5b7e5383a4d909535eb302b398869f88d2dd7",
+  "status": "PASS",
+  "summary_sha256": "78c7c2f186b925424ba8d0845278c6472c20163d56f217869f40ae6e5a067024"
+}

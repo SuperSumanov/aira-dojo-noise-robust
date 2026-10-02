@@ -1,0 +1,10 @@
+{
+  "distinct_prediction_files": 2,
+  "limitation": "Two histgbm full fits give identical predictions; three public selection seeds are not three independent tasks or data draws.",
+  "plan_sha256": "ec36fa23275162abf5e1f296e4da059a17ea267ae3f086d749d7b0bff4492bbe",
+  "rows": 3,
+  "scope": "Independent numeric matrix/imputation/scaling/logistic algebra and sklearn AUC; shared library HistGBM inference; no full model refit",
+  "source_sha256": "97df5c8c3b646f472f3fb5f995c457c7e5b678b19615569cc2d441f9b13d5898",
+  "status": "PASS",
+  "summary_sha256": "f8a217689dcedfb28b2279ed3fd19212cf9de859193dea9186c3a7ef6f55cd1c"
+}

@@ -1,0 +1,18 @@
+{
+  "api_calls": 0,
+  "bound": "An imaginary perfect post-generation invalid-reject gate can remove at most recorded invalid followup execution from this fixed returned stream. No claims about regenerated trajectories.",
+  "censoring": "missing generation/result receipts explicitly counted; bounds conditional on recorded subset, not total true saving",
+  "fits": 0,
+  "gpu": 0,
+  "limitations": "Generation overlaps task workers; GPU rates and idle allocation differ. Sum is not elapsed walltime, GPU hours or realizable savings. New diagnostics not timed.",
+  "metric": "component seconds only; generation completion plus returned followup execution; initial execution separate",
+  "role": "HISTORICAL_COMPONENT_COST_DIAGNOSIS_NOT_E2E_SAVINGS",
+  "roots": {
+    "task-feedback-local-edit-20261002-v1": "7bd84ff0e867043b2787d5c07af867eff50370f4e7b6bafa811ef215196c4139",
+    "task-feedback-real-20261001-v6": "15751d3b52bdc42617df02006ce724635f4bf49df6e477686769fd1979d53403",
+    "task-feedback-upper-20261002-v1": "9fe231e1b9e2da8cb51fadb7ff9844b074c10e8e3dc64d1d1f3be170fb0703a0"
+  },
+  "selection": "all48 original scheduled episodes; automatic ABC plus upper A/B primary",
+  "source_commit": "79cf7c6c02afc261e600cc1f88093d4f6ffb2bae",
+  "source_sha256": "63819398bba7c70b10f7aaadb4aeb55ef25c3158763cff43261cb1217590bb49"
+}

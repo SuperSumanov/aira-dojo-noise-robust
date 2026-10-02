@@ -1,0 +1,317 @@
+{
+  "bindings_sha256": "a8d021fa6a6004dfadacdb026ba7d56cd5ccece1131cd251c5c947dd828b3878",
+  "elapsed_seconds": 2.1767437988892198,
+  "metric_outcomes_used": false,
+  "plan_sha256": "518d84bee5464a6e411089b50f495bf7337b5428db78cb8315bed8fe0cfddd47",
+  "protected_opened": false,
+  "rows_sha256": "ac92ed2e095196bb4bc47bb1aaddf55b7916adc4b11a7c9e147504bd2719e641",
+  "status": "DESCRIPTIVE_COMPONENT_COST_ONLY",
+  "summaries": {
+    "random-acts-of-pizza:all": {
+      "episodes": 21,
+      "generation_completed": 65,
+      "generation_fraction_recorded": {
+        "median": 0.7411411380811997,
+        "n": 21,
+        "sample_variance": 0.038193515038114426,
+        "total": 15.436720737675266
+      },
+      "generation_seconds": {
+        "median": 364.912740085274,
+        "n": 21,
+        "sample_variance": 24213.12062297893,
+        "total": 6871.461847812636
+      },
+      "generation_unfinished": 0,
+      "initial_execution_seconds": {
+        "median": 36.34027633583173,
+        "n": 21,
+        "sample_variance": 544.0494607825206,
+        "total": 746.3338289104868
+      },
+      "invalid_execution_seconds": {
+        "median": 7.235057143960148,
+        "n": 21,
+        "sample_variance": 19599.066319695747,
+        "total": 1184.023659432074
+      },
+      "invalid_followups": 25,
+      "max_average_gate_seconds_per_completed_generation": {
+        "median": 1.808764285990037,
+        "n": 21,
+        "sample_variance": 1222.8758092456387,
+        "total": 297.5877025963467
+      },
+      "perfect_invalid_reject_fraction_recorded": {
+        "median": 0.010547214387638523,
+        "n": 21,
+        "sample_variance": 0.01779076525474355,
+        "total": 1.372618178073195
+      },
+      "returned_followups": 64,
+      "started_no_result": 1,
+      "valid_execution_seconds": {
+        "median": 52.51888394379057,
+        "n": 21,
+        "sample_variance": 27076.451130838086,
+        "total": 2572.278257095255
+      },
+      "valid_followups": 39
+    },
+    "random-acts-of-pizza:automatic": {
+      "episodes": 12,
+      "generation_completed": 47,
+      "generation_fraction_recorded": {
+        "median": 0.7239180755262399,
+        "n": 12,
+        "sample_variance": 0.038789021389992774,
+        "total": 8.60290104566559
+      },
+      "generation_seconds": {
+        "median": 396.0787897503469,
+        "n": 12,
+        "sample_variance": 7738.473941337601,
+        "total": 4992.95882671373
+      },
+      "generation_unfinished": 0,
+      "initial_execution_seconds": {
+        "median": 30.62298616056796,
+        "n": 12,
+        "sample_variance": 961.9187758659563,
+        "total": 397.94598347251303
+      },
+      "invalid_execution_seconds": {
+        "median": 17.15198711352423,
+        "n": 12,
+        "sample_variance": 24672.08961675459,
+        "total": 820.4973327978514
+      },
+      "invalid_followups": 20,
+      "max_average_gate_seconds_per_completed_generation": {
+        "median": 4.287996778381057,
+        "n": 12,
+        "sample_variance": 1540.264024391781,
+        "total": 205.76869937197384
+      },
+      "perfect_invalid_reject_fraction_recorded": {
+        "median": 0.034958048624296564,
+        "n": 12,
+        "sample_variance": 0.022492927976755256,
+        "total": 1.0299584450182586
+      },
+      "returned_followups": 46,
+      "started_no_result": 1,
+      "valid_execution_seconds": {
+        "median": 78.21697592828423,
+        "n": 12,
+        "sample_variance": 39135.13830173483,
+        "total": 1732.759026110638
+      },
+      "valid_followups": 26
+    },
+    "spooky-author-identification:all": {
+      "episodes": 6,
+      "generation_completed": 24,
+      "generation_fraction_recorded": {
+        "median": 0.20508186879471937,
+        "n": 6,
+        "sample_variance": 0.028041915779219655,
+        "total": 1.6024439841953444
+      },
+      "generation_seconds": {
+        "median": 278.92147921177093,
+        "n": 6,
+        "sample_variance": 1638.0911581556666,
+        "total": 1587.6706903718878
+      },
+      "generation_unfinished": 0,
+      "initial_execution_seconds": {
+        "median": 100.9431883484358,
+        "n": 6,
+        "sample_variance": 11871.871736277079,
+        "total": 632.9582776601892
+      },
+      "invalid_execution_seconds": {
+        "median": 1017.2622910282807,
+        "n": 6,
+        "sample_variance": 188431.98529109493,
+        "total": 4791.295444502728
+      },
+      "invalid_followups": 19,
+      "max_average_gate_seconds_per_completed_generation": {
+        "median": 254.31557275707019,
+        "n": 6,
+        "sample_variance": 11776.999080693433,
+        "total": 1197.823861125682
+      },
+      "perfect_invalid_reject_fraction_recorded": {
+        "median": 0.7114712528946119,
+        "n": 6,
+        "sample_variance": 0.07189206403051547,
+        "total": 3.6535879664318
+      },
+      "returned_followups": 23,
+      "started_no_result": 1,
+      "valid_execution_seconds": {
+        "median": 151.95451686554588,
+        "n": 6,
+        "sample_variance": 7923.822728985973,
+        "total": 678.5219597350806
+      },
+      "valid_followups": 4
+    },
+    "spooky-author-identification:automatic": {
+      "episodes": 6,
+      "generation_completed": 24,
+      "generation_fraction_recorded": {
+        "median": 0.20508186879471937,
+        "n": 6,
+        "sample_variance": 0.028041915779219655,
+        "total": 1.6024439841953444
+      },
+      "generation_seconds": {
+        "median": 278.92147921177093,
+        "n": 6,
+        "sample_variance": 1638.0911581556666,
+        "total": 1587.6706903718878
+      },
+      "generation_unfinished": 0,
+      "initial_execution_seconds": {
+        "median": 100.9431883484358,
+        "n": 6,
+        "sample_variance": 11871.871736277079,
+        "total": 632.9582776601892
+      },
+      "invalid_execution_seconds": {
+        "median": 1017.2622910282807,
+        "n": 6,
+        "sample_variance": 188431.98529109493,
+        "total": 4791.295444502728
+      },
+      "invalid_followups": 19,
+      "max_average_gate_seconds_per_completed_generation": {
+        "median": 254.31557275707019,
+        "n": 6,
+        "sample_variance": 11776.999080693433,
+        "total": 1197.823861125682
+      },
+      "perfect_invalid_reject_fraction_recorded": {
+        "median": 0.7114712528946119,
+        "n": 6,
+        "sample_variance": 0.07189206403051547,
+        "total": 3.6535879664318
+      },
+      "returned_followups": 23,
+      "started_no_result": 1,
+      "valid_execution_seconds": {
+        "median": 151.95451686554588,
+        "n": 6,
+        "sample_variance": 7923.822728985973,
+        "total": 678.5219597350806
+      },
+      "valid_followups": 4
+    },
+    "tweet-sentiment-extraction:all": {
+      "episodes": 21,
+      "generation_completed": 66,
+      "generation_fraction_recorded": {
+        "median": 0.5633796421426,
+        "n": 21,
+        "sample_variance": 0.06079152698976622,
+        "total": 13.892677011578872
+      },
+      "generation_seconds": {
+        "median": 436.68617688212544,
+        "n": 21,
+        "sample_variance": 31252.604632269777,
+        "total": 7375.407196016749
+      },
+      "generation_unfinished": 0,
+      "initial_execution_seconds": {
+        "median": 89.89220137894154,
+        "n": 21,
+        "sample_variance": 1275.7703811217475,
+        "total": 1559.6373261006083
+      },
+      "invalid_execution_seconds": {
+        "median": 33.36136408220045,
+        "n": 21,
+        "sample_variance": 54489.77268908241,
+        "total": 3448.952642749995
+      },
+      "invalid_followups": 51,
+      "max_average_gate_seconds_per_completed_generation": {
+        "median": 10.229317790071946,
+        "n": 21,
+        "sample_variance": 3372.8237788677843,
+        "total": 871.7819268566091
+      },
+      "perfect_invalid_reject_fraction_recorded": {
+        "median": 0.08510347798867249,
+        "n": 21,
+        "sample_variance": 0.047604072179197564,
+        "total": 3.7272830740644682
+      },
+      "returned_followups": 66,
+      "started_no_result": 0,
+      "valid_execution_seconds": {
+        "median": 0.0,
+        "n": 21,
+        "sample_variance": 24161.734889557665,
+        "total": 1873.603117146762
+      },
+      "valid_followups": 15
+    },
+    "tweet-sentiment-extraction:automatic": {
+      "episodes": 12,
+      "generation_completed": 48,
+      "generation_fraction_recorded": {
+        "median": 0.48481355722883973,
+        "n": 12,
+        "sample_variance": 0.060539318318170825,
+        "total": 7.695170712413902
+      },
+      "generation_seconds": {
+        "median": 461.61283335031476,
+        "n": 12,
+        "sample_variance": 2068.9232237199153,
+        "total": 5596.22314135218
+      },
+      "generation_unfinished": 0,
+      "initial_execution_seconds": {
+        "median": 57.23772695683874,
+        "n": 12,
+        "sample_variance": 1590.3262336056582,
+        "total": 693.7232299617026
+      },
+      "invalid_execution_seconds": {
+        "median": 274.92310586292297,
+        "n": 12,
+        "sample_variance": 65807.18536540515,
+        "total": 3338.500906082103
+      },
+      "invalid_followups": 39,
+      "max_average_gate_seconds_per_completed_generation": {
+        "median": 68.73077646573074,
+        "n": 12,
+        "sample_variance": 4112.949085337822,
+        "total": 834.6252265205258
+      },
+      "perfect_invalid_reject_fraction_recorded": {
+        "median": 0.26903077822999,
+        "n": 12,
+        "sample_variance": 0.055273731507326854,
+        "total": 3.4249825947141113
+      },
+      "returned_followups": 48,
+      "started_no_result": 0,
+      "valid_execution_seconds": {
+        "median": 0.0,
+        "n": 12,
+        "sample_variance": 27787.668482143843,
+        "total": 921.4823332140222
+      },
+      "valid_followups": 9
+    }
+  }
+}

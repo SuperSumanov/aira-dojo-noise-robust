@@ -10,6 +10,16 @@ metadata:
 
 **用法:每次设计实验、下结论、写汇报前,逐条过一遍这个清单。我已经因为漏掉其中一条(「免费」)白做两天。**
 
+## U. 2026-10-02 学长新增端到端对照与 policy 起步报告
+
+来源是学长分支 `dojo-reproduce@1a4b06212727f45b6410a9d007803a0d0581219b`，提交时间22:03:54香港；文件 `src/mle_critic/docs/outcomes/1002/MORE_E2E_AND_INIT_POLICY_TRAINING.md`。远端读取前凭据形状扫描0命中、保护cohort标记0命中；原文件SHA256 `38f64015e6a81ea1628106a58181b9f4311b75ec9c4b0bac3e647a259504d918`。未修改学长代码或分支。
+
+- 新Google Quest、Petfinder、Tweet的qwen-medium比较加入random/short。报告均值未显示critic稳定超过廉价参照；这是学长汇总，不是我方独立复算或因果确认。short实际是最短三选随机二，不是最短二；random为随机评分前三再随机二。
+- 表格取7200秒绘图时点，配置的完整run上限为86400秒；不能写成完整两小时硬预算终点。Petfinder random为4/7有journal、selected为2/5；Tweet MCTS为0/8，不将缺失填零，也不只比较幸存run就称同预算优越。
+- Google Quest MCTS的avg_selected为0.3203、avg_max为0.4200。它提示最终选择可能值得解释，但oracle差不等于可部署收益，不自动重开已关闭的score-channel路线。
+- Spooky的MCTS/ForeTS来自0918、short/random来自0930，不能将跨日期均值当纯筛选器效果。学长倾向不再押critic，建议Spooky后续同时段比较；该建议不是我方已证critic不可能有效。
+- 学长policy数据使用proposal到首个valid的Debug episode，以终点回报共享给中间节点；报告68.7%失败节点被救回，链长1至17，口径不同于旧25run的139/139。SFT已开始运行，尚无训练后端到端收益。其底座训练属于学长工作，不改变我方禁止agent底座微调/RL的边界。
+
 ## Q. 2026-09-19：新ForeTS/MCTS comparison来源与0918报告
 
 - 用户明确恢复工作；学长新数据统一在共享盘`mle/comparison`，约3–4天更新。不得把“目录未同步到本地”当成学长未上传。

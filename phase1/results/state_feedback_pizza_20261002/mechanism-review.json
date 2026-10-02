@@ -1,0 +1,44 @@
+{
+  "status": "descriptive_closed_trace_review",
+  "summary_sha256": "c3bbcbf9ccce5ef356dfa7722d1607aa8fc63a009b280072f143321e66e09097",
+  "numerical_gate": false,
+  "method_expansion": false,
+  "reviews": [
+    {
+      "index": 1,
+      "arm": "B",
+      "seed": 103302,
+      "steps": [2, 3, 4],
+      "node_hashes": ["d8e2644a7c3fa4256ee6fb4fa2516a724d3e1db5f905675d37463d248f56ae8e", "479776701c79d63ffc16bfaabaa07a4ee018c90571f503e6c63dd9c79d28a077", "340a642d5ad2cdb1b410bb00c5d037d50fbe1b2436c5ae76549891d6c6dbce34"],
+      "observation": "Ridge plus retuned blend scored below incumbent. Successful CHECK compared original models and blend weights in 1.1526791339274496 seconds. Final code used the checked optimized three-model weights, but external AUC stayed below incumbent.",
+      "interpretation_limit": "Returned observation and later code align; this is not a randomized counterfactual of evidence use. The model attributed loss to Ridge although weight tuning changed simultaneously and the printed rounded Ridge weight was zero. Exact zero contribution was not independently measured; no claim of causal attribution."
+    },
+    {
+      "index": 6,
+      "arm": "B",
+      "seed": 103301,
+      "steps": [2, 3, 4],
+      "node_hashes": ["2c451f80a167356ea75e8f44aee77d2f35d0487310943d7452b6720e48c04f1f", "73665d57023ac78888c0000d0ec778d9c93dd30098ed0c36f7078ec74f0dfa08", "dd670a41aee9613affff51b3068061c098f2763aa73cd2f8a0f3b7b0f7a47721"],
+      "observation": "Calibrated SVM had low public OOF and printed zero blend weight. After external decline, CHECK compared ordinary blends in 0.16884793085046113 seconds. Final code picked the OOF-best checked temperature, but did not exceed the initial external score.",
+      "interpretation_limit": "It is inaccurate to say this model ignored all feedback. Its claimed robust non-grid option was still selected among several options on the same OOF; robustness was not established."
+    },
+    {
+      "index": 5,
+      "arm": "D",
+      "seed": 103302,
+      "steps": [4],
+      "node_hashes": ["f452af2c6768f0bb40b4aba0a8299d1fd924ecd8667f45ef78bce7531b608d3e"],
+      "observation": "Reused features and CatBoost predictions; retuned XGB/LGB grids and rank blend. Public OOF increased, external score decreased. This is an ordinary hyperparameter/ensemble refinement, not a newly discovered diagnostic correction."
+    },
+    {
+      "index": 7,
+      "arm": "C",
+      "seed": 103302,
+      "steps": [1],
+      "node_hashes": ["49700f2e60bebb08476fee292218124345381e6eeab84ccf3ee8445a2bf85e2c"],
+      "observation": "Added LR and checked four ordinary blends; selected incumbent3. Independent sensitivity review confirmed exact equality of the saved prediction vector, not just a tied rounded metric."
+    }
+  ],
+  "scope": "All six valid new solutions and both successful checks reviewed; all eight assigned trajectories stay in the denominator. No new execution or generation and no raw candidate code exported.",
+  "decision": "Keep ordinary retained state as infrastructure, not a new paper method. Do not expand this recipe, rescue seeds, or change the frozen gate. This small exploratory result does not establish universal ineffectiveness or equivalence."
+}

@@ -1,0 +1,105 @@
+{
+  "candidates": [
+    {
+      "arm": "B",
+      "delta": -0.00173403491987556,
+      "exact_prediction_equal": false,
+      "index": 1,
+      "request_bootstrap_95_interval": [
+        -0.00855058598421432,
+        0.004964422386988815
+      ],
+      "seed": 103302,
+      "step": 2
+    },
+    {
+      "arm": "B",
+      "delta": -0.0022123893805309214,
+      "exact_prediction_equal": false,
+      "index": 1,
+      "request_bootstrap_95_interval": [
+        -0.008910846687395307,
+        0.004544367376225766
+      ],
+      "seed": 103302,
+      "step": 4
+    },
+    {
+      "arm": "D",
+      "delta": -0.006876345371920611,
+      "exact_prediction_equal": false,
+      "index": 5,
+      "request_bootstrap_95_interval": [
+        -0.021766622817507766,
+        0.006338196603683291
+      ],
+      "seed": 103302,
+      "step": 4
+    },
+    {
+      "arm": "B",
+      "delta": -0.0025412580722314893,
+      "exact_prediction_equal": false,
+      "index": 6,
+      "request_bootstrap_95_interval": [
+        -0.008969146137287724,
+        0.003917274575460382
+      ],
+      "seed": 103301,
+      "step": 2
+    },
+    {
+      "arm": "B",
+      "delta": -0.0024515666108585465,
+      "exact_prediction_equal": false,
+      "index": 6,
+      "request_bootstrap_95_interval": [
+        -0.010226321454197575,
+        0.0053231882324802525
+      ],
+      "seed": 103301,
+      "step": 4
+    },
+    {
+      "arm": "C",
+      "delta": 0.0,
+      "exact_prediction_equal": true,
+      "index": 7,
+      "request_bootstrap_95_interval": [
+        0.0,
+        0.0
+      ],
+      "seed": 103302,
+      "step": 1
+    }
+  ],
+  "decision_gate_unchanged": false,
+  "elapsed_seconds": 6.246992803178728,
+  "input_hashes": {
+    "episode-0/action-0/submission.private.csv": "078aa62d87a98329147b0e550e8ed64680d08bf1e1037e8c307fd4c43be0edff",
+    "episode-1/action-0/submission.private.csv": "078aa62d87a98329147b0e550e8ed64680d08bf1e1037e8c307fd4c43be0edff",
+    "episode-1/action-2/submission.private.csv": "016dcde72df054f67ed45855664abbaf5f3811ada04114516624d02d29a5b4f0",
+    "episode-1/action-4/submission.private.csv": "3eb842fa3a9c7fa9304f04a667cc38d2fb4d6203f6856c0030246da8e0ae2ac0",
+    "episode-2/action-0/submission.private.csv": "078aa62d87a98329147b0e550e8ed64680d08bf1e1037e8c307fd4c43be0edff",
+    "episode-3/action-0/submission.private.csv": "078aa62d87a98329147b0e550e8ed64680d08bf1e1037e8c307fd4c43be0edff",
+    "episode-4/action-0/submission.private.csv": "078aa62d87a98329147b0e550e8ed64680d08bf1e1037e8c307fd4c43be0edff",
+    "episode-5/action-0/submission.private.csv": "078aa62d87a98329147b0e550e8ed64680d08bf1e1037e8c307fd4c43be0edff",
+    "episode-5/action-4/submission.private.csv": "29653e46dd73ab137aeaa0b7207b28b004da54121629ea4fdf6c62c059e86f16",
+    "episode-6/action-0/submission.private.csv": "078aa62d87a98329147b0e550e8ed64680d08bf1e1037e8c307fd4c43be0edff",
+    "episode-6/action-2/submission.private.csv": "7ba87d45f48b6821f7f42161af21801804384a67da1230e89ce75529081872f6",
+    "episode-6/action-4/submission.private.csv": "dd4267da5dd95944a14e42fe6126fbe0585f0fa88772cbac696237b3cedd8be2",
+    "episode-7/action-0/submission.private.csv": "078aa62d87a98329147b0e550e8ed64680d08bf1e1037e8c307fd4c43be0edff",
+    "episode-7/action-1/submission.private.csv": "078aa62d87a98329147b0e550e8ed64680d08bf1e1037e8c307fd4c43be0edff"
+  },
+  "limitations": "Assumes exchangeable requests within label; not user-clustered. Same reused development set; historical/within-run selection not corrected. Conditional intervals are neither seed uncertainty nor independent generalization evidence; no significance or equivalence claims.",
+  "negative_count": 226,
+  "positive_count": 74,
+  "producer_sha256": "6ada5cc50a8fc9ea38184970d6b91f9978c8bcf0410981a8ca4fd9a6e775bbdb",
+  "replicates": 2000,
+  "requests": 300,
+  "scope": "Post-readout descriptive paired within-label request bootstrap for all six valid new candidates. No new fitting, generation or execution.",
+  "seed": 103401,
+  "self_tests": 3,
+  "status": "PASS",
+  "summary_sha256": "c3bbcbf9ccce5ef356dfa7722d1607aa8fc63a009b280072f143321e66e09097"
+}

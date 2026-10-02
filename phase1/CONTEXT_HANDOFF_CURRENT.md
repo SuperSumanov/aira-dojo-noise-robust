@@ -1,33 +1,39 @@
 # 当前短交接
 
-更新2026-10-02 07:30UTC。先读CURRENT_DIRECTION顶部0L408；0L407实验已结束。用户本轮窗口06:11–09:11UTC，当前完成了有限资格验证和复核，不能称完整三小时实验。研究盘续期已确认。未修改学长分支；保护cohort、D_val、官方test未读。
+更新2026-10-02 16:35 UTC（香港10月3日00:35）。用户要求在会话内持续三小时，窗口14:38:55—17:38:55 UTC；尚未到交付时点，不另挂周期任务。研究盘总配额4TB、原路径、授权至2027-08-30，非实时剩余空间。
 
-## 科学裁决
+## 已完成的真实实验
 
-不扩大当前“强制事前诊断→修正”配方，不补seed/改提示追正。15227：Pizza/Spooky×2生成seed×A普通/B强制诊断=8条真实续跑，全部保留原强起点；四配对差0，两任务配对增量median/variance均0。12有效评分=8初态+4新解；新解0改善、1持平、3退步，其余2代码错误/1超时/1格式失败。两个任务各自median>0的事前条件未过。小样本平局不等于策略等价或主动诊断普遍无效。
+15272已COMPLETED，3466秒×4GPU，3.851111111111111 GPU小时；本轮GPU实验已结束，不是排队或继续运行。根 /research/d7/spc/yzyang4/state-feedback-pizza-20261002-v1，plan 4b95fcc575c2f8fa438bd3737d05ec6f40ffa0aa2bfdfc89de38e76e71979b5b。8条=Pizza一任务×2合并初始化/生成seed×4臂，每条720秒/4调用×4096token/代码300秒。
 
-A四条也主动选择CHECK。8检查1成功、5超时、2错误；唯一成功的Pizza B测量不满足自定添加线性模型条件，仍增加LR C搜索和等秩组合，新解AUC0.6822231523558957低于0.6867376225783306。机制评判于读最终分数前冻结在decision_diagnosis_{preoutcome_review,review_seed2}_20261002.json，不能见分后改故事。当前没有“自动找到规则库外且胜强参照”的新主张，新颖性也未过MLToolBench/AgentX-Model/Gome等近邻门。
+A冷重建+遮蔽初态stdout，B保留状态+遮蔽，C冷重建+可见，D普通持久agent+可见。以后所有stdout/错误/D_search均返回，允许重新取证。D是已有普通参照，不是新方法。全成功cell重放的冷基线不是最优依赖感知重建或原AIRA完整程序执行的等价物。
 
-## 实验与证据
+全部8条保留起点AUC0.6867376225783306；五种配对差与交互的2seed中位数/样本方差均0，冻结数值门false。独立逐样本AUC及比较代数PASS，14有效评分=8初态+6新解，0改善/1精确相同预测/5较低。24生成、10格式拒收、5条耗尽总时限，完整分母保留。summary c3bbcbf9ccce5ef356dfa7722d1607aa8fc63a009b280072f143321e66e09097；verification a0bbde230c21331ad65005283d424608cf4620975b15cdcfc27a47044e204ae2。
 
-远端 /research/d7/spc/yzyang4/decision-diagnosis-20261002-v1。
-plan SHA939f9470529ad6c14f5b6670bb1bec4cd99398026f6fbdbea662c8d29e32c48e；
-summary SHAe9fbefaca5ab86bddf40e21bcc3c6665234eedfc17a3e4230693b27f5705646b。
-job15227 COMPLETED/3231秒/4GPU=3.59GPUh；all-closed与closed均有，服务已关闭，最后squeue无该活跃作业。旧12535未触碰，无新增GPU/API/训练。
-独立逐样本logloss、逐正负对AUC、起点配对/保留结果/配置与GPU命名空间复核PASS；CPU预检8配置/8 SDK/4循环，读出3单测。安全包在publication worktree phase1/results/decision_diagnosis_20261002；无标签/逐行预测/原始候选或模型回复。
+源码/汇总在publication worktree phase1/scripts/state_*_20261002.py 和results/state_feedback_pizza_20261002。只导出聚合，不含逐样本预测、标签、原始模型/终端输出或候选代码。export-receipt覆盖远端9文件；census、mechanism-review、sensitivity是明确追加的分析，不谎称原始export包括它们。
 
-起点来自4个固定历史池（有一批中止，不能说四批全闭合）；实际两起点分别来自upper-v1 episode13/action3与real-v6 episode6/action2，均是旧开发最优选择。D_search复用、每任务单一起点/两个生成seed，不是终评、训练seed复现或显著性证明。旧15213保持ABORTED_DESCRIPTIVE，不补跑。
+## 科学裁决与机制
 
-## 输出通道问题和修复边界
+不扩当前配方，不补seed、不热改/追正，不给普通缓存起新方法名。保留状态组产生5新有效解和2次CHECK，冷组1新解；不能忽略格式/启动/策略差异就声称纯缓存效应。两个B的CHECK只用1.1526791339274496/0.16884793085046113秒，后续采用所检查的权重/温度，仍未提高起点；所以不能笼统声称反馈未被看到或使用。D一条重训完整原程序，另一条普通网格精修。新增线性成员/融合都属已知参考，不是开放新发现。
 
-原固定Jupyter client在error/timeout丢弃此前text_output。日志确认6失败检查已有部分流被丢；包括进度、重复起点评分，也有模型比较，不能都算有用新证据。只有“未返回测量”已证，不把它混成“未产生测量”。
-publication src/dojo/core/interpreters/jupyter/jupyter_client.py仅两处分支保留text_output/data_output；6合成原/修复消息测试PASS，成功/错误/超时标志不变。未改实际15227运行源码，未验证修复会带来效果。尾部截断仍可能挡住早期证据；不把客户端修复说成端到端通道完美。
-原轮询对120秒配置的实际最长检查返回141.96156877209432秒，真实成本已计入900秒总上限；勿说严格120秒硬停。census received_public_metric_text只是非穷尽关键词标记，episode7有起点指标但未命中；不用于结论/门限。
+一个可疑解释是“Ridge导致退步”：当时融合权重也变了，Ridge打印权重四舍五入为0。只支持错误归因风险，未确认实际精确零贡献，也没证明修正归因就改善搜索。不能把它立即升级新方法。
 
-## 仓库与继续入口
+读分后单CPU敏感性检查6.246992803178728秒，2000次、seed103401、允许开发集300请求（不是受保护Target-300 runs）。五负差的条件95%区间全部跨0，第六份预测精确等同起点。其条件IID请求重采样不修复已见开发集、历史起点选优、候选适应性，不是独立泛化或seed不确定性。停止扩大是管理裁决，非统计无效/等价证明。
 
-主checkout C:/Research/New/my_project/MLEvolve/aira-dojo-codex-20260813，HEAD14188f8956d5becfc1f192455647d7c4aedd1f82且大量旧脏改，禁止whole-stage/reset/push。只同步新方向顶部和本交接。
-publication worktree C:/Research/New/my_project/MLEvolve/_codex_tmp/publication-feedback-20261001。
-预结果源码/机制审查已快进公开2d1e6702c8dfc3fcb4383eeb7cdc435ffd19a9f0，独立ls-remote核对；完整结果与共享输出修复尚待白名单提交/推送。学长dojo-reproduce最后核4ee7afd9970974f4bfae4b7a9d51591aca5c0b48，未修改。
-远端staging /tmp/task-feedback-stage-20261001；ssh linux5；Python /research/d7/spc/yzyang4/venvs/aira/bin/python。SCP必须等exit0后再执行。新metadata脚本均用-B，轻量CPU，不反复G0/下载/模型验收。
-当前无本地exec待等。下一步只完成安全发布及用户判断；不以填满时长为由再投GPU。若保留研究问题，必须先有区别于现有近邻且能带来决策相关证据的窄干预，不能靠更多analyzer工程宣布突破。长期经验见memory/MEMORY.md。
+## 资格与不得误恢复
+
+15267已完成885秒×2GPU；原两任务资格门false。Pizza两次公开OOF/诊断/submission精确一致；Spooky两次embedding OOF漂移，TFIDF与最终submission一致，根因未证明。含首次构建的分量合计成本比中位Pizza1.9545907617346723、Spooky2.1011132841969764；不是2000倍E2E，先暖后冷固定顺序且完整冷流程是阶段求和非单独第三轨迹。
+资格plan e9926dcf48ea6385f542142e070faa811ab528a644bfa29970aa4bf750740af3，verification0772468c61d78c8005205d9318d42557366d973a8bbba39e49b33ce51f6bbb37。
+原 state-feedback-factorial-20261002-v1 16条只准备，未提交且不得自动提交；Pizza8是按事前身份合格缩范围的另一次探索，不算跨任务门通过。
+
+旧15227两任务8条/4配对全0，0/8触及900秒总deadline；不要重新归咎总时间不够。旧15213中止不救回。AST85修改筛查已做，追加26含18重复，不再作为创新；局部路由随机反证896/1000不低于观测oracle，不复活。
+
+## 约束与操作
+
+不更新agent底座，不读first960/Target300/522、D_val或官方test。只用明确开放开发任务。旧critic训练、HCE、多保真、Probe、score-channel、K>=1 lookahead保持关闭。普通缓存、局部编辑、诊断工具、经验遮蔽均有强近邻；论文无新效益/新颖性通过结论。
+
+16:22UTC fetch后公开myfork/phase1-value-critic仍f0d18a56ea8ebd2dbb2836d4037602e022fca7a8；学长dojo-reproduce仍1a4b06212727f45b6410a9d007803a0d0581219b。学长1002 outcome先安全读，SHA38f64015e6a81ea1628106a58181b9f4311b75ec9c4b0bac3e647a259504d918。新short/random结果与policy起步记在ADVISOR_DIRECTIVES的U节，不是我方训练授权，不改学长分支。
+
+主dirty checkout C:/Research/New/my_project/MLEvolve/aira-dojo-codex-20260813；不可整体stage/reset。发布worktree C:/Research/New/my_project/MLEvolve/_codex_tmp/publication-feedback-20261001，detached f0d18a56，目前本轮尚未commit/push。已有前轮复盘/计划/学长建议编辑已阅读；发布只明确白名单、结果/源码SHA对齐、密钥扫描、快进，禁止force。git只用命令级safe.directory。
+
+SSH linux5；Python /research/d7/spc/yzyang4/venvs/aira/bin/python；SLURM_CONF=/opt1/slurm/gpu-slurm.conf。MLE镜像gpu28/gpu27兼容，不能projgpu39或静默CPU。旧12535 JobHeldUser不动。SCP退出0再用文件。密钥只远端.env。当前下一步：完成关键解释/邻近文献核对与安全发布，不新启一个同义harness实验。

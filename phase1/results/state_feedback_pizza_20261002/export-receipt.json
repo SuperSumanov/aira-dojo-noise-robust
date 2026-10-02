@@ -1,0 +1,18 @@
+{
+  "files": {
+    "actions.csv": "a437b69e140c9f474c1aa20094db613e056918b4ef4f7ff388a75925c404e5ae",
+    "all-closed.json": "b51979855d6959ad755942042b07a2313b521be55fd58646bd76515e6925e4ee",
+    "closed.json": "f3e6d4d1bdf5e1f332778eed592c7952067c44d48689d1ca80f20a3ed034249b",
+    "launch.json": "08dc5e09a35f729a776cdf670c4367e676b2a9225e168a81140f787022fe37a8",
+    "pairs.csv": "ed97fab2b93dd34df39f01ec0cd206e065fa33d9d113c98072afe70dc907a5b4",
+    "plan.json": "4b95fcc575c2f8fa438bd3737d05ec6f40ffa0aa2bfdfc89de38e76e71979b5b",
+    "runs.csv": "7de25cb6ae27de6f320cd26ced3aba401bec2af0a5e70ae9726e145f8f5e312f",
+    "summary.json": "c3bbcbf9ccce5ef356dfa7722d1607aa8fc63a009b280072f143321e66e09097",
+    "verification.json": "a0bbde230c21331ad65005283d424608cf4620975b15cdcfc27a47044e204ae2"
+  },
+  "plan_sha256": "4b95fcc575c2f8fa438bd3737d05ec6f40ffa0aa2bfdfc89de38e76e71979b5b",
+  "private_payloads_exported": 0,
+  "producer_sha256": "2a7a871391f9ffe2720397df37e16bd5fbca1f04121b0f13a72cd3bd780e805d",
+  "scope": "Closed all-assigned run/action aggregates and hashes; no labels, per-example predictions, raw candidate code or transcripts.",
+  "status": "PASS"
+}

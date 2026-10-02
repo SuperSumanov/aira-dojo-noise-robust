@@ -1,0 +1,112 @@
+{
+  "status": "VERIFIED",
+  "gate": false,
+  "plan_sha256": "e9926dcf48ea6385f542142e070faa811ab528a644bfa29970aa4bf750740af3",
+  "source_sha256": "616fb94567f84612988c2c51c9c0f5fd993f9286160d5380b1f7eed107432fff",
+  "rows": [
+    {
+      "task": "random-acts-of-pizza",
+      "seed": 103101,
+      "exact_equal": true,
+      "warm_query_seconds": 0.10745018115267158,
+      "cold_query_with_rebuild_seconds": 224.77517413790338,
+      "marginal_speed_ratio": 2091.9013046476816,
+      "full_reuse_seconds": 229.95029666787013,
+      "full_discard_then_query_seconds": 454.61235008295625,
+      "source_initial_seconds": 228.4923080089502,
+      "commit": "f0d18a56ea8ebd2dbb2836d4037602e022fca7a8",
+      "plan_sha256": "e9926dcf48ea6385f542142e070faa811ab528a644bfa29970aa4bf750740af3",
+      "full_workflow_speed_ratio": 1.977002668274779
+    },
+    {
+      "task": "random-acts-of-pizza",
+      "seed": 103102,
+      "exact_equal": true,
+      "warm_query_seconds": 0.11051579401828349,
+      "cold_query_with_rebuild_seconds": 199.8578784679994,
+      "marginal_speed_ratio": 1808.4101032195938,
+      "full_reuse_seconds": 214.2734447750263,
+      "full_discard_then_query_seconds": 414.0146192240063,
+      "source_initial_seconds": 212.81287468690425,
+      "commit": "f0d18a56ea8ebd2dbb2836d4037602e022fca7a8",
+      "plan_sha256": "e9926dcf48ea6385f542142e070faa811ab528a644bfa29970aa4bf750740af3",
+      "full_workflow_speed_ratio": 1.9321788551945658
+    },
+    {
+      "task": "spooky-author-identification",
+      "seed": 103101,
+      "exact_equal": false,
+      "warm_query_seconds": 0.11117535782977939,
+      "cold_query_with_rebuild_seconds": 172.09971003304236,
+      "marginal_speed_ratio": 1548.0023036808593,
+      "full_reuse_seconds": 165.47129319398664,
+      "full_discard_then_query_seconds": 337.45522646210156,
+      "source_initial_seconds": 164.2656664228998,
+      "commit": "f0d18a56ea8ebd2dbb2836d4037602e022fca7a8",
+      "plan_sha256": "e9926dcf48ea6385f542142e070faa811ab528a644bfa29970aa4bf750740af3",
+      "full_workflow_speed_ratio": 2.039358126406212
+    },
+    {
+      "task": "spooky-author-identification",
+      "seed": 103102,
+      "exact_equal": false,
+      "warm_query_seconds": 0.0636699500028044,
+      "cold_query_with_rebuild_seconds": 208.08321453002281,
+      "marginal_speed_ratio": 3268.154200228799,
+      "full_reuse_seconds": 178.88148956699297,
+      "full_discard_then_query_seconds": 386.8971286402084,
+      "source_initial_seconds": 177.77551926206797,
+      "commit": "f0d18a56ea8ebd2dbb2836d4037602e022fca7a8",
+      "plan_sha256": "e9926dcf48ea6385f542142e070faa811ab528a644bfa29970aa4bf750740af3",
+      "full_workflow_speed_ratio": 2.1628684419877406
+    }
+  ],
+  "tasks": [
+    {
+      "task": "random-acts-of-pizza",
+      "pairs": 2,
+      "exact_equal": 2,
+      "marginal_ratio_median": 1950.1557039336376,
+      "marginal_ratio_sample_variance": 40183.63064357034,
+      "full_ratio_median": 1.9545907617346723,
+      "full_ratio_sample_variance": 0.0010045871095249465
+    },
+    {
+      "task": "spooky-author-identification",
+      "pairs": 2,
+      "exact_equal": 0,
+      "marginal_ratio_median": 2408.0782519548293,
+      "marginal_ratio_sample_variance": 1479461.2735987366,
+      "full_ratio_median": 2.1011132841969764,
+      "full_ratio_sample_variance": 0.007627399027524378
+    }
+  ],
+  "files": {
+    "episode-0/action-0/result.json": "a561dc9f42afb65fc75a4fe2575a0fe7b50a2e4049f0ae2f67cb0793ccca2434",
+    "episode-0/action-0/public-diagnostic.json": "35e502d961f7d9d39b7f351dd56e1a9e2ba9bec9f9644def83d43c2b26905f54",
+    "episode-0/action-0/binding.json": "a1fbfdc300be03e232786f5d7637f9037676bfd0d43efaa5d51c98f4b875ed00",
+    "episode-0/action-1/result.json": "9f90fdf4e8e3fcf9560827beb43238dfb6942a9ed5f218e4b1ea0654ab36a670",
+    "episode-0/action-1/public-diagnostic.json": "35e502d961f7d9d39b7f351dd56e1a9e2ba9bec9f9644def83d43c2b26905f54",
+    "episode-0/action-1/binding.json": "40995d31616e3340fc93bd3e78717dd69eb07e8cb4795f3fe32bf2eb81831d8f",
+    "episode-0/action-2/result.json": "ac33a98d86a7bb359dc505db55284948220bfba5771b991541fe4d2d4e1cf70f",
+    "episode-0/action-2/public-diagnostic.json": "35e502d961f7d9d39b7f351dd56e1a9e2ba9bec9f9644def83d43c2b26905f54",
+    "episode-0/action-2/binding.json": "3ce536bbe66f7dd78e33e0d9b81baea1bf4df1be93d86984c44c92accde052f8",
+    "episode-0/action-3/result.json": "c9d6b1a6b18d38cfb7fcaeeed7d795d49d2bdc6592b894d6b7bee4332becf68c",
+    "episode-0/action-3/public-diagnostic.json": "35e502d961f7d9d39b7f351dd56e1a9e2ba9bec9f9644def83d43c2b26905f54",
+    "episode-0/action-3/binding.json": "e9ef3cf0b5c033a66670202fa0225897e71f59b0134bb81e4e9e53a6b1ec6d1a",
+    "episode-1/action-0/result.json": "b47e74916c48d6aa3dbfae83350a7835ca9c6fbfcbf0a759c0e1df2a5d1f8162",
+    "episode-1/action-0/public-diagnostic.json": "b2ed2106668b9268c2c44c4345511d1b9ede1a7e89b68b1e7a4f866d1bf6e93a",
+    "episode-1/action-0/binding.json": "0c4395f26207f3c194de65a9f91ef2e7571d0972382688666bdd3eef72ee559f",
+    "episode-1/action-1/result.json": "9284f4ed37e191f806c94a9b4486ecd210eee4d5e4363fb9e9a6571b05446cbd",
+    "episode-1/action-1/public-diagnostic.json": "a0b469f5475958c86236acd0dfd6c4713df26b9628d5ea99b2973f21231458e6",
+    "episode-1/action-1/binding.json": "4d4508637aad992eadfb808fd97370013f89a611d89b75177888a5a4ed3f341a",
+    "episode-1/action-2/result.json": "06697dce20dd32a5e918683bc095f7958d7a580dbcbdf11d1e8bac24b3423fa5",
+    "episode-1/action-2/public-diagnostic.json": "917a9082484fb42d402a3a717b3d22e1bf0e35a54a3e642e5cf1c28a35769872",
+    "episode-1/action-2/binding.json": "549413c78de3b58ef1bef0d38c1eed5b35db2f404a51e829e519784cef03c616",
+    "episode-1/action-3/result.json": "98e1264f5a8a715932f5495e7d499618af8f28ca977d9db0e50ea38111d11941",
+    "episode-1/action-3/public-diagnostic.json": "8a7747db0838fbd51621de198a171e511df47d0459f90769f169fb76cc9c03f4",
+    "episode-1/action-3/binding.json": "5e9724cdebc1896e35ec124910b5fc0f697cc145c5966277ac9abe3f9960491e"
+  },
+  "hidden_scores_read": false,
+  "limitations": "cold follows warm; no feedback-caused improvement claim; full discard workflow is sum of measured phases, not separately executed third trajectory"
+}

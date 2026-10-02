@@ -751,3 +751,7 @@ phase1/tests/test_decision_diagnosis*_20261002.py -text diff whitespace=cr-at-eo
 phase1/tests/test_diagnosis_partial_output_20261002.py -text diff whitespace=cr-at-eol
 phase1/decision_diagnosis*_20261002.json -text diff whitespace=cr-at-eol
 phase1/results/decision_diagnosis_20261002/* -text diff whitespace=cr-at-eol
+# Closed state-reuse/factorial artifacts bind exact cross-platform bytes.
+phase1/scripts/state_*_20261002.py -text diff whitespace=cr-at-eol
+phase1/results/state_reuse_qualification_20261002/* -text diff whitespace=cr-at-eol
+phase1/results/state_feedback_pizza_20261002/* -text diff whitespace=cr-at-eol

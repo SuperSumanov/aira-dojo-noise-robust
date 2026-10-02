@@ -1,0 +1,184 @@
+{
+  "checked_bindings": 14,
+  "contrasts": {
+    "B_minus_A": {
+      "median": 0.0,
+      "n": 2,
+      "sample_variance": 0.0
+    },
+    "C_minus_A": {
+      "median": 0.0,
+      "n": 2,
+      "sample_variance": 0.0
+    },
+    "D_minus_B": {
+      "median": 0.0,
+      "n": 2,
+      "sample_variance": 0.0
+    },
+    "D_minus_C": {
+      "median": 0.0,
+      "n": 2,
+      "sample_variance": 0.0
+    },
+    "interaction": {
+      "median": 0.0,
+      "n": 2,
+      "sample_variance": 0.0
+    }
+  },
+  "limitations": "independent AUC pair algebra and effect arithmetic; uses same approved development labels; verifies transport not evidence causality, novel method or final-test benefit",
+  "numerical_gate": false,
+  "plan_sha256": "4b95fcc575c2f8fa438bd3737d05ec6f40ffa0aa2bfdfc89de38e76e71979b5b",
+  "prompt_chronology": [
+    {
+      "index": 0,
+      "ledger_cells": 1,
+      "prior_returns_checked": 1,
+      "step": 1
+    },
+    {
+      "index": 0,
+      "ledger_cells": 1,
+      "prior_returns_checked": 1,
+      "step": 2
+    },
+    {
+      "index": 0,
+      "ledger_cells": 1,
+      "prior_returns_checked": 1,
+      "step": 3
+    },
+    {
+      "index": 0,
+      "ledger_cells": 1,
+      "prior_returns_checked": 1,
+      "step": 4
+    },
+    {
+      "index": 1,
+      "ledger_cells": 1,
+      "prior_returns_checked": 1,
+      "step": 1
+    },
+    {
+      "index": 1,
+      "ledger_cells": 1,
+      "prior_returns_checked": 1,
+      "step": 2
+    },
+    {
+      "index": 1,
+      "ledger_cells": 2,
+      "prior_returns_checked": 2,
+      "step": 3
+    },
+    {
+      "index": 1,
+      "ledger_cells": 3,
+      "prior_returns_checked": 3,
+      "step": 4
+    },
+    {
+      "index": 2,
+      "ledger_cells": 1,
+      "prior_returns_checked": 1,
+      "step": 1
+    },
+    {
+      "index": 3,
+      "ledger_cells": 1,
+      "prior_returns_checked": 1,
+      "step": 1
+    },
+    {
+      "index": 3,
+      "ledger_cells": 1,
+      "prior_returns_checked": 1,
+      "step": 2
+    },
+    {
+      "index": 3,
+      "ledger_cells": 1,
+      "prior_returns_checked": 1,
+      "step": 3
+    },
+    {
+      "index": 4,
+      "ledger_cells": 1,
+      "prior_returns_checked": 1,
+      "step": 1
+    },
+    {
+      "index": 4,
+      "ledger_cells": 1,
+      "prior_returns_checked": 1,
+      "step": 2
+    },
+    {
+      "index": 5,
+      "ledger_cells": 1,
+      "prior_returns_checked": 1,
+      "step": 1
+    },
+    {
+      "index": 5,
+      "ledger_cells": 1,
+      "prior_returns_checked": 1,
+      "step": 2
+    },
+    {
+      "index": 5,
+      "ledger_cells": 1,
+      "prior_returns_checked": 1,
+      "step": 3
+    },
+    {
+      "index": 5,
+      "ledger_cells": 1,
+      "prior_returns_checked": 1,
+      "step": 4
+    },
+    {
+      "index": 6,
+      "ledger_cells": 1,
+      "prior_returns_checked": 1,
+      "step": 1
+    },
+    {
+      "index": 6,
+      "ledger_cells": 1,
+      "prior_returns_checked": 1,
+      "step": 2
+    },
+    {
+      "index": 6,
+      "ledger_cells": 2,
+      "prior_returns_checked": 2,
+      "step": 3
+    },
+    {
+      "index": 6,
+      "ledger_cells": 3,
+      "prior_returns_checked": 3,
+      "step": 4
+    },
+    {
+      "index": 7,
+      "ledger_cells": 1,
+      "prior_returns_checked": 1,
+      "step": 1
+    },
+    {
+      "index": 7,
+      "ledger_cells": 2,
+      "prior_returns_checked": 2,
+      "step": 2
+    }
+  ],
+  "status": "PASS",
+  "summary_sha256": "c3bbcbf9ccce5ef356dfa7722d1607aa8fc63a009b280072f143321e66e09097",
+  "trajectories": 8,
+  "valid_scores_recomputed": 14,
+  "verifier_sha256": "8f2659a7b8ad29e5e8c073eec3b51220bb3029e5ac937a48e438055722d6a8ce"
+}

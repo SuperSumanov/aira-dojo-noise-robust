@@ -1,0 +1,119 @@
+{
+  "arms": {
+    "A": {
+      "format_rejects": 3,
+      "gain_median": 0.0,
+      "gain_sample_variance": 0.0,
+      "generated": 5,
+      "replay_failed": 0,
+      "runs": 2,
+      "successful_checks": 0,
+      "unreturned_executions": 1,
+      "valid_new": 0
+    },
+    "B": {
+      "format_rejects": 2,
+      "gain_median": 0.0,
+      "gain_sample_variance": 0.0,
+      "generated": 8,
+      "replay_failed": 0,
+      "runs": 2,
+      "successful_checks": 2,
+      "unreturned_executions": 0,
+      "valid_new": 4
+    },
+    "C": {
+      "format_rejects": 2,
+      "gain_median": 0.0,
+      "gain_sample_variance": 0.0,
+      "generated": 6,
+      "replay_failed": 1,
+      "runs": 2,
+      "successful_checks": 0,
+      "unreturned_executions": 0,
+      "valid_new": 1
+    },
+    "D": {
+      "format_rejects": 3,
+      "gain_median": 0.0,
+      "gain_sample_variance": 0.0,
+      "generated": 5,
+      "replay_failed": 0,
+      "runs": 2,
+      "successful_checks": 0,
+      "unreturned_executions": 1,
+      "valid_new": 1
+    }
+  },
+  "candidate_deltas": [
+    {
+      "arm": "B",
+      "delta": -0.001734034919875671,
+      "index": 1,
+      "metric": 0.6850035876584549,
+      "seed": 103302,
+      "step": 2
+    },
+    {
+      "arm": "B",
+      "delta": -0.0022123893805310324,
+      "index": 1,
+      "metric": 0.6845252331977996,
+      "seed": 103302,
+      "step": 4
+    },
+    {
+      "arm": "D",
+      "delta": -0.006876345371920611,
+      "index": 5,
+      "metric": 0.67986127720641,
+      "seed": 103302,
+      "step": 4
+    },
+    {
+      "arm": "B",
+      "delta": -0.0025412580722316003,
+      "index": 6,
+      "metric": 0.684196364506099,
+      "seed": 103301,
+      "step": 2
+    },
+    {
+      "arm": "B",
+      "delta": -0.0024515666108586576,
+      "index": 6,
+      "metric": 0.6842860559674719,
+      "seed": 103301,
+      "step": 4
+    },
+    {
+      "arm": "C",
+      "delta": 0.0,
+      "index": 7,
+      "metric": 0.6867376225783306,
+      "seed": 103302,
+      "step": 1
+    }
+  ],
+  "counts": {
+    "budget_exhausted": 5,
+    "format_rejects": 10,
+    "generated": 24,
+    "new_improved": 0,
+    "new_tied": 1,
+    "new_valid": 6,
+    "new_worse": 5,
+    "successful_checks": 2,
+    "trajectories": 8
+  },
+  "decision": "Do not expand this recipe; retain ordinary persistence as infrastructure, not a method claim.",
+  "gpu_hours": 3.851111111111111,
+  "limitations": "Two combined run seeds, one historical start/task, reused development set, unequal successful action exposure; all assigned retained. Counts and code alignment do not establish feedback causality. No statistical equivalence claim.",
+  "producer_sha256": "33c44767f402d5ba88e78662bbfa61e0196210e159507eea57b941f7acd864dd",
+  "status": "PASS",
+  "successful_check_wall_seconds": [
+    1.1526791339274496,
+    0.16884793085046113
+  ],
+  "summary_sha256": "c3bbcbf9ccce5ef356dfa7722d1607aa8fc63a009b280072f143321e66e09097"
+}

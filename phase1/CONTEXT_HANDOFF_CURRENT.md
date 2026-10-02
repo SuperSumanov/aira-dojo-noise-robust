@@ -12,6 +12,10 @@ Spooky既有10轨迹凸组合事后机会界：只有3条多份独特预测，�
 
 ## 证据与发布
 
+20:51UTC：追加六份已冻结预测的只读导数诊断，无新模型/GPU/API。NB事后缩权重最大改善上界0.0000759844345499471，风格三份开发预测的最优凸混合权重均0；条件导数区间跨0，不证明总体漂移。证据results/blend_direction_20261003（summary5ae447eda40a26291b412ecb2cbfa3edd0c9378e545e86b8ad8d40ef7527043c），只追加诊断，不改原结果或停止门。
+
+20:49UTC已确认第一批48文件快进发布，研究分支ad2eff1c005e093cf2fc60e3c50b6d2e962a6eea，学长仍1a4b06212727f45b6410a9d007803a0d0581219b。精确字节/源码/结果/凭据扫描PASS；以下20:40为发布前历史。导数补充尚待发布，确切新SHA以Git为准。
+
 publication：C:/Research/New/my_project/MLEvolve/_codex_tmp/publication-feedback-20261001
 主dirty checkout：C:/Research/New/my_project/MLEvolve/aira-dojo-codex-20260813
 只更新主checkout方向/短交接，不bulk stage/reset，保留其他用户改动。

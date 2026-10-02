@@ -1,0 +1,180 @@
+{
+  "api": 0,
+  "bindings": [
+    {
+      "array_sha256": "e57482c5d94794d07068d9db5ef151bf333f81b230203d7698c6849d0dd6d261",
+      "index": 0,
+      "recipe": "nb_ratio"
+    },
+    {
+      "array_sha256": "f28072c71aff4cf576af6a820c4b2a874389ba61ce4378c1a80c928631a2f251",
+      "index": 1,
+      "recipe": "nb_ratio"
+    },
+    {
+      "array_sha256": "fe5b310c3c4f8a933ee0b610a5958f081b2e85e5bb83e2dc6a68775edb2fd01a",
+      "index": 2,
+      "recipe": "nb_ratio"
+    },
+    {
+      "array_sha256": "415791eaffb8162e165cb65e7adb3a4c2d1df82d7458e3bd81a7f1f2e97302f6",
+      "index": 0,
+      "recipe": "style"
+    },
+    {
+      "array_sha256": "607faf8001f2920f517394034dfbf11ab1e8cc364839718db4d1a3c27acb892f",
+      "index": 1,
+      "recipe": "style"
+    },
+    {
+      "array_sha256": "43333ae266ccca1f249a6cbcd613e899616dcf1b8de87388d98ddcfe5146e0d9",
+      "index": 2,
+      "recipe": "style"
+    }
+  ],
+  "elapsed_seconds": 5.288053855765611,
+  "gpu": 0,
+  "groups": {
+    "nb_ratio": {
+      "conditional_median_slope_ci": [
+        -0.051503838400756966,
+        0.027284376655887354
+      ],
+      "maximum_query_oracle_gain_upper": 7.59844345499471e-05,
+      "median_query_oracle_gain": 6.968775540105998e-05,
+      "median_query_slope": -0.00955345406217755,
+      "public_negative_directions": 3,
+      "query_nonnegative_directions": 0,
+      "runs": 3
+    },
+    "style": {
+      "conditional_median_slope_ci": [
+        -0.06726339234430531,
+        0.16113418259599113
+      ],
+      "maximum_query_oracle_gain_upper": 1e-12,
+      "median_query_oracle_gain": 0.0,
+      "median_query_slope": 0.06015811686915302,
+      "public_negative_directions": 3,
+      "query_nonnegative_directions": 3,
+      "runs": 3
+    }
+  },
+  "limitations": "Historical selected parent; same task and adaptively reused D_search. Direction is descriptive empirical convex geometry, not proof of population shift. Query oracle is label-fitted and never deployed. Conditional bootstrap resamples the same requests jointly across3 fits; no task/training/adaptive-selection uncertainty correction.",
+  "new_task_model_fits": 0,
+  "plan_sha256": "297a7903310d27aeb126daab6bee4e250ae90e181a1d6a06c29b4567eb1b3001",
+  "role": "POSTHOC_DIRECTION_DIAGNOSIS_NOT_POLICY_OR_NEW_METHOD",
+  "rows": [
+    {
+      "deployed_improvement": -0.0017043765726920124,
+      "index": 0,
+      "public_boundary_zero_optimal": false,
+      "public_oracle_gain": 0.002501104070850302,
+      "public_oracle_gain_upper": 0.002501104071850303,
+      "public_oracle_weight": 0.11012800115967222,
+      "public_selected_weight": 0.11012799472312812,
+      "public_slope_at_zero": -0.05759614460355312,
+      "query_boundary_zero_optimal": false,
+      "query_oracle_gain": 6.968775540105998e-05,
+      "query_oracle_gain_upper": 6.968775640106147e-05,
+      "query_oracle_weight": 0.015295861672105539,
+      "query_slope_at_zero": -0.00955345406217755,
+      "recipe": "nb_ratio",
+      "seed": 103901,
+      "summary_sha256": "f0238c5aef32e889c8d4e9fc56fcdca0fb960ba73049c33258092e2fa6d282a1"
+    },
+    {
+      "deployed_improvement": -0.0016718851203692542,
+      "index": 1,
+      "public_boundary_zero_optimal": false,
+      "public_oracle_gain": 0.0023694165306152315,
+      "public_oracle_gain_upper": 0.002369416531615232,
+      "public_oracle_weight": 0.10812599796731695,
+      "public_selected_weight": 0.10812598586630509,
+      "public_slope_at_zero": -0.054722937146261974,
+      "query_boundary_zero_optimal": false,
+      "query_oracle_gain": 6.464981739690012e-05,
+      "query_oracle_gain_upper": 6.464981839690015e-05,
+      "query_oracle_weight": 0.01469595786091037,
+      "query_slope_at_zero": -0.00920942957552273,
+      "recipe": "nb_ratio",
+      "seed": 103902,
+      "summary_sha256": "f0238c5aef32e889c8d4e9fc56fcdca0fb960ba73049c33258092e2fa6d282a1"
+    },
+    {
+      "deployed_improvement": -0.0014209138943875876,
+      "index": 2,
+      "public_boundary_zero_optimal": false,
+      "public_oracle_gain": 0.0021269086829788786,
+      "public_oracle_gain_upper": 0.0021269086839788807,
+      "public_oracle_weight": 0.10199515925063898,
+      "public_selected_weight": 0.1019951652524775,
+      "public_slope_at_zero": -0.05090618845685023,
+      "query_boundary_zero_optimal": false,
+      "query_oracle_gain": 7.59844335499471e-05,
+      "query_oracle_gain_upper": 7.59844345499471e-05,
+      "query_oracle_weight": 0.01588810625618775,
+      "query_slope_at_zero": -0.010063581840728624,
+      "recipe": "nb_ratio",
+      "seed": 103903,
+      "summary_sha256": "f0238c5aef32e889c8d4e9fc56fcdca0fb960ba73049c33258092e2fa6d282a1"
+    },
+    {
+      "deployed_improvement": -0.00035137484199693203,
+      "index": 0,
+      "public_boundary_zero_optimal": false,
+      "public_oracle_gain": 0.00013679929520443723,
+      "public_oracle_gain_upper": 0.00013679929620443723,
+      "public_oracle_weight": 0.004686772417441927,
+      "public_selected_weight": 0.004686773279961451,
+      "public_slope_at_zero": -0.06977653842615208,
+      "query_boundary_zero_optimal": true,
+      "query_oracle_gain": 0.0,
+      "query_oracle_gain_upper": 1e-12,
+      "query_oracle_weight": 0.0,
+      "query_slope_at_zero": 0.06265282170408584,
+      "recipe": "style",
+      "seed": 104001,
+      "summary_sha256": "718c1b94811325474d5e2ff53049446cc170b0d06348aa95ed12b790be16d2a5"
+    },
+    {
+      "deployed_improvement": -0.0003229719135223741,
+      "index": 1,
+      "public_boundary_zero_optimal": false,
+      "public_oracle_gain": 0.00012901952163252295,
+      "public_oracle_gain_upper": 0.00012901952263252297,
+      "public_oracle_weight": 0.004461758457395715,
+      "public_selected_weight": 0.004461756327478259,
+      "public_slope_at_zero": -0.06952556353168454,
+      "query_boundary_zero_optimal": true,
+      "query_oracle_gain": 0.0,
+      "query_oracle_gain_upper": 1e-12,
+      "query_oracle_weight": 0.0,
+      "query_slope_at_zero": 0.060126667780110825,
+      "recipe": "style",
+      "seed": 104002,
+      "summary_sha256": "718c1b94811325474d5e2ff53049446cc170b0d06348aa95ed12b790be16d2a5"
+    },
+    {
+      "deployed_improvement": -0.00034312114084361633,
+      "index": 2,
+      "public_boundary_zero_optimal": false,
+      "public_oracle_gain": 0.00014645087107190147,
+      "public_oracle_gain_upper": 0.00014645087207190146,
+      "public_oracle_weight": 0.0046934998748114545,
+      "public_selected_weight": 0.004693499392422573,
+      "public_slope_at_zero": -0.07740735164599198,
+      "query_boundary_zero_optimal": true,
+      "query_oracle_gain": 0.0,
+      "query_oracle_gain_upper": 1e-12,
+      "query_oracle_weight": 0.0,
+      "query_slope_at_zero": 0.06015811686915302,
+      "recipe": "style",
+      "seed": 104003,
+      "summary_sha256": "718c1b94811325474d5e2ff53049446cc170b0d06348aa95ed12b790be16d2a5"
+    }
+  ],
+  "runs_sha256": "a4863702a571977a704a0155c39f068a82a4ab8e5165e6e8399441532cf06ac5",
+  "source_sha256": "433a82ee45552d5cabad82f5a2749253db73df6d8af3793da787842b2c85bcf1",
+  "status": "PASS"
+}

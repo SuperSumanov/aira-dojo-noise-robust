@@ -21,6 +21,8 @@ Pizza全部25轨迹的两成员混合事后oracle（16自动/9人工）：自动
 
 ### 科学裁决与后续门
 
+20:51UTC补充只读导数诊断已闭合（5.288053855765611 CPU秒、0GPU/API/task-model fit）：六份冻结预测全纳入。NB三seed的开发集零点导数均负，但最优事后权重仅约0.015；其最大改善数值上界0.0000759844345499471、中位0.00006968775540105998，不足以支持通过缩小权重救回路线。风格三seed零点导数均正，凸性说明在这些固定开发样本上所有正权重均不优于原解，事后最优权重0。两组零点导数条件bootstrap区间均跨0，不能据此证明总体分布偏移。public OOF方向/权重不必迁移到实际查询预测，但本轮不能区分样本噪声、历史选择、折模型与最终预测对象差异的因果份额。结果results/blend_direction_20261003，plan297a7903310d27aeb126daab6bee4e250ae90e181a1d6a06c29b4567eb1b3001，summary5ae447eda40a26291b412ecb2cbfa3edd0c9378e545e86b8ad8d40ef7527043c；不用于部署或换门。
+
 目前证据只支持“这些历史强起点周围，现有轻量配方和候选池组合未显示足够收益”，不支持任务已饱和、critic/反馈普遍无效或所有ensemble无效。新方法收益仍未确认，不因此上调顶会把握。停止扩大本窗口配方，不救回超时、不补种子、不继续重命名harness。
 
 下一项投入先回答具体可执行的改进机会在哪里，并排除历史起点选优、任务/预算不匹配与已知工具收益；没有这一事实，不再开大反馈矩阵。需要同工具强基线、相同硬件和总预算，以及新未触碰确认集；目前没有新的生产GPU矩阵。禁止读取first960/Target300/522、D_val或官方test；不恢复旧critic/HCE/多保真/Probe/score-channel/K>=1路线。
@@ -29,6 +31,8 @@ Pizza全部25轨迹的两成员混合事后oracle（16自动/9人工）：自动
 来源：https://arxiv.org/html/2506.15692v1 ，https://arxiv.org/html/2603.01692v1 ，https://arxiv.org/html/2606.11045 ，https://arxiv.org/html/2609.40303v1 。
 
 ### 证据位置
+
+补充查重边界（仅相关部分阅读，不将作者结果算我方实证）：Rethinking Self-Evolving Agent Skills已分析固定模型下成功/失败反馈、稀疏改进及验证选择，所以“收益稀疏、失败经验可能有用”本身不新颖（https://arxiv.org/html/2608.02636）。When Validation Stops Learning已讨论验证门错失改善机会，但其构造推动任务和策略更新不同于本项目，不能把本轮无收益归因于门太严（https://arxiv.org/html/2609.10873）。Lost in the Folds区分折模型与同数据不同种子ensemble；这是解释训练/查询对象不一致时的提醒，并未证明本轮负差的原因（https://arxiv.org/html/2605.18329）。不因这些论文换名启动技能库、调整门限或新增模型。
 
 本地安全表：phase1/results/opportunity_checks_20261003/，包含六个检查目录和export-receipt.json；31个聚合文件，不含标签行、预测行、候选代码、模型原始回复或私有权重。导出receipt SHA256 ab6b2a8d9afd056bae25179ee510f3a4f4dfdcac056cd168dfccc1a76338025f。
 远端根均在/research/d7/spc/yzyang4/：calibration-opportunity-20261003-v1、nb-ratio-opportunity-20261003-v1、style-opportunity-20261003-v1、convex-opportunity-20261003-v1、pairmix-opportunity-20261003-v1、pairmix-sensitivity-20261003-v1。确切计划/源码/表哈希见各plan与summary，不重新执行已封口analyze。

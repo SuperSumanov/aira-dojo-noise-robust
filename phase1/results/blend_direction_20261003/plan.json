@@ -1,0 +1,27 @@
+{
+  "api": 0,
+  "bootstrap_replicates": 5000,
+  "bootstrap_seed": 104401,
+  "commit": "ad2eff1c005e093cf2fc60e3c50b6d2e962a6eea",
+  "comparison": "Both closed recipes, all3 seeds each, no outcome-based exclusion or fitted replacement.",
+  "cpu_cap_seconds": 180,
+  "endpoint": "public OOF vs already-used external development derivative at zero mixture weight; exact 1D empirical oracle",
+  "gpu": 0,
+  "limitations": "Historical selected parent; same task and adaptively reused D_search. Direction is descriptive empirical convex geometry, not proof of population shift. Query oracle is label-fitted and never deployed.",
+  "new_task_model_fits": 0,
+  "role": "POSTHOC_DIRECTION_DIAGNOSIS_NOT_POLICY_OR_NEW_METHOD",
+  "roots": {
+    "nb_ratio": [
+      "nb-ratio-opportunity-20261003-v1",
+      "b810f31f70ea89e81bf1a1557544c0e9fe072ce6534fdb1449665be7f12e53fc",
+      "f0238c5aef32e889c8d4e9fc56fcdca0fb960ba73049c33258092e2fa6d282a1"
+    ],
+    "style": [
+      "style-opportunity-20261003-v1",
+      "dfa60c1c84544d02e8effd5a3d5e18ce38839d502c8e6d615700856164032371",
+      "718c1b94811325474d5e2ff53049446cc170b0d06348aa95ed12b790be16d2a5"
+    ]
+  },
+  "source_sha256": "433a82ee45552d5cabad82f5a2749253db73df6d8af3793da787842b2c85bcf1",
+  "tests": 4
+}

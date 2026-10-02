@@ -785,3 +785,6 @@ phase1/scripts/pairmix_opportunity_20261003.py -text diff whitespace=cr-at-eol
 phase1/scripts/pairmix_sensitivity_20261003.py -text diff whitespace=cr-at-eol
 phase1/scripts/pairmix_numerics_20261003.py -text diff whitespace=cr-at-eol
 phase1/scripts/export_opportunity_20261003.py -text diff whitespace=cr-at-eol
+# Preserve the executed diagnostic's final empty line and its frozen hash.
+phase1/scripts/blend_direction_20261003.py -text diff whitespace=cr-at-eol,-blank-at-eof
+phase1/results/blend_direction_20261003/* -text diff whitespace=cr-at-eol

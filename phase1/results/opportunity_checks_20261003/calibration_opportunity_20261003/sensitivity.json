@@ -1,0 +1,37 @@
+{
+  "bootstrap_seed": 103899,
+  "class_stratified_bootstrap_percentile95": [
+    -0.0007805544134448439,
+    0.002032254593248498
+  ],
+  "class_summary": {
+    "EAP": {
+      "mean_improvement": 0.0033016275383197266,
+      "n": 709
+    },
+    "HPL": {
+      "mean_improvement": -0.0017578302918713656,
+      "n": 507
+    },
+    "MWS": {
+      "mean_improvement": -0.00043621765525463313,
+      "n": 545
+    }
+  },
+  "elapsed_seconds": 4.656485140323639,
+  "gpu_hours": 0.16555555555555557,
+  "improved_rows": 1527,
+  "inclusive_run_seconds_median": 151.31952565698884,
+  "limits": "Conditional on one fixed model pair and already reused D_search rows. Does not correct adaptive selection, fit uncertainty, task heterogeneity or support three independent replications. No frozen gate changed.",
+  "marginal_calibration_seconds_median": 0.061683576088398695,
+  "mean_improvement": 0.0006881858856196072,
+  "relative_loss_reduction": 0.001812114916090405,
+  "replicates": 5000,
+  "role": "POSTHOC_CONDITIONAL_SENSITIVITY_NOT_CONFIRMATION",
+  "rows": 1761,
+  "source_sha256": "a3a0a682a3edf72f0448e2d24cb45960e4ea535b231220b37257e47f5a993958",
+  "summary_sha256": "e64cdc319aefe3950f3b1a56e4fb68483823947157440a0ac153215f38c94dd7",
+  "unchanged_rows": 0,
+  "unique_prediction_pairs": 1,
+  "worsened_rows": 234
+}

@@ -1,47 +1,36 @@
 # 当前短交接
 
-## 最后现场与结论
+## 当前裁决与真实现场
 
-2026-10-02 19:17UTC（香港10月3日）：本轮两个GPU作业都已COMPLETED、服务关闭。主试验15282不是排队/运行中。用户三小时窗口17:34:10—20:34:10UTC；不为填时间补同配方seed或新框架。
+2026-10-02 20:43UTC（香港10月3日）；方向入口0L413。用户本窗口19:25:50—22:25:50UTC。15285/15286/15287均COMPLETED，9次真实任务程序执行，合计0.5427777777777778 GPU小时，API/生成器调用/底座更新0。没有新的GPU矩阵；不再加模型、prompt或seed填时间。
 
-当前方向入口0L412：固定底座、同预算下公开错误样例能否改善自动候选生成。已完成8条=Pizza/Spooky各2运行seed×均匀/误差对照样例；全部配对差0，两任务中位和样本方差均0，扩大门false。16有效评分=8初态+8新解，新解0改善/3持平/5退步。29请求27生成，6拒收、7执行失败、6生成后无结果、2请求无生成返回，8/8耗尽900秒。独立评分/初态/哈希/提示历史核验PASS。小样本开发结果不证明普遍无效或等价。
+校准15285改善0.0006881858856195855，但3外层seed仅1份预测、条件CI跨0；NB15286三seed均负、中位-0.0016718851203692542；风格HGB15287三seed均负、中位-0.00034312114084361633。各独立评分/优化/哈希/隔离核验PASS。三个readout-v1已封口，勿重跑analyze。不是同预算agent收益或跨任务复现。
 
-远端 /research/d7/spc/yzyang4/public-example-feedback-20261003-v1
-- plan 40e6bc3301c1db52fa09a794577c0b5dc95533302b0e460a044942a6485c5376
-- summary 480017dbcb8745f4e55c66d67bc55734ee3881b811d855f7ca12a29d74df6918
-- 独立verifier源码 b153b767ef83f7f3d49f180fe329fd1402b2ef3c95051a794ae2b18fe5b7f5ba
-- 4187秒×4GPU=4.652222222222222GPU小时。不要再运行analyze；readout-v1已排他写入。
+Spooky既有10轨迹凸组合事后机会界：只有3条多份独特预测，最大改善上界0.0004507913195095025、总体中位0，独立数值证书PASS。Pizza25轨迹两成员oracle有2条旧自动轨迹超过0.005，最近4条最大0.0001793829227457744；2条较小收益记录因5/1个比较舍入成平局导致实数oracle与浮点提交不同，numerics.json已解释并保留，不是全相等PASS。两成员结果不约束3+混合、条件路由或新候选。
 
-## 机制与限制
+全部16自动轨迹五折敏感性：中位0.0001495215311004851、8胜5负3平，最近4条中位0。候选生成已受同一开发标签影响，不能声称这是独立交叉验证。当前没有支持扩大组合路线或新agent方法收益的证据；也不能说任务整体饱和。
 
-27动作先遮蔽小数分数审理由/AST，代表完整代码另读；非完全盲审且未穷尽所有程序语义。主要是常规TFIDF视图/调参/融合，没有证实具体文本错误属性变成新有效修正。读分后发现一Spooky理由将更高log-loss误称更强；任务说明确有指标名/公式，缺单独优化方向文字，评分器正确。不能据此解释所有失败或把提示修复当创新。
+## 证据与发布
 
-Pizza6新有效解：3改变排序、1精确预测副本、2数值差小于1e-12但排序完全相同。不要与旧15272的5改变/1副本混淆。历史48轨迹回顾另存：自动Pizza3条、Spooky1条曾改善自己的较弱起点；这不是新的方法收益或匹配headroom因果试验。当前Spooky强起点本身来自旧普通agent改进。
+publication：C:/Research/New/my_project/MLEvolve/_codex_tmp/publication-feedback-20261001
+主dirty checkout：C:/Research/New/my_project/MLEvolve/aira-dojo-codex-20260813
+只更新主checkout方向/短交接，不bulk stage/reset，保留其他用户改动。
 
-两seed/任务、历史开发选优起点、公用OOF、Spooky仅TFIDF诊断、提示长度不同限制均保留。人工15283与主试验首波同节点但不同GPU并行，共享I/O等可能干扰成本；读分前已记录，不能删首波。两臂共享的新900秒/6调用/模式解析不用于跨旧版单因子归因。
+安全数据：publication/phase1/results/opportunity_checks_20261003/，六目录、31聚合文件及export-receipt；receipt SHA256 ab6b2a8d9afd056bae25179ee510f3a4f4dfdcac056cd168dfccc1a76338025f。13个本轮源码在publication/phase1/scripts。计划/源码/摘要/表哈希均在产物内；原始标签、预测、代码、模型回复不发布。
+远端/research/d7/spc/yzyang4/下calibration-opportunity-20261003-v1、nb-ratio-opportunity-20261003-v1、style-opportunity-20261003-v1、convex-opportunity-20261003-v1、pairmix-opportunity-20261003-v1、pairmix-sensitivity-20261003-v1；opportunity-export-20261003-v1为安全导出。
 
-## 人工机会对照已关闭
+20:40UTC fetch确认公开研究分支8ec74c5a4e7eaaa334a7f0f34dbfd220120e6a02，学长dojo-reproduce 1a4b06212727f45b6410a9d007803a0d0581219b，均无更新；本轮尚待白名单复核/commit/push，不修改学长分支。发布后的确切SHA以Git及本地补记为准。精确字节属性必须在stage前设置，不能放宽哈希来容忍CSV换行变化。
 
-15283 /research/d7/spc/yzyang4/char-branch-control-20261003-v1
-仅给Pizza原代码TFIDF分支加analyzer="char"；两执行seed各原版/修改版、反转次序。
-plan e989f2f0d3d585812fda44bca0b2b6de5124b2222d9c1b2554800f0a4d997269。
-两原版有效AUC0.6867376225783306，两char触及300秒代码超时无submission，0完整评分对；收益/方差null，不是0也不是正对照通过。不增时救回。655秒×2GPU=0.3638888888888889GPU小时。本轮合计5.016111111111111GPU小时，原毛上限7.666666666666667，付费API0。
+## 不重做与研究边界
 
-## 发布与恢复
+0L412的15282（8运行、四配对差全0、新解0改善/3平/5退）和15283（2原版有效、2char超时、0完整对，收益null）已关闭；不重复。更早15272/15227/15267也已关闭。状态因子16条矩阵从未提交。rank_locality_guard、task_span_reference、uniform trajectory ensemble都已做过，不改名重提。
 
-publication worktree：
-C:/Research/New/my_project/MLEvolve/_codex_tmp/publication-feedback-20261001
-主dirty checkout：
-C:/Research/New/my_project/MLEvolve/aira-dojo-codex-20260813
-不bulk stage/reset主checkout。新源码/安全表在publication的phase1/scripts和results/public_examples_20261003、results/char_branch_control_20261003。
-19:17UTC fetch未报更新；发布前公开head93c9246970865d0fe48a85e2b564ad62ca837947，学长dojo-reproduce最后确认1a4b06212727f45b6410a9d007803a0d0581219b。本批尚待最终白名单审查/commit/push，真实新SHA以Git核实，不拿此旧状态当永久事实。不要改学长分支。
-远端导出18文件扫描/哈希PASS，receipt49b586955c398ca12d90d831c00174b4078d6a685a5b99ac9a7d5dd257c49144。首次凭据拦截是task-feedback路径中sk-子串；远端只输出命中位置/类别确认后加词边界，未输出疑似密钥。
-本地附加rank、headroom、机制、census不伪称远端18文件export的一部分。原始样例/标签/预测/模型回复/候选代码不上传。
+旧v6弱起点不是现成破局：仅两个初态可比的B-A、C-A主增量均负，其他初态缺失不能补0。普通agent曾改善只证明历史上存在机会，不能证明更丰富反馈有效。当前强父程序本身历史选优、所有新数字是复用开发集探索。
 
-## 下一步与禁止重做
+下一投入须同时有具体预算内改进机会、区别于近邻的机制、同工具强基线和新未触碰确认集；现在不启动新的GPU/API/model-fit。不要把ensemble（MLE-STAR）、结构化假说反馈/记忆（GOME）、压缩/一比特经验、能力×harness比较换名当创新。保留证据到有效修改这个问题，但无实证不宣布突破。
+不训/RL更新agent底座；不读first960/Target300/522、D_val或官方test；旧critic/HCE/多保真/Probe/score-channel/K>=1路线不恢复。
 
-停止扩大本配方；不救回失败、不改门、不加prompt variants追正。保留证据到有效修改这个研究问题，但下一项投入必须有具体的预算内改进机会、区别于近邻的机制以及同工具强基线；当前无已批准的新矩阵/新方法收益。
-旧15272、15227、15267已关闭；原16条状态因子矩阵未提交且不自动提交。旧routing反证、AST拆分、缓存、普通局部编辑不要再包装新发现。
-不训/RL更新agent底座，不读first960/Target300/522、D_val或官方test。旧critic训练、HCE、多保真、Probe、score-channel、K>=1 lookahead不恢复。
-SSH linux5；Python /research/d7/spc/yzyang4/venvs/aira/bin/python；SLURM_CONF=/opt1/slurm/gpu-slurm.conf。MLE镜像用gpu28/gpu27，不能projgpu39或静默CPU。旧12535不释放。SCP退出0再使用产物；密钥只在远端.env。
-用户确认研究盘总配额4TB、原路径、授权至2027-08-30；这不是实时空闲空间。
+## 操作
+
+SSH linux5；Python /research/d7/spc/yzyang4/venvs/aira/bin/python；SLURM_CONF=/opt1/slurm/gpu-slurm.conf。MLE镜像用gpu28/gpu27，不用projgpu39或静默CPU。旧12535不释放。SSH内层引号会被剥离，用本地脚本+SCP且退出0再使用。凭据只在远端.env，日志/本地/Git不存值。
+用户确认研究盘4TB、路径不变、授权至2027-08-30；不等于实时空闲。记录保持短，细节在Git和结果文件，不用日志工程取代研究。

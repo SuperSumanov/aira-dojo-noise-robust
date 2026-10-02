@@ -1,0 +1,123 @@
+{
+  "accounting": "15286|COMPLETED|368|billing=12,cpu=12,gres/gpu=2,node=1",
+  "assigned": 3,
+  "bindings": [
+    {
+      "array_sha256": "e57482c5d94794d07068d9db5ef151bf333f81b230203d7698c6849d0dd6d261",
+      "binding_sha256": "586408b2b20d1da26453967c925a8335286f499a9ad19b3fe0c23f24a8cc56d6",
+      "index": 0,
+      "receipt_sha256": "fe86fcc138f4706327d5ac414bfcc410e0e5fec4f2ed53ca75f45fc52be23ac0",
+      "result_sha256": "3c8f7db6932eb388d83eecc80e237d4ed2bd3c8b0e51cf6c1dfab8ba14bd2896"
+    },
+    {
+      "array_sha256": "f28072c71aff4cf576af6a820c4b2a874389ba61ce4378c1a80c928631a2f251",
+      "binding_sha256": "05b65408fe34d009def82084ba26c054528fc7b25c8958eb21c4a0b436f761e0",
+      "index": 1,
+      "receipt_sha256": "5a74836d932c23483eaab03c31ca60f074209bea075869a2cdae6476f39f404c",
+      "result_sha256": "9c52fff03140942aa71d7c64434ff22f28fac8d77afd69ec63fe92bb72c0496f"
+    },
+    {
+      "array_sha256": "fe5b310c3c4f8a933ee0b610a5958f081b2e85e5bb83e2dc6a68775edb2fd01a",
+      "binding_sha256": "fe171110b920a1b8469641e986d3416ad06b9d886b254bb7db1c20bfd01a1658",
+      "index": 2,
+      "receipt_sha256": "fb8cf0fc7de36a527efca03db993af252da6612035c0d6a4f92d4bc37f268ae4",
+      "result_sha256": "d0767caae3816693b0a5a96d071339f8cc454893f7f9e2d42530f917c2b560e6"
+    }
+  ],
+  "bootstrap": {
+    "limitations": "adaptive reused development data; no simultaneous/multiple-look or task uncertainty correction",
+    "replicates": 5000,
+    "seed": 103999,
+    "unit": "class-stratified request, paired jointly across fixed3 fits"
+  },
+  "conditional_median_request_ci": [
+    -0.004641055691357994,
+    0.0015955558261054516
+  ],
+  "conditional_median_vs_temperature_ci": [
+    -0.006484295900312672,
+    0.0021872068009908523
+  ],
+  "distinct_blend_predictions": 3,
+  "distinct_nb_predictions": 3,
+  "files": {
+    "runs.csv": "5253a44d743e2172246d528575eb8c4a36d60ef5e15712c44a145ed1369d7da0"
+  },
+  "median_improvement": -0.0016718851203692542,
+  "opportunity_gate": false,
+  "plan_sha256": "b810f31f70ea89e81bf1a1557544c0e9fe072ce6534fdb1449665be7f12e53fc",
+  "readout_source_sha256": "7843dc325f6fda0626d26361434ed674ca4e30992d56fbdc37f87a35089510fd",
+  "rows": [
+    {
+      "additional_seconds": 38.0513859980274,
+      "blend": 0.38147382690333215,
+      "blend_sha256": "9f1e3d75f8eca8ab23e58a76405ac54a7bd2d9e1ea498f58b11d748fc8570613",
+      "changed_argmax": 5,
+      "commit": "8ec74c5a4e7eaaa334a7f0f34dbfd220120e6a02",
+      "gain_over_temperature_reference": -0.0023925624583116534,
+      "improvement": -0.0017043765726920124,
+      "index": 0,
+      "nb": 0.46510462297883176,
+      "nb_array_sha256": "2f5022468e2b331158d8ec71ac2dd9d7bc73b4a36f107451244b0e80ed800484",
+      "original": 0.37976945033064013,
+      "original_sha256": "d054de62537faf8fe8161fcf65459b907f06bb2e2ccd28efbd1e321b7754fb6a",
+      "plan_sha256": "b810f31f70ea89e81bf1a1557544c0e9fe072ce6534fdb1449665be7f12e53fc",
+      "public_blend_loss": 0.4005053405240813,
+      "public_nb_loss": 0.46414531640687334,
+      "public_original_loss": 0.40300644459493157,
+      "seconds": 189.57594489306211,
+      "seed": 103901,
+      "valid": true,
+      "weight": 0.11012799472312812
+    },
+    {
+      "additional_seconds": 41.8740326219704,
+      "blend": 0.3814413354510094,
+      "blend_sha256": "ac5f8ccebaf577e983d566cc3b931c0a2bbed55d3fa0a7d9a30526b02866ff7a",
+      "changed_argmax": 5,
+      "commit": "8ec74c5a4e7eaaa334a7f0f34dbfd220120e6a02",
+      "gain_over_temperature_reference": -0.002360071005988895,
+      "improvement": -0.0016718851203692542,
+      "index": 1,
+      "nb": 0.4653442111315006,
+      "nb_array_sha256": "ee503f303104efa7d4e1ac347b6f0388e38bdc8c70f7ab19872b660699d83943",
+      "original": 0.37976945033064013,
+      "original_sha256": "d054de62537faf8fe8161fcf65459b907f06bb2e2ccd28efbd1e321b7754fb6a",
+      "plan_sha256": "b810f31f70ea89e81bf1a1557544c0e9fe072ce6534fdb1449665be7f12e53fc",
+      "public_blend_loss": 0.4006370280643164,
+      "public_nb_loss": 0.46429212236106643,
+      "public_original_loss": 0.40300644459493157,
+      "seconds": 195.87415092391893,
+      "seed": 103902,
+      "valid": true,
+      "weight": 0.10812598586630509
+    },
+    {
+      "additional_seconds": 33.61352235893719,
+      "blend": 0.3811903642250277,
+      "blend_sha256": "91b7eb961d941f247f4c120a944546c14fc8345fe4457659c4b65210153db29e",
+      "changed_argmax": 5,
+      "commit": "8ec74c5a4e7eaaa334a7f0f34dbfd220120e6a02",
+      "gain_over_temperature_reference": -0.0021090997800072286,
+      "improvement": -0.0014209138943875876,
+      "index": 2,
+      "nb": 0.46493265474264794,
+      "nb_array_sha256": "1f5d1d253e50da8e789d5faa9d3d0e468305871b3d1967919a8b2e7e7cdb4016",
+      "original": 0.37976945033064013,
+      "original_sha256": "d054de62537faf8fe8161fcf65459b907f06bb2e2ccd28efbd1e321b7754fb6a",
+      "plan_sha256": "b810f31f70ea89e81bf1a1557544c0e9fe072ce6534fdb1449665be7f12e53fc",
+      "public_blend_loss": 0.40087953591195274,
+      "public_nb_loss": 0.46598353076137505,
+      "public_original_loss": 0.40300644459493157,
+      "seconds": 171.76650019804947,
+      "seed": 103903,
+      "valid": true,
+      "weight": 0.1019951652524775
+    }
+  ],
+  "sample_variance": 2.406555678938343e-08,
+  "scope": "Known NB-weighted logistic variant, not exact NB-SVM or novel agent. Historical selected strong parent; adaptive reused D_search. NB adds fits and fold ensemble: not a single classifier-coefficient ablation or equal-cost E2E win.",
+  "status": "CLOSED_KNOWN_REFERENCE_NOT_AGENT_METHOD",
+  "valid_pairs": 3,
+  "verification": "PASS"
+}

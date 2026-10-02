@@ -1,0 +1,9 @@
+{
+  "assigned": 10,
+  "checked_trajectories": 10,
+  "independent": "Python scalar math.fsum, tangent hyperplane on simplex; no producer solve import",
+  "limitation": "Numerical optimization bound only; not formal interval arithmetic or statistical confidence.",
+  "source_sha256": "deb4a8195b0776c7499cc758ad42676fb6c5f433eed5e779dae6215e94e07781",
+  "status": "PASS",
+  "summary_sha256": "1793427e69d4bcd780b26509b5639cdf9f736383a5d221145a201a641739fdc8"
+}

@@ -1,0 +1,18 @@
+{
+  "api": 0,
+  "commit": "8ec74c5a4e7eaaa334a7f0f34dbfd220120e6a02",
+  "cpu_cap_seconds": 180,
+  "endpoint": "best same-trajectory TWO-predictor mixture AUC minus best individual; every real breakpoint enumerated with rational arithmetic",
+  "gpu": 0,
+  "library": "all valid outputs in each closed Pizza trajectory; exact numeric-vector dedup",
+  "limitations": "Labels choose AND score coefficients. Not generalization or E2E. Not an upper bound for 3+ mixtures, rank transforms, conditional selectors or new candidates. Same adaptive historical dataset; original costs remain.",
+  "new_task_fits": 0,
+  "role": "LABEL_USING_TWO_MODEL_MIXTURE_ORACLE_NOT_METHOD",
+  "roots": {
+    "public-example-feedback-20261003-v1": "40e6bc3301c1db52fa09a794577c0b5dc95533302b0e460a044942a6485c5376",
+    "task-feedback-local-edit-20261002-v1": "7bd84ff0e867043b2787d5c07af867eff50370f4e7b6bafa811ef215196c4139",
+    "task-feedback-real-20261001-v6": "15751d3b52bdc42617df02006ce724635f4bf49df6e477686769fd1979d53403",
+    "task-feedback-upper-20261002-v1": "9fe231e1b9e2da8cb51fadb7ff9844b074c10e8e3dc64d1d1f3be170fb0703a0"
+  },
+  "source_sha256": "347e8745d165713272565831ea463cc3fb9ffc2f17b36b2f48bd6a3a5186d989"
+}

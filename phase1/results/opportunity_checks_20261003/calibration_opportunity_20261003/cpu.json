@@ -1,0 +1,8 @@
+{
+  "auc_invariance_fixtures": 4,
+  "calibration_fixture": true,
+  "parent_ast_unchanged": true,
+  "plan_sha256": "bb2652e5957b6e043138c1c50de95874c487a8ea4fd5e72bb164fe6e03fd8a94",
+  "status": "PASS",
+  "typed_configs": 3
+}

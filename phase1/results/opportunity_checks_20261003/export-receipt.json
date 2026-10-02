@@ -1,0 +1,216 @@
+{
+  "accounting": [
+    {
+      "gpu_hours": 0.16555555555555557,
+      "gpus": 2,
+      "job": "15285",
+      "seconds": 298
+    },
+    {
+      "gpu_hours": 0.20444444444444446,
+      "gpus": 2,
+      "job": "15286",
+      "seconds": 368
+    },
+    {
+      "gpu_hours": 0.17277777777777778,
+      "gpus": 2,
+      "job": "15287",
+      "seconds": 311
+    }
+  ],
+  "base_model_updates": 0,
+  "files": [
+    {
+      "bytes": 32105,
+      "relative": "calibration_opportunity_20261003/plan.json",
+      "sha256": "bb2652e5957b6e043138c1c50de95874c487a8ea4fd5e72bb164fe6e03fd8a94",
+      "source": "/research/d7/spc/yzyang4/calibration-opportunity-20261003-v1/plan.json"
+    },
+    {
+      "bytes": 224,
+      "relative": "calibration_opportunity_20261003/cpu.json",
+      "sha256": "abf67e8d931df3ae587d9147440c1b0195a731142b5e9853447724599bd2703e",
+      "source": "/research/d7/spc/yzyang4/calibration-opportunity-20261003-v1/cpu.json"
+    },
+    {
+      "bytes": 105,
+      "relative": "calibration_opportunity_20261003/launch.json",
+      "sha256": "104ab6e30ae6f7878f320c7f7ebaa96949ff2254bec53f99f0049ef94b2529ce",
+      "source": "/research/d7/spc/yzyang4/calibration-opportunity-20261003-v1/launch.json"
+    },
+    {
+      "bytes": 91,
+      "relative": "calibration_opportunity_20261003/closed.json",
+      "sha256": "0f5ecdbfa58973d8a627c3cdc6c65bad94e38e40856eeaeb7099c51b4bcb8abe",
+      "source": "/research/d7/spc/yzyang4/calibration-opportunity-20261003-v1/closed.json"
+    },
+    {
+      "bytes": 1463,
+      "relative": "calibration_opportunity_20261003/runs.csv",
+      "sha256": "1a6f9cda96b03c5e69edb42738fdd64a10e4e36643cbbd3d45330dc260b87cea",
+      "source": "/research/d7/spc/yzyang4/calibration-opportunity-20261003-v1/readout-v1/runs.csv"
+    },
+    {
+      "bytes": 4647,
+      "relative": "calibration_opportunity_20261003/summary.json",
+      "sha256": "e64cdc319aefe3950f3b1a56e4fb68483823947157440a0ac153215f38c94dd7",
+      "source": "/research/d7/spc/yzyang4/calibration-opportunity-20261003-v1/readout-v1/summary.json"
+    },
+    {
+      "bytes": 1308,
+      "relative": "calibration_opportunity_20261003/sensitivity.json",
+      "sha256": "e98ff2238d8041487ec27411b5db1eeb2ca13d444db8ed6e77cb5fe421b01ee4",
+      "source": "/research/d7/spc/yzyang4/calibration-opportunity-20261003-v1/readout-v1/sensitivity.json"
+    },
+    {
+      "bytes": 32589,
+      "relative": "nb_ratio_opportunity_20261003/plan.json",
+      "sha256": "b810f31f70ea89e81bf1a1557544c0e9fe072ce6534fdb1449665be7f12e53fc",
+      "source": "/research/d7/spc/yzyang4/nb-ratio-opportunity-20261003-v1/plan.json"
+    },
+    {
+      "bytes": 192,
+      "relative": "nb_ratio_opportunity_20261003/cpu.json",
+      "sha256": "9ea2ff6b6427a512357ed7b9cba5c4c117a32d6aea633784d82e28412c689d05",
+      "source": "/research/d7/spc/yzyang4/nb-ratio-opportunity-20261003-v1/cpu.json"
+    },
+    {
+      "bytes": 105,
+      "relative": "nb_ratio_opportunity_20261003/launch.json",
+      "sha256": "e21a6f84015f89b9f5522203865a89c8b60d8f00cba68554d1d152cfb048759e",
+      "source": "/research/d7/spc/yzyang4/nb-ratio-opportunity-20261003-v1/launch.json"
+    },
+    {
+      "bytes": 91,
+      "relative": "nb_ratio_opportunity_20261003/closed.json",
+      "sha256": "4332215c212e29e33987d5fe43a9499070dd4d0e41cb520f4ab3c8d5f67d604f",
+      "source": "/research/d7/spc/yzyang4/nb-ratio-opportunity-20261003-v1/closed.json"
+    },
+    {
+      "bytes": 1861,
+      "relative": "nb_ratio_opportunity_20261003/runs.csv",
+      "sha256": "5253a44d743e2172246d528575eb8c4a36d60ef5e15712c44a145ed1369d7da0",
+      "source": "/research/d7/spc/yzyang4/nb-ratio-opportunity-20261003-v1/readout-v1/runs.csv"
+    },
+    {
+      "bytes": 5598,
+      "relative": "nb_ratio_opportunity_20261003/summary.json",
+      "sha256": "f0238c5aef32e889c8d4e9fc56fcdca0fb960ba73049c33258092e2fa6d282a1",
+      "source": "/research/d7/spc/yzyang4/nb-ratio-opportunity-20261003-v1/readout-v1/summary.json"
+    },
+    {
+      "bytes": 32902,
+      "relative": "style_opportunity_20261003/plan.json",
+      "sha256": "dfa60c1c84544d02e8effd5a3d5e18ce38839d502c8e6d615700856164032371",
+      "source": "/research/d7/spc/yzyang4/style-opportunity-20261003-v1/plan.json"
+    },
+    {
+      "bytes": 228,
+      "relative": "style_opportunity_20261003/cpu.json",
+      "sha256": "8c4ce0db54058972e7fd453b886f4c2d3cea1ca683ab7b1a5b854fb97966c046",
+      "source": "/research/d7/spc/yzyang4/style-opportunity-20261003-v1/cpu.json"
+    },
+    {
+      "bytes": 105,
+      "relative": "style_opportunity_20261003/launch.json",
+      "sha256": "0cfc90fe170be02c885d46f08010d7198c6eec2b12db68cc9ccdf265dec4c360",
+      "source": "/research/d7/spc/yzyang4/style-opportunity-20261003-v1/launch.json"
+    },
+    {
+      "bytes": 91,
+      "relative": "style_opportunity_20261003/closed.json",
+      "sha256": "20529e4f807bf5ebc44ba39b24c6aa07a1712ecd38ea882ac519e4633cda2cb3",
+      "source": "/research/d7/spc/yzyang4/style-opportunity-20261003-v1/closed.json"
+    },
+    {
+      "bytes": 1871,
+      "relative": "style_opportunity_20261003/runs.csv",
+      "sha256": "d3157ffc2f76db1dada8d2f75e4b777501b898a859cb906542765a3c5e040fb2",
+      "source": "/research/d7/spc/yzyang4/style-opportunity-20261003-v1/readout-v1/runs.csv"
+    },
+    {
+      "bytes": 5647,
+      "relative": "style_opportunity_20261003/summary.json",
+      "sha256": "718c1b94811325474d5e2ff53049446cc170b0d06348aa95ed12b790be16d2a5",
+      "source": "/research/d7/spc/yzyang4/style-opportunity-20261003-v1/readout-v1/summary.json"
+    },
+    {
+      "bytes": 1338,
+      "relative": "convex_opportunity_20261003/plan.json",
+      "sha256": "614b1a10de6b86e2c9849c72fd8ec096a287ffc19417572f073d8f69f7ff829d",
+      "source": "/research/d7/spc/yzyang4/convex-opportunity-20261003-v1/plan.json"
+    },
+    {
+      "bytes": 1934,
+      "relative": "convex_opportunity_20261003/runs.csv",
+      "sha256": "b60a5e8a06aaa87125099e5670d2c5a07ffe9f7fc3b7f297c6313cc8c31c9252",
+      "source": "/research/d7/spc/yzyang4/convex-opportunity-20261003-v1/runs.csv"
+    },
+    {
+      "bytes": 7391,
+      "relative": "convex_opportunity_20261003/summary.json",
+      "sha256": "1793427e69d4bcd780b26509b5639cdf9f736383a5d221145a201a641739fdc8",
+      "source": "/research/d7/spc/yzyang4/convex-opportunity-20261003-v1/summary.json"
+    },
+    {
+      "bytes": 458,
+      "relative": "convex_opportunity_20261003/verification.json",
+      "sha256": "ef1f79ed6507c4520546d28f2bfec7d2d3b6310ca1288697bc14073ca7aa65fb",
+      "source": "/research/d7/spc/yzyang4/convex-opportunity-20261003-v1/verification.json"
+    },
+    {
+      "bytes": 1206,
+      "relative": "pairmix_opportunity_20261003/plan.json",
+      "sha256": "e72d40e131eaa2a05d8588b96c23f468ae7a5a626436918faa9dfa05bf0f2e43",
+      "source": "/research/d7/spc/yzyang4/pairmix-opportunity-20261003-v1/plan.json"
+    },
+    {
+      "bytes": 4687,
+      "relative": "pairmix_opportunity_20261003/runs.csv",
+      "sha256": "adc26a9edd64433351bfe40e7c34b2be51ffe85f15839af2372cc666c3f8c7af",
+      "source": "/research/d7/spc/yzyang4/pairmix-opportunity-20261003-v1/runs.csv"
+    },
+    {
+      "bytes": 14764,
+      "relative": "pairmix_opportunity_20261003/summary.json",
+      "sha256": "b2ffb6bcc2b49998c685480a3a2ee44b77036a88fb45e57a2fa07146bbca1e25",
+      "source": "/research/d7/spc/yzyang4/pairmix-opportunity-20261003-v1/summary.json"
+    },
+    {
+      "bytes": 1331,
+      "relative": "pairmix_opportunity_20261003/numerics.json",
+      "sha256": "2f352d4d201b1b86257a715f1e4debcaf8f3d8d55fc38d1d86903b7d5bbb2410",
+      "source": "/research/d7/spc/yzyang4/pairmix-opportunity-20261003-v1/numerics.json"
+    },
+    {
+      "bytes": 1065,
+      "relative": "pairmix_sensitivity_20261003/plan.json",
+      "sha256": "2cd9b9032292b3fa082210b38f1f1435daa03787af0d214243c49a4587d5f0e5",
+      "source": "/research/d7/spc/yzyang4/pairmix-sensitivity-20261003-v1/plan.json"
+    },
+    {
+      "bytes": 3808,
+      "relative": "pairmix_sensitivity_20261003/runs.csv",
+      "sha256": "2a7e82fc59db7d5a0c169c278fd968cc6dd4d1c823e6880ee145e2d304c1cf3b",
+      "source": "/research/d7/spc/yzyang4/pairmix-sensitivity-20261003-v1/runs.csv"
+    },
+    {
+      "bytes": 13814,
+      "relative": "pairmix_sensitivity_20261003/folds.csv",
+      "sha256": "744b7d6c4ffa0f07afbc91bd2eee35c924b3d98b86612d03af0b6fe043f311ef",
+      "source": "/research/d7/spc/yzyang4/pairmix-sensitivity-20261003-v1/folds.csv"
+    },
+    {
+      "bytes": 9710,
+      "relative": "pairmix_sensitivity_20261003/summary.json",
+      "sha256": "a992820905a49c89beb56447044fdb132b89fc13843ab459d0299a3230f1accf",
+      "source": "/research/d7/spc/yzyang4/pairmix-sensitivity-20261003-v1/summary.json"
+    }
+  ],
+  "generator_calls": 0,
+  "limitations": "Nine real task-program runs on one task; repeated prediction and shared-data dependence reported. Oracle and CV analyses are not a new agent method or fresh generalization.",
+  "paid_api_calls": 0,
+  "scope": "Closed exact allowlist of plans, aggregate rows and verifiers. No labels/prediction rows/model replies/candidate code/private weights/raw logs.",
+  "total_gpu_hours": 0.5427777777777778
+}

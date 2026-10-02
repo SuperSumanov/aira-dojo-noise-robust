@@ -1,0 +1,100 @@
+{
+  "accounting": "15285|COMPLETED|298|billing=12,cpu=12,gres/gpu=2,node=1",
+  "assigned": 3,
+  "bindings": [
+    {
+      "array_sha256": "2686f119fdc515d2f627934988de9ccd35c02bbcb8b4420c7ad5551651ccca27",
+      "binding_sha256": "14d052bd0901653b32438f470639851191b6c27956852dade567695d1f26e48d",
+      "index": 0,
+      "receipt_sha256": "f5d60a6d000c9d197dd607ab0c0a0e17cf2a14c420375f631f05cc0c7fad4d6a",
+      "result_sha256": "048905258bd0ae5e7d243a67d0e4ffadf93dc25aeb6884365e4c72e80bd92bd2"
+    },
+    {
+      "array_sha256": "2686f119fdc515d2f627934988de9ccd35c02bbcb8b4420c7ad5551651ccca27",
+      "binding_sha256": "053ce1811a97f4e788fc8372bd523b39bee6cc27b4c840991db01849f28df41e",
+      "index": 1,
+      "receipt_sha256": "874455315881d54388affa931a04314ecde9be9829fb8f6c351084a34be378ab",
+      "result_sha256": "7171fc3073a201c79c27c2063604ca7f6b6ee25f215041095cb7eaf16f9d2062"
+    },
+    {
+      "array_sha256": "2686f119fdc515d2f627934988de9ccd35c02bbcb8b4420c7ad5551651ccca27",
+      "binding_sha256": "cddefc2f493c8fcc451aecbbdd9d30396116fe521ab35dc5141f6812359da0b7",
+      "index": 2,
+      "receipt_sha256": "e2cdf4b333ef178c0569f17f10d511096040658e8f17bacd9b0d80c533560941",
+      "result_sha256": "a76522f19fd3847e234d56d2835453db3231f4eb3214e0a45bdf8cdb398120e9"
+    }
+  ],
+  "distinct_calibrated_predictions": 1,
+  "distinct_original_predictions": 1,
+  "files": {
+    "runs.csv": "1a6f9cda96b03c5e69edb42738fdd64a10e4e36643cbbd3d45330dc260b87cea"
+  },
+  "median_improvement": 0.0006881858856195855,
+  "opportunity_gate": true,
+  "plan_sha256": "bb2652e5957b6e043138c1c50de95874c487a8ea4fd5e72bb164fe6e03fd8a94",
+  "readout_source_sha256": "33c7e56a19097b0ff016a8b0a09a21bca99a6868bf5916bf48e8fa7fe3e39fa2",
+  "rows": [
+    {
+      "best_embedding_weight": 0.0,
+      "beta": 1.0512478727432317,
+      "calibrated": 0.37908126444502055,
+      "calibrated_sha256": "f558c3f27b27343f42c64878441016e58043a2e2d85db6739cfeeca052f21f38",
+      "calibration_seconds": 0.06208607088774443,
+      "changed_argmax": 0,
+      "commit": "8ec74c5a4e7eaaa334a7f0f34dbfd220120e6a02",
+      "improvement": 0.0006881858856195855,
+      "index": 0,
+      "original": 0.37976945033064013,
+      "original_sha256": "d054de62537faf8fe8161fcf65459b907f06bb2e2ccd28efbd1e321b7754fb6a",
+      "plan_sha256": "bb2652e5957b6e043138c1c50de95874c487a8ea4fd5e72bb164fe6e03fd8a94",
+      "public_calibrated_loss": 0.4025035935455566,
+      "public_original_loss": 0.4030064445949316,
+      "seconds": 151.31952565698884,
+      "seed": 103801,
+      "valid": true
+    },
+    {
+      "best_embedding_weight": 0.0,
+      "beta": 1.0512478727432317,
+      "calibrated": 0.37908126444502055,
+      "calibrated_sha256": "f558c3f27b27343f42c64878441016e58043a2e2d85db6739cfeeca052f21f38",
+      "calibration_seconds": 0.061683576088398695,
+      "changed_argmax": 0,
+      "commit": "8ec74c5a4e7eaaa334a7f0f34dbfd220120e6a02",
+      "improvement": 0.0006881858856195855,
+      "index": 1,
+      "original": 0.37976945033064013,
+      "original_sha256": "d054de62537faf8fe8161fcf65459b907f06bb2e2ccd28efbd1e321b7754fb6a",
+      "plan_sha256": "bb2652e5957b6e043138c1c50de95874c487a8ea4fd5e72bb164fe6e03fd8a94",
+      "public_calibrated_loss": 0.4025035935455566,
+      "public_original_loss": 0.4030064445949316,
+      "seconds": 154.73562519508414,
+      "seed": 103802,
+      "valid": true
+    },
+    {
+      "best_embedding_weight": 0.0,
+      "beta": 1.0512478727432317,
+      "calibrated": 0.37908126444502055,
+      "calibrated_sha256": "f558c3f27b27343f42c64878441016e58043a2e2d85db6739cfeeca052f21f38",
+      "calibration_seconds": 0.06054841913282871,
+      "changed_argmax": 0,
+      "commit": "8ec74c5a4e7eaaa334a7f0f34dbfd220120e6a02",
+      "improvement": 0.0006881858856195855,
+      "index": 2,
+      "original": 0.37976945033064013,
+      "original_sha256": "d054de62537faf8fe8161fcf65459b907f06bb2e2ccd28efbd1e321b7754fb6a",
+      "plan_sha256": "bb2652e5957b6e043138c1c50de95874c487a8ea4fd5e72bb164fe6e03fd8a94",
+      "public_calibrated_loss": 0.4025035935455566,
+      "public_original_loss": 0.4030064445949316,
+      "seconds": 138.38599926698953,
+      "seed": 103803,
+      "valid": true
+    }
+  ],
+  "sample_variance": 0.0,
+  "scope": "Known calibration, not novel method or agent benefit. Historical selected parent and reused development set. Internal classifier/CV seed remains42; outer seeds may not create independent predictions. OOF used for parent selection, not independent validation. Embedding may vary. No final test.",
+  "status": "CLOSED_OPPORTUNITY_CHECK_NOT_AGENT_METHOD",
+  "valid_pairs": 3,
+  "verification": "PASS"
+}

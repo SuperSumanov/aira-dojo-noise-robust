@@ -1,0 +1,38 @@
+{
+  "checked": 25,
+  "cv_aggregation": "PASS",
+  "cv_summary_sha256": "a992820905a49c89beb56447044fdb132b89fc13843ab459d0299a3230f1accf",
+  "limitation": "Rational oracle refers to real-valued convex interpolation of stored dyadic inputs. Native output rounding may change near-tie comparisons; native values separately reported. Neither is a deployable validated policy.",
+  "mismatched_rows": [
+    {
+      "batch": "task-feedback-upper-20261002-v1",
+      "changed_pair_relations": 5,
+      "exact_auc": 0.6851829705812007,
+      "exact_to_native_pair_relations": {
+        "-1:-1": 5265,
+        "1:0": 5,
+        "1:1": 11454
+      },
+      "index": 0,
+      "mismatch": true,
+      "native_auc": 0.6850334848122459
+    },
+    {
+      "batch": "task-feedback-upper-20261002-v1",
+      "changed_pair_relations": 1,
+      "exact_auc": 0.6833891413537432,
+      "exact_to_native_pair_relations": {
+        "-1:-1": 5295,
+        "1:0": 1,
+        "1:1": 11428
+      },
+      "index": 10,
+      "mismatch": true,
+      "native_auc": 0.6833592441999522
+    }
+  ],
+  "mismatches": 2,
+  "source_sha256": "f6c529412462665ab1eef8177811f37375213b5c77ce554d9f8f09845439fd43",
+  "status": "NUMERICAL_RECONCILIATION_PASS_NOT_ALL_FLOAT_OUTPUTS_EQUAL",
+  "summary_sha256": "b2ffb6bcc2b49998c685480a3a2ee44b77036a88fb45e57a2fa07146bbca1e25"
+}

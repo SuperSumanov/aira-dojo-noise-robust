@@ -1,0 +1,123 @@
+{
+  "accounting": "15287|COMPLETED|311|billing=12,cpu=12,gres/gpu=2,node=1",
+  "assigned": 3,
+  "bindings": [
+    {
+      "array_sha256": "415791eaffb8162e165cb65e7adb3a4c2d1df82d7458e3bd81a7f1f2e97302f6",
+      "binding_sha256": "0ea8716c9bffbc7b09eb0e3c988c3ea02b5dc4a71225e97451538b3795356528",
+      "index": 0,
+      "receipt_sha256": "850c524083f684bc36f52e3c913db5664a67e4faa279cd66e979a6e45d8f5d48",
+      "result_sha256": "387222d6403665a3e7bc9c2352655c14fbc9a7820925e08551a8dcae017c1f94"
+    },
+    {
+      "array_sha256": "607faf8001f2920f517394034dfbf11ab1e8cc364839718db4d1a3c27acb892f",
+      "binding_sha256": "7177de39164b0ad96dd40b98cca570d3b112940f3201833797684b15fcd9f5c2",
+      "index": 1,
+      "receipt_sha256": "02b7a07d413ea50d700a7e7235a83f20a152d5750c69c4c2fc73d6a73ab02ed3",
+      "result_sha256": "d08b0ae9df007f17346dc61a378d91102440f8b2f6fc766409cca5762209f0bb"
+    },
+    {
+      "array_sha256": "43333ae266ccca1f249a6cbcd613e899616dcf1b8de87388d98ddcfe5146e0d9",
+      "binding_sha256": "7d0972e2f3e27f42d814f2e531c60f4f0462b26e7b44573c2df4564ed485d3c3",
+      "index": 2,
+      "receipt_sha256": "d626c7266201ed7802532c8df24072ffa6decfea475161753afe124f6054f42d",
+      "result_sha256": "42631dd16208f103b043d20d89ef2dd799f8d74626ca5f6c078bd2bde79fecd2"
+    }
+  ],
+  "bootstrap": {
+    "limitations": "adaptive reused development data; no simultaneous/multiple-look or task uncertainty correction",
+    "replicates": 5000,
+    "seed": 104099,
+    "unit": "class-stratified request, paired jointly across fixed3 fits"
+  },
+  "conditional_median_request_ci": [
+    -0.0008031535575914213,
+    0.00019747500116379778
+  ],
+  "conditional_median_vs_temperature_ci": [
+    -0.002782759401763761,
+    0.0008237537865138939
+  ],
+  "distinct_blend_predictions": 3,
+  "distinct_style_predictions": 3,
+  "files": {
+    "runs.csv": "d3157ffc2f76db1dada8d2f75e4b777501b898a859cb906542765a3c5e040fb2"
+  },
+  "median_improvement": -0.00034312114084361633,
+  "opportunity_gate": false,
+  "plan_sha256": "dfa60c1c84544d02e8effd5a3d5e18ce38839d502c8e6d615700856164032371",
+  "readout_source_sha256": "7e4ac534a088c3c0fae441614d2fde5060be21372b4f6b9e3003349ff2716bb9",
+  "rows": [
+    {
+      "additional_seconds": 8.740125773008913,
+      "blend": 0.38012082517263707,
+      "blend_sha256": "8c47d0a6232c68788b36c72795bdee7ad3f4cc4085727517db9a3f3dc1de8119",
+      "changed_argmax": 0,
+      "commit": "8ec74c5a4e7eaaa334a7f0f34dbfd220120e6a02",
+      "gain_over_temperature_reference": -0.001039560727616573,
+      "improvement": -0.00035137484199693203,
+      "index": 0,
+      "original": 0.37976945033064013,
+      "original_sha256": "d054de62537faf8fe8161fcf65459b907f06bb2e2ccd28efbd1e321b7754fb6a",
+      "plan_sha256": "dfa60c1c84544d02e8effd5a3d5e18ce38839d502c8e6d615700856164032371",
+      "public_blend_loss": 0.40286964529972713,
+      "public_original_loss": 0.40300644459493157,
+      "public_style_loss": 0.9160882935490018,
+      "seconds": 160.73030965705402,
+      "seed": 104001,
+      "style": 0.9038975010562613,
+      "style_array_sha256": "0d3f25dd653380c0f7ff17e5423edc71258d308785d63e37aa03099f758c2c5e",
+      "valid": true,
+      "weight": 0.004686773279961451
+    },
+    {
+      "additional_seconds": 7.9082000439520925,
+      "blend": 0.3800924222441625,
+      "blend_sha256": "7b13448c834c2983ead33218f0c3065c19c07a0f0d054b255bda6ab2fcd1ce14",
+      "changed_argmax": 0,
+      "commit": "8ec74c5a4e7eaaa334a7f0f34dbfd220120e6a02",
+      "gain_over_temperature_reference": -0.001011157799142015,
+      "improvement": -0.0003229719135223741,
+      "index": 1,
+      "original": 0.37976945033064013,
+      "original_sha256": "d054de62537faf8fe8161fcf65459b907f06bb2e2ccd28efbd1e321b7754fb6a",
+      "plan_sha256": "dfa60c1c84544d02e8effd5a3d5e18ce38839d502c8e6d615700856164032371",
+      "public_blend_loss": 0.4028774250732991,
+      "public_original_loss": 0.40300644459493157,
+      "public_style_loss": 0.9142165186610283,
+      "seconds": 158.84344584285282,
+      "seed": 104002,
+      "style": 0.904918965535933,
+      "style_array_sha256": "0be3f2dc87cd3e48fa2826279a8fa1f40097892f80a231cf1d51db36a3c58ccc",
+      "valid": true,
+      "weight": 0.004461756327478259
+    },
+    {
+      "additional_seconds": 6.462921775877476,
+      "blend": 0.38011257147148375,
+      "blend_sha256": "c517edb40c151c2a869d48ddbfb6d18c498c7fcfc3995610582b4d108cc3d683",
+      "changed_argmax": 0,
+      "commit": "8ec74c5a4e7eaaa334a7f0f34dbfd220120e6a02",
+      "gain_over_temperature_reference": -0.0010313070264632573,
+      "improvement": -0.00034312114084361633,
+      "index": 2,
+      "original": 0.37976945033064013,
+      "original_sha256": "d054de62537faf8fe8161fcf65459b907f06bb2e2ccd28efbd1e321b7754fb6a",
+      "plan_sha256": "dfa60c1c84544d02e8effd5a3d5e18ce38839d502c8e6d615700856164032371",
+      "public_blend_loss": 0.4028599937238597,
+      "public_original_loss": 0.40300644459493157,
+      "public_style_loss": 0.9137541662591792,
+      "seconds": 146.166433847975,
+      "seed": 104003,
+      "style": 0.9033621031295948,
+      "style_array_sha256": "0bf6123efda2d8c9a902ebe4ff22fad9f3077d7e5a37cab8696dee83845e7bb3",
+      "valid": true,
+      "weight": 0.004693499392422573
+    }
+  ],
+  "sample_variance": 2.1347354838369904e-10,
+  "scope": "Last fixed complement opportunity check in this window. Known stylometry+GBDT, not novel method or automated discovery. Reused adaptive development set and historically selected incumbent. Added fits are not an equal-cost E2E method win.",
+  "status": "CLOSED_KNOWN_STYLE_REFERENCE_NOT_AGENT_METHOD",
+  "valid_pairs": 3,
+  "verification": "PASS"
+}

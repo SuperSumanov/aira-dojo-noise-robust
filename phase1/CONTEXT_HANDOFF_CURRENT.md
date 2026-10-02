@@ -1,6 +1,6 @@
 # 当前短交接
 
-更新2026-10-02 02:41UTC。用户本轮要求四小时方法探索，窗口00:33–04:33UTC；未到终点，不可说已工作完整四小时。先读CURRENT_DIRECTION顶部0L405、0L404。研究盘续期已确认。当前无存活exec会话，无本轮GPU/API；新增Pizza和Spooky经典任务模型共18fit，不是critic或agent底座训练。最后队列观察01:32UTC只有旧12535 PENDING JobHeldUser，未触碰，不当作正在训练。
+更新2026-10-02 02:48UTC。用户本轮要求四小时方法探索，窗口00:33–04:33UTC；未到终点，不可说已工作完整四小时。先读CURRENT_DIRECTION顶部0L406–404。研究盘续期已确认。当前无存活exec会话，无本轮GPU/API；新增Pizza和Spooky经典任务模型共18fit，不是critic或agent底座训练。最后队列观察01:32UTC只有旧12535 PENDING JobHeldUser，未触碰，不当作正在训练。
 
 ## 当前研究判断
 
@@ -8,7 +8,7 @@
 
 相对值得小额资格验证的假说仍是：诊断应提出能区分修改决定的可执行小实验，而非更多低分切片。若仅靠生成后拦截坏代码，Pizza当前已记录时间空间很小；需在生成前改善提案或降低生成成本。Spooky有更大执行浪费，但廉价诊断识别率与误拒仍未知。两臂同工具/同底座/同预算，诊断扣总成本，正确程序与未知结果也计入。原A prompt已要求意图及反证，不能把新增同样一句话当新干预。没有启动新的开放式诊断GPU实验。
 
-AgentX-Model已明确主动区别解释再修复；NSR-Boost已有冻结基模/残差区/符号专家/全局聚合；SpecFirst、自动蜕变测试、TRIM也覆盖普通框架。AURA两种合理定向修复未改善目标cohort；Rethinking Agent-Generated Tests的prompt干预无显著解决率变化；REFUTE不支持“找错天然容易”。新颖性仍未过门。不要无限文献检索或搭新通用harness替代具体效果问题。
+AgentX-Model已明确主动区别解释再修复；NSR-Boost已有冻结基模/残差区/符号专家/全局聚合；SpecFirst、自动蜕变测试、TRIM也覆盖普通框架。AURA两种合理定向修复未改善目标cohort；Rethinking Agent-Generated Tests的prompt干预无显著解决率变化；REFUTE不支持“找错天然容易”。TabClean已有证据支持的guarded清洗程序，GuardedRepair已有同预算生成/接受分离与误修核算；不能把单次生成条件补丁当新颖。单次先写好补丁的检查结果不参与其生成，主要仍是后置过滤；基线保留最好解已存在。新颖性仍未过门。不要无限文献检索或搭新通用harness替代具体效果问题。
 
 ## 本轮完成 不重跑
 
@@ -26,7 +26,7 @@ AgentX-Model已明确主动区别解释再修复；NSR-Boost已有冻结基模/�
 ## 仓库与操作
 
 主checkout C:/Research/New/my_project/MLEvolve/aira-dojo-codex-20260813，HEAD14188f8956d5becfc1f192455647d7c4aedd1f82，大量旧脏改，禁止whole-stage/reset/push。
-发布worktree C:/Research/New/my_project/MLEvolve/_codex_tmp/publication-feedback-20261001。上批35文件已正常快进推送79cf7c6c02afc261e600cc1f88093d4f6ffb2bae，本轮已再次fetch核对相同。后半6源码/14安全产物已复制此worktree待白名单核验发布。主/公开方向历史不同，只同步新顶部，不整份覆盖旧历史。学长dojo-reproduce最后核4ee7afd9970974f4bfae4b7a9d51591aca5c0b48，未改学长分支。
+发布worktree C:/Research/New/my_project/MLEvolve/_codex_tmp/publication-feedback-20261001。上批35文件已正常快进推送79cf7c6c02afc261e600cc1f88093d4f6ffb2bae，本轮已再次fetch核对相同。后半23文件（6源码/14安全产物/3元文件）已安全扫描、20源码/产物暂存字节一致、哈希绑定通过，正常快进公开ac10d5da9acb548727116c90e1421aa0e484c812并独立ls-remote核对。此次只补方向判断及交接。主/公开方向历史不同，只同步新顶部，不整份覆盖旧历史。学长dojo-reproduce最后核4ee7afd9970974f4bfae4b7a9d51591aca5c0b48，未改学长分支。
 
 SSH linux5；远端Python /research/d7/spc/yzyang4/venvs/aira/bin/python，3.12.13/sklearn1.6.1/numpy2.2.4；脚本/tmp/task-feedback-stage-20261001。SSH内层引号易丢，使用上传脚本，不再试长python -c。复制等exit0再做下游；单CPU限时；凭据仅远端.env。
 新安全下载位于本地_codex_tmp/{classic-reference-export-20261002,repair-cost-export-20261002,spooky-classic-export-20261002}，无私有模型/逐行预测/标签。源码与回执保持逐字节，.gitattributes显式-text。

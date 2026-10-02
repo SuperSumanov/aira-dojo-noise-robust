@@ -2,18 +2,13 @@
 
 数据怎么来的见 `src/mle_policy/docs/data/README.md`；这篇只讲拿它去训练。
 
-**先看结论**：数据、转换脚本、训练脚本都跑通了，**但 Qwen3.5 在
-`verl.trainer.sft_trainer` 这条路上会崩**（第 5 节，有证据），所以现在真正跑起来的
-基线用的是 `Qwen/Qwen3-8B-Base`。换回 Qwen3.5 只要改一个环境变量，
-前提是先把第 5 节的坑填掉。
-
 ## 1. 训练的是什么
 
 * **数据**：`data/mle_policy/dataset/<bucket>/sft.jsonl`
   —— 每个 prompt group 里挑一条最好的episode（rejection sampling）。
-* **模型**：`Qwen/Qwen3-8B-Base`（原计划 `Qwen/Qwen3.5-9B`，见第 5 节）
+* **模型**：`Qwen/Qwen3.5-9B` 和 `Qwen/Qwen3.8-27B`
 * **框架**：`src/verl` 的 `verl.trainer.sft_trainer`（纯 FSDP，不起 Ray）
-* **机器**：projgpu39，2× RTX PRO 6000（每张 98 GB）
+* **机器**：projgpu39，2× RTX PRO 6000（每张 98 GB）/ `Qwen/Qwen3.8-27B`则使用4xh200
 * **环境**：参考`src/mle_critic/docs/train/LOOKAHEAD_REWARD_MODEL_EXPERIMENTS.md`中的verl环境配置
 
 ## 2. 数据转换：jsonl → verl parquet
@@ -67,7 +62,7 @@ train 75.4%（`improve` 60.9%、`debug` 49.1%），要长上下文就得按 64k 
 
 ## 3. 训练脚本和启动方式
 
-在宿主机上起一个交互式 `singularity shell`，进容器后：
+在宿主机上起一个交互式 `singularity shell`，进容器挂上必要的环境变量后：
 
 ```bash
 cd <repo>/src/verl          # 容器里就是 /workspace/verl/src/verl

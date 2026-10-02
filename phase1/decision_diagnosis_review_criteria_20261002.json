@@ -1,0 +1,31 @@
+{
+  "scope": "Before viewing any outcome from job 15227; qualitative qualification rubric, not a new numerical stopping rule.",
+  "estimand": "Diagnostic-first policy versus freely chosen inspection/improvement, with common tools, time and call caps. Not an isolated causal effect of observation content.",
+  "denominator": "All eight scheduled trajectories and all generated actions, including rejected format, timeout, incorrect diagnosis, no change and invalid repairs.",
+  "questions_for_every_diagnostic": [
+    "Were distinct explanations linked to distinct edits before execution?",
+    "Was a provisional edit and an observation-dependent decision rule stated before execution?",
+    "Did executable code measure real public-data/program behaviour rather than print assumed conclusions?",
+    "Did the check actually return, and were failure/uncertainty visible to the subsequent call?",
+    "Do the next rationale AND actual code follow the observed result? A citation to a log alone is insufficient.",
+    "Did the edit differ from the pre-check provisional choice? If unknown or unchanged, do not claim decision-changing evidence.",
+    "Is this outside the shared known fixes, and distinct from simply reproducing a cheap classical reference?",
+    "Did the repaired candidate execute and improve the external exploratory development metric over the common incumbent?",
+    "Did the complete diagnostic-first trajectory improve over the paired ordinary trajectory, including all diagnostic cost?"
+  ],
+  "negative_and_control_cases": [
+    "Ordinary arm spontaneously inspecting the same issue reduces treatment separation; it does not show diagnostics are useless.",
+    "No final-score harm from retaining the incumbent is shared baseline behaviour, not a new benefit.",
+    "Format or token-cap failures are feasibility failures under this interface, not proof that the conceptual method cannot work.",
+    "A measured contrast between differently coded pipelines may include multiple changes; do not infer a single cause.",
+    "A repair outside the two explicit known rules is not automatically a novel ML method.",
+    "Repeated identical code or predictions across seeds are disclosed, not counted as independent discoveries.",
+    "Actions use fresh workspaces and pass observations/code but not fitted artifacts; this shared interface can be particularly costly for fit-heavy diagnostics. A failure here is not a universal test of artifact-reusing diagnosis.",
+    "The two explanations and decision rule are part of the policy treatment. If A also chooses CHECK, this is not a diagnosis-versus-no-diagnosis comparison.",
+    "Equal limits do not imply equal realized token/execution cost. Report actual completions, execution and full GPU allocation rather than silently credit unused caps as savings.",
+    "Only two generation seeds per task and one reused starting program per task: the numerical gate qualifies further study, not statistical significance or independent confirmation."
+  ],
+  "no_posthoc_tuning": "Do not change prompts, add seeds, change tasks, inspect protected cohorts, or launch follow-up fits in response to one favourable action.",
+  "novelty": "Not cleared. MLToolBench, AgentX-Model, Gome and other documented neighbours already cover diagnostic evidence and decision use. A positive pilot is only grounds for a narrower study, not a top-venue claim.",
+  "prospective_gate": "Original plan remains authoritative: positive paired-gain median on both tasks plus real new evidence-to-repair mechanism. Qualitative uncertainty is retained. Two seeds on reused development data cannot establish significance or fresh-test transfer."
+}

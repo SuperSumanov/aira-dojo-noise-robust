@@ -16,7 +16,7 @@ def main():
     from dojo.tasks.mlebench.task import MLEBenchTask
     summary=read(R/'readout-v1/summary.json'); assert summary['plan_sha256']==PLAN
     for name,h in summary['files'].items(): assert sha(R/'readout-v1'/name)==h
-    sr={r['index']:r for r in summary['rows']}; checked=[]; request_checks=[]
+    sr={r['index']:r for r in summary['rows']}; checked=[]; request_checks=[]; independent=[]
     job=read(R/'launch.json')['job']; service=read(R/'service-native.json')
     for s in p['schedule']:
         ep=R/f'episode-{s["index"]}'; assert (ep/'closed.json').exists()
@@ -57,6 +57,11 @@ def main():
             checked.append(dict(index=s['index'],step=step,kind=r['kind'],valid=r['valid'],result_sha256=sha(path)))
         best=(min if key=='id' else max)(values) if values else None
         assert best is None and sr[s['index']]['selected'] is None or best is not None and math.isclose(best,sr[s['index']]['selected'],abs_tol=1e-11)
+        gain=(initial-best if key=='id' else best-initial) if initial is not None and best is not None else None
+        for field,value in [('initial',initial),('gain',gain)]:
+            reported=sr[s['index']][field]
+            assert value is None and reported is None or value is not None and reported is not None and math.isclose(value,reported,rel_tol=1e-11,abs_tol=1e-11)
+        independent.append(dict(task=s['task'],seed=s['seed'],arm=s['arm'],initial=initial,gain=gain))
         if (ep/'action-1/result.json').exists() and (ep/'action-2/request.private.json').exists():
             first=read(ep/'action-1/node.private.json'); r1=read(ep/'action-1/result.json')
             req=read(ep/'action-2/request.private.json')['prompt']
@@ -64,8 +69,30 @@ def main():
             assert f"Exit={r1['exit_code']}; timed_out={r1['timed_out']}" in req
             request_checks.append(dict(index=s['index'],actual_output_in_next_prompt=True,
                 previous_result_sha256=sha(ep/'action-1/result.json'),request_sha256=sha(ep/'action-2/request.private.json')))
+    paired_checks=[]
+    for taskname in sorted({x['task'] for x in independent}):
+        deltas=[]
+        for seed in sorted({x['seed'] for x in independent if x['task']==taskname}):
+            pair={x['arm']:x for x in independent if x['task']==taskname and x['seed']==seed}
+            assert set(pair)=={'A','B'}
+            a,b=pair['A'],pair['B']
+            if a['initial'] is not None and b['initial'] is not None and abs(a['initial']-b['initial'])<1e-10:
+                assert a['gain'] is not None and b['gain'] is not None
+                deltas.append(b['gain']-a['gain'])
+        ordered=sorted(deltas); n=len(deltas)
+        median=(ordered[(n-1)//2]+ordered[n//2])/2 if n else None
+        variance=math.fsum((x-math.fsum(deltas)/n)**2 for x in deltas)/(n-1) if n>1 else None
+        reported=next(x for x in summary['tasks'] if x['task']==taskname)
+        assert reported['paired']==n
+        for field,value in [('median_delta',median),('sample_variance',variance)]:
+            assert value is None and reported[field] is None or value is not None and math.isclose(value,reported[field],rel_tol=1e-10,abs_tol=1e-11)
+        for field,count in [('B_wins',sum(x>1e-12 for x in deltas)),('A_wins',sum(x< -1e-12 for x in deltas)),('ties',sum(abs(x)<=1e-12 for x in deltas))]:
+            assert reported[field]==count
+        paired_checks.append(dict(task=taskname,paired=n,median_delta=median,sample_variance=variance))
+    assert summary['numerical_gate']==all(x['paired']==2 and x['median_delta']>0 for x in paired_checks)
     out=dict(status='PASS',plan_sha256=PLAN,summary_sha256=sha(R/'readout-v1/summary.json'),
         source_sha256=sha(Path(__file__)),verified_actions=checked,request_chronology=request_checks,
+        independently_recomputed_pairs=paired_checks,
         valid_scored=sum(r['valid'] for r in checked),
         scope='Independent per-positive-negative AUC / per-row log loss; same approved D_search labels. GPU namespace and source/result hashes, saved-incumbent replay. Mechanism/novelty NOT certified.')
     with (R/'readout-v1/verification.json').open('x') as f: json.dump(out,f,sort_keys=True,indent=2)

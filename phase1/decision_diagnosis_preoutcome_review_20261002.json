@@ -1,0 +1,78 @@
+{
+  "recorded_utc": "2026-10-02T06:52:45Z",
+  "scope": "Mechanism review before reading any new candidate score from job 15227. Internal public-training check outputs are not external candidate scores. Later efficacy results must not revise these historical observations.",
+  "plan_sha256": "939f9470529ad6c14f5b6670bb1bec4cd99398026f6fbdbea662c8d29e32c48e",
+  "episodes": [
+    {
+      "index": 0,
+      "task": "random-acts-of-pizza",
+      "arm": "B",
+      "seed": 102801,
+      "declared_contrast": "Text features are harmful versus underused; numeric-only versus text-linear/blend edits.",
+      "observation_status": "FAILED_NO_AGGREGATE_CONTRAST",
+      "failure": "Text classifier fitted 4000 features but its prediction input had 4024 features; ValueError before the requested aggregate comparison.",
+      "other_limitations": ["Vectorizers fitted on all public training rows before internal CV, making that proposed internal comparison optimistic.", "The variable named char used default word analysis; names are not evidence of the intended measurement."],
+      "subsequent_choice": "Acknowledged no measurement, retained incumbent feature design and broadened tree hyperparameter search.",
+      "new_evidence_to_edit": false,
+      "interpretation": "Any later score improvement is not evidence that this failed diagnostic produced a useful new observation. A no-regression claim in the rationale is not a guarantee.",
+      "bindings": {
+        "action1_generation": "9224d18e318eb5d0bf94300ae7747e6493f29b51c8e89eb6daf180ca47d1b0c2",
+        "action1_node": "317a9fbd8afe761ad5664ed56ff5d3bac2cbb522ecace8864bf9467a7e2ceac4",
+        "action2_generation": "2691c1777916a74676e77ef921e4248319e7713d4606aef13b3f88486e42041f"
+      }
+    },
+    {
+      "index": 1,
+      "task": "spooky-author-identification",
+      "arm": "B",
+      "seed": 102802,
+      "declared_contrast": "Linear text model near a ceiling on representative inputs versus distribution shift needing a different model family.",
+      "observation_status": "TIMEOUT_NO_USABLE_RETURNED_MEASUREMENT",
+      "failure": "Requested up to 30 model fits under the 120-second diagnostic cap; returned timeout only.",
+      "other_limitations": ["Length statistics do not identify label/concept shift or establish that a nonlinear model is the needed repair.", "The later regularization sweep fitted vectorizers before its CV loop, unlike the earlier fold-local check."],
+      "subsequent_choice": "Acknowledged no new measurement; used old incumbent CV to remove a zero-weight embedding branch and expand text-model search.",
+      "new_evidence_to_edit": false,
+      "interpretation": "Could reveal an ordinary budget-reallocation opportunity, but not successful new diagnostic evidence. An internal-CV claim of matching the incumbent is not an external-score guarantee.",
+      "bindings": {
+        "action1_generation": "67f58914a3579e74bbf471cefb9120013f2221ba34923bf1a30aeba9cb8e1d32",
+        "action1_node": "95017cafa6493e7612154dbb4e93b1b00000841024e8be765d7c812a68bafe0c",
+        "action2_generation": "67dffb1f1715cc16622e9cad964ff12b3828d1d15491948da3ad6da935d463e1"
+      }
+    },
+    {
+      "index": 2,
+      "task": "random-acts-of-pizza",
+      "arm": "A",
+      "seed": 102801,
+      "review_added_utc": "2026-10-02T07:00:00Z",
+      "observation_status": "TIMEOUT_NO_USABLE_RETURNED_MEASUREMENT",
+      "declared_contrast": "Freely chose CHECK: adding linear text model and reweighting the tree blend; implemented full multi-model tuning before printing aggregate contrasts.",
+      "subsequent_choice": "Acknowledged failed check, used old incumbent scores, proposed additional model/grid and changed softmax temperature from 0.005 to 0.002 while describing it as milder.",
+      "new_evidence_to_edit": false,
+      "other_limitations": ["Lower positive softmax temperature sharpens, rather than flattens, weights at fixed unequal model scores; the stated rationale reverses that relationship.", "Final response consumed 4096 completion tokens and had only one code fence; invalid complete-program format, not proof that its unexecuted idea cannot work.", "Internal CV fallback does not guarantee no external-score harm."],
+      "bindings": {
+        "action1_generation": "7fb55ab1bad4f397459cdd7b7a70a50617a6da230a7a11d8b28f1243f2f7c75f",
+        "action1_node": "2aecbe01885a8934e9031d5723440561fc0acdefde330974e6c7a4e4fbeeda86",
+        "action2_generation": "ffb60ab490dc3874105de45e9d40ad72d858674a3e1944b86998108e2d0092c1"
+      }
+    },
+    {
+      "index": 3,
+      "task": "spooky-author-identification",
+      "arm": "A",
+      "seed": 102802,
+      "review_added_utc": "2026-10-02T07:00:00Z",
+      "observation_status": "TIMEOUT_NO_USABLE_RETURNED_MEASUREMENT",
+      "declared_contrast": "Freely chose CHECK: text-model configuration sweep, embedding and ensemble comparisons, many fold-local fits under the short cap.",
+      "subsequent_choice": "Acknowledged no new measurement, used old zero embedding weight, removed embedding and compared baseline versus expanded text-model configuration inside the solution.",
+      "new_evidence_to_edit": false,
+      "interpretation": "Ordinary arm already chooses diagnosis and reaches a similar old-log-based repair family as B; treatment is not diagnostic access versus its absence.",
+      "bindings": {
+        "action1_generation": "f566e237422bcf82762a17bd201e0325502aebcd14b203f731ae12fb629ed1fe",
+        "action1_node": "04f4fab49ab80d5fc15a695671aa96146302cddb396d285195fc8ab5fcffecd3",
+        "action2_generation": "8d1b3c3f9823ef629c0f5d97d1a41b360b3430863d86f2f96032cbcfc96d4443"
+      }
+    }
+  ],
+  "limitations": "Qualitative single-reviewer assessment, not independent mechanistic proof. No changes to live prompts, checks, repairs or budgets; no interim efficacy readout. All other episodes remain in the planned denominator."
+}

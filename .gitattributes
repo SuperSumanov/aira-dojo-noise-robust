@@ -745,3 +745,8 @@ phase1/scripts/verify_spooky_classic_reference_20261002.py -text diff whitespace
 phase1/results/task_classic_reference_20261002/* -text diff whitespace=cr-at-eol
 phase1/results/repair_cost_20261002/* -text diff whitespace=cr-at-eol
 phase1/results/spooky_classic_reference_20261002/* -text diff whitespace=cr-at-eol
+# Exact bytes for the prospective diagnostic-policy pilot and safe readout.
+phase1/scripts/decision_diagnosis*_20261002.py -text diff whitespace=cr-at-eol
+phase1/tests/test_decision_diagnosis*_20261002.py -text diff whitespace=cr-at-eol
+phase1/decision_diagnosis*_20261002.json -text diff whitespace=cr-at-eol
+phase1/results/decision_diagnosis_20261002/* -text diff whitespace=cr-at-eol

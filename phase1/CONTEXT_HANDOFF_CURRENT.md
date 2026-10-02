@@ -1,18 +1,20 @@
 # 当前短交接
 
-更新2026-10-02 06:29UTC。用户本轮要求继续主动诊断资格验证，窗口06:11–09:11UTC（香港14:11–17:11），不得提前声称完整三小时。先读CURRENT_DIRECTION顶部0L407，以下历史分析不重跑。研究盘续期已确认。作业15227于06:29最后观察RUNNING gpu28，服务正在启动；不读中途分数、不改配置、不自动补seed。旧12535 JobHeldUser未动。
+更新2026-10-02 06:55UTC。用户本轮要求继续主动诊断资格验证，窗口06:11–09:11UTC（香港14:11–17:11），不得提前声称完整三小时。先读CURRENT_DIRECTION顶部0L407，以下历史分析不重跑。研究盘续期已确认。作业15227于06:55最后观察RUNNING gpu28，已运行29:10；首轮B两条闭合、A两条正在执行，共8条尚未全闭合。服务已就绪；不读中途分数、不改配置、不自动补seed。旧12535 JobHeldUser未动。
 
 ## 本轮实际运行
 
 根`/research/d7/spc/yzyang4/decision-diagnosis-20261002-v1`；plan `939f9470529ad6c14f5b6670bb1bec4cd99398026f6fbdbea662c8d29e32c48e`。Pizza/Spooky×2 seed×A普通/B先检查再修改=8轨迹；4GPU100分钟上限6.666666666666667GPUh，本地27B、原镜像、每轨900秒2生成。两臂同CHECK/SOLUTION工具；B检查实际结果必须进入第二轮。历史开发最好代码同起点，选择偏差明确、非独立终评。完整读出前不改提示/规则/预算，检查通过率不能当收益。两任务各自配对收益中位>0且真实新检查到新修正，才支持扩大。
 
-新增源码在publication worktree `phase1/scripts/decision_diagnosis{,_cpu,_readout,_verify}_20261002.py`，尚未提交；main脏目录不全stage。远端staging `/tmp/task-feedback-stage-20261001/`。CPU预检8配置/8无网络SDK/4真实循环PASS。新副本修复监督器读取回执前采样now的竞态，仅改为读取后采样、无容差放宽；旧批不改。prepare语法和排他写入错误在GPU前修正，原计划已保留prelaunch-plan-v0。status只读结构；all-closed和closed都有后才analyze，随后独立verify。当前无活跃本地exec会话；GPU作业不依赖会话。无付费API、无底座训练、保护集合未开。
+新增源码在publication worktree `phase1/scripts/decision_diagnosis{,_cpu,_readout,_verify}_20261002.py`，冻结版本本地commit d2efd697e0c28537fe862279a8a1e4d2ef1f708b，尚未push；其后只补只读审查/读出，不改运行配置。main脏目录不全stage。远端staging `/tmp/task-feedback-stage-20261001/`。CPU预检8配置/8无网络SDK/4真实循环PASS，读出3单测PASS；执行源码本地/远端同SHA a947caac972794c42ba3aa8ddd1c3824d00acb4970695d5646ccd4711911a5f0。新副本修复监督器读取回执前采样now的竞态，仅改为读取后采样、无容差放宽；旧批不改。prepare语法和排他写入错误在GPU前修正，原计划已保留prelaunch-plan-v0。status只读结构；all-closed和closed都有后才analyze，随后独立verify。当前无活跃本地exec会话；GPU作业不依赖会话。无付费API、无底座训练、保护集合未开。
+
+揭示本轮候选成绩前已固定机制标准与首轮审查：`decision_diagnosis_review_criteria_20261002.json`、`decision_diagnosis_preoutcome_review_20261002.json`。Pizza B检查特征维度4000/4024错误，Spooky B检查超时；两者最终理由承认未获测量而按旧日志加超参搜索。因此即使后续涨分，也不能把这两例归因新诊断证据。两例均含潜在公开内部CV特征拟合泄漏，不涉及保护标签。完整分母、成本、其余seed仍待全批完成；不修模型生成错误、不补跑。
 
 ## 当前研究判断
 
 尚无自动找到规则库外并超过强参照的新方法。不得包装两例oracle、有效率、经典模型或数据审计为方法突破。不因没有正数而沿原开发分扩网格/换seed。历史最好参照含人工与事后选优；没有超过它不等于证明方法在公平前瞻比较无效。
 
-相对值得小额资格验证的假说仍是：诊断应提出能区分修改决定的可执行小实验，而非更多低分切片。若仅靠生成后拦截坏代码，Pizza当前已记录时间空间很小；需在生成前改善提案或降低生成成本。Spooky有更大执行浪费，但廉价诊断识别率与误拒仍未知。两臂同工具/同底座/同预算，诊断扣总成本，正确程序与未知结果也计入。原A prompt已要求意图及反证，不能把新增同样一句话当新干预。没有启动新的开放式诊断GPU实验。
+相对值得小额资格验证的假说仍是：诊断应提出能区分修改决定的可执行小实验，而非更多低分切片。若仅靠生成后拦截坏代码，Pizza当前已记录时间空间很小；需在生成前改善提案或降低生成成本。Spooky有更大执行浪费，但廉价诊断识别率与误拒仍未知。两臂同工具/同底座/同预算，诊断扣总成本，正确程序与未知结果也计入。原A prompt已要求意图及反证，不能把新增同样一句话当新干预。当前只运行上述15227，不另加GPU资格试验。MLToolBench 2609.36679已覆盖工具/诊断决策与观察遮蔽对照，不能宣称这些首创；其主要方案训练底座，不在我方可恢复方向内。
 
 AgentX-Model已明确主动区别解释再修复；NSR-Boost已有冻结基模/残差区/符号专家/全局聚合；SpecFirst、自动蜕变测试、TRIM也覆盖普通框架。AURA两种合理定向修复未改善目标cohort；Rethinking Agent-Generated Tests的prompt干预无显著解决率变化；REFUTE不支持“找错天然容易”。TabClean已有证据支持的guarded清洗程序，GuardedRepair已有同预算生成/接受分离与误修核算；不能把单次生成条件补丁当新颖。单次先写好补丁的检查结果不参与其生成，主要仍是后置过滤；基线保留最好解已存在。新颖性仍未过门。不要无限文献检索或搭新通用harness替代具体效果问题。
 

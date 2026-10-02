@@ -1,5 +1,5 @@
 """Pre-outcome readout: no partial-winner selection, all eight starts retained."""
-import argparse, csv, hashlib, json, math, statistics, subprocess
+import argparse, csv, hashlib, json, math, re, statistics, subprocess
 from pathlib import Path
 R=Path('/research/d7/spc/yzyang4/decision-diagnosis-20261002-v1')
 def read(p): return json.loads(p.read_bytes())
@@ -20,6 +20,16 @@ def status():
         all_closed=(R/'all-closed.json').exists(),allocation_closed=(R/'closed.json').exists(),
         controller_error=(read(R/'controller-error.json') if (R/'controller-error.json').exists() else None),
         rows=rows)
+def service_status():
+    path=R/'service.private.log'
+    if not path.exists(): return {'status':'NO_LOG'}
+    raw=path.read_bytes()
+    secret=re.compile(rb'(?i)(?<![a-z0-9])(?:sk-[a-z0-9_.-]{12,}|hf_[a-z0-9]{20,}|gh[pousr]_[a-z0-9]{20,}|Bearer\s+[a-z0-9_.-]{20,})')
+    if secret.search(raw): return {'status':'WITHHELD_CREDENTIAL_SHAPE','bytes':len(raw)}
+    # Progress-only service messages, never model responses/task traces.
+    lines=[x for x in raw.decode(errors='replace').splitlines()
+           if any(t in x for t in ('Loading safetensors','Loading model weights','Graph capturing','Available KV','Application startup complete','ERROR','Traceback'))]
+    return {'bytes':len(raw),'mtime_ns':path.stat().st_mtime_ns,'progress':lines[-10:]}
 def analyze():
     if not (R/'all-closed.json').exists() or not (R/'closed.json').exists():
         raise ValueError('complete batch closure required, no partial efficacy readout')
@@ -51,8 +61,14 @@ def analyze():
         saved=[read(x)['selected_metric'] for x in sorted(ep.glob('action-*/result.json'))]
         if saved: assert saved[-1]==best[0]
         gain=(initial-best[0] if lower else best[0]-initial) if initial is not None and best[0] is not None else None
-        rows.append(dict(**s,initial=initial,selected=best[0],selected_step=best[1],gain=gain,
-            generation_seconds=sum(costs),generations=len(costs),action_modes=';'.join(modes),
+        rows.append(dict(**s,base_commit=p['base_commit'],engine_sha256=p['files']['task_feedback_real_20261001.py'],
+            config_sha256=sha(R/'configs'/f'{s["index"]}.json'),run_seconds=p['run_seconds'],
+            max_calls=p['max_calls'],max_tokens_per_call=p['max_tokens_per_call'],
+            generator='qwen3.8-27b local AWQ INT4',hardware='gpu28 RTX3090',
+            initial=initial,selected=best[0],selected_step=best[1],gain=gain,
+            generation_seconds=sum(costs),generations_completed=len(costs),
+            generation_attempts=sum(1 for _ in ep.glob('action-*/request.private.json')),
+            action_modes=';'.join(modes),
             budget_exhausted=closed['worker_deadline_reached'],closed=True))
     pairs=[]; tasks=[]
     for task in ('random-acts-of-pizza','spooky-author-identification'):
@@ -81,6 +97,7 @@ def analyze():
         scope='exploratory reused D_search, strong old selected starts, 2 generation seeds/task, no independent test or novelty claim')
     write(out/'summary.json',summary); print(json.dumps(summary,sort_keys=True))
 if __name__=='__main__':
-    p=argparse.ArgumentParser(); p.add_argument('mode',choices=['status','analyze']); a=p.parse_args()
+    p=argparse.ArgumentParser(); p.add_argument('mode',choices=['status','service','analyze']); a=p.parse_args()
     if a.mode=='status': print(json.dumps(status(),sort_keys=True))
+    elif a.mode=='service': print(json.dumps(service_status(),sort_keys=True))
     else: analyze()

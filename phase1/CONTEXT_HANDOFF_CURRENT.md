@@ -1,6 +1,12 @@
 # 当前短交接
 
-更新2026-10-02 02:48UTC。用户本轮要求四小时方法探索，窗口00:33–04:33UTC；未到终点，不可说已工作完整四小时。先读CURRENT_DIRECTION顶部0L406–404。研究盘续期已确认。当前无存活exec会话，无本轮GPU/API；新增Pizza和Spooky经典任务模型共18fit，不是critic或agent底座训练。最后队列观察01:32UTC只有旧12535 PENDING JobHeldUser，未触碰，不当作正在训练。
+更新2026-10-02 06:29UTC。用户本轮要求继续主动诊断资格验证，窗口06:11–09:11UTC（香港14:11–17:11），不得提前声称完整三小时。先读CURRENT_DIRECTION顶部0L407，以下历史分析不重跑。研究盘续期已确认。作业15227于06:29最后观察RUNNING gpu28，服务正在启动；不读中途分数、不改配置、不自动补seed。旧12535 JobHeldUser未动。
+
+## 本轮实际运行
+
+根`/research/d7/spc/yzyang4/decision-diagnosis-20261002-v1`；plan `939f9470529ad6c14f5b6670bb1bec4cd99398026f6fbdbea662c8d29e32c48e`。Pizza/Spooky×2 seed×A普通/B先检查再修改=8轨迹；4GPU100分钟上限6.666666666666667GPUh，本地27B、原镜像、每轨900秒2生成。两臂同CHECK/SOLUTION工具；B检查实际结果必须进入第二轮。历史开发最好代码同起点，选择偏差明确、非独立终评。完整读出前不改提示/规则/预算，检查通过率不能当收益。两任务各自配对收益中位>0且真实新检查到新修正，才支持扩大。
+
+新增源码在publication worktree `phase1/scripts/decision_diagnosis{,_cpu,_readout,_verify}_20261002.py`，尚未提交；main脏目录不全stage。远端staging `/tmp/task-feedback-stage-20261001/`。CPU预检8配置/8无网络SDK/4真实循环PASS。新副本修复监督器读取回执前采样now的竞态，仅改为读取后采样、无容差放宽；旧批不改。prepare语法和排他写入错误在GPU前修正，原计划已保留prelaunch-plan-v0。status只读结构；all-closed和closed都有后才analyze，随后独立verify。当前无活跃本地exec会话；GPU作业不依赖会话。无付费API、无底座训练、保护集合未开。
 
 ## 当前研究判断
 

@@ -1,0 +1,113 @@
+{
+  "files": [
+    {
+      "bytes": 36587,
+      "relative": "public_examples_20261003/plan.json",
+      "sha256": "40e6bc3301c1db52fa09a794577c0b5dc95533302b0e460a044942a6485c5376",
+      "source": "/research/d7/spc/yzyang4/public-example-feedback-20261003-v1/plan.json"
+    },
+    {
+      "bytes": 1084,
+      "relative": "public_examples_20261003/cpu.json",
+      "sha256": "45ed7077d2ae1b956c0b95a7681471bc6bc1f8711467a1223f8ed1afa7497dd8",
+      "source": "/research/d7/spc/yzyang4/public-example-feedback-20261003-v1/cpu.json"
+    },
+    {
+      "bytes": 247,
+      "relative": "public_examples_20261003/transport-cpu.json",
+      "sha256": "4aac4f8676e00740176cfa496784b92572f543fec08af126fcb947756d1d1cad",
+      "source": "/research/d7/spc/yzyang4/public-example-feedback-20261003-v1/transport-cpu.json"
+    },
+    {
+      "bytes": 151,
+      "relative": "public_examples_20261003/launch.json",
+      "sha256": "356da3dccde85215e9608174e00913995f158afa03f0a0e51a2793306a7199dd",
+      "source": "/research/d7/spc/yzyang4/public-example-feedback-20261003-v1/launch.json"
+    },
+    {
+      "bytes": 65,
+      "relative": "public_examples_20261003/all-closed.json",
+      "sha256": "8921fd6f02914446f7fafe25807628a1ba14a7144391c9977fb3342761578fbf",
+      "source": "/research/d7/spc/yzyang4/public-example-feedback-20261003-v1/all-closed.json"
+    },
+    {
+      "bytes": 114,
+      "relative": "public_examples_20261003/closed.json",
+      "sha256": "5574f3911396a3900a57c629f0392d06b37c360b9ec8165899dc3f91af1f71c8",
+      "source": "/research/d7/spc/yzyang4/public-example-feedback-20261003-v1/closed.json"
+    },
+    {
+      "bytes": 5147,
+      "relative": "public_examples_20261003/runs.csv",
+      "sha256": "93ea70a79f90271f9dafde473e1a002ba30d5fd1c9ebcc5eeef4781e0aba4f84",
+      "source": "/research/d7/spc/yzyang4/public-example-feedback-20261003-v1/readout-v1/runs.csv"
+    },
+    {
+      "bytes": 7135,
+      "relative": "public_examples_20261003/actions.csv",
+      "sha256": "00e03a842aa76f2aab62cffcf7c353dd799841fd0c1daba38fe888e14aad2f2c",
+      "source": "/research/d7/spc/yzyang4/public-example-feedback-20261003-v1/readout-v1/actions.csv"
+    },
+    {
+      "bytes": 347,
+      "relative": "public_examples_20261003/pairs.csv",
+      "sha256": "d27aca8bbb12bb489b367100b7cc11bc822bcacacf1b1df05e043b64c29f33ee",
+      "source": "/research/d7/spc/yzyang4/public-example-feedback-20261003-v1/readout-v1/pairs.csv"
+    },
+    {
+      "bytes": 37434,
+      "relative": "public_examples_20261003/summary.json",
+      "sha256": "480017dbcb8745f4e55c66d67bc55734ee3881b811d855f7ca12a29d74df6918",
+      "source": "/research/d7/spc/yzyang4/public-example-feedback-20261003-v1/readout-v1/summary.json"
+    },
+    {
+      "bytes": 5228,
+      "relative": "public_examples_20261003/verification.json",
+      "sha256": "d2b1502ac25cca5b0302ac521e408760482fe0291c41674b65f2e2afa217d7b3",
+      "source": "/research/d7/spc/yzyang4/public-example-feedback-20261003-v1/readout-v1/verification.json"
+    },
+    {
+      "bytes": 32032,
+      "relative": "char_branch_control_20261003/plan.json",
+      "sha256": "e989f2f0d3d585812fda44bca0b2b6de5124b2222d9c1b2554800f0a4d997269",
+      "source": "/research/d7/spc/yzyang4/char-branch-control-20261003-v1/plan.json"
+    },
+    {
+      "bytes": 170,
+      "relative": "char_branch_control_20261003/cpu.json",
+      "sha256": "711a38c0b388a74d300211d37cac00f5558e5877bc2f7768b7fbb81a54153b48",
+      "source": "/research/d7/spc/yzyang4/char-branch-control-20261003-v1/cpu.json"
+    },
+    {
+      "bytes": 105,
+      "relative": "char_branch_control_20261003/launch.json",
+      "sha256": "3835e3acfa547fa75d7c1c62bddc71e61e859f611771d3a754394124b87ec8d4",
+      "source": "/research/d7/spc/yzyang4/char-branch-control-20261003-v1/launch.json"
+    },
+    {
+      "bytes": 84,
+      "relative": "char_branch_control_20261003/closed.json",
+      "sha256": "48903467cd8d96d4fd99fec190368cc271a381ccadab1e24ecf5b96e41114ffb",
+      "source": "/research/d7/spc/yzyang4/char-branch-control-20261003-v1/closed.json"
+    },
+    {
+      "bytes": 1014,
+      "relative": "char_branch_control_20261003/runs.csv",
+      "sha256": "d9f28b21d620385dc0ae4ececa6f1abc2ede07e595c939aef3f6dd6a5185cf3c",
+      "source": "/research/d7/spc/yzyang4/char-branch-control-20261003-v1/readout-v1/runs.csv"
+    },
+    {
+      "bytes": 126,
+      "relative": "char_branch_control_20261003/pairs.csv",
+      "sha256": "ec5eeb1169f78a4f00ae185b888fbd06d446e6b63a1d18311af6eec703438861",
+      "source": "/research/d7/spc/yzyang4/char-branch-control-20261003-v1/readout-v1/pairs.csv"
+    },
+    {
+      "bytes": 3794,
+      "relative": "char_branch_control_20261003/summary.json",
+      "sha256": "2176e016d0ffe763f7c66a9ae663b393ee71c77d7c607009a866469f6d11aeda",
+      "source": "/research/d7/spc/yzyang4/char-branch-control-20261003-v1/readout-v1/summary.json"
+    }
+  ],
+  "scope": "Explicit closed aggregate allowlist. No credentials, raw examples, model replies, terminal logs, code candidates, labels or prediction rows copied."
+}

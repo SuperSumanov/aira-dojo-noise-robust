@@ -1,0 +1,5 @@
+task,seed,initial_equal,diagnostic_equal,comparable,uniform_gain,contrast_gain,contrast_minus_uniform
+random-acts-of-pizza,103501,True,True,True,0.0,0.0,0.0
+random-acts-of-pizza,103511,True,True,True,0.0,0.0,0.0
+spooky-author-identification,103502,True,True,True,-0.0,-0.0,0.0
+spooky-author-identification,103512,True,True,True,-0.0,-0.0,0.0

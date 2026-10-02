@@ -1,0 +1,417 @@
+{
+  "status": "pre_efficacy_descriptive_mechanism_review",
+  "review_fixed_utc": "2026-10-02T19:05:00Z",
+  "plan_sha256": "40e6bc3301c1db52fa09a794577c0b5dc95533302b0e460a044942a6485c5376",
+  "generated_actions_reviewed": 27,
+  "rows": [
+    {
+      "index": 0,
+      "step": 1,
+      "code_sha256": null,
+      "observation_link": "generic_or_no_explicit_link",
+      "implemented_action": "diagnostic_only",
+      "evidence_support": "verbal_claim_only",
+      "execution": "format_rejected",
+      "known_reference": "not_applicable",
+      "note": "Requested workspace inspection but supplied no code."
+    },
+    {
+      "index": 0,
+      "step": 2,
+      "code_sha256": "aa6e57e3be6ab49a586319636d320356d41b32d0c5809aec249459cbe54a05fb",
+      "observation_link": "aggregate_public_fit_metric",
+      "implemented_action": "model_family_change",
+      "evidence_support": "explicit_link_and_matching_code",
+      "execution": "successful_solution",
+      "known_reference": "already_named_shared_baseline",
+      "note": "Adds calibrated LinearSVC to ordinary tree/rank ensemble; no concrete text-example property identified."
+    },
+    {
+      "index": 0,
+      "step": 3,
+      "code_sha256": "c8aa858508a3eb8b196a82de79085eb4d112f46d04746d8c8e8d48de7fb4674a",
+      "observation_link": "generic_or_no_explicit_link",
+      "implemented_action": "model_family_change",
+      "evidence_support": "explicit_link_and_matching_code",
+      "execution": "successful_solution",
+      "known_reference": "already_named_shared_baseline",
+      "note": "Adds MultinomialNB for generic diversity. Claimed no-downside OOF fallback is not a guarantee of external improvement."
+    },
+    {
+      "index": 1,
+      "step": 1,
+      "code_sha256": "736fb8b8344f45a77b092106eedd224fb3ca2030d851889cc82318b4e4d5cfaf",
+      "observation_link": "aggregate_public_fit_metric",
+      "implemented_action": "parameter_search",
+      "evidence_support": "explicit_link_and_matching_code",
+      "execution": "format_rejected",
+      "known_reference": "already_named_shared_baseline",
+      "note": "Proposed additional TF-IDF view and C sweep; rejected output, not executed."
+    },
+    {
+      "index": 1,
+      "step": 2,
+      "code_sha256": "e429b853b16686b8152964c1d6e73239a9fcfeab7601ac2fea1fae5efcad84e6",
+      "observation_link": "aggregate_public_fit_metric",
+      "implemented_action": "new_data_representation_or_feature",
+      "evidence_support": "explicit_link_and_matching_code",
+      "execution": "successful_solution",
+      "known_reference": "already_named_shared_baseline",
+      "note": "Full code inspected: extra unigram TF-IDF view (min_df=1,max_features=200000), C=5, fold-fitted vectorizers, ordinary LogisticRegression. Claimed old C overfit is not a causal finding."
+    },
+    {
+      "index": 1,
+      "step": 3,
+      "code_sha256": "92e66df41c425ed1a05a73dd967620a62b942c5a96d6210430a51f7ab468e7c6",
+      "observation_link": "new_tool_observation",
+      "implemented_action": "ensemble_or_calibration",
+      "evidence_support": "explicit_link_and_matching_code",
+      "execution": "execution_failure",
+      "known_reference": "already_named_shared_baseline",
+      "note": "Following prior return, adds short-character ngrams and C mixtures; execution timed out."
+    },
+    {
+      "index": 1,
+      "step": 4,
+      "code_sha256": "7a6c7bc4f3468dbbd9d27d06de1c23958d248307f564b84064aec8b6760ba2b6",
+      "observation_link": "new_tool_observation",
+      "implemented_action": "parameter_search",
+      "evidence_support": "explicit_link_and_matching_code",
+      "execution": "not_returned",
+      "known_reference": "already_named_shared_baseline",
+      "note": "Responds to timeout by retaining three views and sweeping C; not returned before closure."
+    },
+    {
+      "index": 2,
+      "step": 1,
+      "code_sha256": "461b43b0e3e3c6594e119191f386d60893756adad2aea51de3d5223ff32a8b2a",
+      "observation_link": "concrete_public_example_property",
+      "implemented_action": "model_family_change",
+      "evidence_support": "explicit_link_and_matching_code",
+      "execution": "successful_solution",
+      "known_reference": "already_named_shared_baseline",
+      "note": "Mentions shown ranks rather than probabilities, not any specific text/error pattern; changes linear member, grids and blend. Pure monotone calibration cannot change AUC, while this compound edit may change ranking. Isotonic-style claim is not demonstrated by outline."
+    },
+    {
+      "index": 2,
+      "step": 2,
+      "code_sha256": "e768ee234aaa5af9e1f689eedef236c545d8b7a68b58a48f7926c52cd689a6d0",
+      "observation_link": "new_tool_observation",
+      "implemented_action": "ensemble_or_calibration",
+      "evidence_support": "explicit_link_and_matching_code",
+      "execution": "successful_solution",
+      "known_reference": "already_named_shared_baseline",
+      "note": "Responds to prior score decline with reverted tree configs, NB and top-model probability averaging; no controlled component attribution."
+    },
+    {
+      "index": 2,
+      "step": 3,
+      "code_sha256": "20f7b023f8bb3ef3b49490302c8c084544aa6f324fc92f6fffe22e6bfb90601c",
+      "observation_link": "new_tool_observation",
+      "implemented_action": "reexecution_or_copy",
+      "evidence_support": "explicit_link_and_matching_code",
+      "execution": "successful_solution",
+      "known_reference": "already_named_shared_baseline",
+      "note": "Attempts to regenerate the prior best pipeline after inferior modifications; exact prediction identity to be checked separately, not inferred from prose."
+    },
+    {
+      "index": 3,
+      "step": 1,
+      "code_sha256": "eb67102608b2669f97f4b25b482104aead0bfbb6528522836ee72f07dd53a1cd",
+      "observation_link": "aggregate_public_fit_metric",
+      "implemented_action": "new_data_representation_or_feature",
+      "evidence_support": "explicit_link_and_matching_code",
+      "execution": "format_rejected",
+      "known_reference": "already_named_shared_baseline",
+      "note": "Ordinary extra word/character ngram views; rejected output, not executed."
+    },
+    {
+      "index": 3,
+      "step": 2,
+      "code_sha256": "1e9e851acff8346ee982f1f294f6f84a3061f8c4624f15ef95b7271a19ee291b",
+      "observation_link": "aggregate_public_fit_metric",
+      "implemented_action": "parameter_search",
+      "evidence_support": "explicit_link_and_matching_code",
+      "execution": "execution_failure",
+      "known_reference": "already_named_shared_baseline",
+      "note": "Regularization/ngram grid; timed out."
+    },
+    {
+      "index": 3,
+      "step": 3,
+      "code_sha256": "675e8ed0fa6dc502930b8d7a40018d2f55081c5069e8c311209b1f7eb13cf3b2",
+      "observation_link": "new_tool_observation",
+      "implemented_action": "new_data_representation_or_feature",
+      "evidence_support": "explicit_link_and_matching_code",
+      "execution": "successful_solution",
+      "known_reference": "already_named_shared_baseline",
+      "note": "After timeout, uses word trigrams and two-fold CV; within standard TF-IDF family."
+    },
+    {
+      "index": 3,
+      "step": 4,
+      "code_sha256": "4490607f8551851940fdec3fba61eb30758b8459cbcc9841246ae0486523f98b",
+      "observation_link": "new_tool_observation",
+      "implemented_action": "parameter_search",
+      "evidence_support": "explicit_link_and_matching_code",
+      "execution": "not_returned",
+      "known_reference": "already_named_shared_baseline",
+      "note": "Cites partial OOF result from timed-out grid to choose character range; not returned."
+    },
+    {
+      "index": 4,
+      "step": 1,
+      "code_sha256": "19ef86260d95149edaad4d08075e850fe07d54215d4af264fc0bba913a474a2d",
+      "observation_link": "aggregate_public_fit_metric",
+      "implemented_action": "ensemble_or_calibration",
+      "evidence_support": "explicit_link_and_matching_code",
+      "execution": "successful_solution",
+      "known_reference": "already_named_shared_baseline",
+      "note": "Softmax blend concentration motivates average rank plus LogisticRegression; standard reference, no text-example-specific correction."
+    },
+    {
+      "index": 4,
+      "step": 2,
+      "code_sha256": "dd0974377a65a143ea8d93d94f0fc53c44a0a2c7ffa8b682aba97449894a9f92",
+      "observation_link": "new_tool_observation",
+      "implemented_action": "model_family_change",
+      "evidence_support": "explicit_link_and_matching_code",
+      "execution": "execution_failure",
+      "known_reference": "already_named_shared_baseline",
+      "note": "Replaces weak LR member with calibrated LinearSVC and blend choice; execution failed."
+    },
+    {
+      "index": 4,
+      "step": 3,
+      "code_sha256": "07fff98816939d3807637245b2755482d32b389e58599a383157ed1302c3f731",
+      "observation_link": "new_tool_observation",
+      "implemented_action": "reexecution_or_copy",
+      "evidence_support": "explicit_link_and_matching_code",
+      "execution": "not_returned",
+      "known_reference": "already_named_shared_baseline",
+      "note": "After failure, attempts incumbent regeneration; did not return."
+    },
+    {
+      "index": 5,
+      "step": 1,
+      "code_sha256": "4e231bd653645d13a7da288117ecdf65fdd6836d8a2695dbf2d0d0e269730432",
+      "observation_link": "aggregate_public_fit_metric",
+      "implemented_action": "parameter_search",
+      "evidence_support": "explicit_link_and_matching_code",
+      "execution": "execution_failure",
+      "known_reference": "already_named_shared_baseline",
+      "note": "TF-IDF/C/min_df sweep; timed out."
+    },
+    {
+      "index": 5,
+      "step": 2,
+      "code_sha256": "7d06f4477a8dd909847d3336698e5ace475800d909980882af8e2dbb5a9bff1e",
+      "observation_link": "generic_or_no_explicit_link",
+      "implemented_action": "parameter_search",
+      "evidence_support": "explicit_link_and_matching_code",
+      "execution": "not_returned",
+      "known_reference": "already_named_shared_baseline",
+      "note": "Another C sweep. Claim that C was not yet explored overlooks the prior proposed grid; no return."
+    },
+    {
+      "index": 6,
+      "step": 1,
+      "code_sha256": "ad8cbd00a9e776d55213e76d1e340c1f7623256d12f39b2863c8d38372a797c4",
+      "observation_link": "generic_or_no_explicit_link",
+      "implemented_action": "new_data_representation_or_feature",
+      "evidence_support": "verbal_claim_only",
+      "execution": "format_rejected",
+      "known_reference": "already_named_shared_baseline",
+      "note": "Proposed higher TF-IDF capacity plus NB; Python block did not parse and was rejected."
+    },
+    {
+      "index": 6,
+      "step": 2,
+      "code_sha256": "79633fac10107a5ffe862ef89ef597ebef382c99b505eee21a65d005499f5094",
+      "observation_link": "generic_or_no_explicit_link",
+      "implemented_action": "model_family_change",
+      "evidence_support": "explicit_link_and_matching_code",
+      "execution": "format_rejected",
+      "known_reference": "already_named_shared_baseline",
+      "note": "Proposed ordinary LR ensemble member; rejected format, not executed."
+    },
+    {
+      "index": 6,
+      "step": 3,
+      "code_sha256": "05e9803982bc6a956bbdbae65c360b87ca1f967c41f5a508338969672c7fea19",
+      "observation_link": "generic_or_no_explicit_link",
+      "implemented_action": "ensemble_or_calibration",
+      "evidence_support": "explicit_link_and_matching_code",
+      "execution": "execution_failure",
+      "known_reference": "already_named_shared_baseline",
+      "note": "LR member plus AUC-cubed rank-blend weights; execution error."
+    },
+    {
+      "index": 6,
+      "step": 4,
+      "code_sha256": "b6828888edd246a99d1fb096c80b70d84e101ad1614521123a8078da67e6fde3",
+      "observation_link": "new_tool_observation",
+      "implemented_action": "ensemble_or_calibration",
+      "evidence_support": "explicit_link_and_matching_code",
+      "execution": "not_returned",
+      "known_reference": "already_named_shared_baseline",
+      "note": "Responds to blend exception with tree-only equal-rank blend; did not return."
+    },
+    {
+      "index": 7,
+      "step": 1,
+      "code_sha256": "b8825d64ed3dd545f1933dd1aad9d83e3293e80ca8038dd4d1aacda1c54c0108",
+      "observation_link": "aggregate_public_fit_metric",
+      "implemented_action": "parameter_search",
+      "evidence_support": "explicit_link_and_matching_code",
+      "execution": "format_rejected",
+      "known_reference": "already_named_shared_baseline",
+      "note": "Ordinary TF-IDF grid described as CHECK but rejected format; no actual diagnostic execution."
+    },
+    {
+      "index": 7,
+      "step": 2,
+      "code_sha256": "d43c4b94e0e6c47b61a9177d22c291c839b830cc78f3490f4eef0e468c785294",
+      "observation_link": "aggregate_public_fit_metric",
+      "implemented_action": "ensemble_or_calibration",
+      "evidence_support": "explicit_link_and_matching_code",
+      "execution": "execution_failure",
+      "known_reference": "already_named_shared_baseline",
+      "note": "Two TF-IDF variants blended; execution failed."
+    },
+    {
+      "index": 7,
+      "step": 3,
+      "code_sha256": "63f35968829f83ad417261f2e33a6cab02d46f91a5f8dccaed851c9f8d8d9961",
+      "observation_link": "new_tool_observation",
+      "implemented_action": "other",
+      "evidence_support": "explicit_link_and_matching_code",
+      "execution": "execution_failure",
+      "known_reference": "already_named_shared_baseline",
+      "note": "Repairs feature-dimension mismatch by globally fitting public-training vocabulary before CV; this does not make public OOF strictly fold-fitted. Timed out; not an externally verified semantic correction."
+    },
+    {
+      "index": 7,
+      "step": 4,
+      "code_sha256": "8697c0bd3d309237fab2f48190573f7472fcab7976a6553c64ac54698b5dfdd8",
+      "observation_link": "new_tool_observation",
+      "implemented_action": "parameter_search",
+      "evidence_support": "explicit_link_and_matching_code",
+      "execution": "not_returned",
+      "known_reference": "already_named_shared_baseline",
+      "note": "Timeout response changes solver/capacity and keeps same ordinary blend; did not return."
+    }
+  ],
+  "conclusion": "No demonstrated concrete text/error-example property to a previously unnamed semantic correction in the reviewed rationales and code outlines. One uniform-arm action invokes rank-vs-probability presentation; other stated links mainly use aggregate model scores, errors and timeouts. This is not proof that examples had no causal influence.",
+  "limitations": [
+    "Score decimals masked, not complete outcome blinding: reviewer knows arm schedule and sees qualitative self-reports.",
+    "All action rationales and AST outlines inspected; full source inspected for index1 step2. Other latent semantic code changes not exhaustively ruled out.",
+    "Success here means execution returned successfully; efficacy not yet read. No novel method or benefit claimed.",
+    "No rejected/unreturned action rescued or reexecuted."
+  ],
+  "summary_sha256": "480017dbcb8745f4e55c66d67bc55734ee3881b811d855f7ca12a29d74df6918",
+  "post_efficacy_appendix": {
+    "numerical_gate": false,
+    "method_expansion": false,
+    "task_metric_audit": [
+      {
+        "index": 0,
+        "request_sha256": "d9a5fb29d48c690ba36ad34223b3e6d7f4e8bc7c27852711f96b27971c2afd9c",
+        "task_metric_lines": [
+          "- **Submission**: We have simplified all competition types to use a simple CSV submission format. Regardless of what the competition instructions say, you MUST produce a submission file in the current directory. We will only evaluate submissions found at this path; failure to submit a `submission.csv` at this path will result in a failed attempt.",
+          "Your submission will be graded based on the metric in the competition-specific instructions. Your goal is to achieve the best score possible on the competition task.",
+          "### Evaluation",
+          "Submissions are evaluated on [area under the ROC curve](http://en.wikipedia.org/wiki/Receiver_operating_characteristic) between the predicted probability that a request will get pizza and the observed outcomes."
+        ],
+        "task_sha256": "69f4bcbf85b5ec38b9b51eb6b7284db1a57c0899ec63287a9e2c9a6f4fae820f"
+      },
+      {
+        "index": 1,
+        "request_sha256": "4b41e6228612b4c2c89451cab740c0797dd4828077e6679d8b8d6a652e04780e",
+        "task_metric_lines": [
+          "- **Submission**: We have simplified all competition types to use a simple CSV submission format. Regardless of what the competition instructions say, you MUST produce a submission file in the current directory. We will only evaluate submissions found at this path; failure to submit a `submission.csv` at this path will result in a failed attempt.",
+          "Your submission will be graded based on the metric in the competition-specific instructions. Your goal is to achieve the best score possible on the competition task.",
+          "## Evaluation",
+          "Submissions are evaluated using multi-class logarithmic loss. Each id has one true class. For each id, you must submit a predicted probability for each author. The formula is then:",
+          "$$\\text{log loss} = -\\frac{1}{N} \\sum_{i=1}^N \\sum_{j=1}^M y_{ij} \\log(p_{ij})$$"
+        ],
+        "task_sha256": "237e840122fadde39b129af6f30c12a4bcfbe33388a72fc7f0ef22e7d247f6af"
+      },
+      {
+        "index": 2,
+        "request_sha256": "f02cc80a7a2eae065fb38f827daf67b11a2f26c7422b33e6c76647fc16e14ecf",
+        "task_metric_lines": [
+          "- **Submission**: We have simplified all competition types to use a simple CSV submission format. Regardless of what the competition instructions say, you MUST produce a submission file in the current directory. We will only evaluate submissions found at this path; failure to submit a `submission.csv` at this path will result in a failed attempt.",
+          "Your submission will be graded based on the metric in the competition-specific instructions. Your goal is to achieve the best score possible on the competition task.",
+          "### Evaluation",
+          "Submissions are evaluated on [area under the ROC curve](http://en.wikipedia.org/wiki/Receiver_operating_characteristic) between the predicted probability that a request will get pizza and the observed outcomes."
+        ],
+        "task_sha256": "69f4bcbf85b5ec38b9b51eb6b7284db1a57c0899ec63287a9e2c9a6f4fae820f"
+      },
+      {
+        "index": 3,
+        "request_sha256": "eb368997851b4c253ea14e6fea4dc5c7f8b55f2c6aacbf2b3379181dd12798f3",
+        "task_metric_lines": [
+          "- **Submission**: We have simplified all competition types to use a simple CSV submission format. Regardless of what the competition instructions say, you MUST produce a submission file in the current directory. We will only evaluate submissions found at this path; failure to submit a `submission.csv` at this path will result in a failed attempt.",
+          "Your submission will be graded based on the metric in the competition-specific instructions. Your goal is to achieve the best score possible on the competition task.",
+          "## Evaluation",
+          "Submissions are evaluated using multi-class logarithmic loss. Each id has one true class. For each id, you must submit a predicted probability for each author. The formula is then:",
+          "$$\\text{log loss} = -\\frac{1}{N} \\sum_{i=1}^N \\sum_{j=1}^M y_{ij} \\log(p_{ij})$$"
+        ],
+        "task_sha256": "237e840122fadde39b129af6f30c12a4bcfbe33388a72fc7f0ef22e7d247f6af"
+      },
+      {
+        "index": 4,
+        "request_sha256": "85878f526c3a2dfe07abe7bb5cb1832500730e82448acddfcdf4548b1abba4d4",
+        "task_metric_lines": [
+          "- **Submission**: We have simplified all competition types to use a simple CSV submission format. Regardless of what the competition instructions say, you MUST produce a submission file in the current directory. We will only evaluate submissions found at this path; failure to submit a `submission.csv` at this path will result in a failed attempt.",
+          "Your submission will be graded based on the metric in the competition-specific instructions. Your goal is to achieve the best score possible on the competition task.",
+          "### Evaluation",
+          "Submissions are evaluated on [area under the ROC curve](http://en.wikipedia.org/wiki/Receiver_operating_characteristic) between the predicted probability that a request will get pizza and the observed outcomes."
+        ],
+        "task_sha256": "69f4bcbf85b5ec38b9b51eb6b7284db1a57c0899ec63287a9e2c9a6f4fae820f"
+      },
+      {
+        "index": 5,
+        "request_sha256": "f8237c0641e67c24cc4c03494ec1fd11e8115661a4b7de1f91f95940e3ac4de3",
+        "task_metric_lines": [
+          "- **Submission**: We have simplified all competition types to use a simple CSV submission format. Regardless of what the competition instructions say, you MUST produce a submission file in the current directory. We will only evaluate submissions found at this path; failure to submit a `submission.csv` at this path will result in a failed attempt.",
+          "Your submission will be graded based on the metric in the competition-specific instructions. Your goal is to achieve the best score possible on the competition task.",
+          "## Evaluation",
+          "Submissions are evaluated using multi-class logarithmic loss. Each id has one true class. For each id, you must submit a predicted probability for each author. The formula is then:",
+          "$$\\text{log loss} = -\\frac{1}{N} \\sum_{i=1}^N \\sum_{j=1}^M y_{ij} \\log(p_{ij})$$"
+        ],
+        "task_sha256": "237e840122fadde39b129af6f30c12a4bcfbe33388a72fc7f0ef22e7d247f6af"
+      },
+      {
+        "index": 6,
+        "request_sha256": "8d6816626a2fa548edfa822f721d29a7d0d78cc79715afced567a52ee60f5e07",
+        "task_metric_lines": [
+          "- **Submission**: We have simplified all competition types to use a simple CSV submission format. Regardless of what the competition instructions say, you MUST produce a submission file in the current directory. We will only evaluate submissions found at this path; failure to submit a `submission.csv` at this path will result in a failed attempt.",
+          "Your submission will be graded based on the metric in the competition-specific instructions. Your goal is to achieve the best score possible on the competition task.",
+          "### Evaluation",
+          "Submissions are evaluated on [area under the ROC curve](http://en.wikipedia.org/wiki/Receiver_operating_characteristic) between the predicted probability that a request will get pizza and the observed outcomes."
+        ],
+        "task_sha256": "69f4bcbf85b5ec38b9b51eb6b7284db1a57c0899ec63287a9e2c9a6f4fae820f"
+      },
+      {
+        "index": 7,
+        "request_sha256": "9a57b760dee9031420b8109b0b63a9a759307fde0a227e64bb29a4c3a486f8f4",
+        "task_metric_lines": [
+          "- **Submission**: We have simplified all competition types to use a simple CSV submission format. Regardless of what the competition instructions say, you MUST produce a submission file in the current directory. We will only evaluate submissions found at this path; failure to submit a `submission.csv` at this path will result in a failed attempt.",
+          "Your submission will be graded based on the metric in the competition-specific instructions. Your goal is to achieve the best score possible on the competition task.",
+          "## Evaluation",
+          "Submissions are evaluated using multi-class logarithmic loss. Each id has one true class. For each id, you must submit a predicted probability for each author. The formula is then:",
+          "$$\\text{log loss} = -\\frac{1}{N} \\sum_{i=1}^N \\sum_{j=1}^M y_{ij} \\log(p_{ij})$$"
+        ],
+        "task_sha256": "237e840122fadde39b129af6f30c12a4bcfbe33388a72fc7f0ef22e7d247f6af"
+      }
+    ],
+    "findings": [
+      "All four pairs retained their starts; no new candidate improves either task's historical start.",
+      "Episode1 action2 Spooky loss is 0.38286772681414677 vs initial 0.37976945033064013. Following rationale calls that stronger/best; it is worse under the declared log-loss. Metric name/formula was present; no explicit lower-is-better sentence was found in task metric lines. This one false self-report is not proof of the cause of all failures.",
+      "Pizza contrast episode0 actions2/3 differ numerically from start by less than 1e-12 and preserve every observed ordering/tie. Uniform episode2 action3 is exact prediction copy. Remaining three Pizza candidates change ranking.",
+      "Original pre-efficacy classifications retained unchanged. The score-masked view allowed qualitative self-reports, as disclosed."
+    ]
+  }
+}

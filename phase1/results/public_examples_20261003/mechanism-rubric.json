@@ -1,0 +1,23 @@
+{
+  "protocol": "Score-masked descriptive mechanism review, fixed before this batch's efficacy readout",
+  "utc": "2026-10-02T18:36:00Z",
+  "plan_sha256": "40e6bc3301c1db52fa09a794577c0b5dc95533302b0e460a044942a6485c5376",
+  "scope": "Every generated action of all eight assigned trajectories, including rejected and failed actions. Initial code and sample packet generation are not autonomous discoveries.",
+  "fields": {
+    "observation_link": ["concrete_public_example_property", "new_tool_observation", "aggregate_public_fit_metric", "generic_or_no_explicit_link", "unclear"],
+    "implemented_action": ["new_data_representation_or_feature", "model_family_change", "parameter_search", "ensemble_or_calibration", "diagnostic_only", "reexecution_or_copy", "other"],
+    "evidence_support": ["explicit_link_and_matching_code", "verbal_claim_only", "contradicted_by_visible_code", "insufficient"],
+    "execution": ["format_rejected", "not_returned", "execution_failure", "successful_check", "successful_solution"],
+    "known_reference": ["already_named_shared_baseline", "different_from_shared_reference_but_not_novelty_certified", "not_applicable", "unclear"]
+  },
+  "rules": [
+    "Do not infer evidence causality from rationale alone: it can be a post-hoc rationalization, and both arms may acquire additional public evidence.",
+    "Do not label model-family search as a semantic feature merely because examples are mentioned.",
+    "A new literal feature must have a general input-to-feature rule, not a row-ID or label lookup.",
+    "Generated, applied, successfully executed, improved development score and generalized are distinct stages.",
+    "CHECK findings affect a later action only when chronology and implementation support that linkage.",
+    "No retrospective execution or repair of rejected actions; failed actions remain in the denominator.",
+    "No claims of complete score blinding: rationale decimal values are masked, but a reviewer knows the arm schedule and can see qualitative self-reports.",
+    "Mechanism coding describes this realized trace, not cross-seed treatment causality or a novel algorithm. No investigator effect-size threshold is changed by this review."
+  ]
+}

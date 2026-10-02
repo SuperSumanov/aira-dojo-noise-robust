@@ -1,0 +1,101 @@
+{
+  "changed_order": 3,
+  "exact_prediction_copies": 1,
+  "nonidentical_rank_equivalent": 2,
+  "plan_sha256": "40e6bc3301c1db52fa09a794577c0b5dc95533302b0e460a044942a6485c5376",
+  "root": "public-example-feedback-20261003-v1",
+  "valid_new_candidates": 6,
+  "limitation": "Only observed finite prediction vectors, not global program equivalence. No labels read. Retrospective diagnostic, not novel algorithm or cross-task efficacy.",
+  "rows": [
+    {
+      "arm": "contrast",
+      "index": 0,
+      "seed": 103501,
+      "step": 2,
+      "changed_orders": 0,
+      "identical_numeric_predictions": false,
+      "max_absolute_change": 9.421526059316676e-13,
+      "n": 300,
+      "pair_comparisons": 44850,
+      "rank_equivalent": true,
+      "ties_changed": 0
+    },
+    {
+      "arm": "contrast",
+      "index": 0,
+      "seed": 103501,
+      "step": 3,
+      "changed_orders": 0,
+      "identical_numeric_predictions": false,
+      "max_absolute_change": 6.406750130416583e-13,
+      "n": 300,
+      "pair_comparisons": 44850,
+      "rank_equivalent": true,
+      "ties_changed": 0
+    },
+    {
+      "arm": "uniform",
+      "index": 2,
+      "seed": 103501,
+      "step": 1,
+      "changed_orders": 3128,
+      "identical_numeric_predictions": false,
+      "max_absolute_change": 0.5853238227119193,
+      "n": 300,
+      "pair_comparisons": 44850,
+      "rank_equivalent": false,
+      "ties_changed": 0
+    },
+    {
+      "arm": "uniform",
+      "index": 2,
+      "seed": 103501,
+      "step": 2,
+      "changed_orders": 2232,
+      "identical_numeric_predictions": false,
+      "max_absolute_change": 0.5729294352555399,
+      "n": 300,
+      "pair_comparisons": 44850,
+      "rank_equivalent": false,
+      "ties_changed": 0
+    },
+    {
+      "arm": "uniform",
+      "index": 2,
+      "seed": 103501,
+      "step": 3,
+      "changed_orders": 0,
+      "identical_numeric_predictions": true,
+      "max_absolute_change": 0,
+      "n": 300,
+      "pair_comparisons": 44850,
+      "rank_equivalent": true,
+      "ties_changed": 0
+    },
+    {
+      "arm": "uniform",
+      "index": 4,
+      "seed": 103511,
+      "step": 1,
+      "changed_orders": 715,
+      "identical_numeric_predictions": false,
+      "max_absolute_change": 0.05566837565478577,
+      "n": 300,
+      "pair_comparisons": 44850,
+      "rank_equivalent": false,
+      "ties_changed": 0
+    }
+  ],
+  "input_hashes": {
+    "episode-0/action-0/submission.private.csv": "078aa62d87a98329147b0e550e8ed64680d08bf1e1037e8c307fd4c43be0edff",
+    "episode-0/action-2/submission.private.csv": "7627f6fecab7ca932d0d330fa38e181b9b476ceaa827411a82e07e0fb56667c6",
+    "episode-0/action-3/submission.private.csv": "e8c279d720e8b177835b6e1654a5c873c31a4ac81973feffdb14dfa58b2a3be9",
+    "episode-2/action-0/submission.private.csv": "078aa62d87a98329147b0e550e8ed64680d08bf1e1037e8c307fd4c43be0edff",
+    "episode-2/action-1/submission.private.csv": "bb848d923d7707dd4d1bc7dc98971fcd4437c653aaab58024b215ae0711f7c73",
+    "episode-2/action-2/submission.private.csv": "4fe6d4d666b61fa1e6e475b85fa8656cbdc3d6a5b64e25e2a5e0f10652dfd370",
+    "episode-2/action-3/submission.private.csv": "078aa62d87a98329147b0e550e8ed64680d08bf1e1037e8c307fd4c43be0edff",
+    "episode-4/action-0/submission.private.csv": "078aa62d87a98329147b0e550e8ed64680d08bf1e1037e8c307fd4c43be0edff",
+    "episode-4/action-1/submission.private.csv": "8a7d8801612b5a07191ccc4d6b5a09539d7a58f86ab41c53851d963142481650",
+    "episode-6/action-0/submission.private.csv": "078aa62d87a98329147b0e550e8ed64680d08bf1e1037e8c307fd4c43be0edff"
+  }
+}

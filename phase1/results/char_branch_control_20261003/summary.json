@@ -1,0 +1,120 @@
+{
+  "accounting": "15283|COMPLETED|655|billing=12,cpu=12,gres/gpu=2,node=1",
+  "all_assigned": 4,
+  "checked_predictions": [
+    {
+      "index": 0,
+      "metric": 0.6867376225783306,
+      "result_sha256": "48e2173984147a7a17f5d0a7c2bce9eb66f79f6d63ac48939ead128f781aed1c",
+      "step": 0,
+      "submission_sha256": "078aa62d87a98329147b0e550e8ed64680d08bf1e1037e8c307fd4c43be0edff"
+    },
+    {
+      "index": 1,
+      "metric": 0.6867376225783306,
+      "result_sha256": "a3389d941645dfcd4e604dfd24785004222bce6967f097f6930f1e3dc6c1650e",
+      "step": 1,
+      "submission_sha256": "078aa62d87a98329147b0e550e8ed64680d08bf1e1037e8c307fd4c43be0edff"
+    }
+  ],
+  "files": {
+    "pairs.csv": "ec5eeb1169f78a4f00ae185b888fbd06d446e6b63a1d18311af6eec703438861",
+    "runs.csv": "d9f28b21d620385dc0ae4ececa6f1abc2ede07e595c939aef3f6dd6a5185cf3c"
+  },
+  "independently_scored": 2,
+  "median_delta": null,
+  "paired": 0,
+  "pairs": [
+    {
+      "both_valid": false,
+      "char": null,
+      "delta": null,
+      "original": 0.6867376225783306,
+      "public_oof_delta": null,
+      "seed": 103701
+    },
+    {
+      "both_valid": false,
+      "char": null,
+      "delta": null,
+      "original": 0.6867376225783306,
+      "public_oof_delta": null,
+      "seed": 103702
+    }
+  ],
+  "plan_sha256": "e989f2f0d3d585812fda44bca0b2b6de5124b2222d9c1b2554800f0a4d997269",
+  "rows": [
+    {
+      "analyzer": "word",
+      "arm": "original",
+      "blend_oof_auc": 0.698670374115268,
+      "cat_oof_auc": 0.6797997977755308,
+      "commit": "93c9246970865d0fe48a85e2b564ad62ca837947",
+      "index": 0,
+      "lgb_oof_auc": 0.6865116279069768,
+      "metric": 0.6867376225783306,
+      "plan_sha256": "e989f2f0d3d585812fda44bca0b2b6de5124b2222d9c1b2554800f0a4d997269",
+      "seconds": 300.5930203818716,
+      "seed": 103701,
+      "step": 0,
+      "task": "random-acts-of-pizza",
+      "valid": true,
+      "xgb_oof_auc": 0.6961213346814965
+    },
+    {
+      "analyzer": null,
+      "arm": "char",
+      "blend_oof_auc": null,
+      "cat_oof_auc": null,
+      "commit": "93c9246970865d0fe48a85e2b564ad62ca837947",
+      "index": 0,
+      "lgb_oof_auc": null,
+      "metric": null,
+      "plan_sha256": "e989f2f0d3d585812fda44bca0b2b6de5124b2222d9c1b2554800f0a4d997269",
+      "seconds": 348.5216100818943,
+      "seed": 103701,
+      "step": 1,
+      "task": "random-acts-of-pizza",
+      "valid": false,
+      "xgb_oof_auc": null
+    },
+    {
+      "analyzer": null,
+      "arm": "char",
+      "blend_oof_auc": null,
+      "cat_oof_auc": null,
+      "commit": "93c9246970865d0fe48a85e2b564ad62ca837947",
+      "index": 1,
+      "lgb_oof_auc": null,
+      "metric": null,
+      "plan_sha256": "e989f2f0d3d585812fda44bca0b2b6de5124b2222d9c1b2554800f0a4d997269",
+      "seconds": 352.2280390241649,
+      "seed": 103702,
+      "step": 0,
+      "task": "random-acts-of-pizza",
+      "valid": false,
+      "xgb_oof_auc": null
+    },
+    {
+      "analyzer": "word",
+      "arm": "original",
+      "blend_oof_auc": 0.698670374115268,
+      "cat_oof_auc": 0.6797997977755308,
+      "commit": "93c9246970865d0fe48a85e2b564ad62ca837947",
+      "index": 1,
+      "lgb_oof_auc": 0.6865116279069768,
+      "metric": 0.6867376225783306,
+      "plan_sha256": "e989f2f0d3d585812fda44bca0b2b6de5124b2222d9c1b2554800f0a4d997269",
+      "seconds": 297.61395187699236,
+      "seed": 103702,
+      "step": 1,
+      "task": "random-acts-of-pizza",
+      "valid": true,
+      "xgb_oof_auc": 0.6961213346814965
+    }
+  ],
+  "sample_variance": null,
+  "scope": "human-specified one-keyword diagnostic; not autonomous improvement, not final generalization; independently recomputed development AUC",
+  "verification_status": "PASS",
+  "verifier_sha256": "7affe9d6b0ed8098c40b2f8666c040f2ab5223dba032bb6fa3979974fb1146af"
+}

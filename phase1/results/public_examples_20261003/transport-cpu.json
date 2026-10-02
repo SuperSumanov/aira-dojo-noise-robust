@@ -1,0 +1,7 @@
+{
+  "encoded_requests": 8,
+  "network_calls": 0,
+  "plan_sha256": "40e6bc3301c1db52fa09a794577c0b5dc95533302b0e460a044942a6485c5376",
+  "status": "PASS",
+  "test_script_sha256": "991158f31220548477ae4f9fe35395c6ef229272b3d0138cf4da5453c9c50f6e"
+}

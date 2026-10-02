@@ -1,0 +1,50 @@
+{
+  "status": "closed_full_denominator",
+  "summary_sha256": "480017dbcb8745f4e55c66d67bc55734ee3881b811d855f7ca12a29d74df6918",
+  "runs": 8,
+  "paired_runs": 4,
+  "requested": 29,
+  "generated": 27,
+  "valid_initial": 8,
+  "valid_new": 8,
+  "improved_new": 0,
+  "tied_new": 3,
+  "worse_new": 5,
+  "format_rejects": 6,
+  "returned_failures": 7,
+  "generated_pass_but_no_result": 6,
+  "generation_requested_but_no_response": 2,
+  "successful_checks": 0,
+  "budget_exhausted": 8,
+  "numerical_gate": false,
+  "accounting": {
+    "main": {
+      "job": 15282,
+      "elapsed_seconds": 4187,
+      "gpus": 4,
+      "gpu_hours": 4.652222222222222
+    },
+    "manual": {
+      "job": 15283,
+      "elapsed_seconds": 655,
+      "gpus": 2,
+      "gpu_hours": 0.3638888888888889
+    },
+    "total_gpu_hours": 5.016111111111111,
+    "approved_cap": 7.666666666666667,
+    "paid_api": 0
+  },
+  "usage_returned_calls_only": {
+    "prompt_tokens": 264939,
+    "completion_tokens": 59807,
+    "limitation": "Usage omits unfinished generation; full allocation GPU-hour accounting includes its cost."
+  },
+  "scope": "All assigned trajectories, all generated/rejected/unreturned actions kept. Development-only adaptive pilot, not independent test or universal ineffectiveness.",
+  "confounds": [
+    "Two combined initialization/generation seeds per task; one historical development-selected start/task.",
+    "Public OOF reused; Spooky diagnostic from TFIDF component only.",
+    "Manual15283 overlapped first wave on shared node with distinct GPUs; residual node I/O/system interference possible. No dropping first-wave data.",
+    "Only initial sampling differs in current arms. Budget/call/parser changes vs old batches are shared and prevent single-factor cross-version attribution."
+  ],
+  "decision": "Do not expand this recipe or repair/reexecute excluded candidates. Ordinary references and generated prose are not new scientific corrections."
+}

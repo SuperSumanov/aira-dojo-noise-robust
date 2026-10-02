@@ -1,0 +1,255 @@
+{
+  "actions": 23,
+  "numerical_gate": false,
+  "paired_checks": [
+    {
+      "comparable": true,
+      "seed": 103501,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "comparable": true,
+      "seed": 103511,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "comparable": true,
+      "seed": 103502,
+      "task": "spooky-author-identification"
+    },
+    {
+      "comparable": true,
+      "seed": 103512,
+      "task": "spooky-author-identification"
+    }
+  ],
+  "plan_sha256": "40e6bc3301c1db52fa09a794577c0b5dc95533302b0e460a044942a6485c5376",
+  "prompt_chronology": [
+    {
+      "index": 0,
+      "ledger_cells": 1,
+      "packet_present": true,
+      "previous_outputs": 1,
+      "step": 1
+    },
+    {
+      "index": 0,
+      "ledger_cells": 1,
+      "packet_present": true,
+      "previous_outputs": 1,
+      "step": 2
+    },
+    {
+      "index": 0,
+      "ledger_cells": 2,
+      "packet_present": true,
+      "previous_outputs": 2,
+      "step": 3
+    },
+    {
+      "index": 0,
+      "ledger_cells": 3,
+      "packet_present": true,
+      "previous_outputs": 3,
+      "step": 4
+    },
+    {
+      "index": 1,
+      "ledger_cells": 1,
+      "packet_present": true,
+      "previous_outputs": 1,
+      "step": 1
+    },
+    {
+      "index": 1,
+      "ledger_cells": 1,
+      "packet_present": true,
+      "previous_outputs": 1,
+      "step": 2
+    },
+    {
+      "index": 1,
+      "ledger_cells": 2,
+      "packet_present": true,
+      "previous_outputs": 2,
+      "step": 3
+    },
+    {
+      "index": 1,
+      "ledger_cells": 2,
+      "packet_present": true,
+      "previous_outputs": 3,
+      "step": 4
+    },
+    {
+      "index": 2,
+      "ledger_cells": 1,
+      "packet_present": true,
+      "previous_outputs": 1,
+      "step": 1
+    },
+    {
+      "index": 2,
+      "ledger_cells": 2,
+      "packet_present": true,
+      "previous_outputs": 2,
+      "step": 2
+    },
+    {
+      "index": 2,
+      "ledger_cells": 3,
+      "packet_present": true,
+      "previous_outputs": 3,
+      "step": 3
+    },
+    {
+      "index": 2,
+      "ledger_cells": 4,
+      "packet_present": true,
+      "previous_outputs": 4,
+      "step": 4
+    },
+    {
+      "index": 3,
+      "ledger_cells": 1,
+      "packet_present": true,
+      "previous_outputs": 1,
+      "step": 1
+    },
+    {
+      "index": 3,
+      "ledger_cells": 1,
+      "packet_present": true,
+      "previous_outputs": 1,
+      "step": 2
+    },
+    {
+      "index": 3,
+      "ledger_cells": 1,
+      "packet_present": true,
+      "previous_outputs": 2,
+      "step": 3
+    },
+    {
+      "index": 3,
+      "ledger_cells": 2,
+      "packet_present": true,
+      "previous_outputs": 3,
+      "step": 4
+    },
+    {
+      "index": 4,
+      "ledger_cells": 1,
+      "packet_present": true,
+      "previous_outputs": 1,
+      "step": 1
+    },
+    {
+      "index": 4,
+      "ledger_cells": 2,
+      "packet_present": true,
+      "previous_outputs": 2,
+      "step": 2
+    },
+    {
+      "index": 4,
+      "ledger_cells": 2,
+      "packet_present": true,
+      "previous_outputs": 3,
+      "step": 3
+    },
+    {
+      "index": 5,
+      "ledger_cells": 1,
+      "packet_present": true,
+      "previous_outputs": 1,
+      "step": 1
+    },
+    {
+      "index": 5,
+      "ledger_cells": 1,
+      "packet_present": true,
+      "previous_outputs": 2,
+      "step": 2
+    },
+    {
+      "index": 6,
+      "ledger_cells": 1,
+      "packet_present": true,
+      "previous_outputs": 1,
+      "step": 1
+    },
+    {
+      "index": 6,
+      "ledger_cells": 1,
+      "packet_present": true,
+      "previous_outputs": 1,
+      "step": 2
+    },
+    {
+      "index": 6,
+      "ledger_cells": 1,
+      "packet_present": true,
+      "previous_outputs": 1,
+      "step": 3
+    },
+    {
+      "index": 6,
+      "ledger_cells": 1,
+      "packet_present": true,
+      "previous_outputs": 2,
+      "step": 4
+    },
+    {
+      "index": 7,
+      "ledger_cells": 1,
+      "packet_present": true,
+      "previous_outputs": 1,
+      "step": 1
+    },
+    {
+      "index": 7,
+      "ledger_cells": 1,
+      "packet_present": true,
+      "previous_outputs": 1,
+      "step": 2
+    },
+    {
+      "index": 7,
+      "ledger_cells": 1,
+      "packet_present": true,
+      "previous_outputs": 2,
+      "step": 3
+    },
+    {
+      "index": 7,
+      "ledger_cells": 1,
+      "packet_present": true,
+      "previous_outputs": 3,
+      "step": 4
+    }
+  ],
+  "scope": "independent pair-count AUC/direct log loss and arithmetic; verifies packet/code/hash/transport but does not rerun all public OOF arrays, establish evidence causality, novelty or untouched-test benefit",
+  "status": "PASS",
+  "summary_sha256": "480017dbcb8745f4e55c66d67bc55734ee3881b811d855f7ca12a29d74df6918",
+  "tasks": [
+    {
+      "improved_candidates": 0,
+      "median_delta": 0.0,
+      "paired": 2,
+      "sample_variance": 0.0,
+      "task": "random-acts-of-pizza",
+      "uniform_wins": 0
+    },
+    {
+      "improved_candidates": 0,
+      "median_delta": 0.0,
+      "paired": 2,
+      "sample_variance": 0.0,
+      "task": "spooky-author-identification",
+      "uniform_wins": 0
+    }
+  ],
+  "valid_scores_recomputed": 16,
+  "verifier_sha256": "b153b767ef83f7f3d49f180fe329fd1402b2ef3c95051a794ae2b18fe5b7f5ba"
+}

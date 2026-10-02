@@ -1,0 +1,28 @@
+{
+  "decision": "DO_NOT_SCALE_CURRENT_MANDATORY_DIAGNOSIS_RECIPE",
+  "basis": "Frozen numerical gate failed on both tasks; no demonstrated new evidence-to-repair benefit over the same-tool ordinary policy.",
+  "summary_sha256": "e9fbefaca5ab86bddf40e21bcc3c6665234eedfc17a3e4230693b27f5705646b",
+  "observed": {
+    "tasks": 2, "generation_seeds_per_task": 2, "trajectories": 8,
+    "paired_comparisons": 4, "paired_improvements": 0,
+    "valid_new_solutions": 4, "valid_new_improved": 0, "valid_new_tied": 1, "valid_new_worse": 3,
+    "successfully_returned_checks": 1, "failed_checks_with_some_received_streams_discarded": 6,
+    "allocated_gpu_hours": 3.59
+  },
+  "scientific_interpretation": [
+    "No evidence to expand this specific forced-check prompt into a method claim; do not fill remaining time with more seeds or prompt tweaks.",
+    "A also spontaneously chose CHECK in every trajectory, so this was structured/mandatory diagnosis versus ordinary tool use, not diagnostics versus no diagnostics.",
+    "The one successful check produced real measurements; the subsequent code kept the provisional add-linear direction without satisfying its declared branch condition, and its valid candidate was worse.",
+    "The observation channel dropped partial output on errors/timeouts. This limits mechanistic attribution, but does not erase actual costs or justify calling the completed pilot a positive result.",
+    "Preserving partial output is a shared future infrastructure fix, not a novel method or a proven performance improvement. It was NOT applied to this batch.",
+    "Strong starts were selected on reused exploratory D_search. One start and two generation seeds per task cannot establish policy equivalence, general impossibility, significance or fresh-test transfer.",
+    "Near-neighbour methods already cover diagnostic tools, inspection-to-action loops and observation interventions. Novelty is not cleared."
+  ],
+  "data_notes": [
+    "census.received_public_metric_text is a non-exhaustive keyword-pattern detector, not proof of absence: episode 7 did emit a baseline OOF value whose line lacked those metric keywords. This flag is not used in any gain, stopping or mechanism decision.",
+    "Nominal check timeout was 120 seconds but native polling produced observed execution returns up to 141.96156877209432 seconds. Real elapsed cost was retained, not replaced by nominal caps.",
+    "Log stream normalization removes logging indentation/whitespace; hashes do not claim byte-identical recovery of original raw messages.",
+    "The client fix test identifies exact working-file bytes; publication may normalize CRLF to LF, checked separately as source-equivalent."
+  ],
+  "work_left": "No further GPU/API/model-fit queued under this pilot. Retain executable-feedback research question only with a distinct, falsifiable intervention that can create decision-relevant evidence cheaply and beat strong ordinary improvement; do not treat additional analyzer engineering as progress toward that claim."
+}

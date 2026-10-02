@@ -1,0 +1,22 @@
+{
+  "credential_shape_file_hits": 0,
+  "files": {
+    "actions.csv": "3c7c96759d117bf861a1658e3ccb2f693279f4d17b4db0ef3177925124e764e6",
+    "all-closed.json": "27d490beb1efc56b9d552678b7f3e9ecfc36e1846e6010b02996b20e53a9cc5b",
+    "census.json": "711b37b261c12836d74edb20dea1a2791116c6090abab18cfbd3f36d7c40f7f5",
+    "closed.json": "86045dfcfbe92a9a6a94fe53f329bbc2e2553f4f523d66740df0b3bc5805a1df",
+    "launch.json": "a2997eadd46692a5f632d467dbd65377eac99866a973ffb69eee500fe2a2b1f7",
+    "length-audit.json": "5954452252d1880d8780af4203d6955be5164e825bf5a2eb17752c5f1b551be5",
+    "output-channel-fix-test.json": "a604b9fb39b0297be38d2607d11e0dccd7334e620d2392b7d1c5919867f5a37e",
+    "output-channel-review.json": "c73419b28b213741a34986a81c88087f12f9917b404d65c68f3bb96e77b353f0",
+    "pairs.csv": "7e42c8741e3a0639400d060114f5355533129e555e2681d9dea5d87c7f896972",
+    "plan.json": "939f9470529ad6c14f5b6670bb1bec4cd99398026f6fbdbea662c8d29e32c48e",
+    "runs.csv": "4951a203ff81e3d0a423406b75ed7444a2c1096f5816a278d61ec3be6a88a0a1",
+    "source-audit.json": "cbbb24b22ae108e0455652cf478ed73058bdc3e296c70c608d2bd0cc04e4c5c5",
+    "summary.json": "e9fbefaca5ab86bddf40e21bcc3c6665234eedfc17a3e4230693b27f5705646b",
+    "verification.json": "3fc46624f97a018c122c93485eae496154e0a1c491656767d74c59075944d532"
+  },
+  "private_payloads_exported": 0,
+  "scope": "Named aggregate outcome/count/hash receipts only. No labels, row-level predictions, candidate code or raw model/terminal transcripts.",
+  "status": "PASS"
+}

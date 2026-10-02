@@ -1,0 +1,17 @@
+{
+  "scope": "Baseline tokenization only; no model calls, no outcome inspection, no configuration change",
+  "starts": [
+    {
+      "ast_unparse_tokens": 3154,
+      "generation_token_cap": 4096,
+      "raw_code_tokens": 3742,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "ast_unparse_tokens": 2305,
+      "generation_token_cap": 4096,
+      "raw_code_tokens": 2805,
+      "task": "spooky-author-identification"
+    }
+  ]
+}

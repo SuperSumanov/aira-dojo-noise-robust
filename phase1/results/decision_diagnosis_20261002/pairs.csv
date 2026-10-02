@@ -1,0 +1,5 @@
+task,seed,initials_match,A_gain,B_gain,B_minus_A_gain
+random-acts-of-pizza,102801,True,0.0,0.0,0.0
+random-acts-of-pizza,102803,True,0.0,0.0,0.0
+spooky-author-identification,102802,True,0.0,0.0,0.0
+spooky-author-identification,102804,True,0.0,0.0,0.0

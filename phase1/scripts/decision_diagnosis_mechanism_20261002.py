@@ -24,6 +24,7 @@ def inspect(index,include_code=False):
         blocks=re.findall(r'```python\s*\n(.*?)```',response,re.S)
         output['final_has_one_python_block']=len(blocks)==1
         if len(blocks)==1:
+            if include_code: output['final_program']=blocks[0]
             try:
                 tree=ast.parse(blocks[0]); output['final_imports']=sorted({n.module for n in ast.walk(tree) if isinstance(n,ast.ImportFrom) and n.module})
                 output['final_function_names']=[n.name for n in ast.walk(tree) if isinstance(n,(ast.FunctionDef,ast.AsyncFunctionDef))]

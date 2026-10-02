@@ -264,8 +264,8 @@ class JupyterKernelClient:
                 log.info(f"\033[90m Timeout waiting for output from code block. \033[0m")
                 result = JupyterKernelClient.ExecutionResult(
                     is_ok=False,
-                    output=["ERROR: Timeout waiting for output from code block."],
-                    data_items=[],
+                    output=[*text_output, "ERROR: Timeout waiting for output from code block."],
+                    data_items=data_output,
                     timed_out=True,
                 )
                 return result
@@ -298,8 +298,8 @@ class JupyterKernelClient:
                 # Output is an error.
                 return JupyterKernelClient.ExecutionResult(
                     is_ok=False,
-                    output=["ERROR:", f"{content['ename']}: {content['evalue']}\n", *content["traceback"]],
-                    data_items=[],
+                    output=[*text_output, "ERROR:", f"{content['ename']}: {content['evalue']}\n", *content["traceback"]],
+                    data_items=data_output,
                 )
 
             if msg_type in ["execute_result", "display_data"]:

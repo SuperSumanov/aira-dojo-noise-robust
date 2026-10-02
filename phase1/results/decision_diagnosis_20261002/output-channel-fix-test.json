@@ -1,0 +1,57 @@
+{
+  "cases": [
+    {
+      "data_items_preserved": true,
+      "ok": true,
+      "outcome": "success",
+      "partial_text_preserved": true,
+      "timed_out": false,
+      "version": "original"
+    },
+    {
+      "data_items_preserved": false,
+      "ok": false,
+      "outcome": "error",
+      "partial_text_preserved": false,
+      "timed_out": false,
+      "version": "original"
+    },
+    {
+      "data_items_preserved": false,
+      "ok": false,
+      "outcome": "timeout",
+      "partial_text_preserved": false,
+      "timed_out": true,
+      "version": "original"
+    },
+    {
+      "data_items_preserved": true,
+      "ok": true,
+      "outcome": "success",
+      "partial_text_preserved": true,
+      "timed_out": false,
+      "version": "fixed"
+    },
+    {
+      "data_items_preserved": true,
+      "ok": false,
+      "outcome": "error",
+      "partial_text_preserved": true,
+      "timed_out": false,
+      "version": "fixed"
+    },
+    {
+      "data_items_preserved": true,
+      "ok": false,
+      "outcome": "timeout",
+      "partial_text_preserved": true,
+      "timed_out": true,
+      "version": "fixed"
+    }
+  ],
+  "original_sha256": "a6c6abdca37745ce8d5137f48595a3c0e6332c113e8133b0782425b7bbb291bf",
+  "patched_sha256": "1e0ee6147b07b60a8aedebbe68f324daf04f4903100ea1dbc34e6bdd5a7fb780",
+  "scope": "Method-level synthetic streams on pinned real class. Two output-preservation edits only. Live batch unmodified, no task execution, no efficacy claim.",
+  "status": "PASS",
+  "test_sha256": "234333ea7784cc61ac56e2b0f78ec1a52e9b6b145653a5a18985a851442a6388"
+}

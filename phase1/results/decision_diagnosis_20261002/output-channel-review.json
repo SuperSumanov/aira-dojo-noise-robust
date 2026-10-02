@@ -1,0 +1,32 @@
+{
+  "cases": [
+    {
+      "case": "success",
+      "observation_returned": true,
+      "ok": true,
+      "received_stream": true,
+      "timed_out": false
+    },
+    {
+      "case": "error",
+      "observation_returned": false,
+      "ok": false,
+      "received_stream": true,
+      "timed_out": false
+    },
+    {
+      "case": "timeout",
+      "observation_returned": false,
+      "ok": false,
+      "received_stream": true,
+      "timed_out": true
+    }
+  ],
+  "interpretation": "A collected stream is dropped on error/timeout. Does not establish that any particular real check had already emitted useful measurements, nor that preserving them improves final scores. Live experiment unchanged.",
+  "pinned_source_sha256": "a6c6abdca37745ce8d5137f48595a3c0e6332c113e8133b0782425b7bbb291bf",
+  "producer_sha256": "3836ecb8a48326e8cc84cf7ba1717ce4d44b0fd92b5ffd8032586369b9818a97",
+  "sockets_used": false,
+  "status": "CONFIRMED_PARTIAL_OUTPUT_DISCARDED",
+  "task_executions": 0,
+  "task_outcomes_read": false
+}

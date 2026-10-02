@@ -1,0 +1,45 @@
+{
+  "plan_sha256": "939f9470529ad6c14f5b6670bb1bec4cd99398026f6fbdbea662c8d29e32c48e",
+  "scope": "Static literal/import inventory only; strings can be exclusion lists, and reflective accesses are unresolved. No result values opened.",
+  "starts": [
+    {
+      "code_lines": 360,
+      "code_sha256": "4abf6a4ca4c6c63e17f1bbb2a89ea9d435054c5f6bba95a0c90522d12326b89d",
+      "imports": [
+        "catboost",
+        "sklearn.feature_extraction.text",
+        "sklearn.metrics",
+        "sklearn.model_selection",
+        "json",
+        "lightgbm",
+        "numpy",
+        "pandas",
+        "xgboost"
+      ],
+      "reflective_column_access": false,
+      "suspicious_column_literals": [],
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "code_lines": 281,
+      "code_sha256": "bfb2c8f9e3973c6b127a4656fac7a1766a1a201395f4fba08f9c09ca7175fef6",
+      "imports": [
+        "collections",
+        "fasttext",
+        "scipy",
+        "sklearn.feature_extraction.text",
+        "sklearn.linear_model",
+        "sklearn.metrics",
+        "sklearn.model_selection",
+        "numpy",
+        "os",
+        "pandas",
+        "re",
+        "time"
+      ],
+      "reflective_column_access": false,
+      "suspicious_column_literals": [],
+      "task": "spooky-author-identification"
+    }
+  ]
+}

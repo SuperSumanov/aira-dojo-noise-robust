@@ -1,0 +1,200 @@
+{
+  "counts": {
+    "check_error": 2,
+    "check_success": 1,
+    "check_timeout": 5,
+    "failed_checks_with_received_streams_discarded": 6,
+    "final_execution_error": 2,
+    "final_format_reject": 1,
+    "final_timeout": 1,
+    "final_valid": 4
+  },
+  "gpu_hours": 3.59,
+  "max_observed_check_seconds": 141.96156877209432,
+  "qualifications": [
+    "Public-CV logs only, no protected cohort or final test.",
+    "Native polling overshoots nominal per-action timeout; all actual wall time was charged to the common 900-second trajectory cap.",
+    "Partial streams include headers/progress/repeated incumbent metrics; presence alone is not useful new discriminating evidence.",
+    "Both arms share the same original channel. Fix is tested for future use, not applied to this completed batch.",
+    "Equal retained outcomes do not establish policy equivalence or general futility. No new efficacy score, seed, task or fit added."
+  ],
+  "rows": [
+    {
+      "arm": "B",
+      "check_exec_seconds": 13.676172791980207,
+      "check_node_sha256": "317a9fbd8afe761ad5664ed56ff5d3bac2cbb522ecace8864bf9467a7e2ceac4",
+      "check_status": "error",
+      "final_candidate_gain": null,
+      "final_errors": [
+        "TimeoutError"
+      ],
+      "final_status": "timeout",
+      "index": 0,
+      "partial_streams_discarded": true,
+      "received_public_metric_text": false,
+      "received_stream_blocks": 1,
+      "seed": 102801,
+      "stream_recovery": "log-indent/whitespace normalized, not byte-identical raw streams",
+      "stream_text_sha256": [
+        "8b237a78bec81b047cdafeda6873a64541453cc7c1f1c5f1ce819decba79e4f1"
+      ],
+      "task": "random-acts-of-pizza",
+      "worker_log_sha256": "8a89b6ead41f07fb6d87bce5eb9c5da29849c2210652a7b8c8b6cdcfa2076cdf"
+    },
+    {
+      "arm": "B",
+      "check_exec_seconds": 140.71227751206607,
+      "check_node_sha256": "95017cafa6493e7612154dbb4e93b1b00000841024e8be765d7c812a68bafe0c",
+      "check_status": "timeout",
+      "final_candidate_gain": -0.05511276233011658,
+      "final_errors": [],
+      "final_status": "valid",
+      "index": 1,
+      "partial_streams_discarded": true,
+      "received_public_metric_text": false,
+      "received_stream_blocks": 2,
+      "seed": 102802,
+      "stream_recovery": "log-indent/whitespace normalized, not byte-identical raw streams",
+      "stream_text_sha256": [
+        "eb16bc630f203dc0a703d6ced86a60e944410dd5dec55288c468d5130286a986",
+        "a663892af913f44d5f3343930e7005cf21cd0ac8ece6e65199f6b6efe8506452"
+      ],
+      "task": "spooky-author-identification",
+      "worker_log_sha256": "05d8c16d1ae43b14615b83e46c3d3caa1282e42600c128fa11a969dc6aa50611"
+    },
+    {
+      "arm": "A",
+      "check_exec_seconds": 120.13225811300799,
+      "check_node_sha256": "2aecbe01885a8934e9031d5723440561fc0acdefde330974e6c7a4e4fbeeda86",
+      "check_status": "timeout",
+      "final_candidate_gain": null,
+      "final_errors": [],
+      "final_status": "format_reject",
+      "index": 2,
+      "partial_streams_discarded": false,
+      "received_public_metric_text": false,
+      "received_stream_blocks": 0,
+      "seed": 102801,
+      "stream_recovery": "log-indent/whitespace normalized, not byte-identical raw streams",
+      "stream_text_sha256": [],
+      "task": "random-acts-of-pizza",
+      "worker_log_sha256": "fd3dc4a8a031acd7ca941771b307a9dc995cac9165d342396a1e48fe8829f096"
+    },
+    {
+      "arm": "A",
+      "check_exec_seconds": 127.02927497401834,
+      "check_node_sha256": "04f4fab49ab80d5fc15a695671aa96146302cddb396d285195fc8ab5fcffecd3",
+      "check_status": "timeout",
+      "final_candidate_gain": null,
+      "final_errors": [
+        "ValueError"
+      ],
+      "final_status": "execution_error",
+      "index": 3,
+      "partial_streams_discarded": true,
+      "received_public_metric_text": true,
+      "received_stream_blocks": 2,
+      "seed": 102802,
+      "stream_recovery": "log-indent/whitespace normalized, not byte-identical raw streams",
+      "stream_text_sha256": [
+        "8e18d4aee4ad1d15d420b117bab14ec7601a496b8c4cec75bc8705fb84f6b292",
+        "a5c63f6b12439efbb40ddf2a8d1762d5b89dee447e8c529755a6eb74253a7302"
+      ],
+      "task": "spooky-author-identification",
+      "worker_log_sha256": "9904dc498676202669be80e73a6427a432c06c41a7900c5fdc963caea9720cdb"
+    },
+    {
+      "arm": "A",
+      "check_exec_seconds": 33.12398021505214,
+      "check_node_sha256": "6f70c847d7c6470e67978416902ebe8a753867f81f41875d66b9f0dfdfb978c7",
+      "check_status": "error",
+      "final_candidate_gain": null,
+      "final_errors": [
+        "NameError"
+      ],
+      "final_status": "execution_error",
+      "index": 4,
+      "partial_streams_discarded": true,
+      "received_public_metric_text": true,
+      "received_stream_blocks": 1,
+      "seed": 102803,
+      "stream_recovery": "log-indent/whitespace normalized, not byte-identical raw streams",
+      "stream_text_sha256": [
+        "7276e35d64790e1e3071d13375fe2b83ad37b8d3f092d3c64a689c8645610189"
+      ],
+      "task": "random-acts-of-pizza",
+      "worker_log_sha256": "b69e5519edb0f74bc4f8f8dedfdf1b85df3fcc169e08625c0ef890fcd01f1a04"
+    },
+    {
+      "arm": "A",
+      "check_exec_seconds": 140.16286713816226,
+      "check_node_sha256": "b23c36d76330498c86567fd63e975d98500af27b700ffc623edc8e3904cbc68b",
+      "check_status": "timeout",
+      "final_candidate_gain": 0.0,
+      "final_errors": [],
+      "final_status": "valid",
+      "index": 5,
+      "partial_streams_discarded": true,
+      "received_public_metric_text": true,
+      "received_stream_blocks": 2,
+      "seed": 102804,
+      "stream_recovery": "log-indent/whitespace normalized, not byte-identical raw streams",
+      "stream_text_sha256": [
+        "1c000c8128b45b36dfe0ff8023be90faed6a9ba6677a16d019b0425d61866292",
+        "fc19a0232081d75cf6ffa05159f64a34bd6f19dbba06a919367c165d35238a6d"
+      ],
+      "task": "spooky-author-identification",
+      "worker_log_sha256": "9de719ef47a50ce18577e9eb4d4e29b2667ee828b24c9abc21b6efe99145a504"
+    },
+    {
+      "arm": "B",
+      "check_exec_seconds": 53.10336997802369,
+      "check_node_sha256": "3a4b880061968018fe51d57e859f10888b14776e3c616d9dcd21382672d243cf",
+      "check_status": "success",
+      "final_candidate_gain": -0.0045144702224348965,
+      "final_errors": [],
+      "final_status": "valid",
+      "index": 6,
+      "partial_streams_discarded": false,
+      "received_public_metric_text": true,
+      "received_stream_blocks": 4,
+      "seed": 102803,
+      "stream_recovery": "log-indent/whitespace normalized, not byte-identical raw streams",
+      "stream_text_sha256": [
+        "5d18d51dd18fd307961505c6ada980b67bada8d0628693b261041f2113d46a9d",
+        "43e867e9f3c338bdfbe2c0834671da7b32367715b9078bbd21264b26a7afe525",
+        "a2a28199cda92f9acefc9e3b9dc82d7f2c45deb66c0acd7ed2c6fae942131668",
+        "cadb92472999ad4509f5f74a1457c597121a91bc3d6dfef96258c38c9846625e"
+      ],
+      "task": "random-acts-of-pizza",
+      "worker_log_sha256": "c3218f9df9d8825b61b81fb7c07f8166a20a189093c57c9728a78ff5876221d0"
+    },
+    {
+      "arm": "B",
+      "check_exec_seconds": 141.96156877209432,
+      "check_node_sha256": "f8ce4cde5eb3133e864fdea3ee109de47edab42a0df3c01b11c6714168c80f65",
+      "check_status": "timeout",
+      "final_candidate_gain": -0.0007826173457785579,
+      "final_errors": [],
+      "final_status": "valid",
+      "index": 7,
+      "partial_streams_discarded": true,
+      "received_public_metric_text": false,
+      "received_stream_blocks": 2,
+      "seed": 102804,
+      "stream_recovery": "log-indent/whitespace normalized, not byte-identical raw streams",
+      "stream_text_sha256": [
+        "4dcdb19685ce24e4842ecaa6eb1192ed422792fa8d97178312a031fb4ba4a805",
+        "65756385b75e42b3f18ea9733c5d6cbe7bddc8471fccf203f4a74025d0ed3ccc"
+      ],
+      "task": "spooky-author-identification",
+      "worker_log_sha256": "d83c64e9de5f1aa8730dda32dbc5a1c11e2ddce0ec13351cd3fab7030fe3ab8f"
+    }
+  ],
+  "source_sha256": "b315f0b7ea9e87ed1fe95933eeca865b759354363b169e03b4af43805eb1904b",
+  "status": "DESCRIPTIVE_COMPLETE",
+  "summary_sha256": "e9fbefaca5ab86bddf40e21bcc3c6665234eedfc17a3e4230693b27f5705646b",
+  "valid_new_improved": 0,
+  "valid_new_tied": 1,
+  "valid_new_worse": 3
+}

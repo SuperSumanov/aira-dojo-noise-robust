@@ -1,0 +1,235 @@
+{
+  "independently_recomputed_pairs": [
+    {
+      "median_delta": 0.0,
+      "paired": 2,
+      "sample_variance": 0.0,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "median_delta": 0.0,
+      "paired": 2,
+      "sample_variance": 0.0,
+      "task": "spooky-author-identification"
+    }
+  ],
+  "plan_sha256": "939f9470529ad6c14f5b6670bb1bec4cd99398026f6fbdbea662c8d29e32c48e",
+  "request_chronology": [
+    {
+      "actual_output_in_next_prompt": true,
+      "index": 0,
+      "previous_result_sha256": "059dd9aacbbb91c44d7554ceb1a5037c0ed84e05d9414116c7a1d0ce6d37d963",
+      "request_sha256": "b9b4a58a0d9d04fe94277a5ada3a11524925aeee0d91ffa29c3bea6ab325980b"
+    },
+    {
+      "actual_output_in_next_prompt": true,
+      "index": 1,
+      "previous_result_sha256": "ccf6dc35ec3f3749cc6553d7aa5112967aece6dbd8b21f1e21cc41159f34faf4",
+      "request_sha256": "c4959799ac744ad5cc231ef158f4939764f3bfc9d706ee5de22952f436ec5bab"
+    },
+    {
+      "actual_output_in_next_prompt": true,
+      "index": 2,
+      "previous_result_sha256": "d4584c23829b9558846cd3f60cd68d3999bb53e2ff848e56464590688d2ae177",
+      "request_sha256": "195b7811e681cf23a95941269c20db2e790de3d7a48e5b9f92d3318b1e72c936"
+    },
+    {
+      "actual_output_in_next_prompt": true,
+      "index": 3,
+      "previous_result_sha256": "21fc94f37e5571be76f62720bef270414dc3d4278e9601c5bbd57304f40eb248",
+      "request_sha256": "71f2fe8818b229856a726131c354e2a75cbc005157c8c431ea5d11b6ddbc63d3"
+    },
+    {
+      "actual_output_in_next_prompt": true,
+      "index": 4,
+      "previous_result_sha256": "44fd00db1f75a6d1addf00c9641687136761faf9a30e7145afbf6bbfa84397c1",
+      "request_sha256": "fc4fe830b2b00719055ba7e297ef137284877e5ecb89eba79f2866671d9ab187"
+    },
+    {
+      "actual_output_in_next_prompt": true,
+      "index": 5,
+      "previous_result_sha256": "4f403df551840f15f3f553299d3b6fe383044d477c58f23ebdb1d07af1749a7e",
+      "request_sha256": "4546e050a607ff5441e913de8f5cea0090cd74b1617ea6e98cf8e8c1c38d03fc"
+    },
+    {
+      "actual_output_in_next_prompt": true,
+      "index": 6,
+      "previous_result_sha256": "374d31120443b022c4a506abf59b51e23f603ece04835f8791ba467086e65607",
+      "request_sha256": "f197867316794ed891c9cf6c7088ad8fc0da3889ecd3d0cc2c23070c50fb1445"
+    },
+    {
+      "actual_output_in_next_prompt": true,
+      "index": 7,
+      "previous_result_sha256": "4d304fbd61ee244bb7f3c6e3dc74ba3c3bb84b557b3da8ce5685aa9396adf090",
+      "request_sha256": "e66282d9e284a6d9393f456d09d101b9847d24519a40f89a741354f555630289"
+    }
+  ],
+  "scope": "Independent per-positive-negative AUC / per-row log loss; same approved D_search labels. GPU namespace and source/result hashes, saved-incumbent replay. Mechanism/novelty NOT certified.",
+  "source_sha256": "3db19da2e6b106baa4888da71bf061a489c5b84235c9192376eef9edaf29bcc5",
+  "status": "PASS",
+  "summary_sha256": "e9fbefaca5ab86bddf40e21bcc3c6665234eedfc17a3e4230693b27f5705646b",
+  "valid_scored": 12,
+  "verified_actions": [
+    {
+      "index": 0,
+      "kind": "SOLUTION",
+      "result_sha256": "07d65581cb1b2167d5471c33e0aaa015eaf6ca508975cbf4e057f6121590b3d8",
+      "step": 0,
+      "valid": true
+    },
+    {
+      "index": 0,
+      "kind": "CHECK",
+      "result_sha256": "059dd9aacbbb91c44d7554ceb1a5037c0ed84e05d9414116c7a1d0ce6d37d963",
+      "step": 1,
+      "valid": false
+    },
+    {
+      "index": 0,
+      "kind": "SOLUTION",
+      "result_sha256": "e7cbd5835e01fc8c86e109b481ad6bbce555452c2098740cd28b9123f697775b",
+      "step": 2,
+      "valid": false
+    },
+    {
+      "index": 1,
+      "kind": "SOLUTION",
+      "result_sha256": "9c75066cdd86162ffd4fa922faab51a4738175ae88fc4f8dd11fd83e3bdcac0e",
+      "step": 0,
+      "valid": true
+    },
+    {
+      "index": 1,
+      "kind": "CHECK",
+      "result_sha256": "ccf6dc35ec3f3749cc6553d7aa5112967aece6dbd8b21f1e21cc41159f34faf4",
+      "step": 1,
+      "valid": false
+    },
+    {
+      "index": 1,
+      "kind": "SOLUTION",
+      "result_sha256": "c5773ac3b1753aaf8b210d9720b1aa7b2289bdd12f33dcab0407b6ec75b1a3f8",
+      "step": 2,
+      "valid": true
+    },
+    {
+      "index": 2,
+      "kind": "SOLUTION",
+      "result_sha256": "9b7096ad7d5531c6c14ece4edcabe7443f037eeeb386d4f312d89c1d5d2e9395",
+      "step": 0,
+      "valid": true
+    },
+    {
+      "index": 2,
+      "kind": "CHECK",
+      "result_sha256": "d4584c23829b9558846cd3f60cd68d3999bb53e2ff848e56464590688d2ae177",
+      "step": 1,
+      "valid": false
+    },
+    {
+      "index": 3,
+      "kind": "SOLUTION",
+      "result_sha256": "27e12f8ccafa72ed0e3a23545522e6ad2bb2aed1a52a5ad5b130a7cf1d750445",
+      "step": 0,
+      "valid": true
+    },
+    {
+      "index": 3,
+      "kind": "CHECK",
+      "result_sha256": "21fc94f37e5571be76f62720bef270414dc3d4278e9601c5bbd57304f40eb248",
+      "step": 1,
+      "valid": false
+    },
+    {
+      "index": 3,
+      "kind": "SOLUTION",
+      "result_sha256": "60c9068d3a8cc668fb577c23b171f5a16ec478001e239d78bb0ec0342f4a5ce7",
+      "step": 2,
+      "valid": false
+    },
+    {
+      "index": 4,
+      "kind": "SOLUTION",
+      "result_sha256": "725485f2b671047d4ebb1a0e670b74f0a56e48f1a3c50cc7f604d6d42819690f",
+      "step": 0,
+      "valid": true
+    },
+    {
+      "index": 4,
+      "kind": "CHECK",
+      "result_sha256": "44fd00db1f75a6d1addf00c9641687136761faf9a30e7145afbf6bbfa84397c1",
+      "step": 1,
+      "valid": false
+    },
+    {
+      "index": 4,
+      "kind": "SOLUTION",
+      "result_sha256": "c0b85ce6579f48e9ff6f2e47f08ced41e1e06fa37bd42c9c6dbc8309738f9819",
+      "step": 2,
+      "valid": false
+    },
+    {
+      "index": 5,
+      "kind": "SOLUTION",
+      "result_sha256": "82f815469e23546ddeba092abd9ba5b9a1ccd35e91510932c1f505d4d810f713",
+      "step": 0,
+      "valid": true
+    },
+    {
+      "index": 5,
+      "kind": "CHECK",
+      "result_sha256": "4f403df551840f15f3f553299d3b6fe383044d477c58f23ebdb1d07af1749a7e",
+      "step": 1,
+      "valid": false
+    },
+    {
+      "index": 5,
+      "kind": "SOLUTION",
+      "result_sha256": "5ee16856f8ccb405db709b2097b22ca701982d12d8bc65471bc379ef5698beb1",
+      "step": 2,
+      "valid": true
+    },
+    {
+      "index": 6,
+      "kind": "SOLUTION",
+      "result_sha256": "08d2d534304d71f0f17e4d4b0b28e3a1cd7489f3d640e1b315f48c1052daa93a",
+      "step": 0,
+      "valid": true
+    },
+    {
+      "index": 6,
+      "kind": "CHECK",
+      "result_sha256": "374d31120443b022c4a506abf59b51e23f603ece04835f8791ba467086e65607",
+      "step": 1,
+      "valid": false
+    },
+    {
+      "index": 6,
+      "kind": "SOLUTION",
+      "result_sha256": "8d406e8ac3e295804d2b0c25cc2405f2caa97385e1ecbe7603f78dda6811f7f1",
+      "step": 2,
+      "valid": true
+    },
+    {
+      "index": 7,
+      "kind": "SOLUTION",
+      "result_sha256": "4ec720fda0e34b7c53ee2e308e6c0f97cce4b4fc0812573034088162f39f9e47",
+      "step": 0,
+      "valid": true
+    },
+    {
+      "index": 7,
+      "kind": "CHECK",
+      "result_sha256": "4d304fbd61ee244bb7f3c6e3dc74ba3c3bb84b557b3da8ce5685aa9396adf090",
+      "step": 1,
+      "valid": false
+    },
+    {
+      "index": 7,
+      "kind": "SOLUTION",
+      "result_sha256": "d540f5a02dd63b776f4c9c4d6c2a7a193e1072a7fc647aff1b4ceebd24e8ecd4",
+      "step": 2,
+      "valid": true
+    }
+  ]
+}

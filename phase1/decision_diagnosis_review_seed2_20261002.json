@@ -1,0 +1,36 @@
+{
+  "recorded_utc": "2026-10-02T07:17:00Z",
+  "scope": "Second-seed mechanism assessment before any new external candidate score was read. No live prompt/config changes.",
+  "plan_sha256": "939f9470529ad6c14f5b6670bb1bec4cd99398026f6fbdbea662c8d29e32c48e",
+  "shared_channel_caveat": "Pinned client drops collected normal output when a later error or timeout occurs. No returned measurement must not be equated with no measurement having been produced. Synthetic confirmation is not proof that a particular real lost observation was useful.",
+  "episodes": [
+    {
+      "index": 4, "arm": "A", "task": "random-acts-of-pizza", "seed": 102803,
+      "observation_status": "ERROR_NO_MEASUREMENT_RETURNED",
+      "assessment": "Freely chose a model/blend comparison. Used arrays where scalar scores were expected in blend weighting, raising ambiguous array truth error. Final plan acknowledged no new evidence; removed CatBoost and added text LR using old incumbent logs. Do not attribute its subsequent outcome to successfully returned diagnostic evidence.",
+      "bindings": ["45adc660d04ec5038d454464ec4906e0f9dd1cb381ad92980b0c81aac6b63ff2", "6f70c847d7c6470e67978416902ebe8a753867f81f41875d66b9f0dfdfb978c7", "1f54f67036ae36eba1454214fffdf67847858bf30a8a2b983690581115726efe"]
+    },
+    {
+      "index": 5, "arm": "A", "task": "spooky-author-identification", "seed": 102804,
+      "observation_status": "TIMEOUT_NO_MEASUREMENT_RETURNED",
+      "assessment": "Freely chose a five-fold configuration grid, exceeded diagnostic cap. Final plan acknowledged no new evidence and reused old zero-embedding-weight observation to drop that branch and tune text LR. A shared old-log response, not new evidence-based diagnosis.",
+      "bindings": ["bd17ac6cf771b86ecd07dbc124569b837004c0c412451086bbbcb5c24a1c72e7", "b23c36d76330498c86567fd63e975d98500af27b700ffc623edc8e3904cbc68b", "cd9a3263b14eea06113e897ef61342456ae0891d482dc3d737083e0162ed7f03"]
+    },
+    {
+      "index": 6, "arm": "B", "task": "random-acts-of-pizza", "seed": 102803,
+      "observation_status": "SUCCESS_MEASURED_CONTRAST_RETURNED",
+      "assessment": "Real check completed in approximately 53 seconds. Tree-prediction correlations did not meet its stated >0.92 condition; weak linear model did not improve the tested blend. Despite this, final rationale kept the provisional add-linear direction, now with tuned regularization. It cited genuine observations, but did not follow the stated add-linear condition; this is a new unverified hypothesis, not a demonstrated observation-driven improvement.",
+      "limitations": ["Check rebuilt a modified feature set and fitted vectorizers before internal CV; not an exact fold-clean counterfactual of the original incumbent.", "The feature-pruning branch required a pruned model to beat the blend, but no such comparison was implemented.", "No no-evidence continuation was run, so evidence's isolated causal contribution remains unmeasured.", "Tuning a stronger linear model is not logically ruled out by the failed weaker model, but its benefit was not established by this check."],
+      "new_measurement": true, "declared_branch_condition_followed": false,
+      "final_code_semantics_review": "Checked actual final code before outcome readout: preserves the three tree-family grids, adds four LR C configurations, replaces softmax-weighted combination with OOF-selected equal-rank blend4/blend3/best-single. The original softmax incumbent is not one of that program's internal selection options. New code uses the linear family despite the declared correlation condition not being met; it is not a literal execution of the precommitted branch rule. Outer harness still retains the previous incumbent.",
+      "bindings": ["64efbc174059ee7cd75b9c62f5b507966a1bec6dda8b41e758f8d40556e995d3", "3a4b880061968018fe51d57e859f10888b14776e3c616d9dcd21382672d243cf", "22f6a7facc35dfd31d707afce7efb380bcd9614993222f49eae52f0713faa073"]
+    },
+    {
+      "index": 7, "arm": "B", "task": "spooky-author-identification", "seed": 102804,
+      "observation_status": "TIMEOUT_NO_MEASUREMENT_RETURNED",
+      "assessment": "Fold-local feature expansion and solver/C contrasts were implemented but exceeded the cap. Final rationale acknowledged inconclusive evidence, removed zero-weight embedding based on old incumbent logs, and tuned the classifier. No returned new measurement can be credited for the edit.",
+      "bindings": ["f1f62f9c9697a9393dd662bf86184351ac4ad05dd91e167bc3a25c1d7fc75739", "f8ce4cde5eb3133e864fdea3ee109de47edab42a0df3c01b11c6714168c80f65", "cc2c0323e11b2d1d56f8d25df56088a198a3fb75bdeb0c73b464bbf3331dc0aa"]
+    }
+  ],
+  "interpretation": "Qualitative single-reviewer qualification only, not independent causal proof. Full task outcomes, paired readout and score verification still pending. Neither an added tool nor an interpretable story is a method-positive result."
+}

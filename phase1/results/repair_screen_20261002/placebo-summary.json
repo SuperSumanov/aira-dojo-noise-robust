@@ -1,0 +1,40 @@
+{
+  "elapsed_seconds": 14.20261889602989,
+  "note": "The reference tail is NOT an independent-test or causal p-value; no method selection may be made from individual random partitions.",
+  "plan_sha256": "6e9e7a7f4ee3c4dfc809e24e0bbd0e80014790de2e7d6a743ad6a7b69576847f",
+  "replicates_sha256": "303de257e560d0fc70c57827b18922d1c4f675772684429a64557f98fc07c7fb",
+  "results": {
+    "above_reference": {
+      "observed": 2,
+      "plus_one_reference_tail": 0.8901098901098901,
+      "random_at_least_observed": 890,
+      "random_median": 5.0,
+      "random_q025": 0.0,
+      "random_q975": 8.0,
+      "random_variance": 4.8784784784784785,
+      "replicates": 1000
+    },
+    "max_margin": {
+      "observed": 0.00209280076536722,
+      "plus_one_reference_tail": 0.8961038961038961,
+      "random_at_least_observed": 896,
+      "random_median": 0.008655226022482754,
+      "random_q025": -3.064458263564436e-05,
+      "random_q975": 0.025612891652714655,
+      "random_variance": 5.045376314191406e-05,
+      "replicates": 1000
+    },
+    "rescue_worse_child": {
+      "observed": 5,
+      "plus_one_reference_tail": 0.9760239760239761,
+      "random_at_least_observed": 976,
+      "random_median": 9.0,
+      "random_q025": 5.0,
+      "random_q975": 11.0,
+      "random_variance": 2.770145145145145,
+      "replicates": 1000
+    }
+  },
+  "seed": 102501,
+  "status": "DESCRIPTIVE_RANDOM_GROUP_REFERENCE"
+}

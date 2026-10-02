@@ -1,0 +1,16 @@
+{
+  "api_calls": 0,
+  "fits": 0,
+  "gpu": 0,
+  "limitations": "structure only; no execution validity, causal benefit, new method or novelty claim",
+  "question": "Do completed proposals support automatic four-vertex edit factorization before any outcome selection?",
+  "roots": {
+    "task-feedback-local-edit-20261002-v1": "7bd84ff0e867043b2787d5c07af867eff50370f4e7b6bafa811ef215196c4139",
+    "task-feedback-real-20261001-v6": "15751d3b52bdc42617df02006ce724635f4bf49df6e477686769fd1979d53403",
+    "task-feedback-upper-20261002-v1": "9fe231e1b9e2da8cb51fadb7ff9844b074c10e8e3dc64d1d1f3be170fb0703a0"
+  },
+  "score_values_used_for_selection": false,
+  "selection": "all returned follow-up proposals whose actual parent was valid; all arms retained",
+  "source_sha256": "46ca9c7bc947f33f8b19db1aa6a32c0d51feadbf4fce89023573ae5bda8e09a3",
+  "split": "ordered top-level AST LCS edit blocks into first ceil(m/2) and remainder"
+}

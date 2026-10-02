@@ -1,0 +1,9 @@
+{
+  "counterfactual_groups": 105,
+  "input_bindings": 103,
+  "parent_scores": 85,
+  "plan_sha256": "8eeba0599657cd1fa4a75e2c8997b6205e290efc84b76ac9360a788393b8dc0a",
+  "producer_summary_sha256": "c714d7daf46ed431f87a7d0428a60a188613b7452541b932b9e7ad20dfb37139",
+  "status": "PASS",
+  "valid_pair_scores": 35
+}

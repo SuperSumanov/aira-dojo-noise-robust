@@ -1,0 +1,21 @@
+{
+  "api_calls": 0,
+  "boundary": "not universal AUC improvement; labels may make remaining within-group changes beneficial or harmful",
+  "cohort": "all45 Pizza proposals,27 valid parent-child pairs; automatic28/15 separately",
+  "fits": 0,
+  "gpu": 0,
+  "groups": "original public-training word-count tertiles; all3 applied jointly, NO best-group selection",
+  "hard_cpu_seconds": 180,
+  "invocation": [
+    "/tmp/task-feedback-stage-20261001/rank_locality_screen_20261002.py"
+  ],
+  "no_expansion_gate": "no guarded automatic candidate beats historical strong reference => no GPU expansion of this operator",
+  "operator": "preserve every cross-group comparison/tie and entire parent score multiset; reorder maximal homogeneous score-level runs by child score",
+  "operator_sha256": "bd699703461002d5e2fec45c9954d1973925496caa945925ea9eebe31ec7fa94",
+  "primary": "guard versus actual parent; all valid and failure denominators, median/variance/win-loss, no selection",
+  "role": "RETROSPECTIVE_MECHANISM_SCREEN_NOT_NEW_E2E_OR_RULE_DISCOVERY",
+  "secondary": "raw child; fixed historical strong reference; label-aware within-block oracle as diagnostic headroom only",
+  "source_commit": "df7dc14eb2103558708574ae3373b9123cd8b3c4",
+  "source_sha256": "3e01b6245a9908f098293fecfcae6aa1e2d222587d7e4588814b211a587e0a4d",
+  "tie_rule": "mixed-group parent ties locked; child ties retain parent order"
+}

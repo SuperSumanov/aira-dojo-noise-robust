@@ -1,0 +1,8 @@
+{
+  "guarded_candidates": 27,
+  "reconstruction": "outsider comparison equivalence classes, independent of producer consecutive-level blocks",
+  "rows_sha256": "bcae698b05f9af6c45d529cbc7873a13c7e86d9cd8f5710745521cb04c78d5ab",
+  "status": "PASS",
+  "summary_sha256": "348d06b84cf58c3e454b635ca33de58608386fb9bdf091b40093c1fda4542176",
+  "verifier_sha256": "155896713c8c0d41af0e1a59769551b084526dd8850da7718669c8b3c3eb9c6d"
+}

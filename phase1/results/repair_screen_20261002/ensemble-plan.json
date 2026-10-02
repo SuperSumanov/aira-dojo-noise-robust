@@ -1,0 +1,27 @@
+{
+  "api_calls": 0,
+  "boundary": "source search already adapted to D_search; output finalization is label-free, not whole pipeline",
+  "cohort": "every scheduled trajectory from all three closed roots; no-valid ones retained",
+  "comparator": "last native selected.json action, not reselected after neutral rule; strongest historical program is contextual only",
+  "costs": "new single-thread CPU capped 180sec; all inherited generator/task execution retained, not free E2E",
+  "fits": 0,
+  "gpu": 0,
+  "invocation": [
+    "/tmp/task-feedback-stage-20261001/trajectory_ensemble_reference_20261002.py"
+  ],
+  "library": "all valid executed actions within SAME trajectory; exact post-rule prediction-vector dedup, keep earliest",
+  "neutral": "same already frozen public neutral-copy rule applied to every Tweet candidate and selected comparator",
+  "primary": "probability mean for Spooky/Pizza; candidate-set word-Jaccard MBR for Tweet, ties earliest",
+  "primary_subset": "original ABC + upper A/B only; manual arms separately descriptive",
+  "protected_opened": false,
+  "public_source_commit": "df7dc14eb2103558708574ae3373b9123cd8b3c4",
+  "python": "3.12.13",
+  "role": "RETROSPECTIVE_FIXED_FINALIZATION_BASELINE_NOT_NEW_METHOD",
+  "roots": {
+    "task-feedback-local-edit-20261002-v1": "7bd84ff0e867043b2787d5c07af867eff50370f4e7b6bafa811ef215196c4139",
+    "task-feedback-real-20261001-v6": "15751d3b52bdc42617df02006ce724635f4bf49df6e477686769fd1979d53403",
+    "task-feedback-upper-20261002-v1": "9fe231e1b9e2da8cb51fadb7ff9844b074c10e8e3dc64d1d1f3be170fb0703a0"
+  },
+  "secondary": "uniform average of midranks for Pizza only; no selection between primary/secondary",
+  "source_sha256": "95b3197b0a02084f4543147cb6f62bfb91582e0577cd1f7dca9e741013897fe3"
+}

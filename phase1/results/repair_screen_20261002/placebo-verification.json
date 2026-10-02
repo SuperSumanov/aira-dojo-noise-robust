@@ -1,0 +1,15 @@
+{
+  "api_calls": 0,
+  "candidates": 15,
+  "fits": 0,
+  "gpu": 0,
+  "groups": 3,
+  "input_bindings_checked": 103,
+  "plan_sha256": "6e9e7a7f4ee3c4dfc809e24e0bbd0e80014790de2e7d6a743ad6a7b69576847f",
+  "replayed_replicates": 1000,
+  "replicates_sha256": "303de257e560d0fc70c57827b18922d1c4f675772684429a64557f98fc07c7fb",
+  "scope": "descriptive check only, not new evidence of method benefit",
+  "source_sha256": "90d09607a8d6dfcf85f0cab0153f8c48aaaf563e32b2e316e634a48bd067a0cf",
+  "status": "PASS",
+  "summary_sha256": "a929e4bd4b09d2f6d2cc07e3c7ba026cf54f47575d11d8c7d9af03cfb85d2ae0"
+}

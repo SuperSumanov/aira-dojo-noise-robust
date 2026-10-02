@@ -1,0 +1,22 @@
+{
+  "census_sha256": "3de13b0b85d25da6f68b941a0d2e2db142754200aa6b525edde3c5579e21e582",
+  "comparison": "actual parent; full child; strongest valid historical program across ALL actions in 3 closed roots, with frozen neutral rule on Tweet",
+  "cost": "no new GPU/API/fits; inherited generation/training costs not zero",
+  "denominator": 85,
+  "group_family": "original public-training word-count tertiles; exactly3",
+  "interventions": "replace parent predictions with child predictions only within one predefined group; 3 choices",
+  "invocation": [
+    "/tmp/task-feedback-stage-20261001/repair_opportunity_20261002.py"
+  ],
+  "leakage": "D_search reused and already viewed; no training or deployable selector; every oracle result is optimistic",
+  "metrics": "native overall trusted D_search plus independent metric; within-group and cross-boundary AUC decomposition",
+  "no_effect_based_exclusion": true,
+  "primary_subset": "all original ABC and upper A/B; exclude upper C and local F/P manual guidance",
+  "protected_opened": false,
+  "python": "3.12.13",
+  "question": "Is there room beyond the strongest historical prediction after removing manual-guidance examples?",
+  "role": "RETROSPECTIVE_ORACLE_UPPER_BOUND_NOT_METHOD_EFFECT",
+  "source_commit": "df7dc14eb2103558708574ae3373b9123cd8b3c4",
+  "source_sha256": "66782795211157ff59b899c39e117f1946117b4a623879014b0a422fbd3c8c3d",
+  "ties_epsilon": 1e-12
+}

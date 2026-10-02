@@ -1,0 +1,165 @@
+{
+  "api_calls": 0,
+  "elapsed_seconds": 9.038592462893575,
+  "fits": 0,
+  "gpu": 0,
+  "plan_sha256": "81839a83db2297b23b758137411f7956947d78208b67c76b26aeb2d0ed078513",
+  "predictions_frozen_sha256": "6212f76609919ec030b54dda080edce1b1f9eea1062f270c2c29a86af2d06ce2",
+  "rows_sha256": "8ac35729bdd29e9f58a23a02feb88f9f3503542ae959482b0777734dfa622b78",
+  "status": "CLOSED_DEVELOPMENT_FIXED_BASELINE_ONLY",
+  "summaries": {
+    "random-acts-of-pizza:all:mean": {
+      "beats_historical_strong": 0,
+      "gain": {
+        "median": -0.002092800765367109,
+        "n": 21,
+        "sample_variance": 1.8840704428741747e-05
+      },
+      "losses": 14,
+      "multiple_unique": 18,
+      "score": {
+        "median": 0.6805788088973931,
+        "n": 21,
+        "sample_variance": 0.00026713456446149364
+      },
+      "ties": 5,
+      "total": 21,
+      "valid": 21,
+      "wins": 2
+    },
+    "random-acts-of-pizza:all:rank_mean": {
+      "beats_historical_strong": 0,
+      "gain": {
+        "median": -0.0013752690743842333,
+        "n": 21,
+        "sample_variance": 3.753426580009324e-05
+      },
+      "losses": 17,
+      "multiple_unique": 18,
+      "score": {
+        "median": 0.6805489117436019,
+        "n": 21,
+        "sample_variance": 0.0003374808041687599
+      },
+      "ties": 3,
+      "total": 21,
+      "valid": 21,
+      "wins": 1
+    },
+    "random-acts-of-pizza:automatic:mean": {
+      "beats_historical_strong": 0,
+      "gain": {
+        "median": -0.0029299210715140744,
+        "n": 12,
+        "sample_variance": 2.5941580850547945e-05
+      },
+      "losses": 10,
+      "multiple_unique": 12,
+      "score": {
+        "median": 0.6760344415211672,
+        "n": 12,
+        "sample_variance": 0.0004215345472256863
+      },
+      "ties": 0,
+      "total": 12,
+      "valid": 12,
+      "wins": 2
+    },
+    "random-acts-of-pizza:automatic:rank_mean": {
+      "beats_historical_strong": 0,
+      "gain": {
+        "median": -0.003527864147333193,
+        "n": 12,
+        "sample_variance": 5.739123280974e-05
+      },
+      "losses": 11,
+      "multiple_unique": 12,
+      "score": {
+        "median": 0.6762885673283904,
+        "n": 12,
+        "sample_variance": 0.0005379380387317679
+      },
+      "ties": 0,
+      "total": 12,
+      "valid": 12,
+      "wins": 1
+    },
+    "spooky-author-identification:all:mean": {
+      "beats_historical_strong": 0,
+      "gain": {
+        "median": 0.0,
+        "n": 6,
+        "sample_variance": 1.01089547011355e-06
+      },
+      "losses": 1,
+      "multiple_unique": 1,
+      "score": {
+        "median": -0.40536472681447133,
+        "n": 6,
+        "sample_variance": 0.00040829352155691235
+      },
+      "ties": 5,
+      "total": 6,
+      "valid": 6,
+      "wins": 0
+    },
+    "spooky-author-identification:automatic:mean": {
+      "beats_historical_strong": 0,
+      "gain": {
+        "median": 0.0,
+        "n": 6,
+        "sample_variance": 1.01089547011355e-06
+      },
+      "losses": 1,
+      "multiple_unique": 1,
+      "score": {
+        "median": -0.40536472681447133,
+        "n": 6,
+        "sample_variance": 0.00040829352155691235
+      },
+      "ties": 5,
+      "total": 6,
+      "valid": 6,
+      "wins": 0
+    },
+    "tweet-sentiment-extraction:all:consensus": {
+      "beats_historical_strong": 0,
+      "gain": {
+        "median": 0.0,
+        "n": 19,
+        "sample_variance": 2.2371014951292466e-05
+      },
+      "losses": 2,
+      "multiple_unique": 7,
+      "score": {
+        "median": 0.6331957602399368,
+        "n": 19,
+        "sample_variance": 0.0004104271322297467
+      },
+      "ties": 15,
+      "total": 21,
+      "valid": 19,
+      "wins": 2
+    },
+    "tweet-sentiment-extraction:automatic:consensus": {
+      "beats_historical_strong": 0,
+      "gain": {
+        "median": 0.0,
+        "n": 10,
+        "sample_variance": 2.622194944687559e-07
+      },
+      "losses": 1,
+      "multiple_unique": 3,
+      "score": {
+        "median": 0.6331957602399368,
+        "n": 10,
+        "sample_variance": 0.0005959841861499485
+      },
+      "ties": 9,
+      "total": 12,
+      "valid": 10,
+      "wins": 0
+    }
+  },
+  "trajectories": 48
+}

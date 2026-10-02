@@ -1,0 +1,9 @@
+{
+  "note": "independent finalizer and metric reconstruction; not independent evaluation data",
+  "rows_sha256": "8ac35729bdd29e9f58a23a02feb88f9f3503542ae959482b0777734dfa622b78",
+  "scored_finalizers": 67,
+  "status": "PASS",
+  "summary_sha256": "c0f82c4c412ef5f56abf2542b47717276024596308ba4fecc2440afbe6eee31d",
+  "trajectories": 48,
+  "verifier_sha256": "155896713c8c0d41af0e1a59769551b084526dd8850da7718669c8b3c3eb9c6d"
+}

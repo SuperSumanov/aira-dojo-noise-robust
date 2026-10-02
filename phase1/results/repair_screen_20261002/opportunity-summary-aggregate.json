@@ -1,0 +1,157 @@
+{
+  "api_calls": 0,
+  "denominator": 85,
+  "elapsed_seconds": 13.76432955591008,
+  "fits": 0,
+  "gpu": 0,
+  "interpretation": "Posthoc upper bounds; repeated related programs and reused development labels. Not E2E, novel rules, independent generalization, matched budget, or a usable selection algorithm.",
+  "outputs": {
+    "bindings.private.json": "46c4b064609e5505f62e0a7fe91613fa42c430dc280a4ae53b5dbfdcd0a1f723",
+    "groups.csv": "4debfb384ef9709fd8f2a1e5419833f2a6b8ad28b4ea6b3deca8a9bb21d66d9b",
+    "pairs.csv": "59d66027a91727f82dce15c6e6fb6b80ee5541db7fa725cb264a367a498cd1c3"
+  },
+  "plan_sha256": "a8322c9624ef212a9841c4d1269cc1ae4894108b2460733a390cb6720ab570e9",
+  "protected_opened": false,
+  "references": {
+    "random-acts-of-pizza": {
+      "prediction_sha256": "078aa62d87a98329147b0e550e8ed64680d08bf1e1037e8c307fd4c43be0edff",
+      "utility": 0.6867376225783305
+    },
+    "spooky-author-identification": {
+      "prediction_sha256": "d054de62537faf8fe8161fcf65459b907f06bb2e2ccd28efbd1e321b7754fb6a",
+      "utility": -0.37976945033064013
+    },
+    "tweet-sentiment-extraction": {
+      "prediction_sha256": "e9f9e2062bd87e6cc740152e9e455953642ea7e46710a93bcf9875d9f9ea82c1",
+      "utility": 0.6528215327792606
+    }
+  },
+  "score_files": 201,
+  "sklearn": "1.6.1",
+  "status": "DESCRIPTIVE_ORACLE_ONLY",
+  "summaries": {
+    "random-acts-of-pizza:all": {
+      "full_child_worse": 21,
+      "local_global_sign_reversals": 15,
+      "oracle_gain_statistics": {
+        "median": -0.00005979430758185078,
+        "n": 27,
+        "sample_variance": 0.00006621165974583176
+      },
+      "oracle_vs_strong_statistics": {
+        "median": -0.006726859602965707,
+        "n": 27,
+        "sample_variance": 0.00012177398472966497
+      },
+      "proposals": 45,
+      "rescue_worse_child": 7,
+      "swap_exceeds_endpoints": 10,
+      "swap_exceeds_strong_reference": 2,
+      "unique_parents": 13,
+      "valid": 27
+    },
+    "random-acts-of-pizza:automatic": {
+      "full_child_worse": 11,
+      "local_global_sign_reversals": 4,
+      "oracle_gain_statistics": {
+        "median": 0.0013154747668022715,
+        "n": 15,
+        "sample_variance": 0.0000886635455973575
+      },
+      "oracle_vs_strong_statistics": {
+        "median": -0.006457785218847212,
+        "n": 15,
+        "sample_variance": 0.0002027213184063706
+      },
+      "proposals": 28,
+      "rescue_worse_child": 5,
+      "swap_exceeds_endpoints": 6,
+      "swap_exceeds_strong_reference": 2,
+      "unique_parents": 11,
+      "valid": 15
+    },
+    "spooky-author-identification:all": {
+      "full_child_worse": 0,
+      "local_global_sign_reversals": 0,
+      "oracle_gain_statistics": {
+        "median": null,
+        "n": 0,
+        "sample_variance": null
+      },
+      "oracle_vs_strong_statistics": {
+        "median": null,
+        "n": 0,
+        "sample_variance": null
+      },
+      "proposals": 8,
+      "rescue_worse_child": 0,
+      "swap_exceeds_endpoints": 0,
+      "swap_exceeds_strong_reference": 0,
+      "unique_parents": 5,
+      "valid": 0
+    },
+    "spooky-author-identification:automatic": {
+      "full_child_worse": 0,
+      "local_global_sign_reversals": 0,
+      "oracle_gain_statistics": {
+        "median": null,
+        "n": 0,
+        "sample_variance": null
+      },
+      "oracle_vs_strong_statistics": {
+        "median": null,
+        "n": 0,
+        "sample_variance": null
+      },
+      "proposals": 8,
+      "rescue_worse_child": 0,
+      "swap_exceeds_endpoints": 0,
+      "swap_exceeds_strong_reference": 0,
+      "unique_parents": 5,
+      "valid": 0
+    },
+    "tweet-sentiment-extraction:all": {
+      "full_child_worse": 3,
+      "local_global_sign_reversals": 0,
+      "oracle_gain_statistics": {
+        "median": 0.0007239002303261466,
+        "n": 8,
+        "sample_variance": 0.0003049776658619362
+      },
+      "oracle_vs_strong_statistics": {
+        "median": -0.0631742164959394,
+        "n": 8,
+        "sample_variance": 0.0011485592747275143
+      },
+      "proposals": 32,
+      "rescue_worse_child": 1,
+      "swap_exceeds_endpoints": 1,
+      "swap_exceeds_strong_reference": 0,
+      "unique_parents": 9,
+      "valid": 8
+    },
+    "tweet-sentiment-extraction:automatic": {
+      "full_child_worse": 2,
+      "local_global_sign_reversals": 0,
+      "oracle_gain_statistics": {
+        "median": -0.0048075469822378425,
+        "n": 4,
+        "sample_variance": 0.0004653157184506779
+      },
+      "oracle_vs_strong_statistics": {
+        "median": -0.07018710364195258,
+        "n": 4,
+        "sample_variance": 0.00041904714823447713
+      },
+      "proposals": 19,
+      "rescue_worse_child": 0,
+      "swap_exceeds_endpoints": 0,
+      "swap_exceeds_strong_reference": 0,
+      "unique_parents": 6,
+      "valid": 4
+    }
+  },
+  "valid_score_files": 94,
+  "original_artifact_sha256": "c714d7daf46ed431f87a7d0428a60a188613b7452541b932b9e7ad20dfb37139",
+  "public_projection_note": "Reference origin metadata omitted. Values are unchanged from the remote summary; original_artifact_sha256 identifies that full artifact."
+}

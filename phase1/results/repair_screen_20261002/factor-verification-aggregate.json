@@ -1,0 +1,11 @@
+{
+  "both_without_new_unresolved": 13,
+  "four_vertices": 76,
+  "note": "Missing-global-name heuristic only; dynamic imports, use-before-definition, dependent tensor shapes and dead branches remain unresolved. No execution or effect.",
+  "parent_bindings": 85,
+  "status": "PASS_STRUCTURAL_RECONSTRUCTION_ONLY",
+  "summary_sha256": "3de13b0b85d25da6f68b941a0d2e2db142754200aa6b525edde3c5579e21e582",
+  "verifier_sha256": "a1230801aeefeb51c26995894471e0d81614b7119249e380f81d4f7849b1ab02",
+  "original_artifact_sha256": "c41f45fd228825946bea7a8b8f376ecc3b424b9eada8135ee8085ff9e75560d4",
+  "public_projection_note": "Aggregate projection; per-candidate diagnostics omitted. Original artifact hash refers to the remote full verification."
+}

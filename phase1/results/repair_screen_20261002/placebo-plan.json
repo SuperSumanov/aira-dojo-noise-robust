@@ -1,0 +1,17 @@
+{
+  "api_calls": 0,
+  "boundary": "pure descriptive reference distribution, not a formal causal null: length facts influenced candidate creation; labels/history reused",
+  "candidates": "all15 valid automatic Pizza parent-child proposals, out of28 eligible proposals; no cherry-picked pair subset",
+  "fits": 0,
+  "gpu": 0,
+  "hard_cpu_seconds": 180,
+  "preserved": "all prediction vectors, labels, group counts per class, candidate correlations, same-parent repetition, failure denominator",
+  "primary": "maximum global AUC across all15x3 one-group replacements minus fixed strongest historical AUC",
+  "producer_summary_sha256": "c714d7daf46ed431f87a7d0428a60a188613b7452541b932b9e7ad20dfb37139",
+  "randomization": "joint permutation of group membership within each class; SAME permuted group vector for all candidates per replicate",
+  "replicates": 1000,
+  "role": "POSTHOC_CONDITIONAL_RANDOM_GROUP_SANITY_CHECK_NOT_CONFIRMATORY",
+  "secondary": "number of distinct candidates with any replacement above strong reference; rescue count among whole-child regressions",
+  "seed": 102501,
+  "source_sha256": "65d5f04a81bd258421591170fd66df7b765ca7405a58969487001d229dd97ab2"
+}

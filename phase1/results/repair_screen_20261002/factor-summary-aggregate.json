@@ -1,0 +1,9 @@
+{
+  "denominator": 85,
+  "four_distinct": 76,
+  "metrics_reported": false,
+  "plan_sha256": "614af347fc6c9d153d155a623f009039d4bdc6f435a6c100de4bd1a655bc7922",
+  "status": "STRUCTURAL_ONLY_NO_EXECUTION_OR_EFFECT",
+  "original_artifact_sha256": "3de13b0b85d25da6f68b941a0d2e2db142754200aa6b525edde3c5579e21e582",
+  "public_projection_note": "Aggregate projection; per-candidate source metadata omitted. Original artifact hash refers to the remote full summary."
+}

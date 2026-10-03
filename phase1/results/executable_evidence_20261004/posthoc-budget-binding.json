@@ -1,0 +1,224 @@
+{
+  "assigned": 18,
+  "groups": [
+    {
+      "assigned": 9,
+      "finished_after_final_permitted_call": 9,
+      "median_observed_slack_seconds": 299.4463292770088,
+      "observed_slack_values": [
+        84.61652366700582,
+        157.37205672101118,
+        277.08391223003855,
+        285.862709158042,
+        299.4463292770088,
+        317.8977594439639,
+        355.54033654002706,
+        377.5191133709741,
+        382.06840578699484
+      ],
+      "task": "random-acts-of-pizza",
+      "worker_deadline_flagged": 0
+    },
+    {
+      "assigned": 9,
+      "finished_after_final_permitted_call": 1,
+      "median_observed_slack_seconds": 257.6882530809962,
+      "observed_slack_values": [
+        257.6882530809962
+      ],
+      "task": "spooky-author-identification",
+      "worker_deadline_flagged": 8
+    }
+  ],
+  "input_sha256": {
+    "actions.csv": "959f418d278f0a9dc289cec2c1835f61749203644f0c9e0fd59d9aaec2e2daa2",
+    "runs.csv": "2824c004bcf79b4fd47e31dc9a1aaa26c605ebff8e305876b62aced4b5774b68"
+  },
+  "observed_best_retention_passes": 18,
+  "posthoc": true,
+  "rows": [
+    {
+      "arm": "B",
+      "finished_after_final_permitted_call": true,
+      "index": 0,
+      "retained_is_observed_best": true,
+      "seed": 106101,
+      "slack_after_final_score_seconds": 317.8977594439639,
+      "task": "random-acts-of-pizza",
+      "worker_deadline_flag": false
+    },
+    {
+      "arm": "B",
+      "finished_after_final_permitted_call": false,
+      "index": 1,
+      "retained_is_observed_best": true,
+      "seed": 106102,
+      "slack_after_final_score_seconds": null,
+      "task": "spooky-author-identification",
+      "worker_deadline_flag": true
+    },
+    {
+      "arm": "C",
+      "finished_after_final_permitted_call": true,
+      "index": 2,
+      "retained_is_observed_best": true,
+      "seed": 106101,
+      "slack_after_final_score_seconds": 157.37205672101118,
+      "task": "random-acts-of-pizza",
+      "worker_deadline_flag": false
+    },
+    {
+      "arm": "C",
+      "finished_after_final_permitted_call": false,
+      "index": 3,
+      "retained_is_observed_best": true,
+      "seed": 106102,
+      "slack_after_final_score_seconds": null,
+      "task": "spooky-author-identification",
+      "worker_deadline_flag": true
+    },
+    {
+      "arm": "A",
+      "finished_after_final_permitted_call": true,
+      "index": 4,
+      "retained_is_observed_best": true,
+      "seed": 106101,
+      "slack_after_final_score_seconds": 277.08391223003855,
+      "task": "random-acts-of-pizza",
+      "worker_deadline_flag": false
+    },
+    {
+      "arm": "A",
+      "finished_after_final_permitted_call": false,
+      "index": 5,
+      "retained_is_observed_best": true,
+      "seed": 106102,
+      "slack_after_final_score_seconds": null,
+      "task": "spooky-author-identification",
+      "worker_deadline_flag": true
+    },
+    {
+      "arm": "C",
+      "finished_after_final_permitted_call": true,
+      "index": 6,
+      "retained_is_observed_best": true,
+      "seed": 106111,
+      "slack_after_final_score_seconds": 355.54033654002706,
+      "task": "random-acts-of-pizza",
+      "worker_deadline_flag": false
+    },
+    {
+      "arm": "C",
+      "finished_after_final_permitted_call": true,
+      "index": 7,
+      "retained_is_observed_best": true,
+      "seed": 106112,
+      "slack_after_final_score_seconds": 257.6882530809962,
+      "task": "spooky-author-identification",
+      "worker_deadline_flag": false
+    },
+    {
+      "arm": "A",
+      "finished_after_final_permitted_call": true,
+      "index": 8,
+      "retained_is_observed_best": true,
+      "seed": 106111,
+      "slack_after_final_score_seconds": 382.06840578699484,
+      "task": "random-acts-of-pizza",
+      "worker_deadline_flag": false
+    },
+    {
+      "arm": "A",
+      "finished_after_final_permitted_call": false,
+      "index": 9,
+      "retained_is_observed_best": true,
+      "seed": 106112,
+      "slack_after_final_score_seconds": null,
+      "task": "spooky-author-identification",
+      "worker_deadline_flag": true
+    },
+    {
+      "arm": "B",
+      "finished_after_final_permitted_call": true,
+      "index": 10,
+      "retained_is_observed_best": true,
+      "seed": 106111,
+      "slack_after_final_score_seconds": 285.862709158042,
+      "task": "random-acts-of-pizza",
+      "worker_deadline_flag": false
+    },
+    {
+      "arm": "B",
+      "finished_after_final_permitted_call": false,
+      "index": 11,
+      "retained_is_observed_best": true,
+      "seed": 106112,
+      "slack_after_final_score_seconds": null,
+      "task": "spooky-author-identification",
+      "worker_deadline_flag": true
+    },
+    {
+      "arm": "A",
+      "finished_after_final_permitted_call": true,
+      "index": 12,
+      "retained_is_observed_best": true,
+      "seed": 106121,
+      "slack_after_final_score_seconds": 299.4463292770088,
+      "task": "random-acts-of-pizza",
+      "worker_deadline_flag": false
+    },
+    {
+      "arm": "A",
+      "finished_after_final_permitted_call": false,
+      "index": 13,
+      "retained_is_observed_best": true,
+      "seed": 106122,
+      "slack_after_final_score_seconds": null,
+      "task": "spooky-author-identification",
+      "worker_deadline_flag": true
+    },
+    {
+      "arm": "B",
+      "finished_after_final_permitted_call": true,
+      "index": 14,
+      "retained_is_observed_best": true,
+      "seed": 106121,
+      "slack_after_final_score_seconds": 377.5191133709741,
+      "task": "random-acts-of-pizza",
+      "worker_deadline_flag": false
+    },
+    {
+      "arm": "B",
+      "finished_after_final_permitted_call": false,
+      "index": 15,
+      "retained_is_observed_best": true,
+      "seed": 106122,
+      "slack_after_final_score_seconds": null,
+      "task": "spooky-author-identification",
+      "worker_deadline_flag": true
+    },
+    {
+      "arm": "C",
+      "finished_after_final_permitted_call": true,
+      "index": 16,
+      "retained_is_observed_best": true,
+      "seed": 106121,
+      "slack_after_final_score_seconds": 84.61652366700582,
+      "task": "random-acts-of-pizza",
+      "worker_deadline_flag": false
+    },
+    {
+      "arm": "C",
+      "finished_after_final_permitted_call": false,
+      "index": 17,
+      "retained_is_observed_best": true,
+      "seed": 106122,
+      "slack_after_final_score_seconds": null,
+      "task": "spooky-author-identification",
+      "worker_deadline_flag": true
+    }
+  ],
+  "scope": "Two developer tasks, one selected root each. Not new independent runs. Slack is cap minus elapsed time recorded AFTER scoring the final permitted action, not allocation waste or end-to-end speedup. Missing final returns remain null. Dual caps were common and valid; this is not a withdrawal of the negative result. Relaxed-cap performance is unobserved. Over the fixed observed candidate set, reranking alone cannot exceed the already retained best; filtering may save cost but its value through new candidates requires a new experiment.",
+  "script_sha256": "4af553c238b9fd8106402d5b8783e0c5e85bc26814b4703b697faeb60627d464",
+  "source_commit": "fdb98cda959d6804c72e077fb6d58421ca97b5cf"
+}

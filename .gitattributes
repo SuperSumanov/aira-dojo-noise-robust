@@ -799,3 +799,5 @@ phase1/scripts/automatic_specification*20261003.py -text diff whitespace=cr-at-e
 phase1/results/automatic_specification_20261003/** -text diff whitespace=cr-at-eol
 phase1/results/automatic_specification_v5_20261003/** -text diff whitespace=cr-at-eol
 phase1/results/automatic_specification_v6_20261003/** -text diff whitespace=cr-at-eol
+phase1/scripts/loader_mechanism_20261003.py -text diff whitespace=cr-at-eol
+phase1/results/loader_mechanism_20261003/** -text diff whitespace=cr-at-eol

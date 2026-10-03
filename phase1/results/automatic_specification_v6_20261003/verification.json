@@ -1,0 +1,66 @@
+{
+  "boundary": "Independent score algebra, first-valid-source code identity, retained-best arithmetic, plan chronology and device namespace. Not semantic correctness, novelty, new-task replication or untouched generalization.",
+  "numerical_B_gate": false,
+  "plan_sha256": "71340fc4a5fb97f09fa1dc31b5189500bffef3e73b68382a6bff9b628b61e154",
+  "prompt_checks": [
+    {
+      "arm": "ROOT",
+      "index": 0,
+      "prior_cells": 0,
+      "prior_outputs": 0,
+      "prior_plans": 0,
+      "step": 1
+    },
+    {
+      "arm": "ROOT",
+      "index": 0,
+      "prior_cells": 0,
+      "prior_outputs": 1,
+      "prior_plans": 0,
+      "step": 2
+    },
+    {
+      "arm": "ROOT",
+      "index": 0,
+      "prior_cells": 0,
+      "prior_outputs": 2,
+      "prior_plans": 0,
+      "step": 3
+    },
+    {
+      "arm": "ROOT",
+      "index": 0,
+      "prior_cells": 0,
+      "prior_outputs": 3,
+      "prior_plans": 0,
+      "step": 4
+    },
+    {
+      "arm": "ROOT",
+      "index": 1,
+      "prior_cells": 0,
+      "prior_outputs": 0,
+      "prior_plans": 0,
+      "step": 1
+    }
+  ],
+  "root_checks": [
+    {
+      "code_sha256": "9f3dfe42c237caac4ea9d44414ab14bc0600cd8f473f2de27a2024087e692d18",
+      "first_valid_step": 1,
+      "index": 1,
+      "source_sha256": "c6ab9d9c16076531e1002c6f1712ff28f07d86b60f46743ddaf18a9ad1808e1f"
+    }
+  ],
+  "score_checks": [
+    {
+      "index": 1,
+      "metric": 0.4111103326153484,
+      "step": 1,
+      "submission_sha256": "c3a28f38f32e64b3d3cd20b222594be1754ac75729dbc6f499f597ee5c9db3c9"
+    }
+  ],
+  "status": "PASS",
+  "summary_sha256": "2b12282047a08457b4602ea17bcc93cf47dd2b33a39fb9c6f55d769073b9e134",
+  "verifier_sha256": "f74706990af8f8499cff8903609a0b1e9bd584801ea7ab902ba2544e2d522f24"
+}

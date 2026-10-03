@@ -1,0 +1,26 @@
+{
+  "freeze": {
+    "method": "Class-stratified paired query bootstrap. Shared query resample across both generation seeds and all arms. Average two within-seed final retained-score differences; same as median with two seeds.",
+    "plan_sha256": "71340fc4a5fb97f09fa1dc31b5189500bffef3e73b68382a6bff9b628b61e154",
+    "replicates": 5000,
+    "scope": "Conditional descriptive intervals only. Adaptive developer-query selection and developer task/protocol selection are not accounted for; no new task/run/training uncertainty or multiplicity correction. Does not change original numerical gate.",
+    "script_sha256": "72939993d0220c51220339e53eefb038bfe2511f17fde773b198161c6e083729",
+    "seed_base": 104600,
+    "status": "FROZEN_BEFORE_EFFECT_READOUT",
+    "utc": "2026-10-03T06:30:56.586807+00:00"
+  },
+  "plan_sha256": "71340fc4a5fb97f09fa1dc31b5189500bffef3e73b68382a6bff9b628b61e154",
+  "results": [
+    {
+      "status": "INCOMPLETE_COMPARABLE_PAIRS",
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "status": "INCOMPLETE_COMPARABLE_PAIRS",
+      "task": "spooky-author-identification"
+    }
+  ],
+  "seconds": 3.1048893313854933,
+  "status": "COMPLETE",
+  "summary_sha256": "2b12282047a08457b4602ea17bcc93cf47dd2b33a39fb9c6f55d769073b9e134"
+}

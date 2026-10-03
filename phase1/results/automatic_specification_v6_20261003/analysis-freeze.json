@@ -1,0 +1,25 @@
+{
+  "adaptation": "Context R/PLAN rebound to fixed V6 cohort; verifier checks execution-only root prompt. Also verifies current-call marker and first-call instruction removal after step1. Scientific endpoints and numerical gate unchanged.",
+  "files": {
+    "readout": "b5fab43ac9e0d34b53f874756494d4dd79ee80fcb9676ba30eeeff39394b1c26",
+    "sensitivity": "72939993d0220c51220339e53eefb038bfe2511f17fde773b198161c6e083729",
+    "verifier": "f74706990af8f8499cff8903609a0b1e9bd584801ea7ab902ba2544e2d522f24"
+  },
+  "plan_sha256": "71340fc4a5fb97f09fa1dc31b5189500bffef3e73b68382a6bff9b628b61e154",
+  "script_sha256": "ffff9dcf8a7d978685d7068e71bf6dd53efebd3b3b948e7b9e07b2a88c479895",
+  "templates": {
+    "readout": [
+      "automatic_specification_gpu3_v4_readout_20261003.py",
+      "b5fab43ac9e0d34b53f874756494d4dd79ee80fcb9676ba30eeeff39394b1c26"
+    ],
+    "sensitivity": [
+      "automatic_specification_gpu3_v4_sensitivity_20261003.py",
+      "72939993d0220c51220339e53eefb038bfe2511f17fde773b198161c6e083729"
+    ],
+    "verifier": [
+      "automatic_specification_gpu3_v4_verify_20261003.py",
+      "05dc76ddf2e694fd8cd48e51120c208467a014d2888c1835c5174136185d6449"
+    ]
+  },
+  "utc": "2026-10-03T06:30:56.589966+00:00"
+}

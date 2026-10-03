@@ -1,0 +1,59 @@
+{
+  "by_step": [
+    {
+      "correct_identity": 0,
+      "step": 1,
+      "total": 6
+    },
+    {
+      "correct_identity": 3,
+      "step": 2,
+      "total": 6
+    },
+    {
+      "correct_identity": 3,
+      "step": 3,
+      "total": 6
+    },
+    {
+      "correct_identity": 3,
+      "step": 4,
+      "total": 6
+    }
+  ],
+  "cases": 24,
+  "cases_sha256": "f0c8fadfa5107308fb61b7259615e77c7249f253e578187cf5c28b79d3733674",
+  "gpu_hours": 0,
+  "interpretation": "First loader always prioritizes sample CSV and skips JSON. The other three select whichever target-bearing file is last. Permutations are exhaustive structural cases, not random trials or independent runs.",
+  "limitations": "Posthoc selection of four loaders from one failed source trajectory; same-model/template dependence. No prevalence estimate, causal quality gain, agent belief-change test or novelty claim.",
+  "model_calls": 0,
+  "observed_order_cases": 4,
+  "observed_order_wrong_identity": 4,
+  "raw_data_read": false,
+  "reference": "Explicit filename selection is an elementary reference, not a new algorithm. It repairs identity selection in these schema stubs; no full program was repaired or evaluated.",
+  "source_summary_sha256": "2b12282047a08457b4602ea17bcc93cf47dd2b33a39fb9c6f55d769073b9e134",
+  "sources": [
+    {
+      "loader_ast_sha256": "544424761b342979d97aa89d33963dde34d3cd91b561181026927aaa2315dd1a",
+      "response_file_sha256": "14129e83179fdfd2d3a9f3bbb9a2f57f584b740e25b3b9cbcb42ab01611ce608",
+      "step": 1
+    },
+    {
+      "loader_ast_sha256": "10ad1d7aa44015dbbf2fe6bef3fa72fd04f2fd0f20bfdc7129b46910a7660c35",
+      "response_file_sha256": "ea9ba386d3f1a82b62e840ce6f6125f3ae77b3bed420e84101b8000af22e600c",
+      "step": 2
+    },
+    {
+      "loader_ast_sha256": "343ab2181555e8125fc1fc6d2dbf627c9c61c7579a8160888d4e36c8c1ee9a61",
+      "response_file_sha256": "c4de9ed69e00bf5cedc7b4c48b21a5371095f5a5a49f1b941fea62bfe2a8259e",
+      "step": 3
+    },
+    {
+      "loader_ast_sha256": "dad8e54284023958c749b376fd92acda2ea0f9581b5781b7c930f4e9519ba677",
+      "response_file_sha256": "8c5682acb3a8c6bfa177e0bbcb770987bca80dec625c328c3bebc1996827a8a6",
+      "step": 4
+    }
+  ],
+  "status": "POSTHOC_SCHEMA_ONLY_MECHANISM",
+  "task_model_fits": 0
+}

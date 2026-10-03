@@ -1,0 +1,175 @@
+{
+  "allocation_seconds": 5400,
+  "base_commit": "a284f3df7e8239a042765a329c81282643a4d5a1",
+  "base_updates": 0,
+  "code_seconds": 300,
+  "cost": "All new initialization/generation/repair/scoring/idle GPU time included. Earlier manual witness discovery is extra sunk cost, not free deployed inference. Additional 6GPUh requires user approval.",
+  "exact_full_plan_sha256": "6b91aba97ee53f6da2335064f1dbe4277020b8744fd95a3575e4c99329936d2f",
+  "gate": "Only exploratory diagnostic leverage if both tasks have median B-A>0, neither paired seed B-A<0, and B generates actual improved valid submissions; C-A separately tests specification assistance. No new-method or heldout claim.",
+  "gpu_hours_cap": 6,
+  "gpus": 4,
+  "information": "A ordinary full-tool agent, B code-verifiable localized facts without target patch, C explicit change specification. Human information is an oracle capability intervention; selection uses earlier development outcomes. Information amount/attention confounded, not pure modular capability isolation.",
+  "max_calls": 4,
+  "max_tokens": 4096,
+  "mechanism": "Verify actual target implementation, unrelated changes, observed evidence and all failed attempts. Candidate code text/quoted hints alone are not causal evidence.",
+  "paid_api": 0,
+  "primary": "All assigned trajectories: B-A and C-A oriented retained-incumbent gains by task/paired generation seed; C-B as secondary contrast. Invalid initial states unknown, not zero. Failure after valid initial keeps incumbent.",
+  "protected_opened": false,
+  "protocol": "qualified-natural-opportunity-information-v1",
+  "qualification_summary_sha256": "e22631eb29121a2a28dddea360a16fe8e1efba785f6f582008986c48d81233ea",
+  "qualification_verifier_sha256": "470caa4b754fee41333475d436d941a921abd2e1e463bd3f91a734ce5e78cfe2",
+  "run_seconds": 600,
+  "runs": 12,
+  "schedule": [
+    {
+      "arm": "B",
+      "index": 0,
+      "retained": true,
+      "seed": 104101,
+      "source_state": 4,
+      "start": 0,
+      "task": "random-acts-of-pizza",
+      "visible": true,
+      "wave": 0
+    },
+    {
+      "arm": "B",
+      "index": 1,
+      "retained": true,
+      "seed": 104102,
+      "source_state": 0,
+      "start": 1,
+      "task": "spooky-author-identification",
+      "visible": true,
+      "wave": 0
+    },
+    {
+      "arm": "A",
+      "index": 2,
+      "retained": true,
+      "seed": 104101,
+      "source_state": 4,
+      "start": 0,
+      "task": "random-acts-of-pizza",
+      "visible": true,
+      "wave": 1
+    },
+    {
+      "arm": "A",
+      "index": 3,
+      "retained": true,
+      "seed": 104102,
+      "source_state": 0,
+      "start": 1,
+      "task": "spooky-author-identification",
+      "visible": true,
+      "wave": 1
+    },
+    {
+      "arm": "C",
+      "index": 4,
+      "retained": true,
+      "seed": 104101,
+      "source_state": 4,
+      "start": 0,
+      "task": "random-acts-of-pizza",
+      "visible": true,
+      "wave": 2
+    },
+    {
+      "arm": "C",
+      "index": 5,
+      "retained": true,
+      "seed": 104102,
+      "source_state": 0,
+      "start": 1,
+      "task": "spooky-author-identification",
+      "visible": true,
+      "wave": 2
+    },
+    {
+      "arm": "C",
+      "index": 6,
+      "retained": true,
+      "seed": 104111,
+      "source_state": 4,
+      "start": 0,
+      "task": "random-acts-of-pizza",
+      "visible": true,
+      "wave": 3
+    },
+    {
+      "arm": "C",
+      "index": 7,
+      "retained": true,
+      "seed": 104112,
+      "source_state": 0,
+      "start": 1,
+      "task": "spooky-author-identification",
+      "visible": true,
+      "wave": 3
+    },
+    {
+      "arm": "A",
+      "index": 8,
+      "retained": true,
+      "seed": 104111,
+      "source_state": 4,
+      "start": 0,
+      "task": "random-acts-of-pizza",
+      "visible": true,
+      "wave": 4
+    },
+    {
+      "arm": "A",
+      "index": 9,
+      "retained": true,
+      "seed": 104112,
+      "source_state": 0,
+      "start": 1,
+      "task": "spooky-author-identification",
+      "visible": true,
+      "wave": 4
+    },
+    {
+      "arm": "B",
+      "index": 10,
+      "retained": true,
+      "seed": 104111,
+      "source_state": 4,
+      "start": 0,
+      "task": "random-acts-of-pizza",
+      "visible": true,
+      "wave": 5
+    },
+    {
+      "arm": "B",
+      "index": 11,
+      "retained": true,
+      "seed": 104112,
+      "source_state": 0,
+      "start": 1,
+      "task": "spooky-author-identification",
+      "visible": true,
+      "wave": 5
+    }
+  ],
+  "selection": "Only minimum qualified state per task, not largest effect; conditional subset 2 of original6 roster. Parent program seed42 fixed, paired generation seeds vary. No untouched confirmation.",
+  "starts": [
+    {
+      "code_sha256": "9560b23b2a5b6437b4e88a71e170540e2f14515db509de6ee81d6aa121ee4fc6",
+      "program_seed": 42,
+      "source_plan_sha256": "39948b4a517cdb609105f099231bb9c3d1c19214754d585a6365245635b903df",
+      "source_state": 4,
+      "start": 0
+    },
+    {
+      "code_sha256": "97b85a025de7134c07b9917d261f7767c526e2fbe95ae9627b67ff0a215abd10",
+      "program_seed": 42,
+      "source_plan_sha256": "39948b4a517cdb609105f099231bb9c3d1c19214754d585a6365245635b903df",
+      "source_state": 0,
+      "start": 1
+    }
+  ],
+  "utc": "2026-10-03T01:48:35.760722+00:00"
+}

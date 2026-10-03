@@ -1,0 +1,242 @@
+{
+  "agent_base_updates": 0,
+  "decision": "Do not expand fact-only recipe. Spooky establishes local instruction-conditioned capability, not an automatic new method or cross-task superiority.",
+  "limitations": [
+    "All 12 assigned trajectories retained. Numeric verification is independent; semantic annotation is post-readout human review, not a blinded or exhaustive semantic proof.",
+    "Two Spooky C generation seeds recovered one identical fixed-training-seed prediction, not two independent training samples.",
+    "The precise modification requirements were human supplied. Information amount, attention and choice restriction are not separately identified.",
+    "Previously used developer D_search, qualified states and adaptive retained-best selection do not constitute untouched confirmation.",
+    "Conditional query bootstrap excludes source selection, training, new-task and adaptive-query uncertainty; it does not change the frozen gate.",
+    "Returned failures and unreturned executions are distinct; generated actions that never start can consume budget through rollback/replay.",
+    "Service startup and idle allocation included. Initial build times and first-generation times are reported; shared service/order effects remain possible.",
+    "The current narrow Spooky fix is known model selection, not a novel correction; automatic specification discovery remains untested."
+  ],
+  "numerical_B_gate": false,
+  "paid_api_calls": 0,
+  "runs": [
+    {
+      "arm": "B",
+      "first_generation_seconds": [
+        14.25812453799881
+      ],
+      "gain": 0.01411145658933266,
+      "generation_seed": 104101,
+      "index": 0,
+      "initial_execution_seconds": 25.3519364669919,
+      "manual_witness_sha256": "4fea15d4b052c142cf8e444a69021745593ea3a3f76be49e5bb43944e30d88d8",
+      "matches_manual_witness_bytes": false,
+      "posthoc_semantic_note": "Multiple feature/model/blend changes; improved, not an isolated early-stopping intervention.",
+      "selected_sha256": "b399e523814c0af3c408a720aa3a49738988610578ecd464423eeb2f42579669",
+      "selected_step": 4,
+      "semantic_review_scope": "rationale_and_execution_receipts",
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "arm": "B",
+      "first_generation_seconds": [
+        10.734907469945028
+      ],
+      "gain": -0.0,
+      "generation_seed": 104102,
+      "index": 1,
+      "initial_execution_seconds": 212.30849929898977,
+      "manual_witness_sha256": "d054de62537faf8fe8161fcf65459b907f06bb2e2ccd28efbd1e321b7754fb6a",
+      "matches_manual_witness_bytes": false,
+      "posthoc_semantic_note": "Inspection then LightGBM/LR and feature/blend rewrite; no returned new valid submission.",
+      "selected_sha256": "fc07f200189b1f366064e55a43975cb16b1f0acf5188bdeb3e44eec56bedcbb5",
+      "selected_step": 0,
+      "semantic_review_scope": "generated_AST_and_execution_receipts",
+      "task": "spooky-author-identification"
+    },
+    {
+      "arm": "A",
+      "first_generation_seconds": [
+        16.55832758406177
+      ],
+      "gain": 0.0,
+      "generation_seed": 104101,
+      "index": 2,
+      "initial_execution_seconds": 14.602393205044791,
+      "manual_witness_sha256": "4fea15d4b052c142cf8e444a69021745593ea3a3f76be49e5bb43944e30d88d8",
+      "matches_manual_witness_bytes": false,
+      "posthoc_semantic_note": "Feature/model/blend proposal returned a valid submission but did not beat the parent.",
+      "selected_sha256": "10bfda9bb06d0e090594da0ac468ed764b9b38d5b27e597426b8670872255949",
+      "selected_step": 0,
+      "semantic_review_scope": "rationale_and_execution_receipts",
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "arm": "A",
+      "first_generation_seconds": [
+        32.7244799148757
+      ],
+      "gain": -0.0,
+      "generation_seed": 104102,
+      "index": 3,
+      "initial_execution_seconds": 202.17485799617134,
+      "manual_witness_sha256": "d054de62537faf8fe8161fcf65459b907f06bb2e2ccd28efbd1e321b7754fb6a",
+      "matches_manual_witness_bytes": false,
+      "posthoc_semantic_note": "LightGBM/LR rewrite timed out; later generated fallback did not yield a returned solution.",
+      "selected_sha256": "fc07f200189b1f366064e55a43975cb16b1f0acf5188bdeb3e44eec56bedcbb5",
+      "selected_step": 0,
+      "semantic_review_scope": "generated_AST_and_execution_receipts",
+      "task": "spooky-author-identification"
+    },
+    {
+      "arm": "C",
+      "first_generation_seconds": [
+        42.10488130711019
+      ],
+      "gain": 0.0,
+      "generation_seed": 104101,
+      "index": 4,
+      "initial_execution_seconds": 15.551795491017401,
+      "manual_witness_sha256": "4fea15d4b052c142cf8e444a69021745593ea3a3f76be49e5bb43944e30d88d8",
+      "matches_manual_witness_bytes": false,
+      "posthoc_semantic_note": "Three format rejections, then early_stopping_rounds in fit caused TypeError; no new valid submission.",
+      "selected_sha256": "10bfda9bb06d0e090594da0ac468ed764b9b38d5b27e597426b8670872255949",
+      "selected_step": 0,
+      "semantic_review_scope": "full_code_AST_diff_and_execution_receipts",
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "arm": "C",
+      "first_generation_seconds": [
+        21.63765354314819
+      ],
+      "gain": 0.008206462170339934,
+      "generation_seed": 104102,
+      "index": 5,
+      "initial_execution_seconds": 207.24119603494182,
+      "manual_witness_sha256": "d054de62537faf8fe8161fcf65459b907f06bb2e2ccd28efbd1e321b7754fb6a",
+      "matches_manual_witness_bytes": true,
+      "posthoc_semantic_note": "Reused existing predictions; selected minimum mean public-CV loss member, clipped/normalized and wrote submission. Exact manual-witness prediction recovered.",
+      "selected_sha256": "d054de62537faf8fe8161fcf65459b907f06bb2e2ccd28efbd1e321b7754fb6a",
+      "selected_step": 3,
+      "semantic_review_scope": "full_code_and_execution_receipts",
+      "task": "spooky-author-identification"
+    },
+    {
+      "arm": "C",
+      "first_generation_seconds": [
+        47.527229882078245
+      ],
+      "gain": 0.007773259985649372,
+      "generation_seed": 104111,
+      "index": 6,
+      "initial_execution_seconds": 14.710923541104421,
+      "manual_witness_sha256": "4fea15d4b052c142cf8e444a69021745593ea3a3f76be49e5bb43944e30d88d8",
+      "matches_manual_witness_bytes": false,
+      "posthoc_semantic_note": "Moved early stopping to constructor after errors, but also changed XGBClassifier predict_proba to predict for stacking inputs. Improvement cannot be attributed solely to intended early stopping; not the manual witness.",
+      "selected_sha256": "cb85d040a86e398170b2f221a76e07337e369f4834aa1906aa42444a8d70852a",
+      "selected_step": 3,
+      "semantic_review_scope": "full_code_AST_diff_and_execution_receipts",
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "arm": "C",
+      "first_generation_seconds": [
+        45.71517691388726
+      ],
+      "gain": 0.008206462170339934,
+      "generation_seed": 104112,
+      "index": 7,
+      "initial_execution_seconds": 203.7999320011586,
+      "manual_witness_sha256": "d054de62537faf8fe8161fcf65459b907f06bb2e2ccd28efbd1e321b7754fb6a",
+      "matches_manual_witness_bytes": true,
+      "posthoc_semantic_note": "Implemented public-CV member selection and recovered exact witness predictions, but unnecessarily refit original models rather than reuse existing arrays.",
+      "selected_sha256": "d054de62537faf8fe8161fcf65459b907f06bb2e2ccd28efbd1e321b7754fb6a",
+      "selected_step": 1,
+      "semantic_review_scope": "full_code_AST_diff_and_execution_receipts",
+      "task": "spooky-author-identification"
+    },
+    {
+      "arm": "A",
+      "first_generation_seconds": [
+        74.07873167004436
+      ],
+      "gain": 0.012616598899784726,
+      "generation_seed": 104111,
+      "index": 8,
+      "initial_execution_seconds": 14.497133499011397,
+      "manual_witness_sha256": "4fea15d4b052c142cf8e444a69021745593ea3a3f76be49e5bb43944e30d88d8",
+      "matches_manual_witness_bytes": false,
+      "posthoc_semantic_note": "Two execution errors, then a valid improving model/stack rewrite. Not an isolated target modification.",
+      "selected_sha256": "f548051eb08ab19aef9aa2638596da0ac9629cab4fc589480a131e02e3d37ace",
+      "selected_step": 3,
+      "semantic_review_scope": "rationale_and_execution_receipts",
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "arm": "A",
+      "first_generation_seconds": [
+        27.780303719919175
+      ],
+      "gain": -0.0,
+      "generation_seed": 104112,
+      "index": 9,
+      "initial_execution_seconds": 204.6814840848092,
+      "manual_witness_sha256": "d054de62537faf8fe8161fcf65459b907f06bb2e2ccd28efbd1e321b7754fb6a",
+      "matches_manual_witness_bytes": false,
+      "posthoc_semantic_note": "LightGBM rewrite timed out; subsequent fallback did not yield a returned new solution.",
+      "selected_sha256": "fc07f200189b1f366064e55a43975cb16b1f0acf5188bdeb3e44eec56bedcbb5",
+      "selected_step": 0,
+      "semantic_review_scope": "generated_AST_and_execution_receipts",
+      "task": "spooky-author-identification"
+    },
+    {
+      "arm": "B",
+      "first_generation_seconds": [
+        15.728539478033781
+      ],
+      "gain": 0.0,
+      "generation_seed": 104111,
+      "index": 10,
+      "initial_execution_seconds": 15.304662510054186,
+      "manual_witness_sha256": "4fea15d4b052c142cf8e444a69021745593ea3a3f76be49e5bb43944e30d88d8",
+      "matches_manual_witness_bytes": false,
+      "posthoc_semantic_note": "Inspection/code errors followed by valid alternatives that did not beat the parent.",
+      "selected_sha256": "10bfda9bb06d0e090594da0ac468ed764b9b38d5b27e597426b8670872255949",
+      "selected_step": 0,
+      "semantic_review_scope": "rationale_and_execution_receipts",
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "arm": "B",
+      "first_generation_seconds": [
+        22.81540743005462
+      ],
+      "gain": -0.0,
+      "generation_seed": 104112,
+      "index": 11,
+      "initial_execution_seconds": 208.89943977002986,
+      "manual_witness_sha256": "d054de62537faf8fe8161fcf65459b907f06bb2e2ccd28efbd1e321b7754fb6a",
+      "matches_manual_witness_bytes": false,
+      "posthoc_semantic_note": "GradientBoosting/OOF rewrite then LR-view OOF rewrite produced shape errors; another repair generated but no new valid result.",
+      "selected_sha256": "fc07f200189b1f366064e55a43975cb16b1f0acf5188bdeb3e44eec56bedcbb5",
+      "selected_step": 0,
+      "semantic_review_scope": "generated_AST_and_execution_receipts",
+      "task": "spooky-author-identification"
+    }
+  ],
+  "script_sha256": "71d1c729c002de5b0e05099215ccb0e4bc918eb700365e913d68b1b32fd9db31",
+  "status": "POSTHOC_MECHANISM_AUDIT",
+  "summary_sha256": "38f148d57b83a705bf0cd41597ad8807001a0bab1314ee2375d119955694d253",
+  "total_window_allocated_gpu_hours": 5.051666666666667,
+  "totals": {
+    "budget_exhausted": 6,
+    "format_rejects": 8,
+    "generated": 39,
+    "improved_trajectories": 5,
+    "new_improved": 8,
+    "new_valid": 11,
+    "requested": 39,
+    "returned": 37,
+    "returned_execution_failures": 11,
+    "started": 40,
+    "successful_checks": 3,
+    "unreturned_executions": 3,
+    "valid": 23
+  },
+  "utc": "2026-10-03T03:19:44.162670+00:00"
+}

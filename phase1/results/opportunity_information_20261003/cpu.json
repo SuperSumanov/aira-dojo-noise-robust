@@ -1,0 +1,9 @@
+{
+  "configs": 12,
+  "main_guard": true,
+  "parser_cases": 2,
+  "plan_sha256": "6b91aba97ee53f6da2335064f1dbe4277020b8744fd95a3575e4c99329936d2f",
+  "prompt_checks": 12,
+  "sdk_configs": 12,
+  "status": "PASS"
+}

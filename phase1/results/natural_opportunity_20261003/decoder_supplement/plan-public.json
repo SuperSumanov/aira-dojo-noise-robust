@@ -1,0 +1,92 @@
+{
+  "allocation_seconds": 1200,
+  "analysis": "Retain original 20-run gate unchanged. Add 4 runs to complete same-state 2x2 axis x mask. Joint improvement must exceed both original and full-text reference by >=.01 for both RNG settings. Report interaction, all cells, seed spread, and neutral-copy postprocessing of original/joint. New supplemental pilot, not original cross-task gate.",
+  "base_updates": 0,
+  "commit": "a284f3df7e8239a042765a329c81282643a4d5a1",
+  "contract_sha256": "235ea11a2df97ff0a47744b169db1626fb5965d42559bd69ab3a69726c8bcbca",
+  "exact_full_plan_sha256": "340d8308df6e958f9c490a64083bcb4bc9ac82405e2c8a7b6df91fb343197e12",
+  "generator_calls": 0,
+  "gpu_hours_cap": 0.6666666666666666,
+  "gpus": 2,
+  "limitations": "One previously inspected natural development state; not a new method. Late pre-outcome amendment motivated by pure code mathematics. No scores read before freeze. Same budget per execution; extra discovery/training cost fully retained.",
+  "original_plan_sha256": "39948b4a517cdb609105f099231bb9c3d1c19214754d585a6365245635b903df",
+  "paid_api": 0,
+  "pre_score": true,
+  "programs": [
+    {
+      "arm": "axis_only",
+      "code_sha256": "347105ed9bf49c44d458d6516cc35a069e5d2b6a069d0ff91fe4c4dd68bb5d57",
+      "index": 0,
+      "pair": 0,
+      "rng_sites": 1,
+      "seed": 42,
+      "state": 5,
+      "task": "tweet-sentiment-extraction"
+    },
+    {
+      "arm": "joint",
+      "code_sha256": "1cc1e58bb9494dcbaed10382a1f8fb9d89d3d415555f1822a7355632a5a267f9",
+      "index": 1,
+      "pair": 0,
+      "rng_sites": 1,
+      "seed": 42,
+      "state": 5,
+      "task": "tweet-sentiment-extraction"
+    },
+    {
+      "arm": "joint",
+      "code_sha256": "1c0e77532759111f3e9efbc6a1c349ca2930609953fa30d0c4db86ef3e7b3411",
+      "index": 2,
+      "pair": 1,
+      "rng_sites": 1,
+      "seed": 173,
+      "state": 5,
+      "task": "tweet-sentiment-extraction"
+    },
+    {
+      "arm": "axis_only",
+      "code_sha256": "3ae4a6a4c9febaa7f346c5293e0ba75eff9cd7713a68c8b34b2591b61a59d21b",
+      "index": 3,
+      "pair": 1,
+      "rng_sites": 1,
+      "seed": 173,
+      "state": 5,
+      "task": "tweet-sentiment-extraction"
+    }
+  ],
+  "protocol": "natural-decoder-joint-defect-development-v1",
+  "schedule": [
+    {
+      "arm": "axis_only",
+      "index": 0,
+      "pair": 0,
+      "seed": 42,
+      "state": 5
+    },
+    {
+      "arm": "joint",
+      "index": 1,
+      "pair": 0,
+      "seed": 42,
+      "state": 5
+    },
+    {
+      "arm": "joint",
+      "index": 2,
+      "pair": 1,
+      "seed": 173,
+      "state": 5
+    },
+    {
+      "arm": "axis_only",
+      "index": 3,
+      "pair": 1,
+      "seed": 173,
+      "state": 5
+    }
+  ],
+  "task_execution_seconds": 300,
+  "total_window_gpu_hours_cap": 3,
+  "utc": "2026-10-03T01:30:40.596474+00:00",
+  "worker_seconds": 450
+}

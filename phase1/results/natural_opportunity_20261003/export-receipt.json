@@ -1,0 +1,91 @@
+{
+  "credentials": false,
+  "files": [
+    {
+      "bytes": 2571,
+      "path": "qualification/readout.json",
+      "sha256": "e22631eb29121a2a28dddea360a16fe8e1efba785f6f582008986c48d81233ea"
+    },
+    {
+      "bytes": 7169,
+      "path": "qualification/readout-runs.csv",
+      "sha256": "a3b7eea5c27e20c68fc4dff50a44c9365fef5ce0befea1c345c91cd22023b7a8"
+    },
+    {
+      "bytes": 1491,
+      "path": "qualification/readout-pairs.csv",
+      "sha256": "b330c0067f8ad0d7e5daddcb8e154e5e3befa7e698afe8a8fba9b0c9b4d2a21c"
+    },
+    {
+      "bytes": 2778,
+      "path": "qualification/verification.json",
+      "sha256": "470caa4b754fee41333475d436d941a921abd2e1e463bd3f91a734ce5e78cfe2"
+    },
+    {
+      "bytes": 2296,
+      "path": "qualification/conditional-sensitivity.json",
+      "sha256": "54b693a78a0becda8089c0ef4b56d485dfdfa15d9c8598c5d89467a46ffeede0"
+    },
+    {
+      "bytes": 1045,
+      "path": "qualification/decoder-contract-pre-score.json",
+      "sha256": "235ea11a2df97ff0a47744b169db1626fb5965d42559bd69ab3a69726c8bcbca"
+    },
+    {
+      "bytes": 266,
+      "path": "qualification/readout-freeze.json",
+      "sha256": "7f9d859fa9a689ec247a1ecb210b0742fad469224f747f5ebabcfac4765d31b7"
+    },
+    {
+      "bytes": 211,
+      "path": "qualification/cpu.json",
+      "sha256": "168a06cae509ee0b17f208ddf9f3bea677c30bcf26faa266a44a5724d4c17c4c"
+    },
+    {
+      "bytes": 10987,
+      "path": "qualification/plan-public.json",
+      "sha256": "f837d3ff4fb172e16adececce331e93799deafb5bb9f6500375d69f306c1d1f3"
+    },
+    {
+      "bytes": 4135,
+      "path": "decoder_supplement/readout.json",
+      "sha256": "abaacbf3a92944d668398d119898ff16d81b962f438915e5adf8c63199abc0f6"
+    },
+    {
+      "bytes": 1460,
+      "path": "decoder_supplement/readout-runs.csv",
+      "sha256": "54a7c4922ce9c24018a1a6fd8f8506b7e45e3bb639df1a4a7b4ee6de926cdd3c"
+    },
+    {
+      "bytes": 307,
+      "path": "decoder_supplement/readout-pairs.csv",
+      "sha256": "698c223faf05ca99d83ffbff094980814e9e6fbee0538cee42d31ed15b7c1dea"
+    },
+    {
+      "bytes": 1564,
+      "path": "decoder_supplement/verification.json",
+      "sha256": "ea53c836d38021f3d7d14c8298753d6bce9c59ab5e0e9432b71d6855629979f3"
+    },
+    {
+      "bytes": 236,
+      "path": "decoder_supplement/readout-freeze.json",
+      "sha256": "30b85b678a9e74b025854f6c895a5d457d898878ad2324e094b4cb2bf7d12572"
+    },
+    {
+      "bytes": 123,
+      "path": "decoder_supplement/cpu.json",
+      "sha256": "955afa10e289e1a5588148b1cf65a8f8d07c131d699c68a6b927d327a65fbe66"
+    },
+    {
+      "bytes": 2833,
+      "path": "decoder_supplement/plan-public.json",
+      "sha256": "985afd0a622b0a6bbda10ef9463e34163438fe35a0a92f311f69644fb1724334"
+    }
+  ],
+  "model_messages": false,
+  "raw_candidate_programs": false,
+  "raw_labels": false,
+  "raw_predictions": false,
+  "scope": "Only current approved developer results; no protected cohorts. Frozen supplement summary is preserved alongside explicit verifier correction.",
+  "status": "SAFE_AGGREGATE_EXPORT"
+}

@@ -1,0 +1,92 @@
+{
+  "available": 5,
+  "cross_task_gate": true,
+  "executions": 20,
+  "interpretation": "Exploratory opportunity qualification on reused development data. Manual reference changes, not automatic agent gains. Two RNG settings per state, not independent physical-run replication. Missing state remains in roster. No heldout, no significance claim.",
+  "plan_sha256": "39948b4a517cdb609105f099231bb9c3d1c19214754d585a6365245635b903df",
+  "qualified_states": 3,
+  "qualified_tasks": [
+    "random-acts-of-pizza",
+    "spooky-author-identification"
+  ],
+  "readout_sha256": "1631920fc9a16860a4080ea58f8a1a90cc514cb6e8241693520d38eba46d1bc6",
+  "roster": 6,
+  "scored": 19,
+  "states": [
+    {
+      "change": "cv_selected_member",
+      "gains": [
+        0.008214503480089952,
+        0.008206462170339934
+      ],
+      "median_gain": 0.008210482825214943,
+      "qualifies": true,
+      "sample_variance": 3.2331331247864056e-11,
+      "state": 0,
+      "task": "spooky-author-identification",
+      "valid_pairs": 2
+    },
+    {
+      "change": "binary_auc_alignment",
+      "gains": [
+        -0.007055728294666275,
+        0.023798134417603478
+      ],
+      "median_gain": 0.008371203061468602,
+      "qualifies": false,
+      "sample_variance": 0.0004759804221337949,
+      "state": 1,
+      "task": "random-acts-of-pizza",
+      "valid_pairs": 2
+    },
+    {
+      "change": "complementary_word_view",
+      "gains": [
+        0.03470091248831031,
+        0.034057557122419424
+      ],
+      "median_gain": 0.03437923480536487,
+      "qualifies": true,
+      "sample_variance": 2.0695306341029742e-07,
+      "state": 3,
+      "task": "spooky-author-identification",
+      "valid_pairs": 2
+    },
+    {
+      "change": "xgb_early_stopping",
+      "gains": [
+        0.005800047835446076,
+        0.009088734752451644
+      ],
+      "median_gain": 0.00744439129394886,
+      "qualifies": true,
+      "sample_variance": 5.407730819041793e-06,
+      "state": 4,
+      "task": "random-acts-of-pizza",
+      "valid_pairs": 2
+    },
+    {
+      "change": "span_order_mask",
+      "gains": [
+        -0.5630239447432376,
+        null
+      ],
+      "median_gain": -0.5630239447432376,
+      "qualifies": false,
+      "sample_variance": null,
+      "state": 5,
+      "task": "tweet-sentiment-extraction",
+      "valid_pairs": 1
+    }
+  ],
+  "unavailable": [
+    2
+  ],
+  "unique_submission_hashes": {
+    "random-acts-of-pizza": 8,
+    "spooky-author-identification": 8,
+    "tweet-sentiment-extraction": 3
+  },
+  "utc": "2026-10-03T01:35:47.776641+00:00",
+  "valid_pairs": 9
+}

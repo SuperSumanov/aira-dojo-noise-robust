@@ -1,0 +1,119 @@
+{
+  "fulltext_reference": 0.5932093071313757,
+  "limitation": "Separate pre-outcome supplement; does not change original qualification gate. One reused development source, two RNG settings; full-text and neutral references are known rules, not novel methods. No significance/generalization claim.",
+  "median_joint_gain": null,
+  "original_plan_sha256": "39948b4a517cdb609105f099231bb9c3d1c19214754d585a6365245635b903df",
+  "pairs": [
+    {
+      "axis_only": 0.5731426197663997,
+      "fulltext": 0.5932093071313757,
+      "interaction": null,
+      "joint": null,
+      "joint_gain": null,
+      "joint_minus_fulltext": null,
+      "mask_only": 0.009807505270743897,
+      "original": 0.5728314500139815,
+      "qualified": false,
+      "seed": 42
+    },
+    {
+      "axis_only": 0.5802348630750245,
+      "fulltext": 0.5932093071313757,
+      "interaction": null,
+      "joint": 0.5063004896393335,
+      "joint_gain": null,
+      "joint_minus_fulltext": -0.08690881749204216,
+      "mask_only": null,
+      "original": 0.5821377518495874,
+      "qualified": false,
+      "seed": 173
+    }
+  ],
+  "plan_sha256": "340d8308df6e958f9c490a64083bcb4bc9ac82405e2c8a7b6df91fb343197e12",
+  "qualified": false,
+  "rows": [
+    {
+      "arm": "original",
+      "code_sha256": "edab4dd97f395d4ff0604a06177b4114e060937d5f724ca7260d0a8f8f3a1426",
+      "neutral_score": 0.5894704799665093,
+      "score": 0.5728314500139815,
+      "seconds": 106.49498594016768,
+      "seed": 42,
+      "submission_sha256": "ecd7584674d7402edaaa8c4d59ef24c4bfce2a1994870327a9dc581f40813540",
+      "valid": true
+    },
+    {
+      "arm": "mask_only",
+      "code_sha256": "c90438f48ee8bab3a99a3846aa3c427b1528ff673558f25ab4eb749153afbf2b",
+      "neutral_score": null,
+      "score": 0.009807505270743897,
+      "seconds": 98.57032968406565,
+      "seed": 42,
+      "submission_sha256": "3cc2baf0be81aebfe8c74e03381c91ddd256bf526e70af646d5094be2def870f",
+      "valid": true
+    },
+    {
+      "arm": "axis_only",
+      "code_sha256": "347105ed9bf49c44d458d6516cc35a069e5d2b6a069d0ff91fe4c4dd68bb5d57",
+      "neutral_score": null,
+      "score": 0.5731426197663997,
+      "seconds": 99.96337660611607,
+      "seed": 42,
+      "submission_sha256": "40f43844a820f6a52c18865664ef44b3b6addbbe5e701bda4ed07a00688f5be1",
+      "valid": true
+    },
+    {
+      "arm": "joint",
+      "code_sha256": "1cc1e58bb9494dcbaed10382a1f8fb9d89d3d415555f1822a7355632a5a267f9",
+      "neutral_score": null,
+      "score": null,
+      "seconds": 124.70249042497016,
+      "seed": 42,
+      "submission_sha256": null,
+      "valid": false
+    },
+    {
+      "arm": "original",
+      "code_sha256": "b2466cb51ccfe92b9a6586ad25ee55c605b2412c4746311e309ad711aa01787a",
+      "neutral_score": 0.59186388310869,
+      "score": 0.5821377518495874,
+      "seconds": 105.48915357096121,
+      "seed": 173,
+      "submission_sha256": "52388870bcf74f6e21e13a704b395b572539c2899059f635bc61c181ac7d84c6",
+      "valid": true
+    },
+    {
+      "arm": "mask_only",
+      "code_sha256": "3bbdb44473efc5bc91f58c07ac23defaa970068ef08b6bd61f2c0137d19b4970",
+      "neutral_score": null,
+      "score": null,
+      "seconds": 126.52284606709145,
+      "seed": 173,
+      "submission_sha256": null,
+      "valid": false
+    },
+    {
+      "arm": "joint",
+      "code_sha256": "1c0e77532759111f3e9efbc6a1c349ca2930609953fa30d0c4db86ef3e7b3411",
+      "neutral_score": 0.6299352955942388,
+      "score": 0.5063004896393335,
+      "seconds": 100.0388491670601,
+      "seed": 173,
+      "submission_sha256": "e686fe42fcee73a775ee657432d68e0e25985b0fc5096627a9c6489829f91b57",
+      "valid": true
+    },
+    {
+      "arm": "axis_only",
+      "code_sha256": "3ae4a6a4c9febaa7f346c5293e0ba75eff9cd7713a68c8b34b2591b61a59d21b",
+      "neutral_score": null,
+      "score": 0.5802348630750245,
+      "seconds": 98.65658870805055,
+      "seed": 173,
+      "submission_sha256": "bed4cdcfa881aa9dd166522162bbce7f19f7279de27e8b6b1e8cff90253918b2",
+      "valid": true
+    }
+  ],
+  "sample_variance": null,
+  "script_sha256": "9a070cca59d9300f4b032bfab1ca13c6558d8d7b817c9cbffaecbe9684016fcf",
+  "status": "SCORED"
+}

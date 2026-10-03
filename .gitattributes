@@ -788,3 +788,9 @@ phase1/scripts/export_opportunity_20261003.py -text diff whitespace=cr-at-eol
 # Preserve the executed diagnostic's final empty line and its frozen hash.
 phase1/scripts/blend_direction_20261003.py -text diff whitespace=cr-at-eol,-blank-at-eof
 phase1/results/blend_direction_20261003/* -text diff whitespace=cr-at-eol
+# Natural-opportunity and information-intervention executed artifacts.
+phase1/scripts/natural_*_20261003.py -text diff whitespace=cr-at-eol
+phase1/scripts/opportunity_information*_20261003.py -text diff whitespace=cr-at-eol
+phase1/results/natural_opportunity_20261003/** -text diff whitespace=cr-at-eol
+phase1/results/opportunity_information_20261003/** -text diff whitespace=cr-at-eol
+phase1/tests/test_opportunity_information_readout_20261003.py -text diff whitespace=cr-at-eol

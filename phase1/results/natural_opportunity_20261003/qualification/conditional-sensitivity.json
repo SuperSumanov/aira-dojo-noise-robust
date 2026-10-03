@@ -1,0 +1,68 @@
+{
+  "definition": "Stratified paired query bootstrap; average of the two fixed training-seed metric differences within each resample. Same query resample across both seeds and arms. Percentile conditional intervals.",
+  "limitations": "Posthoc sensitivity only. Conditional on reused developer data, chosen states/changes and fitted predictions; excludes discovery/selection bias, training uncertainty, new-task uncertainty and multiple-testing adjustment. Does not alter frozen gate or establish confirmation significance.",
+  "plan_sha256": "39948b4a517cdb609105f099231bb9c3d1c19214754d585a6365245635b903df",
+  "results": [
+    {
+      "bootstrap_replicates": 5000,
+      "interval": [
+        0.0025617816013195796,
+        0.013336838356851599
+      ],
+      "n_queries": 1761,
+      "observed_gain": 0.008210482825214947,
+      "rng_seed": 104041,
+      "state": 0,
+      "status": "DESCRIPTIVE_CONDITIONAL",
+      "task": "spooky-author-identification"
+    },
+    {
+      "bootstrap_replicates": 5000,
+      "interval": [
+        -0.015819331499641272,
+        0.03321648529060034
+      ],
+      "n_queries": 300,
+      "observed_gain": 0.008371203061468602,
+      "rng_seed": 104042,
+      "state": 1,
+      "status": "DESCRIPTIVE_CONDITIONAL",
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "bootstrap_replicates": 5000,
+      "interval": [
+        0.02541576993117689,
+        0.04313658008958066
+      ],
+      "n_queries": 1761,
+      "observed_gain": 0.03437923480536488,
+      "rng_seed": 104044,
+      "state": 3,
+      "status": "DESCRIPTIVE_CONDITIONAL",
+      "task": "spooky-author-identification"
+    },
+    {
+      "bootstrap_replicates": 5000,
+      "interval": [
+        -0.007086372877302084,
+        0.021167932312843807
+      ],
+      "n_queries": 300,
+      "observed_gain": 0.00744439129394886,
+      "rng_seed": 104045,
+      "state": 4,
+      "status": "DESCRIPTIVE_CONDITIONAL",
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "interval": null,
+      "state": 5,
+      "status": "INCOMPLETE_TWO_SEED_PAIR"
+    }
+  ],
+  "script_sha256": "83291222f8257e17441ff6b5ce6fa9f965d0f1e8390be5a6e403127ad25d118b",
+  "seconds": 13.131370948627591,
+  "status": "COMPLETE",
+  "summary_sha256": "e22631eb29121a2a28dddea360a16fe8e1efba785f6f582008986c48d81233ea"
+}

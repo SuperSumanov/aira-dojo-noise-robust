@@ -1,0 +1,48 @@
+{
+  "accounting": [
+    {
+      "allocated_gpus": 2,
+      "elapsed_seconds": 1155,
+      "gpu_hours": 0.6416666666666667,
+      "job": "15297"
+    },
+    {
+      "allocated_gpus": 2,
+      "elapsed_seconds": 230,
+      "gpu_hours": 0.12777777777777777,
+      "job": "15299"
+    }
+  ],
+  "corrected_pairs": [
+    {
+      "full_factorial_interaction": null,
+      "joint_gain": null,
+      "joint_minus_fulltext": null,
+      "qualified": false,
+      "seed": 42
+    },
+    {
+      "full_factorial_interaction": null,
+      "joint_gain": -0.07583726221025389,
+      "joint_minus_fulltext": -0.08690881749204216,
+      "qualified": false,
+      "seed": 173
+    }
+  ],
+  "corrections": [
+    {
+      "corrected_value": -0.07583726221025389,
+      "field": "joint_gain",
+      "frozen_value": null,
+      "seed": 173
+    }
+  ],
+  "limitation": "No full 2x2 interaction is estimable at either seed. Missing/timeout is not zero. One natural source, no new method claim.",
+  "plan_sha256": "340d8308df6e958f9c490a64083bcb4bc9ac82405e2c8a7b6df91fb343197e12",
+  "qualified": false,
+  "reason": "Frozen readout unnecessarily required all four factorial cells to print joint-original. Seed173 has that contrast despite missing mask-only. Original file preserved; qualification remains false.",
+  "status": "PASS_WITH_REPORTED_READOUT_CORRECTION",
+  "summary_sha256": "abaacbf3a92944d668398d119898ff16d81b962f438915e5adf8c63199abc0f6",
+  "total_allocated_gpu_hours": 0.7694444444444445,
+  "verifier_sha256": "3227f0023a5fae156ab461bb8856c3611f52f5020248893b0e26dc9786654772"
+}

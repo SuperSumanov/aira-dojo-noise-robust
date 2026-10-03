@@ -1,0 +1,399 @@
+{
+  "allocation_seconds": 5400,
+  "available": 5,
+  "base_updates": 0,
+  "changes": {
+    "0": {
+      "name": "cv_selected_member",
+      "rationale": "Parent measures three CV losses but ignores them for a fixed unvalidated 0.4/0.3/0.3 blend; select minimum mean public CV loss instead. Hypothesis, not proven bug."
+    },
+    "1": {
+      "name": "binary_auc_alignment",
+      "rationale": "LightGBM params omit objective and metric, so defaults optimize regression/L2 despite an AUC task. Joint binary objective and AUC early-stopping correction; component effects are not separated."
+    },
+    "3": {
+      "name": "complementary_word_view",
+      "rationale": "Three character-only views lack explicit word bigrams. Add identical word(1,2) TFIDF to each view. Known ML reference; hypothesis, not diagnosis established by outcomes."
+    },
+    "4": {
+      "name": "xgb_early_stopping",
+      "rationale": "XGBoost fits 1000 rounds despite passing a validation set. Add constructor early_stopping_rounds=50; keep all other models and stacking unchanged."
+    },
+    "5": {
+      "name": "span_order_mask",
+      "rationale": "Score matrix rows are starts, columns ends, but np.tril permits end<=start. Replace with np.triu to enforce start<=end. Structural bug is verifiable without labels; quality gain is unknown."
+    }
+  },
+  "commit": "a284f3df7e8239a042765a329c81282643a4d5a1",
+  "costs": "3 allocated GPUh hard cap includes all workers/startup/idling; historical start-generation cost sunk, not free. Assistant-designed candidate discovery is manual, not deployable zero-cost inference. No claim of full-search budget equality.",
+  "exact_full_plan_sha256": "39948b4a517cdb609105f099231bb9c3d1c19214754d585a6365245635b903df",
+  "external": "D_search development only, read after all outputs frozen. Independently recompute all metrics. No D_val/test/protected cohort.",
+  "gate": "For a state: all four executions valid; both direction-adjusted improvements >= task minimum (.005 AUC, .005 logloss, .01 Jaccard). At least 2 tasks qualify to propose cross-task diagnostic extension; no significance claim.",
+  "generator_calls": 0,
+  "gpu_hours_cap": 3,
+  "gpus": 2,
+  "intake_sha256": "c57d6005d274a47d0361edb6326e793e8a6da7dad467b7225c6fcc460d480b30",
+  "minimum_gain": {
+    "random-acts-of-pizza": 0.005,
+    "spooky-author-identification": 0.005,
+    "tweet-sentiment-extraction": 0.01
+  },
+  "number_program_executions": 20,
+  "paid_api": 0,
+  "preregistration_tests": "13-item checklist: config/patch evidence, CPU fixtures, no train/test fitting, taskwise denominator, paired balanced order, no agent checkpoint training, fixed hashes/isolation, explicit RNG, credential scan, allocation wall cap, exploratory not powered, subprocess rc checked, immutable roster.",
+  "programs": [
+    {
+      "arm": "original",
+      "code_sha256": "edab4dd97f395d4ff0604a06177b4114e060937d5f724ca7260d0a8f8f3a1426",
+      "index": 0,
+      "pair": 0,
+      "rng_sites": 1,
+      "seed": 42,
+      "state": 5,
+      "task": "tweet-sentiment-extraction"
+    },
+    {
+      "arm": "modified",
+      "code_sha256": "c90438f48ee8bab3a99a3846aa3c427b1528ff673558f25ab4eb749153afbf2b",
+      "index": 1,
+      "pair": 0,
+      "rng_sites": 1,
+      "seed": 42,
+      "state": 5,
+      "task": "tweet-sentiment-extraction"
+    },
+    {
+      "arm": "modified",
+      "code_sha256": "013c5e2bc6eaf44c9d501ce1e0f6e399b532dc70908ed01227802410d85dbe73",
+      "index": 2,
+      "pair": 1,
+      "rng_sites": 1,
+      "seed": 173,
+      "state": 1,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "arm": "original",
+      "code_sha256": "1491a7b6fac97236fec99ae52433a0da64ec5421942526fa50b6926ca83e22be",
+      "index": 3,
+      "pair": 1,
+      "rng_sites": 1,
+      "seed": 173,
+      "state": 1,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "arm": "original",
+      "code_sha256": "89bfe55971f36e667a28053fd2c1b75ca0f5da62155d84cb3a07a5b26f414c83",
+      "index": 4,
+      "pair": 2,
+      "rng_sites": 1,
+      "seed": 42,
+      "state": 1,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "arm": "modified",
+      "code_sha256": "9df5ec595e404179405a2503eaaae1567233694980fcae4b80857a3f88fe9ebd",
+      "index": 5,
+      "pair": 2,
+      "rng_sites": 1,
+      "seed": 42,
+      "state": 1,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "arm": "modified",
+      "code_sha256": "520ebebbb0af168bf8075187ca705b0ca05d1e8b0355fc7de290999c20bb807c",
+      "index": 6,
+      "pair": 3,
+      "rng_sites": 5,
+      "seed": 42,
+      "state": 4,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "arm": "original",
+      "code_sha256": "9560b23b2a5b6437b4e88a71e170540e2f14515db509de6ee81d6aa121ee4fc6",
+      "index": 7,
+      "pair": 3,
+      "rng_sites": 5,
+      "seed": 42,
+      "state": 4,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "arm": "original",
+      "code_sha256": "75791359697ee013d73ddaf383983625854876cbc50c2687332867c546205b85",
+      "index": 8,
+      "pair": 4,
+      "rng_sites": 7,
+      "seed": 173,
+      "state": 0,
+      "task": "spooky-author-identification"
+    },
+    {
+      "arm": "modified",
+      "code_sha256": "c59471f79b565cb116a6fe23c0235948c157f3064d81070949a761ec63cb4810",
+      "index": 9,
+      "pair": 4,
+      "rng_sites": 7,
+      "seed": 173,
+      "state": 0,
+      "task": "spooky-author-identification"
+    },
+    {
+      "arm": "modified",
+      "code_sha256": "9ebab5c4a541a48e4afb14f2fda4707d60fbcfca5bc36171836042c295466da5",
+      "index": 10,
+      "pair": 5,
+      "rng_sites": 2,
+      "seed": 173,
+      "state": 3,
+      "task": "spooky-author-identification"
+    },
+    {
+      "arm": "original",
+      "code_sha256": "066d848ff6d26836c9c5ee1dfa59cf5c6e99fb5da09145ff99a877cf0c9c2bd5",
+      "index": 11,
+      "pair": 5,
+      "rng_sites": 2,
+      "seed": 173,
+      "state": 3,
+      "task": "spooky-author-identification"
+    },
+    {
+      "arm": "original",
+      "code_sha256": "749b7ac153dfec669a34f2c54b101322b8a71bfc00ff91f4b1acf604c327a6dc",
+      "index": 12,
+      "pair": 6,
+      "rng_sites": 5,
+      "seed": 173,
+      "state": 4,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "arm": "modified",
+      "code_sha256": "624a238ff600e867cf9fc326cc180d702a455f69e7615fcaddaced2dde0641a3",
+      "index": 13,
+      "pair": 6,
+      "rng_sites": 5,
+      "seed": 173,
+      "state": 4,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "arm": "modified",
+      "code_sha256": "ee7d66a791e0b9407e75fae549dc59a3c347b5617fe9cdacfc8e5e61626ac449",
+      "index": 14,
+      "pair": 7,
+      "rng_sites": 2,
+      "seed": 42,
+      "state": 3,
+      "task": "spooky-author-identification"
+    },
+    {
+      "arm": "original",
+      "code_sha256": "712a341e489c659456b2436077b61a90d720f62e9a98c993da3c0912e684e64f",
+      "index": 15,
+      "pair": 7,
+      "rng_sites": 2,
+      "seed": 42,
+      "state": 3,
+      "task": "spooky-author-identification"
+    },
+    {
+      "arm": "original",
+      "code_sha256": "b2466cb51ccfe92b9a6586ad25ee55c605b2412c4746311e309ad711aa01787a",
+      "index": 16,
+      "pair": 8,
+      "rng_sites": 1,
+      "seed": 173,
+      "state": 5,
+      "task": "tweet-sentiment-extraction"
+    },
+    {
+      "arm": "modified",
+      "code_sha256": "3bbdb44473efc5bc91f58c07ac23defaa970068ef08b6bd61f2c0137d19b4970",
+      "index": 17,
+      "pair": 8,
+      "rng_sites": 1,
+      "seed": 173,
+      "state": 5,
+      "task": "tweet-sentiment-extraction"
+    },
+    {
+      "arm": "modified",
+      "code_sha256": "be57f7fe207cc840f2b924c9c508d9ef60aec40cdd83785ff4b0c8a2f8da4617",
+      "index": 18,
+      "pair": 9,
+      "rng_sites": 7,
+      "seed": 42,
+      "state": 0,
+      "task": "spooky-author-identification"
+    },
+    {
+      "arm": "original",
+      "code_sha256": "97b85a025de7134c07b9917d261f7767c526e2fbe95ae9627b67ff0a215abd10",
+      "index": 19,
+      "pair": 9,
+      "rng_sites": 7,
+      "seed": 42,
+      "state": 0,
+      "task": "spooky-author-identification"
+    }
+  ],
+  "protocol": "natural-first-valid-opportunity-v1",
+  "rng": "All explicit random_state=42 and SEED=42 rewritten symmetrically; global RNG set. LGB default seed remains unchanged if absent. Two settings NOT independent physical run replication.",
+  "roster": 6,
+  "schedule": [
+    {
+      "arm": "original",
+      "index": 0,
+      "pair": 0,
+      "seed": 42,
+      "state": 5
+    },
+    {
+      "arm": "modified",
+      "index": 1,
+      "pair": 0,
+      "seed": 42,
+      "state": 5
+    },
+    {
+      "arm": "modified",
+      "index": 2,
+      "pair": 1,
+      "seed": 173,
+      "state": 1
+    },
+    {
+      "arm": "original",
+      "index": 3,
+      "pair": 1,
+      "seed": 173,
+      "state": 1
+    },
+    {
+      "arm": "original",
+      "index": 4,
+      "pair": 2,
+      "seed": 42,
+      "state": 1
+    },
+    {
+      "arm": "modified",
+      "index": 5,
+      "pair": 2,
+      "seed": 42,
+      "state": 1
+    },
+    {
+      "arm": "modified",
+      "index": 6,
+      "pair": 3,
+      "seed": 42,
+      "state": 4
+    },
+    {
+      "arm": "original",
+      "index": 7,
+      "pair": 3,
+      "seed": 42,
+      "state": 4
+    },
+    {
+      "arm": "original",
+      "index": 8,
+      "pair": 4,
+      "seed": 173,
+      "state": 0
+    },
+    {
+      "arm": "modified",
+      "index": 9,
+      "pair": 4,
+      "seed": 173,
+      "state": 0
+    },
+    {
+      "arm": "modified",
+      "index": 10,
+      "pair": 5,
+      "seed": 173,
+      "state": 3
+    },
+    {
+      "arm": "original",
+      "index": 11,
+      "pair": 5,
+      "seed": 173,
+      "state": 3
+    },
+    {
+      "arm": "original",
+      "index": 12,
+      "pair": 6,
+      "seed": 173,
+      "state": 4
+    },
+    {
+      "arm": "modified",
+      "index": 13,
+      "pair": 6,
+      "seed": 173,
+      "state": 4
+    },
+    {
+      "arm": "modified",
+      "index": 14,
+      "pair": 7,
+      "seed": 42,
+      "state": 3
+    },
+    {
+      "arm": "original",
+      "index": 15,
+      "pair": 7,
+      "seed": 42,
+      "state": 3
+    },
+    {
+      "arm": "original",
+      "index": 16,
+      "pair": 8,
+      "seed": 173,
+      "state": 5
+    },
+    {
+      "arm": "modified",
+      "index": 17,
+      "pair": 8,
+      "seed": 173,
+      "state": 5
+    },
+    {
+      "arm": "modified",
+      "index": 18,
+      "pair": 9,
+      "seed": 42,
+      "state": 0
+    },
+    {
+      "arm": "original",
+      "index": 19,
+      "pair": 9,
+      "seed": 42,
+      "state": 0
+    }
+  ],
+  "scope": "Cold rebuilt natural code states, no native history/cache continuation. Manual known-reference witnesses, not new methods. Count discovery/rebuild/repeats/invalids; no extra candidates after results.",
+  "selection": "No ranking by score. Same six previously inspected developer runs, first valid row. Missing run retained.",
+  "task_execution_seconds": 300,
+  "unavailable": [
+    2
+  ],
+  "utc": "2026-10-03T01:09:02.594034+00:00",
+  "worker_seconds": 450
+}

@@ -1,0 +1,65 @@
+{
+  "allocated_gpu_hours": 0.6416666666666667,
+  "allocated_gpus": 2,
+  "binding_hashes": [
+    "d705708162614fbbba78de70f79465048fae9a90028c6abde2fe1628a380c65c",
+    "bb34bea6135ca3eb2f99bd3139e0d073c4186d1c09ccb21da14f05fc717c8012",
+    "6bdddded33af446e2c2124b9e84fefb0bfdc01e7d2ae491cd61e971cc2ff425f",
+    "43d1a541848be907d2466f359acee45a86f0d4382f06bf47e815882f7ee27cf4",
+    "a2afaadeb95e66910a2ae4186e0a4cb002827bedc524ad53fddc93f1addddc25",
+    "3f469b5cd25a28abc2027466e6b5117a36fb6901c87bb0b2b67c883e330fd108",
+    "59289f0f82ae618f4fa1def5c86d8f85c011f8b60d720fdb5d56c4cb63ffa097",
+    "2ead69fcf8c84b42c5a47adaf89c0aac265b44d94d4d61d2168e7ff6e3172b28",
+    "18740be3d4647062ef8ad9966ca4291c8012f9f7a98668e97b9077fe033ec614",
+    "fe36ef5c0dc6d03f147c36c2091ea427f0bd5982ca613ef17658decc181d4eca",
+    "2dd11d9672c9f34e538508560df644559debec298f8b1d183e2003178b58fb0d",
+    "cbd6d8e58507ef3f914c0ed6e89bb23c73da54f968d3030177476ca8d01a1a2a",
+    "ee46206fa581685ef30aff49d8fe674551d796d15e9d2cf67cc867a95f2092d0",
+    "e9157dac61ebce0ba2020dc3c1cda93218f5bd0fc3ce3905a02000e06ffcf2c2",
+    "897a91901d194e34fc14a8807ce65bed7880c2d7d5689b9c6b55e7aa13a92143",
+    "cfaa24617d06f346228b2ae029a57285ae0006a49c02261a3794938af30e6e85",
+    "13970c46c18372599129447dac7e6ccc4c5c8415ced2f23bfdb06abcb3822689",
+    "47cdee0f20038a1e1ebba0e53ff0ab402381678d062c9945c29d70fa0bb2f0be",
+    "eaccb1f583529aac8f1c2626660ff1d1a85095da63b5e8fb9c0388e0c7d870b4",
+    "5de528c6678cc3028fea4421310354384972c4bf6d7273bb42d424f4318d2287"
+  ],
+  "boundary": "Checks patch scope, explicit seeds, GPU namespace, paired arithmetic, output immutability and allocated cost. Score algebra was independently checked in the frozen readout. Not new-task generalization or automatic method success.",
+  "cross_task_gate": true,
+  "elapsed_seconds": 1155,
+  "isolated_executions": 20,
+  "job": "15297",
+  "job_state": "COMPLETED",
+  "modifications_verified": 10,
+  "plan_sha256": "39948b4a517cdb609105f099231bb9c3d1c19214754d585a6365245635b903df",
+  "states": [
+    {
+      "qualified": true,
+      "state": 0,
+      "task": "spooky-author-identification"
+    },
+    {
+      "qualified": false,
+      "state": 1,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "qualified": true,
+      "state": 3,
+      "task": "spooky-author-identification"
+    },
+    {
+      "qualified": true,
+      "state": 4,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "qualified": false,
+      "state": 5,
+      "task": "tweet-sentiment-extraction"
+    }
+  ],
+  "status": "PASS",
+  "summary_sha256": "e22631eb29121a2a28dddea360a16fe8e1efba785f6f582008986c48d81233ea",
+  "utc": "2026-10-03T01:36:36.046948+00:00",
+  "verifier_sha256": "a95f53b89d2f9fbe762221e375923c4504ceaa30853e195be6a1b4efd437ffe9"
+}

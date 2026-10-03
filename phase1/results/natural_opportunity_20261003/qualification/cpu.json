@@ -1,0 +1,9 @@
+{
+  "configs": 20,
+  "independent_runs": 5,
+  "mask_fixtures": 2,
+  "parsed_programs": 20,
+  "plan_sha256": "39948b4a517cdb609105f099231bb9c3d1c19214754d585a6365245635b903df",
+  "roster": 6,
+  "status": "PASS"
+}

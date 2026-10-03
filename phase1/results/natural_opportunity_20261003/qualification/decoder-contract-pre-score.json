@@ -1,0 +1,31 @@
+{
+  "both_matches_exhaustive_legal_argmax": true,
+  "draws": 1000,
+  "mask_only_always_single_character": true,
+  "original_always_end_zero": true,
+  "original_code_sha256": "560fc74f59f978fabd123776baf64299bd58bee6d29c681eea27323810fe98d2",
+  "proposed_pre_score_followup": "4 extra executions: axis-only and both x42/173. Preserve original 20 and gate; report 2x2 interaction as separate exploratory diagnostic. Freeze before first external score; no future candidate changes.",
+  "scope": "Pure decoder only, no models or real labels. No quality result. Function axis error and triangle error are separate natural defects; correcting only triangle leaves wrong score matrix.",
+  "script_sha256": "ed8a29c7b359dd93181e12693de5e138427b303ffda77c01c85ba924fd513cd7",
+  "seed": 104033,
+  "status": "PASS",
+  "synthetic_example": {
+    "axis_only": [
+      0,
+      0
+    ],
+    "both": [
+      0,
+      2
+    ],
+    "mask_only": [
+      0,
+      0
+    ],
+    "original": [
+      2,
+      0
+    ]
+  },
+  "utc": "2026-10-03T01:27:32.539651+00:00"
+}

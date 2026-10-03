@@ -1,0 +1,11 @@
+{
+  "schema": "external-gome-launch-failure-v1",
+  "observed_by_utc": "2026-10-03T23:49:20Z",
+  "exit_code": 1,
+  "stdout_empty": true,
+  "remote_output_directory_absent_afterward": true,
+  "python_script_sha256": "15761ca11604cea892be62804b5d4068918ad2bb09d36f011323a13203c10814",
+  "launcher_sha256": "49a9e66c156eefd543cd22c1b169702a954b3f0966b6aa526746583859ed248f",
+  "interpretation": "Initial launcher stopped before Python created its exclusive directory. Strict shell options were imposed before the existing user environment setup. Exact failing setup command was not printed or inspected; no claim about its internal cause.",
+  "retry_boundary": "New launcher loads the same environment before task strictness and checks its actual return code. Python source, file pins, census rules and deadline unchanged. No raw environment content or credential output."
+}

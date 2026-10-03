@@ -1,0 +1,29 @@
+{
+  "boundary": "Metadata recount after primary summary, not independent scientific review. No outcome/feedback analysis, source execution, source export or efficacy claim.",
+  "duplicate_json_keys": 0,
+  "elapsed_seconds": 12.363760471343994,
+  "files": [
+    {
+      "all_count_fields_equal": true,
+      "file": "Trace_1.json",
+      "sha256_pass": true
+    },
+    {
+      "all_count_fields_equal": true,
+      "file": "Trace_2.json",
+      "sha256_pass": true
+    },
+    {
+      "all_count_fields_equal": true,
+      "file": "Trace_3.json",
+      "sha256_pass": true
+    }
+  ],
+  "schema": "external-gome-structure-verification-v1",
+  "source_sha256": "306a58e065935c2554e059ad3204b5fe719dcb7b670b686649e887a8abc3e5df",
+  "status": "PASS",
+  "summary_sha256": "05ec26d13d4f643a86b9113797254ed2b98f84e42eee62c3f431786c3604b01f",
+  "total_loops": 5405,
+  "total_nonempty_code_pairs_with_intent_and_task": 4210,
+  "unique_tasks": 40
+}

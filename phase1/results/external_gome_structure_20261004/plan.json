@@ -1,0 +1,33 @@
+{
+  "boundary": "Author-selected published traces, missing final multi-seed selection. Availability census only; not independent task trials, faithful reproduction, effect measurement or novelty evidence.",
+  "files": {
+    "Trace_1.json": {
+      "sha256": "ee50756cd940a1add0e44bcbb04e710233709d81f823111d70846cfe6278afb0",
+      "size": 219029856
+    },
+    "Trace_2.json": {
+      "sha256": "5a451c60ead8ac85e8eca86502cd92efe3ff1d12949510ccec394ca44dfe4cbd",
+      "size": 204593757
+    },
+    "Trace_3.json": {
+      "sha256": "8977dd468ed50d22aa173cb0aec208286e9b73142b72568861b60d55b3243ae2",
+      "size": 121081711
+    }
+  },
+  "generator_calls": 0,
+  "gpu_hours": 0,
+  "license_metadata": "apache-2.0",
+  "max_wall_seconds": 900,
+  "model_fits": 0,
+  "protocol": "All three exact files; credential scan before JSON decode. Ignore outcome/feedback/scenario values. No source export or execution, no selection of successful trajectories.",
+  "repo": "amstrongzyf/Gome-GPT5-Traces",
+  "revision": "35fc17013ab0ded2f578eacb1f606b0b9e45a1d3",
+  "schema": "external-gome-structure-plan-v1",
+  "source_script_sha256": "15761ca11604cea892be62804b5d4068918ad2bb09d36f011323a13203c10814",
+  "start_utc": "2026-10-03T23:50:55.994758+00:00",
+  "tests": {
+    "forbidden_value_sentinel": "PASS",
+    "path_false_positive_control": "PASS",
+    "structural_fixtures": 3
+  }
+}

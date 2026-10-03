@@ -1,0 +1,46 @@
+{
+  "comparison_assignments": 12,
+  "comparison_started": 0,
+  "decision": "Close this cohort. No source rescue, replacement, additional seeds or parser reinterpretation counted as its result. A future separately frozen acquisition-interface change needs authorization.",
+  "limitation": "Manual review by the same analyst; arm and execution events visible, qualitative response text may reveal intended behavior. Not an independent or perfectly blinded review. No new effect, no conclusion that automatic specifications cannot work.",
+  "method_effect": "UNTESTED",
+  "novelty": "NOT_ESTABLISHED",
+  "preflight_lesson": "Synthetic SDK/loop tests established software mechanics, not real-model adherence. Allowing no-execution PLAN at shared source acquisition created an unnecessary failure surface; this pilot did not reach the intended comparison.",
+  "protocol_audit_sha256": "47488017c3d2efb5962f646c72bd4a644443ffe27a5cdfb169e0ef13e40e980b",
+  "root_records": [
+    {
+      "grounding": "No executed data observation. Plans proposed standard ML pipelines and guessed file structure.",
+      "implementation": "NOT_IMPLEMENTED: no program reached execution; no valid submission.",
+      "index": 0,
+      "known_rules": "Root plans proposed standard TFIDF, regularized linear models, public CV and optional boosting, not novel edits.",
+      "preservation": "NOT_ASSESSABLE: no initial valid program.",
+      "protocol_findings": "Two accepted PLAN replies; call2 included both PLAN and CHECK before a valid Python inspection block, rejected; final call repeated PLAN despite SOLUTION requirement.",
+      "recovered_code": "Only file/data inspection in the three recoverable blocks across both tasks. Not hidden complete solutions. Not executed after closure.",
+      "steps_reviewed": [
+        1,
+        2,
+        3,
+        4
+      ]
+    },
+    {
+      "grounding": "No executed data observation. Plans proposed standard ML pipelines and guessed file structure.",
+      "implementation": "NOT_IMPLEMENTED: no program reached execution; no valid submission.",
+      "index": 1,
+      "known_rules": "Root plans proposed standard TFIDF, regularized linear models, public CV and optional boosting, not novel edits.",
+      "preservation": "NOT_ASSESSABLE: no initial valid program.",
+      "protocol_findings": "Two accepted near-duplicate PLAN replies; calls3/4 used native XML-like tool syntax for inspection and were rejected by the declared text-action parser.",
+      "recovered_code": "Only file/data inspection in the three recoverable blocks across both tasks. Not hidden complete solutions. Not executed after closure.",
+      "steps_reviewed": [
+        1,
+        2,
+        3,
+        4
+      ]
+    }
+  ],
+  "rubric_sha256": "7f500f594487a23a7f794bdb6af0ca8c83be5d740b9c7d5aa62527d07e0efded",
+  "status": "MANUAL_CLOSED_BATCH_AUDIT",
+  "summary_sha256": "1d273ba16453ee97a51600d8ecfa711cbd7fa9c618e925413c2cc4b02586b941",
+  "utc": "2026-10-03T05:19:30.752007+00:00"
+}

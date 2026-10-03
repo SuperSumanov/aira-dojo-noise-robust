@@ -794,3 +794,6 @@ phase1/scripts/opportunity_information*_20261003.py -text diff whitespace=cr-at-
 phase1/results/natural_opportunity_20261003/** -text diff whitespace=cr-at-eol
 phase1/results/opportunity_information_20261003/** -text diff whitespace=cr-at-eol
 phase1/tests/test_opportunity_information_readout_20261003.py -text diff whitespace=cr-at-eol
+# Exact frozen source and closed automatic-specification evidence bytes.
+phase1/scripts/automatic_specification*20261003.py -text diff whitespace=cr-at-eol
+phase1/results/automatic_specification_20261003/** -text diff whitespace=cr-at-eol

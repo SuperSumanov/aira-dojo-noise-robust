@@ -1,0 +1,5 @@
+task,seed,comparable,A_gain,B_gain,C_gain,B_minus_A,B_minus_C,C_minus_A
+random-acts-of-pizza,104501,False,,,,,,
+random-acts-of-pizza,104511,False,,,,,,
+spooky-author-identification,104502,False,,,,,,
+spooky-author-identification,104512,False,,,,,,

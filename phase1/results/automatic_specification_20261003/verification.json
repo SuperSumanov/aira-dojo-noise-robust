@@ -1,0 +1,76 @@
+{
+  "boundary": "Independent score algebra, first-valid-source code identity, retained-best arithmetic, plan chronology and device namespace. Not semantic correctness, novelty, new-task replication or untouched generalization.",
+  "numerical_B_gate": false,
+  "plan_sha256": "a638e6be539955577950714bcf700c8104babca940e1478a41941ff0e8a098dd",
+  "prompt_checks": [
+    {
+      "arm": "ROOT",
+      "index": 0,
+      "prior_cells": 0,
+      "prior_outputs": 0,
+      "prior_plans": 0,
+      "step": 1
+    },
+    {
+      "arm": "ROOT",
+      "index": 0,
+      "prior_cells": 0,
+      "prior_outputs": 0,
+      "prior_plans": 1,
+      "step": 2
+    },
+    {
+      "arm": "ROOT",
+      "index": 0,
+      "prior_cells": 0,
+      "prior_outputs": 0,
+      "prior_plans": 1,
+      "step": 3
+    },
+    {
+      "arm": "ROOT",
+      "index": 0,
+      "prior_cells": 0,
+      "prior_outputs": 0,
+      "prior_plans": 2,
+      "step": 4
+    },
+    {
+      "arm": "ROOT",
+      "index": 1,
+      "prior_cells": 0,
+      "prior_outputs": 0,
+      "prior_plans": 0,
+      "step": 1
+    },
+    {
+      "arm": "ROOT",
+      "index": 1,
+      "prior_cells": 0,
+      "prior_outputs": 0,
+      "prior_plans": 1,
+      "step": 2
+    },
+    {
+      "arm": "ROOT",
+      "index": 1,
+      "prior_cells": 0,
+      "prior_outputs": 0,
+      "prior_plans": 2,
+      "step": 3
+    },
+    {
+      "arm": "ROOT",
+      "index": 1,
+      "prior_cells": 0,
+      "prior_outputs": 0,
+      "prior_plans": 2,
+      "step": 4
+    }
+  ],
+  "root_checks": [],
+  "score_checks": [],
+  "status": "PASS",
+  "summary_sha256": "1d273ba16453ee97a51600d8ecfa711cbd7fa9c618e925413c2cc4b02586b941",
+  "verifier_sha256": "05dc76ddf2e694fd8cd48e51120c208467a014d2888c1835c5174136185d6449"
+}

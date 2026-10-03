@@ -1,0 +1,92 @@
+{
+  "credentials": false,
+  "files": [
+    {
+      "bytes": 4557,
+      "path": "runs.csv",
+      "sha256": "1f3bf6309dc0947855e9444c35b62988df052afa3227c6a5e44c4c6e16c6bdf8"
+    },
+    {
+      "bytes": 7170,
+      "path": "actions.csv",
+      "sha256": "f2f7b2d5fdb126b9ed95af28c8c424d3051ec3f9ec33b441c73471851972781b"
+    },
+    {
+      "bytes": 253,
+      "path": "pairs.csv",
+      "sha256": "913a10ad6f50c4a3441f72b11debfb8834294b22157be5898f291cbe7b1e98ba"
+    },
+    {
+      "bytes": 1744,
+      "path": "verification.json",
+      "sha256": "925d192878b8ec9ddc2c14d062e6d76d07d7c416b0d9aa40e9054cfea0a31ba0"
+    },
+    {
+      "bytes": 2987,
+      "path": "mechanism-audit.json",
+      "sha256": "731a82233d3d55647b23658d3db7474d0799464948fad8e126b8318341020339"
+    },
+    {
+      "bytes": 1259,
+      "path": "conditional-sensitivity.json",
+      "sha256": "ad1c5431e6e709ff9d19272e86b5a0c263673dc84dcf3730f0e4bafa27888353"
+    },
+    {
+      "bytes": 236,
+      "path": "readout-freeze.json",
+      "sha256": "f1189711f47012f49d8e96ca034f9c481b0f9d22681fa423b973622b1a6956aa"
+    },
+    {
+      "bytes": 5192,
+      "path": "transport-loop-cpu.json",
+      "sha256": "9dad964442b0dbb90fceacc041934766bccd24fa53c4ba5f140d39424ca7e03b"
+    },
+    {
+      "bytes": 233,
+      "path": "verifier-freeze.json",
+      "sha256": "5afc2f8122964d8fb5414841733004e1ac674e60c0fdd5e4c26094536038b0fb"
+    },
+    {
+      "bytes": 774,
+      "path": "sensitivity-freeze.json",
+      "sha256": "8664c05bbac91f2e2b801ea30475beda545b50434473b76fb0d1a1d2d386ea2d"
+    },
+    {
+      "bytes": 1678,
+      "path": "mechanism-freeze.json",
+      "sha256": "7f500f594487a23a7f794bdb6af0ca8c83be5d740b9c7d5aa62527d07e0efded"
+    },
+    {
+      "bytes": 543,
+      "path": "compatibility.json",
+      "sha256": "67fb9d8aef12dca4dc098adb86b8ed68797c482cf7b80bc094878a0b04e21b77"
+    },
+    {
+      "bytes": 830,
+      "path": "prior-accounting.json",
+      "sha256": "e7ca9ad10d09d04b4446d40b9e5b17cef188216eb49145175be84dc058aca2a3"
+    },
+    {
+      "bytes": 19582,
+      "path": "summary-public.json",
+      "sha256": "ad31744a3fe921b0783a5a511fc4f64b9a30c40afb6c0820903fcfb2953605fb"
+    },
+    {
+      "bytes": 6010,
+      "path": "plan-public.json",
+      "sha256": "62501fbf02a67bb4c30e2f8999cd3bdb006da41108ff12df8329e35c3c97a24c"
+    },
+    {
+      "bytes": 9201,
+      "path": "protocol-audit-public.json",
+      "sha256": "e71973d8ca8d255314e5e89108db3b0f23fb5b206c75187d36a7f2896f2c7658"
+    }
+  ],
+  "model_messages": false,
+  "raw_candidate_programs": false,
+  "raw_labels": false,
+  "raw_predictions": false,
+  "scope": "Closed approved developer experiment only. No protected cohort or final-test access.",
+  "source_plan_sha256": "a638e6be539955577950714bcf700c8104babca940e1478a41941ff0e8a098dd",
+  "status": "SAFE_AGGREGATE_EXPORT"
+}

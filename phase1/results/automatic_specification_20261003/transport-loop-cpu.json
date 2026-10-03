@@ -1,0 +1,267 @@
+{
+  "actual_episode_loops": 28,
+  "identity_guard_fixtures": 3,
+  "loops": [
+    {
+      "arm": "A",
+      "case": "plan",
+      "executions": 4,
+      "generations": 4,
+      "graded": 3,
+      "role": "comparison",
+      "start": 0
+    },
+    {
+      "arm": "A",
+      "case": "rollback",
+      "executions": 5,
+      "generations": 4,
+      "graded": 3,
+      "role": "comparison",
+      "start": 0
+    },
+    {
+      "arm": "A",
+      "case": "last_plan",
+      "executions": 3,
+      "generations": 4,
+      "graded": 2,
+      "role": "comparison",
+      "start": 0
+    },
+    {
+      "arm": "B",
+      "case": "plan",
+      "executions": 4,
+      "generations": 4,
+      "graded": 3,
+      "role": "comparison",
+      "start": 0
+    },
+    {
+      "arm": "B",
+      "case": "rollback",
+      "executions": 5,
+      "generations": 4,
+      "graded": 3,
+      "role": "comparison",
+      "start": 0
+    },
+    {
+      "arm": "B",
+      "case": "last_plan",
+      "executions": 3,
+      "generations": 4,
+      "graded": 2,
+      "role": "comparison",
+      "start": 0
+    },
+    {
+      "arm": "B",
+      "case": "reject_first",
+      "executions": 4,
+      "generations": 4,
+      "graded": 3,
+      "role": "comparison",
+      "start": 0
+    },
+    {
+      "arm": "C",
+      "case": "plan",
+      "executions": 4,
+      "generations": 4,
+      "graded": 3,
+      "role": "comparison",
+      "start": 0
+    },
+    {
+      "arm": "C",
+      "case": "rollback",
+      "executions": 5,
+      "generations": 4,
+      "graded": 3,
+      "role": "comparison",
+      "start": 0
+    },
+    {
+      "arm": "C",
+      "case": "last_plan",
+      "executions": 3,
+      "generations": 4,
+      "graded": 2,
+      "role": "comparison",
+      "start": 0
+    },
+    {
+      "arm": "C",
+      "case": "reject_first",
+      "executions": 4,
+      "generations": 4,
+      "graded": 3,
+      "role": "comparison",
+      "start": 0
+    },
+    {
+      "arm": "ROOT",
+      "case": "root_first",
+      "executions": 1,
+      "generations": 1,
+      "graded": 1,
+      "role": "root",
+      "start": 0
+    },
+    {
+      "arm": "ROOT",
+      "case": "root_debug",
+      "executions": 4,
+      "generations": 3,
+      "graded": 1,
+      "role": "root",
+      "start": 0
+    },
+    {
+      "arm": "ROOT",
+      "case": "root_failed",
+      "executions": 0,
+      "generations": 4,
+      "graded": 0,
+      "role": "root",
+      "start": 0
+    },
+    {
+      "arm": "A",
+      "case": "plan",
+      "executions": 4,
+      "generations": 4,
+      "graded": 3,
+      "role": "comparison",
+      "start": 1
+    },
+    {
+      "arm": "A",
+      "case": "rollback",
+      "executions": 5,
+      "generations": 4,
+      "graded": 3,
+      "role": "comparison",
+      "start": 1
+    },
+    {
+      "arm": "A",
+      "case": "last_plan",
+      "executions": 3,
+      "generations": 4,
+      "graded": 2,
+      "role": "comparison",
+      "start": 1
+    },
+    {
+      "arm": "B",
+      "case": "plan",
+      "executions": 4,
+      "generations": 4,
+      "graded": 3,
+      "role": "comparison",
+      "start": 1
+    },
+    {
+      "arm": "B",
+      "case": "rollback",
+      "executions": 5,
+      "generations": 4,
+      "graded": 3,
+      "role": "comparison",
+      "start": 1
+    },
+    {
+      "arm": "B",
+      "case": "last_plan",
+      "executions": 3,
+      "generations": 4,
+      "graded": 2,
+      "role": "comparison",
+      "start": 1
+    },
+    {
+      "arm": "B",
+      "case": "reject_first",
+      "executions": 4,
+      "generations": 4,
+      "graded": 3,
+      "role": "comparison",
+      "start": 1
+    },
+    {
+      "arm": "C",
+      "case": "plan",
+      "executions": 4,
+      "generations": 4,
+      "graded": 3,
+      "role": "comparison",
+      "start": 1
+    },
+    {
+      "arm": "C",
+      "case": "rollback",
+      "executions": 5,
+      "generations": 4,
+      "graded": 3,
+      "role": "comparison",
+      "start": 1
+    },
+    {
+      "arm": "C",
+      "case": "last_plan",
+      "executions": 3,
+      "generations": 4,
+      "graded": 2,
+      "role": "comparison",
+      "start": 1
+    },
+    {
+      "arm": "C",
+      "case": "reject_first",
+      "executions": 4,
+      "generations": 4,
+      "graded": 3,
+      "role": "comparison",
+      "start": 1
+    },
+    {
+      "arm": "ROOT",
+      "case": "root_first",
+      "executions": 1,
+      "generations": 1,
+      "graded": 1,
+      "role": "root",
+      "start": 1
+    },
+    {
+      "arm": "ROOT",
+      "case": "root_debug",
+      "executions": 4,
+      "generations": 3,
+      "graded": 1,
+      "role": "root",
+      "start": 1
+    },
+    {
+      "arm": "ROOT",
+      "case": "root_failed",
+      "executions": 0,
+      "generations": 4,
+      "graded": 0,
+      "role": "root",
+      "start": 1
+    }
+  ],
+  "network_calls": 0,
+  "paired_configs_identical": true,
+  "plan_sha256": "a638e6be539955577950714bcf700c8104babca940e1478a41941ff0e8a098dd",
+  "root_freeze_cases": 3,
+  "scope": "Synthetic CPU control/transport tests only; no experiment or model evidence.",
+  "script_sha256": "fbc636403b758586a390e4288d4a2cc2082c916653a94604622d7b31f3e0aa1b",
+  "sdk_requests": 14,
+  "status": "PASS",
+  "typed_configs": 14
+}

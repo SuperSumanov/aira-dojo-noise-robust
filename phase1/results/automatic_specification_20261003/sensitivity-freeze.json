@@ -1,0 +1,10 @@
+{
+  "method": "Class-stratified paired query bootstrap. Shared query resample across both generation seeds and all arms. Average two within-seed final retained-score differences; same as median with two seeds.",
+  "plan_sha256": "a638e6be539955577950714bcf700c8104babca940e1478a41941ff0e8a098dd",
+  "replicates": 5000,
+  "scope": "Conditional descriptive intervals only. Adaptive developer-query selection and developer task/protocol selection are not accounted for; no new task/run/training uncertainty or multiplicity correction. Does not change original numerical gate.",
+  "script_sha256": "72939993d0220c51220339e53eefb038bfe2511f17fde773b198161c6e083729",
+  "seed_base": 104600,
+  "status": "FROZEN_BEFORE_EFFECT_READOUT",
+  "utc": "2026-10-03T04:54:00.703000+00:00"
+}

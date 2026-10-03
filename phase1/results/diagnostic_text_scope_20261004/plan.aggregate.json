@@ -1,0 +1,73 @@
+{
+  "allocation_seconds": 2700,
+  "base_commit": "a3de6a56ef0a3e03221cfa2278fcbf2770062fe6",
+  "code_seconds": 300,
+  "controls": "Source scope flag only; same model params/rows/splits/classes/dependencies. Fold-train diagnostic and reference feature-matrix/vocabulary/idf SHA equal. Seed42 matches original rounded outputs within5e-7.",
+  "core_sha256": "5f1441fcf268f776b446deb6cbb36d0668efad10298780959f79174d396f7220",
+  "costs": "Single3090/6CPU/45min hard allocation cap; includes startup,idling,failures. Prior observed check117.6662287649815sec. Each code cap300sec, worker deadline420sec. Overhead or slow slots can leave missing slots at allocation cap; these are not retried or imputed. No generation/API/hidden score.",
+  "dsearch_read": false,
+  "executions": 6,
+  "gate": "Descriptive only: both absolute shifts>=.01 or any/both LR ranking reversals. No automatic agent expansion.",
+  "generator_calls": 0,
+  "gpu_hours_cap": 0.75,
+  "gpus": 1,
+  "interpretation": "Post-Pizza selected countercase, not an untouched confirmation. A scope discrepancy need not cause large bias or reverse a choice. Report all signs, including small or absent effects. No agent-continuation or final-quality claims.",
+  "material_threshold": 0.01,
+  "model_base_updates": 0,
+  "original_plan_sha256": "2606e7a3903b40c05453136e254a94f37e4cfadfb2e0890b81e03b6b3455d357",
+  "original_sources": {
+    "diagnostic": "b49c8d5f2f6103f2af152bddfa86698b8c3e22b11b30810e3df8cfd26add1d51",
+    "reference": "f0ac74804c4e2a163376afd715ec9f2b0e420275bc0b56c8ee715dd001b1eb1b"
+  },
+  "paid_api": 0,
+  "preflight": "Source/actual loader, AST single difference, explicit class/seed/fold identities, independent metric readout, all6 denominator, fixed randomized order, pinned image/runtime, exact data hashes, completed-slot checkpoint, cap/returncode and credential gates. Native task image unchanged.",
+  "primary": "All four diagnostic executions; within split seed all_public minus fold_train logloss. Lower is better. Compare both to actual same-fold combined LR reference. No omission or reseeding.",
+  "protected_opened": false,
+  "protocol": "diagnostic-text-scope-v1",
+  "public_data": {
+    "test.csv": "72ac7c7efe695e6ab94a725841df133bdc3f0a8a69512bf8f847198edbc10fbf",
+    "train.csv": "201b0a89896e32434c777af221bd05de37ea56af57c3504057a040ad9f04e5e7"
+  },
+  "randomness": "split42/173; LR42 and original LGB defaults retained; Python/numpy42; hashseed=split. Not an all-model-RNG sweep.",
+  "schedule": [
+    {
+      "arm": "all_public",
+      "case": "diagnostic",
+      "index": 0,
+      "seed": 42
+    },
+    {
+      "arm": "fold_train",
+      "case": "diagnostic",
+      "index": 1,
+      "seed": 42
+    },
+    {
+      "arm": "fold_train",
+      "case": "diagnostic",
+      "index": 2,
+      "seed": 173
+    },
+    {
+      "arm": "all_public",
+      "case": "diagnostic",
+      "index": 3,
+      "seed": 173
+    },
+    {
+      "arm": "fold_train",
+      "case": "reference",
+      "index": 4,
+      "seed": 42
+    },
+    {
+      "arm": "fold_train",
+      "case": "reference",
+      "index": 5,
+      "seed": 173
+    }
+  ],
+  "source_sha256": "3ac71cdc5278dd906906221cc5c19472ce95b1805f26f7b96333ae16f5eabe7b",
+  "stopping": "Single six-execution batch; no rescue, replacement or extra seeds. Missing estimates null. Reuse native completed-slot checkpoints only with exact plan; no resubmission authorized here.",
+  "utc": "2026-10-03T21:39:22.464758+00:00"
+}

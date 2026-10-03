@@ -1,0 +1,94 @@
+{
+  "assigned": 6,
+  "completed": 6,
+  "feature_scope_controls": [
+    {
+      "field": "matrix_train_sha256",
+      "passed": true,
+      "seed": 42
+    },
+    {
+      "field": "matrix_val_sha256",
+      "passed": true,
+      "seed": 42
+    },
+    {
+      "field": "vocabulary_sha256",
+      "passed": true,
+      "seed": 42
+    },
+    {
+      "field": "idf_sha256",
+      "passed": true,
+      "seed": 42
+    },
+    {
+      "field": "matrix_train_sha256",
+      "passed": true,
+      "seed": 173
+    },
+    {
+      "field": "matrix_val_sha256",
+      "passed": true,
+      "seed": 173
+    },
+    {
+      "field": "vocabulary_sha256",
+      "passed": true,
+      "seed": 173
+    },
+    {
+      "field": "idf_sha256",
+      "passed": true,
+      "seed": 173
+    }
+  ],
+  "plan_sha256": "2606e7a3903b40c05453136e254a94f37e4cfadfb2e0890b81e03b6b3455d357",
+  "reproduction": [
+    {
+      "case": "diagnostic",
+      "passed": true
+    },
+    {
+      "case": "reference",
+      "passed": true
+    }
+  ],
+  "scalar_metric_checks": [
+    {
+      "complete": true,
+      "error": 0.0,
+      "index": 0
+    },
+    {
+      "complete": true,
+      "error": 0.0,
+      "index": 1
+    },
+    {
+      "complete": true,
+      "error": 1.1102230246251565e-16,
+      "index": 2
+    },
+    {
+      "complete": true,
+      "error": 0.0,
+      "index": 3
+    },
+    {
+      "complete": true,
+      "error": 0.0,
+      "index": 4
+    },
+    {
+      "complete": true,
+      "error": 0.0,
+      "index": 5
+    }
+  ],
+  "scientific_status": "COMPLETE",
+  "scope": "Verification of this closed replay, not an effect/generalization gate. Incomplete/reproduction/control failures retained. No endpoint-agent benefit inferred.",
+  "source_sha256": "3ac71cdc5278dd906906221cc5c19472ce95b1805f26f7b96333ae16f5eabe7b",
+  "status": "VERIFIED_READOUT",
+  "verifier_sha256": "58074b30e704e1731beb1c4e98421604873f7711b3fc2305c511f678c387dd58"
+}

@@ -1,0 +1,10 @@
+{
+  "accounting": "15851|COMPLETED|713|billing=6,cpu=6,gres/gpu=1,node=1|gpu3|0:0",
+  "allocation_seconds": 713,
+  "base_model_updates": 0,
+  "generator_calls": 0,
+  "gpu_hours": 0.19805555555555557,
+  "gpus": 1,
+  "job": "15851",
+  "paid_api": 0
+}

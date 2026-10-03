@@ -1,0 +1,7 @@
+{
+  "configs": 6,
+  "plan_sha256": "2606e7a3903b40c05453136e254a94f37e4cfadfb2e0890b81e03b6b3455d357",
+  "source_pairs": 2,
+  "status": "PASS",
+  "vector_configs_match": true
+}

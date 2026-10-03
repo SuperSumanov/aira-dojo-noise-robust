@@ -1,0 +1,20 @@
+{
+  "payloads": {
+    "analysis-freeze.json": "ffadd25751ca618a57811f5f17f3de6207901ca1958abaabf2687d09790aa90a",
+    "cpu.json": "1e8879b61faf18ceec1a34422a3e49e7e270f88719fd536e17259a7a16ebd609",
+    "launch.json": "1a8e0ea3d00384f164340c0078788666527695c5e04bd2cc4e8a3b26a7b67754",
+    "pairs.csv": "0a0f01c923336695b27f94207d79b04848199e1f042cce1638a2b8f8fc081b50",
+    "plan.aggregate.json": "44e9938e6b791de72930f667fcb2f5714f6a76eefdbc9bde9ac6afcdc57b58e3",
+    "resources.json": "1252ef16b64b27e94081e519a1227b9bd5d8bd2aff3a82b4cbb200acf129e8a9",
+    "runs.csv": "f809292429ec1eef59d2df0756e4f9abaf29bc9312a7356f355012ae5f07863d",
+    "summary.aggregate.json": "364c63f0bc5214c54c50ace4dcb2324bd4d0eb0b26a4d3f1d13f098c43a5c507",
+    "verification.json": "010f8b39c0c28cec2fe0b98efee0308fb9d75d713f8c0c851a8c6e097a6d905b"
+  },
+  "plan_sha256": "2606e7a3903b40c05453136e254a94f37e4cfadfb2e0890b81e03b6b3455d357",
+  "raw_candidates_exported": false,
+  "raw_labels_exported": false,
+  "raw_predictions_exported": false,
+  "source_root": "/research/d7/spc/yzyang4/diagnostic-text-scope-20261004-v1",
+  "summary_sha256": "364c63f0bc5214c54c50ace4dcb2324bd4d0eb0b26a4d3f1d13f098c43a5c507",
+  "verifier_sha256": "58074b30e704e1731beb1c4e98421604873f7711b3fc2305c511f678c387dd58"
+}

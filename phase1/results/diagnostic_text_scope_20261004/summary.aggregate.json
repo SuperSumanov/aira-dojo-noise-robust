@@ -1,0 +1,149 @@
+{
+  "assigned": 6,
+  "complete": 6,
+  "controls": [],
+  "max_metric_error": 1.1102230246251565e-16,
+  "median_scope_shift": -0.0038452987175666142,
+  "metric_checks": 6,
+  "pairs": [
+    {
+      "all_loss": 0.5459142977361736,
+      "all_minus_fold": -0.00010185910001048182,
+      "all_minus_reference": 0.14006904070107112,
+      "complete": true,
+      "fold_loss": 0.5460161568361841,
+      "fold_minus_reference": 0.1401708998010816,
+      "ranking_reversal": false,
+      "reference_loss": 0.4058452570351025,
+      "seed": 42
+    },
+    {
+      "all_loss": 0.5354144501056813,
+      "all_minus_fold": -0.007588738335122747,
+      "all_minus_reference": 0.1493022516490845,
+      "complete": true,
+      "fold_loss": 0.5430031884408041,
+      "fold_minus_reference": 0.15689098998420725,
+      "ranking_reversal": false,
+      "reference_loss": 0.38611219845659683,
+      "seed": 173
+    }
+  ],
+  "plan_sha256": "2606e7a3903b40c05453136e254a94f37e4cfadfb2e0890b81e03b6b3455d357",
+  "reproduction": [
+    {
+      "case": "diagnostic",
+      "new": 0.5459142977361736,
+      "original_rounded": 0.545914,
+      "passed": true
+    },
+    {
+      "case": "reference",
+      "new": 0.4058452570351025,
+      "original_rounded": 0.405845,
+      "passed": true
+    }
+  ],
+  "rows": [
+    {
+      "arm": "all_public",
+      "base_commit": "a3de6a56ef0a3e03221cfa2278fcbf2770062fe6",
+      "case": "diagnostic",
+      "complete": true,
+      "error_type": null,
+      "exit_code": 0,
+      "features": 117343,
+      "index": 0,
+      "log_loss": 0.5459142977361736,
+      "plan_sha256": "2606e7a3903b40c05453136e254a94f37e4cfadfb2e0890b81e03b6b3455d357",
+      "seconds": 163.71012535400223,
+      "seed": 42,
+      "task": "spooky-author-identification",
+      "timed_out": false
+    },
+    {
+      "arm": "fold_train",
+      "base_commit": "a3de6a56ef0a3e03221cfa2278fcbf2770062fe6",
+      "case": "diagnostic",
+      "complete": true,
+      "error_type": null,
+      "exit_code": 0,
+      "features": 103715,
+      "index": 1,
+      "log_loss": 0.5460161568361841,
+      "plan_sha256": "2606e7a3903b40c05453136e254a94f37e4cfadfb2e0890b81e03b6b3455d357",
+      "seconds": 150.3455098689883,
+      "seed": 42,
+      "task": "spooky-author-identification",
+      "timed_out": false
+    },
+    {
+      "arm": "fold_train",
+      "base_commit": "a3de6a56ef0a3e03221cfa2278fcbf2770062fe6",
+      "case": "diagnostic",
+      "complete": true,
+      "error_type": null,
+      "exit_code": 0,
+      "features": 103596,
+      "index": 2,
+      "log_loss": 0.5430031884408041,
+      "plan_sha256": "2606e7a3903b40c05453136e254a94f37e4cfadfb2e0890b81e03b6b3455d357",
+      "seconds": 159.39546793699265,
+      "seed": 173,
+      "task": "spooky-author-identification",
+      "timed_out": false
+    },
+    {
+      "arm": "all_public",
+      "base_commit": "a3de6a56ef0a3e03221cfa2278fcbf2770062fe6",
+      "case": "diagnostic",
+      "complete": true,
+      "error_type": null,
+      "exit_code": 0,
+      "features": 117343,
+      "index": 3,
+      "log_loss": 0.5354144501056813,
+      "plan_sha256": "2606e7a3903b40c05453136e254a94f37e4cfadfb2e0890b81e03b6b3455d357",
+      "seconds": 163.30158087000018,
+      "seed": 173,
+      "task": "spooky-author-identification",
+      "timed_out": false
+    },
+    {
+      "arm": "fold_train",
+      "base_commit": "a3de6a56ef0a3e03221cfa2278fcbf2770062fe6",
+      "case": "reference",
+      "complete": true,
+      "error_type": null,
+      "exit_code": 0,
+      "features": 103715,
+      "index": 4,
+      "log_loss": 0.4058452570351025,
+      "plan_sha256": "2606e7a3903b40c05453136e254a94f37e4cfadfb2e0890b81e03b6b3455d357",
+      "seconds": 24.798837111040484,
+      "seed": 42,
+      "task": "spooky-author-identification",
+      "timed_out": false
+    },
+    {
+      "arm": "fold_train",
+      "base_commit": "a3de6a56ef0a3e03221cfa2278fcbf2770062fe6",
+      "case": "reference",
+      "complete": true,
+      "error_type": null,
+      "exit_code": 0,
+      "features": 103596,
+      "index": 5,
+      "log_loss": 0.38611219845659683,
+      "plan_sha256": "2606e7a3903b40c05453136e254a94f37e4cfadfb2e0890b81e03b6b3455d357",
+      "seconds": 21.820700132055208,
+      "seed": 173,
+      "task": "spooky-author-identification",
+      "timed_out": false
+    }
+  ],
+  "sample_variance": 2.8026680340577605e-05,
+  "scope": "One previously reused developer task, one post-Pizza selected diagnostic, two split seeds. Public single-fold metrics only; not independent tasks, final quality or a new agent method.",
+  "script_sha256": "3ac71cdc5278dd906906221cc5c19472ce95b1805f26f7b96333ae16f5eabe7b",
+  "status": "COMPLETE"
+}

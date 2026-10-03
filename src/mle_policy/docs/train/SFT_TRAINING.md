@@ -66,10 +66,108 @@ train 75.4%（`improve` 60.9%、`debug` 49.1%），要长上下文就得按 64k 
 
 ```bash
 cd <repo>/src/verl          # 容器里就是 /workspace/verl/src/verl
-bash my_scripts/train/mle_policy/pro6000/run_qwen3_5_9b_sft_fsdp_sp.sh
+bash my_scripts/train/mle_policy/pro6000/run_qwen3_5_9b_sft_fsdp_lora.sh
+# Qwen3.8-27B 在4xh200上用 4xh200/run_qwen3_8_27b_sft_fsdp_lora.sh
 ```
 
 **工作目录必须是 `src/verl`**，因为 `data.custom_cls.path` 写的是
 `pkg://my_recipes.dataset.mlepolicy_sft_dataset`（类名 `MlePolicySFTDataset`），
 要靠在当前目录下找到 `my_recipes` 这个包。这个类必须用：verl 自带的
 `MultiTurnSFTDataset` 会逐条渲染 message，Qwen3.5 上直接崩，见第 2 节。
+
+## 4. 导出lora adapter进行VLLM推理
+
+训练完之后是fsdp的分片格式，需要先导出adapter（在`src/verl`下跑）
+
+```bash
+python -m verl.model_merger merge \
+  --backend fsdp \
+  --local_dir checkpoints/SFT-mle-policy/SFT-Qwen3.5-9B-non_thinking-len65536-bsz128-lr1e-5/global_step_300 \
+  --target_dir outputs/sft_mle_policy/qwen3_5_9b_step250_hf
+```
+
+`--target_dir`里会同时写出合并后的完整模型和`lora_adapter/`；起vllm只需要后者，
+完整模型那几十个GB不用留。
+
+### 4.1 先剪掉vision tower的LoRA
+
+训练脚本里`model.target_modules=all-linear`会把Qwen3.5-9B这个VL模型的**vision tower**
+也套上LoRA，所以`lora_adapter`里混着110个`model.visual.*`模块（220个张量）。vllm默认只给
+语言模型挂LoRA（tower的LoRA要开`--enable-tower-connector-lora`，还是实验性的），加载时
+直接报错：
+
+```
+ValueError: While loading .../lora_adapter, expected target modules in
+{... 'q_proj', 'in_proj_qkv' ...} but received ['visual.blocks.0.attn.proj', ...]
+```
+
+我们的数据全是文本，vision tower的LoRA拿不到梯度，`lora_B`恒等于0，所以剪掉它在数值上
+没有任何影响。脚本默认写到旁边的`lora_adapter_vllm/`，只保留248个语言模型模块（496个张量）；
+万一tower的`lora_B`不是全0，它会直接报错而不是静默丢权重：
+
+```bash
+bash src/mle_policy/scripts/export/prune_lora_adapter_for_vllm.sh \
+  outputs/sft_mle_policy/qwen3_5_9b_step250_hf/lora_adapter
+```
+
+想让以后的run从源头干净，可以在训练脚本里加`model.exclude_modules='.*visual.*'`；代价是
+LoRA初始化的随机流会变，和现有的checkpoint不可比特复现，所以旧的结果不要重训比对。
+
+### 4.2 启动vllm
+
+然后用底模加剪过的adapter来启动vllm
+
+```bash
+srun -J vllmserve \
+  --ntasks 1 \
+  --gres=gpu:2 \
+  --cpus-per-task=6 \
+  -o tmp/vllm_%j.log \
+  -e tmp/vllm_%j.err \
+  singularity exec --nv --cleanenv \
+    --env VLLM_WORKER_MULTIPROC_METHOD=spawn \
+    --env VLLM_CACHE_ROOT=/research/d2/gds/zzchen2/vllm_cache \
+    --env TRITON_HOME=/research/d2/gds/zzchen2/triton_home \
+    --env TORCH_HOME=/research/d2/gds/zzchen2/torchhome \
+    --env HF_HOME=/research/d2/gds/zzchen2/transformerscache \
+    --env HF_HUB_OFFLINE=1 \
+    -B /research/d2/gds/zzchen2:/research/d2/gds/zzchen2 \
+    build/vllm/vllm.sif \
+    vllm serve Qwen/Qwen3.5-9B \
+      --served-model-name qwen3.5-9b \
+      --enable-lora \
+      --max-lora-rank 128 \
+      --lora-modules qwen3.5-9b-mle-lora=outputs/sft_mle_policy/qwen3_5_9b_step250_hf/lora_adapter_vllm \
+      --host 0.0.0.0 \
+      --port 8000 \
+      --api-key sk-vllm-gpu27-qwen35-9b-mle-lora \
+      --tensor-parallel-size 2 \
+      --max-model-len 65536 \
+      --gpu-memory-utilization 0.95 \
+      --limit-mm-per-prompt '{"image":0,"video":0}' \
+      --max-num-seqs 8 &
+```
+
+原模型也可以通过`qwen3.5-9b`来调用，lora模型通过`qwen3.5-9b-mle-lora`来调用，两者共享一个server。最后启动e2e评估
+
+```bash
+python -m dojo.main_runner_job_array \
+  +_exp=mlebench/aira_mcts_qwen_minimal_lora \
+  'benchmark.tasks=[tgs-salt-identification-challenge]' \
+  'solver/client@solver.operators.analyze.llm.client=litellm_qwen3.5-9B-mle-lora' \
+  'solver/client@solver.operators.debug.llm.client=litellm_qwen3.5-9B-mle-lora' \
+  'solver/client@solver.operators.draft.llm.client=litellm_qwen3.5-9B-mle-lora' \
+  'solver/client@solver.operators.improve.llm.client=litellm_qwen3.5-9B-mle-lora' \
+  metadata.git_issue_id=tgs-salt-identification-challenge-8seeds \
+  solver.execution_timeout=7200 \
+  solver.time_limit_secs=86400 \
+  solver.num_children=2 \
+  launcher=srun_pool \
+  launcher.debug=false \
+  launcher.max_parallel=4 \
+  launcher.cpus_per_step=6 \
+  launcher.gpus_per_step=1 \
+  logger.use_wandb=false
+```
+
+这里我特意写了一个no memory和reasoning effort为minimal的配置，来保证尽量贴近训练设置。

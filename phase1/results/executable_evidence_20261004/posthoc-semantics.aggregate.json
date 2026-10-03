@@ -1,0 +1,162 @@
+{
+  "status": "PASS",
+  "plan_sha256": "f5aba6d06b20a1c4037abc52c373842bae70f6672d3a2ac7b20c8bb3fc82dd3c",
+  "script_sha256": "3859943ae1e658865dc6a0f85eeaa6f2444fc0588f40c6a5a388560333c31dfe",
+  "supersedes_sha256": "262c04af88e5223db55f21bf26f1b233059421628f81a435f66314afd98ea72b",
+  "correction": "Earlier post-hoc schema check used pandas.read_json, unlike actual code. Its feature counts are withdrawn. This version exactly uses DataFrame(json.loads). No frozen ML run, score, qualitative mismatch finding, or effect gate changed.",
+  "schema_sources": {
+    "train.json": "1e19fe3dbe314ff4f71c716c60036d62e4ca4943ce0c1eb650d0a6219a03913d",
+    "test.json": "6cec69c8401eb2c4f12f451eea4ea283a05a1e4f7a9fb282f28cd0bf368d4e11"
+  },
+  "selected_cases": [
+    {
+      "index": 0,
+      "step": 0,
+      "source_sha256": "6e349a6c509145cb25be96f33324f762c51d553051378ac512c3ec0f91648d1c",
+      "code_sha256": "9560b23b2a5b6437b4e88a71e170540e2f14515db509de6ee81d6aa121ee4fc6",
+      "selected_raw_numeric_count": 11,
+      "unavailable_at_query": [],
+      "selector_assignments": [
+        {
+          "name": "train_numeric_cols",
+          "line": 48
+        },
+        {
+          "name": "test_numeric_cols",
+          "line": 49
+        },
+        {
+          "name": "all_numeric_cols",
+          "line": 50
+        }
+      ]
+    },
+    {
+      "index": 0,
+      "step": 1,
+      "source_sha256": "3cc81fc7232144bdd910920f26ff0de1f346c95c021de9792d260f50e4c65a58",
+      "code_sha256": "60214cacf54679611c3072c3b66f6e786b831951609613ff15dd01b677e85d93",
+      "selected_raw_numeric_count": 22,
+      "unavailable_at_query": [
+        "number_of_downvotes_of_request_at_retrieval",
+        "number_of_upvotes_of_request_at_retrieval",
+        "request_number_of_comments_at_retrieval",
+        "requester_account_age_in_days_at_retrieval",
+        "requester_days_since_first_post_on_raop_at_retrieval",
+        "requester_number_of_comments_at_retrieval",
+        "requester_number_of_comments_in_raop_at_retrieval",
+        "requester_number_of_posts_at_retrieval",
+        "requester_number_of_posts_on_raop_at_retrieval",
+        "requester_upvotes_minus_downvotes_at_retrieval",
+        "requester_upvotes_plus_downvotes_at_retrieval"
+      ],
+      "selector_assignments": [
+        {
+          "name": "num_cols",
+          "line": 34
+        }
+      ]
+    },
+    {
+      "index": 10,
+      "step": 1,
+      "source_sha256": "fd2910d2a72bbe7155a3fb2dc1f968fa0acedf52bf7995d350825a912cc742ca",
+      "code_sha256": "308ee72140cb7f020d4a0c4230f3d23f50d57efaa28cc8547423c010b9004882",
+      "selected_raw_numeric_count": 11,
+      "unavailable_at_query": [],
+      "selector_assignments": [
+        {
+          "name": "num_cols",
+          "line": 40
+        },
+        {
+          "name": "num_cols",
+          "line": 41
+        }
+      ]
+    },
+    {
+      "index": 14,
+      "step": 1,
+      "source_sha256": "0297381b05ae7894140462f176d023543d619380d54e15943e10ef0a424a901f",
+      "code_sha256": "fa19e920e5242be148b45f244f040689667732d1e7678e04c1cd5a90dc28938c",
+      "selected_raw_numeric_count": 22,
+      "unavailable_at_query": [
+        "number_of_downvotes_of_request_at_retrieval",
+        "number_of_upvotes_of_request_at_retrieval",
+        "request_number_of_comments_at_retrieval",
+        "requester_account_age_in_days_at_retrieval",
+        "requester_days_since_first_post_on_raop_at_retrieval",
+        "requester_number_of_comments_at_retrieval",
+        "requester_number_of_comments_in_raop_at_retrieval",
+        "requester_number_of_posts_at_retrieval",
+        "requester_number_of_posts_on_raop_at_retrieval",
+        "requester_upvotes_minus_downvotes_at_retrieval",
+        "requester_upvotes_plus_downvotes_at_retrieval"
+      ],
+      "selector_assignments": [
+        {
+          "name": "num_cols",
+          "line": 36
+        }
+      ]
+    },
+    {
+      "index": 14,
+      "step": 2,
+      "source_sha256": "ed0f17639163e820eb8522935457b141afb529689c2224193ca49ce239517de3",
+      "code_sha256": "3cc834417f80fe106d550bfa580b713067f928d6b000dff310f3fd018b63dd37",
+      "selected_raw_numeric_count": 22,
+      "unavailable_at_query": [
+        "number_of_downvotes_of_request_at_retrieval",
+        "number_of_upvotes_of_request_at_retrieval",
+        "request_number_of_comments_at_retrieval",
+        "requester_account_age_in_days_at_retrieval",
+        "requester_days_since_first_post_on_raop_at_retrieval",
+        "requester_number_of_comments_at_retrieval",
+        "requester_number_of_comments_in_raop_at_retrieval",
+        "requester_number_of_posts_at_retrieval",
+        "requester_number_of_posts_on_raop_at_retrieval",
+        "requester_upvotes_minus_downvotes_at_retrieval",
+        "requester_upvotes_plus_downvotes_at_retrieval"
+      ],
+      "selector_assignments": [
+        {
+          "name": "num_cols",
+          "line": 38
+        }
+      ]
+    },
+    {
+      "index": 14,
+      "step": 3,
+      "source_sha256": "07f0b138045e7c7c748d47797a158ad169ee2406a3564a98498308189cfc7617",
+      "code_sha256": "6d2ae47d359b73836b236cfe167d5cdc56cf14ff140a263391904c03ab9a031b",
+      "selected_raw_numeric_count": 11,
+      "unavailable_at_query": [],
+      "selector_assignments": [
+        {
+          "name": "num_cols",
+          "line": 46
+        },
+        {
+          "name": "all_numeric",
+          "line": 47
+        }
+      ]
+    }
+  ],
+  "wrapper_synthetic_fixture": {
+    "submission_removed": true,
+    "successful_state_preserved": true
+  },
+  "limits": "Post-hoc selected-case checks, not extra ML runs or a new effect gate. Only raw numeric selectors are evaluated; common engineered features are not counted. No model fitting, generation, hidden labels, prediction or outcome values. Feature-set change is verified; its contribution to the reported AUC gap is not identified. Wrapper fixture explains file absence, not the cause of every refit or task failure.",
+  "scope": "Post-hoc aggregate derived from the remote v2 receipt; not one of the 16 byte-identical payloads in export-receipt.json.",
+  "full_remote_receipt_sha256": "2e829e7ff89153999149109f1d6e2cd5f68bc91b479d07f7767f7d1537ef55ea",
+  "lgb_training_fold_subset_confirmed": true,
+  "description_errata": [
+    "The frozen plan and descriptive resource scope refer too broadly to fixed training RNG. The wrapper seeds Python/numpy with 42; generated estimators can and did specify other seeds. These are three generation-seed replicates, not a fully controlled training-seed sweep.",
+    "Arm scheduling is a fixed counterbalanced BCA/CAB/ABC order, not randomized treatment assignment.",
+    "Semantic review was by the same analyst, knew arm identities, masked numbers in reasons/returned text but could see source constants, and preceded consolidated endpoint readout. It is not independent blinded adjudication."
+  ]
+}

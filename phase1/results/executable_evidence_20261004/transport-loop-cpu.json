@@ -1,0 +1,97 @@
+{
+  "actual_episode_loops": 12,
+  "loops": [
+    {
+      "arm": "A",
+      "calls": 7,
+      "failed_cell": false,
+      "instances": 1,
+      "task_index": 0
+    },
+    {
+      "arm": "A",
+      "calls": 8,
+      "failed_cell": true,
+      "instances": 2,
+      "task_index": 0
+    },
+    {
+      "arm": "B",
+      "calls": 7,
+      "failed_cell": false,
+      "instances": 1,
+      "task_index": 0
+    },
+    {
+      "arm": "B",
+      "calls": 8,
+      "failed_cell": true,
+      "instances": 2,
+      "task_index": 0
+    },
+    {
+      "arm": "C",
+      "calls": 7,
+      "failed_cell": false,
+      "instances": 1,
+      "task_index": 0
+    },
+    {
+      "arm": "C",
+      "calls": 8,
+      "failed_cell": true,
+      "instances": 2,
+      "task_index": 0
+    },
+    {
+      "arm": "A",
+      "calls": 7,
+      "failed_cell": false,
+      "instances": 1,
+      "task_index": 1
+    },
+    {
+      "arm": "A",
+      "calls": 8,
+      "failed_cell": true,
+      "instances": 2,
+      "task_index": 1
+    },
+    {
+      "arm": "B",
+      "calls": 7,
+      "failed_cell": false,
+      "instances": 1,
+      "task_index": 1
+    },
+    {
+      "arm": "B",
+      "calls": 8,
+      "failed_cell": true,
+      "instances": 2,
+      "task_index": 1
+    },
+    {
+      "arm": "C",
+      "calls": 7,
+      "failed_cell": false,
+      "instances": 1,
+      "task_index": 1
+    },
+    {
+      "arm": "C",
+      "calls": 8,
+      "failed_cell": true,
+      "instances": 2,
+      "task_index": 1
+    }
+  ],
+  "network_calls": 0,
+  "paired_configs_identical": true,
+  "plan_sha256": "f5aba6d06b20a1c4037abc52c373842bae70f6672d3a2ac7b20c8bb3fc82dd3c",
+  "scope": "Synthetic CPU transport/control tests only, not model or task evidence.",
+  "script_sha256": "766f3e39f4c1f947264769516e2b6f16f7da44fd3c6f995d0d8b18894e7d9c80",
+  "sdk_requests": 18,
+  "status": "PASS",
+  "typed_configs": 18
+}

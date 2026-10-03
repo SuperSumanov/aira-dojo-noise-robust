@@ -1,0 +1,24 @@
+{
+  "files": {
+    "cpu": "766f3e39f4c1f947264769516e2b6f16f7da44fd3c6f995d0d8b18894e7d9c80",
+    "readout": "5f262d078bf301f27db12a487c9ea7d58979478075365f5115ae48bd1c36a091",
+    "verifier": "03d21e01445f94155d5eb15de003d8de60e7a0e9f8ce653c935027a6aac5611e"
+  },
+  "mechanism_sha256": "82997a1ea751a937152c4d94a7f45d9159ef93840fcf2c2cf8b6033d88c47223",
+  "plan_sha256": "f5aba6d06b20a1c4037abc52c373842bae70f6672d3a2ac7b20c8bb3fc82dd3c",
+  "script_sha256": "ddca6a17d1bfe7e0f20e704841244332c3139c3618f6c9b94199119d95edc023",
+  "templates": {
+    "cpu": [
+      "opportunity_information_cpu_20261003.py",
+      "4e270eee98dad9cd339f4e396aefdab2bc17dfa37006123f829e6b9a8304f89b"
+    ],
+    "readout": [
+      "opportunity_information_readout_20261003.py",
+      "73959a378739d913bf80b32c401b52b133555cee5c43a22f94df72605595c75e"
+    ],
+    "verifier": [
+      "opportunity_information_verify_20261003.py",
+      "6c110ac0fbcaadc130a6d96e13a526cbfad3bfd14dcfb100823918381fa49f77"
+    ]
+  }
+}

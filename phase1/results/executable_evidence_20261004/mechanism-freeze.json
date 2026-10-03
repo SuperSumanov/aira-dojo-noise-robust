@@ -1,0 +1,12 @@
+{
+  "criteria": [
+    "B names a consequential premise AND specifies what contrasting observations would imply.",
+    "CHECK actually executes a test of that premise; generic summaries/planned changes alone do not pass.",
+    "Returned evidence distinguishes premise supported/contradicted/unresolved; thrown exception is not contradiction.",
+    "Later actual code implements an evidence-linked modification, not only self-report; unrelated changes separately coded.",
+    "Quality must exceed A and C under frozen full-cost gate; standard checklist repairs remain standard repairs.",
+    "Do not condition denominator on first check adherence, valid new candidate or model-generated positive wording."
+  ],
+  "review_boundary": "Analyst sees arms and qualitative terminals; no claim of independent blinded semantic coding. Numerical values withheld until closure. No novelty claim from success alone.",
+  "scope": "All18 assigned trajectories, all actions; no outcome selection."
+}

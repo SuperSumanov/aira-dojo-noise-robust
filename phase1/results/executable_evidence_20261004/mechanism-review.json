@@ -1,0 +1,749 @@
+{
+  "accepted_actions_reviewed": 81,
+  "assigned": 18,
+  "completed_utc": "2026-10-03 19:03:54 UTC",
+  "episodes": [
+    {
+      "arm": "B",
+      "index": 0,
+      "notes": "Falsifiable relative numeric/text signal premise stated. First CHECK actually fits new LGB/text models but drops parent's train-query intersection, introducing train-only/retrieval columns; diagnostic target mismatches parent. Step2 fails test-column KeyError; step3 restores intersection (self-induced regression). Step4 adds text, steps5/6 standard word-char/LGB logistic stacking/feature changes. CV TFIDF fitted on all public train before folds and stack folds share OOF dependency; not clean independent generalization evidence. Explicit estimator random_state123 added step6; wrapper seed42 does not freeze every generated estimator seed. First CHECK visible output actually contains OOF/correlations. No new non-checklist algorithm; later numeric outcome unknown.",
+      "reviewed_steps": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "sources": [
+        {
+          "code_sha256": "60214cacf54679611c3072c3b66f6e786b831951609613ff15dd01b677e85d93",
+          "return_state": "returned",
+          "source_sha256": "3cc81fc7232144bdd910920f26ff0de1f346c95c021de9792d260f50e4c65a58",
+          "step": 1
+        },
+        {
+          "code_sha256": "2c3e59eefc58ef3d31bbd62a998d4d0aa805cd4f31a21668e65cebaebf8a19f7",
+          "return_state": "returned",
+          "source_sha256": "b10b8e869ae6e56c6c45dd1833e6b9af4e0f791a59b256b070af4a80e2c4a2b0",
+          "step": 2
+        },
+        {
+          "code_sha256": "c42a732f94281835edb4ac09f0719fe2c24f917a3b9b7a0b62eaa8b4720128b8",
+          "return_state": "returned",
+          "source_sha256": "4ec828266a9ecb20c1163a25542b2411f13f50645bf1f76521781dc1b38f1066",
+          "step": 3
+        },
+        {
+          "code_sha256": "c3dc4f01a049cd84d6a9821aabff6f3305f27b5ce974c89e0b3d03c5cb8efa87",
+          "return_state": "returned",
+          "source_sha256": "2b6079f27805d67cd7adbdcd71d17bd2388cdf14d18160830054a26ea8d84fff",
+          "step": 4
+        },
+        {
+          "code_sha256": "5f98dc26bfee1e16dae82e9f11ebebc80dfb4eb45fdb8d654a61686672955852",
+          "return_state": "returned",
+          "source_sha256": "06db6db7f20c7eab49359d9b222499d55c823a7a08cd476d4646d1f52aef1c1d",
+          "step": 5
+        },
+        {
+          "code_sha256": "f55e815b54baf0c46b91162d7c8a1425a476de81abb065696e2d58510bf019ca",
+          "return_state": "returned",
+          "source_sha256": "7ea9d3331a05309eba041628413979ea36e44c7024ecb7f9c13ce3c74e12f6db",
+          "step": 6
+        }
+      ]
+    },
+    {
+      "arm": "B",
+      "index": 1,
+      "notes": "Premise blend weights/combined vs components then tests new LR vs LGB with expensive 3-fold fit on full-train TFIDF; target partially shifts from weights. First CHECK times out after partial fold output; no complete disconfirmation. Step2 syntax rejected; step3 repeats original pipeline and original 0.4/0.3/0.3 weights without return. No actual new implemented improvement demonstrated pre-readout.",
+      "reviewed_steps": [
+        1,
+        3
+      ],
+      "sources": [
+        {
+          "code_sha256": "e69369f24ad8584e69b511aae83f53a064e6462c570af8184fc5b6318f8c4371",
+          "return_state": "returned",
+          "source_sha256": "a5f42cbd69aaf92e58e265b06b2e04b70eaf532e86ed3059db9eb4431c701c90",
+          "step": 1
+        },
+        {
+          "code_sha256": "ec1f3c3f01b77c1e54040afc67532db7384307316a3f4425192e83f7ef8ee0a9",
+          "return_state": "accepted_without_return",
+          "source_sha256": "56544d2df8a7cb0b92b5cad8c66fe37b7249c560e3f7d89272b7d2f58e25f05a",
+          "step": 3
+        }
+      ]
+    },
+    {
+      "arm": "C",
+      "index": 2,
+      "notes": "First checklist prints schema/train-only columns but ends reading absent submission file. Subsequent standard char-TFIDF/LGB/stack variants plus historical XGB early-stopping repair. Step2 fit keyword TypeError repaired by constructor setting step3. Last step reinstates earlier 5-model mixture. Full-train vocabulary before public CV and non-nested stacking; not clean independent generalization validation. Actual visible CHECK terminal reviewed: usable schema/field/ID evidence arrived before FileNotFoundError; do not treat as zero information.",
+      "reviewed_steps": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "sources": [
+        {
+          "code_sha256": "9cc0b93862a4c3d66f5e970342de228e4fc72a8433edd8745d7b8a39cba077a8",
+          "return_state": "returned",
+          "source_sha256": "1dfff7a64a4b5c618241dc87da3d0779cd5c4422baf9794e021deee2acc17f33",
+          "step": 1
+        },
+        {
+          "code_sha256": "1bc4b1271fcca7ccf50cc89e7a798fbdfc7ef7e66eb40df3f07dccc0add704af",
+          "return_state": "returned",
+          "source_sha256": "7704872bcb26ee2116f924c3ba8f873667c43877ad37f8027d970aa88cc15106",
+          "step": 2
+        },
+        {
+          "code_sha256": "63024f57e2aa1f48f9a4ee7376e8abca7db869172c95a7365addf4d6a2d131db",
+          "return_state": "returned",
+          "source_sha256": "8288a8b33db79b396093ebd002578e5ff62b650b8cc7d4d11fa0ecd343ad8ef0",
+          "step": 3
+        },
+        {
+          "code_sha256": "c7fc5e1661e14c3d849aecdebd46dbd8e234273493f4e70396ff00b280b94c94",
+          "return_state": "returned",
+          "source_sha256": "65eed3ab116cac04a52138bb6dd3cced6732bda8d62ab884ecaae2259eed7f7d",
+          "step": 4
+        },
+        {
+          "code_sha256": "9219f80b132b57e51e70c02be16feec9cb640be8002d13a172d72771e1abeeac",
+          "return_state": "returned",
+          "source_sha256": "41dfebf5a85c808786910621dba069a354aa210071d8482e58d11d7eb35ddd71",
+          "step": 5
+        },
+        {
+          "code_sha256": "db93638a2651a248c9a8826295abadcc19cb07b574733e1558b0490896420ad1",
+          "return_state": "returned",
+          "source_sha256": "1d9340f636ad64be44cc876b742f91a6dd698d6c45169983c7e44440385022a6",
+          "step": 6
+        }
+      ]
+    },
+    {
+      "arm": "C",
+      "index": 3,
+      "notes": "First mandatory CHECK format rejected. Step2 expensive new LGB+LR refit times out, not fixed-audit evidence. Step3 successful process merely tests submission file existence, does not emit a replacement if absent; step4 reads absent submission and fails. Step5 budget-edge API TimeoutError. No actual new valid submission apparent; final numeric effect unread.",
+      "reviewed_steps": [
+        2,
+        3,
+        4
+      ],
+      "sources": [
+        {
+          "code_sha256": "6f93ddb18d082147b9205eaf71781ab464b86c4db8feafeca026bdd3d6a3bdd3",
+          "return_state": "returned",
+          "source_sha256": "156a4c798846003ccceb627d0072b88f61396f78681da0c492be9e57a693b9dd",
+          "step": 2
+        },
+        {
+          "code_sha256": "e1dcd8625eba7d92588ba0cba96e90bbcf567e500bc5e8db5cbee44c36f5c4b5",
+          "return_state": "returned",
+          "source_sha256": "ebd2a42475381743dbc60baf507c7134ee74bf0b9804724c529653dedc8836f2",
+          "step": 3
+        },
+        {
+          "code_sha256": "378d716d0c20feb2298d4946ebbfe34ca03e0171ea52e2e33a40c46ae83d2eaa",
+          "return_state": "returned",
+          "source_sha256": "ea264fa916ec02a859cb54b252b27240500cdef57361ef1c1b28a27ffd39591f",
+          "step": 4
+        }
+      ]
+    },
+    {
+      "arm": "A",
+      "index": 4,
+      "notes": "Optional CHECK compares numeric LGB with word+char LR and OOF blend, preserves train/query column intersection; results returned and next solution instantiates mixture. Later adds dense text LGB, sparse-length error misdiagnosed as indexing then repaired via dense arrays, reuses earlier blend and final pipeline ensemble. Baseline already performs evidence-linked checking; not unique to B. Standard refit/ensemble recipes. Full-train vocabulary/public-CV non-independence.",
+      "reviewed_steps": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "sources": [
+        {
+          "code_sha256": "7a70d94bc7032a968c6ba56b04c5ade5a939738185c545ed57d597bc23a3c555",
+          "return_state": "returned",
+          "source_sha256": "17893b5e062eee2091da28ae079ce62c210f899a42d0528130406866e39533ee",
+          "step": 1
+        },
+        {
+          "code_sha256": "20f51df959fc1a4db051171b54692d5413e2e13f3bfcc984daceb26c555da513",
+          "return_state": "returned",
+          "source_sha256": "1f39f7d5965bd1e660d6b46b892f117954cfcf4e96e19ca5396691205fb558d4",
+          "step": 2
+        },
+        {
+          "code_sha256": "690dd0a2b786b920fe4c0d71e39ff3ed97504debc7e88db187a2934dbc6e457f",
+          "return_state": "returned",
+          "source_sha256": "4a55c2355f7f56e06cecd34590af079dbae3c5ff30c3f003cf1107b61b60a58f",
+          "step": 3
+        },
+        {
+          "code_sha256": "9583b773c02103692c76fd8c3679318c0ab692c0da5a2f8df0b3f004d08226d5",
+          "return_state": "returned",
+          "source_sha256": "9569f8955e52d2c5c273f531ce02e6a17e451027657f708e510b13fbd78ffa31",
+          "step": 4
+        },
+        {
+          "code_sha256": "3fde429b3d0114df6d9bc8584d906539440c5ab7916d67db0e27bd5b0ff17fdd",
+          "return_state": "returned",
+          "source_sha256": "9880c346cac2cae9fc94a53ade3e8a197adee34a310030240fd34fe7a04a772e",
+          "step": 5
+        },
+        {
+          "code_sha256": "e04e0f96d2bd31eb338559b36a039e024f07b5cedf50b85773f6dd12f0dbd8fc",
+          "return_state": "returned",
+          "source_sha256": "b572e91a3df488b1575926db957c204a33bed6b196aad4673852e0118bea628e",
+          "step": 6
+        }
+      ]
+    },
+    {
+      "arm": "A",
+      "index": 5,
+      "notes": "Full new LR C sweep+LGB5fold refit times out after first fold. Later accepted CHECK times reduced-feature500-row LGB and LR but no execution return; no completed diagnostic conclusion. Format reject step2. Large refit ignores existing fitted-state reuse.",
+      "reviewed_steps": [
+        1,
+        3
+      ],
+      "sources": [
+        {
+          "code_sha256": "7f30ded9f7d904ce9fc6a5542ec92f9f65533830b8149c16fd2e252223bfdfb2",
+          "return_state": "returned",
+          "source_sha256": "e28a66a23a813fbbe72719c4023b4c9986f77f83fd41c1d5b1a628bc01a58dcc",
+          "step": 1
+        },
+        {
+          "code_sha256": "1e5086055a6c0d2a22a2ca4bc460f504d207d222bcf5557e7ae9b3fd4d8df6d8",
+          "return_state": "accepted_without_return",
+          "source_sha256": "d359700240a02851c5ea21892611cb5f85eec664e194381808a05147167a1157",
+          "step": 3
+        }
+      ]
+    },
+    {
+      "arm": "C",
+      "index": 6,
+      "notes": "Cheap schema checklist returns usable schema/field/ID output then fails on absent submission. Standard engineered text+numeric LGB/XGB/TFIDF stack, later two-LGB/text variant, then nearly exact reproduction, C sweep and reproduction. Claims char features in step3 but missing analyzer='char', so actually word2-4 grams. No novel repair. Repeated fitting replaces direct cached-state use.",
+      "reviewed_steps": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "sources": [
+        {
+          "code_sha256": "07b712e658064bdcbe61cba9751ec308b05a52b0faf72f977568a05c94ae4059",
+          "return_state": "returned",
+          "source_sha256": "d20d2ff4c4b90e13fe8bb35e9715ba6c2dbc42f4be0249514b2d3896f13961da",
+          "step": 1
+        },
+        {
+          "code_sha256": "33b366826904b4411f4e5c932b40c43b425745a6aa23e6ff616640899d9de936",
+          "return_state": "returned",
+          "source_sha256": "1a3c86bf4ed27e553b696f28a45df6ef9ab0a51c1fea26644154e7bb33a1e2a6",
+          "step": 2
+        },
+        {
+          "code_sha256": "288da21ac1841cefa7215b6968dd96881390918638ca06e8854ff6ee5b152e01",
+          "return_state": "returned",
+          "source_sha256": "1f1a5c636858752b5075be50a8519e8dec3c3985e704ae59b714bd2d74a3251c",
+          "step": 3
+        },
+        {
+          "code_sha256": "fd0e633b0bfa4605e935a21b93d22c192836930684a69decb74d3c45ad3d5f45",
+          "return_state": "returned",
+          "source_sha256": "64e1699482e32b4be368ad22fea075038e129edbd77e1eee02a1549f8a0405ae",
+          "step": 4
+        },
+        {
+          "code_sha256": "f677ff3c8d584ecf23a33377a979a055844ac9e9906150f6a337a6ec219dd38c",
+          "return_state": "returned",
+          "source_sha256": "dcfeebc75d99de3e05f56d4386276e997243e3f456bfb527671c5b60485ceccc",
+          "step": 5
+        },
+        {
+          "code_sha256": "01520a724d1fc5e9a9d40e7567d512142ffde67bacf5152ac8a27f57375e1a3f",
+          "return_state": "returned",
+          "source_sha256": "e33d1428331a1fd68581d73aa62976c6ee493bf2824a8529f86338f94615822a",
+          "step": 6
+        }
+      ]
+    },
+    {
+      "arm": "C",
+      "index": 7,
+      "notes": "First mandatory CHECK rejected. All five accepted SOLUTIONs are exactly identical code rebuilding parent's final TFIDF/LR blend, without CV and without new hypothesis. Model believes it must keep recreating file; incumbent retained externally. No new candidate mechanism.",
+      "reviewed_steps": [
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "sources": [
+        {
+          "code_sha256": "17982a20b240f2f013a113f00837451a7413f1f6290545977946dcc66a2f6cdf",
+          "return_state": "returned",
+          "source_sha256": "c9a4b01a6ada3e40128108ef64eb4cf9eac7622125fb6049803212107c8f7468",
+          "step": 2
+        },
+        {
+          "code_sha256": "17982a20b240f2f013a113f00837451a7413f1f6290545977946dcc66a2f6cdf",
+          "return_state": "returned",
+          "source_sha256": "ca0ff06e3d71d8e8a97f259b3d6c648dedb6e00d5032743c3c26acc99eea5767",
+          "step": 3
+        },
+        {
+          "code_sha256": "17982a20b240f2f013a113f00837451a7413f1f6290545977946dcc66a2f6cdf",
+          "return_state": "returned",
+          "source_sha256": "f7b27dbe385c8be028ece700b7775e0b2ddf9a23269daf506bc1a419a9686333",
+          "step": 4
+        },
+        {
+          "code_sha256": "17982a20b240f2f013a113f00837451a7413f1f6290545977946dcc66a2f6cdf",
+          "return_state": "returned",
+          "source_sha256": "4ecc1039df1f679eccf22d7568f3ee95360686fe564ea8b64e4983ce26e27ed2",
+          "step": 5
+        },
+        {
+          "code_sha256": "17982a20b240f2f013a113f00837451a7413f1f6290545977946dcc66a2f6cdf",
+          "return_state": "returned",
+          "source_sha256": "e27058bb37464ff84f82c56faa3c43e0623ee3398e85d97b1c88bd0b16e63156",
+          "step": 6
+        }
+      ]
+    },
+    {
+      "arm": "A",
+      "index": 8,
+      "notes": "Cheap optional schema CHECK falsifies model's own claim that query lacks text. Later reasons repeatedly misdescribe parent (raw request_text, numeric LR, then full-fit meta), although original used edit-aware text and OOF meta. CHECK5 re-fits variants; SOLUTION6 silently changes previously checked OOF LR features to in-sample LR predictions while naming them OOF, invalidating diagnostic-to-edit linkage. Alleged char vectorizer missing analyzer. Evidence does not faithfully identify parent defect.",
+      "reviewed_steps": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "sources": [
+        {
+          "code_sha256": "d6ee901b5be7b2a4bc638d6faf5e25a805329dada3f466eee7e0143bd3642ec6",
+          "return_state": "returned",
+          "source_sha256": "f9fd92d80498f8ef2f1431388005ee6efdc0762affa885fb9548e495ed71fcb9",
+          "step": 1
+        },
+        {
+          "code_sha256": "539d11fa3fd7256134af18f06ff3683c236cdb876f03914b92a883b0bc06ffef",
+          "return_state": "returned",
+          "source_sha256": "3a12a2403c2bf798d766f073a8d68c9cc0facd5c28b3872074dd372fb2190906",
+          "step": 2
+        },
+        {
+          "code_sha256": "07758b492c3ee7dfeb8678fd7a5758964e798eea95619229cc96a2a1139e45bc",
+          "return_state": "returned",
+          "source_sha256": "00f74331916245fa7916a0ca1ca204729debd23b587449afbf4535997145997e",
+          "step": 3
+        },
+        {
+          "code_sha256": "6184615d8aa399347657113dde4837a0f6e1c690982ba31ea949a12636d05963",
+          "return_state": "returned",
+          "source_sha256": "493fbf2100a335dec536d2e08d9a4d3f602e2b87bacba18605fbeac0f642d941",
+          "step": 4
+        },
+        {
+          "code_sha256": "e80186805d0b5493fd8d54a8712f212fc056d91b123b6a8847d26a5ed81759e8",
+          "return_state": "returned",
+          "source_sha256": "8d0702e140c0ccd553fdb0582ec9e4497e939ddfbdace1debd3f50220ff1c564",
+          "step": 5
+        },
+        {
+          "code_sha256": "a4ffb76a4ef234a37565aeaa557ea0b056b7b6a15071e9fca5a12e5e47810789",
+          "return_state": "returned",
+          "source_sha256": "576401bcdddc07e95a1207d1ac6717ce5a6e0dd6395cf13c22a6221147c3cec9",
+          "step": 6
+        }
+      ]
+    },
+    {
+      "arm": "A",
+      "index": 9,
+      "notes": "First optional LR-v-LGB5fold check times out after two-fold evidence; next liblinear multiclass fit fails ValueError; final accepted no-return program reads absent submission file. Partial returned evidence supports slower LGB concern, not completed check or implemented superior solution.",
+      "reviewed_steps": [
+        1,
+        2,
+        3
+      ],
+      "sources": [
+        {
+          "code_sha256": "6e194fd44ff0b404364f4be893e02ce17a223756a145f1b08616c14b6712e8df",
+          "return_state": "returned",
+          "source_sha256": "c83ebd983dd54b902a23c7359a78a0007843dead8e66f7f93627acc704818783",
+          "step": 1
+        },
+        {
+          "code_sha256": "4fff31be0bb87e7c8552ff82b4c2632da4765a7fae4aa4d125fc70cf27f89836",
+          "return_state": "returned",
+          "source_sha256": "2e5dcb0671df3186cb44c8c334b30d6c9855385c972e2c0100d3c4fa7af4b32a",
+          "step": 2
+        },
+        {
+          "code_sha256": "b4c38a4b04fd547e97c9f4973d4c84a7a7c99008c3200f19271ecae6a1fc0a73",
+          "return_state": "accepted_without_return",
+          "source_sha256": "20c436e42afc0079a6a351fa3c4ea6612888ee70740d5f777e98fbb89923e64a",
+          "step": 3
+        }
+      ]
+    },
+    {
+      "arm": "B",
+      "index": 10,
+      "notes": "Explicit falsifiable text-addition premise; completed CHECK compares text C sweep/numeric/combined LGB, preserving column intersection. Subsequent reasons correctly decline combined LGB, though tune several other knobs without isolated causal test. Sparse-length bug repaired; tuned numeric/text mixture, then reproduces parent's stack twice. Real evidence-to-choice linkage exists for avoiding combined text, but this is standard ML ablation; no novel repair evident.",
+      "reviewed_steps": [
+        1,
+        3,
+        4,
+        5,
+        6
+      ],
+      "sources": [
+        {
+          "code_sha256": "308ee72140cb7f020d4a0c4230f3d23f50d57efaa28cc8547423c010b9004882",
+          "return_state": "returned",
+          "source_sha256": "fd2910d2a72bbe7155a3fb2dc1f968fa0acedf52bf7995d350825a912cc742ca",
+          "step": 1
+        },
+        {
+          "code_sha256": "dbda85ea66fae679de9d9ed11b06d74974fc0f6430ab4d47dd80b39b74c9167a",
+          "return_state": "returned",
+          "source_sha256": "78babf566bc938619ecc8aa78022d8b3067c77ac5b8d6b81f9591fc58ddd704b",
+          "step": 3
+        },
+        {
+          "code_sha256": "a6fc09ef8f5feb70e270fa6b266eb153377f36a09a3880e4c59190896cd0f602",
+          "return_state": "returned",
+          "source_sha256": "81650d15fc64c4d37dddae36f3affa97ec9edea27bc4a8a8f5007f1cc9a10156",
+          "step": 4
+        },
+        {
+          "code_sha256": "06e6552eeedae1ec5f6b1058c7badd7d7d396e34d933ef93f57e208921324ab9",
+          "return_state": "returned",
+          "source_sha256": "550735095daed8190b2c9f717d00cfd99d92ca99397a271b64585cf6f3ac99b3",
+          "step": 5
+        },
+        {
+          "code_sha256": "192b3c4ccf1bf3d42ede09d5a62c8eaa002d235c1515624a3ca63c427d68c4e1",
+          "return_state": "returned",
+          "source_sha256": "57bcda4bb90fe806cb1c7008e2828b7f5fb2a069c4bdf9b9583fddb8653f384e",
+          "step": 6
+        }
+      ]
+    },
+    {
+      "arm": "B",
+      "index": 11,
+      "notes": "Nonlinear-LGB-v-linear premise tested via new expensive5fold refit, times out after2folds. Next reason calls premise contradicted despite premise being LGB would not help (semantic inversion); observations actually support keeping LR. Temperature-scaling code separately fits vectorizers on train/validation/query, causing feature mismatch; failed implementation, final baseline rebuild accepted without return. No hidden labels accessed; model's diagnosis of error is inaccurate.",
+      "reviewed_steps": [
+        1,
+        2,
+        3
+      ],
+      "sources": [
+        {
+          "code_sha256": "72aa1115c4320a30f2ca47eaeb2ac9064082bd6cdcc3bc705b18e772fc9f1872",
+          "return_state": "returned",
+          "source_sha256": "7c5a5333074324f98703f3f79a4ffd518ae00a835f5e6c30d2ecffc9a5150fe0",
+          "step": 1
+        },
+        {
+          "code_sha256": "d5a78ad9f3b29c1e996e159db50d9f8b04176d0d23a456abb58e068d478a92ee",
+          "return_state": "returned",
+          "source_sha256": "f2a69e45386a6fddca235133872cd92ddf16385c99bf3e71a2acd3af072f32ad",
+          "step": 2
+        },
+        {
+          "code_sha256": "0b61a2b459b4a34d3ccd71aff0791f60425afdf0544db3a0f07f14719055a67b",
+          "return_state": "accepted_without_return",
+          "source_sha256": "2d9ca9339dceafc7ed3d5b24d672f6f24d52b9595bfedb708f5fb2074c9ca599",
+          "step": 3
+        }
+      ]
+    },
+    {
+      "arm": "A",
+      "index": 12,
+      "notes": "No actual CHECK despite first reason containing CHECK; actions are SOLUTION. Initial sparse-length failure fixed; ordinary word-char/numeric/combined sweeps, enrichment,5-v10fold, multi-LGBseeds and blends. Feedback-linked numeric focus rather than unique epistemic mechanism. Final adds combined LGB despite earlier weakness; multiple changing knobs.",
+      "reviewed_steps": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "sources": [
+        {
+          "code_sha256": "1086d2dace0279cad1b718b7547ebc82cffd5fc50ef1e385a3edd16823fbf96e",
+          "return_state": "returned",
+          "source_sha256": "6b91ffbd8a865cb8dfa8ddc3c7b4e8bccc559a8276cf3695a3005bf6f36bbc37",
+          "step": 1
+        },
+        {
+          "code_sha256": "d31da5c7514a6936eb8753c165672d0e223ba5ab6bd86af1372d7a05f71ffa17",
+          "return_state": "returned",
+          "source_sha256": "75f3e21e7eaef9691242caa58cc3a772b72ee6cc5950c2186098544739849116",
+          "step": 2
+        },
+        {
+          "code_sha256": "01f5df748b4ab76515633715e220ef4e7729becda79c55d20f7b4b0ee5b8f66e",
+          "return_state": "returned",
+          "source_sha256": "f465b84cfc8c959613b82f434678a81abb54cd56bff93596d72cff8536537e16",
+          "step": 3
+        },
+        {
+          "code_sha256": "3f1ce9121b463db82a475d1fea30273cc5c6733ad1fbf874f86c1d62bc12580b",
+          "return_state": "returned",
+          "source_sha256": "f59a41ca6ce2c6be955cab1f0b543f19fab41b073750acf9484e311944517363",
+          "step": 4
+        },
+        {
+          "code_sha256": "93b0333287ed9e1deed6b75fc40dfb064328e45ca34aa6a59ea41a6c3a310e60",
+          "return_state": "returned",
+          "source_sha256": "e343e0209e15915b4cb16467e800facfa17e1b8119c2bc9f9974c8223705c2ce",
+          "step": 5
+        },
+        {
+          "code_sha256": "a5639886b25cfd408a47402609b672e309949f5d50856594fd5eb309bbb3af95",
+          "return_state": "returned",
+          "source_sha256": "84b56339577a4d91d1123650c2369bc0466a3f38455bc9fd063a64f944d997e1",
+          "step": 6
+        }
+      ]
+    },
+    {
+      "arm": "A",
+      "index": 13,
+      "notes": "First format reject. New LGB5fold assumed stronger but times out; reconstructs proven LR blend rather than reusing live predictions. Later request no return. No executed discriminating diagnostic.",
+      "reviewed_steps": [
+        2,
+        3
+      ],
+      "sources": [
+        {
+          "code_sha256": "703a89da0b319dda4187549387f87267abf170a521231c6938184a5fadc596a6",
+          "return_state": "returned",
+          "source_sha256": "adfd9b4e78c361bbcc8b789b7bd48ecffafc0ea78fcbce161313530bda29396e",
+          "step": 2
+        },
+        {
+          "code_sha256": "5363bfad06367a0432d76a4bd360387324fd23782ba62926f1222fe74a1af645",
+          "return_state": "returned",
+          "source_sha256": "0b00cbf4a7ba94cf992769c8dc8ba9c6e309eb96b515cccae4519f2366bd93e6",
+          "step": 3
+        }
+      ]
+    },
+    {
+      "arm": "B",
+      "index": 14,
+      "notes": "Underfitting/early-stop premise. CHECK1 invalid LightGBM verbose_eval; repaired CHECK2 returns metrics but BOTH checks drop original train-query column intersection and include retrieval-only features. SOLUTION3 reinstates intersection, so result does not isolate iteration/early-stop claim. Later rationale falsely blames n_estimators for removing fold separation; code still trained each fold. Steps4-6 reproduce parent. Second of3 B-Pizza episodes with diagnostic-target mismatch.",
+      "reviewed_steps": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "sources": [
+        {
+          "code_sha256": "fa19e920e5242be148b45f244f040689667732d1e7678e04c1cd5a90dc28938c",
+          "return_state": "returned",
+          "source_sha256": "0297381b05ae7894140462f176d023543d619380d54e15943e10ef0a424a901f",
+          "step": 1
+        },
+        {
+          "code_sha256": "3cc834417f80fe106d550bfa580b713067f928d6b000dff310f3fd018b63dd37",
+          "return_state": "returned",
+          "source_sha256": "ed0f17639163e820eb8522935457b141afb529689c2224193ca49ce239517de3",
+          "step": 2
+        },
+        {
+          "code_sha256": "6d2ae47d359b73836b236cfe167d5cdc56cf14ff140a263391904c03ab9a031b",
+          "return_state": "returned",
+          "source_sha256": "07f0b138045e7c7c748d47797a158ad169ee2406a3564a98498308189cfc7617",
+          "step": 3
+        },
+        {
+          "code_sha256": "880d537631047bba9d9ae12fd2ff1b82ed0c82e9758efda3cc0224cd96f43446",
+          "return_state": "returned",
+          "source_sha256": "5ac8aa79a53e13ce5ed9abe94d87719641cc2f642f8ddc610fc6376655db96bb",
+          "step": 4
+        },
+        {
+          "code_sha256": "880d537631047bba9d9ae12fd2ff1b82ed0c82e9758efda3cc0224cd96f43446",
+          "return_state": "returned",
+          "source_sha256": "da41cd02b17d91a1406a355488fa69019550147a65d9f3fba8e5aabbdbd05713",
+          "step": 5
+        },
+        {
+          "code_sha256": "880d537631047bba9d9ae12fd2ff1b82ed0c82e9758efda3cc0224cd96f43446",
+          "return_state": "returned",
+          "source_sha256": "921bff7297fefc9f7f9c02a1321794b753c10df57a3b53d08f5485a752ee8b31",
+          "step": 6
+        }
+      ]
+    },
+    {
+      "arm": "B",
+      "index": 15,
+      "notes": "Single-fold LGB check completes and discourages switching from LR; vocabulary fit on full public train differs from parent's fold fitting, so comparison not exact. Subsequent style-feature/C/blend sweep far more expensive than claimed and times out; final accepted no-return also3fold refits+final fit. Evidence-linked avoidance of LGB, but no completed new repair; standard classifier selection.",
+      "reviewed_steps": [
+        1,
+        2,
+        3
+      ],
+      "sources": [
+        {
+          "code_sha256": "3ab0c31c7e886d0e8fa1052bf2c896543070e44adff1c8d3503ced450ff42bf7",
+          "return_state": "returned",
+          "source_sha256": "b49c8d5f2f6103f2af152bddfa86698b8c3e22b11b30810e3df8cfd26add1d51",
+          "step": 1
+        },
+        {
+          "code_sha256": "229726a4e5da3c3753f8de5907fabd8d7f2a53afba150ff2f4647bb563d4c6bb",
+          "return_state": "returned",
+          "source_sha256": "bfec123c99643cd5053540f3be281a197218e69128da109f08a070380817fed1",
+          "step": 2
+        },
+        {
+          "code_sha256": "a242106d712a007209317f232292b4ce94b9bd9cf1d69f8d889d19ca36c7a8d7",
+          "return_state": "accepted_without_return",
+          "source_sha256": "3d842a6529bb6f3d542bccfe11e019805c685a11647a5aaafc4539247611e58a",
+          "step": 3
+        }
+      ]
+    },
+    {
+      "arm": "C",
+      "index": 16,
+      "notes": "First format reject then cheap schema checklist succeeds. New dense-text/tree refit times out; next code claims XGB early stopping but does not set it. Step5 sets unsupported fit kwarg and fails; step6 constructor fix plus several changed hyperparams and char-LR stack. Ordinary historical early-stop witness rediscovered, not novel. Step3 'char' features actually word ngrams.",
+      "reviewed_steps": [
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "sources": [
+        {
+          "code_sha256": "a632bb5e76bf5fa3323bccee6451b32f692ce5192eceb5861a7a4737376b386b",
+          "return_state": "returned",
+          "source_sha256": "5088a2eb72fc2010c31cc2beec22de69d16de96a437c7b20042507740f8197eb",
+          "step": 2
+        },
+        {
+          "code_sha256": "459d893a2d9393dbb9bb34e58d5c664850f039f5005432b46a4bf3667a0099bf",
+          "return_state": "returned",
+          "source_sha256": "be57b28268c34292148234576c5a50b890086c1baafc4f705d99dc5e13beb276",
+          "step": 3
+        },
+        {
+          "code_sha256": "90b262a1d865a852fc5b84eb810671f03752663ad92bd01850a41cf613a29312",
+          "return_state": "returned",
+          "source_sha256": "6e9dbaf050563f9c0beb92ab2a837d6d11c7a3990b08e961a9b1b1ad1c968f20",
+          "step": 4
+        },
+        {
+          "code_sha256": "47c5ea27a5fb9ad31bd199b72b0f5d7937471a9954f781b08db3a427731f9259",
+          "return_state": "returned",
+          "source_sha256": "7652e4430d6cd376dfe08972019e266e7affaf8fe528e8204011df68f74b31da",
+          "step": 5
+        },
+        {
+          "code_sha256": "486b75fdba10f3abcbc291ac2617c5269dcd5810ceea9aec5350019e7a932721",
+          "return_state": "returned",
+          "source_sha256": "ade1a845760d66a0a6d27fa4e03e707b41ae89f35371c7c306b9b2ddcc41c4ce",
+          "step": 6
+        }
+      ]
+    },
+    {
+      "arm": "C",
+      "index": 17,
+      "notes": "Checklist includes actual one-fold wordLR C/convergence test, plus hard-coded unverified narrative observations (e.g. vectorizer default lowercase ignored). Returned C/convergence evidence, reasons conclude no supported defect. Repeats parent's fullCV/refit twice then final-only refit variants and unreturned last attempt. Existing component superiority in public CV not acted on, no improvement mechanism. Persistent-state/retention misunderstanding consumes budget.",
+      "reviewed_steps": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "sources": [
+        {
+          "code_sha256": "824ec580f00d5372f893c5ccae024bdb302de6792300689b785020f70d2e143b",
+          "return_state": "returned",
+          "source_sha256": "30c09ce721c5a2621d973636fa7becc625f2240613b83c6adf7ee2a78dbea2f0",
+          "step": 1
+        },
+        {
+          "code_sha256": "97b85a025de7134c07b9917d261f7767c526e2fbe95ae9627b67ff0a215abd10",
+          "return_state": "returned",
+          "source_sha256": "afb85a436b344815319694a8cd5668e31936ec47cd44978f34868dbd8b29c584",
+          "step": 2
+        },
+        {
+          "code_sha256": "97b85a025de7134c07b9917d261f7767c526e2fbe95ae9627b67ff0a215abd10",
+          "return_state": "returned",
+          "source_sha256": "8302372a5987735093f22ecb20a776c35b34db766fd2b0f3dc9a2722e3f552a9",
+          "step": 3
+        },
+        {
+          "code_sha256": "0ed6c70013a26974a270ee6c9c503494c0294d3ee092cce6884ec9af3cc5e95d",
+          "return_state": "returned",
+          "source_sha256": "9ed1201627c8804800a383050fccba7a3011708b8f3702490f2f9ca64b3c71ed",
+          "step": 4
+        },
+        {
+          "code_sha256": "0ed6c70013a26974a270ee6c9c503494c0294d3ee092cce6884ec9af3cc5e95d",
+          "return_state": "returned",
+          "source_sha256": "927d9b6bb039469ff4f1bea956eaf2fa7bd2bf918d10ce4e1ec3f37ef5db55c9",
+          "step": 5
+        },
+        {
+          "code_sha256": "d537a39e012e14a22001ebae80de0d410d7991bda676b20f64a6e1a070c8a3d7",
+          "return_state": "accepted_without_return",
+          "source_sha256": "e082165e8676f2828f9f2587a30db20e92a3e1ff12340f5cd3195ef49d822ee4",
+          "step": 6
+        }
+      ]
+    }
+  ],
+  "observations_before_numeric_readout": [
+    "B Pizza 2/3 episodes dropped original train/query column intersection in their diagnostic, invalidating the claimed isolation of original bottleneck. This is public-feature/diagnostic mismatch, not evidence of hidden-label access.",
+    "B Pizza third episode completed a relevant comparison; ordinary A also independently conducted usable checks. Checking itself is not unique capability.",
+    "B Spooky 2/3 first checks timed out; one single-fold check completed, followed by expensive standard refitting and no returned new solution. All three selected LGB comparison rather than exploiting known fitted-component prediction arrays.",
+    "C cheap audits sometimes print useful data before a missing-submission error; they are not information-free failures. C first-call format failures are retained.",
+    "Several arms repeatedly retrain solely to recreate submission files despite externally retained incumbents. Six-call contract and file-clearing semantics are harness limitations, not intrinsic proof that reasoning policies cannot work.",
+    "No reviewed B trajectory supplies a new algorithm outside standard ML model comparison/tuning/ensembling. Any endpoint win still requires task/seed gate and later independent confirmation."
+  ],
+  "plan_sha256": "f5aba6d06b20a1c4037abc52c373842bae70f6672d3a2ac7b20c8bb3fc82dd3c",
+  "review_scope": "All accepted program bytes and reasons, including format-PASS actions without execution return; previously reviewed exact programs compared with complete line diffs. Actual visible CHECK output reviewed, numbers masked. Generated source constants and model assertions were visible but not treated as verified effect readout. Format rejects and budget failures remain in denominator.",
+  "reviewed_before_numeric_readout": true,
+  "reviewer_limitations": "One analyst aware of arms; qualitative exploratory classification, not independent blinded mechanism evaluation or causal mediation. No consolidated endpoint effect read before this receipt.",
+  "schema": "executable-evidence-mechanism-review-v1"
+}

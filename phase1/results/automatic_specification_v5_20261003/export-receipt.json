@@ -1,0 +1,92 @@
+{
+  "credentials": false,
+  "files": [
+    {
+      "bytes": 5615,
+      "path": "runs.csv",
+      "sha256": "09b4dc48701c9b732487a284308ce121e342d7c66e31dfd1e1c0176e5bdde60a"
+    },
+    {
+      "bytes": 9862,
+      "path": "actions.csv",
+      "sha256": "2a5917478d973d9f2d23d59252c2cfb3fa698e9306a50e84c95c3eef23747a66"
+    },
+    {
+      "bytes": 493,
+      "path": "pairs.csv",
+      "sha256": "6512bfd7b6af419334090fc8d71b941cebea8072adec8c3f0bb5278eafb032f8"
+    },
+    {
+      "bytes": 12129,
+      "path": "verification.json",
+      "sha256": "5a7fb063d53afa2c55931c4bc26a8303b83136150784649785464b1fa7410fe0"
+    },
+    {
+      "bytes": 9109,
+      "path": "mechanism-audit.json",
+      "sha256": "e644e0cb468761392f8eb17d7adf3f2a425e8b01542a08a8a98cdef8f32cf44a"
+    },
+    {
+      "bytes": 2977,
+      "path": "conditional-sensitivity.json",
+      "sha256": "b7c2523f9b9220c3fa06bfc4ca2d0243644a93bd7df17e1f02064dd64958e25d"
+    },
+    {
+      "bytes": 236,
+      "path": "readout-freeze.json",
+      "sha256": "406fd3063fc11143728fdbc880a6e590bcd2d815bba7fda3afeaeed0206ce58b"
+    },
+    {
+      "bytes": 5524,
+      "path": "transport-loop-cpu.json",
+      "sha256": "4f320ea79c37fce0a36ae4c59dec2a0db8834aacb55a0286acf50b5aaf146343"
+    },
+    {
+      "bytes": 233,
+      "path": "verifier-freeze.json",
+      "sha256": "2534469eb3fe68539746f2b98aa87ef8cb248ca04c8daf866df1fc41a5745ab8"
+    },
+    {
+      "bytes": 774,
+      "path": "sensitivity-freeze.json",
+      "sha256": "ac279dd471f42b2b314e271ce863c194e9d95ddc6d17188bfe8c0f2639bbfc46"
+    },
+    {
+      "bytes": 1678,
+      "path": "mechanism-freeze.json",
+      "sha256": "69e651eda58b52e2c65def4ec3d7bf924c5d78a26191d9f3c83522b651bdff32"
+    },
+    {
+      "bytes": 1150,
+      "path": "analysis-freeze.json",
+      "sha256": "5f3efae4c826d439f3a7d36c31c26539ed7eef3ee48ca2b775cf624949ba21ca"
+    },
+    {
+      "bytes": 543,
+      "path": "compatibility.json",
+      "sha256": "d023907f83b0d72dd588aa8605d2d9f2494803b6db1e437bb765dafcfb0c8d55"
+    },
+    {
+      "bytes": 977,
+      "path": "prior-accounting.json",
+      "sha256": "43c5b7fc20d515bf7ac3dd8de8da9be1a9a0dafba404cdb41c16418e7836ef4c"
+    },
+    {
+      "bytes": 21163,
+      "path": "summary-public.json",
+      "sha256": "d9975b62c8185cf230aeda0a7e177c2b92ece47d00f2ca07228db2b3b2137449"
+    },
+    {
+      "bytes": 5931,
+      "path": "plan-public.json",
+      "sha256": "79f970e3af16e27fc77e09e289aeb7c6a22a81051706272a44b4433d210df110"
+    }
+  ],
+  "model_messages": false,
+  "raw_candidate_programs": false,
+  "raw_labels": false,
+  "raw_predictions": false,
+  "scope": "Closed approved developer experiment only. No protected cohort or final-test access. No candidate code or model responses exported.",
+  "source_plan_sha256": "e533639434bc1c1cca57a301127a63eff56452119dfe78ccd332199e9f8fb2ce",
+  "status": "SAFE_AGGREGATE_EXPORT"
+}

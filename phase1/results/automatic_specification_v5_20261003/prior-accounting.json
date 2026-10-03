@@ -1,0 +1,48 @@
+{
+  "combined_max_gpu_hours": 7.802777777777778,
+  "gpu_hours": 0.6027777777777777,
+  "jobs": [
+    {
+      "elapsed_seconds": 0,
+      "gpu_hours": 0.0,
+      "gpus": 4,
+      "job": "15336",
+      "state": "CANCELLED by 7542"
+    },
+    {
+      "elapsed_seconds": 4,
+      "gpu_hours": 0.0044444444444444444,
+      "gpus": 4,
+      "job": "15344",
+      "state": "FAILED"
+    },
+    {
+      "elapsed_seconds": 15,
+      "gpu_hours": 0.016666666666666666,
+      "gpus": 4,
+      "job": "15351",
+      "state": "FAILED"
+    },
+    {
+      "elapsed_seconds": 2,
+      "gpu_hours": 0.0011111111111111111,
+      "gpus": 2,
+      "job": "15355",
+      "state": "COMPLETED"
+    },
+    {
+      "elapsed_seconds": 3,
+      "gpu_hours": 0.0016666666666666668,
+      "gpus": 2,
+      "job": "15357",
+      "state": "COMPLETED"
+    },
+    {
+      "elapsed_seconds": 521,
+      "gpu_hours": 0.5788888888888889,
+      "gpus": 4,
+      "job": "15365",
+      "state": "COMPLETED"
+    }
+  ]
+}

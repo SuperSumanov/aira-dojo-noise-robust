@@ -797,3 +797,5 @@ phase1/tests/test_opportunity_information_readout_20261003.py -text diff whitesp
 # Exact frozen source and closed automatic-specification evidence bytes.
 phase1/scripts/automatic_specification*20261003.py -text diff whitespace=cr-at-eol
 phase1/results/automatic_specification_20261003/** -text diff whitespace=cr-at-eol
+phase1/results/automatic_specification_v5_20261003/** -text diff whitespace=cr-at-eol
+phase1/results/automatic_specification_v6_20261003/** -text diff whitespace=cr-at-eol

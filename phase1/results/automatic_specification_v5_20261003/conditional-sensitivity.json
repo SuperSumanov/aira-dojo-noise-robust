@@ -1,0 +1,90 @@
+{
+  "freeze": {
+    "method": "Class-stratified paired query bootstrap. Shared query resample across both generation seeds and all arms. Average two within-seed final retained-score differences; same as median with two seeds.",
+    "plan_sha256": "e533639434bc1c1cca57a301127a63eff56452119dfe78ccd332199e9f8fb2ce",
+    "replicates": 5000,
+    "scope": "Conditional descriptive intervals only. Adaptive developer-query selection and developer task/protocol selection are not accounted for; no new task/run/training uncertainty or multiplicity correction. Does not change original numerical gate.",
+    "script_sha256": "72939993d0220c51220339e53eefb038bfe2511f17fde773b198161c6e083729",
+    "seed_base": 104600,
+    "status": "FROZEN_BEFORE_EFFECT_READOUT",
+    "utc": "2026-10-03T05:44:04.416944+00:00"
+  },
+  "plan_sha256": "e533639434bc1c1cca57a301127a63eff56452119dfe78ccd332199e9f8fb2ce",
+  "results": [
+    {
+      "conditional_interval": [
+        -0.10939667543649845,
+        -0.03739909710595556
+      ],
+      "contrast": "B_minus_A",
+      "n_queries": 300,
+      "observed": -0.07411504424778759,
+      "rng_seed": 104600,
+      "status": "DESCRIPTIVE_CONDITIONAL",
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "conditional_interval": [
+        -0.09286280196125328,
+        -0.021705333652236314
+      ],
+      "contrast": "B_minus_C",
+      "n_queries": 300,
+      "observed": -0.05800047835446065,
+      "rng_seed": 104600,
+      "status": "DESCRIPTIVE_CONDITIONAL",
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "conditional_interval": [
+        -0.06209713585266681,
+        0.03065056206649121
+      ],
+      "contrast": "C_minus_A",
+      "n_queries": 300,
+      "observed": -0.016114565893326938,
+      "rng_seed": 104600,
+      "status": "DESCRIPTIVE_CONDITIONAL",
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "conditional_interval": [
+        -0.008090811713602482,
+        -0.0032655069389394414
+      ],
+      "contrast": "B_minus_A",
+      "n_queries": 1761,
+      "observed": -0.00570687560890254,
+      "rng_seed": 104601,
+      "status": "DESCRIPTIVE_CONDITIONAL",
+      "task": "spooky-author-identification"
+    },
+    {
+      "conditional_interval": [
+        -0.00539659472521177,
+        0.0002524095959008131
+      ],
+      "contrast": "B_minus_C",
+      "n_queries": 1761,
+      "observed": -0.002566890789623605,
+      "rng_seed": 104601,
+      "status": "DESCRIPTIVE_CONDITIONAL",
+      "task": "spooky-author-identification"
+    },
+    {
+      "conditional_interval": [
+        -0.005386570226404709,
+        -0.0008797941216918807
+      ],
+      "contrast": "C_minus_A",
+      "n_queries": 1761,
+      "observed": -0.003139984819278935,
+      "rng_seed": 104601,
+      "status": "DESCRIPTIVE_CONDITIONAL",
+      "task": "spooky-author-identification"
+    }
+  ],
+  "seconds": 8.546490600332618,
+  "status": "COMPLETE",
+  "summary_sha256": "41767d4d72bc8f396c5f53632769f0c52a6943addbef17bd55265e3444cb0f40"
+}

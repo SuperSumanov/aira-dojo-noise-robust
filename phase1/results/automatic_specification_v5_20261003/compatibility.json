@@ -1,0 +1,24 @@
+{
+  "compute": {
+    "capability": [
+      8,
+      6
+    ],
+    "cuda": "12.4",
+    "matmul": true,
+    "name": "NVIDIA GeForce RTX 3090",
+    "torch": "2.5.1+cu124"
+  },
+  "gpu_uuid": "GPU-933b7bac-bb2e-5adc-ef66-33cf94640c41",
+  "image_sha256": "801f646bed3cae6e74e10d793e71b0086658d4303d54552333c58125ddf9beda",
+  "job": "15389",
+  "namespace": {
+    "exact_device_namespace": true,
+    "minor": 4,
+    "readonly_driver_libraries": 52
+  },
+  "node": "gpu3",
+  "status": "PASS",
+  "step": "1",
+  "utc": "2026-10-03T05:49:34.372286+00:00"
+}

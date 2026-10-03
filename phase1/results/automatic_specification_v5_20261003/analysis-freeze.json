@@ -1,0 +1,25 @@
+{
+  "adaptation": "Context R/PLAN rebound to fixed V5 cohort; verifier checks execution-only root prompt. Scientific endpoints and numerical gate unchanged.",
+  "files": {
+    "readout": "b5fab43ac9e0d34b53f874756494d4dd79ee80fcb9676ba30eeeff39394b1c26",
+    "sensitivity": "72939993d0220c51220339e53eefb038bfe2511f17fde773b198161c6e083729",
+    "verifier": "84260a0e5988b45cd19aff4a3da4d602cd38b388cf851008fc4daf2bda3fc9fe"
+  },
+  "plan_sha256": "e533639434bc1c1cca57a301127a63eff56452119dfe78ccd332199e9f8fb2ce",
+  "script_sha256": "a7bc7d5c94fc901b38b57edfdaaa3f7244da21d02e932b22a838876ef274147b",
+  "templates": {
+    "readout": [
+      "automatic_specification_gpu3_v4_readout_20261003.py",
+      "b5fab43ac9e0d34b53f874756494d4dd79ee80fcb9676ba30eeeff39394b1c26"
+    ],
+    "sensitivity": [
+      "automatic_specification_gpu3_v4_sensitivity_20261003.py",
+      "72939993d0220c51220339e53eefb038bfe2511f17fde773b198161c6e083729"
+    ],
+    "verifier": [
+      "automatic_specification_gpu3_v4_verify_20261003.py",
+      "05dc76ddf2e694fd8cd48e51120c208467a014d2888c1835c5174136185d6449"
+    ]
+  },
+  "utc": "2026-10-03T05:44:04.419603+00:00"
+}

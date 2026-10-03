@@ -1,0 +1,16 @@
+{
+  "plan_sha256": "e533639434bc1c1cca57a301127a63eff56452119dfe78ccd332199e9f8fb2ce",
+  "procedure": "Inspect all completed traces before reading aggregate effect numbers where possible. Analyst sees arm and execution events; no claim of independent blinded reviewer.",
+  "rubric": {
+    "attribution": "A multi-change patch does not identify a single causal mechanism. Distinct generation seeds producing identical predictions are not independent training replication.",
+    "benefit": "Only the frozen numerical readout can establish retained-score differences; code inspection never substitutes for it.",
+    "grounding": "Does the initial plan correctly reference actual existing components/variables and observations? Do not equate asserted causality with evidence.",
+    "implementation": "Compare stated change with executed code; label implemented/partial/not implemented/unknown. Execution success alone is not implementation proof.",
+    "known_rules": "Check objective/metric alignment, supported early stopping, public CV member/blend selection, train-fitted preprocessing, standard text views/regularized models. Beyond this checklist is not proof of novelty.",
+    "preservation": "Explicitly list non-target alterations, unnecessary retraining, or incompatible interfaces; missing evidence is unknown."
+  },
+  "script_sha256": "a9284c9ccd158054ed7c8f394c7d2895101c50ca65529af0708806e79c7ba631",
+  "timing": "Post-launch, before inspection of model responses or numerical effects. Does not change original numerical gate.",
+  "units": "All assigned roots and comparisons, including failures and unstarted positions.",
+  "utc": "2026-10-03T05:48:26.072647+00:00"
+}

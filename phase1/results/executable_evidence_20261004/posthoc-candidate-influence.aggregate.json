@@ -1,0 +1,201 @@
+{
+  "boundary": "Post-outcome descriptive analysis, not a revised gate. Exact prediction-file equality proves duplicate output, not a common internal model. Different files do not imply independent candidates. Single-query deletions overlap; they are not additional runs, confidence intervals, or new evidence of significance. Query bootstrap intervals still cross zero. No refitting, reselection, new generation, protected-cohort access or final-test access.",
+  "candidate_groups": [
+    {
+      "arm": "A",
+      "assigned_runs": 3,
+      "distinct_nonparent_prediction_files": 12,
+      "exact_parent_prediction_repeats": 0,
+      "nonparent_actions": 13,
+      "task": "random-acts-of-pizza",
+      "valid_new_actions": 13
+    },
+    {
+      "arm": "B",
+      "assigned_runs": 3,
+      "distinct_nonparent_prediction_files": 6,
+      "exact_parent_prediction_repeats": 5,
+      "nonparent_actions": 6,
+      "task": "random-acts-of-pizza",
+      "valid_new_actions": 11
+    },
+    {
+      "arm": "C",
+      "assigned_runs": 3,
+      "distinct_nonparent_prediction_files": 8,
+      "exact_parent_prediction_repeats": 0,
+      "nonparent_actions": 11,
+      "task": "random-acts-of-pizza",
+      "valid_new_actions": 11
+    },
+    {
+      "arm": "A",
+      "assigned_runs": 3,
+      "distinct_nonparent_prediction_files": 0,
+      "exact_parent_prediction_repeats": 1,
+      "nonparent_actions": 0,
+      "task": "spooky-author-identification",
+      "valid_new_actions": 1
+    },
+    {
+      "arm": "B",
+      "assigned_runs": 3,
+      "distinct_nonparent_prediction_files": 0,
+      "exact_parent_prediction_repeats": 0,
+      "nonparent_actions": 0,
+      "task": "spooky-author-identification",
+      "valid_new_actions": 0
+    },
+    {
+      "arm": "C",
+      "assigned_runs": 3,
+      "distinct_nonparent_prediction_files": 0,
+      "exact_parent_prediction_repeats": 9,
+      "nonparent_actions": 0,
+      "task": "spooky-author-identification",
+      "valid_new_actions": 9
+    }
+  ],
+  "influence_task": "random-acts-of-pizza",
+  "inputs": {
+    "plan.json": "f5aba6d06b20a1c4037abc52c373842bae70f6672d3a2ac7b20c8bb3fc82dd3c",
+    "readout-v1/runs.csv": "2824c004bcf79b4fd47e31dc9a1aaa26c605ebff8e305876b62aced4b5774b68",
+    "safe-export-v1/verification.json": "dcb892f5377806ffde988c5103ce58add8060219687eff1da36d4706ea59e960"
+  },
+  "label_sha256": "1d540e3c56bcc47c8db885b5cf8d4fcc9ba9148cc3700afdc9d863d29cdc24f8",
+  "n_query": 300,
+  "negative_class": 226,
+  "positive_class": 74,
+  "rank_formula_checks": 2709,
+  "rank_formula_max_abs_error": 0,
+  "schema": "executable-evidence-posthoc-v1",
+  "single_row_influence": [
+    {
+      "contrast": "C_minus_A",
+      "deletion_negative": 0,
+      "deletion_positive": 300,
+      "deletion_zero": 0,
+      "full_difference": 0.007175316909830198,
+      "prediction_sha256": [
+        "c121ab9c3fce8b1b0f69b290555a5e5253c314c12d1e528d6da3884d405064c1",
+        "29fdbcd5e3d86cc66f8740467d14d1293a0954b1e4710a7fa75433955155dae7"
+      ],
+      "seed": 106101,
+      "single_row_deletion_max": 0.012850042429385367,
+      "single_row_deletion_min": 0.0021820826766880685
+    },
+    {
+      "contrast": "B_minus_A",
+      "deletion_negative": 0,
+      "deletion_positive": 300,
+      "deletion_zero": 0,
+      "full_difference": 0.012556804592202875,
+      "prediction_sha256": [
+        "3e1c2ea6800b78fce2beeebe73697cf9143ec988f10d8db6d3637cc18041f6ee",
+        "29fdbcd5e3d86cc66f8740467d14d1293a0954b1e4710a7fa75433955155dae7"
+      ],
+      "seed": 106101,
+      "single_row_deletion_max": 0.018911383197963372,
+      "single_row_deletion_min": 0.006606861437750133
+    },
+    {
+      "contrast": "C_minus_B",
+      "deletion_negative": 300,
+      "deletion_positive": 0,
+      "deletion_zero": 0,
+      "full_difference": -0.0053814876823726765,
+      "prediction_sha256": [
+        "c121ab9c3fce8b1b0f69b290555a5e5253c314c12d1e528d6da3884d405064c1",
+        "3e1c2ea6800b78fce2beeebe73697cf9143ec988f10d8db6d3637cc18041f6ee"
+      ],
+      "seed": 106101,
+      "single_row_deletion_max": -0.0021820826766881796,
+      "single_row_deletion_min": -0.009516305006667447
+    },
+    {
+      "contrast": "C_minus_A",
+      "deletion_negative": 0,
+      "deletion_positive": 300,
+      "deletion_zero": 0,
+      "full_difference": 0.02941879933030378,
+      "prediction_sha256": [
+        "981df2847f32b611ce7b5a6f3315d8e1aea515ae43fb6366672d954d9b0a35dc",
+        "10bfda9bb06d0e090594da0ac468ed764b9b38d5b27e597426b8670872255949"
+      ],
+      "seed": 106111,
+      "single_row_deletion_max": 0.03309492059643593,
+      "single_row_deletion_min": 0.026488059158685906
+    },
+    {
+      "contrast": "B_minus_A",
+      "deletion_negative": 0,
+      "deletion_positive": 0,
+      "deletion_zero": 300,
+      "full_difference": 0,
+      "prediction_sha256": [
+        "10bfda9bb06d0e090594da0ac468ed764b9b38d5b27e597426b8670872255949",
+        "10bfda9bb06d0e090594da0ac468ed764b9b38d5b27e597426b8670872255949"
+      ],
+      "seed": 106111,
+      "single_row_deletion_max": 0,
+      "single_row_deletion_min": 0
+    },
+    {
+      "contrast": "C_minus_B",
+      "deletion_negative": 0,
+      "deletion_positive": 300,
+      "deletion_zero": 0,
+      "full_difference": 0.02941879933030378,
+      "prediction_sha256": [
+        "981df2847f32b611ce7b5a6f3315d8e1aea515ae43fb6366672d954d9b0a35dc",
+        "10bfda9bb06d0e090594da0ac468ed764b9b38d5b27e597426b8670872255949"
+      ],
+      "seed": 106111,
+      "single_row_deletion_max": 0.03309492059643593,
+      "single_row_deletion_min": 0.026488059158685906
+    },
+    {
+      "contrast": "C_minus_A",
+      "deletion_negative": 0,
+      "deletion_positive": 300,
+      "deletion_zero": 0,
+      "full_difference": 0.004125807223152367,
+      "prediction_sha256": [
+        "0ec8dfcff5606b09b5c2cee0593842f5617ecea4109b572d97a71a89af097ebe",
+        "5ce7db7746ec7f794467a3a3de74ca9c12efe830a1859608fd655301c5a8d018"
+      ],
+      "seed": 106121,
+      "single_row_deletion_max": 0.008667717299066569,
+      "single_row_deletion_min": 0.0007273608922293562
+    },
+    {
+      "contrast": "B_minus_A",
+      "deletion_negative": 300,
+      "deletion_positive": 0,
+      "deletion_zero": 0,
+      "full_difference": -0.014709399665151834,
+      "prediction_sha256": [
+        "10bfda9bb06d0e090594da0ac468ed764b9b38d5b27e597426b8670872255949",
+        "5ce7db7746ec7f794467a3a3de74ca9c12efe830a1859608fd655301c5a8d018"
+      ],
+      "seed": 106121,
+      "single_row_deletion_max": -0.010243665898896803,
+      "single_row_deletion_min": -0.017880955267305043
+    },
+    {
+      "contrast": "C_minus_B",
+      "deletion_negative": 0,
+      "deletion_positive": 300,
+      "deletion_zero": 0,
+      "full_difference": 0.0188352068883042,
+      "prediction_sha256": [
+        "0ec8dfcff5606b09b5c2cee0593842f5617ecea4109b572d97a71a89af097ebe",
+        "10bfda9bb06d0e090594da0ac468ed764b9b38d5b27e597426b8670872255949"
+      ],
+      "seed": 106121,
+      "single_row_deletion_max": 0.021638986543823457,
+      "single_row_deletion_min": 0.01594132622136024
+    }
+  ],
+  "source_sha256": "2b805602517f27841e77b684a6792c39c0c208efeea28779c87ed1dfe5f90247"
+}

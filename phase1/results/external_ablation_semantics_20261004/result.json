@@ -1,0 +1,444 @@
+{
+  "schema": "public-example-imputation-semantics-v1",
+  "source_url": "https://raw.githubusercontent.com/jaehyun513/MLE-STAR/d33445de01d66b42cf3e5093bc0623502393864c/example_intermediate_outputs/ablation.py",
+  "source_commit": "d33445de01d66b42cf3e5093bc0623502393864c",
+  "source_sha256": "89664d56f20e9ba22139139760ad0e89b92c13c5c7034b35caa5dfbaed4cc821",
+  "script_sha256": "aa2789d88170d8a54752ae10673c26581ec32bc6985446dd44b0097f0fa649d1",
+  "test_definition": "Five ordinary fixtures, true-deletion positive controls, no-missing negative control; two all-missing boundaries reported without equivalence assumptions.",
+  "fixtures": [
+    {
+      "fixture": "mixed_missing",
+      "ordinary_case": true,
+      "base_vs_nominal_exact_equal": true,
+      "base_vs_real_deletion_exact_equal": false,
+      "arms": {
+        "base": {
+          "status": "returned",
+          "shapes": [
+            [
+              6,
+              5
+            ],
+            [
+              3,
+              5
+            ]
+          ],
+          "nan_counts": [
+            0,
+            0
+          ],
+          "warning_count": 0
+        },
+        "nominal_no_imputation": {
+          "status": "returned",
+          "shapes": [
+            [
+              6,
+              5
+            ],
+            [
+              3,
+              5
+            ]
+          ],
+          "nan_counts": [
+            0,
+            0
+          ],
+          "warning_count": 0
+        },
+        "actual_fillna_deletion": {
+          "status": "returned",
+          "shapes": [
+            [
+              6,
+              6
+            ],
+            [
+              3,
+              6
+            ]
+          ],
+          "nan_counts": [
+            1,
+            1
+          ],
+          "warning_count": 0
+        }
+      }
+    },
+    {
+      "fixture": "numeric_only_missing",
+      "ordinary_case": true,
+      "base_vs_nominal_exact_equal": true,
+      "base_vs_real_deletion_exact_equal": false,
+      "arms": {
+        "base": {
+          "status": "returned",
+          "shapes": [
+            [
+              6,
+              5
+            ],
+            [
+              3,
+              5
+            ]
+          ],
+          "nan_counts": [
+            0,
+            0
+          ],
+          "warning_count": 0
+        },
+        "nominal_no_imputation": {
+          "status": "returned",
+          "shapes": [
+            [
+              6,
+              5
+            ],
+            [
+              3,
+              5
+            ]
+          ],
+          "nan_counts": [
+            0,
+            0
+          ],
+          "warning_count": 0
+        },
+        "actual_fillna_deletion": {
+          "status": "returned",
+          "shapes": [
+            [
+              6,
+              5
+            ],
+            [
+              3,
+              5
+            ]
+          ],
+          "nan_counts": [
+            1,
+            1
+          ],
+          "warning_count": 0
+        }
+      }
+    },
+    {
+      "fixture": "categorical_only_missing",
+      "ordinary_case": true,
+      "base_vs_nominal_exact_equal": true,
+      "base_vs_real_deletion_exact_equal": false,
+      "arms": {
+        "base": {
+          "status": "returned",
+          "shapes": [
+            [
+              6,
+              5
+            ],
+            [
+              3,
+              5
+            ]
+          ],
+          "nan_counts": [
+            0,
+            0
+          ],
+          "warning_count": 0
+        },
+        "nominal_no_imputation": {
+          "status": "returned",
+          "shapes": [
+            [
+              6,
+              5
+            ],
+            [
+              3,
+              5
+            ]
+          ],
+          "nan_counts": [
+            0,
+            0
+          ],
+          "warning_count": 0
+        },
+        "actual_fillna_deletion": {
+          "status": "returned",
+          "shapes": [
+            [
+              6,
+              6
+            ],
+            [
+              3,
+              6
+            ]
+          ],
+          "nan_counts": [
+            0,
+            0
+          ],
+          "warning_count": 0
+        }
+      }
+    },
+    {
+      "fixture": "no_missing_negative_control",
+      "ordinary_case": true,
+      "base_vs_nominal_exact_equal": true,
+      "base_vs_real_deletion_exact_equal": true,
+      "arms": {
+        "base": {
+          "status": "returned",
+          "shapes": [
+            [
+              6,
+              5
+            ],
+            [
+              3,
+              5
+            ]
+          ],
+          "nan_counts": [
+            0,
+            0
+          ],
+          "warning_count": 0
+        },
+        "nominal_no_imputation": {
+          "status": "returned",
+          "shapes": [
+            [
+              6,
+              5
+            ],
+            [
+              3,
+              5
+            ]
+          ],
+          "nan_counts": [
+            0,
+            0
+          ],
+          "warning_count": 0
+        },
+        "actual_fillna_deletion": {
+          "status": "returned",
+          "shapes": [
+            [
+              6,
+              5
+            ],
+            [
+              3,
+              5
+            ]
+          ],
+          "nan_counts": [
+            0,
+            0
+          ],
+          "warning_count": 0
+        }
+      }
+    },
+    {
+      "fixture": "tied_categorical_modes",
+      "ordinary_case": true,
+      "base_vs_nominal_exact_equal": true,
+      "base_vs_real_deletion_exact_equal": false,
+      "arms": {
+        "base": {
+          "status": "returned",
+          "shapes": [
+            [
+              6,
+              4
+            ],
+            [
+              3,
+              4
+            ]
+          ],
+          "nan_counts": [
+            0,
+            0
+          ],
+          "warning_count": 0
+        },
+        "nominal_no_imputation": {
+          "status": "returned",
+          "shapes": [
+            [
+              6,
+              4
+            ],
+            [
+              3,
+              4
+            ]
+          ],
+          "nan_counts": [
+            0,
+            0
+          ],
+          "warning_count": 0
+        },
+        "actual_fillna_deletion": {
+          "status": "returned",
+          "shapes": [
+            [
+              6,
+              5
+            ],
+            [
+              3,
+              5
+            ]
+          ],
+          "nan_counts": [
+            1,
+            1
+          ],
+          "warning_count": 0
+        }
+      }
+    },
+    {
+      "fixture": "all_missing_numeric_boundary",
+      "ordinary_case": false,
+      "base_vs_nominal_exact_equal": false,
+      "base_vs_real_deletion_exact_equal": false,
+      "arms": {
+        "base": {
+          "status": "returned",
+          "shapes": [
+            [
+              6,
+              4
+            ],
+            [
+              3,
+              4
+            ]
+          ],
+          "nan_counts": [
+            0,
+            0
+          ],
+          "warning_count": 2
+        },
+        "nominal_no_imputation": {
+          "status": "returned",
+          "shapes": [
+            [
+              6,
+              5
+            ],
+            [
+              3,
+              5
+            ]
+          ],
+          "nan_counts": [
+            6,
+            3
+          ],
+          "warning_count": 3
+        },
+        "actual_fillna_deletion": {
+          "status": "returned",
+          "shapes": [
+            [
+              6,
+              6
+            ],
+            [
+              3,
+              6
+            ]
+          ],
+          "nan_counts": [
+            6,
+            3
+          ],
+          "warning_count": 3
+        }
+      }
+    },
+    {
+      "fixture": "all_missing_categorical_boundary",
+      "ordinary_case": false,
+      "base_vs_nominal_exact_equal": null,
+      "base_vs_real_deletion_exact_equal": null,
+      "arms": {
+        "base": {
+          "status": "error",
+          "error_type": "ValueError",
+          "warning_count": 1
+        },
+        "nominal_no_imputation": {
+          "status": "error",
+          "error_type": "IndexError",
+          "warning_count": 0
+        },
+        "actual_fillna_deletion": {
+          "status": "returned",
+          "shapes": [
+            [
+              6,
+              3
+            ],
+            [
+              3,
+              3
+            ]
+          ],
+          "nan_counts": [
+            0,
+            1
+          ],
+          "warning_count": 0
+        }
+      }
+    }
+  ],
+  "extracted_assignments": {
+    "base": 7,
+    "nominal": 11
+  },
+  "manual_reference_matrix_checks": 20,
+  "maximum_manual_error": 2.220446049250313e-16,
+  "actual_control_fillna_deletions": 4,
+  "python": "3.12.13",
+  "dependencies": {
+    "numpy": "2.2.4",
+    "pandas": "2.2.3",
+    "scikit-learn": "1.6.1",
+    "scipy": "1.15.2"
+  },
+  "elapsed_seconds": 4.257227897644043,
+  "predictive_model_fits": 0,
+  "real_data_rows": 0,
+  "gpu_hours": 0,
+  "generator_calls": 0,
+  "status": "PASS",
+  "boundaries": [
+    "Synthetic preprocessing semantics only; not MLE-STAR benchmark reproduction.",
+    "One published example does not establish production prevalence or score impact.",
+    "All-missing boundaries preclude universal equivalence of the two implementations.",
+    "No new search-quality improvement, new method, or agent expansion gate."
+  ]
+}

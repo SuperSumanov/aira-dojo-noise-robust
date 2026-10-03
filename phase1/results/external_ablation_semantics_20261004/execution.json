@@ -1,0 +1,20 @@
+{
+  "plan_sha256": "3dc833abb42a912cfc08ee3125a18c0596e97787e9a4cae3d4ec0a3555fd38ca",
+  "command": [
+    "/research/d7/spc/yzyang4/venvs/aira/bin/python",
+    "-B",
+    "/research/d7/spc/yzyang4/external_ablation_semantics_20261004.py",
+    "--output",
+    "/research/d7/spc/yzyang4/external-ablation-semantics-20261004-v1.json"
+  ],
+  "network_setup": "existing env_setup.sh sourced quietly; no values recorded",
+  "start_utc": "2026-10-03T22:59:34.282151+00:00",
+  "end_utc": "2026-10-03T22:59:39.161027+00:00",
+  "returncode": 0,
+  "wall_seconds": 4.878897666931152,
+  "stdout": "{\"status\": \"PASS\", \"fixtures\": 7, \"ordinary_exact_equal\": 5, \"manual_matrix_checks\": 20, \"max_manual_error\": 2.220446049250313e-16, \"seconds\": 4.257227897644043, \"output_sha256\": \"1e53552039eff3954f03a0d22a1677873a554bf72cc1ae377b7acb66f287c455\"}\n",
+  "stderr": "",
+  "gpu_hours": 0,
+  "prior_network_failure_retained": true,
+  "test_source_and_inputs_unchanged": true
+}

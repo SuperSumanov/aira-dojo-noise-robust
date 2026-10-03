@@ -1,0 +1,22 @@
+{
+  "schema": "public-preprocessing-semantics-plan-v1",
+  "project_base_commit": "affbb964c78af7997e855737aa6694e91b6e0417",
+  "question": "Does the published nominal no-imputation example actually remove missing-value filling?",
+  "external_commit": "d33445de01d66b42cf3e5093bc0623502393864c",
+  "external_source_sha256": "89664d56f20e9ba22139139760ad0e89b92c13c5c7034b35caa5dfbaed4cc821",
+  "test_source_sha256": "aa2789d88170d8a54752ae10673c26581ec32bc6985446dd44b0097f0fa649d1",
+  "command": ["/research/d7/spc/yzyang4/venvs/aira/bin/python", "-B", "/research/d7/spc/yzyang4/external_ablation_semantics_20261004.py", "--output", "/research/d7/spc/yzyang4/external-ablation-semantics-20261004-v1.json"],
+  "fixtures": ["mixed_missing", "numeric_only_missing", "categorical_only_missing", "no_missing_negative_control", "tied_categorical_modes", "all_missing_numeric_boundary", "all_missing_categorical_boundary"],
+  "expected_ordinary_equivalence_cases": 5,
+  "actual_fillna_deletion_positive_control_cases": 4,
+  "no_missing_negative_control_cases": 1,
+  "boundary_equivalence_is_not_assumed": true,
+  "independent_reference": "Python arithmetic and Counter, with 1e-12 numeric tolerance; not sklearn transformers",
+  "python": "3.12.13",
+  "dependencies": {"numpy": "2.2.4", "pandas": "2.2.3", "scikit-learn": "1.6.1", "scipy": "1.15.2"},
+  "worker_wall_cap_seconds": 90,
+  "gpu_hours": 0,
+  "real_data_rows": 0,
+  "predictive_model_fits": 0,
+  "interpretation": "A synthetic semantic check of one public example, not MLE-STAR score reproduction, prevalence estimation, or an end-to-end gain. Preprocessing transformers are fitted only to tiny fixtures. No execution of downloaded model training code."
+}

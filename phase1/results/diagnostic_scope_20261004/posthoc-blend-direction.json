@@ -1,0 +1,174 @@
+{
+  "comparisons": [
+    {
+      "all_blend_minus_numeric": -0.016312942366026317,
+      "deployment_blend_minus_numeric": -0.01069615773508592,
+      "numeric_weight": 0.5,
+      "seed": 42,
+      "sign_reversal": false
+    },
+    {
+      "all_blend_minus_numeric": -0.007363498483316411,
+      "deployment_blend_minus_numeric": -0.0018356926188068945,
+      "numeric_weight": 0.6,
+      "seed": 42,
+      "sign_reversal": false
+    },
+    {
+      "all_blend_minus_numeric": -0.002365520728007997,
+      "deployment_blend_minus_numeric": 0.004072295247725011,
+      "numeric_weight": 0.7,
+      "seed": 42,
+      "sign_reversal": true
+    },
+    {
+      "all_blend_minus_numeric": -0.016217896865520665,
+      "deployment_blend_minus_numeric": -0.004940849342770504,
+      "numeric_weight": 0.5,
+      "seed": 173,
+      "sign_reversal": false
+    },
+    {
+      "all_blend_minus_numeric": -0.007233063700707754,
+      "deployment_blend_minus_numeric": 0.003883215369059778,
+      "numeric_weight": 0.6,
+      "seed": 173,
+      "sign_reversal": true
+    },
+    {
+      "all_blend_minus_numeric": -0.0017345803842264695,
+      "deployment_blend_minus_numeric": 0.008655712841253771,
+      "numeric_weight": 0.7,
+      "seed": 173,
+      "sign_reversal": true
+    }
+  ],
+  "interpretation": "Changes to this measured blend choice do not establish subsequent LLM behavior, D_search benefit, or automatic method gain.",
+  "numeric_checks": 12,
+  "numeric_max_abs_error": 1.1102230246251565e-16,
+  "plan_sha256": "eb42a6df8f8358dc611ba2c1d31c653c92dffe51ec87c0b33b2bfe6d643f65a0",
+  "primary_summary_sha256": "21a870197f192f32dac7d398f2bbfc18b3740303efe6252ec6d9d3f2be07bdfd",
+  "scope": "Zero-fit post-outcome sensitivity. All3 actual pre-existing blend weights, both seeds/scopes. No new weights selected; not six independent experiments. Does not alter the frozen primary gate.",
+  "scores": [
+    {
+      "arm": "all_numeric",
+      "blend_auc": 0.8697451971688573,
+      "blend_minus_numeric": -0.016312942366026317,
+      "numeric_auc": 0.8860581395348837,
+      "numeric_weight": 0.5,
+      "seed": 42
+    },
+    {
+      "arm": "all_numeric",
+      "blend_auc": 0.8786946410515672,
+      "blend_minus_numeric": -0.007363498483316411,
+      "numeric_auc": 0.8860581395348837,
+      "numeric_weight": 0.6,
+      "seed": 42
+    },
+    {
+      "arm": "all_numeric",
+      "blend_auc": 0.8836926188068757,
+      "blend_minus_numeric": -0.002365520728007997,
+      "numeric_auc": 0.8860581395348837,
+      "numeric_weight": 0.7,
+      "seed": 42
+    },
+    {
+      "arm": "deployment_scope",
+      "blend_auc": 0.6506951466127402,
+      "blend_minus_numeric": -0.01069615773508592,
+      "numeric_auc": 0.6613913043478261,
+      "numeric_weight": 0.5,
+      "seed": 42
+    },
+    {
+      "arm": "deployment_scope",
+      "blend_auc": 0.6595556117290192,
+      "blend_minus_numeric": -0.0018356926188068945,
+      "numeric_auc": 0.6613913043478261,
+      "numeric_weight": 0.6,
+      "seed": 42
+    },
+    {
+      "arm": "deployment_scope",
+      "blend_auc": 0.6654635995955511,
+      "blend_minus_numeric": 0.004072295247725011,
+      "numeric_auc": 0.6613913043478261,
+      "numeric_weight": 0.7,
+      "seed": 42
+    },
+    {
+      "arm": "deployment_scope",
+      "blend_auc": 0.644819009100101,
+      "blend_minus_numeric": -0.004940849342770504,
+      "numeric_auc": 0.6497598584428715,
+      "numeric_weight": 0.5,
+      "seed": 173
+    },
+    {
+      "arm": "deployment_scope",
+      "blend_auc": 0.6536430738119313,
+      "blend_minus_numeric": 0.003883215369059778,
+      "numeric_auc": 0.6497598584428715,
+      "numeric_weight": 0.6,
+      "seed": 173
+    },
+    {
+      "arm": "deployment_scope",
+      "blend_auc": 0.6584155712841253,
+      "blend_minus_numeric": 0.008655712841253771,
+      "numeric_auc": 0.6497598584428715,
+      "numeric_weight": 0.7,
+      "seed": 173
+    },
+    {
+      "arm": "all_numeric",
+      "blend_auc": 0.8665217391304348,
+      "blend_minus_numeric": -0.016217896865520665,
+      "numeric_auc": 0.8827396359959555,
+      "numeric_weight": 0.5,
+      "seed": 173
+    },
+    {
+      "arm": "all_numeric",
+      "blend_auc": 0.8755065722952478,
+      "blend_minus_numeric": -0.007233063700707754,
+      "numeric_auc": 0.8827396359959555,
+      "numeric_weight": 0.6,
+      "seed": 173
+    },
+    {
+      "arm": "all_numeric",
+      "blend_auc": 0.881005055611729,
+      "blend_minus_numeric": -0.0017345803842264695,
+      "numeric_auc": 0.8827396359959555,
+      "numeric_weight": 0.7,
+      "seed": 173
+    }
+  ],
+  "script_sha256": "f4c36ae11e2b42b124c9c24ce624a3ae599a31f6021c3c34fdc3697d6c06cae2",
+  "source_node_sha256": "3cc81fc7232144bdd910920f26ff0de1f346c95c021de9792d260f50e4c65a58",
+  "source_reproduction": [
+    {
+      "new_auc": 0.8697451971688573,
+      "numeric_weight": 0.5,
+      "original_rounded_auc": 0.869745,
+      "rounded_reproduction": true
+    },
+    {
+      "new_auc": 0.8786946410515672,
+      "numeric_weight": 0.6,
+      "original_rounded_auc": 0.878695,
+      "rounded_reproduction": true
+    },
+    {
+      "new_auc": 0.8836926188068757,
+      "numeric_weight": 0.7,
+      "original_rounded_auc": 0.883693,
+      "rounded_reproduction": true
+    }
+  ],
+  "status": "POSTHOC_COMPLETE",
+  "utc": "2026-10-03T21:20:41.487990+00:00"
+}

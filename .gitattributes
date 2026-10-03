@@ -804,3 +804,6 @@ phase1/results/loader_mechanism_20261003/** -text diff whitespace=cr-at-eol
 # Preserve exact source and receipts for the executable-evidence qualification.
 phase1/scripts/executable_evidence*20261004.py -text diff whitespace=cr-at-eol
 phase1/results/executable_evidence_20261004/** -text diff whitespace=cr-at-eol
+# Executed diagnostic-scope replay source and aggregate receipt bytes.
+phase1/scripts/diagnostic_scope*20261004.py -text diff whitespace=cr-at-eol
+phase1/results/diagnostic_scope_20261004/** -text diff whitespace=cr-at-eol

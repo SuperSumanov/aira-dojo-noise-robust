@@ -1,0 +1,13 @@
+{
+  "allocated_gpu_hours": 0.059722222222222225,
+  "elapsed_seconds": 215,
+  "generator_calls": 0,
+  "gpu_hours_cap": 1.5,
+  "gpus": 1,
+  "job": "15829",
+  "node": "gpu3",
+  "paid_api": 0,
+  "protected_opened": false,
+  "scope": "Allocation includes task startup/idling/failures; preparatory login-node image hashing and analysis not included in GPU hours.",
+  "state": "COMPLETED"
+}

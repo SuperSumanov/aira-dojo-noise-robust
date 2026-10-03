@@ -1,0 +1,24 @@
+{
+  "excluded": [
+    "raw programs",
+    "model replies",
+    "training labels",
+    "OOF arrays",
+    "credentials"
+  ],
+  "exporter_sha256": "f4c36ae11e2b42b124c9c24ce624a3ae599a31f6021c3c34fdc3697d6c06cae2",
+  "files": {
+    "analysis-freeze.json": "35159da8caa10ecc8064186214152f475405683efd68369c32e5fa1e301385e4",
+    "cpu.json": "612fc2e4ceada4d03b9b8c18d33f3fa625ec0c676d5ba6498bfc3b2d23c0f871",
+    "launch.json": "5cc91e70f35755d9841343e53c89149f9ff5e5aa6e598928126a19ef80939d95",
+    "pairs.csv": "e13569767a12c640b5923345f7629863b678658376b1a332edad919075fc75b6",
+    "plan.aggregate.json": "25ffaaf58996a5642ea5b0904c02dd17d26b7377d8e6dd441b68cf5fce17fbeb",
+    "posthoc-blend-direction.json": "c6e665c69b84dfe5d1c6b39410c7e7b0ba4ac7694b1ba7073ae8fb4383bcaa8c",
+    "resources.json": "14b49cb8bbcb201ea7474d800ef66e9e9ed8922ff96545a6b36cad9ae0af8bb3",
+    "runs.csv": "39327c39e2bebe1346793b0d9bcdeabbfef6918ffb0a6b297ded1cee68d11cbb",
+    "summary.aggregate.json": "0d0f374e63152b56a8ec9c7138b9e001bd4b4b6eebb56e7aed700a2ecc64c2cc"
+  },
+  "full_summary_sha256": "21a870197f192f32dac7d398f2bbfc18b3740303efe6252ec6d9d3f2be07bdfd",
+  "plan_sha256": "eb42a6df8f8358dc611ba2c1d31c653c92dffe51ec87c0b33b2bfe6d643f65a0",
+  "scope": "Only the closed10-execution public-training diagnostic replay and explicitly posthoc fixed-blend sensitivity."
+}

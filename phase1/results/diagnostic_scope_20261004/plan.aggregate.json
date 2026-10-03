@@ -1,0 +1,109 @@
+{
+  "allocation_seconds": 5400,
+  "base_commit": "18c2f58352046c2569e765fb1c8fe1f2db27e4a0",
+  "base_updates": 0,
+  "budget_basis": "10 sequential worker slots <=480s plus <=540s overhead inside90min, one allocated3090. Includes interpreter startup, idle GPU allocation and failures. No service, generator, paid API or base-model update.",
+  "code_seconds": 300,
+  "donor_plan_sha256": "f5aba6d06b20a1c4037abc52c373842bae70f6672d3a2ac7b20c8bb3fc82dd3c",
+  "dsearch_read": false,
+  "executions": 10,
+  "fairness": "One numeric-field scope switch within each paired check; all other code identical after symmetric instrumentation and explicit RNG changes. Reference is not a third experimental method. Same task image/native isolation/CPU allocation. All classical models use original CPU algorithms; no GPU-to-CPU fallback.",
+  "gate": "No agent expansion authorized by this check. Material distortion candidate: all4 pairs complete, every numeric AUC inflation >=0.01, non-target controls exact; report whether either recommendation sign reverses. Failure or no reversal remains informative; no new seeds or threshold changes.",
+  "generator_calls": 0,
+  "gpu_hours_cap": 1.5,
+  "gpus": 1,
+  "limits": "Two post-outcome selected checks on one previously reused developer task; same physical source, not independent tasks. Text vocabulary fitted before CV is retained symmetrically and not called unbiased validation. CV outcomes are diagnostic, not deployment utility or novel method gains. Reference extracted component, not full pipeline rerun.",
+  "paid_api": 0,
+  "preflight": "13-item checklist adapted: actual AST scope diff, CPU path tests, public-only input binding, all4 pairs/task denominator, randomized fixed pair order, OOF artifacts saved, input hashes/isolation, explicit seeds, secret scan, wall cap, small mechanism not powered generalization, returncodes preserved, frozen roster.",
+  "primary": "Within source-check and seed, numeric OOF AUC all_numeric minus deployment_scope. Verify identical folds, labels, text predictions, dependencies, and source code except declared scope. Report all4 paired contrasts and failures.",
+  "protected_opened": false,
+  "protocol": "diagnostic-scope-counterfactual-v1",
+  "public_data": {
+    "test.json": "6cec69c8401eb2c4f12f451eea4ea283a05a1e4f7a9fb282f28cd0bf368d4e11",
+    "train.json": "1e19fe3dbe314ff4f71c716c60036d62e4ca4943ce0c1eb650d0a6219a03913d"
+  },
+  "reference": "Exact AST prefix, params, CV and numeric-component loop from observed incumbent. Remove unrelated XGB/text/stack fits. Public OOF seed42 rounded reference 0.677345 is a predeclared descriptive reproduction check, not grounds to replace failed data.",
+  "schedule": [
+    {
+      "arm": "all_numeric",
+      "case": "underfit_check",
+      "index": 0,
+      "seed": 42
+    },
+    {
+      "arm": "deployment_scope",
+      "case": "underfit_check",
+      "index": 1,
+      "seed": 42
+    },
+    {
+      "arm": "all_numeric",
+      "case": "component_check",
+      "index": 2,
+      "seed": 42
+    },
+    {
+      "arm": "deployment_scope",
+      "case": "component_check",
+      "index": 3,
+      "seed": 42
+    },
+    {
+      "arm": "deployment_scope",
+      "case": "underfit_check",
+      "index": 4,
+      "seed": 173
+    },
+    {
+      "arm": "all_numeric",
+      "case": "underfit_check",
+      "index": 5,
+      "seed": 173
+    },
+    {
+      "arm": "deployment_scope",
+      "case": "component_check",
+      "index": 6,
+      "seed": 173
+    },
+    {
+      "arm": "all_numeric",
+      "case": "component_check",
+      "index": 7,
+      "seed": 173
+    },
+    {
+      "arm": "deployment_scope",
+      "case": "reference",
+      "index": 8,
+      "seed": 42
+    },
+    {
+      "arm": "deployment_scope",
+      "case": "reference",
+      "index": 9,
+      "seed": 173
+    }
+  ],
+  "secondary": "Both checks versus same-seed actual parent numeric component; numeric-versus-text ranking. Underfit-check sign relative to actual same-seed reference. Do not infer a changed LLM decision without a new continuation intervention.",
+  "source_sha256": "5f1441fcf268f776b446deb6cbb36d0668efad10298780959f79174d396f7220",
+  "sources": {
+    "component_check": [
+      0,
+      1,
+      "3cc81fc7232144bdd910920f26ff0de1f346c95c021de9792d260f50e4c65a58"
+    ],
+    "reference": [
+      0,
+      0,
+      "6e349a6c509145cb25be96f33324f762c51d553051378ac512c3ec0f91648d1c"
+    ],
+    "underfit_check": [
+      14,
+      2,
+      "ed0f17639163e820eb8522935457b141afb529689c2224193ca49ce239517de3"
+    ]
+  },
+  "stopping": "One10-execution batch; no post-outcome resubmission or prompt/seed sweep. Missing outputs null. Save all failures; frozen raw receipts immutable. Classical-fit checkpoint is per completed execution. Resume only same source/seed/code and no repeat completed slots.",
+  "utc": "2026-10-03T20:47:32.937408+00:00"
+}

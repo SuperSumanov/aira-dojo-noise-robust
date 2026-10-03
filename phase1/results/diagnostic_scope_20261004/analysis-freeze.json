@@ -1,0 +1,24 @@
+{
+  "bounds": "Post-outcome selected source checks. Seeds are public CV/model settings, not independent tasks. Historical agent behavior is not counterfactually rerun. All signs reported, including non-reversals.",
+  "confidence_intervals": false,
+  "decision": "Full10 denominator, four numeric OOF scope contrasts; zero omitted failures. Reference and text controls predeclared. No D_search reads, continuation or deployment claim.",
+  "material_threshold": 0.01,
+  "plan_sha256": "eb42a6df8f8358dc611ba2c1d31c653c92dffe51ec87c0b33b2bfe6d643f65a0",
+  "script_sha256": "1db6d37cce09f157f96830877e68df2b7d6b4b158d89381326cb232e4fe95b91",
+  "seeds": [
+    42,
+    173
+  ],
+  "status": "FROZEN_BEFORE_SUBMISSION",
+  "tests": {
+    "boundary_fixtures": 3,
+    "random_tie_cases": 336
+  },
+  "text_setting_order": [
+    "maxf5000_word1to2",
+    "maxf10000_word1to2",
+    "maxf10000_word1to3",
+    "maxf20000_word1to3"
+  ],
+  "utc": "2026-10-03T20:56:49.013086+00:00"
+}

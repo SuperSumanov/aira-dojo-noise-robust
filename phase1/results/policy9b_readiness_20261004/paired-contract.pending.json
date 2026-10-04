@@ -1,0 +1,121 @@
+{
+  "schema": "policy9b-paired-qualification-v1",
+  "status": "HISTORICAL_PREPARATION_SUPERSEDED_BY_FROZEN_RUNTIME_PLAN",
+  "runtime_plan_directory": "/research/d7/spc/yzyang4/policy9b-paired-20261005-gpu27-v1",
+  "runtime_plan_sha256": "12d1264457158c936e4f1eff8e9c844ce5044365e77056066c4ded2ecfe6cd79",
+  "runtime_job": "16307",
+  "runtime_observed_hkt": "2026-10-05T04:01:48+08:00",
+  "runtime_observed_state": "SERVICE_READY_FIRST_WAVE_STARTED",
+  "historical_fields_below": "Preparation facts below retain their original time; use frozen runtime plan and receipts for actual executable matrix, deployment and current permissions.",
+  "budget_approval_hkt": "2026-10-05T03:26:41+08:00",
+  "allocation_cap_gpu_hours": 6,
+  "asset_update_hkt": "2026-10-05T03:22:33+08:00",
+  "frozen_assets": {
+    "adapter_directory": "/research/d7/spc/yzyang4/policy9b-adapter-20261005-b6jjvjwh/accepted_adapter",
+    "adapter_weights_sha256": "87a996545f516cef4480b1642ff6647f3a4eeab3e898e79dca5b445184597a08",
+    "adapter_config_sha256": "7a1f06dc55ba770704436f9bd50d8464082d0de80fd827e1b8687116aab7b486",
+    "base_directory": "/research/d7/spc/yzyang4/models/Qwen3.5-9B-c202236",
+    "base_model": "Qwen/Qwen3.5-9B",
+    "base_revision": "c202236235762e1c871ad0ccb60c8ee5ba337b9a",
+    "weight_shards_hash_verified": 4,
+    "adapter_modules_shape_matched": 248,
+    "training_base_exact_revision_verified": false,
+    "checkpoint_step_verified": false,
+    "identity_basis": "As-delivered adapter bytes plus the documented public model; do not infer exact training step or generalization coverage."
+  },
+  "source_commit": "b8e75052a9f69e19436f12bc5a36a0ca26a69a57",
+  "question": "At the same total inference-and-task-execution resource budget, does the already-trained frozen mentor policy improve final independently evaluated development quality?",
+  "source_experiment": "src/dojo/configs/_exp/mlebench/aira_mcts_qwen_minimal_lora.yaml",
+  "source_experiment_sha256": "e4d40acdb77bb19ed6d231b793f8ef4f12a4cc57cdf072f4fed29fce5f327709",
+  "shared_overrides": [
+    "+_exp=mlebench/aira_mcts_qwen_minimal_lora",
+    "++solver.operators.analyze.llm.generation_kwargs.extra_body.chat_template_kwargs.enable_thinking=false",
+    "++solver.operators.debug.llm.generation_kwargs.extra_body.chat_template_kwargs.enable_thinking=false",
+    "++solver.operators.draft.llm.generation_kwargs.extra_body.chat_template_kwargs.enable_thinking=false",
+    "++solver.operators.improve.llm.generation_kwargs.extra_body.chat_template_kwargs.enable_thinking=false"
+  ],
+  "arms": {
+    "base": {
+      "client_overrides": [
+        "solver/client@solver.operators.analyze.llm.client=litellm_qwen3.5-9B",
+        "solver/client@solver.operators.debug.llm.client=litellm_qwen3.5-9B",
+        "solver/client@solver.operators.draft.llm.client=litellm_qwen3.5-9B",
+        "solver/client@solver.operators.improve.llm.client=litellm_qwen3.5-9B"
+      ]
+    },
+    "sft": {
+      "client_overrides": [
+        "solver/client@solver.operators.analyze.llm.client=litellm_qwen3.5-9B-mle-lora",
+        "solver/client@solver.operators.debug.llm.client=litellm_qwen3.5-9B-mle-lora",
+        "solver/client@solver.operators.draft.llm.client=litellm_qwen3.5-9B-mle-lora",
+        "solver/client@solver.operators.improve.llm.client=litellm_qwen3.5-9B-mle-lora"
+      ]
+    }
+  },
+  "verified_static_facts": {
+    "client_differing_keys": [
+      "model_id"
+    ],
+    "shared_endpoint": true,
+    "memory": "no_memory",
+    "reasoning_effort": "minimal",
+    "enable_thinking_explicit": false,
+    "temperature_inherited_from_shared_source": true,
+    "native_hydra_composition_validated": true,
+    "composed_difference_exactly_four_model_ids": true,
+    "fully_resolved_hydra_validated": false,
+    "runtime_verified": false
+  },
+  "common_source_patch": {
+    "path": "phase1/upstream_patches/0020-policy9b-generation-kwargs-20261004.patch",
+    "sha256": "c77e548b32232f6fed4b6196e2a50f5d785dd9c14d766bf0e205260d1d5e0b6e",
+    "purpose": "Materialize nested OmegaConf generation parameters to plain JSON-compatible containers, without changing values.",
+    "tested_only_in_temporary_source_copy": true,
+    "production_applied": false,
+    "in_memory_http_test_passed_both_models": true
+  },
+  "per_run_requirements": [
+    "Set metadata seed and every role's generation_kwargs.seed explicitly; metadata seed alone does not establish a remote sampling seed.",
+    "Set output/context limits, task budget, timeouts, hardware and bounded retries identically in both arms; do not launch inherited 24h defaults.",
+    "Resolve live deployment identities and authorized development split before any real inference; the native configuration composition used no task data."
+  ],
+  "measurement_contract": {
+    "primary": "Paired final development quality at a fixed total-resource budget, oriented per task.",
+    "secondary": "Cost to reach a quality threshold defined independently before current-arm outcomes; absent crossing is censored, not discarded.",
+    "same_inputs": [
+      "tasks",
+      "data splits",
+      "seeds",
+      "prompts",
+      "operators",
+      "memory",
+      "task images",
+      "hardware",
+      "context and output limits",
+      "decoding parameters",
+      "scheduler/concurrency policy",
+      "per-task compute and walltime limits"
+    ],
+    "costs": "Include generator-serving GPU allocation, task execution, retries, failures and initialization. Do not equate equal walltime or equal generated-token limits with equal total cost. The native selfhosted cost field is a zero placeholder and cannot be used as compute cost.",
+    "analysis": "Report all assigned runs, failures, taskwise paired differences, medians and across-seed variance; do not use raw-score averages across incompatible tasks.",
+    "reuse": "Only compare existing runs after checking their resolved configs and actual model identities. Otherwise treat them as descriptive evidence, not matched causal pairs.",
+    "inference_boundary": "Known training tasks and genuine held-out tasks reported separately. Validity improvement is not sufficient evidence of quality improvement.",
+    "stage2": "Only after a credible initial signal: common-parent continuations, not each model's own initial score subtraction."
+  },
+  "pending": [
+    "Live shared-base/adapter server attachment and runtime protocol; downloadable asset availability is resolved",
+    "Keep exact training base revision and global_step_300 versus step250 naming explicitly unverified unless corroborated; freeze as-delivered bytes for exploration",
+    "Training task roster and checkpoint selection basis",
+    "Existing paired-run location and resolved configuration metadata",
+    "Authorized development evaluator/split with no protected-data overlap",
+    "Freeze exact task/seed/development-view matrix before launch; 8 short trajectories / 4 GPUs / 90 minutes / 6 GPU-hours approved by latest six-hour autonomous instruction"
+  ],
+  "permissions": {
+    "own_base_training": false,
+    "paid_api": false,
+    "protected_cohort_reads": false,
+    "new_gpu_jobs_submitted": 0,
+    "mentor_branch_modified": false
+  },
+  "scientific_claim": "This is a qualification study, not a new method or evidence of benefit."
+}

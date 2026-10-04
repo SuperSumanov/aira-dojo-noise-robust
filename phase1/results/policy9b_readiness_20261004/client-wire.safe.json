@@ -1,0 +1,67 @@
+{
+  "utc": "2026-10-04T13:09:38.557593+00:00",
+  "status": "PASS_MOCK_HTTP_ONLY",
+  "versions": {
+    "litellm": "1.65.7",
+    "openai": "1.72.0",
+    "httpx": "0.28.1",
+    "omegaconf": "2.3.0"
+  },
+  "cases": [
+    {
+      "mode": "original_minimal",
+      "model": "qwen3.5-9b",
+      "fixture_response": true,
+      "in_memory_http_requests": 1,
+      "wire_model": "qwen3.5-9b",
+      "wire_effort": "minimal",
+      "wire_seed": 101,
+      "wire_enable_thinking": null
+    },
+    {
+      "mode": "original_minimal",
+      "model": "qwen3.5-9b-mle-lora",
+      "fixture_response": true,
+      "in_memory_http_requests": 1,
+      "wire_model": "qwen3.5-9b-mle-lora",
+      "wire_effort": "minimal",
+      "wire_seed": 101,
+      "wire_enable_thinking": null
+    },
+    {
+      "mode": "nested_unmaterialized",
+      "model": "qwen3.5-9b",
+      "error_type": "APIError",
+      "in_memory_http_requests": 0
+    },
+    {
+      "mode": "nested_unmaterialized",
+      "model": "qwen3.5-9b-mle-lora",
+      "error_type": "APIError",
+      "in_memory_http_requests": 0
+    },
+    {
+      "mode": "explicit_materialized",
+      "model": "qwen3.5-9b",
+      "fixture_response": true,
+      "in_memory_http_requests": 1,
+      "wire_model": "qwen3.5-9b",
+      "wire_effort": "minimal",
+      "wire_seed": 101,
+      "wire_enable_thinking": false
+    },
+    {
+      "mode": "explicit_materialized",
+      "model": "qwen3.5-9b-mle-lora",
+      "fixture_response": true,
+      "in_memory_http_requests": 1,
+      "wire_model": "qwen3.5-9b-mle-lora",
+      "wire_effort": "minimal",
+      "wire_seed": 101,
+      "wire_enable_thinking": false
+    }
+  ],
+  "external_network_requests": 0,
+  "model_inferences": 0,
+  "limitation": "Installed client integration validated; live service execution and quality remain untested."
+}

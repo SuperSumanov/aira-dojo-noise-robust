@@ -1,0 +1,96 @@
+{
+  "utc": "2026-10-04T12:51:48.286261+00:00",
+  "commit": "b8e75052a9f69e19436f12bc5a36a0ca26a69a57",
+  "hydra_version": "1.3.2",
+  "instances_created": 0,
+  "network_calls": 0,
+  "configuration_files": 85,
+  "differing_paths": [
+    "solver.operators.analyze.llm.client.model_id",
+    "solver.operators.debug.llm.client.model_id",
+    "solver.operators.draft.llm.client.model_id",
+    "solver.operators.improve.llm.client.model_id"
+  ],
+  "expected_differing_paths": [
+    "solver.operators.analyze.llm.client.model_id",
+    "solver.operators.debug.llm.client.model_id",
+    "solver.operators.draft.llm.client.model_id",
+    "solver.operators.improve.llm.client.model_id"
+  ],
+  "exactly_four_model_ids_only": true,
+  "tree_sha256": {
+    "base": "021f52bf75bb47a24bc1c9e39e6aedfe5efeadcb1d1d0737dd0f31104c8c761c",
+    "sft": "fd4f1e8560f62592978e8bb7a25b07042d216b0b857e8a5a68a7da2fc5963674"
+  },
+  "common_config": {
+    "metadata": {
+      "seed": 42
+    },
+    "benchmark": {
+      "tasks": [
+        "random-acts-of-pizza",
+        "spooky-author-identification",
+        "AI4Code",
+        "h-and-m-personalized-fashion-recommendations"
+      ]
+    },
+    "solver": {
+      "memory": {
+        "_target_": "dojo.config_dataclasses.operators.memory.MemoryOpConfig",
+        "memory_processor": "no_memory"
+      },
+      "num_children": 5,
+      "time_limit_secs": 86400,
+      "step_limit": 10000,
+      "use_test_score": false,
+      "max_debug_depth": 20
+    },
+    "operators": {
+      "analyze": {
+        "_target_": "dojo.config_dataclasses.llm.generic_llm.GenericLLMConfig",
+        "generation_kwargs": {
+          "temperature": 0.5,
+          "allowed_openai_params": [
+            "reasoning_effort"
+          ],
+          "reasoning_effort": "minimal"
+        }
+      },
+      "debug": {
+        "_target_": "dojo.config_dataclasses.llm.generic_llm.GenericLLMConfig",
+        "generation_kwargs": {
+          "temperature": 0.6,
+          "top_p": 0.95,
+          "allowed_openai_params": [
+            "reasoning_effort"
+          ],
+          "reasoning_effort": "minimal"
+        }
+      },
+      "draft": {
+        "_target_": "dojo.config_dataclasses.llm.generic_llm.GenericLLMConfig",
+        "generation_kwargs": {
+          "temperature": 0.6,
+          "top_p": 0.95,
+          "allowed_openai_params": [
+            "reasoning_effort"
+          ],
+          "reasoning_effort": "minimal"
+        }
+      },
+      "improve": {
+        "_target_": "dojo.config_dataclasses.llm.generic_llm.GenericLLMConfig",
+        "generation_kwargs": {
+          "temperature": 0.6,
+          "top_p": 0.95,
+          "allowed_openai_params": [
+            "reasoning_effort"
+          ],
+          "reasoning_effort": "minimal"
+        }
+      }
+    }
+  },
+  "unresolved_interpolation_count": 2,
+  "runtime_or_environment_resolved": false
+}

@@ -1,0 +1,345 @@
+{
+  "caveat": "Substring matching arbitrary success wording also matches program print literals and is not used as proof; compare full recorded terminal and numerical output lines instead.",
+  "rows": [
+    {
+      "all_measured_lines_in_prompt": false,
+      "author_access": [],
+      "code_sha256": "87983440f45adc7db63f2f212d76c58b595b00067087cf8dc0b34708c7d45d99",
+      "full_code_in_prompt": true,
+      "full_recorded_terminal_in_prompt": true,
+      "has_traceback_in_prompt": true,
+      "index": 0,
+      "measured_terminal_lines": 0,
+      "prompt_sha256": "1fd54ebc4101861fa2f9d6d57d71567feaa23d27f843bde52eead504ff1b05b2"
+    },
+    {
+      "all_measured_lines_in_prompt": false,
+      "author_access": [],
+      "code_sha256": "42289d08ee73aede88b875940d6d8cc25fc14c371ebec9a282f8980488676c80",
+      "full_code_in_prompt": true,
+      "full_recorded_terminal_in_prompt": true,
+      "has_traceback_in_prompt": true,
+      "index": 0,
+      "measured_terminal_lines": 0,
+      "prompt_sha256": "85b3d9ddc3b841efc9e70104a44dde2921065b07983bb17642b7f9917661be05"
+    },
+    {
+      "all_measured_lines_in_prompt": false,
+      "author_access": [],
+      "code_sha256": "8f659f73a74a348fa2b6beab2cfe39280a21f10c01530d324d25c0c4663f174d",
+      "full_code_in_prompt": true,
+      "full_recorded_terminal_in_prompt": true,
+      "has_traceback_in_prompt": true,
+      "index": 0,
+      "measured_terminal_lines": 0,
+      "prompt_sha256": "7a8d70671ed4f61232fe4e98d75438412596e08ea0d2b78601c6f2eae87cd7ec"
+    },
+    {
+      "all_measured_lines_in_prompt": false,
+      "author_access": [
+        {
+          "base": "train_df",
+          "line": 39
+        }
+      ],
+      "code_sha256": "7464730e9cdc3e336b5f64d2d8a7049f5fb8c801354b4a008db9fe5f3e01dcee",
+      "full_code_in_prompt": true,
+      "full_recorded_terminal_in_prompt": true,
+      "has_traceback_in_prompt": true,
+      "index": 1,
+      "measured_terminal_lines": 0,
+      "prompt_sha256": "562e6800da8cf7eb3613e6aaea25ade595078d828ba38a698bde4ea54701fc57"
+    },
+    {
+      "all_measured_lines_in_prompt": false,
+      "author_access": [
+        {
+          "base": "train_df",
+          "line": 39
+        }
+      ],
+      "code_sha256": "13ec5e3bb214c217803917d35553f2008136fdf6d70f446dd00190d8de500aeb",
+      "full_code_in_prompt": true,
+      "full_recorded_terminal_in_prompt": true,
+      "has_traceback_in_prompt": true,
+      "index": 1,
+      "measured_terminal_lines": 0,
+      "prompt_sha256": "101ad24445c167fbd8c7224203e42c0779a536e17181b5f264f5cbc29e6a953e"
+    },
+    {
+      "all_measured_lines_in_prompt": true,
+      "author_access": [
+        {
+          "base": "train_df",
+          "line": 39
+        }
+      ],
+      "code_sha256": "cfdc81c779e0c79cb51858bd1de717aa8acfa48b2567c385a5f43c303d1e0b8e",
+      "full_code_in_prompt": true,
+      "full_recorded_terminal_in_prompt": true,
+      "has_traceback_in_prompt": false,
+      "index": 1,
+      "measured_terminal_lines": 7,
+      "prompt_sha256": "7bf72b11aa10ef28ed7d6c419504bab40a41ed3f70288525ef219b153db27047"
+    },
+    {
+      "all_measured_lines_in_prompt": true,
+      "author_access": [
+        {
+          "base": "train_df",
+          "line": 50
+        }
+      ],
+      "code_sha256": "7fbee0c0609ef2233ed672d8ff478202783d664ee35073754a68ec4f3e5114c0",
+      "full_code_in_prompt": true,
+      "full_recorded_terminal_in_prompt": true,
+      "has_traceback_in_prompt": false,
+      "index": 1,
+      "measured_terminal_lines": 7,
+      "prompt_sha256": "f3d5e29027451e6d7ab4061195f8933a5a4bb98a84143904a99d0829b2b6a606"
+    },
+    {
+      "all_measured_lines_in_prompt": false,
+      "author_access": [],
+      "code_sha256": "a79725104f7e2efad22ea6656dd651a53774f5e7a54712016983690dfc1cad5b",
+      "full_code_in_prompt": true,
+      "full_recorded_terminal_in_prompt": true,
+      "has_traceback_in_prompt": true,
+      "index": 2,
+      "measured_terminal_lines": 0,
+      "prompt_sha256": "8c789e0549ec708ec0884be5626939ef65404f3d005908c55a22981a9d1601d7"
+    },
+    {
+      "all_measured_lines_in_prompt": false,
+      "author_access": [],
+      "code_sha256": "afd2227f13fb90e900f7a69030be13365f22d8adba9a56a49fa3bccdaa950b02",
+      "full_code_in_prompt": true,
+      "full_recorded_terminal_in_prompt": true,
+      "has_traceback_in_prompt": true,
+      "index": 2,
+      "measured_terminal_lines": 0,
+      "prompt_sha256": "67491fe06b0006dc2de9a9fb49220fd21737adcf638f52fe04328f95818895f6"
+    },
+    {
+      "all_measured_lines_in_prompt": false,
+      "author_access": [],
+      "code_sha256": "cffe948ce833be55ecfe75ee57488d050bdc86cdd90af25d0d85056e0f18e4ff",
+      "full_code_in_prompt": true,
+      "full_recorded_terminal_in_prompt": true,
+      "has_traceback_in_prompt": true,
+      "index": 2,
+      "measured_terminal_lines": 0,
+      "prompt_sha256": "1a4f243065c42ea57ec6b7490c0ccd8803ac1af7c24b7b25cb5788d09c1b57b2"
+    },
+    {
+      "all_measured_lines_in_prompt": false,
+      "author_access": [],
+      "code_sha256": "83889cb04a0dcc5655aa27416b2734e84fd2cc99423ac86f29c34303ab401c30",
+      "full_code_in_prompt": true,
+      "full_recorded_terminal_in_prompt": true,
+      "has_traceback_in_prompt": false,
+      "index": 2,
+      "measured_terminal_lines": 0,
+      "prompt_sha256": "aa3d97623730320b0144da5cbc83018414b5ec21a2f507cc16dada216b410e89"
+    },
+    {
+      "all_measured_lines_in_prompt": false,
+      "author_access": [
+        {
+          "base": "train",
+          "line": 120
+        },
+        {
+          "base": "train",
+          "line": 127
+        },
+        {
+          "base": "train",
+          "line": 46
+        },
+        {
+          "base": "train",
+          "line": 88
+        },
+        {
+          "base": "train",
+          "line": 98
+        },
+        {
+          "base": "train",
+          "line": 106
+        },
+        {
+          "base": "train",
+          "line": 89
+        },
+        {
+          "base": "train",
+          "line": 99
+        }
+      ],
+      "code_sha256": "69fe47d5da67d28f45c28045614e12e6151215d438294805f6b2e6c4bb630ceb",
+      "full_code_in_prompt": true,
+      "full_recorded_terminal_in_prompt": true,
+      "has_traceback_in_prompt": true,
+      "index": 3,
+      "measured_terminal_lines": 0,
+      "prompt_sha256": "b01b29152d590df3b5c3d9eeddb4def65e1a65a907440b1d50178ca8099c99c9"
+    },
+    {
+      "all_measured_lines_in_prompt": false,
+      "author_access": [
+        {
+          "base": "train",
+          "line": 38
+        },
+        {
+          "base": "train",
+          "line": 111
+        },
+        {
+          "base": "train",
+          "line": 118
+        },
+        {
+          "base": "train",
+          "line": 80
+        },
+        {
+          "base": "train",
+          "line": 90
+        },
+        {
+          "base": "train",
+          "line": 81
+        },
+        {
+          "base": "train",
+          "line": 91
+        }
+      ],
+      "code_sha256": "24c83ce274a1859565eddc369424b0d909570bc9b2903971552ef8a05425f7c5",
+      "full_code_in_prompt": true,
+      "full_recorded_terminal_in_prompt": true,
+      "has_traceback_in_prompt": false,
+      "index": 3,
+      "measured_terminal_lines": 0,
+      "prompt_sha256": "5e6e57fc9658d5a5c75474682eb7adfb68de26243a71afea5f8816d58b1566b8"
+    },
+    {
+      "all_measured_lines_in_prompt": false,
+      "author_access": [],
+      "code_sha256": "8a33b643629b3e1e9aba304881907821e217143b34f1de8a107432a176436a01",
+      "full_code_in_prompt": true,
+      "full_recorded_terminal_in_prompt": true,
+      "has_traceback_in_prompt": true,
+      "index": 4,
+      "measured_terminal_lines": 0,
+      "prompt_sha256": "2ce0cf83290f75da57f0b056eff8d6193ddea5f07b07835ecb9078acc64b84fc"
+    },
+    {
+      "all_measured_lines_in_prompt": false,
+      "author_access": [],
+      "code_sha256": "cd5fe0106ba9803e43d4c541267edba294fb7a5988cf29c6651962be270d84d2",
+      "full_code_in_prompt": true,
+      "full_recorded_terminal_in_prompt": true,
+      "has_traceback_in_prompt": true,
+      "index": 4,
+      "measured_terminal_lines": 0,
+      "prompt_sha256": "fcc76abb1a054083c0e81736e989aa2be879262bff2070d36a4a5d072e401d4e"
+    },
+    {
+      "all_measured_lines_in_prompt": false,
+      "author_access": [],
+      "code_sha256": "64d550cc74c38c8f163e8643ae43f5f4b7f1d04282e5686516baea1823e5611d",
+      "full_code_in_prompt": true,
+      "full_recorded_terminal_in_prompt": true,
+      "has_traceback_in_prompt": true,
+      "index": 4,
+      "measured_terminal_lines": 0,
+      "prompt_sha256": "77a777e35fb4450f7e8352aebdc44968776154eed39ccd384d920b312c6224bd"
+    },
+    {
+      "all_measured_lines_in_prompt": false,
+      "author_access": [
+        {
+          "base": "train",
+          "line": 49
+        }
+      ],
+      "code_sha256": "a7aa474a1ac55716d697d1296a1e5b45a2b1b6c089b30c61936410bf670fa78e",
+      "full_code_in_prompt": true,
+      "full_recorded_terminal_in_prompt": true,
+      "has_traceback_in_prompt": false,
+      "index": 5,
+      "measured_terminal_lines": 0,
+      "prompt_sha256": "785705c1a5710d0435be5705dbbdaab57d91126bc499cf57aa5d2c8cc12227a7"
+    },
+    {
+      "all_measured_lines_in_prompt": false,
+      "author_access": [
+        {
+          "base": "train",
+          "line": 17
+        }
+      ],
+      "code_sha256": "b4fab860b0b348fc098db9687a61c57b570c179e6bc397ebd0449e695336074f",
+      "full_code_in_prompt": true,
+      "full_recorded_terminal_in_prompt": true,
+      "has_traceback_in_prompt": true,
+      "index": 5,
+      "measured_terminal_lines": 0,
+      "prompt_sha256": "18221d0db01dac47145657a43603b3e5c5d2bbb5cdb88239fcbbb1cda851af73"
+    },
+    {
+      "all_measured_lines_in_prompt": false,
+      "author_access": [],
+      "code_sha256": "80b12cf03167d80063c9a0c6f52c8947d2d9018bfe6bfb38b069c0e209f882ea",
+      "full_code_in_prompt": true,
+      "full_recorded_terminal_in_prompt": true,
+      "has_traceback_in_prompt": true,
+      "index": 6,
+      "measured_terminal_lines": 0,
+      "prompt_sha256": "4df313a68744056160172360463530e68716d1d5e6dbbd6a6469728954b70fe7"
+    },
+    {
+      "all_measured_lines_in_prompt": false,
+      "author_access": [],
+      "code_sha256": "27b7571b60aeb15cb9e05717fc4da63a8b4b811a0e060cc12135e938b2637e10",
+      "full_code_in_prompt": true,
+      "full_recorded_terminal_in_prompt": true,
+      "has_traceback_in_prompt": true,
+      "index": 6,
+      "measured_terminal_lines": 0,
+      "prompt_sha256": "21ec6ee2086f749b00e574d887f9ef2abf6ffb3cc729220dd101f27e87df4542"
+    },
+    {
+      "all_measured_lines_in_prompt": false,
+      "author_access": [],
+      "code_sha256": "5781017e2ec26bbba2cccce5fac0bcc1175f8ce4d86f49cb7fc98685101a14cf",
+      "full_code_in_prompt": true,
+      "full_recorded_terminal_in_prompt": true,
+      "has_traceback_in_prompt": true,
+      "index": 6,
+      "measured_terminal_lines": 0,
+      "prompt_sha256": "9c6924a37a553be5ff96a3959f152a494b3d3241cb42474d68b3b4b53c54ee03"
+    },
+    {
+      "all_measured_lines_in_prompt": false,
+      "author_access": [
+        {
+          "base": "train_df",
+          "line": 170
+        }
+      ],
+      "code_sha256": "0f8eb78d0f9e8f6c5ff141840caf4edee5bb713bfa39ee81e04358a64fe7d739",
+      "full_code_in_prompt": true,
+      "full_recorded_terminal_in_prompt": true,
+      "has_traceback_in_prompt": false,
+      "index": 7,
+      "measured_terminal_lines": 0,
+      "prompt_sha256": "e56213086ea09935fd64b8721e71f35869ba73ebc59320830b6db73680bf94ba"
+    }
+  ],
+  "scope": "posthoc recorded prompt inclusion, not new execution or model call"
+}

@@ -819,3 +819,10 @@ phase1/results/external_gome_structure_20261004/** -text diff whitespace=cr-at-e
 # Diagnostic observation trial: executed source and safe aggregates retain bytes.
 phase1/scripts/diagnostic_information*20261004.py -text diff whitespace=cr-at-eol
 phase1/results/diagnostic_information_20261004/** -text diff whitespace=cr-at-eol
+# Preserve executed policy9b sources and closed safe receipts byte-for-byte.
+phase1/results/policy9b_intake_20261005/** -text diff whitespace=cr-at-eol
+phase1/results/policy9b_readiness_20261004/** -text diff whitespace=cr-at-eol
+phase1/results/policy9b_paired_20261005/** -text diff whitespace=cr-at-eol
+phase1/results/policy9b_role_cross_20261005/** -text diff whitespace=cr-at-eol
+phase1/scripts/*policy9b*2026100[45].py -text diff whitespace=cr-at-eol
+phase1/scripts/check_sft_target_semantics_20261005.py -text diff whitespace=cr-at-eol

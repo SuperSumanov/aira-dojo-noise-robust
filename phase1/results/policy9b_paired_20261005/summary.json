@@ -1,0 +1,111 @@
+{
+  "advance_qualification": false,
+  "all_closed_receipts": true,
+  "allocated_gpu_hours": 3.0055555555555555,
+  "analysis_sha256": "6c58bbce72b129e991295acd88a6767a1501f650bcd98d06839861afcb76cca3",
+  "assigned": 8,
+  "attempted": 8,
+  "contrasts": [
+    {
+      "all_pairs_positive": false,
+      "arms": {
+        "base": {
+          "assigned": 2,
+          "scores": {
+            "median": null,
+            "n": 0,
+            "sample_variance": null
+          },
+          "valid": 0
+        },
+        "sft": {
+          "assigned": 2,
+          "scores": {
+            "median": null,
+            "n": 0,
+            "sample_variance": null
+          },
+          "valid": 0
+        }
+      },
+      "paired_summary": {
+        "median": null,
+        "n": 0,
+        "sample_variance": null
+      },
+      "pairs": [
+        {
+          "base": null,
+          "both_valid": false,
+          "oriented_sft_minus_base": null,
+          "seed": 108501,
+          "sft": null
+        },
+        {
+          "base": null,
+          "both_valid": false,
+          "oriented_sft_minus_base": null,
+          "seed": 108511,
+          "sft": null
+        }
+      ],
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "all_pairs_positive": false,
+      "arms": {
+        "base": {
+          "assigned": 2,
+          "scores": {
+            "median": null,
+            "n": 0,
+            "sample_variance": null
+          },
+          "valid": 0
+        },
+        "sft": {
+          "assigned": 2,
+          "scores": {
+            "median": 0.6465340314207321,
+            "n": 1,
+            "sample_variance": null
+          },
+          "valid": 1
+        }
+      },
+      "paired_summary": {
+        "median": null,
+        "n": 0,
+        "sample_variance": null
+      },
+      "pairs": [
+        {
+          "base": null,
+          "both_valid": false,
+          "oriented_sft_minus_base": null,
+          "seed": 108502,
+          "sft": null
+        },
+        {
+          "base": null,
+          "both_valid": false,
+          "oriented_sft_minus_base": null,
+          "seed": 108512,
+          "sft": 0.6465340314207321
+        }
+      ],
+      "task": "spooky-author-identification"
+    }
+  ],
+  "elapsed_seconds": 2705,
+  "exitcode": "0:0",
+  "independent_scores": 3,
+  "job": "16307",
+  "limitation": "Two reused development tasks and two generation seeds; no official test, unknown training roster/base revision. Qualification not confirmation, power or novelty. Failures remain in denominator.",
+  "max_independent_abs_error": 1.1102230246251565e-16,
+  "native_valid": 1,
+  "plan_sha256": "12d1264457158c936e4f1eff8e9c844ce5044365e77056066c4ded2ecfe6cd79",
+  "service_ready": true,
+  "state": "COMPLETED",
+  "status": "CLOSED_DEVELOPMENT_QUALIFICATION"
+}

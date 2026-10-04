@@ -1,0 +1,11 @@
+{
+  "new_node": "gpu27",
+  "previous_plan_sha256": "8b097fe8b77a3e5e364b995a44d12bd620df2d0bdd84bebff8fb49f1cc753e8b",
+  "previous_root": "/research/d7/spc/yzyang4/policy9b-paired-20261005-v1",
+  "prior_allocated_gpu_hours": 0,
+  "prior_elapsed_seconds": 0,
+  "prior_job": "16306",
+  "prior_state": "CANCELLED by 7542",
+  "reason": "gpu3 has only2 free GPUs; gpu27 has7, both RTX3090",
+  "scientific_treatments_unchanged": true
+}

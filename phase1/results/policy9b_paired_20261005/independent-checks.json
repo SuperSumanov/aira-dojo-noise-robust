@@ -1,0 +1,20 @@
+[
+  {
+    "absolute_error": 0.0,
+    "index": 1,
+    "metric": "log_loss",
+    "n": 1761
+  },
+  {
+    "absolute_error": 1.1102230246251565e-16,
+    "index": 1,
+    "metric": "log_loss",
+    "n": 1761
+  },
+  {
+    "absolute_error": 0.0,
+    "index": 5,
+    "metric": "log_loss",
+    "n": 1761
+  }
+]

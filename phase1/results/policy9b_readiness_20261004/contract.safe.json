@@ -1,0 +1,897 @@
+{
+  "utc": "2026-10-04T11:50:35.114197+00:00",
+  "commit": "b8e75052a9f69e19436f12bc5a36a0ca26a69a57",
+  "files": [
+    {
+      "path": "src/dojo/configs/benchmark/mlebench/dev.yaml",
+      "sha256": "9798e466e95b0c3e9ce5c6c8de176a1948f8b9c75d3379b6fadf1625363085ae",
+      "credential_lines": 0,
+      "status": "SANITIZED_CONFIG_ONLY",
+      "selected_lines": [
+        [
+          1,
+          "_target_: dojo.config_dataclasses.benchmark.BenchmarkConfig"
+        ],
+        [
+          2,
+          ""
+        ],
+        [
+          3,
+          "name: mlebench"
+        ],
+        [
+          4,
+          "tasks:"
+        ],
+        [
+          5,
+          "  - random-acts-of-pizza"
+        ],
+        [
+          6,
+          "  - spooky-author-identification"
+        ],
+        [
+          7,
+          "  - AI4Code"
+        ],
+        [
+          8,
+          "  - h-and-m-personalized-fashion-recommendations"
+        ]
+      ],
+      "total_selected": 8,
+      "truncated": false
+    },
+    {
+      "path": "src/dojo/configs/solver/mlebench/mcts.yaml",
+      "sha256": "fd254d1c93a580b0aa700d15393d58f8f6ae2009c22f914113330072897347e3",
+      "credential_lines": 0,
+      "status": "SANITIZED_CONFIG_ONLY",
+      "selected_lines": [
+        [
+          1,
+          "defaults:"
+        ],
+        [
+          2,
+          "  - mcts"
+        ],
+        [
+          3,
+          "  - /solver/operators@operators:"
+        ],
+        [
+          4,
+          "    - mlebench/aira_operators/debug    # Enables debugging mode for operator prompts"
+        ],
+        [
+          5,
+          "    - mlebench/aira_operators/draft    # Enables draft mode for generating initial outputs"
+        ],
+        [
+          6,
+          "    - mlebench/aira_operators/improve  # Enables improvement mode for refining outputs"
+        ],
+        [
+          7,
+          "    - mlebench/aide_operators/analyze  # Enables evaluation mode for assessing outputs"
+        ],
+        [
+          8,
+          "  - override memory: simple_memory  # Enables Memory operator"
+        ],
+        [
+          9,
+          "  - override memory@debug_memory: debug_memory # Enables Debug Memory operator"
+        ],
+        [
+          10,
+          "    "
+        ],
+        [
+          11,
+          "# Specifies the Monte Carlo Tree Search (MCTS) algorithm as the action selector"
+        ],
+        [
+          12,
+          "_target_: dojo.config_dataclasses.solver.mcts.MCTSSolverConfig"
+        ],
+        [
+          13,
+          ""
+        ],
+        [
+          14,
+          "# Whether to export search results after execution"
+        ],
+        [
+          15,
+          "export_search_results: true"
+        ],
+        [
+          16,
+          ""
+        ],
+        [
+          17,
+          "step_limit: 10000"
+        ],
+        [
+          18,
+          "num_children: 5"
+        ],
+        [
+          19,
+          "uct_c: 0.25"
+        ],
+        [
+          20,
+          "max_debug_depth: 20"
+        ],
+        [
+          21,
+          "data_preview: True"
+        ],
+        [
+          22,
+          "max_debug_time: 1e9 # disabled"
+        ],
+        [
+          23,
+          ""
+        ],
+        [
+          24,
+          "use_test_score: False"
+        ],
+        [
+          25,
+          "use_complexity: False"
+        ],
+        [
+          26,
+          ""
+        ],
+        [
+          27,
+          "operators:"
+        ],
+        [
+          28,
+          "  draft:"
+        ],
+        [
+          29,
+          "    llm:"
+        ],
+        [
+          30,
+          "      generation_kwargs:"
+        ],
+        [
+          31,
+          "        temperature: 0.6"
+        ],
+        [
+          32,
+          "        top_p: 0.95"
+        ],
+        [
+          33,
+          "  improve:"
+        ],
+        [
+          34,
+          "    llm:"
+        ],
+        [
+          35,
+          "      generation_kwargs:"
+        ],
+        [
+          36,
+          "        temperature: 0.6"
+        ],
+        [
+          37,
+          "        top_p: 0.95"
+        ],
+        [
+          38,
+          "  debug:"
+        ],
+        [
+          39,
+          "    llm:"
+        ],
+        [
+          40,
+          "      generation_kwargs:"
+        ],
+        [
+          41,
+          "        temperature: 0.6"
+        ],
+        [
+          42,
+          "        top_p: 0.95"
+        ],
+        [
+          43,
+          "  analyze:"
+        ],
+        [
+          44,
+          "    llm:"
+        ],
+        [
+          45,
+          "      generation_kwargs:"
+        ],
+        [
+          46,
+          "        temperature: 0.5"
+        ]
+      ],
+      "total_selected": 46,
+      "truncated": false
+    },
+    {
+      "path": "src/mle_policy/docs/data/overview.md",
+      "sha256": "c6fc10fe804ef340b296f40447ec457ebfc9e70910974039576f11e881345539",
+      "credential_lines": 0,
+      "status": "SANITIZED_CONFIG_ONLY",
+      "selected_lines": [
+        [
+          1,
+          "# 从 dojo journal 构建 policy 训练数据"
+        ],
+        [
+          6,
+          "拿这份数据去训练见另一篇：`src/mle_policy/docs/train/SFT_TRAINING.md`。"
+        ],
+        [
+          11,
+          "**直接训练 policy**，也就是训练 dojo 里真正写代码的那个模型。训练 policy 需要的是"
+        ],
+        [
+          19,
+          "   │  1. build_batch_groups.py   按 episode 的 root 输入分组（batch = 一组实验）"
+        ],
+        [
+          22,
+          "   │  2. aggregate_groups.py     把 batch 归总成一份（不再产生新分组）"
+        ],
+        [
+          24,
+          "<out>/<bucket>/{samples,groups,manifest}.jsonl"
+        ],
+        [
+          25,
+          "   │  3. assign_splits.py        归总之后再决定 train/val"
+        ],
+        [
+          27,
+          "<out>/<bucket>/splits.jsonl"
+        ],
+        [
+          41,
+          "bash src/mle_policy/scripts/data/assign_splits.sh \"$OUT_ROOT\" run 0.1"
+        ],
+        [
+          46,
+          "除了批次构建，后五个脚本只读已有的上游结果。比如只改验证集划分，重新运行"
+        ],
+        [
+          47,
+          "`assign_splits.sh`，然后只运行需要更新的格式导出脚本；不用重新读 journal 或归总 batch。"
+        ],
+        [
+          48,
+          "`assign_splits.sh` 的参数是 `OUT_ROOT [SPLIT_BY] [VAL_FRACTION] [BUCKET]`，"
+        ],
+        [
+          49,
+          "`SPLIT_BY` 默认 `task`，`VAL_FRACTION` 默认 `0.1`。其他四个脚本是"
+        ],
+        [
+          60,
+          "├── dojo_config.json          # 任务名、模型、超时、算子配置"
+        ],
+        [
+          71,
+          "| `step` | 这次搜索里的第几步 |"
+        ],
+        [
+          74,
+          "| `metric` | **内部验证指标**，代码自己 5-fold CV 打出来的分 |"
+        ],
+        [
+          75,
+          "| `metric_info` | 官方评测结果，里面 `score` 才是**官方分数** |"
+        ],
+        [
+          77,
+          "| `parents` / `children` | 树结构，**里面存的是 step 号，不是节点 id** |"
+        ],
+        [
+          99,
+          "**`parents` / `children` 是 step 号。** 一开始按 id 去解析，结果所有 buggy 节点看起来"
+        ],
+        [
+          100,
+          "都没有子节点。实测 200 个 journal、8011 个节点：7811 个父引用全部能在 step 集合里找到，"
+        ],
+        [
+          106,
+          "| step | is_buggy | metric（内部 CV） | metric_info.score（官方） |"
+        ],
+        [
+          113,
+          "step 2 挂掉了，却记着和 step 3 一模一样的分数。所以官方分数只在 `is_buggy == False`"
+        ],
+        [
+          114,
+          "时才采信（代码里的 `node_score`），挂掉的节点 `node_score` 一律是 `null`。"
+        ],
+        [
+          138,
+          "* **`node_score`**：节点自己的官方分数（挂掉就是 null）；"
+        ],
+        [
+          139,
+          "* **`episode_score`**：这个节点所在 debug 过程的结局分数；"
+        ],
+        [
+          140,
+          "* **`episode_reward`**：`episode_score` 归一化之后的 reward，**训练用的就是它**。"
+        ],
+        [
+          143,
+          "solution 的 score 决定整个过程的好坏\"，也就是 MDP 里的 return。"
+        ],
+        [
+          144,
+          "到转训练数据那一步（第 6 节）再把这个过程拆回一条条输入输出。"
+        ],
+        [
+          146,
+          "一个直接推论：**能跑的节点，`node_score` 和 `episode_score` 是同一个值**（它的 episode 就是它自己）。"
+        ],
+        [
+          157,
+          "raw_journal/0726/<issue>/<seed>/                                   -> batch = <issue>"
+        ],
+        [
+          158,
+          "raw_journal/comparison/<date>/<task>/<limit>/<model>/<solver>/<seed>/  -> batch = <solver>"
+        ],
+        [
+          167,
+          "env_signature = hash(task, hardware, time_limit_secs, execution_timeout, num_children, clients)"
+        ],
+        [
+          168,
+          "group_id      = hash(batch, env_signature, prompt)"
+        ],
+        [
+          171,
+          "也就是一个 group = \"同一批实验里、同一套环境下、root step 输入相同的所有 episode\"。"
+        ],
+        [
+          172,
+          "一个 episode 是 group 的最小成员：episode 里的 draft、improve、debug、analysis 等 call"
+        ],
+        [
+          173,
+          "不会被拆到不同 group。"
+        ],
+        [
+          189,
+          "这两类 completion 不能混在一个训练文件里，所以**分桶放在 shell 里**"
+        ],
+        [
+          201,
+          "## 5. 中间件：一份 group 数据"
+        ],
+        [
+          203,
+          "stage 1 和 stage 2 产出同一个格式的\"dataset 目录\"（`groupdata.py` 定义）："
+        ],
+        [
+          208,
+          "| `groups.jsonl` | 每个 group 一行：`group_id`、`batch`、`task`、`size`、episode 成员摘要 |"
+        ],
+        [
+          210,
+          "| `splits.jsonl` | 第 3 步写的 `group_id -> train/val`（没跑切分就没有） |"
+        ],
+        [
+          212,
+          "`groups.jsonl` **故意不放 prompt**：prompt 占全部体积的 ~83%，而且组里任意一条成员的"
+        ],
+        [
+          220,
+          "| `group_id` / `prompt_key` | `group_id` 按 episode root 输入生成；`prompt_key` 是当前 call 的 prompt 哈希 |"
+        ],
+        [
+          223,
+          "| `task` / `run_id` / `run_dir` / `seed` | 归属信息 |"
+        ],
+        [
+          225,
+          "| `node_id` / `node_step` / `node_operator` / `operator` / `operator_index` | 节点和这次调用属于哪个算子 |"
+        ],
+        [
+          229,
+          "| `node_score` / `node_reward` | 节点自己的官方分数和它的 reward（挂掉是 null） |"
+        ],
+        [
+          230,
+          "| `episode_id` / `episode_root_step` / `episode_terminal_step` / `steps_to_terminal` | episode 归属和结局位置；同一 episode 的所有 call 共用一个 `group_id` |"
+        ],
+        [
+          231,
+          "| `episode_score` / `episode_reward` | **训练用的 reward** |"
+        ],
+        [
+          235,
+          "`groups.jsonl` 的成员是一整个 episode，包含 `root_sample_id` 和 `sample_ids`，以及 root"
+        ],
+        [
+          239,
+          "## 6. 两种训练视角"
+        ],
+        [
+          241,
+          "两个程序各自读同一份中间件，各自写自己的输出。共同的选择逻辑在 `selection.py`："
+        ],
+        [
+          246,
+          "每个 group 先挑 episode reward 最高的 episode，然后将整个episode内所有operation写成一系列"
+        ],
+        [
+          247,
+          "`[system, user, assistant]`。输出 `sft.jsonl` + `sft_{train,val}.parquet`"
+        ],
+        [
+          250,
+          "`sft.jsonl` 每行还带 `sample_id` / `group_id` / `task` / `split` / `batch` / `reward` /"
+        ],
+        [
+          255,
+          "**root step的system和user prompt改成该组内最早一步的system和user prompt** 我们将后续加入的"
+        ],
+        [
+          256,
+          "memory视作一种扰动，目的是为了让模型输出不一样的代码。而这里训练的目的是让模型一开始就找到更好的代码"
+        ],
+        [
+          257,
+          "所以将后续episode的root step的prompt改成group内最早的一步的prompt。"
+        ],
+        [
+          269,
+          "`analysis` 不动，它们带的是代码和报错）。目的是把这些选择和记忆直接训进模型参数，"
+        ],
+        [
+          271,
+          "train 63.9% 提到 75.6%，`sft.jsonl` 从 2.7 GB 缩到 1.7 GB。"
+        ],
+        [
+          275,
+          "每个 group 一行，只出\"组内至少两个 episode 走通\"的组。公共 `prompt` 使用 group 内"
+        ],
+        [
+          278,
+          "输出 `grpo.jsonl` + `grpo_{train,val}.parquet`。"
+        ],
+        [
+          281,
+          "prompt + 一个 reward function，回答是训练时在线 rollout 出来的；把已经采好的回答喂进去"
+        ],
+        [
+          287,
+          "分数不能直接用：不同竞赛量纲差太远（AUC 0.9、RMSE 17、log loss 0.3），而且有些任务越低越好。"
+        ],
+        [
+          291,
+          "reward = (score - median_threshold) / (gold_threshold - median_threshold)"
+        ],
+        [
+          296,
+          "越低越好的任务不用特判（这一点有单独的测试盯着）。"
+        ],
+        [
+          304,
+          "原始分数没丢：`samples.jsonl` 里 `node_score` / `episode_score` 都在，"
+        ],
+        [
+          305,
+          "想换成按任务 z-score 或者别的归一化，下游重算就行，不用重跑流水线。"
+        ],
+        [
+          309,
+          "`assign_splits.py` 是独立一步，在归总之后跑，因为它是对**整个数据集**的决定，"
+        ],
+        [
+          310,
+          "不该让单个 batch 去定。切分单位由 `--split-by` 决定："
+        ],
+        [
+          312,
+          "| `--split-by` | 含义 |"
+        ],
+        [
+          314,
+          "| `task`（默认） | 按竞赛切，val 是训练里完全没见过的竞赛 |"
+        ],
+        [
+          315,
+          "| `group` | 按 group 切，val 的 prompt 没见过但竞赛见过 |"
+        ],
+        [
+          316,
+          "| `run` | 按 run 目录切；注意跨 run 的 group 会被记在它第一个 run 那一边 |"
+        ],
+        [
+          319,
+          "后者在任务数少的时候会切出空 val（实测 22 个任务时一个都没落下，概率约 10%）。"
+        ],
+        [
+          325,
+          "`non_thinking` / `thinking` 分别有 116,364 / 6,925 个 group。"
+        ],
+        [
+          331,
+          "| 桶 | journal | 样本（LLM 调用） | group | 环境数 | episode（走通的） |"
+        ],
+        [
+          344,
+          "| `sft.jsonl`（每组一条epsodic内所有operation） | 35,433（train 32,066 / val 3,367） | 2,897（train 2,692 / val 205） |"
+        ],
+        [
+          347,
+          "单成员 group 共 44 个（`non_thinking` 44，`thinking` 0）；其余 13,152 个"
+        ],
+        [
+          356,
+          "  （同一个竞赛的每个样本都带一份任务描述），实测 prompt 占全部字符的 ~83%"
+        ],
+        [
+          357,
+          "  —— 这也是 `groups.jsonl` 里不放 prompt 的原因。"
+        ],
+        [
+          365,
+          "   比 `journal.jsonl` 还高。但它们的 `score` 一律为空，需要单独的 reward 设计。"
+        ],
+        [
+          367,
+          "4. **batch 划分是目录规则。** 同一个任务在不同日期、不同目录跑的实验会被当成不同 batch，"
+        ]
+      ],
+      "total_selected": 36,
+      "truncated": false
+    }
+  ],
+  "deployment_and_launch": [
+    [
+      116,
+      "### 4.2 启动vllm"
+    ],
+    [
+      117,
+      ""
+    ],
+    [
+      118,
+      "然后用底模加剪过的adapter来启动vllm"
+    ],
+    [
+      119,
+      ""
+    ],
+    [
+      120,
+      "```bash"
+    ],
+    [
+      121,
+      "srun -J vllmserve \\"
+    ],
+    [
+      122,
+      "  --ntasks 1 \\"
+    ],
+    [
+      123,
+      "  --gres=gpu:2 \\"
+    ],
+    [
+      124,
+      "  --cpus-per-task=6 \\"
+    ],
+    [
+      125,
+      "  -o tmp/vllm_%j.log \\"
+    ],
+    [
+      126,
+      "  -e tmp/vllm_%j.err \\"
+    ],
+    [
+      127,
+      "  singularity exec --nv --cleanenv \\"
+    ],
+    [
+      128,
+      "    --env VLLM_WORKER_MULTIPROC_METHOD=spawn \\"
+    ],
+    [
+      129,
+      "    --env VLLM_CACHE_ROOT=[private-location] \\"
+    ],
+    [
+      130,
+      "    --env TRITON_HOME=[private-location] \\"
+    ],
+    [
+      131,
+      "    --env TORCH_HOME=[private-location] \\"
+    ],
+    [
+      132,
+      "    --env HF_HOME=[private-location] \\"
+    ],
+    [
+      133,
+      "    --env HF_HUB_OFFLINE=1 \\"
+    ],
+    [
+      134,
+      "    -B [private-location] \\"
+    ],
+    [
+      135,
+      "    build/vllm/vllm.sif \\"
+    ],
+    [
+      136,
+      "    vllm serve Qwen/Qwen3.5-9B \\"
+    ],
+    [
+      137,
+      "      --served-model-name qwen3.5-9b \\"
+    ],
+    [
+      138,
+      "      --enable-lora \\"
+    ],
+    [
+      139,
+      "      --max-lora-rank 128 \\"
+    ],
+    [
+      140,
+      "      --lora-modules qwen3.5-9b-mle-lora=outputs/sft_mle_policy/qwen3_5_9b_step250_hf/lora_adapter_vllm \\"
+    ],
+    [
+      141,
+      "      --host [private-location] \\"
+    ],
+    [
+      142,
+      "      --port 8000 \\"
+    ],
+    [
+      143,
+      "[credential-bearing line omitted]"
+    ],
+    [
+      144,
+      "      --tensor-parallel-size 2 \\"
+    ],
+    [
+      145,
+      "      --max-model-len 65536 \\"
+    ],
+    [
+      146,
+      "      --gpu-memory-utilization 0.95 \\"
+    ],
+    [
+      147,
+      "      --limit-mm-per-prompt '{\"image\":0,\"video\":0}' \\"
+    ],
+    [
+      148,
+      "      --max-num-seqs 8 &"
+    ],
+    [
+      149,
+      "```"
+    ],
+    [
+      150,
+      ""
+    ],
+    [
+      151,
+      "原模型也可以通过`qwen3.5-9b`来调用，lora模型通过`qwen3.5-9b-mle-lora`来调用，两者共享一个server。最后启动e2e评估"
+    ],
+    [
+      152,
+      ""
+    ],
+    [
+      153,
+      "```bash"
+    ],
+    [
+      154,
+      "python -m dojo.main_runner_job_array \\"
+    ],
+    [
+      155,
+      "  +_exp=mlebench/aira_mcts_qwen_minimal_lora \\"
+    ],
+    [
+      156,
+      "  'benchmark.tasks=[tgs-salt-identification-challenge]' \\"
+    ],
+    [
+      157,
+      "  'solver/client@solver.operators.analyze.llm.client=litellm_qwen3.5-9B-mle-lora' \\"
+    ],
+    [
+      158,
+      "  'solver/client@solver.operators.debug.llm.client=litellm_qwen3.5-9B-mle-lora' \\"
+    ],
+    [
+      159,
+      "  'solver/client@solver.operators.draft.llm.client=litellm_qwen3.5-9B-mle-lora' \\"
+    ],
+    [
+      160,
+      "  'solver/client@solver.operators.improve.llm.client=litellm_qwen3.5-9B-mle-lora' \\"
+    ],
+    [
+      161,
+      "  metadata.git_issue_id=tgs-salt-identification-challenge-8seeds \\"
+    ],
+    [
+      162,
+      "  solver.execution_timeout=7200 \\"
+    ],
+    [
+      163,
+      "  solver.time_limit_secs=86400 \\"
+    ],
+    [
+      164,
+      "  solver.num_children=2 \\"
+    ],
+    [
+      165,
+      "  launcher=srun_pool \\"
+    ],
+    [
+      166,
+      "  launcher.debug=false \\"
+    ],
+    [
+      167,
+      "  launcher.max_parallel=4 \\"
+    ],
+    [
+      168,
+      "  launcher.cpus_per_step=6 \\"
+    ],
+    [
+      169,
+      "  launcher.gpus_per_step=1 \\"
+    ],
+    [
+      170,
+      "  logger.use_wandb=false"
+    ],
+    [
+      171,
+      "```"
+    ],
+    [
+      172,
+      ""
+    ],
+    [
+      173,
+      "这里我特意写了一个no memory和reasoning effort为minimal的配置，来保证尽量贴近训练设置。"
+    ]
+  ],
+  "document_step_references": [
+    "250",
+    "300"
+  ],
+  "artifacts": [
+    {
+      "location_kind": "repo",
+      "artifact": "export_directory",
+      "exists": false
+    },
+    {
+      "location_kind": "repo",
+      "artifact": "lora_adapter",
+      "exists": false
+    },
+    {
+      "location_kind": "repo",
+      "artifact": "lora_adapter_vllm",
+      "exists": false
+    },
+    {
+      "location_kind": "repo",
+      "artifact": "lora_adapter_vllm/adapter_config.json",
+      "exists": false
+    },
+    {
+      "location_kind": "repo",
+      "artifact": "lora_adapter_vllm/adapter_model.safetensors",
+      "exists": false
+    },
+    {
+      "location_kind": "verl",
+      "artifact": "export_directory",
+      "exists": false
+    },
+    {
+      "location_kind": "verl",
+      "artifact": "lora_adapter",
+      "exists": false
+    },
+    {
+      "location_kind": "verl",
+      "artifact": "lora_adapter_vllm",
+      "exists": false
+    },
+    {
+      "location_kind": "verl",
+      "artifact": "lora_adapter_vllm/adapter_config.json",
+      "exists": false
+    },
+    {
+      "location_kind": "verl",
+      "artifact": "lora_adapter_vllm/adapter_model.safetensors",
+      "exists": false
+    }
+  ],
+  "model_cache": [
+    {
+      "location_index": 0,
+      "exists": false
+    },
+    {
+      "location_index": 1,
+      "exists": false
+    },
+    {
+      "location_index": 2,
+      "exists": false
+    }
+  ],
+  "same_endpoint": true,
+  "services": [
+    {
+      "endpoint_index": 0,
+      "operation": "health",
+      "error_type": "URLError"
+    },
+    {
+      "endpoint_index": 0,
+      "operation": "models",
+      "error_type": "URLError"
+    }
+  ]
+}

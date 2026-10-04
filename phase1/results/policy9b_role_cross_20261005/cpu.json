@@ -1,0 +1,8 @@
+{
+  "external_requests": 0,
+  "model_calls": 0,
+  "pairs_same_params": 2,
+  "plan_sha256": "2b6d00c3b43ff01e283b03bafce2e9a24985e1cac81c3841954ebbde0f0e1b0c",
+  "queries_mocked": 2,
+  "status": "PASS"
+}

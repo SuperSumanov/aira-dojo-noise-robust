@@ -1,0 +1,161 @@
+{
+  "analysis_sha256": "5d7d20a3afdc5e8b3cc8c92df115418adc5912ce4a536a8a5da4974962fce62a",
+  "assigned": 88,
+  "by_task": [
+    {
+      "arm": "base",
+      "assigned": 13,
+      "invalid_accept": 0,
+      "invalid_denominator": 13,
+      "missing": 0,
+      "parsed": 13,
+      "seed": 109501,
+      "task": "random-acts-of-pizza",
+      "valid_denominator": 0,
+      "valid_veto": 0
+    },
+    {
+      "arm": "base",
+      "assigned": 9,
+      "invalid_accept": 0,
+      "invalid_denominator": 6,
+      "missing": 0,
+      "parsed": 9,
+      "seed": 109501,
+      "task": "spooky-author-identification",
+      "valid_denominator": 3,
+      "valid_veto": 1
+    },
+    {
+      "arm": "sft",
+      "assigned": 13,
+      "invalid_accept": 0,
+      "invalid_denominator": 13,
+      "missing": 0,
+      "parsed": 13,
+      "seed": 109501,
+      "task": "random-acts-of-pizza",
+      "valid_denominator": 0,
+      "valid_veto": 0
+    },
+    {
+      "arm": "sft",
+      "assigned": 9,
+      "invalid_accept": 0,
+      "invalid_denominator": 6,
+      "missing": 0,
+      "parsed": 9,
+      "seed": 109501,
+      "task": "spooky-author-identification",
+      "valid_denominator": 3,
+      "valid_veto": 0
+    },
+    {
+      "arm": "base",
+      "assigned": 13,
+      "invalid_accept": 0,
+      "invalid_denominator": 13,
+      "missing": 0,
+      "parsed": 13,
+      "seed": 109511,
+      "task": "random-acts-of-pizza",
+      "valid_denominator": 0,
+      "valid_veto": 0
+    },
+    {
+      "arm": "base",
+      "assigned": 9,
+      "invalid_accept": 0,
+      "invalid_denominator": 6,
+      "missing": 0,
+      "parsed": 9,
+      "seed": 109511,
+      "task": "spooky-author-identification",
+      "valid_denominator": 3,
+      "valid_veto": 2
+    },
+    {
+      "arm": "sft",
+      "assigned": 13,
+      "invalid_accept": 0,
+      "invalid_denominator": 13,
+      "missing": 0,
+      "parsed": 13,
+      "seed": 109511,
+      "task": "random-acts-of-pizza",
+      "valid_denominator": 0,
+      "valid_veto": 0
+    },
+    {
+      "arm": "sft",
+      "assigned": 9,
+      "invalid_accept": 0,
+      "invalid_denominator": 6,
+      "missing": 0,
+      "parsed": 9,
+      "seed": 109511,
+      "task": "spooky-author-identification",
+      "valid_denominator": 3,
+      "valid_veto": 0
+    }
+  ],
+  "cases": 22,
+  "comparisons": [
+    {
+      "base": {
+        "assigned": 22,
+        "invalid_accept": 0,
+        "invalid_denominator": 19,
+        "missing": 0,
+        "parsed": 22,
+        "valid_denominator": 3,
+        "valid_veto": 1
+      },
+      "qualified": true,
+      "seed": 109501,
+      "sft": {
+        "assigned": 22,
+        "invalid_accept": 0,
+        "invalid_denominator": 19,
+        "missing": 0,
+        "parsed": 22,
+        "valid_denominator": 3,
+        "valid_veto": 0
+      }
+    },
+    {
+      "base": {
+        "assigned": 22,
+        "invalid_accept": 0,
+        "invalid_denominator": 19,
+        "missing": 0,
+        "parsed": 22,
+        "valid_denominator": 3,
+        "valid_veto": 2
+      },
+      "qualified": true,
+      "seed": 109511,
+      "sft": {
+        "assigned": 22,
+        "invalid_accept": 0,
+        "invalid_denominator": 19,
+        "missing": 0,
+        "parsed": 22,
+        "valid_denominator": 3,
+        "valid_veto": 0
+      }
+    }
+  ],
+  "diagnostic_qualification": true,
+  "elapsed_seconds": 849,
+  "exitcode": "0:0",
+  "gpu_hours": 0.4716666666666667,
+  "job": "16309",
+  "no_automatic_e2e_extension": true,
+  "plan_sha256": "2b6d00c3b43ff01e283b03bafce2e9a24985e1cac81c3841954ebbde0f0e1b0c",
+  "scope": "Posthoc fixed observations, only three valid cases in two source runs, all valid from Spooky. Objective validity is not semantic correctness/anti-cheating. Repeats are not independent tasks. No held-out generalization or model-search-gain claim.",
+  "source_runs": 8,
+  "state": "COMPLETED",
+  "status": "CLOSED_POSTHOC_ROLE_CROSSOVER",
+  "window_gpu_hours": 3.477222222222222
+}

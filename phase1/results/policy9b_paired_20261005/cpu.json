@@ -1,0 +1,24 @@
+{
+  "absolute_deadline_checked": true,
+  "configs": 8,
+  "dev_views": {
+    "random-acts-of-pizza": {
+      "public_dir": "/research/d7/spc/yzyang4/search-only-dev-pizza-20260927-v1/public",
+      "scorer_path": "/research/d7/spc/yzyang4/repair-replace-evaluator-contract-20260927-v1/tests/score_search_only_dsearch_20260927.py",
+      "scorer_sha256": "3a6b75e6ce6b391dd04bb6ac668c063cae90c2270411f5503e493ae8d90991ae",
+      "view_manifest_sha256": "a233a200423d0c24c161f68b9bc7f8a2e3156e8bb20d79b1715dfe401412cdcf"
+    },
+    "spooky-author-identification": {
+      "public_dir": "/research/d7/spc/yzyang4/search-only-dev-spooky-20260927-v1/public",
+      "scorer_path": "/research/d7/spc/yzyang4/repair-replace-evaluator-contract-20260927-v1/tests/score_search_only_dsearch_20260927.py",
+      "scorer_sha256": "3a6b75e6ce6b391dd04bb6ac668c063cae90c2270411f5503e493ae8d90991ae",
+      "view_manifest_sha256": "d59ec421babf89de8ecbd5169a3ddaf1c7b594e7b5706a7726353aa9ce40207e"
+    }
+  },
+  "model_calls": 0,
+  "native_solver_instantiated": 8,
+  "pairs_equal_except_model": 4,
+  "plan_sha256": "12d1264457158c936e4f1eff8e9c844ce5044365e77056066c4ded2ecfe6cd79",
+  "status": "PASS",
+  "utc": "2026-10-04T19:54:47.159723+00:00"
+}

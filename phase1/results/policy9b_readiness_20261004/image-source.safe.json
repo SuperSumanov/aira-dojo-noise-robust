@@ -1,0 +1,278 @@
+{
+  "versions": {
+    "vllm": "0.29.0",
+    "torch": "2.13.0+cu130",
+    "transformers": "5.16.1"
+  },
+  "sources": [
+    {
+      "name": "vllm/entrypoints/openai/chat_completion/protocol.py",
+      "sha256": "8a1f1138f79557aa5b5add12e81b9745fd5e286fa35f0502a97f2a377d41665b",
+      "selected_lines": [
+        [
+          242,
+          "        | None"
+        ],
+        [
+          243,
+          "    ) = \"none\""
+        ],
+        [
+          244,
+          "    reasoning_effort: ("
+        ],
+        [
+          245,
+          "        Literal[\"none\", \"minimal\", \"low\", \"medium\", \"high\", \"xhigh\", \"max\"] | None"
+        ],
+        [
+          246,
+          "    ) = Field("
+        ],
+        [
+          247,
+          "        default=None,"
+        ],
+        [
+          248,
+          "        description=("
+        ],
+        [
+          249,
+          "            \"Constrains effort on reasoning for reasoning models. \""
+        ],
+        [
+          250,
+          "            \"Currently supported values are none, minimal, low, medium, \""
+        ],
+        [
+          582,
+          "        # When reasoning is requested, activate thinking for models whose"
+        ],
+        [
+          583,
+          "        # chat templates require explicit opt-in (e.g., Gemma4 defaults"
+        ],
+        [
+          584,
+          "        # enable_thinking to false). For templates that don't declare the"
+        ],
+        [
+          585,
+          "        # variable, resolve_chat_template_kwargs filters it out harmlessly."
+        ],
+        [
+          586,
+          "        user_kwargs = self.chat_template_kwargs or {}"
+        ],
+        [
+          587,
+          "        if self.reasoning_effort is not None and \"enable_thinking\" not in user_kwargs:"
+        ],
+        [
+          588,
+          "            extra_kwargs[\"enable_thinking\"] = self.reasoning_effort != \"none\""
+        ],
+        [
+          589,
+          ""
+        ],
+        [
+          590,
+          "        return ChatParams("
+        ],
+        [
+          591,
+          "            chat_template=self.chat_template or default_template,"
+        ],
+        [
+          592,
+          "            chat_template_content_format=default_template_content_format,"
+        ],
+        [
+          593,
+          "            chat_template_kwargs=merge_kwargs("
+        ],
+        [
+          594,
+          "                self.chat_template_kwargs,"
+        ]
+      ]
+    },
+    {
+      "name": "vllm/model_executor/models/registry.py",
+      "sha256": "fef8293fe19cef01768a4c5bd8adc05e120202f1c1597eb264d090672894fbd7",
+      "selected_lines": [
+        [
+          200,
+          "    \"Qwen3ForCausalLM\": (\"qwen3\", \"Qwen3ForCausalLM\"),"
+        ],
+        [
+          201,
+          "    \"Qwen3MoeForCausalLM\": (\"qwen3_moe\", \"Qwen3MoeForCausalLM\"),"
+        ],
+        [
+          202,
+          "    \"Qwen3_5ForCausalLM\": (\"qwen3_5\", \"Qwen3_5ForCausalLM\"),"
+        ],
+        [
+          203,
+          "    \"Qwen3_5MoeForCausalLM\": (\"qwen3_5\", \"Qwen3_5MoeForCausalLM\"),"
+        ],
+        [
+          204,
+          "    \"SarvamMoEForCausalLM\": (\"sarvam\", \"SarvamMoEForCausalLM\"),"
+        ],
+        [
+          205,
+          "    \"SarvamMLAForCausalLM\": (\"sarvam\", \"SarvamMLAForCausalLM\"),"
+        ],
+        [
+          206,
+          "    \"SeedOssForCausalLM\": (\"seed_oss\", \"SeedOssForCausalLM\"),"
+        ],
+        [
+          207,
+          "    \"Step1ForCausalLM\": (\"step1\", \"Step1ForCausalLM\"),"
+        ],
+        [
+          208,
+          "    \"Step3TextForCausalLM\": (\"step3_text\", \"Step3TextForCausalLM\"),"
+        ],
+        [
+          209,
+          "    \"Step3p5ForCausalLM\": (\"step3p5\", \"Step3p5ForCausalLM\"),"
+        ],
+        [
+          281,
+          "    \"ColQwen3\": (\"colqwen3\", \"ColQwen3Model\"),"
+        ],
+        [
+          282,
+          "    \"OpsColQwen3Model\": (\"colqwen3\", \"ColQwen3Model\"),"
+        ],
+        [
+          283,
+          "    \"ColQwen3_5\": (\"colqwen3_5\", \"ColQwen3_5Model\"),"
+        ],
+        [
+          284,
+          "    \"Qwen3VLNemotronEmbedModel\": (\"colqwen3\", \"ColQwen3Model\"),"
+        ],
+        [
+          285,
+          "}"
+        ],
+        [
+          286,
+          ""
+        ],
+        [
+          287,
+          "_REWARD_MODELS = {"
+        ],
+        [
+          288,
+          "    \"InternLM2ForRewardModel\": (\"internlm2\", \"InternLM2ForRewardModel\"),"
+        ],
+        [
+          289,
+          "    \"Qwen2ForRewardModel\": (\"qwen2_rm\", \"Qwen2ForRewardModel\"),"
+        ],
+        [
+          573,
+          "        \"Qwen3VLMoeForConditionalGeneration\","
+        ],
+        [
+          574,
+          "    ),"
+        ],
+        [
+          575,
+          "    \"Qwen3_5ForConditionalGeneration\": (\"qwen3_5\", \"Qwen3_5ForConditionalGeneration\"),"
+        ],
+        [
+          576,
+          "    \"Qwen3_5MoeForConditionalGeneration\": ("
+        ],
+        [
+          577,
+          "        \"qwen3_5\","
+        ],
+        [
+          578,
+          "        \"Qwen3_5MoeForConditionalGeneration\","
+        ],
+        [
+          579,
+          "    ),"
+        ],
+        [
+          580,
+          "    \"Qwen4ExpForConditionalGeneration\": ("
+        ],
+        [
+          581,
+          "        \"vllm.models.qwen4_exp\","
+        ],
+        [
+          582,
+          "        \"Qwen4ExpForConditionalGeneration\","
+        ],
+        [
+          583,
+          "    ),"
+        ],
+        [
+          584,
+          "    \"RForConditionalGeneration\": (\"rvl\", \"RForConditionalGeneration\"),"
+        ],
+        [
+          670,
+          "    \"Qwen4ExpMTP\": (\"vllm.models.qwen4_exp\", \"Qwen4ExpMTP\"),"
+        ],
+        [
+          671,
+          "    \"Step3p5MTP\": (\"step3p5_mtp\", \"Step3p5MTP\"),"
+        ],
+        [
+          672,
+          "    \"Qwen3_5MTP\": (\"qwen3_5_mtp\", \"Qwen3_5MTP\"),"
+        ],
+        [
+          673,
+          "    \"Qwen3_5MoeMTP\": (\"qwen3_5_mtp\", \"Qwen3_5MoeMTP\"),"
+        ],
+        [
+          674,
+          "    \"InternS2MobiusMTP\": (\"interns2_mobius\", \"InternS2MobiusMTP\"),"
+        ],
+        [
+          675,
+          "    \"HYV3MTPModel\": (\"hy_v3_mtp\", \"HYV3MTP\"),"
+        ],
+        [
+          676,
+          "    \"HYV4MTPModel\": (\"vllm.models.hy_v4\", \"HYV4MTP\"),"
+        ],
+        [
+          677,
+          "    \"KimiK3MTPModel\": (\"vllm.models.kimi_k3\", \"KimiK3MTP\"),"
+        ],
+        [
+          678,
+          "    # Temporarily disabled."
+        ],
+        [
+          679,
+          "    # # TODO(woosuk): Re-enable this once the MLP Speculator is supported in V1."
+        ]
+      ]
+    }
+  ],
+  "utc": "2026-10-04T12:57:26.555637+00:00",
+  "model_loaded": false,
+  "gpu_used": false,
+  "actual_senior_service_image_identity_verified": false,
+  "scope": "Existing delivered image only, not attestation of the stopped senior service"
+}

@@ -1,0 +1,21 @@
+{
+  "kind": "observed_offline_reproduction_receipt",
+  "observed_utc": "2026-10-04T13:17:30.166288+00:00",
+  "status": "PASS_MOCK_HTTP_ONLY",
+  "exit_code": 0,
+  "script": "phase1/scripts/check_policy9b_wire_offline_20261004.py",
+  "script_sha256": "347ce510becf3014aa3dbc777cca617ebfdbcd74ae82a5a5b9f79f954013184f",
+  "command_on_linux5": "/research/d7/spc/yzyang4/venvs/aira/bin/python /tmp/policy9b-readiness-20261004/check_policy9b_wire_offline_20261004.py",
+  "environment_versions": {"litellm": "1.65.7", "openai": "1.72.0", "httpx": "0.28.1", "omegaconf": "2.3.0"},
+  "cases_match_prior_receipt": "client-wire.safe.json",
+  "case_count": 6,
+  "assertions": [
+    "Original minimal parameters reach the in-memory service with correct model/seed and no explicit enable_thinking.",
+    "Nested unmaterialized parameters fail with APIError before any HTTP transport call, for each model.",
+    "Materialized explicit parameters reach the in-memory service exactly once for each model with matching model, seed, minimal and enable_thinking=false."
+  ],
+  "external_model_requests": 0,
+  "gpu_jobs": 0,
+  "real_model_inferences": 0,
+  "not_validated": ["live service", "checkpoint identity", "ML quality", "GPU throughput", "production run"]
+}

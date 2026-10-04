@@ -1,0 +1,44 @@
+{
+  "utc": "2026-10-04T19:16:40.396605+00:00",
+  "status": "NATIVE_EXPORT_COUNTEREXAMPLES_CONFIRMED",
+  "commit": "b8e75052a9f69e19436f12bc5a36a0ca26a69a57",
+  "native_exporter_sha256": "a617554af4d3722873e9699c4861c6f5adffe4fceb235943ebb34fcf08981e87",
+  "synthetic_inputs_only": true,
+  "real_training_rows_read": 0,
+  "model_training": false,
+  "gpu_jobs": 0,
+  "cases": {
+    "winning_episode_exports_failed_root": true,
+    "winning_episode_exports_unverified_analysis": true,
+    "best_child_can_be_below_parent": {
+      "parent_reward": 0.8,
+      "selected_child_reward": 0.7,
+      "gain": -0.10000000000000009
+    },
+    "same_endpoint_different_export_mass": {
+      "short_episode_rows": 2,
+      "long_episode_rows": 6
+    },
+    "operators_flag_is_root_filter_not_row_filter": {
+      "requested": [
+        "improve"
+      ],
+      "exported": [
+        "improve",
+        "analysis"
+      ]
+    }
+  },
+  "total_exported_rows": 14,
+  "parquet_columns": [
+    "messages"
+  ],
+  "limits": [
+    "These are intentional-rule counterexamples, not estimates of prevalence in the actual training set.",
+    "Full-episode imitation may be useful; the test does not establish its net effect or the cause of mentor model performance.",
+    "Exported row counts are not measured optimizer loss or gradient weights.",
+    "No model update or real ML score comparison was performed."
+  ],
+  "reproduction_script": "phase1/scripts/check_sft_target_semantics_20261005.py",
+  "reproduction_script_sha256": "341538fb18621b554b247181204d3dcfe55620c33640c7a439bb78127872caac"
+}

@@ -1,0 +1,12 @@
+diff --git a/src/dojo/core/solvers/llm_helpers/generic_llm.py b/src/dojo/core/solvers/llm_helpers/generic_llm.py
+--- a/src/dojo/core/solvers/llm_helpers/generic_llm.py
++++ b/src/dojo/core/solvers/llm_helpers/generic_llm.py
+@@ -39,7 +39,7 @@ class GenericLLM:
+         self.client = get_client(self.cfg.llm.client)
+ 
+         # LLM Generation Arguments
+-        self.generation_kwargs = self.cfg.llm.generation_kwargs
++        self.generation_kwargs = OmegaConf.to_container(self.cfg.llm.generation_kwargs, resolve=True) if OmegaConf.is_config(self.cfg.llm.generation_kwargs) else dict(self.cfg.llm.generation_kwargs)
+ 
+         # Set up the prompt templates based on the configuration
+         self._set_up_prompts()

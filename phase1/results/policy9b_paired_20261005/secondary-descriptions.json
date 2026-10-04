@@ -1,0 +1,444 @@
+{
+  "inference": "Operator counts and selected origins describe exposure, not causal mediation; no comparison of gains from different initial drafts, no posthoc gate or score substitution.",
+  "primary_summary_sha256": "076a318a9c3613aefadfad6bc974ef20fd5aaa7848c5ae010974c4363468e5c4",
+  "protocol": "secondary-descriptive-before-readout-v1",
+  "rows": [
+    {
+      "action_coverage": [
+        "draft",
+        "debug"
+      ],
+      "arm": "base",
+      "completed_candidate_elapsed": [
+        198.42512558214366,
+        355.8531687967479,
+        514.7051489427686
+      ],
+      "completed_candidate_records": 3,
+      "completed_journal_nodes": 3,
+      "cost_boundary": "Recorded completed-node token/latency counts only; lost interrupted/failed calls may be absent. Allocated GPU-hours in frozen primary summary are complete.",
+      "execution_nonzero": 3,
+      "execution_timeouts": 0,
+      "first_external_valid_elapsed": null,
+      "index": 0,
+      "native_good_nodes": 0,
+      "recorded_execution_seconds": 16.35677293036133,
+      "recorded_node_calls": {
+        "analysis": {
+          "completion_tokens": 292,
+          "incomplete_usage": 0,
+          "latency_seconds": 19.081850608810782,
+          "prompt_tokens": 18083,
+          "recorded_calls": 3
+        },
+        "debug": {
+          "completion_tokens": 5647,
+          "incomplete_usage": 0,
+          "latency_seconds": 279.92364654596895,
+          "prompt_tokens": 18303,
+          "recorded_calls": 2
+        },
+        "draft": {
+          "completion_tokens": 2923,
+          "incomplete_usage": 0,
+          "latency_seconds": 145.99992106854916,
+          "prompt_tokens": 5061,
+          "recorded_calls": 1
+        },
+        "improve": {
+          "completion_tokens": 0,
+          "incomplete_usage": 0,
+          "latency_seconds": 0.0,
+          "prompt_tokens": 0,
+          "recorded_calls": 0
+        }
+      },
+      "seed": 108501,
+      "selected_origin": null,
+      "task": "random-acts-of-pizza",
+      "wave": 0
+    },
+    {
+      "action_coverage": [
+        "draft",
+        "debug"
+      ],
+      "arm": "base",
+      "completed_candidate_elapsed": [
+        159.4851493742317,
+        257.5379741778597,
+        399.1477594682947,
+        519.2941604601219
+      ],
+      "completed_candidate_records": 4,
+      "completed_journal_nodes": 4,
+      "cost_boundary": "Recorded completed-node token/latency counts only; lost interrupted/failed calls may be absent. Allocated GPU-hours in frozen primary summary are complete.",
+      "execution_nonzero": 2,
+      "execution_timeouts": 0,
+      "first_external_valid_elapsed": 398.24892469029874,
+      "index": 1,
+      "native_good_nodes": 0,
+      "recorded_execution_seconds": 97.21258935611695,
+      "recorded_node_calls": {
+        "analysis": {
+          "completion_tokens": 379,
+          "incomplete_usage": 0,
+          "latency_seconds": 23.70525977574289,
+          "prompt_tokens": 16755,
+          "recorded_calls": 4
+        },
+        "debug": {
+          "completion_tokens": 4834,
+          "incomplete_usage": 0,
+          "latency_seconds": 237.94195894803852,
+          "prompt_tokens": 18746,
+          "recorded_calls": 3
+        },
+        "draft": {
+          "completion_tokens": 2098,
+          "incomplete_usage": 0,
+          "latency_seconds": 104.34208370372653,
+          "prompt_tokens": 3803,
+          "recorded_calls": 1
+        },
+        "improve": {
+          "completion_tokens": 0,
+          "incomplete_usage": 0,
+          "latency_seconds": 0.0,
+          "prompt_tokens": 0,
+          "recorded_calls": 0
+        }
+      },
+      "seed": 108502,
+      "selected_origin": null,
+      "task": "spooky-author-identification",
+      "wave": 0
+    },
+    {
+      "action_coverage": [
+        "draft",
+        "debug"
+      ],
+      "arm": "sft",
+      "completed_candidate_elapsed": [
+        124.71178274881095,
+        247.88159748073667,
+        385.0601455550641,
+        516.6255567390472
+      ],
+      "completed_candidate_records": 4,
+      "completed_journal_nodes": 4,
+      "cost_boundary": "Recorded completed-node token/latency counts only; lost interrupted/failed calls may be absent. Allocated GPU-hours in frozen primary summary are complete.",
+      "execution_nonzero": 4,
+      "execution_timeouts": 0,
+      "first_external_valid_elapsed": null,
+      "index": 2,
+      "native_good_nodes": 0,
+      "recorded_execution_seconds": 20.181731577031314,
+      "recorded_node_calls": {
+        "analysis": {
+          "completion_tokens": 405,
+          "incomplete_usage": 0,
+          "latency_seconds": 33.98470135778189,
+          "prompt_tokens": 22696,
+          "recorded_calls": 4
+        },
+        "debug": {
+          "completion_tokens": 4278,
+          "incomplete_usage": 0,
+          "latency_seconds": 334.9028037004173,
+          "prompt_tokens": 21772,
+          "recorded_calls": 3
+        },
+        "draft": {
+          "completion_tokens": 1224,
+          "incomplete_usage": 0,
+          "latency_seconds": 90.67026863340288,
+          "prompt_tokens": 5061,
+          "recorded_calls": 1
+        },
+        "improve": {
+          "completion_tokens": 0,
+          "incomplete_usage": 0,
+          "latency_seconds": 0.0,
+          "prompt_tokens": 0,
+          "recorded_calls": 0
+        }
+      },
+      "seed": 108501,
+      "selected_origin": null,
+      "task": "random-acts-of-pizza",
+      "wave": 1
+    },
+    {
+      "action_coverage": [
+        "draft",
+        "debug"
+      ],
+      "arm": "sft",
+      "completed_candidate_elapsed": [
+        172.76096404064447,
+        533.3963675620034
+      ],
+      "completed_candidate_records": 2,
+      "completed_journal_nodes": 2,
+      "cost_boundary": "Recorded completed-node token/latency counts only; lost interrupted/failed calls may be absent. Allocated GPU-hours in frozen primary summary are complete.",
+      "execution_nonzero": 2,
+      "execution_timeouts": 1,
+      "first_external_valid_elapsed": null,
+      "index": 3,
+      "native_good_nodes": 0,
+      "recorded_execution_seconds": 254.3534358618781,
+      "recorded_node_calls": {
+        "analysis": {
+          "completion_tokens": 191,
+          "incomplete_usage": 0,
+          "latency_seconds": 15.825065863318741,
+          "prompt_tokens": 8072,
+          "recorded_calls": 2
+        },
+        "debug": {
+          "completion_tokens": 1408,
+          "incomplete_usage": 0,
+          "latency_seconds": 104.91879762336612,
+          "prompt_tokens": 5668,
+          "recorded_calls": 1
+        },
+        "draft": {
+          "completion_tokens": 1700,
+          "incomplete_usage": 0,
+          "latency_seconds": 126.8789791772142,
+          "prompt_tokens": 3803,
+          "recorded_calls": 1
+        },
+        "improve": {
+          "completion_tokens": 0,
+          "incomplete_usage": 0,
+          "latency_seconds": 0.0,
+          "prompt_tokens": 0,
+          "recorded_calls": 0
+        }
+      },
+      "seed": 108502,
+      "selected_origin": null,
+      "task": "spooky-author-identification",
+      "wave": 1
+    },
+    {
+      "action_coverage": [
+        "draft",
+        "debug"
+      ],
+      "arm": "sft",
+      "completed_candidate_elapsed": [
+        174.20408615935594,
+        328.9501741081476,
+        496.1618354897946
+      ],
+      "completed_candidate_records": 3,
+      "completed_journal_nodes": 3,
+      "cost_boundary": "Recorded completed-node token/latency counts only; lost interrupted/failed calls may be absent. Allocated GPU-hours in frozen primary summary are complete.",
+      "execution_nonzero": 3,
+      "execution_timeouts": 0,
+      "first_external_valid_elapsed": null,
+      "index": 4,
+      "native_good_nodes": 0,
+      "recorded_execution_seconds": 14.194011766463518,
+      "recorded_node_calls": {
+        "analysis": {
+          "completion_tokens": 250,
+          "incomplete_usage": 0,
+          "latency_seconds": 21.77929548639804,
+          "prompt_tokens": 15864,
+          "recorded_calls": 3
+        },
+        "debug": {
+          "completion_tokens": 3812,
+          "incomplete_usage": 0,
+          "latency_seconds": 288.028682817705,
+          "prompt_tokens": 15335,
+          "recorded_calls": 2
+        },
+        "draft": {
+          "completion_tokens": 1752,
+          "incomplete_usage": 0,
+          "latency_seconds": 130.952645951882,
+          "prompt_tokens": 5061,
+          "recorded_calls": 1
+        },
+        "improve": {
+          "completion_tokens": 0,
+          "incomplete_usage": 0,
+          "latency_seconds": 0.0,
+          "prompt_tokens": 0,
+          "recorded_calls": 0
+        }
+      },
+      "seed": 108511,
+      "selected_origin": null,
+      "task": "random-acts-of-pizza",
+      "wave": 2
+    },
+    {
+      "action_coverage": [
+        "draft"
+      ],
+      "arm": "sft",
+      "completed_candidate_elapsed": [
+        258.3509167348966,
+        591.7820445066318
+      ],
+      "completed_candidate_records": 2,
+      "completed_journal_nodes": 2,
+      "cost_boundary": "Recorded completed-node token/latency counts only; lost interrupted/failed calls may be absent. Allocated GPU-hours in frozen primary summary are complete.",
+      "execution_nonzero": 1,
+      "execution_timeouts": 0,
+      "first_external_valid_elapsed": 257.45110026653856,
+      "index": 5,
+      "native_good_nodes": 1,
+      "recorded_execution_seconds": 346.44036098662764,
+      "recorded_node_calls": {
+        "analysis": {
+          "completion_tokens": 172,
+          "incomplete_usage": 0,
+          "latency_seconds": 13.043685981072485,
+          "prompt_tokens": 7376,
+          "recorded_calls": 2
+        },
+        "debug": {
+          "completion_tokens": 0,
+          "incomplete_usage": 0,
+          "latency_seconds": 0.0,
+          "prompt_tokens": 0,
+          "recorded_calls": 0
+        },
+        "draft": {
+          "completion_tokens": 2741,
+          "incomplete_usage": 0,
+          "latency_seconds": 197.63511227443814,
+          "prompt_tokens": 7606,
+          "recorded_calls": 2
+        },
+        "improve": {
+          "completion_tokens": 0,
+          "incomplete_usage": 0,
+          "latency_seconds": 0.0,
+          "prompt_tokens": 0,
+          "recorded_calls": 0
+        }
+      },
+      "seed": 108512,
+      "selected_origin": "draft",
+      "task": "spooky-author-identification",
+      "wave": 2
+    },
+    {
+      "action_coverage": [
+        "draft",
+        "debug"
+      ],
+      "arm": "base",
+      "completed_candidate_elapsed": [
+        192.99039276130497,
+        347.0026128254831,
+        519.1193117024377
+      ],
+      "completed_candidate_records": 3,
+      "completed_journal_nodes": 3,
+      "cost_boundary": "Recorded completed-node token/latency counts only; lost interrupted/failed calls may be absent. Allocated GPU-hours in frozen primary summary are complete.",
+      "execution_nonzero": 3,
+      "execution_timeouts": 0,
+      "first_external_valid_elapsed": null,
+      "index": 6,
+      "native_good_nodes": 0,
+      "recorded_execution_seconds": 13.821108668111265,
+      "recorded_node_calls": {
+        "analysis": {
+          "completion_tokens": 298,
+          "incomplete_usage": 0,
+          "latency_seconds": 17.28899946436286,
+          "prompt_tokens": 19625,
+          "recorded_calls": 3
+        },
+        "debug": {
+          "completion_tokens": 5620,
+          "incomplete_usage": 0,
+          "latency_seconds": 294.232583434321,
+          "prompt_tokens": 18361,
+          "recorded_calls": 2
+        },
+        "draft": {
+          "completion_tokens": 3115,
+          "incomplete_usage": 0,
+          "latency_seconds": 150.9873430505395,
+          "prompt_tokens": 5061,
+          "recorded_calls": 1
+        },
+        "improve": {
+          "completion_tokens": 0,
+          "incomplete_usage": 0,
+          "latency_seconds": 0.0,
+          "prompt_tokens": 0,
+          "recorded_calls": 0
+        }
+      },
+      "seed": 108511,
+      "selected_origin": null,
+      "task": "random-acts-of-pizza",
+      "wave": 3
+    },
+    {
+      "action_coverage": [
+        "draft"
+      ],
+      "arm": "base",
+      "completed_candidate_elapsed": [
+        497.0352706601843
+      ],
+      "completed_candidate_records": 1,
+      "completed_journal_nodes": 1,
+      "cost_boundary": "Recorded completed-node token/latency counts only; lost interrupted/failed calls may be absent. Allocated GPU-hours in frozen primary summary are complete.",
+      "execution_nonzero": 1,
+      "execution_timeouts": 1,
+      "first_external_valid_elapsed": null,
+      "index": 7,
+      "native_good_nodes": 0,
+      "recorded_execution_seconds": 286.15074389707297,
+      "recorded_node_calls": {
+        "analysis": {
+          "completion_tokens": 80,
+          "incomplete_usage": 0,
+          "latency_seconds": 4.708151089958847,
+          "prompt_tokens": 5506,
+          "recorded_calls": 1
+        },
+        "debug": {
+          "completion_tokens": 0,
+          "incomplete_usage": 0,
+          "latency_seconds": 0.0,
+          "prompt_tokens": 0,
+          "recorded_calls": 0
+        },
+        "draft": {
+          "completion_tokens": 3489,
+          "incomplete_usage": 0,
+          "latency_seconds": 171.47790599241853,
+          "prompt_tokens": 3803,
+          "recorded_calls": 1
+        },
+        "improve": {
+          "completion_tokens": 0,
+          "incomplete_usage": 0,
+          "latency_seconds": 0.0,
+          "prompt_tokens": 0,
+          "recorded_calls": 0
+        }
+      },
+      "seed": 108512,
+      "selected_origin": null,
+      "task": "spooky-author-identification",
+      "wave": 3
+    }
+  ],
+  "script_sha256": "5aa2e9662dc9c5ff6d8953d4160b93a95a1913d51b378aadf24e8ea652d4c37c"
+}

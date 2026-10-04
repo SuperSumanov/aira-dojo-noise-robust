@@ -1,0 +1,38 @@
+{
+  "observed_utc": "2026-10-04T11:56:23.112522+00:00",
+  "commit": "b8e75052a9f69e19436f12bc5a36a0ca26a69a57",
+  "service_from": "linux5",
+  "health": {
+    "error_type": "URLError",
+    "reason_type": "ConnectionRefusedError",
+    "errno": 111,
+    "authenticated": false,
+    "inference": false
+  },
+  "models": {
+    "error_type": "URLError",
+    "reason_type": "ConnectionRefusedError",
+    "errno": 111,
+    "authenticated": false,
+    "inference": false
+  },
+  "static_client_differences": [
+    "model_id"
+  ],
+  "comparison_metadata": {
+    "stable_twice": true,
+    "visible_task_archives": 9,
+    "subfolders": 0,
+    "archives_downloaded": 0,
+    "limitation": "Filenames alone do not establish upload recency or presence/absence of 9B results inside existing archives."
+  },
+  "newest_baseline_named_commit": {
+    "actual_added_experiment": "src/dojo/configs/_exp/mlebench/aira_mcts_dsf_minimal_mle.yaml",
+    "client": "litellm_deepseek_flash",
+    "no_memory_override_present": false,
+    "limitation": "Actual runs might override these defaults; no claim that mentor ran a mismatched experiment."
+  },
+  "outcomes_read": false,
+  "model_calls": 0,
+  "gpu_jobs_submitted": 0
+}

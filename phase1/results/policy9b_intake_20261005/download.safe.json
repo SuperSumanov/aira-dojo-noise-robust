@@ -1,0 +1,29 @@
+{
+  "utc": "2026-10-04T19:03:33.028574+00:00",
+  "status": "DOWNLOADED_LISTED_NOT_LOADED",
+  "artifact_directory": "/research/d7/spc/yzyang4/policy9b-adapter-20261005-b6jjvjwh",
+  "archive_sha256": "b72208f2b32518be0a996f12c7aa5846c727d09406d4dfdf2a8851c1bb2c2b25",
+  "download_bytes": 272491006,
+  "expanded_bytes": 346303942,
+  "members": [
+    {
+      "name": "lora_adapter_vllm",
+      "size_bytes": 0,
+      "directory": true
+    },
+    {
+      "name": "lora_adapter_vllm/adapter_model.safetensors",
+      "size_bytes": 346302648,
+      "directory": false
+    },
+    {
+      "name": "lora_adapter_vllm/adapter_config.json",
+      "size_bytes": 1294,
+      "directory": false
+    }
+  ],
+  "free_bytes_before": 28384913522688,
+  "elapsed_seconds": 11.019298971164972,
+  "model_loads": 0,
+  "gpu_jobs": 0
+}

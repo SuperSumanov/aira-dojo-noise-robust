@@ -1,0 +1,17 @@
+{
+  "observed_utc": "2026-10-04T13:16:04.975909+00:00",
+  "source_commit": "b8e75052a9f69e19436f12bc5a36a0ca26a69a57",
+  "vantage": "linux5",
+  "authentication_sent": false,
+  "service_check": [
+    {"operation": "health", "reason_type": "ConnectionRefusedError", "errno": 111},
+    {"operation": "models", "reason_type": "ConnectionRefusedError", "errno": 111}
+  ],
+  "comparison_folder": {"metadata_requests": 2, "stable_listing": true, "task_archives": 9, "subfolders": 0, "archive_downloads": 0, "contents_read": false},
+  "own_queue_observed_same_minute": [{"job_id": 12535, "state": "PENDING", "reason": "JobHeldUser", "modified": false}],
+  "mentor_jobs_checked": false,
+  "new_gpu_jobs_submitted": 0,
+  "model_calls": 0,
+  "protected_results_read": false,
+  "limitations": ["Connection refusal is vantage-specific, not a global outage claim.", "Stable filenames do not establish upload recency or existence of 9B results inside archives."]
+}

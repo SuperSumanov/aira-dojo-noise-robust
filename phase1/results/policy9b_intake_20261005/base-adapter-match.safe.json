@@ -1,0 +1,25 @@
+{
+  "utc": "2026-10-04T19:22:33.250604+00:00",
+  "status": "ALL_ADAPTER_BASE_SHAPES_MATCH",
+  "paired_modules": 248,
+  "adapter_tensors": 496,
+  "unmatched_tensors": 0,
+  "module_counts": {
+    "in_proj_a": 24,
+    "in_proj_b": 24,
+    "in_proj_qkv": 24,
+    "in_proj_z": 24,
+    "out_proj": 24,
+    "down_proj": 32,
+    "gate_proj": 32,
+    "up_proj": 32,
+    "k_proj": 8,
+    "o_proj": 8,
+    "q_proj": 8,
+    "v_proj": 8
+  },
+  "base_revision": "c202236235762e1c871ad0ccb60c8ee5ba337b9a",
+  "model_instantiations": 0,
+  "gpu_jobs": 0,
+  "limitation": "Structural compatibility, not proof of original training-base identity or live inference correctness."
+}

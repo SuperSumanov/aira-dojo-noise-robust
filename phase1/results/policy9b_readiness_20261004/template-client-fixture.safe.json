@@ -1,0 +1,66 @@
+{
+  "utc": "2026-10-04T12:55:18.260889+00:00",
+  "source_commit": "b8e75052a9f69e19436f12bc5a36a0ca26a69a57",
+  "official_template_commit": "ef3d031a90d340a92d71f83ec17d054e100ce713",
+  "official_template_sha256": "a4aee8afcf2e0711942cf848899be66016f8d14a889ff9ede07bca099c28f715",
+  "template_fixture": {
+    "unset": {
+      "open_thinking_prefix": true,
+      "closed_empty_thinking_prefix": false
+    },
+    "minimal_only": {
+      "open_thinking_prefix": true,
+      "closed_empty_thinking_prefix": false
+    },
+    "explicit_false": {
+      "open_thinking_prefix": false,
+      "closed_empty_thinking_prefix": true
+    },
+    "minimal_explicit_false": {
+      "open_thinking_prefix": false,
+      "closed_empty_thinking_prefix": true
+    }
+  },
+  "minimal_equals_default": true,
+  "explicit_false_changes_prefix": true,
+  "model_calls": 0,
+  "weights_loaded": false,
+  "gpu_jobs": 0,
+  "limitation": "Template and client fixtures, not proof of the unavailable deployed server version or its defaults.",
+  "client_fixture": [
+    {
+      "condition": "original_minimal",
+      "model": "qwen3.5-9b",
+      "forwarded_effort": "minimal",
+      "forwarded_enable_thinking": null,
+      "native_cost_field": 0,
+      "fixture_output_returned": true
+    },
+    {
+      "condition": "original_minimal",
+      "model": "qwen3.5-9b-mle-lora",
+      "forwarded_effort": "minimal",
+      "forwarded_enable_thinking": null,
+      "native_cost_field": 0,
+      "fixture_output_returned": true
+    },
+    {
+      "condition": "explicit_non_thinking",
+      "model": "qwen3.5-9b",
+      "forwarded_effort": "minimal",
+      "forwarded_enable_thinking": false,
+      "native_cost_field": 0,
+      "fixture_output_returned": true
+    },
+    {
+      "condition": "explicit_non_thinking",
+      "model": "qwen3.5-9b-mle-lora",
+      "forwarded_effort": "minimal",
+      "forwarded_enable_thinking": false,
+      "native_cost_field": 0,
+      "fixture_output_returned": true
+    }
+  ],
+  "client_sha256": "fff4255c36c59f592d6ada4232bdb9150174333cd94d5d1883c38dc65450a734",
+  "transport_calls_all_mocked": 4
+}

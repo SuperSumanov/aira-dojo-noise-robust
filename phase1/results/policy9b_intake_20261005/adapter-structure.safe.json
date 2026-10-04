@@ -1,0 +1,64 @@
+{
+  "utc": "2026-10-04T19:06:06.954281+00:00",
+  "status": "CPU_TENSOR_STRUCTURE_ONLY",
+  "adapter_directory": "/research/d7/spc/yzyang4/policy9b-adapter-20261005-b6jjvjwh/accepted_adapter",
+  "adapter_config_sha256": "7a1f06dc55ba770704436f9bd50d8464082d0de80fd827e1b8687116aab7b486",
+  "weights_sha256": "87a996545f516cef4480b1642ff6647f3a4eeab3e898e79dca5b445184597a08",
+  "config": {
+    "base_model_name_or_path": null,
+    "revision": null,
+    "peft_type": "LORA",
+    "task_type": "CAUSAL_LM",
+    "r": 64,
+    "lora_alpha": 128,
+    "lora_dropout": 0.0,
+    "target_modules": [
+      "down_proj",
+      "gate_proj",
+      "in_proj_a",
+      "in_proj_b",
+      "in_proj_qkv",
+      "in_proj_z",
+      "k_proj",
+      "o_proj",
+      "out_proj",
+      "q_proj",
+      "up_proj",
+      "v_proj"
+    ],
+    "modules_to_save": null,
+    "bias": "none",
+    "use_dora": false,
+    "use_rslora": false,
+    "inference_mode": false,
+    "auto_mapping": null,
+    "init_lora_weights": true
+  },
+  "tensors": 496,
+  "elements": 173113344,
+  "nonfinite_elements": 0,
+  "all_zero_tensors": 0,
+  "dtypes": {
+    "torch.bfloat16": 496
+  },
+  "shape_counts": {
+    "[64, 4096]": 216,
+    "[32, 64]": 48,
+    "[8192, 64]": 32,
+    "[4096, 64]": 88,
+    "[64, 12288]": 32,
+    "[12288, 64]": 64,
+    "[1024, 64]": 16
+  },
+  "tensor_name_examples": [
+    "base_model.model.model.language_model.layers.0.linear_attn.in_proj_a.lora_A.weight",
+    "base_model.model.model.language_model.layers.0.linear_attn.in_proj_a.lora_B.weight",
+    "base_model.model.model.language_model.layers.0.linear_attn.in_proj_b.lora_A.weight",
+    "base_model.model.model.language_model.layers.0.linear_attn.in_proj_b.lora_B.weight",
+    "base_model.model.model.language_model.layers.0.linear_attn.in_proj_qkv.lora_A.weight",
+    "base_model.model.model.language_model.layers.0.linear_attn.in_proj_qkv.lora_B.weight"
+  ],
+  "model_loads": 0,
+  "gpu_jobs": 0,
+  "limitation": "No forward pass, runtime adapter attachment or quality comparison has been performed."
+}

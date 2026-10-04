@@ -1,0 +1,17 @@
+{
+  "label_values_read": 0,
+  "plan_sha256": "12d1264457158c936e4f1eff8e9c844ce5044365e77056066c4ded2ecfe6cd79",
+  "status": "PASS",
+  "tasks": [
+    {
+      "manifest_sha256": "a233a200423d0c24c161f68b9bc7f8a2e3156e8bb20d79b1715dfe401412cdcf",
+      "public_files_verified": 4,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "manifest_sha256": "d59ec421babf89de8ecbd5169a3ddaf1c7b594e7b5706a7726353aa9ce40207e",
+      "public_files_verified": 4,
+      "task": "spooky-author-identification"
+    }
+  ]
+}

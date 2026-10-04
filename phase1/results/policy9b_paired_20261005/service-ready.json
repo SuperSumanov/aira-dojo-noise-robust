@@ -1,0 +1,28 @@
+{
+  "qualification": [
+    {
+      "requested": "qwen3.5-9b",
+      "returned": "qwen3.5-9b",
+      "usage": {
+        "completion_tokens": 2,
+        "completion_tokens_details": null,
+        "prompt_tokens": 17,
+        "prompt_tokens_details": null,
+        "total_tokens": 19
+      }
+    },
+    {
+      "requested": "qwen3.5-9b-mle-lora",
+      "returned": "qwen3.5-9b-mle-lora",
+      "usage": {
+        "completion_tokens": 2,
+        "completion_tokens_details": null,
+        "prompt_tokens": 17,
+        "prompt_tokens_details": null,
+        "total_tokens": 19
+      }
+    }
+  ],
+  "startup_seconds": 288.7380021363497,
+  "utc": "2026-10-04T20:01:48.557362+00:00"
+}

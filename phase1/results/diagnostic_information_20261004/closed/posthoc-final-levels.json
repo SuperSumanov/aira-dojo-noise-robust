@@ -1,0 +1,154 @@
+{
+  "assigned": 12,
+  "boundary": "Endpoint changed explicitly for a descriptive supplement only. Direct final-level differences, not within-run gain: index11 initial remains missing. All assigned runs retained, including failed initialization and format rejection. The frozen complete-ABC initial-matched analysis and gate stay unchanged. Two reused parents, only two generation seeds; no significance, fresh generalization, diagnostic-causal attribution, or automatic-method cost-parity claim.",
+  "contrasts": [
+    {
+      "assigned_pairs": 2,
+      "contrast": "B_minus_A",
+      "median": 0.012885673283903332,
+      "observed_pairs": 2,
+      "sample_variance": 1.0599152405321607e-05,
+      "task": "random-acts-of-pizza",
+      "values": [
+        0.015187754125807196,
+        0.010583592441999468
+      ]
+    },
+    {
+      "assigned_pairs": 2,
+      "contrast": "C_minus_A",
+      "median": 0.009507294905524988,
+      "observed_pairs": 2,
+      "sample_variance": 7.883667078338221e-05,
+      "task": "random-acts-of-pizza",
+      "values": [
+        0.003228892609423606,
+        0.01578569720162637
+      ]
+    },
+    {
+      "assigned_pairs": 2,
+      "contrast": "C_minus_B",
+      "median": -0.003378378378378344,
+      "observed_pairs": 2,
+      "sample_variance": 0.00014724938176318472,
+      "task": "random-acts-of-pizza",
+      "values": [
+        -0.01195886151638359,
+        0.005202104759626902
+      ]
+    },
+    {
+      "assigned_pairs": 2,
+      "contrast": "B_minus_A",
+      "median": 0.0022522362991080624,
+      "observed_pairs": 2,
+      "sample_variance": 1.0145136694039963e-05,
+      "task": "spooky-author-identification",
+      "values": [
+        -0.0,
+        0.004504472598216125
+      ]
+    },
+    {
+      "assigned_pairs": 2,
+      "contrast": "C_minus_A",
+      "median": 0.001748273658941174,
+      "observed_pairs": 2,
+      "sample_variance": 6.112921573095121e-06,
+      "task": "spooky-author-identification",
+      "values": [
+        -0.0,
+        0.003496547317882348
+      ]
+    },
+    {
+      "assigned_pairs": 2,
+      "contrast": "C_minus_B",
+      "median": -0.0005039626401668884,
+      "observed_pairs": 2,
+      "sample_variance": 5.079566853679613e-07,
+      "task": "spooky-author-identification",
+      "values": [
+        -0.0,
+        -0.0010079252803337768
+      ]
+    }
+  ],
+  "full_summary_sha256": "cac2383749899ff1ae5ec34adf7ef4eec6446d30f485c0ee5b1ddb594b7c6675",
+  "observed_final": 12,
+  "pairs": [
+    {
+      "B_minus_A": 0.015187754125807196,
+      "C_minus_A": 0.003228892609423606,
+      "C_minus_B": -0.01195886151638359,
+      "final_scores": {
+        "A": 0.6568404687873715,
+        "B": 0.6720282229131787,
+        "C": 0.6600693613967951
+      },
+      "own_initial_available": {
+        "A": true,
+        "B": true,
+        "C": true
+      },
+      "seed": 107101,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "B_minus_A": 0.010583592441999468,
+      "C_minus_A": 0.01578569720162637,
+      "C_minus_B": 0.005202104759626902,
+      "final_scores": {
+        "A": 0.6568404687873715,
+        "B": 0.6674240612293709,
+        "C": 0.6726261659889978
+      },
+      "own_initial_available": {
+        "A": true,
+        "B": true,
+        "C": true
+      },
+      "seed": 107111,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "B_minus_A": -0.0,
+      "C_minus_A": -0.0,
+      "C_minus_B": -0.0,
+      "final_scores": {
+        "A": 0.38797591250098007,
+        "B": 0.38797591250098007,
+        "C": 0.38797591250098007
+      },
+      "own_initial_available": {
+        "A": true,
+        "B": true,
+        "C": true
+      },
+      "seed": 107102,
+      "task": "spooky-author-identification"
+    },
+    {
+      "B_minus_A": 0.004504472598216125,
+      "C_minus_A": 0.003496547317882348,
+      "C_minus_B": -0.0010079252803337768,
+      "final_scores": {
+        "A": 0.38797591250098007,
+        "B": 0.38347143990276394,
+        "C": 0.3844793651830977
+      },
+      "own_initial_available": {
+        "A": true,
+        "B": false,
+        "C": true
+      },
+      "seed": 107112,
+      "task": "spooky-author-identification"
+    }
+  ],
+  "plan_sha256": "63322ce2f5e38ac22c2a98b2c7bae5fa27334c4d5f3052297938418c26627679",
+  "runs_csv_sha256": "85aba0662ef9dfcad2880d3a8e087b458c21b6a6e2b78bf4e26d29b743141c59",
+  "script_sha256": "2f22958305d5dad30cb108ae94fdaf12221000a49d0aadd685bae49564c54a98",
+  "status": "POSTHOC_ALL_ASSIGNED_FINAL_LEVELS"
+}

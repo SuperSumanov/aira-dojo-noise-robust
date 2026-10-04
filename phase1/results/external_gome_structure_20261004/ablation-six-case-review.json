@@ -1,0 +1,59 @@
+{
+  "schema": "external-gome-small-source-review-v1",
+  "source_revision": "35fc17013ab0ded2f578eacb1f606b0b9e45a1d3",
+  "selection_script_sha256": "f468c80dc56c4eef35858c7a65b5fb13b27bc4e28176f8509565014aceca6970",
+  "review_scope": "Human review of masked intent and AST-normalized changed source blocks. No third-party code execution, model fit, raw labels, explicit outcome/score/feedback/scenario access, or performance measurement. Not an exhaustive proof of unchanged non-target behavior.",
+  "sampling": "All4210 code pairs scanned for a fixed removal/ablation keyword expression in hypothesis;942 lexical matches cover40 tasks. Earliest numeric loop in earliest source file per task, then first6 tasks alphabetically. Nonrandom author-published data; lexical hits are not confirmed ablations or errors. No replacement of unhelpful cases.",
+  "cases": [
+    {
+      "index": 0,
+      "task": "3d-object-detection-for-autonomous-vehicles",
+      "file": "Trace_1.json",
+      "loop": "loop_8",
+      "classification": "NOT_A_COMPONENT_REMOVAL_COMPARISON",
+      "note": "The proposal adds a coordinate similarity calibration; removes refers to residual frame mismatches, not deleting a component. Excluded from target-removal interpretation, retained in the six-case denominator. Large code diff was not fully reviewed after this applicability decision."
+    },
+    {
+      "index": 1,
+      "task": "aerial-cactus-identification",
+      "file": "Trace_1.json",
+      "loop": "loop_6",
+      "classification": "TARGET_REMOVAL_VISIBLE_NON_TARGET_MODE_CHANGE",
+      "note": "Training transform list actually replaces rotations/crop/flips/color-jitter/blur with ToTensor and Normalize. A separate change removes predict_test's debug placeholder branch and removes its caller's debug argument; this can alter debug-mode outputs outside augmentation. Added diagnostics, AMP API changes and a KFold fallback also mean whole-program equivalence is not established. No execution-mode receipt was examined, so this is not a demonstrated confound in an actual scored run."
+    },
+    {
+      "index": 2,
+      "task": "aptos2019-blindness-detection",
+      "file": "Trace_1.json",
+      "loop": "loop_10",
+      "classification": "TARGET_REMOVAL_VISIBLE",
+      "note": "Per-example class-weight multiplication and class_weight_tensor are removed from train/evaluate. SmoothL1 reduction becomes mean; WeightedRandomSampler is retained as requested. Additional diagnostics do not by themselves prove a measurement error; no performance or full-fidelity claim."
+    },
+    {
+      "index": 3,
+      "task": "cassava-leaf-disease-classification",
+      "file": "Trace_1.json",
+      "loop": "loop_4",
+      "classification": "REQUESTED_COMPOSITE_CHANGE_VISIBLE",
+      "note": "Balanced downsampling is removed; the full train split and inverse-frequency weighted CrossEntropy are introduced, both explicitly requested. It would be wrong to flag these two changes as an unintended compound intervention merely because more than one operation changes. Debug sampling seed also differs; actual runtime-mode impact was not tested."
+    },
+    {
+      "index": 4,
+      "task": "denoising-dirty-documents",
+      "file": "Trace_1.json",
+      "loop": "loop_6",
+      "classification": "TARGET_REMOVAL_VISIBLE_NAME_ONLY_ALARM_WOULD_MISLEAD",
+      "note": "The half-weight bilateral/CNN mixture is removed from validation and submission writes; the output is the CNN-enhanced value. The scores table still has an ensemble row, but it aliases rmse_cnn. A name-occurrence check alone would falsely infer that ensembling remained. This is a source-path observation, not a fitted predictive-result claim."
+    },
+    {
+      "index": 5,
+      "task": "detecting-insults-in-social-commentary",
+      "file": "Trace_1.json",
+      "loop": "loop_6",
+      "classification": "REQUESTED_COMPOSITE_CHANGE_VISIBLE",
+      "note": "Word model and averaging are removed; char TFIDF/LR is used for final probabilities. C selection is explicitly permitted by the proposal, not an unrequested ablation confound. The remaining ensemble score label aliases the single-model score. Additional EDA and preprocessing edits prevent any blanket whole-program-equivalence claim."
+    }
+  ],
+  "decision": "No confirmed failure to remove the stated target in the five applicable source pairs. Do not expand a generic strong-agent ablation-failure claim from the two earlier local examples. Stop this six-case review rather than reselection for errors.",
+  "boundary": "Five visible implementations are not five successful executions or improvements. Six deterministic cases cannot estimate prevalence or generalization. Intent/code can carry historical information despite numeric prose masking; not fully outcome-blinded annotation. Conditional/debug-only non-target edits require actual mode and execution evidence before attributing score differences."
+}

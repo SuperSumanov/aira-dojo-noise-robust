@@ -1,0 +1,148 @@
+{
+  "boundary": "Lexical matches are not confirmed diagnostic experiments or failures. Intent/source may embed historic information; not a fully outcome-blinded scientific sample. Explicit score/feedback/scenario fields remain unopened. Six reviewed cases cannot estimate prevalence.",
+  "hypothesis_key_types": [
+    {
+      "count": 4210,
+      "key": "appendix",
+      "type": "NoneType"
+    },
+    {
+      "count": 4210,
+      "key": "component",
+      "type": "str"
+    },
+    {
+      "count": 4210,
+      "key": "concise_justification",
+      "type": "NoneType"
+    },
+    {
+      "count": 4210,
+      "key": "concise_knowledge",
+      "type": "NoneType"
+    },
+    {
+      "count": 4210,
+      "key": "concise_observation",
+      "type": "NoneType"
+    },
+    {
+      "count": 4210,
+      "key": "concise_reason",
+      "type": "NoneType"
+    },
+    {
+      "count": 4210,
+      "key": "hypothesis",
+      "type": "str"
+    },
+    {
+      "count": 3245,
+      "key": "problem_desc",
+      "type": "NoneType"
+    },
+    {
+      "count": 965,
+      "key": "problem_desc",
+      "type": "str"
+    },
+    {
+      "count": 4210,
+      "key": "problem_label",
+      "type": "str"
+    },
+    {
+      "count": 3245,
+      "key": "problem_name",
+      "type": "NoneType"
+    },
+    {
+      "count": 965,
+      "key": "problem_name",
+      "type": "str"
+    },
+    {
+      "count": 3245,
+      "key": "reason",
+      "type": "NoneType"
+    },
+    {
+      "count": 965,
+      "key": "reason",
+      "type": "str"
+    }
+  ],
+  "lexical_matches": 942,
+  "matched_tasks": 40,
+  "pairs": 4210,
+  "purpose": "availability and fixed small intent/code sample",
+  "raw_content_printed": false,
+  "sample": [
+    {
+      "base_sha256": "7563664b7f820f06d797c7ec700a08cb00844d30f91c6e8d7d170b1e18462928",
+      "code_sha256": "2780fe75b2c00cfb65c3e750fe5fcaf8a2f4749c96097db2bcc5c78f2599fb77",
+      "file": "Trace_1.json",
+      "hypothesis_sha256": "a047f2e6f8cef595b0716907b7576b529fbafad6e624b4b1c0d3a651b11f3fd5",
+      "loop": "loop_8",
+      "loop_number": 8,
+      "task": "3d-object-detection-for-autonomous-vehicles"
+    },
+    {
+      "base_sha256": "71ce48c2c1b092c6a8f3333c1630787a7901bc87a0db9f8b7362b1a80fece3f2",
+      "code_sha256": "2867b34150fea11f46bfa0a9f935542ee70b9b42b52756def6d867fe52b45301",
+      "file": "Trace_1.json",
+      "hypothesis_sha256": "ad7fed50995d47b34b4d0b1041530ebaf605c5fdf3c9427cc30df12ed2c859e1",
+      "loop": "loop_6",
+      "loop_number": 6,
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "base_sha256": "e3b72ae1f68f8f3d8f9756aa00bf911b7ddd7d0a31faec27ca2b0c9567de47c5",
+      "code_sha256": "e711ec1f2cd4909477acf2a60cd377964b26b5fbed60832beabea8bc9c84693b",
+      "file": "Trace_1.json",
+      "hypothesis_sha256": "55a50adc7284b3450485528891fee1ecd716e8e695f78f4cd18ef02000f1b269",
+      "loop": "loop_10",
+      "loop_number": 10,
+      "task": "aptos2019-blindness-detection"
+    },
+    {
+      "base_sha256": "27098a88d8e8786569a6574d1fdb3298c988c7f0ccb2a7134074e2eb89ec0bf5",
+      "code_sha256": "e94c97ea3ebda653de9945fb73cd0889ce2b2646defcfeae0eca950c2589f462",
+      "file": "Trace_1.json",
+      "hypothesis_sha256": "86a5e7704df9bbefdfb72bcc60573040f774a0e9efde599c43e69a4107955727",
+      "loop": "loop_4",
+      "loop_number": 4,
+      "task": "cassava-leaf-disease-classification"
+    },
+    {
+      "base_sha256": "f6614698757bc5706a5f6f0284eda7596e6788d0058fb7a4dfaa92528f8987a4",
+      "code_sha256": "1ce8173a0942e82b4bef046e9581e8fb364ff4ad62ad0448be2d765a44853e1c",
+      "file": "Trace_1.json",
+      "hypothesis_sha256": "d06db1182deca4187686695c2fcc7fa280fe0c03c06b271d6578542e799192d9",
+      "loop": "loop_6",
+      "loop_number": 6,
+      "task": "denoising-dirty-documents"
+    },
+    {
+      "base_sha256": "cf127c3c124bfd002e87ebc08d8ecc115d0a2e83c3579b1a1e572edca58ab5c2",
+      "code_sha256": "402ea7bc3423aaffe3ac1be7f643210960e7a2f49fe1bab52cddd986738b9509",
+      "file": "Trace_1.json",
+      "hypothesis_sha256": "79fe5c8856a8737bf3cef02094ac4673993544a0af824dc2d049f0f6ac8f0fe5",
+      "loop": "loop_6",
+      "loop_number": 6,
+      "task": "detecting-insults-in-social-commentary"
+    }
+  ],
+  "sampling": "Earliest numeric loop in earliest file per task among literal removal/ablation keyword matches in hypothesis; first six task names alphabetically. Fixed before reading any source or outcome values. Not random or representative.",
+  "score_access": false,
+  "selection_regex": "\\b(?:ablat\\w*|remov\\w*|drop|dropping|exclud\\w*|without)\\b",
+  "simple_problem_labels": {
+    "FEEDBACK_PROBLEM": 4210
+  },
+  "source_files": {
+    "Trace_1.json": "ee50756cd940a1add0e44bcbb04e710233709d81f823111d70846cfe6278afb0",
+    "Trace_2.json": "5a451c60ead8ac85e8eca86502cd92efe3ff1d12949510ccec394ca44dfe4cbd",
+    "Trace_3.json": "8977dd468ed50d22aa173cb0aec208286e9b73142b72568861b60d55b3243ae2"
+  },
+  "source_script_sha256": "f468c80dc56c4eef35858c7a65b5fb13b27bc4e28176f8509565014aceca6970"
+}

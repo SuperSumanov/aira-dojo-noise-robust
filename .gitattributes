@@ -814,4 +814,8 @@ phase1/results/external_ablation_semantics_20261004/** -text diff whitespace=cr-
 # Public external-source metadata only; preserve executed script and receipt bytes.
 phase1/scripts/external_gome_structure*20261004.* -text diff whitespace=cr-at-eol
 phase1/scripts/external_gome_linkage_20261004.py -text diff whitespace=cr-at-eol
+phase1/scripts/external_gome_ablation*20261004.py -text diff whitespace=cr-at-eol
 phase1/results/external_gome_structure_20261004/** -text diff whitespace=cr-at-eol
+# Diagnostic observation trial: executed source and safe aggregates retain bytes.
+phase1/scripts/diagnostic_information*20261004.py -text diff whitespace=cr-at-eol
+phase1/results/diagnostic_information_20261004/** -text diff whitespace=cr-at-eol

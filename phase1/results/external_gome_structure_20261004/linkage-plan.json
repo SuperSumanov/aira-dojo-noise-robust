@@ -1,0 +1,31 @@
+{
+  "boundary": "Outcome-free source-equality linkage check; no execution of trace code.\n\nNumeric loop order is an exported index, not independently verified chronology.\nExact code matches do not prove parentage, independent runs, or equal model state.\n",
+  "census_script_sha256": "15761ca11604cea892be62804b5d4068918ad2bb09d36f011323a13203c10814",
+  "generator_calls": 0,
+  "gpu_hours": 0,
+  "max_seconds": 180,
+  "model_fits": 0,
+  "schema": "external-gome-linkage-plan-v1",
+  "script_sha256": "f22b70c7594936d23b2e81d056e4e9a6150e20eb0db7e77cc0ac9e5a4f9af377",
+  "selection": "all three previously credential-scanned exact files",
+  "source_pins": {
+    "Trace_1.json": [
+      219029856,
+      "ee50756cd940a1add0e44bcbb04e710233709d81f823111d70846cfe6278afb0"
+    ],
+    "Trace_2.json": [
+      204593757,
+      "5a451c60ead8ac85e8eca86502cd92efe3ff1d12949510ccec394ca44dfe4cbd"
+    ],
+    "Trace_3.json": [
+      121081711,
+      "8977dd468ed50d22aa173cb0aec208286e9b73142b72568861b60d55b3243ae2"
+    ]
+  },
+  "start_utc": "2026-10-04T00:14:43.816780+00:00",
+  "tests": {
+    "dual_implementation": "PASS",
+    "fixtures": 3,
+    "forbidden_value_sentinel": "PASS"
+  }
+}

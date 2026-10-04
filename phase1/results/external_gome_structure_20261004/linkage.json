@@ -1,0 +1,52 @@
+{
+  "assigned_files": 3,
+  "boundary": "Outcome-free source-equality linkage check; no execution of trace code.\n\nNumeric loop order is an exported index, not independently verified chronology.\nExact code matches do not prove parentage, independent runs, or equal model state.\n",
+  "elapsed_seconds": 8.763585090637207,
+  "error_type": null,
+  "files": [
+    {
+      "counts": {
+        "base_matches_earlier_code": 1553,
+        "base_matches_immediate_previous_loop_code": 1,
+        "base_unmatched_earlier_code": 0,
+        "loops": 1917,
+        "nonempty_pairs": 1553,
+        "repeated_code_pairs": 0,
+        "unique_code_pairs": 1553
+      },
+      "dual_implementation": "PASS",
+      "file": "Trace_1.json"
+    },
+    {
+      "counts": {
+        "base_matches_earlier_code": 1485,
+        "base_matches_immediate_previous_loop_code": 0,
+        "base_unmatched_earlier_code": 0,
+        "loops": 1866,
+        "nonempty_pairs": 1485,
+        "repeated_code_pairs": 0,
+        "unique_code_pairs": 1485
+      },
+      "dual_implementation": "PASS",
+      "file": "Trace_2.json"
+    },
+    {
+      "counts": {
+        "base_matches_earlier_code": 1172,
+        "base_matches_immediate_previous_loop_code": 2,
+        "base_unmatched_earlier_code": 0,
+        "loops": 1622,
+        "nonempty_pairs": 1172,
+        "repeated_code_pairs": 0,
+        "unique_code_pairs": 1172
+      },
+      "dual_implementation": "PASS",
+      "file": "Trace_3.json"
+    }
+  ],
+  "outcome_values_accessed_by_counter": false,
+  "plan_sha256": "908727a5c418e6c73de9fc2fad58888ad6768971c2ec389189fde1cb77474aca",
+  "schema": "external-gome-linkage-v1",
+  "source_content_exported": false,
+  "status": "COMPLETE"
+}

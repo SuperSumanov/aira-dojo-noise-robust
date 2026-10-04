@@ -1,0 +1,322 @@
+{
+  "boundary": "Descriptive overlapping surface categories, not a new parser. AST parseability does not establish safe execution, task validity or gain. No rejected response executed, no frozen result changed; unrecognized prefix is not proof the mode is semantically absent.",
+  "counts": {
+    "bold_standalone": 6,
+    "inline_prefix": 9,
+    "no_recognized_prefix": 8,
+    "one_complete_python_block": 23,
+    "python_ast_parseable": 23
+  },
+  "plan_sha256": "63322ce2f5e38ac22c2a98b2c7bae5fa27334c4d5f3052297938418c26627679",
+  "rejected": 23,
+  "rows": [
+    {
+      "arm": "B",
+      "bold_standalone_markers": 1,
+      "explicit_prefix_modes": [
+        "SOLUTION"
+      ],
+      "index": 0,
+      "inline_mode_prefixes": 0,
+      "one_complete_python_block": true,
+      "python_ast_parseable": true,
+      "response_sha256": "5a3d905a09c2ef4ae914ca7f2e89a03c6815b5fe950be61bc867cee4057eb609",
+      "step": 2,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "arm": "B",
+      "bold_standalone_markers": 0,
+      "explicit_prefix_modes": [
+        "CHECK"
+      ],
+      "index": 1,
+      "inline_mode_prefixes": 1,
+      "one_complete_python_block": true,
+      "python_ast_parseable": true,
+      "response_sha256": "6d9302d5d8629124260252ff6745bd3a091e94b41238c164af70241e07397c66",
+      "step": 1,
+      "task": "spooky-author-identification"
+    },
+    {
+      "arm": "B",
+      "bold_standalone_markers": 0,
+      "explicit_prefix_modes": [],
+      "index": 1,
+      "inline_mode_prefixes": 0,
+      "one_complete_python_block": true,
+      "python_ast_parseable": true,
+      "response_sha256": "86bd7d1e13e4604c40c14360d0504c3ed574bfd31a923f0b7c3d684f621498ea",
+      "step": 2,
+      "task": "spooky-author-identification"
+    },
+    {
+      "arm": "B",
+      "bold_standalone_markers": 0,
+      "explicit_prefix_modes": [],
+      "index": 1,
+      "inline_mode_prefixes": 0,
+      "one_complete_python_block": true,
+      "python_ast_parseable": true,
+      "response_sha256": "5f02a3e1a19f8373916a0659e5de5748610d60c4f8bc1f8b297112787ac71ce1",
+      "step": 3,
+      "task": "spooky-author-identification"
+    },
+    {
+      "arm": "B",
+      "bold_standalone_markers": 0,
+      "explicit_prefix_modes": [
+        "SOLUTION"
+      ],
+      "index": 1,
+      "inline_mode_prefixes": 1,
+      "one_complete_python_block": true,
+      "python_ast_parseable": true,
+      "response_sha256": "b175a2b88b2c3b4f4eb41ae7749eb0eae4f444a91da15977f8c473376da80a06",
+      "step": 4,
+      "task": "spooky-author-identification"
+    },
+    {
+      "arm": "C",
+      "bold_standalone_markers": 0,
+      "explicit_prefix_modes": [
+        "SOLUTION"
+      ],
+      "index": 2,
+      "inline_mode_prefixes": 1,
+      "one_complete_python_block": true,
+      "python_ast_parseable": true,
+      "response_sha256": "97af2c604e9a332a00e633054f8d76ed6c8857e74b3ceacb7c0a5f9aed40d41e",
+      "step": 1,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "arm": "C",
+      "bold_standalone_markers": 0,
+      "explicit_prefix_modes": [],
+      "index": 2,
+      "inline_mode_prefixes": 0,
+      "one_complete_python_block": true,
+      "python_ast_parseable": true,
+      "response_sha256": "556d5a3e87fb4bf6adaf6696a6fb64d50aa7d3ddc05b0af972cd46fadaffa9d0",
+      "step": 2,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "arm": "A",
+      "bold_standalone_markers": 1,
+      "explicit_prefix_modes": [
+        "CHECK"
+      ],
+      "index": 4,
+      "inline_mode_prefixes": 0,
+      "one_complete_python_block": true,
+      "python_ast_parseable": true,
+      "response_sha256": "9a8262719f85962b3aec6ad7bb644add25974ebd3774d5c6253843090e28a9c6",
+      "step": 1,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "arm": "A",
+      "bold_standalone_markers": 0,
+      "explicit_prefix_modes": [
+        "CHECK"
+      ],
+      "index": 4,
+      "inline_mode_prefixes": 1,
+      "one_complete_python_block": true,
+      "python_ast_parseable": true,
+      "response_sha256": "c4253423db9d164f0d28eed17958ca584e66c9dfa69c0ba90a8d7b4a53153606",
+      "step": 2,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "arm": "A",
+      "bold_standalone_markers": 1,
+      "explicit_prefix_modes": [
+        "SOLUTION"
+      ],
+      "index": 4,
+      "inline_mode_prefixes": 0,
+      "one_complete_python_block": true,
+      "python_ast_parseable": true,
+      "response_sha256": "10c22908d1d71c36b96484af9047116e033f11e79b63dce00088959e323fc8d7",
+      "step": 4,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "arm": "A",
+      "bold_standalone_markers": 0,
+      "explicit_prefix_modes": [],
+      "index": 5,
+      "inline_mode_prefixes": 0,
+      "one_complete_python_block": true,
+      "python_ast_parseable": true,
+      "response_sha256": "95663ac40ce85e167de40666d547c0cfbbf04a61fdf09eb0359d59ecbf717b8d",
+      "step": 1,
+      "task": "spooky-author-identification"
+    },
+    {
+      "arm": "A",
+      "bold_standalone_markers": 0,
+      "explicit_prefix_modes": [
+        "CHECK"
+      ],
+      "index": 5,
+      "inline_mode_prefixes": 1,
+      "one_complete_python_block": true,
+      "python_ast_parseable": true,
+      "response_sha256": "bdfc2c6d9e9fcf02778eb4a380c0f637d73b1c3b46eb26d2f5f4dfad8fc44480",
+      "step": 2,
+      "task": "spooky-author-identification"
+    },
+    {
+      "arm": "A",
+      "bold_standalone_markers": 0,
+      "explicit_prefix_modes": [
+        "SOLUTION"
+      ],
+      "index": 5,
+      "inline_mode_prefixes": 1,
+      "one_complete_python_block": true,
+      "python_ast_parseable": true,
+      "response_sha256": "0a85f060dffa3d86e56613ec4250044ea5288c45b09f643a59f8693b168e84cc",
+      "step": 3,
+      "task": "spooky-author-identification"
+    },
+    {
+      "arm": "A",
+      "bold_standalone_markers": 0,
+      "explicit_prefix_modes": [
+        "SOLUTION"
+      ],
+      "index": 5,
+      "inline_mode_prefixes": 1,
+      "one_complete_python_block": true,
+      "python_ast_parseable": true,
+      "response_sha256": "859f42866620c8cedc870d90ec43ebf72777af6d32559781ba65072788d10bd0",
+      "step": 4,
+      "task": "spooky-author-identification"
+    },
+    {
+      "arm": "A",
+      "bold_standalone_markers": 0,
+      "explicit_prefix_modes": [],
+      "index": 6,
+      "inline_mode_prefixes": 0,
+      "one_complete_python_block": true,
+      "python_ast_parseable": true,
+      "response_sha256": "87864867e413466aa3ee2b9e000a457671498a207dc769d99450157c5f9ec1ee",
+      "step": 1,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "arm": "A",
+      "bold_standalone_markers": 0,
+      "explicit_prefix_modes": [
+        "SOLUTION"
+      ],
+      "index": 6,
+      "inline_mode_prefixes": 1,
+      "one_complete_python_block": true,
+      "python_ast_parseable": true,
+      "response_sha256": "f1c7b7a2b9c8fad35a763e95c7d5bfa5c020261b89880fe51be452432063d747",
+      "step": 2,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "arm": "A",
+      "bold_standalone_markers": 1,
+      "explicit_prefix_modes": [
+        "SOLUTION"
+      ],
+      "index": 7,
+      "inline_mode_prefixes": 0,
+      "one_complete_python_block": true,
+      "python_ast_parseable": true,
+      "response_sha256": "f94e11da59c0d1802f3ad5ff893c0926bb044bc9e39c6255ce3d078e454a4e49",
+      "step": 1,
+      "task": "spooky-author-identification"
+    },
+    {
+      "arm": "C",
+      "bold_standalone_markers": 0,
+      "explicit_prefix_modes": [
+        "SOLUTION"
+      ],
+      "index": 8,
+      "inline_mode_prefixes": 1,
+      "one_complete_python_block": true,
+      "python_ast_parseable": true,
+      "response_sha256": "d92d90de49a3fbbcafcf39282676ba28530d79d2f8528b057435932dc2005624",
+      "step": 1,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "arm": "C",
+      "bold_standalone_markers": 0,
+      "explicit_prefix_modes": [],
+      "index": 9,
+      "inline_mode_prefixes": 0,
+      "one_complete_python_block": true,
+      "python_ast_parseable": true,
+      "response_sha256": "43c9d5184f14557fff2276feafae0010b375eb16a14cccba87a653bacf12aec7",
+      "step": 1,
+      "task": "spooky-author-identification"
+    },
+    {
+      "arm": "C",
+      "bold_standalone_markers": 0,
+      "explicit_prefix_modes": [],
+      "index": 9,
+      "inline_mode_prefixes": 0,
+      "one_complete_python_block": true,
+      "python_ast_parseable": true,
+      "response_sha256": "12584c531f634d8790ee2a355b7c706d24e7d3c14216122e47b55f7f222bad24",
+      "step": 3,
+      "task": "spooky-author-identification"
+    },
+    {
+      "arm": "B",
+      "bold_standalone_markers": 1,
+      "explicit_prefix_modes": [
+        "SOLUTION"
+      ],
+      "index": 10,
+      "inline_mode_prefixes": 0,
+      "one_complete_python_block": true,
+      "python_ast_parseable": true,
+      "response_sha256": "ccf850aa8c2fdaf9a233e2f4b4366b20fbfcb0d04399e7b053335cf0bbc4b213",
+      "step": 1,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "arm": "B",
+      "bold_standalone_markers": 0,
+      "explicit_prefix_modes": [],
+      "index": 11,
+      "inline_mode_prefixes": 0,
+      "one_complete_python_block": true,
+      "python_ast_parseable": true,
+      "response_sha256": "b9c03006dcfdcba9d966a25466f12e0474d907c34088a436cfd269b94b072567",
+      "step": 2,
+      "task": "spooky-author-identification"
+    },
+    {
+      "arm": "B",
+      "bold_standalone_markers": 1,
+      "explicit_prefix_modes": [
+        "SOLUTION"
+      ],
+      "index": 11,
+      "inline_mode_prefixes": 0,
+      "one_complete_python_block": true,
+      "python_ast_parseable": true,
+      "response_sha256": "8dbb374a15013f5ef8b3fa78649407dc059c41b474bea0488f334087ea74ac29",
+      "step": 3,
+      "task": "spooky-author-identification"
+    }
+  ],
+  "source_sha256": "eeedf29bdd5917ce48f27dc7f1b78a36d9b78eac23bf0f6e7ecf1343f36a3e59",
+  "status": "POSTHOC_SYNTAX_ONLY"
+}

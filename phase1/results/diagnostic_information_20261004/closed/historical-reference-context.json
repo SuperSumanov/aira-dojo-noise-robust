@@ -1,0 +1,257 @@
+{
+  "assigned": 12,
+  "boundary": "Historical manually designed references selected in the earlier qualification, not concurrent randomized controls, not strongest possible methods or best-of-history selection. Matching initial prediction bytes and published scores does not alone prove full environment/cost equality. Old execution seconds exclude manual discovery and serving costs, so no cost-efficiency claim. Index11 has no own initial: final level is listed but not a matched gain. No pooling across protocols, new independent states, GPU execution or confirmatory inference.",
+  "contrasts": [
+    {
+      "above": 0,
+      "arm": "A",
+      "below": 2,
+      "median": -0.005800047835446076,
+      "n": 2,
+      "observed_selected": 2,
+      "own_initial_matches": 2,
+      "sample_variance": 0.0,
+      "task": "random-acts-of-pizza",
+      "ties": 0,
+      "values": [
+        -0.005800047835446076,
+        -0.005800047835446076
+      ]
+    },
+    {
+      "above": 2,
+      "arm": "B",
+      "below": 0,
+      "median": 0.007085625448457256,
+      "n": 2,
+      "observed_selected": 2,
+      "own_initial_matches": 2,
+      "sample_variance": 1.0599152405321607e-05,
+      "task": "random-acts-of-pizza",
+      "ties": 0,
+      "values": [
+        0.00938770629036112,
+        0.0047835446065533915
+      ]
+    },
+    {
+      "above": 1,
+      "arm": "C",
+      "below": 1,
+      "median": 0.0037072470700789117,
+      "n": 2,
+      "observed_selected": 2,
+      "own_initial_matches": 2,
+      "sample_variance": 7.883667078338221e-05,
+      "task": "random-acts-of-pizza",
+      "ties": 0,
+      "values": [
+        -0.00257115522602247,
+        0.009985649366180294
+      ]
+    },
+    {
+      "above": 0,
+      "arm": "A",
+      "below": 2,
+      "median": -0.008206462170339934,
+      "n": 2,
+      "observed_selected": 2,
+      "own_initial_matches": 2,
+      "sample_variance": 0.0,
+      "task": "spooky-author-identification",
+      "ties": 0,
+      "values": [
+        -0.008206462170339934,
+        -0.008206462170339934
+      ]
+    },
+    {
+      "above": 0,
+      "arm": "B",
+      "below": 2,
+      "median": -0.005954225871231872,
+      "n": 2,
+      "observed_selected": 2,
+      "own_initial_matches": 1,
+      "sample_variance": 1.0145136694039963e-05,
+      "task": "spooky-author-identification",
+      "ties": 0,
+      "values": [
+        -0.008206462170339934,
+        -0.0037019895721238094
+      ]
+    },
+    {
+      "above": 0,
+      "arm": "C",
+      "below": 2,
+      "median": -0.00645818851139876,
+      "n": 2,
+      "observed_selected": 2,
+      "own_initial_matches": 2,
+      "sample_variance": 6.112921573095121e-06,
+      "task": "spooky-author-identification",
+      "ties": 0,
+      "values": [
+        -0.008206462170339934,
+        -0.004709914852457586
+      ]
+    }
+  ],
+  "files": {
+    "diagnostic_information_20261004\\closed\\runs.csv": "85aba0662ef9dfcad2880d3a8e087b458c21b6a6e2b78bf4e26d29b743141c59",
+    "natural_opportunity_20261003\\qualification\\plan-public.json": "f837d3ff4fb172e16adececce331e93799deafb5bb9f6500375d69f306c1d1f3",
+    "natural_opportunity_20261003\\qualification\\readout-runs.csv": "a3b7eea5c27e20c68fc4dff50a44c9365fef5ce0befea1c345c91cd22023b7a8"
+  },
+  "references": {
+    "random-acts-of-pizza": {
+      "direction": 1,
+      "modified_code_sha256": "520ebebbb0af168bf8075187ca705b0ca05d1e8b0355fc7de290999c20bb807c",
+      "modified_submission_sha256": "4fea15d4b052c142cf8e444a69021745593ea3a3f76be49e5bb43944e30d88d8",
+      "old_execution_seconds": 13.003476198995486,
+      "old_index": 6,
+      "old_plan_sha256": "39948b4a517cdb609105f099231bb9c3d1c19214754d585a6365245635b903df",
+      "original_score": 0.6568404687873715,
+      "original_submission_sha256": "10bfda9bb06d0e090594da0ac468ed764b9b38d5b27e597426b8670872255949",
+      "recipe": "xgb_early_stopping",
+      "score": 0.6626405166228175
+    },
+    "spooky-author-identification": {
+      "direction": -1,
+      "modified_code_sha256": "be57f7fe207cc840f2b924c9c508d9ef60aec40cdd83785ff4b0c8a2f8da4617",
+      "modified_submission_sha256": "d054de62537faf8fe8161fcf65459b907f06bb2e2ccd28efbd1e321b7754fb6a",
+      "old_execution_seconds": 192.29895611898974,
+      "old_index": 18,
+      "old_plan_sha256": "39948b4a517cdb609105f099231bb9c3d1c19214754d585a6365245635b903df",
+      "original_score": 0.38797591250098007,
+      "original_submission_sha256": "fc07f200189b1f366064e55a43975cb16b1f0acf5188bdeb3e44eec56bedcbb5",
+      "recipe": "cv_selected_member",
+      "score": 0.37976945033064013
+    }
+  },
+  "rows": [
+    {
+      "arm": "B",
+      "historical_reference": 0.6626405166228175,
+      "index": 0,
+      "oriented_selected_minus_reference": 0.00938770629036112,
+      "own_initial_matches_historical_prediction": true,
+      "seed": 107101,
+      "selected": 0.6720282229131787,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "arm": "B",
+      "historical_reference": 0.37976945033064013,
+      "index": 1,
+      "oriented_selected_minus_reference": -0.008206462170339934,
+      "own_initial_matches_historical_prediction": true,
+      "seed": 107102,
+      "selected": 0.38797591250098007,
+      "task": "spooky-author-identification"
+    },
+    {
+      "arm": "C",
+      "historical_reference": 0.6626405166228175,
+      "index": 2,
+      "oriented_selected_minus_reference": -0.00257115522602247,
+      "own_initial_matches_historical_prediction": true,
+      "seed": 107101,
+      "selected": 0.6600693613967951,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "arm": "C",
+      "historical_reference": 0.37976945033064013,
+      "index": 3,
+      "oriented_selected_minus_reference": -0.008206462170339934,
+      "own_initial_matches_historical_prediction": true,
+      "seed": 107102,
+      "selected": 0.38797591250098007,
+      "task": "spooky-author-identification"
+    },
+    {
+      "arm": "A",
+      "historical_reference": 0.6626405166228175,
+      "index": 4,
+      "oriented_selected_minus_reference": -0.005800047835446076,
+      "own_initial_matches_historical_prediction": true,
+      "seed": 107101,
+      "selected": 0.6568404687873715,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "arm": "A",
+      "historical_reference": 0.37976945033064013,
+      "index": 5,
+      "oriented_selected_minus_reference": -0.008206462170339934,
+      "own_initial_matches_historical_prediction": true,
+      "seed": 107102,
+      "selected": 0.38797591250098007,
+      "task": "spooky-author-identification"
+    },
+    {
+      "arm": "A",
+      "historical_reference": 0.6626405166228175,
+      "index": 6,
+      "oriented_selected_minus_reference": -0.005800047835446076,
+      "own_initial_matches_historical_prediction": true,
+      "seed": 107111,
+      "selected": 0.6568404687873715,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "arm": "A",
+      "historical_reference": 0.37976945033064013,
+      "index": 7,
+      "oriented_selected_minus_reference": -0.008206462170339934,
+      "own_initial_matches_historical_prediction": true,
+      "seed": 107112,
+      "selected": 0.38797591250098007,
+      "task": "spooky-author-identification"
+    },
+    {
+      "arm": "C",
+      "historical_reference": 0.6626405166228175,
+      "index": 8,
+      "oriented_selected_minus_reference": 0.009985649366180294,
+      "own_initial_matches_historical_prediction": true,
+      "seed": 107111,
+      "selected": 0.6726261659889978,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "arm": "C",
+      "historical_reference": 0.37976945033064013,
+      "index": 9,
+      "oriented_selected_minus_reference": -0.004709914852457586,
+      "own_initial_matches_historical_prediction": true,
+      "seed": 107112,
+      "selected": 0.3844793651830977,
+      "task": "spooky-author-identification"
+    },
+    {
+      "arm": "B",
+      "historical_reference": 0.6626405166228175,
+      "index": 10,
+      "oriented_selected_minus_reference": 0.0047835446065533915,
+      "own_initial_matches_historical_prediction": true,
+      "seed": 107111,
+      "selected": 0.6674240612293709,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "arm": "B",
+      "historical_reference": 0.37976945033064013,
+      "index": 11,
+      "oriented_selected_minus_reference": -0.0037019895721238094,
+      "own_initial_matches_historical_prediction": false,
+      "seed": 107112,
+      "selected": 0.38347143990276394,
+      "task": "spooky-author-identification"
+    }
+  ],
+  "script_sha256": "81e6e8063bf8490240c3a75659e46742d21ee57993cf8b19f4bb6ee3f3a55ddb",
+  "status": "POSTHOC_HISTORICAL_CONTEXT_ONLY"
+}

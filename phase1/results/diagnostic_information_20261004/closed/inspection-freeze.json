@@ -1,0 +1,14 @@
+{
+  "boundary": "Condition-aware human semantic review, not independent blinded annotation, exhaustive semantic proof, or causal mediation. Existing numeric/score verification is separate. No new threshold, seeds, rescue runs or gate changes.",
+  "plan_sha256": "63322ce2f5e38ac22c2a98b2c7bae5fa27334c4d5f3052297938418c26627679",
+  "questions": [
+    "Did the report change the stated next intervention, and did actual accepted code implement it? Rationale alone is not implementation.",
+    "Did numeric features respect query availability, and did references concern a component or the full retained pipeline?",
+    "Was a new predictive output produced, or merely a new program/submission with unchanged prediction bytes?",
+    "Did any corrected-report gain exceed no-report A, rather than only unaligned-report B?",
+    "Did timeouts, rollback, format failures or no effective modification prevent the proposed action? All remain in denominator."
+  ],
+  "scope": "All assigned trajectories; only after service and all trajectories close. Credential-first semantic inspection. No labels or raw predictions are exported.",
+  "script_sha256": "539f727e65acc2c40b52e5ab918083ff59d34732cf6bc6e8b6d274e197770625",
+  "template_sha256": "f98122169c0c1649383ac2b65a32839e098671fcc32e605e48f2126e71f3365a"
+}

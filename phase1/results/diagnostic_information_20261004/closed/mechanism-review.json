@@ -1,0 +1,171 @@
+{
+  "assigned": 12,
+  "conclusion": "Local report-versus-no-report signal exists, but corrected report does not consistently exceed original-scope report. Frozen expansion gate false; no new GPU or rescue seeds.",
+  "limits": [
+    "Two reused development parents, not cross-task confirmation.",
+    "Strict mode format rejected23 of45 generations; not23 missing or invalid Python blocks.",
+    "Report conditions also change prompt length/content; this is a packet intervention, not isolated truthfulness.",
+    "Reports were manually constructed from prior executed diagnostics; no autonomous correction or complete cost-parity claim.",
+    "Changes are multicomponent; better score does not validate stated mechanism.",
+    "Current ordinary arm is a short local27B baseline, not a strong external system reproduction."
+  ],
+  "plan_sha256": "63322ce2f5e38ac22c2a98b2c7bae5fa27334c4d5f3052297938418c26627679",
+  "reviewer": "condition-aware assistant; all45 rationale briefs and six selected-new-code bodies inspected; no independent blinded annotation",
+  "rows": [
+    {
+      "arm": "B",
+      "differs_from_own_initial": true,
+      "index": 0,
+      "own_initial_available": true,
+      "review": "Selected step1 intersects numeric columns with query, lowers learning rate, removes XGB/stack and uses fixed numeric/text mixture. Multiple changes. Rationale cites misleading high numeric CV; improvement does not validate that explanation.",
+      "seed": 107101,
+      "selected_code_sha256": "9572e83ddbaba5aec82fa50431f2d27871b1a5916bad85eb2a8e1cb5e165edd6",
+      "selected_step": 1,
+      "selected_submission_sha256": "efc370a1a656554f9a926a1c4a630cea4831111350539646022f991830acc46b",
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "arm": "B",
+      "differs_from_own_initial": false,
+      "index": 1,
+      "own_initial_available": true,
+      "review": "Parent retained; all four generated responses rejected by the frozen standalone-mode contract.",
+      "seed": 107102,
+      "selected_code_sha256": "97b85a025de7134c07b9917d261f7767c526e2fbe95ae9627b67ff0a215abd10",
+      "selected_step": 0,
+      "selected_submission_sha256": "fc07f200189b1f366064e55a43975cb16b1f0acf5188bdeb3e44eec56bedcbb5",
+      "task": "spooky-author-identification"
+    },
+    {
+      "arm": "C",
+      "differs_from_own_initial": true,
+      "index": 2,
+      "own_initial_available": true,
+      "review": "Selected step3 changes numeric fitting, adds numeric LR and changes text/ngram and stacking. Not a single scope correction; reference numeric CV is not the corrected diagnostic score.",
+      "seed": 107101,
+      "selected_code_sha256": "ac3f283cef5eada050fef3ce1778eb888c8477008a789775d1286e536d93bb36",
+      "selected_step": 3,
+      "selected_submission_sha256": "79589a66d0e75acea6eb38b375119f85e747a3eac752d8415e285d9c8cb3731f",
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "arm": "C",
+      "differs_from_own_initial": false,
+      "index": 3,
+      "own_initial_available": true,
+      "review": "Parent retained. Returned step1 code execution timed out; worker exhausted deadline. No new valid submission.",
+      "seed": 107102,
+      "selected_code_sha256": "97b85a025de7134c07b9917d261f7767c526e2fbe95ae9627b67ff0a215abd10",
+      "selected_step": 0,
+      "selected_submission_sha256": "fc07f200189b1f366064e55a43975cb16b1f0acf5188bdeb3e44eec56bedcbb5",
+      "task": "spooky-author-identification"
+    },
+    {
+      "arm": "A",
+      "differs_from_own_initial": false,
+      "index": 4,
+      "own_initial_available": true,
+      "review": "Parent retained. One returned candidate failed on ndarray.tocsr; other generated responses rejected by mode format.",
+      "seed": 107101,
+      "selected_code_sha256": "9560b23b2a5b6437b4e88a71e170540e2f14515db509de6ee81d6aa121ee4fc6",
+      "selected_step": 0,
+      "selected_submission_sha256": "10bfda9bb06d0e090594da0ac468ed764b9b38d5b27e597426b8670872255949",
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "arm": "A",
+      "differs_from_own_initial": false,
+      "index": 5,
+      "own_initial_available": true,
+      "review": "Parent retained; all four generated responses rejected by the frozen standalone-mode contract.",
+      "seed": 107102,
+      "selected_code_sha256": "97b85a025de7134c07b9917d261f7767c526e2fbe95ae9627b67ff0a215abd10",
+      "selected_step": 0,
+      "selected_submission_sha256": "fc07f200189b1f366064e55a43975cb16b1f0acf5188bdeb3e44eec56bedcbb5",
+      "task": "spooky-author-identification"
+    },
+    {
+      "arm": "A",
+      "differs_from_own_initial": false,
+      "index": 6,
+      "own_initial_available": true,
+      "review": "Two new valid candidates, neither improves parent. Final returned prediction is byte-identical to parent.",
+      "seed": 107111,
+      "selected_code_sha256": "9560b23b2a5b6437b4e88a71e170540e2f14515db509de6ee81d6aa121ee4fc6",
+      "selected_step": 0,
+      "selected_submission_sha256": "10bfda9bb06d0e090594da0ac468ed764b9b38d5b27e597426b8670872255949",
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "arm": "A",
+      "differs_from_own_initial": false,
+      "index": 7,
+      "own_initial_available": true,
+      "review": "Parent retained. Returned step2 code execution timed out; worker exhausted deadline. No new valid submission.",
+      "seed": 107112,
+      "selected_code_sha256": "97b85a025de7134c07b9917d261f7767c526e2fbe95ae9627b67ff0a215abd10",
+      "selected_step": 0,
+      "selected_submission_sha256": "fc07f200189b1f366064e55a43975cb16b1f0acf5188bdeb3e44eec56bedcbb5",
+      "task": "spooky-author-identification"
+    },
+    {
+      "arm": "C",
+      "differs_from_own_initial": true,
+      "index": 8,
+      "own_initial_available": true,
+      "review": "Selected step3 uses common numeric schema, modified boosting, denser text branch and OOF-derived mixture weights. Prior step2 failed on len(int), not the sparse-LightGBM diagnosis asserted by the next rationale.",
+      "seed": 107111,
+      "selected_code_sha256": "2824f4f7987e46b7b2817b314583511dd6cd0223133403e019f6b05f73a40a96",
+      "selected_step": 3,
+      "selected_submission_sha256": "d53ee99b7cdbe4665d5a55518a6e214dcc1f6487d2aa2a671710ab6cf810b760",
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "arm": "C",
+      "differs_from_own_initial": true,
+      "index": 9,
+      "own_initial_available": true,
+      "review": "Selected step2 fits word/char/combined LR mixtures across regularization strengths. Verified new prediction and lower loss. Later rationale calls the lower loss worse; retained-best scoring prevents that narrative from overwriting the better submission.",
+      "seed": 107112,
+      "selected_code_sha256": "ff7fed4f38cbd5a00212b1c5b95df001cfd29f6907e5cb55dda5bfb269855c27",
+      "selected_step": 2,
+      "selected_submission_sha256": "f2eb64fbec8c518ef3f33d18610e3dfd97f167c8d7aaa17bfa9df56b66c5cb11",
+      "task": "spooky-author-identification"
+    },
+    {
+      "arm": "B",
+      "differs_from_own_initial": true,
+      "index": 10,
+      "own_initial_available": true,
+      "review": "Selected step4 changes features/model/mixture and fixes XGB early-stopping parameter placement after the actual TypeError. Query-compatible feature intersection remains. Not isolated report-scope correction.",
+      "seed": 107111,
+      "selected_code_sha256": "b5452e57ded750bba9f121f073fc0738ab0d8ddcda4a0b7e73a3c16ce435f617",
+      "selected_step": 4,
+      "selected_submission_sha256": "c1b02ae73f77ed90da007652234fb571c83d29802ae360b5b28db3955d0efa1c",
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "arm": "B",
+      "differs_from_own_initial": null,
+      "index": 11,
+      "own_initial_available": false,
+      "review": "Initial parent did not execute: kernel-readiness failure was mislabeled as five-minute code timeout by the frozen interpreter. Subsequent live LR reconstruction and CV C-selection yield valid final submission, but initial/gain remain missing.",
+      "seed": 107112,
+      "selected_code_sha256": "c4761967ab3966c13309d2160adbd43e08ae7c78d5d65b4c714726f0f8b8d43c",
+      "selected_step": 4,
+      "selected_submission_sha256": "2fabf0a63948ea71bedda60537b80728bd57fb024ab9e41d9d8f022b097e412d",
+      "task": "spooky-author-identification"
+    }
+  ],
+  "script_sha256": "6b2ce8b8820cf57d6ef87cccc6f95f27ebcfed57c4cf8fd15bbaa37e9e9361b8",
+  "summary_sha256": "cac2383749899ff1ae5ec34adf7ef4eec6446d30f485c0ee5b1ddb594b7c6675",
+  "timeout_evidence": {
+    "boundary": "Exact frozen code returns before candidate execute when readiness fails; why readiness failed is not established. Original failure retained; no retry or frozen-source modification.",
+    "executor_sha256": "99681e6a519a14bcdcc0c56caacfb108760b73e98af71c5b054efe5dead9efc0",
+    "index": 11,
+    "interpreter_sha256": "d60eb92f48457b6f1f1e8a69665a2c689b3340be1efa8f66a7b9cc242446e47c",
+    "node_sha256": "b4d0fbba95f557f7dd959400d3cf9c9d8602f1061eb30532f6101030c1696a79",
+    "phase": "kernel_readiness",
+    "step": 0
+  }
+}

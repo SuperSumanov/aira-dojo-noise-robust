@@ -1,0 +1,31 @@
+{
+  "files": {
+    "cpu": "d9b6b4e63529778720c89f1d515a488090287eeeca401171c451e233cc0ed2f2",
+    "readout": "e685c217034dbf8fe6573ae9b9de3e23e413d68c78396657ae21611c87666be8",
+    "verifier": "1c563f6aefa5a140e064141d3ea52045aa7830a9f30f6c99a2512d56537f3f59"
+  },
+  "mechanism": [
+    "All12 assigned trajectories retained, including parsing/timeouts/failures.",
+    "Check whether actual next code and prediction changes differ; comments/reasoning alone are insufficient.",
+    "Does C exceed no-report A, not only unaligned-report B? Correcting harmful advice need not add value.",
+    "No automatic correction or novelty claim; researcher-supplied packet selection is disclosed.",
+    "Qualitative review sees conditions; no independent blinded semantic-annotation claim.",
+    "No extra seeds, prompts or replacements after outcomes. A positive numeric gate is exploratory, not significance."
+  ],
+  "plan_sha256": "63322ce2f5e38ac22c2a98b2c7bae5fa27334c4d5f3052297938418c26627679",
+  "script_sha256": "ff48c1fa66e53eaad2928b0a36b761013e2257f1d07a7f46981b8db1f7dcd159",
+  "templates": {
+    "cpu": [
+      "opportunity_information_cpu_20261003.py",
+      "4e270eee98dad9cd339f4e396aefdab2bc17dfa37006123f829e6b9a8304f89b"
+    ],
+    "readout": [
+      "opportunity_information_readout_20261003.py",
+      "73959a378739d913bf80b32c401b52b133555cee5c43a22f94df72605595c75e"
+    ],
+    "verifier": [
+      "opportunity_information_verify_20261003.py",
+      "6c110ac0fbcaadc130a6d96e13a526cbfad3bfd14dcfb100823918381fa49f77"
+    ]
+  }
+}

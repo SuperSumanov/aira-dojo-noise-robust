@@ -1,0 +1,170 @@
+{
+  "assigned": 12,
+  "boundary": "POSTHOC descriptive available-pair supplement. Frozen analysis requires complete ABC triples and is unchanged. No missing B initial is filled, no success-conditioned exclusion from the assigned table, no confirmatory p-value or gate rescue.",
+  "contrasts": [
+    {
+      "contrast": "B_minus_A",
+      "median": 0.012885673283903332,
+      "paired": 2,
+      "sample_variance": 1.0599152405321607e-05,
+      "task": "random-acts-of-pizza",
+      "values": [
+        0.015187754125807196,
+        0.010583592441999468
+      ]
+    },
+    {
+      "contrast": "C_minus_A",
+      "median": 0.009507294905524988,
+      "paired": 2,
+      "sample_variance": 7.883667078338221e-05,
+      "task": "random-acts-of-pizza",
+      "values": [
+        0.003228892609423606,
+        0.01578569720162637
+      ]
+    },
+    {
+      "contrast": "C_minus_B",
+      "median": -0.003378378378378344,
+      "paired": 2,
+      "sample_variance": 0.00014724938176318472,
+      "task": "random-acts-of-pizza",
+      "values": [
+        -0.01195886151638359,
+        0.005202104759626902
+      ]
+    },
+    {
+      "contrast": "B_minus_A",
+      "median": 0.0,
+      "paired": 1,
+      "sample_variance": null,
+      "task": "spooky-author-identification",
+      "values": [
+        0.0
+      ]
+    },
+    {
+      "contrast": "C_minus_A",
+      "median": 0.001748273658941174,
+      "paired": 2,
+      "sample_variance": 6.112921573095121e-06,
+      "task": "spooky-author-identification",
+      "values": [
+        0.0,
+        0.003496547317882348
+      ]
+    },
+    {
+      "contrast": "C_minus_B",
+      "median": 0.0,
+      "paired": 1,
+      "sample_variance": null,
+      "task": "spooky-author-identification",
+      "values": [
+        0.0
+      ]
+    }
+  ],
+  "plan_sha256": "63322ce2f5e38ac22c2a98b2c7bae5fa27334c4d5f3052297938418c26627679",
+  "rows": [
+    {
+      "comparable": true,
+      "contrast": "B_minus_A",
+      "delta": 0.015187754125807196,
+      "reason": null,
+      "seed": 107101,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "comparable": true,
+      "contrast": "B_minus_A",
+      "delta": 0.010583592441999468,
+      "reason": null,
+      "seed": 107111,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "comparable": true,
+      "contrast": "C_minus_A",
+      "delta": 0.003228892609423606,
+      "reason": null,
+      "seed": 107101,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "comparable": true,
+      "contrast": "C_minus_A",
+      "delta": 0.01578569720162637,
+      "reason": null,
+      "seed": 107111,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "comparable": true,
+      "contrast": "C_minus_B",
+      "delta": -0.01195886151638359,
+      "reason": null,
+      "seed": 107101,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "comparable": true,
+      "contrast": "C_minus_B",
+      "delta": 0.005202104759626902,
+      "reason": null,
+      "seed": 107111,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "comparable": true,
+      "contrast": "B_minus_A",
+      "delta": 0.0,
+      "reason": null,
+      "seed": 107102,
+      "task": "spooky-author-identification"
+    },
+    {
+      "comparable": false,
+      "contrast": "B_minus_A",
+      "delta": null,
+      "reason": "own_initial_missing_or_not_identical",
+      "seed": 107112,
+      "task": "spooky-author-identification"
+    },
+    {
+      "comparable": true,
+      "contrast": "C_minus_A",
+      "delta": 0.0,
+      "reason": null,
+      "seed": 107102,
+      "task": "spooky-author-identification"
+    },
+    {
+      "comparable": true,
+      "contrast": "C_minus_A",
+      "delta": 0.003496547317882348,
+      "reason": null,
+      "seed": 107112,
+      "task": "spooky-author-identification"
+    },
+    {
+      "comparable": true,
+      "contrast": "C_minus_B",
+      "delta": 0.0,
+      "reason": null,
+      "seed": 107102,
+      "task": "spooky-author-identification"
+    },
+    {
+      "comparable": false,
+      "contrast": "C_minus_B",
+      "delta": null,
+      "reason": "own_initial_missing_or_not_identical",
+      "seed": 107112,
+      "task": "spooky-author-identification"
+    }
+  ],
+  "summary_sha256": "cac2383749899ff1ae5ec34adf7ef4eec6446d30f485c0ee5b1ddb594b7c6675"
+}

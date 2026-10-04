@@ -1,0 +1,35 @@
+{
+  "excluded": [
+    "raw candidate code",
+    "model replies",
+    "labels",
+    "predictions",
+    "credentials"
+  ],
+  "exporter_sha256": "7026abdb24c9a798a4fea00c7aadf2f041670571ebdd42306acaad3d65bd49fb",
+  "files": {
+    "actions.csv": "c8896fe2c489f28d361c35331c6c813ab7490020ce44bfc229d7894a31ea7fb8",
+    "analysis-freeze.json": "ec6a65bae373e950a07f438623fefc8668f610d70fdd02d4b7a9a7df3ed7967c",
+    "conditional-sensitivity.json": "61ffbf7aba2a70af78ef21e3288f61b05422b3bc55787a527729f860d41da201",
+    "context-preflight.json": "cb8c4b22084454b6fadcde48c763890b62bafb86d18dc8606fe56e7f0fe887ba",
+    "cpu.json": "ea0485aa55df6a7ae85b04deaa0f56b2f9becf07de6a6a053c9bb51379cf0283",
+    "format-audit.json": "668b11f6271a9145806388679d209dcaf3fab41a945e7eb13b7914f62110187e",
+    "inspection-freeze.json": "a4a2717aab165103ec18b9229b9e50d779cee39ec97867d1991055c5d5ff0fff",
+    "launch.json": "bc862c62277ddc7c1f08f73704a12e64d6b2c178a93900eb1e645d689622e9cb",
+    "mechanism-review.json": "02b91862d99dca83d6985e4cf803f05e207e48b67af92da9e880aa2370ecf2f6",
+    "pairs.csv": "82d4d808978b6dba2b1e5a65d583d6e34429370fe8ae7edb6082f087973a6caa",
+    "plan.aggregate.json": "c4b9ece04d1225c8091ae1b49d51948b7181449732d5bfc77c3ac488f5532751",
+    "posthoc-available-pairs.json": "3d2c1453cae78b5031a6e71a7b39eafc0e9a5f11c1182b5c12f79ed25acf2fde",
+    "readout-freeze.json": "9af0eb058eeac7d66dcc05e8ed0aba3c6b0b3cde66aee1fa131d9dcc6901b1bb",
+    "returned-errors.json": "cd45733a164ece9e3fdb8e66c7afb3f121c5d044101fd2f4f9dd16206cdf254a",
+    "runs.csv": "85aba0662ef9dfcad2880d3a8e087b458c21b6a6e2b78bf4e26d29b743141c59",
+    "sensitivity-freeze.json": "bccfb5e0c8ede3bd2ee6312153f83d46b8e536ebe09c93acb986c0b5022c9c09",
+    "service-ready.json": "4f70a582bb19ad7419a41fac4e03c3944de5c01d7554b88c005d7f3fc5505587",
+    "summary.aggregate.json": "965b87b5a9af4f790d117e412a08b77dea449776aa81cf934a0ee46a4051aa0f",
+    "transport-loop-cpu.json": "0a700c4f249dd0b39cbce5d0bff17c480da067fcb53e526710aa6793be10953e",
+    "verification.json": "8c86cb7e7b5963abd195c9229fd5815038eaa375d952346170f6ee7a4b5629b1"
+  },
+  "full_summary_sha256": "cac2383749899ff1ae5ec34adf7ef4eec6446d30f485c0ee5b1ddb594b7c6675",
+  "plan_sha256": "63322ce2f5e38ac22c2a98b2c7bae5fa27334c4d5f3052297938418c26627679",
+  "scope": "All12 assigned retained; only this closed authorized developer batch. Protected cohorts remain sealed."
+}

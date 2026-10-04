@@ -1,0 +1,99 @@
+{
+  "boundary": "Only returned execution failures. Does not include format rejections, unstarted actions or reconstruction failures. Error text is evidence of this run, not proof of the agent rationale.",
+  "plan_sha256": "63322ce2f5e38ac22c2a98b2c7bae5fa27334c4d5f3052297938418c26627679",
+  "returned_failures": [
+    {
+      "arm": "C",
+      "code_sha256": "3a9bda7bedf5778a4562d7bd68e1376f81b89e61e6085b47cf03a619f673ee18",
+      "elapsed_seconds": 542.9575786460191,
+      "error_lines": [
+        "TimeoutError: Execution exceeded the time limit of 5 minutes"
+      ],
+      "execution_seconds": 357.04370221402496,
+      "exit_code": 1,
+      "index": 3,
+      "result_sha256": "feade849ad783a5651dc8ab651b490ab16e4eade305e674497f7aae9430af09f",
+      "step": 1,
+      "task": "spooky-author-identification",
+      "timed_out": true
+    },
+    {
+      "arm": "A",
+      "code_sha256": "f3bef1d17d6a5318f28e749a3ca0d8425c496883cc965e1633367010a75c7556",
+      "elapsed_seconds": 140.4590497680474,
+      "error_lines": [
+        "AttributeError: 'numpy.ndarray' object has no attribute 'tocsr'",
+        "AttributeError: 'numpy.ndarray' object has no attribute 'tocsr'"
+      ],
+      "execution_seconds": 1.461119324027095,
+      "exit_code": 1,
+      "index": 4,
+      "result_sha256": "ea268e1f600209050748bf014abf16bf738837bf449fe7dc830fef15b0254e4b",
+      "step": 3,
+      "task": "random-acts-of-pizza",
+      "timed_out": false
+    },
+    {
+      "arm": "A",
+      "code_sha256": "d75e57a5311e5b6316c00bd40bc55c5ba726cf887697d241dd0c778315129a9e",
+      "elapsed_seconds": 523.4629424539744,
+      "error_lines": [
+        "TimeoutError: Execution exceeded the time limit of 5 minutes"
+      ],
+      "execution_seconds": 305.62578490097076,
+      "exit_code": 1,
+      "index": 7,
+      "result_sha256": "2ade74712d7978e6cbaa9cff0e91dae727a5524ec6ff66b2e61846405de93ad4",
+      "step": 2,
+      "task": "spooky-author-identification",
+      "timed_out": true
+    },
+    {
+      "arm": "C",
+      "code_sha256": "b6759e1300af061cffc89c8b038e4c1a7a81b111b69fcab9f5759486cd0ae812",
+      "elapsed_seconds": 115.53793838294223,
+      "error_lines": [
+        "TypeError: object of type 'int' has no len()",
+        "TypeError: object of type 'int' has no len()"
+      ],
+      "execution_seconds": 1.6365360780037008,
+      "exit_code": 1,
+      "index": 8,
+      "result_sha256": "47bb21c5a3b67672512ec7ac9b6da7243cda58b84bf7b4b9bf38a0fc42624091",
+      "step": 2,
+      "task": "random-acts-of-pizza",
+      "timed_out": false
+    },
+    {
+      "arm": "B",
+      "code_sha256": "0c98eb8f6f1f2fe5e1f8c35306fbd0e693706de2ee24448699d52bf0217246c7",
+      "elapsed_seconds": 135.60493360599503,
+      "error_lines": [
+        "TypeError: XGBClassifier.fit() got an unexpected keyword argument 'early_stopping_rounds'",
+        "TypeError: XGBClassifier.fit() got an unexpected keyword argument 'early_stopping_rounds'"
+      ],
+      "execution_seconds": 1.9841357260011137,
+      "exit_code": 1,
+      "index": 10,
+      "result_sha256": "5f42fe2e4cab69490443d868937da376291e006a4e346e2fd195d15635970c38",
+      "step": 2,
+      "task": "random-acts-of-pizza",
+      "timed_out": false
+    },
+    {
+      "arm": "B",
+      "code_sha256": "97b85a025de7134c07b9917d261f7767c526e2fbe95ae9627b67ff0a215abd10",
+      "elapsed_seconds": 142.23080833803397,
+      "error_lines": [
+        "TimeoutError: Execution exceeded the time limit of 5 minutes"
+      ],
+      "execution_seconds": 123.96372267702827,
+      "exit_code": 1,
+      "index": 11,
+      "result_sha256": "4a235a012fe554de41f8b554ffb9c3f8bc1bdc92901467b50f7deca3799cfb96",
+      "step": 0,
+      "task": "spooky-author-identification",
+      "timed_out": true
+    }
+  ]
+}

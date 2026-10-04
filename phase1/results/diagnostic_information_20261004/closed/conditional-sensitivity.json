@@ -1,0 +1,58 @@
+{
+  "freeze": {
+    "method": "Class-stratified paired query bootstrap. Shared query resample across both generation seeds and all arms. Average two within-seed final retained-score differences; same as median with two seeds.",
+    "plan_sha256": "63322ce2f5e38ac22c2a98b2c7bae5fa27334c4d5f3052297938418c26627679",
+    "replicates": 5000,
+    "scope": "Conditional descriptive intervals only. Adaptive developer-query selection and human witness selection are not accounted for; no new task/run/training uncertainty or multiplicity correction. Does not change original numerical gate.",
+    "script_sha256": "44dc14e73ac336101ce5f7fd978fede4c54f554a39569c5c8663ed22d60349a1",
+    "seed_base": 107050,
+    "status": "FROZEN_BEFORE_EFFECT_READOUT_AFTER_RUN_STARTED",
+    "utc": "2026-10-04T00:53:46.810637+00:00"
+  },
+  "plan_sha256": "63322ce2f5e38ac22c2a98b2c7bae5fa27334c4d5f3052297938418c26627679",
+  "results": [
+    {
+      "conditional_interval": [
+        -0.005023469265725955,
+        0.030913657019851715
+      ],
+      "contrast": "B_minus_A",
+      "n_queries": 300,
+      "observed": 0.012885673283903332,
+      "rng_seed": 107050,
+      "status": "DESCRIPTIVE_CONDITIONAL",
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "conditional_interval": [
+        -0.018057880889739253,
+        0.03728249820617075
+      ],
+      "contrast": "C_minus_A",
+      "n_queries": 300,
+      "observed": 0.009507294905524988,
+      "rng_seed": 107050,
+      "status": "DESCRIPTIVE_CONDITIONAL",
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "conditional_interval": [
+        -0.0222150801243722,
+        0.015816341784262115
+      ],
+      "contrast": "C_minus_B",
+      "n_queries": 300,
+      "observed": -0.003378378378378344,
+      "rng_seed": 107050,
+      "status": "DESCRIPTIVE_CONDITIONAL",
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "status": "INCOMPLETE_COMPARABLE_PAIRS",
+      "task": "spooky-author-identification"
+    }
+  ],
+  "seconds": 9.774205916095525,
+  "status": "COMPLETE",
+  "summary_sha256": "cac2383749899ff1ae5ec34adf7ef4eec6446d30f485c0ee5b1ddb594b7c6675"
+}

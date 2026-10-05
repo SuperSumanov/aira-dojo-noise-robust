@@ -1,0 +1,96 @@
+{
+  "allocated_gpu_hours": 5.674444444444444,
+  "allocation_seconds": 5107,
+  "allocation_state": "COMPLETED",
+  "automatic_expansion": false,
+  "comparison_assignments": 16,
+  "comparisons_attempted": 16,
+  "contrasts": [
+    {
+      "complete": false,
+      "reimplement_minus_continue": null,
+      "reimplement_minus_new_idea": null,
+      "reimplement_minus_random_hpo": null,
+      "seed": 111501,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "complete": true,
+      "reimplement_minus_continue": -0.02472494618512311,
+      "reimplement_minus_new_idea": 5.97943075819618e-05,
+      "reimplement_minus_random_hpo": -0.00896914613728772,
+      "seed": 111511,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "complete": false,
+      "reimplement_minus_continue": null,
+      "reimplement_minus_new_idea": null,
+      "reimplement_minus_random_hpo": null,
+      "seed": 111502,
+      "task": "spooky-author-identification"
+    },
+    {
+      "complete": false,
+      "reimplement_minus_continue": null,
+      "reimplement_minus_new_idea": null,
+      "reimplement_minus_random_hpo": null,
+      "seed": 111512,
+      "task": "spooky-author-identification"
+    }
+  ],
+  "exit_code": "0:0",
+  "fixed_sources_valid": 2,
+  "generation_seeds_per_task": 2,
+  "independent_scores": 267,
+  "independent_source_ideas": 2,
+  "job": "16370",
+  "limitation": "Conditional two-task reused development comparison. Human fixed baseline, two generation seeds, context/operator bundled treatment; no learned selector or independent full-search benefit established.",
+  "max_independent_abs_error": 2.220446049250313e-16,
+  "numerical_screen": "incomplete",
+  "per_task": [
+    {
+      "contrasts": {
+        "continue": {
+          "median": -0.02472494618512311,
+          "n": 1,
+          "sample_variance": null
+        },
+        "new_idea": {
+          "median": 5.97943075819618e-05,
+          "n": 1,
+          "sample_variance": null
+        },
+        "random_hpo": {
+          "median": -0.00896914613728772,
+          "n": 1,
+          "sample_variance": null
+        }
+      },
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "contrasts": {
+        "continue": {
+          "median": null,
+          "n": 0,
+          "sample_variance": null
+        },
+        "new_idea": {
+          "median": null,
+          "n": 0,
+          "sample_variance": null
+        },
+        "random_hpo": {
+          "median": null,
+          "n": 0,
+          "sample_variance": null
+        }
+      },
+      "task": "spooky-author-identification"
+    }
+  ],
+  "plan_sha256": "c1aba6663872c01c656f4da45667f5d0dc60e589fec6fe5f87fc00dcbc9a2d6a",
+  "semantic_review_complete": false,
+  "status": "CLOSED_EXPLORATORY_FIXED_SOURCE_COMPARISON"
+}

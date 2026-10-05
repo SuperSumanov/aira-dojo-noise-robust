@@ -831,3 +831,4 @@ phase1/results/implementation_reset_20261005/** -text diff whitespace=cr-at-eol
 phase1/scripts/*implementation_reset*20261005.py -text diff whitespace=cr-at-eol
 phase1/results/implementation_reset_v2_20261005/** -text diff whitespace=cr-at-eol
 phase1/scripts/reset_repair_diagnosis_20261005.py -text diff whitespace=cr-at-eol
+phase1/scripts/reset_v2_*20261005.py -text diff whitespace=cr-at-eol

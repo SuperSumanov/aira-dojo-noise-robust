@@ -1,0 +1,10 @@
+{
+  "experiment_source_commit": "c3f6783663053bf4ef04b821488d3b7bd1f2cb9b",
+  "plan_sha256": "c1aba6663872c01c656f4da45667f5d0dc60e589fec6fe5f87fc00dcbc9a2d6a",
+  "local_regression_tests": 9,
+  "native_configurations_checked": 18,
+  "native_prompt_renders_checked": 36,
+  "paid_api_calls": 0,
+  "base_model_training": false,
+  "interpretation": "Source/configuration checks only; not an experimental result."
+}

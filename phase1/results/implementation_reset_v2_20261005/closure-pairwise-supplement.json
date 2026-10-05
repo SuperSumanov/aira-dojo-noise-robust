@@ -1,0 +1,636 @@
+{
+  "automatic_expansion": false,
+  "caveat": "Completed-pair subsets may be selected by failure mechanism. Missing workers keep unknown endpoints. No promotion by closure, no imputation, no primary gate change, no significance claim.",
+  "diagnostic_source_sha256": "3d5380be4a80437adf5ee948754dac97910a7c3ad5764b80fb60c23a98eccdd3",
+  "episodes": [
+    {
+      "arm": "ROOT",
+      "hard_cutoff_without_finished": false,
+      "image_cleanup_certified": true,
+      "index": 0,
+      "last_result_elapsed_seconds": 28.769262711517513,
+      "last_score_elapsed_seconds": 28.120566143654287,
+      "score_receipts": 1,
+      "seed": 111401,
+      "srun_returncode": 0,
+      "supervisor_elapsed_seconds": 31.356945225968957,
+      "task": "random-acts-of-pizza",
+      "valid_results": 1,
+      "worker_deadline_reached": false,
+      "worker_finished_present": true
+    },
+    {
+      "arm": "ROOT",
+      "hard_cutoff_without_finished": false,
+      "image_cleanup_certified": true,
+      "index": 1,
+      "last_result_elapsed_seconds": 25.18888548668474,
+      "last_score_elapsed_seconds": 24.537592756561935,
+      "score_receipts": 1,
+      "seed": 111402,
+      "srun_returncode": 0,
+      "supervisor_elapsed_seconds": 32.86681400611997,
+      "task": "spooky-author-identification",
+      "valid_results": 1,
+      "worker_deadline_reached": false,
+      "worker_finished_present": true
+    },
+    {
+      "arm": "continue",
+      "hard_cutoff_without_finished": false,
+      "image_cleanup_certified": true,
+      "index": 2,
+      "last_result_elapsed_seconds": 578.3210329404101,
+      "last_score_elapsed_seconds": 577.6219527451321,
+      "score_receipts": 9,
+      "seed": 111501,
+      "srun_returncode": 137,
+      "supervisor_elapsed_seconds": 601.2421352667734,
+      "task": "random-acts-of-pizza",
+      "valid_results": 9,
+      "worker_deadline_reached": true,
+      "worker_finished_present": true
+    },
+    {
+      "arm": "continue",
+      "hard_cutoff_without_finished": false,
+      "image_cleanup_certified": true,
+      "index": 3,
+      "last_result_elapsed_seconds": 595.8832993283868,
+      "last_score_elapsed_seconds": 595.2816516337916,
+      "score_receipts": 8,
+      "seed": 111502,
+      "srun_returncode": 0,
+      "supervisor_elapsed_seconds": 597.6825634501874,
+      "task": "spooky-author-identification",
+      "valid_results": 8,
+      "worker_deadline_reached": false,
+      "worker_finished_present": true
+    },
+    {
+      "arm": "reimplement",
+      "hard_cutoff_without_finished": true,
+      "image_cleanup_certified": true,
+      "index": 4,
+      "last_result_elapsed_seconds": 453.22016033064574,
+      "last_score_elapsed_seconds": null,
+      "score_receipts": 0,
+      "seed": 111501,
+      "srun_returncode": 137,
+      "supervisor_elapsed_seconds": 601.3484369078651,
+      "task": "random-acts-of-pizza",
+      "valid_results": 0,
+      "worker_deadline_reached": true,
+      "worker_finished_present": false
+    },
+    {
+      "arm": "reimplement",
+      "hard_cutoff_without_finished": false,
+      "image_cleanup_certified": true,
+      "index": 5,
+      "last_result_elapsed_seconds": 595.3098907656968,
+      "last_score_elapsed_seconds": 563.4831909593195,
+      "score_receipts": 11,
+      "seed": 111502,
+      "srun_returncode": 0,
+      "supervisor_elapsed_seconds": 597.2817776603624,
+      "task": "spooky-author-identification",
+      "valid_results": 11,
+      "worker_deadline_reached": false,
+      "worker_finished_present": true
+    },
+    {
+      "arm": "new_idea",
+      "hard_cutoff_without_finished": false,
+      "image_cleanup_certified": true,
+      "index": 6,
+      "last_result_elapsed_seconds": 573.4755715606734,
+      "last_score_elapsed_seconds": 353.8375769164413,
+      "score_receipts": 1,
+      "seed": 111501,
+      "srun_returncode": 137,
+      "supervisor_elapsed_seconds": 601.1208198666573,
+      "task": "random-acts-of-pizza",
+      "valid_results": 1,
+      "worker_deadline_reached": true,
+      "worker_finished_present": true
+    },
+    {
+      "arm": "new_idea",
+      "hard_cutoff_without_finished": true,
+      "image_cleanup_certified": true,
+      "index": 7,
+      "last_result_elapsed_seconds": 548.3367929188535,
+      "last_score_elapsed_seconds": 547.6868859380484,
+      "score_receipts": 1,
+      "seed": 111502,
+      "srun_returncode": 137,
+      "supervisor_elapsed_seconds": 601.1026226608083,
+      "task": "spooky-author-identification",
+      "valid_results": 1,
+      "worker_deadline_reached": true,
+      "worker_finished_present": false
+    },
+    {
+      "arm": "random_hpo",
+      "hard_cutoff_without_finished": false,
+      "image_cleanup_certified": true,
+      "index": 8,
+      "last_result_elapsed_seconds": 588.7239950699732,
+      "last_score_elapsed_seconds": 587.913170048967,
+      "score_receipts": 59,
+      "seed": 111501,
+      "srun_returncode": 0,
+      "supervisor_elapsed_seconds": 590.9394757244736,
+      "task": "random-acts-of-pizza",
+      "valid_results": 59,
+      "worker_deadline_reached": false,
+      "worker_finished_present": true
+    },
+    {
+      "arm": "random_hpo",
+      "hard_cutoff_without_finished": true,
+      "image_cleanup_certified": true,
+      "index": 9,
+      "last_result_elapsed_seconds": 489.3889986714348,
+      "last_score_elapsed_seconds": 488.7402498088777,
+      "score_receipts": 44,
+      "seed": 111502,
+      "srun_returncode": 137,
+      "supervisor_elapsed_seconds": 601.2275734459981,
+      "task": "spooky-author-identification",
+      "valid_results": 44,
+      "worker_deadline_reached": true,
+      "worker_finished_present": false
+    },
+    {
+      "arm": "random_hpo",
+      "hard_cutoff_without_finished": false,
+      "image_cleanup_certified": true,
+      "index": 10,
+      "last_result_elapsed_seconds": 586.5234988592565,
+      "last_score_elapsed_seconds": 585.8686692127958,
+      "score_receipts": 43,
+      "seed": 111511,
+      "srun_returncode": 0,
+      "supervisor_elapsed_seconds": 588.7111614746973,
+      "task": "random-acts-of-pizza",
+      "valid_results": 43,
+      "worker_deadline_reached": false,
+      "worker_finished_present": true
+    },
+    {
+      "arm": "random_hpo",
+      "hard_cutoff_without_finished": false,
+      "image_cleanup_certified": true,
+      "index": 11,
+      "last_result_elapsed_seconds": 589.6976291006431,
+      "last_score_elapsed_seconds": 588.8907602643594,
+      "score_receipts": 55,
+      "seed": 111512,
+      "srun_returncode": 0,
+      "supervisor_elapsed_seconds": 592.7194033432752,
+      "task": "spooky-author-identification",
+      "valid_results": 55,
+      "worker_deadline_reached": false,
+      "worker_finished_present": true
+    },
+    {
+      "arm": "new_idea",
+      "hard_cutoff_without_finished": false,
+      "image_cleanup_certified": true,
+      "index": 12,
+      "last_result_elapsed_seconds": 585.0083279944956,
+      "last_score_elapsed_seconds": null,
+      "score_receipts": 0,
+      "seed": 111511,
+      "srun_returncode": 0,
+      "supervisor_elapsed_seconds": 587.3164168670774,
+      "task": "random-acts-of-pizza",
+      "valid_results": 0,
+      "worker_deadline_reached": false,
+      "worker_finished_present": true
+    },
+    {
+      "arm": "new_idea",
+      "hard_cutoff_without_finished": true,
+      "image_cleanup_certified": true,
+      "index": 13,
+      "last_result_elapsed_seconds": 509.52123196516186,
+      "last_score_elapsed_seconds": 444.0908180857077,
+      "score_receipts": 2,
+      "seed": 111512,
+      "srun_returncode": 137,
+      "supervisor_elapsed_seconds": 601.9656392913312,
+      "task": "spooky-author-identification",
+      "valid_results": 2,
+      "worker_deadline_reached": true,
+      "worker_finished_present": false
+    },
+    {
+      "arm": "reimplement",
+      "hard_cutoff_without_finished": false,
+      "image_cleanup_certified": true,
+      "index": 14,
+      "last_result_elapsed_seconds": 592.9599086679518,
+      "last_score_elapsed_seconds": 592.4104530010372,
+      "score_receipts": 3,
+      "seed": 111511,
+      "srun_returncode": 0,
+      "supervisor_elapsed_seconds": 595.0324682351202,
+      "task": "random-acts-of-pizza",
+      "valid_results": 3,
+      "worker_deadline_reached": false,
+      "worker_finished_present": true
+    },
+    {
+      "arm": "reimplement",
+      "hard_cutoff_without_finished": false,
+      "image_cleanup_certified": true,
+      "index": 15,
+      "last_result_elapsed_seconds": 566.581551047042,
+      "last_score_elapsed_seconds": 599.5927221849561,
+      "score_receipts": 13,
+      "seed": 111512,
+      "srun_returncode": 137,
+      "supervisor_elapsed_seconds": 601.5608665822074,
+      "task": "spooky-author-identification",
+      "valid_results": 12,
+      "worker_deadline_reached": true,
+      "worker_finished_present": true
+    },
+    {
+      "arm": "continue",
+      "hard_cutoff_without_finished": false,
+      "image_cleanup_certified": true,
+      "index": 16,
+      "last_result_elapsed_seconds": 489.2493399148807,
+      "last_score_elapsed_seconds": 488.5454726992175,
+      "score_receipts": 6,
+      "seed": 111511,
+      "srun_returncode": 137,
+      "supervisor_elapsed_seconds": 601.0230000251904,
+      "task": "random-acts-of-pizza",
+      "valid_results": 6,
+      "worker_deadline_reached": true,
+      "worker_finished_present": true
+    },
+    {
+      "arm": "continue",
+      "hard_cutoff_without_finished": false,
+      "image_cleanup_certified": true,
+      "index": 17,
+      "last_result_elapsed_seconds": 584.836861198768,
+      "last_score_elapsed_seconds": 584.1891138302162,
+      "score_receipts": 10,
+      "seed": 111512,
+      "srun_returncode": 137,
+      "supervisor_elapsed_seconds": 601.1422153608873,
+      "task": "spooky-author-identification",
+      "valid_results": 10,
+      "worker_deadline_reached": true,
+      "worker_finished_present": true
+    }
+  ],
+  "hard_cutoff_missing_finished": 4,
+  "missing_finished": 4,
+  "pairs": [
+    {
+      "complete": false,
+      "left": "reimplement",
+      "oriented_difference": null,
+      "right": "continue",
+      "seed": "111501",
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "complete": false,
+      "left": "reimplement",
+      "oriented_difference": null,
+      "right": "new_idea",
+      "seed": "111501",
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "complete": false,
+      "left": "reimplement",
+      "oriented_difference": null,
+      "right": "random_hpo",
+      "seed": "111501",
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "complete": true,
+      "left": "continue",
+      "oriented_difference": -0.00855058598421432,
+      "right": "random_hpo",
+      "seed": "111501",
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "complete": true,
+      "left": "reimplement",
+      "oriented_difference": -0.02472494618512311,
+      "right": "continue",
+      "seed": "111511",
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "complete": true,
+      "left": "reimplement",
+      "oriented_difference": 5.97943075819618e-05,
+      "right": "new_idea",
+      "seed": "111511",
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "complete": true,
+      "left": "reimplement",
+      "oriented_difference": -0.00896914613728772,
+      "right": "random_hpo",
+      "seed": "111511",
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "complete": true,
+      "left": "continue",
+      "oriented_difference": 0.01575580004783539,
+      "right": "random_hpo",
+      "seed": "111511",
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "complete": true,
+      "left": "reimplement",
+      "oriented_difference": 0.0037956515659806067,
+      "right": "continue",
+      "seed": "111502",
+      "task": "spooky-author-identification"
+    },
+    {
+      "complete": false,
+      "left": "reimplement",
+      "oriented_difference": null,
+      "right": "new_idea",
+      "seed": "111502",
+      "task": "spooky-author-identification"
+    },
+    {
+      "complete": false,
+      "left": "reimplement",
+      "oriented_difference": null,
+      "right": "random_hpo",
+      "seed": "111502",
+      "task": "spooky-author-identification"
+    },
+    {
+      "complete": false,
+      "left": "continue",
+      "oriented_difference": null,
+      "right": "random_hpo",
+      "seed": "111502",
+      "task": "spooky-author-identification"
+    },
+    {
+      "complete": true,
+      "left": "reimplement",
+      "oriented_difference": -0.007651500556666357,
+      "right": "continue",
+      "seed": "111512",
+      "task": "spooky-author-identification"
+    },
+    {
+      "complete": false,
+      "left": "reimplement",
+      "oriented_difference": null,
+      "right": "new_idea",
+      "seed": "111512",
+      "task": "spooky-author-identification"
+    },
+    {
+      "complete": true,
+      "left": "reimplement",
+      "oriented_difference": -0.002165564038982659,
+      "right": "random_hpo",
+      "seed": "111512",
+      "task": "spooky-author-identification"
+    },
+    {
+      "complete": true,
+      "left": "continue",
+      "oriented_difference": 0.005485936517683698,
+      "right": "random_hpo",
+      "seed": "111512",
+      "task": "spooky-author-identification"
+    }
+  ],
+  "per_task_arm": [
+    {
+      "arm": "continue",
+      "assigned": 2,
+      "complete": 2,
+      "final_dev_metric": {
+        "median": 0.64355118392729,
+        "n": 2,
+        "sample_variance": 0.0002954002009695106
+      },
+      "oriented_improvement": {
+        "median": 0.012631547476680216,
+        "n": 2,
+        "sample_variance": 0.0002954002009695106
+      },
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "arm": "reimplement",
+      "assigned": 2,
+      "complete": 1,
+      "final_dev_metric": {
+        "median": 0.6309794307581919,
+        "n": 1,
+        "sample_variance": null
+      },
+      "oriented_improvement": {
+        "median": 5.97943075819618e-05,
+        "n": 1,
+        "sample_variance": null
+      },
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "arm": "new_idea",
+      "assigned": 2,
+      "complete": 2,
+      "final_dev_metric": {
+        "median": 0.6309196364506099,
+        "n": 2,
+        "sample_variance": 0.0
+      },
+      "oriented_improvement": {
+        "median": 0.0,
+        "n": 2,
+        "sample_variance": 0.0
+      },
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "arm": "random_hpo",
+      "assigned": 2,
+      "complete": 2,
+      "final_dev_metric": {
+        "median": 0.6399485768954796,
+        "n": 2,
+        "sample_variance": 0.0
+      },
+      "oriented_improvement": {
+        "median": 0.009028940444869682,
+        "n": 2,
+        "sample_variance": 0.0
+      },
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "arm": "continue",
+      "assigned": 2,
+      "complete": 2,
+      "final_dev_metric": {
+        "median": 0.44247205444805027,
+        "n": 2,
+        "sample_variance": 0.00011594222832972258
+      },
+      "oriented_improvement": {
+        "median": 0.13697351240229738,
+        "n": 2,
+        "sample_variance": 0.00011594222832972258
+      },
+      "task": "spooky-author-identification"
+    },
+    {
+      "arm": "reimplement",
+      "assigned": 2,
+      "complete": 2,
+      "final_dev_metric": {
+        "median": 0.4443999789433931,
+        "n": 2,
+        "sample_variance": 7.146470904850435e-06
+      },
+      "oriented_improvement": {
+        "median": 0.1350455879069545,
+        "n": 2,
+        "sample_variance": 7.146470904850435e-06
+      },
+      "task": "spooky-author-identification"
+    },
+    {
+      "arm": "new_idea",
+      "assigned": 2,
+      "complete": 0,
+      "final_dev_metric": {
+        "median": null,
+        "n": 0,
+        "sample_variance": null
+      },
+      "oriented_improvement": {
+        "median": null,
+        "n": 0,
+        "sample_variance": null
+      },
+      "task": "spooky-author-identification"
+    },
+    {
+      "arm": "random_hpo",
+      "assigned": 2,
+      "complete": 1,
+      "final_dev_metric": {
+        "median": 0.44034411454403777,
+        "n": 1,
+        "sample_variance": null
+      },
+      "oriented_improvement": {
+        "median": 0.13910145230630988,
+        "n": 1,
+        "sample_variance": null
+      },
+      "task": "spooky-author-identification"
+    }
+  ],
+  "per_task_pairs": [
+    {
+      "left": "continue",
+      "median": 0.003602607031810534,
+      "n": 2,
+      "right": "random_hpo",
+      "sample_variance": 0.0002954002009695106,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "left": "reimplement",
+      "median": -0.02472494618512311,
+      "n": 1,
+      "right": "continue",
+      "sample_variance": null,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "left": "reimplement",
+      "median": 5.97943075819618e-05,
+      "n": 1,
+      "right": "new_idea",
+      "sample_variance": null,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "left": "reimplement",
+      "median": -0.00896914613728772,
+      "n": 1,
+      "right": "random_hpo",
+      "sample_variance": null,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "left": "continue",
+      "median": 0.005485936517683698,
+      "n": 1,
+      "right": "random_hpo",
+      "sample_variance": null,
+      "task": "spooky-author-identification"
+    },
+    {
+      "left": "reimplement",
+      "median": -0.0019279244953428754,
+      "n": 2,
+      "right": "continue",
+      "sample_variance": 6.551864585951045e-05,
+      "task": "spooky-author-identification"
+    },
+    {
+      "left": "reimplement",
+      "median": null,
+      "n": 0,
+      "right": "new_idea",
+      "sample_variance": null,
+      "task": "spooky-author-identification"
+    },
+    {
+      "left": "reimplement",
+      "median": -0.002165564038982659,
+      "n": 1,
+      "right": "random_hpo",
+      "sample_variance": null,
+      "task": "spooky-author-identification"
+    }
+  ],
+  "primary_numerical_screen": "incomplete",
+  "primary_summary_sha256": "3bc502a10e495495eb66a952a9a1e5a9237008346182cf7727d146aa5d4682f5",
+  "scope": "POST_HOC_COMPLETE_PAIR_SENSITIVITY_NOT_PRIMARY_NOT_CONFIRMATORY",
+  "score_without_result": [
+    {
+      "action": "action-16",
+      "index": 15,
+      "score_elapsed_seconds": 599.5927221849561,
+      "timely": true
+    }
+  ],
+  "supervisor_sha256": "c67581dc102d37ee1486fc34b98a8bbe8c84fdabcc43c50af9b02d749be1663c",
+  "task_adapter_sha256": "39e60193d40947e6b638e126ac5feb85e25e326dc8b0079746fa7e8cc72e553d"
+}

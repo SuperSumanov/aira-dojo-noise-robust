@@ -1,0 +1,39 @@
+{
+  "all_wins_criterion_already_contradicted": true,
+  "automatic_expansion": false,
+  "closure_audit_sha256": "b2b1bdd6c12445d081101d32a2bd531b4b23eb7b3d9031614f3998beeb683922",
+  "complete_block_contradictions_to_all_wins": [
+    {
+      "control": "continue",
+      "difference": -0.02472494618512311,
+      "seed": 111511,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "control": "random_hpo",
+      "difference": -0.00896914613728772,
+      "seed": 111511,
+      "task": "random-acts-of-pizza"
+    }
+  ],
+  "diagnostic_source_sha256": "974b65c5ec1d27e17d71bbd2ba0558508923709cb4628757ba3d4de74d045b3b",
+  "findings": [
+    {
+      "action": "action-16",
+      "arm": "reimplement",
+      "could_improve_saved_best": false,
+      "index": 15,
+      "oriented_difference_to_saved_best": -0.13903388863804672,
+      "primary_eligibility_unchanged": true,
+      "saved_action_best": 0.4425096785830204,
+      "score_elapsed_seconds": 599.5927221849561,
+      "score_only_metric": 0.5815435672210671,
+      "task": "spooky-author-identification",
+      "timely": true
+    }
+  ],
+  "interpretation": "The trusted task calls scoring only after successful, non-timeout execution. A score receipt can precede cleanup/final result persistence. It is not retroactively made primary-eligible. Other missing worker endpoints remain unknown.",
+  "primary_gate_unchanged": "incomplete",
+  "primary_summary_sha256": "3bc502a10e495495eb66a952a9a1e5a9237008346182cf7727d146aa5d4682f5",
+  "scope": "POST_HOC_DEADLINE_SENSITIVITY_NOT_A_NEW_ENDPOINT"
+}

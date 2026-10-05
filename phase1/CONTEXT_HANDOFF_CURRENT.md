@@ -1,8 +1,8 @@
 # 当前短交接
-更新：2026-10-05 18:20香港。用户17:36批准继续、一小时反馈，目标18:36；本批已闭合。先fetch并读CURRENT_DIRECTION.md、ROUTE_DECISIONS.md。
+更新：2026-10-05 18:25香港。用户17:36批准继续、一小时反馈，目标18:36；本批已闭合并发布。先fetch并读CURRENT_DIRECTION.md、ROUTE_DECISIONS.md。
 
 ## 最新闭合：额外反馈单提案不扩大
-- 根/research/d7/spc/yzyang4/structural-agent-20261005-v1；16403 COMPLETED，12启动/10有效端点，982秒×4GPU=1.0911111111111111 GPUh；10评分独立误差≤1.1102230246251565e-16，服务关闭。prepare/submit/analyze/supplement均已执行，禁止重复。源码24ceb8f5973afd9bc7268f4e79f900d5d8964e84；尚在准备push，不能声称已发布。
+- 根/research/d7/spc/yzyang4/structural-agent-20261005-v1；16403 COMPLETED，12启动/10有效端点，982秒×4GPU=1.0911111111111111 GPUh；10评分独立误差≤1.1102230246251565e-16，服务关闭。prepare/submit/analyze/supplement均已执行，禁止重复。源码24ceb8f5973afd9bc7268f4e79f900d5d8964e84；结果已发布38e7bb7068453e505ef4ba5c6f384ee3576f6d48并独立ls-remote确认；学长分支未改。18:24:34队列仅旧12535 JobHeldUser，不操作它；18:22短暂DNS失败已恢复。
 - 2任务×2seed×普通agent/加训练内28点调参记录/open word+char 56点HPO，每条360秒，共同训练内HPO父解。两agent均可改结构、无字符提示；内选点、全闭合才外部开发评分；仅单提案不是完整MCTS/从零E2E。
 - 原完整三臂主分析2/4块：profile对ordinary为Pizza AUC−0.052260224826596424、Spooky平；对HPO分别−0.06218607988519487、−0.03124022410581795（收益方向）。另2HPO端点kernel-readiness超时，不当作方法失败，仍保留missing。门false，补齐缺失也不能救全胜条件，不补跑/补seed救门。
 - 见结构缺失、未读外部成绩前增加的完整双方敏感性：profile对ordinary四对三平一负，原主分析/门不改。普通4/4保留父解；profile1/4接受新案，内部AUC+0.006976744186046435、外部−0.052260224826596424；单例不证明噪声/分布偏移。

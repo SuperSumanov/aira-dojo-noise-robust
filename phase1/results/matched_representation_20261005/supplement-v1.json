@@ -1,0 +1,96 @@
+{
+  "conditional_intervals": [
+    {
+      "clusters": 300,
+      "conditional_percentile_95": [
+        -0.012368320788252304,
+        0.028623809542596256
+      ],
+      "grouping": "requester_username clusters",
+      "observed_seed_mean_difference": 0.007294905524994066,
+      "paired_across_arms_and_seeds": true,
+      "requested_replicates": 2000,
+      "rows": 300,
+      "seed": 115090,
+      "task": "random-acts-of-pizza",
+      "valid_replicates": 2000,
+      "warning": "Posthoc descriptive interval conditional on these trained models and reused dev task. Does not correct repeated development-set use or quantify across-task/split-training uncertainty."
+    },
+    {
+      "clusters": 1761,
+      "conditional_percentile_95": [
+        0.015874203660546704,
+        0.05425094179758987
+      ],
+      "grouping": "rows (within-task conditional interval; no source-document cluster available)",
+      "observed_seed_mean_difference": 0.0349248655698582,
+      "paired_across_arms_and_seeds": true,
+      "requested_replicates": 2000,
+      "rows": 1761,
+      "seed": 115090,
+      "task": "spooky-author-identification",
+      "valid_replicates": 2000,
+      "warning": "Posthoc descriptive interval conditional on these trained models and reused dev task. Does not correct repeated development-set use or quantify across-task/split-training uncertainty."
+    }
+  ],
+  "grid_diagnostics": [
+    {
+      "configurations": 28,
+      "converged_grid_fits_union": 28,
+      "converged_grid_fits_word": 28,
+      "inner_gain_at_word_selected_parameters": 0.003058645096056689,
+      "matched_hyperparameter_inner_wins": 20,
+      "median_matched_inner_difference": 0.004714357937310454,
+      "seed": 115001,
+      "task": "random-acts-of-pizza",
+      "union_selected_C_boundary": true,
+      "word_selected_C_boundary": false
+    },
+    {
+      "configurations": 28,
+      "converged_grid_fits_union": 28,
+      "converged_grid_fits_word": 28,
+      "inner_gain_at_word_selected_parameters": 0.013144590495449804,
+      "matched_hyperparameter_inner_wins": 25,
+      "median_matched_inner_difference": 0.014471688574317576,
+      "seed": 115002,
+      "task": "random-acts-of-pizza",
+      "union_selected_C_boundary": false,
+      "word_selected_C_boundary": false
+    },
+    {
+      "configurations": 28,
+      "converged_grid_fits_union": 28,
+      "converged_grid_fits_word": 28,
+      "inner_gain_at_word_selected_parameters": 0.020474526937451,
+      "matched_hyperparameter_inner_wins": 28,
+      "median_matched_inner_difference": 0.02973334418317028,
+      "seed": 115001,
+      "task": "spooky-author-identification",
+      "union_selected_C_boundary": false,
+      "word_selected_C_boundary": false
+    },
+    {
+      "configurations": 28,
+      "converged_grid_fits_union": 28,
+      "converged_grid_fits_word": 28,
+      "inner_gain_at_word_selected_parameters": 0.02395703644034014,
+      "matched_hyperparameter_inner_wins": 28,
+      "median_matched_inner_difference": 0.03609161054335158,
+      "seed": 115002,
+      "task": "spooky-author-identification",
+      "union_selected_C_boundary": false,
+      "word_selected_C_boundary": false
+    }
+  ],
+  "independent_prediction_hashes": {
+    "random-acts-of-pizza": 3,
+    "spooky-author-identification": 4
+  },
+  "new_fits": 0,
+  "original_gate_unchanged": true,
+  "protected_opened": false,
+  "script_sha256": "36e186e3f688840227d10ddc592dbb3a881aa0a601456895ab6eeaff86357278",
+  "status": "POSTHOC_DIAGNOSTIC_ONLY",
+  "summary_sha256": "cb357d80931ca8c752b9be1ec358d9ac72c06803ac3a021de93b1799c22cb316"
+}

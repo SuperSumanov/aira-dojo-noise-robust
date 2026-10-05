@@ -1,0 +1,2890 @@
+{
+  "0": {
+    "arm": "word",
+    "rows": [
+      {
+        "converged": true,
+        "features": 8162,
+        "grid_index": 0,
+        "inner_oriented_score": 0.5934529828109201,
+        "params": {
+          "C": 0.1,
+          "min_df": 1,
+          "ngram": 1
+        },
+        "seconds": 0.1324022440239787
+      },
+      {
+        "converged": true,
+        "features": 8162,
+        "grid_index": 1,
+        "inner_oriented_score": 0.5934529828109201,
+        "params": {
+          "C": 0.3,
+          "min_df": 1,
+          "ngram": 1
+        },
+        "seconds": 0.012371471151709557
+      },
+      {
+        "converged": true,
+        "features": 8162,
+        "grid_index": 2,
+        "inner_oriented_score": 0.5843023255813953,
+        "params": {
+          "C": 1.0,
+          "min_df": 1,
+          "ngram": 1
+        },
+        "seconds": 0.014842675998806953
+      },
+      {
+        "converged": true,
+        "features": 8162,
+        "grid_index": 3,
+        "inner_oriented_score": 0.5744186046511629,
+        "params": {
+          "C": 3.0,
+          "min_df": 1,
+          "ngram": 1
+        },
+        "seconds": 0.015752233564853668
+      },
+      {
+        "converged": true,
+        "features": 8162,
+        "grid_index": 4,
+        "inner_oriented_score": 0.561299292214358,
+        "params": {
+          "C": 10.0,
+          "min_df": 1,
+          "ngram": 1
+        },
+        "seconds": 0.017596282996237278
+      },
+      {
+        "converged": true,
+        "features": 8162,
+        "grid_index": 5,
+        "inner_oriented_score": 0.5428210313447928,
+        "params": {
+          "C": 30.0,
+          "min_df": 1,
+          "ngram": 1
+        },
+        "seconds": 0.01980717573314905
+      },
+      {
+        "converged": true,
+        "features": 8162,
+        "grid_index": 6,
+        "inner_oriented_score": 0.5252275025278059,
+        "params": {
+          "C": 100.0,
+          "min_df": 1,
+          "ngram": 1
+        },
+        "seconds": 0.023030564188957214
+      },
+      {
+        "converged": true,
+        "features": 3829,
+        "grid_index": 7,
+        "inner_oriented_score": 0.5897876643073812,
+        "params": {
+          "C": 0.1,
+          "min_df": 2,
+          "ngram": 1
+        },
+        "seconds": 0.11298183910548687
+      },
+      {
+        "converged": true,
+        "features": 3829,
+        "grid_index": 8,
+        "inner_oriented_score": 0.5891304347826086,
+        "params": {
+          "C": 0.3,
+          "min_df": 2,
+          "ngram": 1
+        },
+        "seconds": 0.010953065939247608
+      },
+      {
+        "converged": true,
+        "features": 3829,
+        "grid_index": 9,
+        "inner_oriented_score": 0.5782103134479273,
+        "params": {
+          "C": 1.0,
+          "min_df": 2,
+          "ngram": 1
+        },
+        "seconds": 0.012468253262341022
+      },
+      {
+        "converged": true,
+        "features": 3829,
+        "grid_index": 10,
+        "inner_oriented_score": 0.5657482305358948,
+        "params": {
+          "C": 3.0,
+          "min_df": 2,
+          "ngram": 1
+        },
+        "seconds": 0.013483923859894276
+      },
+      {
+        "converged": true,
+        "features": 3829,
+        "grid_index": 11,
+        "inner_oriented_score": 0.5518705763397371,
+        "params": {
+          "C": 10.0,
+          "min_df": 2,
+          "ngram": 1
+        },
+        "seconds": 0.015645417384803295
+      },
+      {
+        "converged": true,
+        "features": 3829,
+        "grid_index": 12,
+        "inner_oriented_score": 0.5353134479271993,
+        "params": {
+          "C": 30.0,
+          "min_df": 2,
+          "ngram": 1
+        },
+        "seconds": 0.018037846311926842
+      },
+      {
+        "converged": true,
+        "features": 3829,
+        "grid_index": 13,
+        "inner_oriented_score": 0.5177704752275025,
+        "params": {
+          "C": 100.0,
+          "min_df": 2,
+          "ngram": 1
+        },
+        "seconds": 0.023441332392394543
+      },
+      {
+        "converged": true,
+        "features": 50000,
+        "grid_index": 14,
+        "inner_oriented_score": 0.6006066734074823,
+        "params": {
+          "C": 0.1,
+          "min_df": 1,
+          "ngram": 2
+        },
+        "seconds": 0.30593542009592056
+      },
+      {
+        "converged": true,
+        "features": 50000,
+        "grid_index": 15,
+        "inner_oriented_score": 0.6015672396359959,
+        "params": {
+          "C": 0.3,
+          "min_df": 1,
+          "ngram": 2
+        },
+        "seconds": 0.02832974772900343
+      },
+      {
+        "converged": true,
+        "features": 50000,
+        "grid_index": 16,
+        "inner_oriented_score": 0.5963852376137513,
+        "params": {
+          "C": 1.0,
+          "min_df": 1,
+          "ngram": 2
+        },
+        "seconds": 0.03286666329950094
+      },
+      {
+        "converged": true,
+        "features": 50000,
+        "grid_index": 17,
+        "inner_oriented_score": 0.5836956521739131,
+        "params": {
+          "C": 3.0,
+          "min_df": 1,
+          "ngram": 2
+        },
+        "seconds": 0.037425048649311066
+      },
+      {
+        "converged": true,
+        "features": 50000,
+        "grid_index": 18,
+        "inner_oriented_score": 0.5669868554095046,
+        "params": {
+          "C": 10.0,
+          "min_df": 1,
+          "ngram": 2
+        },
+        "seconds": 0.04039390478283167
+      },
+      {
+        "converged": true,
+        "features": 50000,
+        "grid_index": 19,
+        "inner_oriented_score": 0.5456521739130434,
+        "params": {
+          "C": 30.0,
+          "min_df": 1,
+          "ngram": 2
+        },
+        "seconds": 0.04376435838639736
+      },
+      {
+        "converged": true,
+        "features": 50000,
+        "grid_index": 20,
+        "inner_oriented_score": 0.5230030333670375,
+        "params": {
+          "C": 100.0,
+          "min_df": 1,
+          "ngram": 2
+        },
+        "seconds": 0.04956800676882267
+      },
+      {
+        "converged": true,
+        "features": 17165,
+        "grid_index": 21,
+        "inner_oriented_score": 0.5995197168857432,
+        "params": {
+          "C": 0.1,
+          "min_df": 2,
+          "ngram": 2
+        },
+        "seconds": 0.3312652166932821
+      },
+      {
+        "converged": true,
+        "features": 17165,
+        "grid_index": 22,
+        "inner_oriented_score": 0.5999241658240647,
+        "params": {
+          "C": 0.3,
+          "min_df": 2,
+          "ngram": 2
+        },
+        "seconds": 0.01931119430810213
+      },
+      {
+        "converged": true,
+        "features": 17165,
+        "grid_index": 23,
+        "inner_oriented_score": 0.588928210313448,
+        "params": {
+          "C": 1.0,
+          "min_df": 2,
+          "ngram": 2
+        },
+        "seconds": 0.02551382314413786
+      },
+      {
+        "converged": true,
+        "features": 17165,
+        "grid_index": 24,
+        "inner_oriented_score": 0.5729019211324571,
+        "params": {
+          "C": 3.0,
+          "min_df": 2,
+          "ngram": 2
+        },
+        "seconds": 0.028073790483176708
+      },
+      {
+        "converged": true,
+        "features": 17165,
+        "grid_index": 25,
+        "inner_oriented_score": 0.551845298281092,
+        "params": {
+          "C": 10.0,
+          "min_df": 2,
+          "ngram": 2
+        },
+        "seconds": 0.031933885999023914
+      },
+      {
+        "converged": true,
+        "features": 17165,
+        "grid_index": 26,
+        "inner_oriented_score": 0.5281850353892821,
+        "params": {
+          "C": 30.0,
+          "min_df": 2,
+          "ngram": 2
+        },
+        "seconds": 0.03709965851157904
+      },
+      {
+        "converged": true,
+        "features": 17165,
+        "grid_index": 27,
+        "inner_oriented_score": 0.5085692618806875,
+        "params": {
+          "C": 100.0,
+          "min_df": 2,
+          "ngram": 2
+        },
+        "seconds": 0.03495859634131193
+      }
+    ],
+    "seed": 115001,
+    "selected": {
+      "converged": true,
+      "features": 50000,
+      "grid_index": 15,
+      "inner_oriented_score": 0.6015672396359959,
+      "params": {
+        "C": 0.3,
+        "min_df": 1,
+        "ngram": 2
+      },
+      "seconds": 0.02832974772900343
+    },
+    "task": "random-acts-of-pizza",
+    "versions": {
+      "numpy": "1.26.4",
+      "pandas": "2.1.4",
+      "scipy": "1.11.4",
+      "sklearn": "1.9.0"
+    }
+  },
+  "1": {
+    "arm": "word_char",
+    "rows": [
+      {
+        "converged": true,
+        "features": 33162,
+        "grid_index": 0,
+        "inner_oriented_score": 0.6001769464105156,
+        "params": {
+          "C": 0.1,
+          "min_df": 1,
+          "ngram": 1
+        },
+        "seconds": 1.5551021210849285
+      },
+      {
+        "converged": true,
+        "features": 33162,
+        "grid_index": 1,
+        "inner_oriented_score": 0.6013397371081901,
+        "params": {
+          "C": 0.3,
+          "min_df": 1,
+          "ngram": 1
+        },
+        "seconds": 0.11270192917436361
+      },
+      {
+        "converged": true,
+        "features": 33162,
+        "grid_index": 2,
+        "inner_oriented_score": 0.5916076845298281,
+        "params": {
+          "C": 1.0,
+          "min_df": 1,
+          "ngram": 1
+        },
+        "seconds": 0.1548634571954608
+      },
+      {
+        "converged": true,
+        "features": 33162,
+        "grid_index": 3,
+        "inner_oriented_score": 0.5766936299292214,
+        "params": {
+          "C": 3.0,
+          "min_df": 1,
+          "ngram": 1
+        },
+        "seconds": 0.1796851996332407
+      },
+      {
+        "converged": true,
+        "features": 33162,
+        "grid_index": 4,
+        "inner_oriented_score": 0.5578109201213347,
+        "params": {
+          "C": 10.0,
+          "min_df": 1,
+          "ngram": 1
+        },
+        "seconds": 0.2078391257673502
+      },
+      {
+        "converged": true,
+        "features": 33162,
+        "grid_index": 5,
+        "inner_oriented_score": 0.5396865520728008,
+        "params": {
+          "C": 30.0,
+          "min_df": 1,
+          "ngram": 1
+        },
+        "seconds": 0.23152766842395067
+      },
+      {
+        "converged": true,
+        "features": 33162,
+        "grid_index": 6,
+        "inner_oriented_score": 0.5266683518705763,
+        "params": {
+          "C": 100.0,
+          "min_df": 1,
+          "ngram": 1
+        },
+        "seconds": 0.28600150626152754
+      },
+      {
+        "converged": true,
+        "features": 28829,
+        "grid_index": 7,
+        "inner_oriented_score": 0.5992669362992922,
+        "params": {
+          "C": 0.1,
+          "min_df": 2,
+          "ngram": 1
+        },
+        "seconds": 1.4640694512054324
+      },
+      {
+        "converged": true,
+        "features": 28829,
+        "grid_index": 8,
+        "inner_oriented_score": 0.5994944388270982,
+        "params": {
+          "C": 0.3,
+          "min_df": 2,
+          "ngram": 1
+        },
+        "seconds": 0.10342631861567497
+      },
+      {
+        "converged": true,
+        "features": 28829,
+        "grid_index": 9,
+        "inner_oriented_score": 0.588169868554095,
+        "params": {
+          "C": 1.0,
+          "min_df": 2,
+          "ngram": 1
+        },
+        "seconds": 0.12256475444883108
+      },
+      {
+        "converged": true,
+        "features": 28829,
+        "grid_index": 10,
+        "inner_oriented_score": 0.5717644084934277,
+        "params": {
+          "C": 3.0,
+          "min_df": 2,
+          "ngram": 1
+        },
+        "seconds": 0.15287230722606182
+      },
+      {
+        "converged": true,
+        "features": 28829,
+        "grid_index": 11,
+        "inner_oriented_score": 0.5525025278058645,
+        "params": {
+          "C": 10.0,
+          "min_df": 2,
+          "ngram": 1
+        },
+        "seconds": 0.1887586172670126
+      },
+      {
+        "converged": true,
+        "features": 28829,
+        "grid_index": 12,
+        "inner_oriented_score": 0.5334428715874621,
+        "params": {
+          "C": 30.0,
+          "min_df": 2,
+          "ngram": 1
+        },
+        "seconds": 0.24106100294739008
+      },
+      {
+        "converged": true,
+        "features": 28829,
+        "grid_index": 13,
+        "inner_oriented_score": 0.519211324570273,
+        "params": {
+          "C": 100.0,
+          "min_df": 2,
+          "ngram": 1
+        },
+        "seconds": 0.2935599759221077
+      },
+      {
+        "converged": true,
+        "features": 50000,
+        "grid_index": 14,
+        "inner_oriented_score": 0.6054347826086957,
+        "params": {
+          "C": 0.1,
+          "min_df": 1,
+          "ngram": 2
+        },
+        "seconds": 1.643488597124815
+      },
+      {
+        "converged": true,
+        "features": 50000,
+        "grid_index": 15,
+        "inner_oriented_score": 0.6046258847320526,
+        "params": {
+          "C": 0.3,
+          "min_df": 1,
+          "ngram": 2
+        },
+        "seconds": 0.1208847751840949
+      },
+      {
+        "converged": true,
+        "features": 50000,
+        "grid_index": 16,
+        "inner_oriented_score": 0.5959049544994944,
+        "params": {
+          "C": 1.0,
+          "min_df": 1,
+          "ngram": 2
+        },
+        "seconds": 0.1192921120673418
+      },
+      {
+        "converged": true,
+        "features": 50000,
+        "grid_index": 17,
+        "inner_oriented_score": 0.5793478260869565,
+        "params": {
+          "C": 3.0,
+          "min_df": 1,
+          "ngram": 2
+        },
+        "seconds": 0.17229584883898497
+      },
+      {
+        "converged": true,
+        "features": 50000,
+        "grid_index": 18,
+        "inner_oriented_score": 0.5607178968655208,
+        "params": {
+          "C": 10.0,
+          "min_df": 1,
+          "ngram": 2
+        },
+        "seconds": 0.21165627799928188
+      },
+      {
+        "converged": true,
+        "features": 50000,
+        "grid_index": 19,
+        "inner_oriented_score": 0.5372093023255814,
+        "params": {
+          "C": 30.0,
+          "min_df": 1,
+          "ngram": 2
+        },
+        "seconds": 0.2583932550624013
+      },
+      {
+        "converged": true,
+        "features": 50000,
+        "grid_index": 20,
+        "inner_oriented_score": 0.5214863498483316,
+        "params": {
+          "C": 100.0,
+          "min_df": 1,
+          "ngram": 2
+        },
+        "seconds": 0.2941718026995659
+      },
+      {
+        "converged": true,
+        "features": 42165,
+        "grid_index": 21,
+        "inner_oriented_score": 0.6057128412537918,
+        "params": {
+          "C": 0.1,
+          "min_df": 2,
+          "ngram": 2
+        },
+        "seconds": 1.62831727322191
+      },
+      {
+        "converged": true,
+        "features": 42165,
+        "grid_index": 22,
+        "inner_oriented_score": 0.6045247724974723,
+        "params": {
+          "C": 0.3,
+          "min_df": 2,
+          "ngram": 2
+        },
+        "seconds": 0.11045804433524609
+      },
+      {
+        "converged": true,
+        "features": 42165,
+        "grid_index": 23,
+        "inner_oriented_score": 0.5947927199191102,
+        "params": {
+          "C": 1.0,
+          "min_df": 2,
+          "ngram": 2
+        },
+        "seconds": 0.13991697877645493
+      },
+      {
+        "converged": true,
+        "features": 42165,
+        "grid_index": 24,
+        "inner_oriented_score": 0.5781344792719919,
+        "params": {
+          "C": 3.0,
+          "min_df": 2,
+          "ngram": 2
+        },
+        "seconds": 0.17245110496878624
+      },
+      {
+        "converged": true,
+        "features": 42165,
+        "grid_index": 25,
+        "inner_oriented_score": 0.5585945399393326,
+        "params": {
+          "C": 10.0,
+          "min_df": 2,
+          "ngram": 2
+        },
+        "seconds": 0.20636393781751394
+      },
+      {
+        "converged": true,
+        "features": 42165,
+        "grid_index": 26,
+        "inner_oriented_score": 0.5333417593528818,
+        "params": {
+          "C": 30.0,
+          "min_df": 2,
+          "ngram": 2
+        },
+        "seconds": 0.24625059682875872
+      },
+      {
+        "converged": true,
+        "features": 42165,
+        "grid_index": 27,
+        "inner_oriented_score": 0.5167087967644085,
+        "params": {
+          "C": 100.0,
+          "min_df": 2,
+          "ngram": 2
+        },
+        "seconds": 0.34344441909343004
+      }
+    ],
+    "seed": 115001,
+    "selected": {
+      "converged": true,
+      "features": 42165,
+      "grid_index": 21,
+      "inner_oriented_score": 0.6057128412537918,
+      "params": {
+        "C": 0.1,
+        "min_df": 2,
+        "ngram": 2
+      },
+      "seconds": 1.62831727322191
+    },
+    "task": "random-acts-of-pizza",
+    "versions": {
+      "numpy": "1.26.4",
+      "pandas": "2.1.4",
+      "scipy": "1.11.4",
+      "sklearn": "1.9.0"
+    }
+  },
+  "2": {
+    "arm": "word",
+    "rows": [
+      {
+        "converged": true,
+        "features": 20291,
+        "grid_index": 0,
+        "inner_oriented_score": -0.8905121570161324,
+        "params": {
+          "C": 0.1,
+          "min_df": 1,
+          "ngram": 1
+        },
+        "seconds": 0.3020780263468623
+      },
+      {
+        "converged": true,
+        "features": 20291,
+        "grid_index": 1,
+        "inner_oriented_score": -0.7595206336388058,
+        "params": {
+          "C": 0.3,
+          "min_df": 1,
+          "ngram": 1
+        },
+        "seconds": 0.09120576083660126
+      },
+      {
+        "converged": true,
+        "features": 20291,
+        "grid_index": 2,
+        "inner_oriented_score": -0.6184487172960381,
+        "params": {
+          "C": 1.0,
+          "min_df": 1,
+          "ngram": 1
+        },
+        "seconds": 0.10968745686113834
+      },
+      {
+        "converged": true,
+        "features": 20291,
+        "grid_index": 3,
+        "inner_oriented_score": -0.5191716687014749,
+        "params": {
+          "C": 3.0,
+          "min_df": 1,
+          "ngram": 1
+        },
+        "seconds": 0.13682255893945694
+      },
+      {
+        "converged": true,
+        "features": 20291,
+        "grid_index": 4,
+        "inner_oriented_score": -0.4618830532709899,
+        "params": {
+          "C": 10.0,
+          "min_df": 1,
+          "ngram": 1
+        },
+        "seconds": 0.16555815376341343
+      },
+      {
+        "converged": true,
+        "features": 20291,
+        "grid_index": 5,
+        "inner_oriented_score": -0.46169566840649595,
+        "params": {
+          "C": 30.0,
+          "min_df": 1,
+          "ngram": 1
+        },
+        "seconds": 0.21511547453701496
+      },
+      {
+        "converged": true,
+        "features": 20291,
+        "grid_index": 6,
+        "inner_oriented_score": -0.5109360641311274,
+        "params": {
+          "C": 100.0,
+          "min_df": 1,
+          "ngram": 1
+        },
+        "seconds": 0.2754910159856081
+      },
+      {
+        "converged": true,
+        "features": 11945,
+        "grid_index": 7,
+        "inner_oriented_score": -0.8836966199062481,
+        "params": {
+          "C": 0.1,
+          "min_df": 2,
+          "ngram": 1
+        },
+        "seconds": 0.33788631577044725
+      },
+      {
+        "converged": true,
+        "features": 11945,
+        "grid_index": 8,
+        "inner_oriented_score": -0.7521805941476847,
+        "params": {
+          "C": 0.3,
+          "min_df": 2,
+          "ngram": 1
+        },
+        "seconds": 0.10011984128504992
+      },
+      {
+        "converged": true,
+        "features": 11945,
+        "grid_index": 9,
+        "inner_oriented_score": -0.61279307517937,
+        "params": {
+          "C": 1.0,
+          "min_df": 2,
+          "ngram": 1
+        },
+        "seconds": 0.13306137826293707
+      },
+      {
+        "converged": true,
+        "features": 11945,
+        "grid_index": 10,
+        "inner_oriented_score": -0.5171437342643901,
+        "params": {
+          "C": 3.0,
+          "min_df": 2,
+          "ngram": 1
+        },
+        "seconds": 0.15858776308596134
+      },
+      {
+        "converged": true,
+        "features": 11945,
+        "grid_index": 11,
+        "inner_oriented_score": -0.46713151726512187,
+        "params": {
+          "C": 10.0,
+          "min_df": 2,
+          "ngram": 1
+        },
+        "seconds": 0.19346259534358978
+      },
+      {
+        "converged": true,
+        "features": 11945,
+        "grid_index": 12,
+        "inner_oriented_score": -0.479719302757638,
+        "params": {
+          "C": 30.0,
+          "min_df": 2,
+          "ngram": 1
+        },
+        "seconds": 0.23047337494790554
+      },
+      {
+        "converged": true,
+        "features": 11945,
+        "grid_index": 13,
+        "inner_oriented_score": -0.5543409341317826,
+        "params": {
+          "C": 100.0,
+          "min_df": 2,
+          "ngram": 1
+        },
+        "seconds": 0.27699323557317257
+      },
+      {
+        "converged": true,
+        "features": 50000,
+        "grid_index": 14,
+        "inner_oriented_score": -0.9365910062806919,
+        "params": {
+          "C": 0.1,
+          "min_df": 1,
+          "ngram": 2
+        },
+        "seconds": 0.844530813395977
+      },
+      {
+        "converged": true,
+        "features": 50000,
+        "grid_index": 15,
+        "inner_oriented_score": -0.8081632006495172,
+        "params": {
+          "C": 0.3,
+          "min_df": 1,
+          "ngram": 2
+        },
+        "seconds": 0.15950139332562685
+      },
+      {
+        "converged": true,
+        "features": 50000,
+        "grid_index": 16,
+        "inner_oriented_score": -0.6561687268992324,
+        "params": {
+          "C": 1.0,
+          "min_df": 1,
+          "ngram": 2
+        },
+        "seconds": 0.14334543887525797
+      },
+      {
+        "converged": true,
+        "features": 50000,
+        "grid_index": 17,
+        "inner_oriented_score": -0.5426930171718845,
+        "params": {
+          "C": 3.0,
+          "min_df": 1,
+          "ngram": 2
+        },
+        "seconds": 0.17157649993896484
+      },
+      {
+        "converged": true,
+        "features": 50000,
+        "grid_index": 18,
+        "inner_oriented_score": -0.4677125600932683,
+        "params": {
+          "C": 10.0,
+          "min_df": 1,
+          "ngram": 2
+        },
+        "seconds": 0.21736061479896307
+      },
+      {
+        "converged": true,
+        "features": 50000,
+        "grid_index": 19,
+        "inner_oriented_score": -0.4439406195321305,
+        "params": {
+          "C": 30.0,
+          "min_df": 1,
+          "ngram": 2
+        },
+        "seconds": 0.2577516743913293
+      },
+      {
+        "converged": true,
+        "features": 50000,
+        "grid_index": 20,
+        "inner_oriented_score": -0.4532949721061518,
+        "params": {
+          "C": 100.0,
+          "min_df": 1,
+          "ngram": 2
+        },
+        "seconds": 0.28592407424002886
+      },
+      {
+        "converged": true,
+        "features": 41984,
+        "grid_index": 21,
+        "inner_oriented_score": -0.9342540081236205,
+        "params": {
+          "C": 0.1,
+          "min_df": 2,
+          "ngram": 2
+        },
+        "seconds": 0.7610283624380827
+      },
+      {
+        "converged": true,
+        "features": 41984,
+        "grid_index": 22,
+        "inner_oriented_score": -0.8054324135319934,
+        "params": {
+          "C": 0.3,
+          "min_df": 2,
+          "ngram": 2
+        },
+        "seconds": 0.11404479574412107
+      },
+      {
+        "converged": true,
+        "features": 41984,
+        "grid_index": 23,
+        "inner_oriented_score": -0.6537153460072896,
+        "params": {
+          "C": 1.0,
+          "min_df": 2,
+          "ngram": 2
+        },
+        "seconds": 0.14171935338526964
+      },
+      {
+        "converged": true,
+        "features": 41984,
+        "grid_index": 24,
+        "inner_oriented_score": -0.540712870444028,
+        "params": {
+          "C": 3.0,
+          "min_df": 2,
+          "ngram": 2
+        },
+        "seconds": 0.17126523703336716
+      },
+      {
+        "converged": true,
+        "features": 41984,
+        "grid_index": 25,
+        "inner_oriented_score": -0.4663328938905143,
+        "params": {
+          "C": 10.0,
+          "min_df": 2,
+          "ngram": 2
+        },
+        "seconds": 0.28106052707880735
+      },
+      {
+        "converged": true,
+        "features": 41984,
+        "grid_index": 26,
+        "inner_oriented_score": -0.4436022186964692,
+        "params": {
+          "C": 30.0,
+          "min_df": 2,
+          "ngram": 2
+        },
+        "seconds": 0.2499914886429906
+      },
+      {
+        "converged": true,
+        "features": 41984,
+        "grid_index": 27,
+        "inner_oriented_score": -0.45479396557125346,
+        "params": {
+          "C": 100.0,
+          "min_df": 2,
+          "ngram": 2
+        },
+        "seconds": 0.23891833517700434
+      }
+    ],
+    "seed": 115001,
+    "selected": {
+      "converged": true,
+      "features": 41984,
+      "grid_index": 26,
+      "inner_oriented_score": -0.4436022186964692,
+      "params": {
+        "C": 30.0,
+        "min_df": 2,
+        "ngram": 2
+      },
+      "seconds": 0.2499914886429906
+    },
+    "task": "spooky-author-identification",
+    "versions": {
+      "numpy": "1.26.4",
+      "pandas": "2.1.4",
+      "scipy": "1.11.4",
+      "sklearn": "1.9.0"
+    }
+  },
+  "3": {
+    "arm": "word_char",
+    "rows": [
+      {
+        "converged": true,
+        "features": 45291,
+        "grid_index": 0,
+        "inner_oriented_score": -0.8795813998026641,
+        "params": {
+          "C": 0.1,
+          "min_df": 1,
+          "ngram": 1
+        },
+        "seconds": 4.0228919526562095
+      },
+      {
+        "converged": true,
+        "features": 45291,
+        "grid_index": 1,
+        "inner_oriented_score": -0.7380223516535435,
+        "params": {
+          "C": 0.3,
+          "min_df": 1,
+          "ngram": 1
+        },
+        "seconds": 1.110684939660132
+      },
+      {
+        "converged": true,
+        "features": 45291,
+        "grid_index": 2,
+        "inner_oriented_score": -0.5916614535632998,
+        "params": {
+          "C": 1.0,
+          "min_df": 1,
+          "ngram": 1
+        },
+        "seconds": 1.44204852450639
+      },
+      {
+        "converged": true,
+        "features": 45291,
+        "grid_index": 3,
+        "inner_oriented_score": -0.4921478415580768,
+        "params": {
+          "C": 3.0,
+          "min_df": 1,
+          "ngram": 1
+        },
+        "seconds": 1.7665477292612195
+      },
+      {
+        "converged": true,
+        "features": 45291,
+        "grid_index": 4,
+        "inner_oriented_score": -0.4324677404160395,
+        "params": {
+          "C": 10.0,
+          "min_df": 1,
+          "ngram": 1
+        },
+        "seconds": 2.1439476180821657
+      },
+      {
+        "converged": true,
+        "features": 45291,
+        "grid_index": 5,
+        "inner_oriented_score": -0.4227274022673292,
+        "params": {
+          "C": 30.0,
+          "min_df": 1,
+          "ngram": 1
+        },
+        "seconds": 2.592066340148449
+      },
+      {
+        "converged": true,
+        "features": 45291,
+        "grid_index": 6,
+        "inner_oriented_score": -0.4498396772325245,
+        "params": {
+          "C": 100.0,
+          "min_df": 1,
+          "ngram": 1
+        },
+        "seconds": 3.1202069390565157
+      },
+      {
+        "converged": true,
+        "features": 36945,
+        "grid_index": 7,
+        "inner_oriented_score": -0.8760557730837121,
+        "params": {
+          "C": 0.1,
+          "min_df": 2,
+          "ngram": 1
+        },
+        "seconds": 4.65241183899343
+      },
+      {
+        "converged": true,
+        "features": 36945,
+        "grid_index": 8,
+        "inner_oriented_score": -0.7344384300421449,
+        "params": {
+          "C": 0.3,
+          "min_df": 2,
+          "ngram": 1
+        },
+        "seconds": 1.1152453757822514
+      },
+      {
+        "converged": true,
+        "features": 36945,
+        "grid_index": 9,
+        "inner_oriented_score": -0.5889246586451483,
+        "params": {
+          "C": 1.0,
+          "min_df": 2,
+          "ngram": 1
+        },
+        "seconds": 1.2902732603251934
+      },
+      {
+        "converged": true,
+        "features": 36945,
+        "grid_index": 10,
+        "inner_oriented_score": -0.4906713410327328,
+        "params": {
+          "C": 3.0,
+          "min_df": 2,
+          "ngram": 1
+        },
+        "seconds": 1.7251744754612446
+      },
+      {
+        "converged": true,
+        "features": 36945,
+        "grid_index": 11,
+        "inner_oriented_score": -0.4331330870858545,
+        "params": {
+          "C": 10.0,
+          "min_df": 2,
+          "ngram": 1
+        },
+        "seconds": 2.1848608190193772
+      },
+      {
+        "converged": true,
+        "features": 36945,
+        "grid_index": 12,
+        "inner_oriented_score": -0.42684441468083706,
+        "params": {
+          "C": 30.0,
+          "min_df": 2,
+          "ngram": 1
+        },
+        "seconds": 2.5632935501635075
+      },
+      {
+        "converged": true,
+        "features": 36945,
+        "grid_index": 13,
+        "inner_oriented_score": -0.4597731681926969,
+        "params": {
+          "C": 100.0,
+          "min_df": 2,
+          "ngram": 1
+        },
+        "seconds": 2.8622266445308924
+      },
+      {
+        "converged": true,
+        "features": 50000,
+        "grid_index": 14,
+        "inner_oriented_score": -0.8952620758690946,
+        "params": {
+          "C": 0.1,
+          "min_df": 1,
+          "ngram": 2
+        },
+        "seconds": 4.178253524936736
+      },
+      {
+        "converged": true,
+        "features": 50000,
+        "grid_index": 15,
+        "inner_oriented_score": -0.7534454677553469,
+        "params": {
+          "C": 0.3,
+          "min_df": 1,
+          "ngram": 2
+        },
+        "seconds": 1.0376560455188155
+      },
+      {
+        "converged": true,
+        "features": 50000,
+        "grid_index": 16,
+        "inner_oriented_score": -0.6036060179657297,
+        "params": {
+          "C": 1.0,
+          "min_df": 1,
+          "ngram": 2
+        },
+        "seconds": 1.2235590079799294
+      },
+      {
+        "converged": true,
+        "features": 50000,
+        "grid_index": 17,
+        "inner_oriented_score": -0.5009331461294828,
+        "params": {
+          "C": 3.0,
+          "min_df": 1,
+          "ngram": 2
+        },
+        "seconds": 1.5749271707609296
+      },
+      {
+        "converged": true,
+        "features": 50000,
+        "grid_index": 18,
+        "inner_oriented_score": -0.4376611845818781,
+        "params": {
+          "C": 10.0,
+          "min_df": 1,
+          "ngram": 2
+        },
+        "seconds": 2.320478843525052
+      },
+      {
+        "converged": true,
+        "features": 50000,
+        "grid_index": 19,
+        "inner_oriented_score": -0.4230318008107653,
+        "params": {
+          "C": 30.0,
+          "min_df": 1,
+          "ngram": 2
+        },
+        "seconds": 3.0452409284189343
+      },
+      {
+        "converged": true,
+        "features": 50000,
+        "grid_index": 20,
+        "inner_oriented_score": -0.4421684958583855,
+        "params": {
+          "C": 100.0,
+          "min_df": 1,
+          "ngram": 2
+        },
+        "seconds": 2.79432784114033
+      },
+      {
+        "converged": true,
+        "features": 50000,
+        "grid_index": 21,
+        "inner_oriented_score": -0.8952719943016885,
+        "params": {
+          "C": 0.1,
+          "min_df": 2,
+          "ngram": 2
+        },
+        "seconds": 4.166704202070832
+      },
+      {
+        "converged": true,
+        "features": 50000,
+        "grid_index": 22,
+        "inner_oriented_score": -0.7534626692977875,
+        "params": {
+          "C": 0.3,
+          "min_df": 2,
+          "ngram": 2
+        },
+        "seconds": 1.030469355173409
+      },
+      {
+        "converged": true,
+        "features": 50000,
+        "grid_index": 23,
+        "inner_oriented_score": -0.6036261111898061,
+        "params": {
+          "C": 1.0,
+          "min_df": 2,
+          "ngram": 2
+        },
+        "seconds": 1.2216637339442968
+      },
+      {
+        "converged": true,
+        "features": 50000,
+        "grid_index": 24,
+        "inner_oriented_score": -0.5009593049686398,
+        "params": {
+          "C": 3.0,
+          "min_df": 2,
+          "ngram": 2
+        },
+        "seconds": 1.5425177505239844
+      },
+      {
+        "converged": true,
+        "features": 50000,
+        "grid_index": 25,
+        "inner_oriented_score": -0.4377070406071257,
+        "params": {
+          "C": 10.0,
+          "min_df": 2,
+          "ngram": 2
+        },
+        "seconds": 2.1127786142751575
+      },
+      {
+        "converged": true,
+        "features": 50000,
+        "grid_index": 26,
+        "inner_oriented_score": -0.4231276917590182,
+        "params": {
+          "C": 30.0,
+          "min_df": 2,
+          "ngram": 2
+        },
+        "seconds": 2.3266462218016386
+      },
+      {
+        "converged": true,
+        "features": 50000,
+        "grid_index": 27,
+        "inner_oriented_score": -0.442325952035824,
+        "params": {
+          "C": 100.0,
+          "min_df": 2,
+          "ngram": 2
+        },
+        "seconds": 2.761863050982356
+      }
+    ],
+    "seed": 115001,
+    "selected": {
+      "converged": true,
+      "features": 45291,
+      "grid_index": 5,
+      "inner_oriented_score": -0.4227274022673292,
+      "params": {
+        "C": 30.0,
+        "min_df": 1,
+        "ngram": 1
+      },
+      "seconds": 2.592066340148449
+    },
+    "task": "spooky-author-identification",
+    "versions": {
+      "numpy": "1.26.4",
+      "pandas": "2.1.4",
+      "scipy": "1.11.4",
+      "sklearn": "1.9.0"
+    }
+  },
+  "4": {
+    "arm": "word_char",
+    "rows": [
+      {
+        "converged": true,
+        "features": 33052,
+        "grid_index": 0,
+        "inner_oriented_score": 0.5867795753286148,
+        "params": {
+          "C": 0.1,
+          "min_df": 1,
+          "ngram": 1
+        },
+        "seconds": 2.7810945445671678
+      },
+      {
+        "converged": true,
+        "features": 33052,
+        "grid_index": 1,
+        "inner_oriented_score": 0.5913043478260869,
+        "params": {
+          "C": 0.3,
+          "min_df": 1,
+          "ngram": 1
+        },
+        "seconds": 0.14152491744607687
+      },
+      {
+        "converged": true,
+        "features": 33052,
+        "grid_index": 2,
+        "inner_oriented_score": 0.5856167846309402,
+        "params": {
+          "C": 1.0,
+          "min_df": 1,
+          "ngram": 1
+        },
+        "seconds": 0.1571200219914317
+      },
+      {
+        "converged": true,
+        "features": 33052,
+        "grid_index": 3,
+        "inner_oriented_score": 0.5689585439838221,
+        "params": {
+          "C": 3.0,
+          "min_df": 1,
+          "ngram": 1
+        },
+        "seconds": 0.18629374168813229
+      },
+      {
+        "converged": true,
+        "features": 33052,
+        "grid_index": 4,
+        "inner_oriented_score": 0.54603134479272,
+        "params": {
+          "C": 10.0,
+          "min_df": 1,
+          "ngram": 1
+        },
+        "seconds": 0.22695544734597206
+      },
+      {
+        "converged": true,
+        "features": 33052,
+        "grid_index": 5,
+        "inner_oriented_score": 0.5243427704752275,
+        "params": {
+          "C": 30.0,
+          "min_df": 1,
+          "ngram": 1
+        },
+        "seconds": 0.28903185576200485
+      },
+      {
+        "converged": true,
+        "features": 33052,
+        "grid_index": 6,
+        "inner_oriented_score": 0.5075834175935289,
+        "params": {
+          "C": 100.0,
+          "min_df": 1,
+          "ngram": 1
+        },
+        "seconds": 0.3397489311173558
+      },
+      {
+        "converged": true,
+        "features": 28828,
+        "grid_index": 7,
+        "inner_oriented_score": 0.5821284125379171,
+        "params": {
+          "C": 0.1,
+          "min_df": 2,
+          "ngram": 1
+        },
+        "seconds": 1.9861019290983677
+      },
+      {
+        "converged": true,
+        "features": 28828,
+        "grid_index": 8,
+        "inner_oriented_score": 0.5871334681496462,
+        "params": {
+          "C": 0.3,
+          "min_df": 2,
+          "ngram": 1
+        },
+        "seconds": 0.10058276448398829
+      },
+      {
+        "converged": true,
+        "features": 28828,
+        "grid_index": 9,
+        "inner_oriented_score": 0.5794489383215369,
+        "params": {
+          "C": 1.0,
+          "min_df": 2,
+          "ngram": 1
+        },
+        "seconds": 0.1237477408722043
+      },
+      {
+        "converged": true,
+        "features": 28828,
+        "grid_index": 10,
+        "inner_oriented_score": 0.5622093023255814,
+        "params": {
+          "C": 3.0,
+          "min_df": 2,
+          "ngram": 1
+        },
+        "seconds": 0.15113393403589725
+      },
+      {
+        "converged": true,
+        "features": 28828,
+        "grid_index": 11,
+        "inner_oriented_score": 0.537613751263903,
+        "params": {
+          "C": 10.0,
+          "min_df": 2,
+          "ngram": 1
+        },
+        "seconds": 0.21423726715147495
+      },
+      {
+        "converged": true,
+        "features": 28828,
+        "grid_index": 12,
+        "inner_oriented_score": 0.5160010111223459,
+        "params": {
+          "C": 30.0,
+          "min_df": 2,
+          "ngram": 1
+        },
+        "seconds": 0.2362277638167143
+      },
+      {
+        "converged": true,
+        "features": 28828,
+        "grid_index": 13,
+        "inner_oriented_score": 0.49835692618806876,
+        "params": {
+          "C": 100.0,
+          "min_df": 2,
+          "ngram": 1
+        },
+        "seconds": 0.284130590967834
+      },
+      {
+        "converged": true,
+        "features": 50000,
+        "grid_index": 14,
+        "inner_oriented_score": 0.5925935288169869,
+        "params": {
+          "C": 0.1,
+          "min_df": 1,
+          "ngram": 2
+        },
+        "seconds": 1.6369705442339182
+      },
+      {
+        "converged": true,
+        "features": 50000,
+        "grid_index": 15,
+        "inner_oriented_score": 0.5957785642062688,
+        "params": {
+          "C": 0.3,
+          "min_df": 1,
+          "ngram": 2
+        },
+        "seconds": 0.13628616463392973
+      },
+      {
+        "converged": true,
+        "features": 50000,
+        "grid_index": 16,
+        "inner_oriented_score": 0.591329625884732,
+        "params": {
+          "C": 1.0,
+          "min_df": 1,
+          "ngram": 2
+        },
+        "seconds": 0.17298785783350468
+      },
+      {
+        "converged": true,
+        "features": 50000,
+        "grid_index": 17,
+        "inner_oriented_score": 0.5792972699696664,
+        "params": {
+          "C": 3.0,
+          "min_df": 1,
+          "ngram": 2
+        },
+        "seconds": 0.19679849967360497
+      },
+      {
+        "converged": true,
+        "features": 50000,
+        "grid_index": 18,
+        "inner_oriented_score": 0.5630687563195147,
+        "params": {
+          "C": 10.0,
+          "min_df": 1,
+          "ngram": 2
+        },
+        "seconds": 0.2512790812179446
+      },
+      {
+        "converged": true,
+        "features": 50000,
+        "grid_index": 19,
+        "inner_oriented_score": 0.5448685540950455,
+        "params": {
+          "C": 30.0,
+          "min_df": 1,
+          "ngram": 2
+        },
+        "seconds": 0.28562329709529877
+      },
+      {
+        "converged": true,
+        "features": 50000,
+        "grid_index": 20,
+        "inner_oriented_score": 0.5282861476238625,
+        "params": {
+          "C": 100.0,
+          "min_df": 1,
+          "ngram": 2
+        },
+        "seconds": 0.3531767036765814
+      },
+      {
+        "converged": true,
+        "features": 42140,
+        "grid_index": 21,
+        "inner_oriented_score": 0.592644084934277,
+        "params": {
+          "C": 0.1,
+          "min_df": 2,
+          "ngram": 2
+        },
+        "seconds": 3.0692671285942197
+      },
+      {
+        "converged": true,
+        "features": 42140,
+        "grid_index": 22,
+        "inner_oriented_score": 0.5956016177957533,
+        "params": {
+          "C": 0.3,
+          "min_df": 2,
+          "ngram": 2
+        },
+        "seconds": 0.13837993796914816
+      },
+      {
+        "converged": true,
+        "features": 42140,
+        "grid_index": 23,
+        "inner_oriented_score": 0.5909757330637008,
+        "params": {
+          "C": 1.0,
+          "min_df": 2,
+          "ngram": 2
+        },
+        "seconds": 0.17543910443782806
+      },
+      {
+        "converged": true,
+        "features": 42140,
+        "grid_index": 24,
+        "inner_oriented_score": 0.5791708796764409,
+        "params": {
+          "C": 3.0,
+          "min_df": 2,
+          "ngram": 2
+        },
+        "seconds": 0.19398201163858175
+      },
+      {
+        "converged": true,
+        "features": 42140,
+        "grid_index": 25,
+        "inner_oriented_score": 0.5634479271991911,
+        "params": {
+          "C": 10.0,
+          "min_df": 2,
+          "ngram": 2
+        },
+        "seconds": 0.2528485869988799
+      },
+      {
+        "converged": true,
+        "features": 42140,
+        "grid_index": 26,
+        "inner_oriented_score": 0.5451718907987867,
+        "params": {
+          "C": 30.0,
+          "min_df": 2,
+          "ngram": 2
+        },
+        "seconds": 0.2859003385528922
+      },
+      {
+        "converged": true,
+        "features": 42140,
+        "grid_index": 27,
+        "inner_oriented_score": 0.5295500505561173,
+        "params": {
+          "C": 100.0,
+          "min_df": 2,
+          "ngram": 2
+        },
+        "seconds": 0.3652802314609289
+      }
+    ],
+    "seed": 115002,
+    "selected": {
+      "converged": true,
+      "features": 50000,
+      "grid_index": 15,
+      "inner_oriented_score": 0.5957785642062688,
+      "params": {
+        "C": 0.3,
+        "min_df": 1,
+        "ngram": 2
+      },
+      "seconds": 0.13628616463392973
+    },
+    "task": "random-acts-of-pizza",
+    "versions": {
+      "numpy": "1.26.4",
+      "pandas": "2.1.4",
+      "scipy": "1.11.4",
+      "sklearn": "1.9.0"
+    }
+  },
+  "5": {
+    "arm": "word",
+    "rows": [
+      {
+        "converged": true,
+        "features": 8052,
+        "grid_index": 0,
+        "inner_oriented_score": 0.572649140546006,
+        "params": {
+          "C": 0.1,
+          "min_df": 1,
+          "ngram": 1
+        },
+        "seconds": 0.19663152284920216
+      },
+      {
+        "converged": true,
+        "features": 8052,
+        "grid_index": 1,
+        "inner_oriented_score": 0.5772244691607685,
+        "params": {
+          "C": 0.3,
+          "min_df": 1,
+          "ngram": 1
+        },
+        "seconds": 0.019386783242225647
+      },
+      {
+        "converged": true,
+        "features": 8052,
+        "grid_index": 2,
+        "inner_oriented_score": 0.5738119312436806,
+        "params": {
+          "C": 1.0,
+          "min_df": 1,
+          "ngram": 1
+        },
+        "seconds": 0.021285926923155785
+      },
+      {
+        "converged": true,
+        "features": 8052,
+        "grid_index": 3,
+        "inner_oriented_score": 0.5564711830131446,
+        "params": {
+          "C": 3.0,
+          "min_df": 1,
+          "ngram": 1
+        },
+        "seconds": 0.024205845780670643
+      },
+      {
+        "converged": true,
+        "features": 8052,
+        "grid_index": 4,
+        "inner_oriented_score": 0.5312184024266936,
+        "params": {
+          "C": 10.0,
+          "min_df": 1,
+          "ngram": 1
+        },
+        "seconds": 0.030165093950927258
+      },
+      {
+        "converged": true,
+        "features": 8052,
+        "grid_index": 5,
+        "inner_oriented_score": 0.5088725985844287,
+        "params": {
+          "C": 30.0,
+          "min_df": 1,
+          "ngram": 1
+        },
+        "seconds": 0.02483940962702036
+      },
+      {
+        "converged": true,
+        "features": 8052,
+        "grid_index": 6,
+        "inner_oriented_score": 0.4927199191102124,
+        "params": {
+          "C": 100.0,
+          "min_df": 1,
+          "ngram": 1
+        },
+        "seconds": 0.03654870204627514
+      },
+      {
+        "converged": true,
+        "features": 3828,
+        "grid_index": 7,
+        "inner_oriented_score": 0.5657987866531851,
+        "params": {
+          "C": 0.1,
+          "min_df": 2,
+          "ngram": 1
+        },
+        "seconds": 0.18422923050820827
+      },
+      {
+        "converged": true,
+        "features": 3828,
+        "grid_index": 8,
+        "inner_oriented_score": 0.5700202224469161,
+        "params": {
+          "C": 0.3,
+          "min_df": 2,
+          "ngram": 1
+        },
+        "seconds": 0.017974544316530228
+      },
+      {
+        "converged": true,
+        "features": 3828,
+        "grid_index": 9,
+        "inner_oriented_score": 0.5632457027300304,
+        "params": {
+          "C": 1.0,
+          "min_df": 2,
+          "ngram": 1
+        },
+        "seconds": 0.020048494450747967
+      },
+      {
+        "converged": true,
+        "features": 3828,
+        "grid_index": 10,
+        "inner_oriented_score": 0.5427451971688574,
+        "params": {
+          "C": 3.0,
+          "min_df": 2,
+          "ngram": 1
+        },
+        "seconds": 0.022272208705544472
+      },
+      {
+        "converged": true,
+        "features": 3828,
+        "grid_index": 11,
+        "inner_oriented_score": 0.5134479271991911,
+        "params": {
+          "C": 10.0,
+          "min_df": 2,
+          "ngram": 1
+        },
+        "seconds": 0.026675577275454998
+      },
+      {
+        "converged": true,
+        "features": 3828,
+        "grid_index": 12,
+        "inner_oriented_score": 0.4931243680485339,
+        "params": {
+          "C": 30.0,
+          "min_df": 2,
+          "ngram": 1
+        },
+        "seconds": 0.0303598428145051
+      },
+      {
+        "converged": true,
+        "features": 3828,
+        "grid_index": 13,
+        "inner_oriented_score": 0.4762386248736097,
+        "params": {
+          "C": 100.0,
+          "min_df": 2,
+          "ngram": 1
+        },
+        "seconds": 0.03796349931508303
+      },
+      {
+        "converged": true,
+        "features": 50000,
+        "grid_index": 14,
+        "inner_oriented_score": 0.5775025278058644,
+        "params": {
+          "C": 0.1,
+          "min_df": 1,
+          "ngram": 2
+        },
+        "seconds": 0.5705873211845756
+      },
+      {
+        "converged": true,
+        "features": 50000,
+        "grid_index": 15,
+        "inner_oriented_score": 0.582633973710819,
+        "params": {
+          "C": 0.3,
+          "min_df": 1,
+          "ngram": 2
+        },
+        "seconds": 0.036682493053376675
+      },
+      {
+        "converged": true,
+        "features": 50000,
+        "grid_index": 16,
+        "inner_oriented_score": 0.5815975733063701,
+        "params": {
+          "C": 1.0,
+          "min_df": 1,
+          "ngram": 2
+        },
+        "seconds": 0.04252218548208475
+      },
+      {
+        "converged": true,
+        "features": 50000,
+        "grid_index": 17,
+        "inner_oriented_score": 0.5767441860465117,
+        "params": {
+          "C": 3.0,
+          "min_df": 1,
+          "ngram": 2
+        },
+        "seconds": 0.047486765310168266
+      },
+      {
+        "converged": true,
+        "features": 50000,
+        "grid_index": 18,
+        "inner_oriented_score": 0.565015166835187,
+        "params": {
+          "C": 10.0,
+          "min_df": 1,
+          "ngram": 2
+        },
+        "seconds": 0.05767471995204687
+      },
+      {
+        "converged": true,
+        "features": 50000,
+        "grid_index": 19,
+        "inner_oriented_score": 0.5494186046511628,
+        "params": {
+          "C": 30.0,
+          "min_df": 1,
+          "ngram": 2
+        },
+        "seconds": 0.06265256181359291
+      },
+      {
+        "converged": true,
+        "features": 50000,
+        "grid_index": 20,
+        "inner_oriented_score": 0.531850353892821,
+        "params": {
+          "C": 100.0,
+          "min_df": 1,
+          "ngram": 2
+        },
+        "seconds": 0.06305285822600126
+      },
+      {
+        "converged": true,
+        "features": 17140,
+        "grid_index": 21,
+        "inner_oriented_score": 0.5740899898887766,
+        "params": {
+          "C": 0.1,
+          "min_df": 2,
+          "ngram": 2
+        },
+        "seconds": 0.5474650720134377
+      },
+      {
+        "converged": true,
+        "features": 17140,
+        "grid_index": 22,
+        "inner_oriented_score": 0.5785136501516683,
+        "params": {
+          "C": 0.3,
+          "min_df": 2,
+          "ngram": 2
+        },
+        "seconds": 0.02360918838530779
+      },
+      {
+        "converged": true,
+        "features": 17140,
+        "grid_index": 23,
+        "inner_oriented_score": 0.5756319514661274,
+        "params": {
+          "C": 1.0,
+          "min_df": 2,
+          "ngram": 2
+        },
+        "seconds": 0.031060836277902126
+      },
+      {
+        "converged": true,
+        "features": 17140,
+        "grid_index": 24,
+        "inner_oriented_score": 0.5676946410515673,
+        "params": {
+          "C": 3.0,
+          "min_df": 2,
+          "ngram": 2
+        },
+        "seconds": 0.0347653366625309
+      },
+      {
+        "converged": true,
+        "features": 17140,
+        "grid_index": 25,
+        "inner_oriented_score": 0.5562436804853388,
+        "params": {
+          "C": 10.0,
+          "min_df": 2,
+          "ngram": 2
+        },
+        "seconds": 0.04027809761464596
+      },
+      {
+        "converged": true,
+        "features": 17140,
+        "grid_index": 26,
+        "inner_oriented_score": 0.5406218402426692,
+        "params": {
+          "C": 30.0,
+          "min_df": 2,
+          "ngram": 2
+        },
+        "seconds": 0.04588845930993557
+      },
+      {
+        "converged": true,
+        "features": 17140,
+        "grid_index": 27,
+        "inner_oriented_score": 0.5245449949443882,
+        "params": {
+          "C": 100.0,
+          "min_df": 2,
+          "ngram": 2
+        },
+        "seconds": 0.04725016560405493
+      }
+    ],
+    "seed": 115002,
+    "selected": {
+      "converged": true,
+      "features": 50000,
+      "grid_index": 15,
+      "inner_oriented_score": 0.582633973710819,
+      "params": {
+        "C": 0.3,
+        "min_df": 1,
+        "ngram": 2
+      },
+      "seconds": 0.036682493053376675
+    },
+    "task": "random-acts-of-pizza",
+    "versions": {
+      "numpy": "1.26.4",
+      "pandas": "2.1.4",
+      "scipy": "1.11.4",
+      "sklearn": "1.9.0"
+    }
+  },
+  "6": {
+    "arm": "word_char",
+    "rows": [
+      {
+        "converged": true,
+        "features": 45212,
+        "grid_index": 0,
+        "inner_oriented_score": -0.8855071446980948,
+        "params": {
+          "C": 0.1,
+          "min_df": 1,
+          "ngram": 1
+        },
+        "seconds": 6.593763626180589
+      },
+      {
+        "converged": true,
+        "features": 45212,
+        "grid_index": 1,
+        "inner_oriented_score": -0.7496903910016446,
+        "params": {
+          "C": 0.3,
+          "min_df": 1,
+          "ngram": 1
+        },
+        "seconds": 1.0652949819341302
+      },
+      {
+        "converged": true,
+        "features": 45212,
+        "grid_index": 2,
+        "inner_oriented_score": -0.611302985346696,
+        "params": {
+          "C": 1.0,
+          "min_df": 1,
+          "ngram": 1
+        },
+        "seconds": 1.4009062685072422
+      },
+      {
+        "converged": true,
+        "features": 45212,
+        "grid_index": 3,
+        "inner_oriented_score": -0.51894061101942,
+        "params": {
+          "C": 3.0,
+          "min_df": 1,
+          "ngram": 1
+        },
+        "seconds": 1.722644006833434
+      },
+      {
+        "converged": true,
+        "features": 45212,
+        "grid_index": 4,
+        "inner_oriented_score": -0.46629463553822315,
+        "params": {
+          "C": 10.0,
+          "min_df": 1,
+          "ngram": 1
+        },
+        "seconds": 2.383470323868096
+      },
+      {
+        "converged": true,
+        "features": 45212,
+        "grid_index": 5,
+        "inner_oriented_score": -0.4631984688272244,
+        "params": {
+          "C": 30.0,
+          "min_df": 1,
+          "ngram": 1
+        },
+        "seconds": 3.036989515647292
+      },
+      {
+        "converged": true,
+        "features": 45212,
+        "grid_index": 6,
+        "inner_oriented_score": -0.4983249224771842,
+        "params": {
+          "C": 100.0,
+          "min_df": 1,
+          "ngram": 1
+        },
+        "seconds": 2.8935187505558133
+      },
+      {
+        "converged": true,
+        "features": 36892,
+        "grid_index": 7,
+        "inner_oriented_score": -0.8820219695532178,
+        "params": {
+          "C": 0.1,
+          "min_df": 2,
+          "ngram": 1
+        },
+        "seconds": 3.795293075963855
+      },
+      {
+        "converged": true,
+        "features": 36892,
+        "grid_index": 8,
+        "inner_oriented_score": -0.7462970112161394,
+        "params": {
+          "C": 0.3,
+          "min_df": 2,
+          "ngram": 1
+        },
+        "seconds": 1.1850333083420992
+      },
+      {
+        "converged": true,
+        "features": 36892,
+        "grid_index": 9,
+        "inner_oriented_score": -0.6089659277595223,
+        "params": {
+          "C": 1.0,
+          "min_df": 2,
+          "ngram": 1
+        },
+        "seconds": 1.3139780517667532
+      },
+      {
+        "converged": true,
+        "features": 36892,
+        "grid_index": 10,
+        "inner_oriented_score": -0.517998306339745,
+        "params": {
+          "C": 3.0,
+          "min_df": 2,
+          "ngram": 1
+        },
+        "seconds": 1.6302321534603834
+      },
+      {
+        "converged": true,
+        "features": 36892,
+        "grid_index": 11,
+        "inner_oriented_score": -0.467590475480388,
+        "params": {
+          "C": 10.0,
+          "min_df": 2,
+          "ngram": 1
+        },
+        "seconds": 2.1078191213309765
+      },
+      {
+        "converged": true,
+        "features": 36892,
+        "grid_index": 12,
+        "inner_oriented_score": -0.4677457247300757,
+        "params": {
+          "C": 30.0,
+          "min_df": 2,
+          "ngram": 1
+        },
+        "seconds": 2.8065455267205834
+      },
+      {
+        "converged": true,
+        "features": 36892,
+        "grid_index": 13,
+        "inner_oriented_score": -0.5077443266017804,
+        "params": {
+          "C": 100.0,
+          "min_df": 2,
+          "ngram": 1
+        },
+        "seconds": 2.9634182890877128
+      },
+      {
+        "converged": true,
+        "features": 50000,
+        "grid_index": 14,
+        "inner_oriented_score": -0.9001362283327039,
+        "params": {
+          "C": 0.1,
+          "min_df": 1,
+          "ngram": 2
+        },
+        "seconds": 5.143886345438659
+      },
+      {
+        "converged": true,
+        "features": 50000,
+        "grid_index": 15,
+        "inner_oriented_score": -0.7633310354316512,
+        "params": {
+          "C": 0.3,
+          "min_df": 1,
+          "ngram": 2
+        },
+        "seconds": 1.1477002762258053
+      },
+      {
+        "converged": true,
+        "features": 50000,
+        "grid_index": 16,
+        "inner_oriented_score": -0.6203321957465084,
+        "params": {
+          "C": 1.0,
+          "min_df": 1,
+          "ngram": 2
+        },
+        "seconds": 1.2997976243495941
+      },
+      {
+        "converged": true,
+        "features": 50000,
+        "grid_index": 17,
+        "inner_oriented_score": -0.5236162719296059,
+        "params": {
+          "C": 3.0,
+          "min_df": 1,
+          "ngram": 2
+        },
+        "seconds": 1.6176574658602476
+      },
+      {
+        "converged": true,
+        "features": 50000,
+        "grid_index": 18,
+        "inner_oriented_score": -0.46628849042077897,
+        "params": {
+          "C": 10.0,
+          "min_df": 1,
+          "ngram": 2
+        },
+        "seconds": 2.1691052624955773
+      },
+      {
+        "converged": true,
+        "features": 50000,
+        "grid_index": 19,
+        "inner_oriented_score": -0.45730546205116507,
+        "params": {
+          "C": 30.0,
+          "min_df": 1,
+          "ngram": 2
+        },
+        "seconds": 2.4354072520509362
+      },
+      {
+        "converged": true,
+        "features": 50000,
+        "grid_index": 20,
+        "inner_oriented_score": -0.4827980224914763,
+        "params": {
+          "C": 100.0,
+          "min_df": 1,
+          "ngram": 2
+        },
+        "seconds": 2.871891977265477
+      },
+      {
+        "converged": true,
+        "features": 50000,
+        "grid_index": 21,
+        "inner_oriented_score": -0.9001271592733807,
+        "params": {
+          "C": 0.1,
+          "min_df": 2,
+          "ngram": 2
+        },
+        "seconds": 4.0286257630214095
+      },
+      {
+        "converged": true,
+        "features": 50000,
+        "grid_index": 22,
+        "inner_oriented_score": -0.7633160963491102,
+        "params": {
+          "C": 0.3,
+          "min_df": 2,
+          "ngram": 2
+        },
+        "seconds": 1.0495387697592378
+      },
+      {
+        "converged": true,
+        "features": 50000,
+        "grid_index": 23,
+        "inner_oriented_score": -0.6203207380055454,
+        "params": {
+          "C": 1.0,
+          "min_df": 2,
+          "ngram": 2
+        },
+        "seconds": 1.1967948460951447
+      },
+      {
+        "converged": true,
+        "features": 50000,
+        "grid_index": 24,
+        "inner_oriented_score": -0.5236237911808437,
+        "params": {
+          "C": 3.0,
+          "min_df": 2,
+          "ngram": 2
+        },
+        "seconds": 1.5027641002088785
+      },
+      {
+        "converged": true,
+        "features": 50000,
+        "grid_index": 25,
+        "inner_oriented_score": -0.46636887978941993,
+        "params": {
+          "C": 10.0,
+          "min_df": 2,
+          "ngram": 2
+        },
+        "seconds": 1.9161428650841117
+      },
+      {
+        "converged": true,
+        "features": 50000,
+        "grid_index": 26,
+        "inner_oriented_score": -0.4574799897768838,
+        "params": {
+          "C": 30.0,
+          "min_df": 2,
+          "ngram": 2
+        },
+        "seconds": 2.2590722730383277
+      },
+      {
+        "converged": true,
+        "features": 50000,
+        "grid_index": 27,
+        "inner_oriented_score": -0.48310407468367067,
+        "params": {
+          "C": 100.0,
+          "min_df": 2,
+          "ngram": 2
+        },
+        "seconds": 2.6853716364130378
+      }
+    ],
+    "seed": 115002,
+    "selected": {
+      "converged": true,
+      "features": 50000,
+      "grid_index": 19,
+      "inner_oriented_score": -0.45730546205116507,
+      "params": {
+        "C": 30.0,
+        "min_df": 1,
+        "ngram": 2
+      },
+      "seconds": 2.4354072520509362
+    },
+    "task": "spooky-author-identification",
+    "versions": {
+      "numpy": "1.26.4",
+      "pandas": "2.1.4",
+      "scipy": "1.11.4",
+      "sklearn": "1.9.0"
+    }
+  },
+  "7": {
+    "arm": "word",
+    "rows": [
+      {
+        "converged": true,
+        "features": 20212,
+        "grid_index": 0,
+        "inner_oriented_score": -0.8968394121413444,
+        "params": {
+          "C": 0.1,
+          "min_df": 1,
+          "ngram": 1
+        },
+        "seconds": 0.5370217664167285
+      },
+      {
+        "converged": true,
+        "features": 20212,
+        "grid_index": 1,
+        "inner_oriented_score": -0.7730515424640927,
+        "params": {
+          "C": 0.3,
+          "min_df": 1,
+          "ngram": 1
+        },
+        "seconds": 0.13403149042278528
+      },
+      {
+        "converged": true,
+        "features": 20212,
+        "grid_index": 2,
+        "inner_oriented_score": -0.642838198150264,
+        "params": {
+          "C": 1.0,
+          "min_df": 1,
+          "ngram": 1
+        },
+        "seconds": 0.16339394077658653
+      },
+      {
+        "converged": true,
+        "features": 20212,
+        "grid_index": 3,
+        "inner_oriented_score": -0.5533835034143383,
+        "params": {
+          "C": 3.0,
+          "min_df": 1,
+          "ngram": 1
+        },
+        "seconds": 0.19888961501419544
+      },
+      {
+        "converged": true,
+        "features": 20212,
+        "grid_index": 4,
+        "inner_oriented_score": -0.5048867937922074,
+        "params": {
+          "C": 10.0,
+          "min_df": 1,
+          "ngram": 1
+        },
+        "seconds": 0.22858234588056803
+      },
+      {
+        "converged": true,
+        "features": 20212,
+        "grid_index": 5,
+        "inner_oriented_score": -0.5120765900259493,
+        "params": {
+          "C": 30.0,
+          "min_df": 1,
+          "ngram": 1
+        },
+        "seconds": 0.2756313495337963
+      },
+      {
+        "converged": true,
+        "features": 20212,
+        "grid_index": 6,
+        "inner_oriented_score": -0.5709934555289543,
+        "params": {
+          "C": 100.0,
+          "min_df": 1,
+          "ngram": 1
+        },
+        "seconds": 0.33133229054510593
+      },
+      {
+        "converged": true,
+        "features": 11892,
+        "grid_index": 7,
+        "inner_oriented_score": -0.8901265212351749,
+        "params": {
+          "C": 0.1,
+          "min_df": 2,
+          "ngram": 1
+        },
+        "seconds": 0.5155242998152971
+      },
+      {
+        "converged": true,
+        "features": 11892,
+        "grid_index": 8,
+        "inner_oriented_score": -0.7660789487393603,
+        "params": {
+          "C": 0.3,
+          "min_df": 2,
+          "ngram": 1
+        },
+        "seconds": 0.12637989316135645
+      },
+      {
+        "converged": true,
+        "features": 11892,
+        "grid_index": 9,
+        "inner_oriented_score": -0.6378270787785187,
+        "params": {
+          "C": 1.0,
+          "min_df": 2,
+          "ngram": 1
+        },
+        "seconds": 0.14792832173407078
+      },
+      {
+        "converged": true,
+        "features": 11892,
+        "grid_index": 10,
+        "inner_oriented_score": -0.5520000938230041,
+        "params": {
+          "C": 3.0,
+          "min_df": 2,
+          "ngram": 1
+        },
+        "seconds": 0.18444626405835152
+      },
+      {
+        "converged": true,
+        "features": 11892,
+        "grid_index": 11,
+        "inner_oriented_score": -0.5096246937484913,
+        "params": {
+          "C": 10.0,
+          "min_df": 2,
+          "ngram": 1
+        },
+        "seconds": 0.22731299325823784
+      },
+      {
+        "converged": true,
+        "features": 11892,
+        "grid_index": 12,
+        "inner_oriented_score": -0.5263785971555335,
+        "params": {
+          "C": 30.0,
+          "min_df": 2,
+          "ngram": 1
+        },
+        "seconds": 0.2742015663534403
+      },
+      {
+        "converged": true,
+        "features": 11892,
+        "grid_index": 13,
+        "inner_oriented_score": -0.6035069743134924,
+        "params": {
+          "C": 100.0,
+          "min_df": 2,
+          "ngram": 1
+        },
+        "seconds": 0.322017558850348
+      },
+      {
+        "converged": true,
+        "features": 50000,
+        "grid_index": 14,
+        "inner_oriented_score": -0.940084393518985,
+        "params": {
+          "C": 0.1,
+          "min_df": 1,
+          "ngram": 2
+        },
+        "seconds": 1.404983963817358
+      },
+      {
+        "converged": true,
+        "features": 50000,
+        "grid_index": 15,
+        "inner_oriented_score": -0.8164167211479559,
+        "params": {
+          "C": 0.3,
+          "min_df": 1,
+          "ngram": 2
+        },
+        "seconds": 0.17378512863069773
+      },
+      {
+        "converged": true,
+        "features": 50000,
+        "grid_index": 16,
+        "inner_oriented_score": -0.672575291906138,
+        "params": {
+          "C": 1.0,
+          "min_df": 1,
+          "ngram": 2
+        },
+        "seconds": 0.20522082038223743
+      },
+      {
+        "converged": true,
+        "features": 50000,
+        "grid_index": 17,
+        "inner_oriented_score": -0.5665723148549735,
+        "params": {
+          "C": 3.0,
+          "min_df": 1,
+          "ngram": 2
+        },
+        "seconds": 0.24170084297657013
+      },
+      {
+        "converged": true,
+        "features": 50000,
+        "grid_index": 18,
+        "inner_oriented_score": -0.49872836156373007,
+        "params": {
+          "C": 10.0,
+          "min_df": 1,
+          "ngram": 2
+        },
+        "seconds": 0.31671504862606525
+      },
+      {
+        "converged": true,
+        "features": 50000,
+        "grid_index": 19,
+        "inner_oriented_score": -0.4812624984915052,
+        "params": {
+          "C": 30.0,
+          "min_df": 1,
+          "ngram": 2
+        },
+        "seconds": 0.33557446021586657
+      },
+      {
+        "converged": true,
+        "features": 50000,
+        "grid_index": 20,
+        "inner_oriented_score": -0.49792661442221653,
+        "params": {
+          "C": 100.0,
+          "min_df": 1,
+          "ngram": 2
+        },
+        "seconds": 0.35458590276539326
+      },
+      {
+        "converged": true,
+        "features": 41924,
+        "grid_index": 21,
+        "inner_oriented_score": -0.9378674879651656,
+        "params": {
+          "C": 0.1,
+          "min_df": 2,
+          "ngram": 2
+        },
+        "seconds": 0.9811537899076939
+      },
+      {
+        "converged": true,
+        "features": 41924,
+        "grid_index": 22,
+        "inner_oriented_score": -0.8139236870029978,
+        "params": {
+          "C": 0.3,
+          "min_df": 2,
+          "ngram": 2
+        },
+        "seconds": 0.11565973702818155
+      },
+      {
+        "converged": true,
+        "features": 41924,
+        "grid_index": 23,
+        "inner_oriented_score": -0.6705111022437431,
+        "params": {
+          "C": 1.0,
+          "min_df": 2,
+          "ngram": 2
+        },
+        "seconds": 0.1407758705317974
+      },
+      {
+        "converged": true,
+        "features": 41924,
+        "grid_index": 24,
+        "inner_oriented_score": -0.5651892135685193,
+        "params": {
+          "C": 3.0,
+          "min_df": 2,
+          "ngram": 2
+        },
+        "seconds": 0.17345889005810022
+      },
+      {
+        "converged": true,
+        "features": 41924,
+        "grid_index": 25,
+        "inner_oriented_score": -0.4983504418571212,
+        "params": {
+          "C": 10.0,
+          "min_df": 2,
+          "ngram": 2
+        },
+        "seconds": 0.2117544747889042
+      },
+      {
+        "converged": true,
+        "features": 41924,
+        "grid_index": 26,
+        "inner_oriented_score": -0.4823255550435087,
+        "params": {
+          "C": 30.0,
+          "min_df": 2,
+          "ngram": 2
+        },
+        "seconds": 0.24414288345724344
+      },
+      {
+        "converged": true,
+        "features": 41924,
+        "grid_index": 27,
+        "inner_oriented_score": -0.5009803055307752,
+        "params": {
+          "C": 100.0,
+          "min_df": 2,
+          "ngram": 2
+        },
+        "seconds": 0.249587407335639
+      }
+    ],
+    "seed": 115002,
+    "selected": {
+      "converged": true,
+      "features": 50000,
+      "grid_index": 19,
+      "inner_oriented_score": -0.4812624984915052,
+      "params": {
+        "C": 30.0,
+        "min_df": 1,
+        "ngram": 2
+      },
+      "seconds": 0.33557446021586657
+    },
+    "task": "spooky-author-identification",
+    "versions": {
+      "numpy": "1.26.4",
+      "pandas": "2.1.4",
+      "scipy": "1.11.4",
+      "sklearn": "1.9.0"
+    }
+  }
+}

@@ -1,0 +1,71 @@
+{
+  "allocated_gpu_hours": 0.095,
+  "allocation_seconds": 171,
+  "allocation_state": "COMPLETED",
+  "analysis_sha256": "9af437ccd63f056bb3196fc42c3272943c1689b5bc685dcf53b4bc3f89089966",
+  "assigned": 8,
+  "automatic_expansion": false,
+  "binary_fits_completed": 464,
+  "classifier_fits_completed": 232,
+  "complete": 8,
+  "contrasts": [
+    {
+      "complete": true,
+      "inner_oriented_difference": 0.004145601617795869,
+      "seconds_difference": 11.02521039918065,
+      "seed": 115001,
+      "task": "random-acts-of-pizza",
+      "word_char_minus_word_oriented": 0.00466395599138969
+    },
+    {
+      "complete": true,
+      "inner_oriented_difference": 0.013144590495449804,
+      "seconds_difference": 14.574904970824718,
+      "seed": 115002,
+      "task": "random-acts-of-pizza",
+      "word_char_minus_word_oriented": 0.009925855058598443
+    },
+    {
+      "complete": true,
+      "inner_oriented_difference": 0.02087481642914002,
+      "seconds_difference": 65.35295341629535,
+      "seed": 115001,
+      "task": "spooky-author-identification",
+      "word_char_minus_word_oriented": 0.03860950703389854
+    },
+    {
+      "complete": true,
+      "inner_oriented_difference": 0.02395703644034014,
+      "seconds_difference": 63.83481418155134,
+      "seed": 115002,
+      "task": "spooky-author-identification",
+      "word_char_minus_word_oriented": 0.03124022410581795
+    }
+  ],
+  "exit_code": "0:0",
+  "exploratory_gate": true,
+  "grid_classifier_fits_completed": 224,
+  "independent_scores": 8,
+  "job": "16395",
+  "limitation": "Known representations, not novel algorithm or LLM discovery. Two reused dev tasks and two overlapping inner splits, not independent task replication. Finite grid not global HPO optimum. Solver fixed within this batch, differs from earlier lbfgs trials. equal grid opportunities and equal per-episode cap, NOT equal actual time; runtime/fit counts reported",
+  "max_absolute_verifier_error": 1.1102230246251565e-16,
+  "new_method_confirmed": false,
+  "per_task": [
+    {
+      "complete_pairs": 2,
+      "median": 0.007294905524994066,
+      "sample_variance": 1.3843790896746172e-05,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "complete_pairs": 2,
+      "median": 0.03492486556985824,
+      "sample_variance": 2.7153165437050014e-05,
+      "task": "spooky-author-identification"
+    }
+  ],
+  "plan_sha256": "fed6f8c812fc49db8acc459b460a10bbe962cbe10b8a2172f5dff06c7686a624",
+  "protected_opened": false,
+  "protocol": "matched-representation-inner-selection-v1",
+  "source_commit": "95ed61276a1dee051a8e42bf21df33672c841992"
+}

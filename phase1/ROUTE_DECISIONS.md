@@ -37,6 +37,7 @@
 - **OpenMLE / Matryoshka / SCVD**：父解收益过滤、角色互换、学生状态后的验证/恢复蒸馏；历史0L425。https://arxiv.org/abs/2607.28568 / https://arxiv.org/abs/2607.25090 / https://arxiv.org/abs/2609.38812
 - **Implementation Lottery / MLE-Ideator**：前者同想法多次实现、实现噪声分解及追加实现建议（§8）；后者分离想法/实现。前者不评E2E搜索（§7）。前者已在旧0L424出现，本次是补读，不是首次发现。https://arxiv.org/html/2607.26587v1 / https://aclanthology.org/2026.eacl-short.32/
 - **Recovering Wasted Compute / Ideation Diversity**：跨分支debug约束、调参、TS回溯；想法多样性与AIRA受控消融。不能把复用错误/多样化/重启叫新机制。https://arxiv.org/html/2608.10424v1 / https://arxiv.org/html/2511.15593v1
+- **Centaur / LLM与传统HPO混合**：10/5核原文§4–5，CMA-ES向LLM共享均值/步长/协方差，部分trial由LLM提议；混合宽主张已有。作者单一autoresearch训练场景且预算排除LLM推理，不等于我方MLE全成本收益或可迁移结论。https://arxiv.org/html/2603.24647v1
 
 旧检索可能不是论文最新版本；正式新颖性判断须重新核原文与实现。查不到词不等于排除了近邻。
 

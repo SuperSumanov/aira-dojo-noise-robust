@@ -1,0 +1,11 @@
+{
+  "common_system": true,
+  "grid": 56,
+  "no_answer_hint": true,
+  "plan_sha256": "28c36271e38ab3f8d88508ce2235b229bf5c39bb9622096769a2d418a3492823",
+  "rendered_pairs": 2,
+  "schedule": 12,
+  "status": "PASS",
+  "typed_configs": 12,
+  "views": 4
+}

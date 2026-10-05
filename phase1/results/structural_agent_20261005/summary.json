@@ -1,0 +1,101 @@
+{
+  "allocated_gpu_hours": 1.0911111111111111,
+  "allocation_seconds": 982,
+  "analysis_sha256": "f0168b2a5bfd3da15a4941f77c1edebf3906ca0589e5f1db501410a959c21957",
+  "assigned": 12,
+  "attempted": 12,
+  "automatic_expansion": false,
+  "complete": 10,
+  "contrasts": [
+    {
+      "complete": false,
+      "ordinary_minus_open_hpo": null,
+      "profile_minus_open_hpo": null,
+      "profile_minus_ordinary": null,
+      "seed": 115001,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "complete": true,
+      "ordinary_minus_open_hpo": -0.009925855058598443,
+      "profile_minus_open_hpo": -0.06218607988519487,
+      "profile_minus_ordinary": -0.052260224826596424,
+      "seed": 115002,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "complete": false,
+      "ordinary_minus_open_hpo": null,
+      "profile_minus_open_hpo": null,
+      "profile_minus_ordinary": null,
+      "seed": 115001,
+      "task": "spooky-author-identification"
+    },
+    {
+      "complete": true,
+      "ordinary_minus_open_hpo": -0.03124022410581795,
+      "profile_minus_open_hpo": -0.03124022410581795,
+      "profile_minus_ordinary": -0.0,
+      "seed": 115002,
+      "task": "spooky-author-identification"
+    }
+  ],
+  "exit_code": "0:0",
+  "gate": false,
+  "independent_scores": 10,
+  "job": "16403",
+  "limitation": "Two reused text development tasks and two overlapping internal splits, not clean test confirmation. One proposal only, not native full MCTS. Fixed open_hpo is a word/char grid, not all possible AutoML structures. Human-created positive structure not given to agent. Same caps, report actual total costs incl local LLM service. Shared warmstart was conditioned on earlier dev research, not pristine selection.",
+  "max_abs_error": 1.1102230246251565e-16,
+  "per_task": [
+    {
+      "contrast": "profile_minus_ordinary",
+      "median": -0.052260224826596424,
+      "n": 1,
+      "sample_variance": null,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "contrast": "profile_minus_open_hpo",
+      "median": -0.06218607988519487,
+      "n": 1,
+      "sample_variance": null,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "contrast": "ordinary_minus_open_hpo",
+      "median": -0.009925855058598443,
+      "n": 1,
+      "sample_variance": null,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "contrast": "profile_minus_ordinary",
+      "median": -0.0,
+      "n": 1,
+      "sample_variance": null,
+      "task": "spooky-author-identification"
+    },
+    {
+      "contrast": "profile_minus_open_hpo",
+      "median": -0.03124022410581795,
+      "n": 1,
+      "sample_variance": null,
+      "task": "spooky-author-identification"
+    },
+    {
+      "contrast": "ordinary_minus_open_hpo",
+      "median": -0.03124022410581795,
+      "n": 1,
+      "sample_variance": null,
+      "task": "spooky-author-identification"
+    }
+  ],
+  "plan_sha256": "28c36271e38ab3f8d88508ce2235b229bf5c39bb9622096769a2d418a3492823",
+  "protected_opened": false,
+  "protocol": "post-hpo-one-proposal-structural-capability-v1",
+  "service": {
+    "startup_seconds": 249.74840452056378
+  },
+  "source_commit": "24ceb8f5973afd9bc7268f4e79f900d5d8964e84",
+  "state": "COMPLETED"
+}

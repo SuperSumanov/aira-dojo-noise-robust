@@ -835,3 +835,5 @@ phase1/scripts/reset_v2_*20261005.py -text diff whitespace=cr-at-eol
 # Matched representation diagnostic: exact executed sources and safe receipts.
 phase1/scripts/*matched_representation*20261005.py -text diff whitespace=cr-at-eol
 phase1/results/matched_representation_20261005/** -text diff whitespace=cr-at-eol
+phase1/scripts/*structural_agent*20261005.py -text diff whitespace=cr-at-eol
+phase1/results/structural_agent_20261005/** -text diff whitespace=cr-at-eol

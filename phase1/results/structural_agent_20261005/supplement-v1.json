@@ -1,0 +1,433 @@
+{
+  "analysis_sha256": "4b152b357ef875af06c539bccb3bc3fb04044adbbd69d98cf299654db8ae850f",
+  "arms": [
+    {
+      "arm": "ordinary",
+      "assigned": 4,
+      "complete": 4,
+      "elapsed_median": 64.40796702215448,
+      "elapsed_sample_variance": 3717.7100146990624,
+      "elapsed_sum": 369.1831645164639,
+      "generation_seconds_sum": 112.38809980545193,
+      "selected_proposals": 0,
+      "valid_proposals": 3
+    },
+    {
+      "arm": "profile",
+      "assigned": 4,
+      "complete": 4,
+      "elapsed_median": 55.38224070891738,
+      "elapsed_sample_variance": 952.2758773564817,
+      "elapsed_sum": 273.40342581272125,
+      "generation_seconds_sum": 115.77759051974863,
+      "selected_proposals": 1,
+      "valid_proposals": 3
+    },
+    {
+      "arm": "open_hpo",
+      "assigned": 4,
+      "complete": 2,
+      "elapsed_median": 120.48119823308662,
+      "elapsed_sample_variance": 2381.5265073918295,
+      "elapsed_sum": 456.2926192851737,
+      "generation_seconds_sum": 0.0,
+      "selected_proposals": 0,
+      "valid_proposals": 0
+    }
+  ],
+  "failures": [
+    {
+      "action": "search",
+      "index": 1,
+      "kernel_readiness_marker": false,
+      "seconds": 123.20130771398544,
+      "timed_out": true
+    },
+    {
+      "action": "search",
+      "index": 2,
+      "kernel_readiness_marker": false,
+      "seconds": 8.661547288298607,
+      "timed_out": false
+    },
+    {
+      "action": "final",
+      "index": 4,
+      "kernel_readiness_marker": true,
+      "seconds": 124.45791975222528,
+      "timed_out": true
+    },
+    {
+      "action": "parent",
+      "index": 5,
+      "kernel_readiness_marker": true,
+      "seconds": 124.47832151409239,
+      "timed_out": true
+    }
+  ],
+  "interpretation": "Descriptive post-closure checks only. Constructor syntax is not semantic verification. Shared initialization is excluded equally; program seconds are not allocation GPU-hours. Fixed-grid cap differs from agent proposal cap within the same episode budget.",
+  "mechanisms": [
+    {
+      "arm": "ordinary",
+      "index": 0,
+      "proposal_syntax": {
+        "constructors": [
+          "TfidfVectorizer",
+          "XGBClassifier"
+        ],
+        "explicit_character_constructor": false,
+        "vectorizer_analyzers": [
+          "default-word"
+        ]
+      },
+      "proposal_valid": true,
+      "seed": 115001,
+      "selected": "incumbent",
+      "selected_syntax": {
+        "constructors": [
+          "LogisticRegression",
+          "TfidfVectorizer"
+        ],
+        "explicit_character_constructor": false,
+        "vectorizer_analyzers": [
+          "default-word"
+        ]
+      },
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "arm": "ordinary",
+      "index": 1,
+      "proposal_syntax": {
+        "constructors": [
+          "TfidfVectorizer",
+          "XGBClassifier"
+        ],
+        "explicit_character_constructor": false,
+        "vectorizer_analyzers": [
+          "default-word"
+        ]
+      },
+      "proposal_valid": false,
+      "seed": 115001,
+      "selected": "incumbent",
+      "selected_syntax": {
+        "constructors": [
+          "LogisticRegression",
+          "TfidfVectorizer"
+        ],
+        "explicit_character_constructor": false,
+        "vectorizer_analyzers": [
+          "default-word"
+        ]
+      },
+      "task": "spooky-author-identification"
+    },
+    {
+      "arm": "profile",
+      "index": 2,
+      "proposal_syntax": {
+        "constructors": [
+          "TfidfVectorizer"
+        ],
+        "explicit_character_constructor": true,
+        "vectorizer_analyzers": [
+          "char"
+        ]
+      },
+      "proposal_valid": false,
+      "seed": 115001,
+      "selected": "incumbent",
+      "selected_syntax": {
+        "constructors": [
+          "LogisticRegression",
+          "TfidfVectorizer"
+        ],
+        "explicit_character_constructor": false,
+        "vectorizer_analyzers": [
+          "default-word"
+        ]
+      },
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "arm": "profile",
+      "index": 3,
+      "proposal_syntax": {
+        "constructors": [
+          "LogisticRegression",
+          "TfidfVectorizer"
+        ],
+        "explicit_character_constructor": false,
+        "vectorizer_analyzers": [
+          "default-word"
+        ]
+      },
+      "proposal_valid": true,
+      "seed": 115001,
+      "selected": "incumbent",
+      "selected_syntax": {
+        "constructors": [
+          "LogisticRegression",
+          "TfidfVectorizer"
+        ],
+        "explicit_character_constructor": false,
+        "vectorizer_analyzers": [
+          "default-word"
+        ]
+      },
+      "task": "spooky-author-identification"
+    },
+    {
+      "arm": "open_hpo",
+      "index": 4,
+      "proposal_valid": false,
+      "seed": 115001,
+      "selected": "grid-49",
+      "selected_syntax": {
+        "constructors": [
+          "LogisticRegression",
+          "TfidfVectorizer"
+        ],
+        "explicit_character_constructor": true,
+        "vectorizer_analyzers": [
+          "char",
+          "default-word"
+        ]
+      },
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "arm": "open_hpo",
+      "index": 5,
+      "proposal_valid": false,
+      "seed": 115001,
+      "selected": "incumbent",
+      "task": "spooky-author-identification"
+    },
+    {
+      "arm": "open_hpo",
+      "index": 6,
+      "proposal_valid": false,
+      "seed": 115002,
+      "selected": "grid-43",
+      "selected_syntax": {
+        "constructors": [
+          "LogisticRegression",
+          "TfidfVectorizer"
+        ],
+        "explicit_character_constructor": true,
+        "vectorizer_analyzers": [
+          "char",
+          "default-word"
+        ]
+      },
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "arm": "open_hpo",
+      "index": 7,
+      "proposal_valid": false,
+      "seed": 115002,
+      "selected": "grid-47",
+      "selected_syntax": {
+        "constructors": [
+          "LogisticRegression",
+          "TfidfVectorizer"
+        ],
+        "explicit_character_constructor": true,
+        "vectorizer_analyzers": [
+          "char",
+          "default-word"
+        ]
+      },
+      "task": "spooky-author-identification"
+    },
+    {
+      "arm": "profile",
+      "index": 8,
+      "proposal_syntax": {
+        "constructors": [
+          "CountVectorizer",
+          "XGBClassifier"
+        ],
+        "explicit_character_constructor": false,
+        "vectorizer_analyzers": [
+          "default-word"
+        ]
+      },
+      "proposal_valid": true,
+      "seed": 115002,
+      "selected": "proposal",
+      "selected_syntax": {
+        "constructors": [
+          "CountVectorizer",
+          "XGBClassifier"
+        ],
+        "explicit_character_constructor": false,
+        "vectorizer_analyzers": [
+          "default-word"
+        ]
+      },
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "arm": "profile",
+      "index": 9,
+      "proposal_syntax": {
+        "constructors": [
+          "LogisticRegression",
+          "TfidfVectorizer"
+        ],
+        "explicit_character_constructor": false,
+        "vectorizer_analyzers": [
+          "default-word"
+        ]
+      },
+      "proposal_valid": true,
+      "seed": 115002,
+      "selected": "incumbent",
+      "selected_syntax": {
+        "constructors": [
+          "LogisticRegression",
+          "TfidfVectorizer"
+        ],
+        "explicit_character_constructor": false,
+        "vectorizer_analyzers": [
+          "default-word"
+        ]
+      },
+      "task": "spooky-author-identification"
+    },
+    {
+      "arm": "ordinary",
+      "index": 10,
+      "proposal_syntax": {
+        "constructors": [
+          "TfidfVectorizer",
+          "XGBClassifier"
+        ],
+        "explicit_character_constructor": false,
+        "vectorizer_analyzers": [
+          "default-word"
+        ]
+      },
+      "proposal_valid": true,
+      "seed": 115002,
+      "selected": "incumbent",
+      "selected_syntax": {
+        "constructors": [
+          "LogisticRegression",
+          "TfidfVectorizer"
+        ],
+        "explicit_character_constructor": false,
+        "vectorizer_analyzers": [
+          "default-word"
+        ]
+      },
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "arm": "ordinary",
+      "index": 11,
+      "proposal_syntax": {
+        "constructors": [
+          "GridSearchCV",
+          "LogisticRegression",
+          "TfidfVectorizer"
+        ],
+        "explicit_character_constructor": true,
+        "vectorizer_analyzers": [
+          "char_wb"
+        ]
+      },
+      "proposal_valid": true,
+      "seed": 115002,
+      "selected": "incumbent",
+      "selected_syntax": {
+        "constructors": [
+          "LogisticRegression",
+          "TfidfVectorizer"
+        ],
+        "explicit_character_constructor": false,
+        "vectorizer_analyzers": [
+          "default-word"
+        ]
+      },
+      "task": "spooky-author-identification"
+    }
+  ],
+  "pairwise_available_sensitivity": [
+    {
+      "complete": true,
+      "contrast": "profile_minus_ordinary",
+      "difference": 0.0,
+      "seed": 115001,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "complete": false,
+      "contrast": "profile_minus_open_hpo",
+      "difference": null,
+      "seed": 115001,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "complete": true,
+      "contrast": "profile_minus_ordinary",
+      "difference": -0.052260224826596424,
+      "seed": 115002,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "complete": true,
+      "contrast": "profile_minus_open_hpo",
+      "difference": -0.06218607988519487,
+      "seed": 115002,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "complete": true,
+      "contrast": "profile_minus_ordinary",
+      "difference": -0.0,
+      "seed": 115001,
+      "task": "spooky-author-identification"
+    },
+    {
+      "complete": false,
+      "contrast": "profile_minus_open_hpo",
+      "difference": null,
+      "seed": 115001,
+      "task": "spooky-author-identification"
+    },
+    {
+      "complete": true,
+      "contrast": "profile_minus_ordinary",
+      "difference": -0.0,
+      "seed": 115002,
+      "task": "spooky-author-identification"
+    },
+    {
+      "complete": true,
+      "contrast": "profile_minus_open_hpo",
+      "difference": -0.03124022410581795,
+      "seed": 115002,
+      "task": "spooky-author-identification"
+    }
+  ],
+  "plan_sha256": "28c36271e38ab3f8d88508ce2235b229bf5c39bb9622096769a2d418a3492823",
+  "sensitivity_limitation": "Added after operational missingness was seen but before any external scores were read. Keeps the frozen complete-triplet primary and gate unchanged. Available pairs do not repair missing endpoints; HPO seed coverage can be incomplete.",
+  "shared_initialization": {
+    "grid_fits": 112,
+    "refits": 4,
+    "runs": 4,
+    "summed_program_seconds_with_refits": 60.15175188332796
+  },
+  "source_commit": "24ceb8f5973afd9bc7268f4e79f900d5d8964e84",
+  "summary_sha256": "302ec93194c8fd773f19f5609e83cc5fd3bd7bbe75f2139caa416c074d985f61",
+  "verification": {
+    "gate_unchanged": true,
+    "rows": 12,
+    "status": "PASS"
+  }
+}

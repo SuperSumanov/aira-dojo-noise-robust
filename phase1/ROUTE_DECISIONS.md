@@ -39,6 +39,9 @@
 - **Implementation Lottery / MLE-Ideator**：前者同想法多次实现、实现噪声分解及追加实现建议（§8）；后者分离想法/实现。前者不评E2E搜索（§7）。前者已在旧0L424出现，本次是补读，不是首次发现。https://arxiv.org/html/2607.26587v1 / https://aclanthology.org/2026.eacl-short.32/
 - **Recovering Wasted Compute / Ideation Diversity**：跨分支debug约束、调参、TS回溯；想法多样性与AIRA受控消融。不能把复用错误/多样化/重启叫新机制。https://arxiv.org/html/2608.10424v1 / https://arxiv.org/html/2511.15593v1
 - **Centaur / LLM与传统HPO混合**：10/5核原文§4–5，CMA-ES向LLM共享均值/步长/协方差，部分trial由LLM提议；混合宽主张已有。作者单一autoresearch训练场景且预算排除LLM推理，不等于我方MLE全成本收益或可迁移结论。https://arxiv.org/html/2603.24647v1
+- **LLaMEA-HPO**：10/6核§3.3，已把优化后程序/参数反馈给LLM，结构变异时保留参数，再交HPO。结构搜索和调参分工、保留已优化参数本身不新；当前四格只核自然修改机制。https://arxiv.org/html/2410.16309v1
+- **Self-Healing Harness**：10/6核主文及附录，固定底座、外部规则持久化、局部改进伴随旧案例退步、回放准入都已有。对象是操作规则跨案例保留，不是MLE代码数值bundle；作者未执行关键准入消融且开销增加，不能冒称已有我方同预算答案。https://arxiv.org/html/2609.24130v1
+- **GEVO编辑交互分析**：非LLM的GPU程序演化已用原程序/全编辑/单加/单去分离独立与相互作用编辑；四顶点相互作用计算不是新方法。新价值必须来自实际MLE机制及可部署收益。https://doi.org/10.1145/3703920
 
 旧检索可能不是论文最新版本；正式新颖性判断须重新核原文与实现。查不到词不等于排除了近邻。
 

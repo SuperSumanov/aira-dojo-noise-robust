@@ -23,6 +23,7 @@
 | R8 预测父子修改收益、edit-gain图、跨任务修改复用 | 2026-08-21查重已明确M-DESIGN直接覆盖修改增益图、预测修改收益及迁移的宽主张 | 不能再把上述概念称首创；旧68维结果不可重调追正。历史0CU |
 | R9 现成LoRA全角色搜索 / 角色分工 | 16307：8条1有效、0完整质量配对、0Improve；16309同22观察88判断，小范围误否决改善 | 前者无收益证据，后者非端到端，不据角色阳性自动扩跑。CURRENT_DIRECTION最新证据 |
 | R10 旧代码critic/scaling、覆盖与修复次序 | 存探索性任务内信号、同池局部好例及反例；干净scaling和稳定完整搜索收益未确认 | 不能把学长结果归为我方，不能因新模型到位自动恢复。10/2复盘及9/20报告 |
+| R11 想法与实现分离、同想法独立实现、保留想法重做代码 | 10/5用户批准小资格对照；4新起点＋12续跑，三臂同预算，plan 022cef28。Implementation Lottery已测实现方差且提出高方差时追加实现，MLE-Ideator已有两角色架构 | 不称宽概念新颖。已准备、无结果；不是已学会何时重做的选择器。来源/语义门未通过则不补选起点；见CURRENT_DIRECTION |
 
 ## 已核近邻：检索入口，不是它们已替我们验证效果
 
@@ -34,6 +35,8 @@
 - **GOME / Iris / AgentX-Model**：反馈定向改进、主动证据、诊断选择；并非“再加analyzer”空白。https://arxiv.org/abs/2603.01692 / https://arxiv.org/abs/2608.02143 / https://arxiv.org/abs/2609.30001
 - **Component-Aware Feedback / MARICL / NSR-Boost**：组件变化与指标记忆、误差样例、可执行修正；历史0L412/404。https://arxiv.org/abs/2609.38639 / https://arxiv.org/abs/2605.22897 / https://arxiv.org/abs/2601.10457
 - **OpenMLE / Matryoshka / SCVD**：父解收益过滤、角色互换、学生状态后的验证/恢复蒸馏；历史0L425。https://arxiv.org/abs/2607.28568 / https://arxiv.org/abs/2607.25090 / https://arxiv.org/abs/2609.38812
+- **Implementation Lottery / MLE-Ideator**：前者同想法多次实现、实现噪声分解及追加实现建议（§8）；后者分离想法/实现。前者不评E2E搜索（§7）。前者已在旧0L424出现，本次是补读，不是首次发现。https://arxiv.org/html/2607.26587v1 / https://aclanthology.org/2026.eacl-short.32/
+- **Recovering Wasted Compute / Ideation Diversity**：跨分支debug约束、调参、TS回溯；想法多样性与AIRA受控消融。不能把复用错误/多样化/重启叫新机制。https://arxiv.org/html/2608.10424v1 / https://arxiv.org/html/2511.15593v1
 
 旧检索可能不是论文最新版本；正式新颖性判断须重新核原文与实现。查不到词不等于排除了近邻。
 

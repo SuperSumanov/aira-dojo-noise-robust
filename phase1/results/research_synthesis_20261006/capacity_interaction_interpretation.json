@@ -1,0 +1,51 @@
+{
+  "kind": "posthoc_mechanism_interpretation_not_new_method",
+  "observed_at_utc": "2026-10-05T22:50:39Z",
+  "capacity_summary_sha256": "d0166d17b774b4e2b48cfe105477e0c796c15faa7e2de10c0cae7e0ac032315b",
+  "interaction_summary_sha256": "93ccac189d0a15f0723a7b99f0c124da6c48cc0c272b4150930fbbb6152c0eee",
+  "interaction_runs_sha256": "bc838f0c4ab0a2ab3971c29859e867c204c51d569fb736d6d5bc4c049e736331",
+  "task": "spooky-author-identification",
+  "complete_new_pair_seed": 115002,
+  "other_assigned_seed": 115001,
+  "other_seed_status": "word50_char has no completed endpoint; kernel-readiness markers, no program completion marker; no retry or imputation",
+  "logloss_cells": {
+    "word_25k": 0.46219627265041624,
+    "word_50k": 0.4425924892716263,
+    "word25k_char25k": 0.41135226516580836,
+    "word50k_char25k": 0.4057519927763963
+  },
+  "all_four_selected_hyperparameters": {
+    "C": 30.0,
+    "word_ngram_max": 2,
+    "min_df": 1
+  },
+  "positive_is_logloss_reduction": {
+    "word_capacity_gain_without_chars": 0.019603783378790,
+    "word_capacity_gain_with_chars": 0.005600272389412,
+    "interaction": -0.014003510989378,
+    "full_union_minus_word50": 0.036840496495230
+  },
+  "independent_arithmetic": "PowerShell Decimal recomputation of exported CSVs; values here rounded by Decimal parsing, agree with Python floating point readout within 1e-12",
+  "supported": [
+    "On the one complete new development split, increasing word capacity improves the union as well as the pure-word model.",
+    "The capacity gain is smaller in the union on the logloss scale; the three-cell additive extrapolation would be wrong.",
+    "All four selected configurations match, so this particular comparison is not explained by a different selected C/ngram/min_df.",
+    "The rerun reduced-union controls match prior prediction bytes for both seeds. Replays are not new independent confirmations."
+  ],
+  "not_supported": [
+    "A new autonomous method, equal-full-cost advantage, cross-task confirmation or superiority to a strong natural parent.",
+    "A general rule to preserve every parent parameter across structural edits.",
+    "A semantic explanation that word and character features encode the same information: observed interaction is metric- and setup-dependent.",
+    "A population confidence statement from conditional bootstrap intervals after repeated use of these development observations."
+  ],
+  "historical_reference_only": {
+    "source": "phase1/results/opportunity_information_20261003/runs.csv",
+    "source_sha256": "5fe5171088afcf1d0ecc196021ae337f638f63cce8c02128987ff606897de822",
+    "natural_parent_logloss": 0.38797591250098007,
+    "new_full_union_loss_minus_natural_parent": 0.017776080275416,
+    "same_view_sha256": "d59ec421babf89de8ecbd5169a3ddaf1c7b594e7b5706a7726353aa9ce40207e",
+    "same_pristine_scorer_sha256": "3a6b75e6ce6b391dd04bb6ac668c063cae90c2270411f5503e493ae8d90991ae",
+    "warning": "Historical parent has different initialization/development cost. This is a conservative reference, not a fair algorithm comparison or general impossibility bound."
+  },
+  "decision": "Mechanism diagnostic complete; do not expand vocabulary variants or rename this as a method. Original R12/R13 stopping decisions and protected cohorts remain unchanged."
+}

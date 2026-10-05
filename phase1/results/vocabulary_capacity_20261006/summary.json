@@ -1,0 +1,445 @@
+{
+  "all_valid_fits_converged": true,
+  "allocated_gpu_hours": 0.22611111111111112,
+  "allocation_seconds": 814,
+  "allocation_state": "COMPLETED",
+  "analysis_sha256": "589cf2d1652b15bb3cd68920c07e8abeb1fbac11062e1dd8d84d4b2ca81ef48e",
+  "assigned": 12,
+  "automatic_expansion": false,
+  "binary_fits_completed": 667,
+  "classifier_fits_completed": 319,
+  "complete": 11,
+  "conditional_intervals": [
+    {
+      "clusters": 300,
+      "conditional_percentile_95": [
+        -0.016189510676777936,
+        0.027604935625742764
+      ],
+      "contrast": "word_char_minus_word_25k",
+      "grouping": "requester_username clusters",
+      "limitation": "Posthoc conditional interval on fixed trained models/reused development observations; no correction for prior research selection, across-task variation or training uncertainty.",
+      "observed_seed_mean": 0.005859842143028038,
+      "paired_seeds": [
+        115001
+      ],
+      "requested_replicates": 2000,
+      "rows": 300,
+      "seed": 116399,
+      "task": "random-acts-of-pizza",
+      "valid_replicates": 2000
+    },
+    {
+      "clusters": 300,
+      "conditional_percentile_95": [
+        -0.007604460753692433,
+        0.00520760399021269
+      ],
+      "contrast": "word_25k_minus_word",
+      "grouping": "requester_username clusters",
+      "limitation": "Posthoc conditional interval on fixed trained models/reused development observations; no correction for prior research selection, across-task variation or training uncertainty.",
+      "observed_seed_mean": -0.0011958861516383479,
+      "paired_seeds": [
+        115001,
+        115002
+      ],
+      "requested_replicates": 2000,
+      "rows": 300,
+      "seed": 116399,
+      "task": "random-acts-of-pizza",
+      "valid_replicates": 2000
+    },
+    {
+      "clusters": 300,
+      "conditional_percentile_95": [
+        -0.01732657234301973,
+        0.026969815656524523
+      ],
+      "contrast": "word_char_minus_word",
+      "grouping": "requester_username clusters",
+      "limitation": "Posthoc conditional interval on fixed trained models/reused development observations; no correction for prior research selection, across-task variation or training uncertainty.",
+      "observed_seed_mean": 0.00466395599138969,
+      "paired_seeds": [
+        115001
+      ],
+      "requested_replicates": 2000,
+      "rows": 300,
+      "seed": 116399,
+      "task": "random-acts-of-pizza",
+      "valid_replicates": 2000
+    },
+    {
+      "clusters": 1761,
+      "conditional_percentile_95": [
+        0.03381626864767076,
+        0.0742647398959696
+      ],
+      "contrast": "word_char_minus_word_25k",
+      "grouping": "rows; no source-document clusters available",
+      "limitation": "Posthoc conditional interval on fixed trained models/reused development observations; no correction for prior research selection, across-task variation or training uncertainty.",
+      "observed_seed_mean": 0.054522231138106836,
+      "paired_seeds": [
+        115001,
+        115002
+      ],
+      "requested_replicates": 2000,
+      "rows": 1761,
+      "seed": 116399,
+      "task": "spooky-author-identification",
+      "valid_replicates": 2000
+    },
+    {
+      "clusters": 1761,
+      "conditional_percentile_95": [
+        -0.02788787686952855,
+        -0.012089604705398112
+      ],
+      "contrast": "word_25k_minus_word",
+      "grouping": "rows; no source-document clusters available",
+      "limitation": "Posthoc conditional interval on fixed trained models/reused development observations; no correction for prior research selection, across-task variation or training uncertainty.",
+      "observed_seed_mean": -0.01959736556824873,
+      "paired_seeds": [
+        115001,
+        115002
+      ],
+      "requested_replicates": 2000,
+      "rows": 1761,
+      "seed": 116399,
+      "task": "spooky-author-identification",
+      "valid_replicates": 2000
+    },
+    {
+      "clusters": 1761,
+      "conditional_percentile_95": [
+        0.015558117821868524,
+        0.05373174790905431
+      ],
+      "contrast": "word_char_minus_word",
+      "grouping": "rows; no source-document clusters available",
+      "limitation": "Posthoc conditional interval on fixed trained models/reused development observations; no correction for prior research selection, across-task variation or training uncertainty.",
+      "observed_seed_mean": 0.034924865569858105,
+      "paired_seeds": [
+        115001,
+        115002
+      ],
+      "requested_replicates": 2000,
+      "rows": 1761,
+      "seed": 116399,
+      "task": "spooky-author-identification",
+      "valid_replicates": 2000
+    }
+  ],
+  "contrasts": [
+    {
+      "complete": true,
+      "contrast": "word_char_minus_word_25k",
+      "difference": 0.005859842143028038,
+      "seed": 115001,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "complete": true,
+      "contrast": "word_25k_minus_word",
+      "difference": -0.0011958861516383479,
+      "seed": 115001,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "complete": true,
+      "contrast": "word_char_minus_word",
+      "difference": 0.00466395599138969,
+      "seed": 115001,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "complete": false,
+      "contrast": "word_char_minus_word_25k",
+      "difference": null,
+      "seed": 115002,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "complete": true,
+      "contrast": "word_25k_minus_word",
+      "difference": -0.0011958861516383479,
+      "seed": 115002,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "complete": false,
+      "contrast": "word_char_minus_word",
+      "difference": null,
+      "seed": 115002,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "complete": true,
+      "contrast": "word_char_minus_word_25k",
+      "difference": 0.05820045479160596,
+      "seed": 115001,
+      "task": "spooky-author-identification"
+    },
+    {
+      "complete": true,
+      "contrast": "word_25k_minus_word",
+      "difference": -0.019590947757707422,
+      "seed": 115001,
+      "task": "spooky-author-identification"
+    },
+    {
+      "complete": true,
+      "contrast": "word_char_minus_word",
+      "difference": 0.03860950703389854,
+      "seed": 115001,
+      "task": "spooky-author-identification"
+    },
+    {
+      "complete": true,
+      "contrast": "word_char_minus_word_25k",
+      "difference": 0.05084400748460788,
+      "seed": 115002,
+      "task": "spooky-author-identification"
+    },
+    {
+      "complete": true,
+      "contrast": "word_25k_minus_word",
+      "difference": -0.01960378337878993,
+      "seed": 115002,
+      "task": "spooky-author-identification"
+    },
+    {
+      "complete": true,
+      "contrast": "word_char_minus_word",
+      "difference": 0.03124022410581795,
+      "seed": 115002,
+      "task": "spooky-author-identification"
+    }
+  ],
+  "independent_scores": 11,
+  "job": "16565",
+  "limitations": "Two reused tasks and overlapping internal splits; fixed fit opportunities, not equal realized time. Same word vocabulary cap does not isolate normalization or coefficient geometry from adding a block.",
+  "matched_grid_diagnostics": [
+    {
+      "configurations": 28,
+      "contrast": "word_char_minus_word_25k",
+      "gain_at_reference_selected_parameters": 0.004600606673407559,
+      "matched_grid_wins": 25,
+      "median_difference": 0.005245197168857407,
+      "seed": 115001,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "configurations": 28,
+      "contrast": "word_25k_minus_word",
+      "gain_at_reference_selected_parameters": -0.0022497472194134005,
+      "matched_grid_wins": 0,
+      "median_difference": 0.0,
+      "seed": 115001,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "configurations": 28,
+      "contrast": "word_char_minus_word",
+      "gain_at_reference_selected_parameters": 0.003058645096056689,
+      "matched_grid_wins": 20,
+      "median_difference": 0.004714357937310454,
+      "seed": 115001,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "configurations": 28,
+      "contrast": "word_25k_minus_word",
+      "gain_at_reference_selected_parameters": -0.004676440849342822,
+      "matched_grid_wins": 0,
+      "median_difference": 0.0,
+      "seed": 115002,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "configurations": 28,
+      "contrast": "word_char_minus_word_25k",
+      "gain_at_reference_selected_parameters": 0.03030137389010551,
+      "matched_grid_wins": 28,
+      "median_difference": 0.03043343754914654,
+      "seed": 115001,
+      "task": "spooky-author-identification"
+    },
+    {
+      "configurations": 28,
+      "contrast": "word_25k_minus_word",
+      "gain_at_reference_selected_parameters": -0.010090974270736575,
+      "matched_grid_wins": 10,
+      "median_difference": 0.0,
+      "seed": 115001,
+      "task": "spooky-author-identification"
+    },
+    {
+      "configurations": 28,
+      "contrast": "word_char_minus_word",
+      "gain_at_reference_selected_parameters": 0.020474526937451,
+      "matched_grid_wins": 28,
+      "median_difference": 0.02973334418317028,
+      "seed": 115001,
+      "task": "spooky-author-identification"
+    },
+    {
+      "configurations": 28,
+      "contrast": "word_char_minus_word_25k",
+      "gain_at_reference_selected_parameters": 0.032821808621849524,
+      "matched_grid_wins": 28,
+      "median_difference": 0.03476354419020311,
+      "seed": 115002,
+      "task": "spooky-author-identification"
+    },
+    {
+      "configurations": 28,
+      "contrast": "word_25k_minus_word",
+      "gain_at_reference_selected_parameters": -0.008864772181509384,
+      "matched_grid_wins": 10,
+      "median_difference": 0.0,
+      "seed": 115002,
+      "task": "spooky-author-identification"
+    },
+    {
+      "configurations": 28,
+      "contrast": "word_char_minus_word",
+      "gain_at_reference_selected_parameters": 0.02395703644034014,
+      "matched_grid_wins": 28,
+      "median_difference": 0.03609161054335158,
+      "seed": 115002,
+      "task": "spooky-author-identification"
+    }
+  ],
+  "max_absolute_verifier_error": 1.1102230246251565e-16,
+  "new_method_confirmed": false,
+  "old_control_replay": [
+    {
+      "arm": "word",
+      "complete": true,
+      "same_inner_split": true,
+      "same_prediction_bytes": true,
+      "same_versions": true,
+      "score_difference": 0.0,
+      "seed": 115001,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "arm": "word_char",
+      "complete": true,
+      "same_inner_split": true,
+      "same_prediction_bytes": true,
+      "same_versions": true,
+      "score_difference": 0.0,
+      "seed": 115001,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "arm": "word_char",
+      "complete": true,
+      "same_inner_split": true,
+      "same_prediction_bytes": true,
+      "same_versions": true,
+      "score_difference": 0.0,
+      "seed": 115001,
+      "task": "spooky-author-identification"
+    },
+    {
+      "arm": "word",
+      "complete": true,
+      "same_inner_split": true,
+      "same_prediction_bytes": true,
+      "same_versions": true,
+      "score_difference": 0.0,
+      "seed": 115001,
+      "task": "spooky-author-identification"
+    },
+    {
+      "arm": "word_char",
+      "complete": false,
+      "same_inner_split": null,
+      "same_prediction_bytes": null,
+      "same_versions": null,
+      "score_difference": null,
+      "seed": 115002,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "arm": "word",
+      "complete": true,
+      "same_inner_split": true,
+      "same_prediction_bytes": true,
+      "same_versions": true,
+      "score_difference": 0.0,
+      "seed": 115002,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "arm": "word_char",
+      "complete": true,
+      "same_inner_split": true,
+      "same_prediction_bytes": true,
+      "same_versions": true,
+      "score_difference": 0.0,
+      "seed": 115002,
+      "task": "spooky-author-identification"
+    },
+    {
+      "arm": "word",
+      "complete": true,
+      "same_inner_split": true,
+      "same_prediction_bytes": true,
+      "same_versions": true,
+      "score_difference": 0.0,
+      "seed": 115002,
+      "task": "spooky-author-identification"
+    }
+  ],
+  "old_gates_unchanged": true,
+  "per_task": [
+    {
+      "contrast": "word_char_minus_word_25k",
+      "median": 0.005859842143028038,
+      "n": 1,
+      "sample_variance": null,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "contrast": "word_25k_minus_word",
+      "median": -0.0011958861516383479,
+      "n": 2,
+      "sample_variance": 0.0,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "contrast": "word_char_minus_word",
+      "median": 0.00466395599138969,
+      "n": 1,
+      "sample_variance": null,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "contrast": "word_char_minus_word_25k",
+      "median": 0.05452223113810692,
+      "n": 2,
+      "sample_variance": 2.7058658490319666e-05,
+      "task": "spooky-author-identification"
+    },
+    {
+      "contrast": "word_25k_minus_word",
+      "median": -0.019597365568248676,
+      "n": 2,
+      "sample_variance": 8.237658428685647e-11,
+      "task": "spooky-author-identification"
+    },
+    {
+      "contrast": "word_char_minus_word",
+      "median": 0.03492486556985824,
+      "n": 2,
+      "sample_variance": 2.7153165437050014e-05,
+      "task": "spooky-author-identification"
+    }
+  ],
+  "plan_sha256": "acf546f7b5430910c6a695eeabfbff0cb5a4f27d3dd5d89e9f4c680e7a045e84",
+  "protocol": "vocabulary-capacity-posthoc-ablation-v1",
+  "source_commit": "f36ae0c88c565dca6315d04dbbd068a9af5f9aa8"
+}

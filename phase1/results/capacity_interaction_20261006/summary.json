@@ -1,0 +1,128 @@
+{
+  "all_valid_fits_converged": true,
+  "allocated_gpu_hours": 0.19944444444444445,
+  "allocation_seconds": 718,
+  "allocation_state": "COMPLETED",
+  "analysis_sha256": "4b1b1604c312a916cd98000bde97c621b4ea409f8aaf5545f9fa28bbabbc1932",
+  "assigned": 4,
+  "automatic_expansion": false,
+  "binary_fits_completed": 261,
+  "classifier_fits_completed": 87,
+  "conditional_intervals": [
+    {
+      "conditional_percentile_95": [
+        0.0016453398793471728,
+        0.00985108516882419
+      ],
+      "contrast": "full_minus_reduced_union",
+      "limitation": "Posthoc conditional row bootstrap, fixed models and reused dev data; no document clusters or development-selection/training/task correction.",
+      "observed_seed_mean": 0.005600272389412077,
+      "paired_seeds": [
+        115002
+      ],
+      "replicates": 2000,
+      "rows": 1761,
+      "seed": 116499
+    },
+    {
+      "conditional_percentile_95": [
+        -0.019901164767484873,
+        -0.008851984242019696
+      ],
+      "contrast": "interaction",
+      "limitation": "Posthoc conditional row bootstrap, fixed models and reused dev data; no document clusters or development-selection/training/task correction.",
+      "observed_seed_mean": -0.014003510989377901,
+      "paired_seeds": [
+        115002
+      ],
+      "replicates": 2000,
+      "rows": 1761,
+      "seed": 116499
+    },
+    {
+      "conditional_percentile_95": [
+        0.019872308594895787,
+        0.0547638199622929
+      ],
+      "contrast": "full_union_minus_word50",
+      "limitation": "Posthoc conditional row bootstrap, fixed models and reused dev data; no document clusters or development-selection/training/task correction.",
+      "observed_seed_mean": 0.03684049649522996,
+      "paired_seeds": [
+        115002
+      ],
+      "replicates": 2000,
+      "rows": 1761,
+      "seed": 116499
+    }
+  ],
+  "contrasts": [
+    {
+      "complete": false,
+      "full_minus_reduced_union": null,
+      "full_union_minus_word50": null,
+      "interaction": null,
+      "seed": 115001
+    },
+    {
+      "complete": true,
+      "full_minus_reduced_union": 0.005600272389412075,
+      "full_union_minus_word50": 0.036840496495230024,
+      "interaction": -0.014003510989377854,
+      "seed": 115002
+    }
+  ],
+  "exit_code": "0:0",
+  "independent_scores": 3,
+  "job": "16567",
+  "limitations": "Posthoc reused development task/splits, known human-chosen representation. Old pure-word cells reused only with exact source/split identity, never replacing a missing new union endpoint.",
+  "matched_grid_diagnostics": [
+    {
+      "configurations": 28,
+      "gain_at_reduced_selected_params": 0.002724455848985119,
+      "matched_grid_wins": 4,
+      "median_gain": 0.0,
+      "seed": 115002
+    }
+  ],
+  "max_absolute_verifier_error": 1.1102230246251565e-16,
+  "new_method_confirmed": false,
+  "not_equal_feature_budget": true,
+  "old_union_replay": [
+    {
+      "complete": true,
+      "metric_difference": 0.0,
+      "same_prediction_bytes": true,
+      "seed": 115001
+    },
+    {
+      "complete": true,
+      "metric_difference": 0.0,
+      "same_prediction_bytes": true,
+      "seed": 115002
+    }
+  ],
+  "per_contrast": [
+    {
+      "contrast": "full_minus_reduced_union",
+      "median": 0.005600272389412075,
+      "n": 1,
+      "sample_variance": null
+    },
+    {
+      "contrast": "interaction",
+      "median": -0.014003510989377854,
+      "n": 1,
+      "sample_variance": null
+    },
+    {
+      "contrast": "full_union_minus_word50",
+      "median": 0.036840496495230024,
+      "n": 1,
+      "sample_variance": null
+    }
+  ],
+  "plan_sha256": "5f30bc3dbaa840475d8f473c4e56566afe0bd5d408268adf7d784679f5f1b359",
+  "protocol": "capacity-interaction-posthoc-missing-cell-v1",
+  "source_commit": "17dfc85e83195dc6d3a6a2432bba728286e2118e",
+  "valid": 3
+}

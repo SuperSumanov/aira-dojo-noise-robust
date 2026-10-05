@@ -18,7 +18,7 @@ import time
 import collateral_sample_20261006 as m
 import collateral_bindings_20261006 as binding
 
-OUT=Path('/research/d7/spc/yzyang4/collateral-population-20261006-v1')
+OUT=Path('/research/d7/spc/yzyang4/collateral-population-20261006-v2')
 FRAMEWORKS=frozenset('torch torchvision transformers timm tensorflow sklearn xgboost lightgbm catboost'.split())
 SEED_NAMES=frozenset('seed random_seed random_state'.split())
 EXEC_NAMES=frozenset('num_workers n_jobs'.split())
@@ -45,6 +45,18 @@ def tests():
     assert category('LR')=='other_supported_setting' and category('N_JOBS')=='execution_parallelism_like'
     assert imports(ast.parse('import torch as t\nfrom sklearn.linear_model import X'))=={'torch','sklearn'}
     assert m.tests()['forbidden_field_sentinel']=='PASS' and binding.tests()['status']=='PASS'
+    fixtures=[
+        ('C=30\nx=LogisticRegression(C=30)', 'C=.1\nx=LogisticRegression(C=.1)'),
+        ('import torch\np={"lr":.01}\ndef f(batch_size=8): pass', 'import torch\np={"lr":.02}\ndef f(batch_size=16): pass'),
+        ('C=1\nC=2', 'C=3'),
+        ('x=Adam(lr=.1)', 'x=Adam(lr=.1)\ny=Adam(lr=.2)'),
+        ('x=TfidfVectorizer(ngram_range=(1,2),lowercase=True)', 'x=TfidfVectorizer(ngram_range=(1,3),lowercase=False)'),
+    ]
+    for a,b in fixtures:
+        at,bt=ast.parse(a),ast.parse(b)
+        assert ast.parse(at) is at
+        assert m.inspect_pair(a,b)==m.inspect_pair(at,bt)
+        assert binding.compare(a,b)==binding.compare(at,bt)
     print('POPULATION_CENSUS_TESTS_PASS')
 
 
@@ -59,7 +71,8 @@ def main(commit):
         selection='Every unique (task, exact base code, exact child code) in the three already pinned public traces; no outcome-based selection.',
         categories='Name-based, potentially unused/shadowed settings. Imports are declarations, not executed model identity. Different ASTs are not independent runs.',
         no_outcome_fields=True,no_code_execution=True,no_model_fits=True,gpu_hours=0,api_calls=0,max_seconds=600,
-        old_sample_unchanged=True,automatic_expansion=False,limitations=__doc__))
+        old_sample_unchanged=True,automatic_expansion=False,
+        amendment='v1 hit its 600-second CPU cap before a summary. v2 reuses each parsed AST in the unchanged detectors; same population, pins, categories, and cap. v1 preserved, no partial estimate reported.',limitations=__doc__))
     started=time.monotonic();seen=set();parents=set();parent_pairs=collections.Counter();tasks=collections.defaultdict(collections.Counter)
     counts=collections.Counter();categories=collections.Counter();frameworks=collections.Counter();parameter_names=collections.Counter();unsupported=collections.Counter()
     for filename,pin in m.PINS.items():
@@ -72,7 +85,7 @@ def main(commit):
             seen.add(key);counts['unique_pairs']+=1;tc=tasks[row['task']];tc['unique_pairs']+=1
             try:
                 at,bt=ast.parse(a),ast.parse(b)
-                direct=m.inspect_pair(a,b);bound=binding.compare(a,b)
+                direct=m.inspect_pair(at,bt);bound=binding.compare(at,bt)
                 assert direct['parse']=='PASS'
             except (SyntaxError,ValueError,RecursionError) as exc:
                 counts['unparsed_or_unsupported']+=1;tc['unparsed_or_unsupported']+=1;unsupported[type(exc).__name__]+=1;continue

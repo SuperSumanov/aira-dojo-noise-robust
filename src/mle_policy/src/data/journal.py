@@ -134,14 +134,19 @@ def read_run_meta(run_dir: Path) -> dict[str, Any]:
     operators = solver.get("operators", {})
     clients: set[str] = set()
     providers: set[str] = set()
+    client_endpoints: set[tuple[str, str]] = set()
     for operator in operators.values():
         client = operator.get("llm", {}).get("client") if isinstance(operator, dict) else None
         if not isinstance(client, dict):
             continue
-        if client.get("model_id"):
-            clients.add(str(client["model_id"]))
+        model_id = str(client.get("model_id") or "")
+        base_url = str(client.get("base_url") or "")
+        if model_id:
+            clients.add(model_id)
         if client.get("provider"):
             providers.add(str(client["provider"]))
+        if model_id or base_url:
+            client_endpoints.add((base_url, model_id))
 
     hardware = None
     env_path = run_dir / "env_variables.json"
@@ -157,6 +162,9 @@ def read_run_meta(run_dir: Path) -> dict[str, Any]:
         "launch_time": metadata.get("launch_time"),
         "clients": sorted(clients),
         "providers": sorted(providers),
+        # The pair, not just the model id: the same model served by two vendors
+        # is two different providers.  Used to filter batches before merging.
+        "client_endpoints": sorted([base_url, model_id] for base_url, model_id in client_endpoints),
         "hardware": hardware,
         "time_limit_secs": solver.get("time_limit_secs"),
         "execution_timeout": solver.get("execution_timeout"),

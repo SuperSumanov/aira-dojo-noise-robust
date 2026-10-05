@@ -43,6 +43,38 @@ bash src/mle_policy/scripts/data/to_sft.sh "$OUT_ROOT"
 bash src/mle_policy/scripts/data/to_grpo.sh "$OUT_ROOT"
 ```
 
+`aggregate_batches.sh` 还能在归总时筛掉一些 run，多出来的参数直接透传给
+`aggregate_groups.py`（这些 filter 和 `mle_critic` 的 `build_cards` 一致，多了一个
+`--base-url`）：
+
+| 参数 | 含义 |
+| --- | --- |
+| `--client a+b` | run 的 `model_id` 包含 a 或 b（`+` 连接多个） |
+| `--base-url a+b` | run 的 `base_url` 包含 a 或 b（`+` 连接多个） |
+| `--tasks a,b` | 只要这些竞赛 |
+| `--hardware STR` | run 的 hardware 包含 STR |
+| `--time-limit MIN MAX` | `solver.time_limit_secs` 落在闭区间内 |
+| `--execution-timeout MIN MAX` | `solver.execution_timeout` 落在闭区间内 |
+| `--date START END` | `metadata.launch_time` 的日期落在闭区间内（`YYYY-MM-DD`） |
+
+```bash
+# OpenRouter 上 kimi 和 glm-5 的 run；时间限制在 1 天以内；2026-08-01 之后启动
+bash src/mle_policy/scripts/data/aggregate_batches.sh "$OUT_ROOT" non_thinking \
+     --client kimi+glm-5 --base-url openrouter --time-limit 0 86400 --date 2026-08-01 2026-12-31
+```
+
+`--client` / `--base-url` 都用 `+` 连接多个值（OR），单个模型 run 太少时可以一次选好几个；
+两边都是子串匹配，且必须落在**同一个** `(base_url, model_id)` 对上才通过。所以
+`--client kimi --base-url openrouter` 选的是"OpenRouter 上的 kimi"，而只写 `--client`
+会漏掉"同名模型挂在两个 vendor"的情况——`dojo_config.json` 里的 `provider` 字段恒为
+`openai`，区分不了供应商。
+
+过滤的单位是 **run**：被筛掉的 run 的 sample 不写出，group 只保留还活着的 member
+（一个 group 的 member 全被筛掉才丢这个 group）。group 的环境指纹里本来就含
+task/hardware/limits/client，所以这些 filter 不会把一个 group 切两半。结果记在归总
+manifest 的 `filters`、`skipped_batches`、`runs_kept` / `runs_dropped` /
+`groups_dropped` 里。
+
 除了批次构建，后五个脚本只读已有的上游结果。比如只改验证集划分，重新运行
 `assign_splits.sh`，然后只运行需要更新的格式导出脚本；不用重新读 journal 或归总 batch。
 `assign_splits.sh` 的参数是 `OUT_ROOT [SPLIT_BY] [VAL_FRACTION] [BUCKET]`，

@@ -60,17 +60,35 @@ def build_batch(
     tasks: set[str] = set()
     providers: set[str] = set()
     clients: set[str] = set()
+    client_endpoints: set[tuple[str, str]] = set()
     hardware: set[str] = set()
+    runs: dict[str, dict[str, Any]] = {}
     episodes_with_result = 0
     episode_ids: set[str] = set()
 
     with (output_dir / groupdata.SAMPLES_FILE).open("w", encoding="utf-8") as samples_file:
         for journal_path in journals:
-            run_meta = read_run_meta(find_run_dir(journal_path))
+            run_dir = find_run_dir(journal_path)
+            run_meta = read_run_meta(run_dir)
+            # Per-run metadata for aggregate_groups' filters; keyed by the path
+            # the episode members use, so a filtered run can be located again.
+            runs[str(run_dir.relative_to(batch_dir))] = {
+                "run_dir": str(run_dir.relative_to(batch_dir)),
+                "run_id": run_meta["run_id"],
+                "task": run_meta["task"],
+                "seed": run_meta["seed"],
+                "launch_time": run_meta["launch_time"],
+                "time_limit_secs": run_meta["time_limit_secs"],
+                "execution_timeout": run_meta["execution_timeout"],
+                "hardware": run_meta["hardware"],
+                "clients": run_meta["clients"],
+                "client_endpoints": run_meta["client_endpoints"],
+            }
             env_signatures.add(run_meta["env_signature"])
             tasks.add(run_meta["task"])
             providers.update(run_meta["providers"])
             clients.update(run_meta["clients"])
+            client_endpoints.update(tuple(pair) for pair in run_meta["client_endpoints"])
             if run_meta["hardware"]:
                 hardware.add(run_meta["hardware"])
             for episode in iter_episodes(
@@ -149,6 +167,8 @@ def build_batch(
         "tasks": sorted(tasks),
         "providers": sorted(providers),
         "clients": sorted(clients),
+        "client_endpoints": sorted([base_url, model_id] for base_url, model_id in client_endpoints),
+        "runs": sorted(runs.values(), key=lambda run: run["run_dir"]),
         "hardware": sorted(hardware),
         "env_signatures": sorted(env_signatures),
         "environment_mixed": len(env_signatures) > 1,

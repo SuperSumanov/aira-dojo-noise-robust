@@ -48,9 +48,11 @@ def write_run(
     hardware="A100",
     provider="openai",
     model="deepseek-v4-flash",
+    base_url="https://api.example.com",
     time_limit_secs=7200,
     execution_timeout=1200,
     num_children=2,
+    launch_time="2026-07-28 13:27:55",
 ):
     """Write ``<batch_dir>/<run_id>/{dojo_config.json,checkpoint/journal.jsonl}``."""
     run_dir = batch_dir / run_id
@@ -59,13 +61,17 @@ def write_run(
         json.dumps(
             {
                 "id": run_id,
-                "metadata": {"seed": 1},
+                "metadata": {"seed": 1, "launch_time": launch_time},
                 "task": {"name": task},
                 "solver": {
                     "time_limit_secs": time_limit_secs,
                     "execution_timeout": execution_timeout,
                     "num_children": num_children,
-                    "operators": {"draft": {"llm": {"client": {"provider": provider, "model_id": model}}}},
+                    "operators": {
+                        "draft": {
+                            "llm": {"client": {"provider": provider, "model_id": model, "base_url": base_url}}
+                        }
+                    },
                 },
             }
         ),

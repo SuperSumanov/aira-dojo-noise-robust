@@ -1,9 +1,10 @@
+import datetime
 import json
 
 import pytest
 
 from src.mle_policy.src.data import groupdata
-from src.mle_policy.src.data.aggregate_groups import aggregate
+from src.mle_policy.src.data.aggregate_groups import RunFilters, aggregate
 from src.mle_policy.src.data.assign_splits import assign_dataset_splits, assign_splits
 from src.mle_policy.src.data.build_batch_groups import build_batch
 from src.mle_policy.src.data.operator_prompts import system_message
@@ -148,6 +149,118 @@ def test_aggregate_then_split_then_views(tmp_path, node_builder, run_writer):
     assert [response["completion"] for response in row["responses"]] == ["good", "bad"]
     assert row["responses"][0]["reward"] > row["responses"][1]["reward"]
     assert [turn["role"] for turn in row["responses"][0]["messages"]] == ["assistant"]
+
+
+def test_aggregate_filter_matches_base_url_and_client_pair(tmp_path, node_builder, run_writer):
+    node = [node_builder(1, calls=[("draft", "shared", "ok")], buggy=False, score=0.6)]
+    run_writer(
+        tmp_path / "batches" / "b-deepseek",
+        "run-a",
+        node,
+        base_url="https://api.deepseek.com",
+        model="deepseek-v4-flash",
+    )
+    run_writer(
+        tmp_path / "batches" / "b-kimi",
+        "run-b",
+        node,
+        base_url="https://openrouter.ai/api/v1",
+        model="moonshotai/kimi-k2.5",
+    )
+    deepseek = build_batch(tmp_path / "batches" / "b-deepseek", tmp_path / "out" / "deepseek", verbose=False)
+    build_batch(tmp_path / "batches" / "b-kimi", tmp_path / "out" / "kimi", verbose=False)
+    assert deepseek["runs"][0]["client_endpoints"] == [["https://api.deepseek.com", "deepseek-v4-flash"]]
+
+    inputs = [tmp_path / "out" / "deepseek", tmp_path / "out" / "kimi"]
+
+    # No filter: both batches are merged.
+    both = tmp_path / "both"
+    aggregate(inputs, both, verbose=False)
+    assert merged_manifest(both)["groups"] == 2
+
+    # Filter by client, by base_url, and by the pair at once.
+    only_client = tmp_path / "only-client"
+    aggregate(inputs, only_client, filters=RunFilters(client=("kimi",)), verbose=False)
+    assert merged_manifest(only_client)["groups"] == 1
+    assert merged_manifest(only_client)["clients"] == ["moonshotai/kimi-k2.5"]
+
+    only_vendor = tmp_path / "only-vendor"
+    aggregate(inputs, only_vendor, filters=RunFilters(base_url=("openrouter",)), verbose=False)
+    assert merged_manifest(only_vendor)["clients"] == ["moonshotai/kimi-k2.5"]
+
+    # base_url and client must match the same pair: deepseek endpoint + kimi is empty.
+    with pytest.raises(ValueError, match="No runs matched the filter"):
+        aggregate(inputs, tmp_path / "empty", filters=RunFilters(client=("kimi",), base_url=("deepseek",)), verbose=False)
+
+    # '+' combines several models across vendors into one whitelist.
+    combined = tmp_path / "combined"
+    filters = RunFilters(client=("deepseek-v4-flash", "kimi"), base_url=("deepseek", "openrouter"))
+    aggregate(inputs, combined, filters=filters, verbose=False)
+    assert merged_manifest(combined)["clients"] == ["deepseek-v4-flash", "moonshotai/kimi-k2.5"]
+
+
+def test_aggregate_filter_by_time_limit_timeout_date_and_task(tmp_path, node_builder, run_writer):
+    node = [node_builder(1, calls=[("draft", "shared", "ok")], buggy=False, score=0.6)]
+    run_writer(
+        tmp_path / "batches" / "b-early",
+        "run-a",
+        node,
+        task="spaceship-titanic",
+        hardware="A100",
+        time_limit_secs=3600,
+        execution_timeout=600,
+        launch_time="2026-07-28 13:00:00",
+    )
+    run_writer(
+        tmp_path / "batches" / "b-late",
+        "run-b",
+        node,
+        task="titanic",
+        hardware="H100",
+        time_limit_secs=10800,
+        execution_timeout=3600,
+        launch_time="2026-09-01 09:00:00",
+    )
+    out = tmp_path / "out"
+    early = build_batch(tmp_path / "batches" / "b-early", out / "early", verbose=False)
+    build_batch(tmp_path / "batches" / "b-late", out / "late", verbose=False)
+    inputs = [out / "early", out / "late"]
+    assert [run["time_limit_secs"] for run in early["runs"]] == [3600]
+
+    def keep(filters):
+        merged = tmp_path / f"merged-{abs(hash(str(filters.as_manifest())))}"
+        aggregate(inputs, merged, filters=filters, verbose=False)
+        return merged_manifest(merged)
+
+    assert keep(RunFilters(time_limit=(3000, 7200)))["tasks"] == ["spaceship-titanic"]
+    assert keep(RunFilters(execution_timeout=(1200, 7200)))["tasks"] == ["titanic"]
+    assert keep(RunFilters(hardware="H100"))["tasks"] == ["titanic"]
+    assert keep(RunFilters(tasks=("titanic",)))["tasks"] == ["titanic"]
+    assert keep(RunFilters(date=(datetime.date(2026, 8, 1), datetime.date(2026, 9, 30))))["tasks"] == ["titanic"]
+    assert keep(RunFilters(date=(datetime.date(2026, 7, 1), datetime.date(2026, 7, 31))))["tasks"] == [
+        "spaceship-titanic"
+    ]
+
+
+def test_aggregate_filter_prunes_group_members_of_dropped_runs(tmp_path, node_builder, run_writer):
+    # Two runs in one batch answer the same prompt, so they share a group. A
+    # date filter keeps one run; the group must survive with a smaller size.
+    node = [node_builder(1, calls=[("draft", "shared", "ok")], buggy=False, score=0.6)]
+    run_writer(tmp_path / "batches" / "b", "run-a", node, launch_time="2026-07-01 10:00:00")
+    run_writer(tmp_path / "batches" / "b", "run-b", node, launch_time="2026-09-01 10:00:00")
+    batch = build_batch(tmp_path / "batches" / "b", tmp_path / "out", verbose=False)
+    assert batch["groups"] == 1
+
+    merged = tmp_path / "merged"
+    filters = RunFilters(date=(datetime.date(2026, 7, 1), datetime.date(2026, 7, 31)))
+    aggregate([tmp_path / "out"], merged, filters=filters, verbose=False)
+
+    manifest = merged_manifest(merged)
+    assert (manifest["runs_kept"], manifest["runs_dropped"], manifest["groups"]) == (1, 1, 1)
+    (group,) = groupdata.read_groups(merged)
+    assert group["size"] == 1
+    assert group["members"][0]["run_dir"] == "run-a"
+    assert {sample["run_dir"] for sample in groupdata.iter_samples(merged)} == {"run-a"}
 
 
 def test_grpo_keeps_the_complete_episode_and_uses_earliest_group_prompt(

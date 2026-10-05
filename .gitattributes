@@ -837,3 +837,12 @@ phase1/scripts/*matched_representation*20261005.py -text diff whitespace=cr-at-e
 phase1/results/matched_representation_20261005/** -text diff whitespace=cr-at-eol
 phase1/scripts/*structural_agent*20261005.py -text diff whitespace=cr-at-eol
 phase1/results/structural_agent_20261005/** -text diff whitespace=cr-at-eol
+# This six-hour research window: keep receipt-bound source/aggregate bytes.
+phase1/scripts/*collateral*20261006.py -text diff whitespace=cr-at-eol
+phase1/scripts/*external_pair*20261006.py -text diff whitespace=cr-at-eol
+phase1/scripts/*vocabulary_capacity*20261006.py -text diff whitespace=cr-at-eol
+phase1/scripts/*capacity_interaction*20261006.py -text diff whitespace=cr-at-eol
+phase1/results/collateral_factorial_20261006/** -text diff whitespace=cr-at-eol
+phase1/results/research_synthesis_20261006/** -text diff whitespace=cr-at-eol
+phase1/results/vocabulary_capacity_20261006/** -text diff whitespace=cr-at-eol
+phase1/results/capacity_interaction_20261006/** -text diff whitespace=cr-at-eol

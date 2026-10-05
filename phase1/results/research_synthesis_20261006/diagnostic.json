@@ -1,0 +1,107 @@
+{
+  "date_hong_kong": "2026-10-06",
+  "status": "POSTHOC_INTERNAL_GRID_DIAGNOSTIC_NOT_A_NEW_METHOD_OR_GATE",
+  "source_public_head": "9d97916e7c19b680cef22b7bc2280588bd56b973",
+  "sources": {
+    "phase1/results/matched_representation_20261005/inner-grid.json": "66d79e554d0e0ea8a56d5e87d5cdf941e38c8fc20e84efbda8ff6cd3b5023064",
+    "phase1/results/structural_agent_20261005/runs.csv": "8d838a6109b5218be940b0c42a9e1ca2d572c42a553d8b487b88789d8baa784d",
+    "phase1/results/structural_agent_20261005/supplement-v1.json": "bc23b061e2e6a4160b2a80f9af9bf387b3178029fbd449d660ee39fd7455f63a",
+    "phase1/results/task_feedback_local_edit_20261002/complete/preservation-review-v1.json": "02e0c5bd2340c9c713cb2bf872b9111530ea323dd1a2330d7bea8716c8d57bb2"
+  },
+  "question": "Can changing nuisance settings erase useful representation gains, and would restoring C alone rescue the observed Spooky proposals?",
+  "exploratory_selection": "Task, C contrast, and hypotheses selected after prior results were known. Two overlapping internal splits of one reused task, not two independent tasks. Source grid is fully crossed; report the Pizza boundary too.",
+  "grid_factorial": [
+    {
+      "seed": 115001,
+      "ngram": 2,
+      "min_df": 2,
+      "internal_logloss": {
+        "word_C0.1": 0.9342540081236205,
+        "word_C30": 0.4436022186964692,
+        "word_char_C0.1": 0.8952719943016885,
+        "word_char_C30": 0.4231276917590182
+      },
+      "structure_gain": 0.020474526937451,
+      "regularization_regression": 0.47214430254267026,
+      "combined_gain": -0.45166977560521926,
+      "regression_over_structure_gain": 23.06008358508382
+    },
+    {
+      "seed": 115002,
+      "ngram": 2,
+      "min_df": 1,
+      "internal_logloss": {
+        "word_C0.1": 0.940084393518985,
+        "word_C30": 0.4812624984915052,
+        "word_char_C0.1": 0.9001362283327039,
+        "word_char_C30": 0.45730546205116507
+      },
+      "structure_gain": 0.02395703644034014,
+      "regularization_regression": 0.44283076628153883,
+      "combined_gain": -0.4188737298411987,
+      "regression_over_structure_gain": 18.48437169531857
+    }
+  ],
+  "actual_proposal_grid_analogues": [
+    {
+      "seed": 115001,
+      "proposal_index": 3,
+      "parent_inner_logloss": 0.4436022186964692,
+      "observed_proposal_inner_logloss": 0.8905121570161324,
+      "word_unigram_min_df_1_C_01_grid_logloss": 0.8905121570161324,
+      "word_unigram_min_df_1_C_30_grid_logloss": 0.46169566840649595,
+      "restored_grid_cell_still_worse": true
+    },
+    {
+      "seed": 115002,
+      "proposal_index": 9,
+      "parent_inner_logloss": 0.48126249849150526,
+      "observed_proposal_inner_logloss": 0.8968394121413444,
+      "word_unigram_min_df_1_C_01_grid_logloss": 0.8968394121413444,
+      "word_unigram_min_df_1_C_30_grid_logloss": 0.5120765900259493,
+      "restored_grid_cell_still_worse": true
+    }
+  ],
+  "analogue_boundary": "Exact internal metric matches and compatible constructor literals are not a semantic-equivalence proof. No patched actual candidate was rerun. These are previously evaluated grid counterparts, not observed outcomes of a new agent intervention.",
+  "pizza_boundary": {
+    "seed_115001_union_C01_vs_best_word_oriented_gain": 0.0038675429726997557,
+    "seed_115002_union_C01_vs_best_word_oriented_gain": 0.009959555106167861,
+    "interpretation": "C=0.1 is not universally bad; no global rule to preserve C=30 is justified."
+  },
+  "protocol_boundary": {
+    "single_proposal_only": true,
+    "ordinary_median_seconds": 64.40796702215448,
+    "profile_median_seconds": 55.38224070891738,
+    "episode_cap_seconds": 360,
+    "interpretation": "One-shot comparison, not equal-opportunity iterative search. Same cap is not same realized expenditure; unused cap alone does not prove a causal explanation of failure."
+  },
+  "verification": {
+    "source_grid_hash_matches_existing_export_receipt": true,
+    "cells_checked_independently_in_javascript_and_powershell": true,
+    "eight_selected_factorial_cells_converged": true,
+    "new_model_fits": 0,
+    "new_gpu_jobs": 0,
+    "paid_api_calls": 0,
+    "protected_sets_opened": false,
+    "old_results_modified": false
+  },
+  "prior_overlap": [
+    "R3 local edits and collateral changes",
+    "R11 implementation variability",
+    "R12 post-HPO structural proposals",
+    "MLE-STAR",
+    "PatchFusion",
+    "Implementation Lottery",
+    "FBNetV3 joint architecture-recipe search",
+    "Centaur"
+  ],
+  "candidate_hypothesis": "Some open-ended modifications erase previously optimized compatible settings; distinguish this directed loss from intrinsically poor structural proposals. Not yet established as common, causally dominant, novel, or recoverable at net-positive cost.",
+  "next_discriminating_check": "Before building another controller, freeze outcome-blind selection of actual compatible parent/child edits and the intervention rule; compare original and crossed/inherited settings including unchanged parent controls. Preserve all incompatible/failed cases. Expand only if genuinely useful structural changes are recovered across tasks and exceed strong local-edit/HPO controls at full cost.",
+  "constraints": [
+    "No claim of new method or general critic impossibility",
+    "No retrospective gate repair",
+    "No automatic 20-run thinking-feedback matrix launch",
+    "No arbitrary candidate rescue selected by known outer outcomes",
+    "No training, protected scoring, raw candidate export, or Git push"
+  ]
+}

@@ -1,5 +1,21 @@
 # 当前短交接
-更新：2026-10-05 18:25香港。用户17:36批准继续、一小时反馈，目标18:36；本批已闭合并发布。先fetch并读CURRENT_DIRECTION.md、ROUTE_DECISIONS.md。
+更新：2026-10-06香港。用户批准三原则六小时研究，窗口01:59:42—07:59:42香港；尚未完成该窗口。10/6本轮fetch确认myfork主分支9d97916e7c19b680cef22b7bc2280588bd56b973、学长dfff0efb9daf1d4a63c74492f138c19c1fd8440e未变。按CURRENT_DIRECTION最新10/6裁决，不重开旧失败门。
+
+## 本窗口新事实与进行中工作
+- 公开GOME4210对先按固定hash每任务2对冻结80对：80解析、46有唯一共同构造器、直接数值变化0。补同样本变量/字典绑定：76可比较，12对/10任务有设置变化。多数意图明确要求，不能报12个失误；三例“保持其余设置”附近需进一步核意图与执行。未读取score/feedback/scenario值，意图文本仅数字掩码审读但仍可能含历史定性信息，不称完全盲审。
+- 远端/research/d7/spc/yzyang4/collateral-sample-20261006-v1；structure SHA82bcbbfcb7f1022b246fce0703e81de4a788c67d5fc5d1b3fc0285f77fc077d5；binding-supplement-v1/summary SHAd9aca8bb78365990143f149790f47089d8add255883992b596b43845173f3dfa。来源原文留远端。
+- 已有开发85修改再查：83解析、80唯一对、43对有支持的数值变化；旧开发成绩曾分析，不是新确认集。v1只读脚本漏接原生generic Exception后停，失败目录保留；v2同分母修正完成。根collateral-local-20261006-v2；summary SHA4c96405a1d58dcddbf228b801cd7516085a56a2d1eae5d9bd601c2384eb452e4。没有新模型执行。
+- 冻结四格反事实：85行中24合格、42无允许数值变化、16需静态外部模型依赖、2原时长>150秒、1只有排除槽。合格内按固定hash每任务4对，Pizza/Tweet共8对×P/C/CP/PC=32程序，最多2张3090×2小时=4GPUh，240秒/程序；用户已见矩阵预算。P父/C子/CP子恢复父参数/PC父换子参数。这里只隔离数值bundle，剩余改动不自动等于语义想法。
+- 根/research/d7/spc/yzyang4/collateral-factorial-20261006-v1：selection已生成SHA6610706263a4ed059f28d3e52e8172af9dddd9400095fdd9172626689960c295；prepare/submit尚未执行，绝不可当已开跑。新运行脚本run_collateral_factorial_20261006.py复用已有AIRA镜像/执行runtime，无LLM/API/底座更新；须完成源码commit、预检后提交。只在全批闭合后评分，保留失败；非同预算新搜索方法对照。
+- 02:04香港只读队列仅12535 JobHeldUser，不操作；以后运行状态需重查。LLaMEA-HPO（2410.16309）已覆盖结构与调参分工，不把宽概念当新颖性。
+
+## 最新研究复算：方向仍待验证，不把局部线索当新方法
+- 新本地证据：results/research_synthesis_20261006/diagnostic.json；未提交/push。源inner-grid SHA66d79e554d0e0ea8a56d5e87d5cdf941e38c8fc20e84efbda8ff6cd3b5023064与已有导出回执一致，JS/PowerShell独立复算。
+- Spooky两内部划分：保留父解C30、ngram/min_df，仅换word→word+char，内部logloss改善0.020474526937451/0.02395703644034014；相同字符表示若改C0.1，相对父解反而恶化0.45166977560521926/0.4188737298411987。相关8格训练均收敛。这是事后单任务网格诊断，非实际agent恢复/E2E/独立确认。
+- 必须保留反证：实际两个profile提案是word unigram+C0.1，不是上述好字符结构；对应网格即使恢复C30，logloss0.46169566840649595/0.5120765900259493仍差于父解0.4436022186964692/0.48126249849150526。数值匹配不证明程序语义等价，未补跑实际修改。Pizza的C0.1字符格仍可优于父解，不能制定通用锁C规则。
+- 候选问题：搜索是否系统性丢失已优化设置、抵消真正有用的结构变化？它与R3/R11/R12重叠，不能称全新路线；MLE-STAR/PatchFusion/Implementation Lottery/FBNetV3/Centaur均是直接近邻。下一步先找真实候选的可挽救空间及反证，固定不看结果的抽样与干预，再决定是否值得干预；不先建控制器。
+- 上一聊天20条thinking×feedback＋HPO矩阵仅提案未启动。16403只有单提案；ordinary/profile中位64.41/55.38秒，名义360秒，不是完整搜索对照。这个边界不撤回旧单提案结果，也不证明放宽次数会成功。
+- 队列未重新查询；下文10/5队列均最后观察。保护集仍关闭，未改旧结果、实验代码或学长分支。
 
 ## 最新闭合：额外反馈单提案不扩大
 - 根/research/d7/spc/yzyang4/structural-agent-20261005-v1；16403 COMPLETED，12启动/10有效端点，982秒×4GPU=1.0911111111111111 GPUh；10评分独立误差≤1.1102230246251565e-16，服务关闭。prepare/submit/analyze/supplement均已执行，禁止重复。源码24ceb8f5973afd9bc7268f4e79f900d5d8964e84；结果已发布38e7bb7068453e505ef4ba5c6f384ee3576f6d48并独立ls-remote确认；学长分支未改。18:24:34队列仅旧12535 JobHeldUser，不操作它；18:22短暂DNS失败已恢复。

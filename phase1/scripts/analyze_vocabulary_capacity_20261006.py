@@ -137,7 +137,7 @@ def main():
                 aa,bb=receipts[group[a]['index']],receipts[group[b]['index']]
                 diffs=[y['inner_oriented_score']-x['inner_oriented_score'] for x,y in zip(aa['rows'],bb['rows'])]
                 inner.append(dict(task=task,seed=seed,contrast=b+'_minus_'+a,matched_grid_wins=sum(v>0 for v in diffs),configurations=28,
-                    median_difference=statistics.median(diffs),gain_at_first_arm_selected_parameters=diffs[aa['selected']['grid_index']]))
+                    median_difference=statistics.median(diffs),gain_at_reference_selected_parameters=diffs[aa['selected']['grid_index']]))
     intervals=conditional_intervals(rows)
     # Already-public old control artifacts; this is replay identity, not a new seed.
     old_csv=PREV/'readout-v1/runs.csv'
@@ -157,7 +157,9 @@ def main():
     result=dict(protocol=plan['protocol'],job=job,source_commit=plan['source_commit'],plan_sha256=sha(R/'plan.json'),analysis_sha256=sha(__file__),
         assigned=12,complete=sum(r['valid'] for r in rows),allocation_state=state,allocation_seconds=int(elapsed),allocated_gpu_hours=int(elapsed)/3600,
         classifier_fits_completed=sum(29 for r in rows if r['valid']),binary_fits_completed=sum(r['binary_fits'] or 0 for r in rows),
-        independent_scores=len(errors),max_absolute_verifier_error=max(errors,default=None),contrasts=contrasts,per_task=per_task,
+        independent_scores=len(errors),max_absolute_verifier_error=max(errors,default=None),
+        all_valid_fits_converged=all(r['all_grid_converged'] and r['final_converged'] for r in rows if r['valid']),
+        contrasts=contrasts,per_task=per_task,
         matched_grid_diagnostics=inner,conditional_intervals=intervals,old_control_replay=replay,
         automatic_expansion=False,new_method_confirmed=False,old_gates_unchanged=True,
         limitations=plan['limitations'])

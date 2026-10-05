@@ -1,0 +1,17 @@
+index,wave,start,task,seed,arm,attempted,worker_status,source_metric,final_dev_metric,selected_action,improvement,valid_new,executed,generated,closed,run_budget_seconds,source_commit
+0,0,0,random-acts-of-pizza,110501,ROOT,True,failed,,,,,0,0,0,True,600,b8e75052a9f69e19436f12bc5a36a0ca26a69a57
+1,0,1,spooky-author-identification,110502,ROOT,True,budget_exhausted,,,,,0,2,2,True,600,b8e75052a9f69e19436f12bc5a36a0ca26a69a57
+2,1,2,random-acts-of-pizza,110511,ROOT,True,missing_finished,,,,,0,1,2,True,600,b8e75052a9f69e19436f12bc5a36a0ca26a69a57
+3,1,3,spooky-author-identification,110512,ROOT,True,failed,,,,,0,4,4,True,600,b8e75052a9f69e19436f12bc5a36a0ca26a69a57
+4,2,0,random-acts-of-pizza,110601,continue,False,not_started,,,,,0,0,0,False,600,b8e75052a9f69e19436f12bc5a36a0ca26a69a57
+5,2,1,spooky-author-identification,110602,continue,False,not_started,,,,,0,0,0,False,600,b8e75052a9f69e19436f12bc5a36a0ca26a69a57
+6,3,0,random-acts-of-pizza,110601,reimplement,False,not_started,,,,,0,0,0,False,600,b8e75052a9f69e19436f12bc5a36a0ca26a69a57
+7,3,1,spooky-author-identification,110602,reimplement,False,not_started,,,,,0,0,0,False,600,b8e75052a9f69e19436f12bc5a36a0ca26a69a57
+8,4,0,random-acts-of-pizza,110601,new_idea,False,not_started,,,,,0,0,0,False,600,b8e75052a9f69e19436f12bc5a36a0ca26a69a57
+9,4,1,spooky-author-identification,110602,new_idea,False,not_started,,,,,0,0,0,False,600,b8e75052a9f69e19436f12bc5a36a0ca26a69a57
+10,5,2,random-acts-of-pizza,110611,new_idea,False,not_started,,,,,0,0,0,False,600,b8e75052a9f69e19436f12bc5a36a0ca26a69a57
+11,5,3,spooky-author-identification,110612,new_idea,False,not_started,,,,,0,0,0,False,600,b8e75052a9f69e19436f12bc5a36a0ca26a69a57
+12,6,2,random-acts-of-pizza,110611,reimplement,False,not_started,,,,,0,0,0,False,600,b8e75052a9f69e19436f12bc5a36a0ca26a69a57
+13,6,3,spooky-author-identification,110612,reimplement,False,not_started,,,,,0,0,0,False,600,b8e75052a9f69e19436f12bc5a36a0ca26a69a57
+14,7,2,random-acts-of-pizza,110611,continue,False,not_started,,,,,0,0,0,False,600,b8e75052a9f69e19436f12bc5a36a0ca26a69a57
+15,7,3,spooky-author-identification,110612,continue,False,not_started,,,,,0,0,0,False,600,b8e75052a9f69e19436f12bc5a36a0ca26a69a57

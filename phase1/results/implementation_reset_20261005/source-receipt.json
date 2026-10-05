@@ -1,0 +1,10 @@
+{
+  "experiment_git_commit": "26838e119602c78afd0a3cb5bd001f88ab72f31c",
+  "plan_sha256": "022cef28a1e6b5622d479717247d6f0cc642929f44fe63d05256eddef4981bda",
+  "runner_sha256": "ca58ba5f91ba58b5f527707fb1953f5ca52388402e7a35d95b227f00e7ed6a92",
+  "analysis_sha256": "f2f5aca808f17719f61b651963e0da9c8ac771930f5a86ea6e72cff1acbac3ab",
+  "primary_entry": "implementation_reset_20261005.py",
+  "prepare_command": "/research/d7/spc/yzyang4/venvs/aira/bin/python -B /research/d7/spc/yzyang4/implementation_reset_20261005.py prepare",
+  "submit_command": "/research/d7/spc/yzyang4/venvs/aira/bin/python -B /research/d7/spc/yzyang4/implementation-reset-20261005-v1/implementation_reset_20261005.py submit",
+  "scope": "approved bounded development qualification; no training, protected cohorts or paid API"
+}

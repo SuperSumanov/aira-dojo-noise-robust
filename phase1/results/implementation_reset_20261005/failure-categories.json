@@ -1,0 +1,145 @@
+{
+  "rows": [
+    {
+      "calls": [],
+      "execution": [],
+      "generation_calls_returned": 0,
+      "index": 0,
+      "observed_prior_exception_types": {},
+      "unexpected_keywords": []
+    },
+    {
+      "calls": [
+        {
+          "completion_tokens": 2744,
+          "latency": 138.06385996099561,
+          "prompt_tokens": 3387,
+          "success": true
+        },
+        {
+          "completion_tokens": 2362,
+          "latency": 115.80669612623751,
+          "prompt_tokens": 6690,
+          "success": true
+        }
+      ],
+      "execution": [
+        {
+          "exec_seconds": 5.807487098500133,
+          "exit_code": 1,
+          "kind": "draft",
+          "timed_out": false,
+          "valid": false
+        },
+        {
+          "exec_seconds": 245.2927668299526,
+          "exit_code": 1,
+          "kind": "debug",
+          "timed_out": true,
+          "valid": false
+        }
+      ],
+      "generation_calls_returned": 2,
+      "index": 1,
+      "observed_prior_exception_types": {
+        "ValueError": 1
+      },
+      "unexpected_keywords": []
+    },
+    {
+      "calls": [
+        {
+          "completion_tokens": 3443,
+          "latency": 168.95987417083234,
+          "prompt_tokens": 3646,
+          "success": true
+        },
+        {
+          "completion_tokens": 3015,
+          "latency": 151.3046820042655,
+          "prompt_tokens": 6425,
+          "success": true
+        }
+      ],
+      "execution": [
+        {
+          "exec_seconds": 135.20233997050673,
+          "exit_code": 1,
+          "kind": "draft",
+          "timed_out": false,
+          "valid": false
+        }
+      ],
+      "generation_calls_returned": 2,
+      "index": 2,
+      "observed_prior_exception_types": {},
+      "unexpected_keywords": []
+    },
+    {
+      "calls": [
+        {
+          "completion_tokens": 2583,
+          "latency": 126.52329644747078,
+          "prompt_tokens": 3387,
+          "success": true
+        },
+        {
+          "completion_tokens": 2023,
+          "latency": 103.67057847417891,
+          "prompt_tokens": 6479,
+          "success": true
+        },
+        {
+          "completion_tokens": 1976,
+          "latency": 99.5565307289362,
+          "prompt_tokens": 6488,
+          "success": true
+        },
+        {
+          "completion_tokens": 2007,
+          "latency": 99.57554630190134,
+          "prompt_tokens": 6451,
+          "success": true
+        }
+      ],
+      "execution": [
+        {
+          "exec_seconds": 5.262883111834526,
+          "exit_code": 1,
+          "kind": "draft",
+          "timed_out": false,
+          "valid": false
+        },
+        {
+          "exec_seconds": 5.256583439186215,
+          "exit_code": 1,
+          "kind": "debug",
+          "timed_out": false,
+          "valid": false
+        },
+        {
+          "exec_seconds": 34.147699671797454,
+          "exit_code": 1,
+          "kind": "debug",
+          "timed_out": false,
+          "valid": false
+        },
+        {
+          "exec_seconds": 72.89451777841896,
+          "exit_code": 1,
+          "kind": "debug",
+          "timed_out": false,
+          "valid": false
+        }
+      ],
+      "generation_calls_returned": 4,
+      "index": 3,
+      "observed_prior_exception_types": {
+        "LightGBMError": 2,
+        "ValueError": 1
+      },
+      "unexpected_keywords": []
+    }
+  ],
+  "scope": "closed first-source qualification only; diagnostic not new effect"
+}

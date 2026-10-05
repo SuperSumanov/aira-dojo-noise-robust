@@ -1,0 +1,88 @@
+{
+  "allocated_gpu_hours": 1.63,
+  "allocation_seconds": 1467,
+  "allocation_state": "COMPLETED",
+  "automatic_expansion": false,
+  "continuations_assigned": 12,
+  "continuations_attempted": 0,
+  "contrasts": [
+    {
+      "complete": false,
+      "reimplement_minus_continue": null,
+      "reimplement_minus_new_idea": null,
+      "start": 0,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "complete": false,
+      "reimplement_minus_continue": null,
+      "reimplement_minus_new_idea": null,
+      "start": 1,
+      "task": "spooky-author-identification"
+    },
+    {
+      "complete": false,
+      "reimplement_minus_continue": null,
+      "reimplement_minus_new_idea": null,
+      "start": 2,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "complete": false,
+      "reimplement_minus_continue": null,
+      "reimplement_minus_new_idea": null,
+      "start": 3,
+      "task": "spooky-author-identification"
+    }
+  ],
+  "exit_code": "0:0",
+  "independent_scores": 0,
+  "job": "16357",
+  "limitation": "Four paired starts on two reused dev tasks, broad pre-specified TFIDF/LR idea. Implementation reset is bundled with context removal and native operator routing. Neither learned selector, algorithm novelty, nor independent full-search gain confirmed.",
+  "max_independent_abs_error": null,
+  "numerical_signal": false,
+  "per_task": [
+    {
+      "complete_pairs": 0,
+      "contrasts": {
+        "continue": {
+          "median": null,
+          "n": 0,
+          "sample_variance": null
+        },
+        "new_idea": {
+          "median": null,
+          "n": 0,
+          "sample_variance": null
+        }
+      },
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "complete_pairs": 0,
+      "contrasts": {
+        "continue": {
+          "median": null,
+          "n": 0,
+          "sample_variance": null
+        },
+        "new_idea": {
+          "median": null,
+          "n": 0,
+          "sample_variance": null
+        }
+      },
+      "task": "spooky-author-identification"
+    }
+  ],
+  "plan_sha256": "022cef28a1e6b5622d479717247d6f0cc642929f44fe63d05256eddef4981bda",
+  "roots_assigned": 4,
+  "roots_valid": 0,
+  "semantic_review_complete": false,
+  "source_gate": {
+    "missing_start": 0,
+    "passed": false,
+    "reason": "missing_first_valid"
+  },
+  "status": "CLOSED_EXPLORATORY_QUALIFICATION"
+}

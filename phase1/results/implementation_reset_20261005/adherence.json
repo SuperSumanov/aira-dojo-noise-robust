@@ -1,0 +1,119 @@
+{
+  "rows": [
+    {
+      "action": "action-0",
+      "fixed_idea_in_actual_prompt": true,
+      "forbidden_extra_family_instruction_present": true,
+      "index": 1,
+      "prompt_messages": 2,
+      "structural_screen": {
+        "classifier_calls": [],
+        "limitation": "Syntactic screen only; aliases and dataflow require blinded code review.",
+        "nonword_analyzer": true,
+        "screen_pass": false,
+        "tfidf_constructor_sites": 1
+      }
+    },
+    {
+      "action": "action-1",
+      "fixed_idea_in_actual_prompt": true,
+      "forbidden_extra_family_instruction_present": true,
+      "index": 1,
+      "prompt_messages": 2,
+      "structural_screen": {
+        "classifier_calls": [],
+        "limitation": "Syntactic screen only; aliases and dataflow require blinded code review.",
+        "nonword_analyzer": true,
+        "screen_pass": false,
+        "tfidf_constructor_sites": 1
+      }
+    },
+    {
+      "action": "action-0",
+      "fixed_idea_in_actual_prompt": true,
+      "forbidden_extra_family_instruction_present": true,
+      "index": 2,
+      "prompt_messages": 2,
+      "structural_screen": {
+        "classifier_calls": [
+          "XGBClassifier"
+        ],
+        "limitation": "Syntactic screen only; aliases and dataflow require blinded code review.",
+        "nonword_analyzer": false,
+        "screen_pass": false,
+        "tfidf_constructor_sites": 1
+      }
+    },
+    {
+      "action": "action-1",
+      "fixed_idea_in_actual_prompt": true,
+      "forbidden_extra_family_instruction_present": true,
+      "index": 2,
+      "prompt_messages": 2,
+      "structural_screen": {
+        "classifier_calls": [],
+        "limitation": "Syntactic screen only; aliases and dataflow require blinded code review.",
+        "nonword_analyzer": false,
+        "screen_pass": true,
+        "tfidf_constructor_sites": 1
+      }
+    },
+    {
+      "action": "action-0",
+      "fixed_idea_in_actual_prompt": true,
+      "forbidden_extra_family_instruction_present": true,
+      "index": 3,
+      "prompt_messages": 2,
+      "structural_screen": {
+        "classifier_calls": [],
+        "limitation": "Syntactic screen only; aliases and dataflow require blinded code review.",
+        "nonword_analyzer": false,
+        "screen_pass": false,
+        "tfidf_constructor_sites": 1
+      }
+    },
+    {
+      "action": "action-1",
+      "fixed_idea_in_actual_prompt": true,
+      "forbidden_extra_family_instruction_present": true,
+      "index": 3,
+      "prompt_messages": 2,
+      "structural_screen": {
+        "classifier_calls": [],
+        "limitation": "Syntactic screen only; aliases and dataflow require blinded code review.",
+        "nonword_analyzer": false,
+        "screen_pass": false,
+        "tfidf_constructor_sites": 1
+      }
+    },
+    {
+      "action": "action-2",
+      "fixed_idea_in_actual_prompt": true,
+      "forbidden_extra_family_instruction_present": true,
+      "index": 3,
+      "prompt_messages": 2,
+      "structural_screen": {
+        "classifier_calls": [],
+        "limitation": "Syntactic screen only; aliases and dataflow require blinded code review.",
+        "nonword_analyzer": false,
+        "screen_pass": false,
+        "tfidf_constructor_sites": 1
+      }
+    },
+    {
+      "action": "action-3",
+      "fixed_idea_in_actual_prompt": true,
+      "forbidden_extra_family_instruction_present": true,
+      "index": 3,
+      "prompt_messages": 2,
+      "structural_screen": {
+        "classifier_calls": [],
+        "limitation": "Syntactic screen only; aliases and dataflow require blinded code review.",
+        "nonword_analyzer": false,
+        "screen_pass": false,
+        "tfidf_constructor_sites": 1
+      }
+    }
+  ],
+  "scope": "closed input-adherence diagnostic; syntactic not semantic proof"
+}

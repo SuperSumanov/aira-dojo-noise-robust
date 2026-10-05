@@ -826,3 +826,6 @@ phase1/results/policy9b_paired_20261005/** -text diff whitespace=cr-at-eol
 phase1/results/policy9b_role_cross_20261005/** -text diff whitespace=cr-at-eol
 phase1/scripts/*policy9b*2026100[45].py -text diff whitespace=cr-at-eol
 phase1/scripts/check_sft_target_semantics_20261005.py -text diff whitespace=cr-at-eol
+# Preserve the stopped implementation-reset batch and its exact source bytes.
+phase1/results/implementation_reset_20261005/** -text diff whitespace=cr-at-eol
+phase1/scripts/*implementation_reset*20261005.py -text diff whitespace=cr-at-eol

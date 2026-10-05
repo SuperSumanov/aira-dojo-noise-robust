@@ -1,0 +1,51 @@
+{
+  "type": "posthoc_source_only_intent_scope_check_not_performance_result",
+  "observed_at_hkt": "2026-10-06T05:42:00+08:00",
+  "binding_summary_sha256": "d9aca8bb78365990143f149790f47089d8add255883992b596b43845173f3dfa",
+  "sampling": "Inspect the existing twelve binding-change pairs from the fixed eighty-pair GOME sample, not newly selected outcome-positive edits.",
+  "sample_independence_check": {
+    "fixed_pairs": 80,
+    "tasks": 40,
+    "distinct_parent_AST": 79,
+    "distinct_child_AST": 80,
+    "parent_AST_multiplicity_histogram": {"1": 78, "2": 1},
+    "binding_change_pairs": 12,
+    "binding_change_distinct_parent_AST": 12,
+    "interpretation": "The public structural sample is not dominated by one parent. Distinct ASTs are not proof of independent physical runs or generators. All twelve changed pairs use torch; many also use pretrained vision/language libraries, unlike the cheap historical replay eligibility."
+  },
+  "source_pins": {
+    "Trace_1.json": "ee50756cd940a1add0e44bcbb04e710233709d81f823111d70846cfe6278afb0",
+    "Trace_2.json": "5a451c60ead8ac85e8eca86502cd92efe3ff1d12949510ccec394ca44dfe4cbd",
+    "Trace_3.json": "8977dd468ed50d22aa173cb0aec208286e9b73142b72568861b60d55b3243ae2"
+  },
+  "findings": [
+    {
+      "task": "google-quest-challenge",
+      "source": "Trace_1.json/loop_13",
+      "observation": "Proposal requests a loss/output change while preserving other hyperparameters; program also changes EPOCHS from 3 to 2 and N_FOLDS from 5 to 3.",
+      "static_use": "Both names are loaded, including fold construction and training/scheduler logic. Child fold-construction implementation also changes.",
+      "interpretation": "A concrete intent-versus-settings mismatch, not demonstrated harmful collateral regression. Both programs contain time-budget/debug logic; necessity and effective executed exposure are unmeasured."
+    },
+    {
+      "task": "aptos2019-blindness-detection",
+      "source": "Trace_2.json/loop_6",
+      "observation": "Model/resolution and smaller batch are requested; learning rate additionally changes from 0.0003 to 0.0002 and is used in AdamW.",
+      "interpretation": "Learning-rate intent is underspecified by 'current schedule'; architecture/resource coupling is a plausible reason, not established error."
+    },
+    {
+      "task": "herbarium-2020-fgvc7",
+      "source": "Trace_3.json/loop_13",
+      "observation": "Proposal changes debug/full-training behavior; patience additionally changes from 3 to 1 and is used by a stopping comparison.",
+      "interpretation": "Stopping-policy change is not explicitly specified, but no conclusion about intention, executed epochs, or quality follows from source inspection."
+    }
+  ],
+  "decision": "Do not label the twelve numeric-change pairs twelve mistakes, estimate harmful-regression prevalence, or start a repair experiment from these flags alone.",
+  "boundaries": [
+    "Only base_code/code and digit-masked hypothesis text were inspected; no valid_score, feedback, test_report or scenario values were consulted.",
+    "Hypothesis prose can contain qualitative historical performance, so this semantic review is not claimed fully outcome-blind.",
+    "AST name uses do not prove execution, dataflow equivalence, intent or causal effect.",
+    "This is not a fresh performance sample and contains no results from job 16560.",
+    "No raw source, prompt, per-sample prediction, labels or credentials are saved in this record.",
+    "No GPU job, API call or model fit was added for this inspection."
+  ]
+}

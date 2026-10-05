@@ -1,0 +1,23 @@
+{
+  "type": "posthoc_fixed_executed_pool_opportunity_bound_not_method_result",
+  "source": "phase1/results/collateral_factorial_20261006/runs.csv",
+  "source_sha256": "4b5b8d4ee847264600e1cf0fd0f144e389b9ff10dbbc6ca42118693cf52e74e2",
+  "definition": "Per edge, max metric among its valid P/C/CP/PC artifacts minus P. P is always valid and available. Invalid programs are ineligible, not assigned a fictitious score.",
+  "assigned_programs": 32,
+  "edges": 8,
+  "distinct_parent_programs": 3,
+  "valid_programs_by_case": [4, 4, 4, 4, 2, 2, 2, 4],
+  "oracle_minus_parent_by_case": [0, 0, 0, 0.001435063381966084, 0, 0, 0, 0],
+  "decimal_case3_difference_of_serialized_scores": "0.001435063381966",
+  "independent_checks": ["PowerShell double arithmetic on CSV", "Python Decimal arithmetic on the same hash-pinned CSV"],
+  "boundaries": [
+    "Original factorial causal analysis remains 5/8 complete; this view does not impute its missing contrasts or revise its gate.",
+    "This oracle can inspect reused development outcomes and select for free. It is a deliberately optimistic bound for selection within this fixed pool, not a deployable rule.",
+    "The bound is algebraic for these observed scores, not a confidence bound on population performance or unobserved reruns.",
+    "Does not bound new generation, repairs, new executions or combinations of predictions/program fragments.",
+    "Only a selected old date-feature example is positive; its already-computed conditional interval crosses zero.",
+    "Do not pool AUC and Jaccard into a mean or treat repeated parents as independent replications.",
+    "Cannot estimate prevalence on natural MLE edits: source, dependency and runtime eligibility filters are restrictive.",
+    "No new labels, predictions, model fits, GPU jobs or remote result files were read for this calculation."
+  ]
+}

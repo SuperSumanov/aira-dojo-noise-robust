@@ -1,0 +1,83 @@
+{
+  "question": "Can independent hyperparameter choice hide a known beneficial representation change?",
+  "type": "posthoc_exact_grid_stress_test_not_natural_edit_prevalence",
+  "source_job": "16395",
+  "source_sha256": "66d79e554d0e0ea8a56d5e87d5cdf941e38c8fc20e84efbda8ff6cd3b5023064",
+  "rows": [
+    {
+      "task": "random-acts-of-pizza",
+      "seed": 115001,
+      "matched_wins": 20,
+      "matched_total": 28,
+      "unmatched_grid_wins": 428,
+      "unmatched_ties": 0,
+      "unmatched_total": 784,
+      "beats_optimized_parent": 4,
+      "child_configs": 28,
+      "best_parent": {
+        "C": 0.3,
+        "min_df": 1,
+        "ngram": 2
+      },
+      "inheritance_delta": 0.003058645096056689
+    },
+    {
+      "task": "spooky-author-identification",
+      "seed": 115001,
+      "matched_wins": 28,
+      "matched_total": 28,
+      "unmatched_grid_wins": 492,
+      "unmatched_ties": 0,
+      "unmatched_total": 784,
+      "beats_optimized_parent": 10,
+      "child_configs": 28,
+      "best_parent": {
+        "C": 30,
+        "min_df": 2,
+        "ngram": 2
+      },
+      "inheritance_delta": 0.020474526937451
+    },
+    {
+      "task": "random-acts-of-pizza",
+      "seed": 115002,
+      "matched_wins": 25,
+      "matched_total": 28,
+      "unmatched_grid_wins": 508,
+      "unmatched_ties": 0,
+      "unmatched_total": 784,
+      "beats_optimized_parent": 10,
+      "child_configs": 28,
+      "best_parent": {
+        "C": 0.3,
+        "min_df": 1,
+        "ngram": 2
+      },
+      "inheritance_delta": 0.013144590495449804
+    },
+    {
+      "task": "spooky-author-identification",
+      "seed": 115002,
+      "matched_wins": 28,
+      "matched_total": 28,
+      "unmatched_grid_wins": 490,
+      "unmatched_ties": 0,
+      "unmatched_total": 784,
+      "beats_optimized_parent": 8,
+      "child_configs": 28,
+      "best_parent": {
+        "C": 30,
+        "min_df": 1,
+        "ngram": 2
+      },
+      "inheritance_delta": 0.02395703644034014
+    }
+  ],
+  "boundaries": [
+    "Uniform grid combinations are an artificial stress distribution, not observed LLM proposal probabilities.",
+    "Training-inner scores on two reused development tasks; not new independent validation or an E2E method.",
+    "Matched fixed-grid improvements are not evidence of a new representation or a new scientific principle.",
+    "Compare to strong same-space HPO; inheriting parameters is already covered by LLaMEA-HPO.",
+    "All 784 pairings share the same 28+28 fitted programs; they are not 784 independent runs."
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "recorded_utc": "2026-10-05T19:11:45Z",
+  "status": "PRE_READOUT_INTERPRETATION_BOUNDARY_NOT_A_NEW_SELECTION_RULE",
+  "experiment": "collateral-factorial-20261006-v1",
+  "plan_sha256": "57dbaec816abda184f99abe0f8738e0350d0d0cb18602f5c8822eea50aeabcce",
+  "selection_sha256": "6610706263a4ed059f28d3e52e8172af9dddd9400095fdd9172626689960c295",
+  "new_execution_outcomes_read": false,
+  "prior_development_outcomes_previously_examined": true,
+  "parent_ast_groups": [[0, 1, 2, 3], [4, 5, 6], [7]],
+  "independence": "Eight edges are not eight independent starting programs. Within-group parent executions can diagnose repeatability but do not create additional tasks or independent parent selection.",
+  "intervention": "Restore all matched supported numeric settings, identically in both directions. The remaining code changes are not a proven single semantic idea. No per-case or per-slot outcome-based selection.",
+  "case_annotations": [
+    {"case": 0, "scope": "CatBoost tuning plus other feature/model changes", "numeric_changes_explicitly_intended": true},
+    {"case": 1, "scope": "TFIDF dimension reduction plus stacking and model changes", "numeric_changes_explicitly_intended": true},
+    {"case": 2, "scope": "Ambiguous same-features language alongside feature-selection and regularization intent", "numeric_changes_explicitly_intended": "ambiguous"},
+    {"case": 3, "scope": "Previously examined date-feature repair plus explicitly intended TFIDF relaxation", "numeric_changes_explicitly_intended": true, "previously_examined_example": true},
+    {"case": 4, "scope": "Longer context and training plus sentiment changes", "numeric_changes_explicitly_intended": true},
+    {"case": 5, "scope": "BiLSTM to Transformer; learning-rate transfer may be unsuitable", "numeric_changes_explicitly_intended": "not_all_explicit"},
+    {"case": 6, "scope": "Character to word/token representation and ensemble; MAX_LEN units differ", "numeric_changes_explicitly_intended": true, "semantic_units_changed": true},
+    {"case": 7, "scope": "Character to word/token representation; MAX_LEN units differ", "numeric_changes_explicitly_intended": true, "semantic_units_changed": true}
+  ],
+  "annotation_boundary": "Code and numerically masked intent were examined before new scores, but intent may contain qualitative historical feedback. This is not a fully blind human annotation study.",
+  "eligibility_boundary": "Both historical runtimes <=150 seconds may enrich fast-failing children. Original invalid children remain; failures must not disappear from the denominator.",
+  "reporting": [
+    "Report all eight four-vertex contrasts and invalid or missing endpoints.",
+    "A CP>P with C<=P establishes a local syntactic rescue under this execution, not that the original change was unintended.",
+    "CP>C alone is not enough: it may still be below the parent.",
+    "The fixed inherited-settings rule is the candidate one-execution intervention; choosing max(C,CP) after external scoring is an oracle with extra execution cost, not an evaluated policy.",
+    "Account actual allocation and execution costs; four executions per edge are a diagnostic, not a same-budget search comparison.",
+    "Do not derive generalization or statistical significance from two reused development tasks and three unique parent programs."
+  ],
+  "nearest_prior_work": [
+    {"url": "https://arxiv.org/html/2410.16309v1", "scope": "LLaMEA-HPO already separates structural mutation and parameter tuning, preserving optimized parameters during mutation."},
+    {"url": "https://arxiv.org/html/2506.15692v3", "scope": "MLE-STAR already targets blocks using executable ablations."},
+    {"url": "https://arxiv.org/html/2609.04061v1", "scope": "Preservation prompting and over-editing already studied with known minimal function repairs; not MLE score interventions."},
+    {"url": "https://arxiv.org/html/2608.13292v1", "scope": "Post-generation refinement and correctness/concision tradeoffs already studied in repository repair; minimality alone can harm correctness."},
+    {"url": "https://doi.org/10.1145/3703920", "scope": "Four-vertex edit interaction analysis already used in genetic improvement."}
+  ]
+}

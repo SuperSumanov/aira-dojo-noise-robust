@@ -7,9 +7,10 @@
 - 已有开发85修改再查：83解析、80唯一对、43对有支持的数值变化；旧开发成绩曾分析，不是新确认集。v1只读脚本漏接原生generic Exception后停，失败目录保留；v2同分母修正完成。根collateral-local-20261006-v2；summary SHA4c96405a1d58dcddbf228b801cd7516085a56a2d1eae5d9bd601c2384eb452e4。没有新模型执行。
 - 冻结四格反事实：85行中24合格、42无支持的数值变化（含2解析不支持）、16需静态外部模型依赖、2原时长>150秒、1只有排除槽。固定hash每任务4对，Pizza/Tweet共8对×P/C/CP/PC=32程序；2张3090×2小时≤4GPUh，240秒/程序。P父/C子/CP子恢复父参数/PC父换子参数。剩余改动不自动等于语义想法。
 - 根/research/d7/spc/yzyang4/collateral-factorial-20261006-v1：selection SHA6610706263a4ed059f28d3e52e8172af9dddd9400095fdd9172626689960c295；源码ac327c54fa6e5d92d6ad0df5ed7adfdf2b7f0695；plan SHA57dbaec816abda184f99abe0f8738e0350d0d0cb18602f5c8822eea50aeabcce。首次prepare预检因Tweet目录不同命名误判失败；validate_collateral_factorial_20261006.py以精确双路径复核32配置/8四臂PASS，冻结实验文件未变；validator SHA5da2165c3161e52f5facf044899cef407733971ea514d148db5727dd6bbeb948。
-- 02:49香港单卡调度修订：gpu27只剩1张可用，16536在PENDING且0启动时撤换，原launch/plan保留。新16538用同gpu27/3090单卡串行，6CPU/worker、最长4h，总≤4GPUh；不改32配置/代码/种子/单程序时限。serial_collateral_factorial_20261006.py与scheduling-amendment.json记录。02:50现场16538 RUNNING、1启动/0完成。旧12535不操作。全批闭合/预测hash冻结后才评分；readout已写但修订后版本仍须重传。5合成对照测试PASS，无LLM/API/底座更新。
+- 02:49香港单卡调度修订：gpu27只剩1张可用，16536在PENDING且0启动时撤换，原launch/plan保留。新16538用同gpu27/3090单卡串行，6CPU/worker、最长4h，总≤4GPUh；不改32配置/代码/种子/单程序时限。serial_collateral_factorial_20261006.py与scheduling-amendment.json记录。03:11最后观察23启动/22完成、未闭合。旧12535不操作。全批闭合/预测hash冻结后才评分；串行适配readout已于02:55上传B根。5合成对照测试PASS，无LLM/API/底座更新。
 - 预结果独立性核查：8条边只有3个不同父程序AST（case0–3共用，4–6共用，7另一个）；不能将其当8个独立起点。Tweet代码内会重新seed，wrapper种子不同不自动等于独立训练重复。
 - 预结果代码核查：case6/7的MAX_LEN从字符变成词/token单位；case5 BiLSTM→Transformer，LR转移未必合适。保留分母但不能将数值恢复解释为语义等价或错误修复。LLaMEA-HPO §3.3已明确优化后参数保留、结构变异，故宽概念不新。
+- 03:11预读出解释边界保存results/research_synthesis_20261006/pre_readout_scope.json；大多数数值变化是明确意图，不能叫误改。GOME旧linkage源码已核numeric loop排序且双实现一致，无排序bug证据；最佳父解复用与作者流程吻合，不能把相邻loop当真实父子。最新fetch学长仍dfff0efb，无新提交。
 
 ## 最新研究复算：方向仍待验证，不把局部线索当新方法
 - 新本地证据：results/research_synthesis_20261006/diagnostic.json已随ac327c54提交，尚未push。源inner-grid SHA66d79e554d0e0ea8a56d5e87d5cdf941e38c8fc20e84efbda8ff6cd3b5023064与已有导出回执一致，JS/PowerShell独立复算。

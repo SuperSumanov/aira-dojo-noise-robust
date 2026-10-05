@@ -1,0 +1,219 @@
+{
+  "boundary": "Post-hoc conditional paired uncertainty on every complete fixed quartet.\n\nThis resamples the already reused D_search examples. It does NOT correct research\nadaptation, selection of tasks, multiple contrasts or training randomness, and\ncannot convert the known rescue example into an independent confirmation.\n",
+  "elapsed_seconds": 36.84064641036093,
+  "no_new_execution": true,
+  "plan_sha256": "fa5c5d7c2ca0cff50609a1eb7e12220f3d7c4e23016524bf9f7eacd1ed1a1c77",
+  "posthoc": true,
+  "rows": [
+    {
+      "case": 0,
+      "contrasts": {
+        "CP_minus_C": {
+          "conditional_high": 0.0,
+          "conditional_low": 0.0,
+          "estimate": 0.0
+        },
+        "CP_minus_P": {
+          "conditional_high": 0.001136091844056497,
+          "conditional_low": -0.023621741210236795,
+          "estimate": -0.011480507055728228
+        },
+        "C_minus_CP": {
+          "conditional_high": 0.0,
+          "conditional_low": 0.0,
+          "estimate": 0.0
+        },
+        "C_minus_P": {
+          "conditional_high": 0.001136091844056497,
+          "conditional_low": -0.023621741210236795,
+          "estimate": -0.011480507055728228
+        },
+        "C_minus_PC": {
+          "conditional_high": 0.001136091844056497,
+          "conditional_low": -0.023621741210236795,
+          "estimate": -0.011480507055728228
+        },
+        "PC_minus_P": {
+          "conditional_high": 0.0,
+          "conditional_low": 0.0,
+          "estimate": 0.0
+        },
+        "interaction": {
+          "conditional_high": 0.0,
+          "conditional_low": 0.0,
+          "estimate": 0.0
+        }
+      },
+      "n": 300,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "case": 1,
+      "contrasts": {
+        "CP_minus_C": {
+          "conditional_high": 0.01967456948098553,
+          "conditional_low": -0.014292334369767984,
+          "estimate": 0.002870126763932057
+        },
+        "CP_minus_P": {
+          "conditional_high": 0.009450490313322157,
+          "conditional_low": -0.02272407916766326,
+          "estimate": -0.006786653910547669
+        },
+        "C_minus_CP": {
+          "conditional_high": 0.014292334369767975,
+          "conditional_low": -0.01967456948098554,
+          "estimate": -0.002870126763932057
+        },
+        "C_minus_P": {
+          "conditional_high": 0.012438710834728273,
+          "conditional_low": -0.029778312604639992,
+          "estimate": -0.009656780674479726
+        },
+        "C_minus_PC": {
+          "conditional_high": 0.01644343458502751,
+          "conditional_low": -0.018719355417364365,
+          "estimate": -0.001136091844056386
+        },
+        "PC_minus_P": {
+          "conditional_high": 0.009002033006457784,
+          "conditional_low": -0.02544247787610621,
+          "estimate": -0.00852068883042334
+        },
+        "interaction": {
+          "conditional_high": 0.025772093996651545,
+          "conditional_low": -0.014233287491030689,
+          "estimate": 0.0056505620664912826
+        }
+      },
+      "n": 300,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "case": 2,
+      "contrasts": {
+        "CP_minus_C": {
+          "conditional_high": 0.018238758670174677,
+          "conditional_low": -0.042162461133699945,
+          "estimate": -0.012467113130829932
+        },
+        "CP_minus_P": {
+          "conditional_high": 0.009633610380291781,
+          "conditional_low": -0.05016817149007409,
+          "estimate": -0.02056924180817976
+        },
+        "C_minus_CP": {
+          "conditional_high": 0.042162461133699904,
+          "conditional_low": -0.018238758670174684,
+          "estimate": 0.012467113130829932
+        },
+        "C_minus_P": {
+          "conditional_high": 0.02236979789524054,
+          "conditional_low": -0.03495425735469989,
+          "estimate": -0.008102128677349829
+        },
+        "C_minus_PC": {
+          "conditional_high": 0.027209399665151717,
+          "conditional_low": -0.03355208084190367,
+          "estimate": -0.004544367376225655
+        },
+        "PC_minus_P": {
+          "conditional_high": 0.013094953360440087,
+          "conditional_low": -0.020782259028940493,
+          "estimate": -0.0035577613011241738
+        },
+        "interaction": {
+          "conditional_high": 0.04849542573547013,
+          "conditional_low": -0.017006248505142364,
+          "estimate": 0.016024874431954106
+        }
+      },
+      "n": 300,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "case": 3,
+      "contrasts": {
+        "CP_minus_C": {
+          "conditional_high": 0.027027027027027084,
+          "conditional_low": -0.008075221238938052,
+          "estimate": 0.009925855058598443
+        },
+        "CP_minus_P": {
+          "conditional_high": 0.0069959339870843155,
+          "conditional_low": -0.004547357091604862,
+          "estimate": 0.001435063381966084
+        },
+        "C_minus_CP": {
+          "conditional_high": 0.008075221238938035,
+          "conditional_low": -0.027027027027027084,
+          "estimate": -0.009925855058598443
+        },
+        "C_minus_P": {
+          "conditional_high": 0.011121741210236683,
+          "conditional_low": -0.02702852188471663,
+          "estimate": -0.008490791676632359
+        },
+        "C_minus_PC": {
+          "conditional_high": 0.004544367376225766,
+          "conditional_low": -0.011002152595072867,
+          "estimate": -0.002571155226022581
+        },
+        "PC_minus_P": {
+          "conditional_high": 0.011900562066491172,
+          "conditional_low": -0.0235604520449654,
+          "estimate": -0.005919636450609778
+        },
+        "interaction": {
+          "conditional_high": 0.0008969146137288719,
+          "conditional_low": -0.009327911982779269,
+          "estimate": -0.004006218607988665
+        }
+      },
+      "n": 300,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "case": 7,
+      "contrasts": {
+        "CP_minus_C": {
+          "conditional_high": 0.10169257316656617,
+          "conditional_low": 0.07223321779061662,
+          "estimate": 0.08706742523117134
+        },
+        "CP_minus_P": {
+          "conditional_high": -0.20015206898106205,
+          "conditional_low": -0.2308378943219564,
+          "estimate": -0.21546606120544004
+        },
+        "C_minus_CP": {
+          "conditional_high": -0.07223321779061663,
+          "conditional_low": -0.10169257316656617,
+          "estimate": -0.08706742523117134
+        },
+        "C_minus_P": {
+          "conditional_high": -0.284437883234836,
+          "conditional_low": -0.3200763825229806,
+          "estimate": -0.3025334864366114
+        },
+        "C_minus_PC": {
+          "conditional_high": 0.12049793812757202,
+          "conditional_low": 0.08628112870188707,
+          "estimate": 0.10388923387154672
+        },
+        "PC_minus_P": {
+          "conditional_high": -0.38856416634144636,
+          "conditional_low": -0.42333815868897734,
+          "estimate": -0.40642272030815807
+        },
+        "interaction": {
+          "conditional_high": 0.339939538294963,
+          "conditional_low": 0.2983070201602085,
+          "estimate": 0.3193552950769868
+        }
+      },
+      "n": 2454,
+      "task": "tweet-sentiment-extraction"
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "status": "POSTHOC_STRUCTURAL_COVERAGE_CHECK_NOT_EFFECT",
+  "population": "The previously frozen GOME sample, two hash-ranked pairs per task; unchanged 80 pairs.",
+  "selection_salt": "collateral-106061-task-balanced-v1",
+  "source_revision": "35fc17013ab0ded2f578eacb1f606b0b9e45a1d3",
+  "source_pins": {
+    "Trace_1.json": "ee50756cd940a1add0e44bcbb04e710233709d81f823111d70846cfe6278afb0",
+    "Trace_2.json": "5a451c60ead8ac85e8eca86502cd92efe3ff1d12949510ccec394ca44dfe4cbd",
+    "Trace_3.json": "8977dd468ed50d22aa173cb0aec208286e9b73142b72568861b60d55b3243ae2"
+  },
+  "question": "Did the numeric-change census miss disappearance of explicit constructor arguments, potentially resetting learned settings?",
+  "method": "Reuse collateral_sample_20261006.calls on both code fields. Match only one same-named supported constructor on each side, exclude expanded kwargs or changed positional argument count, compare keyword sets. No outcome, feedback, test_report or intent field access.",
+  "selected_pairs": 80,
+  "pairs_with_removed_arguments": 2,
+  "pairs_with_added_arguments": 0,
+  "flagged": [
+    {
+      "task": "iwildcam-2020-fgvc7",
+      "file": "Trace_1.json",
+      "loop": "loop_14",
+      "component": "Adam",
+      "removed_keywords": ["lr", "weight_decay"],
+      "review": "Not missing: constructor now receives two parameter-group dictionaries, both explicitly set lr and weight_decay. Learning rates are named INIT_LR_L4 and INIT_LR_FC; both weight_decay fields refer to WEIGHT_DECAY, whose top-level value is 0.0001.",
+      "supports_default_reset": false
+    },
+    {
+      "task": "kuzushiji-recognition",
+      "file": "Trace_2.json",
+      "loop": "loop_12",
+      "component": "LogisticRegression",
+      "removed_keywords": ["n_jobs"],
+      "parent_literal": null,
+      "review": "Excluded scheduling keyword; no regularization, representation or learning-rate reset identified.",
+      "supports_default_reset": false
+    }
+  ],
+  "boundary": "Narrow syntactic coverage only. Does not prove zero parameter loss, semantic equivalence, unchanged defaults across installed libraries, or correctness. Most program mechanisms are outside this recognizer. This is not a new random sample or causal test.",
+  "model_fits": 0,
+  "api_calls": 0,
+  "protected_data_access": false,
+  "decision": "No qualifying default-reset case in these two flags; do not expand a method or run GPU on this evidence. Original numeric-restoration stop remains."
+}

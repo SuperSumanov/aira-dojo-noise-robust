@@ -1,0 +1,9 @@
+case,task,complete,CP_minus_P,C_minus_P,CP_minus_C,PC_minus_P,interaction,rescue,pre_outcome_semantic_caveat
+0,random-acts-of-pizza,True,-0.011480507055728228,-0.011480507055728228,0.0,0.0,0.0,False,All untransplanted changes remain bundled; no intent/semantic equivalence guarantee.
+1,random-acts-of-pizza,True,-0.006786653910547669,-0.009656780674479726,0.002870126763932057,-0.00852068883042334,0.0056505620664912826,False,All untransplanted changes remain bundled; no intent/semantic equivalence guarantee.
+2,random-acts-of-pizza,True,-0.020569241808179872,-0.00810212867734994,-0.012467113130829932,-0.0035577613011240627,0.016024874431953995,False,All untransplanted changes remain bundled; no intent/semantic equivalence guarantee.
+3,random-acts-of-pizza,True,0.001435063381966084,-0.008490791676632359,0.009925855058598443,-0.005919636450609889,-0.004006218607988554,True,All untransplanted changes remain bundled; no intent/semantic equivalence guarantee.
+4,tweet-sentiment-extraction,False,,,,,,,All untransplanted changes remain bundled; no intent/semantic equivalence guarantee.
+5,tweet-sentiment-extraction,False,,,,,,,Architecture changes BiLSTM to Transformer; LR transfer need not preserve suitable optimization.
+6,tweet-sentiment-extraction,False,,,,,,,MAX_LEN changes units: characters to words/tokens; numeric restoration is not matched semantic capacity.
+7,tweet-sentiment-extraction,True,-0.21546606120543998,-0.3025334864366114,0.08706742523117139,-0.40642272030815807,0.3193552950769867,False,MAX_LEN changes units: characters to words/tokens; numeric restoration is not matched semantic capacity.

@@ -1,0 +1,694 @@
+{
+  "boundary": "Post-hoc bounded log census. Unknown output formats are not negative evidence.\n\nOnly old approved development records and the closed factorial batch are read.\nNo new execution, labels, fitting, selection rule or causal prevalence estimate.\nSource echoes in tracebacks must not count as executed model-selection events.\n",
+  "case0": [
+    {
+      "arm": "P",
+      "prediction_sha256": "ca2ef6f92e32d288db98a525df70942d8150fb6c8aef4424dbeb05c6b02d59b9",
+      "selections": [
+        [
+          "xgb"
+        ]
+      ],
+      "source_sha256": "99692fc6ca85a41b37fb937fd295153e1d5800a0719a9cacc5b43a147348b140",
+      "tables": [
+        {
+          "cat": 0.68021,
+          "lgb": 0.68321,
+          "xgb": 0.69728
+        }
+      ]
+    },
+    {
+      "arm": "C",
+      "prediction_sha256": "994191b6751b9b260a0e9ef3fb138f3251cbf124503acae4cc7796359fe83dfd",
+      "selections": [
+        [
+          "xgb"
+        ]
+      ],
+      "source_sha256": "ee623eb9a417fe6c8bff05f62cdace2af503ea5ab621270e76c1a7fabaa69ef5",
+      "tables": [
+        {
+          "cat": 0.68177,
+          "lgb": 0.68432,
+          "ridge": 0.52871,
+          "xgb": 0.69221
+        }
+      ]
+    },
+    {
+      "arm": "CP",
+      "prediction_sha256": "994191b6751b9b260a0e9ef3fb138f3251cbf124503acae4cc7796359fe83dfd",
+      "selections": [
+        [
+          "xgb"
+        ]
+      ],
+      "source_sha256": "e82284d8fd73d28ee2fb2ff5a05db6eefdc6174efd64a39e1071ce30d45de307",
+      "tables": [
+        {
+          "cat": 0.6769,
+          "lgb": 0.68432,
+          "ridge": 0.52871,
+          "xgb": 0.69221
+        }
+      ]
+    },
+    {
+      "arm": "PC",
+      "prediction_sha256": "ca2ef6f92e32d288db98a525df70942d8150fb6c8aef4424dbeb05c6b02d59b9",
+      "selections": [
+        [
+          "xgb"
+        ]
+      ],
+      "source_sha256": "83e2794313957b07d2e9665d9983ac08a231de0612ad20008e1ff45b269aefb8",
+      "tables": [
+        {
+          "cat": 0.64901,
+          "lgb": 0.68321,
+          "xgb": 0.69728
+        }
+      ]
+    }
+  ],
+  "caveats": [
+    "Parser recognizes narrow known log formats; all unrecognized cases remain unknown.",
+    "Code hashes are not independent physical runs or tasks.",
+    "A logged selection is evidence of that execution, not permanent component irrelevance.",
+    "Case0 is a selected mechanistic example, not a prevalence estimate or deployable benefit."
+  ],
+  "counts": {
+    "random-acts-of-pizza": {
+      "executed_table_recognized": 17,
+      "last_recognized_selection_single": 5,
+      "selection_list_recognized": 10,
+      "substring_header_hits_not_execution_evidence": 23,
+      "unique_children": 42
+    },
+    "spooky-author-identification": {
+      "executed_table_recognized": 0,
+      "last_recognized_selection_single": 0,
+      "selection_list_recognized": 0,
+      "substring_header_hits_not_execution_evidence": 0,
+      "unique_children": 8
+    },
+    "tweet-sentiment-extraction": {
+      "executed_table_recognized": 0,
+      "last_recognized_selection_single": 0,
+      "selection_list_recognized": 0,
+      "substring_header_hits_not_execution_evidence": 0,
+      "unique_children": 30
+    }
+  },
+  "records": [
+    {
+      "code_sha256": "5a5a0bb38672935bdee40370d8c219880a8f126a5f2fbee23bbab5af85f54818",
+      "selection_sizes": [],
+      "source_sha256": "dd1715b7593ae2ce7857cecc0f686a69092a17e7a0ef59c93593d4e82f548d3d",
+      "table_recognized": false,
+      "task": "spooky-author-identification"
+    },
+    {
+      "code_sha256": "0138138f9784fba8309dbd2df99791079e8e4a2dc6a74ad967257859c84db150",
+      "selection_sizes": [],
+      "source_sha256": "d89e018cd29623cb08b116f20dd3bb08c61db9566781f1cf8bf62743909c696a",
+      "table_recognized": false,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "code_sha256": "569fee12bf3be60b9e988040d69fa51b090ee23970832eb02e4bfaafdcb40485",
+      "selection_sizes": [],
+      "source_sha256": "c86ccb79fe6178927aec93f3fa8064c8f939416c610f341459e00dfffd83b7ad",
+      "table_recognized": false,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "code_sha256": "05bddf1ac3b4d2c6c965d97a0f3bdc89c48624b1a2f489f7163428c078bacebc",
+      "selection_sizes": [],
+      "source_sha256": "6e32b230876087a052bb21ffe52a978d1b897b19effe9107a26d1a6a3ed1dc93",
+      "table_recognized": false,
+      "task": "spooky-author-identification"
+    },
+    {
+      "code_sha256": "bb83884f7972170422c5502a82a37bdd7f3c03d954f82f1a7a9d9ecb8cc2e1f6",
+      "selection_sizes": [],
+      "source_sha256": "cb8b51a501833b55be8a2b7ada54690f3e00cc35dcbcb9bb5c1d411f7941c2fe",
+      "table_recognized": false,
+      "task": "spooky-author-identification"
+    },
+    {
+      "code_sha256": "54e56a1b38036c15f433ed1e2d891ba09dc30d5f0c9e646882e24cd974b92db7",
+      "selection_sizes": [],
+      "source_sha256": "d58344bdcf1503808114612e2ebe38f15af03acd694e1bf1e56cf2c6d2e83408",
+      "table_recognized": false,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "code_sha256": "5af557854afd73620c6838e6c5e8a8984b7c250f316182e7ad004ad6e22fff3f",
+      "selection_sizes": [],
+      "source_sha256": "1253a67721836e8e1ba54a4724352ce66f19a778a43669d22f99029eae62fa66",
+      "table_recognized": false,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "code_sha256": "ae2f804abb10b9bcef5ba6728dfa8bb2c024bfd9be0e16386188d46679d01cd1",
+      "selection_sizes": [],
+      "source_sha256": "498c5507b3e4433ad9a99fe50ac828699695f34db9e631e65ba4db12bfa042e1",
+      "table_recognized": false,
+      "task": "tweet-sentiment-extraction"
+    },
+    {
+      "code_sha256": "850a6435f29c78c6d817caa705049b542a9b84029aaa4e0709ec21fa61242acc",
+      "selection_sizes": [],
+      "source_sha256": "d20727b93d15ebef32c367810b3a987943f175123d4ec17c1ef00da23c42b899",
+      "table_recognized": false,
+      "task": "spooky-author-identification"
+    },
+    {
+      "code_sha256": "3bd750db63ca699e67bbb0eed9ce2c32d71d53dfd934a6a2c92c4865b6de39a0",
+      "selection_sizes": [],
+      "source_sha256": "0bc323161c727c431aeeba87c4085058dd4ee95b5efa3fdfdc7c54d828d3a295",
+      "table_recognized": false,
+      "task": "spooky-author-identification"
+    },
+    {
+      "code_sha256": "028f68caa69580f2cb2341e34822277b3651df87e4f3671512d6b276353c4f45",
+      "selection_sizes": [],
+      "source_sha256": "c58123e073ec28acea2dc698cc7f0e640e0aa2b6e60a0905850e689031fd19f6",
+      "table_recognized": false,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "code_sha256": "3dd2dc234beb5cd206406a12eac4944dad7a5b50e4aade25cfb83145fe818deb",
+      "selection_sizes": [],
+      "source_sha256": "0d9037d6d6427911b979858707b8b876aa876baea6a351b055bcbd17b22957c0",
+      "table_recognized": false,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "code_sha256": "9290aba075eff250698799f943ddcd066eb5bddb85a5d2e6d0184292e5402e8a",
+      "selection_sizes": [],
+      "source_sha256": "fe3d0f5a8d4cebfd324dc06fcadbdf6a8af63024e6a23295764d9faee3782612",
+      "table_recognized": false,
+      "task": "spooky-author-identification"
+    },
+    {
+      "code_sha256": "5d209168adaa5615f81dc5980bf50a4016f48752be3b34561751ec1a8a3e4862",
+      "selection_sizes": [],
+      "source_sha256": "461b60de48b08d7b88af0d4fc47c7edd6b1d4ba3f9cc6d62e35d3786e83aedba",
+      "table_recognized": false,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "code_sha256": "6d4d7d30f7b032b8b0f11728cf0c42da9727a52955f3a1e33866c1c7479afd9e",
+      "selection_sizes": [],
+      "source_sha256": "2176e86b94d8036d0dc4d21bf0c1e45bdd4b2ce9061b8489076ace542b877ebd",
+      "table_recognized": false,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "code_sha256": "0cda2c075794fab2bc60ebb9348158244e9012af4200b3a6fef43de23e52e548",
+      "selection_sizes": [],
+      "source_sha256": "7246cd60868e90a3126459f9ac7ab12bf46cc0d6d4bb83ebd612e702cbec60e6",
+      "table_recognized": false,
+      "task": "tweet-sentiment-extraction"
+    },
+    {
+      "code_sha256": "f611b4ec1efde0f7b3dc5341e1e1e6db26b2a91561372a7c4234d7c8de1826f6",
+      "selection_sizes": [],
+      "source_sha256": "4723216216e2bbb15f7fecb533094555d7c9da4ae19671cd5934ef100846aac7",
+      "table_recognized": false,
+      "task": "spooky-author-identification"
+    },
+    {
+      "code_sha256": "5c07bd7baa65e61a5018a4ae9b047aee6bb158937c51c2980b583623aaa66f83",
+      "selection_sizes": [],
+      "source_sha256": "a9312f86da063fbd9316d712d619e0514e3f14d18bf8866648935f06e3d26227",
+      "table_recognized": false,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "code_sha256": "fec9c025293e5e530559d4057901b04bb3c0e1a67d2be5a44387983dcec509b0",
+      "selection_sizes": [],
+      "source_sha256": "d5734e62503d35b1e8cea7c67269258cad92c2bc60eb8a51a4a4b228323bc953",
+      "table_recognized": false,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "code_sha256": "36caf7008e80d9b64ab59be5e3eacdb4b7c963c6388bebc00b8a521b75b4bca8",
+      "selection_sizes": [],
+      "source_sha256": "565d4a6f8ae477979c2d14bdb1d3ce1a1b641bd9f3880d6acd3e6bd0e10509f2",
+      "table_recognized": false,
+      "task": "tweet-sentiment-extraction"
+    },
+    {
+      "code_sha256": "66a3cebc9de5914418b3216f375ad52aa6ff66987725aa3bdd6c2f501180b84e",
+      "selection_sizes": [],
+      "source_sha256": "fd822bc54f99cb379b9952198df3f78b12a4e3be595107fc50b96bc6ff6d9c25",
+      "table_recognized": false,
+      "task": "tweet-sentiment-extraction"
+    },
+    {
+      "code_sha256": "8a4e6e531afff4bd2474d23469f8191f6a9eb3b6ef408fd5a8daa756e242847b",
+      "selection_sizes": [],
+      "source_sha256": "420f137639795ee4d17d214eee629931dfe1595e88d09372621966fd284918d5",
+      "table_recognized": false,
+      "task": "spooky-author-identification"
+    },
+    {
+      "code_sha256": "c0ccfaf5b034839c481c8653031bf8ab9e3cf19176e121ae4bc29caead9ab1fd",
+      "selection_sizes": [],
+      "source_sha256": "9f0fda5a68231d3d46bd6e579d244542a7de3e56c22a434d8b5ad2036fcde440",
+      "table_recognized": false,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "code_sha256": "600a077a0e1e7783c08fc8b5695c90a9cf9f59703e0e031834468ca0e2319586",
+      "selection_sizes": [],
+      "source_sha256": "8c99bfb8e980773ccb179760962993decf84e2e568b9dbb3f2feec75d0cc00c7",
+      "table_recognized": false,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "code_sha256": "3fd8d3612b1bcbe4c521380f8202c7981b1f531d835491522f04b9f5e28bfbba",
+      "selection_sizes": [],
+      "source_sha256": "84d25d014a91e7a5cc744e4a31d8f62c056658728208d30ece02d84d3a2aaa17",
+      "table_recognized": false,
+      "task": "tweet-sentiment-extraction"
+    },
+    {
+      "code_sha256": "26ea768614b5fe9d8ceaca7b4537e9d75e4aa030b198f30bac939d32c2906147",
+      "selection_sizes": [],
+      "source_sha256": "ca03d839563bbf5f3c3fde237b75c27624e4b4fe8a046e4aba9c10ccd82328d8",
+      "table_recognized": false,
+      "task": "tweet-sentiment-extraction"
+    },
+    {
+      "code_sha256": "b7910ed47244561f98fff42b8bdb7379de86be7cfb274f77f40c3b9942ac4887",
+      "selection_sizes": [],
+      "source_sha256": "b8ec67f8b76c963e30d86a19c97dea8584ecda198a9c4d821a1412a6ee59d3e6",
+      "table_recognized": false,
+      "task": "tweet-sentiment-extraction"
+    },
+    {
+      "code_sha256": "2e7e9b224570c16e63787e9ba347259956d4ac0790c318cfe0c77821b04f22b0",
+      "selection_sizes": [],
+      "source_sha256": "4212e68177d7df10e79cb22a3cf47bc7b531dd1773f53c180194c6e9e2bf196b",
+      "table_recognized": false,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "code_sha256": "91e0a30e743503b3eaa57303669df75dc99ed538ec4096af57d2cc92559f3172",
+      "selection_sizes": [],
+      "source_sha256": "6b7cac7f5df2d2fb80e4f7a8ca6fec9190bc12375fa8142ba172743ae6ab1a08",
+      "table_recognized": false,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "code_sha256": "51ea3e6c30d608c6aa72aff6be5aacfd05a65e1bce313d7982f35b6b8fa4d5ed",
+      "selection_sizes": [],
+      "source_sha256": "ca295a10ec35e4033a9a819b676ac0442a8c396fbf66626367c1149cf4fae294",
+      "table_recognized": false,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "code_sha256": "19a59b77443e020e56b5f531cda6458e0c4eb96bf98ee07e8b1e5971dcffe529",
+      "selection_sizes": [],
+      "source_sha256": "0888ef6cd4de7b979594d14c7e689cb030971187b78b4560feaa74e615a27506",
+      "table_recognized": false,
+      "task": "tweet-sentiment-extraction"
+    },
+    {
+      "code_sha256": "45a72588096a9d3d305e503119464357e856ba4093811d19bf64c2b3978493d1",
+      "selection_sizes": [],
+      "source_sha256": "b4bad120fc9934e36921ed516d008f4e2854fdc0b016efdbef9dfbc8f50036cf",
+      "table_recognized": true,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "code_sha256": "3d1348e7479d8dde05ac8c52ebe367d29e9498cc8da197358131e2ec3a210c5c",
+      "selection_sizes": [],
+      "source_sha256": "97662423d6a602051c7f41f4f8057a4c3fc1390b327ef07cd8cff501da6de7f3",
+      "table_recognized": false,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "code_sha256": "104b85ab96d2a40ab4385f27b75d3b96eaa0e03a59969b1baa7d5049b692a0f0",
+      "selection_sizes": [],
+      "source_sha256": "719a44dbb79fb4ab85fa01b7b6ec018b8380ab994cefeee37cd3be3cedc47c0a",
+      "table_recognized": false,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "code_sha256": "62b3a3513af15a323cf3fdfd91391dc5808d09a6b1bd0866f631a88ef356f16e",
+      "selection_sizes": [],
+      "source_sha256": "99f5810e3a9120bb28970e309ab3c6c21142ab35771e5cc77c8d4e1f3251aceb",
+      "table_recognized": true,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "code_sha256": "7c45348aa635ad80d45776510381df5e23cf79bfd94f8a51edea6d531c5ab518",
+      "selection_sizes": [],
+      "source_sha256": "83bb749c20682d753e809909838af500d76a11bedfac8db086f9a744b8004433",
+      "table_recognized": true,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "code_sha256": "375ea1f2630f97673adf0a66dc0e46cfd17b70a331df8e0376a0cac092ad576b",
+      "selection_sizes": [],
+      "source_sha256": "8ead57a65a255a645c060ded07348b82a20df5ebe4ae397c8d5ba12fb1ab7b09",
+      "table_recognized": true,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "code_sha256": "5db269994168226b672b1d4f0925c1809b3c544982b76df6fae36df4f20cf426",
+      "selection_sizes": [],
+      "source_sha256": "e399a18932b8f1f420c33b06aa91e0793099827487dc463aa0085a2742a4e35d",
+      "table_recognized": false,
+      "task": "tweet-sentiment-extraction"
+    },
+    {
+      "code_sha256": "0a8e931ac2c4702ba2869e03f260b4fe89e56f53265c644662869777d95d7f4c",
+      "selection_sizes": [],
+      "source_sha256": "82917362229f1312123f97af65126356f44841585186a76738cd84e4107386b8",
+      "table_recognized": false,
+      "task": "tweet-sentiment-extraction"
+    },
+    {
+      "code_sha256": "8a1e335d7186079054eb8e52d4067afe52386f91aae70cc3f459bb48558887c0",
+      "selection_sizes": [
+        2
+      ],
+      "source_sha256": "865a946780b052fae986cb5a3a17b16e2546efbe8e5635eca7fe1e5f1c61a059",
+      "table_recognized": true,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "code_sha256": "9a64892b04030ba05a137bc0e90f9cb860b8cd79e8fcf377ae70e3a6de140e59",
+      "selection_sizes": [],
+      "source_sha256": "906c5f8b1e0bdfd79683d489aa15fee2a9be3b9ab1ecc69c35cfbe82efdcadb7",
+      "table_recognized": true,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "code_sha256": "d6b2c54a1d8c23716f88ad6104ed610b16252d1d3c97799e4696e0bc55bb3a56",
+      "selection_sizes": [],
+      "source_sha256": "24f0c831f0d8605c9896d731dd980a765ef7fc3cc14e48517e05aa743f68e1db",
+      "table_recognized": true,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "code_sha256": "56e207d7da4b4dbdd057c93e42bcd5c6eb275f3655985f2bb2c2c0bc6b841c09",
+      "selection_sizes": [],
+      "source_sha256": "18c17c22999c49eb486c45f3712d9d3d68c2255769841672616f8f1c4d09f15f",
+      "table_recognized": true,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "code_sha256": "75ce37ce3f8a7d5b05f5385bcf3044770ac6ab238ed03325f7bf1c310a478125",
+      "selection_sizes": [
+        2
+      ],
+      "source_sha256": "1ffcc99d36a5980bac222635714a50e3f1dd9b4b880a80d4d969cab3280c009c",
+      "table_recognized": true,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "code_sha256": "b78e5b1d392a266662baa31d64ede9d7483f5364b4f906ac5567405ddcf2389d",
+      "selection_sizes": [],
+      "source_sha256": "179c705d113a28ded48a3ff69ac8169a7f033b5302d30c9ae4b756ead72aeb25",
+      "table_recognized": false,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "code_sha256": "12d82a46b69683a32bfe070f149fd2cbf6daed8ef844678434ca1badc436d86a",
+      "selection_sizes": [],
+      "source_sha256": "2352c8103c16d56070a1cf8beee49863676495f4af3312d740bb1576e182c90c",
+      "table_recognized": false,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "code_sha256": "d41617fd6617716d4b2a25b6d4fad8ac9a8ee50912fad278cb4dfe434b454305",
+      "selection_sizes": [],
+      "source_sha256": "9017e3c07d52e4880b5eae5889fee6833717ead3c9cb816b3b1f2e5d6416932e",
+      "table_recognized": false,
+      "task": "tweet-sentiment-extraction"
+    },
+    {
+      "code_sha256": "2f0884f6a69104399ec492a864cc60bdf6d0eb964334a1b36d3f3c6b3adda514",
+      "selection_sizes": [],
+      "source_sha256": "ba6fba0a2e02b310584a99cd414c0477c156da7570e21cd99cd2a7458f924c0c",
+      "table_recognized": false,
+      "task": "tweet-sentiment-extraction"
+    },
+    {
+      "code_sha256": "797a42d90773e6210ff049e065232278a7a791e8e77a688c6fbf95940bfba025",
+      "selection_sizes": [
+        3
+      ],
+      "source_sha256": "ec0f04fb08d5c336af681064f3e514b1e5173185c823af9c235990cbf729d9a9",
+      "table_recognized": true,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "code_sha256": "6f1aa13003ec0ef126f9f1adc63c9e0f77dd7847cc58219f6013a0132d5aa641",
+      "selection_sizes": [],
+      "source_sha256": "312bb8f8f2990c60e50727f7d13ec3e2e3998cd26f6439b3e9d6f7c440ae51c6",
+      "table_recognized": false,
+      "task": "tweet-sentiment-extraction"
+    },
+    {
+      "code_sha256": "b981223c4ee1fb6f44460df076eb768eff771ce92822909f58801773e039cca4",
+      "selection_sizes": [],
+      "source_sha256": "192c831b1f8fe5bb4b36adc2adcc0ed12139500a44b134a8a85bd520e2c2d5e8",
+      "table_recognized": false,
+      "task": "tweet-sentiment-extraction"
+    },
+    {
+      "code_sha256": "b36c828c839720a0ee970e07965c1b9460e879c3fb11d112850f92a5a70bf151",
+      "selection_sizes": [
+        2
+      ],
+      "source_sha256": "d2ddc959b151d7cc532b5243bcc59ae57442ae248ff44a178e56f4f36985012a",
+      "table_recognized": true,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "code_sha256": "7319f558487b8fcaf4c7f09d4a8aba3c7a16630b2817ee5a3f8a2c97c3666cca",
+      "selection_sizes": [],
+      "source_sha256": "7b1eda5adf1b86edf791b642d4ef2408920f01333db85bad0936a9657eab7a79",
+      "table_recognized": false,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "code_sha256": "084a4690acff37d20330cd5b8f19d76e88f0ba9130a066bcb953af16ebe83244",
+      "selection_sizes": [
+        2
+      ],
+      "source_sha256": "4c57e3f08858f7fb7ea3d7326653552aadecff78119626ef3a1cbe2dc0c3e86b",
+      "table_recognized": false,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "code_sha256": "4a20e15e39993e0b6d0c9a5d45bc76950dd0ea47c739e292c7c171fa0ba558b7",
+      "selection_sizes": [
+        1
+      ],
+      "source_sha256": "23f532aab34208ec9692802606e25e01544989f25bee870d718c2ff8c6cf1478",
+      "table_recognized": true,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "code_sha256": "b1181d6dc3dd15f98d634dc0721347bb33f8f3d9c5e85e35991ce685455b899a",
+      "selection_sizes": [],
+      "source_sha256": "359cdf398eaa9967027c73a063367848ac4f58ac76776d1527b4e39b221b5a9a",
+      "table_recognized": false,
+      "task": "tweet-sentiment-extraction"
+    },
+    {
+      "code_sha256": "66d79ca5020d99e8195e6f29bef27b2faf3eddd28379058a44dedef914df0e99",
+      "selection_sizes": [],
+      "source_sha256": "c2b91c29027f721cdb738d794a57ad270ba77e2ecb6581fe85dc4efa75885959",
+      "table_recognized": false,
+      "task": "tweet-sentiment-extraction"
+    },
+    {
+      "code_sha256": "f395d20fb660401abe97c445e2c0093081fdc59d4adc08addaf61368ee8559be",
+      "selection_sizes": [],
+      "source_sha256": "b46decd244110d194ee3665b9dccf077a25bf55ea81af2f499c187da58fe3c02",
+      "table_recognized": false,
+      "task": "tweet-sentiment-extraction"
+    },
+    {
+      "code_sha256": "835524181acf4ee3c8021761b04a5a4400ca124497f481ca048d06d53e9add79",
+      "selection_sizes": [],
+      "source_sha256": "ea1c3d7f2a3c30476e3d59ccb200760022e10f917fbbfd6297ad817dd29a030d",
+      "table_recognized": false,
+      "task": "tweet-sentiment-extraction"
+    },
+    {
+      "code_sha256": "160f5caa4d019d022267a49243d6f63e5c4a7403daf3ad6a0795217531a7477e",
+      "selection_sizes": [
+        1
+      ],
+      "source_sha256": "a4ef9005bda9dfb3048c13d350b75c87fbfd9fa44f3ff4073c2684cefb2d8f25",
+      "table_recognized": true,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "code_sha256": "52334cf3ca8d5083afb790a23c6cd17196100010ea60846bd1f183ce72d7dfb7",
+      "selection_sizes": [],
+      "source_sha256": "cc4ff72376acfb16cdc761c76164da0016030f73302a5cff114addbfcb6454e6",
+      "table_recognized": false,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "code_sha256": "e4332e1174dc42575b986ad7cc7cd51de89c029d32ad0e706316d3d23105e9a0",
+      "selection_sizes": [],
+      "source_sha256": "f3ca2d8456e0ce365704e4e83031e7f79f76e3fcb1908cfb8b24a16d5e27aaf6",
+      "table_recognized": false,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "code_sha256": "b69f57c9c42ec94060bf639a8594f8c9b4a07063e035c1babaa7aea775f51e88",
+      "selection_sizes": [],
+      "source_sha256": "58b414bd933d927cba0d668bbb2b0e5765310a9195718a886f3727a686176ccd",
+      "table_recognized": false,
+      "task": "tweet-sentiment-extraction"
+    },
+    {
+      "code_sha256": "46b677364f82d4080652ca65364848cefbc0e4ebf89eda31c7f9297ffae0c230",
+      "selection_sizes": [],
+      "source_sha256": "c5ca921c70d8ab01d61d1f89bb757a5774d3ea5c32acf440ef6726dc991b9642",
+      "table_recognized": false,
+      "task": "tweet-sentiment-extraction"
+    },
+    {
+      "code_sha256": "0d894ae1814e2a1ae5e14abb45bee0f07fd47f479028f620241caeaed9f355e4",
+      "selection_sizes": [],
+      "source_sha256": "1506ffbfdb62c91eae6a0353d90ea6790ecf55dd02926e1c29258afe73aac8dd",
+      "table_recognized": false,
+      "task": "tweet-sentiment-extraction"
+    },
+    {
+      "code_sha256": "c2eb47990c282b27cec7660a33a8bce648a1f066705ae780d655cefa31a105da",
+      "selection_sizes": [],
+      "source_sha256": "06908a6177d5e3705c097a2ee7e40c6e2ae37325761916746b081c93fad78cb2",
+      "table_recognized": false,
+      "task": "tweet-sentiment-extraction"
+    },
+    {
+      "code_sha256": "96956da00cda6c4e5e07a3919d42c7024499c007af2c3dfc58b024736c5cf34a",
+      "selection_sizes": [],
+      "source_sha256": "76ef237ebc4bf6af3bf25e156c7de116425b70e2df155e4fec7e3e5407702efa",
+      "table_recognized": false,
+      "task": "tweet-sentiment-extraction"
+    },
+    {
+      "code_sha256": "84501581007819bdedaec5aaa65a1c7fb5aa4bf69488d3d183f445cd884d03b0",
+      "selection_sizes": [],
+      "source_sha256": "a824f1067f819404da9c587a03f4fad4052cdfc64e13489a2ba4f3733f7dd42d",
+      "table_recognized": false,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "code_sha256": "a51683e4f5fb0a111bc1b1b4f5943d4373dfedf5780bf3ef5d837fc082cf5127",
+      "selection_sizes": [],
+      "source_sha256": "7ba05fad46af22b8c144f04e9c1052b920371cc25630245313595fb1dc2d4dd0",
+      "table_recognized": true,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "code_sha256": "6cee3742999047a2b30c87b3fa92c04673598375a3fb715fc3875022abccd2f9",
+      "selection_sizes": [],
+      "source_sha256": "3c88a3d60e17980f46ce2b3c67c7d092d6a5b18c8d945ffa46dc31fd0be86ee6",
+      "table_recognized": false,
+      "task": "tweet-sentiment-extraction"
+    },
+    {
+      "code_sha256": "f1cb4949f0ac46b4689de6e83b95df5628e7ce84f96201f69a57639eb230b034",
+      "selection_sizes": [],
+      "source_sha256": "d8700cdcacacc2c5f839123b1fba6c05c442816f174daeaf284fe7a8c8e42789",
+      "table_recognized": false,
+      "task": "tweet-sentiment-extraction"
+    },
+    {
+      "code_sha256": "c002719c4a3bf2aa82a99fe5a4cffea007a09479d66a50f5ca550c90d00c1637",
+      "selection_sizes": [],
+      "source_sha256": "396ac5103b3945db8f55c5bd39a3d97fea223927478865eca831d64826fbbc65",
+      "table_recognized": false,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "code_sha256": "6394165009c2f28e0bf5706bcf2c84e76c4a6206d9b75120fe5277128b1b042c",
+      "selection_sizes": [],
+      "source_sha256": "f7f3549a1949e780b00722bf3b0f21a727d310aa341cfc94c0aec67db071e419",
+      "table_recognized": false,
+      "task": "tweet-sentiment-extraction"
+    },
+    {
+      "code_sha256": "2fbbb80563ed9c2c4a3fd2342ea6cceb043a8d2fbae176aa8f11b734ee834d89",
+      "selection_sizes": [
+        1
+      ],
+      "source_sha256": "2e8afe102d871d1306311a209e80ace26d483bf36134c906609a000a06f2d60d",
+      "table_recognized": true,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "code_sha256": "2da86012b24fd2aecc6c941990f5b998cc7f730e1a3abc73b5d1cea7ed4a3f00",
+      "selection_sizes": [],
+      "source_sha256": "0abef652eab311ded04b4f4ec27d49ef324acc216c956b39ed24026635387dec",
+      "table_recognized": false,
+      "task": "tweet-sentiment-extraction"
+    },
+    {
+      "code_sha256": "c06c07891f43c70be13ca359770550866fad165bf08d0cf3a983f90117f7f260",
+      "selection_sizes": [
+        1
+      ],
+      "source_sha256": "115c17c1faa64ca68d0405abcf6bd2273f6239627cb563b0adb03c7212a39227",
+      "table_recognized": true,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "code_sha256": "cbf35d8cde53a78d36c616003d193c7e4bb5ad7d3ff1bfcb494815958153b54f",
+      "selection_sizes": [],
+      "source_sha256": "26a00458a48d91ef6143b71f8ce8ad9e00ee509c31221ed7a120b81a1fdce237",
+      "table_recognized": false,
+      "task": "tweet-sentiment-extraction"
+    },
+    {
+      "code_sha256": "494e211a563e980ec2df933b40ec389f0e611770516e40cc5519f2c47e777387",
+      "selection_sizes": [
+        1
+      ],
+      "source_sha256": "3b45ba0d77cd6745c6a89dc3acbbb8230cd783e9bcdfcec621ec4404e7083174",
+      "table_recognized": true,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "code_sha256": "e9e75e3c248e731d072affc5a4707895e709e1f2e2678507da2a110f38d0500c",
+      "selection_sizes": [],
+      "source_sha256": "f21ac188bda6553d9a1351df8c338b87b724f453de3541fe87be6c4084c37376",
+      "table_recognized": false,
+      "task": "tweet-sentiment-extraction"
+    },
+    {
+      "code_sha256": "c002719c4a3bf2aa82a99fe5a4cffea007a09479d66a50f5ca550c90d00c1637",
+      "selection_sizes": [],
+      "source_sha256": "d1c1cd3461112ff1c3728ba755bc4742c02aa9ac1fb6edfdf4e3a712d70548c9",
+      "table_recognized": false,
+      "task": "tweet-sentiment-extraction"
+    }
+  ],
+  "script_sha256": "f937662c6e6c22c0497f0c2379b4da6b803f10e6ae9785081aa05ac403fc9346",
+  "source_rows": 85,
+  "source_sha256": "4c96405a1d58dcddbf228b801cd7516085a56a2d1eae5d9bd601c2384eb452e4",
+  "status": "POSTHOC_DESCRIPTIVE_ONLY",
+  "tests": {
+    "fixtures": 6,
+    "status": "PASS"
+  }
+}

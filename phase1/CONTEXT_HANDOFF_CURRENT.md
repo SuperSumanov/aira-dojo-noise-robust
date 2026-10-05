@@ -1,16 +1,23 @@
 # 当前短交接
 更新：2026-10-06香港。用户批准三原则六小时研究，窗口01:59:42—07:59:42香港；尚未完成该窗口。10/6本轮fetch确认myfork主分支9d97916e7c19b680cef22b7bc2280588bd56b973、学长dfff0efb9daf1d4a63c74492f138c19c1fd8440e未变。按CURRENT_DIRECTION最新10/6裁决，不重开旧失败门。
 
-## 本窗口新事实与进行中工作
+## 本窗口新事实与进行中研究（六小时尚未结束）
+- 03:27香港16538 COMPLETED；32/32闭合，26有效，5/8完整四格；单卡2159秒=0.5997222222222223 GPUh，无API/底座训练。26评分独立最大误差8.326672684688674e-16，Decimal独立差值审计PASS。summary SHA1adfe476893432ac944bae327fe8e32add995bb15c6ff416433716fa623b2185；readout分析SHA82983a72832f16f57b76e28105156516e003a779720769d6c9c8712b78924ec6。远端readout-v1/audit-v1/bootstrap-v1已执行，禁止重复覆盖。
+- 仅case3严格挽救（旧日期特征例，非新发现）：P=.681296340588376，C=.6728055489117436，CP=.682731403970342，PC=.6753767041377661。CP−P=.001435063381966084；其条件bootstrap95%[-.004547357091604862,.0069959339870843155]跨0。其余0新挽救；简单数值恢复停止扩大，不用加边/seed救结果。
+- Case2参数变化在父程序−.0035577613011240627、在子程序+.012467113130829932，交互+.016024874431953995，但条件区间[-.017006248505142364,.04849542573547013]跨0。Tweet case7交互大但MAX_LEN单位/模型变化预先已知；CP仍比P低.21546606120543998。不能把单例符号翻转称稳定机制。
+- Case4/5/6的C与CP分别同样AttributeError/IndexError/IndexError，6无效均非超时。全部P与PC有效。重复P同代码预测字节一致（Pizza4次，Tweet3次），不是新训练seed重复。Case0四格零参数效应已核实际日志：CatBoost确实训练，但OOF选择都只保留XGB；不是缺库或参数未执行。
+- 事后日志补充selection-log-v1已闭合，SHA7c7a0dcca7958d972a25eb6401668c303dc2bb06d3b4da583e090aac44de3029；旧80唯一子程序中Pizza42、Spooky8、Tweet30。Pizza关键词命中23，但排除traceback源码回显后仅17实际模型表；10可识别选择输出中5最后只留单模型，未知格式不算否定，代码数不算独立run。6反例/正例测试通过。case0四格均只用XGB且P=PC/C=CP预测字节一致；不推出删除非活跃组件有收益。
+- 查重补充EvoTrace/EvoReplay已覆盖回放干预、参数重调及机制分析；CostAda/EvoPINN覆盖局部信用与模块演化附近，非活跃代码搜索价值是经典问题。详见路线表；没有据此宣布新方法。同一GOME固定80对中参数省略仅2个识别信号：Adam其实转入两个参数组，另一个只是n_jobs=None省略；未识别出新的默认值重置例，检测覆盖有限不宣称不存在。记录research_synthesis_20261006/omitted_parameter_spotcheck.json；不重开R13/新GPU。
+- 配对不确定性补充：所有5完整四格，2000次，seed116099；Pizza按标签分层、Tweet按样本，固定预测。只表达重复开发集的条件不确定性，不校正任务筛选/多重比较/训练噪声。bootstrap plan SHAfa5c5d7c2ca0cff50609a1eb7e12220f3d7c4e23016524bf9f7eacd1ed1a1c77。安全汇总在本地results/collateral_factorial_20261006，未导出逐样本数据。
 - 公开GOME4210对先按固定hash每任务2对冻结80对：80解析、46有唯一共同构造器、直接数值变化0。补同样本变量/字典绑定：76可比较，12对/10任务有设置变化。多数意图明确要求，不能报12个失误；三例“保持其余设置”附近需进一步核意图与执行。未读取score/feedback/scenario值，意图文本仅数字掩码审读但仍可能含历史定性信息，不称完全盲审。
 - 远端/research/d7/spc/yzyang4/collateral-sample-20261006-v1；structure SHA82bcbbfcb7f1022b246fce0703e81de4a788c67d5fc5d1b3fc0285f77fc077d5；binding-supplement-v1/summary SHAd9aca8bb78365990143f149790f47089d8add255883992b596b43845173f3dfa。来源原文留远端。
 - 已有开发85修改再查：83解析、80唯一对、43对有支持的数值变化；旧开发成绩曾分析，不是新确认集。v1只读脚本漏接原生generic Exception后停，失败目录保留；v2同分母修正完成。根collateral-local-20261006-v2；summary SHA4c96405a1d58dcddbf228b801cd7516085a56a2d1eae5d9bd601c2384eb452e4。没有新模型执行。
 - 冻结四格反事实：85行中24合格、42无支持的数值变化（含2解析不支持）、16需静态外部模型依赖、2原时长>150秒、1只有排除槽。固定hash每任务4对，Pizza/Tweet共8对×P/C/CP/PC=32程序；2张3090×2小时≤4GPUh，240秒/程序。P父/C子/CP子恢复父参数/PC父换子参数。剩余改动不自动等于语义想法。
 - 根/research/d7/spc/yzyang4/collateral-factorial-20261006-v1：selection SHA6610706263a4ed059f28d3e52e8172af9dddd9400095fdd9172626689960c295；源码ac327c54fa6e5d92d6ad0df5ed7adfdf2b7f0695；plan SHA57dbaec816abda184f99abe0f8738e0350d0d0cb18602f5c8822eea50aeabcce。首次prepare预检因Tweet目录不同命名误判失败；validate_collateral_factorial_20261006.py以精确双路径复核32配置/8四臂PASS，冻结实验文件未变；validator SHA5da2165c3161e52f5facf044899cef407733971ea514d148db5727dd6bbeb948。
-- 02:49香港单卡调度修订：gpu27只剩1张可用，16536在PENDING且0启动时撤换，原launch/plan保留。新16538用同gpu27/3090单卡串行，6CPU/worker、最长4h，总≤4GPUh；不改32配置/代码/种子/单程序时限。serial_collateral_factorial_20261006.py与scheduling-amendment.json记录。03:11最后观察23启动/22完成、未闭合。旧12535不操作。全批闭合/预测hash冻结后才评分；串行适配readout已于02:55上传B根。5合成对照测试PASS，无LLM/API/底座更新。
+- 02:49单卡修订：16536在PENDING/0启动撤换，原launch/plan保留；16538同gpu27单卡最长4h、总≤4GPUh，不改32配置/种子/单程序限时。scheduling-amendment SHAc9b31bf6dbafab47973b6a17849e6535963ea38cebfda94a960beda05a6215d4。旧12535不操作。已全批封存后评分；无新GPU作业。
 - 预结果独立性核查：8条边只有3个不同父程序AST（case0–3共用，4–6共用，7另一个）；不能将其当8个独立起点。Tweet代码内会重新seed，wrapper种子不同不自动等于独立训练重复。
 - 预结果代码核查：case6/7的MAX_LEN从字符变成词/token单位；case5 BiLSTM→Transformer，LR转移未必合适。保留分母但不能将数值恢复解释为语义等价或错误修复。LLaMEA-HPO §3.3已明确优化后参数保留、结构变异，故宽概念不新。
-- 03:11预读出解释边界保存results/research_synthesis_20261006/pre_readout_scope.json；大多数数值变化是明确意图，不能叫误改。GOME旧linkage源码已核numeric loop排序且双实现一致，无排序bug证据；最佳父解复用与作者流程吻合，不能把相邻loop当真实父子。最新fetch学长仍dfff0efb，无新提交。
+- 03:11预读出解释边界results/research_synthesis_20261006/pre_readout_scope.json已先提交37064919；大多数数值变化明确有意，不能叫误改。GOME旧linkage核numeric loop排序且双实现一致，无排序bug证据；最佳父解复用与作者流程吻合。24合格边父代码仅6个、组大小16/4/1/1/1/1；不能盲目扩大边数。最新fetch学长仍dfff0efb，无新提交。
 
 ## 最新研究复算：方向仍待验证，不把局部线索当新方法
 - 新本地证据：results/research_synthesis_20261006/diagnostic.json已随ac327c54提交，尚未push。源inner-grid SHA66d79e554d0e0ea8a56d5e87d5cdf941e38c8fc20e84efbda8ff6cd3b5023064与已有导出回执一致，JS/PowerShell独立复算。

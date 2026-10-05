@@ -1,0 +1,136 @@
+{
+  "allocated_gpu_hours": 0.5997222222222223,
+  "allocation_seconds": 2159,
+  "allocation_state": "COMPLETED",
+  "analysis_sha256": "82983a72832f16f57b76e28105156516e003a779720769d6c9c8712b78924ec6",
+  "assigned": 32,
+  "automatic_expansion": false,
+  "contrasts": [
+    {
+      "CP_minus_C": 0.0,
+      "CP_minus_P": -0.011480507055728228,
+      "C_minus_P": -0.011480507055728228,
+      "PC_minus_P": 0.0,
+      "case": 0,
+      "complete": true,
+      "interaction": 0.0,
+      "pre_outcome_semantic_caveat": "All untransplanted changes remain bundled; no intent/semantic equivalence guarantee.",
+      "rescue": false,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "CP_minus_C": 0.002870126763932057,
+      "CP_minus_P": -0.006786653910547669,
+      "C_minus_P": -0.009656780674479726,
+      "PC_minus_P": -0.00852068883042334,
+      "case": 1,
+      "complete": true,
+      "interaction": 0.0056505620664912826,
+      "pre_outcome_semantic_caveat": "All untransplanted changes remain bundled; no intent/semantic equivalence guarantee.",
+      "rescue": false,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "CP_minus_C": -0.012467113130829932,
+      "CP_minus_P": -0.020569241808179872,
+      "C_minus_P": -0.00810212867734994,
+      "PC_minus_P": -0.0035577613011240627,
+      "case": 2,
+      "complete": true,
+      "interaction": 0.016024874431953995,
+      "pre_outcome_semantic_caveat": "All untransplanted changes remain bundled; no intent/semantic equivalence guarantee.",
+      "rescue": false,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "CP_minus_C": 0.009925855058598443,
+      "CP_minus_P": 0.001435063381966084,
+      "C_minus_P": -0.008490791676632359,
+      "PC_minus_P": -0.005919636450609889,
+      "case": 3,
+      "complete": true,
+      "interaction": -0.004006218607988554,
+      "pre_outcome_semantic_caveat": "All untransplanted changes remain bundled; no intent/semantic equivalence guarantee.",
+      "rescue": true,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "CP_minus_C": null,
+      "CP_minus_P": null,
+      "C_minus_P": null,
+      "PC_minus_P": null,
+      "case": 4,
+      "complete": false,
+      "interaction": null,
+      "pre_outcome_semantic_caveat": "All untransplanted changes remain bundled; no intent/semantic equivalence guarantee.",
+      "rescue": null,
+      "task": "tweet-sentiment-extraction"
+    },
+    {
+      "CP_minus_C": null,
+      "CP_minus_P": null,
+      "C_minus_P": null,
+      "PC_minus_P": null,
+      "case": 5,
+      "complete": false,
+      "interaction": null,
+      "pre_outcome_semantic_caveat": "Architecture changes BiLSTM to Transformer; LR transfer need not preserve suitable optimization.",
+      "rescue": null,
+      "task": "tweet-sentiment-extraction"
+    },
+    {
+      "CP_minus_C": null,
+      "CP_minus_P": null,
+      "C_minus_P": null,
+      "PC_minus_P": null,
+      "case": 6,
+      "complete": false,
+      "interaction": null,
+      "pre_outcome_semantic_caveat": "MAX_LEN changes units: characters to words/tokens; numeric restoration is not matched semantic capacity.",
+      "rescue": null,
+      "task": "tweet-sentiment-extraction"
+    },
+    {
+      "CP_minus_C": 0.08706742523117139,
+      "CP_minus_P": -0.21546606120543998,
+      "C_minus_P": -0.3025334864366114,
+      "PC_minus_P": -0.40642272030815807,
+      "case": 7,
+      "complete": true,
+      "interaction": 0.3193552950769867,
+      "pre_outcome_semantic_caveat": "MAX_LEN changes units: characters to words/tokens; numeric restoration is not matched semantic capacity.",
+      "rescue": false,
+      "task": "tweet-sentiment-extraction"
+    }
+  ],
+  "exitcode": "0:0",
+  "independent_scores": 26,
+  "job": "16538",
+  "limitation": "Old examined development data; 4 edits per task are not 4 independent tasks/parents. Remainder includes all untransplanted code, not proven semantic idea. No novelty, generalization or automatic expansion claim. All 32 executions and failures counted. Diagnostic spends four executions/edge, not a same-budget search comparison.",
+  "max_absolute_verifier_error": 8.326672684688674e-16,
+  "new_method_confirmed": false,
+  "per_task": [
+    {
+      "CP_minus_C_median": 0.0014350633819660286,
+      "CP_minus_C_sample_variance": 8.738736581605343e-05,
+      "assigned_edges": 4,
+      "complete_quartets": 4,
+      "strict_rescues": 1,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "CP_minus_C_median": 0.08706742523117139,
+      "CP_minus_C_sample_variance": null,
+      "assigned_edges": 4,
+      "complete_quartets": 1,
+      "strict_rescues": 0,
+      "task": "tweet-sentiment-extraction"
+    }
+  ],
+  "plan_sha256": "57dbaec816abda184f99abe0f8738e0350d0d0cb18602f5c8822eea50aeabcce",
+  "protected_opened": false,
+  "protocol": "numeric-bundle-four-vertex-v1",
+  "scheduling_amendment_sha256": "c9b31bf6dbafab47973b6a17849e6535963ea38cebfda94a960beda05a6215d4",
+  "source_commit": "ac327c54fa6e5d92d6ad0df5ed7adfdf2b7f0695",
+  "valid": 26
+}

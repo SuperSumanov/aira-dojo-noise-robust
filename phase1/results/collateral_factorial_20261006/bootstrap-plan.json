@@ -1,0 +1,20 @@
+{
+  "boundary": "Post-hoc conditional paired uncertainty on every complete fixed quartet.\n\nThis resamples the already reused D_search examples. It does NOT correct research\nadaptation, selection of tasks, multiple contrasts or training randomness, and\ncannot convert the known rescue example into an independent confirmation.\n",
+  "complete_cases": [
+    0,
+    1,
+    2,
+    3,
+    7
+  ],
+  "confidence": 0.95,
+  "gpu_hours": 0,
+  "method": "Paired stratified-example bootstrap for AUC, paired-example bootstrap for Jaccard.",
+  "model_fits": 0,
+  "posthoc": true,
+  "samples": 2000,
+  "script_sha256": "46602fa20ceaa253da0396b3c9b6544e0d0bb5a7ba0679637ea29db1b2209f9b",
+  "seed": 116099,
+  "selection": "Every complete original quartet; missing quartets remain in primary result.",
+  "source_summary_sha256": "1adfe476893432ac944bae327fe8e32add995bb15c6ff416433716fa623b2185"
+}

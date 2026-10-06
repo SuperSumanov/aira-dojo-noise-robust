@@ -1,0 +1,505 @@
+{
+  "actual_cpu_usage": "unmeasured",
+  "actual_gpu_usage": "unmeasured",
+  "by_task": [
+    {
+      "flags": {
+        "cuda_availability_branch_hint": 1,
+        "explicit_gpu_hint": 2,
+        "gpu_backend_import": 1,
+        "has_for_loop": 4
+      },
+      "parsed": 4,
+      "programs": 4,
+      "task": "3d-object-detection-for-autonomous-vehicles"
+    },
+    {
+      "flags": {
+        "cpu_count_query": 2,
+        "cuda_availability_branch_hint": 4,
+        "dataloader_worker_hint": 2,
+        "gpu_backend_import": 4,
+        "has_for_loop": 4,
+        "sklearn_import": 3
+      },
+      "parsed": 4,
+      "programs": 4,
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "flags": {
+        "cuda_availability_branch_hint": 4,
+        "dataloader_worker_hint": 4,
+        "explicit_gpu_hint": 2,
+        "explicit_gpu_release_hint": 2,
+        "gpu_backend_import": 4,
+        "has_for_loop": 4,
+        "sklearn_import": 4
+      },
+      "parsed": 4,
+      "programs": 4,
+      "task": "aptos2019-blindness-detection"
+    },
+    {
+      "flags": {
+        "cuda_availability_branch_hint": 4,
+        "dataloader_worker_hint": 4,
+        "explicit_gpu_hint": 2,
+        "explicit_gpu_release_hint": 2,
+        "gpu_backend_import": 4,
+        "has_for_loop": 4,
+        "sklearn_import": 4
+      },
+      "parsed": 4,
+      "programs": 4,
+      "task": "cassava-leaf-disease-classification"
+    },
+    {
+      "flags": {
+        "cuda_availability_branch_hint": 4,
+        "dataloader_worker_hint": 4,
+        "gpu_backend_import": 4,
+        "has_for_loop": 4
+      },
+      "parsed": 4,
+      "programs": 4,
+      "task": "denoising-dirty-documents"
+    },
+    {
+      "flags": {
+        "all_cpu_knob": 2,
+        "has_for_loop": 4,
+        "sklearn_import": 4
+      },
+      "parsed": 4,
+      "programs": 4,
+      "task": "detecting-insults-in-social-commentary"
+    },
+    {
+      "flags": {
+        "cpu_count_query": 4,
+        "cuda_availability_branch_hint": 4,
+        "explicit_gpu_release_hint": 2,
+        "gpu_backend_import": 4,
+        "has_for_loop": 4,
+        "sklearn_import": 2
+      },
+      "parsed": 4,
+      "programs": 4,
+      "task": "dogs-vs-cats-redux-kernels-edition"
+    },
+    {
+      "flags": {
+        "cuda_availability_branch_hint": 4,
+        "dataloader_worker_hint": 4,
+        "explicit_gpu_hint": 4,
+        "gpu_backend_import": 4,
+        "has_for_loop": 4
+      },
+      "parsed": 4,
+      "programs": 4,
+      "task": "freesound-audio-tagging-2019"
+    },
+    {
+      "flags": {
+        "cuda_availability_branch_hint": 4,
+        "dataloader_worker_hint": 2,
+        "explicit_gpu_release_hint": 4,
+        "gpu_backend_import": 4,
+        "has_for_loop": 4,
+        "sklearn_import": 3
+      },
+      "parsed": 4,
+      "programs": 4,
+      "task": "google-quest-challenge"
+    },
+    {
+      "flags": {
+        "has_for_loop": 4
+      },
+      "parsed": 4,
+      "programs": 4,
+      "task": "h-and-m-personalized-fashion-recommendations"
+    },
+    {
+      "flags": {
+        "cuda_availability_branch_hint": 4,
+        "dataloader_worker_hint": 4,
+        "gpu_backend_import": 4,
+        "has_for_loop": 4,
+        "sklearn_import": 2
+      },
+      "parsed": 4,
+      "programs": 4,
+      "task": "herbarium-2020-fgvc7"
+    },
+    {
+      "flags": {
+        "cpu_count_query": 4,
+        "cuda_availability_branch_hint": 4,
+        "explicit_gpu_hint": 2,
+        "gpu_backend_import": 4,
+        "has_for_loop": 4,
+        "sklearn_import": 4
+      },
+      "parsed": 4,
+      "programs": 4,
+      "task": "herbarium-2021-fgvc8"
+    },
+    {
+      "flags": {
+        "cpu_count_query": 2,
+        "cuda_availability_branch_hint": 4,
+        "explicit_gpu_hint": 2,
+        "explicit_gpu_release_hint": 2,
+        "gpu_backend_import": 4,
+        "has_for_loop": 4,
+        "sklearn_import": 4
+      },
+      "parsed": 4,
+      "programs": 4,
+      "task": "herbarium-2022-fgvc9"
+    },
+    {
+      "flags": {
+        "cpu_count_query": 2,
+        "cuda_availability_branch_hint": 4,
+        "dataloader_worker_hint": 2,
+        "gpu_backend_import": 4,
+        "has_for_loop": 4,
+        "sklearn_import": 4
+      },
+      "parsed": 4,
+      "programs": 4,
+      "task": "histopathologic-cancer-detection"
+    },
+    {
+      "flags": {
+        "cuda_availability_branch_hint": 4,
+        "dataloader_worker_hint": 4,
+        "explicit_gpu_release_hint": 2,
+        "gpu_backend_import": 4,
+        "has_for_loop": 4,
+        "sklearn_import": 1
+      },
+      "parsed": 4,
+      "programs": 4,
+      "task": "hotel-id-2021-fgvc8"
+    },
+    {
+      "flags": {
+        "cpu_count_query": 1,
+        "has_for_loop": 3
+      },
+      "parsed": 3,
+      "programs": 3,
+      "task": "hubmap-kidney-segmentation"
+    },
+    {
+      "flags": {
+        "cuda_availability_branch_hint": 4,
+        "dataloader_worker_hint": 4,
+        "explicit_gpu_hint": 2,
+        "explicit_gpu_release_hint": 2,
+        "gpu_backend_import": 4,
+        "has_for_loop": 4,
+        "sklearn_import": 2
+      },
+      "parsed": 4,
+      "programs": 4,
+      "task": "inaturalist-2019-fgvc6"
+    },
+    {
+      "flags": {
+        "cpu_count_query": 2,
+        "cuda_availability_branch_hint": 4,
+        "dataloader_worker_hint": 2,
+        "gpu_backend_import": 4,
+        "has_for_loop": 4,
+        "sklearn_import": 4
+      },
+      "parsed": 4,
+      "programs": 4,
+      "task": "iwildcam-2019-fgvc6"
+    },
+    {
+      "flags": {
+        "cpu_count_query": 2,
+        "cuda_availability_branch_hint": 4,
+        "gpu_backend_import": 4,
+        "has_for_loop": 4,
+        "sklearn_import": 2
+      },
+      "parsed": 4,
+      "programs": 4,
+      "task": "iwildcam-2020-fgvc7"
+    },
+    {
+      "flags": {
+        "cuda_availability_branch_hint": 4,
+        "dataloader_worker_hint": 4,
+        "explicit_gpu_release_hint": 2,
+        "gpu_backend_import": 4,
+        "has_for_loop": 4,
+        "sklearn_import": 2
+      },
+      "parsed": 4,
+      "programs": 4,
+      "task": "jigsaw-toxic-comment-classification-challenge"
+    },
+    {
+      "flags": {
+        "cuda_availability_branch_hint": 2,
+        "dataloader_worker_hint": 2,
+        "gpu_backend_import": 2,
+        "has_for_loop": 4,
+        "sklearn_import": 2
+      },
+      "parsed": 4,
+      "programs": 4,
+      "task": "kuzushiji-recognition"
+    },
+    {
+      "flags": {
+        "has_for_loop": 4,
+        "sklearn_import": 4
+      },
+      "parsed": 4,
+      "programs": 4,
+      "task": "leaf-classification"
+    },
+    {
+      "flags": {
+        "cuda_availability_branch_hint": 4,
+        "dataloader_worker_hint": 4,
+        "explicit_gpu_release_hint": 1,
+        "gpu_backend_import": 4,
+        "has_for_loop": 4,
+        "sklearn_import": 4
+      },
+      "parsed": 4,
+      "programs": 4,
+      "task": "learning-agency-lab-automated-essay-scoring-2"
+    },
+    {
+      "flags": {
+        "cuda_availability_branch_hint": 4,
+        "gpu_backend_import": 4,
+        "has_for_loop": 4,
+        "sklearn_import": 4
+      },
+      "parsed": 4,
+      "programs": 4,
+      "task": "mlsp-2013-birds"
+    },
+    {
+      "flags": {
+        "cpu_count_query": 4,
+        "has_for_loop": 4,
+        "sklearn_import": 4
+      },
+      "parsed": 4,
+      "programs": 4,
+      "task": "nomad2018-predict-transparent-conductors"
+    },
+    {
+      "flags": {
+        "cuda_availability_branch_hint": 3,
+        "dataloader_worker_hint": 3,
+        "explicit_gpu_release_hint": 3,
+        "gpu_backend_import": 3,
+        "has_for_loop": 3,
+        "sklearn_import": 3
+      },
+      "parsed": 3,
+      "programs": 3,
+      "task": "plant-pathology-2020-fgvc7"
+    },
+    {
+      "flags": {
+        "cpu_count_query": 2,
+        "cuda_availability_branch_hint": 4,
+        "dataloader_worker_hint": 2,
+        "explicit_gpu_release_hint": 2,
+        "gpu_backend_import": 4,
+        "has_for_loop": 4,
+        "sklearn_import": 2
+      },
+      "parsed": 4,
+      "programs": 4,
+      "task": "plant-pathology-2021-fgvc8"
+    },
+    {
+      "flags": {
+        "cpu_count_query": 2,
+        "has_for_loop": 4,
+        "sklearn_import": 4
+      },
+      "parsed": 4,
+      "programs": 4,
+      "task": "predict-volcanic-eruptions-ingv-oe"
+    },
+    {
+      "flags": {
+        "cuda_availability_branch_hint": 2,
+        "explicit_gpu_release_hint": 2,
+        "gpu_backend_import": 2,
+        "has_for_loop": 4,
+        "sklearn_import": 4
+      },
+      "parsed": 4,
+      "programs": 4,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "flags": {
+        "cuda_availability_branch_hint": 4,
+        "dataloader_worker_hint": 4,
+        "gpu_backend_import": 4,
+        "has_for_loop": 4,
+        "sklearn_import": 3
+      },
+      "parsed": 4,
+      "programs": 4,
+      "task": "rsna-miccai-brain-tumor-radiogenomic-classification"
+    },
+    {
+      "flags": {
+        "cuda_availability_branch_hint": 4,
+        "dataloader_worker_hint": 3,
+        "explicit_gpu_hint": 2,
+        "gpu_backend_import": 4,
+        "has_for_loop": 4,
+        "sklearn_import": 4
+      },
+      "parsed": 4,
+      "programs": 4,
+      "task": "seti-breakthrough-listen"
+    },
+    {
+      "flags": {
+        "all_cpu_knob": 3,
+        "has_for_loop": 4,
+        "sklearn_import": 4
+      },
+      "parsed": 4,
+      "programs": 4,
+      "task": "spooky-author-identification"
+    },
+    {
+      "flags": {
+        "cpu_count_query": 4,
+        "cuda_availability_branch_hint": 2,
+        "gpu_backend_import": 2,
+        "has_for_loop": 4,
+        "sklearn_import": 4
+      },
+      "parsed": 4,
+      "programs": 4,
+      "task": "stanford-covid-vaccine"
+    },
+    {
+      "flags": {
+        "all_cpu_knob": 2,
+        "cuda_availability_branch_hint": 2,
+        "gpu_backend_import": 2,
+        "has_for_loop": 4,
+        "sklearn_import": 3
+      },
+      "parsed": 4,
+      "programs": 4,
+      "task": "tabular-playground-series-dec-2021"
+    },
+    {
+      "flags": {
+        "has_for_loop": 4
+      },
+      "parsed": 4,
+      "programs": 4,
+      "task": "text-normalization-challenge-english-language"
+    },
+    {
+      "flags": {
+        "has_for_loop": 4
+      },
+      "parsed": 4,
+      "programs": 4,
+      "task": "text-normalization-challenge-russian-language"
+    },
+    {
+      "flags": {
+        "cuda_availability_branch_hint": 4,
+        "dataloader_worker_hint": 4,
+        "gpu_backend_import": 4,
+        "has_for_loop": 4,
+        "sklearn_import": 2
+      },
+      "parsed": 4,
+      "programs": 4,
+      "task": "the-icml-2013-whale-challenge-right-whale-redux"
+    },
+    {
+      "flags": {
+        "cuda_availability_branch_hint": 4,
+        "dataloader_worker_hint": 2,
+        "explicit_gpu_hint": 2,
+        "gpu_backend_import": 4,
+        "has_for_loop": 4,
+        "sklearn_import": 2
+      },
+      "parsed": 4,
+      "programs": 4,
+      "task": "tweet-sentiment-extraction"
+    },
+    {
+      "flags": {
+        "cuda_availability_branch_hint": 4,
+        "explicit_gpu_hint": 4,
+        "gpu_backend_import": 4,
+        "has_for_loop": 4,
+        "sklearn_import": 4
+      },
+      "parsed": 4,
+      "programs": 4,
+      "task": "us-patent-phrase-to-phrase-matching"
+    },
+    {
+      "flags": {
+        "cuda_availability_branch_hint": 4,
+        "dataloader_worker_hint": 4,
+        "explicit_gpu_hint": 2,
+        "explicit_gpu_release_hint": 2,
+        "gpu_backend_import": 4,
+        "has_for_loop": 4,
+        "sklearn_import": 2
+      },
+      "parsed": 4,
+      "programs": 4,
+      "task": "whale-categorization-playground"
+    }
+  ],
+  "candidates_executed": false,
+  "elapsed_seconds": 36.046698851976544,
+  "flag_counts": {
+    "all_cpu_knob": 7,
+    "cpu_count_query": 31,
+    "cuda_availability_branch_hint": 112,
+    "dataloader_worker_hint": 68,
+    "explicit_gpu_hint": 26,
+    "explicit_gpu_release_hint": 28,
+    "gpu_backend_import": 112,
+    "has_for_loop": 158,
+    "sklearn_import": 104
+  },
+  "frozen_pairs": 80,
+  "outcome_fields_accessed": false,
+  "pair_hint_flags_changed": 13,
+  "pair_parse_failed": 0,
+  "pair_setting_inventory_changed": 30,
+  "parse_failed": 0,
+  "parsed": 158,
+  "programs": 158,
+  "script_sha256": "053b5698035ec766652d50b764801d96eda80d0824fbdef365a91032dadc7efc",
+  "source_sample_sha256": "11b3f7c9c28119b612f332af6b6ddfc6fabd02a4f7694912576e615871ed8039",
+  "tasks": 40
+}

@@ -1,0 +1,292 @@
+{
+  "all_worker_gpu_count": 1,
+  "allocation": {
+    "elapsed_seconds": 5107,
+    "exit_code": "0:0",
+    "state": "COMPLETED",
+    "tres": {
+      "billing": "24",
+      "cpu": "24",
+      "gres/gpu": "4",
+      "node": "1"
+    }
+  },
+  "by_arm": {
+    "continue": {
+      "maximum": 0.8175023821571504,
+      "median": 0.6005064603459243,
+      "minimum": 0.5843373906245446,
+      "n": 4,
+      "sample_variance": 0.012589223522127716
+    },
+    "new_idea": {
+      "maximum": 0.8928444526099569,
+      "median": 0.7052152182678372,
+      "minimum": 0.42841521736401783,
+      "n": 4,
+      "sample_variance": 0.051655797279866814
+    },
+    "reimplement": {
+      "maximum": 0.7412492752502636,
+      "median": 0.6871033613147963,
+      "minimum": 0.30833215228035527,
+      "n": 4,
+      "sample_variance": 0.04131171329433551
+    }
+  },
+  "by_task": {
+    "random-acts-of-pizza": {
+      "maximum": 0.8928444526099569,
+      "median": 0.7302769590187579,
+      "minimum": 0.30833215228035527,
+      "n": 6,
+      "sample_variance": 0.04869973043406996
+    },
+    "spooky-author-identification": {
+      "maximum": 0.7412492752502636,
+      "median": 0.6003422932016333,
+      "minimum": 0.42841521736401783,
+      "n": 6,
+      "sample_variance": 0.013720071565112488
+    }
+  },
+  "cost_sha256": "724018a317d8b540e6893c5abedf9ccd0d7908682349517b45c3e1e5147d1184",
+  "fraction_of_whole_pool_reservation": 0.2272495855543097,
+  "generator_gpu_count": 2,
+  "job": "16370",
+  "limit": "All 12 LLM trajectories including failed/timed-out workers. Slurm elapsed has seconds precision and includes startup/cleanup; distinct denominator from worker-finished wall time. Only returned generator calls counted. Reservation windows are not measured idle or savings. Two reused development tasks; no independent production generalization.",
+  "llm_fraction_of_allocated_step": {
+    "maximum": 0.8928444526099569,
+    "median": 0.6296993658295438,
+    "minimum": 0.30833215228035527,
+    "n": 12,
+    "sample_variance": 0.029875069938345003
+  },
+  "plan_sha256": "c1aba6663872c01c656f4da45667f5d0dc60e589fec6fe5f87fc00dcbc9a2d6a",
+  "returned_generation_gpu_seconds": 4642.254533703439,
+  "rows": [
+    {
+      "allocated_step_seconds": 31,
+      "arm": "ROOT",
+      "exit_code": "0:0",
+      "generation_fraction_of_allocated_step": 0.0,
+      "index": 0,
+      "returned_generation_seconds": 0,
+      "state": "COMPLETED",
+      "step": "1",
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "allocated_step_seconds": 33,
+      "arm": "ROOT",
+      "exit_code": "0:0",
+      "generation_fraction_of_allocated_step": 0.0,
+      "index": 1,
+      "returned_generation_seconds": 0,
+      "state": "COMPLETED",
+      "step": "2",
+      "task": "spooky-author-identification"
+    },
+    {
+      "allocated_step_seconds": 601,
+      "arm": "continue",
+      "exit_code": "0:9",
+      "generation_fraction_of_allocated_step": 0.8175023821571504,
+      "index": 2,
+      "returned_generation_seconds": 491.3189316764474,
+      "state": "CANCELLED",
+      "step": "3",
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "allocated_step_seconds": 597,
+      "arm": "continue",
+      "exit_code": "0:0",
+      "generation_fraction_of_allocated_step": 0.6163471957787222,
+      "index": 3,
+      "returned_generation_seconds": 367.9592758798972,
+      "state": "COMPLETED",
+      "step": "4",
+      "task": "spooky-author-identification"
+    },
+    {
+      "allocated_step_seconds": 601,
+      "arm": "reimplement",
+      "exit_code": "0:9",
+      "generation_fraction_of_allocated_step": 0.30833215228035527,
+      "index": 4,
+      "returned_generation_seconds": 185.3076235204935,
+      "state": "CANCELLED",
+      "step": "6",
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "allocated_step_seconds": 597,
+      "arm": "reimplement",
+      "exit_code": "0:0",
+      "generation_fraction_of_allocated_step": 0.7412492752502636,
+      "index": 5,
+      "returned_generation_seconds": 442.5258173244074,
+      "state": "COMPLETED",
+      "step": "5",
+      "task": "spooky-author-identification"
+    },
+    {
+      "allocated_step_seconds": 601,
+      "arm": "new_idea",
+      "exit_code": "0:9",
+      "generation_fraction_of_allocated_step": 0.8554355200944149,
+      "index": 6,
+      "returned_generation_seconds": 514.1167475767434,
+      "state": "CANCELLED",
+      "step": "8",
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "allocated_step_seconds": 601,
+      "arm": "new_idea",
+      "exit_code": "0:9",
+      "generation_fraction_of_allocated_step": 0.42841521736401783,
+      "index": 7,
+      "returned_generation_seconds": 257.47754563577473,
+      "state": "CANCELLED",
+      "step": "7",
+      "task": "spooky-author-identification"
+    },
+    {
+      "allocated_step_seconds": 591,
+      "arm": "random_hpo",
+      "exit_code": "0:0",
+      "generation_fraction_of_allocated_step": 0.0,
+      "index": 8,
+      "returned_generation_seconds": 0,
+      "state": "COMPLETED",
+      "step": "9",
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "allocated_step_seconds": 601,
+      "arm": "random_hpo",
+      "exit_code": "0:9",
+      "generation_fraction_of_allocated_step": 0.0,
+      "index": 9,
+      "returned_generation_seconds": 0,
+      "state": "CANCELLED",
+      "step": "10",
+      "task": "spooky-author-identification"
+    },
+    {
+      "allocated_step_seconds": 589,
+      "arm": "random_hpo",
+      "exit_code": "0:0",
+      "generation_fraction_of_allocated_step": 0.0,
+      "index": 10,
+      "returned_generation_seconds": 0,
+      "state": "COMPLETED",
+      "step": "11",
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "allocated_step_seconds": 593,
+      "arm": "random_hpo",
+      "exit_code": "0:0",
+      "generation_fraction_of_allocated_step": 0.0,
+      "index": 11,
+      "returned_generation_seconds": 0,
+      "state": "COMPLETED",
+      "step": "12",
+      "task": "spooky-author-identification"
+    },
+    {
+      "allocated_step_seconds": 587,
+      "arm": "new_idea",
+      "exit_code": "0:0",
+      "generation_fraction_of_allocated_step": 0.8928444526099569,
+      "index": 12,
+      "returned_generation_seconds": 524.0996936820447,
+      "state": "COMPLETED",
+      "step": "14",
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "allocated_step_seconds": 602,
+      "arm": "new_idea",
+      "exit_code": "0:9",
+      "generation_fraction_of_allocated_step": 0.5549949164412594,
+      "index": 13,
+      "returned_generation_seconds": 334.10693969763815,
+      "state": "CANCELLED",
+      "step": "13",
+      "task": "spooky-author-identification"
+    },
+    {
+      "allocated_step_seconds": 595,
+      "arm": "reimplement",
+      "exit_code": "0:0",
+      "generation_fraction_of_allocated_step": 0.6430515358803653,
+      "index": 14,
+      "returned_generation_seconds": 382.61566384881735,
+      "state": "COMPLETED",
+      "step": "15",
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "allocated_step_seconds": 602,
+      "arm": "reimplement",
+      "exit_code": "0:9",
+      "generation_fraction_of_allocated_step": 0.7311551867492274,
+      "index": 15,
+      "returned_generation_seconds": 440.1554224230349,
+      "state": "CANCELLED",
+      "step": "16",
+      "task": "spooky-author-identification"
+    },
+    {
+      "allocated_step_seconds": 601,
+      "arm": "continue",
+      "exit_code": "0:9",
+      "generation_fraction_of_allocated_step": 0.5846657249131263,
+      "index": 16,
+      "returned_generation_seconds": 351.3841006727889,
+      "state": "CANCELLED",
+      "step": "17",
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "allocated_step_seconds": 601,
+      "arm": "continue",
+      "exit_code": "0:9",
+      "generation_fraction_of_allocated_step": 0.5843373906245446,
+      "index": 17,
+      "returned_generation_seconds": 351.1867717653513,
+      "state": "CANCELLED",
+      "step": "18",
+      "task": "spooky-author-identification"
+    }
+  ],
+  "source_hashes": {
+    "episode-0/native.json": "6565110ff18d5d2cd44b150ec1ab17416526c84705e678bcefc807e56b9fdb4d",
+    "episode-1/native.json": "dbc7957d8298f0c4e4ffa2bbf1c60f1dbc57ebd1c18beb2226d73047c433d4f8",
+    "episode-10/native.json": "1851b8364de5a9b8f2804f38472c25104b546c3eda2b64798b0a877771b177f9",
+    "episode-11/native.json": "de5177ed62ab63a3e1b1fc38a5f38809ecbff8ec274991f93bd0d236f1dfa2a3",
+    "episode-12/native.json": "6964f1f3a7981168d7aebb75650b29186ea7054fafde7272a220d64a8bd75ca4",
+    "episode-13/native.json": "1f4e30b452ad16c84e24bebdaf7844d95490af25451294dccdeded2b7cd1c619",
+    "episode-14/native.json": "18d07c4fe39111388132237d3e9584549a2af9703ca6ec815206690c84a4b4ed",
+    "episode-15/native.json": "c864ed7d76577c328ca389f07ecf730618f2b901024802f43518f6e840ae59d7",
+    "episode-16/native.json": "9f7d5f7a77356b384ef81be82d730c983b3d42e0a0b4ddbd46fc4c3997431b32",
+    "episode-17/native.json": "fa37fa2d1c373cdf468bb65a7fd4a7e722f716fee2f1dbe8d5515d35103dc5f1",
+    "episode-2/native.json": "bf04a513a59c2fbe6e0ea41638fa35b86523fec5b18d8bcbe7ef6e7a1c91473d",
+    "episode-3/native.json": "604c6b164e7c2b8418d7c92d333ef4feec4b13109e20fec9a3e6465d729529b5",
+    "episode-4/native.json": "65abf3120873a960f1d6f279e422a62a7d8c1590ff47f4df6a68322b1ca5f70b",
+    "episode-5/native.json": "5aa260ec1bce434d4638965887e6270a6909cca70f0a49e614f0dacd40645e22",
+    "episode-6/native.json": "5d7195f8952046c9dd9e0738ab6eb45f4dff4663b427aa83c6e482b9feff39ba",
+    "episode-7/native.json": "25a14290815de44a3dd9f0dd5146ded80ee1258aebbe7bafcba0955b8ba1aa62",
+    "episode-8/native.json": "026c76cf7f13714a4dea02f4b775ecc994336904810864e8a9ef377cc593535d",
+    "episode-9/native.json": "1ee04143afdbb41ced270640df6b7832c83c55056c8a819c2e13f5c0d33a1a75",
+    "plan.json": "c1aba6663872c01c656f4da45667f5d0dc60e589fec6fe5f87fc00dcbc9a2d6a",
+    "readout-v1/mechanism-cost.json": "724018a317d8b540e6893c5abedf9ccd0d7908682349517b45c3e1e5147d1184",
+    "service-native.json": "ed2182559e22688db38663f6df3dec71d9d571be187323f63b331c38f5ca4d39"
+  },
+  "whole_pool_gpu_hours": 5.674444444444444,
+  "worker_generator_devices_disjoint": true
+}

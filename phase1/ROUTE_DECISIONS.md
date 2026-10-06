@@ -27,6 +27,14 @@
 | R12 调参后结构改善空间与反馈引导单提案 | 16395：已知word+char有限网格阳性，Spooky两划分同参28/28改善，非新方法。新16403：12启动10有效端点，普通/附28点调参反馈/open word+char HPO；profile对ordinary四完整双方三平一负，对HPO两个完整块均负；原完整三臂仅2/4块，2HPO端点kernel-readiness超时。Spooky实际提示方向正确、最佳C30，新提案两次C0.1更差 | 停额外反馈单提案配方，不补seed救门；不否定所有结构发现。HPO两有效输出与16395相同，不称新独立正结果；保留已知结构参照。R2/R6/Centaur附近，不能更名加反馈。[空间](results/matched_representation_20261005/summary.json)、[新对照](results/structural_agent_20261005/summary.json)、[完整双方/机制](results/structural_agent_20261005/supplement-v1.json) |
 | R13 自然修改中参数继承、恢复父数值、四格交互 | 16538：2任务8边×4版本=32执行，26有效、5完整四格、3不同父程序。仅1严格挽救且为已知日期特征例，CP−P条件区间跨0；其他无新挽救，1例恢复反而更差。Tweet3对C/CP同样代码错误。参数效应随结构变化的单例符号翻转存在但Pizza交互区间跨0 | 停简单恢复数值配方，不补边/seed救结果；不否定所有编辑因果分析。LLaMEA-HPO/GEVO/MLE-STAR直接近邻；不能把合成网格或旧例包装成自动方法。[四格](results/collateral_factorial_20261006/summary.json)、[独立审计](results/collateral_factorial_20261006/audit.json)、[条件区间](results/collateral_factorial_20261006/bootstrap.json) |
 
+## R14（10/6新增候选方向）：MLE沙箱资源准入，不是已成立方法
+
+- 学长autoresearch_project@d82dcd845e30e9771750510028d38a6d1d979c43修正版；改变硬件准入/共置而非预测解质量(R10)或复用执行状态(R4)。保留原候选算法、生成与搜索策略，先只测系统收益。
+- 本轮读[SchedMate](https://arxiv.org/html/2510.03334) §3–4：源码/历史检索/免部分profile/干扰撤销已有；无匹配回退profile、无进度跳过对应撤销是明确限制，非我方优势证据。作者[2024 poster](https://wang-zerui.github.io/publication/schedmate/)还有版本差异跟踪，不把父子diff复用叫新。
+- [ElastiCo](https://arxiv.org/html/2608.07971v1) §4已有画像与非侵入GPU共置；[AgentCgroup](https://arxiv.org/html/2602.09345)已有意图驱动CPU/内存。宽概念高度相邻，原文旧“没人做过”不采用。
+- 只开放小资格研究：真实未知程序/阶段变化/不可便宜撤销条件是否常见且有成本；语义能否胜简单特征、telemetry与SchedMate式参照。用户已批准16624六次生命周期原语，6/6完成、159GPU秒；372MiB保留vs0额外显存，文件全同，不是生产泄漏/系统增益。factory上层本就close；必须用执行级借还整卡作强基线，再谈共享/语义。旧16370返回生成占77.37task-slot分钟（全4GPU池预留22.72%），不是可省百分比；尚未获新调度效果批次/付费/训练授权。
+- 追加近邻：[Cortex](https://research.google/pubs/cortex-workflow-aware-resource-pooling-and-scheduling-for-agentic-serving/)已有阶段资源池；[SpecBox](https://arxiv.org/html/2607.23933)已有生成中沙箱预热/跨步预取；[Agentic CPU-GPU Scheduling](https://arxiv.org/html/2607.22242)已有19工具profile、三选、重测与交换。一次性未知程序可否省去重复测量而保留安全净收益仍是假说；宽泛阶段分离/LLM调度均不能称新。
+
 ## 已核近邻：检索入口，不是它们已替我们验证效果
 
 - **M-DESIGN**：edit-gain图、任务相似度及预测修改；旧裁决0CU。https://arxiv.org/abs/2507.15336

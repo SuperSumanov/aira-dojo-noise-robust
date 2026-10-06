@@ -1,0 +1,138 @@
+{
+  "all_original_rows": 18,
+  "analyzer_sha256": "85d74e802554869ea0b9513a37ddc33115ff5169b8984d8aa6bd1eba99cfc451",
+  "fraction_among_known_elapsed": {
+    "maximum": 0.8958775228035726,
+    "median": 0.7335919914285632,
+    "minimum": 0.5853620280813268,
+    "n": 9,
+    "sample_variance": 0.014092286792597697
+  },
+  "generation_seconds": {
+    "maximum": 524.0996936820447,
+    "median": 375.28746986435726,
+    "minimum": 185.3076235204935,
+    "n": 12,
+    "sample_variance": 10448.382035065872
+  },
+  "gpu_utilization": "not_measured",
+  "grouped": [
+    {
+      "fraction_among_known_elapsed": {
+        "maximum": 0.8196229801310783,
+        "median": 0.6015815102159406,
+        "minimum": 0.5853620280813268,
+        "n": 4,
+        "sample_variance": 0.012709593191641354
+      },
+      "generation_seconds": {
+        "maximum": 491.3189316764474,
+        "median": 359.67168827634305,
+        "minimum": 351.1867717653513,
+        "n": 4,
+        "sample_variance": 4582.706342810943
+      },
+      "group": "continue",
+      "group_by": "arm",
+      "returned_generation_seconds_sum": 1561.8490799944848,
+      "runs": 4,
+      "unknown_elapsed": 0
+    },
+    {
+      "fraction_among_known_elapsed": {
+        "maximum": 0.8958775228035726,
+        "median": 0.8766523482832522,
+        "minimum": 0.8574271737629319,
+        "n": 2,
+        "sample_variance": 0.0007392146706735499
+      },
+      "generation_seconds": {
+        "maximum": 524.0996936820447,
+        "median": 424.11184363719076,
+        "minimum": 257.47754563577473,
+        "n": 4,
+        "sample_variance": 17618.62921234881
+      },
+      "group": "new_idea",
+      "group_by": "arm",
+      "returned_generation_seconds_sum": 1629.800926592201,
+      "runs": 4,
+      "unknown_elapsed": 2
+    },
+    {
+      "fraction_among_known_elapsed": {
+        "maximum": 0.7433493470272302,
+        "median": 0.7335919914285632,
+        "minimum": 0.64526005452402,
+        "n": 3,
+        "sample_variance": 0.0029198743948945613
+      },
+      "generation_seconds": {
+        "maximum": 442.5258173244074,
+        "median": 411.3855431359261,
+        "minimum": 185.3076235204935,
+        "n": 4,
+        "sample_variance": 14745.394307138158
+      },
+      "group": "reimplement",
+      "group_by": "arm",
+      "returned_generation_seconds_sum": 1450.6045271167532,
+      "runs": 4,
+      "unknown_elapsed": 1
+    },
+    {
+      "fraction_among_known_elapsed": {
+        "maximum": 0.8958775228035726,
+        "median": 0.8196229801310783,
+        "minimum": 0.5856652597250805,
+        "n": 5,
+        "sample_variance": 0.018766135699271574
+      },
+      "generation_seconds": {
+        "maximum": 524.0996936820447,
+        "median": 436.96729776263237,
+        "minimum": 185.3076235204935,
+        "n": 6,
+        "sample_variance": 17024.689622249327
+      },
+      "group": "random-acts-of-pizza",
+      "group_by": "task",
+      "returned_generation_seconds_sum": 2448.8427609773353,
+      "runs": 6,
+      "unknown_elapsed": 1
+    },
+    {
+      "fraction_among_known_elapsed": {
+        "maximum": 0.7433493470272302,
+        "median": 0.675544876067682,
+        "minimum": 0.5853620280813268,
+        "n": 4,
+        "sample_variance": 0.0064480432056282354
+      },
+      "generation_seconds": {
+        "maximum": 442.5258173244074,
+        "median": 359.57302382262424,
+        "minimum": 257.47754563577473,
+        "n": 6,
+        "sample_variance": 4874.334358912243
+      },
+      "group": "spooky-author-identification",
+      "group_by": "task",
+      "returned_generation_seconds_sum": 2193.4117727261037,
+      "runs": 6,
+      "unknown_elapsed": 2
+    }
+  ],
+  "inference": "Existing two-task development cohort; dependent methods share sources/seeds. No causal scheduling effect, cross-task generalization or total GPU saving is estimated. Each sandbox step reserved one GPU while these calls ran; generator GPUs counted separately. Returned-call windows are not automatically reclaimable: backlog, admission, CPU and service limits matter.",
+  "input_sha256": "724018a317d8b540e6893c5abedf9ccd0d7908682349517b45c3e1e5147d1184",
+  "llm_rows": 12,
+  "new_candidate_executions": 0,
+  "new_gpu_hours": 0,
+  "quality_fields_accessed": false,
+  "recorded_returned_generation_seconds": 4642.254533703439,
+  "source_commit": "e5e83b6e4eed842197f7de924ae4734003e8965a",
+  "speedup": "not_estimated",
+  "task_slot_minutes_in_returned_generation": 77.37090889505731,
+  "tasks": 2,
+  "unknown_elapsed": 3
+}

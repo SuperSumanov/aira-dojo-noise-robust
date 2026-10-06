@@ -1,0 +1,18 @@
+{
+  "candidate_executions": 0,
+  "elapsed_seconds": 0.03200000000651926,
+  "errors": 0,
+  "failures": 0,
+  "gpu_queried": false,
+  "kind": "engineering_validation_not_research_result",
+  "platform": "Windows",
+  "python": "3.11.7",
+  "recorder_sha256": "94290bfc020825415acc454622c8e2d6c2da593075f2f86a5c5877a26400ed91",
+  "schema": "observer-test-v0",
+  "skipped": 1,
+  "source_commit": "e5e83b6e4eed842197f7de924ae4734003e8965a",
+  "success": true,
+  "tests": 23,
+  "tests_sha256": "5a1b24ee8773a9add005e0c313115aafcbb824ec3b4d0803e46cde1fac7a6e92",
+  "utc_unix_ns": 1791271389250157100
+}

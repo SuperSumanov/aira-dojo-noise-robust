@@ -1,0 +1,73 @@
+{
+  "all_after_close_equal_baseline": true,
+  "all_outputs_identical": true,
+  "allocation": {
+    "allocated_gpus": 1,
+    "allocated_tres": {
+      "billing": "6",
+      "cpu": "6",
+      "gres/gpu": "1",
+      "node": "1"
+    },
+    "elapsed_seconds": 159,
+    "exit_code": "0:0",
+    "gpu_hours": 0.04416666666666667,
+    "node": "gpu27",
+    "state": "COMPLETED"
+  },
+  "analyzer_sha256": "c28a711e2fce16a36935e536610f4244eb7640ad4528f57e0184b50e26dab5db",
+  "completed": 6,
+  "groups": {
+    "close_now": {
+      "close_to_observed_no_client_seconds": {
+        "maximum": 1.4908368811011314,
+        "median": 1.2214048644527793,
+        "minimum": 1.1251211734488606,
+        "n": 3,
+        "sample_variance": 0.035935356595356197
+      },
+      "window_median_above_baseline_mib": {
+        "maximum": 0.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "n": 3,
+        "sample_variance": 0.0
+      }
+    },
+    "keep_10s": {
+      "close_to_observed_no_client_seconds": {
+        "maximum": 2.973923341371119,
+        "median": 1.2254530945792794,
+        "minimum": 1.177384614944458,
+        "n": 3,
+        "sample_variance": 1.0478350297002414
+      },
+      "window_median_above_baseline_mib": {
+        "maximum": 372.0,
+        "median": 372.0,
+        "minimum": 372.0,
+        "n": 3,
+        "sample_variance": 0.0
+      }
+    }
+  },
+  "input_sha256": "0943cc3889d940aca5261090952075aa7320b87b8ac77001805ec77f1dc7c724",
+  "job": "16624",
+  "limit": "Controlled 64MiB tensor fixture, one GPU, three repeats, one seed. First trial cold startup retained; execution durations are NOT a speed comparison. Close latency is an observed upper bound including teardown/query. Close-now window starts sampling after close returns, unlike keep window. Not a production leak, resource demand bound, scheduler throughput or end-to-end quality result.",
+  "paired": [
+    {
+      "repeat": 0,
+      "window_delta_mib": 372.0
+    },
+    {
+      "repeat": 1,
+      "window_delta_mib": 372.0
+    },
+    {
+      "repeat": 2,
+      "window_delta_mib": 372.0
+    }
+  ],
+  "plan_sha256": "cbece7bc34c10a99e9d65e39ccbb3623d20d047894b94616fa35052e434cda86",
+  "planned": 6
+}

@@ -846,3 +846,5 @@ phase1/results/collateral_factorial_20261006/** -text diff whitespace=cr-at-eol
 phase1/results/research_synthesis_20261006/** -text diff whitespace=cr-at-eol
 phase1/results/vocabulary_capacity_20261006/** -text diff whitespace=cr-at-eol
 phase1/results/capacity_interaction_20261006/** -text diff whitespace=cr-at-eol
+phase1/scripts/*natural_opportunity*20261006.py -text diff whitespace=cr-at-eol
+phase1/results/natural_opportunity_20261006/** -text diff whitespace=cr-at-eol

@@ -1,0 +1,59 @@
+{
+  "status": "inconclusive_no_valid_comparisons",
+  "job": "16582",
+  "execution_source_commit": "7def7a86e4ba01354a924ebaefc353d6ee4fdcd2",
+  "primary_summary_sha256": "2cd9ccd869f109a96e521569b273fa403b2fc97ed1dcf2acf574143dfebc9c60",
+  "runs_sha256": "bc6010254980b47128b30d9680409db8ae3f08a684ee728d76b36fd8053ae1a1",
+  "incumbent_secondary_sha256": "7a056cfe2f6e89614acde1656e3e135877d37481a9c61cd0eab6fce9b49eb7df",
+  "assigned_slots": 16,
+  "pre_execution_integrity_exclusions": 4,
+  "started_and_completed_worker_records": 12,
+  "valid_scores": 0,
+  "complete_parent_child_restart_pairs": 0,
+  "allocation_seconds": 2004,
+  "allocated_gpus": 1,
+  "allocated_gpu_hours": 0.5566666666666666,
+  "paid_api_calls": 0,
+  "new_model_method_result": false,
+  "effects_estimable": false,
+  "conclude_opportunity_absent": false,
+  "train_selector_now": false,
+  "expand_current_unqualified_replay_recipe": false,
+  "retry_replace_or_extend_current_batch": false,
+  "failures": [
+    {
+      "case": 1,
+      "executions": 4,
+      "class": "TypeError",
+      "callable": "XGBClassifier.fit",
+      "unexpected_keyword": "early_stopping_rounds",
+      "parent_and_child_both_restarts": true
+    },
+    {
+      "case": 2,
+      "executions": 4,
+      "class": "TypeError",
+      "callable": "LogisticRegression.__init__",
+      "unexpected_keyword": "multi_class",
+      "passing_mechanism": "lr_params dictionary expansion",
+      "parent_and_child_both_restarts": true
+    },
+    {
+      "case": 3,
+      "executions": 4,
+      "class": "TimeoutError",
+      "execution_deadline_marker": true,
+      "kernel_readiness_before_candidate_marker": false,
+      "parent_and_child_both_restarts": true,
+      "configured_timeout_seconds": 300,
+      "recorded_exec_seconds_min": 310.1938140504062,
+      "recorded_exec_seconds_max": 310.936736125499,
+      "recorded_worker_seconds_min": 439.80117625929415,
+      "recorded_worker_seconds_max": 441.23369589913636,
+      "strict_physical_300_second_termination_proven": false
+    }
+  ],
+  "preflight_error_owned": "Direct AST keyword screening missed dictionary-expanded constructor arguments, and XGB.fit interface compatibility was not verified. Typed configuration and source-hash checks did not establish executable qualification.",
+  "boundary": "The frozen gate is false because all performance comparisons are missing. Missing effects and the fixed-pool envelope remain null, not zero. This is neither a method failure estimate nor evidence that worthwhile natural improvements do not exist.",
+  "investment_judgment": "Do not build a recognizer on these data or expand this unqualified replay recipe. Preserve the opportunity-first principle. A future, separately specified experiment needs already executable natural parents under the same target environment and budget, selected without parent-child gain, with genuinely new provenance and a fixed comparison. No such new experiment is launched here."
+}

@@ -1,0 +1,430 @@
+{
+  "allocated_gpu_hours": 0.5566666666666666,
+  "allocation_seconds": 2004,
+  "analysis_seconds": 0.5645996010862291,
+  "analysis_sha256": "eb1978e2e7a36bddf5f906a2b6531985b689783fba94a6f6549c5369cfae33fb",
+  "assigned": 16,
+  "automatic_expansion": false,
+  "complete_parents": 0,
+  "cross_training_seed_confirmation": false,
+  "equal_full_cost_strong_baseline_tested": false,
+  "exitcode": "0:0",
+  "failures": [
+    {
+      "arm": "P",
+      "case": 0,
+      "error_type": "pre_execution_outcome_proxy_feature",
+      "exception_classes": [],
+      "index": 0,
+      "no_repair": true,
+      "repeat": 0,
+      "terminal_sha256": null,
+      "timed_out": null
+    },
+    {
+      "arm": "C",
+      "case": 0,
+      "error_type": "pre_execution_outcome_proxy_feature",
+      "exception_classes": [],
+      "index": 1,
+      "no_repair": true,
+      "repeat": 0,
+      "terminal_sha256": null,
+      "timed_out": null
+    },
+    {
+      "arm": "C",
+      "case": 1,
+      "error_type": null,
+      "exception_classes": [
+        "TypeError"
+      ],
+      "index": 2,
+      "no_repair": true,
+      "repeat": 0,
+      "terminal_sha256": "aed27fedde897a8c974d6e6ab74f2587c9f88449a42f18ab1f301c4518f1d379",
+      "timed_out": false
+    },
+    {
+      "arm": "P",
+      "case": 1,
+      "error_type": null,
+      "exception_classes": [
+        "TypeError"
+      ],
+      "index": 3,
+      "no_repair": true,
+      "repeat": 0,
+      "terminal_sha256": "f85c30ab210d9624863e8cd1f4b925bc3f96091fe01f84962cafe11313bb221e",
+      "timed_out": false
+    },
+    {
+      "arm": "P",
+      "case": 2,
+      "error_type": null,
+      "exception_classes": [
+        "TypeError"
+      ],
+      "index": 4,
+      "no_repair": true,
+      "repeat": 0,
+      "terminal_sha256": "5e6944c00423a44fe4d7ef3c1741e5722e2fbefc02ddde2136bae8788cf172ea",
+      "timed_out": false
+    },
+    {
+      "arm": "C",
+      "case": 2,
+      "error_type": null,
+      "exception_classes": [
+        "TypeError"
+      ],
+      "index": 5,
+      "no_repair": true,
+      "repeat": 0,
+      "terminal_sha256": "b2bd4964db248722c8918f43abca92ab0e8d496ced541f246d565a005db2c16d",
+      "timed_out": false
+    },
+    {
+      "arm": "C",
+      "case": 3,
+      "error_type": null,
+      "exception_classes": [
+        "TimeoutError"
+      ],
+      "index": 6,
+      "no_repair": true,
+      "repeat": 0,
+      "terminal_sha256": "775399e6b8e2f1aced991e7550e2dd73a75bfcfe34272dde5100545371a74e31",
+      "timed_out": true
+    },
+    {
+      "arm": "P",
+      "case": 3,
+      "error_type": null,
+      "exception_classes": [
+        "TimeoutError"
+      ],
+      "index": 7,
+      "no_repair": true,
+      "repeat": 0,
+      "terminal_sha256": "775399e6b8e2f1aced991e7550e2dd73a75bfcfe34272dde5100545371a74e31",
+      "timed_out": true
+    },
+    {
+      "arm": "C",
+      "case": 0,
+      "error_type": "pre_execution_outcome_proxy_feature",
+      "exception_classes": [],
+      "index": 8,
+      "no_repair": true,
+      "repeat": 1,
+      "terminal_sha256": null,
+      "timed_out": null
+    },
+    {
+      "arm": "P",
+      "case": 0,
+      "error_type": "pre_execution_outcome_proxy_feature",
+      "exception_classes": [],
+      "index": 9,
+      "no_repair": true,
+      "repeat": 1,
+      "terminal_sha256": null,
+      "timed_out": null
+    },
+    {
+      "arm": "P",
+      "case": 1,
+      "error_type": null,
+      "exception_classes": [
+        "TypeError"
+      ],
+      "index": 10,
+      "no_repair": true,
+      "repeat": 1,
+      "terminal_sha256": "f85c30ab210d9624863e8cd1f4b925bc3f96091fe01f84962cafe11313bb221e",
+      "timed_out": false
+    },
+    {
+      "arm": "C",
+      "case": 1,
+      "error_type": null,
+      "exception_classes": [
+        "TypeError"
+      ],
+      "index": 11,
+      "no_repair": true,
+      "repeat": 1,
+      "terminal_sha256": "aed27fedde897a8c974d6e6ab74f2587c9f88449a42f18ab1f301c4518f1d379",
+      "timed_out": false
+    },
+    {
+      "arm": "C",
+      "case": 2,
+      "error_type": null,
+      "exception_classes": [
+        "TypeError"
+      ],
+      "index": 12,
+      "no_repair": true,
+      "repeat": 1,
+      "terminal_sha256": "b2bd4964db248722c8918f43abca92ab0e8d496ced541f246d565a005db2c16d",
+      "timed_out": false
+    },
+    {
+      "arm": "P",
+      "case": 2,
+      "error_type": null,
+      "exception_classes": [
+        "TypeError"
+      ],
+      "index": 13,
+      "no_repair": true,
+      "repeat": 1,
+      "terminal_sha256": "5e6944c00423a44fe4d7ef3c1741e5722e2fbefc02ddde2136bae8788cf172ea",
+      "timed_out": false
+    },
+    {
+      "arm": "P",
+      "case": 3,
+      "error_type": null,
+      "exception_classes": [
+        "TimeoutError"
+      ],
+      "index": 14,
+      "no_repair": true,
+      "repeat": 1,
+      "terminal_sha256": "775399e6b8e2f1aced991e7550e2dd73a75bfcfe34272dde5100545371a74e31",
+      "timed_out": true
+    },
+    {
+      "arm": "C",
+      "case": 3,
+      "error_type": null,
+      "exception_classes": [
+        "TimeoutError"
+      ],
+      "index": 15,
+      "no_repair": true,
+      "repeat": 1,
+      "terminal_sha256": "775399e6b8e2f1aced991e7550e2dd73a75bfcfe34272dde5100545371a74e31",
+      "timed_out": true
+    }
+  ],
+  "independent_run_confirmation": false,
+  "independent_scores": 0,
+  "job": "16582",
+  "limitations": [
+    "Different visible AST components and source trace files within each task, excluding components touching the old 80-pair sample. GOME shares success memory and source graph may omit edges: NOT proof of independent physical runs or fresh test tasks.",
+    "Source-coded RNG seeds preserved exactly. Wrapper seed is identical across repeats. Cold reruns do NOT establish robustness across training seeds.",
+    "Report every assigned run, failure, cold startup, elapsed program/worker/allocation time. Original program creation costs unknown; no same-budget search-method victory claimed.",
+    "Paired development-example bootstrap, 4000 replicates, seed 117699, stratified AUC; median gain across restart pairs. Bonferroni four-parent intervals. Conditional on selected programs and reused view; not correction for historical task adaptation, training uncertainty or shared search memory.",
+    "Keep all original selected parents, source bytes, views, seeds, program caps and primary estimands. Case0 P/C encode known post-outcome giver feature; exclude all four slots before results, no replacement. Reduce concurrency from two GPUs to one within original 90-minute ceiling and GPU-hour approval. Insufficient enclosing time creates explicit unstarted slots, never a shortened execution or retry.",
+    "Public Trace2/Pizza/loop74 P/C append giver_present and giver_freq to model matrices. Approved dev inputs contain nonempty giver values; no labels were examined. Upstream issue https://github.com/openai/mle-bench/issues/108. Not a new leakage discovery or a claim of perfect prediction."
+  ],
+  "max_absolute_verifier_error": null,
+  "new_method_confirmed": false,
+  "opportunity_screen_pass": false,
+  "paid_api_calls": 0,
+  "parents": [
+    {
+      "both_restarts_meaningful": false,
+      "case": 0,
+      "complete": false,
+      "cost_gate": false,
+      "interval": null,
+      "median_gain": null,
+      "median_worker_time_ratio": null,
+      "pairs": [
+        {
+          "C": null,
+          "P": null,
+          "child_worker_seconds": null,
+          "complete": false,
+          "cost_ratio": null,
+          "gain": null,
+          "parent_worker_seconds": null,
+          "repeat": 0,
+          "same_prediction": null
+        },
+        {
+          "C": null,
+          "P": null,
+          "child_worker_seconds": null,
+          "complete": false,
+          "cost_ratio": null,
+          "gain": null,
+          "parent_worker_seconds": null,
+          "repeat": 1,
+          "same_prediction": null
+        }
+      ],
+      "pareto_point_estimate": false,
+      "restart_gain_sample_variance": null,
+      "restart_prediction_identical": {
+        "C": null,
+        "P": null
+      },
+      "screen_pass": false,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "both_restarts_meaningful": false,
+      "case": 1,
+      "complete": false,
+      "cost_gate": false,
+      "interval": null,
+      "median_gain": null,
+      "median_worker_time_ratio": null,
+      "pairs": [
+        {
+          "C": null,
+          "P": null,
+          "child_worker_seconds": 14.504590687341988,
+          "complete": false,
+          "cost_ratio": null,
+          "gain": null,
+          "parent_worker_seconds": 12.056406082585454,
+          "repeat": 0,
+          "same_prediction": null
+        },
+        {
+          "C": null,
+          "P": null,
+          "child_worker_seconds": 13.059416162781417,
+          "complete": false,
+          "cost_ratio": null,
+          "gain": null,
+          "parent_worker_seconds": 11.999890249222517,
+          "repeat": 1,
+          "same_prediction": null
+        }
+      ],
+      "pareto_point_estimate": false,
+      "restart_gain_sample_variance": null,
+      "restart_prediction_identical": {
+        "C": null,
+        "P": null
+      },
+      "screen_pass": false,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "both_restarts_meaningful": false,
+      "case": 2,
+      "complete": false,
+      "cost_gate": false,
+      "interval": null,
+      "median_gain": null,
+      "median_worker_time_ratio": null,
+      "pairs": [
+        {
+          "C": null,
+          "P": null,
+          "child_worker_seconds": 29.474301050417125,
+          "complete": false,
+          "cost_ratio": null,
+          "gain": null,
+          "parent_worker_seconds": 30.587404207326472,
+          "repeat": 0,
+          "same_prediction": null
+        },
+        {
+          "C": null,
+          "P": null,
+          "child_worker_seconds": 29.58797591459006,
+          "complete": false,
+          "cost_ratio": null,
+          "gain": null,
+          "parent_worker_seconds": 28.901493654586375,
+          "repeat": 1,
+          "same_prediction": null
+        }
+      ],
+      "pareto_point_estimate": false,
+      "restart_gain_sample_variance": null,
+      "restart_prediction_identical": {
+        "C": null,
+        "P": null
+      },
+      "screen_pass": false,
+      "task": "spooky-author-identification"
+    },
+    {
+      "both_restarts_meaningful": false,
+      "case": 3,
+      "complete": false,
+      "cost_gate": false,
+      "interval": null,
+      "median_gain": null,
+      "median_worker_time_ratio": null,
+      "pairs": [
+        {
+          "C": null,
+          "P": null,
+          "child_worker_seconds": 440.5134447142482,
+          "complete": false,
+          "cost_ratio": null,
+          "gain": null,
+          "parent_worker_seconds": 440.7401907341555,
+          "repeat": 0,
+          "same_prediction": null
+        },
+        {
+          "C": null,
+          "P": null,
+          "child_worker_seconds": 441.23369589913636,
+          "complete": false,
+          "cost_ratio": null,
+          "gain": null,
+          "parent_worker_seconds": 439.80117625929415,
+          "repeat": 1,
+          "same_prediction": null
+        }
+      ],
+      "pareto_point_estimate": false,
+      "restart_gain_sample_variance": null,
+      "restart_prediction_identical": {
+        "C": null,
+        "P": null
+      },
+      "screen_pass": false,
+      "task": "spooky-author-identification"
+    }
+  ],
+  "per_task": [
+    {
+      "assigned_parents": 2,
+      "complete_parents": 0,
+      "descriptive_parent_sample_variance": null,
+      "median_parent_gain": null,
+      "qualifying_parents": 0,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "assigned_parents": 2,
+      "complete_parents": 0,
+      "descriptive_parent_sample_variance": null,
+      "median_parent_gain": null,
+      "qualifying_parents": 0,
+      "task": "spooky-author-identification"
+    }
+  ],
+  "plan_sha256": "210dede263d211177806ce501fb2cbe725861cbe71a8b4c7289f67e49f8d134b",
+  "pre_excluded_programs": 4,
+  "program_seconds_total": 1344.1821935428306,
+  "protected_opened": false,
+  "protocol": "fresh-parent-opportunity-screen-v2-pre-execution-integrity-amendment",
+  "selector_trained": false,
+  "source_commit": "7def7a86e4ba01354a924ebaefc353d6ee4fdcd2",
+  "started_programs": 12,
+  "state": "COMPLETED",
+  "tests": {
+    "missing_not_imputed": true,
+    "orientation": true,
+    "restarts_not_independent_parents": true,
+    "status": "PASS"
+  },
+  "valid_programs": 0,
+  "worker_seconds_total": 1932.4599856156856
+}

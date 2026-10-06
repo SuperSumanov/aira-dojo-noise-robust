@@ -1,0 +1,31 @@
+{
+  "observed_utc": "2026-10-06T02:39:58Z",
+  "primary_plan_sha256": "210dede263d211177806ce501fb2cbe725861cbe71a8b4c7289f67e49f8d134b",
+  "source_only": true,
+  "outcome_fields_used": false,
+  "new_selection_made": false,
+  "new_execution": false,
+  "method": "Reconstruct original supported-import/direct-keyword eligibility and old-sample visible-component exclusion using frozen natural_opportunity_20261006.py. Additionally flag a pair if either original program contains an ast.Constant with value multi_class, including dictionary keys. No reranking or replacement.",
+  "limitation": "Conservative literal flag, not proof of reachability or runtime failure. Unflagged does not certify validity, integrity, runtime feasibility, or physical independence.",
+  "tasks": [
+    {
+      "task": "random-acts-of-pizza",
+      "old_eligibility_pairs": 104,
+      "extra_string_literal_risk_pairs": 0,
+      "unflagged_pairs": 104,
+      "unflagged_unique_parent_asts": 44,
+      "unflagged_visible_components": 9,
+      "unflagged_trace_files": 3
+    },
+    {
+      "task": "spooky-author-identification",
+      "old_eligibility_pairs": 45,
+      "extra_string_literal_risk_pairs": 27,
+      "unflagged_pairs": 18,
+      "unflagged_unique_parent_asts": 9,
+      "unflagged_visible_components": 3,
+      "unflagged_trace_files": 1
+    }
+  ],
+  "interpretation": "After the conservative additional compatibility filter, current Spooky sources cannot provide two distinct trace files under the original selection rule. This is a source-qualification limitation, not evidence that genuine improvement opportunities are absent. Preserve the current batch unchanged."
+}

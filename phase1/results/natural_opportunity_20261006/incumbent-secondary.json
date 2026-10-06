@@ -1,0 +1,51 @@
+{
+  "limitation": "Pre-outcome secondary: local improvement versus improving the fixed-pool best.\n\nAn outcome-aware envelope is an optimistic algebraic bound for this observed pool,\nnot a deployable selector, confidence limit, or a bound on other future programs.\n",
+  "no_additional_execution": true,
+  "no_new_method_claim": true,
+  "no_population_confidence_claim": true,
+  "plan_sha256": "16e0ec48cb80e7f9ba3fa50bdde35e29e055067181dfc3af17399e7c20496f32",
+  "runs_sha256": "bc6010254980b47128b30d9680409db8ae3f08a684ee728d76b36fd8053ae1a1",
+  "tasks": [
+    {
+      "all_restarts_complete": false,
+      "restarts": [
+        {
+          "child_vs_best_parent": [],
+          "complete": false,
+          "oracle_additional_gain": null,
+          "repeat": 0
+        },
+        {
+          "child_vs_best_parent": [],
+          "complete": false,
+          "oracle_additional_gain": null,
+          "repeat": 1
+        }
+      ],
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "all_restarts_complete": false,
+      "restarts": [
+        {
+          "child_vs_best_parent": [],
+          "complete": false,
+          "oracle_additional_gain": null,
+          "repeat": 0
+        },
+        {
+          "child_vs_best_parent": [],
+          "complete": false,
+          "oracle_additional_gain": null,
+          "repeat": 1
+        }
+      ],
+      "task": "spooky-author-identification"
+    }
+  ],
+  "tests": {
+    "missing_not_zero": true,
+    "status": "PASS",
+    "weak_branch_gain_is_not_search_gain": true
+  }
+}

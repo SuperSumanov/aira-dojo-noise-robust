@@ -1,21 +1,23 @@
 # 当前短交接
-更新：2026-10-06 10:02香港最后观察。当前窗口09:26:30—12:26:30香港。16580在开跑前因case0事后字段风险被取消；原16槽/四父样本不替换。v2将事前排除case0四槽，余12条单卡串行、仍90分钟、≤1.5GPU小时，在原批准16条/2卡90分钟/≤3GPU小时内缩小；源码/数据不变。尚未提交v2。
+更新：2026-10-06 10:50香港最后验证。当前三小时窗口09:26:30—12:26:30香港。限定批次16582及冻结主/次分析已闭合：16槽、4事前排除、12执行记录、0有效评分、0完整父子对。没有测到机会，不能解释为机会不存在。未补跑、换样本、训练识别器或扩大预算。
 
 ## 最新裁决
-- **安全事前修订**：case0 P/C实际向模型加入giver_present/giver_freq；开发train/query非空giver分别177/2295、13/300，仅看字段未看标签。上游问题https://github.com/openai/mle-bench/issues/108已报告该结果代理，不称新发现/完美预测。case1显式排除giver，查询输入不含at_retrieval字段。不修原程序或数据，不另挑父程序；排除case0四槽，其余三父继续机会筛选。v1根保留pre-execution-stop.json，取消前核本人、PENDING、无native。待核sacct。
-- v2根`/research/d7/spc/yzyang4/natural-opportunity-20261006-v2`正在准备。源sample/rank/四父/训练设置/原样重复完全保留；单卡串行，每条一GPU/6核/300秒，worker450/step480，总90分钟/1.5GPUh。controller剩余不足500秒就记未启动并继续闭合槽，不延时/补跑；不能保证12条全有效或全启动。此前“16条单卡150分钟”问题尚未回答，**不采用此扩墙方案**；若后续收到回复也不自动增加已冻结上限。
-- 新次要分析`natural_opportunity_incumbent_20261006.py`已做弱分支改善≠全局改善、missing≠0测试；会在执行前冻结。每任务/重复要求全部四端点才能算max(P,C)-max(P)的观察池代数上界；Pizza缺case0父故该上界未知，不以剩余父补。没有新GPU/API/识别器拟合。
-- 新根`/research/d7/spc/yzyang4/natural-opportunity-20261006-v1`拟执行：2任务×2新父程序×P/C×2原样重启。源样本已按固定哈希顺序只看代码选定：Pizza Trace2/loop74、Trace1/loop10；Spooky Trace2/loop21、Trace1/loop20。排除原80对的可见AST连通分支、外部依赖和multi_class旧接口；不是按分数选好例。公开两任务分别174/143边、77/79父AST、各12可见分支；依赖/旧分支后104/45合格边。跨Trace共享经验、图缺失、重复开发任务和固定源码seed仍限制独立性。
-- 新脚本`natural_opportunity_20261006.py`和`analyze_natural_opportunity_20261006.py`：完整原程序/不改训练设置/不带debug；重复顺序反转；原镜像/隔离view/外部scorer。两任务门分别AUC+.005、logloss降低.01；两次均达到、四父条件98.75%区间下界>0、子/父中位worker耗时≤1.5才过单父筛选；这不是普适价值函数。两任务各至少一个通过才提下一轮真正新来源/训练seed/同预算HPO确认，不自动扩跑。无识别器/方法优势结论。
-- 09:50现场16580 PENDING/Resources，旧12535 JobHeldUser不操作。执行commit `0b1ca82202eaa6eacc5169b1b0c44d2da335aaa7`；新plan SHA `bcaec1582def2bc62cafce0d14ff4588c78930676bc49faab3a55a4e0d4dd42d`。16配置及独立源码/重复/预算复核PASS。`approval.json`与`lineage-review.json`已存远端；显式parent_id父链深度[16,2,4,2]，四者与旧样本无可见祖先/共同祖先关系，但源父链181条与代码完全匹配、138条不匹配，不能把元数据当完整物理谱系证书。fetch我方59c00acf/学长dfff0efb不变，新工作仍本地未push。
-- 本轮额外筛选见results/research_synthesis_20261006/clock_hypothesis_screen.json：固定80公开对中八对/七任务有支持训练设置变化，但不是错误计数。Quest子程序同时修正debug调度长度；唯一OneCycle父子均在batch内step，未发现猜测的epoch/batch错配，不为这个猜想扩GPU。七任务后续循环检查是原14对而非那八对，不能只按任务名合并证据。
-- 集成/残差再利用已有旧固定finalizer和oracle检验，未重跑；Rehearse是8/23已读论文，本次补回短索引，非新发现。优化时钟耦合与预算调度已有直接先例；本轮没有新方法资格。最新fetch我方59c00acf、学长dfff0efb未变；本轮队列只见旧12535 JobHeldUser，未操作。
-- 本轮脚本定位查找过慢已按完整argv和本人UID精确中止；导入路径失败及一次SSH中断未当成功。只读重试完成；远端只解析已核哈希的公开代码，没有候选执行、结果字段读取或16560待批数值访问。新研究记录尚未push。
-- 目标仍是重要、独特、强参照/跨任务/同预算可重复的E2E方法；目前没有合格新方法。停止简单恢复父数值及词表变体，不补边/seed救R12/R13，不把此裁决扩大成“所有critic/神经修改无效”。
-- 三原则及结果定位：[research_decision.json](results/research_synthesis_20261006/research_decision.json)。真实修改已抽样；因果回放仅有限旧例；可事前识别、廉价、胜强参照的方法资格未过。
-- 本窗口54程序、43有效端点，4个单3090作业共3882分配秒=1.0783333333333334 GPUh。重复父解/控制/数据不是54独立试验；CPU研究另计。付费API0、底座更新0。
-- 最后07:44队列只有旧12535 JobHeldUser，不操作。16538/16560/16565/16567均COMPLETED，但作业完成不等于每程序有效。
-- 最后07:41 fetch：我方公开phase1-value-critic仍59c00acfed32f04c830e1e84905c83e0ca2a6642；学长dojo-reproduce仍dfff0efb9daf1d4a63c74492f138c19c1fd8440e（10/5来源清单更新，非新效果）。04:17之后工作只在本地，未push；不改学长分支。
+- **结论状态=inconclusive_no_valid_comparisons**。主门false来自零有效比较，不是质量零收益或统计否定。现在不投入识别器；停止按原样移植这批未过环境/预算资格的程序继续扩跑，不据此否定整个研究问题。保留“先证明值得执行的自然改善，再做事前识别”的原则。
+- **失败已具体定位**：case1(Pizza Trace1/loop10)的P/C两重启共4次为XGBClassifier.fit不接受early_stopping_rounds；case2(Spooky Trace2/loop21)共4次为LogisticRegression.__init__不接受由lr_params字典传入的multi_class。case3(Spooky Trace1/loop20)共4次有代码执行阶段超时标记，没有kernel-readiness标记。清理错误均null，预测文件0，外部评分调用/独立评分数0。
+- 每条配置timeout=300，但原解释器轮询计时返回的4条超时exec_seconds为310.1938140504062—310.936736125499，worker为439.80117625929415—441.23369589913636；不能声称严格300秒物理停止。真实全成本已计：单3090分配2004秒=0.5566666666666666 GPUh，API0、底座更新0；作业16582 COMPLETED/0:0。总成本未超过实际1.5或原批准3 GPUh。
+- **预检责任与记录**：直接ast.keyword筛查漏掉字典展开；也未核XGB.fit旧方法参数。CPU结构签名通过不等于真实程序可运行。经验已写旧checkout的phase1/memory/OPERATING_RULES.md，不为本批改源码/换环境/延时/补seed。后续必须先核实际依赖的构造器及fit接口，不能再只增加已知禁词。
+- 补充只读覆盖：Spooky原45对中27对有multi_class常量风险；保守排除后18对/9父AST/3可见分支只来自1个Trace文件，无法满足原双Trace规则。Pizza该检查后104对/44父AST/9分支/3文件，但不代表无泄漏或可运行。该筛查是后补来源诊断、不是新筛样/结果，不与当前冻结批次混合。见results/natural_opportunity_20261006/compatibility_coverage.json。
+- **固定产物**：远端根/research/d7/spc/yzyang4/natural-opportunity-20261006-v2；执行commit 7def7a86e4ba01354a924ebaefc353d6ee4fdcd2；plan SHA210dede263d211177806ce501fb2cbe725861cbe71a8b4c7289f67e49f8d134b；summary SHA2cd9ccd869f109a96e521569b273fa403b2fc97ed1dcf2acf574143dfebc9c60；runs SHAbc6010254980b47128b30d9680409db8ae3f08a684ee728d76b36fd8053ae1a1。安全汇总已下载并独立核哈希/16行分母。readout-v1不得覆盖/重算救门。
+- 事前冻结次要比较为每个子解对同任务两个父解最佳值；缺失不补。本批全未知，不能称oracle上界为0。次要计划SHA16e0ec48cb80e7f9ba3fa50bdde35e29e055067181dfc3af17399e7c20496f32，结果SHA7a056cfe2f6e89614acde1656e3e135877d37481a9c61cd0eab6fce9b49eb7df。合成数据方向、缺失、同预测、交换对称检查通过，不是科学阳性。
+- **历史v1完整性修订**：16580开跑前因case0(Pizza Trace2/loop74)父子均向模型加入giver_present/giver_freq取消，sacct分配秒0。该结果代理为上游已报告问题，不是我方发现。保留四原父/16槽，不替换；v2仅排除case0四槽并降为单卡90分钟。此前单卡150分钟问题不采用，收到延迟回复也不能自动扩墙。
+- 原选择只看公开源码/依赖/可见谱系哈希，不看源分数；排除旧80对的可见连通分支。GOME跨Trace共享经验、父链不完整，不证明独立物理run；固定源码种子重启也不等于跨训练seed。本轮不提供干净scaling/同预算强参照/新方法证据。
+- 本轮起始fetch我方59c00acfed32f04c830e1e84905c83e0ca2a6642、学长dfff0efb9daf1d4a63c74492f138c19c1fd8440e；学长最近是10/5来源清单更新，不冒称新效果。本轮新工作尚未push，不改学长分支；旧12535 JobHeldUser不操作。
+
+## 此前已结束研究，不当作本轮新进展
+- 原六小时窗口的54程序/43有效端点来自重复父解和控制，4作业共3882单卡分配秒=1.0783333333333334 GPUh，不是54独立试验。详细闭合证据见下。
+- 三原则与路线裁决：results/research_synthesis_20261006/research_decision.json、ROUTE_DECISIONS.md。停止简单恢复父数值、词表变体和额外反馈单提案，不补边/seed救R12/R13，也不推“所有critic无效”。
+- 时钟假说的80公开对筛查仅八对/七任务有设置变化，未确认猜想的错配；旧集成/残差/oracle、Rehearse等已读已试，不重命名再开。证据clock_hypothesis_screen.json及Git历史。
+- 16560数值导出仍待单独授权，不能混入本批安全汇总。
 
 ## 已闭合证据，不可重复提交或读出覆盖
 - **16538 / collateral-factorial-20261006-v1**：8边×P/C/CP/PC=32，26有效、5完整四格，仅3不同父程序；2159单卡秒。26独立评分误差≤8.326672684688674e-16。summary SHA1adfe476893432ac944bae327fe8e32add995bb15c6ff416433716fa623b2185；plan SHA57dbaec816abda184f99abe0f8738e0350d0d0cb18602f5c8822eea50aeabcce；执行源码ac327c54fa6e5d92d6ad0df5ed7adfdf2b7f0695。readout-v1/audit-v1/bootstrap-v1/selection-log-v1均完成。

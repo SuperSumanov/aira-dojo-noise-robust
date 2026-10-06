@@ -1,0 +1,130 @@
+{
+  "status": "exploratory_read_only_inspection_not_a_gpu_effect_trial",
+  "observed_date_hkt": "2026-10-07",
+  "base_commit": "4790620cd91ec41819cf2a3c6dad01869ce08b4f",
+  "new_gpu_jobs": 0,
+  "paid_api_calls": 0,
+  "candidate_programs_executed": 0,
+  "quality_outcomes_read": false,
+  "reproduction_boundary": "Read-only diagnostic commands are in this conversation. This is a recorded inspection, not a packaged or preregistered population estimator. Arithmetic expressions were interpreted through an AST numeric whitelist and independently recomputed in PowerShell; source programs, imports and model training were not executed.",
+  "input_pins": {
+    "public_sample_sha256": "11b3f7c9c28119b612f332af6b6ddfc6fabd02a4f7694912576e615871ed8039",
+    "public_structure_sha256": "82bcbbfcb7f1022b246fce0703e81de4a788c67d5fc5d1b3fc0285f77fc077d5",
+    "prior_census_program_hints_sha256": "1d9ad4c08f8a30e5b1f228d1ee3178119c89bb1e9a15a1216db37e145cb4d48c",
+    "prior_census_analyzer_sha256": "053b5698035ec766652d50b764801d96eda80d0824fbdef365a91032dadc7efc",
+    "Trace_1.json": "ee50756cd940a1add0e44bcbb04e710233709d81f823111d70846cfe6278afb0",
+    "Trace_2.json": "5a451c60ead8ac85e8eca86502cd92efe3ff1d12949510ccec394ca44dfe4cbd",
+    "Trace_3.json": "8977dd468ed50d22aa173cb0aec208286e9b73142b72568861b60d55b3243ae2"
+  },
+  "syntax_census": {
+    "programs": 158,
+    "tasks": 40,
+    "frozen_parent_child_pairs": 80,
+    "query_presence_programs": {
+      "clock_query": 158,
+      "cpu_count": 31,
+      "cuda_available": 112,
+      "torch.cuda.device_count": 6,
+      "torch.cuda.get_device_properties": 7,
+      "torch.cuda.max_memory_allocated": 2,
+      "torch.cuda.mem_get_info": 5,
+      "torch.cuda.memory_allocated": 1,
+      "torch.cuda.memory_reserved": 1
+    },
+    "limits": [
+      "Presence is not runtime reachability, peak demand, adaptive training, or production frequency.",
+      "Clock calls may only log elapsed time. CPU-count calls may be capped and insensitive to the tested allocation.",
+      "Five mem_get_info programs belong to three tasks; related parent/child code is not independent replication."
+    ]
+  },
+  "numeric_slice_sensitivity": [
+    {
+      "task": "tweet-sentiment-extraction",
+      "source_sha256": [
+        "5765f4d1f8cd316f1a650242ff09ff24bfc8d3c1b99554511a74bf762a50f576",
+        "02bc943383711e7446f82d1efb2863141139b82255c11087eafefa82f9b8352b"
+      ],
+      "scope": "train_model, not the separate diagnostic bs_print branch",
+      "original_batch_size": 32,
+      "expression": "max(16, 32 // 2) if free_bytes < 8 * 1024**3 else 32",
+      "free_gib_inputs": [4, 7, 8, 12, 20],
+      "batch_outputs": [16, 16, 32, 32, 32],
+      "static_consumers": "train and validation DataLoader batch_size=bs; training-step and warmup counts also use loader length",
+      "independent_arithmetic_check": "PASS",
+      "full_training_or_quality_effect": "not_measured"
+    },
+    {
+      "task": "herbarium-2022-fgvc9",
+      "source_sha256": [
+        "3a841e305bfdf92d4185e5d901f62930359cab1bc9861a9e1dcef3f25a2956e8",
+        "348b7cd7e1bada64177d133a4accd2dd4f9be7b52c137e60ad6943e21f15e0f7"
+      ],
+      "scope": "estimate_batch_size, non-debug training branch, positive free-memory inputs",
+      "parameters": {"img_size": 384, "min_bs": 8, "start_train_bs": 64, "headroom": 0.6, "training_factor": 60},
+      "expression": "min(64, max(8, int(free_bytes * 0.6 // (3 * 384 * 384 * 2 * 60))))",
+      "free_gib_inputs": [1, 2, 4, 8, 12, 20],
+      "batch_outputs": [12, 24, 48, 64, 64, 64],
+      "static_consumers": "main calls estimate_batch_size for training and evaluation; only the numeric training branch was tested",
+      "independent_arithmetic_check": "PASS",
+      "full_training_or_quality_effect": "not_measured"
+    }
+  ],
+  "additional_static_case": {
+    "task": "seti-breakthrough-listen",
+    "source_sha256": "f43b15f3080cd6c252bd3a7660c9b61f9b83d015b2268cdd452d211155674863",
+    "observation": "choose_device_and_loader_params branches at free_mem < 1 GiB and changes device, pin_memory, workers and batch settings",
+    "status": "AST branch inspected only; not included in the four-program arithmetic checks; no runtime fallback claimed"
+  },
+  "closed_16370_backlog_identifiability": {
+    "plan_sha256": "c1aba6663872c01c656f4da45667f5d0dc60e589fec6fe5f87fc00dcbc9a2d6a",
+    "released_cost_sha256": "724018a317d8b540e6893c5abedf9ccd0d7908682349517b45c3e1e5147d1184",
+    "allocation_audit_sha256": "0c0930bdcf0defe89a9603d050366637addcfa61a0907ca9a60a7dc0d155241c",
+    "waves": 9,
+    "workers_per_wave": 2,
+    "task_gpus": 2,
+    "code_ready_files": 345,
+    "result_files": 321,
+    "preexecution_rejections": 19,
+    "ready_without_result_or_rejection": 5,
+    "llm_code_ready_files": 136,
+    "llm_result_files": 113,
+    "recorded_llm_execution_seconds": 1509.2269575512037,
+    "returned_generation_seconds": 4642.254533703439,
+    "conclusion": "The controller admits only two search workers per wave and waits for both before the next wave. Each already holds a task GPU before generation. The trace therefore does not identify the benefit of admitting an additional ready candidate after releasing a generation-phase lease.",
+    "limits": [
+      "Result-file counts are not successful or valid-evaluation counts.",
+      "No GPU utilization or execution-ready queue series was measured here.",
+      "Generation calls record duration but not a dedicated start/end event; file mtime is not promoted to an execution timestamp.",
+      "Changed admission changes future generator arrivals and durations; shifting old durations is not a causal throughput result.",
+      "The prior 22.72496% whole-pool reservation window remains descriptive, not attainable saving."
+    ]
+  },
+  "prospective_workload_readiness": {
+    "fixed_six_program_manifest": "not_frozen",
+    "new_gpu_budget_request": "6 legal development programs, at least 2 tasks including real GPU computation; serial versus at most two concurrent programs, 3 identical restarts; 36 executions; 1 RTX3090, at most 90 minutes including qualification and failure overhead, at most 1.5 GPU hours",
+    "budget_approval": "pending_human_reply_at_this_observation",
+    "prior_petfinder_four_program_replay": {
+      "source_receipt_sha256": "1127c3b1581c2abcd8008f76a9d1a7bf8287f1c0f3bcd6ca6b2e034712726397",
+      "result_sha256": "174cd5bf92073a1bb8edda60067d5721af5b68c7c1994ef6c10ac7d7b93d3e5d",
+      "exit_zero_count": 1,
+      "exit_zero_backend": "CPU LightGBM",
+      "other_three": "neural programs had interface or file errors in the old replay; neither rerun nor repaired here",
+      "limit": "An old successful exit does not establish current compatibility or a GPU workload."
+    },
+    "pretrained_dependency_check": "No matching roberta-base, bert-base-uncased, google/bigbird-roberta-base or microsoft/deberta-v3-base cache directory in the explicitly checked research and home cache locations, including cache/hf[/hub] and cache/huggingface[/hub]. This does not exclude other locations or image contents. No download initiated.",
+    "no_external_weight_syntax_filter": {
+      "torch_import_programs": 112,
+      "four_initial_hits": "Two tabular-playground-series-dec-2021 and two stanford-covid-vaccine programs import torch for CUDA detection and train XGBoost, not an identified neural network. Missing neural imports are not evidence of CPU-only execution.",
+      "dec2021_followup": "The frozen sample also has two CatBoost programs. XGBoost paths request device=cuda when available; CatBoost paths choose task_type=GPU when a device exists. Actual GPU computation and completion were not tested.",
+      "data_boundary": "Only existing prepared/public file names and sizes were checked; no input rows or private evaluation files were read. These full task inputs have not been admitted as a new development split."
+    },
+    "additional_baseline_requirement": "For later live experiments, both A0 and A1 need the same rolling replacement rule. Old wave-barrier behavior is a historical diagnostic, not the only strong baseline.",
+    "launch_gate": "No launch before explicit batch approval, a fixed qualified workload, dependencies and same-device/private-workspace isolation. Never silently substitute CPU or a shorter training configuration."
+  },
+  "direction_decision": "Keep R14. Treat resource-dependent program choices as an equivalence check in the throughput comparison, not a new main method or proof of quality harm. Do not start a semantic scheduler or change candidate code on this evidence alone.",
+  "nearest_work": [
+    {"name": "SchedMate", "url": "https://arxiv.org/html/2510.03334", "boundary": "Already uses source/history semantics; no-match jobs fall back to profiling, untrackable-progress pairs skip the specified eviction check."},
+    {"name": "DetShare", "url": "https://arxiv.org/html/2603.15042v1", "boundary": "Already studies resource-coupling and semantic equivalence, especially kernel/batch fragmentation. This code-level conditional is not evidence that the broad concept is novel."},
+    {"name": "Pollux", "url": "https://www.usenix.org/conference/osdi21/presentation/qiao", "boundary": "Resource and training-configuration coupling is established prior work; its cooperative training interfaces differ from arbitrary candidate programs."}
+  ]
+}

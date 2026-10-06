@@ -1,5 +1,5 @@
 # 当前研究方向：唯一短入口
-更新：2026-10-06 16:27香港。方向入口；限定授权与实时状态见短交接。
+更新：2026-10-07 05:55香港。方向入口；限定授权与实时状态见短交接。
 此前全文与证据保存在Git e5e83b6e4eed842197f7de924ae4734003e8965a及各结果目录；更早历史见CURRENT_DIRECTION_HISTORY_THROUGH_20261005.md。
 
 ## 10/6用户新优先级：MLE沙箱资源调度，先验证资格与独特增量
@@ -16,6 +16,7 @@
 - [ElastiCo](https://arxiv.org/html/2608.07971v1) §4已有非侵入profile与GPU共置；它使用配置画像、特定框架控制及必要时checkpoint。不将“共享资源”或“任意代码”几个词当足够区别。
 - 可研究的窄问题：阶段多变、缺少可靠历史匹配/统一进度接口、错误共置后无法便宜撤销的生成程序，是否需要不同的事前准入判断；语义是否真比廉价特征/父程序经验多提供有效信息？该难点在本项目中的频率和损失尚未测量。
 - 补核[Cortex](https://research.google/pubs/cortex-workflow-aware-resource-pooling-and-scheduling-for-agentic-serving/)作者摘要已有阶段资源池，[SpecBox](https://arxiv.org/html/2607.23933)已有沙箱预热/预取；阶段借还只作强基线。[Agentic CPU-GPU Scheduling](https://arxiv.org/html/2607.22242)已有工具profile、三选与反馈重测。若切入一次性未知程序，须计入第一次/累计测量成本，不免费profile未来候选或只报最佳轮；详细界限见sandbox_scheduling/README。
+- 10/7核[DetShare](https://arxiv.org/html/2603.15042v1)的资源耦合/语义等价与[Pollux](https://www.usenix.org/conference/osdi21/presentation/qiao)的资源—训练配置联合适配。不能把“共享可能改变训练行为”本身叫新发现；本轮源码切片仅为对照等价性提供具体检查对象。
 
 ### 初步接线范围与两道实验关
 1. **先观测与系统机会**：保持AIRA-dojo和原镜像，记录候选arrival/start/end、进程组、CPU/RAM、GPU显存/占用、I/O及同时运行者。候选私有写目录，共享只读数据；不改候选代码、超参、训练量，不做早停质量筛选。
@@ -35,6 +36,8 @@
 - 已用native+sacct另核全部12条：返回生成/实际step分配时间中位0.6296993658295438；全4GPU池5107秒中上述窗口占0.2272495855543097。包含截止/失败，不以worker日志缺失筛样本；不替换9条旧分母、不把CANCELLED等同程序错。机会存在不代表已实现节省，仍需就绪队列与真实同预算对照。
 - 15:25新增 [观测原型与对照草案](sandbox_scheduling/README.md)：显式PID身份、CPU/RSS/storage I/O、可选整卡GPU指标；缺失不补零。远端Linux23项测试通过，本地22项通过/1项Linux测试跳过。源码SHA94290bfc020825415acc454622c8e2d6c2da593075f2f86a5c5877a26400ed91；真实验证仅自有进程约1秒，不查询GPU、不执行候选。不能当性能/共置安全证据。
 - 原型恒标记候选范围不完整：仍缺可信kernel/子进程归属、arrival/start/end/release事件及真实GPU测量。首轮对照草案补固定双并发B与保守准入C，先排除“只提高并发即获得收益”；具体清单/批次未批准。
+- 10/7只读复核16370控制器：9波、每波仅2个search worker且等两者结束才开下一波，正好2张执行卡。345个code-ready文件中321有result、19事前拒绝、5无对应回执；不是321次有效评分。旧记录没有就绪积压序列，22.72%窗口不能推算可兑现节省或把旧耗时平移当因果收益。
+- 同一固定158程序中5个有空闲显存查询。4个相关程序的纯数值分支已独立复算：Tweet两个程序在低于8GiB时batch 32→16；Herbarium两个程序在4/8GiB输入下batch 48/64。只验证源码算式，不执行完整训练、不证明共置触发或分数变化；不能当4次独立实验。证据[sandbox_scheduling/qualification_notes_20261007.json](sandbox_scheduling/qualification_notes_20261007.json)。R14不变，不借此重开R13。
 
 ## 最近闭合结果：保留失败，不用新方向重写历史
 

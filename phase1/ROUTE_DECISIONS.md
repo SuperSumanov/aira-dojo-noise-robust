@@ -1,6 +1,6 @@
 # 路线裁决表：先排除重复，再提出新机制
 
-更新：2026-10-06香港。当前状态见CURRENT_DIRECTION；本表是机制索引，不是运行授权。
+更新：2026-10-07香港。当前状态见CURRENT_DIRECTION；本表是机制索引，不是运行授权。
 “停止当前配方”不等于“所有变体不可能”。读原始证据后才解释历史数字，不汇总异质批次为总体胜率。
 
 ## 本次必须纠正的重复推荐
@@ -34,6 +34,7 @@
 - [ElastiCo](https://arxiv.org/html/2608.07971v1) §4已有画像与非侵入GPU共置；[AgentCgroup](https://arxiv.org/html/2602.09345)已有意图驱动CPU/内存。宽概念高度相邻，原文旧“没人做过”不采用。
 - 只开放小资格研究：真实未知程序/阶段变化/不可便宜撤销条件是否常见且有成本；语义能否胜简单特征、telemetry与SchedMate式参照。用户已批准16624六次生命周期原语，6/6完成、159GPU秒；372MiB保留vs0额外显存，文件全同，不是生产泄漏/系统增益。factory上层本就close；必须用执行级借还整卡作强基线，再谈共享/语义。旧16370返回生成占77.37task-slot分钟（全4GPU池预留22.72%），不是可省百分比；尚未获新调度效果批次/付费/训练授权。
 - 追加近邻：[Cortex](https://research.google/pubs/cortex-workflow-aware-resource-pooling-and-scheduling-for-agentic-serving/)已有阶段资源池；[SpecBox](https://arxiv.org/html/2607.23933)已有生成中沙箱预热/跨步预取；[Agentic CPU-GPU Scheduling](https://arxiv.org/html/2607.22242)已有19工具profile、三选、重测与交换。一次性未知程序可否省去重复测量而保留安全净收益仍是假说；宽泛阶段分离/LLM调度均不能称新。
+- 10/7资格复核：旧16370无可识别的额外执行积压，不能由22.72%预留窗口估计加速。固定公开程序中空闲显存分支会改变batch的纯算式已复算，但无实际共置/训练效果；它是R14公平性检查，不是R13数值修复复活。资源—行为耦合已有[DetShare](https://arxiv.org/html/2603.15042v1)与[Pollux](https://www.usenix.org/conference/osdi21/presentation/qiao)近邻，不宣称宽概念原创。
 
 ## 已核近邻：检索入口，不是它们已替我们验证效果
 

@@ -1,0 +1,26 @@
+{
+  "amendment": "v1 hit its 600-second CPU cap before a summary. v2 reuses each parsed AST in the unchanged detectors; same population, pins, categories, and cap. v1 preserved, no partial estimate reported.",
+  "api_calls": 0,
+  "automatic_expansion": false,
+  "categories": "Name-based, potentially unused/shadowed settings. Imports are declarations, not executed model identity. Different ASTs are not independent runs.",
+  "gpu_hours": 0,
+  "helper_sha256": {
+    "collateral_bindings_20261006.py": "b98608358862e7ef00a0014ed4dbff76f5e5a2d9b92eb4fd78e8f78fba12622e",
+    "collateral_sample_20261006.py": "e5a63aafd1940b4c8e0119237a07abda7f1c3ba3bdf5f1eb3662f8ea5b272db5"
+  },
+  "limitations": "Posthoc outcome-blind coverage census, not a regression/prevalence estimator.\n\nDo not replace the original 80-pair sample, reselect cases, execute downloaded\ncode, or inspect public outcome/feedback/scenario values. Categories are names\nand declared imports, not execution semantics or physical-run independence.\n",
+  "max_seconds": 600,
+  "no_code_execution": true,
+  "no_model_fits": true,
+  "no_outcome_fields": true,
+  "old_sample_unchanged": true,
+  "question": "What structural population did the small executable text-task check cover?",
+  "script_sha256": "181b4d58f3aa580366aa6e2e6f16f259fb6015b32cee0fa291cbfc511963e681",
+  "selection": "Every unique (task, exact base code, exact child code) in the three already pinned public traces; no outcome-based selection.",
+  "source_commit": "5ed92e7fc40e4de2c8c3faaaa3cc3f1a3899a820",
+  "source_pins": {
+    "Trace_1.json": "ee50756cd940a1add0e44bcbb04e710233709d81f823111d70846cfe6278afb0",
+    "Trace_2.json": "5a451c60ead8ac85e8eca86502cd92efe3ff1d12949510ccec394ca44dfe4cbd",
+    "Trace_3.json": "8977dd468ed50d22aa173cb0aec208286e9b73142b72568861b60d55b3243ae2"
+  }
+}

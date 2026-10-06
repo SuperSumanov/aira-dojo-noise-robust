@@ -1,63 +1,40 @@
 # 当前短交接
-更新：2026-10-06香港。用户批准三原则六小时研究，窗口01:59:42—07:59:42香港；尚未完成该窗口。04:17已push并ls-remote确认我方分支59c00acfed32f04c830e1e84905c83e0ca2a6642；学长最近fetch为dfff0efb9daf1d4a63c74492f138c19c1fd8440e未变。按CURRENT_DIRECTION最新10/6裁决，不重开旧失败门。
+更新：2026-10-06 07:59:56香港。用户批准六小时研究，窗口01:59:42—07:59:42香港；现已完成窗口及证据/解释核查，无新实验待启动。当前裁决是不扩大简单恢复配方，尚无符合强参照/跨任务/同预算的新方法突破。
 
-## 本窗口新事实与进行中研究（六小时尚未结束）
-- 06:26前已核16565 COMPLETED：12启动/11有效、814秒单3090=0.22611111111111112 GPUh；Pizza第二seed字符臂kernel-readiness失败后清理挂起，保留缺失不补跑。11评分独立误差≤1.1102230246251565e-16、319分类器fit/667二元fit，均收敛；7可比旧参照预测字节一致，不是新增独立seed。Spooky两seed字符相对word25k中位logloss降低0.05452223113810692，word25k相对word50k反而恶化0.019597365568248676；净改善0.03492486556985824。固定模型条件区间分别[.03381626864767076,.0742647398959696]、[-.02788787686952855,-.012089604705398112]、[.015558117821868524,.05373174790905431]，不校正开发选择/训练不确定性。Pizza字符仅1配对且区间跨0。三格不能证明恢复混合方案词容量一定更好，存在交互。根vocabulary-capacity-20261006-v1；plan SHAacf546f7b5430910c6a695eeabfbff0cb5a4f27d3dd5d89e9f4c680e7a045e84；执行源码f36ae0c88c565dca6315d04dbbd068a9af5f9aa8，分析SHA589cf2d1652b15bb3cd68920c07e8abeb1fbac11062e1dd8d84d4b2ca81ef48e。prepare/submit/readout-v1已执行，禁止重复。已知人工结构阳性机制，不是新方法或重开R12/R13。
-- 06:50已核16567 COMPLETED并读出：4启动3有效、仅seed115002完整新配对；718秒单卡=.19944444444444445 GPUh，87分类器fit/261二元fit，3独立评分误差≤1.1102230246251565e-16。slot1 kernel-readiness失败无completed，不补/不借旧端点。恢复union词容量额外降低logloss .005600272389412075，条件区间[.0016453398793471728,.00985108516882419]；与无字符时容量收益的交互−.014003510989377854，区间[-.019901164767484873,-.008851984242019696]，仅固定模型旧开发样本。四格选参均C30/ngram2/min_df1；logloss上的边际收益递减不证明语义冗余。旧union两seed预测字节复现，不是独立正例。根capacity-interaction-20261006-v1，prepare/submit/readout-v1已执行不可重复；执行17dfc85e83195dc6d3a6a2432bba728286e2118e，plan SHA5f30bc3dbaa840475d8f473c4e56566afe0bd5d408268adf7d784679f5f1b359，summary SHA93ccac189d0a15f0723a7b99f0c124da6c48cc0c272b4150930fbbb6152c0eee。容量50k→75k，非同特征/全成本方法对照。16565/16567共6汇总文件已获工具审查通过并下载，逐文件hash与远端回执一致、凭据扫描0；不包含待批16560结果。只在本地保存，未push。
-- 06:41后核Spooky历史自然父解与新容量对照共享view SHAd59ec421babf89de8ecbd5169a3ddaf1c7b594e7b5706a7726353aa9ce40207e及scorer SHA3a6b75e6ce6b391dd04bb6ac668c063cae90c2270411f5503e493ae8d90991ae。既有opportunity_information初始logloss0.38797591250098007已优于人工word+char约0.40767404151230935。该跨批历史参照初始化/开发成本不同，不是公平算法胜负；仅进一步限定局部阳性不等于胜真实强父解，不更换当前批次参照或成功定义。
-- 05:47香港源代码结构复核：公开固定80对有79不同父AST、80不同子AST；12参数变化对有12父AST，不能把旧本地父集中问题泛化到公开语料，也不能把不同AST叫独立run。全部12涉及torch，来源/执行成本与便宜本地回放明显不同。三项意图疑点的静态使用核过：Quest明确保留其他设置却减epochs/folds，但折分和时间逻辑也变；Aptos额外LR变化、Herbarium提前停止变化的意图/收益仍未知。记录intent_scope_check.json；不称12失误、不据此启动修复器。fixed_pool_envelope已再次Decimal独立核验，仅为已观察分数的代数上限，不是总体置信上界。
-- 05:27香港本地补算已公开32条执行的固定池乐观上限：每边可免费看开发成绩、从有效P/C/CP/PC任挑且保留P，8边仅旧case3有+.001435063381966084，其余7边无提升；3不同父程序。PowerShell与独立Decimal复算一致（浮点舍入差另列）。新fixed_pool_envelope.json只界定本固定池选择空间，不界定新生成/修复/组合，也不修改原5/8完整四格分析。NSR-Boost/EES/Mutation Without Variation原文核验已补路线表；不把残差组合或预测重复更名重开。新16560数值导出仍等待用户授权；无新增GPU。
-- 04:53已闭合并一次读出独立公开来源回放16560（04:43:45—04:46:56，191秒单卡）；6/6程序闭合，只有1/3完整配对。readout-v1、supplement-v1已执行，不重复覆盖。三条缺失均TypeError/旧multi_class接口，不补修或换环境救回本批；唯一完整配对提升的条件区间跨零，尚不支持新方法。原程序3对/事前排除1对，源码c43a235fb6443ec5cd6c4d832ee83d4c28618bea，plan SHA8b8f5e3d7889df4df747cdef6a1eabc94979b5291dd3980bd3b6769c4f94769d，summary SHA27d98bf626ad2a6bc9186bd370ca9ffe7d04f60ffbbb9e6ef0cc41e1873867fb。完整数值保留远端external-pair-replay-20261006-v1；安全审查拒绝源码回显和逐程序指标/汇总本地下载，已向用户异步询问本地保存与发布这批脱敏结果的授权，未获回复前不绕过导出限制。本地读出代码70f9e103及之前dbd75750已测试，未push。独立来源≠独立test；无API/底座训练。
-- 03:27香港16538 COMPLETED；32/32闭合，26有效，5/8完整四格；单卡2159秒=0.5997222222222223 GPUh，无API/底座训练。26评分独立最大误差8.326672684688674e-16，Decimal独立差值审计PASS。summary SHA1adfe476893432ac944bae327fe8e32add995bb15c6ff416433716fa623b2185；readout分析SHA82983a72832f16f57b76e28105156516e003a779720769d6c9c8712b78924ec6。远端readout-v1/audit-v1/bootstrap-v1已执行，禁止重复覆盖。
-- 仅case3严格挽救（旧日期特征例，非新发现）：P=.681296340588376，C=.6728055489117436，CP=.682731403970342，PC=.6753767041377661。CP−P=.001435063381966084；其条件bootstrap95%[-.004547357091604862,.0069959339870843155]跨0。其余0新挽救；简单数值恢复停止扩大，不用加边/seed救结果。
-- Case2参数变化在父程序−.0035577613011240627、在子程序+.012467113130829932，交互+.016024874431953995，但条件区间[-.017006248505142364,.04849542573547013]跨0。Tweet case7交互大但MAX_LEN单位/模型变化预先已知；CP仍比P低.21546606120543998。不能把单例符号翻转称稳定机制。
-- Case4/5/6的C与CP分别同样AttributeError/IndexError/IndexError，6无效均非超时。全部P与PC有效。重复P同代码预测字节一致（Pizza4次，Tweet3次），不是新训练seed重复。Case0四格零参数效应已核实际日志：CatBoost确实训练，但OOF选择都只保留XGB；不是缺库或参数未执行。
-- 事后日志补充selection-log-v1已闭合，SHA7c7a0dcca7958d972a25eb6401668c303dc2bb06d3b4da583e090aac44de3029；旧80唯一子程序中Pizza42、Spooky8、Tweet30。Pizza关键词命中23，但排除traceback源码回显后仅17实际模型表；10可识别选择输出中5最后只留单模型，未知格式不算否定，代码数不算独立run。6反例/正例测试通过。case0四格均只用XGB且P=PC/C=CP预测字节一致；不推出删除非活跃组件有收益。
-- 查重补充EvoTrace/EvoReplay已覆盖回放干预、参数重调及机制分析；CostAda/EvoPINN覆盖局部信用与模块演化附近，非活跃代码搜索价值是经典问题。详见路线表；没有据此宣布新方法。同一GOME固定80对中参数省略仅2个识别信号：Adam其实转入两个参数组，另一个只是n_jobs=None省略；未识别出新的默认值重置例，检测覆盖有限不宣称不存在。记录research_synthesis_20261006/omitted_parameter_spotcheck.json；不重开R13/新GPU。
-- 配对不确定性补充：所有5完整四格，2000次，seed116099；Pizza按标签分层、Tweet按样本，固定预测。只表达重复开发集的条件不确定性，不校正任务筛选/多重比较/训练噪声。bootstrap plan SHAfa5c5d7c2ca0cff50609a1eb7e12220f3d7c4e23016524bf9f7eacd1ed1a1c77。安全汇总在本地results/collateral_factorial_20261006，未导出逐样本数据。
-- 公开GOME4210对先按固定hash每任务2对冻结80对：80解析、46有唯一共同构造器、直接数值变化0。补同样本变量/字典绑定：76可比较，12对/10任务有设置变化。多数意图明确要求，不能报12个失误；三例“保持其余设置”附近需进一步核意图与执行。未读取score/feedback/scenario值，意图文本仅数字掩码审读但仍可能含历史定性信息，不称完全盲审。
-- 远端/research/d7/spc/yzyang4/collateral-sample-20261006-v1；structure SHA82bcbbfcb7f1022b246fce0703e81de4a788c67d5fc5d1b3fc0285f77fc077d5；binding-supplement-v1/summary SHAd9aca8bb78365990143f149790f47089d8add255883992b596b43845173f3dfa。来源原文留远端。
-- 已有开发85修改再查：83解析、80唯一对、43对有支持的数值变化；旧开发成绩曾分析，不是新确认集。v1只读脚本漏接原生generic Exception后停，失败目录保留；v2同分母修正完成。根collateral-local-20261006-v2；summary SHA4c96405a1d58dcddbf228b801cd7516085a56a2d1eae5d9bd601c2384eb452e4。没有新模型执行。
-- 冻结四格反事实：85行中24合格、42无支持的数值变化（含2解析不支持）、16需静态外部模型依赖、2原时长>150秒、1只有排除槽。固定hash每任务4对，Pizza/Tweet共8对×P/C/CP/PC=32程序；2张3090×2小时≤4GPUh，240秒/程序。P父/C子/CP子恢复父参数/PC父换子参数。剩余改动不自动等于语义想法。
-- 根/research/d7/spc/yzyang4/collateral-factorial-20261006-v1：selection SHA6610706263a4ed059f28d3e52e8172af9dddd9400095fdd9172626689960c295；源码ac327c54fa6e5d92d6ad0df5ed7adfdf2b7f0695；plan SHA57dbaec816abda184f99abe0f8738e0350d0d0cb18602f5c8822eea50aeabcce。首次prepare预检因Tweet目录不同命名误判失败；validate_collateral_factorial_20261006.py以精确双路径复核32配置/8四臂PASS，冻结实验文件未变；validator SHA5da2165c3161e52f5facf044899cef407733971ea514d148db5727dd6bbeb948。
-- 02:49单卡修订：16536在PENDING/0启动撤换，原launch/plan保留；16538同gpu27单卡最长4h、总≤4GPUh，不改32配置/种子/单程序限时。scheduling-amendment SHAc9b31bf6dbafab47973b6a17849e6535963ea38cebfda94a960beda05a6215d4。旧12535不操作。已全批封存后评分；无新GPU作业。
-- 预结果独立性核查：8条边只有3个不同父程序AST（case0–3共用，4–6共用，7另一个）；不能将其当8个独立起点。Tweet代码内会重新seed，wrapper种子不同不自动等于独立训练重复。
-- 预结果代码核查：case6/7的MAX_LEN从字符变成词/token单位；case5 BiLSTM→Transformer，LR转移未必合适。保留分母但不能将数值恢复解释为语义等价或错误修复。LLaMEA-HPO §3.3已明确优化后参数保留、结构变异，故宽概念不新。
-- 03:11预读出解释边界results/research_synthesis_20261006/pre_readout_scope.json已先提交37064919；大多数数值变化明确有意，不能叫误改。GOME旧linkage核numeric loop排序且双实现一致，无排序bug证据；最佳父解复用与作者流程吻合。24合格边父代码仅6个、组大小16/4/1/1/1/1；不能盲目扩大边数。最新fetch学长仍dfff0efb，无新提交。
+## 最新裁决
+- 目标仍是重要、独特、强参照/跨任务/同预算可重复的E2E方法；目前没有合格新方法。停止简单恢复父数值及词表变体，不补边/seed救R12/R13，不把此裁决扩大成“所有critic/神经修改无效”。
+- 三原则及结果定位：[research_decision.json](results/research_synthesis_20261006/research_decision.json)。真实修改已抽样；因果回放仅有限旧例；可事前识别、廉价、胜强参照的方法资格未过。
+- 本窗口54程序、43有效端点，4个单3090作业共3882分配秒=1.0783333333333334 GPUh。重复父解/控制/数据不是54独立试验；CPU研究另计。付费API0、底座更新0。
+- 最后07:44队列只有旧12535 JobHeldUser，不操作。16538/16560/16565/16567均COMPLETED，但作业完成不等于每程序有效。
+- 最后07:41 fetch：我方公开phase1-value-critic仍59c00acfed32f04c830e1e84905c83e0ca2a6642；学长dojo-reproduce仍dfff0efb9daf1d4a63c74492f138c19c1fd8440e（10/5来源清单更新，非新效果）。04:17之后工作只在本地，未push；不改学长分支。
 
-## 最新研究复算：方向仍待验证，不把局部线索当新方法
-- 新本地证据：results/research_synthesis_20261006/diagnostic.json已随ac327c54提交，并包含在04:17确认的59c00acf公开祖先中。源inner-grid SHA66d79e554d0e0ea8a56d5e87d5cdf941e38c8fc20e84efbda8ff6cd3b5023064与已有导出回执一致，JS/PowerShell独立复算。
-- Spooky两内部划分：保留父解C30、ngram/min_df，仅换word→word+char，内部logloss改善0.020474526937451/0.02395703644034014；相同字符表示若改C0.1，相对父解反而恶化0.45166977560521926/0.4188737298411987。相关8格训练均收敛。这是事后单任务网格诊断，非实际agent恢复/E2E/独立确认。
-- 必须保留反证：实际两个profile提案是word unigram+C0.1，不是上述好字符结构；对应网格即使恢复C30，logloss0.46169566840649595/0.5120765900259493仍差于父解0.4436022186964692/0.48126249849150526。数值匹配不证明程序语义等价，未补跑实际修改。Pizza的C0.1字符格仍可优于父解，不能制定通用锁C规则。
-- 候选问题：搜索是否系统性丢失已优化设置、抵消真正有用的结构变化？它与R3/R11/R12重叠，不能称全新路线；MLE-STAR/PatchFusion/Implementation Lottery/FBNetV3/Centaur均是直接近邻。下一步先找真实候选的可挽救空间及反证，固定不看结果的抽样与干预，再决定是否值得干预；不先建控制器。
-- 上一聊天20条thinking×feedback＋HPO矩阵仅提案未启动。16403只有单提案；ordinary/profile中位64.41/55.38秒，名义360秒，不是完整搜索对照。这个边界不撤回旧单提案结果，也不证明放宽次数会成功。
-- 队列未重新查询；下文10/5队列均最后观察。保护集仍关闭，未改旧结果、实验代码或学长分支。
+## 已闭合证据，不可重复提交或读出覆盖
+- **16538 / collateral-factorial-20261006-v1**：8边×P/C/CP/PC=32，26有效、5完整四格，仅3不同父程序；2159单卡秒。26独立评分误差≤8.326672684688674e-16。summary SHA1adfe476893432ac944bae327fe8e32add995bb15c6ff416433716fa623b2185；plan SHA57dbaec816abda184f99abe0f8738e0350d0d0cb18602f5c8822eea50aeabcce；执行源码ac327c54fa6e5d92d6ad0df5ed7adfdf2b7f0695。readout-v1/audit-v1/bootstrap-v1/selection-log-v1均完成。
+- 唯一CP>P且C≤P是旧日期特征case3，AUC+.001435063381966084，条件95%[-.004547357091604862,.0069959339870843155]跨0。case2恢复参数更差；Tweet三对C/CP同样代码错误，非超时；case7长度单位/模型改变，不能把字面恢复当语义等价。case0确实训练CatBoost但最终只选XGB，非活跃代码不等于永久无价值。
+- 固定有效池P/C/CP/PC免费看已观察成绩再任选，8边仅旧case3正，其余零；不能扩展成新生成/修复/集成/总体置信上界。fixed_pool_envelope SHA dd832174ed35a97205eee305ada1fb3acbb5d7016c0f3977fe147dc3e6008c38；PowerShell与Decimal核验。原5/8完整因果分析不变。24合格边仅6父，不能把扩边当独立确认。
+- **16560 / external-pair-replay-20261006-v1**：公开原程序3对，6程序3有效、1完整配对；191秒。三条旧multi_class接口TypeError，不补修/改环境救本批。唯一完整配对条件区间跨0，不是新方法/新test。执行c43a235fb6443ec5cd6c4d832ee83d4c28618bea；plan SHA8b8f5e3d7889df4df747cdef6a1eabc94979b5291dd3980bd3b6769c4f94769d；summary SHA27d98bf626ad2a6bc9186bd370ca9ffe7d04f60ffbbb9e6ef0cc41e1873867fb。readout-v1/supplement-v1完成；数值留远端，不能绕过待批导出。
+- **16565 / vocabulary-capacity-20261006-v1**：2任务×2seed×word50k/word25k/word25k+char25k=12，11有效；814秒。319分类器fit/667二元fit均收敛，11独立评分误差≤1.1102230246251565e-16。Pizza第二seed字符臂kernel-readiness/清理失败保留缺失。7可比旧参照预测同字节，不是新seed确认。执行f36ae0c88c565dca6315d04dbbd068a9af5f9aa8；plan SHAacf546f7b5430910c6a695eeabfbff0cb5a4f27d3dd5d89e9f4c680e7a045e84；summary SHAd0166d17b774b4e2b48cfe105477e0c796c15faa7e2de10c0cae7e0ac032315b。
+- Spooky两seed：字符相对word25k中位logloss降低.05452223113810692，word25k相对word50k反而恶化.019597365568248676，union净改善.03492486556985824。条件区间净改善[.015558117821868524,.05373174790905431]，非开发选择/训练不确定性校正。Pizza仅一完整字符对且区间跨0。已知人工特征正控，不是自动发现。
+- **16567 / capacity-interaction-20261006-v1**：Spooky两seed×word25k+char25k/word50k+char25k=4，3有效，仅115002完整新配对；718秒。87分类器fit/261二元fit均收敛、3独立评分误差≤1.1102230246251565e-16。115001 fullunion kernel-readiness失败，不能借旧分数补对。执行17dfc85e83195dc6d3a6a2432bba728286e2118e；plan SHA5f30bc3dbaa840475d8f473c4e56566afe0bd5d408268adf7d784679f5f1b359；summary SHA93ccac189d0a15f0723a7b99f0c124da6c48cc0c272b4150930fbbb6152c0eee。
+- 唯一完整115002：词容量在无字符时收益.01960378337878993，在union中.005600272389412075；交互−.014003510989377854，条件区间[-.019901164767484873,-.008851984242019696]。四格C30/ngram2/min_df1一致；logloss次可加不证明语义冗余。union容量50k→75k非同容量/全成本。旧union两seed字节复现。两容量批次prepare/submit/readout-v1已完成不可重跑。
+- 新fullunion logloss .4057519927763963仍落后历史自然父解.38797591250098007；已核相同view/scorer。历史初始化/开发成本不同，只作强参照警示，不是假公平算法胜负。完整解释见capacity_interaction_interpretation.json。
+- 16565/16567六份汇总已工具审批、下载、哈希验证，未push；没有包含16560待批数值。
 
-## 最新闭合：额外反馈单提案不扩大
-- 根/research/d7/spc/yzyang4/structural-agent-20261005-v1；16403 COMPLETED，12启动/10有效端点，982秒×4GPU=1.0911111111111111 GPUh；10评分独立误差≤1.1102230246251565e-16，服务关闭。prepare/submit/analyze/supplement均已执行，禁止重复。源码24ceb8f5973afd9bc7268f4e79f900d5d8964e84；结果已发布38e7bb7068453e505ef4ba5c6f384ee3576f6d48并独立ls-remote确认；学长分支未改。18:24:34队列仅旧12535 JobHeldUser，不操作它；18:22短暂DNS失败已恢复。
-- 2任务×2seed×普通agent/加训练内28点调参记录/open word+char 56点HPO，每条360秒，共同训练内HPO父解。两agent均可改结构、无字符提示；内选点、全闭合才外部开发评分；仅单提案不是完整MCTS/从零E2E。
-- 原完整三臂主分析2/4块：profile对ordinary为Pizza AUC−0.052260224826596424、Spooky平；对HPO分别−0.06218607988519487、−0.03124022410581795（收益方向）。另2HPO端点kernel-readiness超时，不当作方法失败，仍保留missing。门false，补齐缺失也不能救全胜条件，不补跑/补seed救门。
-- 见结构缺失、未读外部成绩前增加的完整双方敏感性：profile对ordinary四对三平一负，原主分析/门不改。普通4/4保留父解；profile1/4接受新案，内部AUC+0.006976744186046435、外部−0.052260224826596424；单例不证明噪声/分布偏移。
-- 18:17远端AST/实发prompt核对：Spooky两profile28行都送达、lower-is-better正确，最佳C30与父解一致；生成代码两次C0.1，内部logloss更差。7保留父解及2成功HPO预测均与16395对应产物哈希一致，不能算新独立阳性。
-- plan 28c36271e38ab3f8d88508ce2235b229bf5c39bb9622096769a2d418a3492823；summary 302ec93194c8fd773f19f5609e83cc5fd3bd7bbe75f2139caa416c074d985f61；phase1/results/structural_agent_20261005共8个汇总文件，哈希、独立算术、凭据扫描通过。停止本反馈配方，不用新名称重复R2/R6/R12；保护集关闭、付费API0、底座训练0。
+## 无结果值的公开覆盖核查
+- 原固定样本80对/40任务，79父AST，12对支持的设置变化；这些多数明确有意，不叫12错误。Quest/Aptos/Herbarium意图疑点不证明有害。意图文本数字掩码仍可能含定性历史，不称完全盲语义审读。三份原Trace固定hash见population_plan.json。
+- **collateral-population-20261006-v2**完成：4210原始/唯一/解析对，40任务、1903父AST，最多43对共父。287对/36任务有支持设置变化，257对声明torch；类目/框架计数重叠，非执行模型身份/错误率/物理run独立性。低成本本地回放不能直接外推这批神经代码。
+- V1在600秒CPU上限前未生成summary，保留失败不报部分估计。V2仅复用已解析AST，检测/样本不变，五组字符串vsAST等价测试PASS；普查437.648070726078秒。执行5ed92e7fc40e4de2c8c3faaaa3cc3f1a3899a820；plan SHA2c600212b7a320e2b8ab881e4d4695a197d175db393294ba280f1db6cbad9ba9；summary SHA7ae35763f3f5febc79a627d907e5b25f1e98ed5ae83647d1befa1ab1438e8d8f。
+- 两安全汇总已下载并验证hash；九项逐任务合计/任务数/边界/交集及源/helper哈希独立PASS。原80对未重选，无源码执行/模型训练/GPU/API/源score反馈读取。数值检测器仍受字面值、名字/调用匹配覆盖限制，不估“普遍伴随退步率”。
 
-## 之前已闭合：结构收益存在性，不是自动方法
-- 用户17:00批准小实验并要求约一小时反馈。16395在gpu27完成，8/8有效、232分类器fit/464二元fit、171秒×2GPU=0.095GPUh；无生成器/API/底座训练。
-- 2任务×2内部划分×word/word+char，各28训练内调参＋1refit，总5万特征上限。全部预测封存后评分；8独立复算最大误差1.1102230246251565e-16。
-- Spooky两配对logloss降低0.03860950703389854、0.03124022410581795；双方最佳C=30非边界；两个内部划分各28/28同参数组合改善。中位从0.44259890708216754降至0.40767404151230935。
-- Pizza两配对AUC增加0.00466395599138969、0.009925855058598443，但事后条件区间跨0。Spooky条件区间在正侧，也不是反复开发选择校正或独立任务确认。
-- 两内部划分共用同一开发集；Pizza纯词预测重复。相同调参次数不等于相同实耗时，字符臂更慢。未胜开放相同结构空间的AutoML/无约束agent；已知字符特征不是新算法或LLM发现。数值资格true不自动扩大。
-- 源码95ed61276a1dee051a8e42bf21df33672c841992；plan fed6f8c812fc49db8acc459b460a10bbe962cbe10b8a2172f5dff06c7686a624；summary cb357d80931ca8c752b9be1ec358d9ac72c06803ac3a021de93b1799c22cb316。
-- 结果已发布于5833d1c903c7fdb3f6999e01db887d931861a6cd；phase1/results/matched_representation_20261005。14文件凭据扫描0命中，10结果索引原字节一致；学长分支未改。后续仅交接收尾，最新head看Git。
-- 远端根/research/d7/spc/yzyang4/matched-representation-20261005-v1；prepare/submit/analyze/supplement全部已执行，禁止重跑。最后17:31队列只剩旧12535 JobHeldUser，不操作它。
+## 研究解释与下一步门
+- 合成网格能拼出好结构+坏参数，但真实16403 profile两Spooky提案是word unigram+C.1，并非那个好字符结构；ordinary曾提char_wb1–2但更差。不能说agent从没想到字符，也不能把网格拼接当自然挽救。
+- TIDE/LLaMEA-HPO已有结构-参数耦合/保留参数；HT-AA已有开发修改后的调参迁移；DAPS已有表面多样/机制趋同、记忆+audit；RIPPLE已有局部补丁合成干扰与前缀回放。细节/局限见ROUTE_DECISIONS，不拿论文标题或摘要猜实现。
+- 唯一仍开放的问题是“独立真实父程序中是否存在可恢复且值得成本的增量”，不是一个合格新方法。若要新批次须先说清语义干预/强参照/预算；本窗口统计不自动授权新神经重放，也不重开旧闭合路线。
+- 16395已知结构阳性、16403额外反馈门false、16370重做门false保持不变；详细历史保存在Git 5ed92e7f版本交接及各结果目录。不得把基础设施missing当方法输、以新种子救门。
 
-## 相邻证据与下一科学缺口
-- R11/v2/16370仍incomplete；同想法重做未过扩大门，不补seed救结果。其continue提示限制word-TFIDF/LR，不能称无约束普通agent。原证据及撤回边界见CURRENT_DIRECTION。
-- 当前局部阳性仅解决“存在改善空间”。还需agent自己提出有效结构，并在总成本相同、对手也可用相同结构时胜强参照；尚未解决自动发现、新颖性或确认收益。
-- Centaur已有LLM/HPO状态共享，MLE-STAR已有组件消融和定向修改；宽概念不称首创。新提案先查ROUTE_DECISIONS，不能更名重复旧路线。
-
-## 恢复边界
-- first-960/Target-300/Target-522、D_val及官方test关闭；不恢复旧critic/HCE/多保真/Probe/K≥1，不更新agent底座。密钥仅远端，不导出原始候选/预测/标签/权重。
-- SSH linux5；Python /research/d7/spc/yzyang4/venvs/aira/bin/python；SLURM_CONF=/opt1/slurm/gpu-slurm.conf。任务镜像用gpu27/gpu28的3090，不投projgpu39。
-- 研究盘4TB至2027-08-30，不等于实际余量。最后学长dojo-reproduce为dfff0efb9daf1d4a63c74492f138c19c1fd8440e，内容是来源清单/筛选，不是新效果；当前执行仍固定旧b8e75052。
-- 活跃本地checkout C:/Research/New/my_project/MLEvolve/_codex_tmp/publication-feedback-20261001。旧aira-dojo-codex-20260813有用户dirty不可重置；其phase1/memory/MEMORY.md与OPERATING_RULES.md是经验索引。
+## 恢复与安全
+- 活跃checkout C:/Research/New/my_project/MLEvolve/_codex_tmp/publication-feedback-20261001；先fetch但保留本地未发布提交，再读本目录CURRENT_DIRECTION/ROUTE_DECISIONS/本交接。
+- 旧aira-dojo-codex-20260813有用户dirty，未重置；旧交接顶部已加新指针，旧正文非实时状态。长期技巧仍在其phase1/memory/MEMORY.md与OPERATING_RULES.md。
+- 16560源码回显与数值下载曾被安全审查拒绝；用户尚未回复单独授权问题。不能用apply_patch或其他通道重建该批数值以绕过；其他批次已批安全汇总独立保存。
+- SSH linux5；Python /research/d7/spc/yzyang4/venvs/aira/bin/python；SLURM_CONF=/opt1/slurm/gpu-slurm.conf。任务镜像gpu27/gpu28 RTX3090，非projgpu39。研究盘4TB至2027-08-30，不等于余量。
+- first-960/Target-300/Target-522、D_val、官方test关闭；不恢复旧critic/HCE/多保真/Probe/K≥1；不更新底座。密钥只在远端，不导出原始候选/预测/标签/权重。

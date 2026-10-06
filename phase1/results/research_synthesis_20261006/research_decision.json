@@ -1,0 +1,78 @@
+{
+  "kind": "bounded_six_hour_research_assessment_not_new_method_claim",
+  "evidence_cutoff_utc": "2026-10-05T23:43:28Z",
+  "requested_window_utc": ["2026-10-05T17:59:42Z", "2026-10-05T23:59:42Z"],
+  "window_closed": true,
+  "window_closed_at_utc": "2026-10-05T23:59:56Z",
+  "source_commit_at_assessment": "5ed92e7fc40e4de2c8c3faaaa3cc3f1a3899a820",
+  "three_principles": [
+    {
+      "principle": "Outcome-blind sampling of real edits, not constructing success examples after seeing scores.",
+      "status": "Structural sampling and coverage census completed; causal prevalence not identified.",
+      "evidence": "Original task-balanced public sample remains fixed at 80 pairs. Separate all-trace census covers 4210 unique code pairs, 40 tasks and 1903 distinct parent ASTs. The limited detectors find supported setting changes in 287 pairs across 36 tasks. These are not counts of mistakes or harmful edits.",
+      "coverage_boundary": "257 of 287 changed pairs declare torch. Imports do not identify the executed model. The inexpensive local factorial has only 3 different parents; its findings cannot be transported to this wider population without new evidence. Different ASTs are not independent physical runs."
+    },
+    {
+      "principle": "Test causally whether a useful edit is masked by accompanying changes.",
+      "status": "Limited mechanism evidence; no new stable natural-edit rescue.",
+      "evidence": "Job16538 assigned 8 edges x 4 versions. 26 programs valid; 5 complete quartets. Only the previously known date-feature case satisfies restored-child better than parent while original-child does not. Its conditional interval crosses zero. A synthetic feature/hyperparameter grid can construct masking, but actual inspected agent proposals were not those beneficial structures.",
+      "control": "Jobs16565/16567 separate vocabulary capacity from adding known character features. In the reused Spooky development setting, dropping word capacity hurts and adding characters helps; restoring word capacity in the union helps on the one complete new pair, with subadditivity on the logloss scale. This is a known manual feature change, not autonomous discovery or proof of semantic redundancy."
+    },
+    {
+      "principle": "Build a method only if the opportunity is identifiable before outcomes, cheap, and beats strong baselines at equal full cost.",
+      "status": "NOT_QUALIFIED",
+      "evidence": "Even a free outcome-aware selector over the fixed valid P/C/CP/PC pool improves over P on only the old case. No tested pre-outcome rule, cross-task confirmation or equal-full-cost method advantage was established.",
+      "boundary": "The pointwise observed-pool envelope does not bound new generation, code repair, prediction ensembles or unobserved reruns; it is not a population confidence limit. This different, restricted pool also cannot explain or invalidate all historical critic-training results."
+    }
+  ],
+  "fixed_pool": {
+    "source": "fixed_pool_envelope.json",
+    "source_sha256": "dd832174ed35a97205eee305ada1fb3acbb5d7016c0f3977fe147dc3e6008c38",
+    "assigned_edges": 8,
+    "different_parent_programs": 3,
+    "oracle_positive_edges": 1,
+    "only_positive_is_previously_known": true,
+    "positive_auc_delta": 0.001435063381966084,
+    "conditional_95_interval": [-0.004547357091604862, 0.0069959339870843155]
+  },
+  "population_census": {
+    "plan_sha256": "2c600212b7a320e2b8ab881e4d4695a197d175db393294ba280f1db6cbad9ba9",
+    "summary_sha256": "7ae35763f3f5febc79a627d907e5b25f1e98ed5ae83647d1befa1ab1438e8d8f",
+    "independent_checks": "PowerShell per-task sums for nine count fields, task count, change bounds and direct/binding intersection; source/helper/plan SHA checks; detector fixtures all PASS.",
+    "verification_fix": "The first PowerShell check used collection .Count without array wrapping and raised task mismatch. It was corrected to @(...).Count, then all checks passed. No result or experimental code changed.",
+    "category_memberships": 338,
+    "category_counts_overlap": true,
+    "framework_import_counts_overlap": true,
+    "direct_binding_changed_intersection": 7,
+    "v1_status": "600-second CPU cap reached before summary; preserved, no partial estimate used.",
+    "v2_status": "437.648070726078 seconds for the census, unchanged population/detectors; AST reuse optimization passed equivalence fixtures. No GPU, model fit or downloaded source execution."
+  },
+  "allocated_resources": {
+    "gpu_jobs": [16538, 16560, 16565, 16567],
+    "allocated_gpu_seconds_by_job": [2159, 191, 814, 718],
+    "allocated_gpu_seconds": 3882,
+    "allocated_gpu_hours": 1.0783333333333334,
+    "assigned_programs": 54,
+    "valid_endpoints": 43,
+    "warning": "Repeated parents, repeated predictions, reused data and replayed controls are not 54 independent scientific replications. GPU allocation accounting excludes separate CPU analyses and human/agent research time.",
+    "paid_api_calls": 0,
+    "agent_base_updates": 0
+  },
+  "publication_boundary": "Job16560 numerical exports remain pending the separate user authorization; this file does not reproduce them. Other safe aggregates were downloaded with approved tool calls and verified byte-for-byte. This assessment has not been pushed.",
+  "decisions": [
+    "Stop expanding literal-parent-parameter restoration and vocabulary variants. Preserve all missing endpoints and original stopping gates; do not add seeds to rescue them.",
+    "Do not invest in a more complicated selector for this fixed low-headroom pool; first establish genuinely new recoverable opportunity on independent natural parents.",
+    "A possible broader neural-edit question remains untested, not recommended as a confirmed new main line. It needs an exact semantic intervention and a bounded budget before execution; do not interpret intentional resource tradeoffs as collateral mistakes.",
+    "No automatic unblinding, generator change, training, new GPU batch or revived closed route follows from this assessment."
+  ],
+  "novelty_boundary": {
+    "already_covered_broad_ideas": [
+      "Structure/numeric coupling and nested tuning: TIDE; retaining optimized parameters: LLaMEA-HPO.",
+      "Parameter transfer after developer changes: HT-AA.",
+      "Surface diversity versus semantic diversity, memory plus audit gate: DAPS.",
+      "Beneficial local patches interfering in composition and prefix replay: RIPPLE.",
+      "Specialist roles, shared measured lineage and budget/failure feedback: Auto Research with Specialist Agents. Its bundled lineage ablation and matched submitted-trial counts do not isolate each mechanism or establish our equal-full-cost result."
+    ],
+    "own_gap": "No precise, novel, operational mechanism with credible equal-cost advantage has passed qualification in this window. A literature gap alone is not positive evidence."
+  }
+}

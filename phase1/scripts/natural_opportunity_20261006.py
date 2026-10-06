@@ -16,13 +16,15 @@ import re
 import shutil
 import subprocess
 import sys
+import time
 from concurrent.futures import ThreadPoolExecutor
 
 import external_pair_replay_20261006 as E
 import collateral_sample_20261006 as S
 
 B, D, PY = E.B, E.D, E.PY
-R = B/'natural-opportunity-20261006-v1'
+R = B/'natural-opportunity-20261006-v2'
+PRIOR = B/'natural-opportunity-20261006-v1'
 NAME = Path(__file__).name
 TASKS = E.TASKS
 SALT = 'independent-opportunity-20261006-v1'
@@ -104,7 +106,8 @@ def schedule(): return read(R/'plan.json')['schedule']
 
 def check():
     p=read(R/'plan.json')
-    assert len(p['schedule'])==16 and p['gpu_hours_cap']==3
+    assert len(p['schedule'])==16 and p['gpu_hours_cap']==1.5
+    assert p['pre_execution_excluded_cases']==[0]
     for rel,h in p['files'].items(): assert sha(R/rel)==h,rel
     return p
 
@@ -143,6 +146,9 @@ def prepare(commit):
     for name,h in HELPERS.items(): assert sha(Path(__file__).with_name(name))==h
     tests()
     selected,coverage=source_population()
+    assert sha(PRIOR/'plan.json')=='bcaec1582def2bc62cafce0d14ff4588c78930676bc49faab3a55a4e0d4dd42d'
+    assert read(PRIOR/'plan.json')['selected']==selected
+    assert read(PRIOR/'pre-execution-stop.json')['all_programs_unstarted']
     assert sha(D/'plan.json')=='fed6f8c812fc49db8acc459b460a10bbe962cbe10b8a2172f5dff06c7686a624'
     R.mkdir(mode=0o700)
     for rel,h in read(D/'plan.json')['files'].items():
@@ -159,7 +165,7 @@ def prepare(commit):
     body=helper.read_text(); assert body.count('with ExperimentDeadline(390).activate():')==1
     with (R/'worker_helper.py').open('x') as f:
         f.write(body.replace('with ExperimentDeadline(390).activate():','with ExperimentDeadline(450).activate():'))
-    for name in [NAME,'analyze_natural_opportunity_20261006.py',*HELPERS]: shutil.copyfile(Path(__file__).with_name(name),R/name)
+    for name in [NAME,'analyze_natural_opportunity_20261006.py','natural_opportunity_incumbent_20261006.py',*HELPERS]: shutil.copyfile(Path(__file__).with_name(name),R/name)
     for name in ('configs','bin'): (R/name).mkdir()
     with (R/'bin/singularity').open('x') as f:
         f.write(f'#!{PY}\nimport sys\nsys.path.insert(0,{str(R)!r})\nfrom natural_opportunity_20261006 import runtime\nruntime().task_runtime()\n')
@@ -196,8 +202,8 @@ def prepare(commit):
 #SBATCH --nodelist=gpu27
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
-#SBATCH --gres=gpu:2
-#SBATCH --cpus-per-task=12
+#SBATCH --gres=gpu:1
+#SBATCH --cpus-per-task=6
 #SBATCH --time=01:30:00
 #SBATCH --no-requeue
 set -euo pipefail
@@ -207,12 +213,16 @@ export PYTHON_DOTENV_DISABLED=1 PYTHONDONTWRITEBYTECODE=1
 timeout --signal=TERM --kill-after=20s 5320s {PY} -B {R}/{NAME} controller
 '''
     with (R/'run.sbatch').open('x') as f: f.write(batch)
-    write(R/'plan.json',dict(protocol='fresh-parent-opportunity-screen-v1',source_commit=commit,
+    write(R/'plan.json',dict(protocol='fresh-parent-opportunity-screen-v2-pre-execution-integrity-amendment',source_commit=commit,
         files={str(p.relative_to(R)):sha(p) for p in R.rglob('*') if p.is_file()},
         schedule=rows,selected=selected,coverage=coverage,source_pins=S.PINS,selection_salt=SALT,
         old_sample_sha256=sha(S.OUT/'sample.json'),task_image_sha256=read(D/'preflight.json')['task_image_sha256'],
         assigned=16,parents=4,tasks=2,restarts=2,program_seconds=300,worker_seconds=450,step_seconds=480,
-        allocation_seconds=5400,gpus=2,gpu_hours_cap=3,paid_api_calls=0,generator_calls=0,base_training=False,
+        allocation_seconds=5400,gpus=1,gpu_hours_cap=1.5,paid_api_calls=0,generator_calls=0,base_training=False,
+        prior_plan_sha256=sha(PRIOR/'plan.json'),prior_job='16580',prior_job_executions=0,
+        pre_execution_excluded_cases=[0],eligible_programs=12,
+        amendment='Keep all original selected parents, source bytes, views, seeds, program caps and primary estimands. Case0 P/C encode known post-outcome giver feature; exclude all four slots before results, no replacement. Reduce concurrency from two GPUs to one within original 90-minute ceiling and GPU-hour approval. Insufficient enclosing time creates explicit unstarted slots, never a shortened execution or retry.',
+        exclusion_evidence='Public Trace2/Pizza/loop74 P/C append giver_present and giver_freq to model matrices. Approved dev inputs contain nonempty giver values; no labels were examined. Upstream issue https://github.com/openai/mle-bench/issues/108. Not a new leakage discovery or a claim of perfect prediction.',
         primary='For every assigned parent, both original-code restart pairs: oriented child-parent gain, execution validity, prediction repeatability and full worker time. All failures retained.',
         meaningful_gain={TASKS[0]:.005,TASKS[1]:.01},time_ratio_ceiling=1.5,
         screening_gate='Both restarts exceed the task-specific gain threshold; conditional paired 98.75% interval lower bound >0; median child/parent worker-time ratio <=1.5. This is an engineering screening criterion, not universal utility.',
@@ -223,7 +233,7 @@ timeout --signal=TERM --kill-after=20s 5320s {PY} -B {R}/{NAME} controller
         seed_boundary='Source-coded RNG seeds preserved exactly. Wrapper seed is identical across repeats. Cold reruns do NOT establish robustness across training seeds.',
         fairness='Only the entire natural parent/child program changes. Identical task view/scorer/image/hardware class/caps; reversed P/C order in second repeat. This does not isolate any constituent edit.',
         protected_opened=False,outcome_timing='After all workers close and predictions freeze; external scorer only. Never read public-source outcome fields.',
-        stopping='No replacement, compatibility repair, added seed, changed cap, or automatic retries. Prepared is not permission to launch.'))
+        stopping='No replacement, compatibility repair, added seed, changed per-program cap, or automatic retries. Only start a slot with at least 500 seconds inside the controller 5200-second budget. Retain all sixteen slots including four pre-excluded and any unstarted-for-budget. Prepared is not permission to launch.'))
     runtime()
     from dojo.config_dataclasses.run import RunConfig
     signatures={}
@@ -242,8 +252,8 @@ timeout --signal=TERM --kill-after=20s 5320s {PY} -B {R}/{NAME} controller
     write(R/'preflight.json',dict(status='PASS',typed_configs=16,matched_parent_groups=4,
         plan_sha256=sha(R/'plan.json'),tests=tests(),all_sources_unchanged=True,
         task_image_sha256=read(D/'preflight.json')['task_image_sha256'],
-        checklist='Artifact-bound knob; AST/wrapper tests; old component exclusion; per-task denominators; matched image/views/caps; no learned checkpoint; fixed selection before outcomes; original RNG preserved; credential scan; 8*480<5400; source/missingness limits explicit; no shell rc interpolation; immutable plan/selection.'))
-    print(json.dumps(dict(status='PREPARED_NOT_LAUNCHED',plan_sha256=sha(R/'plan.json'),assigned=16,gpu_hours_cap=3,coverage=coverage)))
+        checklist='Artifact-bound knob; AST/wrapper tests; old component exclusion; per-task denominators; matched image/views/caps; no learned checkpoint; fixed selection before outcomes; original RNG preserved; credential scan; controller budget guard retains unstarted slots; source/missingness limits explicit; no shell rc interpolation; immutable plan/selection.'))
+    print(json.dumps(dict(status='PREPARED_NOT_LAUNCHED',plan_sha256=sha(R/'plan.json'),assigned=16,eligible=12,gpu_hours_cap=1.5,coverage=coverage)))
 
 
 def worker(i):
@@ -253,22 +263,29 @@ def worker(i):
 
 def controller():
     check();m=runtime();assert read(R/'launch.json')['job']==os.environ['SLURM_JOB_ID']
+    start=time.monotonic()
     def one(i):
         ep=R/f'episode-{i}'
         if (ep/'closed.json').exists(): return read(ep/'closed.json')['returncode']
         assert not (ep/'native.json').exists(),'Started without closure; no retry'
+        reason='pre_execution_outcome_proxy_feature' if schedule()[i]['case']==0 else 'enclosing_walltime_cap' if 5200-(time.monotonic()-start)<500 else None
+        if reason:
+            write(ep/'closed.json',dict(returncode=None,started=False,reason=reason))
+            return None
         cmd=['srun','--exclusive','--nodes=1','--ntasks=1','--cpus-per-task=6','--gres=gpu:1',
              '--time=00:08:00',str(PY),'-B',str(R/NAME),'worker','--index',str(i)]
         with (ep/'worker.private.log').open('xb') as f:
             q=subprocess.run(cmd,env=m.infra().clean_env(),stdout=f,stderr=f)
         write(ep/'closed.json',dict(returncode=q.returncode));return q.returncode
-    with ThreadPoolExecutor(max_workers=2) as pool:codes=list(pool.map(one,range(16)))
+    # Serial launch: each actual program retains one 3090 and six CPUs.
+    codes=[one(i) for i in range(16)]
     write(R/'closed.json',dict(returncodes=codes,assigned=16))
 
 
 def submit():
     # The only launch path additionally requires a separately recorded approval.
     assert read(R/'approval.json')['approved_gpu_hours_cap']==3
+    assert read(R/'approval.json')['actual_gpu_hours_cap']==1.5
     p=check();m=runtime();assert sha(m.TASK_IMAGE)==p['task_image_sha256']
     assert read(R/'preflight.json')['plan_sha256']==sha(R/'plan.json')
     env=dict(os.environ,SLURM_CONF='/opt1/slurm/gpu-slurm.conf')
@@ -281,7 +298,7 @@ def submit():
         '--error='+str(R/'allocation-%j.err'),str(R/'run.sbatch')],env=env,capture_output=True,text=True,timeout=25)
     job=q.stdout.strip().split(';')[0];assert q.returncode==0 and job.isdigit(),'Ambiguous submission; no retry'
     write(R/'launch.json',dict(job=job,plan_sha256=sha(R/'plan.json')))
-    print(json.dumps(dict(job=job,status='SUBMITTED',gpu_hours_cap=3)))
+    print(json.dumps(dict(job=job,status='SUBMITTED',gpu_hours_cap=1.5,eligible_programs=12,denominator_slots=16)))
 
 
 def status():

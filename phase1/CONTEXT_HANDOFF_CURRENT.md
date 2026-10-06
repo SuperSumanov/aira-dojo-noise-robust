@@ -1,10 +1,13 @@
 # 当前短交接
-更新：2026-10-06 09:42香港最后观察。当前窗口09:26:30—12:26:30香港：先验证新真实父程序的可重复且值得成本的改善机会；用户已明确批准16程序、2卡90分钟、≤3GPU小时。新代码准备中，尚未提交，不扩大旧简单恢复配方。
+更新：2026-10-06 10:02香港最后观察。当前窗口09:26:30—12:26:30香港。16580在开跑前因case0事后字段风险被取消；原16槽/四父样本不替换。v2将事前排除case0四槽，余12条单卡串行、仍90分钟、≤1.5GPU小时，在原批准16条/2卡90分钟/≤3GPU小时内缩小；源码/数据不变。尚未提交v2。
 
 ## 最新裁决
+- **安全事前修订**：case0 P/C实际向模型加入giver_present/giver_freq；开发train/query非空giver分别177/2295、13/300，仅看字段未看标签。上游问题https://github.com/openai/mle-bench/issues/108已报告该结果代理，不称新发现/完美预测。case1显式排除giver，查询输入不含at_retrieval字段。不修原程序或数据，不另挑父程序；排除case0四槽，其余三父继续机会筛选。v1根保留pre-execution-stop.json，取消前核本人、PENDING、无native。待核sacct。
+- v2根`/research/d7/spc/yzyang4/natural-opportunity-20261006-v2`正在准备。源sample/rank/四父/训练设置/原样重复完全保留；单卡串行，每条一GPU/6核/300秒，worker450/step480，总90分钟/1.5GPUh。controller剩余不足500秒就记未启动并继续闭合槽，不延时/补跑；不能保证12条全有效或全启动。此前“16条单卡150分钟”问题尚未回答，**不采用此扩墙方案**；若后续收到回复也不自动增加已冻结上限。
+- 新次要分析`natural_opportunity_incumbent_20261006.py`已做弱分支改善≠全局改善、missing≠0测试；会在执行前冻结。每任务/重复要求全部四端点才能算max(P,C)-max(P)的观察池代数上界；Pizza缺case0父故该上界未知，不以剩余父补。没有新GPU/API/识别器拟合。
 - 新根`/research/d7/spc/yzyang4/natural-opportunity-20261006-v1`拟执行：2任务×2新父程序×P/C×2原样重启。源样本已按固定哈希顺序只看代码选定：Pizza Trace2/loop74、Trace1/loop10；Spooky Trace2/loop21、Trace1/loop20。排除原80对的可见AST连通分支、外部依赖和multi_class旧接口；不是按分数选好例。公开两任务分别174/143边、77/79父AST、各12可见分支；依赖/旧分支后104/45合格边。跨Trace共享经验、图缺失、重复开发任务和固定源码seed仍限制独立性。
 - 新脚本`natural_opportunity_20261006.py`和`analyze_natural_opportunity_20261006.py`：完整原程序/不改训练设置/不带debug；重复顺序反转；原镜像/隔离view/外部scorer。两任务门分别AUC+.005、logloss降低.01；两次均达到、四父条件98.75%区间下界>0、子/父中位worker耗时≤1.5才过单父筛选；这不是普适价值函数。两任务各至少一个通过才提下一轮真正新来源/训练seed/同预算HPO确认，不自动扩跑。无识别器/方法优势结论。
-- 09:34现场队列仍只有旧12535 JobHeldUser，不操作；fetch我方59c00acf/学长dfff0efb不变。预算确认通过，但实际prepare/launch还没有完成，恢复时不能据本行假定开跑。
+- 09:50现场16580 PENDING/Resources，旧12535 JobHeldUser不操作。执行commit `0b1ca82202eaa6eacc5169b1b0c44d2da335aaa7`；新plan SHA `bcaec1582def2bc62cafce0d14ff4588c78930676bc49faab3a55a4e0d4dd42d`。16配置及独立源码/重复/预算复核PASS。`approval.json`与`lineage-review.json`已存远端；显式parent_id父链深度[16,2,4,2]，四者与旧样本无可见祖先/共同祖先关系，但源父链181条与代码完全匹配、138条不匹配，不能把元数据当完整物理谱系证书。fetch我方59c00acf/学长dfff0efb不变，新工作仍本地未push。
 - 本轮额外筛选见results/research_synthesis_20261006/clock_hypothesis_screen.json：固定80公开对中八对/七任务有支持训练设置变化，但不是错误计数。Quest子程序同时修正debug调度长度；唯一OneCycle父子均在batch内step，未发现猜测的epoch/batch错配，不为这个猜想扩GPU。七任务后续循环检查是原14对而非那八对，不能只按任务名合并证据。
 - 集成/残差再利用已有旧固定finalizer和oracle检验，未重跑；Rehearse是8/23已读论文，本次补回短索引，非新发现。优化时钟耦合与预算调度已有直接先例；本轮没有新方法资格。最新fetch我方59c00acf、学长dfff0efb未变；本轮队列只见旧12535 JobHeldUser，未操作。
 - 本轮脚本定位查找过慢已按完整argv和本人UID精确中止；导入路径失败及一次SSH中断未当成功。只读重试完成；远端只解析已核哈希的公开代码，没有候选执行、结果字段读取或16560待批数值访问。新研究记录尚未push。

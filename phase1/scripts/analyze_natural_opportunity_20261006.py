@@ -109,7 +109,7 @@ def main():
     account=subprocess.check_output(['sacct','-X','-j',job,'-n','-P','-o','JobIDRaw,State,ElapsedRaw,AllocTRES,ExitCode'],env=env,text=True,timeout=20).strip().splitlines()
     assert len(account)==1
     jid,state,elapsed,tres,exitcode,*_=account[0].split('|')
-    assert jid==job and re.search(r'(?:^|,)gres/gpu=2(?:,|$)',tres)
+    assert jid==job and re.search(r'(?:^|,)gres/gpu=1(?:,|$)',tres)
     assert state.startswith(('COMPLETED','FAILED','CANCELLED','TIMEOUT','OUT_OF_MEMORY'))
     out=R/'readout-v1';out.mkdir(mode=0o700,exist_ok=False)
     freeze={str(p.relative_to(R)):sha(p) for p in R.glob('episode-*/action-0/submission.private.csv')}
@@ -118,10 +118,12 @@ def main():
     for s in schedule():
         ep=R/f"episode-{s['index']}";pred=ep/'action-0/submission.private.csv'
         done=read(ep/'completed.json') if (ep/'completed.json').exists() else {}
+        closure=read(ep/'closed.json')
         row=dict(**s,completed=bool(done),valid=False,dev_metric=None,
             metric='auc' if s['task']==TASKS[0] else 'log_loss',seconds=done.get('seconds'),
             exec_seconds=done.get('exec_seconds'),timed_out=done.get('timed_out'),
-            error_type=done.get('error_type'),step_returncode=read(ep/'closed.json')['returncode'],
+            error_type=done.get('error_type') or closure.get('reason'),step_returncode=closure['returncode'],
+            started=(ep/'native.json').exists(),integrity_eligible=s['case'] not in plan['pre_execution_excluded_cases'],
             prediction_sha256=None,source_commit=plan['source_commit'])
         if done.get('valid_execution') and row['step_returncode']==0:
             assert sha(pred)==done['prediction_sha256']
@@ -161,16 +163,17 @@ def main():
     for rel,h in freeze.items():assert sha(R/rel)==h
     summary=dict(protocol=plan['protocol'],source_commit=plan['source_commit'],plan_sha256=sha(R/'plan.json'),
         analysis_sha256=sha(__file__),tests=tests(),job=job,state=state,exitcode=exitcode,
-        assigned=16,valid_programs=sum(r['valid'] for r in rows),complete_parents=sum(p['complete'] for p in parents),
+        assigned=16,started_programs=sum(r['started'] for r in rows),pre_excluded_programs=sum(not r['integrity_eligible'] for r in rows),
+        valid_programs=sum(r['valid'] for r in rows),complete_parents=sum(p['complete'] for p in parents),
         parents=parents,per_task=tasks,failures=failures,independent_scores=len(verified),
         max_absolute_verifier_error=max(verified,default=None),allocation_seconds=int(elapsed),
-        allocated_gpu_hours=2*int(elapsed)/3600,worker_seconds_total=sum(r['seconds'] or 0 for r in rows),
+        allocated_gpu_hours=int(elapsed)/3600,worker_seconds_total=sum(r['seconds'] or 0 for r in rows),
         program_seconds_total=sum(r['exec_seconds'] or 0 for r in rows),analysis_seconds=time.monotonic()-started,
         opportunity_screen_pass=all(t['qualifying_parents']>=1 for t in tasks),
         independent_run_confirmation=False,cross_training_seed_confirmation=False,
         new_method_confirmed=False,selector_trained=False,equal_full_cost_strong_baseline_tested=False,
         automatic_expansion=False,protected_opened=False,paid_api_calls=0,
-        limitations=[plan['independence'],plan['seed_boundary'],plan['cost'],plan['uncertainty']])
+        limitations=[plan['independence'],plan['seed_boundary'],plan['cost'],plan['uncertainty'],plan['amendment'],plan['exclusion_evidence']])
     write(out/'summary.json',summary)
     with (out/'runs.csv').open('x',newline='') as f:
         w=csv.DictWriter(f,fieldnames=list(rows[0]));w.writeheader();w.writerows(rows)

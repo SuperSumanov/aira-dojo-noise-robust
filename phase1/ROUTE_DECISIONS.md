@@ -58,6 +58,8 @@
 - **RIPPLE / Local Edits, Global Ripples**：10/6核§2–3，固定底座、预定义分段提示和补丁库，分别判断改哪里、合成既有修改后能否保留；明确局部有益改动组合后可变坏，并在当前前缀上回放。其对象是工作流prompt-policy而非MLE候选代码，固定补丁库也不等于自动发现新算法；但“局部性不等于效果局部、交互感知回放准入”已有直接近邻，不能更名为我方新方法。https://arxiv.org/html/2609.12127v1
 
 - **Auto Research with Specialist Agents**：10/6核§3–5及附录D–H，已有固定角色拆分、共享实测谱系、失败/预算边界反馈及同200提交数的通用多agent/单agent/no-lineage参照。其no-lineage同时去掉历史假说/分数/失败/差异工具等，只留当前最优代码/分数，不能把打包消融说成某一类反馈单独有效；正文也有具体资源边界案例。提交数相同不等于总耗时/token相同，附录GPU数是上限核算且另有前期成本；轨迹不等于跨seed确认。我方不能把“角色分工+约束反馈+经验库”更名重开；这篇也不替代我方收益证据。https://arxiv.org/html/2605.05724v1
+- **Rehearse**：早在8/23历史0EB已读，本次仅补回短索引，非新发现。执行前同父提案判断、按候选检索既有修改及结果、深层判断退化及收益均已有；训练run数预算不等于全推理/执行成本配平。不能把这些机制重命名为新critic或记忆路线，历史score-channel授权也不因此复活。https://arxiv.org/html/2607.27687v1
+- **优化时钟／预算适配**：AdamW的学习率、衰减、数据量、batch耦合已有理论与实验；Budgeted Training已有按预算调整学习率。10/6固定80公开对的只读检查没有确认训练时钟错配：八对支持设置变化不是八个错误；Quest还包含debug时钟修正，唯一OneCycle父子均在batch内step。暂不为此新开GPU或把已知调度器修正当方法。https://arxiv.org/html/2405.13698v3 / https://www.cs.cmu.edu/~mengtial/proj/budgetnn/ ；证据：results/research_synthesis_20261006/clock_hypothesis_screen.json。
 
 旧检索可能不是论文最新版本；正式新颖性判断须重新核原文与实现。查不到词不等于排除了近邻。
 

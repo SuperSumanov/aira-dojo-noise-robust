@@ -1,0 +1,66 @@
+{
+  "observed_at_utc": "2026-10-06T00:18:08Z",
+  "role": "READ_ONLY_HYPOTHESIS_SCREEN_NOT_METHOD_RESULT",
+  "repository_head_before_screen": "be692e3a3d1c6c7d46757442e226858246a43273",
+  "source": "Same outcome-field-blind, two-per-task, 80-pair public sample fixed in collateral-sample-20261006-v1; source pins unchanged from population_plan.json.",
+  "helper_sha256": {
+    "collateral_sample_20261006.py": "e5a63aafd1940b4c8e0119237a07abda7f1c3ba3bdf5f1eb3662f8ea5b272db5",
+    "collateral_bindings_20261006.py": "b98608358862e7ef00a0014ed4dbff76f5e5a2d9b92eb4fd78e8f78fba12622e"
+  },
+  "proposal_admission": {
+    "nearest_old_route": "R13 literal parent-setting restoration; R7 diagnostic feedback. Both current recipes remain closed.",
+    "different_question": "Do changed batching/epoch settings violate an explicit training-clock contract, rather than merely differ numerically? No new controller or repair method was implemented.",
+    "motivation_not_positive_evidence": "Earlier structural census has 257 changed pairs declaring torch. This motivates checking coverage beyond the three executed parent programs, but is not evidence of harmful drift.",
+    "nearest_prior_and_baseline": "AdamW scaling/EMA-timescale theory and Budgeted Training already cover optimization-clock coupling; HT-AA covers parameter transfer. Any future intervention must beat ordinary continuation, literal inheritance and compatible HPO at equal full cost. Applying known scheduler advice is not by itself a novel method."
+  },
+  "observations": {
+    "fixed_sample_pairs": 80,
+    "pairs_with_changes_in_supported_training_setting_names": 8,
+    "tasks_in_that_subset": 7,
+    "training_setting_scope": "Supported literal bindings for batch_size/train_batch_size/eval_batch_size, epochs/num_epochs/n_epochs, lr/learning_rate, weight_decay, and recognized accumulation names; limited syntactic detector, not dataflow execution.",
+    "followup_scope": "Both originally sampled pairs in each of the seven tasks; not the same eight-edge subset. Five pairs differ in the exported assignment/step-call summaries. Do not join these two checks by task alone.",
+    "counterexample": "A Google Quest child reduces EPOCHS from 3 to 2 but also changes total_steps from EPOCHS * max(1, len(train_loader) // GRAD_ACCUM_STEPS) to max(1, (1 if debug else EPOCHS) * max(1, len(train_loader) // GRAD_ACCUM_STEPS)); both use num_epochs = 1 if debug else EPOCHS. This is consistent with correcting debug-mode schedule length, not evidence of harmful drift. It does not establish the actual runtime branch, completed update count or quality effect.",
+    "onecycle_scope": "All 80 original pairs, selected solely by syntactic OneCycleLR constructor presence; no outcomes consulted.",
+    "onecycle_pairs": 1,
+    "onecycle_program_sides": 2,
+    "onecycle_sample_index": 13,
+    "onecycle_observation": "Both parent and child place optimizer.step() and scheduler.step() in the train_and_validate minibatch loop. The suspected per-epoch/per-batch mismatch was not found at these call sites. Constructor length, early exits, aliasing, actual execution and all other scheduler types were not certified."
+  },
+  "limitations": [
+    "These are post-hoc structural diagnostics, not pre-registered effectiveness experiments.",
+    "No training, candidate execution, prediction or metric was produced.",
+    "Literal changes can be intentional, inactive, shadowed or coupled to other changes; neither eight changed pairs nor the earlier 287 pairs are error counts.",
+    "The generic loop visitor did not distinguish then/else branches; it must not be used as a path-sensitive execution proof.",
+    "A unique parent AST is not an independent physical run.",
+    "No new performance gain, causal regression, prevalence estimate, or method novelty was established."
+  ],
+  "rejected_repeat": "Prediction recombination was already tested on earlier closed trajectories, including fixed finalizers and restricted oracle envelopes. Rerunning it on the small new pool lacks a new mechanism or strong evidence; not run.",
+  "literature_checked": [
+    "https://arxiv.org/html/2609.17590v1",
+    "https://arxiv.org/html/2601.10457v1",
+    "https://arxiv.org/html/2405.13698v3",
+    "https://www.cs.cmu.edu/~mengtial/proj/budgetnn/",
+    "https://docs.pytorch.org/docs/2.14/generated/torch.optim.lr_scheduler.OneCycleLR.html",
+    "https://arxiv.org/html/2607.27687v1"
+  ],
+  "literature_memory_correction": "Rehearse was already recorded on 2026-08-23 in historical entry 0EB. This turn reread it and restored the missing short-index entry; it is not a newly discovered prior or a new research result. Historical score-channel permissions do not revive.",
+  "operations": {
+    "first_helper_import": "Failed because the output directory did not contain the helper modules; no analysis result from that attempt.",
+    "resolution": "Loaded only the hash-verified trusted local analysis helpers into remote Python memory. Public candidate source was parsed, never executed.",
+    "first_onecycle_attempt": "SSH connection closed without a result; no success inferred.",
+    "read_only_retry": "Completed after verifying all three trace hashes; no outputs or experiments overwritten.",
+    "unbounded_locator": "The exact read-only find process launched this turn was identified by owner and complete argv, interrupted, and its local session closed. Use known source paths or pinned helpers rather than searching the research tree."
+  },
+  "cost_and_access": {
+    "new_gpu_jobs": 0,
+    "new_gpu_hours": 0,
+    "model_fits": 0,
+    "paid_api_calls": 0,
+    "public_outcome_fields_accessed": false,
+    "protected_cohorts_opened": false,
+    "candidate_source_executed": false,
+    "raw_source_downloaded": false,
+    "job_16560_pending_numeric_export_accessed": false
+  },
+  "decision": "No GPU expansion for this clock-mismatch hypothesis on current evidence. Keep the three-principle research question open, but do not claim a new method or reopen R7/R13. Before another efficacy batch, require a concrete semantic discrepancy on distinct natural parents, a falsifiable cost-matched intervention, and direct prior/baseline comparison."
+}

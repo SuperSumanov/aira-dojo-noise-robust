@@ -6,6 +6,7 @@ import tempfile
 import unittest
 from unittest.mock import patch, mock_open
 import io
+import types
 
 import throughput_pilot as p
 
@@ -35,7 +36,7 @@ class QualificationTests(unittest.TestCase):
         for row in p.SOURCES:self.assertRegex(row[2],r'^[0-9a-f]{64}$')
 
     def test_fixtures_compile(self):
-        compile(p.WARMUP,'warmup','exec');compile(p.GPU_RECEIPT,'receipt','exec')
+        compile(p.WARMUP,'warmup','exec');compile(p.GPU_RECEIPT,'receipt','exec');compile(p.GPU_INSTRUMENT,'instrument','exec')
         p.code_safe(b'import numpy as np\nx=np.ones(3)\n')
         with self.assertRaises(ValueError):p.code_safe(b'x="https://example.org"')
 
@@ -45,9 +46,30 @@ class QualificationTests(unittest.TestCase):
             return [io.StringIO(value),io.StringIO('Id,x\n1,0\n2,0\n')]
         with patch.object(Path,'open',side_effect=readers('Id,p\n1,0.2\n2,0.7\n')),patch.object(p,'sha',return_value='fixture'):
             self.assertEqual(p.output_structure(out,query)['rows'],2)
-        for bad in ('Id,p\n1,nan\n2,0.7\n','Id,p\n2,0.2\n1,0.7\n','Id,p\n1,0.2\n'):
+        with patch.object(Path,'open',side_effect=readers('Id,p\n2,0.7\n1,0.2\n')),patch.object(p,'sha',return_value='fixture'):
+            self.assertEqual(p.output_structure(out,query)['rows'],2)
+        for bad in ('Id,p\n1,nan\n2,0.7\n','Id,p\n1,0.2\n1,0.7\n','Id,p\n1,0.2\n'):
             with patch.object(Path,'open',side_effect=readers(bad)),patch.object(p,'sha',return_value='fixture'):
                 with self.assertRaises(ValueError):p.output_structure(out,query)
+
+    def test_gpu_fit_observer_preserves_call(self):
+        calls=[]
+        class XGB:
+            def fit(self,*args,**kwargs):calls.append((args,kwargs));return self
+            def get_booster(self):return self
+            def save_config(self):return '{"learner":{"generic_param":{"device":"cuda:0"}}}'
+            def num_boosted_rounds(self):return 7
+        class Cat:
+            tree_count_=9
+            def fit(self,*args,**kwargs):calls.append((args,kwargs));return self
+            def get_all_params(self):return {'task_type':'GPU'}
+        modules={'xgboost':types.SimpleNamespace(XGBClassifier=XGB),'catboost':types.SimpleNamespace(CatBoostClassifier=Cat)}
+        with patch.dict('sys.modules',modules):
+            scope={};exec(p.GPU_INSTRUMENT,scope)
+            for cls in (XGB,Cat):
+                model=cls();self.assertIs(model.fit('x','y',verbose=False),model)
+            self.assertEqual(calls,[(('x','y'),{'verbose':False})]*2)
+            self.assertEqual([r['rounds'] for r in scope['_r14_gpu_receipts']],[7,9])
 
 
 if __name__=='__main__':unittest.main()

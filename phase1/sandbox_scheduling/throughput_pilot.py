@@ -234,7 +234,7 @@ def output_structure(path,query):
     with path.open(newline='') as f:reader=csv.reader(f);head=next(reader);rows=list(reader)
     with Path(query).open(newline='') as f:q=list(csv.reader(f))
     if len(rows)!=len(q)-1 or len(head)<2 or len(set(head))!=len(head):raise ValueError('output shape')
-    if len({r[0] for r in rows})!=len(rows) or [r[0] for r in rows]!=[r[0] for r in q[1:]]:raise ValueError('query identity/order mismatch')
+    if len({r[0] for r in rows})!=len(rows) or {r[0] for r in rows}!={r[0] for r in q[1:]}:raise ValueError('query identity mismatch')
     for row in rows:
         if len(row)!=len(head) or any(not math.isfinite(float(v)) for v in row[1:]):raise ValueError('nonfinite output')
     return dict(rows=len(rows),columns=len(head),sha256=sha(path))
@@ -303,7 +303,9 @@ def worker(index):
                 seed_setup='import random,numpy as np\nrandom.seed(130701);np.random.seed(130701)\n'
                 setup=interp.run(seed_setup+(GPU_INSTRUMENT if source['expected_gpu'] else ''))
                 if setup.exit_code or setup.timed_out:raise ValueError('seed/instrumentation prelude failed')
+            write(ep/'candidate_started.json',dict(time=time.time()))
             out=interp.run(code,reset_session=source is None)
+            write(ep/'candidate_ended.json',dict(time=time.time()))
             metrics.update(exit_code=out.exit_code,timed_out=out.timed_out,exec_seconds=out.exec_time)
             # Source/output text stays private and is never streamed to the agent/Git.
             (ep/'execution.private.txt').write_text('\n'.join(out.term_out))
@@ -391,12 +393,13 @@ def controller():
         full=[]
         for row in schedule():
             ep=R/f'episode-{row["index"]}';item=dict(**row,status='not_started',source_commit=p['source_commit'])
+            if (ep/'started.json').exists():item['status']='incomplete'
             if (ep/'closed.json').exists():item.update(read(ep/'closed.json'));item['status']='failed'
             if (ep/'completed.json').exists():
                 result=read(ep/'completed.json');item.update({k:v for k,v in result.items() if k!='output'});item['status']='complete' if result['complete'] and item.get('returncode')==0 else 'failed'
                 item['output_sha256']=result.get('output',{}).get('sha256')
             full.append(item)
-        write(R/'closed.json',dict(planned=36,attempted=len(attempted),completed=sum(r['status']=='complete' for r in full),error_type=error,elapsed_seconds=time.time()-started,source_commit=p['source_commit']))
+        write(R/'closed.json',dict(planned=36,attempted=sum(r['status']!='not_started' for r in full),completed=sum(r['status']=='complete' for r in full),error_type=error,elapsed_seconds=time.time()-started,source_commit=p['source_commit']))
         write(R/'runs.json',full)
         fields=sorted({k for r in full for k in r})
         with (R/'runs.csv').open('x',newline='') as f:w=csv.DictWriter(f,fieldnames=fields);w.writeheader();w.writerows(full)

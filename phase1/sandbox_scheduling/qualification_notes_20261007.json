@@ -121,6 +121,26 @@
     "additional_baseline_requirement": "For later live experiments, both A0 and A1 need the same rolling replacement rule. Old wave-barrier behavior is a historical diagnostic, not the only strong baseline.",
     "launch_gate": "No launch before explicit batch approval, a fixed qualified workload, dependencies and same-device/private-workspace isolation. Never silently substitute CPU or a shorter training configuration."
   },
+  "six_hour_follow_up": {
+    "remote_observed_utc": "2026-10-07T03:23:29Z",
+    "ssh": "recovered",
+    "squeue": "Only old 12535 critic_zero3_resume PENDING(JobHeldUser); untouched",
+    "research_branch": "3ec278858b691c8084d4abc12539133344224525",
+    "senior_branch": "dfff0efb9daf1d4a63c74492f138c19c1fd8440e",
+    "new_explicit_batch_approval": "not_received_in_recent_direct_user_messages",
+    "candidate_executions": 0,
+    "saved_pins_arithmetic_denominator_recheck": "PASS; not a source-program execution",
+    "old_preflight_receipt_sha256": "37b74b6c04ec1e75b26c64da2b7e7f4bcac411ff2fa384c81cbcfef215a9b3ec",
+    "old_preflight_package_versions": "no corresponding top-level version field; no package compatibility claim",
+    "task_image_sha256_from_receipt": "801f646bed3cae6e74e10d793e71b0086658d4303d54552333c58125ddf9beda",
+    "dec2021_fit_keyword_inspection": [
+      {"source_sha256": "c7bc94f0237d85aaf1c89ad9f9630f34f71b7c134551095a3f02992172e08e5b", "fit_keywords": ["eval_set", "verbose"]},
+      {"source_sha256": "4244cbc2102d760179a7430def5663f95045d24efe55bc3e364f232ec5acb8da", "fit_keywords": ["sample_weight", "eval_set", "verbose", "early_stopping_rounds"]},
+      {"source_sha256": "6521355800cd0a91f07b43411b7ed3daf470f2081273e27ac9c38efdd63c2222", "fit_keywords": ["eval_set", "verbose", "use_best_model"]},
+      {"source_sha256": "ba3378b8a32668608bc5c832fcafc81fc5b15cf5c647e2caf3b1c2211a4bbd91", "fit_keywords": ["eval_set", "verbose", "use_best_model"]}
+    ],
+    "inspection_limit": "Attribute/name syntax only, no alias or runtime signature resolution. The fit early_stopping_rounds occurrence flags a compatibility check; absence does not certify compatibility. No candidate run, model import, package change, data-row read or quality-score read."
+  },
   "direction_decision": "Keep R14. Treat resource-dependent program choices as an equivalence check in the throughput comparison, not a new main method or proof of quality harm. Do not start a semantic scheduler or change candidate code on this evidence alone.",
   "nearest_work": [
     {"name": "SchedMate", "url": "https://arxiv.org/html/2510.03334", "boundary": "Already uses source/history semantics; no-match jobs fall back to profiling, untrackable-progress pairs skip the specified eviction check."},

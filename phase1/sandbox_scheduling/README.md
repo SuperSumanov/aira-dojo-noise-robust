@@ -182,3 +182,10 @@ GPU 为整卡数据，出现其他租户/未归属进程时不能算本候选成
 
 字段语义依据 [Linux proc 文档](https://docs.kernel.org/filesystems/proc.html) 和
 [NVIDIA SMI 文档](https://docs.nvidia.com/deploy/nvidia-smi/index.html)，不把 CPU/GPU 利用率当有效训练进度。
+
+### 10/7限定批次的操作教训
+
+- 16846在首资格块闭合：36槽/6尝试/2完成，双并发未运行；不能计算吞吐比，也不是调度负效果。原始分母与全分配成本见`throughput_readout_v1`。
+- 完整脚本与notebook cell不是同一入口契约。只接受`--debug`的`parse_args()`会拒绝内核`-f`参数；入口修正应保留普通脚本默认参数，不能用`--debug`、少训练或改候选代码掩盖问题。`entry_contract.py`为纯CPU测试的未来规则，未部署回原批次。
+- 源码编译和CUDA fixture成功，不能代替真实候选资格。须保存prelude的返回码、超时阶段和安全诊断，不能只保留异常类型；16846一条初始化失败因诊断缺失仍未知。
+- 120秒配置仍出现123.6434514215216秒执行超时；全池成本用Slurm实际分配核算。旧环境曾成功不保证相同程序能在新CPU配额/时限完成。

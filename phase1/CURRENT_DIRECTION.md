@@ -1,5 +1,5 @@
 # 当前研究方向：唯一短入口
-更新：2026-10-07 05:55香港。方向入口；限定授权与实时状态见短交接。
+更新：2026-10-07 14:30香港。方向入口；限定授权与实时状态见短交接。
 此前全文与证据保存在Git e5e83b6e4eed842197f7de924ae4734003e8965a及各结果目录；更早历史见CURRENT_DIRECTION_HISTORY_THROUGH_20261005.md。
 
 ## 10/6用户新优先级：MLE沙箱资源调度，先验证资格与独特增量
@@ -9,6 +9,8 @@
 
 **裁决：优先做资源调度的小规模资格探索；暂停扩展旧自然父程序回放/critic配方，不宣布已有新方法或收益。** 新长贵批次仍要单独给配置、run数和GPU小时，旧16582授权已结束。用户随后批准16624六次限定资源验证，现已6/6完成；不改生产运行器，无API/训练。
 修正版原文：[扩展调研](https://github.com/VOXXXX1874/autoresearch_project/blob/d82dcd845e30e9771750510028d38a6d1d979c43/survey/system/shared_sandbox/scheduling_virtualization_extension.md)；Git blob 7372391ad46f3e5bc0d9e75173b0e3611c46f6eb。proposal blob 66d80ad88bc3ea4c2d20c7cff2958aad6f31605d。
+
+10/7用户明确批准新限定批次，16846现已闭合：6固定开发程序、单执行/双并发×3原样重复=36槽，1×3090最多90分钟/1.5GPUh。首串行块6尝试/2完成/4失败，余30未启动，未进入共置；实耗362单GPU秒=0.10055555555555555 GPUh。两份树程序SystemExit:2与notebook参数污染一致、一份初始化失败原因未定、一份CPU程序超时。独立[回执](sandbox_scheduling/throughput_readout_v1/summary.json)与36行CSV保留。原源码/镜像未改，无评分/API/底座训练；不补样本/重试，不把资格失败当共享负结果。入口修正规则仅CPU复现，未做原GPU程序复验。R14仍在资格阶段，未有系统收益，不扩大语义路线。
 
 ### 必须先解决的新颖性问题
 - 本轮补到直接近邻[SchedMate](https://arxiv.org/html/2510.03334) §3–4：已用源码语义、历史检索及运行日志辅助调度；Lucid接入已处理干扰与撤销共置。不能将“LLM看代码＋经验库＋不预profile”称首创。

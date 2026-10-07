@@ -1,0 +1,672 @@
+{
+  "all_program_outputs_exactly_equal": null,
+  "allocation_exit": "1:0",
+  "allocation_seconds": 362,
+  "allocation_state": "FAILED",
+  "attempted": 6,
+  "block_stats": [
+    {
+      "arm": "serial",
+      "block": 0,
+      "candidate_overlap": {
+        "max_simultaneous": 1,
+        "two_or_more_seconds": 0.0
+      },
+      "completed": 2,
+      "makespan_seconds": 329.19387888908386,
+      "missing_exec_times": 1,
+      "repeat": 0,
+      "summed_candidate_exec_seconds": 149.8649841332808
+    }
+  ],
+  "boundary": "Small development workloads; three fixed-seed restarts, three tasks, related GPU sources. No quality scoring, no semantic scheduler, no live E2E claim.",
+  "complete_fixed_workload": false,
+  "completed": 2,
+  "job": "16846",
+  "output_equivalence": [
+    {
+      "all_outputs_exactly_equal": null,
+      "available": 0,
+      "comparisons": [],
+      "gpu_training_receipts": [],
+      "program": 0
+    },
+    {
+      "all_outputs_exactly_equal": null,
+      "available": 1,
+      "comparisons": [],
+      "gpu_training_receipts": [
+        null
+      ],
+      "program": 1
+    },
+    {
+      "all_outputs_exactly_equal": null,
+      "available": 0,
+      "comparisons": [],
+      "gpu_training_receipts": [],
+      "program": 2
+    },
+    {
+      "all_outputs_exactly_equal": null,
+      "available": 1,
+      "comparisons": [],
+      "gpu_training_receipts": [
+        null
+      ],
+      "program": 3
+    },
+    {
+      "all_outputs_exactly_equal": null,
+      "available": 0,
+      "comparisons": [],
+      "gpu_training_receipts": [],
+      "program": 4
+    },
+    {
+      "all_outputs_exactly_equal": null,
+      "available": 0,
+      "comparisons": [],
+      "gpu_training_receipts": [],
+      "program": 5
+    }
+  ],
+  "paired_ratios": [],
+  "plan_sha256": "accaceffe7e847b71a66c6cdf910d1e3506ffbbefc5dec5e79231380b2618a9b",
+  "planned": 36,
+  "runs": [
+    {
+      "arm": "serial",
+      "completion": {
+        "arm": "serial",
+        "complete": false,
+        "end": 1791354932.7059815,
+        "error_type": "RuntimeError",
+        "exec_seconds": 3.8355919225141406,
+        "exit_code": 1,
+        "index": 0,
+        "program": 0,
+        "repeat": 0,
+        "seed": 130701,
+        "source_commit": "e51cf6f01ffd32e8beaa42f5423e0b2fed0779ea",
+        "start": 1791354920.558553,
+        "timed_out": false
+      },
+      "index": 0,
+      "program": 0,
+      "program_name": "dec-xgb",
+      "repeat": 0,
+      "seed": 130701,
+      "start_receipt": {
+        "affinity": [
+          6,
+          7,
+          8,
+          38,
+          39,
+          40
+        ],
+        "arm": "serial",
+        "index": 0,
+        "program": 0,
+        "repeat": 0,
+        "seed": 130701,
+        "start": 1791354920.558553
+      },
+      "status": "failed",
+      "supervisor": {
+        "end": 1791354932.8840256,
+        "returncode": 1,
+        "start": 1791354917.5145829
+      },
+      "task": "tabular-playground-series-dec-2021"
+    },
+    {
+      "arm": "serial",
+      "completion": {
+        "arm": "serial",
+        "complete": true,
+        "end": 1791354960.0519104,
+        "error_type": null,
+        "exec_seconds": 17.484809905290604,
+        "exit_code": 0,
+        "index": 1,
+        "output": {
+          "columns": 4,
+          "rows": 3522,
+          "sha256": "73843c8b89260d27b53241923968bd0878ccda42c46a6ad313fbe4380217efe1"
+        },
+        "program": 1,
+        "repeat": 0,
+        "seed": 130701,
+        "source_commit": "e51cf6f01ffd32e8beaa42f5423e0b2fed0779ea",
+        "start": 1791354936.939347,
+        "timed_out": false
+      },
+      "index": 1,
+      "program": 1,
+      "program_name": "spooky-tfidf",
+      "repeat": 0,
+      "seed": 130701,
+      "start_receipt": {
+        "affinity": [
+          6,
+          7,
+          8,
+          38,
+          39,
+          40
+        ],
+        "arm": "serial",
+        "index": 1,
+        "program": 1,
+        "repeat": 0,
+        "seed": 130701,
+        "start": 1791354936.939347
+      },
+      "status": "complete",
+      "supervisor": {
+        "end": 1791354960.2319021,
+        "returncode": 0,
+        "start": 1791354932.890022
+      },
+      "task": "spooky-author-identification"
+    },
+    {
+      "arm": "serial",
+      "completion": {
+        "arm": "serial",
+        "complete": false,
+        "end": 1791355088.4050512,
+        "error_type": "ValueError",
+        "index": 2,
+        "program": 2,
+        "repeat": 0,
+        "seed": 130701,
+        "source_commit": "e51cf6f01ffd32e8beaa42f5423e0b2fed0779ea",
+        "start": 1791354963.497171
+      },
+      "index": 2,
+      "program": 2,
+      "program_name": "dec-cat-a",
+      "repeat": 0,
+      "seed": 130701,
+      "start_receipt": {
+        "affinity": [
+          6,
+          7,
+          8,
+          38,
+          39,
+          40
+        ],
+        "arm": "serial",
+        "index": 2,
+        "program": 2,
+        "repeat": 0,
+        "seed": 130701,
+        "start": 1791354963.497171
+      },
+      "status": "failed",
+      "supervisor": {
+        "end": 1791355088.5971985,
+        "returncode": 1,
+        "start": 1791354960.240123
+      },
+      "task": "tabular-playground-series-dec-2021"
+    },
+    {
+      "arm": "serial",
+      "completion": {
+        "arm": "serial",
+        "complete": true,
+        "end": 1791355103.404861,
+        "error_type": null,
+        "exec_seconds": 4.710641842335463,
+        "exit_code": 0,
+        "index": 3,
+        "output": {
+          "columns": 2,
+          "rows": 1798,
+          "sha256": "990a499aede6177b38b0a84705318687fa612589d578923f653b4ba7b14e7072"
+        },
+        "program": 3,
+        "repeat": 0,
+        "seed": 130701,
+        "source_commit": "e51cf6f01ffd32e8beaa42f5423e0b2fed0779ea",
+        "start": 1791355092.5330014,
+        "timed_out": false
+      },
+      "index": 3,
+      "program": 3,
+      "program_name": "petfinder-lgb",
+      "repeat": 0,
+      "seed": 130701,
+      "start_receipt": {
+        "affinity": [
+          6,
+          7,
+          8,
+          38,
+          39,
+          40
+        ],
+        "arm": "serial",
+        "index": 3,
+        "program": 3,
+        "repeat": 0,
+        "seed": 130701,
+        "start": 1791355092.5330014
+      },
+      "status": "complete",
+      "supervisor": {
+        "end": 1791355103.5684268,
+        "returncode": 0,
+        "start": 1791355088.6031234
+      },
+      "task": "petfinder-pawpularity-score"
+    },
+    {
+      "arm": "serial",
+      "completion": {
+        "arm": "serial",
+        "complete": false,
+        "end": 1791355113.7002618,
+        "error_type": "RuntimeError",
+        "exec_seconds": 0.19048904161900282,
+        "exit_code": 1,
+        "index": 4,
+        "program": 4,
+        "repeat": 0,
+        "seed": 130701,
+        "source_commit": "e51cf6f01ffd32e8beaa42f5423e0b2fed0779ea",
+        "start": 1791355106.256913,
+        "timed_out": false
+      },
+      "index": 4,
+      "program": 4,
+      "program_name": "dec-cat-b",
+      "repeat": 0,
+      "seed": 130701,
+      "start_receipt": {
+        "affinity": [
+          6,
+          7,
+          8,
+          38,
+          39,
+          40
+        ],
+        "arm": "serial",
+        "index": 4,
+        "program": 4,
+        "repeat": 0,
+        "seed": 130701,
+        "start": 1791355106.256913
+      },
+      "status": "failed",
+      "supervisor": {
+        "end": 1791355113.8680046,
+        "returncode": 1,
+        "start": 1791355103.57453
+      },
+      "task": "tabular-playground-series-dec-2021"
+    },
+    {
+      "arm": "serial",
+      "completion": {
+        "arm": "serial",
+        "complete": false,
+        "end": 1791355246.562151,
+        "error_type": "RuntimeError",
+        "exec_seconds": 123.6434514215216,
+        "exit_code": 1,
+        "index": 5,
+        "program": 5,
+        "repeat": 0,
+        "seed": 130701,
+        "source_commit": "e51cf6f01ffd32e8beaa42f5423e0b2fed0779ea",
+        "start": 1791355117.0445774,
+        "timed_out": true
+      },
+      "index": 5,
+      "program": 5,
+      "program_name": "spooky-union",
+      "repeat": 0,
+      "seed": 130701,
+      "start_receipt": {
+        "affinity": [
+          6,
+          7,
+          8,
+          38,
+          39,
+          40
+        ],
+        "arm": "serial",
+        "index": 5,
+        "program": 5,
+        "repeat": 0,
+        "seed": 130701,
+        "start": 1791355117.0445774
+      },
+      "status": "failed",
+      "supervisor": {
+        "end": 1791355246.7018764,
+        "returncode": 1,
+        "start": 1791355113.8729153
+      },
+      "task": "spooky-author-identification"
+    },
+    {
+      "arm": "share2",
+      "index": 6,
+      "program": 0,
+      "program_name": "dec-xgb",
+      "repeat": 0,
+      "seed": 130701,
+      "status": "not_started",
+      "task": "tabular-playground-series-dec-2021"
+    },
+    {
+      "arm": "share2",
+      "index": 7,
+      "program": 1,
+      "program_name": "spooky-tfidf",
+      "repeat": 0,
+      "seed": 130701,
+      "status": "not_started",
+      "task": "spooky-author-identification"
+    },
+    {
+      "arm": "share2",
+      "index": 8,
+      "program": 2,
+      "program_name": "dec-cat-a",
+      "repeat": 0,
+      "seed": 130701,
+      "status": "not_started",
+      "task": "tabular-playground-series-dec-2021"
+    },
+    {
+      "arm": "share2",
+      "index": 9,
+      "program": 3,
+      "program_name": "petfinder-lgb",
+      "repeat": 0,
+      "seed": 130701,
+      "status": "not_started",
+      "task": "petfinder-pawpularity-score"
+    },
+    {
+      "arm": "share2",
+      "index": 10,
+      "program": 4,
+      "program_name": "dec-cat-b",
+      "repeat": 0,
+      "seed": 130701,
+      "status": "not_started",
+      "task": "tabular-playground-series-dec-2021"
+    },
+    {
+      "arm": "share2",
+      "index": 11,
+      "program": 5,
+      "program_name": "spooky-union",
+      "repeat": 0,
+      "seed": 130701,
+      "status": "not_started",
+      "task": "spooky-author-identification"
+    },
+    {
+      "arm": "share2",
+      "index": 12,
+      "program": 2,
+      "program_name": "dec-cat-a",
+      "repeat": 1,
+      "seed": 130701,
+      "status": "not_started",
+      "task": "tabular-playground-series-dec-2021"
+    },
+    {
+      "arm": "share2",
+      "index": 13,
+      "program": 3,
+      "program_name": "petfinder-lgb",
+      "repeat": 1,
+      "seed": 130701,
+      "status": "not_started",
+      "task": "petfinder-pawpularity-score"
+    },
+    {
+      "arm": "share2",
+      "index": 14,
+      "program": 4,
+      "program_name": "dec-cat-b",
+      "repeat": 1,
+      "seed": 130701,
+      "status": "not_started",
+      "task": "tabular-playground-series-dec-2021"
+    },
+    {
+      "arm": "share2",
+      "index": 15,
+      "program": 5,
+      "program_name": "spooky-union",
+      "repeat": 1,
+      "seed": 130701,
+      "status": "not_started",
+      "task": "spooky-author-identification"
+    },
+    {
+      "arm": "share2",
+      "index": 16,
+      "program": 0,
+      "program_name": "dec-xgb",
+      "repeat": 1,
+      "seed": 130701,
+      "status": "not_started",
+      "task": "tabular-playground-series-dec-2021"
+    },
+    {
+      "arm": "share2",
+      "index": 17,
+      "program": 1,
+      "program_name": "spooky-tfidf",
+      "repeat": 1,
+      "seed": 130701,
+      "status": "not_started",
+      "task": "spooky-author-identification"
+    },
+    {
+      "arm": "serial",
+      "index": 18,
+      "program": 2,
+      "program_name": "dec-cat-a",
+      "repeat": 1,
+      "seed": 130701,
+      "status": "not_started",
+      "task": "tabular-playground-series-dec-2021"
+    },
+    {
+      "arm": "serial",
+      "index": 19,
+      "program": 3,
+      "program_name": "petfinder-lgb",
+      "repeat": 1,
+      "seed": 130701,
+      "status": "not_started",
+      "task": "petfinder-pawpularity-score"
+    },
+    {
+      "arm": "serial",
+      "index": 20,
+      "program": 4,
+      "program_name": "dec-cat-b",
+      "repeat": 1,
+      "seed": 130701,
+      "status": "not_started",
+      "task": "tabular-playground-series-dec-2021"
+    },
+    {
+      "arm": "serial",
+      "index": 21,
+      "program": 5,
+      "program_name": "spooky-union",
+      "repeat": 1,
+      "seed": 130701,
+      "status": "not_started",
+      "task": "spooky-author-identification"
+    },
+    {
+      "arm": "serial",
+      "index": 22,
+      "program": 0,
+      "program_name": "dec-xgb",
+      "repeat": 1,
+      "seed": 130701,
+      "status": "not_started",
+      "task": "tabular-playground-series-dec-2021"
+    },
+    {
+      "arm": "serial",
+      "index": 23,
+      "program": 1,
+      "program_name": "spooky-tfidf",
+      "repeat": 1,
+      "seed": 130701,
+      "status": "not_started",
+      "task": "spooky-author-identification"
+    },
+    {
+      "arm": "serial",
+      "index": 24,
+      "program": 4,
+      "program_name": "dec-cat-b",
+      "repeat": 2,
+      "seed": 130701,
+      "status": "not_started",
+      "task": "tabular-playground-series-dec-2021"
+    },
+    {
+      "arm": "serial",
+      "index": 25,
+      "program": 5,
+      "program_name": "spooky-union",
+      "repeat": 2,
+      "seed": 130701,
+      "status": "not_started",
+      "task": "spooky-author-identification"
+    },
+    {
+      "arm": "serial",
+      "index": 26,
+      "program": 0,
+      "program_name": "dec-xgb",
+      "repeat": 2,
+      "seed": 130701,
+      "status": "not_started",
+      "task": "tabular-playground-series-dec-2021"
+    },
+    {
+      "arm": "serial",
+      "index": 27,
+      "program": 1,
+      "program_name": "spooky-tfidf",
+      "repeat": 2,
+      "seed": 130701,
+      "status": "not_started",
+      "task": "spooky-author-identification"
+    },
+    {
+      "arm": "serial",
+      "index": 28,
+      "program": 2,
+      "program_name": "dec-cat-a",
+      "repeat": 2,
+      "seed": 130701,
+      "status": "not_started",
+      "task": "tabular-playground-series-dec-2021"
+    },
+    {
+      "arm": "serial",
+      "index": 29,
+      "program": 3,
+      "program_name": "petfinder-lgb",
+      "repeat": 2,
+      "seed": 130701,
+      "status": "not_started",
+      "task": "petfinder-pawpularity-score"
+    },
+    {
+      "arm": "share2",
+      "index": 30,
+      "program": 4,
+      "program_name": "dec-cat-b",
+      "repeat": 2,
+      "seed": 130701,
+      "status": "not_started",
+      "task": "tabular-playground-series-dec-2021"
+    },
+    {
+      "arm": "share2",
+      "index": 31,
+      "program": 5,
+      "program_name": "spooky-union",
+      "repeat": 2,
+      "seed": 130701,
+      "status": "not_started",
+      "task": "spooky-author-identification"
+    },
+    {
+      "arm": "share2",
+      "index": 32,
+      "program": 0,
+      "program_name": "dec-xgb",
+      "repeat": 2,
+      "seed": 130701,
+      "status": "not_started",
+      "task": "tabular-playground-series-dec-2021"
+    },
+    {
+      "arm": "share2",
+      "index": 33,
+      "program": 1,
+      "program_name": "spooky-tfidf",
+      "repeat": 2,
+      "seed": 130701,
+      "status": "not_started",
+      "task": "spooky-author-identification"
+    },
+    {
+      "arm": "share2",
+      "index": 34,
+      "program": 2,
+      "program_name": "dec-cat-a",
+      "repeat": 2,
+      "seed": 130701,
+      "status": "not_started",
+      "task": "tabular-playground-series-dec-2021"
+    },
+    {
+      "arm": "share2",
+      "index": 35,
+      "program": 3,
+      "program_name": "petfinder-lgb",
+      "repeat": 2,
+      "seed": 130701,
+      "status": "not_started",
+      "task": "petfinder-pawpularity-score"
+    }
+  ],
+  "serial_over_share2_makespan": {
+    "max": null,
+    "median": null,
+    "min": null,
+    "n": 0,
+    "sample_std": null
+  },
+  "source_commit": "e51cf6f01ffd32e8beaa42f5423e0b2fed0779ea",
+  "whole_pool_gpu_hours": 0.10055555555555555,
+  "within_cap": true
+}

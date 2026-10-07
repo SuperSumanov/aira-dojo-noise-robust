@@ -1,17 +1,22 @@
 # 当前短交接
-更新：2026-10-07 06:01香港。R14继续；用户本轮睡眠六小时，开始约05:22香港，目标11:22。下述16624预算已闭合；本轮尚无新GPU提交/候选执行/API/模型训练。
+更新：2026-10-07 20:24香港，用户已明确批准两程序入口复验，正在准备新独立批次；16846已闭合不重开，无吞吐收益结论。
 
 ## 10/7最新状态（覆盖下方10/6历史现场）
-- 已fetch；HEAD及myfork/phase1-value-critic仍4790620cd91ec41819cf2a3c6dad01869ce08b4f，dojo-reproduce仍dfff0efb9daf1d4a63c74492f138c19c1fd8440e；学长调研仓库HEAD仍d82dcd845e30e9771750510028d38a6d1d979c43。没改学长分支。
-- SSH正常；05:26队列只有旧12535 PENDING(JobHeldUser)，不操作。05:44 gpu27混合占用、gpu28 CPU全占；不是未来可用保证。Slurm RealMemory=1的配置异常不能当物理RAM或据此盲交正常--mem请求。研究盘授权4TB至2027-08-30，不是剩余配额。
-- 已提出限定批次请求，**尚无回复**：6固定开发程序、至少2任务含真GPU计算，单执行/双并发×3原样重复=36次，1×3090最多90分钟，含资格/失败总上限1.5GPUh；无API/底座训练。不拿一般继续授权替代逐批批准，不延长16624。真实清单/依赖/隔离也尚未过门。
+- 已独立Python/PowerShell核36槽、2完成/4失败/30未启动、主比较0、362秒=0.10055555555555555GPUh；未知等价性为null而非false。summary SHAa0850cf0736a9ae639ea3f46ab8833a70f29d9cb0d2f67f81bfdad92f90a1464；runs.csv SHAcbf633bd7858b58d9cd268857f5b56f6cf1a959c37bfc7d179e74107e91fc3d7，目录sandbox_scheduling/throughput_readout_v1。无原始预测/标签/候选导出。
+- entry_contract.py只做默认脚本入口修正规则，纯CPU复现-f导致SystemExit2、隔离argv后通过；未部署到已闭合16846/未改变实验原件。本地12测试通过，Linux入口+原pilot9通过；仍不能称原GPU程序已修复。用户**已明确批准**两份原失败GPU程序各1次、单卡15分钟/≤0.25GPUh入口复验；新root/新提交，不复用旧预算，不承诺加速。20:24 fresh fetch未见方向分支新提交。
+- 16846实际gpu27运行362秒（sacct），首串行块后按门停止；36原槽/6尝试/2完成/30未启动。0/4为SystemExit:2，静态证实三份GOME树程序parse_args()仅读--debug、未接受Jupyter的-f；入口不适配是直接线索，尚非完整隔离重现。2号在初始化阶段ValueError且未保留prelude错误正文，原因未定；5号候选执行超时123.6434514215216秒（配置120秒），1/3号CPU成功。Warmup真实CUDA/namespace通过，不等于三份树训练通过。未补样本、修改运行协议或重试，不称调度负效果。
+- 14:35提交唯一新作业16846，根/research/d7/spc/yzyang4/scheduling-throughput-20261007-v1；gpu27单3090/6CPU/90分钟，含warmup/资格/失败≤1.5GPUh。36槽（三任务六源码×串行/双并发×三原样重启），公开训练小样本＋既有合法开发输入，无评分/API/底座训练。旧12535不动。首串行块任一资格失败即不扩大，不补样本/重复。
+- 执行源码commit e51cf6f01ffd32e8beaa42f5423e0b2fed0779ea，脚本SHAb30eed3feffccedb676f2c6aa6035295c07a780d3377c2068a5db8f3ee6c75ea，plan SHAaccaceffe7e847b71a66c6cdf910d1e3506ffbbefc5dec5e79231380b2618a9b；原镜像SHA801f646b…全量核验通过，Linux新测试6/6通过。提交前测时/分母修正已封存，旧准备草稿在preparation-draft，无任何候选执行后改协议。Windows全目录测试5项因临时目录权限错误，不能称全目录通过。
+- 11:23 fetch核HEAD及myfork/phase1-value-critic为3ec278858b691c8084d4abc12539133344224525，dojo-reproduce仍dfff0efb9daf1d4a63c74492f138c19c1fd8440e，两个分支自凌晨无新提交。学长调研仓库d82dcd845e30e9771750510028d38a6d1d979c43是凌晨最后观察，非本次重查。没改学长分支。
+- 11:23:29香港SSH恢复，squeue仅旧12535 critic_zero3_resume PENDING(JobHeldUser)，未操作。gpu27/gpu28占用未重新核，不沿用05:44现场。Slurm RealMemory=1的历史配置异常不能当物理RAM。研究盘授权4TB至2027-08-30，不是剩余配额。
+- 新批次**已明确批准**：6固定开发程序、至少2任务含真GPU计算，单执行/双并发×3原样重复=36次，1×3090最多90分钟，含资格/失败总上限1.5GPUh；无API/底座训练。拟用3个公开Dec2021 GPU树程序与Spooky两程序/Petfinder一程序；独立小型公开训练输入、原源码/原镜像，两臂只改并发数。依赖/隔离须过门，不延长16624。
 - 用原sample/trace pins只读检查并作AST白名单算式验证，候选执行0。158程序中5有mem_get_info，4个相关程序确认数值响应：Tweet低于8GiB batch32→16；Herbarium4/8GiB→48/64，PowerShell独立一致；未测真实共置或分数。DetShare/Pollux已覆盖资源耦合宽概念，仍是R14等价性检查，不改主线/不重开R13。
 - 16370控制器为9波×2worker/波间barrier，与2执行卡相同；没有第三个已就绪候选证据。345 ready=321 result+19拒绝+5缺回执（非有效评分）；LLM ready136/result113、已记exec1509.2269575512037秒、返回gen4642.254533703439秒。旧22.72%窗口不能推出可兑现节省。证据sandbox_scheduling/qualification_notes_20261007.json；不读评分。
 - 合法回放资格还不足：旧Petfinder四程序结果只读复核，唯一rc0是CPU LightGBM；另三神经程序是接口/文件错误，不当新失败，不修代码冒充原样调度。Tweet/Quest所需预训练依赖在四个定向缓存位置未找到，不等于所有位置/镜像都不存在；未下载。继续检查固定公开样本中无需外部权重的原程序。
 - 后续补查cache/hf[/hub]、cache/huggingface[/hub]仍无对应模型目录。静态初筛4个无外部权重torch程序实际是用torch检测CUDA的XGBoost，不是神经网络；Dec2021另有2个CatBoost、数据文件元数据已在mle-bench-data/prepared/public定位，但尚非新dev split、未读数据行/执行/冻结清单。不是CPU-only结论。后续live A0/A1须相同rolling补位，不能只赢旧波间barrier。
-- 最近一次包版本/fit接口核查因SSH连接超时没有执行回执；06:01有界重试也在banner exchange超时，当前远端不可达（最后观察），不据此重复作业。GitHub fetch成功；网络恢复后再核，不能说GPU正在跑。
-- 兜底一次性跟进已复用automation，ACTIVE，FREQ=DAILY;BYHOUR=11;BYMINUTE=22;BYSECOND=0;COUNT=1；工具与本地配置已核。不是后台实验，不越过待批预算，不声称六小时已完成。g0-r5仍暂停未动。若用户暂停，服从新要求。
-- 当前改动仅我方短文档与只读检查JSON，尚未提交/推送；后续发布须再核所有hash及secret scan。下方16:36/旧状态均是10/6历史，不当实时事实。
+- 凌晨06:01 SSH超时已被11:23成功连接覆盖。现已补做未完成的只读API检查：Dec2021源4244cbc2…的fit含early_stopping_rounds，另一个XGBoost源c7bc94f0…的fit无此字面关键字；二者构造器为别名/间接调用，本次只检关键字形状，未证明兼容。2个CatBoost也只是形状检查。旧preflight无包版本字段，镜像SHA仍801f646b…；未执行/升级/修程序。详见qualification_notes_20261007.json追加复查节。
+- 一次性automation于11:22触发，本轮完成复查，不新建跟进、不重复运行。已读最近两turn的直接用户消息，仅睡眠继续请求与本心跳，未收到新1.5GPUh批次的批准；不是后台实验。g0-r5未动。
+- 06:03发布完成并ls-remote独立确认：我方phase1-value-critic为3ec278858b691c8084d4abc12539133344224525，5文件、175新增/6删除；学长分支仍dfff0efb9daf1d4a63c74492f138c19c1fd8440e。源pins、算式、JSON、短文档行数与diff检查通过；staged filename敏感命中0/凭据形状0，无候选源码/预测/标签导出。提交时Git附属sh报Windows对象权限警告但commit/push/远端SHA均成功，不声称hook通过。现在仅这份post-push状态待提交。下方16:36/旧状态均是10/6历史。
 
 ## 当前优先级与已做
 - 重要纠正：完整调用链确认INTERPRETER_MAP使用JupyterInterpreterFactory，MLEBenchTask.step_task在factory模式主动close；旧16370也在finally关闭解释器。不能把底层run()保留kernel说成默认生产泄漏。真正待测机会是run级GPU槽位贯穿生成期保留。
@@ -35,10 +40,10 @@
 
 ## 推荐实施边界
 1. 完成独立v0后，下一缺口是可信kernel/子进程或专属cgroup归属及arrival/start/end/release事件；不能只测worker/server低占用当候选空闲。Jupyter与FreshContainer接入点已记README，不为易观测暗换后端。
-2. README已列A0 run级整卡/A1执行级借还/B固定双并发/C保守准入；先排除简单机制，再讨论D语义。新收益批次尚无冻结程序清单/获批GPU预算，不能延长16624。保持同生成服务/CPU预算/镜像/代码/写隔离；不恢复关闭的旧恢复逻辑。
+2. README已列A0 run级整卡/A1执行级借还/B固定双并发/C保守准入；先排除简单机制，再讨论D语义。新批次已获1.5GPUh预算，清单/资格正在冻结，不能延长16624。保持CPU预算/镜像/代码/写隔离；不恢复关闭的旧恢复逻辑。
 3. 只做事前准入、等待和完成回收。初期不抢占、不把SIGSTOP当显存释放、不依赖3090 MIG；MPS和cgroup实际权限另核。
 4. 先从同环境已知可执行、合法开发程序确定固定清单；CPU/神经/混合覆盖，不能只用最近两个CPU文本任务自证GPU收益。资格失败和排除有完整分母，不按增益挑样本。
-5. 第一关是系统净收益，第二关是语义超越强参照，最后才固定search的live E2E。成本计整个保留资源池+调度器+失败；吞吐不能因偏爱便宜候选代替质量。具体新批次矩阵/预算未批准，不提交GPU。
+5. 第一关是系统净收益，第二关是语义超越强参照，最后才固定search的live E2E。成本计整个保留资源池+调度器+失败；吞吐不能因偏爱便宜候选代替质量。只在本批资格通过后提交已批准矩阵，不扩大预算。
 6. 继续按用户AGENTS规则先给设计/diff预览获准再落生产代码。本轮仅新增旁路原型/测试和简短使用说明，未另写长汇报。遵照此前可同步产出授权，已快进推送我方研究分支；不触学长分支。
 
 ## 当前远端/Git状态（最后观察，不自动当未来实时事实）

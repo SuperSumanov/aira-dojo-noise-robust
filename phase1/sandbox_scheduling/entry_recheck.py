@@ -20,7 +20,7 @@ from entry_contract import SCRIPT_ENTRY
 
 B=Path('/research/d7/spc/yzyang4')
 D=B/'scheduling-throughput-20261007-v1'
-R=B/'scheduling-entry-20261007-v1'
+R=B/'scheduling-entry-20261008-v2'
 PY=B/'venvs/aira/bin/python'
 NAME='entry_recheck.py'
 DONOR_PLAN='accaceffe7e847b71a66c6cdf910d1e3506ffbbefc5dec5e79231380b2618a9b'
@@ -49,6 +49,19 @@ def check():
     return p
 
 
+def cell_receipt(result, stage, start, end):
+    """Preserve the frozen executor's required fields; optional phase is unknown.
+
+    Older pinned ExecutionResult has no timeout_phase. Absence is not a claim
+    about where execution stopped and must not turn successful execution into a
+    recorder failure. Required status fields still fail loudly if incompatible.
+    """
+    return dict(stage=stage, start=start, end=end, exit_code=result.exit_code,
+                timed_out=result.timed_out, exec_seconds=result.exec_time,
+                timeout_phase=getattr(result, 'timeout_phase', None),
+                timeout_phase_available=hasattr(result, 'timeout_phase'))
+
+
 def prepare(commit):
     import re
     if not re.fullmatch('[a-f0-9]{40}',commit):raise ValueError('exact commit required')
@@ -64,7 +77,7 @@ def prepare(commit):
     os.chmod(R/'bin/singularity',0o700)
     for row in schedule():(R/f'episode-{row["index"]}/work').mkdir(parents=True)
     batch=f'''#!/bin/bash
-#SBATCH --job-name=r14-entry-recheck
+#SBATCH --job-name=r14-entry-v2
 #SBATCH --partition=gpu_24h
 #SBATCH --account=gpu
 #SBATCH --qos=gpu
@@ -87,14 +100,21 @@ timeout --signal=TERM --kill-after=15s 850s srun --exclusive --ntasks=1 --cpus-p
         schedule=schedule(),programs=old['programs'],gpu_hours_cap=.25,allocation_seconds=900,gpus=1,total_cpu=6,
         planned_executions=2,candidate_timeout_seconds=120,worker_hard_seconds=180,public_inputs=inputs,
         only_behavior_change='sys.argv=[candidate.py], ordinary defaults, no debug flag',
+        previous_closed_batch='scheduling-entry-20261007-v1',
+        recorder_fix='optional timeout_phase missing in frozen executor remains null; required fields unchanged',
         no_api=True,no_base_training=True,no_quality_scoring=True,no_comparison_claim=True,
         files={str(p.relative_to(R)):sha(p) for p in R.rglob('*') if p.is_file()})
     write(R/'plan.json',plan)
     m=pilot().runtime();image=m.TASK_IMAGE
+    # Exercise the actual frozen return class, not only a current-tree/mock type.
+    from dojo.core.interpreters.base import ExecutionResult
+    result_contract=cell_receipt(ExecutionResult(term_out=[],exec_time=0.0,exit_code=0),0,0,0)
+    if result_contract['exit_code']!=0 or result_contract['timed_out']:raise ValueError('frozen return contract')
     if sha(image)!='801f646bed3cae6e74e10d793e71b0086658d4303d54552333c58125ddf9beda':raise ValueError('image drift')
     subprocess.run(['bash','-n',str(R/'run.sbatch')],check=True)
     write(R/'preflight.json',dict(plan_sha256=sha(R/'plan.json'),image_sha256='801f646bed3cae6e74e10d793e71b0086658d4303d54552333c58125ddf9beda',donor_preflight_sha256=sha(D/'preflight.json'),image_content_pin_verified=True,
-        same_candidate_sources=True,same_inputs=True,same_timeouts=True,no_candidate_executed_yet=True))
+        same_candidate_sources=True,same_inputs=True,same_timeouts=True,no_candidate_executed_yet=True,
+        actual_frozen_result_contract=result_contract))
     print(json.dumps(dict(status='PREPARED',root=str(R),plan_sha256=sha(R/'plan.json'))))
 
 
@@ -109,8 +129,8 @@ def worker(index):
             stage=self.calls;self.calls+=1;start=time.time()
             try:
                 result=self.obj.run(*args,**kwargs)
-                write(ep/f'cell-{stage}.json',dict(stage=stage,start=start,end=time.time(),exit_code=result.exit_code,timed_out=result.timed_out,timeout_phase=result.timeout_phase,exec_seconds=result.exec_time))
                 (ep/f'cell-{stage}.private.txt').write_text('\n'.join(map(str,result.term_out)))
+                write(ep/f'cell-{stage}.json',cell_receipt(result,stage,start,time.time()))
                 return result
             except Exception as exc:
                 write(ep/f'cell-{stage}-exception.json',dict(stage=stage,error_type=type(exc).__name__,start=start,end=time.time()))

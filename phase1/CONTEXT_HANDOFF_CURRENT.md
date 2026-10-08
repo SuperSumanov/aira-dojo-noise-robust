@@ -1,7 +1,14 @@
 # 当前短交接
-更新：2026-10-07 20:24香港，用户已明确批准两程序入口复验，正在准备新独立批次；16846已闭合不重开，无吞吐收益结论。
+更新：2026-10-08香港。用户要求约07:51–13:51完整六小时继续研究；16987入口复验已失败闭合，仍无系统收益结论。
+
+## 10/8最新状态（覆盖下方历史现场）
+- fresh fetch我方8ec5f723040031f66e9096a6c495387b122af53d、学长dfff0efb9daf1d4a63c74492f138c19c1fd8440e未变。当前goal记录六小时研究窗口，不自动扩展GPU/API预算。学长新消息担忧SchedMate；重新核§3–4，宽语义调度已覆盖，不凭设定区别认定创新。
+- 唯一新提交16987（原批准2程序各一次，gpu27/1×3090/15分钟≤0.25GPUh）已FAILED1:0；两worker尝试/候选真正开始0/完成0；sacct分配37秒。新记录器读取冻结旧ExecutionResult不存在的timeout_phase，在prelude返回时AttributeError退出。是我方包装器接口错误，不是候选或调度负结果，不再用余额重跑。
+- 源commit8ec5f723；root /research/d7/spc/yzyang4/scheduling-entry-20261007-v1；plan SHA96d7e9e7ed7f7dcf9d85eea1ca98edca5f00ab6a45edd58b1c76425e5a8d2495。原件不改。已修记录器，17项本地测试通过、实际旧ExecutionResult纯CPU验签通过。用户明确批准独立v2：仍原2程序各1次，单3090最多15分钟/含失败≤0.25GPUh；新root scheduling-entry-20261008-v2，尚未提交，不复用旧批次预算。
+- 研究优先实测需求/低成本强参照，防止再围绕最新失败堆harness；AgentCgroup也已覆盖未知突发/高恢复代价/agent资源声明，不能当新颖宽主张。不读封存集/质量结果，无API/底座更新，不碰12535或学长分支。
 
 ## 10/7最新状态（覆盖下方10/6历史现场）
+- 20:30已快进推送并ls-remote核我方phase1-value-critic=8ec5f723040031f66e9096a6c495387b122af53d，学长分支仍dfff0efb9daf1d4a63c74492f138c19c1fd8440e。14文件凭据/敏感文件名命中0，无raw候选/预测/标签。新入口复验根/research/d7/spc/yzyang4/scheduling-entry-20261007-v1，source commit同8ec5f723；原worker哈希固定b30eed3f…，只加argv隔离与cell级诊断，未改原16846。正做镜像与输入预检，尚未提交。本地14测试通过；Linux入口/固定两目标测试5通过。
 - 已独立Python/PowerShell核36槽、2完成/4失败/30未启动、主比较0、362秒=0.10055555555555555GPUh；未知等价性为null而非false。summary SHAa0850cf0736a9ae639ea3f46ab8833a70f29d9cb0d2f67f81bfdad92f90a1464；runs.csv SHAcbf633bd7858b58d9cd268857f5b56f6cf1a959c37bfc7d179e74107e91fc3d7，目录sandbox_scheduling/throughput_readout_v1。无原始预测/标签/候选导出。
 - entry_contract.py只做默认脚本入口修正规则，纯CPU复现-f导致SystemExit2、隔离argv后通过；未部署到已闭合16846/未改变实验原件。本地12测试通过，Linux入口+原pilot9通过；仍不能称原GPU程序已修复。用户**已明确批准**两份原失败GPU程序各1次、单卡15分钟/≤0.25GPUh入口复验；新root/新提交，不复用旧预算，不承诺加速。20:24 fresh fetch未见方向分支新提交。
 - 16846实际gpu27运行362秒（sacct），首串行块后按门停止；36原槽/6尝试/2完成/30未启动。0/4为SystemExit:2，静态证实三份GOME树程序parse_args()仅读--debug、未接受Jupyter的-f；入口不适配是直接线索，尚非完整隔离重现。2号在初始化阶段ValueError且未保留prelude错误正文，原因未定；5号候选执行超时123.6434514215216秒（配置120秒），1/3号CPU成功。Warmup真实CUDA/namespace通过，不等于三份树训练通过。未补样本、修改运行协议或重试，不称调度负效果。

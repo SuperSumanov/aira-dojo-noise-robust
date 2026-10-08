@@ -12,7 +12,8 @@ B=Path('/research/d7/spc/yzyang4')
 NAMES=('pool-20261008-v2','neural-20261008-v1','pipeline-20261008-v1',
        'homogeneous-20261008-v1','neural-gpu28-20261008-v2',
        'neural-full-input-20261008-v1','neural-full-input-20261008-v2',
-       'neural-overlap-20261008-v1','neural-full-confirmation-20261008-v1')
+       'neural-overlap-20261008-v1','neural-full-confirmation-20261008-v1',
+       'neural-overlap-retry-20261008-v2')
 
 
 def main():

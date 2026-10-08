@@ -202,6 +202,8 @@ GPU 为整卡数据，出现其他租户/未归属进程时不能算本候选成
 
 ### 10/8增补：输入与近邻边界
 
+- **纯调度的搜索语义边界**：已核学长`dojo-reproduce@dfff0efb9daf1d4a63c74492f138c19c1fd8440e`的`src/dojo/solvers/fore_ts/fore_ts.py::_expand_leaf_and_backprop`：先并发生成、critic筛选和随机选点，再按选择顺序逐个执行；每次返回即写journal、增加step并回传价值，失败可能先进入debug，随后检查step limit。故并发执行兄弟节点或按完成顺序消费结果，会改变debug机会、状态及预算截断，不能称只改资源调度。初步live对照应优先在独立run之间共享，保持每run内事件依赖与消费顺序、生成服务容量和全池成本；这只是公平接入约束，不是已实现方法或新颖性。
+- **首返回不等于下一次搜索反馈**：`feedback_latency.py`对已闭合16996/16999/17005补充从block开始到首个成功程序关闭返回的时间；失败仍保留，只有两个完整块才算配对。混合长短程序的FIFO次序可显著改变这个比值；ForeTS普通下一次生成还受上面的选择组与debug依赖影响。不把返回提前当作质量/utility提升，也不把小幅批吞吐改善掩盖的单程序降速删掉。该事后描述不替换原主指标，原计时混杂继续适用。
 - **计时期间禁止我方并行大文件准备**：镜像哈希/语料构建可能争用同一研究盘；CPU-only不等于对GPU实验零扰动。预检先全部完成，再测量；本地代码/论文工作可并行。已闭合结果保留原件，出现重叠追加限制，不删慢块或推断I/O就是原因。plan→preflight mtime仅已知子区间，没有它的重叠也不能证明共享环境完全干净。
 - **finally回执不等于成功**：17014预热的deadline跳出普通Exception处理，finally写出complete=true但无output/执行指标；进程退出1，主controller正确拒绝。监控必须同时核closed.returncode=0、完整output及complete/error，不能只数内部complete字段。原件保留，本地test_neural_status覆盖此实际失败形状；不是修好了Jupyter就绪偶发超时。
 - 10/8补核[AgentSysBench](https://arxiv.org/html/2608.15127v1) §3/5/8：已经包含Pi-AutoR/MLEBench系统表征，研究共享资源干扰、瓶颈迁移及分阶段资源管理。其第8节干预主要是RAG隔离/放置、Mini-SWE卸载和工具缓存，不是任意MLE候选CUDA准入的同等答案；但不能将“首次研究MLE-agent工具成本/异构瓶颈/空闲回收”当新颖性，也不能仅换benchmark证明方法价值。

@@ -1,0 +1,14 @@
+{
+  "all_completed_same_allocation_CPU_GPU": true,
+  "analysis_source_sha256": "455d38da353a8a7cd055005e2f7ca26d725db8050a2568e680b34aaa05fdadb6",
+  "boundary": "Postflight metadata and hashes only. Same affinity/device is not shared-host isolation, absence of interference, kernel concurrency, or quality evidence. Missing unstarted/failed identities remain explicit.",
+  "completed": 12,
+  "formal_slots": 12,
+  "frozen_file_hashes_verified": 14491,
+  "identity_unavailable_slots": 0,
+  "identity_verified_slots": 12,
+  "job": "16996",
+  "plan_sha256": "8da0e849c3203efc2c47c13f134fe9d841ede0f9c3d667789e41ab2aefb95edc",
+  "primary_sha256": "8bd34bf9fab08dccc33f38c63376bbf3a83fbc8a347bdcc86f5d10c5620e5104",
+  "referenced_input_hashes_verified": 0
+}

@@ -1,0 +1,809 @@
+{
+  "allocation_exit": "0:0",
+  "allocation_seconds": 2035,
+  "allocation_state": "COMPLETED",
+  "attempted": 12,
+  "blocks": [
+    {
+      "arm": "serial",
+      "block": 0,
+      "candidate_overlap": {
+        "max_simultaneous": 1,
+        "two_or_more_seconds": 0.0
+      },
+      "completed": 2,
+      "gpu_peak_memory_mib": 1562.0,
+      "makespan": 417.03321743011475,
+      "max_resident_gpu_clients": 1,
+      "multi_client_samples": 0,
+      "not_kernel_concurrency_measurement": true,
+      "repeat": 0,
+      "telemetry_samples": 736
+    },
+    {
+      "arm": "share2",
+      "block": 1,
+      "candidate_overlap": {
+        "max_simultaneous": 2,
+        "two_or_more_seconds": 135.99674367904663
+      },
+      "completed": 2,
+      "gpu_peak_memory_mib": 2639.0,
+      "makespan": 248.0587282180786,
+      "max_resident_gpu_clients": 2,
+      "multi_client_samples": 176,
+      "not_kernel_concurrency_measurement": true,
+      "repeat": 0,
+      "telemetry_samples": 437
+    },
+    {
+      "arm": "share2",
+      "block": 2,
+      "candidate_overlap": {
+        "max_simultaneous": 2,
+        "two_or_more_seconds": 144.1810302734375
+      },
+      "completed": 2,
+      "gpu_peak_memory_mib": 2639.0,
+      "makespan": 248.17162156105042,
+      "max_resident_gpu_clients": 2,
+      "multi_client_samples": 176,
+      "not_kernel_concurrency_measurement": true,
+      "repeat": 1,
+      "telemetry_samples": 437
+    },
+    {
+      "arm": "serial",
+      "block": 3,
+      "candidate_overlap": {
+        "max_simultaneous": 1,
+        "two_or_more_seconds": 0.0
+      },
+      "completed": 2,
+      "gpu_peak_memory_mib": 1562.0,
+      "makespan": 419.99859595298767,
+      "max_resident_gpu_clients": 1,
+      "multi_client_samples": 0,
+      "not_kernel_concurrency_measurement": true,
+      "repeat": 1,
+      "telemetry_samples": 742
+    },
+    {
+      "arm": "serial",
+      "block": 4,
+      "candidate_overlap": {
+        "max_simultaneous": 1,
+        "two_or_more_seconds": 0.0
+      },
+      "completed": 2,
+      "gpu_peak_memory_mib": 1562.0,
+      "makespan": 403.64758253097534,
+      "max_resident_gpu_clients": 1,
+      "multi_client_samples": 0,
+      "not_kernel_concurrency_measurement": true,
+      "repeat": 2,
+      "telemetry_samples": 712
+    },
+    {
+      "arm": "share2",
+      "block": 5,
+      "candidate_overlap": {
+        "max_simultaneous": 2,
+        "two_or_more_seconds": 137.70004987716675
+      },
+      "completed": 2,
+      "gpu_peak_memory_mib": 2639.0,
+      "makespan": 248.65914940834045,
+      "max_resident_gpu_clients": 2,
+      "multi_client_samples": 164,
+      "not_kernel_concurrency_measurement": true,
+      "repeat": 2,
+      "telemetry_samples": 438
+    }
+  ],
+  "boundary": "Two fixed public-training-derived inputs, unchanged programs and source-seed restarts. No quality scores, live search, novel method or population inference.",
+  "completed": 12,
+  "exploratory_gate": true,
+  "job": "17017",
+  "output_equivalence": [
+    {
+      "all_six_present": true,
+      "available_outputs": 6,
+      "max_cross_arm": 0.0,
+      "max_within_arm": 0.0,
+      "numerical_gate": true,
+      "pairs": [
+        {
+          "arms": [
+            "serial",
+            "share2"
+          ],
+          "different_values": 0,
+          "indices": [
+            0,
+            2
+          ],
+          "max_abs": 0.0,
+          "values": 64
+        },
+        {
+          "arms": [
+            "serial",
+            "share2"
+          ],
+          "different_values": 0,
+          "indices": [
+            0,
+            5
+          ],
+          "max_abs": 0.0,
+          "values": 64
+        },
+        {
+          "arms": [
+            "serial",
+            "serial"
+          ],
+          "different_values": 0,
+          "indices": [
+            0,
+            7
+          ],
+          "max_abs": 0.0,
+          "values": 64
+        },
+        {
+          "arms": [
+            "serial",
+            "serial"
+          ],
+          "different_values": 0,
+          "indices": [
+            0,
+            8
+          ],
+          "max_abs": 0.0,
+          "values": 64
+        },
+        {
+          "arms": [
+            "serial",
+            "share2"
+          ],
+          "different_values": 0,
+          "indices": [
+            0,
+            10
+          ],
+          "max_abs": 0.0,
+          "values": 64
+        },
+        {
+          "arms": [
+            "share2",
+            "share2"
+          ],
+          "different_values": 0,
+          "indices": [
+            2,
+            5
+          ],
+          "max_abs": 0.0,
+          "values": 64
+        },
+        {
+          "arms": [
+            "share2",
+            "serial"
+          ],
+          "different_values": 0,
+          "indices": [
+            2,
+            7
+          ],
+          "max_abs": 0.0,
+          "values": 64
+        },
+        {
+          "arms": [
+            "share2",
+            "serial"
+          ],
+          "different_values": 0,
+          "indices": [
+            2,
+            8
+          ],
+          "max_abs": 0.0,
+          "values": 64
+        },
+        {
+          "arms": [
+            "share2",
+            "share2"
+          ],
+          "different_values": 0,
+          "indices": [
+            2,
+            10
+          ],
+          "max_abs": 0.0,
+          "values": 64
+        },
+        {
+          "arms": [
+            "share2",
+            "serial"
+          ],
+          "different_values": 0,
+          "indices": [
+            5,
+            7
+          ],
+          "max_abs": 0.0,
+          "values": 64
+        },
+        {
+          "arms": [
+            "share2",
+            "serial"
+          ],
+          "different_values": 0,
+          "indices": [
+            5,
+            8
+          ],
+          "max_abs": 0.0,
+          "values": 64
+        },
+        {
+          "arms": [
+            "share2",
+            "share2"
+          ],
+          "different_values": 0,
+          "indices": [
+            5,
+            10
+          ],
+          "max_abs": 0.0,
+          "values": 64
+        },
+        {
+          "arms": [
+            "serial",
+            "serial"
+          ],
+          "different_values": 0,
+          "indices": [
+            7,
+            8
+          ],
+          "max_abs": 0.0,
+          "values": 64
+        },
+        {
+          "arms": [
+            "serial",
+            "share2"
+          ],
+          "different_values": 0,
+          "indices": [
+            7,
+            10
+          ],
+          "max_abs": 0.0,
+          "values": 64
+        },
+        {
+          "arms": [
+            "serial",
+            "share2"
+          ],
+          "different_values": 0,
+          "indices": [
+            8,
+            10
+          ],
+          "max_abs": 0.0,
+          "values": 64
+        }
+      ],
+      "program": 0,
+      "step_counts_equal": true,
+      "steps": [
+        150,
+        150,
+        150,
+        150,
+        150,
+        150
+      ],
+      "tolerance_is_not_quality_guarantee": true
+    },
+    {
+      "all_six_present": true,
+      "available_outputs": 6,
+      "max_cross_arm": 0.0,
+      "max_within_arm": 0.0,
+      "numerical_gate": true,
+      "pairs": [
+        {
+          "arms": [
+            "serial",
+            "share2"
+          ],
+          "different_values": 0,
+          "indices": [
+            1,
+            3
+          ],
+          "max_abs": 0.0,
+          "values": 278640
+        },
+        {
+          "arms": [
+            "serial",
+            "share2"
+          ],
+          "different_values": 0,
+          "indices": [
+            1,
+            4
+          ],
+          "max_abs": 0.0,
+          "values": 278640
+        },
+        {
+          "arms": [
+            "serial",
+            "serial"
+          ],
+          "different_values": 0,
+          "indices": [
+            1,
+            6
+          ],
+          "max_abs": 0.0,
+          "values": 278640
+        },
+        {
+          "arms": [
+            "serial",
+            "serial"
+          ],
+          "different_values": 0,
+          "indices": [
+            1,
+            9
+          ],
+          "max_abs": 0.0,
+          "values": 278640
+        },
+        {
+          "arms": [
+            "serial",
+            "share2"
+          ],
+          "different_values": 0,
+          "indices": [
+            1,
+            11
+          ],
+          "max_abs": 0.0,
+          "values": 278640
+        },
+        {
+          "arms": [
+            "share2",
+            "share2"
+          ],
+          "different_values": 0,
+          "indices": [
+            3,
+            4
+          ],
+          "max_abs": 0.0,
+          "values": 278640
+        },
+        {
+          "arms": [
+            "share2",
+            "serial"
+          ],
+          "different_values": 0,
+          "indices": [
+            3,
+            6
+          ],
+          "max_abs": 0.0,
+          "values": 278640
+        },
+        {
+          "arms": [
+            "share2",
+            "serial"
+          ],
+          "different_values": 0,
+          "indices": [
+            3,
+            9
+          ],
+          "max_abs": 0.0,
+          "values": 278640
+        },
+        {
+          "arms": [
+            "share2",
+            "share2"
+          ],
+          "different_values": 0,
+          "indices": [
+            3,
+            11
+          ],
+          "max_abs": 0.0,
+          "values": 278640
+        },
+        {
+          "arms": [
+            "share2",
+            "serial"
+          ],
+          "different_values": 0,
+          "indices": [
+            4,
+            6
+          ],
+          "max_abs": 0.0,
+          "values": 278640
+        },
+        {
+          "arms": [
+            "share2",
+            "serial"
+          ],
+          "different_values": 0,
+          "indices": [
+            4,
+            9
+          ],
+          "max_abs": 0.0,
+          "values": 278640
+        },
+        {
+          "arms": [
+            "share2",
+            "share2"
+          ],
+          "different_values": 0,
+          "indices": [
+            4,
+            11
+          ],
+          "max_abs": 0.0,
+          "values": 278640
+        },
+        {
+          "arms": [
+            "serial",
+            "serial"
+          ],
+          "different_values": 0,
+          "indices": [
+            6,
+            9
+          ],
+          "max_abs": 0.0,
+          "values": 278640
+        },
+        {
+          "arms": [
+            "serial",
+            "share2"
+          ],
+          "different_values": 0,
+          "indices": [
+            6,
+            11
+          ],
+          "max_abs": 0.0,
+          "values": 278640
+        },
+        {
+          "arms": [
+            "serial",
+            "share2"
+          ],
+          "different_values": 0,
+          "indices": [
+            9,
+            11
+          ],
+          "max_abs": 0.0,
+          "values": 278640
+        }
+      ],
+      "program": 1,
+      "step_counts_equal": true,
+      "steps": [
+        3920,
+        3920,
+        3920,
+        3920,
+        3920,
+        3920
+      ],
+      "tolerance_is_not_quality_guarantee": true
+    }
+  ],
+  "paired_ratios": [
+    {
+      "ratio": 1.6811874366439696,
+      "repeat": 0
+    },
+    {
+      "ratio": 1.6923715665437906,
+      "repeat": 1
+    },
+    {
+      "ratio": 1.6232967236130837,
+      "repeat": 2
+    }
+  ],
+  "plan_sha256": "b8bf8619c61a98db5af35bb2b68f4b9838354c9ccfef166d8dd788ca0b16df7f",
+  "planned": 12,
+  "reference_arm": "serial",
+  "runs": [
+    {
+      "arm": "serial",
+      "complete": true,
+      "end": 1791432647.874607,
+      "error_type": null,
+      "exec_seconds": 156.9961099224165,
+      "exit_code": 0,
+      "gpu_steps": 150,
+      "harness_seed": 130701,
+      "index": 0,
+      "output_sha256": "ff61b300fccbcca3ccbd33ced4f3bc46f526d732f4323cd32a654f6c53b7e44f",
+      "program": 0,
+      "repeat": 0,
+      "returncode": 0,
+      "source_commit": "5f44b1af605f4f7b6034d3556c4c1a2f62b7232b",
+      "source_seed": 42,
+      "start": 1791432480.499952,
+      "status": "complete",
+      "timed_out": false
+    },
+    {
+      "arm": "serial",
+      "complete": true,
+      "end": 1791432895.044803,
+      "error_type": null,
+      "exec_seconds": 230.14377789013088,
+      "exit_code": 0,
+      "gpu_steps": 3920,
+      "harness_seed": 130701,
+      "index": 1,
+      "output_sha256": "e261c4721373b7fb59af288a0f85972a3f31399efc0957a433ca261f7718a79b",
+      "program": 1,
+      "repeat": 0,
+      "returncode": 0,
+      "source_commit": "5f44b1af605f4f7b6034d3556c4c1a2f62b7232b",
+      "source_seed": 42,
+      "start": 1791432651.369484,
+      "status": "complete",
+      "timed_out": false
+    },
+    {
+      "arm": "share2",
+      "complete": true,
+      "end": 1791433045.5439603,
+      "error_type": null,
+      "exec_seconds": 135.98723880760372,
+      "exit_code": 0,
+      "gpu_steps": 150,
+      "harness_seed": 130701,
+      "index": 2,
+      "output_sha256": "ff61b300fccbcca3ccbd33ced4f3bc46f526d732f4323cd32a654f6c53b7e44f",
+      "program": 0,
+      "repeat": 0,
+      "returncode": 0,
+      "source_commit": "5f44b1af605f4f7b6034d3556c4c1a2f62b7232b",
+      "source_seed": 42,
+      "start": 1791432898.6511276,
+      "status": "complete",
+      "timed_out": false
+    },
+    {
+      "arm": "share2",
+      "complete": true,
+      "end": 1791433143.25871,
+      "error_type": null,
+      "exec_seconds": 231.59291389025748,
+      "exit_code": 0,
+      "gpu_steps": 3920,
+      "harness_seed": 130701,
+      "index": 3,
+      "output_sha256": "e261c4721373b7fb59af288a0f85972a3f31399efc0957a433ca261f7718a79b",
+      "program": 1,
+      "repeat": 0,
+      "returncode": 0,
+      "source_commit": "5f44b1af605f4f7b6034d3556c4c1a2f62b7232b",
+      "source_seed": 42,
+      "start": 1791432898.6510954,
+      "status": "complete",
+      "timed_out": false
+    },
+    {
+      "arm": "share2",
+      "complete": true,
+      "end": 1791433391.5866365,
+      "error_type": null,
+      "exec_seconds": 232.4697453789413,
+      "exit_code": 0,
+      "gpu_steps": 3920,
+      "harness_seed": 130701,
+      "index": 4,
+      "output_sha256": "e261c4721373b7fb59af288a0f85972a3f31399efc0957a433ca261f7718a79b",
+      "program": 1,
+      "repeat": 1,
+      "returncode": 0,
+      "source_commit": "5f44b1af605f4f7b6034d3556c4c1a2f62b7232b",
+      "source_seed": 42,
+      "start": 1791433146.1412163,
+      "status": "complete",
+      "timed_out": false
+    },
+    {
+      "arm": "share2",
+      "complete": true,
+      "end": 1791433301.0610414,
+      "error_type": null,
+      "exec_seconds": 144.17539162561297,
+      "exit_code": 0,
+      "gpu_steps": 150,
+      "harness_seed": 130701,
+      "index": 5,
+      "output_sha256": "ff61b300fccbcca3ccbd33ced4f3bc46f526d732f4323cd32a654f6c53b7e44f",
+      "program": 0,
+      "repeat": 1,
+      "returncode": 0,
+      "source_commit": "5f44b1af605f4f7b6034d3556c4c1a2f62b7232b",
+      "source_seed": 42,
+      "start": 1791433146.1397781,
+      "status": "complete",
+      "timed_out": false
+    },
+    {
+      "arm": "serial",
+      "complete": true,
+      "end": 1791433637.7393374,
+      "error_type": null,
+      "exec_seconds": 230.01964946091175,
+      "exit_code": 0,
+      "gpu_steps": 3920,
+      "harness_seed": 130701,
+      "index": 6,
+      "output_sha256": "e261c4721373b7fb59af288a0f85972a3f31399efc0957a433ca261f7718a79b",
+      "program": 1,
+      "repeat": 1,
+      "returncode": 0,
+      "source_commit": "5f44b1af605f4f7b6034d3556c4c1a2f62b7232b",
+      "source_seed": 42,
+      "start": 1791433395.9397178,
+      "status": "complete",
+      "timed_out": false
+    },
+    {
+      "arm": "serial",
+      "complete": true,
+      "end": 1791433811.94018,
+      "error_type": null,
+      "exec_seconds": 160.91139559447765,
+      "exit_code": 0,
+      "gpu_steps": 150,
+      "harness_seed": 130701,
+      "index": 7,
+      "output_sha256": "ff61b300fccbcca3ccbd33ced4f3bc46f526d732f4323cd32a654f6c53b7e44f",
+      "program": 0,
+      "repeat": 1,
+      "returncode": 0,
+      "source_commit": "5f44b1af605f4f7b6034d3556c4c1a2f62b7232b",
+      "source_seed": 42,
+      "start": 1791433640.4950898,
+      "status": "complete",
+      "timed_out": false
+    },
+    {
+      "arm": "serial",
+      "complete": true,
+      "end": 1791433965.609881,
+      "error_type": null,
+      "exec_seconds": 138.74316863622516,
+      "exit_code": 0,
+      "gpu_steps": 150,
+      "harness_seed": 130701,
+      "index": 8,
+      "output_sha256": "ff61b300fccbcca3ccbd33ced4f3bc46f526d732f4323cd32a654f6c53b7e44f",
+      "program": 0,
+      "repeat": 2,
+      "returncode": 0,
+      "source_commit": "5f44b1af605f4f7b6034d3556c4c1a2f62b7232b",
+      "source_seed": 42,
+      "start": 1791433816.105129,
+      "status": "complete",
+      "timed_out": false
+    },
+    {
+      "arm": "serial",
+      "complete": true,
+      "end": 1791434215.7087128,
+      "error_type": null,
+      "exec_seconds": 234.38828502502292,
+      "exit_code": 0,
+      "gpu_steps": 3920,
+      "harness_seed": 130701,
+      "index": 9,
+      "output_sha256": "e261c4721373b7fb59af288a0f85972a3f31399efc0957a433ca261f7718a79b",
+      "program": 1,
+      "repeat": 2,
+      "returncode": 0,
+      "source_commit": "5f44b1af605f4f7b6034d3556c4c1a2f62b7232b",
+      "source_seed": 42,
+      "start": 1791433968.8093348,
+      "status": "complete",
+      "timed_out": false
+    },
+    {
+      "arm": "share2",
+      "complete": true,
+      "end": 1791434366.3164716,
+      "error_type": null,
+      "exec_seconds": 137.67904139123857,
+      "exit_code": 0,
+      "gpu_steps": 150,
+      "harness_seed": 130701,
+      "index": 10,
+      "output_sha256": "ff61b300fccbcca3ccbd33ced4f3bc46f526d732f4323cd32a654f6c53b7e44f",
+      "program": 0,
+      "repeat": 2,
+      "returncode": 0,
+      "source_commit": "5f44b1af605f4f7b6034d3556c4c1a2f62b7232b",
+      "source_seed": 42,
+      "start": 1791434218.6806576,
+      "status": "complete",
+      "timed_out": false
+    },
+    {
+      "arm": "share2",
+      "complete": true,
+      "end": 1791434464.4364984,
+      "error_type": null,
+      "exec_seconds": 233.88687748555094,
+      "exit_code": 0,
+      "gpu_steps": 3920,
+      "harness_seed": 130701,
+      "index": 11,
+      "output_sha256": "e261c4721373b7fb59af288a0f85972a3f31399efc0957a433ca261f7718a79b",
+      "program": 1,
+      "repeat": 2,
+      "returncode": 0,
+      "source_commit": "5f44b1af605f4f7b6034d3556c4c1a2f62b7232b",
+      "source_seed": 42,
+      "start": 1791434218.6806443,
+      "status": "complete",
+      "timed_out": false
+    }
+  ],
+  "source_commit": "5f44b1af605f4f7b6034d3556c4c1a2f62b7232b",
+  "speedup": {
+    "max": 1.6923715665437906,
+    "median": 1.6811874366439696,
+    "min": 1.6232967236130837,
+    "n": 3,
+    "sample_std": 0.03707594310497998
+  },
+  "whole_pool_gpu_hours": 0.5652777777777778,
+  "within_cap": true
+}

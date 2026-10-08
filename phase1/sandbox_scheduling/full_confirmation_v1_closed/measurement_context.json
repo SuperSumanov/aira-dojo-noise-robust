@@ -1,0 +1,18 @@
+{
+  "job": "17017",
+  "plan_sha256": "b8bf8619c61a98db5af35bb2b68f4b9838354c9ccfef166d8dd788ca0b16df7f",
+  "primary_sha256": "8c985bc78b4056980436589486ffa50c0999a5b5efc91c6bae76d21e4db608a7",
+  "all_six_blocks_without_recorded_own_preparation_mtime_overlap": true,
+  "latest_own_preflight_end_unix": 1791432365.0864978,
+  "first_timed_block_start_unix": 1791432478.3841057,
+  "no_own_heavy_preparation_during_timing": true,
+  "shared_host_and_storage_isolation_proven": false,
+  "replaces_confounded_job17005": false,
+  "original_source_seed_restarts_not_independent_training_seeds": true,
+  "scope": "Same two fixed public-training-derived inputs as17005; DnCNN113paired images with98internal train/15internal validation, same two noisy-only query images without clean query targets; Cactus donor unchanged.",
+  "boundary": "Metadata overlap is a conservative known subset, not a physical I/O trace. No global isolation or kernel concurrency claim. Equal observed outputs/steps are not general quality or live search utility evidence. All failure costs and prior confounded observations remain.",
+  "prior_closed_gpu_seconds": 6877,
+  "allocation_gpu_seconds": 2035,
+  "cumulative_closed_gpu_seconds": 8912,
+  "window_cap_gpu_seconds": 10800
+}

@@ -1,0 +1,101 @@
+{
+  "attempted": 12,
+  "blocks": [
+    {
+      "arm": "serial",
+      "block": 0,
+      "complete": true,
+      "completed": 2,
+      "first_completed_return": 169.61261296272278,
+      "makespan": 417.03321743011475,
+      "mean_completed_return": 293.2780668735504,
+      "program": null,
+      "repeat": 0
+    },
+    {
+      "arm": "share2",
+      "block": 1,
+      "complete": true,
+      "completed": 2,
+      "first_completed_return": 150.15004920959473,
+      "makespan": 248.0587282180786,
+      "mean_completed_return": 199.02865850925446,
+      "program": null,
+      "repeat": 0
+    },
+    {
+      "arm": "share2",
+      "block": 2,
+      "complete": true,
+      "completed": 2,
+      "first_completed_return": 157.38854336738586,
+      "makespan": 248.17162156105042,
+      "mean_completed_return": 202.7206060886383,
+      "program": null,
+      "repeat": 1
+    },
+    {
+      "arm": "serial",
+      "block": 3,
+      "complete": true,
+      "completed": 2,
+      "first_completed_return": 245.80881357192993,
+      "makespan": 419.99859595298767,
+      "mean_completed_return": 332.89697682857513,
+      "program": null,
+      "repeat": 1
+    },
+    {
+      "arm": "serial",
+      "block": 4,
+      "complete": true,
+      "completed": 2,
+      "first_completed_return": 153.4570152759552,
+      "makespan": 403.64758253097534,
+      "mean_completed_return": 278.50856149196625,
+      "program": null,
+      "repeat": 2
+    },
+    {
+      "arm": "share2",
+      "block": 5,
+      "complete": true,
+      "completed": 2,
+      "first_completed_return": 150.3921298980713,
+      "makespan": 248.65914940834045,
+      "mean_completed_return": 199.48230111598969,
+      "program": null,
+      "repeat": 2
+    }
+  ],
+  "boundary": "Post-hoc descriptive, no quality/utility values. Completed return includes output retrieval and sandbox close. Complete-block ratios are conditional, never remove failed blocks from primary denominator. Existing preparation-interference caveats remain.",
+  "complete_paired_blocks": [
+    {
+      "program": null,
+      "repeat": 0,
+      "serial_over_share2_first_return": 1.1296207617352174,
+      "serial_over_share2_makespan": 1.6811874366439696,
+      "serial_over_share2_mean_return": 1.4735469206808403
+    },
+    {
+      "program": null,
+      "repeat": 1,
+      "serial_over_share2_first_return": 1.5617961022623363,
+      "serial_over_share2_makespan": 1.6923715665437906,
+      "serial_over_share2_mean_return": 1.6421467124216176
+    },
+    {
+      "program": null,
+      "repeat": 2,
+      "serial_over_share2_first_return": 1.0203792936502805,
+      "serial_over_share2_makespan": 1.6232967236130837,
+      "serial_over_share2_mean_return": 1.3961567514204003
+    }
+  ],
+  "completed": 12,
+  "job": "17017",
+  "plan_sha256": "b8bf8619c61a98db5af35bb2b68f4b9838354c9ccfef166d8dd788ca0b16df7f",
+  "planned": 12,
+  "primary_sha256": "8c985bc78b4056980436589486ffa50c0999a5b5efc91c6bae76d21e4db608a7",
+  "analysis_code_sha256": "2fc0f637276cd43e06dc8748f11f5e67059f4798ad301f29574a45cc55f7e4af"
+}

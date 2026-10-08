@@ -1,0 +1,12 @@
+{
+  "execution": false,
+  "other_screen_hits": 7,
+  "programs_with_clock_condition_and_break": 13,
+  "reachability_verified": false,
+  "reviewed_programs": 20,
+  "reviewer_sha256": "381c1fdf14abe7f37b22307595ec47c327b1d4fd2afbca3edecf991c21854c5d",
+  "source_screen_sha256": "ca99e47af7c258c7e2dbf4c42316bf90bf7854cd513fdaa870326a07e0de5401",
+  "status": "source_review_only",
+  "structures_sha256": "1797cba7a4230634f8f192d55e58d8e06f052e2b9568b5a0318b928c5576e730",
+  "tasks_with_clock_condition_and_break": 6
+}

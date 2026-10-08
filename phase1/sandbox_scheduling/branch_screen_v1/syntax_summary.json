@@ -1,0 +1,35 @@
+{
+  "analyzer_sha256": "82a56936035a2188dacc35c106d26cc3aca1176d0b954248fdbf3c9424cf794d",
+  "candidate_executions": 0,
+  "elapsed_seconds": 64.19889799365774,
+  "gpu_calls": 0,
+  "limits": [
+    "flow-insensitive lexical-name approximation; false positives and negatives possible",
+    "functions not followed; outer-scope variable flows not resolved",
+    "related public sample endpoints, not independent runs or representative production prevalence",
+    "manual review needed before any resource-dependent behavior claim"
+  ],
+  "outcome_fields_accessed": false,
+  "pairs": 80,
+  "program_branch_counts": {
+    "clock": 20,
+    "os.cpu_count": 21,
+    "torch.cuda.is_available": 112,
+    "torch.cuda.mem_get_info": 5
+  },
+  "programs": 158,
+  "sample_sha256": "11b3f7c9c28119b612f332af6b6ddfc6fabd02a4f7694912576e615871ed8039",
+  "source_pins": {
+    "Trace_1.json": "ee50756cd940a1add0e44bcbb04e710233709d81f823111d70846cfe6278afb0",
+    "Trace_2.json": "5a451c60ead8ac85e8eca86502cd92efe3ff1d12949510ccec394ca44dfe4cbd",
+    "Trace_3.json": "8977dd468ed50d22aa173cb0aec208286e9b73142b72568861b60d55b3243ae2"
+  },
+  "status": "syntax_screen_not_runtime_or_novelty",
+  "task_branch_counts": {
+    "clock": 10,
+    "os.cpu_count": 8,
+    "torch.cuda.is_available": 31,
+    "torch.cuda.mem_get_info": 3
+  },
+  "tasks": 40
+}

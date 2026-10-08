@@ -26,7 +26,7 @@ from lifecycle_pilot import sha, read, write
 
 B=Path('/research/d7/spc/yzyang4')
 D=B/'scheduling-entry-20261008-v2'
-R=B/'scheduling-pool-20261008-v1'
+R=B/'scheduling-pool-20261008-v2'
 PY=B/'venvs/aira/bin/python'
 NAME='fixed_pool_trial.py'
 DONOR_PLAN='6b68c0d0cb8526e375b5f5a2e1dec8f3ffaee0b035836b380c318272ba510762'
@@ -66,10 +66,11 @@ def choose(waiting, active, arm, gpu_programs):
  return None
 
 
-def covered_fixture(old, output):
+def covered_fixture(old, output, minimum_counts=None):
  """Preserve old query; swap latest majority rows for first missing-class rows.
 
  Full source is hashed; only public-training rows, excluding every old query ID.
+ Optional minima must cover each fold, not merely the unsplit training file.
  No duplication, relabeling, class-frequency resampling, or quality selection.
  """
  old_data=Path(old['programs'][0]['data'])
@@ -78,6 +79,9 @@ def covered_fixture(old, output):
  with (old_data/'test.csv').open(newline='') as f:query_ids={r['Id'] for r in csv.DictReader(f)}
  source=[p for p in old['public_inputs'] if p['path'].endswith('/tabular-playground-series-dec-2021/prepared/public/train.csv')]
  if len(source)!=1 or fields[-1]!='Cover_Type':raise ValueError('public source')
+ original_ids={r['Id'] for r in rows}
+ minimum_counts={} if minimum_counts is None else {str(k):int(v) for k,v in minimum_counts.items()}
+ if any(v<1 for v in minimum_counts.values()):raise ValueError('positive class minima required')
  digest=hashlib.sha256();counts=Counter();first={};before=Path(source[0]['path']).stat()
  with Path(source[0]['path']).open('rb') as f:
   header=next(f);digest.update(header)
@@ -86,23 +90,31 @@ def covered_fixture(old, output):
    digest.update(line)
    if b'"' in line:raise ValueError('numeric source assumption')
    values=line.decode().rstrip('\r\n').split(',');label=values[-1];counts[label]+=1
-   if label not in first and values[0] not in query_ids:first[label]=(index,dict(zip(fields,values)))
+   picks=first.setdefault(label,[])
+   if len(picks)<minimum_counts.get(label,1) and values[0] not in query_ids|original_ids:
+    picks.append((index,dict(zip(fields,values))))
  after=Path(source[0]['path']).stat()
  if digest.hexdigest()!=source[0]['sha256'] or (before.st_size,before.st_mtime_ns)!=(after.st_size,after.st_mtime_ns):raise ValueError('public source drift')
  present=Counter(r['Cover_Type'] for r in rows);replaced=[]
- for label in sorted(set(counts)-set(present)):
-  if label not in first:raise ValueError('missing class only present in excluded query')
-  position=max(i for i,r in enumerate(rows) if present[r['Cover_Type']]>1)
-  old_label=rows[position]['Cover_Type'];present[old_label]-=1;present[label]+=1
-  source_index,replacement=first[label];rows[position]=replacement
-  replaced.append(dict(position=position,public_source_index=source_index,old_class=old_label,new_class=label))
+ if set(minimum_counts)-set(counts):raise ValueError('requested class absent from public source')
+ minima={label:minimum_counts.get(label,1) for label in counts}
+ for label in sorted(counts):
+  needed=max(0,minima[label]-present[label])
+  if len(first.get(label,[]))<needed:raise ValueError('missing class only present in excluded query or insufficient distinct public rows')
+  for source_index,replacement in first[label][:needed]:
+   available=[i for i,r in enumerate(rows) if present[r['Cover_Type']]>minima[r['Cover_Type']]]
+   if not available:raise ValueError('class minima exceed fixture capacity')
+   position=max(available);old_label=rows[position]['Cover_Type'];present[old_label]-=1;present[label]+=1
+   rows[position]=replacement
+   replaced.append(dict(position=position,public_source_index=source_index,old_class=old_label,new_class=label))
  if set(present)!=set(counts) or len({r['Id'] for r in rows})!=len(rows) or query_ids & {r['Id'] for r in rows}:raise ValueError('fixture coverage/disjointness')
  output.mkdir(mode=0o700,exist_ok=False)
  with (output/'train.csv').open('x',newline='') as f:
   writer=csv.DictWriter(f,fieldnames=fields);writer.writeheader();writer.writerows(rows)
  for name in ('test.csv','sample_submission.csv'):shutil.copyfile(old_data/name,output/name)
- return dict(selection='replace latest majority row with earliest missing-class public row outside query',
+ return dict(selection='replace latest surplus row with earliest distinct public row for prespecified class deficit; exclude all original/query IDs',
   training_rows=len(rows),query_rows=len(query_ids),replacements=replaced,class_counts=dict(present),
+  minimum_counts=minima,
   public_source_sha256=digest.hexdigest(),unchanged_query=True,no_quality_labels_accessed=True,
   files={str(output/p.name):sha(p) for p in output.iterdir()})
 
@@ -128,7 +140,20 @@ def prepare(commit):
   dst=R/name;dst.parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(D/name,dst)
  for name in (NAME,'fixed_pool_readout.py','throughput_readout.py'):
   shutil.copyfile(Path(__file__).with_name(name),R/name)
- fixture=covered_fixture(old,R/'data-dec');write(R/'fixture.json',fixture)
+ # Frozen source keeps its sole class-5 row in every training fold. Each other
+ # class needs >=5 rows to select StratifiedKFold and stay in every training fold.
+ fixture=covered_fixture(old,R/'data-dec',{str(k):(1 if k==5 else 5) for k in range(1,8)})
+ from sklearn.model_selection import StratifiedKFold
+ import numpy as np
+ with (R/'data-dec/train.csv').open(newline='') as f:labels=np.array([int(r['Cover_Type']) for r in csv.DictReader(f)])
+ non5=np.flatnonzero(labels!=5);rare5=np.flatnonzero(labels==5);fold_counts=[]
+ for train,valid in StratifiedKFold(n_splits=5,shuffle=True,random_state=130701).split(non5,labels[non5]):
+  counts=Counter(labels[np.concatenate([non5[train],rare5])].tolist())
+  if set(counts)!=set(range(1,8)):raise ValueError('training fold missing class')
+  fold_counts.append(dict(counts))
+ fixture['fold_coverage_precheck']=dict(folds=5,all_training_classes_present=True,counts=fold_counts,
+  limitation='class-support invariant under stratified seed; no model fit, not proof of full execution')
+ write(R/'fixture.json',fixture)
  programs=copy.deepcopy(old['programs'])
  for p in programs:
   if p['task']=='tabular-playground-series-dec-2021':p['data']=str(R/'data-dec')
@@ -136,13 +161,14 @@ def prepare(commit):
  (R/'empty-data').mkdir(exist_ok=True);(R/'bin').mkdir(exist_ok=True)
  (R/'bin/singularity').write_text(f'#!{PY}\nimport sys\nsys.path.insert(0,{str(R)!r})\nfrom fixed_pool_trial import configure\nconfigure().task_runtime()\n')
  os.chmod(R/'bin/singularity',0o700)
- batch=(D/'run.sbatch').read_text().replace('r14-entry-v2','r14-pool-v1').replace('00:15:00','01:30:00').replace('850s','5350s').replace(str(D),str(R)).replace('entry_recheck.py controller',f'{NAME} controller')
+ batch=(D/'run.sbatch').read_text().replace('r14-entry-v2','r14-pool-v2').replace('00:15:00','01:30:00').replace('850s','5350s').replace(str(D),str(R)).replace('entry_recheck.py controller',f'{NAME} controller')
  (R/'run.sbatch').write_text(batch)
  inputs=old['public_inputs']+[dict(path=k,sha256=v) for k,v in fixture['files'].items()]
  plan=dict(source_commit=commit,donor_plan_sha256=DONOR_PLAN,schedule=schedule(),programs=programs,
   gpus=1,total_cpu=6,node='gpu27',allocation_seconds=CAP,gpu_hours_cap=1.5,planned_executions=36,
   candidate_timeout_seconds=120,worker_hard_seconds=180,seed=130701,public_inputs=inputs,
-  source_changes=False,fixture_change='public class coverage, identical for every arm',
+  source_changes=False,fixture_change='public per-fold class coverage, identical for every arm',
+  previous_closed_batch='16992, 4 attempted/3 complete; not pooled into this trial',
   repeat_unit='same-seed restart, not independent training seed',order='Latin arm order, same rotated FIFO per repeat',
   arms=list(ARMS),gpu_source_hints=[0,4],hints_hand_checked_not_learned=True,
   first_serial_gate='all four complete including both actual GPU fits or stop entire trial',

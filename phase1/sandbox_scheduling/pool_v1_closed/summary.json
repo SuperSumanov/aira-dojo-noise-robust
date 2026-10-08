@@ -1,0 +1,484 @@
+{
+  "allocation_exit": "1:0",
+  "allocation_seconds": 100,
+  "allocation_state": "FAILED",
+  "attempted": 4,
+  "blocks": [
+    {
+      "arm": "serial",
+      "attempted": 4,
+      "block": 0,
+      "candidate_exec_seconds": [
+        8.411334426142275,
+        17.303768754005432,
+        5.358200679533184,
+        5.262149654328823
+      ],
+      "candidate_overlap": {
+        "max_simultaneous": 1,
+        "two_or_more_seconds": 0.0
+      },
+      "completed": 3,
+      "makespan_seconds": 74.10989928245544,
+      "repeat": 0,
+      "telemetry_errors": []
+    }
+  ],
+  "boundary": "Four small fixed development programs, three tasks, same-seed restarts; new class-covered fixture. Failed slots retained. No generalization or E2E claim.",
+  "completed": 3,
+  "fixture_sha256": "aa79c6f4bde13544f59bca4c294b5d71c83773479d1b65f7dacead3bb37b34a4",
+  "job": "16992",
+  "no_live_search": true,
+  "no_quality_scoring": true,
+  "no_semantic_method": true,
+  "output_equivalence": [
+    {
+      "all_nine_present": false,
+      "all_outputs_exactly_equal": null,
+      "available_outputs": 0,
+      "pairs": [],
+      "program": 0
+    },
+    {
+      "all_nine_present": false,
+      "all_outputs_exactly_equal": null,
+      "available_outputs": 1,
+      "pairs": [],
+      "program": 1
+    },
+    {
+      "all_nine_present": false,
+      "all_outputs_exactly_equal": null,
+      "available_outputs": 1,
+      "pairs": [],
+      "program": 4
+    },
+    {
+      "all_nine_present": false,
+      "all_outputs_exactly_equal": null,
+      "available_outputs": 1,
+      "pairs": [],
+      "program": 3
+    }
+  ],
+  "plan_sha256": "5cbc51b2f5adaa28fce5d3f11fd4e0c937f26f15638942d4aa0ac841060f04cf",
+  "planned": 36,
+  "ratios": {
+    "serial_over_one_gpu": {
+      "complete_three_pairs": false,
+      "pairs": [],
+      "summary": {
+        "max": null,
+        "median": null,
+        "min": null,
+        "n": 0,
+        "sample_std": null
+      }
+    },
+    "serial_over_share2": {
+      "complete_three_pairs": false,
+      "pairs": [],
+      "summary": {
+        "max": null,
+        "median": null,
+        "min": null,
+        "n": 0,
+        "sample_std": null
+      }
+    },
+    "share2_over_one_gpu": {
+      "complete_three_pairs": false,
+      "pairs": [],
+      "summary": {
+        "max": null,
+        "median": null,
+        "min": null,
+        "n": 0,
+        "sample_std": null
+      }
+    }
+  },
+  "runs": [
+    {
+      "arm": "serial",
+      "completion": {
+        "arm": "serial",
+        "complete": false,
+        "end": 1791420070.4394317,
+        "error_type": "RuntimeError",
+        "exec_seconds": 8.411334426142275,
+        "exit_code": 1,
+        "index": 0,
+        "program": 0,
+        "repeat": 0,
+        "seed": 130701,
+        "source_commit": "51af15431b6fe63632983b2a6710ddc14cf6f895",
+        "start": 1791420053.5314941,
+        "timed_out": false
+      },
+      "index": 0,
+      "program": 0,
+      "repeat": 0,
+      "seed": 130701,
+      "status": "failed",
+      "supervisor": {
+        "end": 1791420070.5743673,
+        "returncode": 1,
+        "start": 1791420050.196168
+      }
+    },
+    {
+      "arm": "serial",
+      "completion": {
+        "arm": "serial",
+        "complete": true,
+        "end": 1791420095.0828464,
+        "error_type": null,
+        "exec_seconds": 17.303768754005432,
+        "exit_code": 0,
+        "index": 1,
+        "program": 1,
+        "repeat": 0,
+        "seed": 130701,
+        "source_commit": "51af15431b6fe63632983b2a6710ddc14cf6f895",
+        "start": 1791420073.267756,
+        "timed_out": false
+      },
+      "index": 1,
+      "output_sha256": "73843c8b89260d27b53241923968bd0878ccda42c46a6ad313fbe4380217efe1",
+      "program": 1,
+      "repeat": 0,
+      "seed": 130701,
+      "status": "complete",
+      "supervisor": {
+        "end": 1791420095.2580087,
+        "returncode": 0,
+        "start": 1791420070.5794015
+      }
+    },
+    {
+      "arm": "serial",
+      "completion": {
+        "arm": "serial",
+        "complete": true,
+        "end": 1791420110.3757923,
+        "error_type": null,
+        "exec_seconds": 5.358200679533184,
+        "exit_code": 0,
+        "gpu_training": [
+          {
+            "backend": "catboost",
+            "device": "GPU",
+            "rounds": 142
+          }
+        ],
+        "index": 2,
+        "program": 4,
+        "repeat": 0,
+        "seed": 130701,
+        "source_commit": "51af15431b6fe63632983b2a6710ddc14cf6f895",
+        "start": 1791420096.9713054,
+        "timed_out": false
+      },
+      "index": 2,
+      "output_sha256": "5b46963492c93faf50eb87e3ac9561caaf663beb6cf9bdbd0e9d2bb578302758",
+      "program": 4,
+      "repeat": 0,
+      "seed": 130701,
+      "status": "complete",
+      "supervisor": {
+        "end": 1791420110.5316987,
+        "returncode": 0,
+        "start": 1791420095.2658973
+      }
+    },
+    {
+      "arm": "serial",
+      "completion": {
+        "arm": "serial",
+        "complete": true,
+        "end": 1791420124.1811812,
+        "error_type": null,
+        "exec_seconds": 5.262149654328823,
+        "exit_code": 0,
+        "index": 3,
+        "program": 3,
+        "repeat": 0,
+        "seed": 130701,
+        "source_commit": "51af15431b6fe63632983b2a6710ddc14cf6f895",
+        "start": 1791420113.5382025,
+        "timed_out": false
+      },
+      "index": 3,
+      "output_sha256": "990a499aede6177b38b0a84705318687fa612589d578923f653b4ba7b14e7072",
+      "program": 3,
+      "repeat": 0,
+      "seed": 130701,
+      "status": "complete",
+      "supervisor": {
+        "end": 1791420124.2947974,
+        "returncode": 0,
+        "start": 1791420110.5404565
+      }
+    },
+    {
+      "arm": "share2",
+      "index": 4,
+      "program": 0,
+      "repeat": 0,
+      "seed": 130701,
+      "status": "not_started"
+    },
+    {
+      "arm": "share2",
+      "index": 5,
+      "program": 1,
+      "repeat": 0,
+      "seed": 130701,
+      "status": "not_started"
+    },
+    {
+      "arm": "share2",
+      "index": 6,
+      "program": 4,
+      "repeat": 0,
+      "seed": 130701,
+      "status": "not_started"
+    },
+    {
+      "arm": "share2",
+      "index": 7,
+      "program": 3,
+      "repeat": 0,
+      "seed": 130701,
+      "status": "not_started"
+    },
+    {
+      "arm": "one_gpu",
+      "index": 8,
+      "program": 0,
+      "repeat": 0,
+      "seed": 130701,
+      "status": "not_started"
+    },
+    {
+      "arm": "one_gpu",
+      "index": 9,
+      "program": 1,
+      "repeat": 0,
+      "seed": 130701,
+      "status": "not_started"
+    },
+    {
+      "arm": "one_gpu",
+      "index": 10,
+      "program": 4,
+      "repeat": 0,
+      "seed": 130701,
+      "status": "not_started"
+    },
+    {
+      "arm": "one_gpu",
+      "index": 11,
+      "program": 3,
+      "repeat": 0,
+      "seed": 130701,
+      "status": "not_started"
+    },
+    {
+      "arm": "share2",
+      "index": 12,
+      "program": 1,
+      "repeat": 1,
+      "seed": 130701,
+      "status": "not_started"
+    },
+    {
+      "arm": "share2",
+      "index": 13,
+      "program": 4,
+      "repeat": 1,
+      "seed": 130701,
+      "status": "not_started"
+    },
+    {
+      "arm": "share2",
+      "index": 14,
+      "program": 3,
+      "repeat": 1,
+      "seed": 130701,
+      "status": "not_started"
+    },
+    {
+      "arm": "share2",
+      "index": 15,
+      "program": 0,
+      "repeat": 1,
+      "seed": 130701,
+      "status": "not_started"
+    },
+    {
+      "arm": "one_gpu",
+      "index": 16,
+      "program": 1,
+      "repeat": 1,
+      "seed": 130701,
+      "status": "not_started"
+    },
+    {
+      "arm": "one_gpu",
+      "index": 17,
+      "program": 4,
+      "repeat": 1,
+      "seed": 130701,
+      "status": "not_started"
+    },
+    {
+      "arm": "one_gpu",
+      "index": 18,
+      "program": 3,
+      "repeat": 1,
+      "seed": 130701,
+      "status": "not_started"
+    },
+    {
+      "arm": "one_gpu",
+      "index": 19,
+      "program": 0,
+      "repeat": 1,
+      "seed": 130701,
+      "status": "not_started"
+    },
+    {
+      "arm": "serial",
+      "index": 20,
+      "program": 1,
+      "repeat": 1,
+      "seed": 130701,
+      "status": "not_started"
+    },
+    {
+      "arm": "serial",
+      "index": 21,
+      "program": 4,
+      "repeat": 1,
+      "seed": 130701,
+      "status": "not_started"
+    },
+    {
+      "arm": "serial",
+      "index": 22,
+      "program": 3,
+      "repeat": 1,
+      "seed": 130701,
+      "status": "not_started"
+    },
+    {
+      "arm": "serial",
+      "index": 23,
+      "program": 0,
+      "repeat": 1,
+      "seed": 130701,
+      "status": "not_started"
+    },
+    {
+      "arm": "one_gpu",
+      "index": 24,
+      "program": 4,
+      "repeat": 2,
+      "seed": 130701,
+      "status": "not_started"
+    },
+    {
+      "arm": "one_gpu",
+      "index": 25,
+      "program": 3,
+      "repeat": 2,
+      "seed": 130701,
+      "status": "not_started"
+    },
+    {
+      "arm": "one_gpu",
+      "index": 26,
+      "program": 0,
+      "repeat": 2,
+      "seed": 130701,
+      "status": "not_started"
+    },
+    {
+      "arm": "one_gpu",
+      "index": 27,
+      "program": 1,
+      "repeat": 2,
+      "seed": 130701,
+      "status": "not_started"
+    },
+    {
+      "arm": "serial",
+      "index": 28,
+      "program": 4,
+      "repeat": 2,
+      "seed": 130701,
+      "status": "not_started"
+    },
+    {
+      "arm": "serial",
+      "index": 29,
+      "program": 3,
+      "repeat": 2,
+      "seed": 130701,
+      "status": "not_started"
+    },
+    {
+      "arm": "serial",
+      "index": 30,
+      "program": 0,
+      "repeat": 2,
+      "seed": 130701,
+      "status": "not_started"
+    },
+    {
+      "arm": "serial",
+      "index": 31,
+      "program": 1,
+      "repeat": 2,
+      "seed": 130701,
+      "status": "not_started"
+    },
+    {
+      "arm": "share2",
+      "index": 32,
+      "program": 4,
+      "repeat": 2,
+      "seed": 130701,
+      "status": "not_started"
+    },
+    {
+      "arm": "share2",
+      "index": 33,
+      "program": 3,
+      "repeat": 2,
+      "seed": 130701,
+      "status": "not_started"
+    },
+    {
+      "arm": "share2",
+      "index": 34,
+      "program": 0,
+      "repeat": 2,
+      "seed": 130701,
+      "status": "not_started"
+    },
+    {
+      "arm": "share2",
+      "index": 35,
+      "program": 1,
+      "repeat": 2,
+      "seed": 130701,
+      "status": "not_started"
+    }
+  ],
+  "source_commit": "51af15431b6fe63632983b2a6710ddc14cf6f895",
+  "whole_pool_gpu_hours": 0.027777777777777776,
+  "within_cap": true
+}

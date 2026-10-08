@@ -1,74 +1,49 @@
 # 当前短交接
-更新：2026-10-08香港。用户要求约07:51–13:51完整六小时继续研究；16989复验1成功/1失败，仍无系统收益结论。
+更新：2026-10-08 08:52香港附近最后观察。旧全文完整保留于Git 51af15431b6fe63632983b2a6710ddc14cf6f895；不要把旧状态恢复成现场。
 
-## 10/8最新状态（覆盖下方历史现场）
-- fresh fetch我方8ec5f723040031f66e9096a6c495387b122af53d、学长dfff0efb9daf1d4a63c74492f138c19c1fd8440e未变。当前goal记录六小时研究窗口，不自动扩展GPU/API预算。学长新消息担忧SchedMate；重新核§3–4，宽语义调度已覆盖，不凭设定区别认定创新。
-- 唯一新提交16987（原批准2程序各一次，gpu27/1×3090/15分钟≤0.25GPUh）已FAILED1:0；两worker尝试/候选真正开始0/完成0；sacct分配37秒。新记录器读取冻结旧ExecutionResult不存在的timeout_phase，在prelude返回时AttributeError退出。是我方包装器接口错误，不是候选或调度负结果，不再用余额重跑。
-- 原16987根 scheduling-entry-20261007-v1及原件不改。修记录器后本地17/远端14测试通过，实际旧ExecutionResult纯CPU验签通过。独立16989已FAILED1:0、43单GPU秒、2真执行/1完成：CatB实际GPU59轮并产出512行文件；XGB因小样本缺源码所需稀有类别RuntimeError，不是GPU不兼容。root /research/d7/spc/yzyang4/scheduling-entry-20261008-v2；source69bc9b88bde61cc021bdd354e8922fa74bd59237，plan SHA6b68c0d0cb8526e375b5f5a2e1dec8f3ffaee0b035836b380c318272ba510762，closed SHA8002aec68145137863971df2d7ee2bb33f49676b5c3c1556b4a0c2bfe3515396。旧批次不重开；下一步先公开训练类别覆盖核查。
-- 用户08:12前后明确“批准所有操作不用问”，允许自主合理推进、避免重复索批；保护集/底座/API安全边界不解除。本窗口先控制新增试验≤3单3090 GPUh（含失败与资格），无付费API。尚未启动新的共享对照；任何新输入修正须另批冻结、全部臂同输入，不改旧结果。
-- 研究优先实测需求/低成本强参照，防止再围绕最新失败堆harness；AgentCgroup也已覆盖未知突发/高恢复代价/agent资源声明，不能当新颖宽主张。不读封存集/质量结果，无API/底座更新，不碰12535或学长分支。
+## 方向、目标、授权
+- 活跃checkout：C:/Research/New/my_project/MLEvolve/_codex_tmp/publication-feedback-20261001。fetch→CURRENT_DIRECTION→ROUTE_DECISIONS→本文件；旧aira-dojo-codex-20260813有用户dirty，不整体覆盖。
+- 唯一活跃R14：MLE沙箱资源调度资格/朴素强参照。SchedMate已覆盖宽语义调度；暂无重要独特、强基线跨任务同预算成立的新方法。不扩旧R1–R13配方。
+- 用户要求本轮约07:51–13:51香港完整六小时在会话内研究；tool goal active，尚未满六小时，不提前完成。用户最新明确“批准所有操作、不用问”；自主合理推进，但不解除保护集、底座、凭据和学长分支边界。
+- 本窗口新增GPU自限≤3 GPUh（含资格/失败/整池空闲）；无API/agent底座训练。新三策略小试验计划1×3090/6CPU、最多90分钟≤1.5GPUh；候选源码不改，不以旧批次余额补跑。
+- 不读first-960/Target-300/Target-522、D_val、官方test；不恢复HCE/多保真/Probe/TD/score-channel/K≥1。不操作旧12535 Held作业，不改学长分支。
 
-## 10/7最新状态（覆盖下方10/6历史现场）
-- 20:30已快进推送并ls-remote核我方phase1-value-critic=8ec5f723040031f66e9096a6c495387b122af53d，学长分支仍dfff0efb9daf1d4a63c74492f138c19c1fd8440e。14文件凭据/敏感文件名命中0，无raw候选/预测/标签。新入口复验根/research/d7/spc/yzyang4/scheduling-entry-20261007-v1，source commit同8ec5f723；原worker哈希固定b30eed3f…，只加argv隔离与cell级诊断，未改原16846。正做镜像与输入预检，尚未提交。本地14测试通过；Linux入口/固定两目标测试5通过。
-- 已独立Python/PowerShell核36槽、2完成/4失败/30未启动、主比较0、362秒=0.10055555555555555GPUh；未知等价性为null而非false。summary SHAa0850cf0736a9ae639ea3f46ab8833a70f29d9cb0d2f67f81bfdad92f90a1464；runs.csv SHAcbf633bd7858b58d9cd268857f5b56f6cf1a959c37bfc7d179e74107e91fc3d7，目录sandbox_scheduling/throughput_readout_v1。无原始预测/标签/候选导出。
-- entry_contract.py只做默认脚本入口修正规则，纯CPU复现-f导致SystemExit2、隔离argv后通过；未部署到已闭合16846/未改变实验原件。本地12测试通过，Linux入口+原pilot9通过；仍不能称原GPU程序已修复。用户**已明确批准**两份原失败GPU程序各1次、单卡15分钟/≤0.25GPUh入口复验；新root/新提交，不复用旧预算，不承诺加速。20:24 fresh fetch未见方向分支新提交。
-- 16846实际gpu27运行362秒（sacct），首串行块后按门停止；36原槽/6尝试/2完成/30未启动。0/4为SystemExit:2，静态证实三份GOME树程序parse_args()仅读--debug、未接受Jupyter的-f；入口不适配是直接线索，尚非完整隔离重现。2号在初始化阶段ValueError且未保留prelude错误正文，原因未定；5号候选执行超时123.6434514215216秒（配置120秒），1/3号CPU成功。Warmup真实CUDA/namespace通过，不等于三份树训练通过。未补样本、修改运行协议或重试，不称调度负效果。
-- 14:35提交唯一新作业16846，根/research/d7/spc/yzyang4/scheduling-throughput-20261007-v1；gpu27单3090/6CPU/90分钟，含warmup/资格/失败≤1.5GPUh。36槽（三任务六源码×串行/双并发×三原样重启），公开训练小样本＋既有合法开发输入，无评分/API/底座训练。旧12535不动。首串行块任一资格失败即不扩大，不补样本/重复。
-- 执行源码commit e51cf6f01ffd32e8beaa42f5423e0b2fed0779ea，脚本SHAb30eed3feffccedb676f2c6aa6035295c07a780d3377c2068a5db8f3ee6c75ea，plan SHAaccaceffe7e847b71a66c6cdf910d1e3506ffbbefc5dec5e79231380b2618a9b；原镜像SHA801f646b…全量核验通过，Linux新测试6/6通过。提交前测时/分母修正已封存，旧准备草稿在preparation-draft，无任何候选执行后改协议。Windows全目录测试5项因临时目录权限错误，不能称全目录通过。
-- 11:23 fetch核HEAD及myfork/phase1-value-critic为3ec278858b691c8084d4abc12539133344224525，dojo-reproduce仍dfff0efb9daf1d4a63c74492f138c19c1fd8440e，两个分支自凌晨无新提交。学长调研仓库d82dcd845e30e9771750510028d38a6d1d979c43是凌晨最后观察，非本次重查。没改学长分支。
-- 11:23:29香港SSH恢复，squeue仅旧12535 critic_zero3_resume PENDING(JobHeldUser)，未操作。gpu27/gpu28占用未重新核，不沿用05:44现场。Slurm RealMemory=1的历史配置异常不能当物理RAM。研究盘授权4TB至2027-08-30，不是剩余配额。
-- 新批次**已明确批准**：6固定开发程序、至少2任务含真GPU计算，单执行/双并发×3原样重复=36次，1×3090最多90分钟，含资格/失败总上限1.5GPUh；无API/底座训练。拟用3个公开Dec2021 GPU树程序与Spooky两程序/Petfinder一程序；独立小型公开训练输入、原源码/原镜像，两臂只改并发数。依赖/隔离须过门，不延长16624。
-- 用原sample/trace pins只读检查并作AST白名单算式验证，候选执行0。158程序中5有mem_get_info，4个相关程序确认数值响应：Tweet低于8GiB batch32→16；Herbarium4/8GiB→48/64，PowerShell独立一致；未测真实共置或分数。DetShare/Pollux已覆盖资源耦合宽概念，仍是R14等价性检查，不改主线/不重开R13。
-- 16370控制器为9波×2worker/波间barrier，与2执行卡相同；没有第三个已就绪候选证据。345 ready=321 result+19拒绝+5缺回执（非有效评分）；LLM ready136/result113、已记exec1509.2269575512037秒、返回gen4642.254533703439秒。旧22.72%窗口不能推出可兑现节省。证据sandbox_scheduling/qualification_notes_20261007.json；不读评分。
-- 合法回放资格还不足：旧Petfinder四程序结果只读复核，唯一rc0是CPU LightGBM；另三神经程序是接口/文件错误，不当新失败，不修代码冒充原样调度。Tweet/Quest所需预训练依赖在四个定向缓存位置未找到，不等于所有位置/镜像都不存在；未下载。继续检查固定公开样本中无需外部权重的原程序。
-- 后续补查cache/hf[/hub]、cache/huggingface[/hub]仍无对应模型目录。静态初筛4个无外部权重torch程序实际是用torch检测CUDA的XGBoost，不是神经网络；Dec2021另有2个CatBoost、数据文件元数据已在mle-bench-data/prepared/public定位，但尚非新dev split、未读数据行/执行/冻结清单。不是CPU-only结论。后续live A0/A1须相同rolling补位，不能只赢旧波间barrier。
-- 凌晨06:01 SSH超时已被11:23成功连接覆盖。现已补做未完成的只读API检查：Dec2021源4244cbc2…的fit含early_stopping_rounds，另一个XGBoost源c7bc94f0…的fit无此字面关键字；二者构造器为别名/间接调用，本次只检关键字形状，未证明兼容。2个CatBoost也只是形状检查。旧preflight无包版本字段，镜像SHA仍801f646b…；未执行/升级/修程序。详见qualification_notes_20261007.json追加复查节。
-- 一次性automation于11:22触发，本轮完成复查，不新建跟进、不重复运行。已读最近两turn的直接用户消息，仅睡眠继续请求与本心跳，未收到新1.5GPUh批次的批准；不是后台实验。g0-r5未动。
-- 06:03发布完成并ls-remote独立确认：我方phase1-value-critic为3ec278858b691c8084d4abc12539133344224525，5文件、175新增/6删除；学长分支仍dfff0efb9daf1d4a63c74492f138c19c1fd8440e。源pins、算式、JSON、短文档行数与diff检查通过；staged filename敏感命中0/凭据形状0，无候选源码/预测/标签导出。提交时Git附属sh报Windows对象权限警告但commit/push/远端SHA均成功，不声称hook通过。现在仅这份post-push状态待提交。下方16:36/旧状态均是10/6历史。
+## Git及远端
+- 本地HEAD 51af15431b6fe63632983b2a6710ddc14cf6f895（本轮源码冻结）；前一修复69bc9b88bde61cc021bdd354e8922fa74bd59237。尚未push这两提交。
+- 本轮fresh fetch最后确认myfork/phase1-value-critic=8ec5f723040031f66e9096a6c495387b122af53d；dojo-reproduce=dfff0efb9daf1d4a63c74492f138c19c1fd8440e；学长autoresearch HEAD=d82dcd845e30e9771750510028d38a6d1d979c43，无新更新。
+- SSH linux5/yzyang4；Python /research/d7/spc/yzyang4/venvs/aira/bin/python；SLURM_CONF=/opt1/slurm/gpu-slurm.conf。原MLE镜像只投已兼容gpu27/gpu28 RTX3090，不投projgpu39。
+- 研究盘/research/d7/spc/yzyang4总授权4TB至2027-08-30，不等于空闲容量。镜像SHA801f646bed3cae6e74e10d793e71b0086658d4303d54552333c58125ddf9beda。
+- Windows SSH内层引号会丢失；远端格式参数不用管道符，复杂逻辑上传脚本。Git附属sh可能报NtCreateDirectoryObject警告，不能据此声称hook通过；commit本身成功要另核SHA。
 
-## 当前优先级与已做
-- 重要纠正：完整调用链确认INTERPRETER_MAP使用JupyterInterpreterFactory，MLEBenchTask.step_task在factory模式主动close；旧16370也在finally关闭解释器。不能把底层run()保留kernel说成默认生产泄漏。真正待测机会是run级GPU槽位贯穿生成期保留。
-- 限定批次根/research/d7/spc/yzyang4/scheduling-lifecycle-20261006-v1；16624单gpu27，同原镜像/64MiB张量、seed130601；keep_10s/close_now各3。plan SHAcbece7bc34c10a99e9d65e39ccbb3623d20d047894b94616fa35052e434cda86；脚本SHAcdcfbed92ef58f42cd95a13b5cfa21092beeec193a62af5e393ddc1ed1515101。实际0.04416666666666667GPUh；未重试，源运行文件未改。
-- 六次fixture SHA全同；keep窗口额外372MiB（3次一致）vsclose窗口0；最终6次都恢复4MiB基线且无GPU client。立即close到观察无client中位1.2214048644527793秒，含teardown/query的上界。首条冷启动保留，窗口10/9样本不作等时AUC；不是生产泄漏、需求预测或调度收益。Python与独立PowerShell复算一致；sandbox_scheduling/lifecycle_readout_v1；源回执SHA0943cc3889d940aca5261090952075aa7320b87b8ac77001805ec77f1dc7c724。
-- 已发布的16370 mechanism-cost二次时间分析：12条LLM续跑、2任务，返回生成调用4642.254533703439秒=77.37090889505731 task-slot分钟；总时长可用9条的生成比例中位0.7335919914285632，另3条缺失不补。独立PowerShell复算一致。证据sandbox_scheduling/closed_timing_v1；不是实测GPU空闲率、可省时间或全池收益，生成服务另占2GPU。
-- 又用native+sacct独立核全部12条：返回生成/实际step分配时长中位0.6296993658295438（含启动清理，另一个实测分母）；Pizza/Spooky各6条中位0.7302769590187579/0.6003422932016333。18 worker各1GPU与2GPU生成服务隔离；全池4GPU×5107秒=5.674444444444444GPUh，上述窗口占全池0.2272495855543097。allocation_audit.json SHA0c0930bdcf0defe89a9603d050366637addcfa61a0907ca9a60a7dc0d155241c；复算一致，CANCELLED不自动标程序失败。
-- 16370生成服务只解析聚合计数，log SHA5a9fd51078e02cc8b0496d5ce8efdc58c74a97c8d03c79a1fc55f0acc7584182、scan0；354条统计中Running至多2/Waiting均0/KV最高2.9%。这些不是全时间等间隔遥测，KV也不是计算占用，不能断言生成GPU空闲或增加并发必然获益；未导出原始日志/提示词。
-- 固定公开样本AST资源语法盘点：40任务80父子对158去重程序，0解析失败；30对资源设置清单变化、13对提示flags变化，112含cuda availability条件，31有CPU数量查询，7有all_cpu字面旋钮。证据sandbox_scheduling/census_summary.json；不等同动态需求变化/峰值或生产分布，不执行程序不读评分。
-- 最低强参照必须新增“仅执行阶段借还整卡”再比较固定共享、廉价准入、语义。若简单解除run级绑卡已解释收益，不硬做LLM调度。
-- 已只读取学长autoresearch_project@d82dcd845e30e9771750510028d38a6d1d979c43（10/6 12:19香港）shared_sandbox三篇及proposal，scan0。修正版是未知生成程序、忙碌池、难获隔离profile下的语义/经验辅助准入，而不是直接共享写workspace或任意MIG切分。
-- 原仓库C:/Research/plan/autoresearch_project停在旧本地提交且有用户untracked；未checkout/修改它们。完整fetch挂起后只停本轮确定PID；所需确切提交已单独成功取入活跃checkout对象库，不新增分支、不改学长仓库。
-- 新直接近邻SchedMate（arxiv2510.03334）已覆盖源码语义、历史检索、免部分profile与干扰撤销；2024poster还有版本差异跟踪。宽概念不能作创新，完整对应缺口未证实。ElastiCo/AgentCgroup/AIRA2已补核。详见CURRENT_DIRECTION和ROUTE_DECISIONS R14。
-- 新补Cortex全文§2阶段资源池/借用、SpecBox§3–5沙箱预热/预取、Agentic CPU-GPU Scheduling§3–5 profile/三选/重测；不能称阶段解绑定或LLM调度首创。优先级仍是A1普通借还→固定共享→廉价准入→才问语义，未知一次性生成程序的累计测量成本是待验证窄问题。
-- 可检验窄点为：无匹配历史、无统一进度/恢复接口、晚发资源峰值的生成程序，语义是否真能超过廉价准入/检索基线。不能因设定不同就说创新已成立。
-- 代码核到学长LocalGpuPoolLauncher为run级固定整卡FIFO；当前ExecutionResult/journal没有完整资源时间序列。两个最近开发根仅做文件名元数据检查未发现遥测文件（nvidia.icd是假命中），没有读候选/分数/凭据，不据此给出空闲率。
-- 已实现phase1/sandbox_scheduling/observe.py及test_observe.py、README：独立只读观测，不改src/或学长分支。只采显式同用户PID身份和可选设备；未知不补零，身份变化停止记录器，不改变候选。候选范围恒标记不完整，GPU数据是整卡非候选。
-- 工程验证：整目录本地44测试、43通过/1项Linux跳过；原型observe远端23/23、census10/10、pilot3/3另通过。原型单测不查询GPU；真实GPU/容器仅16624六次fixture。测试不能冒充系统收益。
-- 源码SHA94290bfc020825415acc454622c8e2d6c2da593075f2f86a5c5877a26400ed91；测试SHA5a1b24ee8773a9add005e0c313115aafcbb824ec3b4d0803e46cde1fac7a6e92。回执sandbox_scheduling/validation_windows.json和validation_linux.json；基底e5e83b6e，新文件未提交，哈希绑定实际测试内容。
-- 上传初次被审查拦下后未绕过；确认linux5为yzyang4、官方研究盘及临时目录均同用户700权限，再由安全复审批准原复制。后续同目录小分析器/限定批次正常获批。收尾26文件scan0，运行源SHA未变；没有原始候选/模型/标签/凭据导出。长期教训已加到旧checkout的EXPERIMENT_LESSONS。
+## 本轮已经结束：不重开
+- 16987：原批准两程序入口复验，FAILED1:0，37单GPU秒；2 worker尝试/候选开始0。记录器错读冻结ExecutionResult不存在的timeout_phase；是我方接口错误，不是候选失败。
+- 16987 root /research/d7/spc/yzyang4/scheduling-entry-20261007-v1；plan SHA96d7e9e7ed7f7dcf9d85eea1ca98edca5f00ab6a45edd58b1c76425e5a8d2495；closed SHAcfc0627e6e5ddab1304bcd1c3ad8d6d4dc5bd9cc84949b5a3400827c31d9fc8e。
+- 16989：独立限定v2，FAILED1:0，43单GPU秒；2原程序真执行/1完成。CatB GPU59轮、512行输出；XGB RuntimeError为“所需稀有类别不在映射中”。记录器已修、不是CUDA不兼容。无调度/质量效果结论。
+- 16989 root /research/d7/spc/yzyang4/scheduling-entry-20261008-v2；source69bc9b88；plan SHA6b68c0d0cb8526e375b5f5a2e1dec8f3ffaee0b035836b380c318272ba510762；closed SHA8002aec68145137863971df2d7ee2bb33f49676b5c3c1556b4a0c2bfe3515396；runs SHA8ba2741b0ab8db5c499db1487b1a7fbcd638e73030b2fccb30d578ac6d0c85c0。
+- 公开train只读核3,600,000行：类别5全文件仅1行（索引1381253），原4096训练样本漏掉它；其他类计数与source SHA7829557bb65fcc4400ebb5a653fd68e226f15b1dbc9b664a45d7ec2d353c797a已由check_dec_fixture.py打印。不读隐藏标签，不将输入契约错误当模型/调度反证。
 
-## 推荐实施边界
-1. 完成独立v0后，下一缺口是可信kernel/子进程或专属cgroup归属及arrival/start/end/release事件；不能只测worker/server低占用当候选空闲。Jupyter与FreshContainer接入点已记README，不为易观测暗换后端。
-2. README已列A0 run级整卡/A1执行级借还/B固定双并发/C保守准入；先排除简单机制，再讨论D语义。新批次已获1.5GPUh预算，清单/资格正在冻结，不能延长16624。保持CPU预算/镜像/代码/写隔离；不恢复关闭的旧恢复逻辑。
-3. 只做事前准入、等待和完成回收。初期不抢占、不把SIGSTOP当显存释放、不依赖3090 MIG；MPS和cgroup实际权限另核。
-4. 先从同环境已知可执行、合法开发程序确定固定清单；CPU/神经/混合覆盖，不能只用最近两个CPU文本任务自证GPU收益。资格失败和排除有完整分母，不按增益挑样本。
-5. 第一关是系统净收益，第二关是语义超越强参照，最后才固定search的live E2E。成本计整个保留资源池+调度器+失败；吞吐不能因偏爱便宜候选代替质量。只在本批资格通过后提交已批准矩阵，不扩大预算。
-6. 继续按用户AGENTS规则先给设计/diff预览获准再落生产代码。本轮仅新增旁路原型/测试和简短使用说明，未另写长汇报。遵照此前可同步产出授权，已快进推送我方研究分支；不触学长分支。
+- 16992新池v1已FAILED1:0/100单GPU秒，36槽/4尝试/3完成/32未启动，0对照。XGB在第一个fit报Invalid classes；补全类别仍未满足每折覆盖：另一稀有类仅1行，KFold训练折缺类。是开发输入预检不足，不是共享无效。CatB GPU142轮完成；Spooky/Petfinder完成。readout-v1已写一次，不重开。
+- 16992 root /research/d7/spc/yzyang4/scheduling-pool-20261008-v1；source51af1543；plan SHA5cbc51b2f5adaa28fce5d3f11fd4e0c937f26f15638942d4aa0ac841060f04cf；closed SHAcd090ba3ab7514eca18c3d4e16525066d41c49b32df7f732931b4cd60d9ba7d9；runs SHA532f52b0600c967347a05ffab6d2be57257a3f9c5bf6046f6f1881af0fe9f0b7。
 
-## 当前远端/Git状态（最后观察，不自动当未来实时事实）
-- 16:27香港队列只见旧12535 critic_zero3_resume PENDING(JobHeldUser)，未操作。16624已完成且全部step退出，当前没有我方新实验在跑。
-- 16:35–16:36推送成功：我方phase1-value-critic为4790620cd91ec41819cf2a3c6dad01869ce08b4f，基底e5e83b6e；未强推/建新分支。学长dojo-reproduce在提交前fresh fetch仍dfff0efb9daf1d4a63c74492f138c19c1fd8440e，未动。
-- 26文件已发布（源码、结构回执、方向），staged filename敏感匹配0/凭据形状0；工作树仅这份post-push状态更新未提交。旧checkout经验文件只加本轮长期教训，未收进公开提交。
-- 活跃checkout C:/Research/New/my_project/MLEvolve/_codex_tmp/publication-feedback-20261001；旧aira-dojo-codex-20260813的用户dirty不动。
+## 正在准备的新试验：恢复时先查，不重复prepare/submit
+- 新root /research/d7/spc/yzyang4/scheduling-pool-20261008-v2；尚未prepare/submit。保持4份原源码，公开输入非5类至少5行，唯一类5按原程序加入每个训练折；CPU先核所有训练折均含7类，不复制/重标/使用query。旧16992及入口批次均不改。
+- 矩阵：原programs 0(XGB)/1(Spooky TFIDF)/4(CatB)/3(Petfinder LGB)，共3任务；serial/share2/one_gpu ×3原样重启=36槽，另1次warmup，所有开销含于单3090/6CPU/90分钟。不是跨训练seed。
+- 新GPU输入只替换末端超出最低覆盖的类行，补最早独立公开训练行；排除旧train/query IDs、query不变；两GPU程序及所有臂共用新输入，旧文件不改。属于新开发小样本系统试验，不称全MLE-bench。
+- 三臂Latin次序，每重复同一旋转FIFO；one_gpu仅手工核验的CPU/GPU代码提示，最多1GPU程序+另1CPU程序。无LLM/学习调度器，不能把朴素基线叫方法创新。
+- 首serial四程序须全完成且两GPU fit有回执，否则整批停止。后续共置失败保留分母、不重试；只有进程释放/隔离/遥测安全时才继续既定其他臂，不以失败臂缺失时间作加速分母。
+- 预注册读数：每臂3块完整、完整makespan/全分配成本、3重复离散度、候选重叠、GPU训练和输出差异；探索门为median改善≥5%且无未解释输出漂移。需分启动并发与真实GPU重叠，不读质量分数，不推live E2E。
+- 本地相关30测试通过；远端新增8测试通过。新记录器还在实际冻结旧ExecutionResult上纯CPU验证；不把mock当GPU成功。当前源码fixed_pool_trial.py/readout.py及tests，原throughput_pilot.py未改（SHAb30eed3f…）。
 
-## 旧限定批次已闭合，不重跑
-- 16582 COMPLETED/0:0；原16槽、4事前安全排除、12执行、0有效评分、0完整比较，结论inconclusive_no_valid_comparisons。分配2004单3090秒=0.5566666666666666 GPUh。
-- case1四条XGB.fit early_stopping_rounds接口错误；case2四条字典multi_class错误；case3四条代码执行阶段超时。exec约310秒/worker约440秒，不能称严格300秒；外部评分调用0。预检遗漏由我方承担。
-- v1/16580执行前取消、分配0；原case0四槽因已知Pizza结果代理排除不替换。v2单卡90分钟、≤1.5GPUh已在原授权内结束；未采用待批150分钟方案，迟到回复也不能扩大闭合批次。
-- 根/research/d7/spc/yzyang4/natural-opportunity-20261006-v2；执行7def7a86e4ba01354a924ebaefc353d6ee4fdcd2；plan SHA210dede263d211177806ce501fb2cbe725861cbe71a8b4c7289f67e49f8d134b；summary SHA2cd9ccd869f109a96e521569b273fa403b2fc97ed1dcf2acf574143dfebc9c60；runs SHAbc6010254980b47128b30d9680409db8ae3f08a684ee728d76b36fd8053ae1a1。
-- 主/次分析与兼容覆盖已公开于087b68ec66297beaf480dd23fd5e7187c272fb4e，随后e5e83b6e记录发布状态；无有效比较≠没有改善机会。readout-v1不可覆盖。不同Trace不证明独立run，原样重启不等于跨训练seed。
-- 16560数值导出曾被审查拦下且仍待单独授权，禁止借新方向绕过。其他历史完整记录在Git e5e83b6e版交接与各结果目录；R11/R12/R13停止配方不重开。
+## 研究核验与边界
+- SchedMate§3–4：代码/历史/日志语义与干扰撤销已覆盖；无历史fallback profile、无progress跳过撤销是适用条件，不是我方优势已证。
+- 新补AgentCgroup v3（工具级CPU/RAM及双向资源意图）、MARS系统v2 2604.26963（生成GPU/工具CPU联动准入）、Cortex（阶段资源池）。不要混淆这个MARS与R1经验论文。
+- Regression Language Models for Code已有代码预测资源；VeritasEst已有CPU动态分析估计GPU显存；ATLAS已有提交时非clairvoyant预测/调度benchmark；“廉价资源预测”本身不新。
+- DetShare/Pollux已有资源—执行/训练配置耦合；Substrate-Aware AI Agents 2609.05232已有事前资源约束提示；异步评价耗时偏差及按父选择频率修正也有旧工作。只换到MLE不足以宣称原创。
+- 固定公开158程序/40任务/80相关父子对，source-only计时筛查20命中；13程序/6任务含clock条件与break，7未见break。含debug路径，未证可达性/真实训练效应/生产占比。
+- 该screen root /research/d7/spc/yzyang4/scheduling-branch-screen-20261008-v1；summary.json、branches.json、review-v1/structures.json/summary.json。review结构SHA1797cba7a4230634f8f192d55e58d8e06f052e2b9568b5a0318b928c5576e730；必须逐例核，不能把语法命中称改善。
+- 旧4份batch随free-VRAM变化仅纯算式；旧16370全池22.72%生成预留窗口不是节省、无ready backlog证据；生产factory本就close。16624只证生命周期原语，不是生产泄漏或调度加速。
 
-## 安全与恢复
-- SSH linux5；Python /research/d7/spc/yzyang4/venvs/aira/bin/python；SLURM_CONF=/opt1/slurm/gpu-slurm.conf。任务镜像gpu27/gpu28 RTX3090，不投projgpu39。研究盘4TB至2027-08-30。
-- 不读first-960/Target-300/Target-522、D_val/官方test；不训练agent底座；不恢复旧HCE/多保真/Probe/K≥1。密钥只在远端，不能回显/下载raw凭据。
-- 每次恢复fetch方向入口，分清已读提案、已实现、真实运行与收益；不从旧聊天自动恢复已闭合预算。
+## 历史与收尾
+- 16846已封闭：36槽/6尝试/2完成/4失败/30未启动，362单GPU秒，0共置比较；证据sandbox_scheduling/throughput_readout_v1。不得改分母或用新输入改写它。
+- R11/R12/R13与16582失败界限见ROUTE_DECISIONS；16560数值导出仍有旧审查边界，不能借新任务绕过。
+- 暂未创建新的自动化；本轮是在会话内持续研究。结束前核实际时钟和goal，不能声称六小时完成。新结果用轻量交接+结构回执；用户没要求不新写长报告。

@@ -1,0 +1,1198 @@
+[
+  {
+    "branches": [
+      {
+        "ancestors": [
+          {
+            "kind": "FunctionDef",
+            "line": 342
+          }
+        ],
+        "assignments": [
+          "debug_time",
+          "estimated_full_time",
+          "scale_factor"
+        ],
+        "break_lines": [],
+        "calls": [
+          "print",
+          "time.time"
+        ],
+        "condition": {
+          "children": [
+            {
+              "children": [],
+              "kind": "And"
+            },
+            {
+              "name": "DEBUG"
+            },
+            {
+              "children": [
+                {
+                  "name": "debug_timer_start"
+                },
+                {
+                  "children": [],
+                  "kind": "IsNot"
+                },
+                {
+                  "literal": "NoneType"
+                }
+              ],
+              "kind": "Compare"
+            }
+          ],
+          "kind": "BoolOp"
+        },
+        "kind": "If",
+        "line": 469,
+        "return_lines": []
+      }
+    ],
+    "source_sha256": "402ea7bc3423aaffe3ac1be7f643210960e7a2f49fe1bab52cddd986738b9509",
+    "task": "detecting-insults-in-social-commentary"
+  },
+  {
+    "branches": [
+      {
+        "ancestors": [
+          {
+            "kind": "FunctionDef",
+            "line": 508
+          }
+        ],
+        "assignments": [
+          "debug_time",
+          "estimated_full_time",
+          "scale_factor"
+        ],
+        "break_lines": [],
+        "calls": [
+          "print",
+          "time.time"
+        ],
+        "condition": {
+          "children": [
+            {
+              "children": [],
+              "kind": "And"
+            },
+            {
+              "name": "DEBUG"
+            },
+            {
+              "children": [
+                {
+                  "name": "debug_timer_start"
+                },
+                {
+                  "children": [],
+                  "kind": "IsNot"
+                },
+                {
+                  "literal": "NoneType"
+                }
+              ],
+              "kind": "Compare"
+            }
+          ],
+          "kind": "BoolOp"
+        },
+        "kind": "If",
+        "line": 635,
+        "return_lines": []
+      }
+    ],
+    "source_sha256": "f5f19bfa4461eb3435ea35690e4c6ad1e09f3661476ae20720d265783ba29266",
+    "task": "detecting-insults-in-social-commentary"
+  },
+  {
+    "branches": [
+      {
+        "ancestors": [
+          {
+            "condition": {
+              "children": [
+                {
+                  "children": [],
+                  "kind": "And"
+                },
+                {
+                  "name": "debug"
+                },
+                {
+                  "children": [
+                    {
+                      "name": "start_time_for_budget"
+                    },
+                    {
+                      "children": [],
+                      "kind": "IsNot"
+                    },
+                    {
+                      "literal": "NoneType"
+                    }
+                  ],
+                  "kind": "Compare"
+                }
+              ],
+              "kind": "BoolOp"
+            },
+            "kind": "If",
+            "line": 721
+          },
+          {
+            "kind": "For",
+            "line": 719
+          },
+          {
+            "kind": "For",
+            "line": 718
+          },
+          {
+            "kind": "For",
+            "line": 717
+          },
+          {
+            "kind": "FunctionDef",
+            "line": 692
+          }
+        ],
+        "assignments": [
+          "budget_exceeded"
+        ],
+        "break_lines": [
+          727
+        ],
+        "calls": [
+          "print"
+        ],
+        "condition": {
+          "children": [
+            {
+              "name": "elapsed"
+            },
+            {
+              "children": [],
+              "kind": "Gt"
+            },
+            {
+              "name": "DEBUG_SWEEP_TIME_BUDGET"
+            }
+          ],
+          "kind": "Compare"
+        },
+        "kind": "If",
+        "line": 723,
+        "return_lines": []
+      }
+    ],
+    "source_sha256": "3f2e893b21d32686475b3f9ee53bdaba349527a47543241af11ce4660ee4fabb",
+    "task": "hubmap-kidney-segmentation"
+  },
+  {
+    "branches": [
+      {
+        "ancestors": [
+          {
+            "kind": "For",
+            "line": 411
+          },
+          {
+            "kind": "For",
+            "line": 404
+          },
+          {
+            "kind": "FunctionDef",
+            "line": 150
+          }
+        ],
+        "assignments": [
+          "stop_due_wall"
+        ],
+        "break_lines": [
+          417
+        ],
+        "calls": [
+          "print"
+        ],
+        "condition": {
+          "children": [
+            {
+              "name": "elapsed"
+            },
+            {
+              "children": [],
+              "kind": "Gt"
+            },
+            {
+              "name": "WALL_CLOCK_LIMIT_SEC"
+            }
+          ],
+          "kind": "Compare"
+        },
+        "kind": "If",
+        "line": 414,
+        "return_lines": []
+      }
+    ],
+    "source_sha256": "150c5bc069e7d4822f60feaa0b10054009c2902fc557e9a3bbd096b1c9a2df7a",
+    "task": "inaturalist-2019-fgvc6"
+  },
+  {
+    "branches": [
+      {
+        "ancestors": [
+          {
+            "kind": "For",
+            "line": 429
+          },
+          {
+            "kind": "For",
+            "line": 422
+          },
+          {
+            "kind": "FunctionDef",
+            "line": 165
+          }
+        ],
+        "assignments": [
+          "stop_due_wall"
+        ],
+        "break_lines": [
+          435
+        ],
+        "calls": [
+          "print"
+        ],
+        "condition": {
+          "children": [
+            {
+              "name": "elapsed"
+            },
+            {
+              "children": [],
+              "kind": "Gt"
+            },
+            {
+              "name": "WALL_CLOCK_LIMIT_SEC"
+            }
+          ],
+          "kind": "Compare"
+        },
+        "kind": "If",
+        "line": 432,
+        "return_lines": []
+      }
+    ],
+    "source_sha256": "5233b13a61e7fdc529f2cc5cacb6ccea45359f61d1360c2f1ba8d5b6a5fc4963",
+    "task": "inaturalist-2019-fgvc6"
+  },
+  {
+    "branches": [
+      {
+        "ancestors": [
+          {
+            "kind": "For",
+            "line": 483
+          },
+          {
+            "kind": "FunctionDef",
+            "line": 262
+          }
+        ],
+        "assignments": [],
+        "break_lines": [
+          486
+        ],
+        "calls": [
+          "print"
+        ],
+        "condition": {
+          "children": [
+            {
+              "args": [],
+              "call": "elapsed"
+            },
+            {
+              "children": [],
+              "kind": "Gt"
+            },
+            {
+              "name": "TIME_BUDGET_SECONDS"
+            }
+          ],
+          "kind": "Compare"
+        },
+        "kind": "If",
+        "line": 484,
+        "return_lines": []
+      },
+      {
+        "ancestors": [
+          {
+            "kind": "For",
+            "line": 483
+          },
+          {
+            "kind": "FunctionDef",
+            "line": 262
+          }
+        ],
+        "assignments": [],
+        "break_lines": [
+          498
+        ],
+        "calls": [
+          "print"
+        ],
+        "condition": {
+          "children": [
+            {
+              "args": [],
+              "call": "elapsed"
+            },
+            {
+              "children": [],
+              "kind": "Gt"
+            },
+            {
+              "name": "TIME_BUDGET_SECONDS"
+            }
+          ],
+          "kind": "Compare"
+        },
+        "kind": "If",
+        "line": 496,
+        "return_lines": []
+      }
+    ],
+    "source_sha256": "1e212fbf67371af5a34cfeddfbb7e4faeb0edb91879b7517f6bfa461f45bc8da",
+    "task": "iwildcam-2020-fgvc7"
+  },
+  {
+    "branches": [
+      {
+        "ancestors": [
+          {
+            "kind": "For",
+            "line": 566
+          },
+          {
+            "kind": "FunctionDef",
+            "line": 271
+          }
+        ],
+        "assignments": [],
+        "break_lines": [
+          569
+        ],
+        "calls": [
+          "print"
+        ],
+        "condition": {
+          "children": [
+            {
+              "args": [],
+              "call": "elapsed"
+            },
+            {
+              "children": [],
+              "kind": "Gt"
+            },
+            {
+              "name": "TIME_BUDGET_SECONDS"
+            }
+          ],
+          "kind": "Compare"
+        },
+        "kind": "If",
+        "line": 567,
+        "return_lines": []
+      },
+      {
+        "ancestors": [
+          {
+            "kind": "For",
+            "line": 566
+          },
+          {
+            "kind": "FunctionDef",
+            "line": 271
+          }
+        ],
+        "assignments": [],
+        "break_lines": [
+          581
+        ],
+        "calls": [
+          "print"
+        ],
+        "condition": {
+          "children": [
+            {
+              "args": [],
+              "call": "elapsed"
+            },
+            {
+              "children": [],
+              "kind": "Gt"
+            },
+            {
+              "name": "TIME_BUDGET_SECONDS"
+            }
+          ],
+          "kind": "Compare"
+        },
+        "kind": "If",
+        "line": 579,
+        "return_lines": []
+      }
+    ],
+    "source_sha256": "fd3cc801ac8935511dc9615b2b19e8156158cabcc225116878ce597a9cee3a99",
+    "task": "iwildcam-2020-fgvc7"
+  },
+  {
+    "branches": [
+      {
+        "ancestors": [
+          {
+            "condition": {
+              "children": [
+                {
+                  "name": "time_budget"
+                },
+                {
+                  "children": [],
+                  "kind": "IsNot"
+                },
+                {
+                  "literal": "NoneType"
+                }
+              ],
+              "kind": "Compare"
+            },
+            "kind": "If",
+            "line": 561
+          },
+          {
+            "kind": "For",
+            "line": 540
+          },
+          {
+            "kind": "FunctionDef",
+            "line": 524
+          }
+        ],
+        "assignments": [],
+        "break_lines": [
+          565
+        ],
+        "calls": [
+          "print"
+        ],
+        "condition": {
+          "children": [
+            {
+              "name": "elapsed"
+            },
+            {
+              "children": [],
+              "kind": "Gt"
+            },
+            {
+              "name": "time_budget"
+            }
+          ],
+          "kind": "Compare"
+        },
+        "kind": "If",
+        "line": 563,
+        "return_lines": []
+      }
+    ],
+    "source_sha256": "b32e6eae76a717e3f98fa55c108c688916297590402e6ca4927a855be56de51a",
+    "task": "seti-breakthrough-listen"
+  },
+  {
+    "branches": [
+      {
+        "ancestors": [
+          {
+            "condition": {
+              "children": [
+                {
+                  "name": "budget_remaining"
+                },
+                {
+                  "children": [],
+                  "kind": "IsNot"
+                },
+                {
+                  "literal": "NoneType"
+                }
+              ],
+              "kind": "Compare"
+            },
+            "kind": "If",
+            "line": 641
+          },
+          {
+            "kind": "For",
+            "line": 617
+          },
+          {
+            "kind": "FunctionDef",
+            "line": 604
+          }
+        ],
+        "assignments": [],
+        "break_lines": [
+          645
+        ],
+        "calls": [
+          "print"
+        ],
+        "condition": {
+          "children": [
+            {
+              "name": "elapsed_total"
+            },
+            {
+              "children": [],
+              "kind": "Gt"
+            },
+            {
+              "name": "budget_remaining"
+            }
+          ],
+          "kind": "Compare"
+        },
+        "kind": "If",
+        "line": 643,
+        "return_lines": []
+      }
+    ],
+    "source_sha256": "0fed55abc53c0bebe34c5ce43998669f36dc9a7e9313bddc0dc8f4eb055556c8",
+    "task": "seti-breakthrough-listen"
+  },
+  {
+    "branches": [
+      {
+        "ancestors": [
+          {
+            "kind": "For",
+            "line": 865
+          },
+          {
+            "kind": "FunctionDef",
+            "line": 701
+          }
+        ],
+        "assignments": [],
+        "break_lines": [
+          869
+        ],
+        "calls": [
+          "print"
+        ],
+        "condition": {
+          "children": [
+            {
+              "name": "elapsed_minutes"
+            },
+            {
+              "children": [],
+              "kind": "Gt"
+            },
+            {
+              "name": "MAX_WALLCLOCK_MINUTES"
+            }
+          ],
+          "kind": "Compare"
+        },
+        "kind": "If",
+        "line": 867,
+        "return_lines": []
+      }
+    ],
+    "source_sha256": "10b10a29f63c6890474bac80a7b2137dc076b03fcf25c4861c20add6f28f40de",
+    "task": "herbarium-2022-fgvc9"
+  },
+  {
+    "branches": [
+      {
+        "ancestors": [
+          {
+            "kind": "For",
+            "line": 954
+          },
+          {
+            "kind": "FunctionDef",
+            "line": 790
+          }
+        ],
+        "assignments": [],
+        "break_lines": [
+          958
+        ],
+        "calls": [
+          "print"
+        ],
+        "condition": {
+          "children": [
+            {
+              "name": "elapsed_minutes"
+            },
+            {
+              "children": [],
+              "kind": "Gt"
+            },
+            {
+              "name": "MAX_WALLCLOCK_MINUTES"
+            }
+          ],
+          "kind": "Compare"
+        },
+        "kind": "If",
+        "line": 956,
+        "return_lines": []
+      }
+    ],
+    "source_sha256": "a0a70d5c5b148162b4d4be10500a683697565f44d09d1b35bf33ec21a530baff",
+    "task": "herbarium-2022-fgvc9"
+  },
+  {
+    "branches": [
+      {
+        "ancestors": [
+          {
+            "condition": {
+              "name": "DEBUG"
+            },
+            "kind": "If",
+            "line": 2039
+          },
+          {
+            "kind": "FunctionDef",
+            "line": 1436
+          }
+        ],
+        "assignments": [],
+        "break_lines": [],
+        "calls": [],
+        "condition": {
+          "children": [
+            {
+              "children": [],
+              "kind": "And"
+            },
+            {
+              "children": [
+                {
+                  "name": "debug_time"
+                },
+                {
+                  "children": [],
+                  "kind": "IsNot"
+                },
+                {
+                  "literal": "NoneType"
+                }
+              ],
+              "kind": "Compare"
+            },
+            {
+              "children": [
+                {
+                  "name": "debug_time"
+                },
+                {
+                  "children": [],
+                  "kind": "Gt"
+                },
+                {
+                  "literal": 0
+                }
+              ],
+              "kind": "Compare"
+            }
+          ],
+          "kind": "BoolOp"
+        },
+        "kind": "IfExp",
+        "line": 2040,
+        "return_lines": []
+      }
+    ],
+    "source_sha256": "0156d3cd0a7f81a6d8f50403523d759af246281d90ba2fa0288c895f700f9ff8",
+    "task": "mlsp-2013-birds"
+  },
+  {
+    "branches": [
+      {
+        "ancestors": [
+          {
+            "kind": "FunctionDef",
+            "line": 160
+          }
+        ],
+        "assignments": [],
+        "break_lines": [],
+        "calls": [],
+        "condition": {
+          "children": [
+            {
+              "name": "debug_time"
+            },
+            {
+              "children": [],
+              "kind": "Gt"
+            },
+            {
+              "literal": 0
+            }
+          ],
+          "kind": "Compare"
+        },
+        "kind": "IfExp",
+        "line": 468,
+        "return_lines": []
+      }
+    ],
+    "source_sha256": "1369a7ec834bd58d3cf5f1502de58df9783384d7230f9200247941a8f830d522",
+    "task": "herbarium-2020-fgvc7"
+  },
+  {
+    "branches": [
+      {
+        "ancestors": [
+          {
+            "kind": "FunctionDef",
+            "line": 170
+          }
+        ],
+        "assignments": [],
+        "break_lines": [],
+        "calls": [],
+        "condition": {
+          "children": [
+            {
+              "children": [],
+              "kind": "Not"
+            },
+            {
+              "name": "DEBUG"
+            }
+          ],
+          "kind": "UnaryOp"
+        },
+        "kind": "IfExp",
+        "line": 471,
+        "return_lines": []
+      },
+      {
+        "ancestors": [
+          {
+            "kind": "FunctionDef",
+            "line": 170
+          }
+        ],
+        "assignments": [],
+        "break_lines": [],
+        "calls": [],
+        "condition": {
+          "children": [
+            {
+              "name": "debug_time"
+            },
+            {
+              "children": [],
+              "kind": "Gt"
+            },
+            {
+              "literal": 0
+            }
+          ],
+          "kind": "Compare"
+        },
+        "kind": "IfExp",
+        "line": 471,
+        "return_lines": []
+      }
+    ],
+    "source_sha256": "7d1b93e1d49531f479fb6a15a2bd42ea717ffbefc030118f5cd545d62e150d7b",
+    "task": "herbarium-2020-fgvc7"
+  },
+  {
+    "branches": [
+      {
+        "ancestors": [
+          {
+            "kind": "For",
+            "line": 640
+          },
+          {
+            "kind": "FunctionDef",
+            "line": 368
+          }
+        ],
+        "assignments": [],
+        "break_lines": [
+          685
+        ],
+        "calls": [
+          "print"
+        ],
+        "condition": {
+          "children": [
+            {
+              "name": "elapsed"
+            },
+            {
+              "children": [],
+              "kind": "Gt"
+            },
+            {
+              "name": "watchdog_limit_s"
+            }
+          ],
+          "kind": "Compare"
+        },
+        "kind": "If",
+        "line": 683,
+        "return_lines": []
+      }
+    ],
+    "source_sha256": "c9121e265b7a8e61f56bb390b5931dd8df54943033aea88aeb2386fe7bcc1733",
+    "task": "histopathologic-cancer-detection"
+  },
+  {
+    "branches": [
+      {
+        "ancestors": [
+          {
+            "kind": "For",
+            "line": 321
+          },
+          {
+            "kind": "FunctionDef",
+            "line": 305
+          }
+        ],
+        "assignments": [],
+        "break_lines": [
+          352
+        ],
+        "calls": [
+          "print"
+        ],
+        "condition": {
+          "children": [
+            {
+              "name": "elapsed_global"
+            },
+            {
+              "children": [],
+              "kind": "Gt"
+            },
+            {
+              "literal": 3300
+            }
+          ],
+          "kind": "Compare"
+        },
+        "kind": "If",
+        "line": 350,
+        "return_lines": []
+      }
+    ],
+    "source_sha256": "82b7dfd67ba8f28d8b4fc091a91a51a90c8542de267395352782150e961574c0",
+    "task": "histopathologic-cancer-detection"
+  },
+  {
+    "branches": [
+      {
+        "ancestors": [
+          {
+            "kind": "For",
+            "line": 459
+          },
+          {
+            "kind": "FunctionDef",
+            "line": 342
+          }
+        ],
+        "assignments": [],
+        "break_lines": [
+          534
+        ],
+        "calls": [
+          "now_str",
+          "print"
+        ],
+        "condition": {
+          "children": [
+            {
+              "name": "elapsed_after_epoch"
+            },
+            {
+              "children": [],
+              "kind": "Gt"
+            },
+            {
+              "name": "runtime_limit"
+            }
+          ],
+          "kind": "Compare"
+        },
+        "kind": "If",
+        "line": 532,
+        "return_lines": []
+      },
+      {
+        "ancestors": [
+          {
+            "kind": "For",
+            "line": 467
+          },
+          {
+            "kind": "For",
+            "line": 459
+          },
+          {
+            "kind": "FunctionDef",
+            "line": 342
+          }
+        ],
+        "assignments": [],
+        "break_lines": [
+          477
+        ],
+        "calls": [
+          "now_str",
+          "print"
+        ],
+        "condition": {
+          "children": [
+            {
+              "name": "elapsed"
+            },
+            {
+              "children": [],
+              "kind": "Gt"
+            },
+            {
+              "name": "runtime_limit"
+            }
+          ],
+          "kind": "Compare"
+        },
+        "kind": "If",
+        "line": 475,
+        "return_lines": []
+      }
+    ],
+    "source_sha256": "aa2f8ce2767b94936775fb3d01e38e89a447d590e3ecd45dea9866b1fdd9c41d",
+    "task": "inaturalist-2019-fgvc6"
+  },
+  {
+    "branches": [
+      {
+        "ancestors": [
+          {
+            "kind": "For",
+            "line": 546
+          },
+          {
+            "kind": "FunctionDef",
+            "line": 389
+          }
+        ],
+        "assignments": [],
+        "break_lines": [
+          621
+        ],
+        "calls": [
+          "now_str",
+          "print"
+        ],
+        "condition": {
+          "children": [
+            {
+              "name": "elapsed_after_epoch"
+            },
+            {
+              "children": [],
+              "kind": "Gt"
+            },
+            {
+              "name": "runtime_limit"
+            }
+          ],
+          "kind": "Compare"
+        },
+        "kind": "If",
+        "line": 619,
+        "return_lines": []
+      },
+      {
+        "ancestors": [
+          {
+            "kind": "For",
+            "line": 554
+          },
+          {
+            "kind": "For",
+            "line": 546
+          },
+          {
+            "kind": "FunctionDef",
+            "line": 389
+          }
+        ],
+        "assignments": [],
+        "break_lines": [
+          564
+        ],
+        "calls": [
+          "now_str",
+          "print"
+        ],
+        "condition": {
+          "children": [
+            {
+              "name": "elapsed"
+            },
+            {
+              "children": [],
+              "kind": "Gt"
+            },
+            {
+              "name": "runtime_limit"
+            }
+          ],
+          "kind": "Compare"
+        },
+        "kind": "If",
+        "line": 562,
+        "return_lines": []
+      }
+    ],
+    "source_sha256": "721fa8d10f7067ad7c80bae7871e5a465b6d5f835561c3eb0abdd87f929fe215",
+    "task": "inaturalist-2019-fgvc6"
+  },
+  {
+    "branches": [
+      {
+        "ancestors": [
+          {
+            "kind": "FunctionDef",
+            "line": 179
+          }
+        ],
+        "assignments": [
+          "debug_time",
+          "estimated_time",
+          "frac",
+          "iter_ratio"
+        ],
+        "break_lines": [],
+        "calls": [
+          "float",
+          "print",
+          "time.time"
+        ],
+        "condition": {
+          "children": [
+            {
+              "children": [],
+              "kind": "And"
+            },
+            {
+              "name": "DEBUG"
+            },
+            {
+              "children": [
+                {
+                  "name": "debug_timer_start"
+                },
+                {
+                  "children": [],
+                  "kind": "IsNot"
+                },
+                {
+                  "literal": "NoneType"
+                }
+              ],
+              "kind": "Compare"
+            }
+          ],
+          "kind": "BoolOp"
+        },
+        "kind": "If",
+        "line": 375,
+        "return_lines": []
+      }
+    ],
+    "source_sha256": "d1123a48e40cb433283a3892b3ebec4088f650af271f0c2996294bd49cf9b857",
+    "task": "spooky-author-identification"
+  },
+  {
+    "branches": [
+      {
+        "ancestors": [
+          {
+            "kind": "FunctionDef",
+            "line": 211
+          }
+        ],
+        "assignments": [
+          "debug_time",
+          "epoch_ratio",
+          "estimated_time",
+          "frac"
+        ],
+        "break_lines": [],
+        "calls": [
+          "float",
+          "print",
+          "time.time"
+        ],
+        "condition": {
+          "children": [
+            {
+              "children": [],
+              "kind": "And"
+            },
+            {
+              "name": "DEBUG"
+            },
+            {
+              "children": [
+                {
+                  "name": "debug_timer_start"
+                },
+                {
+                  "children": [],
+                  "kind": "IsNot"
+                },
+                {
+                  "literal": "NoneType"
+                }
+              ],
+              "kind": "Compare"
+            }
+          ],
+          "kind": "BoolOp"
+        },
+        "kind": "If",
+        "line": 385,
+        "return_lines": []
+      }
+    ],
+    "source_sha256": "4edeffb5ab7ee64c1b7bd705ccd7bd10bcc2571f96c5b0bbeecaa25c45b5587d",
+    "task": "spooky-author-identification"
+  }
+]

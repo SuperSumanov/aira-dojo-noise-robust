@@ -70,6 +70,19 @@ class PoolTests(unittest.TestCase):
    (old/'test.csv').write_text('Id,x\n10,0\n')
    plan=dict(programs=[dict(data=str(old))],public_inputs=[dict(path=source.as_posix(),sha256=p.sha(source))])
    with self.assertRaisesRegex(ValueError,'excluded query'):p.covered_fixture(plan,root/'new')
+ def test_minimum_applies_to_present_rare_class_and_uses_distinct_rows(self):
+  with tempfile.TemporaryDirectory(dir=Path(__file__).parent) as temp:
+   root=Path(temp);old=root/'old';old.mkdir()
+   source=root/'tabular-playground-series-dec-2021/prepared/public/train.csv';source.parent.mkdir(parents=True)
+   source.write_text('Id,x,Cover_Type\n1,0,1\n2,0,1\n3,0,1\n4,0,1\n5,0,1\n6,0,1\n7,0,2\n8,0,2\n9,0,2\n10,0,2\n11,0,2\n')
+   (old/'train.csv').write_text('Id,x,Cover_Type\n1,0,1\n2,0,1\n3,0,1\n4,0,1\n5,0,1\n6,0,1\n7,0,2\n')
+   (old/'test.csv').write_text('Id,x\n8,0\n');(old/'sample_submission.csv').write_text('Id,Cover_Type\n8,0\n')
+   plan=dict(programs=[dict(data=str(old))],public_inputs=[dict(path=source.as_posix(),sha256=p.sha(source))])
+   result=p.covered_fixture(plan,root/'new',{'1':3,'2':4})
+   self.assertEqual(result['class_counts'],{'1':3,'2':4});self.assertEqual(len(result['replacements']),3)
+   with (root/'new/train.csv').open(newline='') as f:ids=[r['Id'] for r in csv.DictReader(f)]
+   self.assertEqual(len(ids),len(set(ids)));self.assertNotIn('8',ids)
+   self.assertTrue({'7','9','10','11'}<=set(ids))
 
 
 if __name__=='__main__':unittest.main()

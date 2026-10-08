@@ -110,12 +110,6 @@ class RunFilters:
     execution_timeout: tuple[int, int] | None = None
     date: tuple[datetime.date, datetime.date] | None = None
 
-    def is_active(self) -> bool:
-        return any(
-            value is not None
-            for value in (self.client, self.base_url, self.tasks, self.hardware, self.time_limit, self.execution_timeout, self.date)
-        )
-
     def matches(self, run: dict[str, Any]) -> bool:
         if self.tasks is not None and run.get("task") not in self.tasks:
             return False
@@ -172,18 +166,17 @@ def aggregate(
         manifest = groupdata.read_manifest(batch_dir)
         runs = manifest.get("runs")
         kept: set[str] | None = None
-        if filters.is_active():
-            if runs is None:
-                raise ValueError(
-                    f"{batch_dir} has no per-run metadata in its manifest; "
-                    "rebuild the batches with the current build_batch_groups before filtering"
-                )
-            kept = {run["run_dir"] for run in runs if filters.matches(run)}
-            runs_kept += len(kept)
-            runs_dropped += len(runs) - len(kept)
-            if not kept:
-                skipped_batches.append(manifest.get("batch", batch_dir.name))
-                continue
+        if runs is None:
+            raise ValueError(
+                f"{batch_dir} has no per-run metadata in its manifest; "
+                "rebuild the batches with the current build_batch_groups before filtering"
+            )
+        kept = {run["run_dir"] for run in runs if filters.matches(run)}
+        runs_kept += len(kept)
+        runs_dropped += len(runs) - len(kept)
+        if not kept:
+            skipped_batches.append(manifest.get("batch", batch_dir.name))
+            continue
         selected.append((batch_dir, manifest, runs, kept))
     if not selected:
         raise ValueError(f"No runs matched the filter (dropped {runs_dropped}): {skipped_batches}")
@@ -215,7 +208,7 @@ def aggregate(
             normalize_packages.add(bool(manifest.get("normalize_packages", True)))
             batch_samples = 0
             for sample in groupdata.iter_samples(batch_dir):
-                if kept is not None and sample["run_dir"] not in kept:
+                if sample["run_dir"] not in kept:
                     continue
                 groupdata.write_jsonl(samples_file, sample)
                 batch_samples += 1
@@ -228,20 +221,16 @@ def aggregate(
                 if sample["episode_id"] not in episodes:
                     episodes.add(sample["episode_id"])
                     resolved_episodes += sample["episode_terminal_step"] is not None
-            if runs is None:
-                client_endpoints.update(tuple(pair) for pair in manifest.get("client_endpoints") or [])
-            else:
-                for run in runs:
-                    if kept is None or run["run_dir"] in kept:
-                        client_endpoints.update(tuple(pair) for pair in run.get("client_endpoints") or [])
+            for run in runs:
+                if kept is None or run["run_dir"] in kept:
+                    client_endpoints.update(tuple(pair) for pair in run.get("client_endpoints") or [])
             batch_groups = 0
             for group in groupdata.read_groups(batch_dir):
-                if kept is not None:
-                    members = [member for member in group["members"] if member["run_dir"] in kept]
-                    if not members:
-                        groups_dropped += 1
-                        continue
-                    group = {**group, "size": len(members), "members": members}
+                members = [member for member in group["members"] if member["run_dir"] in kept]
+                if not members:
+                    groups_dropped += 1
+                    continue
+                group = {**group, "size": len(members), "members": members}
                 if group["group_id"] in seen_group_ids:
                     raise ValueError(
                         f"Group {group['group_id']} appears in more than one batch "

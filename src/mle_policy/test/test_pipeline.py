@@ -145,10 +145,13 @@ def test_aggregate_then_split_then_views(tmp_path, node_builder, run_writer):
 
     grpo = to_grpo(merged, merged, verbose=False)
     assert grpo["groups"] == 1
-    (row,) = read_jsonl(merged / "grpo.jsonl")
-    assert [response["completion"] for response in row["responses"]] == ["good", "bad"]
-    assert row["responses"][0]["reward"] > row["responses"][1]["reward"]
-    assert [turn["role"] for turn in row["responses"][0]["messages"]] == ["assistant"]
+    assert grpo["rows"] == 2  # one row per operation, and each run has one draft
+    rows = {row["completion"]: row for row in read_jsonl(merged / "grpo.jsonl")}
+    assert set(rows) == {"good", "bad"}
+    # the reward is the episode reward, the advantage is group relative
+    assert rows["good"]["reward"] == pytest.approx((0.9 - 0.5) / 0.3)
+    assert rows["bad"]["reward"] == pytest.approx(0.0)
+    assert rows["good"]["advantage"] > 0 > rows["bad"]["advantage"]
 
 
 def test_aggregate_filter_matches_base_url_and_client_pair(tmp_path, node_builder, run_writer):
@@ -190,7 +193,9 @@ def test_aggregate_filter_matches_base_url_and_client_pair(tmp_path, node_builde
 
     # base_url and client must match the same pair: deepseek endpoint + kimi is empty.
     with pytest.raises(ValueError, match="No runs matched the filter"):
-        aggregate(inputs, tmp_path / "empty", filters=RunFilters(client=("kimi",), base_url=("deepseek",)), verbose=False)
+        aggregate(
+            inputs, tmp_path / "empty", filters=RunFilters(client=("kimi",), base_url=("deepseek",)), verbose=False
+        )
 
     # '+' combines several models across vendors into one whitelist.
     combined = tmp_path / "combined"
@@ -263,12 +268,14 @@ def test_aggregate_filter_prunes_group_members_of_dropped_runs(tmp_path, node_bu
     assert {sample["run_dir"] for sample in groupdata.iter_samples(merged)} == {"run-a"}
 
 
-def test_grpo_keeps_the_complete_episode_and_uses_earliest_group_prompt(
-    tmp_path, node_builder, run_writer
-):
-    for run, root_completion, debug_prompt, debug_completion in (
-        ("run-a", "root-a", "debug prompt a", "debug-a"),
-        ("run-b", "root-b", "debug prompt b", "debug-b"),
+def test_grpo_flattens_the_whole_episode_into_one_row_per_operation(tmp_path, node_builder, run_writer):
+    # Two seeds answer the same draft prompt and are both debugged into a
+    # runnable solution.  Every call of both episodes becomes its own training
+    # row -- exactly the rows SFT would write for the winning episode -- and all
+    # the rows of one episode carry that episode's advantage.
+    for run, root_completion, debug_completion, score in (
+        ("run-a", "root-a", "debug-a", 0.6),
+        ("run-b", "root-b", "debug-b", 0.55),
     ):
         run_writer(
             tmp_path / "batch",
@@ -277,9 +284,9 @@ def test_grpo_keeps_the_complete_episode_and_uses_earliest_group_prompt(
                 node_builder(1, calls=[("draft", "shared root", root_completion)], buggy=True),
                 node_builder(
                     2,
-                    calls=[("debug", debug_prompt, debug_completion)],
+                    calls=[("debug", f"debug prompt {run}", debug_completion)],
                     buggy=False,
-                    score=0.6 if run == "run-a" else 0.55,
+                    score=score,
                     parents=(1,),
                 ),
             ],
@@ -288,34 +295,138 @@ def test_grpo_keeps_the_complete_episode_and_uses_earliest_group_prompt(
     assign_dataset_splits(tmp_path / "out", val_fraction=0.0, verbose=False)
 
     summary = to_grpo(tmp_path / "out", tmp_path / "out", verbose=False)
-    assert summary["groups"] == 1
-    (row,) = read_jsonl(tmp_path / "out" / "grpo.jsonl")
-    assert row["prompt"][0]["content"] == "shared root"
-    by_root = {response["sample_id"]: response for response in row["responses"]}
-    assert all(len(response["messages"]) == 3 for response in by_root.values())
-    assert {turn["content"] for response in by_root.values() for turn in response["messages"]} >= {
-        "root-a",
-        "debug-a",
-        "root-b",
-        "debug-b",
-    }
+    assert (summary["groups"], summary["rows"]) == (1, 4)  # 2 episodes x (draft + debug)
+    rows = read_jsonl(tmp_path / "out" / "grpo.jsonl")
+    by_completion = {row["completion"]: row for row in rows}
+    assert set(by_completion) == {"root-a", "debug-a", "root-b", "debug-b"}
+
+    # the episode reward is shared by the whole debug chain
+    assert by_completion["root-a"]["reward"] == pytest.approx((0.6 - 0.5) / 0.3)
+    assert by_completion["debug-a"]["reward"] == by_completion["root-a"]["reward"]
+    assert by_completion["root-b"]["reward"] == pytest.approx((0.55 - 0.5) / 0.3)
+    assert by_completion["debug-b"]["reward"] == by_completion["root-b"]["reward"]
+
+    # ... and so is the advantage, which is group relative
+    assert by_completion["root-a"]["advantage"] == by_completion["debug-a"]["advantage"]
+    assert by_completion["root-b"]["advantage"] == by_completion["debug-b"]["advantage"]
+    assert by_completion["root-a"]["advantage"] > 0 > by_completion["root-b"]["advantage"]
+
+    # the root operation of every episode asks the group's earliest root prompt;
+    # the debug operation keeps the prompt it really saw
+    for row in rows:
+        assert [turn["role"] for turn in row["prompt"]] == ["system", "user"]
+    assert by_completion["root-a"]["prompt"][1]["content"] == "shared root"
+    assert by_completion["root-b"]["prompt"][1]["content"] == "shared root"
+    assert by_completion["debug-a"]["prompt"][1]["content"] == "debug prompt run-a"
+    assert by_completion["debug-b"]["prompt"][1]["content"] == "debug prompt run-b"
+
+
+def test_grpo_rewards_every_member_and_puts_the_unresolved_one_last(tmp_path, node_builder, run_writer):
+    # run-a ends in a runnable solution, run-b's debug chain never gets there,
+    # run-c is a third seed that also runs.  All three are members of the group
+    # and all of their operations are training rows; the episode that never ran
+    # gets a reward below the worst runnable one of its own group.
+    run_writer(
+        tmp_path / "batch",
+        "run-a",
+        [
+            node_builder(1, calls=[("draft", "shared", "proposal-a")], buggy=True),
+            node_builder(2, calls=[("debug", "fix a", "fixed-a")], buggy=False, score=0.9, parents=(1,)),
+        ],
+    )
+    run_writer(
+        tmp_path / "batch",
+        "run-b",
+        [
+            node_builder(1, calls=[("draft", "shared", "proposal-b")], buggy=True),
+            node_builder(2, calls=[("debug", "fix b", "still broken")], buggy=True, parents=(1,)),
+        ],
+    )
+    run_writer(
+        tmp_path / "batch",
+        "run-c",
+        [node_builder(1, calls=[("draft", "shared", "proposal-c")], buggy=False, score=0.6)],
+    )
+    build_batch(tmp_path / "batch", tmp_path / "out", verbose=False)
+    assign_dataset_splits(tmp_path / "out", val_fraction=0.0, verbose=False)
+
+    summary = to_grpo(tmp_path / "out", tmp_path / "out", verbose=False)
+    assert (summary["groups"], summary["rows"]) == (1, 5)
+    rows = {row["completion"]: row for row in read_jsonl(tmp_path / "out" / "grpo.jsonl")}
+    assert set(rows) == {"proposal-a", "fixed-a", "proposal-b", "still broken", "proposal-c"}
+
+    assert rows["proposal-a"]["reward"] == pytest.approx((0.9 - 0.5) / 0.3)
+    assert rows["proposal-c"]["reward"] == pytest.approx((0.6 - 0.5) / 0.3)
+    # the unresolved episode has no score, so it sits one gold span below the
+    # worst runnable member of its own group
+    assert rows["proposal-b"]["reward"] == pytest.approx(rows["proposal-c"]["reward"] - 1.0)
+    assert rows["proposal-b"]["episode_resolved"] is False
+
+    # with those three rewards the sample std is 1, so the advantages are 1 / 0 / -1
+    assert rows["proposal-a"]["advantage"] == pytest.approx(1.0)
+    assert rows["proposal-c"]["advantage"] == pytest.approx(0.0)
+    assert rows["proposal-b"]["advantage"] == pytest.approx(-1.0)
+    # the debug operation of the same episode shares its advantage
+    assert rows["fixed-a"]["advantage"] == pytest.approx(1.0)
+    assert rows["still broken"]["advantage"] == pytest.approx(-1.0)
+
+
+def test_grpo_skips_groups_without_contrast(tmp_path, node_builder, run_writer):
+    # One group with a single member, one where nothing ever ran: neither can
+    # express a group-relative advantage, so no row is written.
+    run_writer(
+        tmp_path / "batch",
+        "run-alone",
+        [node_builder(1, calls=[("draft", "lonely", "ok")], buggy=False, score=0.6)],
+    )
+    run_writer(
+        tmp_path / "batch",
+        "run-failed-a",
+        [node_builder(1, calls=[("draft", "all broken", "bad")], buggy=True)],
+    )
+    run_writer(
+        tmp_path / "batch",
+        "run-failed-b",
+        [node_builder(1, calls=[("draft", "all broken", "worse")], buggy=True)],
+    )
+    build_batch(tmp_path / "batch", tmp_path / "out", verbose=False)
+    assign_dataset_splits(tmp_path / "out", val_fraction=0.0, verbose=False)
+
+    summary = to_grpo(tmp_path / "out", tmp_path / "out", verbose=False)
+    assert summary["groups"] == 0
+    assert read_jsonl(tmp_path / "out" / "grpo.jsonl") == []
 
 
 def test_views_use_unresolved_episode_as_earliest_prompt(tmp_path, node_builder, run_writer):
     # The earliest episode is unresolved, but its prompt is still the group's
-    # initial input and must be used for the two later resolved episodes.  The
-    # SFT row drops the search memory from it; GRPO keeps the prompt as recorded
-    # and is where the "earliest prompt" rule stays observable.
+    # initial input and must be used for the two later resolved episodes.  SFT
+    # and GRPO normalise it the same way, so the two views ask the same question.
     run_writer(
         tmp_path / "batch",
         "run-earliest",
-        [node_builder(0, calls=[("draft", "shared root\n# PREVIOUSLY EXPLORED IMPROVEMENT IDEAS\nold\n# DATA OVERVIEW\nsame", "bad")], buggy=True)],
+        [
+            node_builder(
+                0,
+                calls=[
+                    (
+                        "draft",
+                        "shared root\n# PREVIOUSLY EXPLORED IMPROVEMENT IDEAS\nold\n# DATA OVERVIEW\nsame",
+                        "bad",
+                    )
+                ],
+                buggy=True,
+            )
+        ],
     )
     for run, completion, score in (("run-a", "good-a", 0.9), ("run-b", "good-b", 0.8)):
         run_writer(
             tmp_path / "batch",
             run,
-                [node_builder(1, calls=[("draft", "shared root\n# DATA OVERVIEW\nsame", completion)], buggy=False, score=score)],
+            [
+                node_builder(
+                    1, calls=[("draft", "shared root\n# DATA OVERVIEW\nsame", completion)], buggy=False, score=score
+                )
+            ],
         )
     build_batch(tmp_path / "batch", tmp_path / "out", verbose=False)
     assign_dataset_splits(tmp_path / "out", val_fraction=0.0, verbose=False)
@@ -325,8 +436,14 @@ def test_views_use_unresolved_episode_as_earliest_prompt(tmp_path, node_builder,
     assert user_turn(sft_row) == "shared root\n# DATA OVERVIEW\nsame"
 
     to_grpo(tmp_path / "out", tmp_path / "out", verbose=False)
-    (grpo_row,) = read_jsonl(tmp_path / "out" / "grpo.jsonl")
-    assert grpo_row["prompt"][0]["content"].startswith("shared root\n# PREVIOUSLY")
+    rows = {row["completion"]: row for row in read_jsonl(tmp_path / "out" / "grpo.jsonl")}
+    # every root operation asks the group's earliest root prompt, normalised the
+    # same way SFT normalises its root prompt
+    assert {row["prompt"][1]["content"] for row in rows.values()} == {"shared root\n# DATA OVERVIEW\nsame"}
+
+    to_grpo(tmp_path / "out", tmp_path / "out", strip_memory=False, verbose=False)
+    kept = [row for row in read_jsonl(tmp_path / "out" / "grpo.jsonl") if row["completion"] == "bad"]
+    assert kept[0]["prompt"][1]["content"].startswith("shared root\n# PREVIOUSLY")
 
 
 def merged_manifest(path):
@@ -476,7 +593,6 @@ def test_assign_splits_moves_whole_tasks_and_always_has_val():
 
 def test_assign_splits_of_a_single_task_still_produces_val():
     groups = [
-        {"group_id": f"g{index}", "task": "only-task", "members": [{"run_dir": f"run-{index}"}]}
-        for index in range(4)
+        {"group_id": f"g{index}", "task": "only-task", "members": [{"run_dir": f"run-{index}"}]} for index in range(4)
     ]
     assert set(assign_splits(groups, split_by="group", val_fraction=0.1, seed=0).values()) == {"train", "val"}

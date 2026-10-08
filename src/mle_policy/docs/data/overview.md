@@ -58,9 +58,9 @@ bash src/mle_policy/scripts/data/to_grpo.sh "$OUT_ROOT"
 | `--date START END` | `metadata.launch_time` 的日期落在闭区间内（`YYYY-MM-DD`） |
 
 ```bash
-# OpenRouter 上 kimi 和 glm-5 的 run；时间限制在 1 天以内；2026-08-01 之后启动
+# 只使用kimi，glm，minimax，gpt luna，hy，和mimo的数据
 bash src/mle_policy/scripts/data/aggregate_batches.sh "$OUT_ROOT" non_thinking \
-     --client kimi+glm-5 --base-url openrouter --time-limit 0 86400 --date 2026-08-01 2026-12-31
+     --client glm+kimi+minimax+luna+ox-alpha+hy+mimo
 ```
 
 `--client` / `--base-url` 都用 `+` 连接多个值（OR），单个模型 run 太少时可以一次选好几个；
@@ -304,15 +304,30 @@ train 63.9% 提到 75.6%，`sft.jsonl` 从 2.7 GB 缩到 1.7 GB。
 
 ### 6.3 `to_grpo.py`
 
-每个 group 一行，只出"组内至少两个 episode 走通"的组。公共 `prompt` 使用 group 内
-最早 episode 的 root prompt；每个 `responses` 成员保存完整 episode：root completion
-之后依次放入后续 operation 的 prompt 和 completion，按 episode reward 从高到低排列。
-输出 `grpo.jsonl` + `grpo_{train,val}.parquet`。
+这一份是给 GRPO 用的，粒度和 SFT 一样：**一行 = 一次 LLM 调用**，每个 group 里
+每个 episode 的每个 operation 都写一行（SFT 只写它挑中的那个 episode）。
+`prompt` / `completion` 的构造和 SFT 完全相同（`selection.training_messages`：
+包列表排序、proposal 去掉搜索记忆、OpenAI 协议那条 system 消息补回算子的 system
+message，root operation 用 group 内最早的 root prompt）。
 
-**说清楚一件事：这不是 `src/verl` 现成的 GRPO 输入格式。** verl 的 `RLHFDataset` 只吃
-prompt + 一个 reward function，回答是训练时在线 rollout 出来的；把已经采好的回答喂进去
-得自己写 dataset 或者自己算 advantage。这个文件的价值是把"同一个 prompt 的一组回答 +
-各自的 reward"这个结构先固定下来，在线/离线两边都能从这里取。
+比 SFT 多的是两个数：`reward`（这条 operation 所属 episode 的 episode reward，
+没跑通就放在同组最差可行解下面一个 gold span）和 `advantage`——**group-relative
+advantage 在造数据时就算好**：`(reward - 组内均值) / 组内 std`，同一个 episode 的
+所有 operation 共享同一个值，因为它们本来就是同一条决策链。没有正负样本之分。
+
+```json
+{"sample_id": "...", "group_id": "...", "episode_id": "...", "operator": "debug",
+ "prompt": [...], "completion": "...", "reward": 0.2457, "advantage": 0.7071,
+ "episode_resolved": true, "node_has_result": true, "split": "train"}
+```
+
+只出还有落差的 group（至少两个成员、至少一个跑通、reward 不全相同），
+只写 `grpo.jsonl`——token 化后的 parquet 由 Verl 侧转换脚本负责。
+
+**怎么拿它训练见 `../train/GRPO_OFFLINE_TRAINING.md`**：
+`my_recipes/mle_policy/src/data/build_grpo_parquet.py` 转 parquet，
+`my_recipes/mle_policy/main_offline_ppo.py` + `src/trainer/ppo/offline_ray_trainer.py`
+（继承 `RayPPOTrainer`）读数据里的 advantage 直接训练，verl 主代码没动。
 
 ## 7. reward 怎么算
 
@@ -387,6 +402,23 @@ reward = (score - median_threshold) / (gold_threshold - median_threshold)
   `samples.jsonl` 占大头是因为 prompt 被重复存了很多次
   （同一个竞赛的每个样本都带一份任务描述），实测 prompt 占全部字符的 ~83%
   —— 这也是 `groups.jsonl` 里不放 prompt 的原因。
+
+### 9.4 2026-10-08：只用高质量 provider 的 `non_thinking` + 重建 `thinking`
+
+`non_thinking` 用 `--client glm+kimi+minimax+luna+ox-alpha+hy+mimo` 归总（把低质量
+provider 的 run 整个丢掉），`batches/` 没重跑，只重跑了后面的归总/切分/导出。
+`thinking` 桶用已有的 `batches/thinking/`（47 个 batch，selfhosted qwen3.8-27b）
+重建，切分口径和 `non_thinking` 一致（`assign_splits.sh ... run 0.1`）。
+
+| 桶 | group | 样本 | episode（走通的） | `sft.jsonl` 行 | `grpo.jsonl` 组 / 行 |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| `non_thinking` | 7,009 | 62,393 | 15,568（12,940） | 19,047 | 5,525 / 50,246 |
+| `thinking` | 867 | 10,285 | 2,021（2,013） | 3,739 | 856 / 10,523 |
+
+GRPO 那边 `non_thinking` 丢掉 1,271 个"全都没跑通"的组、44 个单成员组和 169 个
+组内 reward 全相同的组（7,009 → 5,525），`thinking` 丢 8 + 0 + 3（867 → 856）。
+训练侧的实测（长度过滤后的保留率、reward 分布、advantage 分布）见
+`../train/GRPO_OFFLINE_TRAINING.md`。
 
 ## 10. 已知问题
 

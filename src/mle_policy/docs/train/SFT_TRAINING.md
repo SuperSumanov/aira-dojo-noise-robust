@@ -82,8 +82,8 @@ bash my_scripts/train/mle_policy/pro6000/run_qwen3_5_9b_sft_fsdp_lora.sh
 ```bash
 python -m verl.model_merger merge \
   --backend fsdp \
-  --local_dir checkpoints/SFT-mle-policy/SFT-Qwen3.5-9B-non_thinking-len65536-bsz128-lr1e-5/global_step_300 \
-  --target_dir outputs/sft_mle_policy/qwen3_5_9b_step250_hf
+  --local_dir checkpoints/SFT-mle-policy/SFT-Qwen3.5-9B-non_thinking-len65536-bsz128-lr1e-5/global_step_665 \
+  --target_dir outputs/sft_mle_policy/qwen3_5_9b_step665_hf
 ```
 
 `--target_dir`里会同时写出合并后的完整模型和`lora_adapter/`；起vllm只需要后者，
@@ -107,7 +107,7 @@ ValueError: While loading .../lora_adapter, expected target modules in
 
 ```bash
 bash src/mle_policy/scripts/export/prune_lora_adapter_for_vllm.sh \
-  outputs/sft_mle_policy/qwen3_5_9b_step250_hf/lora_adapter
+  outputs/sft_mle_policy/qwen3_5_9b_step665_hf/lora_adapter
 ```
 
 想让以后的run从源头干净，可以在训练脚本里加`model.exclude_modules='.*visual.*'`；代价是

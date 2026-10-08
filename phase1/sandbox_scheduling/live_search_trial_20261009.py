@@ -37,8 +37,16 @@ NAME='live_search_trial_20261009.py'
 DONOR_PLAN='12d1264457158c936e4f1eff8e9c844ce5044365e77056066c4ded2ecfe6cd79'
 DONOR_RUNTIME='b422a17094a6971218731054b53b56888505150b82f5309990b0b629577da4c9'
 CAP=5400
+MODEL_ID='qwen3.5-9b'
+MODEL_DIR=B/'models/Qwen3.5-9B-c202236'
+PROFILE='9b'
+SERVICE27=B/'task-feedback-real-20261001-v6/service_entry.py'
+SERVICE27_SHA='cd9e143abe79cdc71c97db3dba07930e0642b28faf52ac4f6b2ca5ba36a8379a'
 TASKS=('random-acts-of-pizza','spooky-author-identification')
 FILES=(NAME,'live_admission.py','live_runtime_hooks.py','bounded_readiness.py','lifecycle_pilot.py')
+
+
+class GeneratorEligibilityFailed(RuntimeError):pass
 
 
 def schedule():
@@ -67,6 +75,8 @@ def host():
     source=replace_once(source,"deadline=ExperimentDeadline(SECONDS);write(ep/'deadline.json',deadline.receipt())",
         "deadline=ExperimentDeadline(SECONDS);write(ep/'deadline.json',deadline.receipt())\n    install_hooks(s,ep,deadline)")
     source=replace_once(source,"read(R/'service-native.json')", "read(R/f'block-{s[\"block\"]}/service-native.json')")
+    source=replace_once(source,'PRIMARY_KEY=key,PRIMARY_KEY_QWEN3_5_9B=key',
+        'PRIMARY_KEY=key,PRIMARY_KEY_QWEN3_8_27B=key,PRIMARY_KEY_QWEN3_5_9B=key')
     exec(compile(source,'live-native-worker','exec'),m.__dict__)
     source=replace_once(inspect.getsource(m.task_runtime),'episode-[0-7]','episode-(?:[0-9]|1[0-5])')
     exec(compile(source,'live-native-runtime','exec'),m.__dict__)
@@ -76,7 +86,29 @@ def host():
                     ("R/'service-cache'","R/f'block-{os.environ[\"R14_BLOCK\"]}/service-cache'")):
         source=replace_once(source,old,new)
     exec(compile(source,'live-native-service','exec'),m.__dict__)
+    if PROFILE=='27b':
+        m.service=service27
+        m.health=lambda:set(x['id'] for x in m.api('/v1/models')['data'])=={MODEL_ID}
     return m
+
+
+def service27():
+    check();m=host();x=m.infra();block=os.environ['R14_BLOCK']
+    if socket.gethostname().split('.')[0]!='gpu27':raise ValueError('wrong service node')
+    with socket.socket() as probe:probe.bind(('127.0.0.1',m.PORT))
+    devices=x.native_uuids(2)
+    write(R/f'block-{block}/service-native.json',dict(job=os.environ['SLURM_JOB_ID'],
+        step=os.environ['SLURM_STEP_ID'],gpu_uuids=devices))
+    cmd=['/usr/bin/singularity','exec','--containall','--cleanenv','--no-home','--nv','--no-mount','bind-paths,cwd',
+        '--bind',str(MODEL_DIR)+':/model:ro','--bind',str(R/'service-cache')+':/cache:rw',
+        '--bind',str(R/'service-cache/tmp')+':/tmp:rw','--bind',str(R/'service_entry.py')+':/run/service_entry.py:ro',
+        '--pwd','/cache',str(m.VLLM),'/usr/bin/python3','/run/service_entry.py']
+    values=dict(CUDA_VISIBLE_DEVICES=','.join(devices),EXPECTED_GPU_UUIDS=','.join(devices),VLLM_API_KEY=x.local_key(),
+        VLLM_WORKER_MULTIPROC_METHOD='spawn',VLLM_CACHE_ROOT='/cache/vllm',TRITON_HOME='/cache/triton',TORCH_HOME='/cache/torch',
+        HF_HOME='/cache/hf',HF_HUB_OFFLINE='1',TRANSFORMERS_OFFLINE='1',FLASHINFER_WORKSPACE_BASE='/cache/flashinfer',
+        XDG_CACHE_HOME='/cache/xdg',TMPDIR='/tmp',MAX_JOBS='2',VLLM_NO_USAGE_STATS='1',VLLM_CONFIG_ROOT='/cache/vllm-config')
+    env={k:os.environ[k] for k in ('PATH','HOME','USER','LOGNAME') if k in os.environ}
+    env.update({'SINGULARITYENV_'+k:v for k,v in values.items()});os.execve(cmd[0],cmd,env)
 
 
 def check():
@@ -114,6 +146,16 @@ def prepare(commit):
     shutil.copyfile(D/'policy9b_paired_20261005.py',R/'runtime.py')
     for name in FILES:shutil.copyfile(Path(__file__).with_name(name),R/name)
     for d in ('configs','bin','opencl-vendors'):(R/d).mkdir()
+    (R/'service-cache/tmp').mkdir(parents=True)
+    model_files={}
+    if PROFILE=='27b':
+        if sha(SERVICE27)!=SERVICE27_SHA:raise ValueError('local 27B entry changed')
+        service=replace_once(SERVICE27.read_text(),"'--port','19441'","'--port','19475'")
+        (R/'service_entry.py').write_text(service)
+        for file in MODEL_DIR.iterdir():
+            if file.is_file() and file.suffix in ('.json','.safetensors','.model','.txt'):
+                model_files[str(file)]=sha(file)
+        if not any(p.endswith('.safetensors') for p in model_files):raise ValueError('missing local model weights')
     (R/'opencl-vendors/nvidia.icd').write_text('libnvidia-opencl.so.1\n')
     (R/'bin/singularity').write_text(f'#!{PY}\nimport sys\nsys.path.insert(0,{str(R)!r})\nfrom {Path(NAME).stem} import host\nhost().task_runtime()\n')
     os.chmod(R/'bin/singularity',0o700)
@@ -136,7 +178,7 @@ def prepare(commit):
         cfg['interpreter']['working_dir']=str(ep/'work')
         cfg['interpreter']['env']['PYTHONHASHSEED']=str(row['seed'])
         for op in cfg['solver']['operators'].values():
-            op['llm']['client']['model_id']='qwen3.5-9b'
+            op['llm']['client']['model_id']=MODEL_ID
             op['llm']['generation_kwargs']['seed']=row['seed']
         write(R/f'configs/{row["index"]}.json',cfg);configs.append(cfg)
         scorer=Path(cfg['task']['search_only_dev_scorer_path'])
@@ -174,7 +216,10 @@ timeout --signal=TERM --kill-after=20s 5320s {PY} -B {R/NAME} controller
         service_gpus=2,execution_gpus=1,service_cpu=12,execution_cpu=6,
         allocation_seconds=CAP,gpu_hours_cap=4.5,run_seconds=600,candidate_timeout_seconds=240,
         active_runs=4,rolling_replacement=False,service_restart_between_blocks=True,
-        source_model=old['base'],base_revision=old['base_revision'],used_model='qwen3.5-9b',
+        source_model=str(MODEL_DIR),base_revision=old['base_revision'] if PROFILE=='9b' else None,used_model=MODEL_ID,
+        model_files=model_files,profile=PROFILE,service_adapter_loaded=PROFILE=='9b',
+        service_compile_cache_common=PROFILE=='27b',service_kv_cache_reset_by_process_restart=True,
+        qualification='For 27B only: after the first pipeline block, require all four clean workers and finite valid native-selected dev endpoints. Otherwise stop the assigned batch, retain all16 denominator, no replacement seeds. Any full comparison is conditional exploratory evidence.',
         adapter_unused=True,task_image_sha256=old['task_image_sha256'],
         service_image_sha256=old['service_image_sha256'],model_training=False,paid_api=False,
         single_change='FIFO execution lease limit 1 versus 2; both overlap startup and preserve native within-run MCTS order.',
@@ -190,7 +235,7 @@ timeout --signal=TERM --kill-after=20s 5320s {PY} -B {R/NAME} controller
     m=host()
     if sha(m.TASK_IMAGE)!=old['task_image_sha256'] or sha(m.VLLM)!=old['service_image_sha256']:
         raise ValueError('image drift')
-    if sha(m.ADAPTER/'adapter_model.safetensors')!=old['adapter_weights_sha256']:
+    if PROFILE=='9b' and sha(m.ADAPTER/'adapter_model.safetensors')!=old['adapter_weights_sha256']:
         raise ValueError('service unused-adapter binding drift')
     write(R/'preflight.json',dict(plan_sha256=sha(R/'plan.json'),model_calls=0,gpu_executions=0,
         images_verified=True,paired_configs=8,service_restarts=4))
@@ -207,6 +252,7 @@ def cpu():
     from omegaconf import OmegaConf
     os.environ['PRIMARY_KEY']='offline-fixture'
     os.environ['PRIMARY_KEY_QWEN3_5_9B']='offline-fixture'
+    os.environ['PRIMARY_KEY_QWEN3_8_27B']='offline-fixture'
     for row in schedule():
         cfg=RunConfig.load_from_json(R/f'configs/{row["index"]}.json');cfg.validate();config_logger(cfg)
         task=MLEBenchTask(cfg.task)
@@ -216,13 +262,14 @@ def cpu():
         if solver.journal.nodes or cfg.solver.time_limit_secs!=600 or cfg.interpreter.timeout!=240:
             raise ValueError('not fresh fixed run')
         for op in cfg.solver.operators.values():
-            if op.llm.client.model_id!='qwen3.5-9b' or op.llm.generation_kwargs['seed']!=row['seed']:
+            if op.llm.client.model_id!=MODEL_ID or op.llm.generation_kwargs['seed']!=row['seed']:
                 raise ValueError('model/seed contract')
     subprocess.run(['bash','-n',str(R/'run.sbatch')],check=True)
     write(R/'cpu.json',dict(configs=16,native_solvers_instantiated=16,model_calls=0,plan_sha256=sha(R/'plan.json')))
 
 
 def submit():
+    if (R/'withdrawn.json').exists():raise ValueError('pre-submission withdrawal; do not run')
     check()
     if read(R/'preflight.json')['plan_sha256']!=sha(R/'plan.json'):raise ValueError('preflight mismatch')
     env=host().infra().clean_env()
@@ -337,6 +384,12 @@ def stop_service(server,block,job):
             if not str(step).isdigit():raise ValueError('invalid step identity')
             subprocess.run(['scancel','--signal=KILL',job+'.'+str(step)],check=True,timeout=15)
             server.wait(timeout=20)
+    native=R/f'block-{block}/service-native.json'
+    if native.exists():
+        devices=read(native)['gpu_uuids']
+        clean=all(not gpu_sample(gpu)['pids'] for gpu in devices)
+        write(R/f'block-{block}/service-cleanup.json',dict(gpu_clean=clean,returncode=server.returncode))
+        if not clean:raise RuntimeError('service GPU cleanup uncertain; no next block')
 
 
 def controller():
@@ -350,15 +403,15 @@ def controller():
     error=None;attempted=[]
     try:
         for block in range(4):
-            if CAP-(time.monotonic()-start)<1250:raise TimeoutError('whole block admission budget')
+            if CAP-(time.monotonic()-start)<1530:raise TimeoutError('whole block admission budget')
             bdir=R/f'block-{block}';cycle_start=time.time()
             with (bdir/'service.private.log').open('xb') as log:
-                server=subprocess.Popen(base+['--cpus-per-task=12','--gres=gpu:2','--time=00:19:00',
+                server=subprocess.Popen(base+['--cpus-per-task=12','--gres=gpu:2','--time=00:25:00',
                     str(PY),'-B',str(R/NAME),'service'],env=dict(env,R14_BLOCK=str(block)),
                     stdout=log,stderr=log,start_new_session=True)
                 try:
                     ready_start=time.monotonic()
-                    while time.monotonic()-ready_start<300:
+                    while time.monotonic()-ready_start<600:
                         if server.poll() is not None:raise RuntimeError('service exited')
                         try:
                             if m.health():break
@@ -366,11 +419,11 @@ def controller():
                         time.sleep(2)
                     else:raise TimeoutError('service readiness cap')
                     # Common startup request, not a separate model acceptance batch.
-                    out=m.api('/v1/chat/completions',dict(model='qwen3.5-9b',
+                    out=m.api('/v1/chat/completions',dict(model=MODEL_ID,
                         messages=[dict(role='user',content='Reply with OK only.')],max_tokens=8,
                         temperature=0,seed=140900,chat_template_kwargs={'enable_thinking':False}),timeout=40)
-                    if out.get('model')!='qwen3.5-9b' or not out.get('choices'):raise ValueError('wrong service')
-                    write(bdir/'service-ready.json',dict(startup_seconds=time.monotonic()-ready_start,model='qwen3.5-9b'))
+                    if out.get('model')!=MODEL_ID or not out.get('choices'):raise ValueError('wrong service')
+                    write(bdir/'service-ready.json',dict(startup_seconds=time.monotonic()-ready_start,model=MODEL_ID))
                     cmd=base+['--cpus-per-task=6','--gres=gpu:1','--time=00:13:00',
                         str(PY),'-B',str(R/NAME),'block','--block',str(block)]
                     attempted.append(block)
@@ -380,6 +433,23 @@ def controller():
                     if result.returncode:raise ValueError('block failed')
                 finally:stop_service(server,block,job)
             write(bdir/'cycle-closed.json',dict(start=cycle_start,end=time.time(),service_returncode=server.returncode))
+            if PROFILE=='27b' and block==0:
+                from live_readout import ground_scores
+                qualification=[]
+                for row in schedule()[:4]:
+                    ep=R/f'episode-{row["index"]}'
+                    closed=read(ep/'closed.json')
+                    final=read(ep/'finished.json') if (ep/'finished.json').exists() else {}
+                    value=final.get('native_selected_score')
+                    candidates=[read(p) for p in ep.glob('candidate-*.json') if '.private.' not in p.name]
+                    timely=[v for v in candidates if v['elapsed_seconds']<=600]
+                    receipts=[read(p)['receipt'] for p in ep.glob('scored-*.json')]
+                    grounded=ground_scores(final,timely,receipts)
+                    qualification.append(closed.get('returncode')==0 and closed.get('cleanup_verified') is True
+                        and final.get('status') in ('completed','budget_exhausted') and grounded
+                        and final.get('native_selected_valid') is True and type(value) in (float,int) and __import__('math').isfinite(value))
+                write(R/'generator-qualification.json',dict(passed=all(qualification),endpoints=qualification))
+                if not all(qualification):raise GeneratorEligibilityFailed('no remaining blocks')
     except Exception as e:
         error=type(e).__name__
         raise

@@ -127,6 +127,7 @@ def analyze(root,output,*,allocation_gpu_seconds):
         c=read(bd/'closed.json') if (bd/'closed.json').exists() else {}
         execution=read(bd/'execution-native.json') if (bd/'execution-native.json').exists() else {}
         service=read(bd/'service-native.json') if (bd/'service-native.json').exists() else {}
+        service_cleanup=read(bd/'service-cleanup.json') if (bd/'service-cleanup.json').exists() else {}
         uuids=service.get('gpu_uuids',[])
         identity_ok=len(set(uuids))==2 and execution.get('gpu_uuid') not in uuids and len(execution.get('affinity',[]))==6
         for row in brows:
@@ -135,7 +136,7 @@ def analyze(root,output,*,allocation_gpu_seconds):
             n=read(native)
             identity_ok=identity_ok and n['job']==execution.get('job')==service.get('job') and n['step']==execution.get('step') and n['gpu_uuids']==[execution.get('gpu_uuid')]
         blocks.append(dict(block=block,arm=brows[0]['arm'],queue=queue,
-            closed=c.get('gpu_clean') is True and not c.get('telemetry_errors') and (bd/'cycle-closed.json').exists(),
+            closed=c.get('gpu_clean') is True and service_cleanup.get('gpu_clean') is True and not c.get('telemetry_errors') and (bd/'cycle-closed.json').exists(),
             identities_ok=bool(identity_ok),valid_returns=sum(r['valid_returns'] for r in brows)))
     result=summarize(rows,blocks)
     result.update(plan_sha256=sha(root/'plan.json'),source_commit=plan['source_commit'],

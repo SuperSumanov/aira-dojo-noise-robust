@@ -1,5 +1,11 @@
 # 当前短交接
 ## 最新：2026-10-09香港六小时窗口（覆盖下方10/8动态状态）
+- 06:45后重要修正：回读16307公开摘要，9B base四条native有效终点0、2合法候选遭analyzer误否决且生成/调试主导。不能拿它测主要质量调度收益；决定v1准备后不提交，已用GPU=0。不是新批次负结果或换seed救门。
+- v1 prepare已成功，source b124de46b4d7eb689aecad233a1219cd2d1b84c4，plan SHA d42f1440ef8a98d3476aa465f6e94fc16c7c3242f318adf3afc1eb7b2929961f；须运行live_withdraw_9b.py写撤回阻断回执，旧source/plan不覆盖。
+- 替代v2入口live_27b_trial.py；相同16条/ABBA/600s/3GPU90min≤4.5GPUh，两臂共同用已部署27B，首pipeline块四条全部须有及时外部可核native有效终点，否则停止，不替补；完整比较仅条件性探索。
+- 27B服务入口task-feedback-real-20261001-v6/service_entry.py已credential-scan与原manifest对hash：cd9e143abe79cdc71c97db3dba07930e0642b28faf52ac4f6b2ca5ba36a8379a；donor plan15751d3b52bdc42617df02006ce724635f4bf49df6e477686769fd1979d53403。模型local-qwen27b-20260914-zcx1k1dy/model在；served alias qwen3.8-27b，实际config qwen3_5/compressed-tensors4bit，不声称9B→27B能力提升已证实。
+- 27B仍2GPU，原服务131072ctx/6seq/seed49/FP8 KV；每块重启，跨块共享编译缓存（不共享活跃KV）。v2正在写/核，尚未prepare或提交；下方9B配置为撤回计划，不得执行。
+- 读出source现8b59b481938b59be4c12b6eb198f0463019c0aa4：内部native选分必须对应截止前候选和外部dev回执，不信内部数值单源；本地16通过/3Linux跳过，远端3通过。未新增GPU或付费调用。
 - 本窗口约06:12–12:12，用户要求在会话内继续，既有自主批准适用；不另建自动化、不提前完成。
 - 当前仍R14。fetch己方9c52040372909aa2173705903def1a4102f6bb3f；学长0155c7dedded47b59e29e81089e814250e38bd70（implement the grpo pipeline），仅核元数据，不读取新samples或采用GRPO。
 - 新live矩阵：2任务Pizza/Spooky dev、每池4独立run、FIFO执行许可1/2；ABBA四池块=16条×600s；base9B/2GPU12CPU服务每块重启，1GPU6CPU执行池，无rolling，不改变run内顺序。

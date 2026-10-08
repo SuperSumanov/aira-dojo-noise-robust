@@ -1,0 +1,88 @@
+{
+  "all_frozen_sources_and_inputs_match": true,
+  "boundary": "Audit, not new observations. Three same-source restarts on a small fixed pool; no kernel concurrency or E2E claim.",
+  "completed": 36,
+  "full_denominator": 36,
+  "job": "16997",
+  "no_quality_labels_read": true,
+  "no_raw_values_exported": true,
+  "numerical": [
+    {
+      "completed_outputs": 9,
+      "exact_equality": true,
+      "program": 0
+    },
+    {
+      "completed_outputs": 9,
+      "exact_equality": true,
+      "program": 1
+    },
+    {
+      "completed_outputs": 9,
+      "exact_equality": true,
+      "program": 4
+    },
+    {
+      "completed_outputs": 9,
+      "exact_equality": true,
+      "program": 3
+    }
+  ],
+  "pipeline_candidate_nonoverlap_verified": true,
+  "plan_sha256": "e2496978a3d0d58870ac05d0d3283f238ada8963219b7b2252eab0f488f46094",
+  "primary_sha256": "fd6a6009a331cde091cc4c0e5772a5f37ffbaacbc5085066195017c908ac6bb4",
+  "ratios": {
+    "pipeline_over_share2": {
+      "median": 1.3177936445362894,
+      "pairs": [
+        {
+          "ratio": 1.5209284095852806,
+          "repeat": 0
+        },
+        {
+          "ratio": 1.1549767666730737,
+          "repeat": 1
+        },
+        {
+          "ratio": 1.3177936445362894,
+          "repeat": 2
+        }
+      ]
+    },
+    "serial_over_pipeline": {
+      "median": 1.3895209144462672,
+      "pairs": [
+        {
+          "ratio": 1.376766710864924,
+          "repeat": 0
+        },
+        {
+          "ratio": 1.4643321974142112,
+          "repeat": 1
+        },
+        {
+          "ratio": 1.3895209144462672,
+          "repeat": 2
+        }
+      ]
+    },
+    "serial_over_share2": {
+      "median": 1.8311018300075441,
+      "pairs": [
+        {
+          "ratio": 2.0939636039257468,
+          "repeat": 0
+        },
+        {
+          "ratio": 1.6912696667047424,
+          "repeat": 1
+        },
+        {
+          "ratio": 1.8311018300075441,
+          "repeat": 2
+        }
+      ]
+    }
+  },
+  "same_affinity_and_device": true
+}

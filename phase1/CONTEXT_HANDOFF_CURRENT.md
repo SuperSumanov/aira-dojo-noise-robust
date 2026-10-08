@@ -1,13 +1,13 @@
 # 当前短交接
-更新：2026-10-08 13:41香港最后观察；动态现场须重新核实。
+更新：2026-10-08 13:51香港窗口收尾；动态现场须重新核实。
 较长历史完整保留于Git 3bd58e7e9d0b0c4a91519bdb3e65145415aefb0c及1ca06f255199785d84ef7ecf56129060d2b8d82f；原实验不改。
 
 ## 恢复与授权
 - 活跃checkout：C:/Research/New/my_project/MLEvolve/_codex_tmp/publication-feedback-20261001。fetch→CURRENT_DIRECTION→ROUTE_DECISIONS→本文件；旧aira-dojo-codex-20260813有用户dirty，不覆盖。
 - 唯一活跃R14 MLE沙箱资源调度。真实有限系统阳性，但没有重要独特、强基线跨任务同预算的新方法确认。R1–R13及旧HCE/多保真/Probe/TD/score-channel/K≥1不重开。
-- 本轮约07:51–13:51香港六小时在会话内研究，goal尚active。用户“批准所有操作、不用问”不解除保护/凭据/底座边界；本窗口不再新投GPU，不补旧批救门。
+- 本轮约07:51–13:51香港六小时研究窗口已结束，本次交付闭合goal；本轮作业全终态，无待完成GPU。用户“批准所有操作、不用问”不解除保护/凭据/底座边界；不复用旧余款补批救门。
 - first-960/Target-300/Target-522、D_val、官方test继续关闭；16560数值导出另待授权。不改学长分支，不动旧Held12535，不用付费API、不更新agent底座。
-- 最后已核公开己方HEAD 3bd58e7e9d0b0c4a91519bdb3e65145415aefb0c；包含17017/17021安全结果及早版CPU握手辅助，17文件扫描0命中。13:30附近fetch的dojo-reproduce仍dfff0efb9daf1d4a63c74492f138c19c1fd8440e；autoresearch最后d82dcd845e30e9771750510028d38a6d1d979c43。当前补充以本提交/Git现场为准。
+- 13:49重新核公开己方HEAD cbcd3503d63b5f648ae14cb00ab2f56307f74384；包含短入口压缩、六配对补充和慢发送修正，6文件发布扫描0命中，已提交helper/test的SHA与远端CPU测试字节相同。dojo-reproduce仍dfff0efb9daf1d4a63c74492f138c19c1fd8440e，autoresearch HEAD仍d82dcd845e30e9771750510028d38a6d1d979c43，学长无新提交。最终交接另见本提交/Git现场。
 - SSH linux5/yzyang4；PY=/research/d7/spc/yzyang4/venvs/aira/bin/python；SLURM_CONF=/opt1/slurm/gpu-slurm.conf。原MLE镜像仅gpu27/gpu28 RTX3090，不投projgpu39。研究盘4TB至2027-08-30，不是实时剩余容量。
 
 ## 17017：最新完整阳性，所有writer已闭合
@@ -39,4 +39,5 @@
 - ForeTS按返回更新journal/step/价值且失败可debug；并发兄弟/按完成序消费会改变搜索。优先跨独立run共享、保留run内顺序；首返回不等于下一次普通生成/搜索质量。
 - 固定外生run入口，不事后固定处理后的候选到达时刻；同时共享一个动态排队生成服务会造成两臂相互干扰。需要等容量隔离或随机化顺序独立时间块；全池含生成、等待、初始化与调度服务。
 - SchedMate/TGS/Salus/Orion/Tally/Fluid及其他近邻详见README。透明共享、在线画像、逻辑策略与执行分离均已有，不把适用接口差异冒充优势。现有ready积压/生产收益未确认，旧16370的22.72%预留窗口不是节省。
-- 短入口已压缩、旧实验未改；本轮不新增长报告或自动化。六小时结束后再闭合goal，简报明确正信号、未过门与全部成本，不承诺顶会概率。
+- README另有说明性两run闭环解析反例，事件计算核对1000时间单位下串行1000/共享862次返回；纯假设、未拟合实测，不是新实验/排序翻转或正结果。它只说明固定批提速不保证live提速。
+- 短入口已压缩、旧实验未改；本轮未新增长报告或自动化。交付明确正信号、未过门与全部成本，不承诺顶会概率；后续接续不重跑旧writer。

@@ -1,0 +1,290 @@
+{
+  "allocation_seconds": 2053,
+  "attempted": 24,
+  "blocks": [
+    {
+      "arm": "serial",
+      "block": 0,
+      "complete": true,
+      "outside": 23.309831619262695,
+      "overlap": 0.0,
+      "program": 0,
+      "repeat": 0,
+      "seconds": 305.84680247306824,
+      "union": 282.53697085380554
+    },
+    {
+      "arm": "share2",
+      "block": 1,
+      "complete": true,
+      "outside": 13.072136878967285,
+      "overlap": 137.27226877212524,
+      "program": 0,
+      "repeat": 0,
+      "seconds": 150.4210910797119,
+      "union": 137.34895420074463
+    },
+    {
+      "arm": "serial",
+      "block": 2,
+      "complete": true,
+      "outside": 27.42777967453003,
+      "overlap": 0.0,
+      "program": 1,
+      "repeat": 0,
+      "seconds": 118.74967908859253,
+      "union": 91.3218994140625
+    },
+    {
+      "arm": "share2",
+      "block": 3,
+      "complete": false,
+      "outside": 80.30167078971863,
+      "overlap": 0.0,
+      "program": 1,
+      "repeat": 0,
+      "seconds": 126.56723141670227,
+      "union": 46.26556062698364
+    },
+    {
+      "arm": "share2",
+      "block": 4,
+      "complete": true,
+      "outside": 12.7886323928833,
+      "overlap": 93.31522679328918,
+      "program": 1,
+      "repeat": 1,
+      "seconds": 106.26332664489746,
+      "union": 93.47469425201416
+    },
+    {
+      "arm": "serial",
+      "block": 5,
+      "complete": true,
+      "outside": 32.58769869804382,
+      "overlap": 0.0,
+      "program": 1,
+      "repeat": 1,
+      "seconds": 124.95512104034424,
+      "union": 92.36742234230042
+    },
+    {
+      "arm": "share2",
+      "block": 6,
+      "complete": true,
+      "outside": 13.277756929397583,
+      "overlap": 122.79420161247253,
+      "program": 0,
+      "repeat": 1,
+      "seconds": 136.39820432662964,
+      "union": 123.12044739723206
+    },
+    {
+      "arm": "serial",
+      "block": 7,
+      "complete": true,
+      "outside": 28.14414954185486,
+      "overlap": 0.0,
+      "program": 0,
+      "repeat": 1,
+      "seconds": 304.80454325675964,
+      "union": 276.6603937149048
+    },
+    {
+      "arm": "serial",
+      "block": 8,
+      "complete": true,
+      "outside": 28.89594602584839,
+      "overlap": 0.0,
+      "program": 0,
+      "repeat": 2,
+      "seconds": 281.8600022792816,
+      "union": 252.96405625343323
+    },
+    {
+      "arm": "share2",
+      "block": 9,
+      "complete": true,
+      "outside": 14.211612224578857,
+      "overlap": 107.15148615837097,
+      "program": 0,
+      "repeat": 2,
+      "seconds": 122.57860398292542,
+      "union": 108.36699175834656
+    },
+    {
+      "arm": "serial",
+      "block": 10,
+      "complete": true,
+      "outside": 28.044657945632935,
+      "overlap": 0.0,
+      "program": 1,
+      "repeat": 2,
+      "seconds": 118.04814910888672,
+      "union": 90.00349116325378
+    },
+    {
+      "arm": "share2",
+      "block": 11,
+      "complete": true,
+      "outside": 15.655095338821411,
+      "overlap": 91.98669481277466,
+      "program": 1,
+      "repeat": 2,
+      "seconds": 107.69297170639038,
+      "union": 92.03787636756897
+    }
+  ],
+  "boundary": "Independent audit, not additional experiments. Per-task paired blocks; secondary latency is descriptive. Replicas/restarts are not independent tasks/seeds. No pooled effect or kernel-time interpretation.",
+  "completed": 23,
+  "denominator": 24,
+  "frozen_source_and_input_hashes_match": true,
+  "job": "16999",
+  "no_quality_labels_read": true,
+  "no_raw_prediction_export": true,
+  "per_task": [
+    {
+      "completed": 12,
+      "max_abs_difference": 0.0,
+      "numeric_comparisons": 66,
+      "primary_gate": true,
+      "program": 0,
+      "ratios": [
+        {
+          "ratio": 2.0332707353584634,
+          "repeat": 0
+        },
+        {
+          "ratio": 2.2346668327601384,
+          "repeat": 1
+        },
+        {
+          "ratio": 2.2994225184563475,
+          "repeat": 2
+        }
+      ],
+      "secondary_latency": [
+        {
+          "repeat": 0,
+          "replicas": [
+            {
+              "candidate_slowdown": 1.3410477781875607,
+              "replica": 0,
+              "response_ratio": 1.3310203118531017
+            },
+            {
+              "candidate_slowdown": 0.7621247976705415,
+              "replica": 1,
+              "response_ratio": 0.49179467313207287
+            }
+          ]
+        },
+        {
+          "repeat": 1,
+          "replicas": [
+            {
+              "candidate_slowdown": 0.9664639768281126,
+              "replica": 0,
+              "response_ratio": 0.9648953817205752
+            },
+            {
+              "candidate_slowdown": 0.822968660458729,
+              "replica": 1,
+              "response_ratio": 0.44747361382867473
+            }
+          ]
+        },
+        {
+          "repeat": 2,
+          "replicas": [
+            {
+              "candidate_slowdown": 0.9708835953650427,
+              "replica": 0,
+              "response_ratio": 0.9686184065320257
+            },
+            {
+              "candidate_slowdown": 0.7581070131823233,
+              "replica": 1,
+              "response_ratio": 0.4302400533105071
+            }
+          ]
+        }
+      ],
+      "speedup": {
+        "maximum": 2.2994225184563475,
+        "median": 2.2346668327601384,
+        "minimum": 2.0332707353584634,
+        "n": 3,
+        "sample_std": 0.1387986902704743
+      },
+      "step_counts": [
+        150
+      ],
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "completed": 11,
+      "max_abs_difference": 0.0,
+      "numeric_comparisons": 55,
+      "primary_gate": false,
+      "program": 1,
+      "ratios": [
+        {
+          "ratio": 1.1759007080392803,
+          "repeat": 1
+        },
+        {
+          "ratio": 1.0961546258629418,
+          "repeat": 2
+        }
+      ],
+      "secondary_latency": [
+        {
+          "repeat": 1,
+          "replicas": [
+            {
+              "candidate_slowdown": 2.012592516980071,
+              "replica": 0,
+              "response_ratio": 1.6980546131588619
+            },
+            {
+              "candidate_slowdown": 2.032015195198927,
+              "replica": 1,
+              "response_ratio": 0.8479564631972338
+            }
+          ]
+        },
+        {
+          "repeat": 2,
+          "replicas": [
+            {
+              "candidate_slowdown": 2.0449450711629646,
+              "replica": 0,
+              "response_ratio": 1.8224413383712799
+            },
+            {
+              "candidate_slowdown": 2.0443311394765398,
+              "replica": 1,
+              "response_ratio": 0.9109743359689441
+            }
+          ]
+        }
+      ],
+      "speedup": {
+        "maximum": 1.1759007080392803,
+        "median": 1.1360276669511111,
+        "minimum": 1.0961546258629418,
+        "n": 2,
+        "sample_std": 0.05638899547994862
+      },
+      "step_counts": [
+        640
+      ],
+      "task": "denoising-dirty-documents"
+    }
+  ],
+  "plan_sha256": "1015a7039bdb3436f9d0c0fb2711c045b9c4b48513224bff4c70aa66b381388a",
+  "primary_sha256": "318297c96892accd8732e398d699d80ef418861e1c740833f32fa3adfa590168",
+  "same_CPU_affinity_and_GPU": true,
+  "source_commit": "9426f9100d52d27dbff1b8c449494a936e71b126"
+}

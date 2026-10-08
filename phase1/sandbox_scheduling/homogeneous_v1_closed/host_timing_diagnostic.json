@@ -1,0 +1,633 @@
+{
+  "boundary": "Post-hoc descriptive decomposition only. CUDA is asynchronous; gaps include data loading, forward/backward, validation and synchronization. Cannot attribute variation to cache, CPU contention or GPU kernels.",
+  "completed": 23,
+  "job": "16999",
+  "plan_sha256": "1015a7039bdb3436f9d0c0fb2711c045b9c4b48513224bff4c70aa66b381388a",
+  "planned": 24,
+  "rows": [
+    {
+      "arm": "serial",
+      "between_host_calls": {
+        "maximum": 3.9138147830963135,
+        "median": 0.06869649887084961,
+        "n": 149,
+        "total": 49.4858455657959
+      },
+      "gaps_over_one_second": 17,
+      "host_calls": {
+        "maximum": 0.308032751083374,
+        "median": 0.0011748075485229492,
+        "n": 150,
+        "total": 0.49050426483154297
+      },
+      "index": 0,
+      "not_GPU_kernel_or_CPU_stall_measurement": true,
+      "optimizer_envelope_seconds": 49.97634983062744,
+      "program": 0,
+      "repeat": 0,
+      "replica": 0
+    },
+    {
+      "arm": "serial",
+      "between_host_calls": {
+        "maximum": 4.121790170669556,
+        "median": 0.38202762603759766,
+        "n": 149,
+        "total": 127.00909686088562
+      },
+      "gaps_over_one_second": 43,
+      "host_calls": {
+        "maximum": 0.309906005859375,
+        "median": 0.0015763044357299805,
+        "n": 150,
+        "total": 0.5402600765228271
+      },
+      "index": 1,
+      "not_GPU_kernel_or_CPU_stall_measurement": true,
+      "optimizer_envelope_seconds": 127.54935693740845,
+      "program": 0,
+      "repeat": 0,
+      "replica": 1
+    },
+    {
+      "arm": "share2",
+      "between_host_calls": {
+        "maximum": 3.336958885192871,
+        "median": 0.14409756660461426,
+        "n": 149,
+        "total": 95.27352952957153
+      },
+      "gaps_over_one_second": 43,
+      "host_calls": {
+        "maximum": 0.2545299530029297,
+        "median": 0.0015045404434204102,
+        "n": 150,
+        "total": 0.48348426818847656
+      },
+      "index": 2,
+      "not_GPU_kernel_or_CPU_stall_measurement": true,
+      "optimizer_envelope_seconds": 95.75701379776001,
+      "program": 0,
+      "repeat": 0,
+      "replica": 0
+    },
+    {
+      "arm": "share2",
+      "between_host_calls": {
+        "maximum": 3.2605948448181152,
+        "median": 0.17343759536743164,
+        "n": 149,
+        "total": 95.03378367424011
+      },
+      "gaps_over_one_second": 44,
+      "host_calls": {
+        "maximum": 0.23883628845214844,
+        "median": 0.0013338327407836914,
+        "n": 150,
+        "total": 0.4683992862701416
+      },
+      "index": 3,
+      "not_GPU_kernel_or_CPU_stall_measurement": true,
+      "optimizer_envelope_seconds": 95.50218296051025,
+      "program": 0,
+      "repeat": 0,
+      "replica": 1
+    },
+    {
+      "arm": "serial",
+      "between_host_calls": {
+        "maximum": 0.5979137420654297,
+        "median": 0.052367448806762695,
+        "n": 639,
+        "total": 36.40747094154358
+      },
+      "gaps_over_one_second": 0,
+      "host_calls": {
+        "maximum": 0.2030179500579834,
+        "median": 0.0029162168502807617,
+        "n": 640,
+        "total": 1.9257981777191162
+      },
+      "index": 4,
+      "not_GPU_kernel_or_CPU_stall_measurement": true,
+      "optimizer_envelope_seconds": 38.333269119262695,
+      "program": 1,
+      "repeat": 0,
+      "replica": 0
+    },
+    {
+      "arm": "serial",
+      "between_host_calls": {
+        "maximum": 0.6101477146148682,
+        "median": 0.052674055099487305,
+        "n": 639,
+        "total": 36.792834520339966
+      },
+      "gaps_over_one_second": 0,
+      "host_calls": {
+        "maximum": 0.19939017295837402,
+        "median": 0.002736687660217285,
+        "n": 640,
+        "total": 1.8556797504425049
+      },
+      "index": 5,
+      "not_GPU_kernel_or_CPU_stall_measurement": true,
+      "optimizer_envelope_seconds": 38.64851427078247,
+      "program": 1,
+      "repeat": 0,
+      "replica": 1
+    },
+    {
+      "arm": "share2",
+      "between_host_calls": {
+        "maximum": 0.5800578594207764,
+        "median": 0.05300450325012207,
+        "n": 639,
+        "total": 36.98165488243103
+      },
+      "gaps_over_one_second": 0,
+      "host_calls": {
+        "maximum": 0.20078420639038086,
+        "median": 0.0029785633087158203,
+        "n": 640,
+        "total": 1.9345424175262451
+      },
+      "index": 6,
+      "not_GPU_kernel_or_CPU_stall_measurement": true,
+      "optimizer_envelope_seconds": 38.916197299957275,
+      "program": 1,
+      "repeat": 0,
+      "replica": 0
+    },
+    {
+      "arm": "share2",
+      "between_host_calls": {
+        "maximum": 0.7567429542541504,
+        "median": 0.12015819549560547,
+        "n": 639,
+        "total": 81.36384224891663
+      },
+      "gaps_over_one_second": 0,
+      "host_calls": {
+        "maximum": 0.15804839134216309,
+        "median": 0.003036975860595703,
+        "n": 640,
+        "total": 2.062652349472046
+      },
+      "index": 8,
+      "not_GPU_kernel_or_CPU_stall_measurement": true,
+      "optimizer_envelope_seconds": 83.42649459838867,
+      "program": 1,
+      "repeat": 1,
+      "replica": 0
+    },
+    {
+      "arm": "share2",
+      "between_host_calls": {
+        "maximum": 0.7529966831207275,
+        "median": 0.12029647827148438,
+        "n": 639,
+        "total": 81.47380828857422
+      },
+      "gaps_over_one_second": 0,
+      "host_calls": {
+        "maximum": 0.14889240264892578,
+        "median": 0.0029991865158081055,
+        "n": 640,
+        "total": 2.0592408180236816
+      },
+      "index": 9,
+      "not_GPU_kernel_or_CPU_stall_measurement": true,
+      "optimizer_envelope_seconds": 83.5330491065979,
+      "program": 1,
+      "repeat": 1,
+      "replica": 1
+    },
+    {
+      "arm": "serial",
+      "between_host_calls": {
+        "maximum": 0.5818459987640381,
+        "median": 0.05258631706237793,
+        "n": 639,
+        "total": 36.614413261413574
+      },
+      "gaps_over_one_second": 0,
+      "host_calls": {
+        "maximum": 0.1502082347869873,
+        "median": 0.002912282943725586,
+        "n": 640,
+        "total": 1.8655240535736084
+      },
+      "index": 10,
+      "not_GPU_kernel_or_CPU_stall_measurement": true,
+      "optimizer_envelope_seconds": 38.47993731498718,
+      "program": 1,
+      "repeat": 1,
+      "replica": 0
+    },
+    {
+      "arm": "serial",
+      "between_host_calls": {
+        "maximum": 0.573997974395752,
+        "median": 0.05307316780090332,
+        "n": 639,
+        "total": 36.94159984588623
+      },
+      "gaps_over_one_second": 0,
+      "host_calls": {
+        "maximum": 0.25676536560058594,
+        "median": 0.0030024051666259766,
+        "n": 640,
+        "total": 1.9835803508758545
+      },
+      "index": 11,
+      "not_GPU_kernel_or_CPU_stall_measurement": true,
+      "optimizer_envelope_seconds": 38.925180196762085,
+      "program": 1,
+      "repeat": 1,
+      "replica": 1
+    },
+    {
+      "arm": "share2",
+      "between_host_calls": {
+        "maximum": 3.1449484825134277,
+        "median": 0.16788434982299805,
+        "n": 149,
+        "total": 82.11954736709595
+      },
+      "gaps_over_one_second": 33,
+      "host_calls": {
+        "maximum": 0.3035697937011719,
+        "median": 0.0013848543167114258,
+        "n": 150,
+        "total": 0.5509774684906006
+      },
+      "index": 12,
+      "not_GPU_kernel_or_CPU_stall_measurement": true,
+      "optimizer_envelope_seconds": 82.67052483558655,
+      "program": 0,
+      "repeat": 1,
+      "replica": 0
+    },
+    {
+      "arm": "share2",
+      "between_host_calls": {
+        "maximum": 3.130552291870117,
+        "median": 0.16347813606262207,
+        "n": 149,
+        "total": 82.48171830177307
+      },
+      "gaps_over_one_second": 33,
+      "host_calls": {
+        "maximum": 0.26132965087890625,
+        "median": 0.0013301372528076172,
+        "n": 150,
+        "total": 0.4968421459197998
+      },
+      "index": 13,
+      "not_GPU_kernel_or_CPU_stall_measurement": true,
+      "optimizer_envelope_seconds": 82.97856044769287,
+      "program": 0,
+      "repeat": 1,
+      "replica": 1
+    },
+    {
+      "arm": "serial",
+      "between_host_calls": {
+        "maximum": 2.9992804527282715,
+        "median": 0.24109601974487305,
+        "n": 149,
+        "total": 76.82205295562744
+      },
+      "gaps_over_one_second": 30,
+      "host_calls": {
+        "maximum": 0.32317423820495605,
+        "median": 0.0016257762908935547,
+        "n": 150,
+        "total": 0.5522372722625732
+      },
+      "index": 14,
+      "not_GPU_kernel_or_CPU_stall_measurement": true,
+      "optimizer_envelope_seconds": 77.37429022789001,
+      "program": 0,
+      "repeat": 1,
+      "replica": 0
+    },
+    {
+      "arm": "serial",
+      "between_host_calls": {
+        "maximum": 3.2646288871765137,
+        "median": 0.20840692520141602,
+        "n": 149,
+        "total": 96.87807321548462
+      },
+      "gaps_over_one_second": 39,
+      "host_calls": {
+        "maximum": 0.2618446350097656,
+        "median": 0.0016220808029174805,
+        "n": 150,
+        "total": 0.49041318893432617
+      },
+      "index": 15,
+      "not_GPU_kernel_or_CPU_stall_measurement": true,
+      "optimizer_envelope_seconds": 97.36848640441895,
+      "program": 0,
+      "repeat": 1,
+      "replica": 1
+    },
+    {
+      "arm": "serial",
+      "between_host_calls": {
+        "maximum": 3.788463830947876,
+        "median": 0.11271119117736816,
+        "n": 149,
+        "total": 62.32285404205322
+      },
+      "gaps_over_one_second": 29,
+      "host_calls": {
+        "maximum": 0.3032665252685547,
+        "median": 0.001502394676208496,
+        "n": 150,
+        "total": 0.5151164531707764
+      },
+      "index": 16,
+      "not_GPU_kernel_or_CPU_stall_measurement": true,
+      "optimizer_envelope_seconds": 62.837970495224,
+      "program": 0,
+      "repeat": 2,
+      "replica": 0
+    },
+    {
+      "arm": "serial",
+      "between_host_calls": {
+        "maximum": 2.590341091156006,
+        "median": 0.28547048568725586,
+        "n": 149,
+        "total": 91.38354682922363
+      },
+      "gaps_over_one_second": 29,
+      "host_calls": {
+        "maximum": 0.31517553329467773,
+        "median": 0.001597762107849121,
+        "n": 150,
+        "total": 0.5420222282409668
+      },
+      "index": 17,
+      "not_GPU_kernel_or_CPU_stall_measurement": true,
+      "optimizer_envelope_seconds": 91.9255690574646,
+      "program": 0,
+      "repeat": 2,
+      "replica": 1
+    },
+    {
+      "arm": "share2",
+      "between_host_calls": {
+        "maximum": 2.930091142654419,
+        "median": 0.13463997840881348,
+        "n": 149,
+        "total": 61.626590967178345
+      },
+      "gaps_over_one_second": 30,
+      "host_calls": {
+        "maximum": 0.22704768180847168,
+        "median": 0.0013021230697631836,
+        "n": 150,
+        "total": 0.450986385345459
+      },
+      "index": 18,
+      "not_GPU_kernel_or_CPU_stall_measurement": true,
+      "optimizer_envelope_seconds": 62.077577352523804,
+      "program": 0,
+      "repeat": 2,
+      "replica": 0
+    },
+    {
+      "arm": "share2",
+      "between_host_calls": {
+        "maximum": 2.80945086479187,
+        "median": 0.12113690376281738,
+        "n": 149,
+        "total": 60.219244956970215
+      },
+      "gaps_over_one_second": 30,
+      "host_calls": {
+        "maximum": 0.3085606098175049,
+        "median": 0.001284956932067871,
+        "n": 150,
+        "total": 0.5456078052520752
+      },
+      "index": 19,
+      "not_GPU_kernel_or_CPU_stall_measurement": true,
+      "optimizer_envelope_seconds": 60.76485276222229,
+      "program": 0,
+      "repeat": 2,
+      "replica": 1
+    },
+    {
+      "arm": "serial",
+      "between_host_calls": {
+        "maximum": 0.6218173503875732,
+        "median": 0.05220770835876465,
+        "n": 639,
+        "total": 36.505223751068115
+      },
+      "gaps_over_one_second": 0,
+      "host_calls": {
+        "maximum": 0.20366430282592773,
+        "median": 0.0028069019317626953,
+        "n": 640,
+        "total": 1.8808057308197021
+      },
+      "index": 20,
+      "not_GPU_kernel_or_CPU_stall_measurement": true,
+      "optimizer_envelope_seconds": 38.38602948188782,
+      "program": 1,
+      "repeat": 2,
+      "replica": 0
+    },
+    {
+      "arm": "serial",
+      "between_host_calls": {
+        "maximum": 0.5545063018798828,
+        "median": 0.05231046676635742,
+        "n": 639,
+        "total": 36.372039556503296
+      },
+      "gaps_over_one_second": 0,
+      "host_calls": {
+        "maximum": 0.21748805046081543,
+        "median": 0.0028935670852661133,
+        "n": 640,
+        "total": 1.9229788780212402
+      },
+      "index": 21,
+      "not_GPU_kernel_or_CPU_stall_measurement": true,
+      "optimizer_envelope_seconds": 38.295018434524536,
+      "program": 1,
+      "repeat": 2,
+      "replica": 1
+    },
+    {
+      "arm": "share2",
+      "between_host_calls": {
+        "maximum": 0.6802840232849121,
+        "median": 0.12048482894897461,
+        "n": 639,
+        "total": 80.12118268013
+      },
+      "gaps_over_one_second": 0,
+      "host_calls": {
+        "maximum": 0.2041168212890625,
+        "median": 0.003014802932739258,
+        "n": 640,
+        "total": 2.125251054763794
+      },
+      "index": 22,
+      "not_GPU_kernel_or_CPU_stall_measurement": true,
+      "optimizer_envelope_seconds": 82.2464337348938,
+      "program": 1,
+      "repeat": 2,
+      "replica": 0
+    },
+    {
+      "arm": "share2",
+      "between_host_calls": {
+        "maximum": 0.6528298854827881,
+        "median": 0.12051773071289062,
+        "n": 639,
+        "total": 80.1264214515686
+      },
+      "gaps_over_one_second": 0,
+      "host_calls": {
+        "maximum": 0.14708518981933594,
+        "median": 0.00298917293548584,
+        "n": 640,
+        "total": 2.0685369968414307
+      },
+      "index": 23,
+      "not_GPU_kernel_or_CPU_stall_measurement": true,
+      "optimizer_envelope_seconds": 82.19495844841003,
+      "program": 1,
+      "repeat": 2,
+      "replica": 1
+    }
+  ],
+  "source_hints": [
+    {
+      "calls": [
+        {
+          "args": [
+            null
+          ],
+          "name": "torch.manual_seed"
+        },
+        {
+          "args": [
+            null
+          ],
+          "name": "torch.cuda.manual_seed_all"
+        }
+      ],
+      "literal_resource_hints": [
+        [
+          "batch_size",
+          512
+        ],
+        [
+          "num_workers",
+          2
+        ],
+        [
+          "device",
+          null
+        ],
+        [
+          "batch_size",
+          null
+        ],
+        [
+          "num_workers",
+          null
+        ],
+        [
+          "batch_size",
+          null
+        ],
+        [
+          "num_workers",
+          null
+        ],
+        [
+          "batch_size",
+          null
+        ],
+        [
+          "num_workers",
+          null
+        ],
+        [
+          "device",
+          null
+        ],
+        [
+          "device",
+          null
+        ]
+      ],
+      "program": 0,
+      "static_hints_not_executed_configuration": true
+    },
+    {
+      "calls": [
+        {
+          "args": [
+            null
+          ],
+          "name": "torch.manual_seed"
+        },
+        {
+          "args": [
+            null
+          ],
+          "name": "torch.cuda.manual_seed_all"
+        }
+      ],
+      "literal_resource_hints": [
+        [
+          "batch_size",
+          16
+        ],
+        [
+          "num_workers",
+          2
+        ],
+        [
+          "device",
+          null
+        ],
+        [
+          "device",
+          null
+        ],
+        [
+          "batch_size",
+          null
+        ],
+        [
+          "batch_size",
+          null
+        ],
+        [
+          "batch_size",
+          null
+        ],
+        [
+          "num_workers",
+          null
+        ]
+      ],
+      "program": 1,
+      "static_hints_not_executed_configuration": true
+    }
+  ]
+}

@@ -13,7 +13,7 @@ import neural_node_replication as r
 from neural_inputs import make_denoising
 from lifecycle_pilot import read,write,sha
 
-R=Path('/research/d7/spc/yzyang4/scheduling-neural-full-input-20261008-v1')
+R=Path('/research/d7/spc/yzyang4/scheduling-neural-full-input-20261008-v2')
 SOURCE=Path('/research/d7/spc/yzyang4/mle-bench-data/denoising-dirty-documents/prepared/public')
 
 
@@ -40,23 +40,39 @@ def configure():
     return r.configure()
 
 
-def budget_gate():
-    replication=Path('/research/d7/spc/yzyang4/scheduling-neural-gpu28-20261008-v2')
-    jobs=['16987','16989','16992','16994','16996','16997','16999',read(replication/'launch.json')['job']]
+def accounted_costs(raw,jobs,unallocated_job):
     if len(set(jobs))!=len(jobs):raise ValueError('duplicate allocation')
-    raw=subprocess.check_output(['sacct','-j',','.join(jobs),'-n','-P','-o','JobIDRaw,State,ElapsedRaw,AllocTRES'],
-                                env=dict(os.environ,SLURM_CONF='/opt1/slurm/gpu-slurm.conf'),text=True,timeout=20)
     rows={}
     for line in raw.splitlines():
         fields=line.split('|')
         if fields[0] in jobs:
             if fields[0] in rows:raise ValueError('duplicate accounting row')
-            if fields[1] not in ('COMPLETED','FAILED','TIMEOUT','CANCELLED','OUT_OF_MEMORY'):
+            state=fields[1].split(' ')[0]
+            if state not in ('COMPLETED','FAILED','TIMEOUT','CANCELLED','OUT_OF_MEMORY'):
                 raise ValueError('prior allocation not closed')
             tres=dict(x.split('=',1) for x in fields[3].split(',') if '=' in x)
-            if int(tres['gres/gpu'])!=1:raise ValueError('unexpected GPU allocation')
-            rows[fields[0]]=int(fields[2])
+            seconds=int(fields[2])
+            if seconds<0:raise ValueError('negative allocation time')
+            zero=(fields[0]==unallocated_job and state=='CANCELLED' and seconds==0 and not tres)
+            if zero:
+                if any(s.startswith(unallocated_job+'.') for s in raw.splitlines()):
+                    raise ValueError('unallocated job has step accounting')
+            elif int(tres.get('gres/gpu',0))!=1:raise ValueError('unexpected GPU allocation')
+            rows[fields[0]]=seconds
     if set(rows)!=set(jobs):raise ValueError('missing accounting')
+    return rows
+
+
+def budget_gate():
+    replication=Path('/research/d7/spc/yzyang4/scheduling-neural-gpu28-20261008-v2')
+    replication_job=read(replication/'launch.json')['job']
+    jobs=['16987','16989','16992','16994','16996','16997','16999',replication_job]
+    raw=subprocess.check_output(['sacct','-j',','.join(jobs),'-n','-P','-o','JobIDRaw,State,ElapsedRaw,AllocTRES'],
+                                env=dict(os.environ,SLURM_CONF='/opt1/slurm/gpu-slurm.conf'),text=True,timeout=20)
+    rows=accounted_costs(raw,jobs,replication_job)
+    if rows[replication_job]==0:
+        if (replication/'allocation.json').exists() or any(replication.glob('episode-*/started.json')):
+            raise ValueError('zero accounting conflicts with execution receipts')
     total=sum(rows.values())
     if total+3600>10800:raise ValueError('3GPUh window cap would be exceeded')
     write(R/'window-budget-before-submit.json',dict(prior_gpu_seconds=rows,

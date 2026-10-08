@@ -48,6 +48,18 @@ def queue_verify(events,width):
 def finite(v):return type(v) in (float,int) and math.isfinite(v)
 
 
+def ground_scores(finished,timely,receipts):
+    for candidate in timely:
+        if not candidate['valid']:continue
+        aux=candidate['aux'];metric=aux['metric_name']
+        if not any(r.get('submission_sha256')==aux['submission_sha256']
+                   and finite(r.get(metric)) and r[metric]==candidate['score'] for r in receipts):
+            raise ValueError('candidate score not grounded in external dev receipt')
+    return not finished.get('native_selected_valid',False) or any(
+        x['valid'] is True and x.get('code_sha256')==finished.get('native_selected_code_sha256')
+        and finite(x.get('score')) and x['score']==finished.get('native_selected_score') for x in timely)
+
+
 def summarize(rows,blocks):
     # Pool-level replication, not a test treating correlated runs as independent.
     diffs=[];score_diffs={t:[] for t in sorted({r['task'] for r in rows})}
@@ -93,9 +105,12 @@ def analyze(root,output,*,allocation_gpu_seconds):
         candidates=[read(p) for p in sorted(ep.glob('candidate-*.json')) if '.private.' not in p.name]
         timely=[x for x in candidates if x['elapsed_seconds']<=600]
         events=lines(ep/'events.jsonl')
+        receipts=[read(p)['receipt'] for p in ep.glob('scored-*.json')]
+        selected_verified=ground_scores(f,timely,receipts)
         row=dict(**s,source_commit=plan['source_commit'],run_seconds=600,
             complete=c.get('returncode')==0 and c.get('cleanup_verified') is True and f.get('status') in ('completed','budget_exhausted'),
             native_valid=f.get('native_selected_valid') is True,native_score=f.get('native_selected_score'),
+            native_score_verified=selected_verified,
             candidate_returns=len(timely),valid_returns=sum(x['valid'] is True for x in timely),
             late_returns=len(candidates)-len(timely),attempted=len(list(ep.glob('candidate-*.private.json'))),
             generation_calls=sum(e['event']=='generation_started' for e in events),
@@ -104,7 +119,7 @@ def analyze(root,output,*,allocation_gpu_seconds):
             queue_seconds=sum(e.get('wait_seconds',0) for e in events if e['event'] in ('admitted','admission_interrupted')),
             cleanup_failures=sum(e['event']=='cleanup' and not e['verified'] for e in events))
         if row['native_valid'] and not finite(row['native_score']):raise ValueError('nonfinite selected score')
-        if row['late_returns']:row['complete']=False # no late receipt can silently enter the efficacy gate
+        if row['late_returns'] or not selected_verified:row['complete']=False
         rows.append(row)
     for block in range(4):
         bd=root/f'block-{block}';brows=[r for r in rows if r['block']==block];width=1 if brows[0]['arm']=='pipeline' else 2
@@ -124,6 +139,7 @@ def analyze(root,output,*,allocation_gpu_seconds):
             identities_ok=bool(identity_ok),valid_returns=sum(r['valid_returns'] for r in brows)))
     result=summarize(rows,blocks)
     result.update(plan_sha256=sha(root/'plan.json'),source_commit=plan['source_commit'],
+                  readout_source_sha256=sha(__file__),
                   closed_sha256=sha(root/'closed.json'),allocation_gpu_seconds=allocation_gpu_seconds,
                   allocation_gpu_hours=allocation_gpu_seconds/3600,controller_error=closed.get('controller_error'),
                   readout_utc=datetime.datetime.now(datetime.timezone.utc).isoformat())

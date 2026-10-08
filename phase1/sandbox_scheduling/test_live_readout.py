@@ -1,7 +1,7 @@
 import copy
 import unittest
 from live_search_trial_20261009 import schedule
-from live_readout import summarize,queue_verify
+from live_readout import summarize,queue_verify,ground_scores
 
 
 class ReadoutTests(unittest.TestCase):
@@ -46,5 +46,16 @@ class ReadoutTests(unittest.TestCase):
         self.assertEqual(queue_verify(e,1)['lease_seconds'],2)
         broken=copy.deepcopy(e);broken[2]['key']='b'
         with self.assertRaises(ValueError):queue_verify(broken,1)
+
+    def test_selected_score_requires_timely_external_receipt(self):
+        final=dict(native_selected_valid=True,native_selected_score=.6,native_selected_code_sha256='code')
+        candidate=dict(valid=True,code_sha256='code',score=.6,
+                       aux={'submission_sha256':'submission','metric_name':'auc'})
+        receipts=[{'submission_sha256':'submission','auc':.6}]
+        self.assertTrue(ground_scores(final,[candidate],receipts))
+        self.assertFalse(ground_scores(final,[],receipts))
+        final['native_selected_score']=.7
+        self.assertFalse(ground_scores(final,[candidate],receipts))
+        with self.assertRaises(ValueError):ground_scores(final,[candidate],[])
 
 if __name__=='__main__':unittest.main()

@@ -62,12 +62,17 @@ def ground_scores(finished,timely,receipts):
 
 def summarize(rows,blocks):
     # Pool-level replication, not a test treating correlated runs as independent.
-    diffs=[];score_diffs={t:[] for t in sorted({r['task'] for r in rows})}
+    diffs=[];raw_diffs=[];score_diffs={t:[] for t in sorted({r['task'] for r in rows})}
+    attempted={b['block'] for b in blocks if b.get('attempted') is True}
     all_pairs=True
     for repeat in (0,1):
         selected=[r for r in rows if r['repeat']==repeat]
         totals={a:sum(r['valid_returns'] for r in selected if r['arm']==a) for a in ('pipeline','share2')}
-        diffs.append(totals['share2']-totals['pipeline'])
+        raw_diffs.append(totals['share2']-totals['pipeline'])
+        # Absence of a launched comparator is not an observed zero return.
+        # Retain assigned counts, including failures, separately; never rescue
+        # a partial batch by summarizing only its completed pool pair.
+        diffs.append(raw_diffs[-1] if {2*repeat,2*repeat+1} <= attempted else None)
         for slot in range(4):
             pair={r['arm']:r for r in selected if r['slot']==slot}
             a,b=pair['pipeline'],pair['share2']
@@ -79,11 +84,14 @@ def summarize(rows,blocks):
     completeness=len(rows)==16 and all(r['complete'] for r in rows)
     structural=len(blocks)==4 and all(b['queue']['complete'] and b['closed'] and b['identities_ok'] for b in blocks)
     return dict(assigned=16,complete=sum(r['complete'] for r in rows),
+        assigned_pool_return_count_differences=raw_diffs,
         paired_pool_valid_return_differences=diffs,
-        pool_difference_median=statistics.median(diffs),pool_difference_sample_std=statistics.stdev(diffs),
+        observed_pool_pairs=sum(v is not None for v in diffs),
+        pool_difference_median=statistics.median(diffs) if all(v is not None for v in diffs) else None,
+        pool_difference_sample_std=statistics.stdev(diffs) if all(v is not None for v in diffs) else None,
         paired_task_oriented_score_differences=score_diffs,paired_task_medians=medians,
         all_eight_score_pairs_observed=all_pairs,structural_audit=structural,
-        exploratory_go=bool(completeness and structural and all_pairs and all(v>0 for v in diffs)
+        exploratory_go=bool(completeness and structural and all_pairs and all(v is not None and v>0 for v in diffs)
                            and all(v is not None and v>=0 for v in medians.values())),
         boundary='Two paired scheduling blocks, reused development tasks. No population significance, neural-workload replication or new-method claim.')
 
@@ -140,7 +148,7 @@ def analyze(root,output,*,allocation_gpu_seconds):
             if not native.exists():identity_ok=False;continue
             n=read(native)
             identity_ok=identity_ok and n['job']==execution.get('job')==service.get('job') and n['step']==execution.get('step') and n['gpu_uuids']==[execution.get('gpu_uuid')]
-        blocks.append(dict(block=block,arm=brows[0]['arm'],queue=queue,
+        blocks.append(dict(block=block,arm=brows[0]['arm'],queue=queue,attempted=block in closed['attempted_blocks'],
             closed=c.get('gpu_clean') is True and service_cleanup.get('gpu_clean') is True and not c.get('telemetry_errors') and (bd/'cycle-closed.json').exists(),
             identities_ok=bool(identity_ok),valid_returns=sum(r['valid_returns'] for r in brows)))
     result=summarize(rows,blocks)

@@ -8,8 +8,29 @@ class ReadoutTests(unittest.TestCase):
     def fixture(self):
         rows=[dict(**r,complete=True,native_valid=True,native_score=.5,
                    valid_returns=2 if r['arm']=='share2' else 1) for r in schedule()]
-        blocks=[dict(closed=True,identities_ok=True,queue={'complete':True}) for _ in range(4)]
+        blocks=[dict(block=i,attempted=True,closed=True,identities_ok=True,queue={'complete':True}) for i in range(4)]
         return rows,blocks
+
+    def test_neither_arm_started_is_missing_not_tie(self):
+        r,b=self.fixture()
+        for row in r:row.update(complete=False,native_valid=False,native_score=None,valid_returns=0)
+        for block in b:block.update(attempted=False,closed=False)
+        result=summarize(r,b)
+        self.assertEqual(result['assigned_pool_return_count_differences'],[0,0])
+        self.assertEqual(result['paired_pool_valid_return_differences'],[None,None])
+        self.assertIsNone(result['pool_difference_median'])
+        self.assertIsNone(result['pool_difference_sample_std'])
+        self.assertFalse(result['exploratory_go'])
+
+    def test_unstarted_comparator_not_treated_as_zero(self):
+        r,b=self.fixture();b[1]['attempted']=False
+        for row in r:
+            if row['block']==1:row.update(complete=False,native_valid=False,native_score=None,valid_returns=0)
+        result=summarize(r,b)
+        self.assertEqual(result['paired_pool_valid_return_differences'],[None,4])
+        self.assertIsNone(result['pool_difference_median'])
+        self.assertEqual(result['observed_pool_pairs'],1)
+        self.assertFalse(result['exploratory_go'])
 
     def test_complete_favorable_fixture(self):
         r,b=self.fixture();s=summarize(r,b)

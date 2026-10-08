@@ -1,0 +1,27 @@
+{
+  "observed_hong_kong_date": "2026-10-09",
+  "checker_commit": "806727cabde249918d36d982c04e303f383799c5",
+  "checkers": ["live_historical_port_check.py", "historical_gateway_receipt.py"],
+  "frozen_runtime_port_function": "_gateway_port",
+  "old_unused_override_name": "_slurm_gateway_port",
+  "frozen_connection_reads_own_child_announced_port": true,
+  "batches": [
+    {
+      "remote_root": "/research/d7/spc/yzyang4/scheduling-neural-qualified-overlap-20261008-evening-v1",
+      "formal_logs_checked": 12,
+      "announced_ports_by_index": [48957,48956,48957,48956,48957,48956,48957,48956,48956,48957,48956,48957],
+      "overlapping_worker_pairs": [[0,1],[2,3],[4,5],[6,7],[8,9],[10,11]],
+      "all_overlap_ports_distinct": true
+    },
+    {
+      "remote_root": "/research/d7/spc/yzyang4/scheduling-neural-full-confirmation-20261008-v1",
+      "formal_logs_checked": 12,
+      "announced_ports_by_index": [45441,45441,45442,45441,45442,45441,45441,45441,45441,45441,45441,45442],
+      "overlapping_worker_pairs": [[2,3],[4,5],[10,11]],
+      "all_overlap_ports_distinct": true
+    }
+  ],
+  "interpretation": "The intended override was ineffective. All observed concurrent workers in the two complete positive batches nevertheless used distinct actual ports, and the frozen server uses its own child-reported endpoint. This finding alone does not retract those results.",
+  "limits": "Not proof of the cause or repair of earlier readiness timeouts. Does not establish universal isolation or extra performance. No raw log, token, candidate, prediction or label exported.",
+  "new_batch_change": "v3 binds the actual _gateway_port interface to an explicit job/run index before constructing the interpreter; CPU regression checks that exact native interface. No old frozen source is edited."
+}

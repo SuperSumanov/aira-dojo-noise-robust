@@ -862,3 +862,7 @@ phase1/sandbox_scheduling/test_readiness_qualified_overlap.py -text diff whitesp
 # Fresh live scheduling trial: preserve receipt-bound source bytes.
 phase1/sandbox_scheduling/live_*.py -text diff whitespace=cr-at-eol
 phase1/sandbox_scheduling/test_live_*.py -text diff whitespace=cr-at-eol
+phase1/sandbox_scheduling/live_v3_closed/** -text diff whitespace=cr-at-eol
+phase1/sandbox_scheduling/port_interface_audit_20261009.json -text diff whitespace=cr-at-eol
+phase1/sandbox_scheduling/return_dominance.py -text diff whitespace=cr-at-eol
+phase1/sandbox_scheduling/test_return_dominance.py -text diff whitespace=cr-at-eol

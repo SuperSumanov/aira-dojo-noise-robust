@@ -1,0 +1,178 @@
+{
+  "analysis_source_sha256": "2d515104d91e471ec09286adf6164b3169607a2354b3e2752f96f5a455fdced0",
+  "boundary": "Post-hoc timing only, 3 restarts of the same 2 programs/source seed; no new trials, label access, population inference or live search quality. Identity-level and count-level dominance are different; no chosen deadline and no outcome-based rerun.",
+  "completed": 12,
+  "delay_median": -61.77295386791229,
+  "input_receipt_hashes": {
+    "block-0.json": "be416241e12b94db1553831ae6cc6a26fd77e53e593aed2953a1e676f236e64c",
+    "block-1.json": "546bc8753eb8f07319ba242616a500f7e52d85fcf04fe761e4f71f1f2b6d29b9",
+    "block-2.json": "f9415f11873aa45aa4c5b3caa8bddb66cb8c461db8171d4af22a8042ff451575",
+    "block-3.json": "15125831f199186f1e59505cc1873cc54ee614e3a82178280d17b3d22085009d",
+    "block-4.json": "83b95fdb856df218de35c01e904f6621b816a6a13eafc5abb981ea0c8829138c",
+    "block-5.json": "b92ac9a08b58f763b6698c9dee416cb2bd330c95d65840f53799120d8b51a870",
+    "episode-0/closed.json": "434f44a3c7ba49a07bb4d791df9e5ceac6ab99bdd815efba8a1e3bf7b77f54e5",
+    "episode-1/closed.json": "81090fcaf0b82796c0de744712db2d8f63dee1691d399e30fdb2c73f0f6c9b45",
+    "episode-10/closed.json": "b60bb152279d8ec40b20e94769ef7199239f7eda81000840bd9d70e432464b0d",
+    "episode-11/closed.json": "672fad8599d772e1561c2500f8b6b5b558c367454309f53f653661a8cefa8c03",
+    "episode-2/closed.json": "eedf1e0c233245f575d493ae5406a6345435d8000fa8ace57a8945c73f043666",
+    "episode-3/closed.json": "84e9cbb4f689ac8f46a9e48f5ff697610baa8f6c3d0d15cbefe3858622c48abd",
+    "episode-4/closed.json": "385f1205446804ef2fa74ac43942ae8543b3827e6c9c4c8350a5cbc8e45a3834",
+    "episode-5/closed.json": "da6bdccfe682b7de00f8bd4cb7d46c44b792300369a1494fe6e40c77e20c0e56",
+    "episode-6/closed.json": "eaca311645c0fb5f38a95c83e54d66350708415e1c90341209319cdb195ed543",
+    "episode-7/closed.json": "3266892a2ca1668f5418a17bf69769e6f0c8fd3527c9986d093b3a87a5f2fa6d",
+    "episode-8/closed.json": "aa3c6f122ca048762010a656a9e39390486415a99e2034140432d821d30ba892",
+    "episode-9/closed.json": "d8386f4e8c84dea69130347030145321f4f8e66112db520c98ac92d3fa48f1ec"
+  },
+  "job": "17128",
+  "max_program_delay_seconds": 13.305168628692627,
+  "pairs": [
+    {
+      "count_dominates_all_deadlines": true,
+      "every_program_no_later": false,
+      "ordered_return_times": {
+        "reference": [
+          135.59333300590515,
+          188.68510842323303
+        ],
+        "shared": [
+          58.4888801574707,
+          148.89850163459778
+        ]
+      },
+      "program_delay_seconds": {
+        "0": 13.305168628692627,
+        "1": -130.19622826576233
+      },
+      "repeat": 0
+    },
+    {
+      "count_dominates_all_deadlines": true,
+      "every_program_no_later": true,
+      "ordered_return_times": {
+        "reference": [
+          57.95054769515991,
+          220.36918210983276
+        ],
+        "shared": [
+          57.129292488098145,
+          132.61319947242737
+        ]
+      },
+      "program_delay_seconds": {
+        "0": -87.7559826374054,
+        "1": -0.8212552070617676
+      },
+      "repeat": 1
+    },
+    {
+      "count_dominates_all_deadlines": true,
+      "every_program_no_later": true,
+      "ordered_return_times": {
+        "reference": [
+          167.13462090492249,
+          219.69858741760254
+        ],
+        "shared": [
+          59.64239168167114,
+          131.3446958065033
+        ]
+      },
+      "program_delay_seconds": {
+        "0": -35.78992509841919,
+        "1": -160.0561957359314
+      },
+      "repeat": 2
+    }
+  ],
+  "plan_sha256": "c73cb9ce97ae092ee3bb4ea761201da22dc08d35dfa3f5ecf3aa34bdd8415abc",
+  "planned": 12,
+  "positive_delays": 1,
+  "primary_sha256": "c763de7c8ee00db5d4ba4219d49c4d864e573061368be9566f7d48d4cc0bc258",
+  "program_pairs": 6,
+  "rows": [
+    {
+      "arm": "pipeline",
+      "index": 0,
+      "program": 0,
+      "repeat": 0,
+      "return_seconds": 135.59333300590515
+    },
+    {
+      "arm": "pipeline",
+      "index": 1,
+      "program": 1,
+      "repeat": 0,
+      "return_seconds": 188.68510842323303
+    },
+    {
+      "arm": "share2",
+      "index": 2,
+      "program": 0,
+      "repeat": 0,
+      "return_seconds": 148.89850163459778
+    },
+    {
+      "arm": "share2",
+      "index": 3,
+      "program": 1,
+      "repeat": 0,
+      "return_seconds": 58.4888801574707
+    },
+    {
+      "arm": "share2",
+      "index": 4,
+      "program": 1,
+      "repeat": 1,
+      "return_seconds": 57.129292488098145
+    },
+    {
+      "arm": "share2",
+      "index": 5,
+      "program": 0,
+      "repeat": 1,
+      "return_seconds": 132.61319947242737
+    },
+    {
+      "arm": "pipeline",
+      "index": 6,
+      "program": 1,
+      "repeat": 1,
+      "return_seconds": 57.95054769515991
+    },
+    {
+      "arm": "pipeline",
+      "index": 7,
+      "program": 0,
+      "repeat": 1,
+      "return_seconds": 220.36918210983276
+    },
+    {
+      "arm": "pipeline",
+      "index": 8,
+      "program": 0,
+      "repeat": 2,
+      "return_seconds": 167.13462090492249
+    },
+    {
+      "arm": "pipeline",
+      "index": 9,
+      "program": 1,
+      "repeat": 2,
+      "return_seconds": 219.69858741760254
+    },
+    {
+      "arm": "share2",
+      "index": 10,
+      "program": 0,
+      "repeat": 2,
+      "return_seconds": 131.3446958065033
+    },
+    {
+      "arm": "share2",
+      "index": 11,
+      "program": 1,
+      "repeat": 2,
+      "return_seconds": 59.64239168167114
+    }
+  ]
+}

@@ -24,13 +24,19 @@ def log_shape(path):
         f.seek(max(0, path.stat().st_size - 65536))
         tail = f.read().decode('utf-8', errors='replace')
     kinds = re.findall(r'^([A-Za-z][A-Za-z0-9_.]*(?:Error|Exception|Expired))(?::|$)', tail, re.M)
+    frames=[dict(file=Path(f).name,line=int(n),function=fn) for f,n,fn in
+            re.findall(r'File "([^"\r\n]+)", line (\d+), in ([A-Za-z0-9_]+)',tail)]
+    known_messages=[v for v in ('cuInit failed','cuDeviceGetCount failed','cuDeviceGet failed',
+        'cuDeviceGetUuid failed','CUDA device count mismatch','wrong node',
+        'original image GPU arithmetic did not complete','new node/original image qualification failed') if v in tail]
     markers = {k: bool(re.search(p, tail)) for k, p in {
         'ready': r'Application startup complete|Uvicorn running on',
         'oom': r'CUDA out of memory|OutOfMemoryError',
         'step_wait': r'step creation temporarily disabled',
         'traceback': r'Traceback \(most recent call last\)',
     }.items()}
-    return dict(bytes=path.stat().st_size, exception_types=kinds[-5:], **markers)
+    return dict(bytes=path.stat().st_size, exception_types=kinds[-5:],trace_frames=frames[-8:],
+                known_messages=known_messages, **markers)
 
 
 def main():

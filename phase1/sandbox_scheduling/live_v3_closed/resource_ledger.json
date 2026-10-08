@@ -1,0 +1,17 @@
+{
+  "observed_utc": "2026-10-08T23:40:00Z",
+  "evidence": "SLURM_CONF=/opt1/slurm/gpu-slurm.conf sacct -j 17229,17232,17234,17235 -X -n -P --format=JobIDRaw,State,ElapsedRaw,AllocTRES,ExitCode,Start,End",
+  "timezone_of_slurm_timestamps": "Asia/Hong_Kong",
+  "jobs": [
+    {"job": "17229", "state": "CANCELLED by 7542", "elapsed_seconds": 0, "allocated_gpus": 0, "gpu_seconds": 0, "exit_code": "0:0", "start": "2026-10-09T07:13:25", "end": "2026-10-09T07:13:25", "scope": "v2 live trial, never allocated"},
+    {"job": "17232", "state": "FAILED", "elapsed_seconds": 5, "allocated_gpus": 3, "gpu_seconds": 15, "exit_code": "1:0", "start": "2026-10-09T07:29:00", "end": "2026-10-09T07:29:05", "scope": "v3 CUDA initialization before original-image qualification, no model/candidate began"},
+    {"job": "17234", "state": "FAILED", "elapsed_seconds": 2, "allocated_gpus": 1, "gpu_seconds": 2, "exit_code": "2:0", "start": "2026-10-09T07:36:24", "end": "2026-10-09T07:36:26", "scope": "diagnostic entry absent on compute node: login /tmp is not shared"},
+    {"job": "17235", "state": "FAILED", "elapsed_seconds": 1, "allocated_gpus": 1, "gpu_seconds": 1, "exit_code": "13:0", "start": "2026-10-09T07:37:44", "end": "2026-10-09T07:37:45", "scope": "diagnostic launcher omitted Python interpreter, no diagnostic ran"}
+  ],
+  "total_gpu_seconds": 18,
+  "total_gpu_hours": 0.005,
+  "not_jobs": ["17230 was sbatch --test-only output, not an actual submission"],
+  "additional_diagnostic": "Rejected before execution by safety review; awaiting explicit approval. No third GPU diagnostic submitted.",
+  "effect_status": "Not observed, not a zero effect. Original assigned 16 slots remain in denominator.",
+  "driver_root_cause": "Unknown numeric cuInit error. Node was recently rebooted; that is not proof of cause. No driver or CUDA mask modified."
+}

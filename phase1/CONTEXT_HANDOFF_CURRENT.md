@@ -14,7 +14,8 @@
 - /tmp/r14-evening-20261008.TOHDvG/close.sh已一次执行成功，不重跑writer。256冻结文件/14242输入hash、12资源身份、pipeline前驱屏障均通过，60正式info握手ready；已记录preflight与六块0重叠，不能证明全主机无干扰。首次SCP连接关闭，单文件重试成功；无原始预测/标签导出。
 - 资格只读导出已本地复核：evening_qualification_v1_closed/summary.json SHA39b2c381993ec6aa01b6a3b5070e783936c363b324daec42fe4aad6a93905022，runs.csv SHA f6c4bd2eaa75873122674003a4f3a16bd6831b669caa73ed0dd2734ee27f4ba0。冻结客户端execute AST的迟到消息/真实错误两项CPU注入通过，不是额外真实内核或超时根因确认。一次审计测试误在repo根目录运行，4项导入错误；正确目录20项通过，非GPU失败。
 - first-960/Target-300/Target-522、D_val、官方test继续关闭；16560数值导出另待授权。不改学长分支，不动旧Held12535，不用付费API、不更新agent底座。
-- 晚间fetch核己方公开基线605bca4886e6ec8cb154d5eaffe28bdc0121f0f8；本轮源码提交3f2f9846、22566d06，闭合证据待本次提交/发布（最终以Git核验）。dojo-reproduce仍dfff0efb9daf1d4a63c74492f138c19c1fd8440e；未看到新提交，不把旧outcome当新。
+- 23:30香港发布后核验：己方phase1-value-critic=c270419f50da3255c40231ce199632d682b2e48e，含源码3f2f9846/22566d06与闭合证据；dojo-reproduce仍dfff0efb9daf1d4a63c74492f138c19c1fd8440e，未修改学长分支。24文件及3提交29个文件版本credential-shape/敏感文件名扫描0；五回执及两runtime在Git blob中的SHA与现场一致，精确字节属性已保留。本地44相关回归通过。发布前一次扫描命令引号错误被门拦住未push，修正重检后成功；不把Git附带sh.exe警告说成hook通过。
+- 23:31香港队列只读复核17124/17128均已离队；一次带管道字符的显示格式被SSH拆分，改无引号/无管道格式后退出0、空队列。只读检查失败不是候选失败或新资源成本。此交接提交是已发布结果的状态回执，不另开新实验。
 - SSH linux5/yzyang4；PY=/research/d7/spc/yzyang4/venvs/aira/bin/python；SLURM_CONF=/opt1/slurm/gpu-slurm.conf。原MLE镜像仅gpu27/gpu28 RTX3090，不投projgpu39。研究盘4TB至2027-08-30，不是实时剩余容量。
 
 ## 17017：最新完整阳性，所有writer已闭合

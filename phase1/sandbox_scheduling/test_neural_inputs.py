@@ -1,9 +1,16 @@
 import unittest
-from neural_inputs import cactus_split,numeric_split
+from neural_inputs import cactus_split,numeric_split,denoising_split
 from neural_pool_trial import schedule,read_json_line
 from collections import Counter
 
 class FixtureTests(unittest.TestCase):
+ def test_full_input_preserves_original_query(self):
+  names=[f'{i}.png' for i in range(1,116)]
+  small,query=denoising_split(names)
+  full,query2=denoising_split(names,True)
+  self.assertEqual(query,query2);self.assertEqual(len(full),113)
+  self.assertEqual(len(full)-15,98);self.assertTrue(set(small)<=set(full))
+  self.assertFalse(set(full)&set(query))
  def test_fixed_neural_matrix(self):
   rows=schedule()
   self.assertEqual([r['index'] for r in rows],list(range(12)))

@@ -52,10 +52,16 @@ def make_cactus(source,out):
  return dict(training_images=len(train),query_images=len(query),selection='lexicographic public IDs: first 64 query, all remaining train',
              original_source_subset_fraction=.2,query_disjoint=True,private_cache='/workspace/input_cache',source_pins=source_pins)
 
-def make_denoising(source,out):
+def denoising_split(names,all_remaining=False):
+ train,query=numeric_split(names)
+ if all_remaining:
+  train=sorted(set(names)-set(query),key=lambda n:int(Path(n).stem))
+ return train,query
+
+def make_denoising(source,out,all_remaining=False):
  from PIL import Image
  out.mkdir();[(out/n).mkdir() for n in ('train','train_cleaned','test')]
- train,query=numeric_split([p.name for p in (source/'train').iterdir() if p.is_file() and p.suffix=='.png'])
+ train,query=denoising_split([p.name for p in (source/'train').iterdir() if p.is_file() and p.suffix=='.png'],all_remaining)
  source_pins=[];dimensions={}
  for name in train+query:
   noisy=source/'train'/name
@@ -75,9 +81,9 @@ def make_denoising(source,out):
    width,height=dimensions[name];stem=int(Path(name).stem)
    for row in range(1,height+1):
     w.writerows([[f'{stem}_{row}_{col}'] for col in range(1,width+1)])
- return dict(public_training_pairs=31,source_internal_train_images=16,source_internal_validation_images=15,query_images=2,
+ return dict(public_training_pairs=len(train),source_internal_train_images=len(train)-15,source_internal_validation_images=15,query_images=2,
              query_pixels=sum(dimensions[n][0]*dimensions[n][1] for n in query),query_disjoint=True,
-             selection='numeric public train stems: first 31 paired input, next 2 noisy-only query; never mount query clean images',source_pins=source_pins)
+             selection=('all public pairs except unchanged two noisy-only query images' if all_remaining else 'numeric public train stems: first 31 paired input, next 2 noisy-only query; never mount query clean images'),source_pins=source_pins)
 
 def files_manifest(root):
  return {str(p.relative_to(root)):sha(p) for p in root.rglob('*') if p.is_file() and not p.is_symlink()}

@@ -16,7 +16,7 @@ import sys
 import neural_pool_trial as n
 from lifecycle_pilot import read, write, sha
 
-R = Path('/research/d7/spc/yzyang4/scheduling-neural-gpu28-20261008-v1')
+R = Path('/research/d7/spc/yzyang4/scheduling-neural-gpu28-20261008-v2')
 D = Path('/research/d7/spc/yzyang4/scheduling-neural-20261008-v1')
 DONOR = '8da0e849c3203efc2c47c13f134fe9d841ede0f9c3d667789e41ab2aefb95edc'
 NAME = 'neural_node_replication.py'
@@ -32,6 +32,15 @@ def worker_ast(source):
     names = ('worker', 'run_one')
     return {s.name:ast.dump(s, include_attributes=False)
             for s in module.body if isinstance(s, ast.FunctionDef) and s.name in names}
+
+
+def batch_script(original):
+    if '--time=01:30:00' not in original or '5350s srun' not in original:
+        raise ValueError('unexpected donor budget')
+    result = original.replace('r14-neural-v1','r14-neural-gpu28').replace(str(D),str(R)).replace('gpu27','gpu28').replace('01:30:00','00:45:00').replace('5350s srun','2660s srun').replace('neural_pool_trial.py controller',f'{NAME} controller')
+    if '--time=00:45:00' not in result or '2660s srun' not in result:
+        raise ValueError('allocation budget substitution')
+    return result
 
 
 def check_inputs():
@@ -74,9 +83,7 @@ def prepare(commit):
     wrapper = f'#!{n.PY}\nimport sys\nsys.path.insert(0,{str(R)!r})\nfrom neural_node_replication import configure\nconfigure().task_runtime()\n'
     (R/'bin/singularity').write_text(wrapper)
     os.chmod(R/'bin/singularity', 0o700)
-    batch = (D/'run.sbatch').read_text().replace('r14-neural-v1','r14-neural-gpu28').replace(str(D),str(R)).replace('gpu27','gpu28').replace('01:30:00','00:45:00').replace('5360s','2660s').replace('neural_pool_trial.py controller',f'{NAME} controller')
-    if '--time=00:45:00' not in batch or '2660s' not in batch:
-        raise ValueError('allocation budget substitution')
+    batch = batch_script((D/'run.sbatch').read_text())
     (R/'run.sbatch').write_text(batch)
     plan = {k:v for k,v in old.items() if k != 'files'}
     plan.update(source_commit=commit, donor_plan_sha256=DONOR, node='gpu28',

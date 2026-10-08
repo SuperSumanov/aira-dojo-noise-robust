@@ -2,11 +2,19 @@ import ast
 from pathlib import Path
 import unittest
 
-from neural_node_replication import worker_ast
+from neural_node_replication import worker_ast, batch_script
 from neural_pool_trial import schedule
 
 
 class ReplicationTests(unittest.TestCase):
+    def test_actual_frozen_batch_budget(self):
+        original='#SBATCH --time=01:30:00\n#SBATCH --nodelist=gpu27\ntimeout --signal=TERM --kill-after=15s 5350s srun task\n'
+        new=batch_script(original)
+        self.assertIn('--time=00:45:00',new)
+        self.assertIn('2660s srun',new)
+        self.assertIn('--nodelist=gpu28',new)
+        with self.assertRaises(ValueError):batch_script(original.replace('5350s','5360s'))
+
     def test_worker_AST_only(self):
         a='CAP=5400\ndef worker(x):\n return x\ndef run_one(x):\n return worker(x)\n'
         b=a.replace('CAP=5400','CAP=2700')

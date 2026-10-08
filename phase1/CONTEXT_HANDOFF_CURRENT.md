@@ -1,18 +1,19 @@
 # 当前短交接
 ## 最新：2026-10-09香港六小时窗口（覆盖下方10/8动态状态）
 - 06:45后重要修正：回读16307公开摘要，9B base四条native有效终点0、2合法候选遭analyzer误否决且生成/调试主导。不能拿它测主要质量调度收益；决定v1准备后不提交，已用GPU=0。不是新批次负结果或换seed救门。
-- v1 prepare已成功，source b124de46b4d7eb689aecad233a1219cd2d1b84c4，plan SHA d42f1440ef8a98d3476aa465f6e94fc16c7c3242f318adf3afc1eb7b2929961f；须运行live_withdraw_9b.py写撤回阻断回执，旧source/plan不覆盖。
+- v1 prepare已成功，source b124de46b4d7eb689aecad233a1219cd2d1b84c4，plan SHA d42f1440ef8a98d3476aa465f6e94fc16c7c3242f318adf3afc1eb7b2929961f；live_withdraw_9b.py已一次成功，withdrawn与submit-intent阻断回执已在，旧source/plan不覆盖，不重跑writer。
 - 替代v2入口live_27b_trial.py；相同16条/ABBA/600s/3GPU90min≤4.5GPUh，两臂共同用已部署27B，首pipeline块四条全部须有及时外部可核native有效终点，否则停止，不替补；完整比较仅条件性探索。
 - 27B服务入口task-feedback-real-20261001-v6/service_entry.py已credential-scan与原manifest对hash：cd9e143abe79cdc71c97db3dba07930e0642b28faf52ac4f6b2ca5ba36a8379a；donor plan15751d3b52bdc42617df02006ce724635f4bf49df6e477686769fd1979d53403。模型local-qwen27b-20260914-zcx1k1dy/model在；served alias qwen3.8-27b，实际config qwen3_5/compressed-tensors4bit，不声称9B→27B能力提升已证实。
-- 27B仍2GPU，原服务131072ctx/6seq/seed49/FP8 KV；每块重启，跨块共享编译缓存（不共享活跃KV）。v2正在写/核，尚未prepare或提交；下方9B配置为撤回计划，不得执行。
+- 27B仍2GPU，原服务131072ctx/6seq/seed49/FP8 KV；每块重启，跨块共享编译缓存（不共享活跃KV）。v2源ba44deec86822817d2349c68b380dbe5c5dc4621；06:55左右已启动prepare，06:59只读观察plan未写，07:03原prepare仍未完成，无GPU提交。exec session56815须等原进程，不另跑prepare。
 - 读出source现8b59b481938b59be4c12b6eb198f0463019c0aa4：内部native选分必须对应截止前候选和外部dev回执，不信内部数值单源；本地16通过/3Linux跳过，远端3通过。未新增GPU或付费调用。
 - 本窗口约06:12–12:12，用户要求在会话内继续，既有自主批准适用；不另建自动化、不提前完成。
 - 当前仍R14。fetch己方9c52040372909aa2173705903def1a4102f6bb3f；学长0155c7dedded47b59e29e81089e814250e38bd70（implement the grpo pipeline），仅核元数据，不读取新samples或采用GRPO。
-- 新live矩阵：2任务Pizza/Spooky dev、每池4独立run、FIFO执行许可1/2；ABBA四池块=16条×600s；base9B/2GPU12CPU服务每块重启，1GPU6CPU执行池，无rolling，不改变run内顺序。
+- live矩阵：2任务Pizza/Spooky dev、每池4独立run、FIFO执行许可1/2；ABBA四池块=16条×600s；27B/2GPU12CPU服务每块重启，1GPU6CPU执行池，无rolling，不改变run内顺序。
 - 新自限3张3090/90min/≤4.5GPUh，所有服务/失败/闲置计入；无API/底座训练/官方test。完整16分母，调度干预只有2配对块，不当16独立系统复制。
 - 共同适配器：preview/异常kernel关闭后释放许可；有界info握手；排队计入600s但从exec_time反馈扣除。两臂源/输入/镜像/模型/采样/预算相同。
 - 事前探索门：16端点/清理/审计齐，两配对池都增加有效dev返回，分任务配对选中dev分数中位差非负且无新增基础设施失败；不换seed救结论，缺失不补分。
-- 文件sandbox_scheduling/live_search_trial_20261009.py、live_admission.py、live_runtime_hooks.py、test_live_*。根拟/research/d7/spc/yzyang4/scheduling-live-search-20261009-v1；06:40前未prepare/提交GPU。
+- v2根/research/d7/spc/yzyang4/scheduling-live-search-20261009-v2；唯一运行入口live_27b_trial.py，默认live_search_trial_20261009.py指向撤回v1不可提交。live_status.py仅白名单元数据与日志形状；不导出原日志。
+- 另补live_phase_analysis.py只读描述生成/就绪/排队/租约时长，未结束跨度不补到600s，末事件后记未知而非空闲。未改冻结实验或资格门；本地24测试（3Linux跳过、其余通过），细化未知区间标签后重验相同。
 - tmp=/tmp/r14-live-20261009.M0hvVk。donor=policy9b-paired-20261005-gpu27-v1，plan SHA12d1264457158c936e4f1eff8e9c844ce5044365e77056066c4ded2ecfe6cd79，source b8e75052a9f69e19436f12bc5a36a0ca26a69a57。
 - 06:34香港：本地15项通过/3Linux项跳过；远端Linux3项全部通过（锁/超时取消/真实模块mock），无GPU/model calls。原接口mock首轮缺SUPERIMAGE_DIR，补测试环境后通过；不是实际任务执行通过。
 - 只读前检通过：donor闭合、模型/镜像在、dev评分器SHA匹配、private目录不存在；同任务各run工作/提交路径独立，不读donor结果值。冻结数值读出与全16分母门已写好。

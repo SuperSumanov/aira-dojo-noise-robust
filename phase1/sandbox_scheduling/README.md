@@ -14,7 +14,7 @@
 [Salus作者实现](https://github.com/SymbioticLab/Salus)则要求配套定制TensorFlow，不能在保持本轮原镜像不变时直接当可运行参照。
 这些是适用接口差别，不是我方新颖性证明。本轮先检验固定并发这个廉价参照，不因局部阳性自动开发LLM调度器。
 同日补核[Concord出版方摘要/引言](https://www.sciencedirect.com/science/article/pii/S0167739X2600230X)：
-已有不依赖作业时长估计的共享准入，以及干扰影响/敏感度的离线画像；正文直取403，未声称读完全文。
+已有不依赖作业时长估计的共享准入，以及干扰影响/敏感度的离线画像；本轮补核公开章节，但未取得完整正文，未声称读完全文或复现其界。
 “未知时长也能共享”不能单独作新颖性；它不等于免画像、一次性未知源码或我方实测收益。
 
 现有 `LocalGpuPoolLauncher` 分配的是整次搜索 run 的整卡槽位，`ExecutionResult`
@@ -214,3 +214,4 @@ GPU 为整卡数据，出现其他租户/未归属进程时不能算本候选成
 - 10/8核[NVIDIA MPS架构](https://docs.nvidia.com/deploy/mps/architecture.html)：普通多CUDA context可分时执行；多个驻留PID不是kernel同时执行证据。当前试验未启用MPS，所以结果称整程序共置/吞吐，不称kernel并行。MPS可作后续实现参照，但其[客户端结束约束](https://docs.nvidia.com/deploy/mps/when-to-use-mps.html#client-early-termination)要求先安全终止CUDA context，再处理进程；不能直接复用本运行器的超时kill。文档含新版接口，不假定现场驱动支持v3，也不在正在运行的批次切换MPS。
 - 10/8补核10/2发布的[VenusRL](https://arxiv.org/html/2610.03286v1) §4–6：已有组完成优先、生成/工具拆分、按模板的冷启动内存估计＋在线增长余量、OOM后迁移及页共享。故“agent关键路径、动态沙箱准入、预留增长空间”也不能直接称新。其环境实验证据是OpenSWE/Firecracker主存与可迁移状态，不自动覆盖任意MLE程序CUDA状态；这种接口差别仍须测实际代价，不能当我方优越性证明。本轮不做RL/页共享/迁移改造，不把它的环境费用降幅当全GPU池收益。
 - 10/8补核[SJF-BSBF](https://arxiv.org/html/2407.13088) §IV–VI：已按共置干扰与等待时间权衡选择配对/启动时点，利用迭代时长与剩余迭代数；还有调整microbatch/梯度累积的能力。故“不是显存放得下就共享”“首反馈与吞吐权衡”“选择互补程序”不是新算法。其固定迭代/干扰模型不等于任意生成程序可直接使用，适用性差别仍非我方优势证明。当前不修改候选batch或实现梯度累积；数值等价须实测，不能仅凭有效batch相同保证含BatchNorm/随机层程序等价。
+- 10/8核[Latency-Aware Orchestration](https://arxiv.org/html/2609.03335v1) §3–4：已有保持逻辑依赖的物理执行/生命周期规划、ready与near-ready区分；实验是Qwen推理副本上的数学、代码修复和摘要工作流，不是本批任意CUDA训练程序。跨run共享且保持搜索顺序是必要对照契约，不据此宣布新方法；也不能从该论文推断我们的搜索质量收益。

@@ -225,7 +225,7 @@ def mutate_plan(plan):
         qualification_does_not_prove_timeout_root_cause_or_future_reliability=True)
 
 
-def configure():
+def set_scope():
     control.R = R
     control.set_scope()
     control.r.NAME = NAME
@@ -233,6 +233,10 @@ def configure():
     control.r.JOBNAME = 'r14-qualified-overlap'
     control.r.PLAN_MUTATOR = mutate_plan
     control.r.EXTRA_FILES = ('neural_full_input_trial.py','neural_overlap_control.py','bounded_readiness.py')
+
+
+def configure():
+    set_scope()
     return control.r.configure()
 
 
@@ -246,9 +250,10 @@ def main():
     if args.mode.startswith('q'):
         return {'qprepare':lambda:prepare_q(args.commit),'qsubmit':q_submit,
                 'qcontroller':q_controller,'qworker':lambda:q_worker(args.index)}[args.mode]()
-    configure()
     if args.mode == 'prepare':
+        set_scope()
         return control.r.prepare(args.commit)
+    configure()
     if args.mode == 'worker':
         control.n.pilot().runtime()
         calls = install_handshake()

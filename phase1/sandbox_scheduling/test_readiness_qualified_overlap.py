@@ -56,6 +56,15 @@ class EveningTests(unittest.TestCase):
             q.control.R = oldroot
             q.control.n.schedule, q.control.n.write = oldschedule, oldwrite
 
+    def test_prepare_does_not_load_runtime_before_materialization(self):
+        with patch.object(q.sys,'argv',[q.NAME,'prepare','--commit','a'*40]), \
+             patch.object(q,'set_scope') as scope, \
+             patch.object(q,'configure',side_effect=AssertionError('premature runtime')), \
+             patch.object(q.control.r,'prepare',return_value='prepared') as prepare:
+            self.assertEqual(q.main(),'prepared')
+            scope.assert_called_once_with()
+            prepare.assert_called_once_with('a'*40)
+
 
 if __name__ == '__main__':
     unittest.main()

@@ -23,6 +23,8 @@ NAME = 'neural_node_replication.py'
 NODE, CAP = 'gpu28', 2700
 JOBNAME = 'r14-neural-gpu28'
 FIXTURE_BUILDER = None
+PLAN_MUTATOR = None
+EXTRA_FILES = ()
 QUESTION = 'Independent second-node replication of the fixed mixed neural pair; not a novel scheduler.'
 
 
@@ -78,7 +80,7 @@ def prepare(commit):
             dest.parent.mkdir(parents=True, exist_ok=True)
             shutil.copyfile(D/name, dest)
     for name in set((NAME, 'neural_node_replication.py','neural_inputs.py','neural_pool_trial.py', 'neural_pool_readout.py',
-                 'audit_neural_result.py', 'verify_pool_outputs.py')):
+                 'audit_neural_result.py', 'verify_pool_outputs.py')+EXTRA_FILES):
         shutil.copyfile(here/name, R/name)
     fixture = FIXTURE_BUILDER(R) if FIXTURE_BUILDER is not None else None
     for p in (0, 1):
@@ -119,6 +121,8 @@ def prepare(commit):
                     returncodes='subprocess return checked; exclusive intent prevents duplicate submission',
                     fixed_sample='same donor programs and public inputs; no replacement or extra trials based on results'),
                 files={str(p.relative_to(R)):sha(p) for p in R.rglob('*') if p.is_file() and not any(part in ('data-0','data-1') for part in p.relative_to(R).parts)})
+    if PLAN_MUTATOR is not None:
+        PLAN_MUTATOR(plan)
     write(R/'plan.json', plan)
     m = configure().runtime()
     if sha(m.TASK_IMAGE) != n.IMAGE_SHA:

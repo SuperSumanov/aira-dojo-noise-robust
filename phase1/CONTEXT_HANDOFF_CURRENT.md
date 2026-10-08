@@ -1,5 +1,5 @@
 # 当前短交接
-更新：2026-10-08 11:08香港附近最后观察。旧全文完整保留于Git 6685eabf103c71389e1044a2c027d41661629a96；不要把旧状态恢复成现场。
+更新：2026-10-08 11:15香港附近最后观察。旧全文完整保留于Git 0e61e2d2969a18552024b923d0dc05bd08633bc1；不要把旧状态恢复成现场。
 
 ## 方向、目标、授权
 - 活跃checkout：C:/Research/New/my_project/MLEvolve/_codex_tmp/publication-feedback-20261001。fetch→CURRENT_DIRECTION→ROUTE_DECISIONS→本文件；旧aira-dojo-codex-20260813有用户dirty，不整体覆盖。
@@ -56,8 +56,9 @@
 
 ## 历史与收尾
 - 另一节点复验17004已在PENDING时限定state/user/name取消，sacct=CANCELLED by7542/0秒/空AllocTRES；预计16:27开跑超本窗口，未有GPU/候选结果，跨节点复现仍未完成。root /research/d7/spc/yzyang4/scheduling-neural-gpu28-20261008-v2；source6e8d8636，plan SHAcdec2fb419281c5d1275fde6431480b4a02fe43cd719673b56f7e7e549a48e5c；tmp /tmp/r14-neural-gpu28-20261008.pi9MTM。保留，不重submit或当零收益。v1时限模板5350s误认5360s而prepare失败，0GPU/0候选，目录保留。
-- full-input已PREPARED、未submit：root /research/d7/spc/yzyang4/scheduling-neural-full-input-20261008-v1；tmp /tmp/r14-neural-full-input-20261008.sHZh7W；source6685eabf103c71389e1044a2c027d41661629a96；plan SHA08d445f61423a4368c866156ccd5189503b921d54f12ba1a8f71980e46f2f22f。原两程序12槽/3原seed重启、gpu27/6CPU/60min≤1GPUh；Cactus不变、DnCNN113公开配对图（源码内部98训练/15验证）、同2noisy query，query clean不读/不挂载。源码/worker/超参/450s时限不改；12远端测试与input/image hash通过。必须17004闭合后由neural_full_input_trial.py submit预算门检查actual+3600≤10800；不足不提交。monitor可用更新tmp/neural_status.py --kind full-input；readout/audit各一次。旧fixtures.json为donor历史，当前输入以plan.input_scale_receipt/full-input-fixture.json为准，不混写旧批次。
-- full-input v1不提交、不改冻结文件；因未分配取消作业的sacct状态带by7542/空TRES，原预算解析不支持这一真实零成本状态。已增加严格测试，另建v2（尚未prepare）；只改排队取消核算/root，候选、输入、worker AST、矩阵及限额不变。55本地相关测试通过；不是依据新候选结果改门或补跑。
+- full-input v2=17005 RUNNING gpu27（11:15附近首候选已执行）；root /research/d7/spc/yzyang4/scheduling-neural-full-input-20261008-v2；tmp /tmp/r14-neural-full-input-20261008.sHZh7W；source0e61e2d2969a18552024b923d0dc05bd08633bc1；plan SHAe836f8c49b13ce52ef02c138b873bc1464cdb147dc06254f656b707ff93afade。原两程序12槽/3原seed重启、gpu27/6CPU/60min≤1GPUh；Cactus不变、DnCNN113公开配对图（源码内部98训练/15验证）、同2noisy query，query clean不读/不挂载。源码/worker/超参/450s候选时限不改；14远端测试与input/image hash通过，提交前预算门通过。monitor tmp/neural_status.py --kind full-input，PYTHONPATH必须v2；结束后冻结root的neural_full_input_trial.py readout/audit各一次，audit须上述--plan-sha；旧fixtures.json为donor历史，当前输入以plan.input_scale_receipt/full-input-fixture.json为准。
+- full-input v1留存未submit：source6685eabf，plan SHA08d445f61423a4368c866156ccd5189503b921d54f12ba1a8f71980e46f2f22f；原预算解析不支持CANCELLED by7542/空TRES的真实未分配状态。v2仅修严格核算/root，不据候选结果改门，不重开失败样本。
+- 神经启动强对照正在本地准备、未GPU：原小输入/两源码，pipeline（并行初始化、候选至close FIFO串行）/share2×3原seed重启=12，gpu27/6CPU≤45min/.75GPUh。只加可信候选边界屏障，原worker/候选/450s/525s/550s时限不改，等待计入原时限。60本地相关测试通过；必须17005闭合且窗口actual+2700≤10800才submit，不足不启动。源文件neural_overlap_control.py；尚无root/preflight/job，不把准备当结果。
 - 16846已封闭：36槽/6尝试/2完成/4失败/30未启动，362单GPU秒，0共置比较；证据sandbox_scheduling/throughput_readout_v1。不得改分母或用新输入改写它。
 - R11/R12/R13与16582失败界限见ROUTE_DECISIONS；16560数值导出仍有旧审查边界，不能借新任务绕过。
 - 暂未创建新的自动化；本轮是在会话内持续研究。结束前核实际时钟和goal，不能声称六小时完成。新结果用轻量交接+结构回执；用户没要求不新写长报告。

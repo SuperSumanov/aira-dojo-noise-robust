@@ -14,6 +14,7 @@ from verify_pool_outputs import strict
 
 ROOT = Path('/research/d7/spc/yzyang4/scheduling-neural-20261008-v1')
 PLAN_SHA = '8da0e849c3203efc2c47c13f134fe9d841ede0f9c3d667789e41ab2aefb95edc'
+REFERENCE_ARM = 'serial'
 
 
 def intervals_summary(intervals, start, end):
@@ -59,7 +60,7 @@ def main():
         raise ValueError('primary provenance')
     if [r['index'] for r in runs] != list(range(12)):
         raise ValueError('slot denominator')
-    if Counter((r['program'], r['arm']) for r in runs) != Counter({(p,a):3 for p in (0,1) for a in ('serial','share2')}):
+    if Counter((r['program'], r['arm']) for r in runs) != Counter({(p,a):3 for p in (0,1) for a in (REFERENCE_ARM,'share2')}):
         raise ValueError('matrix denominator')
     if closed['completed'] != sum(r['status']=='complete' for r in runs):
         raise ValueError('completion denominator')
@@ -124,8 +125,8 @@ def main():
     ratios = []
     for repeat in range(3):
         own = {b['arm']:b for b in blocks if b['repeat']==repeat}
-        if set(own)=={'serial','share2'} and all(b['complete'] for b in own.values()):
-            ratios.append(dict(repeat=repeat,ratio=own['serial']['seconds']/own['share2']['seconds']))
+        if set(own)=={REFERENCE_ARM,'share2'} and all(b['complete'] for b in own.values()):
+            ratios.append(dict(repeat=repeat,ratio=own[REFERENCE_ARM]['seconds']/own['share2']['seconds']))
     if ratios != report['paired_ratios']:
         raise ValueError('independent makespan disagreement')
     result = dict(job=report['job'],plan_sha256=PLAN_SHA,primary_sha256=sha(ROOT/'readout-v1/summary.json'),

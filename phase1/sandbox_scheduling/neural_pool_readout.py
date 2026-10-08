@@ -6,6 +6,7 @@ import subprocess
 from lifecycle_pilot import read,write,sha
 from throughput_readout import load_predictions,difference,distribution,overlap
 from neural_pool_trial import R,schedule
+REFERENCE_ARM='serial'
 
 def main():
  plan=read(R/'plan.json');job=read(R/'launch.json')['job']
@@ -40,8 +41,8 @@ def main():
  ratios=[]
  for rep in range(3):
   own={b['arm']:b for b in blocks if b['repeat']==rep}
-  if set(own)=={'serial','share2'} and all(v['completed']==2 for v in own.values()):
-   ratios.append(dict(repeat=rep,ratio=own['serial']['makespan']/own['share2']['makespan']))
+  if set(own)=={REFERENCE_ARM,'share2'} and all(v['completed']==2 for v in own.values()):
+   ratios.append(dict(repeat=rep,ratio=own[REFERENCE_ARM]['makespan']/own['share2']['makespan']))
  equivalence=[]
  for program in (0,1):
   rows=[r for r in runs if r['program']==program and r['index'] in outputs];pairs=[]
@@ -55,7 +56,7 @@ def main():
    max_within_arm=within,max_cross_arm=cross,numerical_gate=(cross<=within+1e-6 and cross<=1e-5) if len(rows)==6 else None,
    tolerance_is_not_quality_guarantee=True))
  speed=distribution([v['ratio'] for v in ratios]);complete=sum(r['status']=='complete' for r in runs)
- result=dict(job=job,source_commit=plan['source_commit'],plan_sha256=sha(R/'plan.json'),planned=12,
+ result=dict(job=job,source_commit=plan['source_commit'],plan_sha256=sha(R/'plan.json'),planned=12,reference_arm=REFERENCE_ARM,
   attempted=sum(r['status']!='not_started' for r in runs),completed=complete,
   allocation_state=alloc[1],allocation_exit=alloc[4],allocation_seconds=int(alloc[2]),whole_pool_gpu_hours=int(alloc[2])/3600,
   within_cap=int(alloc[2])<=plan['allocation_seconds'],blocks=blocks,paired_ratios=ratios,speedup=speed,output_equivalence=equivalence,runs=runs,

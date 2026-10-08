@@ -1,10 +1,16 @@
 import math
 import unittest
-from live_runtime_hooks import corrected_seconds
+from live_runtime_hooks import corrected_seconds,gateway_port
 from live_search_trial_20261009 import schedule, replace_once, scientific
 
 
 class ContractTests(unittest.TestCase):
+    def test_same_step_workers_get_disjoint_gateway_ports(self):
+        ports=[gateway_port('17229',i) for i in range(17)]
+        self.assertEqual(len(set(ports)),17)
+        self.assertNotIn(19475,ports)
+        for args in (('cpu',0),('17229',-1),('17229',17)):
+            with self.assertRaises(ValueError):gateway_port(*args)
     def test_matrix_and_pairing(self):
         rows=schedule()
         self.assertEqual(len(rows),16)

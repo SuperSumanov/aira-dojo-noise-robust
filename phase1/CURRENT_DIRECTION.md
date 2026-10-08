@@ -12,6 +12,8 @@
 06:45后核旧16307：9B base四条native有效终点0，生成/调试主导；v1已准备但决定不提交，零GPU。
 改独立v2：首pipeline块四条都须有及时、外部分数可核的native终点，否则停止余12条，保留16分母；不换seed。
 新批次自限3张3090/90min/≤4.5GPUh（失败/空闲/服务均计）；是否提交看交接。无API/底座训练/官方test。
+07:13 v2/17229排队时撤回，sacct分配0；改独立v3在同型号空闲gpu24，两臂共同迁移，先原镜像GPU计算资格。
+新入口修正实际_gateway_port钩子；旧17128/17017日志确认全部并行区间实际端口分离，不据旧无效钩子撤回阳性。
 池块才是干预单位，仅2配对，且完整对照条件于首块资格；不同于先前神经程序，不称神经复制/确认性质量结论。
 
 10/8香港晚间一小时窗口：资格17124与强参照17128均COMPLETED，正式12/12，独立审计通过。
@@ -72,7 +74,7 @@ dojo-reproduce10/9 fetch为0155c7dedded47b59e29e81089e814250e38bd70（GRPO流水
 - first-960、Target-300、Target-522、D_val、官方test继续关闭；旧冻结scoring撤回与旧路线禁令不解除。
   16560数值导出仍待单独授权，不混入其他公开结果。
 - 凭据只在远端批准位置；学长新材料先scan，命中先远端脱敏；不导出raw候选/预测/标签/权重。
-- 原MLE镜像仅已知兼容gpu27/gpu28 RTX3090，不投projgpu39，不静默升级Torch或退CPU。
+- 原MLE镜像已知兼容gpu27/gpu28 RTX3090；gpu24同型号须本轮实际容器资格通过，不投projgpu39，不升级Torch或退CPU。
   SLURM_CONF=/opt1/slurm/gpu-slurm.conf；旧Held12535不动。研究盘4TB至2027-08-30，不是实时剩余量。
 - Fetch → 本入口 → ROUTE_DECISIONS（按机制查重）→ CONTEXT_HANDOFF_CURRENT → 按需证据。
   活跃checkout=_codex_tmp/publication-feedback-20261001；旧aira-dojo-codex-20260813有用户dirty，保留。

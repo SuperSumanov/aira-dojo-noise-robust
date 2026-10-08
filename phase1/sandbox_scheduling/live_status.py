@@ -1,5 +1,6 @@
 """Read-only, allowlisted monitoring of this live batch, never raw log export."""
 import datetime
+import argparse
 import json
 import os
 from pathlib import Path
@@ -33,12 +34,17 @@ def log_shape(path):
 
 
 def main():
+    global ROOT
+    parser=argparse.ArgumentParser();parser.add_argument('--version',choices=('v2','v3'),default='v2')
+    args=parser.parse_args()
+    ROOT=ROOT.with_name('scheduling-live-search-20261009-'+args.version)
     p = read('plan.json')
     launch = read('launch.json')
     result = dict(utc=datetime.datetime.now(datetime.timezone.utc).isoformat(),
                   root_exists=ROOT.exists(), plan_exists=bool(p),
                   preflight=read('preflight.json'), cpu=read('cpu.json'),
                   launch=launch, controller_closed=read('closed.json'),
+                  node_qualification=read('node-qualification.json'),
                   generator_qualification=read('generator-qualification.json'))
     result['blocks'] = []
     for b in range(4):
@@ -65,6 +71,7 @@ def main():
             r = subprocess.run(args, env=env, capture_output=True, text=True, timeout=20)
             result[key] = dict(returncode=r.returncode, rows=r.stdout.strip().splitlines())
         result['allocation_log'] = log_shape(ROOT/f'allocation-{job}.err')
+        result['node_qualification_log'] = log_shape(ROOT/'node-qualification.private.log')
     print(json.dumps(result, sort_keys=True))
 
 

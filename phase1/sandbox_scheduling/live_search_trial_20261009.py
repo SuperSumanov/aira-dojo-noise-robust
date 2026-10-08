@@ -40,6 +40,8 @@ CAP=5400
 MODEL_ID='qwen3.5-9b'
 MODEL_DIR=B/'models/Qwen3.5-9B-c202236'
 PROFILE='9b'
+NODE='gpu27'
+NODE_QUALIFICATION=False
 SERVICE27=B/'task-feedback-real-20261001-v6/service_entry.py'
 SERVICE27_SHA='cd9e143abe79cdc71c97db3dba07930e0642b28faf52ac4f6b2ca5ba36a8379a'
 TASKS=('random-acts-of-pizza','spooky-author-identification')
@@ -78,7 +80,8 @@ def host():
     source=replace_once(source,'PRIMARY_KEY=key,PRIMARY_KEY_QWEN3_5_9B=key',
         'PRIMARY_KEY=key,PRIMARY_KEY_QWEN3_8_27B=key,PRIMARY_KEY_QWEN3_5_9B=key')
     exec(compile(source,'live-native-worker','exec'),m.__dict__)
-    source=replace_once(inspect.getsource(m.task_runtime),'episode-[0-7]','episode-(?:[0-9]|1[0-5])')
+    episode_pattern='episode-(?:[0-9]|1[0-5]|qualification)' if NODE_QUALIFICATION else 'episode-(?:[0-9]|1[0-5])'
+    source=replace_once(inspect.getsource(m.task_runtime),'episode-[0-7]',episode_pattern)
     exec(compile(source,'live-native-runtime','exec'),m.__dict__)
     source=inspect.getsource(m.service)
     for old,new in (("R/'service-native.json'","R/f'block-{os.environ[\"R14_BLOCK\"]}/service-native.json'"),
@@ -94,7 +97,7 @@ def host():
 
 def service27():
     check();m=host();x=m.infra();block=os.environ['R14_BLOCK']
-    if socket.gethostname().split('.')[0]!='gpu27':raise ValueError('wrong service node')
+    if socket.gethostname().split('.')[0]!=NODE:raise ValueError('wrong service node')
     with socket.socket() as probe:probe.bind(('127.0.0.1',m.PORT))
     devices=x.native_uuids(2)
     write(R/f'block-{block}/service-native.json',dict(job=os.environ['SLURM_JOB_ID'],
@@ -115,6 +118,7 @@ def check():
     p=read(R/'plan.json')
     if p['schedule']!=schedule() or p['allocation_seconds']!=CAP or p['gpus']!=3:
         raise ValueError('frozen matrix')
+    if p.get('node','gpu27')!=NODE:raise ValueError('placement changed')
     for name,pin in p['files'].items():
         if sha(R/name)!=pin:raise ValueError('frozen file drift')
     return p
@@ -145,8 +149,14 @@ def prepare(commit):
     if sha(D/'policy9b_paired_20261005.py')!=DONOR_RUNTIME:raise ValueError('donor runtime')
     shutil.copyfile(D/'policy9b_paired_20261005.py',R/'runtime.py')
     for name in FILES:shutil.copyfile(Path(__file__).with_name(name),R/name)
+    if NODE!='gpu27':
+        path=R/'forets_native_cuda_identity_20260911.py'
+        path.write_text(replace_once(path.read_text(),"split('.')[0]!='gpu27'",f"split('.')[0]!={NODE!r}"))
     for d in ('configs','bin','opencl-vendors'):(R/d).mkdir()
     (R/'service-cache/tmp').mkdir(parents=True)
+    if NODE_QUALIFICATION:
+        (R/'episode-qualification/work').mkdir(parents=True)
+        (R/'qualification-empty-data').mkdir()
     model_files={}
     if PROFILE=='27b':
         if sha(SERVICE27)!=SERVICE27_SHA:raise ValueError('local 27B entry changed')
@@ -197,7 +207,7 @@ def prepare(commit):
 #SBATCH --partition=gpu_24h
 #SBATCH --account=gpu
 #SBATCH --qos=gpu
-#SBATCH --nodelist=gpu27
+#SBATCH --nodelist={NODE}
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 #SBATCH --gres=gpu:3
@@ -212,7 +222,9 @@ timeout --signal=TERM --kill-after=20s 5320s {PY} -B {R/NAME} controller
 '''
     (R/'run.sbatch').write_text(batch)
     write(R/'plan.json',dict(source_commit=commit,source_dojo_commit=old['source_commit'],
-        donor_plan_sha256=DONOR_PLAN,schedule=schedule(),gpus=3,total_cpu=18,
+        donor_plan_sha256=DONOR_PLAN,schedule=schedule(),gpus=3,total_cpu=18,node=NODE,
+        node_qualification_required=NODE_QUALIFICATION,
+        gateway_contract='Unique job/run-index gateway ports; all workers share the same native Slurm step but not a server port.',
         service_gpus=2,execution_gpus=1,service_cpu=12,execution_cpu=6,
         allocation_seconds=CAP,gpu_hours_cap=4.5,run_seconds=600,candidate_timeout_seconds=240,
         active_runs=4,rolling_replacement=False,service_restart_between_blocks=True,
@@ -394,7 +406,7 @@ def stop_service(server,block,job):
 
 def controller():
     check();m=host();m.setup();start=time.monotonic();job=os.environ['SLURM_JOB_ID']
-    if socket.gethostname().split('.')[0]!='gpu27':raise ValueError('wrong node')
+    if socket.gethostname().split('.')[0]!=NODE:raise ValueError('wrong node')
     for _ in range(40):
         if (R/'launch.json').exists():break
         time.sleep(.25)
@@ -402,6 +414,12 @@ def controller():
     env=m.infra().clean_env();base=['srun','--exclusive','--nodes=1','--ntasks=1','--cpu-bind=cores']
     error=None;attempted=[]
     try:
+        if NODE_QUALIFICATION:
+            with (R/'node-qualification.private.log').open('xb') as log:
+                qualified=subprocess.run(base+['--cpus-per-task=6','--gres=gpu:1','--time=00:03:00',
+                    str(PY),'-B',str(R/NAME),'qualify'],env=env,stdout=log,stderr=log,timeout=190)
+            if qualified.returncode or read(R/'node-qualification.json').get('complete') is not True:
+                raise ValueError('new node/original image qualification failed')
         for block in range(4):
             if CAP-(time.monotonic()-start)<1530:raise TimeoutError('whole block admission budget')
             bdir=R/f'block-{block}';cycle_start=time.time()
@@ -471,13 +489,17 @@ def controller():
 
 def main():
     os.umask(0o077);os.environ.update(PYTHON_DOTENV_DISABLED='1',PYTHONDONTWRITEBYTECODE='1')
-    p=argparse.ArgumentParser();p.add_argument('mode',choices=('prepare','submit','controller','service','block','worker'))
+    p=argparse.ArgumentParser();p.add_argument('mode',choices=('prepare','submit','controller','service','block','worker','qualify'))
     p.add_argument('--commit');p.add_argument('--block',type=int);p.add_argument('--index',type=int)
     a=p.parse_args()
     if a.mode=='prepare':return prepare(a.commit)
     if a.mode=='worker':return host().worker(a.index)
     if a.mode=='service':return host().service()
     if a.mode=='block':return block_run(a.block)
+    if a.mode=='qualify':
+        if not NODE_QUALIFICATION:raise ValueError('qualification not enabled')
+        from live_node_qualification import qualify
+        return qualify(sys.modules[__name__])
     return globals()[a.mode]()
 
 if __name__=='__main__':sys.exit(main())

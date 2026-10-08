@@ -56,12 +56,13 @@ class LinuxTests(unittest.TestCase):
     def test_native_hooks_without_execution(self):
         donor=Path('/research/d7/spc/yzyang4/policy9b-paired-20261005-gpu27-v1')
         sys.path.insert(0,str(donor/'source/src'))
-        os.environ.update(PYTHON_DOTENV_DISABLED='1',
+        os.environ.update(PYTHON_DOTENV_DISABLED='1',SLURM_JOB_ID='1',
             SUPERIMAGE_DIR='/research/d7/spc/yzyang4/aira-dojo/build/superimage',
             LOGGING_DIR='/tmp',MLE_BENCH_DATA_DIR='/tmp/r14-no-official-data',
             HF_HUB_OFFLINE='1',TRANSFORMERS_OFFLINE='1',WANDB_DISABLED='true')
         from dojo.core.interpreters.jupyter.jupyter_client import JupyterKernelClient
         from dojo.core.interpreters.jupyter.jupyter_code_executor import JupyterCodeExecutor
+        from dojo.core.interpreters.jupyter import jupyter_interpreter as ji
         from dojo.core.solvers.llm_helpers.generic_llm import GenericLLM
         from dojo.solvers.mcts.mcts import MCTS
         from dojo.tasks.mlebench.task import MLEBenchTask
@@ -92,9 +93,11 @@ class LinuxTests(unittest.TestCase):
             with patch.object(MLEBenchTask,'step_task',step),patch.object(MCTS,'update_data_preview',preview), \
                  patch.object(JupyterKernelClient,'execute',lambda *a,**kw:result), \
                  patch.object(JupyterKernelClient,'wait_for_ready'), \
+                 patch.object(ji,'_gateway_port'), \
                  patch.object(JupyterCodeExecutor,'execute_code',JupyterCodeExecutor.execute_code), \
                  patch.object(GenericLLM,'__call__',llm),patch.object(hooks,'wait_for_ready',lambda *a:True):
                 hooks.install({'index':0,'block':0},ep,deadline)
+                self.assertEqual(ji._gateway_port(),hooks.gateway_port('1',0))
                 MCTS.update_data_preview(None,state)
                 self.assertEqual(asyncio.run(GenericLLM.__call__(None)),('fixture',{}))
                 MLEBenchTask.step_task(None,state,'ok')

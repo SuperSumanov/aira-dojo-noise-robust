@@ -8,6 +8,7 @@ import contextlib
 import hashlib
 import inspect
 import math
+import os
 import time
 from pathlib import Path
 from bounded_readiness import wait_for_ready
@@ -15,6 +16,14 @@ from live_admission import Lease, append_event
 
 CLIENT_SHA = 'a6c6abdca37745ce8d5137f48595a3c0e6332c113e8133b0782425b7bbb291bf'
 HELPER_SHA = '0fd8ead4c8eac2fc128b36d096ed15ceebeabc43a5fc5841d8c17e882ca381cd'
+
+
+def gateway_port(job, index):
+    if not str(job).isdigit() or not 0 <= index <= 16:
+        raise ValueError('explicit job/run gateway identity required')
+    # Native per-step hashing is insufficient for multiple workers in one step.
+    # Includes an extra reserved slot for the pre-execution node qualification.
+    return 31000 + (int(job) % 400) * 40 + index
 
 
 def corrected_seconds(elapsed, wait):
@@ -26,6 +35,7 @@ def corrected_seconds(elapsed, wait):
 def install(row, ep, deadline):
     from dojo.core.interpreters.jupyter import jupyter_client as client
     from dojo.core.interpreters.jupyter.jupyter_code_executor import JupyterCodeExecutor
+    from dojo.core.interpreters.jupyter import jupyter_interpreter as interpreter_module
     from dojo.core.solvers.llm_helpers.generic_llm import GenericLLM
     from dojo.solvers.mcts.mcts import MCTS
     from dojo.tasks.mlebench.task import MLEBenchTask
@@ -33,6 +43,10 @@ def install(row, ep, deadline):
     def sha(p):return hashlib.sha256(Path(p).read_bytes()).hexdigest()
     if sha(client.__file__) != CLIENT_SHA or sha(Path(__file__).with_name('bounded_readiness.py')) != HELPER_SHA:
         raise ValueError('runtime handshake pin drift')
+    port = gateway_port(os.environ['SLURM_JOB_ID'], row['index'])
+    if not hasattr(interpreter_module, '_gateway_port'):
+        raise ValueError('pinned native gateway interface changed')
+    interpreter_module._gateway_port = lambda: port
     current = [None]
     counters = dict(operation=0, generation=0)
     event_file = ep/'events.jsonl'
@@ -126,4 +140,4 @@ def install(row, ep, deadline):
                 value=original_call(self,*args,**kwargs);success=True;return value
             finally:record('generation_returned',call=n,success=success,seconds=time.monotonic()-start)
     GenericLLM.__call__=call
-    record('runtime_hooks_installed',native_policy_unchanged=True)
+    record('runtime_hooks_installed',native_policy_unchanged=True,gateway_port=port)

@@ -92,6 +92,11 @@ def analyze(root,output,*,allocation_gpu_seconds):
     root=Path(root);output=Path(output)
     closed=read(root/'closed.json');plan=read(root/'plan.json')
     if len(plan['schedule'])!=16 or plan['gpus']!=3:raise ValueError('wrong trial')
+    if plan.get('node_qualification_required'):
+        qualification=read(root/'node-qualification.json') if (root/'node-qualification.json').exists() else {}
+        if closed['attempted_blocks'] and (qualification.get('complete') is not True
+                or qualification.get('task_image_sha256')!=plan['task_image_sha256']):
+            raise ValueError('live block without original-image node qualification')
     if not 0<=allocation_gpu_seconds<=3*plan['allocation_seconds']:raise ValueError('invalid allocation accounting')
     for name,pin in plan['files'].items():
         if sha(root/name)!=pin:raise ValueError('frozen trial file changed')

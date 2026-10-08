@@ -1,0 +1,98 @@
+{
+  "full_denominator": 12,
+  "pipeline_barriers_verified": true,
+  "plan_sha256": "528026478eff9138b06ff53023d5793139ea3bd9246fc3082cc3d749c8c25dfc",
+  "same_CPU_GPU": true,
+  "stages": [
+    {
+      "after_candidate": 2.486617088317871,
+      "arm": "pipeline",
+      "candidate": 148.92540764808655,
+      "index": 0,
+      "initialization": 5.958561658859253,
+      "program": 0,
+      "queue": 0.0025594234466552734
+    },
+    {
+      "after_candidate": 4.7358078956604,
+      "arm": "pipeline",
+      "candidate": 47.53327703475952,
+      "index": 1,
+      "initialization": 5.8659467697143555,
+      "program": 1,
+      "queue": 151.69581174850464
+    },
+    {
+      "after_candidate": 2.1165103912353516,
+      "arm": "share2",
+      "candidate": 93.55939555168152,
+      "index": 2,
+      "initialization": 7.312821626663208,
+      "program": 0,
+      "queue": 0.004369974136352539
+    },
+    {
+      "after_candidate": 4.230316162109375,
+      "arm": "share2",
+      "candidate": 46.54051375389099,
+      "index": 3,
+      "initialization": 7.228464126586914,
+      "program": 1,
+      "queue": 0.004628181457519531
+    },
+    {
+      "after_candidate": 4.137295961380005,
+      "arm": "share2",
+      "candidate": 45.54483437538147,
+      "index": 4,
+      "initialization": 7.263948917388916,
+      "program": 1,
+      "queue": 0.0038766860961914062
+    },
+    {
+      "after_candidate": 2.1089870929718018,
+      "arm": "share2",
+      "candidate": 79.93293929100037,
+      "index": 5,
+      "initialization": 7.262715816497803,
+      "program": 0,
+      "queue": 0.003840208053588867
+    },
+    {
+      "after_candidate": 2.066066265106201,
+      "arm": "pipeline",
+      "candidate": 108.14630198478699,
+      "index": 8,
+      "initialization": 6.629081964492798,
+      "program": 0,
+      "queue": 0.002513885498046875
+    },
+    {
+      "after_candidate": 4.775078535079956,
+      "arm": "pipeline",
+      "candidate": 46.53809905052185,
+      "index": 9,
+      "initialization": 6.769033908843994,
+      "program": 1,
+      "queue": 110.29989981651306
+    },
+    {
+      "after_candidate": 2.6275854110717773,
+      "arm": "share2",
+      "candidate": 108.67041158676147,
+      "index": 10,
+      "initialization": 7.786626815795898,
+      "program": 0,
+      "queue": 0.0036652088165283203
+    },
+    {
+      "after_candidate": 4.996454238891602,
+      "arm": "share2",
+      "candidate": 45.78953671455383,
+      "index": 11,
+      "initialization": 7.808417558670044,
+      "program": 1,
+      "queue": 0.003374338150024414
+    }
+  ]
+}

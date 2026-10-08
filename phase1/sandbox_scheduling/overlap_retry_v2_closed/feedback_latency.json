@@ -1,0 +1,95 @@
+{
+  "attempted": 12,
+  "blocks": [
+    {
+      "arm": "pipeline",
+      "block": 0,
+      "complete": true,
+      "completed": 2,
+      "first_completed_return": 159.34459519386292,
+      "makespan": 211.84610438346863,
+      "mean_completed_return": 185.58280110359192,
+      "program": null,
+      "repeat": 0
+    },
+    {
+      "arm": "share2",
+      "block": 1,
+      "complete": true,
+      "completed": 2,
+      "first_completed_return": 60.26409459114075,
+      "makespan": 105.2975525856018,
+      "mean_completed_return": 82.76957952976227,
+      "program": null,
+      "repeat": 0
+    },
+    {
+      "arm": "share2",
+      "block": 2,
+      "complete": true,
+      "completed": 2,
+      "first_completed_return": 59.58781719207764,
+      "makespan": 91.82744908332825,
+      "mean_completed_return": 75.7005957365036,
+      "program": null,
+      "repeat": 1
+    },
+    {
+      "arm": "pipeline",
+      "block": 3,
+      "complete": false,
+      "completed": 0,
+      "first_completed_return": null,
+      "makespan": 128.97886300086975,
+      "mean_completed_return": null,
+      "program": null,
+      "repeat": 1
+    },
+    {
+      "arm": "pipeline",
+      "block": 4,
+      "complete": true,
+      "completed": 2,
+      "first_completed_return": 119.67550539970398,
+      "makespan": 171.25895047187805,
+      "mean_completed_return": 145.4335856437683,
+      "program": null,
+      "repeat": 2
+    },
+    {
+      "arm": "share2",
+      "block": 5,
+      "complete": true,
+      "completed": 2,
+      "first_completed_return": 61.867605447769165,
+      "makespan": 122.39971899986267,
+      "mean_completed_return": 92.12560212612152,
+      "program": null,
+      "repeat": 2
+    }
+  ],
+  "boundary": "Post-hoc descriptive, no quality/utility values. Completed return includes output retrieval and sandbox close. Complete-block ratios are conditional, never remove failed blocks from primary denominator. Existing preparation-interference caveats remain.",
+  "complete_paired_blocks": [
+    {
+      "pipeline_over_share2_first_return": 2.6441050226495513,
+      "pipeline_over_share2_makespan": 2.0118806105322156,
+      "pipeline_over_share2_mean_return": 2.2421619411134026,
+      "program": null,
+      "repeat": 0
+    },
+    {
+      "pipeline_over_share2_first_return": 1.934380756028101,
+      "pipeline_over_share2_makespan": 1.3991776441257207,
+      "pipeline_over_share2_mean_return": 1.5786446143892472,
+      "program": null,
+      "repeat": 2
+    }
+  ],
+  "completed": 10,
+  "job": "17021",
+  "plan_sha256": "528026478eff9138b06ff53023d5793139ea3bd9246fc3082cc3d749c8c25dfc",
+  "planned": 12,
+  "primary_sha256": "6cd031cd88f5312ba302b1f40751b284a2883c7f11ec9a90540634157fadc948",
+  "reference_arm": "pipeline",
+  "analysis_source_sha256": "dfbe084fde9730e0cf08b63719ef5f740e91ba99ae4f25dcdacda676325c6198"
+}

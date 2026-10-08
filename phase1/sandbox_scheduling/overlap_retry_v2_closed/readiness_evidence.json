@@ -1,0 +1,178 @@
+{
+  "analysis_sha256": "c548cf013c766d1f24357ae7b10c10ffa12e19f83e2a3e01c1b1d8932129c480",
+  "boundary": "Allowlisted event trace only; absence of logged events is not proof of network/kernel health. Source properties and hypothetical message-loss behavior are not a causal diagnosis of this run.",
+  "client_methods": [
+    {
+      "name": "wait_for_ready",
+      "source": "def wait_for_ready(self, timeout_seconds: float | None = None) -> bool:\n        message_id = self._send_message(content={}, channel=\"shell\", message_type=\"kernel_info_request\")\n        while True:\n            message = self._receive_message(timeout_seconds)\n            # This means we timed out with no new messages.\n            if message is None:\n                return False\n            if (\n                message.get(\"parent_header\", {}).get(\"msg_id\") == message_id\n                and message[\"msg_type\"] == \"kernel_info_reply\"\n            ):\n                return True"
+    },
+    {
+      "name": "_on_error",
+      "source": "def _on_error(self, ws: WebSocketApp, error: Any) -> None:\n        print(f\"WebSocket error: {error}\")"
+    },
+    {
+      "name": "_on_close",
+      "source": "def _on_close(self, ws: WebSocketApp, close_status_code: int, close_msg: str) -> None:\n        pass"
+    }
+  ],
+  "client_source_sha256": "a6c6abdca37745ce8d5137f48595a3c0e6332c113e8133b0782425b7bbb291bf",
+  "episodes": [
+    {
+      "candidate_started": true,
+      "complete": true,
+      "credential_shape_hit_count": 0,
+      "event_counts": {
+        "client_created": 1,
+        "executing_code": 6,
+        "getting_kernel_client": 1,
+        "starting_kernel": 1,
+        "waiting_ready": 3
+      },
+      "event_order": [
+        "starting_kernel",
+        "getting_kernel_client",
+        "client_created",
+        "waiting_ready",
+        "executing_code",
+        "executing_code",
+        "waiting_ready",
+        "executing_code",
+        "executing_code",
+        "waiting_ready",
+        "executing_code",
+        "executing_code"
+      ],
+      "index": 0,
+      "returncode": 0
+    },
+    {
+      "candidate_started": true,
+      "complete": true,
+      "credential_shape_hit_count": 0,
+      "event_counts": {
+        "client_created": 1,
+        "executing_code": 6,
+        "getting_kernel_client": 1,
+        "starting_kernel": 1,
+        "waiting_ready": 3
+      },
+      "event_order": [
+        "starting_kernel",
+        "getting_kernel_client",
+        "client_created",
+        "waiting_ready",
+        "executing_code",
+        "executing_code",
+        "waiting_ready",
+        "executing_code",
+        "executing_code",
+        "waiting_ready",
+        "executing_code",
+        "executing_code"
+      ],
+      "index": 1,
+      "returncode": 0
+    },
+    {
+      "candidate_started": false,
+      "complete": false,
+      "credential_shape_hit_count": 0,
+      "event_counts": {
+        "client_created": 1,
+        "getting_kernel_client": 1,
+        "kernel_not_ready": 1,
+        "starting_kernel": 1,
+        "waiting_ready": 1
+      },
+      "event_order": [
+        "starting_kernel",
+        "getting_kernel_client",
+        "client_created",
+        "waiting_ready",
+        "kernel_not_ready"
+      ],
+      "index": 6,
+      "returncode": 1
+    },
+    {
+      "candidate_started": false,
+      "complete": false,
+      "credential_shape_hit_count": 0,
+      "event_counts": {
+        "client_created": 1,
+        "executing_code": 2,
+        "getting_kernel_client": 1,
+        "starting_kernel": 1,
+        "waiting_ready": 1
+      },
+      "event_order": [
+        "starting_kernel",
+        "getting_kernel_client",
+        "client_created",
+        "waiting_ready",
+        "executing_code",
+        "executing_code"
+      ],
+      "index": 7,
+      "returncode": 1
+    },
+    {
+      "candidate_started": true,
+      "complete": true,
+      "credential_shape_hit_count": 0,
+      "event_counts": {
+        "client_created": 1,
+        "executing_code": 6,
+        "getting_kernel_client": 1,
+        "starting_kernel": 1,
+        "waiting_ready": 3
+      },
+      "event_order": [
+        "starting_kernel",
+        "getting_kernel_client",
+        "client_created",
+        "waiting_ready",
+        "executing_code",
+        "executing_code",
+        "waiting_ready",
+        "executing_code",
+        "executing_code",
+        "waiting_ready",
+        "executing_code",
+        "executing_code"
+      ],
+      "index": 8,
+      "returncode": 0
+    },
+    {
+      "candidate_started": true,
+      "complete": true,
+      "credential_shape_hit_count": 0,
+      "event_counts": {
+        "client_created": 1,
+        "executing_code": 6,
+        "getting_kernel_client": 1,
+        "starting_kernel": 1,
+        "waiting_ready": 3
+      },
+      "event_order": [
+        "starting_kernel",
+        "getting_kernel_client",
+        "client_created",
+        "waiting_ready",
+        "executing_code",
+        "executing_code",
+        "waiting_ready",
+        "executing_code",
+        "executing_code",
+        "waiting_ready",
+        "executing_code",
+        "executing_code"
+      ],
+      "index": 9,
+      "returncode": 0
+    }
+  ],
+  "job": "17021",
+  "plan_sha256": "528026478eff9138b06ff53023d5793139ea3bd9246fc3082cc3d749c8c25dfc"
+}

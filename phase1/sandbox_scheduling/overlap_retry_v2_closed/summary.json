@@ -1,0 +1,679 @@
+{
+  "allocation_exit": "1:0",
+  "allocation_seconds": 885,
+  "allocation_state": "FAILED",
+  "attempted": 12,
+  "blocks": [
+    {
+      "arm": "pipeline",
+      "block": 0,
+      "candidate_overlap": {
+        "max_simultaneous": 1,
+        "two_or_more_seconds": 0.0
+      },
+      "completed": 2,
+      "gpu_peak_memory_mib": 1558.0,
+      "makespan": 211.84610438346863,
+      "max_resident_gpu_clients": 1,
+      "multi_client_samples": 0,
+      "not_kernel_concurrency_measurement": true,
+      "repeat": 0,
+      "telemetry_samples": 374
+    },
+    {
+      "arm": "share2",
+      "block": 1,
+      "candidate_overlap": {
+        "max_simultaneous": 2,
+        "two_or_more_seconds": 46.45649337768555
+      },
+      "completed": 2,
+      "gpu_peak_memory_mib": 2639.0,
+      "makespan": 105.2975525856018,
+      "max_resident_gpu_clients": 2,
+      "multi_client_samples": 12,
+      "not_kernel_concurrency_measurement": true,
+      "repeat": 0,
+      "telemetry_samples": 187
+    },
+    {
+      "arm": "share2",
+      "block": 2,
+      "candidate_overlap": {
+        "max_simultaneous": 2,
+        "two_or_more_seconds": 45.54483437538147
+      },
+      "completed": 2,
+      "gpu_peak_memory_mib": 2639.0,
+      "makespan": 91.82744908332825,
+      "max_resident_gpu_clients": 2,
+      "multi_client_samples": 22,
+      "not_kernel_concurrency_measurement": true,
+      "repeat": 1,
+      "telemetry_samples": 164
+    },
+    {
+      "arm": "pipeline",
+      "block": 3,
+      "candidate_overlap": {
+        "max_simultaneous": 0,
+        "two_or_more_seconds": 0.0
+      },
+      "completed": 0,
+      "gpu_peak_memory_mib": 4.0,
+      "makespan": 128.97886300086975,
+      "max_resident_gpu_clients": 0,
+      "multi_client_samples": 0,
+      "not_kernel_concurrency_measurement": true,
+      "repeat": 1,
+      "telemetry_samples": 228
+    },
+    {
+      "arm": "pipeline",
+      "block": 4,
+      "candidate_overlap": {
+        "max_simultaneous": 1,
+        "two_or_more_seconds": 0.0
+      },
+      "completed": 2,
+      "gpu_peak_memory_mib": 1558.0,
+      "makespan": 171.25895047187805,
+      "max_resident_gpu_clients": 1,
+      "multi_client_samples": 0,
+      "not_kernel_concurrency_measurement": true,
+      "repeat": 2,
+      "telemetry_samples": 303
+    },
+    {
+      "arm": "share2",
+      "block": 5,
+      "candidate_overlap": {
+        "max_simultaneous": 2,
+        "two_or_more_seconds": 45.78953671455383
+      },
+      "completed": 2,
+      "gpu_peak_memory_mib": 2639.0,
+      "makespan": 122.39971899986267,
+      "max_resident_gpu_clients": 2,
+      "multi_client_samples": 13,
+      "not_kernel_concurrency_measurement": true,
+      "repeat": 2,
+      "telemetry_samples": 217
+    }
+  ],
+  "boundary": "Two fixed public-training-derived inputs, unchanged programs and source-seed restarts. No quality scores, live search, novel method or population inference.",
+  "completed": 10,
+  "exploratory_gate": false,
+  "job": "17021",
+  "output_equivalence": [
+    {
+      "all_six_present": false,
+      "available_outputs": 5,
+      "max_cross_arm": 0.0,
+      "max_within_arm": 0.0,
+      "numerical_gate": null,
+      "pairs": [
+        {
+          "arms": [
+            "pipeline",
+            "share2"
+          ],
+          "different_values": 0,
+          "indices": [
+            0,
+            2
+          ],
+          "max_abs": 0.0,
+          "values": 64
+        },
+        {
+          "arms": [
+            "pipeline",
+            "share2"
+          ],
+          "different_values": 0,
+          "indices": [
+            0,
+            5
+          ],
+          "max_abs": 0.0,
+          "values": 64
+        },
+        {
+          "arms": [
+            "pipeline",
+            "pipeline"
+          ],
+          "different_values": 0,
+          "indices": [
+            0,
+            8
+          ],
+          "max_abs": 0.0,
+          "values": 64
+        },
+        {
+          "arms": [
+            "pipeline",
+            "share2"
+          ],
+          "different_values": 0,
+          "indices": [
+            0,
+            10
+          ],
+          "max_abs": 0.0,
+          "values": 64
+        },
+        {
+          "arms": [
+            "share2",
+            "share2"
+          ],
+          "different_values": 0,
+          "indices": [
+            2,
+            5
+          ],
+          "max_abs": 0.0,
+          "values": 64
+        },
+        {
+          "arms": [
+            "share2",
+            "pipeline"
+          ],
+          "different_values": 0,
+          "indices": [
+            2,
+            8
+          ],
+          "max_abs": 0.0,
+          "values": 64
+        },
+        {
+          "arms": [
+            "share2",
+            "share2"
+          ],
+          "different_values": 0,
+          "indices": [
+            2,
+            10
+          ],
+          "max_abs": 0.0,
+          "values": 64
+        },
+        {
+          "arms": [
+            "share2",
+            "pipeline"
+          ],
+          "different_values": 0,
+          "indices": [
+            5,
+            8
+          ],
+          "max_abs": 0.0,
+          "values": 64
+        },
+        {
+          "arms": [
+            "share2",
+            "share2"
+          ],
+          "different_values": 0,
+          "indices": [
+            5,
+            10
+          ],
+          "max_abs": 0.0,
+          "values": 64
+        },
+        {
+          "arms": [
+            "pipeline",
+            "share2"
+          ],
+          "different_values": 0,
+          "indices": [
+            8,
+            10
+          ],
+          "max_abs": 0.0,
+          "values": 64
+        }
+      ],
+      "program": 0,
+      "step_counts_equal": null,
+      "steps": [
+        150,
+        150,
+        150,
+        150,
+        150
+      ],
+      "tolerance_is_not_quality_guarantee": true
+    },
+    {
+      "all_six_present": false,
+      "available_outputs": 5,
+      "max_cross_arm": 0.0,
+      "max_within_arm": 0.0,
+      "numerical_gate": null,
+      "pairs": [
+        {
+          "arms": [
+            "pipeline",
+            "share2"
+          ],
+          "different_values": 0,
+          "indices": [
+            1,
+            3
+          ],
+          "max_abs": 0.0,
+          "values": 278640
+        },
+        {
+          "arms": [
+            "pipeline",
+            "share2"
+          ],
+          "different_values": 0,
+          "indices": [
+            1,
+            4
+          ],
+          "max_abs": 0.0,
+          "values": 278640
+        },
+        {
+          "arms": [
+            "pipeline",
+            "pipeline"
+          ],
+          "different_values": 0,
+          "indices": [
+            1,
+            9
+          ],
+          "max_abs": 0.0,
+          "values": 278640
+        },
+        {
+          "arms": [
+            "pipeline",
+            "share2"
+          ],
+          "different_values": 0,
+          "indices": [
+            1,
+            11
+          ],
+          "max_abs": 0.0,
+          "values": 278640
+        },
+        {
+          "arms": [
+            "share2",
+            "share2"
+          ],
+          "different_values": 0,
+          "indices": [
+            3,
+            4
+          ],
+          "max_abs": 0.0,
+          "values": 278640
+        },
+        {
+          "arms": [
+            "share2",
+            "pipeline"
+          ],
+          "different_values": 0,
+          "indices": [
+            3,
+            9
+          ],
+          "max_abs": 0.0,
+          "values": 278640
+        },
+        {
+          "arms": [
+            "share2",
+            "share2"
+          ],
+          "different_values": 0,
+          "indices": [
+            3,
+            11
+          ],
+          "max_abs": 0.0,
+          "values": 278640
+        },
+        {
+          "arms": [
+            "share2",
+            "pipeline"
+          ],
+          "different_values": 0,
+          "indices": [
+            4,
+            9
+          ],
+          "max_abs": 0.0,
+          "values": 278640
+        },
+        {
+          "arms": [
+            "share2",
+            "share2"
+          ],
+          "different_values": 0,
+          "indices": [
+            4,
+            11
+          ],
+          "max_abs": 0.0,
+          "values": 278640
+        },
+        {
+          "arms": [
+            "pipeline",
+            "share2"
+          ],
+          "different_values": 0,
+          "indices": [
+            9,
+            11
+          ],
+          "max_abs": 0.0,
+          "values": 278640
+        }
+      ],
+      "program": 1,
+      "step_counts_equal": null,
+      "steps": [
+        640,
+        640,
+        640,
+        640,
+        640
+      ],
+      "tolerance_is_not_quality_guarantee": true
+    }
+  ],
+  "paired_ratios": [
+    {
+      "ratio": 2.0118806105322156,
+      "repeat": 0
+    },
+    {
+      "ratio": 1.3991776441257207,
+      "repeat": 2
+    }
+  ],
+  "plan_sha256": "528026478eff9138b06ff53023d5793139ea3bd9246fc3082cc3d749c8c25dfc",
+  "planned": 12,
+  "reference_arm": "pipeline",
+  "runs": [
+    {
+      "arm": "pipeline",
+      "complete": true,
+      "end": 1791435002.0835865,
+      "error_type": null,
+      "exec_seconds": 148.91160277090967,
+      "exit_code": 0,
+      "gpu_steps": 150,
+      "harness_seed": 130701,
+      "index": 0,
+      "output_sha256": "ff61b300fccbcca3ccbd33ced4f3bc46f526d732f4323cd32a654f6c53b7e44f",
+      "position": 0,
+      "program": 0,
+      "repeat": 0,
+      "returncode": 0,
+      "source_commit": "f507a53f759b41fee5e3f39906ff6db50ec69796",
+      "source_seed": 42,
+      "start": 1791434844.7078981,
+      "status": "complete",
+      "timed_out": false
+    },
+    {
+      "arm": "pipeline",
+      "complete": true,
+      "end": 1791435054.5480924,
+      "error_type": null,
+      "exec_seconds": 47.503534741699696,
+      "exit_code": 0,
+      "gpu_steps": 640,
+      "harness_seed": 130701,
+      "index": 1,
+      "output_sha256": "764de9ac7a543b3136c66f239e3fa6493c3aa748ff559a4772c64560b5072205",
+      "position": 1,
+      "program": 1,
+      "repeat": 0,
+      "returncode": 0,
+      "source_commit": "f507a53f759b41fee5e3f39906ff6db50ec69796",
+      "source_seed": 42,
+      "start": 1791434844.7107265,
+      "status": "complete",
+      "timed_out": false
+    },
+    {
+      "arm": "share2",
+      "complete": true,
+      "end": 1791435159.982673,
+      "error_type": null,
+      "exec_seconds": 93.54241646081209,
+      "exit_code": 0,
+      "gpu_steps": 150,
+      "harness_seed": 130701,
+      "index": 2,
+      "output_sha256": "ff61b300fccbcca3ccbd33ced4f3bc46f526d732f4323cd32a654f6c53b7e44f",
+      "position": 0,
+      "program": 0,
+      "repeat": 0,
+      "returncode": 0,
+      "source_commit": "f507a53f759b41fee5e3f39906ff6db50ec69796",
+      "source_seed": 42,
+      "start": 1791435056.9850187,
+      "status": "complete",
+      "timed_out": false
+    },
+    {
+      "arm": "share2",
+      "complete": true,
+      "end": 1791435114.9935765,
+      "error_type": null,
+      "exec_seconds": 46.51551145594567,
+      "exit_code": 0,
+      "gpu_steps": 640,
+      "harness_seed": 130701,
+      "index": 3,
+      "output_sha256": "764de9ac7a543b3136c66f239e3fa6493c3aa748ff559a4772c64560b5072205",
+      "position": 1,
+      "program": 1,
+      "repeat": 0,
+      "returncode": 0,
+      "source_commit": "f507a53f759b41fee5e3f39906ff6db50ec69796",
+      "source_seed": 42,
+      "start": 1791435056.985019,
+      "status": "complete",
+      "timed_out": false
+    },
+    {
+      "arm": "share2",
+      "complete": true,
+      "end": 1791435219.5895975,
+      "error_type": null,
+      "exec_seconds": 45.52652645576745,
+      "exit_code": 0,
+      "gpu_steps": 640,
+      "harness_seed": 130701,
+      "index": 4,
+      "output_sha256": "764de9ac7a543b3136c66f239e3fa6493c3aa748ff559a4772c64560b5072205",
+      "position": 0,
+      "program": 1,
+      "repeat": 1,
+      "returncode": 0,
+      "source_commit": "f507a53f759b41fee5e3f39906ff6db50ec69796",
+      "source_seed": 42,
+      "start": 1791435162.6363575,
+      "status": "complete",
+      "timed_out": false
+    },
+    {
+      "arm": "share2",
+      "complete": true,
+      "end": 1791435251.9475968,
+      "error_type": null,
+      "exec_seconds": 79.91994519345462,
+      "exit_code": 0,
+      "gpu_steps": 150,
+      "harness_seed": 130701,
+      "index": 5,
+      "output_sha256": "ff61b300fccbcca3ccbd33ced4f3bc46f526d732f4323cd32a654f6c53b7e44f",
+      "position": 1,
+      "program": 0,
+      "repeat": 1,
+      "returncode": 0,
+      "source_commit": "f507a53f759b41fee5e3f39906ff6db50ec69796",
+      "source_seed": 42,
+      "start": 1791435162.6358073,
+      "status": "complete",
+      "timed_out": false
+    },
+    {
+      "arm": "pipeline",
+      "complete": false,
+      "end": 1791435379.5562015,
+      "error_type": "ValueError",
+      "gpu_steps": null,
+      "harness_seed": 130701,
+      "index": 6,
+      "output_sha256": null,
+      "position": 0,
+      "program": 1,
+      "repeat": 1,
+      "returncode": 1,
+      "source_commit": "f507a53f759b41fee5e3f39906ff6db50ec69796",
+      "source_seed": 42,
+      "start": 1791435254.5095813,
+      "status": "failed"
+    },
+    {
+      "arm": "pipeline",
+      "complete": false,
+      "end": 1791435381.0365806,
+      "error_type": "ValueError",
+      "gpu_steps": null,
+      "harness_seed": 130701,
+      "index": 7,
+      "output_sha256": null,
+      "position": 1,
+      "program": 0,
+      "repeat": 1,
+      "returncode": 1,
+      "source_commit": "f507a53f759b41fee5e3f39906ff6db50ec69796",
+      "source_seed": 42,
+      "start": 1791435254.508656,
+      "status": "failed"
+    },
+    {
+      "arm": "pipeline",
+      "complete": true,
+      "end": 1791435500.8802457,
+      "error_type": null,
+      "exec_seconds": 108.13064399547875,
+      "exit_code": 0,
+      "gpu_steps": 150,
+      "harness_seed": 130701,
+      "index": 8,
+      "output_sha256": "ff61b300fccbcca3ccbd33ced4f3bc46f526d732f4323cd32a654f6c53b7e44f",
+      "position": 0,
+      "program": 0,
+      "repeat": 2,
+      "returncode": 0,
+      "source_commit": "f507a53f759b41fee5e3f39906ff6db50ec69796",
+      "source_seed": 42,
+      "start": 1791435384.0075264,
+      "status": "complete",
+      "timed_out": false
+    },
+    {
+      "arm": "pipeline",
+      "complete": true,
+      "end": 1791435552.3954563,
+      "error_type": null,
+      "exec_seconds": 46.51610917598009,
+      "exit_code": 0,
+      "gpu_steps": 640,
+      "harness_seed": 130701,
+      "index": 9,
+      "output_sha256": "764de9ac7a543b3136c66f239e3fa6493c3aa748ff559a4772c64560b5072205",
+      "position": 1,
+      "program": 1,
+      "repeat": 2,
+      "returncode": 0,
+      "source_commit": "f507a53f759b41fee5e3f39906ff6db50ec69796",
+      "source_seed": 42,
+      "start": 1791435384.0072947,
+      "status": "complete",
+      "timed_out": false
+    },
+    {
+      "arm": "share2",
+      "complete": true,
+      "end": 1791435674.9670324,
+      "error_type": null,
+      "exec_seconds": 108.65299913939089,
+      "exit_code": 0,
+      "gpu_steps": 150,
+      "harness_seed": 130701,
+      "index": 10,
+      "output_sha256": "ff61b300fccbcca3ccbd33ced4f3bc46f526d732f4323cd32a654f6c53b7e44f",
+      "position": 0,
+      "program": 0,
+      "repeat": 2,
+      "returncode": 0,
+      "source_commit": "f507a53f759b41fee5e3f39906ff6db50ec69796",
+      "source_seed": 42,
+      "start": 1791435555.8752525,
+      "status": "complete",
+      "timed_out": false
+    },
+    {
+      "arm": "share2",
+      "complete": true,
+      "end": 1791435614.4641593,
+      "error_type": null,
+      "exec_seconds": 45.777004445903,
+      "exit_code": 0,
+      "gpu_steps": 640,
+      "harness_seed": 130701,
+      "index": 11,
+      "output_sha256": "764de9ac7a543b3136c66f239e3fa6493c3aa748ff559a4772c64560b5072205",
+      "position": 1,
+      "program": 1,
+      "repeat": 2,
+      "returncode": 0,
+      "source_commit": "f507a53f759b41fee5e3f39906ff6db50ec69796",
+      "source_seed": 42,
+      "start": 1791435555.8603568,
+      "status": "complete",
+      "timed_out": false
+    }
+  ],
+  "source_commit": "f507a53f759b41fee5e3f39906ff6db50ec69796",
+  "speedup": {
+    "max": 2.0118806105322156,
+    "median": 1.705529127328968,
+    "min": 1.3991776441257207,
+    "n": 2,
+    "sample_std": 0.43324642239914596
+  },
+  "whole_pool_gpu_hours": 0.24583333333333332,
+  "within_cap": true
+}

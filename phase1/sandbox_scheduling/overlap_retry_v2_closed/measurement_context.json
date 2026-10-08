@@ -1,0 +1,70 @@
+{
+  "job": "17021",
+  "plan_sha256": "528026478eff9138b06ff53023d5793139ea3bd9246fc3082cc3d749c8c25dfc",
+  "primary_sha256": "6cd031cd88f5312ba302b1f40751b284a2883c7f11ec9a90540634157fadc948",
+  "experiment": {
+    "blocks": [
+      {
+        "arm": "pipeline",
+        "block": 0,
+        "end": 1791435054.7432623,
+        "overlaps": [],
+        "repeat": 0,
+        "start": 1791434842.897158
+      },
+      {
+        "arm": "share2",
+        "block": 1,
+        "end": 1791435160.1749983,
+        "overlaps": [],
+        "repeat": 0,
+        "start": 1791435054.8774457
+      },
+      {
+        "arm": "share2",
+        "block": 2,
+        "end": 1791435252.1185899,
+        "overlaps": [],
+        "repeat": 1,
+        "start": 1791435160.2911408
+      },
+      {
+        "arm": "pipeline",
+        "block": 3,
+        "end": 1791435381.221411,
+        "overlaps": [],
+        "repeat": 1,
+        "start": 1791435252.242548
+      },
+      {
+        "arm": "pipeline",
+        "block": 4,
+        "end": 1791435552.643254,
+        "overlaps": [],
+        "repeat": 2,
+        "start": 1791435381.3843036
+      },
+      {
+        "arm": "share2",
+        "block": 5,
+        "end": 1791435675.1876698,
+        "overlaps": [],
+        "repeat": 2,
+        "start": 1791435552.7879508
+      }
+    ],
+    "closed": true,
+    "job": "17021",
+    "root": "/research/d7/spc/yzyang4/scheduling-neural-overlap-retry-20261008-v2"
+  },
+  "boundary": "Own preparation mtime overlap is a possible measurement confound, not proof of physical I/O contention. No shared-host/disk isolation or clock-synchronization bound was measured; no-overlap here does not prove no external interference.",
+  "no_own_heavy_preparation_during_timing": true,
+  "infrastructure_retry_of_job": "17014",
+  "prior_failure_retained": true,
+  "prior_gpu_seconds": 8912,
+  "allocation_gpu_seconds": 885,
+  "cumulative_gpu_seconds": 9797,
+  "cumulative_gpu_hours": 2.721388888888889,
+  "cap_gpu_seconds": 10800,
+  "complete_confirmation_gate_passed": false
+}

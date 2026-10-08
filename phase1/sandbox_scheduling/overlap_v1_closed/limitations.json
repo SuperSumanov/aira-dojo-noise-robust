@@ -1,0 +1,14 @@
+{
+  "job": "17014",
+  "planned": 12,
+  "attempted_candidates": 0,
+  "completed_candidates": 0,
+  "unstarted_candidates": 12,
+  "allocation_seconds": 157,
+  "failure_stage": "Warmup waiting for Jupyter kernel readiness; experiment deadline expired at 120 seconds before any formal candidate.",
+  "worker_receipt_issue": "Warmup completed.json reports complete=true/error_type=null but has no output or execution metrics; the deadline escaped the Exception handler. closed.json returncode=1, which the controller correctly treated as failure. This is not a successful warmup.",
+  "monitor_fix": "Subsequent status display requires complete=true, no reported error, an output receipt and closed.returncode=0. Original experiment/receipts remain unchanged.",
+  "independent_audit_sha256": "0c487a7211a71809669de70ccdf401c8b8a51bbd78ea2f8c7495b6ed4c27ebb3",
+  "interpretation": "No scheduling performance contrast or candidate outcome exists. Independent audit of the zero-candidate denominator is not a hardware/algorithm success. No candidate retries or exclusion of completed candidate results.",
+  "followup": "A separately costed infrastructure retry is allowed only within the existing 3 GPU hour window. It is explicitly a retry, not an independent scientific replication, and preserves this batch's cost and 12 unstarted slots."
+}

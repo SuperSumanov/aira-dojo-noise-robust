@@ -3,6 +3,10 @@ import json
 import time
 from lifecycle_pilot import read,sha
 
+def validated_completion(done, closed):
+ return (done.get('complete') is True and done.get('error_type') is None
+         and bool(done.get('output')) and closed.get('returncode') == 0)
+
 def main(kind='neural'):
  if kind=='neural':
   from neural_pool_trial import R,schedule
@@ -21,6 +25,9 @@ def main(kind='neural'):
  elif kind=='confirmation':
   from neural_full_confirmation import R
   from neural_pool_trial import schedule
+ elif kind=='overlap-retry':
+  from neural_overlap_retry import R
+  from neural_overlap_control import schedule
  else:raise ValueError('monitor scope')
  rows=[]
  for row in [dict(index=36,arm='warmup')]+schedule():
@@ -32,6 +39,10 @@ def main(kind='neural'):
   if (ep/'completed.json').exists():
    done=read(ep/'completed.json')
    item.update({k:done.get(k) for k in ('complete','error_type','exec_seconds','timed_out')})
+   closed=read(ep/'closed.json') if (ep/'closed.json').exists() else {}
+   item['reported_complete']=done.get('complete')
+   item['returncode']=closed.get('returncode')
+   item['complete']=validated_completion(done,closed)
    training=done.get('gpu_training')
    item['gpu_steps']=training.get('steps') if isinstance(training,dict) else None
    item['gpu_training_verified']=bool(training)
@@ -43,11 +54,11 @@ def main(kind='neural'):
      item['prelude_diagnostic_terms']=[term for term in ('kernel readiness','kernel did not','kernel didn\'t','timeout','cuda out of memory','address already in use','connection refused','no route to host') if term in private_text]
   rows.append(item)
  result=dict(job=read(R/'launch.json')['job'],plan_sha256=sha(R/'plan.json'),rows=rows,
-             blocks_complete=sum((R/f'block-{i}.json').exists() for i in range({'neural':6,'pipeline':9,'homogeneous':12,'replication':6,'full-input':6,'overlap':6,'confirmation':6}[kind])))
+             blocks_complete=sum((R/f'block-{i}.json').exists() for i in range({'neural':6,'pipeline':9,'homogeneous':12,'replication':6,'full-input':6,'overlap':6,'confirmation':6,'overlap-retry':6}[kind])))
  if (R/'closed.json').exists():result['batch_closed']=read(R/'closed.json')
  print(json.dumps(result,sort_keys=True))
 
 if __name__=='__main__':
  import argparse
- parser=argparse.ArgumentParser();parser.add_argument('--kind',choices=['neural','pipeline','homogeneous','replication','full-input','overlap','confirmation'],default='neural')
+ parser=argparse.ArgumentParser();parser.add_argument('--kind',choices=['neural','pipeline','homogeneous','replication','full-input','overlap','confirmation','overlap-retry'],default='neural')
  main(parser.parse_args().kind)

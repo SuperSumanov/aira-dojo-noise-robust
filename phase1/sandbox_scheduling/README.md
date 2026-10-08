@@ -203,6 +203,8 @@ GPU 为整卡数据，出现其他租户/未归属进程时不能算本候选成
 ### 10/8增补：输入与近邻边界
 
 - **计时期间禁止我方并行大文件准备**：镜像哈希/语料构建可能争用同一研究盘；CPU-only不等于对GPU实验零扰动。预检先全部完成，再测量；本地代码/论文工作可并行。已闭合结果保留原件，出现重叠追加限制，不删慢块或推断I/O就是原因。plan→preflight mtime仅已知子区间，没有它的重叠也不能证明共享环境完全干净。
+- **finally回执不等于成功**：17014预热的deadline跳出普通Exception处理，finally写出complete=true但无output/执行指标；进程退出1，主controller正确拒绝。监控必须同时核closed.returncode=0、完整output及complete/error，不能只数内部complete字段。原件保留，本地test_neural_status覆盖此实际失败形状；不是修好了Jupyter就绪偶发超时。
+- 10/8补核[AgentSysBench](https://arxiv.org/html/2608.15127v1) §3/5/8：已经包含Pi-AutoR/MLEBench系统表征，研究共享资源干扰、瓶颈迁移及分阶段资源管理。其第8节干预主要是RAG隔离/放置、Mini-SWE卸载和工具缓存，不是任意MLE候选CUDA准入的同等答案；但不能将“首次研究MLE-agent工具成本/异构瓶颈/空闲回收”当新颖性，也不能仅换benchmark证明方法价值。
 - 全训练文件出现全部类别不保证交叉验证训练折覆盖。16989先缺唯一类5；16992补后另一类仅1行，原程序fallback KFold仍产生缺类。新fixture要求非5类至少5个不同公开行，唯一类5按原程序进每个训练折；排除query，不复制/重标，不改源码。这个修复不是调度收益。
 - [Ready Cohorts v2](https://arxiv.org/html/2608.12123)已有ready供给与机会/实际收益区分；研究的是微型确定性控制转移，其零服务时间离线边界并非任意MLE执行收益。不能将“先看有没有就绪工作”称新算法。
 - [SAGA](https://arxiv.org/html/2605.00528) §4–6已有工作流、KV缓存、tool TTL与任务公平性；非本试验任意候选GPU训练，但工作流感知本身不新。其收益数字不替代本地强参照。

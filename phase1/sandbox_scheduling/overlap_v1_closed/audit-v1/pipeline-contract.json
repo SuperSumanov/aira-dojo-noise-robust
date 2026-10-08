@@ -1,0 +1,7 @@
+{
+  "full_denominator": 12,
+  "pipeline_barriers_verified": true,
+  "plan_sha256": "bd21f54108693bb539a8fb35521c69ea0a6e54ed53cbd5aab67cced20b9b51f6",
+  "same_CPU_GPU": true,
+  "stages": []
+}

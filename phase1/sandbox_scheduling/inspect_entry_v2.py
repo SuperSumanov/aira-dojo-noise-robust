@@ -6,10 +6,10 @@ from pathlib import Path
 from lifecycle_pilot import read, sha, SECRET
 
 ap=argparse.ArgumentParser()
-ap.add_argument('--batch',choices=('entry-v2','pool-v1'),default='entry-v2')
+ap.add_argument('--batch',choices=('entry-v2','pool-v1','pool-v2'),default='entry-v2')
 args=ap.parse_args()
 R=Path('/research/d7/spc/yzyang4')/dict(
- **{'entry-v2':'scheduling-entry-20261008-v2','pool-v1':'scheduling-pool-20261008-v1'})[args.batch]
+ **{'entry-v2':'scheduling-entry-20261008-v2','pool-v1':'scheduling-pool-20261008-v1','pool-v2':'scheduling-pool-20261008-v2'})[args.batch]
 CATEGORIES={
  'gpu_hist_removed':r'Invalid Input:.*gpu_hist',
  'invalid_classes':r'Invalid classes inferred',
@@ -21,7 +21,7 @@ CATEGORIES={
  'feature_type':r'DataFrame.dtypes|could not convert string',
 }
 rows=[]
-for index in ((0,1) if args.batch=='entry-v2' else (0,1,2,3)):
+for index in {'entry-v2':(0,1),'pool-v1':(0,1,2,3),'pool-v2':(17,)}[args.batch]:
  ep=R/f'episode-{index}'; files=[]
  for name in ('cell-0.private.txt','cell-1.private.txt','cell-2.private.txt','worker.private.log'):
   p=ep/name

@@ -1,0 +1,41 @@
+{
+  "all_completed_receipt_hashes_match": true,
+  "job": "16994",
+  "no_quality_labels_read": true,
+  "no_values_exported": true,
+  "programs": [
+    {
+      "all_pairs_equal": true,
+      "columns": 2,
+      "completed_outputs": 6,
+      "program": 0,
+      "rows": 512,
+      "verified_pairs": 15
+    },
+    {
+      "all_pairs_equal": true,
+      "columns": 4,
+      "completed_outputs": 6,
+      "program": 1,
+      "rows": 3522,
+      "verified_pairs": 15
+    },
+    {
+      "all_pairs_equal": true,
+      "columns": 2,
+      "completed_outputs": 6,
+      "program": 4,
+      "rows": 512,
+      "verified_pairs": 15
+    },
+    {
+      "all_pairs_equal": true,
+      "columns": 2,
+      "completed_outputs": 6,
+      "program": 3,
+      "rows": 1798,
+      "verified_pairs": 15
+    }
+  ],
+  "readout_sha256": "b8347a0e529feb84d646765f5f09eae07a56716569d75ae7b529a2d332d2069f"
+}

@@ -1,0 +1,3400 @@
+{
+  "allocation_exit": "1:0",
+  "allocation_seconds": 566,
+  "allocation_state": "FAILED",
+  "attempted": 36,
+  "blocks": [
+    {
+      "arm": "serial",
+      "attempted": 4,
+      "block": 0,
+      "candidate_exec_seconds": [
+        9.280313001945615,
+        17.1245630774647,
+        6.013170721009374,
+        4.435882051475346
+      ],
+      "candidate_overlap": {
+        "max_simultaneous": 1,
+        "two_or_more_seconds": 0.0
+      },
+      "completed": 4,
+      "makespan_seconds": 66.69713163375854,
+      "repeat": 0,
+      "telemetry_errors": []
+    },
+    {
+      "arm": "share2",
+      "attempted": 4,
+      "block": 1,
+      "candidate_exec_seconds": [
+        9.310200662352145,
+        17.88949722982943,
+        5.879147466272116,
+        5.117202734574676
+      ],
+      "candidate_overlap": {
+        "max_simultaneous": 2,
+        "two_or_more_seconds": 13.02644658088684
+      },
+      "completed": 4,
+      "makespan_seconds": 36.202643632888794,
+      "repeat": 0,
+      "telemetry_errors": []
+    },
+    {
+      "arm": "one_gpu",
+      "attempted": 4,
+      "block": 2,
+      "candidate_exec_seconds": [
+        9.554940131492913,
+        17.632446545176208,
+        5.856603583320975,
+        5.990402897819877
+      ],
+      "candidate_overlap": {
+        "max_simultaneous": 2,
+        "two_or_more_seconds": 14.256319284439087
+      },
+      "completed": 4,
+      "makespan_seconds": 33.98122787475586,
+      "repeat": 0,
+      "telemetry_errors": []
+    },
+    {
+      "arm": "share2",
+      "attempted": 4,
+      "block": 3,
+      "candidate_exec_seconds": [
+        17.906750957481563,
+        5.77738978061825,
+        5.860345656983554,
+        9.16072793584317
+      ],
+      "candidate_overlap": {
+        "max_simultaneous": 2,
+        "two_or_more_seconds": 10.827596426010132
+      },
+      "completed": 4,
+      "makespan_seconds": 39.643819093704224,
+      "repeat": 1,
+      "telemetry_errors": []
+    },
+    {
+      "arm": "one_gpu",
+      "attempted": 4,
+      "block": 4,
+      "candidate_exec_seconds": [
+        17.817500926554203,
+        null,
+        5.176161864772439,
+        9.097970195114613
+      ],
+      "candidate_overlap": {
+        "max_simultaneous": 1,
+        "two_or_more_seconds": 0.0
+      },
+      "completed": 3,
+      "makespan_seconds": 148.91565823554993,
+      "repeat": 1,
+      "telemetry_errors": []
+    },
+    {
+      "arm": "serial",
+      "attempted": 4,
+      "block": 5,
+      "candidate_exec_seconds": [
+        17.740680310875177,
+        5.643788336776197,
+        4.501285861246288,
+        9.07643518038094
+      ],
+      "candidate_overlap": {
+        "max_simultaneous": 1,
+        "two_or_more_seconds": 0.0
+      },
+      "completed": 4,
+      "makespan_seconds": 68.61409020423889,
+      "repeat": 1,
+      "telemetry_errors": []
+    },
+    {
+      "arm": "one_gpu",
+      "attempted": 4,
+      "block": 6,
+      "candidate_exec_seconds": [
+        6.535285665653646,
+        5.637594877742231,
+        9.322655604220927,
+        16.97413880378008
+      ],
+      "candidate_overlap": {
+        "max_simultaneous": 2,
+        "two_or_more_seconds": 12.37244987487793
+      },
+      "completed": 4,
+      "makespan_seconds": 41.14956212043762,
+      "repeat": 2,
+      "telemetry_errors": []
+    },
+    {
+      "arm": "serial",
+      "attempted": 4,
+      "block": 7,
+      "candidate_exec_seconds": [
+        5.539629359729588,
+        4.079972933977842,
+        10.436182326637208,
+        16.442894325591624
+      ],
+      "candidate_overlap": {
+        "max_simultaneous": 1,
+        "two_or_more_seconds": 0.0
+      },
+      "completed": 4,
+      "makespan_seconds": 68.19925808906555,
+      "repeat": 2,
+      "telemetry_errors": []
+    },
+    {
+      "arm": "share2",
+      "attempted": 4,
+      "block": 8,
+      "candidate_exec_seconds": [
+        7.363275001756847,
+        7.734327373094857,
+        9.347920534200966,
+        17.1286047315225
+      ],
+      "candidate_overlap": {
+        "max_simultaneous": 2,
+        "two_or_more_seconds": 14.886096239089966
+      },
+      "completed": 4,
+      "makespan_seconds": 38.20056939125061,
+      "repeat": 2,
+      "telemetry_errors": []
+    }
+  ],
+  "boundary": "Four small fixed development programs, three tasks, same-seed restarts; new class-covered fixture. Failed slots retained. No generalization or E2E claim.",
+  "completed": 35,
+  "fixture_sha256": "9186a81583db1bbf73241ab017b9e8dbf76025850eff820c47856b3bc450be9c",
+  "job": "16994",
+  "no_live_search": true,
+  "no_quality_scoring": true,
+  "no_semantic_method": true,
+  "output_equivalence": [
+    {
+      "all_nine_present": true,
+      "all_outputs_exactly_equal": true,
+      "available_outputs": 9,
+      "pairs": [
+        {
+          "arms": [
+            "serial",
+            "share2"
+          ],
+          "different_values": 0,
+          "indices": [
+            0,
+            4
+          ],
+          "max_abs": 0.0,
+          "values": 512
+        },
+        {
+          "arms": [
+            "serial",
+            "one_gpu"
+          ],
+          "different_values": 0,
+          "indices": [
+            0,
+            8
+          ],
+          "max_abs": 0.0,
+          "values": 512
+        },
+        {
+          "arms": [
+            "serial",
+            "share2"
+          ],
+          "different_values": 0,
+          "indices": [
+            0,
+            15
+          ],
+          "max_abs": 0.0,
+          "values": 512
+        },
+        {
+          "arms": [
+            "serial",
+            "one_gpu"
+          ],
+          "different_values": 0,
+          "indices": [
+            0,
+            19
+          ],
+          "max_abs": 0.0,
+          "values": 512
+        },
+        {
+          "arms": [
+            "serial",
+            "serial"
+          ],
+          "different_values": 0,
+          "indices": [
+            0,
+            23
+          ],
+          "max_abs": 0.0,
+          "values": 512
+        },
+        {
+          "arms": [
+            "serial",
+            "one_gpu"
+          ],
+          "different_values": 0,
+          "indices": [
+            0,
+            26
+          ],
+          "max_abs": 0.0,
+          "values": 512
+        },
+        {
+          "arms": [
+            "serial",
+            "serial"
+          ],
+          "different_values": 0,
+          "indices": [
+            0,
+            30
+          ],
+          "max_abs": 0.0,
+          "values": 512
+        },
+        {
+          "arms": [
+            "serial",
+            "share2"
+          ],
+          "different_values": 0,
+          "indices": [
+            0,
+            34
+          ],
+          "max_abs": 0.0,
+          "values": 512
+        },
+        {
+          "arms": [
+            "share2",
+            "one_gpu"
+          ],
+          "different_values": 0,
+          "indices": [
+            4,
+            8
+          ],
+          "max_abs": 0.0,
+          "values": 512
+        },
+        {
+          "arms": [
+            "share2",
+            "share2"
+          ],
+          "different_values": 0,
+          "indices": [
+            4,
+            15
+          ],
+          "max_abs": 0.0,
+          "values": 512
+        },
+        {
+          "arms": [
+            "share2",
+            "one_gpu"
+          ],
+          "different_values": 0,
+          "indices": [
+            4,
+            19
+          ],
+          "max_abs": 0.0,
+          "values": 512
+        },
+        {
+          "arms": [
+            "share2",
+            "serial"
+          ],
+          "different_values": 0,
+          "indices": [
+            4,
+            23
+          ],
+          "max_abs": 0.0,
+          "values": 512
+        },
+        {
+          "arms": [
+            "share2",
+            "one_gpu"
+          ],
+          "different_values": 0,
+          "indices": [
+            4,
+            26
+          ],
+          "max_abs": 0.0,
+          "values": 512
+        },
+        {
+          "arms": [
+            "share2",
+            "serial"
+          ],
+          "different_values": 0,
+          "indices": [
+            4,
+            30
+          ],
+          "max_abs": 0.0,
+          "values": 512
+        },
+        {
+          "arms": [
+            "share2",
+            "share2"
+          ],
+          "different_values": 0,
+          "indices": [
+            4,
+            34
+          ],
+          "max_abs": 0.0,
+          "values": 512
+        },
+        {
+          "arms": [
+            "one_gpu",
+            "share2"
+          ],
+          "different_values": 0,
+          "indices": [
+            8,
+            15
+          ],
+          "max_abs": 0.0,
+          "values": 512
+        },
+        {
+          "arms": [
+            "one_gpu",
+            "one_gpu"
+          ],
+          "different_values": 0,
+          "indices": [
+            8,
+            19
+          ],
+          "max_abs": 0.0,
+          "values": 512
+        },
+        {
+          "arms": [
+            "one_gpu",
+            "serial"
+          ],
+          "different_values": 0,
+          "indices": [
+            8,
+            23
+          ],
+          "max_abs": 0.0,
+          "values": 512
+        },
+        {
+          "arms": [
+            "one_gpu",
+            "one_gpu"
+          ],
+          "different_values": 0,
+          "indices": [
+            8,
+            26
+          ],
+          "max_abs": 0.0,
+          "values": 512
+        },
+        {
+          "arms": [
+            "one_gpu",
+            "serial"
+          ],
+          "different_values": 0,
+          "indices": [
+            8,
+            30
+          ],
+          "max_abs": 0.0,
+          "values": 512
+        },
+        {
+          "arms": [
+            "one_gpu",
+            "share2"
+          ],
+          "different_values": 0,
+          "indices": [
+            8,
+            34
+          ],
+          "max_abs": 0.0,
+          "values": 512
+        },
+        {
+          "arms": [
+            "share2",
+            "one_gpu"
+          ],
+          "different_values": 0,
+          "indices": [
+            15,
+            19
+          ],
+          "max_abs": 0.0,
+          "values": 512
+        },
+        {
+          "arms": [
+            "share2",
+            "serial"
+          ],
+          "different_values": 0,
+          "indices": [
+            15,
+            23
+          ],
+          "max_abs": 0.0,
+          "values": 512
+        },
+        {
+          "arms": [
+            "share2",
+            "one_gpu"
+          ],
+          "different_values": 0,
+          "indices": [
+            15,
+            26
+          ],
+          "max_abs": 0.0,
+          "values": 512
+        },
+        {
+          "arms": [
+            "share2",
+            "serial"
+          ],
+          "different_values": 0,
+          "indices": [
+            15,
+            30
+          ],
+          "max_abs": 0.0,
+          "values": 512
+        },
+        {
+          "arms": [
+            "share2",
+            "share2"
+          ],
+          "different_values": 0,
+          "indices": [
+            15,
+            34
+          ],
+          "max_abs": 0.0,
+          "values": 512
+        },
+        {
+          "arms": [
+            "one_gpu",
+            "serial"
+          ],
+          "different_values": 0,
+          "indices": [
+            19,
+            23
+          ],
+          "max_abs": 0.0,
+          "values": 512
+        },
+        {
+          "arms": [
+            "one_gpu",
+            "one_gpu"
+          ],
+          "different_values": 0,
+          "indices": [
+            19,
+            26
+          ],
+          "max_abs": 0.0,
+          "values": 512
+        },
+        {
+          "arms": [
+            "one_gpu",
+            "serial"
+          ],
+          "different_values": 0,
+          "indices": [
+            19,
+            30
+          ],
+          "max_abs": 0.0,
+          "values": 512
+        },
+        {
+          "arms": [
+            "one_gpu",
+            "share2"
+          ],
+          "different_values": 0,
+          "indices": [
+            19,
+            34
+          ],
+          "max_abs": 0.0,
+          "values": 512
+        },
+        {
+          "arms": [
+            "serial",
+            "one_gpu"
+          ],
+          "different_values": 0,
+          "indices": [
+            23,
+            26
+          ],
+          "max_abs": 0.0,
+          "values": 512
+        },
+        {
+          "arms": [
+            "serial",
+            "serial"
+          ],
+          "different_values": 0,
+          "indices": [
+            23,
+            30
+          ],
+          "max_abs": 0.0,
+          "values": 512
+        },
+        {
+          "arms": [
+            "serial",
+            "share2"
+          ],
+          "different_values": 0,
+          "indices": [
+            23,
+            34
+          ],
+          "max_abs": 0.0,
+          "values": 512
+        },
+        {
+          "arms": [
+            "one_gpu",
+            "serial"
+          ],
+          "different_values": 0,
+          "indices": [
+            26,
+            30
+          ],
+          "max_abs": 0.0,
+          "values": 512
+        },
+        {
+          "arms": [
+            "one_gpu",
+            "share2"
+          ],
+          "different_values": 0,
+          "indices": [
+            26,
+            34
+          ],
+          "max_abs": 0.0,
+          "values": 512
+        },
+        {
+          "arms": [
+            "serial",
+            "share2"
+          ],
+          "different_values": 0,
+          "indices": [
+            30,
+            34
+          ],
+          "max_abs": 0.0,
+          "values": 512
+        }
+      ],
+      "program": 0
+    },
+    {
+      "all_nine_present": true,
+      "all_outputs_exactly_equal": true,
+      "available_outputs": 9,
+      "pairs": [
+        {
+          "arms": [
+            "serial",
+            "share2"
+          ],
+          "different_values": 0,
+          "indices": [
+            1,
+            5
+          ],
+          "max_abs": 0.0,
+          "values": 10566
+        },
+        {
+          "arms": [
+            "serial",
+            "one_gpu"
+          ],
+          "different_values": 0,
+          "indices": [
+            1,
+            9
+          ],
+          "max_abs": 0.0,
+          "values": 10566
+        },
+        {
+          "arms": [
+            "serial",
+            "share2"
+          ],
+          "different_values": 0,
+          "indices": [
+            1,
+            12
+          ],
+          "max_abs": 0.0,
+          "values": 10566
+        },
+        {
+          "arms": [
+            "serial",
+            "one_gpu"
+          ],
+          "different_values": 0,
+          "indices": [
+            1,
+            16
+          ],
+          "max_abs": 0.0,
+          "values": 10566
+        },
+        {
+          "arms": [
+            "serial",
+            "serial"
+          ],
+          "different_values": 0,
+          "indices": [
+            1,
+            20
+          ],
+          "max_abs": 0.0,
+          "values": 10566
+        },
+        {
+          "arms": [
+            "serial",
+            "one_gpu"
+          ],
+          "different_values": 0,
+          "indices": [
+            1,
+            27
+          ],
+          "max_abs": 0.0,
+          "values": 10566
+        },
+        {
+          "arms": [
+            "serial",
+            "serial"
+          ],
+          "different_values": 0,
+          "indices": [
+            1,
+            31
+          ],
+          "max_abs": 0.0,
+          "values": 10566
+        },
+        {
+          "arms": [
+            "serial",
+            "share2"
+          ],
+          "different_values": 0,
+          "indices": [
+            1,
+            35
+          ],
+          "max_abs": 0.0,
+          "values": 10566
+        },
+        {
+          "arms": [
+            "share2",
+            "one_gpu"
+          ],
+          "different_values": 0,
+          "indices": [
+            5,
+            9
+          ],
+          "max_abs": 0.0,
+          "values": 10566
+        },
+        {
+          "arms": [
+            "share2",
+            "share2"
+          ],
+          "different_values": 0,
+          "indices": [
+            5,
+            12
+          ],
+          "max_abs": 0.0,
+          "values": 10566
+        },
+        {
+          "arms": [
+            "share2",
+            "one_gpu"
+          ],
+          "different_values": 0,
+          "indices": [
+            5,
+            16
+          ],
+          "max_abs": 0.0,
+          "values": 10566
+        },
+        {
+          "arms": [
+            "share2",
+            "serial"
+          ],
+          "different_values": 0,
+          "indices": [
+            5,
+            20
+          ],
+          "max_abs": 0.0,
+          "values": 10566
+        },
+        {
+          "arms": [
+            "share2",
+            "one_gpu"
+          ],
+          "different_values": 0,
+          "indices": [
+            5,
+            27
+          ],
+          "max_abs": 0.0,
+          "values": 10566
+        },
+        {
+          "arms": [
+            "share2",
+            "serial"
+          ],
+          "different_values": 0,
+          "indices": [
+            5,
+            31
+          ],
+          "max_abs": 0.0,
+          "values": 10566
+        },
+        {
+          "arms": [
+            "share2",
+            "share2"
+          ],
+          "different_values": 0,
+          "indices": [
+            5,
+            35
+          ],
+          "max_abs": 0.0,
+          "values": 10566
+        },
+        {
+          "arms": [
+            "one_gpu",
+            "share2"
+          ],
+          "different_values": 0,
+          "indices": [
+            9,
+            12
+          ],
+          "max_abs": 0.0,
+          "values": 10566
+        },
+        {
+          "arms": [
+            "one_gpu",
+            "one_gpu"
+          ],
+          "different_values": 0,
+          "indices": [
+            9,
+            16
+          ],
+          "max_abs": 0.0,
+          "values": 10566
+        },
+        {
+          "arms": [
+            "one_gpu",
+            "serial"
+          ],
+          "different_values": 0,
+          "indices": [
+            9,
+            20
+          ],
+          "max_abs": 0.0,
+          "values": 10566
+        },
+        {
+          "arms": [
+            "one_gpu",
+            "one_gpu"
+          ],
+          "different_values": 0,
+          "indices": [
+            9,
+            27
+          ],
+          "max_abs": 0.0,
+          "values": 10566
+        },
+        {
+          "arms": [
+            "one_gpu",
+            "serial"
+          ],
+          "different_values": 0,
+          "indices": [
+            9,
+            31
+          ],
+          "max_abs": 0.0,
+          "values": 10566
+        },
+        {
+          "arms": [
+            "one_gpu",
+            "share2"
+          ],
+          "different_values": 0,
+          "indices": [
+            9,
+            35
+          ],
+          "max_abs": 0.0,
+          "values": 10566
+        },
+        {
+          "arms": [
+            "share2",
+            "one_gpu"
+          ],
+          "different_values": 0,
+          "indices": [
+            12,
+            16
+          ],
+          "max_abs": 0.0,
+          "values": 10566
+        },
+        {
+          "arms": [
+            "share2",
+            "serial"
+          ],
+          "different_values": 0,
+          "indices": [
+            12,
+            20
+          ],
+          "max_abs": 0.0,
+          "values": 10566
+        },
+        {
+          "arms": [
+            "share2",
+            "one_gpu"
+          ],
+          "different_values": 0,
+          "indices": [
+            12,
+            27
+          ],
+          "max_abs": 0.0,
+          "values": 10566
+        },
+        {
+          "arms": [
+            "share2",
+            "serial"
+          ],
+          "different_values": 0,
+          "indices": [
+            12,
+            31
+          ],
+          "max_abs": 0.0,
+          "values": 10566
+        },
+        {
+          "arms": [
+            "share2",
+            "share2"
+          ],
+          "different_values": 0,
+          "indices": [
+            12,
+            35
+          ],
+          "max_abs": 0.0,
+          "values": 10566
+        },
+        {
+          "arms": [
+            "one_gpu",
+            "serial"
+          ],
+          "different_values": 0,
+          "indices": [
+            16,
+            20
+          ],
+          "max_abs": 0.0,
+          "values": 10566
+        },
+        {
+          "arms": [
+            "one_gpu",
+            "one_gpu"
+          ],
+          "different_values": 0,
+          "indices": [
+            16,
+            27
+          ],
+          "max_abs": 0.0,
+          "values": 10566
+        },
+        {
+          "arms": [
+            "one_gpu",
+            "serial"
+          ],
+          "different_values": 0,
+          "indices": [
+            16,
+            31
+          ],
+          "max_abs": 0.0,
+          "values": 10566
+        },
+        {
+          "arms": [
+            "one_gpu",
+            "share2"
+          ],
+          "different_values": 0,
+          "indices": [
+            16,
+            35
+          ],
+          "max_abs": 0.0,
+          "values": 10566
+        },
+        {
+          "arms": [
+            "serial",
+            "one_gpu"
+          ],
+          "different_values": 0,
+          "indices": [
+            20,
+            27
+          ],
+          "max_abs": 0.0,
+          "values": 10566
+        },
+        {
+          "arms": [
+            "serial",
+            "serial"
+          ],
+          "different_values": 0,
+          "indices": [
+            20,
+            31
+          ],
+          "max_abs": 0.0,
+          "values": 10566
+        },
+        {
+          "arms": [
+            "serial",
+            "share2"
+          ],
+          "different_values": 0,
+          "indices": [
+            20,
+            35
+          ],
+          "max_abs": 0.0,
+          "values": 10566
+        },
+        {
+          "arms": [
+            "one_gpu",
+            "serial"
+          ],
+          "different_values": 0,
+          "indices": [
+            27,
+            31
+          ],
+          "max_abs": 0.0,
+          "values": 10566
+        },
+        {
+          "arms": [
+            "one_gpu",
+            "share2"
+          ],
+          "different_values": 0,
+          "indices": [
+            27,
+            35
+          ],
+          "max_abs": 0.0,
+          "values": 10566
+        },
+        {
+          "arms": [
+            "serial",
+            "share2"
+          ],
+          "different_values": 0,
+          "indices": [
+            31,
+            35
+          ],
+          "max_abs": 0.0,
+          "values": 10566
+        }
+      ],
+      "program": 1
+    },
+    {
+      "all_nine_present": false,
+      "all_outputs_exactly_equal": null,
+      "available_outputs": 8,
+      "pairs": [
+        {
+          "arms": [
+            "serial",
+            "share2"
+          ],
+          "different_values": 0,
+          "indices": [
+            2,
+            6
+          ],
+          "max_abs": 0.0,
+          "values": 512
+        },
+        {
+          "arms": [
+            "serial",
+            "one_gpu"
+          ],
+          "different_values": 0,
+          "indices": [
+            2,
+            10
+          ],
+          "max_abs": 0.0,
+          "values": 512
+        },
+        {
+          "arms": [
+            "serial",
+            "share2"
+          ],
+          "different_values": 0,
+          "indices": [
+            2,
+            13
+          ],
+          "max_abs": 0.0,
+          "values": 512
+        },
+        {
+          "arms": [
+            "serial",
+            "serial"
+          ],
+          "different_values": 0,
+          "indices": [
+            2,
+            21
+          ],
+          "max_abs": 0.0,
+          "values": 512
+        },
+        {
+          "arms": [
+            "serial",
+            "one_gpu"
+          ],
+          "different_values": 0,
+          "indices": [
+            2,
+            24
+          ],
+          "max_abs": 0.0,
+          "values": 512
+        },
+        {
+          "arms": [
+            "serial",
+            "serial"
+          ],
+          "different_values": 0,
+          "indices": [
+            2,
+            28
+          ],
+          "max_abs": 0.0,
+          "values": 512
+        },
+        {
+          "arms": [
+            "serial",
+            "share2"
+          ],
+          "different_values": 0,
+          "indices": [
+            2,
+            32
+          ],
+          "max_abs": 0.0,
+          "values": 512
+        },
+        {
+          "arms": [
+            "share2",
+            "one_gpu"
+          ],
+          "different_values": 0,
+          "indices": [
+            6,
+            10
+          ],
+          "max_abs": 0.0,
+          "values": 512
+        },
+        {
+          "arms": [
+            "share2",
+            "share2"
+          ],
+          "different_values": 0,
+          "indices": [
+            6,
+            13
+          ],
+          "max_abs": 0.0,
+          "values": 512
+        },
+        {
+          "arms": [
+            "share2",
+            "serial"
+          ],
+          "different_values": 0,
+          "indices": [
+            6,
+            21
+          ],
+          "max_abs": 0.0,
+          "values": 512
+        },
+        {
+          "arms": [
+            "share2",
+            "one_gpu"
+          ],
+          "different_values": 0,
+          "indices": [
+            6,
+            24
+          ],
+          "max_abs": 0.0,
+          "values": 512
+        },
+        {
+          "arms": [
+            "share2",
+            "serial"
+          ],
+          "different_values": 0,
+          "indices": [
+            6,
+            28
+          ],
+          "max_abs": 0.0,
+          "values": 512
+        },
+        {
+          "arms": [
+            "share2",
+            "share2"
+          ],
+          "different_values": 0,
+          "indices": [
+            6,
+            32
+          ],
+          "max_abs": 0.0,
+          "values": 512
+        },
+        {
+          "arms": [
+            "one_gpu",
+            "share2"
+          ],
+          "different_values": 0,
+          "indices": [
+            10,
+            13
+          ],
+          "max_abs": 0.0,
+          "values": 512
+        },
+        {
+          "arms": [
+            "one_gpu",
+            "serial"
+          ],
+          "different_values": 0,
+          "indices": [
+            10,
+            21
+          ],
+          "max_abs": 0.0,
+          "values": 512
+        },
+        {
+          "arms": [
+            "one_gpu",
+            "one_gpu"
+          ],
+          "different_values": 0,
+          "indices": [
+            10,
+            24
+          ],
+          "max_abs": 0.0,
+          "values": 512
+        },
+        {
+          "arms": [
+            "one_gpu",
+            "serial"
+          ],
+          "different_values": 0,
+          "indices": [
+            10,
+            28
+          ],
+          "max_abs": 0.0,
+          "values": 512
+        },
+        {
+          "arms": [
+            "one_gpu",
+            "share2"
+          ],
+          "different_values": 0,
+          "indices": [
+            10,
+            32
+          ],
+          "max_abs": 0.0,
+          "values": 512
+        },
+        {
+          "arms": [
+            "share2",
+            "serial"
+          ],
+          "different_values": 0,
+          "indices": [
+            13,
+            21
+          ],
+          "max_abs": 0.0,
+          "values": 512
+        },
+        {
+          "arms": [
+            "share2",
+            "one_gpu"
+          ],
+          "different_values": 0,
+          "indices": [
+            13,
+            24
+          ],
+          "max_abs": 0.0,
+          "values": 512
+        },
+        {
+          "arms": [
+            "share2",
+            "serial"
+          ],
+          "different_values": 0,
+          "indices": [
+            13,
+            28
+          ],
+          "max_abs": 0.0,
+          "values": 512
+        },
+        {
+          "arms": [
+            "share2",
+            "share2"
+          ],
+          "different_values": 0,
+          "indices": [
+            13,
+            32
+          ],
+          "max_abs": 0.0,
+          "values": 512
+        },
+        {
+          "arms": [
+            "serial",
+            "one_gpu"
+          ],
+          "different_values": 0,
+          "indices": [
+            21,
+            24
+          ],
+          "max_abs": 0.0,
+          "values": 512
+        },
+        {
+          "arms": [
+            "serial",
+            "serial"
+          ],
+          "different_values": 0,
+          "indices": [
+            21,
+            28
+          ],
+          "max_abs": 0.0,
+          "values": 512
+        },
+        {
+          "arms": [
+            "serial",
+            "share2"
+          ],
+          "different_values": 0,
+          "indices": [
+            21,
+            32
+          ],
+          "max_abs": 0.0,
+          "values": 512
+        },
+        {
+          "arms": [
+            "one_gpu",
+            "serial"
+          ],
+          "different_values": 0,
+          "indices": [
+            24,
+            28
+          ],
+          "max_abs": 0.0,
+          "values": 512
+        },
+        {
+          "arms": [
+            "one_gpu",
+            "share2"
+          ],
+          "different_values": 0,
+          "indices": [
+            24,
+            32
+          ],
+          "max_abs": 0.0,
+          "values": 512
+        },
+        {
+          "arms": [
+            "serial",
+            "share2"
+          ],
+          "different_values": 0,
+          "indices": [
+            28,
+            32
+          ],
+          "max_abs": 0.0,
+          "values": 512
+        }
+      ],
+      "program": 4
+    },
+    {
+      "all_nine_present": true,
+      "all_outputs_exactly_equal": true,
+      "available_outputs": 9,
+      "pairs": [
+        {
+          "arms": [
+            "serial",
+            "share2"
+          ],
+          "different_values": 0,
+          "indices": [
+            3,
+            7
+          ],
+          "max_abs": 0.0,
+          "values": 1798
+        },
+        {
+          "arms": [
+            "serial",
+            "one_gpu"
+          ],
+          "different_values": 0,
+          "indices": [
+            3,
+            11
+          ],
+          "max_abs": 0.0,
+          "values": 1798
+        },
+        {
+          "arms": [
+            "serial",
+            "share2"
+          ],
+          "different_values": 0,
+          "indices": [
+            3,
+            14
+          ],
+          "max_abs": 0.0,
+          "values": 1798
+        },
+        {
+          "arms": [
+            "serial",
+            "one_gpu"
+          ],
+          "different_values": 0,
+          "indices": [
+            3,
+            18
+          ],
+          "max_abs": 0.0,
+          "values": 1798
+        },
+        {
+          "arms": [
+            "serial",
+            "serial"
+          ],
+          "different_values": 0,
+          "indices": [
+            3,
+            22
+          ],
+          "max_abs": 0.0,
+          "values": 1798
+        },
+        {
+          "arms": [
+            "serial",
+            "one_gpu"
+          ],
+          "different_values": 0,
+          "indices": [
+            3,
+            25
+          ],
+          "max_abs": 0.0,
+          "values": 1798
+        },
+        {
+          "arms": [
+            "serial",
+            "serial"
+          ],
+          "different_values": 0,
+          "indices": [
+            3,
+            29
+          ],
+          "max_abs": 0.0,
+          "values": 1798
+        },
+        {
+          "arms": [
+            "serial",
+            "share2"
+          ],
+          "different_values": 0,
+          "indices": [
+            3,
+            33
+          ],
+          "max_abs": 0.0,
+          "values": 1798
+        },
+        {
+          "arms": [
+            "share2",
+            "one_gpu"
+          ],
+          "different_values": 0,
+          "indices": [
+            7,
+            11
+          ],
+          "max_abs": 0.0,
+          "values": 1798
+        },
+        {
+          "arms": [
+            "share2",
+            "share2"
+          ],
+          "different_values": 0,
+          "indices": [
+            7,
+            14
+          ],
+          "max_abs": 0.0,
+          "values": 1798
+        },
+        {
+          "arms": [
+            "share2",
+            "one_gpu"
+          ],
+          "different_values": 0,
+          "indices": [
+            7,
+            18
+          ],
+          "max_abs": 0.0,
+          "values": 1798
+        },
+        {
+          "arms": [
+            "share2",
+            "serial"
+          ],
+          "different_values": 0,
+          "indices": [
+            7,
+            22
+          ],
+          "max_abs": 0.0,
+          "values": 1798
+        },
+        {
+          "arms": [
+            "share2",
+            "one_gpu"
+          ],
+          "different_values": 0,
+          "indices": [
+            7,
+            25
+          ],
+          "max_abs": 0.0,
+          "values": 1798
+        },
+        {
+          "arms": [
+            "share2",
+            "serial"
+          ],
+          "different_values": 0,
+          "indices": [
+            7,
+            29
+          ],
+          "max_abs": 0.0,
+          "values": 1798
+        },
+        {
+          "arms": [
+            "share2",
+            "share2"
+          ],
+          "different_values": 0,
+          "indices": [
+            7,
+            33
+          ],
+          "max_abs": 0.0,
+          "values": 1798
+        },
+        {
+          "arms": [
+            "one_gpu",
+            "share2"
+          ],
+          "different_values": 0,
+          "indices": [
+            11,
+            14
+          ],
+          "max_abs": 0.0,
+          "values": 1798
+        },
+        {
+          "arms": [
+            "one_gpu",
+            "one_gpu"
+          ],
+          "different_values": 0,
+          "indices": [
+            11,
+            18
+          ],
+          "max_abs": 0.0,
+          "values": 1798
+        },
+        {
+          "arms": [
+            "one_gpu",
+            "serial"
+          ],
+          "different_values": 0,
+          "indices": [
+            11,
+            22
+          ],
+          "max_abs": 0.0,
+          "values": 1798
+        },
+        {
+          "arms": [
+            "one_gpu",
+            "one_gpu"
+          ],
+          "different_values": 0,
+          "indices": [
+            11,
+            25
+          ],
+          "max_abs": 0.0,
+          "values": 1798
+        },
+        {
+          "arms": [
+            "one_gpu",
+            "serial"
+          ],
+          "different_values": 0,
+          "indices": [
+            11,
+            29
+          ],
+          "max_abs": 0.0,
+          "values": 1798
+        },
+        {
+          "arms": [
+            "one_gpu",
+            "share2"
+          ],
+          "different_values": 0,
+          "indices": [
+            11,
+            33
+          ],
+          "max_abs": 0.0,
+          "values": 1798
+        },
+        {
+          "arms": [
+            "share2",
+            "one_gpu"
+          ],
+          "different_values": 0,
+          "indices": [
+            14,
+            18
+          ],
+          "max_abs": 0.0,
+          "values": 1798
+        },
+        {
+          "arms": [
+            "share2",
+            "serial"
+          ],
+          "different_values": 0,
+          "indices": [
+            14,
+            22
+          ],
+          "max_abs": 0.0,
+          "values": 1798
+        },
+        {
+          "arms": [
+            "share2",
+            "one_gpu"
+          ],
+          "different_values": 0,
+          "indices": [
+            14,
+            25
+          ],
+          "max_abs": 0.0,
+          "values": 1798
+        },
+        {
+          "arms": [
+            "share2",
+            "serial"
+          ],
+          "different_values": 0,
+          "indices": [
+            14,
+            29
+          ],
+          "max_abs": 0.0,
+          "values": 1798
+        },
+        {
+          "arms": [
+            "share2",
+            "share2"
+          ],
+          "different_values": 0,
+          "indices": [
+            14,
+            33
+          ],
+          "max_abs": 0.0,
+          "values": 1798
+        },
+        {
+          "arms": [
+            "one_gpu",
+            "serial"
+          ],
+          "different_values": 0,
+          "indices": [
+            18,
+            22
+          ],
+          "max_abs": 0.0,
+          "values": 1798
+        },
+        {
+          "arms": [
+            "one_gpu",
+            "one_gpu"
+          ],
+          "different_values": 0,
+          "indices": [
+            18,
+            25
+          ],
+          "max_abs": 0.0,
+          "values": 1798
+        },
+        {
+          "arms": [
+            "one_gpu",
+            "serial"
+          ],
+          "different_values": 0,
+          "indices": [
+            18,
+            29
+          ],
+          "max_abs": 0.0,
+          "values": 1798
+        },
+        {
+          "arms": [
+            "one_gpu",
+            "share2"
+          ],
+          "different_values": 0,
+          "indices": [
+            18,
+            33
+          ],
+          "max_abs": 0.0,
+          "values": 1798
+        },
+        {
+          "arms": [
+            "serial",
+            "one_gpu"
+          ],
+          "different_values": 0,
+          "indices": [
+            22,
+            25
+          ],
+          "max_abs": 0.0,
+          "values": 1798
+        },
+        {
+          "arms": [
+            "serial",
+            "serial"
+          ],
+          "different_values": 0,
+          "indices": [
+            22,
+            29
+          ],
+          "max_abs": 0.0,
+          "values": 1798
+        },
+        {
+          "arms": [
+            "serial",
+            "share2"
+          ],
+          "different_values": 0,
+          "indices": [
+            22,
+            33
+          ],
+          "max_abs": 0.0,
+          "values": 1798
+        },
+        {
+          "arms": [
+            "one_gpu",
+            "serial"
+          ],
+          "different_values": 0,
+          "indices": [
+            25,
+            29
+          ],
+          "max_abs": 0.0,
+          "values": 1798
+        },
+        {
+          "arms": [
+            "one_gpu",
+            "share2"
+          ],
+          "different_values": 0,
+          "indices": [
+            25,
+            33
+          ],
+          "max_abs": 0.0,
+          "values": 1798
+        },
+        {
+          "arms": [
+            "serial",
+            "share2"
+          ],
+          "different_values": 0,
+          "indices": [
+            29,
+            33
+          ],
+          "max_abs": 0.0,
+          "values": 1798
+        }
+      ],
+      "program": 3
+    }
+  ],
+  "plan_sha256": "429339013cca8e2858cb2cc2edfefe017f096b0c4afbc0172987d897becf7a56",
+  "planned": 36,
+  "ratios": {
+    "serial_over_one_gpu": {
+      "complete_three_pairs": false,
+      "pairs": [
+        {
+          "ratio": 1.9627640260553043,
+          "repeat": 0
+        },
+        {
+          "ratio": 1.6573507608527684,
+          "repeat": 2
+        }
+      ],
+      "summary": {
+        "max": 1.9627640260553043,
+        "median": 1.8100573934540365,
+        "min": 1.6573507608527684,
+        "n": 2,
+        "sample_std": 0.21595979088903855
+      }
+    },
+    "serial_over_share2": {
+      "complete_three_pairs": true,
+      "pairs": [
+        {
+          "ratio": 1.8423276573417586,
+          "repeat": 0
+        },
+        {
+          "ratio": 1.7307638813016224,
+          "repeat": 1
+        },
+        {
+          "ratio": 1.7852942816262258,
+          "repeat": 2
+        }
+      ],
+      "summary": {
+        "max": 1.8423276573417586,
+        "median": 1.7852942816262258,
+        "min": 1.7307638813016224,
+        "n": 3,
+        "sample_std": 0.05578656742353592
+      }
+    },
+    "share2_over_one_gpu": {
+      "complete_three_pairs": false,
+      "pairs": [
+        {
+          "ratio": 1.0653718507853918,
+          "repeat": 0
+        },
+        {
+          "ratio": 0.9283347725413014,
+          "repeat": 2
+        }
+      ],
+      "summary": {
+        "max": 1.0653718507853918,
+        "median": 0.9968533116633466,
+        "min": 0.9283347725413014,
+        "n": 2,
+        "sample_std": 0.09689984730038782
+      }
+    }
+  },
+  "runs": [
+    {
+      "arm": "serial",
+      "completion": {
+        "arm": "serial",
+        "complete": true,
+        "end": 1791421156.7462845,
+        "error_type": null,
+        "exec_seconds": 9.280313001945615,
+        "exit_code": 0,
+        "gpu_training": [
+          {
+            "backend": "xgboost",
+            "device": "cuda:0",
+            "rounds": 106
+          },
+          {
+            "backend": "xgboost",
+            "device": "cuda:0",
+            "rounds": 144
+          },
+          {
+            "backend": "xgboost",
+            "device": "cuda:0",
+            "rounds": 112
+          },
+          {
+            "backend": "xgboost",
+            "device": "cuda:0",
+            "rounds": 82
+          },
+          {
+            "backend": "xgboost",
+            "device": "cuda:0",
+            "rounds": 69
+          }
+        ],
+        "index": 0,
+        "program": 0,
+        "repeat": 0,
+        "seed": 130701,
+        "source_commit": "6e36a61d4f6bca53f0a4605656f49fe4c189fe64",
+        "start": 1791421139.6967924,
+        "timed_out": false
+      },
+      "index": 0,
+      "output_sha256": "a17175153b2c24c22587b6fc7a6b170ac4d988df3a0bef4d60c86b27bb8cfa4b",
+      "program": 0,
+      "repeat": 0,
+      "seed": 130701,
+      "status": "complete",
+      "supervisor": {
+        "end": 1791421156.9213815,
+        "returncode": 0,
+        "start": 1791421137.2457414
+      }
+    },
+    {
+      "arm": "serial",
+      "completion": {
+        "arm": "serial",
+        "complete": true,
+        "end": 1791421179.5289798,
+        "error_type": null,
+        "exec_seconds": 17.1245630774647,
+        "exit_code": 0,
+        "index": 1,
+        "program": 1,
+        "repeat": 0,
+        "seed": 130701,
+        "source_commit": "6e36a61d4f6bca53f0a4605656f49fe4c189fe64",
+        "start": 1791421158.2798495,
+        "timed_out": false
+      },
+      "index": 1,
+      "output_sha256": "73843c8b89260d27b53241923968bd0878ccda42c46a6ad313fbe4380217efe1",
+      "program": 1,
+      "repeat": 0,
+      "seed": 130701,
+      "status": "complete",
+      "supervisor": {
+        "end": 1791421179.7070057,
+        "returncode": 0,
+        "start": 1791421156.9286578
+      }
+    },
+    {
+      "arm": "serial",
+      "completion": {
+        "arm": "serial",
+        "complete": true,
+        "end": 1791421194.4676569,
+        "error_type": null,
+        "exec_seconds": 6.013170721009374,
+        "exit_code": 0,
+        "gpu_training": [
+          {
+            "backend": "catboost",
+            "device": "GPU",
+            "rounds": 156
+          }
+        ],
+        "index": 2,
+        "program": 4,
+        "repeat": 0,
+        "seed": 130701,
+        "source_commit": "6e36a61d4f6bca53f0a4605656f49fe4c189fe64",
+        "start": 1791421180.9929807,
+        "timed_out": false
+      },
+      "index": 2,
+      "output_sha256": "2df258c19aa22a2afb45fda4260eba81566e4e3d7f7a313d8afffb1e08f148e8",
+      "program": 4,
+      "repeat": 0,
+      "seed": 130701,
+      "status": "complete",
+      "supervisor": {
+        "end": 1791421194.6293418,
+        "returncode": 0,
+        "start": 1791421179.7142363
+      }
+    },
+    {
+      "arm": "serial",
+      "completion": {
+        "arm": "serial",
+        "complete": true,
+        "end": 1791421203.760361,
+        "error_type": null,
+        "exec_seconds": 4.435882051475346,
+        "exit_code": 0,
+        "index": 3,
+        "program": 3,
+        "repeat": 0,
+        "seed": 130701,
+        "source_commit": "6e36a61d4f6bca53f0a4605656f49fe4c189fe64",
+        "start": 1791421195.2540696,
+        "timed_out": false
+      },
+      "index": 3,
+      "output_sha256": "990a499aede6177b38b0a84705318687fa612589d578923f653b4ba7b14e7072",
+      "program": 3,
+      "repeat": 0,
+      "seed": 130701,
+      "status": "complete",
+      "supervisor": {
+        "end": 1791421203.9326968,
+        "returncode": 0,
+        "start": 1791421194.635896
+      }
+    },
+    {
+      "arm": "share2",
+      "completion": {
+        "arm": "share2",
+        "complete": true,
+        "end": 1791421224.8935623,
+        "error_type": null,
+        "exec_seconds": 9.310200662352145,
+        "exit_code": 0,
+        "gpu_training": [
+          {
+            "backend": "xgboost",
+            "device": "cuda:0",
+            "rounds": 106
+          },
+          {
+            "backend": "xgboost",
+            "device": "cuda:0",
+            "rounds": 144
+          },
+          {
+            "backend": "xgboost",
+            "device": "cuda:0",
+            "rounds": 112
+          },
+          {
+            "backend": "xgboost",
+            "device": "cuda:0",
+            "rounds": 82
+          },
+          {
+            "backend": "xgboost",
+            "device": "cuda:0",
+            "rounds": 69
+          }
+        ],
+        "index": 4,
+        "program": 0,
+        "repeat": 0,
+        "seed": 130701,
+        "source_commit": "6e36a61d4f6bca53f0a4605656f49fe4c189fe64",
+        "start": 1791421206.2874162,
+        "timed_out": false
+      },
+      "index": 4,
+      "output_sha256": "a17175153b2c24c22587b6fc7a6b170ac4d988df3a0bef4d60c86b27bb8cfa4b",
+      "program": 0,
+      "repeat": 0,
+      "seed": 130701,
+      "status": "complete",
+      "supervisor": {
+        "end": 1791421225.0110173,
+        "returncode": 0,
+        "start": 1791421204.0833564
+      }
+    },
+    {
+      "arm": "share2",
+      "completion": {
+        "arm": "share2",
+        "complete": true,
+        "end": 1791421229.646086,
+        "error_type": null,
+        "exec_seconds": 17.88949722982943,
+        "exit_code": 0,
+        "index": 5,
+        "program": 1,
+        "repeat": 0,
+        "seed": 130701,
+        "source_commit": "6e36a61d4f6bca53f0a4605656f49fe4c189fe64",
+        "start": 1791421206.2716897,
+        "timed_out": false
+      },
+      "index": 5,
+      "output_sha256": "73843c8b89260d27b53241923968bd0878ccda42c46a6ad313fbe4380217efe1",
+      "program": 1,
+      "repeat": 0,
+      "seed": 130701,
+      "status": "complete",
+      "supervisor": {
+        "end": 1791421229.7731917,
+        "returncode": 0,
+        "start": 1791421204.0837412
+      }
+    },
+    {
+      "arm": "share2",
+      "completion": {
+        "arm": "share2",
+        "complete": true,
+        "end": 1791421238.856221,
+        "error_type": null,
+        "exec_seconds": 5.879147466272116,
+        "exit_code": 0,
+        "gpu_training": [
+          {
+            "backend": "catboost",
+            "device": "GPU",
+            "rounds": 156
+          }
+        ],
+        "index": 6,
+        "program": 4,
+        "repeat": 0,
+        "seed": 130701,
+        "source_commit": "6e36a61d4f6bca53f0a4605656f49fe4c189fe64",
+        "start": 1791421226.3766634,
+        "timed_out": false
+      },
+      "index": 6,
+      "output_sha256": "2df258c19aa22a2afb45fda4260eba81566e4e3d7f7a313d8afffb1e08f148e8",
+      "program": 4,
+      "repeat": 0,
+      "seed": 130701,
+      "status": "complete",
+      "supervisor": {
+        "end": 1791421238.9671855,
+        "returncode": 0,
+        "start": 1791421225.016483
+      }
+    },
+    {
+      "arm": "share2",
+      "completion": {
+        "arm": "share2",
+        "complete": true,
+        "end": 1791421240.1094804,
+        "error_type": null,
+        "exec_seconds": 5.117202734574676,
+        "exit_code": 0,
+        "index": 7,
+        "program": 3,
+        "repeat": 0,
+        "seed": 130701,
+        "source_commit": "6e36a61d4f6bca53f0a4605656f49fe4c189fe64",
+        "start": 1791421230.5355678,
+        "timed_out": false
+      },
+      "index": 7,
+      "output_sha256": "990a499aede6177b38b0a84705318687fa612589d578923f653b4ba7b14e7072",
+      "program": 3,
+      "repeat": 0,
+      "seed": 130701,
+      "status": "complete",
+      "supervisor": {
+        "end": 1791421240.2790182,
+        "returncode": 0,
+        "start": 1791421229.7792814
+      }
+    },
+    {
+      "arm": "one_gpu",
+      "completion": {
+        "arm": "one_gpu",
+        "complete": true,
+        "end": 1791421258.476171,
+        "error_type": null,
+        "exec_seconds": 9.554940131492913,
+        "exit_code": 0,
+        "gpu_training": [
+          {
+            "backend": "xgboost",
+            "device": "cuda:0",
+            "rounds": 106
+          },
+          {
+            "backend": "xgboost",
+            "device": "cuda:0",
+            "rounds": 144
+          },
+          {
+            "backend": "xgboost",
+            "device": "cuda:0",
+            "rounds": 112
+          },
+          {
+            "backend": "xgboost",
+            "device": "cuda:0",
+            "rounds": 82
+          },
+          {
+            "backend": "xgboost",
+            "device": "cuda:0",
+            "rounds": 69
+          }
+        ],
+        "index": 8,
+        "program": 0,
+        "repeat": 0,
+        "seed": 130701,
+        "source_commit": "6e36a61d4f6bca53f0a4605656f49fe4c189fe64",
+        "start": 1791421241.839099,
+        "timed_out": false
+      },
+      "index": 8,
+      "output_sha256": "a17175153b2c24c22587b6fc7a6b170ac4d988df3a0bef4d60c86b27bb8cfa4b",
+      "program": 0,
+      "repeat": 0,
+      "seed": 130701,
+      "status": "complete",
+      "supervisor": {
+        "end": 1791421258.6208978,
+        "returncode": 0,
+        "start": 1791421240.4074757
+      }
+    },
+    {
+      "arm": "one_gpu",
+      "completion": {
+        "arm": "one_gpu",
+        "complete": true,
+        "end": 1791421263.36054,
+        "error_type": null,
+        "exec_seconds": 17.632446545176208,
+        "exit_code": 0,
+        "index": 9,
+        "program": 1,
+        "repeat": 0,
+        "seed": 130701,
+        "source_commit": "6e36a61d4f6bca53f0a4605656f49fe4c189fe64",
+        "start": 1791421241.8430328,
+        "timed_out": false
+      },
+      "index": 9,
+      "output_sha256": "73843c8b89260d27b53241923968bd0878ccda42c46a6ad313fbe4380217efe1",
+      "program": 1,
+      "repeat": 0,
+      "seed": 130701,
+      "status": "complete",
+      "supervisor": {
+        "end": 1791421263.4832022,
+        "returncode": 0,
+        "start": 1791421240.4080284
+      }
+    },
+    {
+      "arm": "one_gpu",
+      "completion": {
+        "arm": "one_gpu",
+        "complete": true,
+        "end": 1791421273.152763,
+        "error_type": null,
+        "exec_seconds": 5.856603583320975,
+        "exit_code": 0,
+        "gpu_training": [
+          {
+            "backend": "catboost",
+            "device": "GPU",
+            "rounds": 156
+          }
+        ],
+        "index": 10,
+        "program": 4,
+        "repeat": 0,
+        "seed": 130701,
+        "source_commit": "6e36a61d4f6bca53f0a4605656f49fe4c189fe64",
+        "start": 1791421260.750242,
+        "timed_out": false
+      },
+      "index": 10,
+      "output_sha256": "2df258c19aa22a2afb45fda4260eba81566e4e3d7f7a313d8afffb1e08f148e8",
+      "program": 4,
+      "repeat": 0,
+      "seed": 130701,
+      "status": "complete",
+      "supervisor": {
+        "end": 1791421273.2815855,
+        "returncode": 0,
+        "start": 1791421258.6275957
+      }
+    },
+    {
+      "arm": "one_gpu",
+      "completion": {
+        "arm": "one_gpu",
+        "complete": true,
+        "end": 1791421274.278362,
+        "error_type": null,
+        "exec_seconds": 5.990402897819877,
+        "exit_code": 0,
+        "index": 11,
+        "program": 3,
+        "repeat": 0,
+        "seed": 130701,
+        "source_commit": "6e36a61d4f6bca53f0a4605656f49fe4c189fe64",
+        "start": 1791421264.1344783,
+        "timed_out": false
+      },
+      "index": 11,
+      "output_sha256": "990a499aede6177b38b0a84705318687fa612589d578923f653b4ba7b14e7072",
+      "program": 3,
+      "repeat": 0,
+      "seed": 130701,
+      "status": "complete",
+      "supervisor": {
+        "end": 1791421274.3826888,
+        "returncode": 0,
+        "start": 1791421263.4883404
+      }
+    },
+    {
+      "arm": "share2",
+      "completion": {
+        "arm": "share2",
+        "complete": true,
+        "end": 1791421297.6030114,
+        "error_type": null,
+        "exec_seconds": 17.906750957481563,
+        "exit_code": 0,
+        "index": 12,
+        "program": 1,
+        "repeat": 1,
+        "seed": 130701,
+        "source_commit": "6e36a61d4f6bca53f0a4605656f49fe4c189fe64",
+        "start": 1791421275.7986329,
+        "timed_out": false
+      },
+      "index": 12,
+      "output_sha256": "73843c8b89260d27b53241923968bd0878ccda42c46a6ad313fbe4380217efe1",
+      "program": 1,
+      "repeat": 1,
+      "seed": 130701,
+      "status": "complete",
+      "supervisor": {
+        "end": 1791421297.7318933,
+        "returncode": 0,
+        "start": 1791421274.5065894
+      }
+    },
+    {
+      "arm": "share2",
+      "completion": {
+        "arm": "share2",
+        "complete": true,
+        "end": 1791421287.9324949,
+        "error_type": null,
+        "exec_seconds": 5.77738978061825,
+        "exit_code": 0,
+        "gpu_training": [
+          {
+            "backend": "catboost",
+            "device": "GPU",
+            "rounds": 156
+          }
+        ],
+        "index": 13,
+        "program": 4,
+        "repeat": 1,
+        "seed": 130701,
+        "source_commit": "6e36a61d4f6bca53f0a4605656f49fe4c189fe64",
+        "start": 1791421275.8005013,
+        "timed_out": false
+      },
+      "index": 13,
+      "output_sha256": "2df258c19aa22a2afb45fda4260eba81566e4e3d7f7a313d8afffb1e08f148e8",
+      "program": 4,
+      "repeat": 1,
+      "seed": 130701,
+      "status": "complete",
+      "supervisor": {
+        "end": 1791421288.0603037,
+        "returncode": 0,
+        "start": 1791421274.506852
+      }
+    },
+    {
+      "arm": "share2",
+      "completion": {
+        "arm": "share2",
+        "complete": true,
+        "end": 1791421298.3811266,
+        "error_type": null,
+        "exec_seconds": 5.860345656983554,
+        "exit_code": 0,
+        "index": 14,
+        "program": 3,
+        "repeat": 1,
+        "seed": 130701,
+        "source_commit": "6e36a61d4f6bca53f0a4605656f49fe4c189fe64",
+        "start": 1791421288.633303,
+        "timed_out": false
+      },
+      "index": 14,
+      "output_sha256": "990a499aede6177b38b0a84705318687fa612589d578923f653b4ba7b14e7072",
+      "program": 3,
+      "repeat": 1,
+      "seed": 130701,
+      "status": "complete",
+      "supervisor": {
+        "end": 1791421298.5083437,
+        "returncode": 0,
+        "start": 1791421288.0647984
+      }
+    },
+    {
+      "arm": "share2",
+      "completion": {
+        "arm": "share2",
+        "complete": true,
+        "end": 1791421313.9830458,
+        "error_type": null,
+        "exec_seconds": 9.16072793584317,
+        "exit_code": 0,
+        "gpu_training": [
+          {
+            "backend": "xgboost",
+            "device": "cuda:0",
+            "rounds": 106
+          },
+          {
+            "backend": "xgboost",
+            "device": "cuda:0",
+            "rounds": 144
+          },
+          {
+            "backend": "xgboost",
+            "device": "cuda:0",
+            "rounds": 112
+          },
+          {
+            "backend": "xgboost",
+            "device": "cuda:0",
+            "rounds": 82
+          },
+          {
+            "backend": "xgboost",
+            "device": "cuda:0",
+            "rounds": 69
+          }
+        ],
+        "index": 15,
+        "program": 0,
+        "repeat": 1,
+        "seed": 130701,
+        "source_commit": "6e36a61d4f6bca53f0a4605656f49fe4c189fe64",
+        "start": 1791421298.338152,
+        "timed_out": false
+      },
+      "index": 15,
+      "output_sha256": "a17175153b2c24c22587b6fc7a6b170ac4d988df3a0bef4d60c86b27bb8cfa4b",
+      "program": 0,
+      "repeat": 1,
+      "seed": 130701,
+      "status": "complete",
+      "supervisor": {
+        "end": 1791421314.1411853,
+        "returncode": 0,
+        "start": 1791421297.7371867
+      }
+    },
+    {
+      "arm": "one_gpu",
+      "completion": {
+        "arm": "one_gpu",
+        "complete": true,
+        "end": 1791421340.274009,
+        "error_type": null,
+        "exec_seconds": 17.817500926554203,
+        "exit_code": 0,
+        "index": 16,
+        "program": 1,
+        "repeat": 1,
+        "seed": 130701,
+        "source_commit": "6e36a61d4f6bca53f0a4605656f49fe4c189fe64",
+        "start": 1791421317.0495331,
+        "timed_out": false
+      },
+      "index": 16,
+      "output_sha256": "73843c8b89260d27b53241923968bd0878ccda42c46a6ad313fbe4380217efe1",
+      "program": 1,
+      "repeat": 1,
+      "seed": 130701,
+      "status": "complete",
+      "supervisor": {
+        "end": 1791421340.4106584,
+        "returncode": 0,
+        "start": 1791421314.265616
+      }
+    },
+    {
+      "arm": "one_gpu",
+      "completion": {
+        "arm": "one_gpu",
+        "complete": false,
+        "end": 1791421441.774628,
+        "error_type": "ValueError",
+        "index": 17,
+        "program": 4,
+        "repeat": 1,
+        "seed": 130701,
+        "source_commit": "6e36a61d4f6bca53f0a4605656f49fe4c189fe64",
+        "start": 1791421317.0495157
+      },
+      "index": 17,
+      "program": 4,
+      "repeat": 1,
+      "seed": 130701,
+      "status": "failed",
+      "supervisor": {
+        "end": 1791421441.9353485,
+        "returncode": 1,
+        "start": 1791421314.2659328
+      }
+    },
+    {
+      "arm": "one_gpu",
+      "completion": {
+        "arm": "one_gpu",
+        "complete": true,
+        "end": 1791421351.664971,
+        "error_type": null,
+        "exec_seconds": 5.176161864772439,
+        "exit_code": 0,
+        "index": 18,
+        "program": 3,
+        "repeat": 1,
+        "seed": 130701,
+        "source_commit": "6e36a61d4f6bca53f0a4605656f49fe4c189fe64",
+        "start": 1791421341.5188153,
+        "timed_out": false
+      },
+      "index": 18,
+      "output_sha256": "990a499aede6177b38b0a84705318687fa612589d578923f653b4ba7b14e7072",
+      "program": 3,
+      "repeat": 1,
+      "seed": 130701,
+      "status": "complete",
+      "supervisor": {
+        "end": 1791421351.817873,
+        "returncode": 0,
+        "start": 1791421340.4166317
+      }
+    },
+    {
+      "arm": "one_gpu",
+      "completion": {
+        "arm": "one_gpu",
+        "complete": true,
+        "end": 1791421462.9977942,
+        "error_type": null,
+        "exec_seconds": 9.097970195114613,
+        "exit_code": 0,
+        "gpu_training": [
+          {
+            "backend": "xgboost",
+            "device": "cuda:0",
+            "rounds": 106
+          },
+          {
+            "backend": "xgboost",
+            "device": "cuda:0",
+            "rounds": 144
+          },
+          {
+            "backend": "xgboost",
+            "device": "cuda:0",
+            "rounds": 112
+          },
+          {
+            "backend": "xgboost",
+            "device": "cuda:0",
+            "rounds": 82
+          },
+          {
+            "backend": "xgboost",
+            "device": "cuda:0",
+            "rounds": 69
+          }
+        ],
+        "index": 19,
+        "program": 0,
+        "repeat": 1,
+        "seed": 130701,
+        "source_commit": "6e36a61d4f6bca53f0a4605656f49fe4c189fe64",
+        "start": 1791421445.2178783,
+        "timed_out": false
+      },
+      "index": 19,
+      "output_sha256": "a17175153b2c24c22587b6fc7a6b170ac4d988df3a0bef4d60c86b27bb8cfa4b",
+      "program": 0,
+      "repeat": 1,
+      "seed": 130701,
+      "status": "complete",
+      "supervisor": {
+        "end": 1791421463.168658,
+        "returncode": 0,
+        "start": 1791421441.940469
+      }
+    },
+    {
+      "arm": "serial",
+      "completion": {
+        "arm": "serial",
+        "complete": true,
+        "end": 1791421488.483205,
+        "error_type": null,
+        "exec_seconds": 17.740680310875177,
+        "exit_code": 0,
+        "index": 20,
+        "program": 1,
+        "repeat": 1,
+        "seed": 130701,
+        "source_commit": "6e36a61d4f6bca53f0a4605656f49fe4c189fe64",
+        "start": 1791421466.1776116,
+        "timed_out": false
+      },
+      "index": 20,
+      "output_sha256": "73843c8b89260d27b53241923968bd0878ccda42c46a6ad313fbe4380217efe1",
+      "program": 1,
+      "repeat": 1,
+      "seed": 130701,
+      "status": "complete",
+      "supervisor": {
+        "end": 1791421488.640917,
+        "returncode": 0,
+        "start": 1791421463.3060863
+      }
+    },
+    {
+      "arm": "serial",
+      "completion": {
+        "arm": "serial",
+        "complete": true,
+        "end": 1791421504.06401,
+        "error_type": null,
+        "exec_seconds": 5.643788336776197,
+        "exit_code": 0,
+        "gpu_training": [
+          {
+            "backend": "catboost",
+            "device": "GPU",
+            "rounds": 156
+          }
+        ],
+        "index": 21,
+        "program": 4,
+        "repeat": 1,
+        "seed": 130701,
+        "source_commit": "6e36a61d4f6bca53f0a4605656f49fe4c189fe64",
+        "start": 1791421491.1752992,
+        "timed_out": false
+      },
+      "index": 21,
+      "output_sha256": "2df258c19aa22a2afb45fda4260eba81566e4e3d7f7a313d8afffb1e08f148e8",
+      "program": 4,
+      "repeat": 1,
+      "seed": 130701,
+      "status": "complete",
+      "supervisor": {
+        "end": 1791421504.2007408,
+        "returncode": 0,
+        "start": 1791421488.6462748
+      }
+    },
+    {
+      "arm": "serial",
+      "completion": {
+        "arm": "serial",
+        "complete": true,
+        "end": 1791421514.4361172,
+        "error_type": null,
+        "exec_seconds": 4.501285861246288,
+        "exit_code": 0,
+        "index": 22,
+        "program": 3,
+        "repeat": 1,
+        "seed": 130701,
+        "source_commit": "6e36a61d4f6bca53f0a4605656f49fe4c189fe64",
+        "start": 1791421506.1073554,
+        "timed_out": false
+      },
+      "index": 22,
+      "output_sha256": "990a499aede6177b38b0a84705318687fa612589d578923f653b4ba7b14e7072",
+      "program": 3,
+      "repeat": 1,
+      "seed": 130701,
+      "status": "complete",
+      "supervisor": {
+        "end": 1791421514.5970483,
+        "returncode": 0,
+        "start": 1791421504.20654
+      }
+    },
+    {
+      "arm": "serial",
+      "completion": {
+        "arm": "serial",
+        "complete": true,
+        "end": 1791421531.7926548,
+        "error_type": null,
+        "exec_seconds": 9.07643518038094,
+        "exit_code": 0,
+        "gpu_training": [
+          {
+            "backend": "xgboost",
+            "device": "cuda:0",
+            "rounds": 106
+          },
+          {
+            "backend": "xgboost",
+            "device": "cuda:0",
+            "rounds": 144
+          },
+          {
+            "backend": "xgboost",
+            "device": "cuda:0",
+            "rounds": 112
+          },
+          {
+            "backend": "xgboost",
+            "device": "cuda:0",
+            "rounds": 82
+          },
+          {
+            "backend": "xgboost",
+            "device": "cuda:0",
+            "rounds": 69
+          }
+        ],
+        "index": 23,
+        "program": 0,
+        "repeat": 1,
+        "seed": 130701,
+        "source_commit": "6e36a61d4f6bca53f0a4605656f49fe4c189fe64",
+        "start": 1791421515.1824856,
+        "timed_out": false
+      },
+      "index": 23,
+      "output_sha256": "a17175153b2c24c22587b6fc7a6b170ac4d988df3a0bef4d60c86b27bb8cfa4b",
+      "program": 0,
+      "repeat": 1,
+      "seed": 130701,
+      "status": "complete",
+      "supervisor": {
+        "end": 1791421531.9139931,
+        "returncode": 0,
+        "start": 1791421514.6025095
+      }
+    },
+    {
+      "arm": "one_gpu",
+      "completion": {
+        "arm": "one_gpu",
+        "complete": true,
+        "end": 1791421548.6618307,
+        "error_type": null,
+        "exec_seconds": 6.535285665653646,
+        "exit_code": 0,
+        "gpu_training": [
+          {
+            "backend": "catboost",
+            "device": "GPU",
+            "rounds": 156
+          }
+        ],
+        "index": 24,
+        "program": 4,
+        "repeat": 2,
+        "seed": 130701,
+        "source_commit": "6e36a61d4f6bca53f0a4605656f49fe4c189fe64",
+        "start": 1791421534.9316173,
+        "timed_out": false
+      },
+      "index": 24,
+      "output_sha256": "2df258c19aa22a2afb45fda4260eba81566e4e3d7f7a313d8afffb1e08f148e8",
+      "program": 4,
+      "repeat": 2,
+      "seed": 130701,
+      "status": "complete",
+      "supervisor": {
+        "end": 1791421548.812036,
+        "returncode": 0,
+        "start": 1791421532.033859
+      }
+    },
+    {
+      "arm": "one_gpu",
+      "completion": {
+        "arm": "one_gpu",
+        "complete": true,
+        "end": 1791421551.1976533,
+        "error_type": null,
+        "exec_seconds": 5.637594877742231,
+        "exit_code": 0,
+        "index": 25,
+        "program": 3,
+        "repeat": 2,
+        "seed": 130701,
+        "source_commit": "6e36a61d4f6bca53f0a4605656f49fe4c189fe64",
+        "start": 1791421540.0878875,
+        "timed_out": false
+      },
+      "index": 25,
+      "output_sha256": "990a499aede6177b38b0a84705318687fa612589d578923f653b4ba7b14e7072",
+      "program": 3,
+      "repeat": 2,
+      "seed": 130701,
+      "status": "complete",
+      "supervisor": {
+        "end": 1791421551.365156,
+        "returncode": 0,
+        "start": 1791421532.0341642
+      }
+    },
+    {
+      "arm": "one_gpu",
+      "completion": {
+        "arm": "one_gpu",
+        "complete": true,
+        "end": 1791421566.1247897,
+        "error_type": null,
+        "exec_seconds": 9.322655604220927,
+        "exit_code": 0,
+        "gpu_training": [
+          {
+            "backend": "xgboost",
+            "device": "cuda:0",
+            "rounds": 106
+          },
+          {
+            "backend": "xgboost",
+            "device": "cuda:0",
+            "rounds": 144
+          },
+          {
+            "backend": "xgboost",
+            "device": "cuda:0",
+            "rounds": 112
+          },
+          {
+            "backend": "xgboost",
+            "device": "cuda:0",
+            "rounds": 82
+          },
+          {
+            "backend": "xgboost",
+            "device": "cuda:0",
+            "rounds": 69
+          }
+        ],
+        "index": 26,
+        "program": 0,
+        "repeat": 2,
+        "seed": 130701,
+        "source_commit": "6e36a61d4f6bca53f0a4605656f49fe4c189fe64",
+        "start": 1791421549.5802386,
+        "timed_out": false
+      },
+      "index": 26,
+      "output_sha256": "a17175153b2c24c22587b6fc7a6b170ac4d988df3a0bef4d60c86b27bb8cfa4b",
+      "program": 0,
+      "repeat": 2,
+      "seed": 130701,
+      "status": "complete",
+      "supervisor": {
+        "end": 1791421566.2783394,
+        "returncode": 0,
+        "start": 1791421548.8187397
+      }
+    },
+    {
+      "arm": "one_gpu",
+      "completion": {
+        "arm": "one_gpu",
+        "complete": true,
+        "end": 1791421573.0090332,
+        "error_type": null,
+        "exec_seconds": 16.97413880378008,
+        "exit_code": 0,
+        "index": 27,
+        "program": 1,
+        "repeat": 2,
+        "seed": 130701,
+        "source_commit": "6e36a61d4f6bca53f0a4605656f49fe4c189fe64",
+        "start": 1791421551.9327533,
+        "timed_out": false
+      },
+      "index": 27,
+      "output_sha256": "73843c8b89260d27b53241923968bd0878ccda42c46a6ad313fbe4380217efe1",
+      "program": 1,
+      "repeat": 2,
+      "seed": 130701,
+      "status": "complete",
+      "supervisor": {
+        "end": 1791421573.1444967,
+        "returncode": 0,
+        "start": 1791421551.3716044
+      }
+    },
+    {
+      "arm": "serial",
+      "completion": {
+        "arm": "serial",
+        "complete": true,
+        "end": 1791421589.4069002,
+        "error_type": null,
+        "exec_seconds": 5.539629359729588,
+        "exit_code": 0,
+        "gpu_training": [
+          {
+            "backend": "catboost",
+            "device": "GPU",
+            "rounds": 156
+          }
+        ],
+        "index": 28,
+        "program": 4,
+        "repeat": 2,
+        "seed": 130701,
+        "source_commit": "6e36a61d4f6bca53f0a4605656f49fe4c189fe64",
+        "start": 1791421575.7914577,
+        "timed_out": false
+      },
+      "index": 28,
+      "output_sha256": "2df258c19aa22a2afb45fda4260eba81566e4e3d7f7a313d8afffb1e08f148e8",
+      "program": 4,
+      "repeat": 2,
+      "seed": 130701,
+      "status": "complete",
+      "supervisor": {
+        "end": 1791421589.5406775,
+        "returncode": 0,
+        "start": 1791421573.3250854
+      }
+    },
+    {
+      "arm": "serial",
+      "completion": {
+        "arm": "serial",
+        "complete": true,
+        "end": 1791421598.2077477,
+        "error_type": null,
+        "exec_seconds": 4.079972933977842,
+        "exit_code": 0,
+        "index": 29,
+        "program": 3,
+        "repeat": 2,
+        "seed": 130701,
+        "source_commit": "6e36a61d4f6bca53f0a4605656f49fe4c189fe64",
+        "start": 1791421590.1098757,
+        "timed_out": false
+      },
+      "index": 29,
+      "output_sha256": "990a499aede6177b38b0a84705318687fa612589d578923f653b4ba7b14e7072",
+      "program": 3,
+      "repeat": 2,
+      "seed": 130701,
+      "status": "complete",
+      "supervisor": {
+        "end": 1791421598.3873522,
+        "returncode": 0,
+        "start": 1791421589.547542
+      }
+    },
+    {
+      "arm": "serial",
+      "completion": {
+        "arm": "serial",
+        "complete": true,
+        "end": 1791421620.0789907,
+        "error_type": null,
+        "exec_seconds": 10.436182326637208,
+        "exit_code": 0,
+        "gpu_training": [
+          {
+            "backend": "xgboost",
+            "device": "cuda:0",
+            "rounds": 106
+          },
+          {
+            "backend": "xgboost",
+            "device": "cuda:0",
+            "rounds": 144
+          },
+          {
+            "backend": "xgboost",
+            "device": "cuda:0",
+            "rounds": 112
+          },
+          {
+            "backend": "xgboost",
+            "device": "cuda:0",
+            "rounds": 82
+          },
+          {
+            "backend": "xgboost",
+            "device": "cuda:0",
+            "rounds": 69
+          }
+        ],
+        "index": 30,
+        "program": 0,
+        "repeat": 2,
+        "seed": 130701,
+        "source_commit": "6e36a61d4f6bca53f0a4605656f49fe4c189fe64",
+        "start": 1791421601.3707323,
+        "timed_out": false
+      },
+      "index": 30,
+      "output_sha256": "a17175153b2c24c22587b6fc7a6b170ac4d988df3a0bef4d60c86b27bb8cfa4b",
+      "program": 0,
+      "repeat": 2,
+      "seed": 130701,
+      "status": "complete",
+      "supervisor": {
+        "end": 1791421620.2209787,
+        "returncode": 0,
+        "start": 1791421598.395486
+      }
+    },
+    {
+      "arm": "serial",
+      "completion": {
+        "arm": "serial",
+        "complete": true,
+        "end": 1791421641.295879,
+        "error_type": null,
+        "exec_seconds": 16.442894325591624,
+        "exit_code": 0,
+        "index": 31,
+        "program": 1,
+        "repeat": 2,
+        "seed": 130701,
+        "source_commit": "6e36a61d4f6bca53f0a4605656f49fe4c189fe64",
+        "start": 1791421620.7669702,
+        "timed_out": false
+      },
+      "index": 31,
+      "output_sha256": "73843c8b89260d27b53241923968bd0878ccda42c46a6ad313fbe4380217efe1",
+      "program": 1,
+      "repeat": 2,
+      "seed": 130701,
+      "status": "complete",
+      "supervisor": {
+        "end": 1791421641.448837,
+        "returncode": 0,
+        "start": 1791421620.227268
+      }
+    },
+    {
+      "arm": "share2",
+      "completion": {
+        "arm": "share2",
+        "complete": true,
+        "end": 1791421657.81114,
+        "error_type": null,
+        "exec_seconds": 7.363275001756847,
+        "exit_code": 0,
+        "gpu_training": [
+          {
+            "backend": "catboost",
+            "device": "GPU",
+            "rounds": 156
+          }
+        ],
+        "index": 32,
+        "program": 4,
+        "repeat": 2,
+        "seed": 130701,
+        "source_commit": "6e36a61d4f6bca53f0a4605656f49fe4c189fe64",
+        "start": 1791421643.6088247,
+        "timed_out": false
+      },
+      "index": 32,
+      "output_sha256": "2df258c19aa22a2afb45fda4260eba81566e4e3d7f7a313d8afffb1e08f148e8",
+      "program": 4,
+      "repeat": 2,
+      "seed": 130701,
+      "status": "complete",
+      "supervisor": {
+        "end": 1791421657.9401743,
+        "returncode": 0,
+        "start": 1791421641.6753585
+      }
+    },
+    {
+      "arm": "share2",
+      "completion": {
+        "arm": "share2",
+        "complete": true,
+        "end": 1791421655.833751,
+        "error_type": null,
+        "exec_seconds": 7.734327373094857,
+        "exit_code": 0,
+        "index": 33,
+        "program": 3,
+        "repeat": 2,
+        "seed": 130701,
+        "source_commit": "6e36a61d4f6bca53f0a4605656f49fe4c189fe64",
+        "start": 1791421643.608797,
+        "timed_out": false
+      },
+      "index": 33,
+      "output_sha256": "990a499aede6177b38b0a84705318687fa612589d578923f653b4ba7b14e7072",
+      "program": 3,
+      "repeat": 2,
+      "seed": 130701,
+      "status": "complete",
+      "supervisor": {
+        "end": 1791421655.9354649,
+        "returncode": 0,
+        "start": 1791421641.6757052
+      }
+    },
+    {
+      "arm": "share2",
+      "completion": {
+        "arm": "share2",
+        "complete": true,
+        "end": 1791421672.7622423,
+        "error_type": null,
+        "exec_seconds": 9.347920534200966,
+        "exit_code": 0,
+        "gpu_training": [
+          {
+            "backend": "xgboost",
+            "device": "cuda:0",
+            "rounds": 106
+          },
+          {
+            "backend": "xgboost",
+            "device": "cuda:0",
+            "rounds": 144
+          },
+          {
+            "backend": "xgboost",
+            "device": "cuda:0",
+            "rounds": 112
+          },
+          {
+            "backend": "xgboost",
+            "device": "cuda:0",
+            "rounds": 82
+          },
+          {
+            "backend": "xgboost",
+            "device": "cuda:0",
+            "rounds": 69
+          }
+        ],
+        "index": 34,
+        "program": 0,
+        "repeat": 2,
+        "seed": 130701,
+        "source_commit": "6e36a61d4f6bca53f0a4605656f49fe4c189fe64",
+        "start": 1791421656.5379245,
+        "timed_out": false
+      },
+      "index": 34,
+      "output_sha256": "a17175153b2c24c22587b6fc7a6b170ac4d988df3a0bef4d60c86b27bb8cfa4b",
+      "program": 0,
+      "repeat": 2,
+      "seed": 130701,
+      "status": "complete",
+      "supervisor": {
+        "end": 1791421672.893423,
+        "returncode": 0,
+        "start": 1791421655.9408662
+      }
+    },
+    {
+      "arm": "share2",
+      "completion": {
+        "arm": "share2",
+        "complete": true,
+        "end": 1791421679.7207696,
+        "error_type": null,
+        "exec_seconds": 17.1286047315225,
+        "exit_code": 0,
+        "index": 35,
+        "program": 1,
+        "repeat": 2,
+        "seed": 130701,
+        "source_commit": "6e36a61d4f6bca53f0a4605656f49fe4c189fe64",
+        "start": 1791421658.5781012,
+        "timed_out": false
+      },
+      "index": 35,
+      "output_sha256": "73843c8b89260d27b53241923968bd0878ccda42c46a6ad313fbe4380217efe1",
+      "program": 1,
+      "repeat": 2,
+      "seed": 130701,
+      "status": "complete",
+      "supervisor": {
+        "end": 1791421679.8655956,
+        "returncode": 0,
+        "start": 1791421657.9453876
+      }
+    }
+  ],
+  "source_commit": "6e36a61d4f6bca53f0a4605656f49fe4c189fe64",
+  "whole_pool_gpu_hours": 0.15722222222222224,
+  "within_cap": true
+}

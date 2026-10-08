@@ -1,5 +1,5 @@
 # 当前短交接
-更新：2026-10-08 08:52香港附近最后观察。旧全文完整保留于Git 51af15431b6fe63632983b2a6710ddc14cf6f895；不要把旧状态恢复成现场。
+更新：2026-10-08 09:18香港附近最后观察。旧全文完整保留于Git 6e36a61d4f6bca53f0a4605656f49fe4c189fe64；不要把旧状态恢复成现场。
 
 ## 方向、目标、授权
 - 活跃checkout：C:/Research/New/my_project/MLEvolve/_codex_tmp/publication-feedback-20261001。fetch→CURRENT_DIRECTION→ROUTE_DECISIONS→本文件；旧aira-dojo-codex-20260813有用户dirty，不整体覆盖。
@@ -9,7 +9,7 @@
 - 不读first-960/Target-300/Target-522、D_val、官方test；不恢复HCE/多保真/Probe/TD/score-channel/K≥1。不操作旧12535 Held作业，不改学长分支。
 
 ## Git及远端
-- 本地HEAD 51af15431b6fe63632983b2a6710ddc14cf6f895（本轮源码冻结）；前一修复69bc9b88bde61cc021bdd354e8922fa74bd59237。尚未push这两提交。
+- 本地HEAD 6e36a61d4f6bca53f0a4605656f49fe4c189fe64（新v2源码冻结）；前两提交51af1543/69bc9b88。尚未push本轮三提交。
 - 本轮fresh fetch最后确认myfork/phase1-value-critic=8ec5f723040031f66e9096a6c495387b122af53d；dojo-reproduce=dfff0efb9daf1d4a63c74492f138c19c1fd8440e；学长autoresearch HEAD=d82dcd845e30e9771750510028d38a6d1d979c43，无新更新。
 - SSH linux5/yzyang4；Python /research/d7/spc/yzyang4/venvs/aira/bin/python；SLURM_CONF=/opt1/slurm/gpu-slurm.conf。原MLE镜像只投已兼容gpu27/gpu28 RTX3090，不投projgpu39。
 - 研究盘/research/d7/spc/yzyang4总授权4TB至2027-08-30，不等于空闲容量。镜像SHA801f646bed3cae6e74e10d793e71b0086658d4303d54552333c58125ddf9beda。
@@ -25,13 +25,18 @@
 - 16992新池v1已FAILED1:0/100单GPU秒，36槽/4尝试/3完成/32未启动，0对照。XGB在第一个fit报Invalid classes；补全类别仍未满足每折覆盖：另一稀有类仅1行，KFold训练折缺类。是开发输入预检不足，不是共享无效。CatB GPU142轮完成；Spooky/Petfinder完成。readout-v1已写一次，不重开。
 - 16992 root /research/d7/spc/yzyang4/scheduling-pool-20261008-v1；source51af1543；plan SHA5cbc51b2f5adaa28fce5d3f11fd4e0c937f26f15638942d4aa0ac841060f04cf；closed SHAcd090ba3ab7514eca18c3d4e16525066d41c49b32df7f732931b4cd60d9ba7d9；runs SHA532f52b0600c967347a05ffab6d2be57257a3f9c5bf6046f6f1881af0fe9f0b7。
 
-## 正在准备的新试验：恢复时先查，不重复prepare/submit
-- 新root /research/d7/spc/yzyang4/scheduling-pool-20261008-v2；尚未prepare/submit。保持4份原源码，公开输入非5类至少5行，唯一类5按原程序加入每个训练折；CPU先核所有训练折均含7类，不复制/重标/使用query。旧16992及入口批次均不改。
+## 最新已闭合：有限的朴素并发收益，不是新方法
+- 16994已FAILED1:0/566单GPU秒，36尝试/35完成；serial及share2各12/12，one_gpu 11/12。root /research/d7/spc/yzyang4/scheduling-pool-20261008-v2；source6e36a61d；plan SHA429339013cca8e2858cb2cc2edfefe017f096b0c4afbc0172987d897becf7a56；preflight SHAab96d6b2c2aded76eeba2458e346f563e818c00ba7550bf31832669fc57be799。临时目录/tmp/r14-pool-v2-20261008.RafNX9。不重开/补跑。
+- 完整A/B三配对serial/share2=1.8423276573417586、1.7307638813016224、1.7852942816262258；中位1.7852942816262258，样本标准差0.05578656742353592。四程序6份A/B输出各15两两比较数值全同，形状/原完成回执哈希独立核验通过；60比较非60独立样本。
+- 独立时间审计SHA d21cd09c38e87c3dfa5ccdb0b6d8451a034cd51f01e894399c911394ad0d353d；独立输出审计SHA fdf14b788c7ef930b67225be03e279845cae12c105779d88741fea6a2e06ecc7；readout SHA b8347a0e529feb84d646765f5f09eae07a56716569d75ae7b529a2d332d2069f。证据本地sandbox_scheduling/pool_v2_closed。所有观察块max resident GPU clients=1；只能称启动/CPU/候选阶段并行，未证同时GPU训练共置。
+- slot17 one_gpu/program4在candidate开始前cell0 TimeoutError，外层ValueError；不是候选OOM或策略因果反证。保留失败，C只有2完整比较，不报告删失败的C胜负。closed SHA f15cab21c26e8967ae0bf8f1002476323dcaa925539bf8d2fe47fcae4ff918a5；runs SHA ee08a68c8c130a690b6a951fb6d5827ae9879fc54d9f18ce3e99f992b25c832f。
+- 本窗口4批合计746单GPU秒=0.20722222222222222GPUh（程序打印）；尚余自限空间，但新实验必须独立冻结设计。下一步只读资格检查两份固定公开from-scratch CNN源码（cactus/DnCNN），未提交新神经批次、未声称广泛收益。
+- 保持4份原源码，公开输入非5类至少5行，唯一类5按原程序加入每个训练折；CPU已核所有训练折均含7类，不复制/重标/使用query。SSH准备阶段曾断开，PID145097继续写完preflight；不是重复prepare。旧16992及入口批次均不改。
 - 矩阵：原programs 0(XGB)/1(Spooky TFIDF)/4(CatB)/3(Petfinder LGB)，共3任务；serial/share2/one_gpu ×3原样重启=36槽，另1次warmup，所有开销含于单3090/6CPU/90分钟。不是跨训练seed。
 - 新GPU输入只替换末端超出最低覆盖的类行，补最早独立公开训练行；排除旧train/query IDs、query不变；两GPU程序及所有臂共用新输入，旧文件不改。属于新开发小样本系统试验，不称全MLE-bench。
 - 三臂Latin次序，每重复同一旋转FIFO；one_gpu仅手工核验的CPU/GPU代码提示，最多1GPU程序+另1CPU程序。无LLM/学习调度器，不能把朴素基线叫方法创新。
 - 首serial四程序须全完成且两GPU fit有回执，否则整批停止。后续共置失败保留分母、不重试；只有进程释放/隔离/遥测安全时才继续既定其他臂，不以失败臂缺失时间作加速分母。
-- 预注册读数：每臂3块完整、完整makespan/全分配成本、3重复离散度、候选重叠、GPU训练和输出差异；探索门为median改善≥5%且无未解释输出漂移。需分启动并发与真实GPU重叠，不读质量分数，不推live E2E。
+- 预注册读数：每臂3块完整、完整makespan/全分配成本、3重复离散度、候选重叠、GPU训练和输出差异；探索门为median改善≥5%且无未解释输出漂移。A/B过限定门，但仅4小程序/3任务/原源码seed42重启，harness130701未覆盖源码自身seed，不是跨训练seed；不读质量分数、不推live E2E或语义增量。
 - 本地相关30测试通过；远端新增8测试通过。新记录器还在实际冻结旧ExecutionResult上纯CPU验证；不把mock当GPU成功。当前源码fixed_pool_trial.py/readout.py及tests，原throughput_pilot.py未改（SHAb30eed3f…）。
 
 ## 研究核验与边界

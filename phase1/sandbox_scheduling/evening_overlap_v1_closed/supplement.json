@@ -1,0 +1,483 @@
+{
+  "blocks": [
+    {
+      "arm": "pipeline",
+      "block": 0,
+      "complete": true,
+      "completed": 2,
+      "first_completed_return": 135.59333300590515,
+      "makespan": 188.71292924880981,
+      "mean_completed_return": 162.1392207145691,
+      "program": null,
+      "repeat": 0
+    },
+    {
+      "arm": "share2",
+      "block": 1,
+      "complete": true,
+      "completed": 2,
+      "first_completed_return": 58.4888801574707,
+      "makespan": 148.91050171852112,
+      "mean_completed_return": 103.69369089603424,
+      "program": null,
+      "repeat": 0
+    },
+    {
+      "arm": "share2",
+      "block": 2,
+      "complete": true,
+      "completed": 2,
+      "first_completed_return": 57.129292488098145,
+      "makespan": 132.62408804893494,
+      "mean_completed_return": 94.87124598026276,
+      "program": null,
+      "repeat": 1
+    },
+    {
+      "arm": "pipeline",
+      "block": 3,
+      "complete": true,
+      "completed": 2,
+      "first_completed_return": 57.95054769515991,
+      "makespan": 220.3832767009735,
+      "mean_completed_return": 139.15986490249634,
+      "program": null,
+      "repeat": 1
+    },
+    {
+      "arm": "pipeline",
+      "block": 4,
+      "complete": true,
+      "completed": 2,
+      "first_completed_return": 167.13462090492249,
+      "makespan": 219.76404190063477,
+      "mean_completed_return": 193.4166041612625,
+      "program": null,
+      "repeat": 2
+    },
+    {
+      "arm": "share2",
+      "block": 5,
+      "complete": true,
+      "completed": 2,
+      "first_completed_return": 59.64239168167114,
+      "makespan": 131.35180187225342,
+      "mean_completed_return": 95.49354374408722,
+      "program": null,
+      "repeat": 2
+    }
+  ],
+  "boundary": "Same source-seed restarts and two reused fixed small public workloads; neither independent task generalization nor live search utility. Return latency is descriptive; metadata does not exclude all host interference.",
+  "completed": 12,
+  "handshake_calls": [
+    {
+      "calls": [
+        {
+          "ready": true,
+          "requested_timeout": 120,
+          "seconds": 0.06002495717257261
+        },
+        {
+          "ready": true,
+          "requested_timeout": 120,
+          "seconds": 0.005030866712331772
+        },
+        {
+          "ready": true,
+          "requested_timeout": 120,
+          "seconds": 0.04986914340406656
+        },
+        {
+          "ready": true,
+          "requested_timeout": 120,
+          "seconds": 0.04901259299367666
+        },
+        {
+          "ready": true,
+          "requested_timeout": 120,
+          "seconds": 0.0481628580018878
+        }
+      ],
+      "index": 0
+    },
+    {
+      "calls": [
+        {
+          "ready": true,
+          "requested_timeout": 120,
+          "seconds": 0.05904197879135609
+        },
+        {
+          "ready": true,
+          "requested_timeout": 120,
+          "seconds": 0.00658223032951355
+        },
+        {
+          "ready": true,
+          "requested_timeout": 120,
+          "seconds": 0.04770294111222029
+        },
+        {
+          "ready": true,
+          "requested_timeout": 120,
+          "seconds": 0.04712013341486454
+        },
+        {
+          "ready": true,
+          "requested_timeout": 120,
+          "seconds": 0.048761142417788506
+        }
+      ],
+      "index": 1
+    },
+    {
+      "calls": [
+        {
+          "ready": true,
+          "requested_timeout": 120,
+          "seconds": 0.05729140434414148
+        },
+        {
+          "ready": true,
+          "requested_timeout": 120,
+          "seconds": 0.04518811497837305
+        },
+        {
+          "ready": true,
+          "requested_timeout": 120,
+          "seconds": 0.04477749392390251
+        },
+        {
+          "ready": true,
+          "requested_timeout": 120,
+          "seconds": 0.04855556599795818
+        },
+        {
+          "ready": true,
+          "requested_timeout": 120,
+          "seconds": 0.0485270107164979
+        }
+      ],
+      "index": 2
+    },
+    {
+      "calls": [
+        {
+          "ready": true,
+          "requested_timeout": 120,
+          "seconds": 0.058278447948396206
+        },
+        {
+          "ready": true,
+          "requested_timeout": 120,
+          "seconds": 0.005368860438466072
+        },
+        {
+          "ready": true,
+          "requested_timeout": 120,
+          "seconds": 0.04569155350327492
+        },
+        {
+          "ready": true,
+          "requested_timeout": 120,
+          "seconds": 0.0034401649609208107
+        },
+        {
+          "ready": true,
+          "requested_timeout": 120,
+          "seconds": 0.045099335722625256
+        }
+      ],
+      "index": 3
+    },
+    {
+      "calls": [
+        {
+          "ready": true,
+          "requested_timeout": 120,
+          "seconds": 0.056432112120091915
+        },
+        {
+          "ready": true,
+          "requested_timeout": 120,
+          "seconds": 0.045464894734323025
+        },
+        {
+          "ready": true,
+          "requested_timeout": 120,
+          "seconds": 0.050665510818362236
+        },
+        {
+          "ready": true,
+          "requested_timeout": 120,
+          "seconds": 0.004380698315799236
+        },
+        {
+          "ready": true,
+          "requested_timeout": 120,
+          "seconds": 0.044887006282806396
+        }
+      ],
+      "index": 4
+    },
+    {
+      "calls": [
+        {
+          "ready": true,
+          "requested_timeout": 120,
+          "seconds": 0.055937761440873146
+        },
+        {
+          "ready": true,
+          "requested_timeout": 120,
+          "seconds": 0.006222983822226524
+        },
+        {
+          "ready": true,
+          "requested_timeout": 120,
+          "seconds": 0.050113930366933346
+        },
+        {
+          "ready": true,
+          "requested_timeout": 120,
+          "seconds": 0.007753009907901287
+        },
+        {
+          "ready": true,
+          "requested_timeout": 120,
+          "seconds": 0.007869032211601734
+        }
+      ],
+      "index": 5
+    },
+    {
+      "calls": [
+        {
+          "ready": true,
+          "requested_timeout": 120,
+          "seconds": 0.05726315639913082
+        },
+        {
+          "ready": true,
+          "requested_timeout": 120,
+          "seconds": 0.04451229143887758
+        },
+        {
+          "ready": true,
+          "requested_timeout": 120,
+          "seconds": 0.006239359267055988
+        },
+        {
+          "ready": true,
+          "requested_timeout": 120,
+          "seconds": 0.005453461781144142
+        },
+        {
+          "ready": true,
+          "requested_timeout": 120,
+          "seconds": 0.04825243726372719
+        }
+      ],
+      "index": 6
+    },
+    {
+      "calls": [
+        {
+          "ready": true,
+          "requested_timeout": 120,
+          "seconds": 0.06272758636623621
+        },
+        {
+          "ready": true,
+          "requested_timeout": 120,
+          "seconds": 0.006295361556112766
+        },
+        {
+          "ready": true,
+          "requested_timeout": 120,
+          "seconds": 0.04819629527628422
+        },
+        {
+          "ready": true,
+          "requested_timeout": 120,
+          "seconds": 0.05044163949787617
+        },
+        {
+          "ready": true,
+          "requested_timeout": 120,
+          "seconds": 0.05048103537410498
+        }
+      ],
+      "index": 7
+    },
+    {
+      "calls": [
+        {
+          "ready": true,
+          "requested_timeout": 120,
+          "seconds": 0.05908458773046732
+        },
+        {
+          "ready": true,
+          "requested_timeout": 120,
+          "seconds": 0.04578486084938049
+        },
+        {
+          "ready": true,
+          "requested_timeout": 120,
+          "seconds": 0.04903884418308735
+        },
+        {
+          "ready": true,
+          "requested_timeout": 120,
+          "seconds": 0.04817888047546148
+        },
+        {
+          "ready": true,
+          "requested_timeout": 120,
+          "seconds": 0.0493524894118309
+        }
+      ],
+      "index": 8
+    },
+    {
+      "calls": [
+        {
+          "ready": true,
+          "requested_timeout": 120,
+          "seconds": 0.06076726783066988
+        },
+        {
+          "ready": true,
+          "requested_timeout": 120,
+          "seconds": 0.047349982894957066
+        },
+        {
+          "ready": true,
+          "requested_timeout": 120,
+          "seconds": 0.05072874762117863
+        },
+        {
+          "ready": true,
+          "requested_timeout": 120,
+          "seconds": 0.04685413744300604
+        },
+        {
+          "ready": true,
+          "requested_timeout": 120,
+          "seconds": 0.04920454788953066
+        }
+      ],
+      "index": 9
+    },
+    {
+      "calls": [
+        {
+          "ready": true,
+          "requested_timeout": 120,
+          "seconds": 0.05824065022170544
+        },
+        {
+          "ready": true,
+          "requested_timeout": 120,
+          "seconds": 0.045596374198794365
+        },
+        {
+          "ready": true,
+          "requested_timeout": 120,
+          "seconds": 0.049790448509156704
+        },
+        {
+          "ready": true,
+          "requested_timeout": 120,
+          "seconds": 0.007723807357251644
+        },
+        {
+          "ready": true,
+          "requested_timeout": 120,
+          "seconds": 0.046543060801923275
+        }
+      ],
+      "index": 10
+    },
+    {
+      "calls": [
+        {
+          "ready": true,
+          "requested_timeout": 120,
+          "seconds": 0.055831790901720524
+        },
+        {
+          "ready": true,
+          "requested_timeout": 120,
+          "seconds": 0.04564587585628033
+        },
+        {
+          "ready": true,
+          "requested_timeout": 120,
+          "seconds": 0.008111754432320595
+        },
+        {
+          "ready": true,
+          "requested_timeout": 120,
+          "seconds": 0.007658751681447029
+        },
+        {
+          "ready": true,
+          "requested_timeout": 120,
+          "seconds": 0.04706728272140026
+        }
+      ],
+      "index": 11
+    }
+  ],
+  "job": "17128",
+  "own_preflight_overlap_seconds": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "paired_return_metrics": [
+    {
+      "pipeline_over_share2_first_return": 2.3182754164696724,
+      "pipeline_over_share2_makespan": 1.2672909369785448,
+      "pipeline_over_share2_mean_return": 1.5636363149338925,
+      "program": null,
+      "repeat": 0
+    },
+    {
+      "pipeline_over_share2_first_return": 1.0143753785719096,
+      "pipeline_over_share2_makespan": 1.6617137953073626,
+      "pipeline_over_share2_mean_return": 1.466828684124666,
+      "program": null,
+      "repeat": 1
+    },
+    {
+      "pipeline_over_share2_first_return": 2.8022789863452955,
+      "pipeline_over_share2_makespan": 1.6730949919847078,
+      "pipeline_over_share2_mean_return": 2.025441685142599,
+      "program": null,
+      "repeat": 2
+    }
+  ],
+  "plan_sha256": "c73cb9ce97ae092ee3bb4ea761201da22dc08d35dfa3f5ecf3aa34bdd8415abc",
+  "planned": 12,
+  "primary_sha256": "c763de7c8ee00db5d4ba4219d49c4d864e573061368be9566f7d48d4cc0bc258",
+  "resources": {
+    "all_completed_same_allocation_CPU_GPU": true,
+    "analysis_source_sha256": "455d38da353a8a7cd055005e2f7ca26d725db8050a2568e680b34aaa05fdadb6",
+    "boundary": "Postflight metadata and hashes only. Same affinity/device is not shared-host isolation, absence of interference, kernel concurrency, or quality evidence. Missing unstarted/failed identities remain explicit.",
+    "completed": 12,
+    "formal_slots": 12,
+    "frozen_file_hashes_verified": 256,
+    "identity_unavailable_slots": 0,
+    "identity_verified_slots": 12,
+    "job": "17128",
+    "plan_sha256": "c73cb9ce97ae092ee3bb4ea761201da22dc08d35dfa3f5ecf3aa34bdd8415abc",
+    "primary_sha256": "c763de7c8ee00db5d4ba4219d49c4d864e573061368be9566f7d48d4cc0bc258",
+    "referenced_input_hashes_verified": 14242
+  }
+}

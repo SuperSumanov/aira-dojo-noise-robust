@@ -1,0 +1,116 @@
+{
+  "full_denominator": 12,
+  "pipeline_barriers_verified": true,
+  "plan_sha256": "c73cb9ce97ae092ee3bb4ea761201da22dc08d35dfa3f5ecf3aa34bdd8415abc",
+  "same_CPU_GPU": true,
+  "stages": [
+    {
+      "after_candidate": 2.1222429275512695,
+      "arm": "pipeline",
+      "candidate": 124.16076278686523,
+      "index": 0,
+      "initialization": 6.7700042724609375,
+      "program": 0,
+      "queue": 0.0025107860565185547
+    },
+    {
+      "after_candidate": 4.05886697769165,
+      "arm": "pipeline",
+      "candidate": 48.85876274108887,
+      "index": 1,
+      "initialization": 6.689169883728027,
+      "program": 1,
+      "queue": 126.51367688179016
+    },
+    {
+      "after_candidate": 2.048393964767456,
+      "arm": "share2",
+      "candidate": 138.20204544067383,
+      "index": 2,
+      "initialization": 6.371152877807617,
+      "program": 0,
+      "queue": 0.0024209022521972656
+    },
+    {
+      "after_candidate": 4.3418004512786865,
+      "arm": "share2",
+      "candidate": 45.49002480506897,
+      "index": 3,
+      "initialization": 6.341557741165161,
+      "program": 1,
+      "queue": 0.0031714439392089844
+    },
+    {
+      "after_candidate": 4.469596862792969,
+      "arm": "share2",
+      "candidate": 43.33890080451965,
+      "index": 4,
+      "initialization": 6.809728384017944,
+      "program": 1,
+      "queue": 0.0027370452880859375
+    },
+    {
+      "after_candidate": 2.0060582160949707,
+      "arm": "share2",
+      "candidate": 121.25061225891113,
+      "index": 5,
+      "initialization": 6.851133108139038,
+      "program": 0,
+      "queue": 0.0028922557830810547
+    },
+    {
+      "after_candidate": 3.960319757461548,
+      "arm": "pipeline",
+      "candidate": 44.40541672706604,
+      "index": 6,
+      "initialization": 7.079787492752075,
+      "program": 1,
+      "queue": 0.002834796905517578
+    },
+    {
+      "after_candidate": 2.6791117191314697,
+      "arm": "pipeline",
+      "candidate": 159.53012323379517,
+      "index": 7,
+      "initialization": 7.098134279251099,
+      "program": 0,
+      "queue": 48.538023948669434
+    },
+    {
+      "after_candidate": 2.1200625896453857,
+      "arm": "pipeline",
+      "candidate": 155.36513018608093,
+      "index": 8,
+      "initialization": 6.810896873474121,
+      "program": 0,
+      "queue": 0.003058195114135742
+    },
+    {
+      "after_candidate": 7.915876865386963,
+      "arm": "pipeline",
+      "candidate": 44.39843440055847,
+      "index": 9,
+      "initialization": 6.798666000366211,
+      "program": 1,
+      "queue": 157.66317486763
+    },
+    {
+      "after_candidate": 2.001882553100586,
+      "arm": "share2",
+      "candidate": 119.23000884056091,
+      "index": 10,
+      "initialization": 7.1228883266448975,
+      "program": 0,
+      "queue": 0.003062725067138672
+    },
+    {
+      "after_candidate": 4.289883852005005,
+      "arm": "share2",
+      "candidate": 45.20971179008484,
+      "index": 11,
+      "initialization": 7.132978439331055,
+      "program": 1,
+      "queue": 0.0028095245361328125
+    }
+  ]
+}

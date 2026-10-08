@@ -1,15 +1,20 @@
 # 当前短交接
-更新：2026-10-08香港晚间新一小时窗口；上个提交22:55为时间笔误，准备实际始于22:37；动态现场须重新核实。
+更新：2026-10-08香港晚间；一小时窗口实际始于22:37，GPU已闭合，23:25前完成独立结果复核；动态现场须重新核实。
 较长历史完整保留于Git 3bd58e7e9d0b0c4a91519bdb3e65145415aefb0c及1ca06f255199785d84ef7ecf56129060d2b8d82f；原实验不改。
 
 ## 恢复与授权
 - 活跃checkout：C:/Research/New/my_project/MLEvolve/_codex_tmp/publication-feedback-20261001。fetch→CURRENT_DIRECTION→ROUTE_DECISIONS→本文件；旧aira-dojo-codex-20260813有用户dirty，不覆盖。
 - 唯一活跃R14 MLE沙箱资源调度。真实有限系统阳性，但没有重要独特、强基线跨任务同预算的新方法确认。R1–R13及旧HCE/多保真/Probe/TD/score-channel/K≥1不重开。
 - 07:51–13:51香港旧窗口已闭合；旧一次性提醒已暂停。用户22:37新要求沿阳性探索一小时，既有自主批准适用：新资格1卡/10分钟/3次独立kernel；通过才新pipeline/share2两程序×3重启=12次、1卡/30分钟，总上限2400GPU秒。不复用旧余款、不覆盖17014/17021；两臂共用有界info握手，不重发候选，不改源码/输入/镜像/训练量。仍属基础设施重试，不是新工作负载或训练seed确认。
-- 新源码提交3f2f98469159bacd01f1193a3b78f38d1e604f51；工作目录/tmp/r14-evening-20261008.TOHDvG/src。25本地+12远端入口测试通过，另15本地审计测试通过（非独立科学样本）；首次本地测试仅临时目录权限失败，改到工作区后通过。资格17124已提交、plan18331b8dcdc5c8df5c6cf8a85b7000218d0bcb23e57834fe49f45bb9c6fba53c；此刻尚无运行回执，不重投。资格根scheduling-readiness-live-20261008-evening-v1；正式根scheduling-neural-qualified-overlap-20261008-evening-v1尚未准备。预计23:37香港交付实际状态。
-- 22:54香港：资格17124已COMPLETED/84GPU秒，3/3通过，closed SHA6ac6f3cf44dddb24fcf764d9876ab695bebffbbc71cf273884b338a6e053c4bd。正式入口在prepare前误调用configure加载未生成文件，FileNotFoundError；零正式提交。新修正仅set_scope/prepare调用顺序并补测试，不重做资格、不改原冻结源码/镜像或握手helper。
+- 资格17124已COMPLETED/84GPU秒，3/3通过；source3f2f98469159bacd01f1193a3b78f38d1e604f51，plan18331b8dcdc5c8df5c6cf8a85b7000218d0bcb23e57834fe49f45bb9c6fba53c，closed SHA6ac6f3cf44dddb24fcf764d9876ab695bebffbbc71cf273884b338a6e053c4bd。根scheduling-readiness-live-20261008-evening-v1。资格不是速度或长期可靠性证明。
+- 22:54正式prepare提前configure触发FileNotFoundError，零正式GPU提交；22566d06fc8de23d6c16cc2bd4a85b0858af0d66修正set_scope/prepare顺序并补测试，本地41/远端6入口通过，不重做资格。25本地+12远端较早测试和后续44组合测试有重叠，不累加成科学样本；首次本地临时目录权限错误保留。
+- 23:20香港最后核：17128 COMPLETED/1120GPU秒，12/12且0失败。根/research/d7/spc/yzyang4/scheduling-neural-qualified-overlap-20261008-evening-v1，source22566d06fc8de23d6c16cc2bd4a85b0858af0d66，plan c73cb9ce97ae092ee3bb4ea761201da22dc08d35dfa3f5ecf3aa34bdd8415abc。新窗口84+1120=1204GPU秒=0.33444444444444443GPUh，自限2400秒，无新作业待投；不复用余款。
+- 正式三配对1.2672909369785448/1.6617137953073626/1.6730949919847078，中位1.6617137953073626、sample std0.23107569245795057；150/640步各六次相同，固定查询数值差0。完整强参照过门，不是独立工作负载/训练seed、全任务质量或语义新方法。三次共置均快但Cactus单程序时长有波动，不将所有差异归因于GPU并行。
+- 本地evening_overlap_v1_closed：summary SHA c763de7c8ee00db5d4ba4219d49c4d864e573061368be9566f7d48d4cc0bc258；audit41dd43c9e1082895dbe282e25a511e274a1c4ec593568f5efc153101563846a3；pipeline-contract e083914bafadb473cfa2ec154eed023d092b033c06ed60427fb8026d5bb12fdc；runs bbdc10e74a92382d558b92dc6ef24f9f833e477d4df6784efcd9554341519652；supplement4b9091d31668e305074a0ea830c38413c127add11370a0628b28e825958362e9。五hash下载后相符；本地PowerShell独立复算12分母/矩阵/中位/std通过。
+- /tmp/r14-evening-20261008.TOHDvG/close.sh已一次执行成功，不重跑writer。256冻结文件/14242输入hash、12资源身份、pipeline前驱屏障均通过，60正式info握手ready；已记录preflight与六块0重叠，不能证明全主机无干扰。首次SCP连接关闭，单文件重试成功；无原始预测/标签导出。
+- 资格只读导出已本地复核：evening_qualification_v1_closed/summary.json SHA39b2c381993ec6aa01b6a3b5070e783936c363b324daec42fe4aad6a93905022，runs.csv SHA f6c4bd2eaa75873122674003a4f3a16bd6831b669caa73ed0dd2734ee27f4ba0。冻结客户端execute AST的迟到消息/真实错误两项CPU注入通过，不是额外真实内核或超时根因确认。一次审计测试误在repo根目录运行，4项导入错误；正确目录20项通过，非GPU失败。
 - first-960/Target-300/Target-522、D_val、官方test继续关闭；16560数值导出另待授权。不改学长分支，不动旧Held12535，不用付费API、不更新agent底座。
-- 13:49重新核公开己方HEAD cbcd3503d63b5f648ae14cb00ab2f56307f74384；包含短入口压缩、六配对补充和慢发送修正，6文件发布扫描0命中，已提交helper/test的SHA与远端CPU测试字节相同。dojo-reproduce仍dfff0efb9daf1d4a63c74492f138c19c1fd8440e，autoresearch HEAD仍d82dcd845e30e9771750510028d38a6d1d979c43，学长无新提交。最终交接另见本提交/Git现场。
+- 晚间fetch核己方公开基线605bca4886e6ec8cb154d5eaffe28bdc0121f0f8；本轮源码提交3f2f9846、22566d06，闭合证据待本次提交/发布（最终以Git核验）。dojo-reproduce仍dfff0efb9daf1d4a63c74492f138c19c1fd8440e；未看到新提交，不把旧outcome当新。
 - SSH linux5/yzyang4；PY=/research/d7/spc/yzyang4/venvs/aira/bin/python；SLURM_CONF=/opt1/slurm/gpu-slurm.conf。原MLE镜像仅gpu27/gpu28 RTX3090，不投projgpu39。研究盘4TB至2027-08-30，不是实时剩余容量。
 
 ## 17017：最新完整阳性，所有writer已闭合
@@ -37,7 +42,7 @@
 - helper SHA0fd8ead4c8eac2fc128b36d096ed15ceebeabc43a5fc5841d8c17e882ca381cd；test SHA3d49a2cbd3e7f1fe8019fde4f48f181560e7835ed8a0a0cfb7f943c7a3821a8c。无新GPU、候选执行或API。
 
 ## 接续判断
-- 先独立资格与完整强参照，再测相同生成容量、逻辑run队列/rolling规则的live净收益；不因简单并发阳性就造复杂LLM调度器。新批次先固定矩阵、全成本与资格门，不把本条当已提交。
+- 独立资格与两神经程序完整强参照已补齐，停止重复基础验收。再测相同生成容量、逻辑run队列/rolling规则的live净收益；不因简单并发阳性就造复杂LLM调度器。新批次先固定矩阵、全成本与资格门，不把本条当已提交。
 - ForeTS按返回更新journal/step/价值且失败可debug；并发兄弟/按完成序消费会改变搜索。优先跨独立run共享、保留run内顺序；首返回不等于下一次普通生成/搜索质量。
 - 固定外生run入口，不事后固定处理后的候选到达时刻；同时共享一个动态排队生成服务会造成两臂相互干扰。需要等容量隔离或随机化顺序独立时间块；全池含生成、等待、初始化与调度服务。
 - SchedMate/TGS/Salus/Orion/Tally/Fluid及其他近邻详见README。透明共享、在线画像、逻辑策略与执行分离均已有，不把适用接口差异冒充优势。现有ready积压/生产收益未确认，旧16370的22.72%预留窗口不是节省。

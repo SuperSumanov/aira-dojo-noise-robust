@@ -848,3 +848,14 @@ phase1/results/vocabulary_capacity_20261006/** -text diff whitespace=cr-at-eol
 phase1/results/capacity_interaction_20261006/** -text diff whitespace=cr-at-eol
 phase1/scripts/*natural_opportunity*20261006.py -text diff whitespace=cr-at-eol
 phase1/results/natural_opportunity_20261006/** -text diff whitespace=cr-at-eol
+# R14 evening closeout binds receipt/runtime bytes; do not rewrite on checkout.
+phase1/sandbox_scheduling/evening_overlap_v1_closed/** -text diff whitespace=cr-at-eol
+phase1/sandbox_scheduling/evening_qualification_v1_closed/** -text diff whitespace=cr-at-eol
+phase1/sandbox_scheduling/readiness_qualified_overlap.py -text diff whitespace=cr-at-eol
+phase1/sandbox_scheduling/bounded_readiness.py -text diff whitespace=cr-at-eol
+phase1/sandbox_scheduling/evening_*.py -text diff whitespace=cr-at-eol
+phase1/sandbox_scheduling/check_late_info_reply.py -text diff whitespace=cr-at-eol
+phase1/sandbox_scheduling/close_evening_comparison.sh -text diff whitespace=cr-at-eol
+phase1/sandbox_scheduling/launch_evening_*.py -text diff whitespace=cr-at-eol
+phase1/sandbox_scheduling/launch_evening_*.sh -text diff whitespace=cr-at-eol
+phase1/sandbox_scheduling/test_readiness_qualified_overlap.py -text diff whitespace=cr-at-eol

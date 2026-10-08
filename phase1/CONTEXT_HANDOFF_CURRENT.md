@@ -1,4 +1,19 @@
 # 当前短交接
+## 最新：2026-10-09香港六小时窗口（覆盖下方10/8动态状态）
+- 本窗口约06:12–12:12，用户要求在会话内继续，既有自主批准适用；不另建自动化、不提前完成。
+- 当前仍R14。fetch己方9c52040372909aa2173705903def1a4102f6bb3f；学长0155c7dedded47b59e29e81089e814250e38bd70（implement the grpo pipeline），仅核元数据，不读取新samples或采用GRPO。
+- 新live矩阵：2任务Pizza/Spooky dev、每池4独立run、FIFO执行许可1/2；ABBA四池块=16条×600s；base9B/2GPU12CPU服务每块重启，1GPU6CPU执行池，无rolling，不改变run内顺序。
+- 新自限3张3090/90min/≤4.5GPUh，所有服务/失败/闲置计入；无API/底座训练/官方test。完整16分母，调度干预只有2配对块，不当16独立系统复制。
+- 共同适配器：preview/异常kernel关闭后释放许可；有界info握手；排队计入600s但从exec_time反馈扣除。两臂源/输入/镜像/模型/采样/预算相同。
+- 事前探索门：16端点/清理/审计齐，两配对池都增加有效dev返回，分任务配对选中dev分数中位差非负且无新增基础设施失败；不换seed救结论，缺失不补分。
+- 文件sandbox_scheduling/live_search_trial_20261009.py、live_admission.py、live_runtime_hooks.py、test_live_*。根拟/research/d7/spc/yzyang4/scheduling-live-search-20261009-v1；06:40前未prepare/提交GPU。
+- tmp=/tmp/r14-live-20261009.M0hvVk。donor=policy9b-paired-20261005-gpu27-v1，plan SHA12d1264457158c936e4f1eff8e9c844ce5044365e77056066c4ded2ecfe6cd79，source b8e75052a9f69e19436f12bc5a36a0ca26a69a57。
+- 06:34香港：本地15项通过/3Linux项跳过；远端Linux3项全部通过（锁/超时取消/真实模块mock），无GPU/model calls。原接口mock首轮缺SUPERIMAGE_DIR，补测试环境后通过；不是实际任务执行通过。
+- 只读前检通过：donor闭合、模型/镜像在、dev评分器SHA匹配、private目录不存在；同任务各run工作/提交路径独立，不读donor结果值。冻结数值读出与全16分母门已写好。
+- SSH曾超时/中断/DNS失败，06:34前恢复；只读失败不是候选失败。剩余prepare核配置/派生源码/镜像hash，固定commit/preflight后才能submit。
+- 最后队列仅12535；gpu27一张空卡，gpu28满，新3卡可能排队，需现场重新核实。下方旧writer一律不重跑，旧预算不用。
+
+## 10/8已闭合历史（不作为当前授权/现场）
 更新：2026-10-08香港晚间；一小时窗口实际始于22:37，GPU已闭合，23:25前完成独立结果复核；动态现场须重新核实。
 较长历史完整保留于Git 3bd58e7e9d0b0c4a91519bdb3e65145415aefb0c及1ca06f255199785d84ef7ecf56129060d2b8d82f；原实验不改。
 

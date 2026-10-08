@@ -1,0 +1,413 @@
+"""R14: fixed live MCTS, one vs two sandbox execution leases, <=4.5 GPUh.
+
+16 assigned 600s native trajectories; 4 independent runs per block, ABBA blocks.
+The established Pizza/Spooky development adapters are used, not protected/test
+cohorts. This is a new workload scope, not a neural-workload replication.
+"""
+import argparse
+import ast
+import copy
+import csv
+import hashlib
+import importlib.util
+import inspect
+import json
+import os
+from pathlib import Path
+import re
+import secrets
+import shutil
+import signal
+import socket
+import subprocess
+import sys
+import threading
+import time
+from concurrent.futures import ThreadPoolExecutor
+
+from lifecycle_pilot import read, write, sha
+from live_admission import initialize, audit_events
+from live_runtime_hooks import install as install_hooks
+
+B=Path('/research/d7/spc/yzyang4')
+R=B/'scheduling-live-search-20261009-v1'
+D=B/'policy9b-paired-20261005-gpu27-v1'
+PY=B/'venvs/aira/bin/python'
+NAME='live_search_trial_20261009.py'
+DONOR_PLAN='12d1264457158c936e4f1eff8e9c844ce5044365e77056066c4ded2ecfe6cd79'
+DONOR_RUNTIME='b422a17094a6971218731054b53b56888505150b82f5309990b0b629577da4c9'
+CAP=5400
+TASKS=('random-acts-of-pizza','spooky-author-identification')
+FILES=(NAME,'live_admission.py','live_runtime_hooks.py','bounded_readiness.py','lifecycle_pilot.py')
+
+
+def schedule():
+    rows=[]
+    for rep in range(2):
+        for arm in (('pipeline','share2') if rep==0 else ('share2','pipeline')):
+            block=len(rows)//4
+            for slot in range(4):
+                rows.append(dict(index=len(rows),block=block,arm=arm,repeat=rep,
+                    slot=slot,task=TASKS[slot%2],seed=140901+100*rep+slot))
+    return rows
+
+
+def replace_once(source,before,after):
+    if source.count(before)!=1:raise ValueError('exact native insertion changed')
+    return source.replace(before,after)
+
+
+def host():
+    path=R/'runtime.py'
+    if sha(path)!=DONOR_RUNTIME:raise ValueError('donor runtime drift')
+    spec=importlib.util.spec_from_file_location('live_fixed_host',path)
+    m=importlib.util.module_from_spec(spec);sys.modules[spec.name]=m;spec.loader.exec_module(m)
+    m.R=R;m.CAP=CAP;m.SECONDS=600;m.schedule=schedule;m.check=check;m.install_hooks=install_hooks
+    source=inspect.getsource(m.worker)
+    source=replace_once(source,"deadline=ExperimentDeadline(SECONDS);write(ep/'deadline.json',deadline.receipt())",
+        "deadline=ExperimentDeadline(SECONDS);write(ep/'deadline.json',deadline.receipt())\n    install_hooks(s,ep,deadline)")
+    source=replace_once(source,"read(R/'service-native.json')", "read(R/f'block-{s[\"block\"]}/service-native.json')")
+    exec(compile(source,'live-native-worker','exec'),m.__dict__)
+    source=replace_once(inspect.getsource(m.task_runtime),'episode-[0-7]','episode-(?:[0-9]|1[0-5])')
+    exec(compile(source,'live-native-runtime','exec'),m.__dict__)
+    source=inspect.getsource(m.service)
+    for old,new in (("R/'service-native.json'","R/f'block-{os.environ[\"R14_BLOCK\"]}/service-native.json'"),
+                    ("R/'service-cache/tmp'","R/f'block-{os.environ[\"R14_BLOCK\"]}/service-cache/tmp'"),
+                    ("R/'service-cache'","R/f'block-{os.environ[\"R14_BLOCK\"]}/service-cache'")):
+        source=replace_once(source,old,new)
+    exec(compile(source,'live-native-service','exec'),m.__dict__)
+    return m
+
+
+def check():
+    p=read(R/'plan.json')
+    if p['schedule']!=schedule() or p['allocation_seconds']!=CAP or p['gpus']!=3:
+        raise ValueError('frozen matrix')
+    for name,pin in p['files'].items():
+        if sha(R/name)!=pin:raise ValueError('frozen file drift')
+    return p
+
+
+def scientific(cfg):
+    c=copy.deepcopy(cfg)
+    for key in ('id','metadata','logger'):c.pop(key,None)
+    for key in ('checkpoint_path','exp_name'):c['solver'].pop(key,None)
+    c['task'].pop('results_output_dir',None)
+    c['interpreter'].pop('working_dir',None)
+    return c
+
+
+def prepare(commit):
+    if not re.fullmatch('[a-f0-9]{40}',commit) or sha(D/'plan.json')!=DONOR_PLAN:
+        raise ValueError('exact provenance')
+    old=read(D/'plan.json')
+    if not read(D/'closed.json')['service_closed']:raise ValueError('donor not closed')
+    R.mkdir(mode=0o700,exist_ok=False)
+    helpers=('forets_gpu_binding_20260911.py','forets_native_cuda_identity_20260911.py',
+        'forets_native_gpu_binding_20260911.py','forets_opencl_allowlist_20260911.py',
+        'forets_opencl_readonly_ab.py','service_entry.py')
+    for name,pin in old['files'].items():
+        if not (name.startswith('source/') or name in helpers):continue
+        if sha(D/name)!=pin:raise ValueError('donor file drift')
+        dst=R/name;dst.parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(D/name,dst)
+    if sha(D/'policy9b_paired_20261005.py')!=DONOR_RUNTIME:raise ValueError('donor runtime')
+    shutil.copyfile(D/'policy9b_paired_20261005.py',R/'runtime.py')
+    for name in FILES:shutil.copyfile(Path(__file__).with_name(name),R/name)
+    for d in ('configs','bin','opencl-vendors'):(R/d).mkdir()
+    (R/'opencl-vendors/nvidia.icd').write_text('libnvidia-opencl.so.1\n')
+    (R/'bin/singularity').write_text(f'#!{PY}\nimport sys\nsys.path.insert(0,{str(R)!r})\nfrom {Path(NAME).stem} import host\nhost().task_runtime()\n')
+    os.chmod(R/'bin/singularity',0o700)
+    with (R/'.service.env').open('x') as f:f.write('PRIMARY_KEY_QWEN3_8_27B='+secrets.token_hex(32)+'\n')
+    os.chmod(R/'.service.env',0o600)
+    configs=[];public_inputs={}
+    for row in schedule():
+        ep=R/f'episode-{row["index"]}';ep.mkdir()
+        old_name=f'configs/{row["slot"]%2}.json'
+        if sha(D/old_name)!=old['files'][old_name]:raise ValueError('donor config')
+        cfg=read(D/old_name)
+        if cfg['task']['name']!=row['task']:raise ValueError('task mapping')
+        cfg['id']='r14-live-'+str(row['index'])
+        cfg['metadata'].update(seed=row['seed'],script_id='r14-live-20261009',base_path=str(R/'source'))
+        cfg['logger'].update(output_dir=str(ep/'native-log'),write_env_vars=False,use_console=False,
+                             print_config=False,use_wandb=False)
+        cfg['solver']['checkpoint_path']=str(ep/'checkpoint')
+        cfg['task']['results_output_dir']=str(ep/'native-task-results')
+        cfg['task']['cache_dir']=str(R/'no-official-data')
+        cfg['interpreter']['working_dir']=str(ep/'work')
+        cfg['interpreter']['env']['PYTHONHASHSEED']=str(row['seed'])
+        for op in cfg['solver']['operators'].values():
+            op['llm']['client']['model_id']='qwen3.5-9b'
+            op['llm']['generation_kwargs']['seed']=row['seed']
+        write(R/f'configs/{row["index"]}.json',cfg);configs.append(cfg)
+        scorer=Path(cfg['task']['search_only_dev_scorer_path'])
+        if sha(scorer)!=cfg['task']['search_only_dev_scorer_sha256'] or Path(cfg['task']['private_dir']).exists():
+            raise ValueError('dev scoring/isolation changed')
+        public_inputs[str(scorer)]=sha(scorer)
+        for file in Path(cfg['task']['public_dir']).rglob('*'):
+            if file.is_file():public_inputs[str(file)]=sha(file)
+    for block in range(4):(R/f'block-{block}/service-cache/tmp').mkdir(parents=True)
+    for rep in range(2):
+        for slot in range(4):
+            i=rep*8+slot;j=i+4
+            if scientific(configs[i])!=scientific(configs[j]):raise ValueError('unequal paired configuration')
+    batch=f'''#!/bin/bash
+#SBATCH --job-name=r14-live-admission
+#SBATCH --partition=gpu_24h
+#SBATCH --account=gpu
+#SBATCH --qos=gpu
+#SBATCH --nodelist=gpu27
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --gres=gpu:3
+#SBATCH --cpus-per-task=18
+#SBATCH --time=01:30:00
+#SBATCH --no-requeue
+set -euo pipefail
+umask 077
+export SLURM_CONF=/opt1/slurm/gpu-slurm.conf
+export PYTHON_DOTENV_DISABLED=1 PYTHONDONTWRITEBYTECODE=1
+timeout --signal=TERM --kill-after=20s 5320s {PY} -B {R/NAME} controller
+'''
+    (R/'run.sbatch').write_text(batch)
+    write(R/'plan.json',dict(source_commit=commit,source_dojo_commit=old['source_commit'],
+        donor_plan_sha256=DONOR_PLAN,schedule=schedule(),gpus=3,total_cpu=18,
+        service_gpus=2,execution_gpus=1,service_cpu=12,execution_cpu=6,
+        allocation_seconds=CAP,gpu_hours_cap=4.5,run_seconds=600,candidate_timeout_seconds=240,
+        active_runs=4,rolling_replacement=False,service_restart_between_blocks=True,
+        source_model=old['base'],base_revision=old['base_revision'],used_model='qwen3.5-9b',
+        adapter_unused=True,task_image_sha256=old['task_image_sha256'],
+        service_image_sha256=old['service_image_sha256'],model_training=False,paid_api=False,
+        single_change='FIFO execution lease limit 1 versus 2; both overlap startup and preserve native within-run MCTS order.',
+        common_adapter='Close preview and failed task kernels before lease release; queue counted in 600s deadline but excluded from execution-duration feedback. Bounded info-only handshake common.',
+        primary='Full assigned 16-run denominator: valid task.step candidate returns recorded by common 600s deadline, infrastructure failures, queue/ready/generation time, selected development score only where observed. A scored receipt without a completed task return does not count. No imputation of missing quality.',
+        inference='Pool block is the scheduling intervention unit: only two paired block repeats. Run counts are not independent scheduling replications. No population significance or neural generalization claim.',
+        advance='Exploratory go only if all 16 endpoints, all 8 pairs of finite valid native-selected dev scores, and cleanup/audits complete, both paired pool blocks yield strictly more valid dev returns under share2, and per-task paired selected dev score medians are nonnegative with no additional infrastructure failures. Otherwise do not rescue with replacement seeds.',
+        boundary='Pizza and Spooky development workloads, not the reused neural fixed-program experiment; no protected cohorts, D_val, official test, critic or policy training.',
+        allocation_accounting='Count all three reserved GPUs including model startup, idle/queue and failure; no reuse of old batch budgets.',
+        public_inputs=public_inputs,
+        files={str(p.relative_to(R)):sha(p) for p in R.rglob('*') if p.is_file() and p.name!='.service.env'}))
+    cpu()
+    m=host()
+    if sha(m.TASK_IMAGE)!=old['task_image_sha256'] or sha(m.VLLM)!=old['service_image_sha256']:
+        raise ValueError('image drift')
+    if sha(m.ADAPTER/'adapter_model.safetensors')!=old['adapter_weights_sha256']:
+        raise ValueError('service unused-adapter binding drift')
+    write(R/'preflight.json',dict(plan_sha256=sha(R/'plan.json'),model_calls=0,gpu_executions=0,
+        images_verified=True,paired_configs=8,service_restarts=4))
+    print(json.dumps(dict(status='PREPARED',plan_sha256=sha(R/'plan.json'),runs=16,gpu_hours_cap=4.5)))
+
+
+def cpu():
+    p=check();m=host();m.setup()
+    from dojo.config_dataclasses.run import RunConfig
+    from dojo.tasks.mlebench.task import MLEBenchTask
+    from dojo.solvers.mcts.mcts import MCTS
+    from dojo.core.tasks.constants import TASK_DESCRIPTION
+    from dojo.utils.logger import config_logger
+    from omegaconf import OmegaConf
+    os.environ['PRIMARY_KEY']='offline-fixture'
+    os.environ['PRIMARY_KEY_QWEN3_5_9B']='offline-fixture'
+    for row in schedule():
+        cfg=RunConfig.load_from_json(R/f'configs/{row["index"]}.json');cfg.validate();config_logger(cfg)
+        task=MLEBenchTask(cfg.task)
+        if task._search_only_score is None or task.private_dir.exists() or cfg.solver.use_test_score:
+            raise ValueError('not dev-only')
+        solver=MCTS(OmegaConf.structured(cfg.solver),{TASK_DESCRIPTION:task.task_description,'lower_is_better':task._search_only_lower_is_better})
+        if solver.journal.nodes or cfg.solver.time_limit_secs!=600 or cfg.interpreter.timeout!=240:
+            raise ValueError('not fresh fixed run')
+        for op in cfg.solver.operators.values():
+            if op.llm.client.model_id!='qwen3.5-9b' or op.llm.generation_kwargs['seed']!=row['seed']:
+                raise ValueError('model/seed contract')
+    subprocess.run(['bash','-n',str(R/'run.sbatch')],check=True)
+    write(R/'cpu.json',dict(configs=16,native_solvers_instantiated=16,model_calls=0,plan_sha256=sha(R/'plan.json')))
+
+
+def submit():
+    check()
+    if read(R/'preflight.json')['plan_sha256']!=sha(R/'plan.json'):raise ValueError('preflight mismatch')
+    env=host().infra().clean_env()
+    jobs=subprocess.check_output(['squeue','-u','yzyang4','-h','-o','%i'],env=env,text=True,timeout=15).split()
+    if set(jobs)-{'12535'}:raise ValueError('unexpected active job')
+    write(R/'submit-intent.json',dict(plan_sha256=sha(R/'plan.json'),gpu_hours_cap=4.5))
+    out=subprocess.run(['sbatch','--parsable','--chdir='+str(R),'--output='+str(R/'allocation-%j.out'),
+        '--error='+str(R/'allocation-%j.err'),str(R/'run.sbatch')],env=env,capture_output=True,text=True,timeout=25)
+    job=out.stdout.strip().split(';')[0]
+    if out.returncode or not job.isdigit():raise RuntimeError('ambiguous submit; do not retry')
+    write(R/'launch.json',dict(job=job,plan_sha256=sha(R/'plan.json')))
+    print(json.dumps(dict(status='SUBMITTED',job=job,gpu_hours_cap=4.5)))
+
+
+def owned_cleanup(process,ep):
+    from dojo.main_local_worker import _process_start_ticks
+    if (ep/'identity.json').exists():
+        identity=read(ep/'identity.json');pid=identity.get('container_pid');ticks=identity.get('container_process_start_ticks')
+        try:
+            if pid and ticks and _process_start_ticks(pid)==ticks and os.getpgid(pid)==identity.get('container_pgid'):
+                os.killpg(os.getpgid(pid),signal.SIGTERM);time.sleep(1)
+                if _process_start_ticks(pid)==ticks:os.killpg(os.getpgid(pid),signal.SIGKILL)
+        except ProcessLookupError:pass # it exited between identity check and signal
+    if process.poll() is None:
+        try:os.killpg(process.pid,signal.SIGTERM)
+        except ProcessLookupError:pass
+        try:process.wait(timeout=3)
+        except subprocess.TimeoutExpired:os.killpg(process.pid,signal.SIGKILL);process.wait(timeout=3)
+
+
+def process_gone(pid,ticks):
+    if not pid or not ticks:return True
+    try:
+        v=Path(f'/proc/{pid}/stat').read_text().rsplit(')',1)[1].split()
+        return v[0]=='Z' or int(v[19])!=ticks
+    except FileNotFoundError:return True
+
+
+def run_one(row):
+    ep=R/f'episode-{row["index"]}';start=time.time()
+    with (ep/'worker.private.log').open('xb') as log:
+        proc=subprocess.Popen([str(PY),'-B',str(R/NAME),'worker','--index',str(row['index'])],
+            stdout=log,stderr=log,start_new_session=True)
+        try:rc=proc.wait(timeout=690)
+        except subprocess.TimeoutExpired:owned_cleanup(proc,ep);rc=124
+    if (ep/'identity.json').exists():
+        identity=read(ep/'identity.json')
+        clean=all(process_gone(identity.get(p),identity.get(t)) for p,t in
+            (('pid','process_start_ticks'),('container_pid','container_process_start_ticks')))
+    else:clean=False
+    if not clean:
+        owned_cleanup(proc,ep)
+        if (ep/'identity.json').exists():
+            identity=read(ep/'identity.json')
+            clean=all(process_gone(identity.get(p),identity.get(t)) for p,t in
+                (('pid','process_start_ticks'),('container_pid','container_process_start_ticks')))
+    result=dict(index=row['index'],returncode=rc,cleanup_verified=clean,start=start,end=time.time(),
+        finished=(ep/'finished.json').exists())
+    write(ep/'closed.json',result)
+    return result
+
+
+def gpu_sample(gpu):
+    raw=subprocess.check_output(['nvidia-smi','--id='+gpu,'--query-gpu=utilization.gpu,memory.used',
+        '--format=csv,noheader,nounits'],text=True,timeout=10).strip().split(',')
+    apps=subprocess.check_output(['nvidia-smi','--query-compute-apps=gpu_uuid,pid',
+        '--format=csv,noheader,nounits'],text=True,timeout=10).splitlines()
+    pids=[int(v.split(',')[1]) for v in apps if v.split(',')[0].strip()==gpu]
+    return dict(time=time.time(),utilization=float(raw[0]),memory_mib=float(raw[1]),pids=pids)
+
+
+def block_run(block):
+    check();m=host();m.setup()
+    rows=[r for r in schedule() if r['block']==block]
+    gpu=m.infra().native_uuids(1)[0]
+    if gpu in read(R/f'block-{block}/service-native.json')['gpu_uuids']:
+        raise ValueError('service/execution GPU overlap')
+    if gpu_sample(gpu)['pids']:raise ValueError('unclean execution GPU')
+    arm=rows[0]['arm'];initialize(R/f'queue-{block}',1 if arm=='pipeline' else 2)
+    start=time.time();stop=threading.Event();samples=[];errors=[]
+    write(R/f'block-{block}/execution-native.json',dict(job=os.environ['SLURM_JOB_ID'],
+        step=os.environ['SLURM_STEP_ID'],gpu_uuid=gpu,affinity=sorted(os.sched_getaffinity(0)),start=start))
+    def monitor():
+        while not stop.is_set():
+            try:samples.append(gpu_sample(gpu))
+            except Exception as e:errors.append(type(e).__name__);break
+            stop.wait(1)
+    observer=threading.Thread(target=monitor,daemon=True);observer.start()
+    try:
+        with ThreadPoolExecutor(max_workers=4) as pool:results=list(pool.map(run_one,rows))
+    finally:stop.set();observer.join(timeout=22)
+    write(R/f'block-{block}/telemetry.json',samples)
+    queue=R/f'queue-{block}'
+    events=[json.loads(v) for v in (queue/'events.jsonl').read_text().splitlines()] if (queue/'events.jsonl').exists() else []
+    audit=audit_events(events,1 if arm=='pipeline' else 2)
+    clean=not gpu_sample(gpu)['pids']
+    write(R/f'block-{block}/closed.json',dict(block=block,arm=arm,start=start,end=time.time(),
+        results=results,queue_audit=audit,telemetry_errors=errors,gpu_clean=clean))
+    if errors or observer.is_alive() or not clean or not audit['all_released'] or not all(r['cleanup_verified'] for r in results):
+        raise ValueError('block infrastructure/cleanup failed')
+    return 0
+
+
+def stop_service(server,block,job):
+    if server.poll() is None:
+        server.send_signal(signal.SIGTERM)
+        try:server.wait(timeout=25)
+        except subprocess.TimeoutExpired:
+            native=R/f'block-{block}/service-native.json'
+            if not native.exists():raise ValueError('no service step identity')
+            step=read(native)['step']
+            if not str(step).isdigit():raise ValueError('invalid step identity')
+            subprocess.run(['scancel','--signal=KILL',job+'.'+str(step)],check=True,timeout=15)
+            server.wait(timeout=20)
+
+
+def controller():
+    check();m=host();m.setup();start=time.monotonic();job=os.environ['SLURM_JOB_ID']
+    if socket.gethostname().split('.')[0]!='gpu27':raise ValueError('wrong node')
+    for _ in range(40):
+        if (R/'launch.json').exists():break
+        time.sleep(.25)
+    if read(R/'launch.json')['job']!=job:raise ValueError('job identity')
+    env=m.infra().clean_env();base=['srun','--exclusive','--nodes=1','--ntasks=1','--cpu-bind=cores']
+    error=None;attempted=[]
+    try:
+        for block in range(4):
+            if CAP-(time.monotonic()-start)<1250:raise TimeoutError('whole block admission budget')
+            bdir=R/f'block-{block}';cycle_start=time.time()
+            with (bdir/'service.private.log').open('xb') as log:
+                server=subprocess.Popen(base+['--cpus-per-task=12','--gres=gpu:2','--time=00:19:00',
+                    str(PY),'-B',str(R/NAME),'service'],env=dict(env,R14_BLOCK=str(block)),
+                    stdout=log,stderr=log,start_new_session=True)
+                try:
+                    ready_start=time.monotonic()
+                    while time.monotonic()-ready_start<300:
+                        if server.poll() is not None:raise RuntimeError('service exited')
+                        try:
+                            if m.health():break
+                        except Exception:pass
+                        time.sleep(2)
+                    else:raise TimeoutError('service readiness cap')
+                    # Common startup request, not a separate model acceptance batch.
+                    out=m.api('/v1/chat/completions',dict(model='qwen3.5-9b',
+                        messages=[dict(role='user',content='Reply with OK only.')],max_tokens=8,
+                        temperature=0,seed=140900,chat_template_kwargs={'enable_thinking':False}),timeout=40)
+                    if out.get('model')!='qwen3.5-9b' or not out.get('choices'):raise ValueError('wrong service')
+                    write(bdir/'service-ready.json',dict(startup_seconds=time.monotonic()-ready_start,model='qwen3.5-9b'))
+                    cmd=base+['--cpus-per-task=6','--gres=gpu:1','--time=00:13:00',
+                        str(PY),'-B',str(R/NAME),'block','--block',str(block)]
+                    attempted.append(block)
+                    with (bdir/'block.private.log').open('xb') as log2:
+                        result=subprocess.run(cmd,env=env,stdout=log2,stderr=log2,timeout=800)
+                    write(bdir/'step-return.json',dict(returncode=result.returncode))
+                    if result.returncode:raise ValueError('block failed')
+                finally:stop_service(server,block,job)
+            write(bdir/'cycle-closed.json',dict(start=cycle_start,end=time.time(),service_returncode=server.returncode))
+    except Exception as e:
+        error=type(e).__name__
+        raise
+    finally:
+        rows=[]
+        for row in schedule():
+            ep=R/f'episode-{row["index"]}';r=dict(**row,source_commit=read(R/'plan.json')['source_commit'],status='not_started')
+            if (ep/'closed.json').exists():r.update(read(ep/'closed.json'));r['status']='failed'
+            if (ep/'finished.json').exists():
+                f=read(ep/'finished.json');r.update(f)
+                r['status']='complete' if r.get('returncode')==0 and r.get('cleanup_verified') and f['status'] in ('completed','budget_exhausted') else 'incomplete'
+            rows.append(r)
+        write(R/'runs.json',rows)
+        with (R/'runs.csv').open('x',newline='') as f:
+            w=csv.DictWriter(f,fieldnames=sorted({k for r in rows for k in r}));w.writeheader();w.writerows(rows)
+        write(R/'closed.json',dict(planned=16,attempted_blocks=attempted,
+            complete=sum(r['status']=='complete' for r in rows),controller_error=error,elapsed_seconds=time.monotonic()-start))
+
+
+def main():
+    os.umask(0o077);os.environ.update(PYTHON_DOTENV_DISABLED='1',PYTHONDONTWRITEBYTECODE='1')
+    p=argparse.ArgumentParser();p.add_argument('mode',choices=('prepare','submit','controller','service','block','worker'))
+    p.add_argument('--commit');p.add_argument('--block',type=int);p.add_argument('--index',type=int)
+    a=p.parse_args()
+    if a.mode=='prepare':return prepare(a.commit)
+    if a.mode=='worker':return host().worker(a.index)
+    if a.mode=='service':return host().service()
+    if a.mode=='block':return block_run(a.block)
+    return globals()[a.mode]()
+
+if __name__=='__main__':sys.exit(main())

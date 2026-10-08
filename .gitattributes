@@ -859,3 +859,6 @@ phase1/sandbox_scheduling/close_evening_comparison.sh -text diff whitespace=cr-a
 phase1/sandbox_scheduling/launch_evening_*.py -text diff whitespace=cr-at-eol
 phase1/sandbox_scheduling/launch_evening_*.sh -text diff whitespace=cr-at-eol
 phase1/sandbox_scheduling/test_readiness_qualified_overlap.py -text diff whitespace=cr-at-eol
+# Fresh live scheduling trial: preserve receipt-bound source bytes.
+phase1/sandbox_scheduling/live_*.py -text diff whitespace=cr-at-eol
+phase1/sandbox_scheduling/test_live_*.py -text diff whitespace=cr-at-eol

@@ -1,5 +1,5 @@
 # 当前短交接
-更新：2026-10-08 11:25香港附近最后观察。旧全文完整保留于Git f334fa7f4ff00366be163a181f1110fad25ddf63；不要把旧状态恢复成现场。
+更新：2026-10-08 11:53香港附近最后观察。旧全文完整保留于Git 5f44b1af605f4f7b6034d3556c4c1a2f62b7232b；不要把旧状态恢复成现场。
 
 ## 方向、目标、授权
 - 活跃checkout：C:/Research/New/my_project/MLEvolve/_codex_tmp/publication-feedback-20261001。fetch→CURRENT_DIRECTION→ROUTE_DECISIONS→本文件；旧aira-dojo-codex-20260813有用户dirty，不整体覆盖。
@@ -9,7 +9,7 @@
 - 不读first-960/Target-300/Target-522、D_val、官方test；不恢复HCE/多保真/Probe/TD/score-channel/K≥1。不操作旧12535 Held作业，不改学长分支。
 
 ## Git及远端
-- 公开己方及本地HEAD f334fa7f4ff00366be163a181f1110fad25ddf63（push+ls-remote核实；23文件credential/敏感文件名扫描0命中），另有本轮测量限制/只读遥测诊断待提交。16996执行源码3bed6f7f、16997为3857ffbb、16999为9426f910、17005为0e61e2d2。已公布批次不含原始预测/标签/凭据，学长分支未改；独立同类审计已完成，不改变运行协议。
+- 公开己方及本地HEAD 5f44b1af605f4f7b6034d3556c4c1a2f62b7232b（push+ls-remote核实，10文件credential/敏感文件名扫描0命中）；17005闭合读数及交接待提交。16996执行源码3bed6f7f、16997为3857ffbb、16999为9426f910、17005为0e61e2d2、17014为f334fa7f。不含原始预测/标签/凭据，学长分支未改；不改变冻结运行协议。
 - dojo-reproduce最后fresh fetch=dfff0efb9daf1d4a63c74492f138c19c1fd8440e；学长autoresearch HEAD=d82dcd845e30e9771750510028d38a6d1d979c43，无新更新；未改学长分支。
 - SSH linux5/yzyang4；Python /research/d7/spc/yzyang4/venvs/aira/bin/python；SLURM_CONF=/opt1/slurm/gpu-slurm.conf。原MLE镜像只投已兼容gpu27/gpu28 RTX3090，不投projgpu39。
 - 研究盘/research/d7/spc/yzyang4总授权4TB至2027-08-30，不等于空闲容量。镜像SHA801f646bed3cae6e74e10d793e71b0086658d4303d54552333c58125ddf9beda。
@@ -30,7 +30,7 @@
 - 完整A/B三配对serial/share2=1.8423276573417586、1.7307638813016224、1.7852942816262258；中位1.7852942816262258，样本标准差0.05578656742353592。四程序6份A/B输出各15两两比较数值全同，形状/原完成回执哈希独立核验通过；60比较非60独立样本。
 - 独立时间审计SHA d21cd09c38e87c3dfa5ccdb0b6d8451a034cd51f01e894399c911394ad0d353d；独立输出审计SHA fdf14b788c7ef930b67225be03e279845cae12c105779d88741fea6a2e06ecc7；readout SHA b8347a0e529feb84d646765f5f09eae07a56716569d75ae7b529a2d332d2069f。证据本地sandbox_scheduling/pool_v2_closed。所有观察块max resident GPU clients=1；只能称启动/CPU/候选阶段并行，未证同时GPU训练共置。
 - slot17 one_gpu/program4在candidate开始前cell0 TimeoutError，外层ValueError；不是候选OOM或策略因果反证。保留失败，C只有2完整比较，不报告删失败的C胜负。closed SHA f15cab21c26e8967ae0bf8f1002476323dcaa925539bf8d2fe47fcae4ff918a5；runs SHA ee08a68c8c130a690b6a951fb6d5827ae9879fc54d9f18ce3e99f992b25c832f。
-- 本窗口前七批实耗4731单GPU秒=1.3141666666666667GPUh（已打印）。17004排队取消0秒/空AllocTRES；full-input仍须actual+3600≤10800才准submit，预算门只特许已核未分配的CANCELLED/0秒/空TRES且无step/执行回执，其他未知仍拒绝。不把同源码重启当独立训练seed。
+- 本窗口闭合实耗6720单GPU秒=1.8666666666666667GPUh（含17005的1989秒；已打印），尚余4080秒。17004排队取消0秒/空AllocTRES；17014上限2700秒已通过预算门。若17014实际≤1380秒才可能再容纳确认的2700秒上限，否则不提交确认；只认实际sacct且所有前批闭合。未分配CANCELLED仅特许已核17004/0秒/空TRES/无step或执行回执。原样重启非独立训练seed。
 - 保持4份原源码，公开输入非5类至少5行，唯一类5按原程序加入每个训练折；CPU已核所有训练折均含7类，不复制/重标/使用query。SSH准备阶段曾断开，PID145097继续写完preflight；不是重复prepare。旧16992及入口批次均不改。
 - 矩阵：原programs 0(XGB)/1(Spooky TFIDF)/4(CatB)/3(Petfinder LGB)，共3任务；serial/share2/one_gpu ×3原样重启=36槽，另1次warmup，所有开销含于单3090/6CPU/90分钟。不是跨训练seed。
 - 新GPU输入只替换末端超出最低覆盖的类行，补最早独立公开训练行；排除旧train/query IDs、query不变；两GPU程序及所有臂共用新输入，旧文件不改。属于新开发小样本系统试验，不称全MLE-bench。
@@ -57,10 +57,10 @@
 
 ## 历史与收尾
 - 另一节点复验17004已在PENDING时限定state/user/name取消，sacct=CANCELLED by7542/0秒/空AllocTRES；预计16:27开跑超本窗口，未有GPU/候选结果，跨节点复现仍未完成。root /research/d7/spc/yzyang4/scheduling-neural-gpu28-20261008-v2；source6e8d8636，plan SHAcdec2fb419281c5d1275fde6431480b4a02fe43cd719673b56f7e7e549a48e5c；tmp /tmp/r14-neural-gpu28-20261008.pi9MTM。保留，不重submit或当零收益。v1时限模板5350s误认5360s而prepare失败，0GPU/0候选，目录保留。
-- full-input v2=17005 RUNNING gpu27（11:15附近首候选已执行）；root /research/d7/spc/yzyang4/scheduling-neural-full-input-20261008-v2；tmp /tmp/r14-neural-full-input-20261008.sHZh7W；source0e61e2d2969a18552024b923d0dc05bd08633bc1；plan SHAe836f8c49b13ce52ef02c138b873bc1464cdb147dc06254f656b707ff93afade。原两程序12槽/3原seed重启、gpu27/6CPU/60min≤1GPUh；Cactus不变、DnCNN113公开配对图（源码内部98训练/15验证）、同2noisy query，query clean不读/不挂载。源码/worker/超参/450s候选时限不改；14远端测试与input/image hash通过，提交前预算门通过。monitor tmp/neural_status.py --kind full-input，PYTHONPATH必须v2；结束后冻结root的neural_full_input_trial.py readout/audit各一次，audit须上述--plan-sha；旧fixtures.json为donor历史，当前输入以plan.input_scale_receipt/full-input-fixture.json为准。
+- full-input v2=17005已COMPLETED/12尝试12完成/1989单GPU秒；root /research/d7/spc/yzyang4/scheduling-neural-full-input-20261008-v2；tmp /tmp/r14-neural-full-input-20261008.sHZh7W；source0e61e2d2969a18552024b923d0dc05bd08633bc1；plan SHAe836f8c49b13ce52ef02c138b873bc1464cdb147dc06254f656b707ff93afade。三配对中位1.602670906461665/std0.03902198324710583；Cactus150步、DnCNN3920步各六次一致/输出数值全同，独立审计通过。计时有上述准备重叠，非干净确认；全部块保留。readout SHAec02d12afecd94524f8cb2b142967eec8bcf1cde98edc387747f9c5c74d68a18，audit SHAec8245f112bdda512ca241a67d53b65095bf351fd414155c00bdd65037462faf，runs SHA42bc7d8c49594b13e5502cd34497c45b7b13c01117383a548da62fccf16dfa1a；三文件和limitations.json在full_input_v2_closed。两个writer已执行，不重复。实际输入DnCNN113公开配对/98内部train/15内部val，同2noisy query且无clean；以plan.input_scale_receipt/full-input-fixture.json为准，不用旧fixtures.json描述当前规模。
 - full-input v1留存未submit：source6685eabf，plan SHA08d445f61423a4368c866156ccd5189503b921d54f12ba1a8f71980e46f2f22f；原预算解析不支持CANCELLED by7542/空TRES的真实未分配状态。v2仅修严格核算/root，不据候选结果改门，不重开失败样本。
-- 神经启动强对照已PREPARED未submit：root /research/d7/spc/yzyang4/scheduling-neural-overlap-20261008-v1；tmp /tmp/r14-neural-overlap-20261008.KnZYH8；source f334fa7f4ff00366be163a181f1110fad25ddf63；plan SHAbd21f54108693bb539a8fb35521c69ea0a6e54ed53cbd5aab67cced20b9b51f6。原小输入/两源码，pipeline（并行初始化、候选至close FIFO串行）/share2×3原seed重启=12，gpu27/6CPU≤45min/.75GPUh。只加可信候选边界屏障，原worker/候选/450s/525s/550s时限不改，等待计入原时限。60本地/12远端相关测试、worker AST/镜像及输入核验通过；须17005闭合且actual+2700≤10800才由冻结root neural_overlap_control.py submit，不足不启动。结束后同脚本readout/audit各一次，audit须上述--plan-sha；审计另写pipeline-contract.json确认屏障/CPU/GPU身份。不改冻结文件，不重prepare。
-- 大输入独立确认仅本地准备：neural_full_confirmation.py，原17005两程序/全公开输入/相同12槽，gpu27/6CPU≤45min/.75GPUh，450s/525s/550s单程序限制不变。事前说明：不删原受干扰块，不依据速度符号选样本；仅当17005执行12/12资格通过才在其结束后prepare，并须在overlap对照开跑前完成全部重I/O。确认submit须overlap闭合且累计actual+2700≤10800，不足不启动。65本地相关测试通过，尚无远端root/job；不把计划当完成。
+- 神经启动强对照17014已RUNNING gpu27（11:53队列核实）；root /research/d7/spc/yzyang4/scheduling-neural-overlap-20261008-v1；tmp /tmp/r14-neural-overlap-20261008.KnZYH8；source f334fa7f4ff00366be163a181f1110fad25ddf63；plan SHAbd21f54108693bb539a8fb35521c69ea0a6e54ed53cbd5aab67cced20b9b51f6。原小输入/两源码，pipeline（并行初始化、候选至close FIFO串行）/share2×3原seed重启=12，gpu27/6CPU≤45min/.75GPUh。原worker/候选/450s/525s/550s不改，屏障等待计入原时限；60本地/12远端测试与预检通过。全部重I/O准备/17005审计已在submit前完成，运行期间不再做大哈希、构建或全输出审计。轻量monitor tmp/neural_status.py --kind overlap；结束后冻结root neural_overlap_control.py readout/audit各一次（audit须上述--plan-sha），另取audit-v1/pipeline-contract.json。不重submit/prepare。
+- 大输入独立确认已PREPARED未submit：root /research/d7/spc/yzyang4/scheduling-neural-full-confirmation-20261008-v1；tmp /tmp/r14-neural-confirmation-20261008.eJVICI；source5f44b1af605f4f7b6034d3556c4c1a2f62b7232b；plan SHAb8bf8619c61a98db5af35bb2b68f4b9838354c9ccfef166d8dd788ca0b16df7f。原17005两程序/输入/相同12槽，gpu27/6CPU≤45min/.75GPUh，450s/525s/550s不变。不替换受干扰块、不据速度符号选样本；17005的12/12执行资格后prepare，全部重I/O已在17014提交前完成，9远端相关测试通过。确认submit须17014闭合、其审计完成且累计actual+2700≤10800，不足不启动；用冻结root neural_full_confirmation.py submit，轻量monitor tmp/neural_status.py --kind confirmation。结束后同脚本readout/audit各一次并传上述plan SHA。65本地相关测试通过；暂无job，准备不算结果。
 - 16846已封闭：36槽/6尝试/2完成/4失败/30未启动，362单GPU秒，0共置比较；证据sandbox_scheduling/throughput_readout_v1。不得改分母或用新输入改写它。
 - R11/R12/R13与16582失败界限见ROUTE_DECISIONS；16560数值导出仍有旧审查边界，不能借新任务绕过。
 - 暂未创建新的自动化；本轮是在会话内持续研究。结束前核实际时钟和goal，不能声称六小时完成。新结果用轻量交接+结构回执；用户没要求不新写长报告。

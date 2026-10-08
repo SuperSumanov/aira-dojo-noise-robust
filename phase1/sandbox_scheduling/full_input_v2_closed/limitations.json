@@ -1,0 +1,15 @@
+{
+  "job": "17005",
+  "source_commit": "0e61e2d2969a18552024b923d0dc05bd08633bc1",
+  "readout_sha256": "ec02d12afecd94524f8cb2b142967eec8bcf1cde98edc387747f9c5c74d68a18",
+  "independent_audit_sha256": "ec8245f112bdda512ca241a67d53b65095bf351fd414155c00bdd65037462faf",
+  "timing_status": "confounded_observation_not_clean_confirmation",
+  "known_own_preparation_overlap": [
+    {"block": 0, "arm": "serial", "repeat": 0, "seconds": 24.523789882659912},
+    {"block": 1, "arm": "share2", "repeat": 0, "seconds": 66.60744571685791}
+  ],
+  "overlap_definition": "Intersection with next-batch plan.json-to-preflight.json file timestamps. This is only a known subset of preparation activity, not physical IO or proof of causal interference.",
+  "preservation": "All 12 runs and all three paired timing ratios retained. No clean-subset replacement or outcome-dependent retry.",
+  "verified_separately": "12/12 completed; Cactus 150 steps each, DnCNN 3920 steps each; all six outputs per program numerically identical. Timing confounding does not invalidate these execution facts.",
+  "scope": "Two fixed programs/public-training inputs, three unchanged-source-seed restarts. No independent training seeds, quality scores, cross-node confirmation, population effect or novel scheduler claim. No protected evaluation data read."
+}

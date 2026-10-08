@@ -18,6 +18,9 @@ def main(kind='neural'):
   from neural_pool_trial import schedule
  elif kind=='overlap':
   from neural_overlap_control import R,schedule
+ elif kind=='confirmation':
+  from neural_full_confirmation import R
+  from neural_pool_trial import schedule
  else:raise ValueError('monitor scope')
  rows=[]
  for row in [dict(index=36,arm='warmup')]+schedule():
@@ -40,11 +43,11 @@ def main(kind='neural'):
      item['prelude_diagnostic_terms']=[term for term in ('kernel readiness','kernel did not','kernel didn\'t','timeout','cuda out of memory','address already in use','connection refused','no route to host') if term in private_text]
   rows.append(item)
  result=dict(job=read(R/'launch.json')['job'],plan_sha256=sha(R/'plan.json'),rows=rows,
-             blocks_complete=sum((R/f'block-{i}.json').exists() for i in range({'neural':6,'pipeline':9,'homogeneous':12,'replication':6,'full-input':6,'overlap':6}[kind])))
+             blocks_complete=sum((R/f'block-{i}.json').exists() for i in range({'neural':6,'pipeline':9,'homogeneous':12,'replication':6,'full-input':6,'overlap':6,'confirmation':6}[kind])))
  if (R/'closed.json').exists():result['batch_closed']=read(R/'closed.json')
  print(json.dumps(result,sort_keys=True))
 
 if __name__=='__main__':
  import argparse
- parser=argparse.ArgumentParser();parser.add_argument('--kind',choices=['neural','pipeline','homogeneous','replication','full-input','overlap'],default='neural')
+ parser=argparse.ArgumentParser();parser.add_argument('--kind',choices=['neural','pipeline','homogeneous','replication','full-input','overlap','confirmation'],default='neural')
  main(parser.parse_args().kind)

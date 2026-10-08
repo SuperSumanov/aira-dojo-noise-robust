@@ -69,7 +69,7 @@ def prepare(commit):
     if worker_ast((D/'neural_pool_trial.py').read_text()) != worker_ast((here/'neural_pool_trial.py').read_text()):
         raise ValueError('candidate worker changed')
     R.mkdir(mode=0o700, exist_ok=False)
-    inputs = {}
+    inputs = dict(old.get('input_files', {}))
     for name, pin in old['files'].items():
         if sha(D/name) != pin:
             raise ValueError('donor drift')

@@ -58,7 +58,7 @@ def main():
  result=dict(job=job,source_commit=plan['source_commit'],plan_sha256=sha(R/'plan.json'),planned=12,
   attempted=sum(r['status']!='not_started' for r in runs),completed=complete,
   allocation_state=alloc[1],allocation_exit=alloc[4],allocation_seconds=int(alloc[2]),whole_pool_gpu_hours=int(alloc[2])/3600,
-  within_cap=int(alloc[2])<=5400,blocks=blocks,paired_ratios=ratios,speedup=speed,output_equivalence=equivalence,runs=runs,
+  within_cap=int(alloc[2])<=plan['allocation_seconds'],blocks=blocks,paired_ratios=ratios,speedup=speed,output_equivalence=equivalence,runs=runs,
   exploratory_gate=complete==12 and len(ratios)==3 and speed['median']>=1.05 and all(v['step_counts_equal'] and v['numerical_gate'] for v in equivalence),
   boundary='Two fixed public-training-derived inputs, unchanged programs and source-seed restarts. No quality scores, live search, novel method or population inference.')
  out=R/'readout-v1';out.mkdir(mode=0o700,exist_ok=False);write(out/'summary.json',result)

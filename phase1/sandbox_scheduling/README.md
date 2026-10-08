@@ -206,3 +206,4 @@ GPU 为整卡数据，出现其他租户/未归属进程时不能算本候选成
 - [Ready Cohorts v2](https://arxiv.org/html/2608.12123)已有ready供给与机会/实际收益区分；研究的是微型确定性控制转移，其零服务时间离线边界并非任意MLE执行收益。不能将“先看有没有就绪工作”称新算法。
 - [SAGA](https://arxiv.org/html/2605.00528) §4–6已有工作流、KV缓存、tool TTL与任务公平性；非本试验任意候选GPU训练，但工作流感知本身不新。其收益数字不替代本地强参照。
 - [ElastiCo](https://arxiv.org/html/2608.07971v1) §4依赖配置画像、框架参数及必要时checkpoint恢复；这些接口在自然MLE程序中是否具备要实测，不能假设任意程序可无代价撤销，也不凭适用性差别宣称新方法。
+- 10/8核[NVIDIA MPS架构](https://docs.nvidia.com/deploy/mps/architecture.html)：普通多CUDA context可分时执行；多个驻留PID不是kernel同时执行证据。当前试验未启用MPS，所以结果称整程序共置/吞吐，不称kernel并行。MPS可作后续实现参照，但其[客户端结束约束](https://docs.nvidia.com/deploy/mps/when-to-use-mps.html#client-early-termination)要求先安全终止CUDA context，再处理进程；不能直接复用本运行器的超时kill。文档含新版接口，不假定现场驱动支持v3，也不在正在运行的批次切换MPS。

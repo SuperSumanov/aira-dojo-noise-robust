@@ -35,6 +35,7 @@ SOURCE_PINS=(
  ('denoising-dirty-documents','0d7b2d191f2dd2e4dd7b28a6c3d678eb321eb3f008abdefab538703a71bbc3f9'))
 IMAGE_SHA='801f646bed3cae6e74e10d793e71b0086658d4303d54552333c58125ddf9beda'
 CAP=5400
+NODE='gpu27'
 
 def schedule():
  rows=[]
@@ -51,7 +52,7 @@ def pilot():
 
 def check():
  plan=read(R/'plan.json')
- if plan['schedule']!=schedule() or plan['gpu_hours_cap']!=1.5:raise ValueError('frozen plan')
+ if plan['schedule']!=schedule() or plan['gpu_hours_cap']!=CAP/3600 or plan['node']!=NODE:raise ValueError('frozen plan')
  for name,h in plan['files'].items():
   if sha(R/name)!=h:raise ValueError('file drift')
  if os.readlink(R/'data-0/workspace_cache')!='/workspace/input_cache':raise ValueError('private cache drift')
@@ -211,7 +212,7 @@ def controller():
  for _ in range(40):
   if (R/'launch.json').exists():break
   time.sleep(.25)
- if read(R/'launch.json')['job']!=os.environ['SLURM_JOB_ID'] or socket.gethostname().split('.')[0]!='gpu27':raise ValueError('allocation identity')
+ if read(R/'launch.json')['job']!=os.environ['SLURM_JOB_ID'] or socket.gethostname().split('.')[0]!=NODE:raise ValueError('allocation identity')
  gpu=m.infra().native_uuids(1)[0]
  write(R/'allocation.json',dict(job=os.environ['SLURM_JOB_ID'],gpu_uuid=gpu,start=start,affinity=sorted(os.sched_getaffinity(0))))
  try:
@@ -219,7 +220,7 @@ def controller():
   if not run_one(36)['complete'] or p.gpu_sample(gpu)['apps']:raise ValueError('warmup/release')
   for block in range(6):
    rows=schedule()[2*block:2*block+2];arm=rows[0]['arm'];width=1 if arm=='serial' else 2
-   if time.time()-start+math.ceil(2/width)*555>5290:raise TimeoutError('whole block budget')
+   if time.time()-start+math.ceil(2/width)*555>CAP-110:raise TimeoutError('whole block budget')
    if p.gpu_sample(gpu)['apps']:raise ValueError('preblock release')
    stop=threading.Event();samples=[];errors=[]
    def observe():
@@ -259,12 +260,12 @@ def submit():
  env=pilot().runtime().infra().clean_env()
  jobs=subprocess.check_output(['squeue','-u','yzyang4','-h','-o','%i'],env=env,text=True,timeout=15).split()
  if set(jobs)-{'12535'}:raise ValueError('unexpected active job')
- write(R/'submit-intent.json',dict(gpu_hours_cap=1.5,planned=12,plan_sha256=sha(R/'plan.json')))
+ write(R/'submit-intent.json',dict(gpu_hours_cap=CAP/3600,planned=12,plan_sha256=sha(R/'plan.json')))
  result=subprocess.run(['sbatch','--parsable','--chdir='+str(R),'--output='+str(R/'allocation-%j.out'),'--error='+str(R/'allocation-%j.err'),str(R/'run.sbatch')],env=env,capture_output=True,text=True,timeout=20)
  job=result.stdout.strip().split(';')[0]
  if result.returncode or not job.isdigit():raise RuntimeError('ambiguous submission; no retry')
  write(R/'launch.json',dict(job=job,plan_sha256=sha(R/'plan.json')))
- print(json.dumps(dict(status='SUBMITTED',job=job,gpu_hours_cap=1.5)))
+ print(json.dumps(dict(status='SUBMITTED',job=job,gpu_hours_cap=CAP/3600)))
 
 if __name__=='__main__':
  os.umask(0o077);os.environ.update(PYTHON_DOTENV_DISABLED='1',PYTHONDONTWRITEBYTECODE='1')

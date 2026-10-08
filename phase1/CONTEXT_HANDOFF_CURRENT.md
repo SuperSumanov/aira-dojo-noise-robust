@@ -1,5 +1,5 @@
 # 当前短交接
-更新：2026-10-08 10:19香港附近最后观察。旧全文完整保留于Git 58740b57a1fb9d8574c375999e4b52abe2730d8f；不要把旧状态恢复成现场。
+更新：2026-10-08 10:30香港附近最后观察。旧全文完整保留于Git a4e39f4afec82c42df9aeb9373d0b915c028c5b4；不要把旧状态恢复成现场。
 
 ## 方向、目标、授权
 - 活跃checkout：C:/Research/New/my_project/MLEvolve/_codex_tmp/publication-feedback-20261001。fetch→CURRENT_DIRECTION→ROUTE_DECISIONS→本文件；旧aira-dojo-codex-20260813有用户dirty，不整体覆盖。
@@ -9,7 +9,7 @@
 - 不读first-960/Target-300/Target-522、D_val、官方test；不恢复HCE/多保真/Probe/TD/score-channel/K≥1。不操作旧12535 Held作业，不改学长分支。
 
 ## Git及远端
-- 本地HEAD 9426f9100d52d27dbff1b8c449494a936e71b126（同类负载对照源码，未push）；16996执行源码3bed6f7f，16997为3857ffbb。公开己方head已到58740b57a1fb9d8574c375999e4b52abe2730d8f，push+ls-remote核实，包含16994/16996与独立审计；无原始预测/标签/凭据，学长分支未改。
+- 本地及公开己方HEAD已到a4e39f4afec82c42df9aeb9373d0b915c028c5b4，push+ls-remote核实，包含16994/16996/16997与独立审计；12个变动文件凭据形状及敏感文件名扫描0命中。16996执行源码3bed6f7f、16997为3857ffbb、16999为9426f910。无原始预测/标签/凭据，学长分支未改；新独立同类审计仍是本地未提交准备，不改变运行协议。
 - dojo-reproduce最后fresh fetch=dfff0efb9daf1d4a63c74492f138c19c1fd8440e；学长autoresearch HEAD=d82dcd845e30e9771750510028d38a6d1d979c43，无新更新；未改学长分支。
 - SSH linux5/yzyang4；Python /research/d7/spc/yzyang4/venvs/aira/bin/python；SLURM_CONF=/opt1/slurm/gpu-slurm.conf。原MLE镜像只投已兼容gpu27/gpu28 RTX3090，不投projgpu39。
 - 研究盘/research/d7/spc/yzyang4总授权4TB至2027-08-30，不等于空闲容量。镜像SHA801f646bed3cae6e74e10d793e71b0086658d4303d54552333c58125ddf9beda。
@@ -43,7 +43,7 @@
 - 16996已COMPLETED/12尝试12完成/1444单GPU秒；root /research/d7/spc/yzyang4/scheduling-neural-20261008-v1；临时/tmp/r14-neural-20261008.63G0Qp；source3bed6f7f。plan SHA8da0e849c3203efc2c47c13f134fe9d841ede0f9c3d667789e41ab2aefb95edc；fixture SHAa02145bfaca50c15767948a62767e28ae9e9fc356d77239a4714fc7c1aa2d712。三配对加速中位1.3508923175938645、样本std0.09956925293864344；Cactus六次各150步、DnCNN六次各640步，六份输出/程序数值全同；两并发块max GPU clients=2，非kernel并发证明。readout SHA8bd34bf9fab08dccc33f38c63376bbf3a83fbc8a347bdcc86f5d10c5620e5104、runs SHAb022efb4d519291b8bdb481ab3fe94fdc27c2d31bb539a897c8d7dbeaae7f13c、独立audit SHAde1078c9f0b6c3b7b2c5808c1ac14375ddff98ff20fffb8ce3587a9ecf41227c。readout-v1/audit-v1均已写一次，不重跑writer。
 - 输入仅公开train：cactus首64字典序ID作query、其余train，原程序内部用20%子集；DnCNN首31数字ID配对输入（内部16训练/15验证）、后2仅noisy作query，query clean不挂载。原源码/超参不改；每episode空私有缓存，readonly输入固定symlink→/workspace/input_cache。仅开发fixture、非完整MLE-bench。原镜像依赖/被动Adam记录器CPU等价与真实GPU资格均通过；不是跨训练seed。
 - 16997已36/36完成、488单GPU秒；pipeline root /research/d7/spc/yzyang4/scheduling-pipeline-20261008-v1；tmp /tmp/r14-pipeline-20261008.lSnlbY；source3857ffbb；plan SHAe2496978a3d0d58870ac05d0d3283f238ada8963219b7b2252eab0f488f46094。四个16994原程序/原输入×serial/pipeline/share2×3原seed重启；pipeline只并行初始化，候选至close FIFO串行。中位serial/pipeline=1.3895209144462672、pipeline/share2=1.3177936445362894、serial/share2=1.8311018300075441；四程序各9份输出数值全同，GPU fit轮数相同，独立GPU/CPU身份/屏障/输出审计通过。仍只小程序系统证据；单次2.09含时长波动，不称理想固定服务时间加速。readout SHAfd6a6009a331cde091cc4c0e5772a5f37ffbaacbc5085066195017c908ac6bb4；runs SHA f2a5ab36b71af9b6f12a29c97b63c06d06b66a3c8d35e26e0cca992d5bac92b3；audit SHA292cd12473e69b7626ddb601efdcfa6192a9a887e735958874b3a0700079608f。两writer已完成，不重复。
-- 新16999已SUBMITTED（10:22香港），同类负载root /research/d7/spc/yzyang4/scheduling-homogeneous-20261008-v1；tmp /tmp/r14-homogeneous-20261008.jgBdf3；source9426f910；plan SHA1015a7039bdb3436f9d0c0fb2711c045b9c4b48513224bff4c70aa66b381388a。2原神经任务×serial/share2×3原seed重启×2私有实例=24；原worker/输入/镜像/训练量不改，450s候选/550s worker，1×3090/6CPU≤90min/1.5GPUh，分任务报告不合并。37本地相关测试、4远端矩阵测试通过。首次SSH握手失败已核无launch/submit-intent、无同脚本进程、队列仅旧12535，之后一次有效提交为16999，不重复prepare/submit。监测用tmp/neural_status.py --kind homogeneous，读数仅结束后homogeneous_readout.py一次。
+- 新16999已RUNNING gpu27（10:23核队列，10:29结构2/24完成、两并发进行中、无失败），同类负载root /research/d7/spc/yzyang4/scheduling-homogeneous-20261008-v1；tmp /tmp/r14-homogeneous-20261008.jgBdf3；source9426f910；plan SHA1015a7039bdb3436f9d0c0fb2711c045b9c4b48513224bff4c70aa66b381388a。2原神经任务×serial/share2×3原seed重启×2私有实例=24；原worker/输入/镜像/训练量不改，450s候选/550s worker，1×3090/6CPU≤90min/1.5GPUh，分任务报告不合并。44本地相关测试、4远端矩阵测试通过。首次SSH握手失败已核无launch/submit-intent、无同脚本进程、队列仅旧12535，之后一次有效提交为16999，不重复prepare/submit。监测用tmp/neural_status.py --kind homogeneous，读数仅结束后homogeneous_readout.py一次；独立审计还将核每实例时延，不以整批吞吐隐去拖慢。
 - 新神经门事前固定：12完整/3完整比较、median speedup≥1.05、每程序step数一致；cross-arm maxdiff≤within-arm maxdiff+1e-6且≤1e-5。数值容差不是质量保证，不读score；失败保留不补。计划与源文件hash绑定，明确全池计费。
 - SchedMate§3–4：代码/历史/日志语义与干扰撤销已覆盖；无历史fallback profile、无progress跳过撤销是适用条件，不是我方优势已证。
 - 新补AgentCgroup v3（工具级CPU/RAM及双向资源意图）、MARS系统v2 2604.26963（生成GPU/工具CPU联动准入）、Cortex（阶段资源池）。不要混淆这个MARS与R1经验论文。

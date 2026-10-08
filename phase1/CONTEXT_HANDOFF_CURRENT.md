@@ -1,5 +1,5 @@
 # 当前短交接
-更新：2026-10-08 09:18香港附近最后观察。旧全文完整保留于Git 6e36a61d4f6bca53f0a4605656f49fe4c189fe64；不要把旧状态恢复成现场。
+更新：2026-10-08 10:02香港附近最后观察。旧全文完整保留于Git dd7c4fab5884feeacbe7daaf1da9de048762eb38；不要把旧状态恢复成现场。
 
 ## 方向、目标、授权
 - 活跃checkout：C:/Research/New/my_project/MLEvolve/_codex_tmp/publication-feedback-20261001。fetch→CURRENT_DIRECTION→ROUTE_DECISIONS→本文件；旧aira-dojo-codex-20260813有用户dirty，不整体覆盖。
@@ -9,8 +9,8 @@
 - 不读first-960/Target-300/Target-522、D_val、官方test；不恢复HCE/多保真/Probe/TD/score-channel/K≥1。不操作旧12535 Held作业，不改学长分支。
 
 ## Git及远端
-- 本地HEAD 6e36a61d4f6bca53f0a4605656f49fe4c189fe64（新v2源码冻结）；前两提交51af1543/69bc9b88。尚未push本轮三提交。
-- 本轮fresh fetch最后确认myfork/phase1-value-critic=8ec5f723040031f66e9096a6c495387b122af53d；dojo-reproduce=dfff0efb9daf1d4a63c74492f138c19c1fd8440e；学长autoresearch HEAD=d82dcd845e30e9771750510028d38a6d1d979c43，无新更新。
+- 本地HEAD 3857ffbb076dc9bf49192abce7935bae05dc1d4c（独立审计与启动重叠对照源码，尚未push）；16996执行源码3bed6f7f。公开己方head仍dd7c4fab5884feeacbe7daaf1da9de048762eb38，push+ls-remote已核实；包含16994完整失败分母和独立审计。
+- dojo-reproduce最后fresh fetch=dfff0efb9daf1d4a63c74492f138c19c1fd8440e；学长autoresearch HEAD=d82dcd845e30e9771750510028d38a6d1d979c43，无新更新；未改学长分支。
 - SSH linux5/yzyang4；Python /research/d7/spc/yzyang4/venvs/aira/bin/python；SLURM_CONF=/opt1/slurm/gpu-slurm.conf。原MLE镜像只投已兼容gpu27/gpu28 RTX3090，不投projgpu39。
 - 研究盘/research/d7/spc/yzyang4总授权4TB至2027-08-30，不等于空闲容量。镜像SHA801f646bed3cae6e74e10d793e71b0086658d4303d54552333c58125ddf9beda。
 - Windows SSH内层引号会丢失；远端格式参数不用管道符，复杂逻辑上传脚本。Git附属sh可能报NtCreateDirectoryObject警告，不能据此声称hook通过；commit本身成功要另核SHA。
@@ -30,7 +30,7 @@
 - 完整A/B三配对serial/share2=1.8423276573417586、1.7307638813016224、1.7852942816262258；中位1.7852942816262258，样本标准差0.05578656742353592。四程序6份A/B输出各15两两比较数值全同，形状/原完成回执哈希独立核验通过；60比较非60独立样本。
 - 独立时间审计SHA d21cd09c38e87c3dfa5ccdb0b6d8451a034cd51f01e894399c911394ad0d353d；独立输出审计SHA fdf14b788c7ef930b67225be03e279845cae12c105779d88741fea6a2e06ecc7；readout SHA b8347a0e529feb84d646765f5f09eae07a56716569d75ae7b529a2d332d2069f。证据本地sandbox_scheduling/pool_v2_closed。所有观察块max resident GPU clients=1；只能称启动/CPU/候选阶段并行，未证同时GPU训练共置。
 - slot17 one_gpu/program4在candidate开始前cell0 TimeoutError，外层ValueError；不是候选OOM或策略因果反证。保留失败，C只有2完整比较，不报告删失败的C胜负。closed SHA f15cab21c26e8967ae0bf8f1002476323dcaa925539bf8d2fe47fcae4ff918a5；runs SHA ee08a68c8c130a690b6a951fb6d5827ae9879fc54d9f18ce3e99f992b25c832f。
-- 本窗口4批合计746单GPU秒=0.20722222222222222GPUh（程序打印）；尚余自限空间，但新实验必须独立冻结设计。下一步只读资格检查两份固定公开from-scratch CNN源码（cactus/DnCNN），未提交新神经批次、未声称广泛收益。
+- 本窗口前4闭合批746单GPU秒，加16996的1444秒，合计2190单GPU秒=0.6083333333333333GPUh（已打印）。16996已COMPLETED，不重开。新启动对照最多0.75GPUh，仍在总3GPUh内。
 - 保持4份原源码，公开输入非5类至少5行，唯一类5按原程序加入每个训练折；CPU已核所有训练折均含7类，不复制/重标/使用query。SSH准备阶段曾断开，PID145097继续写完preflight；不是重复prepare。旧16992及入口批次均不改。
 - 矩阵：原programs 0(XGB)/1(Spooky TFIDF)/4(CatB)/3(Petfinder LGB)，共3任务；serial/share2/one_gpu ×3原样重启=36槽，另1次warmup，所有开销含于单3090/6CPU/90分钟。不是跨训练seed。
 - 新GPU输入只替换末端超出最低覆盖的类行，补最早独立公开训练行；排除旧train/query IDs、query不变；两GPU程序及所有臂共用新输入，旧文件不改。属于新开发小样本系统试验，不称全MLE-bench。
@@ -40,12 +40,17 @@
 - 本地相关30测试通过；远端新增8测试通过。新记录器还在实际冻结旧ExecutionResult上纯CPU验证；不把mock当GPU成功。当前源码fixed_pool_trial.py/readout.py及tests，原throughput_pilot.py未改（SHAb30eed3f…）。
 
 ## 研究核验与边界
+- 16996已COMPLETED/12尝试12完成/1444单GPU秒；root /research/d7/spc/yzyang4/scheduling-neural-20261008-v1；临时/tmp/r14-neural-20261008.63G0Qp；source3bed6f7f。plan SHA8da0e849c3203efc2c47c13f134fe9d841ede0f9c3d667789e41ab2aefb95edc；fixture SHAa02145bfaca50c15767948a62767e28ae9e9fc356d77239a4714fc7c1aa2d712。三配对加速中位1.3508923175938645、样本std0.09956925293864344；Cactus六次各150步、DnCNN六次各640步，六份输出/程序数值全同；两并发块max GPU clients=2，非kernel并发证明。readout SHA8bd34bf9fab08dccc33f38c63376bbf3a83fbc8a347bdcc86f5d10c5620e5104、runs SHAb022efb4d519291b8bdb481ab3fe94fdc27c2d31bb539a897c8d7dbeaae7f13c、独立audit SHAde1078c9f0b6c3b7b2c5808c1ac14375ddff98ff20fffb8ce3587a9ecf41227c。readout-v1/audit-v1均已写一次，不重跑writer。
+- 输入仅公开train：cactus首64字典序ID作query、其余train，原程序内部用20%子集；DnCNN首31数字ID配对输入（内部16训练/15验证）、后2仅noisy作query，query clean不挂载。原源码/超参不改；每episode空私有缓存，readonly输入固定symlink→/workspace/input_cache。仅开发fixture、非完整MLE-bench。原镜像依赖/被动Adam记录器CPU等价与真实GPU资格均通过；不是跨训练seed。
+- 新16997已SUBMITTED（10:04香港，尚待核队列），pipeline root /research/d7/spc/yzyang4/scheduling-pipeline-20261008-v1；tmp /tmp/r14-pipeline-20261008.lSnlbY；source3857ffbb；plan SHAe2496978a3d0d58870ac05d0d3283f238ada8963219b7b2252eab0f488f46094。四个16994原程序/原输入×serial/pipeline/share2×3原seed重启=36，1×3090/6CPU最多45min=.75GPUh。pipeline只并行初始化，候选至close严格FIFO串行；不复用kernel/训练缓存。33本地相关测试、5远端机制测试通过，prepare已rc0，不重复准备/提交。16996 audit已取回并核SHA，不重复远端writer。
+- 新神经门事前固定：12完整/3完整比较、median speedup≥1.05、每程序step数一致；cross-arm maxdiff≤within-arm maxdiff+1e-6且≤1e-5。数值容差不是质量保证，不读score；失败保留不补。计划与源文件hash绑定，明确全池计费。
 - SchedMate§3–4：代码/历史/日志语义与干扰撤销已覆盖；无历史fallback profile、无progress跳过撤销是适用条件，不是我方优势已证。
 - 新补AgentCgroup v3（工具级CPU/RAM及双向资源意图）、MARS系统v2 2604.26963（生成GPU/工具CPU联动准入）、Cortex（阶段资源池）。不要混淆这个MARS与R1经验论文。
 - Regression Language Models for Code已有代码预测资源；VeritasEst已有CPU动态分析估计GPU显存；ATLAS已有提交时非clairvoyant预测/调度benchmark；“廉价资源预测”本身不新。
 - DetShare/Pollux已有资源—执行/训练配置耦合；Substrate-Aware AI Agents 2609.05232已有事前资源约束提示；异步评价耗时偏差及按父选择频率修正也有旧工作。只换到MLE不足以宣称原创。
 - 固定公开158程序/40任务/80相关父子对，source-only计时筛查20命中；13程序/6任务含clock条件与break，7未见break。含debug路径，未证可达性/真实训练效应/生产占比。
 - 该screen root /research/d7/spc/yzyang4/scheduling-branch-screen-20261008-v1；summary.json、branches.json、review-v1/structures.json/summary.json。review结构SHA1797cba7a4230634f8f192d55e58d8e06f052e2b9568b5a0318b928c5576e730；必须逐例核，不能把语法命中称改善。
+- clock-contracts-v1/summary.json已写一次，SHA cc37ab924fdc7caa78bdc02a221d3ecec9ea07aa9f5698ee6ef65ba4ee588608；13源码含debug-only分支、显式None调用及3000–3300s限制。配置本身可有3300，不能由fit调用None断言整程序时间门关闭；未证共享触发，不改时钟造阳性。
 - 旧4份batch随free-VRAM变化仅纯算式；旧16370全池22.72%生成预留窗口不是节省、无ready backlog证据；生产factory本就close。16624只证生命周期原语，不是生产泄漏或调度加速。
 
 ## 历史与收尾

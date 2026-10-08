@@ -7,6 +7,14 @@
 
 ## 这次解决什么
 
+10/8追加的近邻核验：NSDI'23 [TGS](https://www.usenix.org/conference/nsdi23/presentation/wu)
+已经在容器下方提供透明GPU共享、干扰控制及统一内存；“任意软件/不改任务代码”不是空白。
+[Salus作者实现](https://github.com/SymbioticLab/Salus)则要求配套定制TensorFlow，不能在保持本轮原镜像不变时直接当可运行参照。
+这些是适用接口差别，不是我方新颖性证明。本轮先检验固定并发这个廉价参照，不因局部阳性自动开发LLM调度器。
+同日补核[Concord出版方摘要/引言](https://www.sciencedirect.com/science/article/pii/S0167739X2600230X)：
+已有不依赖作业时长估计的共享准入，以及干扰影响/敏感度的离线画像；正文直取403，未声称读完全文。
+“未知时长也能共享”不能单独作新颖性；它不等于免画像、一次性未知源码或我方实测收益。
+
 现有 `LocalGpuPoolLauncher` 分配的是整次搜索 run 的整卡槽位，`ExecutionResult`
 主要记录执行时长。它们不能回答候选在何时使用 CPU/GPU、是否出现晚发资源峰值。
 先建立可审计观测接口，再决定调度方法；不能从最近失败程序或启动器低占用推断共享收益。

@@ -1,10 +1,11 @@
 # 当前短交接
-更新：2026-10-08香港。用户要求约07:51–13:51完整六小时继续研究；16987入口复验已失败闭合，仍无系统收益结论。
+更新：2026-10-08香港。用户要求约07:51–13:51完整六小时继续研究；16989复验1成功/1失败，仍无系统收益结论。
 
 ## 10/8最新状态（覆盖下方历史现场）
 - fresh fetch我方8ec5f723040031f66e9096a6c495387b122af53d、学长dfff0efb9daf1d4a63c74492f138c19c1fd8440e未变。当前goal记录六小时研究窗口，不自动扩展GPU/API预算。学长新消息担忧SchedMate；重新核§3–4，宽语义调度已覆盖，不凭设定区别认定创新。
 - 唯一新提交16987（原批准2程序各一次，gpu27/1×3090/15分钟≤0.25GPUh）已FAILED1:0；两worker尝试/候选真正开始0/完成0；sacct分配37秒。新记录器读取冻结旧ExecutionResult不存在的timeout_phase，在prelude返回时AttributeError退出。是我方包装器接口错误，不是候选或调度负结果，不再用余额重跑。
-- 源commit8ec5f723；root /research/d7/spc/yzyang4/scheduling-entry-20261007-v1；plan SHA96d7e9e7ed7f7dcf9d85eea1ca98edca5f00ab6a45edd58b1c76425e5a8d2495。原件不改。已修记录器，17项本地测试通过、实际旧ExecutionResult纯CPU验签通过。用户明确批准独立v2：仍原2程序各1次，单3090最多15分钟/含失败≤0.25GPUh；新root scheduling-entry-20261008-v2，尚未提交，不复用旧批次预算。
+- 原16987根 scheduling-entry-20261007-v1及原件不改。修记录器后本地17/远端14测试通过，实际旧ExecutionResult纯CPU验签通过。独立16989已FAILED1:0、43单GPU秒、2真执行/1完成：CatB实际GPU59轮并产出512行文件；XGB因小样本缺源码所需稀有类别RuntimeError，不是GPU不兼容。root /research/d7/spc/yzyang4/scheduling-entry-20261008-v2；source69bc9b88bde61cc021bdd354e8922fa74bd59237，plan SHA6b68c0d0cb8526e375b5f5a2e1dec8f3ffaee0b035836b380c318272ba510762，closed SHA8002aec68145137863971df2d7ee2bb33f49676b5c3c1556b4a0c2bfe3515396。旧批次不重开；下一步先公开训练类别覆盖核查。
+- 用户08:12前后明确“批准所有操作不用问”，允许自主合理推进、避免重复索批；保护集/底座/API安全边界不解除。本窗口先控制新增试验≤3单3090 GPUh（含失败与资格），无付费API。尚未启动新的共享对照；任何新输入修正须另批冻结、全部臂同输入，不改旧结果。
 - 研究优先实测需求/低成本强参照，防止再围绕最新失败堆harness；AgentCgroup也已覆盖未知突发/高恢复代价/agent资源声明，不能当新颖宽主张。不读封存集/质量结果，无API/底座更新，不碰12535或学长分支。
 
 ## 10/7最新状态（覆盖下方10/6历史现场）

@@ -1,5 +1,5 @@
 # 当前研究方向：唯一短入口
-更新：2026-10-07 14:30香港。方向入口；限定授权与实时状态见短交接。
+更新：2026-10-08香港。方向入口；限定授权与实时状态见短交接。
 此前全文与证据保存在Git e5e83b6e4eed842197f7de924ae4734003e8965a及各结果目录；更早历史见CURRENT_DIRECTION_HISTORY_THROUGH_20261005.md。
 
 ## 10/6用户新优先级：MLE沙箱资源调度，先验证资格与独特增量
@@ -10,6 +10,8 @@
 **裁决：优先做资源调度的小规模资格探索；暂停扩展旧自然父程序回放/critic配方，不宣布已有新方法或收益。** 新长贵批次仍要单独给配置、run数和GPU小时，旧16582授权已结束。用户随后批准16624六次限定资源验证，现已6/6完成；不改生产运行器，无API/训练。
 修正版原文：[扩展调研](https://github.com/VOXXXX1874/autoresearch_project/blob/d82dcd845e30e9771750510028d38a6d1d979c43/survey/system/shared_sandbox/scheduling_virtualization_extension.md)；Git blob 7372391ad46f3e5bc0d9e75173b0e3611c46f6eb。proposal blob 66d80ad88bc3ea4c2d20c7cff2958aad6f31605d。
 
+**10/8更新**：16987因我方记录器访问旧接口缺失字段而在候选前失败；独立16989修正后2份原程序均开始，CatB完成真实GPU59轮，XGB因开发小样本漏唯一稀有类别而失败；共43单GPU秒，不是调度效果。旧批次均封闭。用户明确批准自主合理推进、不反复索批；新限定对照拟固定4程序/3任务×串行/双并发/最多1个GPU程序×3原样重启=36次，1×3090/6CPU最多90分钟≤1.5GPUh，先补齐公开训练类别覆盖且所有臂同输入。仅简单强参照的系统机会检验，不宣称新语义方法；本窗口新增GPU自限≤3GPUh、无API/底座更新，现场见短交接。
+
 10/7用户明确批准新限定批次，16846现已闭合：6固定开发程序、单执行/双并发×3原样重复=36槽，1×3090最多90分钟/1.5GPUh。首串行块6尝试/2完成/4失败，余30未启动，未进入共置；实耗362单GPU秒=0.10055555555555555 GPUh。两份树程序SystemExit:2与notebook参数污染一致、一份初始化失败原因未定、一份CPU程序超时。独立[回执](sandbox_scheduling/throughput_readout_v1/summary.json)与36行CSV保留。原源码/镜像未改，无评分/API/底座训练；不补样本/重试，不把资格失败当共享负结果。入口修正规则仅CPU复现，未做原GPU程序复验。R14仍在资格阶段，未有系统收益，不扩大语义路线。
 
 ### 必须先解决的新颖性问题
@@ -19,6 +21,7 @@
 - 可研究的窄问题：阶段多变、缺少可靠历史匹配/统一进度接口、错误共置后无法便宜撤销的生成程序，是否需要不同的事前准入判断；语义是否真比廉价特征/父程序经验多提供有效信息？该难点在本项目中的频率和损失尚未测量。
 - 补核[Cortex](https://research.google/pubs/cortex-workflow-aware-resource-pooling-and-scheduling-for-agentic-serving/)作者摘要已有阶段资源池，[SpecBox](https://arxiv.org/html/2607.23933)已有沙箱预热/预取；阶段借还只作强基线。[Agentic CPU-GPU Scheduling](https://arxiv.org/html/2607.22242)已有工具profile、三选与反馈重测。若切入一次性未知程序，须计入第一次/累计测量成本，不免费profile未来候选或只报最佳轮；详细界限见sandbox_scheduling/README。
 - 10/7核[DetShare](https://arxiv.org/html/2603.15042v1)的资源耦合/语义等价与[Pollux](https://www.usenix.org/conference/osdi21/presentation/qiao)的资源—训练配置联合适配。不能把“共享可能改变训练行为”本身叫新发现；本轮源码切片仅为对照等价性提供具体检查对象。
+- 10/8补核[MARS系统v2](https://arxiv.org/html/2604.26963)的CPU工具/GPU生成联动准入；不同于旧R1的MARS经验论文。AgentCgroup v3已有双向资源意图，Regression Language Models for Code已有代码预测资源，Substrate-Aware AI Agents已有事前资源约束提示；不能用这些宽概念补新颖性。158固定公开源码的计时筛查20命中、13含跳出循环/6任务、7仅候选日志类；含debug路径，仍待可达性/运行复核，不是共享效果或新机制证明。
 
 ### 初步接线范围与两道实验关
 1. **先观测与系统机会**：保持AIRA-dojo和原镜像，记录候选arrival/start/end、进程组、CPU/RAM、GPU显存/占用、I/O及同时运行者。候选私有写目录，共享只读数据；不改候选代码、超参、训练量，不做早停质量筛选。

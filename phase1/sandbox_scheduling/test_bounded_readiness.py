@@ -110,6 +110,31 @@ class ReadinessTests(unittest.TestCase):
         client = Transport([(.2,message)])
         self.assertTrue(wait_for_ready(client, 1, clock=client.clock))
 
+    def test_slow_send_still_allows_receiving_before_retry(self):
+        client = Transport(reply_on_send=1)
+        original_send = client._send_message
+        def slow_send(**kwargs):
+            client.now += 1.5
+            return original_send(**kwargs)
+        client._send_message = slow_send
+        self.assertTrue(wait_for_ready(client, 4, retry_seconds=1, clock=client.clock))
+        self.assertEqual(len(client.requests), 1)
+        self.assertAlmostEqual(client.now, 1.6)
+
+    def test_send_exhausting_total_deadline_never_receives_or_retries(self):
+        client = Transport(reply_on_send=1)
+        original_send = client._send_message
+        def slow_send(**kwargs):
+            client.now += 2.5
+            return original_send(**kwargs)
+        client._send_message = slow_send
+        self.assertFalse(wait_for_ready(client, 2, clock=client.clock))
+        self.assertEqual(len(client.requests), 1)
+        self.assertEqual(client.timeouts, [])
+        # The helper cannot interrupt a blocking send: the outer hard deadline
+        # remains required. This test must not claim an elapsed-time guarantee.
+        self.assertEqual(client.now, 2.5)
+
     def test_transport_error_is_not_suppressed(self):
         client = Transport()
         def failed(**kwargs):

@@ -27,7 +27,9 @@ def wait_for_ready(client, timeout_seconds, *, retry_seconds=1.0,
             message_id = client._send_message(content={}, channel='shell',
                                                message_type='kernel_info_request')
             pending.add(message_id)
-            next_send = now + retry_seconds
+            # A slow send must leave a receive window instead of immediately
+            # issuing another request. The total deadline is never extended.
+            next_send = clock() + retry_seconds
         remaining = min(deadline, next_send) - clock()
         if remaining <= 0:
             continue

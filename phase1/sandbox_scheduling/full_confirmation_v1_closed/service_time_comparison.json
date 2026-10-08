@@ -1,0 +1,74 @@
+{
+  "job": "17017",
+  "primary_sha256": "8c985bc78b4056980436589486ffa50c0999a5b5efc91c6bae76d21e4db608a7",
+  "source_commit": "5f44b1af605f4f7b6034d3556c4c1a2f62b7232b",
+  "plan_sha256": "b8bf8619c61a98db5af35bb2b68f4b9838354c9ccfef166d8dd788ca0b16df7f",
+  "planned": 12,
+  "completed": 12,
+  "analysis": "Post-hoc same-program/same-repeat comparison of reported exec_seconds; not a causal interference or statistical equivalence test.",
+  "formula": "share2_over_serial = share2.exec_seconds / serial.exec_seconds; join by program, repeat; require one completed row per arm.",
+  "pairs": [
+    {
+      "program": 0,
+      "repeat": 0,
+      "serial_index": 0,
+      "share2_index": 2,
+      "serial_exec_seconds": 156.9961099224165,
+      "share2_exec_seconds": 135.98723880760372,
+      "share2_over_serial": 0.8661822186218828
+    },
+    {
+      "program": 0,
+      "repeat": 1,
+      "serial_index": 7,
+      "share2_index": 5,
+      "serial_exec_seconds": 160.91139559447765,
+      "share2_exec_seconds": 144.17539162561297,
+      "share2_over_serial": 0.8959924254771733
+    },
+    {
+      "program": 0,
+      "repeat": 2,
+      "serial_index": 8,
+      "share2_index": 10,
+      "serial_exec_seconds": 138.74316863622516,
+      "share2_exec_seconds": 137.67904139123857,
+      "share2_over_serial": 0.9923302368293414
+    },
+    {
+      "program": 1,
+      "repeat": 0,
+      "serial_index": 1,
+      "share2_index": 3,
+      "serial_exec_seconds": 230.14377789013088,
+      "share2_exec_seconds": 231.59291389025748,
+      "share2_over_serial": 1.0062966551318995
+    },
+    {
+      "program": 1,
+      "repeat": 1,
+      "serial_index": 6,
+      "share2_index": 4,
+      "serial_exec_seconds": 230.01964946091175,
+      "share2_exec_seconds": 232.4697453789413,
+      "share2_over_serial": 1.0106516809488744
+    },
+    {
+      "program": 1,
+      "repeat": 2,
+      "serial_index": 9,
+      "share2_index": 11,
+      "serial_exec_seconds": 234.38828502502292,
+      "share2_exec_seconds": 233.88687748555094,
+      "share2_over_serial": 0.9978607824217048
+    }
+  ],
+  "limits": [
+    "exec_seconds is whole reported code execution, not GPU kernel time or queue-inclusive response time.",
+    "No different training seeds; three restarts of the same original seed per arm.",
+    "Cactus service-time variation remains unexplained; cache, CPU contention, thermal state and source timing variability are not separated.",
+    "DnCNN observed near-equal duration does not prove general absence of interference.",
+    "No pooling with 17005 or the incomplete 17021; no new candidate executions or quality outcomes.",
+    "Input, original-image and output/step equivalence checks remain in the primary audit and identity supplement."
+  ]
+}

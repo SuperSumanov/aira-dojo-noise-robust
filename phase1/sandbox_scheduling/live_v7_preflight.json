@@ -1,0 +1,14 @@
+{
+  "date_hong_kong": "2026-10-09",
+  "source_commit": "44fcf9b433d0ed26c7799f82e5052a82d888f5a1",
+  "root": "/research/d7/spc/yzyang4/scheduling-live-search-20261009-v7",
+  "stage": "/research/d7/spc/yzyang4/scheduling-entry-fix-20261009.yAyBZB",
+  "entry": "live_entry_fix_trial.py",
+  "authorization": "Same current six-hour autonomous research authorization. Matrix and cap communicated; old failed allocation remains closed, no reuse of its budget.",
+  "design": "Infrastructure retry of live_v6_preflight.json: same16 assigned runs,2 tasks,2 paired ABBA pools,600s searches,1320s whole-pool slots,3 GPUs/18 physical cores,90min<=4.5GPUh. Same seeds142901-142904 and143001-143004. No outcome selection; no model/candidate ran in v6.",
+  "only_common_change_from_v6": "Export host from actual container-shim wrapper; reject missing wrapper interface before costly prepare and validate correct root during native CPU preflight. Resolve already-loaded CLI entry to avoid duplicate mutable initialization. Same fix in both arms; frozen v6 files untouched.",
+  "gates": "All16 clean closures and4 equal-budget/isolation checks; both paired pool valid-return differences positive and endpoint coverage not reduced for feedback signal. Separate stricter final-score gate retained. Incomplete/missing remains unknown, not0; only2 independent scheduling pool pairs.",
+  "preflight": {"local_total": 37, "local_passed": 34, "local_linux_skipped": 3, "remote_passed": 12, "changed_source_sha256_match": true, "prepare_session": 36436, "prepare_started_hong_kong": "2026-10-09T15:18:00+08:00", "prepare_completed": false},
+  "safety": "Same original task/model images, legal development data/scorer, no protected cohorts/test, no paid API, no agent-base update. No driver or permission changes; don't touch12535Held. All3 GPU reservation, startup, padding, failures included.",
+  "status": "PREPARING_NOT_SUBMITTED"
+}

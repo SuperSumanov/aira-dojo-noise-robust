@@ -11,5 +11,15 @@
   "go": "16 clean closures,4 structural/budget checks, both pool return differences strictly positive and neither pool reduces valid endpoint coverage. Separate final-quality gate additionally requires all8 finite valid paired scores and nonnegative per-task median oriented differences.",
   "boundaries": "Repeated small NLP dev tasks, not neural workload or population confirmation. Missing scores are not zero. No claim of semantic novelty, SchedMate/MARS superiority or final quality from throughput alone.",
   "preflight_routing": "Native config/8-pair/source/input/model/image pins verified during prepare; full16 synthetic readout tested. No training or corpus reshuffle, so training-label leakage/power rules not applicable. No protected cohort/test, paidAPI or base update. Actual CPU/GPU computation and cleanup checked inside capped allocation. All failed costs retained.",
-  "status": "DESIGNED_NOT_SUBMITTED"
+  "source_commit": "e28fc36da474e58091676310cd20fd9bc314e679",
+  "plan_sha256": "9bd8dc3b786c69f3a98fb892f49722c5a4c545532346e46be0e392108ae5ad9a",
+  "stage": "/research/d7/spc/yzyang4/scheduling-physical-cpu-20261009.TEzCYJ",
+  "root": "/research/d7/spc/yzyang4/scheduling-live-search-20261009-v6",
+  "verified": {"local_tests": 36, "local_passed": 33, "linux_skipped_local": 3, "remote_passed": 11, "prepare_exit_code": 0, "prepare_session": 29867, "native_configs": 16, "paired_configs": 8, "model_image_input_pins_verified": true, "test_only_not_a_job": "17272"},
+  "status": "CLOSED_PRE_CANDIDATE_ENTRY_FAILURE",
+  "job": "17273",
+  "accounting": "17273|FAILED|14|billing=18,cpu=18,gres/gpu=3,node=1|1:0|2026-10-09T15:12:42|2026-10-09T15:12:56",
+  "gpu_seconds": 42,
+  "started_searches": 0,
+  "cause": "Wrapper omitted host export used by generated container shim; ImportError before model, GPU arithmetic or candidate launch. Own integration error; not a method result. V7 retains science and seeds, adds actual shim regression."
 }

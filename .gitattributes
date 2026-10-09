@@ -865,6 +865,7 @@ phase1/sandbox_scheduling/test_live_*.py -text diff whitespace=cr-at-eol
 phase1/sandbox_scheduling/live_v3_closed/** -text diff whitespace=cr-at-eol
 phase1/sandbox_scheduling/live_v4_closed/** -text diff whitespace=cr-at-eol
 phase1/sandbox_scheduling/live_v5_closed/** -text diff whitespace=cr-at-eol
+phase1/sandbox_scheduling/live_v6_closed/** -text diff whitespace=cr-at-eol
 phase1/sandbox_scheduling/cpu_binding_17267_closed/** -text diff whitespace=cr-at-eol
 phase1/sandbox_scheduling/port_interface_audit_20261009.json -text diff whitespace=cr-at-eol
 phase1/sandbox_scheduling/return_dominance.py -text diff whitespace=cr-at-eol

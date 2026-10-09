@@ -1,0 +1,41 @@
+{
+  "all_eight_score_pairs_observed": false,
+  "allocation_gpu_hours": 0.011666666666666667,
+  "allocation_gpu_seconds": 42,
+  "assigned": 16,
+  "assigned_pool_return_count_differences": [
+    0,
+    0
+  ],
+  "boundary": "Two paired scheduling blocks, reused development tasks. No population significance, neural-workload replication or new-method claim.",
+  "closed_sha256": "6515d46878108a0defc12b7240ca22ad1bbc3278286f59b5e5445acd2e944f61",
+  "complete": 0,
+  "controller_error": "ValueError",
+  "exploratory_go": false,
+  "feedback_throughput_signal": false,
+  "fixed_block_seconds": 1320,
+  "observed_pool_pairs": 0,
+  "paired_pool_valid_return_differences": [
+    null,
+    null
+  ],
+  "paired_task_medians": {
+    "random-acts-of-pizza": null,
+    "spooky-author-identification": null
+  },
+  "paired_task_oriented_score_differences": {
+    "random-acts-of-pizza": [],
+    "spooky-author-identification": []
+  },
+  "paired_valid_endpoint_differences": [
+    0,
+    0
+  ],
+  "plan_sha256": "9bd8dc3b786c69f3a98fb892f49722c5a4c545532346e46be0e392108ae5ad9a",
+  "pool_difference_median": null,
+  "pool_difference_sample_std": null,
+  "readout_source_sha256": "da1d5a9fb5f08fabb0de84cb8cd802149f182ed0973db992bdfd9ee71d6d1f93",
+  "readout_utc": "2026-10-09T07:15:01.644569+00:00",
+  "source_commit": "e28fc36da474e58091676310cd20fd9bc314e679",
+  "structural_audit": false
+}

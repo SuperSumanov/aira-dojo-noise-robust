@@ -6,15 +6,15 @@
 - 活跃checkout：C:/Research/New/my_project/MLEvolve/_codex_tmp/publication-feedback-20261001。fetch→CURRENT_DIRECTION→ROUTE_DECISIONS→本交接；旧aira-dojo-codex-20260813的用户dirty保留。
 - 14:52独立CPU诊断17267完成：服务12物理核/执行6，物理和逻辑CPU集合均不重叠，36GPU秒。标准Slurm nomultithread hint有效，不叠加冲突cpu-bind；不是科学收益。先前session92814连接超时未提交，现场核无intent后才成功新提交。
 - v5/17262已CANCELLED：14:37:37–14:42:56，319×3=957GPU秒（0.2658333333333333GPUh）；16条0启动、服务未ready。服务实际9物理核违背12核契约，候选前停止；旧root不重开。operator_stop.json是取消回执，非合成完成结果。
-- v6 root=/research/d7/spc/yzyang4/scheduling-live-search-20261009-v6；stage=/research/d7/spc/yzyang4/scheduling-physical-cpu-20261009.TEzCYJ；入口live_physical_cpu_trial.py。
-- source e28fc36da474e58091676310cd20fd9bc314e679；15:00最后核prepare session29867仍进行中，尚无plan/preflight或新GPU提交，禁止重跑。首次权限审核超时未创建进程，获允许后仅重试一次。实际上传session9186退出0，三个改动核心SHA一致。
-- 本地36测试/33通过/3Linux跳过，远端11通过，含完整16行读出和核重叠/9核反例；纯工程测试不计科学样本。生成服务在模型加载前核12物理核，执行在候选前核6核且逻辑/物理/GPU集合分离。
-- v6矩阵：Pizza/Spooky既有合法dev；4独立run/块，ABBA四块共16条600s轨迹；种子142901–142904、143001–143004。同27B/2GPU12物理核生成服务＋1GPU6物理核执行池，只变FIFO许可1/2，保留run内顺序。
+- v6/17273已FAILED：15:12:42–15:12:56，42GPU秒，0搜索。包装入口缺host导出，生成容器shim发生ImportError；我方接线遗漏，非节点GPU失败。readout-v1一次闭合/本地live_v6_closed，旧root不重开；plan9bd8dc3b786c69f3a98fb892f49722c5a4c545532346e46be0e392108ae5ad9a。
+- v7 root=/research/d7/spc/yzyang4/scheduling-live-search-20261009-v7；stage=/research/d7/spc/yzyang4/scheduling-entry-fix-20261009.yAyBZB；入口live_entry_fix_trial.py；source44fcf9b433d0ed26c7799f82e5052a82d888f5a1。15:18启动prepare，待完成/核回执后才提交，不重复prepare。
+- 本地37测试/34通过/3Linux跳过，远端12通过，含实际shim导入和入口不重复初始化的反例；纯工程测试不计科学样本。生成服务在模型加载前核12物理核，执行在候选前核6核且逻辑/物理/GPU集合分离。
+- v7矩阵保持v6所有任务/种子/预算，仅修入口（未见候选结果，不换种子）；不是新科学复制。Pizza/Spooky既有合法dev；4独立run/块，ABBA四块共16条600s；种子142901–142904、143001–143004。同27B/2GPU12物理核生成＋1GPU6物理核执行，只变FIFO许可1/2，保留run内顺序。
 - 每块固定1320秒，包含服务启动、搜索、清理与显式填充；4块5280秒，整个作业最多5400秒/4.5GPUh。全部GPU空闲与失败计入；固定预留不等于成本最优的生产部署。
 - 新问题是无结果筛选的反馈吞吐：不按首块生成有效性决定后续，全部无效/失败保留16分母，安全/基础设施异常才停。不同于v4失败资格试验，不是复用余款或放宽原门救结论。
 - 反馈信号门：16正常闭合＋4块结构/预算核验，两个池配对均严格增加有效及时反馈且不降低有效终点数；最终质量严格门仍要求8对完整有效分数且逐任务中位差非负。缺失不补零；2池配对不是16独立调度复制。
 - 600s相同不足以保证全成本相同；v5固定池槽，另报完整Slurm账单。客户端240s只是原生执行超时配置，可能另有中断/清理时间，不宣传严格240s物理cap。
-- 只读观察：stage/live_status.py --version v6。闭合后用root/live_readout.py root root/readout-v1 --allocation-gpu-seconds 实测值，一次writer；再独立复验，禁止运行中改源/门。
+- 只读观察：stage/live_status.py --version v7。闭合后用root/live_readout.py root root/readout-v1 --allocation-gpu-seconds 实测值，一次writer；再独立复验，禁止运行中改源/门。
 - 服务alias qwen3.8-27b，实际qwen3_5/compressed-tensors4bit；不猜AWQ或更强生成器。编译cache跨块共用，活跃KV随服务重启清空。当前运行期间不做同节点大文件准备，避免I/O混杂。
 
 ## 上一批新证据与修正（已闭合，不能重开）

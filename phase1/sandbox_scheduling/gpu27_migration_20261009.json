@@ -1,0 +1,59 @@
+{
+  "observed_hong_kong": "2026-10-09T13:25:33",
+  "authorization": "User explicitly authorized trying another available GPU and continuing the existing experiment, with broad discretion. No driver, permission, isolation or scientific protocol changes.",
+  "source_commit": "e3e93d788cc6d8775d441d6945cf08529df5c4fd",
+  "stage": "/research/d7/spc/yzyang4/scheduling-placement-20261009.gunuHJ",
+  "new_root": "/research/d7/spc/yzyang4/scheduling-live-search-20261009-v4",
+  "wrapper_sha256": "1dd5ad010c78b8eefafdbbd0d408cb2dd208219143179313344c53d1fb20e3fc",
+  "diagnostic_sha256": "f21d2d9ad2df537a5dc3ca681ccd5b3b2f45f6b5909b03956536ae148e23cfb4",
+  "diagnostics": [
+    {
+      "job": "17251",
+      "node": "gpu27",
+      "state": "FAILED",
+      "exit_code": "2:0",
+      "gpu_seconds": 1,
+      "start_hong_kong": "2026-10-09T13:23:16",
+      "end_hong_kong": "2026-10-09T13:23:17",
+      "cause": "Operator started dependent command before SCP session completion; script missing. No CUDA check or candidate executed. Upload completion and two SHA-256 checks verified before next independent diagnosis."
+    },
+    {
+      "job": "17252",
+      "node": "gpu27",
+      "state": "COMPLETED",
+      "exit_code": "0:0",
+      "gpu_seconds": 1,
+      "start_hong_kong": "2026-10-09T13:24:39",
+      "end_hong_kong": "2026-10-09T13:24:40",
+      "cuInit_return_code": 0,
+      "cuDeviceGetCount_return_code": 0,
+      "visible_device_count": 1,
+      "driver": "610.57.04",
+      "cuda_visible_devices": "0",
+      "slurm_step_gpus": "2",
+      "task_image_or_model_started": false,
+      "boundary": "Native CUDA success on one allocated device, not original-image arithmetic or all-device qualification. Different CUDA/Slurm index strings are not themselves an isolation failure."
+    }
+  ],
+  "preflight": {
+    "local_tests_passed": 25,
+    "local_linux_tests_skipped": 3,
+    "remote_linux_tests_passed": 3,
+    "science_unchanged": true,
+    "assigned_trajectories": 16,
+    "paired_pool_repeats": 2,
+    "arms": ["pipeline", "share2"],
+    "block_order": ["pipeline", "share2", "share2", "pipeline"],
+    "gpus": 3,
+    "allocation_seconds_cap": 5400,
+    "gpu_hours_cap": 4.5,
+    "original_task_image_qualification_required_before_service": true,
+    "full_checks_pending_prepare": true,
+    "training_and_train_test_dedup_checks": "Not applicable: no training, corpus rebuild, protected test access or sample resampling.",
+    "seed_and_pairing": "Inherited unchanged, asserted by migration contract test; no replacement seeds.",
+    "publication": "No push; no credentials or raw outcomes exported."
+  },
+  "prior_failed_roots_preserved": true,
+  "driver_or_isolation_changes": false,
+  "paid_api_or_base_training": false
+}

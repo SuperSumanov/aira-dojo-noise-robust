@@ -1,8 +1,8 @@
 # 当前短交接
-更新：2026-10-10香港05:43；旧全文保留于Git 8d1e8ca5。当前方向R14，历史动态不是现场。
+更新：2026-10-10香港05:54；旧全文保留于Git 8d1e8ca5。当前方向R14，历史动态不是现场。
 
 ## 当前六小时窗口与现场
-- 新窗口04:56:13–10:56:13香港，用户要求完整六小时会话内推进；不提前把准备当完成。17364已COMPLETED/216GPU秒=0.06GPUh；05:43核17366 RUNNING/gpu27，入口初始化，尚无正式完成；旧Held12535不动。
+- 新窗口04:56:13–10:56:13香港，用户要求完整六小时会话内推进；不提前把准备当完成。17364已COMPLETED/216GPU秒=0.06GPUh；05:54核17366 RUNNING/gpu27/cpu6/gpu1，3/12完成且无失败，第一pipeline资格通过（150/588 GPU步）；旧Held12535不动。
 - 17364 opportunity_recheck：17328全部两组native接受Pizza父子（正/平），原seed各2次，共8执行；原源码/输入/评分器/240s单次不变，1GPU/6物理核/45min≤0.75GPUh。局部事后重复性，非新样本或调度效应；root scheduling-opportunity-recheck-20261010-v1，stage scheduling-recheck-20261010.B5b9cz。source4534112ad4de74f5d7d44da855366b38583d659f，plan e201f64f3ddbc8e753751b8e412ebb6df840f4ea5ebea6da1cc21016d4828feb；本地/远端各6测试通过且上传字节一致。
 - 第二线17366：neural_extension_20261010，固定新CNN32增强版ea47bb6d与UNet3Residual c60e3f1c，沿用完整公开输入，pipeline/share2×3=12，1卡6CPU/90min≤1.5GPUh。两臂candidate450s不变，排队600s/worker1120s，整块预留1125s；首pipeline两程序不全完成则停，不换程序/改源码。依旧同两任务相关程序家族，不是新任务/训练seed或live质量证据。SETI公开输入缺失，未拿来充样本。
 - 17364闭合readout b87dd1c85d15d9bba86ab5b47ecd60493dedfdabeda2798faa328caba5483fb8；8/8精确外部评分/预测hash/设备隔离通过。正组两次+0.0197321215020330、平组两次0，CSV独立Decimal复核一致；只支持同seed局部重复性，不排除dev样本选择、不等于池中全局更好（另一父程序分数更高）。opportunity_recheck_v1_closed，原writer不再运行。
@@ -10,6 +10,7 @@
 - 第三批新设计live_twochild_20261010：两臂同num_children2/1500s，FIFO许可1/2，ABBA四池×4run=16条，新seed175001起，四2300s等全池槽，3卡12+6物理核/160min≤8GPUh；保留全部16及缺失，不按分数续跑/换seed。仅借学长24efc2e0的分支宽度，不复现其SFT/9B/memory/24h，不能与旧root5/600s合并。旧冻结门不改、只检验本配置调度作用；源码/CPU预检前不提交。本窗三批上限0.75+1.5+8=10.25GPUh，API0/底座训练0。
 - live twochild CPU/16配置/镜像权重预检全部完成，未提交；source51b9daff161cb8e4b17ce729ca26cf1f7b5fdbe2，plan082645089d69e711f55057312d49e13d0fa99bf53942e91851791c12eb1525a6，root scheduling-live-twochild-20261010-v1。05:41提交前附prelaunch-prose-correction.json，纠正plan两处旧600s文字；实际numeric/config/运行deadline早已1500s，原plan/运行代码未改。等待17366闭合再提交。
 - 新监控stage/live_status.py --version twochild、neural_status.py --kind extension；helper40da62f449103047a5bc816cdc9ddb52125c0558，本地22/远端7纯CPU测试通过；不修改冻结root内代码。入口/CSV远近hash及Git blob字节核一致。
+- 05:46另在live提交前冻结pool-quality-secondary-plan.json：按任务比较每池两run的native最好成绩，四endpoint不全有效则配对差缺失；仅2独立池配对，4任务池差不作4独立重复。live_pool_quality.py@624573e688cb26386dd8d4bda1ec7b80b1d4a24a，SHA9f6945213779912299f18b1e13faa4ba11c16d6790bc7af92bd1a09b666fe944；本地/远端各5反例测试。原primary/资格/样本不变，分析等readout-v1闭合后执行一次；源文件在stage。
 - Fetch我方8d1e8ca5f6345eaba12fa0771da2f815afe3dd2d；学长更新24efc2e0a84ead449fb6dff71414d73693f70893。10/9 policy SFT报告为探索性：memory配置不同、缺失run/评分、同任务训练及多checkpoint选点，不能作干净scaling确认；不实施我方底座训练。
 - 安全事件：临时scan漏掉学长报告URL的camelCase访问令牌，工具曾显示该链接；不使用/再回显/入库，已提示建议撤销重发。旧safe_git_show合成测试另发现Authorization先替换Bearer会留下值；新safe_senior_reader.py已修顺序/URL编码/引号，2测试含9合成敏感形式通过。后续用新reader远端流式脱敏；不声称任意秘密都能检测。只记录类别，不存密钥。
 - 本次14:11–20:11香港六小时窗口已完成；20:08:57只读复核17328四worker均闭合且清理通过，原56候选/23评分回执不变。20:05重新核本窗八作业最终账，无在跑批次；不新增跟进/作业或复用余额。

@@ -1,0 +1,21 @@
+{
+  "job": "17366",
+  "primary_sha256": "cfa91a7a48774fc10315423ab5547c6b3d65e60644fb4940647f387103094907",
+  "independent_audit_sha256": "d40da2b8bf59f4d761faa046f15538a4743a50f0db5ce60dfa2f24291297fca4",
+  "csv_sha256": "0f917242f2ca928c480eb50f8fc9756207b7a099578df45d04da7bc362a35515",
+  "remote_local_hashes_match": true,
+  "independent_local_arithmetic": "PowerShell recomputed all three ratios, sample standard deviation, 12-row denominator, per-program steps and hashes from transferred receipts; not a second execution or scorer.",
+  "ratios": [1.248439822872127, 1.1602111699705704, 1.4896379118094725],
+  "median": 1.248439822872127,
+  "sample_std": 0.17052995413242686,
+  "allocation_gpu_seconds": 1796,
+  "chronological_cnn_candidate_seconds": [339.68637228012085, 304.88921093940735, 256.0438621044159, 256.6023967266083, 213.8766748905182, 168.9403064250946],
+  "descriptive_identity": "pipeline_time - share_time = summed_candidate_duration_difference + overlap_difference + outside_candidate_difference. This accounting identity does not identify causal components.",
+  "decomposition": [
+    {"repeat": 0, "total_difference": 78.8681914806366, "candidate_duration_difference": 36.8665087223053, "overlap_difference": 39.474522829055786, "outside_difference": 2.5271599292755127},
+    {"repeat": 1, "total_difference": 42.7613525390625, "candidate_duration_difference": 0.19206523895263672, "overlap_difference": 38.85591101646423, "outside_difference": 3.71337628364563},
+    {"repeat": 2, "total_difference": 88.06959843635559, "candidate_duration_difference": 45.091365575790405, "overlap_difference": 39.52632713317871, "outside_difference": 3.4519057273864746}
+  ],
+  "interpretation": "Frozen exploratory gate passes: complete 12/12, identical 150/588 steps and all six outputs per source byte-identical. Strong chronological CNN runtime drift limits attribution of the 1.2484 median to overlap. The reverse-order middle pair has nearly equal summed candidate time and ratio 1.1602, but it is one descriptive pair, not a separately selected confirmation.",
+  "boundaries": ["Two new source variants in the same two task/program families, not independent new tasks.", "Original-seed restarts, not independent training seeds.", "Fixed-query output invariance, not task-quality improvement or simultaneous GPU-kernel evidence.", "No own heavy preparation overlapped measurement; whole-host co-tenancy and the cause of drift were not isolated.", "Do not replace the frozen all-three-pair result with the middle pair or declare the drift corrected."]
+}

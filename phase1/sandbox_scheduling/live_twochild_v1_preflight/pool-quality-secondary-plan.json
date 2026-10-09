@@ -1,0 +1,18 @@
+{
+  "analysis_source_sha256": "9f6945213779912299f18b1e13faa4ba11c16d6790bc7af92bd1a09b666fe944",
+  "boundary": "Secondary descriptive development endpoint; two task contrasts within a pool correlated; no population significance or fresh-data confirmation.",
+  "directions": {
+    "random-acts-of-pizza": 1,
+    "spooky-author-identification": -1
+  },
+  "endpoint": "For each task in each paired pool, oriented difference in best native-selected development score among both assigned runs.",
+  "missingness": "Report observed best and complete-valid coverage separately; paired difference null unless all four task/arm endpoints are complete valid and externally grounded. No failure imputation.",
+  "paired_pool_units": 2,
+  "plan_sha256": "082645089d69e711f55057312d49e13d0fa99bf53942e91851791c12eb1525a6",
+  "planned": 16,
+  "primary_rule_unchanged": true,
+  "reason": "Closed old reexecution exposed local gain below another run incumbent; do not confuse local gain or mean gain with pool best.",
+  "selection_rule_unchanged": true,
+  "task_pool_contrasts": 4,
+  "utc": "2026-10-09T21:46:15.608341+00:00"
+}

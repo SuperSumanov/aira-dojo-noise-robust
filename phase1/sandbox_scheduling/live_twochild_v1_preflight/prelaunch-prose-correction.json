@@ -1,0 +1,14 @@
+{
+  "changed_runtime_or_inputs": false,
+  "checked_configs": 16,
+  "checked_runtime_seconds": 1500,
+  "correction": {
+    "common_adapter": "Close preview and failed task kernels before lease release; queue counted in 1500s deadline but excluded from execution-duration feedback. Bounded info-only handshake common.",
+    "primary": "Full assigned 16-run denominator: valid task.step candidate returns recorded by common 1500s deadline, infrastructure failures, queue/ready/generation time, selected development score only where observed. A scored receipt without a completed task return does not count. No imputation of missing quality."
+  },
+  "plan_sha256": "082645089d69e711f55057312d49e13d0fa99bf53942e91851791c12eb1525a6",
+  "reason": "Two descriptive strings inherited 600s; numeric plan, configs, prompt and execution deadline were already1500s before preparation.",
+  "results_observed": false,
+  "source_commit": "51b9daff161cb8e4b17ce729ca26cf1f7b5fdbe2",
+  "utc": "2026-10-09T21:41:43.212633+00:00"
+}

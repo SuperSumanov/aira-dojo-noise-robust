@@ -1,0 +1,8 @@
+{
+  "gpu_executions": 0,
+  "images_verified": true,
+  "model_calls": 0,
+  "paired_configs": 8,
+  "plan_sha256": "082645089d69e711f55057312d49e13d0fa99bf53942e91851791c12eb1525a6",
+  "service_restarts": 4
+}

@@ -1,0 +1,821 @@
+{
+  "allocation_exit": "0:0",
+  "allocation_seconds": 1796,
+  "allocation_state": "COMPLETED",
+  "attempted": 12,
+  "blocks": [
+    {
+      "arm": "pipeline",
+      "block": 0,
+      "candidate_overlap": {
+        "max_simultaneous": 1,
+        "two_or_more_seconds": 0.0
+      },
+      "completed": 2,
+      "gpu_peak_memory_mib": 1872.0,
+      "makespan": 396.3220946788788,
+      "max_resident_gpu_clients": 1,
+      "multi_client_samples": 0,
+      "not_kernel_concurrency_measurement": true,
+      "repeat": 0,
+      "telemetry_samples": 709
+    },
+    {
+      "arm": "share2",
+      "block": 1,
+      "candidate_overlap": {
+        "max_simultaneous": 2,
+        "two_or_more_seconds": 39.474522829055786
+      },
+      "completed": 2,
+      "gpu_peak_memory_mib": 1872.0,
+      "makespan": 317.4539031982422,
+      "max_resident_gpu_clients": 1,
+      "multi_client_samples": 0,
+      "not_kernel_concurrency_measurement": true,
+      "repeat": 0,
+      "telemetry_samples": 568
+    },
+    {
+      "arm": "share2",
+      "block": 2,
+      "candidate_overlap": {
+        "max_simultaneous": 2,
+        "two_or_more_seconds": 38.85591101646423
+      },
+      "completed": 2,
+      "gpu_peak_memory_mib": 1872.0,
+      "makespan": 266.9061872959137,
+      "max_resident_gpu_clients": 1,
+      "multi_client_samples": 0,
+      "not_kernel_concurrency_measurement": true,
+      "repeat": 1,
+      "telemetry_samples": 480
+    },
+    {
+      "arm": "pipeline",
+      "block": 3,
+      "candidate_overlap": {
+        "max_simultaneous": 1,
+        "two_or_more_seconds": 0.0
+      },
+      "completed": 2,
+      "gpu_peak_memory_mib": 1872.0,
+      "makespan": 309.6675398349762,
+      "max_resident_gpu_clients": 1,
+      "multi_client_samples": 0,
+      "not_kernel_concurrency_measurement": true,
+      "repeat": 1,
+      "telemetry_samples": 556
+    },
+    {
+      "arm": "pipeline",
+      "block": 4,
+      "candidate_overlap": {
+        "max_simultaneous": 1,
+        "two_or_more_seconds": 0.0
+      },
+      "completed": 2,
+      "gpu_peak_memory_mib": 1872.0,
+      "makespan": 267.936386346817,
+      "max_resident_gpu_clients": 1,
+      "multi_client_samples": 0,
+      "not_kernel_concurrency_measurement": true,
+      "repeat": 2,
+      "telemetry_samples": 481
+    },
+    {
+      "arm": "share2",
+      "block": 5,
+      "candidate_overlap": {
+        "max_simultaneous": 2,
+        "two_or_more_seconds": 39.52632713317871
+      },
+      "completed": 2,
+      "gpu_peak_memory_mib": 1872.0,
+      "makespan": 179.86678791046143,
+      "max_resident_gpu_clients": 1,
+      "multi_client_samples": 0,
+      "not_kernel_concurrency_measurement": true,
+      "repeat": 2,
+      "telemetry_samples": 323
+    }
+  ],
+  "boundary": "Two fixed public-training-derived inputs, unchanged programs and source-seed restarts. No quality scores, live search, novel method or population inference.",
+  "completed": 12,
+  "exploratory_gate": true,
+  "job": "17366",
+  "output_equivalence": [
+    {
+      "all_six_present": true,
+      "available_outputs": 6,
+      "max_cross_arm": 0.0,
+      "max_within_arm": 0.0,
+      "numerical_gate": true,
+      "pairs": [
+        {
+          "arms": [
+            "pipeline",
+            "share2"
+          ],
+          "different_values": 0,
+          "indices": [
+            0,
+            2
+          ],
+          "max_abs": 0.0,
+          "values": 64
+        },
+        {
+          "arms": [
+            "pipeline",
+            "share2"
+          ],
+          "different_values": 0,
+          "indices": [
+            0,
+            5
+          ],
+          "max_abs": 0.0,
+          "values": 64
+        },
+        {
+          "arms": [
+            "pipeline",
+            "pipeline"
+          ],
+          "different_values": 0,
+          "indices": [
+            0,
+            7
+          ],
+          "max_abs": 0.0,
+          "values": 64
+        },
+        {
+          "arms": [
+            "pipeline",
+            "pipeline"
+          ],
+          "different_values": 0,
+          "indices": [
+            0,
+            8
+          ],
+          "max_abs": 0.0,
+          "values": 64
+        },
+        {
+          "arms": [
+            "pipeline",
+            "share2"
+          ],
+          "different_values": 0,
+          "indices": [
+            0,
+            10
+          ],
+          "max_abs": 0.0,
+          "values": 64
+        },
+        {
+          "arms": [
+            "share2",
+            "share2"
+          ],
+          "different_values": 0,
+          "indices": [
+            2,
+            5
+          ],
+          "max_abs": 0.0,
+          "values": 64
+        },
+        {
+          "arms": [
+            "share2",
+            "pipeline"
+          ],
+          "different_values": 0,
+          "indices": [
+            2,
+            7
+          ],
+          "max_abs": 0.0,
+          "values": 64
+        },
+        {
+          "arms": [
+            "share2",
+            "pipeline"
+          ],
+          "different_values": 0,
+          "indices": [
+            2,
+            8
+          ],
+          "max_abs": 0.0,
+          "values": 64
+        },
+        {
+          "arms": [
+            "share2",
+            "share2"
+          ],
+          "different_values": 0,
+          "indices": [
+            2,
+            10
+          ],
+          "max_abs": 0.0,
+          "values": 64
+        },
+        {
+          "arms": [
+            "share2",
+            "pipeline"
+          ],
+          "different_values": 0,
+          "indices": [
+            5,
+            7
+          ],
+          "max_abs": 0.0,
+          "values": 64
+        },
+        {
+          "arms": [
+            "share2",
+            "pipeline"
+          ],
+          "different_values": 0,
+          "indices": [
+            5,
+            8
+          ],
+          "max_abs": 0.0,
+          "values": 64
+        },
+        {
+          "arms": [
+            "share2",
+            "share2"
+          ],
+          "different_values": 0,
+          "indices": [
+            5,
+            10
+          ],
+          "max_abs": 0.0,
+          "values": 64
+        },
+        {
+          "arms": [
+            "pipeline",
+            "pipeline"
+          ],
+          "different_values": 0,
+          "indices": [
+            7,
+            8
+          ],
+          "max_abs": 0.0,
+          "values": 64
+        },
+        {
+          "arms": [
+            "pipeline",
+            "share2"
+          ],
+          "different_values": 0,
+          "indices": [
+            7,
+            10
+          ],
+          "max_abs": 0.0,
+          "values": 64
+        },
+        {
+          "arms": [
+            "pipeline",
+            "share2"
+          ],
+          "different_values": 0,
+          "indices": [
+            8,
+            10
+          ],
+          "max_abs": 0.0,
+          "values": 64
+        }
+      ],
+      "program": 0,
+      "step_counts_equal": true,
+      "steps": [
+        150,
+        150,
+        150,
+        150,
+        150,
+        150
+      ],
+      "tolerance_is_not_quality_guarantee": true
+    },
+    {
+      "all_six_present": true,
+      "available_outputs": 6,
+      "max_cross_arm": 0.0,
+      "max_within_arm": 0.0,
+      "numerical_gate": true,
+      "pairs": [
+        {
+          "arms": [
+            "pipeline",
+            "share2"
+          ],
+          "different_values": 0,
+          "indices": [
+            1,
+            3
+          ],
+          "max_abs": 0.0,
+          "values": 278640
+        },
+        {
+          "arms": [
+            "pipeline",
+            "share2"
+          ],
+          "different_values": 0,
+          "indices": [
+            1,
+            4
+          ],
+          "max_abs": 0.0,
+          "values": 278640
+        },
+        {
+          "arms": [
+            "pipeline",
+            "pipeline"
+          ],
+          "different_values": 0,
+          "indices": [
+            1,
+            6
+          ],
+          "max_abs": 0.0,
+          "values": 278640
+        },
+        {
+          "arms": [
+            "pipeline",
+            "pipeline"
+          ],
+          "different_values": 0,
+          "indices": [
+            1,
+            9
+          ],
+          "max_abs": 0.0,
+          "values": 278640
+        },
+        {
+          "arms": [
+            "pipeline",
+            "share2"
+          ],
+          "different_values": 0,
+          "indices": [
+            1,
+            11
+          ],
+          "max_abs": 0.0,
+          "values": 278640
+        },
+        {
+          "arms": [
+            "share2",
+            "share2"
+          ],
+          "different_values": 0,
+          "indices": [
+            3,
+            4
+          ],
+          "max_abs": 0.0,
+          "values": 278640
+        },
+        {
+          "arms": [
+            "share2",
+            "pipeline"
+          ],
+          "different_values": 0,
+          "indices": [
+            3,
+            6
+          ],
+          "max_abs": 0.0,
+          "values": 278640
+        },
+        {
+          "arms": [
+            "share2",
+            "pipeline"
+          ],
+          "different_values": 0,
+          "indices": [
+            3,
+            9
+          ],
+          "max_abs": 0.0,
+          "values": 278640
+        },
+        {
+          "arms": [
+            "share2",
+            "share2"
+          ],
+          "different_values": 0,
+          "indices": [
+            3,
+            11
+          ],
+          "max_abs": 0.0,
+          "values": 278640
+        },
+        {
+          "arms": [
+            "share2",
+            "pipeline"
+          ],
+          "different_values": 0,
+          "indices": [
+            4,
+            6
+          ],
+          "max_abs": 0.0,
+          "values": 278640
+        },
+        {
+          "arms": [
+            "share2",
+            "pipeline"
+          ],
+          "different_values": 0,
+          "indices": [
+            4,
+            9
+          ],
+          "max_abs": 0.0,
+          "values": 278640
+        },
+        {
+          "arms": [
+            "share2",
+            "share2"
+          ],
+          "different_values": 0,
+          "indices": [
+            4,
+            11
+          ],
+          "max_abs": 0.0,
+          "values": 278640
+        },
+        {
+          "arms": [
+            "pipeline",
+            "pipeline"
+          ],
+          "different_values": 0,
+          "indices": [
+            6,
+            9
+          ],
+          "max_abs": 0.0,
+          "values": 278640
+        },
+        {
+          "arms": [
+            "pipeline",
+            "share2"
+          ],
+          "different_values": 0,
+          "indices": [
+            6,
+            11
+          ],
+          "max_abs": 0.0,
+          "values": 278640
+        },
+        {
+          "arms": [
+            "pipeline",
+            "share2"
+          ],
+          "different_values": 0,
+          "indices": [
+            9,
+            11
+          ],
+          "max_abs": 0.0,
+          "values": 278640
+        }
+      ],
+      "program": 1,
+      "step_counts_equal": true,
+      "steps": [
+        588,
+        588,
+        588,
+        588,
+        588,
+        588
+      ],
+      "tolerance_is_not_quality_guarantee": true
+    }
+  ],
+  "paired_ratios": [
+    {
+      "ratio": 1.248439822872127,
+      "repeat": 0
+    },
+    {
+      "ratio": 1.1602111699705704,
+      "repeat": 1
+    },
+    {
+      "ratio": 1.4896379118094725,
+      "repeat": 2
+    }
+  ],
+  "plan_sha256": "bf0e2b24c267880ade8da3457ca5674b1a545c234485b3479ac0df41be2caa85",
+  "planned": 12,
+  "reference_arm": "pipeline",
+  "runs": [
+    {
+      "arm": "pipeline",
+      "complete": true,
+      "end": 1791582572.7620409,
+      "error_type": null,
+      "exec_seconds": 339.6723479339853,
+      "exit_code": 0,
+      "gpu_steps": 150,
+      "harness_seed": 130701,
+      "index": 0,
+      "output_sha256": "9b0350891690641b373ede18b04be679ceaa7604c2560eb5a6780b0bcf899a38",
+      "position": 0,
+      "program": 0,
+      "repeat": 0,
+      "returncode": 0,
+      "source_commit": "05e4c33ef28e29db6d510e8de92d90f14ba51f88",
+      "source_seed": 42,
+      "start": 1791582224.7874348,
+      "status": "complete",
+      "timed_out": false
+    },
+    {
+      "arm": "pipeline",
+      "complete": true,
+      "end": 1791582618.5743804,
+      "error_type": null,
+      "exec_seconds": 41.55653770081699,
+      "exit_code": 0,
+      "gpu_steps": 588,
+      "harness_seed": 130701,
+      "index": 1,
+      "output_sha256": "20a200911cfbc6fe17cbb17e375e94aa0502edc252a4bf075382248052f4d146",
+      "position": 1,
+      "program": 1,
+      "repeat": 0,
+      "returncode": 0,
+      "source_commit": "05e4c33ef28e29db6d510e8de92d90f14ba51f88",
+      "source_seed": 42,
+      "start": 1791582224.786653,
+      "status": "complete",
+      "timed_out": false
+    },
+    {
+      "arm": "share2",
+      "complete": true,
+      "end": 1791582936.256331,
+      "error_type": null,
+      "exec_seconds": 304.8754473440349,
+      "exit_code": 0,
+      "gpu_steps": 150,
+      "harness_seed": 130701,
+      "index": 2,
+      "output_sha256": "9b0350891690641b373ede18b04be679ceaa7604c2560eb5a6780b0bcf899a38",
+      "position": 0,
+      "program": 0,
+      "repeat": 0,
+      "returncode": 0,
+      "source_commit": "05e4c33ef28e29db6d510e8de92d90f14ba51f88",
+      "source_seed": 42,
+      "start": 1791582621.8896074,
+      "status": "complete",
+      "timed_out": false
+    },
+    {
+      "arm": "share2",
+      "complete": true,
+      "end": 1791582672.446919,
+      "error_type": null,
+      "exec_seconds": 39.48717852309346,
+      "exit_code": 0,
+      "gpu_steps": 588,
+      "harness_seed": 130701,
+      "index": 3,
+      "output_sha256": "20a200911cfbc6fe17cbb17e375e94aa0502edc252a4bf075382248052f4d146",
+      "position": 1,
+      "program": 1,
+      "repeat": 0,
+      "returncode": 0,
+      "source_commit": "05e4c33ef28e29db6d510e8de92d90f14ba51f88",
+      "source_seed": 42,
+      "start": 1791582621.8946178,
+      "status": "complete",
+      "timed_out": false
+    },
+    {
+      "arm": "share2",
+      "complete": true,
+      "end": 1791582987.951758,
+      "error_type": null,
+      "exec_seconds": 38.84489341825247,
+      "exit_code": 0,
+      "gpu_steps": 588,
+      "harness_seed": 130701,
+      "index": 4,
+      "output_sha256": "20a200911cfbc6fe17cbb17e375e94aa0502edc252a4bf075382248052f4d146",
+      "position": 0,
+      "program": 1,
+      "repeat": 1,
+      "returncode": 0,
+      "source_commit": "05e4c33ef28e29db6d510e8de92d90f14ba51f88",
+      "source_seed": 42,
+      "start": 1791582938.719827,
+      "status": "complete",
+      "timed_out": false
+    },
+    {
+      "arm": "share2",
+      "complete": true,
+      "end": 1791583203.2619038,
+      "error_type": null,
+      "exec_seconds": 256.03018250130117,
+      "exit_code": 0,
+      "gpu_steps": 150,
+      "harness_seed": 130701,
+      "index": 5,
+      "output_sha256": "9b0350891690641b373ede18b04be679ceaa7604c2560eb5a6780b0bcf899a38",
+      "position": 1,
+      "program": 0,
+      "repeat": 1,
+      "returncode": 0,
+      "source_commit": "05e4c33ef28e29db6d510e8de92d90f14ba51f88",
+      "source_seed": 42,
+      "start": 1791582938.7198534,
+      "status": "complete",
+      "timed_out": false
+    },
+    {
+      "arm": "pipeline",
+      "complete": true,
+      "end": 1791583254.252959,
+      "error_type": null,
+      "exec_seconds": 38.47766783647239,
+      "exit_code": 0,
+      "gpu_steps": 588,
+      "harness_seed": 130701,
+      "index": 6,
+      "output_sha256": "20a200911cfbc6fe17cbb17e375e94aa0502edc252a4bf075382248052f4d146",
+      "position": 0,
+      "program": 1,
+      "repeat": 1,
+      "returncode": 0,
+      "source_commit": "05e4c33ef28e29db6d510e8de92d90f14ba51f88",
+      "source_seed": 42,
+      "start": 1791583206.1378767,
+      "status": "complete",
+      "timed_out": false
+    },
+    {
+      "arm": "pipeline",
+      "complete": true,
+      "end": 1791583513.1154935,
+      "error_type": null,
+      "exec_seconds": 256.58745719119906,
+      "exit_code": 0,
+      "gpu_steps": 150,
+      "harness_seed": 130701,
+      "index": 7,
+      "output_sha256": "9b0350891690641b373ede18b04be679ceaa7604c2560eb5a6780b0bcf899a38",
+      "position": 1,
+      "program": 0,
+      "repeat": 1,
+      "returncode": 0,
+      "source_commit": "05e4c33ef28e29db6d510e8de92d90f14ba51f88",
+      "source_seed": 42,
+      "start": 1791583206.1397572,
+      "status": "complete",
+      "timed_out": false
+    },
+    {
+      "arm": "pipeline",
+      "complete": true,
+      "end": 1791583737.5294814,
+      "error_type": null,
+      "exec_seconds": 213.8186184577644,
+      "exit_code": 0,
+      "gpu_steps": 150,
+      "harness_seed": 130701,
+      "index": 8,
+      "output_sha256": "9b0350891690641b373ede18b04be679ceaa7604c2560eb5a6780b0bcf899a38",
+      "position": 0,
+      "program": 0,
+      "repeat": 2,
+      "returncode": 0,
+      "source_commit": "05e4c33ef28e29db6d510e8de92d90f14ba51f88",
+      "source_seed": 42,
+      "start": 1791583515.801372,
+      "status": "complete",
+      "timed_out": false
+    },
+    {
+      "arm": "pipeline",
+      "complete": true,
+      "end": 1791583781.1470861,
+      "error_type": null,
+      "exec_seconds": 39.66788876708597,
+      "exit_code": 0,
+      "gpu_steps": 588,
+      "harness_seed": 130701,
+      "index": 9,
+      "output_sha256": "20a200911cfbc6fe17cbb17e375e94aa0502edc252a4bf075382248052f4d146",
+      "position": 1,
+      "program": 1,
+      "repeat": 2,
+      "returncode": 0,
+      "source_commit": "05e4c33ef28e29db6d510e8de92d90f14ba51f88",
+      "source_seed": 42,
+      "start": 1791583515.770601,
+      "status": "complete",
+      "timed_out": false
+    },
+    {
+      "arm": "share2",
+      "complete": true,
+      "end": 1791583961.193152,
+      "error_type": null,
+      "exec_seconds": 168.91074927616864,
+      "exit_code": 0,
+      "gpu_steps": 150,
+      "harness_seed": 130701,
+      "index": 10,
+      "output_sha256": "9b0350891690641b373ede18b04be679ceaa7604c2560eb5a6780b0bcf899a38",
+      "position": 0,
+      "program": 0,
+      "repeat": 2,
+      "returncode": 0,
+      "source_commit": "05e4c33ef28e29db6d510e8de92d90f14ba51f88",
+      "source_seed": 42,
+      "start": 1791583784.0224283,
+      "status": "complete",
+      "timed_out": false
+    },
+    {
+      "arm": "share2",
+      "complete": true,
+      "end": 1791583833.6485686,
+      "error_type": null,
+      "exec_seconds": 39.516352999955416,
+      "exit_code": 0,
+      "gpu_steps": 588,
+      "harness_seed": 130701,
+      "index": 11,
+      "output_sha256": "20a200911cfbc6fe17cbb17e375e94aa0502edc252a4bf075382248052f4d146",
+      "position": 1,
+      "program": 1,
+      "repeat": 2,
+      "returncode": 0,
+      "source_commit": "05e4c33ef28e29db6d510e8de92d90f14ba51f88",
+      "source_seed": 42,
+      "start": 1791583784.0237026,
+      "status": "complete",
+      "timed_out": false
+    }
+  ],
+  "source_commit": "05e4c33ef28e29db6d510e8de92d90f14ba51f88",
+  "speedup": {
+    "max": 1.4896379118094725,
+    "median": 1.248439822872127,
+    "min": 1.1602111699705704,
+    "n": 3,
+    "sample_std": 0.17052995413242686
+  },
+  "whole_pool_gpu_hours": 0.4988888888888889,
+  "within_cap": true
+}

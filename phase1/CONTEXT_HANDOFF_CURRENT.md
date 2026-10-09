@@ -1,8 +1,8 @@
 # 当前短交接
-更新：2026-10-10香港06:18；旧全文保留于Git 8d1e8ca5。当前方向R14，历史动态不是现场。
+更新：2026-10-10香港06:22；旧全文保留于Git 8d1e8ca5。当前方向R14，历史动态不是现场。
 
 ## 当前六小时窗口与现场
-- 新窗口04:56:13–10:56:13香港，用户要求完整六小时会话内推进；不提前结束。17364/17366均COMPLETED，共2012GPU秒=0.5588888888888889GPUh。17368已提交，06:18最后观察PENDING/(None)，不是已开跑；旧Held12535不动。
+- 新窗口04:56:13–10:56:13香港，用户要求完整六小时会话内推进；不提前结束。17364/17366均COMPLETED，共2012GPU秒=0.5588888888888889GPUh。17368于06:19:57已RUNNING/gpu27/18CPU/3GPU，06:22在模型启动阶段。曾考虑转空闲gpu35，但撤回前发现已开跑，因此迁移/取消/新根目录均未执行。旧Held12535不动。
 - 17364 opportunity_recheck：17328全部两组native接受Pizza父子（正/平），原seed各2次，共8执行；原源码/输入/评分器/240s单次不变，1GPU/6物理核/45min≤0.75GPUh。局部事后重复性，非新样本或调度效应；root scheduling-opportunity-recheck-20261010-v1，stage scheduling-recheck-20261010.B5b9cz。source4534112ad4de74f5d7d44da855366b38583d659f，plan e201f64f3ddbc8e753751b8e412ebb6df840f4ea5ebea6da1cc21016d4828feb；本地/远端各6测试通过且上传字节一致。
 - 第二线17366：neural_extension_20261010，固定新CNN32增强版ea47bb6d与UNet3Residual c60e3f1c，沿用完整公开输入，pipeline/share2×3=12，1卡6CPU/90min≤1.5GPUh。两臂candidate450s不变，排队600s/worker1120s，整块预留1125s；首pipeline两程序不全完成则停，不换程序/改源码。依旧同两任务相关程序家族，不是新任务/训练seed或live质量证据。SETI公开输入缺失，未拿来充样本。
 - 17364闭合readout b87dd1c85d15d9bba86ab5b47ecd60493dedfdabeda2798faa328caba5483fb8；8/8精确外部评分/预测hash/设备隔离通过。正组两次+0.0197321215020330、平组两次0，CSV独立Decimal复核一致；只支持同seed局部重复性，不排除dev样本选择、不等于池中全局更好（另一父程序分数更高）。opportunity_recheck_v1_closed，原writer不再运行。

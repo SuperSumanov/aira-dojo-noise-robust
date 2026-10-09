@@ -1,7 +1,7 @@
 # 当前短交接
 ## 最新：2026-10-09香港用户批准换GPU接续（旧窗口不自动重开）
-- 13:25最后观察：用户明确批准换可用GPU；gpu27有5张未分配，17252原生cuInit=0、可见1卡、驱动610.57.04，1GPU秒。17251因未等SCP完成、入口缺失失败1GPU秒；上传随后完成并核hash。两者独立保留，不是模型或候选结果。
-- 新v4 prepare session91072尚未完成，不得抢先submit；root=scheduling-live-search-20261009-v4，entry=live_gpu27_trial.py，stage=scheduling-placement-20261009.gunuHJ，source=e3e93d788cc6d8775d441d6945cf08529df5c4fd。两臂同gpu27、16条ABBA/27B/3卡90min≤4.5GPUh与原门不变；强制原镜像资格。25本地测试通过/3跳过，Linux3/3；未提交搜索。公开own9c520403与senior0155c7de fetch未变，报告untracked保留不混入代码提交。
+- 13:50:11最后观察：17255在gpu27运行（13:40:52分配3卡），原镜像运算/清理通过（Torch2.5.1+cu124/CUDA12.4/3090），27B服务ready/startup462.32536694873124秒，首块4条搜索启动0完成，尚无质量对照。17252 native成功/1GPU秒；17251抢先于SCP完成失败1GPU秒。17254仅test-only，无作业。首次冷编译成本须单列，不把每run600s当两臂总GPU时相等，不在运行中改协议。
+- v4 prepare session91072已退出0，不重跑；root=scheduling-live-search-20261009-v4，entry=live_gpu27_trial.py，stage=scheduling-placement-20261009.gunuHJ，source=e3e93d788cc6d8775d441d6945cf08529df5c4fd，plan6a91d2934959681b977d2d43ca0ea991dd6a1d3b0ce65ab6d1a88a7b5225d025。两臂同gpu27、16条ABBA/27B/3卡90min≤4.5GPUh与原门不变，模型/两镜像/8配对已核。25本地测试通过/3跳过、Linux3/3；状态用stage/live_status.py --version v4。own9c520403与senior0155c7de fetch未变，报告untracked保留。
 - 07:40香港最后核：v3/17232已FAILED，07:29:00–07:29:05，3GPU×5秒=15GPU秒；16轨迹0开始，服务/候选0启动。native_uuids在原镜像之前cuInit失败，错误码未知，不是Torch不兼容或方法负结果。原v3不重跑。
 - v3根scheduling-live-search-20261009-v3，source806727cabde249918d36d982c04e303f383799c5，plan a0820229fe936657c99345bd68292f89aaf71496053b0bed51486485bc4f7f5e；readout-v1与独立readout-missingness-v2均已一次闭合，原件不改。v2将未启动对照差标null，16分母与原判定不变；closed SHA93fe508f3c28a5d6f85cc83d378eae178a2c68149f5dbab0b5c9f8350458b0cc；读出source62b667e7a3eb0c2317b38235826a782eaa376a40f8a5b1aaa5c0b3824d4d3748。27项本地回归24通过/3Linux跳过。
 - 13:01香港最新：用户明确批准追加一次≤3min诊断，17250已COMPLETED/3GPU秒；但cuInit=999/CUDA_ERROR_UNKNOWN，CUDA仍不可用。nvidia-smi正常，RTX3090/615.71.09，libcuda.so.615.71.09，两个Slurm/CUDA mask均0。无模型/任务镜像/计算内核执行。仅确定失败阶段，未确定根因，不能据此宣称全gpu24损坏；需管理员检查原生CUDA/设备权限等，不擅改驱动或绕过隔离。

@@ -34,6 +34,11 @@ def log_shape(path):
         'oom': r'CUDA out of memory|OutOfMemoryError',
         'step_wait': r'step creation temporarily disabled',
         'traceback': r'Traceback \(most recent call last\)',
+        'weights_loading': r'Loading safetensors checkpoint shards|Starting to load model',
+        'weights_loaded': r'Loading model weights took|Model loading took',
+        'compiling': r'torch\.compile|Compiling a graph|compile range',
+        'graph_capture': r'Capturing CUDA graphs|Graph capturing finished',
+        'kv_initialized': r'GPU KV cache size|Maximum concurrency for',
     }.items()}
     return dict(bytes=path.stat().st_size, exception_types=kinds[-5:],trace_frames=frames[-8:],
                 known_messages=known_messages, **markers)
@@ -61,6 +66,8 @@ def main():
             supervisor_closed=sum((ROOT/f'episode-{i}/closed.json').exists() for i in range(4*b,4*b+4)),
             worker_finished=sum((ROOT/f'episode-{i}/finished.json').exists() for i in range(4*b,4*b+4)),
             worker_started=sum((ROOT/f'episode-{i}/native.json').exists() for i in range(4*b,4*b+4)),
+            candidate_receipts=sum(sum('.private.' not in p.name for p in (ROOT/f'episode-{i}').glob('candidate-*.json')) for i in range(4*b,4*b+4)),
+            scoring_receipts=sum(sum(1 for _ in (ROOT/f'episode-{i}').glob('scored-*.json')) for i in range(4*b,4*b+4)),
             gpu_clean=closed.get('gpu_clean'), service_cleanup=read(f'block-{b}/service-cleanup.json'),
             service_log=log_shape(ROOT/f'block-{b}/service.private.log'),
             block_log=log_shape(ROOT/f'block-{b}/block.private.log')))

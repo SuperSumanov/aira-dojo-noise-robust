@@ -141,17 +141,30 @@ def analyze(root,output,*,allocation_gpu_seconds):
         execution=read(bd/'execution-native.json') if (bd/'execution-native.json').exists() else {}
         service=read(bd/'service-native.json') if (bd/'service-native.json').exists() else {}
         service_cleanup=read(bd/'service-cleanup.json') if (bd/'service-cleanup.json').exists() else {}
-        uuids=service.get('gpu_uuids',[])
-        identity_ok=len(set(uuids))==2 and execution.get('gpu_uuid') not in uuids and len(execution.get('affinity',[]))==6
+        workers=[]
         for row in brows:
             native=root/f'episode-{row["index"]}/native.json'
-            if not native.exists():identity_ok=False;continue
-            n=read(native)
-            identity_ok=identity_ok and n['job']==execution.get('job')==service.get('job') and n['step']==execution.get('step') and n['gpu_uuids']==[execution.get('gpu_uuid')]
+            if native.exists():workers.append(read(native))
+        from live_identity import verify
+        identity_ok=verify(execution,service,workers)
+        slot=read(bd/'budget-slot.json') if (bd/'budget-slot.json').exists() else {}
+        budget_ok=not plan.get('fixed_block_seconds') or (slot.get('reserved_seconds')==plan['fixed_block_seconds']
+            and plan['fixed_block_seconds']<=slot.get('actual_seconds',0)<=plan['fixed_block_seconds']+2)
         blocks.append(dict(block=block,arm=brows[0]['arm'],queue=queue,attempted=block in closed['attempted_blocks'],
-            closed=c.get('gpu_clean') is True and service_cleanup.get('gpu_clean') is True and not c.get('telemetry_errors') and (bd/'cycle-closed.json').exists(),
+            closed=c.get('gpu_clean') is True and service_cleanup.get('gpu_clean') is True and not c.get('telemetry_errors') and (bd/'cycle-closed.json').exists() and budget_ok,
             identities_ok=bool(identity_ok),valid_returns=sum(r['valid_returns'] for r in brows)))
     result=summarize(rows,blocks)
+    if plan.get('fixed_block_seconds'):
+        coverage=[]
+        for rep in (0,1):
+            totals={a:sum(r['native_valid'] and r['complete'] for r in rows if r['repeat']==rep and r['arm']==a)
+                    for a in ('pipeline','share2')}
+            coverage.append(totals['share2']-totals['pipeline'])
+        result.update(fixed_block_seconds=plan['fixed_block_seconds'],paired_valid_endpoint_differences=coverage,
+            feedback_throughput_signal=bool(result['complete']==16 and result['structural_audit']
+                and closed.get('controller_error') is None
+                and all(d is not None and d>0 for d in result['paired_pool_valid_return_differences'])
+                and all(d>=0 for d in coverage)))
     result.update(plan_sha256=sha(root/'plan.json'),source_commit=plan['source_commit'],
                   readout_source_sha256=sha(__file__),
                   closed_sha256=sha(root/'closed.json'),allocation_gpu_seconds=allocation_gpu_seconds,

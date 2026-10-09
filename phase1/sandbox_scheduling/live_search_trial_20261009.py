@@ -42,6 +42,9 @@ MODEL_DIR=B/'models/Qwen3.5-9B-c202236'
 PROFILE='9b'
 NODE='gpu27'
 NODE_QUALIFICATION=False
+SEED_BASE=140901
+GENERATOR_ELIGIBILITY_GATE=True
+FIXED_BLOCK_SECONDS=0
 SERVICE27=B/'task-feedback-real-20261001-v6/service_entry.py'
 SERVICE27_SHA='cd9e143abe79cdc71c97db3dba07930e0642b28faf52ac4f6b2ca5ba36a8379a'
 TASKS=('random-acts-of-pizza','spooky-author-identification')
@@ -58,7 +61,7 @@ def schedule():
             block=len(rows)//4
             for slot in range(4):
                 rows.append(dict(index=len(rows),block=block,arm=arm,repeat=rep,
-                    slot=slot,task=TASKS[slot%2],seed=140901+100*rep+slot))
+                    slot=slot,task=TASKS[slot%2],seed=SEED_BASE+100*rep+slot))
     return rows
 
 
@@ -100,8 +103,12 @@ def service27():
     if socket.gethostname().split('.')[0]!=NODE:raise ValueError('wrong service node')
     with socket.socket() as probe:probe.bind(('127.0.0.1',m.PORT))
     devices=x.native_uuids(2)
+    extra={}
+    if FIXED_BLOCK_SECONDS:
+        from live_identity import cpu_topology
+        extra['cpu_topology']=cpu_topology()
     write(R/f'block-{block}/service-native.json',dict(job=os.environ['SLURM_JOB_ID'],
-        step=os.environ['SLURM_STEP_ID'],gpu_uuids=devices))
+        step=os.environ['SLURM_STEP_ID'],gpu_uuids=devices,**extra))
     cmd=['/usr/bin/singularity','exec','--containall','--cleanenv','--no-home','--nv','--no-mount','bind-paths,cwd',
         '--bind',str(MODEL_DIR)+':/model:ro','--bind',str(R/'service-cache')+':/cache:rw',
         '--bind',str(R/'service-cache/tmp')+':/tmp:rw','--bind',str(R/'service_entry.py')+':/run/service_entry.py:ro',
@@ -119,6 +126,8 @@ def check():
     if p['schedule']!=schedule() or p['allocation_seconds']!=CAP or p['gpus']!=3:
         raise ValueError('frozen matrix')
     if p.get('node','gpu27')!=NODE:raise ValueError('placement changed')
+    if p.get('fixed_block_seconds',0)!=FIXED_BLOCK_SECONDS or p.get('generator_eligibility_gate',True)!=GENERATOR_ELIGIBILITY_GATE:
+        raise ValueError('budget/eligibility protocol changed')
     for name,pin in p['files'].items():
         if sha(R/name)!=pin:raise ValueError('frozen file drift')
     return p
@@ -228,10 +237,18 @@ timeout --signal=TERM --kill-after=20s 5320s {PY} -B {R/NAME} controller
         service_gpus=2,execution_gpus=1,service_cpu=12,execution_cpu=6,
         allocation_seconds=CAP,gpu_hours_cap=4.5,run_seconds=600,candidate_timeout_seconds=240,
         active_runs=4,rolling_replacement=False,service_restart_between_blocks=True,
+        fixed_block_seconds=FIXED_BLOCK_SECONDS,generator_eligibility_gate=GENERATOR_ELIGIBILITY_GATE,
+        independent_question=('Unfiltered feedback throughput at equal whole-pool reserved slot time; invalid endpoints retained. '
+            'No outcome-dependent continuation. Final-score effects only where both endpoints exist; never impute missing quality.'
+            if FIXED_BLOCK_SECONDS else None),
+        throughput_signal=('All16 workers close cleanly, all4 structure and equal-slot audits pass, both paired pool blocks '
+            'strictly increase valid timely candidate returns, and neither pool reduces valid-endpoint count. '
+            'This is feedback-throughput evidence only; final-quality exploratory_go remains the stricter original rule.'
+            if FIXED_BLOCK_SECONDS else None),
         source_model=str(MODEL_DIR),base_revision=old['base_revision'] if PROFILE=='9b' else None,used_model=MODEL_ID,
         model_files=model_files,profile=PROFILE,service_adapter_loaded=PROFILE=='9b',
         service_compile_cache_common=PROFILE=='27b',service_kv_cache_reset_by_process_restart=True,
-        qualification='For 27B only: after the first pipeline block, require all four clean workers and finite valid native-selected dev endpoints. Otherwise stop the assigned batch, retain all16 denominator, no replacement seeds. Any full comparison is conditional exploratory evidence.',
+        qualification=('Only image/safety qualifications. Complete all16 regardless of generator validity; stop on infrastructure/cleanup failure, retain16, no seed replacement.' if not GENERATOR_ELIGIBILITY_GATE else 'For 27B only: after the first pipeline block, require all four clean workers and finite valid native-selected dev endpoints. Otherwise stop the assigned batch, retain all16 denominator, no replacement seeds. Any full comparison is conditional exploratory evidence.'),
         adapter_unused=True,task_image_sha256=old['task_image_sha256'],
         service_image_sha256=old['service_image_sha256'],model_training=False,paid_api=False,
         single_change='FIFO execution lease limit 1 versus 2; both overlap startup and preserve native within-run MCTS order.',
@@ -362,8 +379,12 @@ def block_run(block):
     if gpu_sample(gpu)['pids']:raise ValueError('unclean execution GPU')
     arm=rows[0]['arm'];initialize(R/f'queue-{block}',1 if arm=='pipeline' else 2)
     start=time.time();stop=threading.Event();samples=[];errors=[]
+    extra={}
+    if FIXED_BLOCK_SECONDS:
+        from live_identity import cpu_topology
+        extra['cpu_topology']=cpu_topology()
     write(R/f'block-{block}/execution-native.json',dict(job=os.environ['SLURM_JOB_ID'],
-        step=os.environ['SLURM_STEP_ID'],gpu_uuid=gpu,affinity=sorted(os.sched_getaffinity(0)),start=start))
+        step=os.environ['SLURM_STEP_ID'],gpu_uuid=gpu,affinity=sorted(os.sched_getaffinity(0)),start=start,**extra))
     def monitor():
         while not stop.is_set():
             try:samples.append(gpu_sample(gpu))
@@ -421,8 +442,8 @@ def controller():
             if qualified.returncode or read(R/'node-qualification.json').get('complete') is not True:
                 raise ValueError('new node/original image qualification failed')
         for block in range(4):
-            if CAP-(time.monotonic()-start)<1530:raise TimeoutError('whole block admission budget')
-            bdir=R/f'block-{block}';cycle_start=time.time()
+            if CAP-(time.monotonic()-start)<(FIXED_BLOCK_SECONDS or 1530):raise TimeoutError('whole block admission budget')
+            bdir=R/f'block-{block}';cycle_start=time.time();cycle_mono=time.monotonic()
             with (bdir/'service.private.log').open('xb') as log:
                 server=subprocess.Popen(base+['--cpus-per-task=12','--gres=gpu:2','--time=00:25:00',
                     str(PY),'-B',str(R/NAME),'service'],env=dict(env,R14_BLOCK=str(block)),
@@ -444,14 +465,24 @@ def controller():
                     write(bdir/'service-ready.json',dict(startup_seconds=time.monotonic()-ready_start,model=MODEL_ID))
                     cmd=base+['--cpus-per-task=6','--gres=gpu:1','--time=00:13:00',
                         str(PY),'-B',str(R/NAME),'block','--block',str(block)]
+                    remaining=800 if not FIXED_BLOCK_SECONDS else min(800,FIXED_BLOCK_SECONDS-(time.monotonic()-cycle_mono)-50)
+                    if remaining<690:raise TimeoutError('no whole search budget in fixed slot')
                     attempted.append(block)
                     with (bdir/'block.private.log').open('xb') as log2:
-                        result=subprocess.run(cmd,env=env,stdout=log2,stderr=log2,timeout=800)
+                        result=subprocess.run(cmd,env=env,stdout=log2,stderr=log2,timeout=remaining)
                     write(bdir/'step-return.json',dict(returncode=result.returncode))
                     if result.returncode:raise ValueError('block failed')
                 finally:stop_service(server,block,job)
             write(bdir/'cycle-closed.json',dict(start=cycle_start,end=time.time(),service_returncode=server.returncode))
-            if PROFILE=='27b' and block==0:
+            if FIXED_BLOCK_SECONDS:
+                active_seconds=time.monotonic()-cycle_mono
+                if active_seconds>FIXED_BLOCK_SECONDS:raise TimeoutError('fixed pool slot exceeded')
+                while time.monotonic()-cycle_mono<FIXED_BLOCK_SECONDS:
+                    time.sleep(max(0,min(1,FIXED_BLOCK_SECONDS-(time.monotonic()-cycle_mono))))
+                write(bdir/'budget-slot.json',dict(reserved_seconds=FIXED_BLOCK_SECONDS,
+                    actual_seconds=time.monotonic()-cycle_mono,active_cycle_seconds=active_seconds,
+                    padding_seconds=FIXED_BLOCK_SECONDS-active_seconds,gpus=3))
+            if PROFILE=='27b' and GENERATOR_ELIGIBILITY_GATE and block==0:
                 from live_readout import ground_scores
                 qualification=[]
                 for row in schedule()[:4]:

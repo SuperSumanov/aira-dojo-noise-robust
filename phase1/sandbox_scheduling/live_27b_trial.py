@@ -12,7 +12,7 @@ trial.PROFILE='27b'
 trial.MODEL_ID='qwen3.8-27b'
 trial.MODEL_DIR=trial.B/'local-qwen27b-20260914-zcx1k1dy/model'
 trial.FILES=('live_27b_trial.py','live_search_trial_20261009.py','live_admission.py',
-             'live_runtime_hooks.py','bounded_readiness.py','lifecycle_pilot.py','live_readout.py')
+             'live_runtime_hooks.py','bounded_readiness.py','lifecycle_pilot.py','live_readout.py','live_identity.py')
 
 def host():return trial.host()
 

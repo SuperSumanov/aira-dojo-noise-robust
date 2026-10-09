@@ -1,0 +1,68 @@
+{
+  "analysis_source_sha256": "1dce8954372a48f59622a5bba5e3ca2eb7dee6f8b8c14c6bffdbc7f86af4b637",
+  "boundary": "Descriptive admission overhead only. Permit-slot seconds are not GPU seconds. Includes cancelled waiting. Event-span coverage excludes time before first/after last queue event; no alternative effect gate, imputation or workload replay.",
+  "closed_sha256": "b67209d7b90af8f562a12dbe846ab04dcc357a534134786b1f9303ee829c47ad",
+  "plan_sha256": "86aa8f7a3d534ef1eaaa5475482a8838fe29c06f1ee30cb367cc05aae411c774",
+  "rows": [
+    {
+      "accounted_through_final_release_or_cancellation": true,
+      "arm": "pipeline",
+      "block": 0,
+      "busy_permit_slot_seconds": 398.8388307094574,
+      "event_count": 48,
+      "event_span_seconds": 559.794171333313,
+      "events_sha256": "6f457018d187d98f3525c40360b36c4f9dca4131857347b9266cb495533cecd1",
+      "longest_spare_with_waiting_event_interval_seconds": 0.8628032207489014,
+      "observed": true,
+      "operations": 16,
+      "spare_with_waiting_intervals": 19,
+      "waiting_task_seconds_including_cancelled": 554.296058177948,
+      "waiting_with_spare_permit_slot_seconds": 1.2036168575286865
+    },
+    {
+      "accounted_through_final_release_or_cancellation": true,
+      "arm": "share2",
+      "block": 1,
+      "busy_permit_slot_seconds": 464.1324932575226,
+      "event_count": 57,
+      "event_span_seconds": 526.181807756424,
+      "events_sha256": "9850015d75010c9e380b4b74d346fc5043c2a8c8a409ddfe45ae2bafc6afc537",
+      "longest_spare_with_waiting_event_interval_seconds": 0.05825662612915039,
+      "observed": true,
+      "operations": 19,
+      "spare_with_waiting_intervals": 20,
+      "waiting_task_seconds_including_cancelled": 150.95265674591064,
+      "waiting_with_spare_permit_slot_seconds": 0.5292508602142334
+    },
+    {
+      "accounted_through_final_release_or_cancellation": true,
+      "arm": "share2",
+      "block": 2,
+      "busy_permit_slot_seconds": 759.4985029697418,
+      "event_count": 45,
+      "event_span_seconds": 520.5834858417511,
+      "events_sha256": "dc604a2b7c49dbcd4bebdea89124fa9f43a83f22a29389e314f6c960281a1d63",
+      "longest_spare_with_waiting_event_interval_seconds": 0.0547032356262207,
+      "observed": true,
+      "operations": 15,
+      "spare_with_waiting_intervals": 15,
+      "waiting_task_seconds_including_cancelled": 409.48929047584534,
+      "waiting_with_spare_permit_slot_seconds": 0.2750866413116455
+    },
+    {
+      "accounted_through_final_release_or_cancellation": true,
+      "arm": "pipeline",
+      "block": 3,
+      "busy_permit_slot_seconds": 492.77420234680176,
+      "event_count": 33,
+      "event_span_seconds": 568.339691400528,
+      "events_sha256": "567494916de621d214f97639a7bd0b403b7f056e42dd33a551ef2b73545d05e4",
+      "longest_spare_with_waiting_event_interval_seconds": 0.1359238624572754,
+      "observed": true,
+      "operations": 12,
+      "spare_with_waiting_intervals": 10,
+      "waiting_task_seconds_including_cancelled": 1111.3193497657776,
+      "waiting_with_spare_permit_slot_seconds": 0.3990781307220459
+    }
+  ]
+}

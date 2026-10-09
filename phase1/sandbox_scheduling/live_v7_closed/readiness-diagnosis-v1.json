@@ -1,0 +1,605 @@
+{
+  "analysis_source_sha256": "c6c8046e9719d3ed00def6f64a37371d7e53a52da7f48cc61b088c12d22c5ac6",
+  "boundary": "Post-result startup diagnosis only. All16 remain in the frozen primary analysis; no subtraction of slow time or exclusion of a run. Does not prove cause of timeout or quality difference.",
+  "closed_sha256": "b67209d7b90af8f562a12dbe846ab04dcc357a534134786b1f9303ee829c47ad",
+  "plan_sha256": "86aa8f7a3d534ef1eaaa5475482a8838fe29c06f1ee30cb367cc05aae411c774",
+  "rows": [
+    {
+      "arm": "pipeline",
+      "attempts": 4,
+      "block": 0,
+      "events": [
+        {
+          "elapsed": 41.209072393365204,
+          "seconds": 0.06505545787513256,
+          "success": true
+        },
+        {
+          "elapsed": 279.5802517803386,
+          "seconds": 120.00024543702602,
+          "success": false
+        },
+        {
+          "elapsed": 393.57028399873525,
+          "seconds": 0.06186058185994625,
+          "success": true
+        },
+        {
+          "elapsed": 504.238234247081,
+          "seconds": 0.06979399174451828,
+          "success": true
+        }
+      ],
+      "events_sha256": "cd90b1055438299613bb89bae5f9fd4df1ac66fd0e6f259b2a816b9a2ea1ac9c",
+      "index": 0,
+      "task": "random-acts-of-pizza",
+      "total_seconds": 120.19695546850562,
+      "unsuccessful": 1
+    },
+    {
+      "arm": "pipeline",
+      "attempts": 7,
+      "block": 0,
+      "events": [
+        {
+          "elapsed": 41.21074428688735,
+          "seconds": 0.06417032983154058,
+          "success": true
+        },
+        {
+          "elapsed": 145.28142468538135,
+          "seconds": 0.06480977311730385,
+          "success": true
+        },
+        {
+          "elapsed": 185.99302238039672,
+          "seconds": 0.042684310115873814,
+          "success": true
+        },
+        {
+          "elapsed": 229.23058218788356,
+          "seconds": 0.06917934212833643,
+          "success": true
+        },
+        {
+          "elapsed": 373.3347753677517,
+          "seconds": 0.07033901941031218,
+          "success": true
+        },
+        {
+          "elapsed": 407.9840792864561,
+          "seconds": 0.044538622722029686,
+          "success": true
+        },
+        {
+          "elapsed": 457.17992720380425,
+          "seconds": 0.05795563757419586,
+          "success": true
+        }
+      ],
+      "events_sha256": "91855c4b4393202abce44612ca2bb10a79068332662e4db8e705222e5eb85e09",
+      "index": 1,
+      "task": "spooky-author-identification",
+      "total_seconds": 0.4136770348995924,
+      "unsuccessful": 0
+    },
+    {
+      "arm": "pipeline",
+      "attempts": 6,
+      "block": 0,
+      "events": [
+        {
+          "elapsed": 41.178401198238134,
+          "seconds": 0.06444373168051243,
+          "success": true
+        },
+        {
+          "elapsed": 145.2970533426851,
+          "seconds": 0.06652747374027967,
+          "success": true
+        },
+        {
+          "elapsed": 207.84256321378052,
+          "seconds": 0.0430242121219635,
+          "success": true
+        },
+        {
+          "elapsed": 304.624029641971,
+          "seconds": 0.06466466654092073,
+          "success": true
+        },
+        {
+          "elapsed": 443.37940810620785,
+          "seconds": 0.06391505803912878,
+          "success": true
+        },
+        {
+          "elapsed": 591.9198460420594,
+          "seconds": 0.0042779287323355675,
+          "success": true
+        }
+      ],
+      "events_sha256": "3407ef1f41e5f224e9b09ab9b89af50c9f992326df5489f2673f02b811a78fc7",
+      "index": 2,
+      "task": "random-acts-of-pizza",
+      "total_seconds": 0.3068530708551407,
+      "unsuccessful": 0
+    },
+    {
+      "arm": "pipeline",
+      "attempts": 6,
+      "block": 0,
+      "events": [
+        {
+          "elapsed": 41.239218856208026,
+          "seconds": 0.06374678667634726,
+          "success": true
+        },
+        {
+          "elapsed": 118.92304138187319,
+          "seconds": 0.07013010792434216,
+          "success": true
+        },
+        {
+          "elapsed": 223.32958074565977,
+          "seconds": 0.07002212014049292,
+          "success": true
+        },
+        {
+          "elapsed": 315.1184556540102,
+          "seconds": 0.04776129778474569,
+          "success": true
+        },
+        {
+          "elapsed": 433.63897349499166,
+          "seconds": 0.06860398128628731,
+          "success": true
+        },
+        {
+          "elapsed": 579.8102634418756,
+          "seconds": 0.009420488961040974,
+          "success": true
+        }
+      ],
+      "events_sha256": "e88208ddcdce2a8281cdacf60f0d5bc90e2c449d998036802e03b58399c10a62",
+      "index": 3,
+      "task": "spooky-author-identification",
+      "total_seconds": 0.3296847827732563,
+      "unsuccessful": 0
+    },
+    {
+      "arm": "share2",
+      "attempts": 4,
+      "block": 1,
+      "events": [
+        {
+          "elapsed": 75.57532776519656,
+          "seconds": 0.06706030573695898,
+          "success": true
+        },
+        {
+          "elapsed": 190.14613773673773,
+          "seconds": 0.06751199625432491,
+          "success": true
+        },
+        {
+          "elapsed": 315.3078311048448,
+          "seconds": 0.07247079070657492,
+          "success": true
+        },
+        {
+          "elapsed": 493.6079516094178,
+          "seconds": 0.062204521149396896,
+          "success": true
+        }
+      ],
+      "events_sha256": "a9c80a2dfd8e43a6fe7b0cc3dbae04e25973e8897276887138b0cc9422ebea2d",
+      "index": 4,
+      "task": "random-acts-of-pizza",
+      "total_seconds": 0.2692476138472557,
+      "unsuccessful": 0
+    },
+    {
+      "arm": "share2",
+      "attempts": 8,
+      "block": 1,
+      "events": [
+        {
+          "elapsed": 75.67850315291435,
+          "seconds": 0.07368870545178652,
+          "success": true
+        },
+        {
+          "elapsed": 171.40690766554326,
+          "seconds": 0.06522730179131031,
+          "success": true
+        },
+        {
+          "elapsed": 221.19390378706157,
+          "seconds": 0.04358160216361284,
+          "success": true
+        },
+        {
+          "elapsed": 271.82475307770073,
+          "seconds": 0.07049861829727888,
+          "success": true
+        },
+        {
+          "elapsed": 369.5973762301728,
+          "seconds": 0.04775838740170002,
+          "success": true
+        },
+        {
+          "elapsed": 425.2341234944761,
+          "seconds": 0.06933287903666496,
+          "success": true
+        },
+        {
+          "elapsed": 480.230805949308,
+          "seconds": 0.060338118113577366,
+          "success": true
+        },
+        {
+          "elapsed": 526.1181671675295,
+          "seconds": 0.04371891636401415,
+          "success": true
+        }
+      ],
+      "events_sha256": "7eb8c3fa0f91e5c938719c4c67a1bf1baca8da79bf9e5e7c9555a1a4f9c2d39c",
+      "index": 5,
+      "task": "spooky-author-identification",
+      "total_seconds": 0.47414452861994505,
+      "unsuccessful": 0
+    },
+    {
+      "arm": "share2",
+      "attempts": 7,
+      "block": 1,
+      "events": [
+        {
+          "elapsed": 75.60862581524998,
+          "seconds": 0.05849319510161877,
+          "success": true
+        },
+        {
+          "elapsed": 171.41193994227797,
+          "seconds": 0.06871664337813854,
+          "success": true
+        },
+        {
+          "elapsed": 203.98919329978526,
+          "seconds": 0.004528503865003586,
+          "success": true
+        },
+        {
+          "elapsed": 282.61338662169874,
+          "seconds": 0.06504693254828453,
+          "success": true
+        },
+        {
+          "elapsed": 449.97138743288815,
+          "seconds": 0.06658509932458401,
+          "success": true
+        },
+        {
+          "elapsed": 496.8767792666331,
+          "seconds": 0.005741926841437817,
+          "success": true
+        },
+        {
+          "elapsed": 578.6283211177215,
+          "seconds": 0.06915955524891615,
+          "success": true
+        }
+      ],
+      "events_sha256": "b7582cbd5c6783479ef9d4b64c7cf84523624bf25159b6e59a677f9a0f641f8b",
+      "index": 6,
+      "task": "random-acts-of-pizza",
+      "total_seconds": 0.3382718563079834,
+      "unsuccessful": 0
+    },
+    {
+      "arm": "share2",
+      "attempts": 6,
+      "block": 1,
+      "events": [
+        {
+          "elapsed": 75.59674907848239,
+          "seconds": 0.05980600509792566,
+          "success": true
+        },
+        {
+          "elapsed": 150.94243874400854,
+          "seconds": 0.06856441590934992,
+          "success": true
+        },
+        {
+          "elapsed": 270.6527847861871,
+          "seconds": 0.0757470577955246,
+          "success": true
+        },
+        {
+          "elapsed": 353.91374270338565,
+          "seconds": 0.04801429063081741,
+          "success": true
+        },
+        {
+          "elapsed": 430.5547318281606,
+          "seconds": 0.06939770188182592,
+          "success": true
+        },
+        {
+          "elapsed": 502.9466701867059,
+          "seconds": 0.057387677021324635,
+          "success": true
+        }
+      ],
+      "events_sha256": "4bb1c7e6ea6793b03aa1b31e561173101da98fe5c0ea264c9ca05a2366b00366",
+      "index": 7,
+      "task": "spooky-author-identification",
+      "total_seconds": 0.37891714833676815,
+      "unsuccessful": 0
+    },
+    {
+      "arm": "share2",
+      "attempts": 6,
+      "block": 2,
+      "events": [
+        {
+          "elapsed": 55.8511725589633,
+          "seconds": 0.05850683152675629,
+          "success": true
+        },
+        {
+          "elapsed": 121.45005003642291,
+          "seconds": 0.06433767639100552,
+          "success": true
+        },
+        {
+          "elapsed": 184.5789715340361,
+          "seconds": 0.06393876112997532,
+          "success": true
+        },
+        {
+          "elapsed": 481.87927658017725,
+          "seconds": 0.0431800065562129,
+          "success": true
+        },
+        {
+          "elapsed": 557.8309641815722,
+          "seconds": 0.06458214577287436,
+          "success": true
+        },
+        {
+          "elapsed": 573.076230478473,
+          "seconds": 0.04373164661228657,
+          "success": true
+        }
+      ],
+      "events_sha256": "ab2db5d75eeb7c11d9afff8091e35113392ed6d075b96b460a672932e1e71ea9",
+      "index": 8,
+      "task": "random-acts-of-pizza",
+      "total_seconds": 0.33827706798911095,
+      "unsuccessful": 0
+    },
+    {
+      "arm": "share2",
+      "attempts": 4,
+      "block": 2,
+      "events": [
+        {
+          "elapsed": 55.85925090871751,
+          "seconds": 0.064842589199543,
+          "success": true
+        },
+        {
+          "elapsed": 112.98278465867043,
+          "seconds": 0.07183612789958715,
+          "success": true
+        },
+        {
+          "elapsed": 432.47710681706667,
+          "seconds": 0.0672990595921874,
+          "success": true
+        },
+        {
+          "elapsed": 507.2763715451583,
+          "seconds": 0.06695093587040901,
+          "success": true
+        }
+      ],
+      "events_sha256": "ff6f561fdc1f56c37c0c084c2d9f41c82207cb15c74a6689314bd2d7f010bac5",
+      "index": 9,
+      "task": "spooky-author-identification",
+      "total_seconds": 0.27092871256172657,
+      "unsuccessful": 0
+    },
+    {
+      "arm": "share2",
+      "attempts": 7,
+      "block": 2,
+      "events": [
+        {
+          "elapsed": 55.826210875064135,
+          "seconds": 0.06581933330744505,
+          "success": true
+        },
+        {
+          "elapsed": 150.6309279454872,
+          "seconds": 0.06252643465995789,
+          "success": true
+        },
+        {
+          "elapsed": 374.8818796565756,
+          "seconds": 0.04403982497751713,
+          "success": true
+        },
+        {
+          "elapsed": 471.63134711794555,
+          "seconds": 0.06588728539645672,
+          "success": true
+        },
+        {
+          "elapsed": 479.490618779324,
+          "seconds": 0.04399289935827255,
+          "success": true
+        },
+        {
+          "elapsed": 565.3694223714992,
+          "seconds": 0.06286363489925861,
+          "success": true
+        },
+        {
+          "elapsed": 575.4159091515467,
+          "seconds": 0.0026784557849168777,
+          "success": true
+        }
+      ],
+      "events_sha256": "c6c05267b4664fb9e1ab41b8fc6958df470b745e513d2d8eac638ca36190de83",
+      "index": 10,
+      "task": "random-acts-of-pizza",
+      "total_seconds": 0.3478078683838248,
+      "unsuccessful": 0
+    },
+    {
+      "arm": "share2",
+      "attempts": 3,
+      "block": 2,
+      "events": [
+        {
+          "elapsed": 55.79843435809016,
+          "seconds": 0.059916408732533455,
+          "success": true
+        },
+        {
+          "elapsed": 133.87210833653808,
+          "seconds": 0.06375093851238489,
+          "success": true
+        },
+        {
+          "elapsed": 545.3069757148623,
+          "seconds": 0.0690482072532177,
+          "success": true
+        }
+      ],
+      "events_sha256": "5d1296ba05731be255c2cfa46db3348bad5f5d70aab0682aa94b3cf63b6419bd",
+      "index": 11,
+      "task": "spooky-author-identification",
+      "total_seconds": 0.19271555449813604,
+      "unsuccessful": 0
+    },
+    {
+      "arm": "pipeline",
+      "attempts": 3,
+      "block": 3,
+      "events": [
+        {
+          "elapsed": 38.49005755409598,
+          "seconds": 0.06430351175367832,
+          "success": true
+        },
+        {
+          "elapsed": 125.53186378907412,
+          "seconds": 0.06407084036618471,
+          "success": true
+        },
+        {
+          "elapsed": 453.467106834054,
+          "seconds": 0.06303035654127598,
+          "success": true
+        }
+      ],
+      "events_sha256": "3c8423a8186809362590bf47eb8069b6e3dca5b2eb0c1efe0fa46fd367ef4df6",
+      "index": 12,
+      "task": "random-acts-of-pizza",
+      "total_seconds": 0.191404708661139,
+      "unsuccessful": 0
+    },
+    {
+      "arm": "pipeline",
+      "attempts": 3,
+      "block": 3,
+      "events": [
+        {
+          "elapsed": 33.5953920064494,
+          "seconds": 0.06246079318225384,
+          "success": true
+        },
+        {
+          "elapsed": 85.0332865389064,
+          "seconds": 0.0721260104328394,
+          "success": true
+        },
+        {
+          "elapsed": 413.4266188563779,
+          "seconds": 0.05890445038676262,
+          "success": true
+        }
+      ],
+      "events_sha256": "dc42e9dd5af8c144e42bde2cd9745aee025bfbc78b296ca2bf3d9f6c7c0ce457",
+      "index": 13,
+      "task": "spooky-author-identification",
+      "total_seconds": 0.19349125400185585,
+      "unsuccessful": 0
+    },
+    {
+      "arm": "pipeline",
+      "attempts": 3,
+      "block": 3,
+      "events": [
+        {
+          "elapsed": 38.36477571632713,
+          "seconds": 0.06559961382299662,
+          "success": true
+        },
+        {
+          "elapsed": 126.45323206018656,
+          "seconds": 0.0687967473641038,
+          "success": true
+        },
+        {
+          "elapsed": 457.88791776262224,
+          "seconds": 0.05818717833608389,
+          "success": true
+        }
+      ],
+      "events_sha256": "c463514a66b93eb7cd6156c4e0d30039fac2d12ff61ab3453465390eda9c459c",
+      "index": 14,
+      "task": "random-acts-of-pizza",
+      "total_seconds": 0.1925835395231843,
+      "unsuccessful": 0
+    },
+    {
+      "arm": "pipeline",
+      "attempts": 4,
+      "block": 3,
+      "events": [
+        {
+          "elapsed": 38.39247455075383,
+          "seconds": 0.062225245870649815,
+          "success": true
+        },
+        {
+          "elapsed": 152.88063686620444,
+          "seconds": 0.07151822093874216,
+          "success": true
+        },
+        {
+          "elapsed": 384.9932013005018,
+          "seconds": 0.04442411195486784,
+          "success": true
+        },
+        {
+          "elapsed": 449.32453118637204,
+          "seconds": 0.06629898026585579,
+          "success": true
+        }
+      ],
+      "events_sha256": "8ff5503cc0eddb2573a50549775e14c0fcfba28046097b7f1876dbee9d3890a6",
+      "index": 15,
+      "task": "spooky-author-identification",
+      "total_seconds": 0.2444665590301156,
+      "unsuccessful": 0
+    }
+  ]
+}

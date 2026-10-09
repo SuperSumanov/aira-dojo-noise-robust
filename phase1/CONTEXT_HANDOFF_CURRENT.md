@@ -2,6 +2,8 @@
 更新：2026-10-09香港；旧79行完整留在Git 2b634744a92d17e5732419f11be30f6c0e9da04a。原实验与授权不因压缩改变。
 
 ## 当前六小时窗口
+- 18:22新诊断已提交17326：readiness_gateway_trial.py，source548669e800fe97242851d2f89bb3aff621cbb813，plan72b42e1e39b4a444def1d831b5ade208a3bc6d1e04065571b660b435c6c60d0b；root=scheduling-readiness-gateway-20261009-v1，stage=scheduling-gateway-20261009.8CUa7r。远端5测试通过、prepare完整exit0后提交；28257须等退出，不重投。当前状态尚待现场核。
+- 新独立阶段覆盖资格已事前说明：live_exposure_trial.py，4新run=Pizza/Spooky各2seed174901–174904，原生root5不改，share2单臂，每条3000s；3GPU/18物理核/65min≤3.25GPUh含模型启动/失败/闲置。不是v7同预算A/B，不比较其前600秒作反事实（提示预算也变了）。全4清理且两任务各有已完成Improve及外部反馈才支持阶段资格，不自动放行live2/4。4本地测试过，尚未prepare/提交；需17326结束后无重叠。原模型/任务镜像、合法dev输入固定，不接新数据或官方test。
 - 18:18最新：17322已COMPLETED18:01:08–18:06:55，347GPU秒；48尝试/观察/清理，47 pass，parallel4 index24握手120.00046924222261s失败。收到3status/发送120info/0匹配回复、socket/thread活；不是候选失败，尚不能判根因。原一次读出readout-v1已写，transport_v1_closed两原件hash一致；窗口合计18610GPU秒=5.169444444444444GPUh。当前无本轮GPU任务，旧记录动态仅历史。
 - 下一限定空内核诊断入口readiness_gateway_trial.py；固定同48矩阵，单3090/6物理核≤900秒/0.25GPUh，仅增加Gateway消息类型计数；无数据/模型/API、候选仍只有pass、既有120s上限不变。计数额外I/O使其不适合作速度比较；不修改旧root/门/镜像，不自动启动live2/4。5个本地测试通过；尚未prepare/提交。
 - v7 root-exposure-v1远近SHA一致b10b9c44a95796dd7564db4343d65109f35fff614541d98a0b5f4c9e44883be7：16条num_children5/600s均只完成1–3Draft、0–2Debug，Improve总0。原生expand源码SHA f75a93f69fd79029ae4d3ce5b9dad81520480cbf36b56b05d8719a8b84c2a63d；3AST测试过；此前feedback-progress-v1 18有效返回全在journal。未完成内容未知，不能宣称调度已测到充分Improve搜索。

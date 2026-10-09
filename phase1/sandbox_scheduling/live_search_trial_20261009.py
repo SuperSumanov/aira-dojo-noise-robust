@@ -147,9 +147,25 @@ def scientific(cfg):
     return c
 
 
+def entry_module():
+    # Re-importing a CLI wrapper under its module name would run its mutable
+    # configuration statements twice. Resolve the already-loaded entry only.
+    entry=sys.modules.get(Path(NAME).stem)
+    if entry is None:
+        entry=sys.modules.get('__main__')
+        if Path(getattr(entry,'__file__','')).name!=NAME:
+            raise ValueError('unexpected launch entry')
+    return entry
+
+
 def prepare(commit):
     if not re.fullmatch('[a-f0-9]{40}',commit) or sha(D/'plan.json')!=DONOR_PLAN:
         raise ValueError('exact provenance')
+    # The generated container-runtime shim imports host from the wrapper,
+    # not from this base module. Check the actual interface before costly I/O.
+    entry=entry_module()
+    if not callable(getattr(entry,'host',None)):
+        raise ValueError('container shim entry must export host')
     old=read(D/'plan.json')
     if not read(D/'closed.json')['service_closed']:raise ValueError('donor not closed')
     R.mkdir(mode=0o700,exist_ok=False)
@@ -280,6 +296,9 @@ timeout --signal=TERM --kill-after=20s 5320s {PY} -B {R/NAME} controller
 
 def cpu():
     p=check();m=host();m.setup()
+    entry=entry_module()
+    if not callable(getattr(entry,'host',None)) or entry.host().R!=R:
+        raise ValueError('container shim host interface/root mismatch')
     from dojo.config_dataclasses.run import RunConfig
     from dojo.tasks.mlebench.task import MLEBenchTask
     from dojo.solvers.mcts.mcts import MCTS

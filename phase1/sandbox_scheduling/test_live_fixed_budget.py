@@ -42,6 +42,32 @@ class IdentityTests(unittest.TestCase):
 
 
 class ProtocolTests(unittest.TestCase):
+    def test_v7_generated_container_shim_imports_real_wrapper_host(self):
+        command='''import json
+from types import SimpleNamespace
+import live_entry_fix_trial as entry
+t=entry.trial
+assert t.R.name.endswith('-v7') and t.SEED_BASE==142901
+assert t.PHYSICAL_CPU_BINDING and not t.GENERATOR_ELIGIBILITY_GATE
+assert len(t.FILES)==len(set(t.FILES))
+assert t.entry_module() is entry
+import sys
+del sys.modules['live_entry_fix_trial']
+old_main=sys.modules['__main__']
+sys.modules['__main__']=entry
+assert t.entry_module() is entry
+sys.modules['__main__']=old_main
+sys.modules['live_entry_fix_trial']=entry
+seen=[]
+t.host=lambda:SimpleNamespace(task_runtime=lambda:seen.append('called'))
+exec('from '+t.NAME[:-3]+' import host; host().task_runtime()')
+assert seen==['called']
+print(json.dumps(dict(passed=True,entry=t.NAME)))
+'''
+        r=subprocess.run([sys.executable,'-B','-c',command],cwd=Path(__file__).parent,
+                         capture_output=True,text=True,check=True)
+        self.assertTrue(json.loads(r.stdout)['passed'])
+
     def test_v6_common_physical_cpu_fix_and_new_root(self):
         command='''import json
 import live_physical_cpu_trial as entry

@@ -2,6 +2,10 @@
 更新：2026-10-09香港；旧79行完整留在Git 2b634744a92d17e5732419f11be30f6c0e9da04a。原实验与授权不因压缩改变。
 
 ## 当前六小时窗口
+- 18:18最新：17322已COMPLETED18:01:08–18:06:55，347GPU秒；48尝试/观察/清理，47 pass，parallel4 index24握手120.00046924222261s失败。收到3status/发送120info/0匹配回复、socket/thread活；不是候选失败，尚不能判根因。原一次读出readout-v1已写，transport_v1_closed两原件hash一致；窗口合计18610GPU秒=5.169444444444444GPUh。当前无本轮GPU任务，旧记录动态仅历史。
+- 下一限定空内核诊断入口readiness_gateway_trial.py；固定同48矩阵，单3090/6物理核≤900秒/0.25GPUh，仅增加Gateway消息类型计数；无数据/模型/API、候选仍只有pass、既有120s上限不变。计数额外I/O使其不适合作速度比较；不修改旧root/门/镜像，不自动启动live2/4。5个本地测试通过；尚未prepare/提交。
+- v7 root-exposure-v1远近SHA一致b10b9c44a95796dd7564db4343d65109f35fff614541d98a0b5f4c9e44883be7：16条num_children5/600s均只完成1–3Draft、0–2Debug，Improve总0。原生expand源码SHA f75a93f69fd79029ae4d3ce5b9dad81520480cbf36b56b05d8719a8b84c2a63d；3AST测试过；此前feedback-progress-v1 18有效返回全在journal。未完成内容未知，不能宣称调度已测到充分Improve搜索。
+- 18:12 fetch己方624f41af/学长a5519bc8无变；新source e362774d未push。短期重点是诊断传输原因和负载阶段覆盖，不再无门槛扩大质量实验；20:11前持续研究，不因空内核COMPLETED冒称全部pass。
 - 17:42最新：17308已FAILED，17:05:19–17:27:24，1325GPU秒；36/24尝试/20完成/4失败/12未开始。episode21 cell0内核就绪120.00047089718282秒超时，20/22/23在共同屏障被阻断，四个均未开始候选。原门false，f13dfb条件live2/4不准启动，不重开root/复用余额。下面17:08 RUNNING仅历史观察；当前无本轮GPU任务。
 - width_v1_closed四文件远近端hash一致；summary c1dd1c6f746dd5502478a8eda32d30cf7b6c1796d280c307cc2bd45c631d8620，closed59e7d1d8092b90a473d7a2f1b010b44f51fd9498b8e5e9f6a38f592d563248d2。冻结readout一次闭合；独立diagnostics-v1 4f974ebb3578250cee3cd71311cc5e5486843ebd3b940838859a55f00fa2a7a8，20已观察输出Decimal完全相同、步数150/640均保留。原摘要equivalence=false因缺覆盖，不能说数值不一致；4个CPU诊断测试通过。
 - width两完整2/4配对整批比1.5013821747034244/1.7927649723239687；四并发首返晚53.94527316093445/57.63973832130432秒，末返早56.63110280036926/114.33188581466675秒，第三配对missing。描述性权衡而非门通过/独特方法/live收益。窗口实耗18263GPU秒=5.073055555555555GPUh，包含v5/CPUprobe/v6/v7/17308，不含14:11之前v4。

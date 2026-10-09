@@ -48,6 +48,8 @@
 
 ## 已核近邻：检索入口，不是它们已替我们验证效果
 
+- 10/9 v7事后覆盖诊断：16条600s原生MCTS全部未完成首批5Draft、完成Improve=0，18有效返回均有journal。应先确保负载确实暴露所声称的搜索阶段，再谈调度质量收益；不能将增预算/减分支数量本身称新方法，不能由Debug存在否认反馈已被部分使用。17322空内核复现一次握手故障，不是候选/训练负载缺陷，亦不解除17308完整门。
+
 - **M-DESIGN**：edit-gain图、任务相似度及预测修改；旧裁决0CU。https://arxiv.org/abs/2507.15336
 - **MLE-STAR / PatchFusion**：组件精修、局部编辑组合；10/2复盘第九节。https://arxiv.org/abs/2506.15692 / https://arxiv.org/abs/2607.01597
 - **MARS / CONTRAMEM**：比较经验、跨分支利用、成功失败对比形成程序经验。https://arxiv.org/abs/2602.02660 / https://arxiv.org/abs/2608.22533

@@ -40,7 +40,8 @@ def log_shape(path):
         'graph_capture': r'Capturing CUDA graphs|Graph capturing finished',
         'kv_initialized': r'GPU KV cache size|Maximum concurrency for',
     }.items()}
-    return dict(bytes=path.stat().st_size, exception_types=kinds[-5:],trace_frames=frames[-8:],
+    bounded_errors=re.findall(r'bounded API attempt failed: ([A-Za-z][A-Za-z0-9_]{0,80})',tail)
+    return dict(bytes=path.stat().st_size, exception_types=kinds[-5:],bounded_error_types=bounded_errors[-5:],trace_frames=frames[-8:],
                 known_messages=known_messages, **markers)
 
 
@@ -68,6 +69,12 @@ def main():
             supervisor_closed=sum((ROOT/f'episode-{i}/closed.json').exists() for i in range(4*b,4*b+4)),
             worker_finished=sum((ROOT/f'episode-{i}/finished.json').exists() for i in range(4*b,4*b+4)),
             worker_started=sum((ROOT/f'episode-{i}/native.json').exists() for i in range(4*b,4*b+4)),
+            worker_states=[dict(index=i,
+                status=read(f'episode-{i}/finished.json').get('status'),
+                returncode=read(f'episode-{i}/closed.json').get('returncode'),
+                cleanup_verified=read(f'episode-{i}/closed.json').get('cleanup_verified'),
+                log=log_shape(ROOT/f'episode-{i}/worker.private.log'))
+                for i in range(4*b,4*b+4)],
             candidate_receipts=sum(sum('.private.' not in p.name for p in (ROOT/f'episode-{i}').glob('candidate-*.json')) for i in range(4*b,4*b+4)),
             scoring_receipts=sum(sum(1 for _ in (ROOT/f'episode-{i}').glob('scored-*.json')) for i in range(4*b,4*b+4)),
             gpu_clean=closed.get('gpu_clean'), service_cleanup=read(f'block-{b}/service-cleanup.json'),

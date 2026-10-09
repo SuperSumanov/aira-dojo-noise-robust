@@ -1,8 +1,9 @@
 # 当前短交接
-更新：2026-10-10香港06:43；旧全文保留于Git 8d1e8ca5。当前方向R14，历史动态不是现场。
+更新：2026-10-10香港07:06；旧全文保留于Git 8d1e8ca5。当前方向R14，历史动态不是现场。
 
 ## 当前六小时窗口与现场
-- 新窗口04:56:13–10:56:13香港，用户要求完整六小时会话内推进；不提前结束。17364/17366均COMPLETED，共2012GPU秒=0.5588888888888889GPUh。17368于06:19:57已RUNNING/gpu27/18CPU/3GPU，06:27首服务ready/4worker开始；06:42最后观察首块20候选返回/11评分回执、0闭合worker、无基建错误，不读分数抢先比较。曾考虑gpu35，撤回前已开跑，因此迁移/取消均未执行。旧Held12535不动。
+- 新窗口04:56:13–10:56:13香港，用户要求完整六小时会话内推进；不提前结束。17364/17366均COMPLETED，共2012GPU秒=0.5588888888888889GPUh。17368于06:19:57已RUNNING/gpu27/18CPU/3GPU；首块四worker和2300s全池槽已闭合、26返回/13评分回执。07:05最后观察第二块四worker已开始、5返回/4评分回执，未见基建错误，不提前读质量。曾考虑gpu35，但撤回前原作业已开跑，因此迁移/取消均未执行。旧Held12535不动。
+- 闭合后阶段诊断live_twochild_stage_audit.py@b551a6cf186d5ca79414ad58bb59aa7649fa4ac3已在stage，SHA1cceab8ff22442ea904ddc8690ca3ab82713659a4a31fd10e78e69c5936dcfac；本地8/远端5合成测试通过、三依赖字节远近一致。远端首测缺live_root_exposure_audit依赖，补齐后通过，未跑真实writer；只在primary闭合后一次输出stage-coverage-v1.json，保留16/缺失，不输出代码或分数。Improve计数不是成绩提高，不改门。17366遥测全部max_resident_gpu_clients=1，仅候选执行重叠，不宣称训练kernel并行；原解释边界不变。
 - 17364 opportunity_recheck：17328全部两组native接受Pizza父子（正/平），原seed各2次，共8执行；原源码/输入/评分器/240s单次不变，1GPU/6物理核/45min≤0.75GPUh。局部事后重复性，非新样本或调度效应；root scheduling-opportunity-recheck-20261010-v1，stage scheduling-recheck-20261010.B5b9cz。source4534112ad4de74f5d7d44da855366b38583d659f，plan e201f64f3ddbc8e753751b8e412ebb6df840f4ea5ebea6da1cc21016d4828feb；本地/远端各6测试通过且上传字节一致。
 - 第二线17366：neural_extension_20261010，固定新CNN32增强版ea47bb6d与UNet3Residual c60e3f1c，沿用完整公开输入，pipeline/share2×3=12，1卡6CPU/90min≤1.5GPUh。两臂candidate450s不变，排队600s/worker1120s，整块预留1125s；首pipeline两程序不全完成则停，不换程序/改源码。依旧同两任务相关程序家族，不是新任务/训练seed或live质量证据。SETI公开输入缺失，未拿来充样本。
 - 17364闭合readout b87dd1c85d15d9bba86ab5b47ecd60493dedfdabeda2798faa328caba5483fb8；8/8精确外部评分/预测hash/设备隔离通过。正组两次+0.0197321215020330、平组两次0，CSV独立Decimal复核一致；只支持同seed局部重复性，不排除dev样本选择、不等于池中全局更好（另一父程序分数更高）。opportunity_recheck_v1_closed，原writer不再运行。

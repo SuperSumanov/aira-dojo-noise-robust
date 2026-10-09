@@ -21,8 +21,9 @@ class ExtensionTests(unittest.TestCase):
         self.assertNotIn('c0888120b84c72f433712fb1c103f9e10e6ff18d84f5a15198d34b1159991369',dict(e.PINS).values())
         self.assertNotIn('0d7b2d191f2dd2e4dd7b28a6c3d678eb321eb3f008abdefab538703a71bbc3f9',dict(e.PINS).values())
     def test_batch(self):
-        s=e.batch_script(f'#SBATCH --time=00:45:00\ncd {e.D}\ntimeout 2660s srun neural_full_confirmation.py controller')
+        s=e.batch_script(f'#SBATCH --time=00:45:00\n#SBATCH --cpus-per-task=6\ncd {e.D}\ntimeout 2660s srun --cpu-bind=cores neural_full_confirmation.py controller')
         self.assertIn('01:30:00',s);self.assertIn('5350s',s);self.assertNotIn(str(e.D),s)
+        self.assertEqual(s.count('--hint=nomultithread'),2)
     def test_scope_overwrites_old_budget_gate(self):
         e.scope();self.assertEqual(e.c.r.CAP,5400);self.assertEqual(e.c.r.D,e.D)
         self.assertEqual(e.c.r.NAME,e.NAME)

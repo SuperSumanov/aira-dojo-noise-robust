@@ -98,8 +98,10 @@ def mutate(plan):
 def batch_script(original):
     if str(D) not in original or 'neural_full_confirmation.py controller' not in original:
         raise ValueError('donor batch interface')
-    return original.replace(str(D),str(R)).replace('neural_full_confirmation.py controller',NAME+' controller').replace(
+    result=original.replace(str(D),str(R)).replace('neural_full_confirmation.py controller',NAME+' controller').replace(
         'r14-neural-confirm','r14-neural-extension').replace('--time=00:45:00','--time=01:30:00').replace('2660s srun','5350s srun')
+    if '#SBATCH --cpus-per-task=6\n' not in result or '--cpu-bind=cores' not in result:raise ValueError('physical CPU template')
+    return result.replace('#SBATCH --cpus-per-task=6\n','#SBATCH --cpus-per-task=6\n#SBATCH --hint=nomultithread\n').replace('--cpu-bind=cores','--hint=nomultithread')
 
 
 def scope():
@@ -107,7 +109,7 @@ def scope():
     r=c.r;r.R=R;r.D=D;r.DONOR=DONOR;r.NAME=NAME;r.NODE='gpu27';r.CAP=CAP
     r.JOBNAME='r14-neural-extension';r.FIXTURE_BUILDER=sources;r.PLAN_MUTATOR=mutate
     r.QUESTION='Fixed two new program variants: full-input pipeline/share2.'
-    r.EXTRA_FILES=('neural_full_input_trial.py','neural_overlap_control.py','bounded_readiness.py','test_neural_extension.py')
+    r.EXTRA_FILES=('neural_full_input_trial.py','neural_overlap_control.py','bounded_readiness.py','live_identity.py','test_neural_extension.py')
     r.batch_script=batch_script
 
 
@@ -154,6 +156,11 @@ def main():
     if a.mode in ('submit','controller'):
         c.r.check_inputs()
         if read(R/'extension-preflight.json')['plan_sha256']!=sha(R/'plan.json'):raise ValueError('extension preflight')
+        if a.mode=='controller':
+            from live_identity import cpu_topology,cores
+            topology=cpu_topology()
+            if len(cores(topology))!=6:raise ValueError('six physical cores required')
+            write(R/'cpu-topology.json',topology)
         return getattr(c.n,a.mode)()
     if a.mode=='readout':
         import neural_pool_readout as report

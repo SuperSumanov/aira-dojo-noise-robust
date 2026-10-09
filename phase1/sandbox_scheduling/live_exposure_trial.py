@@ -38,6 +38,13 @@ def schedule():
     return [dict(index=i,block=0,arm='share2',repeat=0,slot=i,task=t.TASKS[i%2],seed=174901+i) for i in range(4)]
 t.schedule=schedule
 
+source=inspect.getsource(t.host)
+anchor='    source=inspect.getsource(m.worker)'
+if source.count(anchor)!=1:raise ValueError('native worker assembly interface')
+source=source.replace(anchor,anchor+"\n    source=replace_once(source,\"TIME_LIMIT='10 minutes',TIME_LIMIT_SECS='600'\",\"TIME_LIMIT='50 minutes',TIME_LIMIT_SECS='3000'\")")
+if source.count('m.SECONDS=600')!=1:raise ValueError('native deadline assembly interface')
+source=source.replace('m.SECONDS=600','m.SECONDS=3000')
+exec(compile(source,'exposure-native-host','exec'),t.__dict__)
 original_host=t.host
 def host():
     m=original_host();m.SECONDS=SECONDS
@@ -121,7 +128,9 @@ timeout --signal=TERM --kill-after=20s 3820s {t.PY} -B {R/t.NAME} controller
         boundary='Only current Pizza/Spooky legal dev adapters. No first960/Target300/Target522/D_val/officialtest. No base/critic training, no paid API, no candidate content export.',
         files={str(p.relative_to(R)):sha(p) for p in R.rglob('*') if p.is_file() and p.name!='.service.env'}))
     t.cpu();m=host()
-    if m.SECONDS!=SECONDS or sha(m.TASK_IMAGE)!=old['task_image_sha256'] or sha(m.VLLM)!=old['service_image_sha256']:raise ValueError('image/deadline drift')
+    if m.SECONDS!=SECONDS or '50 minutes' not in m.worker.__code__.co_consts or '3000' not in m.worker.__code__.co_consts:
+        raise ValueError('native prompt/deadline drift')
+    if sha(m.TASK_IMAGE)!=old['task_image_sha256'] or sha(m.VLLM)!=old['service_image_sha256']:raise ValueError('image drift')
     write(R/'preflight.json',dict(plan_sha256=sha(R/'plan.json'),configs=4,native_seconds=m.SECONDS,
         model_calls=0,gpu_executions=0,images_verified=True,inputs_verified=True,training_items_not_applicable=True))
     print(json.dumps(dict(status='PREPARED',plan_sha256=sha(R/'plan.json'),assigned=4,seconds=SECONDS,gpu_hours_cap=3.25)))

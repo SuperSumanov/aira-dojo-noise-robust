@@ -19,6 +19,9 @@ class ExposureTests(unittest.TestCase):
     def test_shim_interface(self):
         self.assertTrue(callable(e.host));self.assertEqual(e.t.host,e.host)
         self.assertEqual(e.t.NAME,'live_exposure_trial.py')
+    def test_prompt_budget_assembly(self):
+        self.assertIn("TIME_LIMIT='50 minutes',TIME_LIMIT_SECS='3000'",e.original_host.__code__.co_consts)
+        self.assertIn(3000,e.original_host.__code__.co_consts)
     def test_policy_not_modified(self):
         tree=ast.parse(Path(e.__file__).read_text(encoding='utf-8'))
         for n in ast.walk(tree):

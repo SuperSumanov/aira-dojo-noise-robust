@@ -47,10 +47,11 @@ def log_shape(path):
 
 def main():
     global ROOT
-    parser=argparse.ArgumentParser();parser.add_argument('--version',choices=('v2','v3','v4','v5','v6','v7','width','exposure'),default='v2')
+    parser=argparse.ArgumentParser();parser.add_argument('--version',choices=('v2','v3','v4','v5','v6','v7','width','exposure','twochild'),default='v2')
     args=parser.parse_args()
     ROOT=ROOT.with_name({'width':'scheduling-live-width-20261009-v1',
-                         'exposure':'scheduling-live-exposure-20261009-v1'}.get(args.version,'scheduling-live-search-20261009-'+args.version))
+                         'exposure':'scheduling-live-exposure-20261009-v1',
+                         'twochild':'scheduling-live-twochild-20261010-v1'}.get(args.version,'scheduling-live-search-20261009-'+args.version))
     p = read('plan.json')
     launch = read('launch.json')
     result = dict(utc=datetime.datetime.now(datetime.timezone.utc).isoformat(),

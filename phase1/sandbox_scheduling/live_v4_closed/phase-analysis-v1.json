@@ -1,0 +1,248 @@
+{
+  "analysis_source_sha256": "ae38d8c5af3d13978d2169a020702061221ae6bc550ad5841c6213f3b8e0e845",
+  "assigned": 16,
+  "plan_sha256": "6a91d2934959681b977d2d43ca0ea991dd6a1d3b0ce65ab6d1a88a7b5225d025",
+  "purpose": "Descriptive bottleneck localization only; no replacement of frozen outcome/advance criteria.",
+  "rows": [
+    {
+      "arm": "pipeline",
+      "block": 0,
+      "events_sha256": "92ece3d042bd17abe6dea979b2a02a97737d1d9f76aee5c95e9adbd950bb9d7d",
+      "index": 0,
+      "observed": true,
+      "phase_accounting": {
+        "boundary": "Per-run task-slot seconds. The budget after the last event is unobserved, not measured idle time. Lease includes scoring/cleanup; neither GPU kernel time nor measured savings.",
+        "budget_after_last_event_seconds": 0,
+        "complete": true,
+        "cross_phase_overlap_seconds": 0.04327386524528265,
+        "observed_phase_union_seconds": 542.8517286274582,
+        "observed_through_seconds": 600,
+        "seconds": {
+          "generation": 213.70994040369987,
+          "kernel_readiness": 0.28716092836111784,
+          "lease": 20.843282469548285,
+          "queue": 308.0546186910942
+        },
+        "unclassified_within_observation_seconds": 57.148271372541785,
+        "unfinished": {}
+      },
+      "repeat": 0,
+      "seed": 140901,
+      "slot": 0,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "arm": "pipeline",
+      "block": 0,
+      "events_sha256": "e5f442b5b6cde173a5b9bd43316247d86395ab72eec8e5035cb6faff0b089ab4",
+      "index": 1,
+      "observed": true,
+      "phase_accounting": {
+        "boundary": "Per-run task-slot seconds. The budget after the last event is unobserved, not measured idle time. Lease includes scoring/cleanup; neither GPU kernel time nor measured savings.",
+        "budget_after_last_event_seconds": 0,
+        "complete": true,
+        "cross_phase_overlap_seconds": 0.04670761898159981,
+        "observed_phase_union_seconds": 543.863642776385,
+        "observed_through_seconds": 600,
+        "seconds": {
+          "generation": 191.31046674307436,
+          "kernel_readiness": 0.31025154888629913,
+          "lease": 21.904009343124926,
+          "queue": 330.38562276028097
+        },
+        "unclassified_within_observation_seconds": 56.13635722361505,
+        "unfinished": {}
+      },
+      "repeat": 0,
+      "seed": 140902,
+      "slot": 1,
+      "task": "spooky-author-identification"
+    },
+    {
+      "arm": "pipeline",
+      "block": 0,
+      "events_sha256": "470d5dd67618381b49691170006d27dcab58de5b072d050557315f00befd96e4",
+      "index": 2,
+      "observed": true,
+      "phase_accounting": {
+        "boundary": "Per-run task-slot seconds. The budget after the last event is unobserved, not measured idle time. Lease includes scoring/cleanup; neither GPU kernel time nor measured savings.",
+        "budget_after_last_event_seconds": 0,
+        "complete": true,
+        "cross_phase_overlap_seconds": 0.09115822799503803,
+        "observed_phase_union_seconds": 542.5445282459259,
+        "observed_through_seconds": 600,
+        "seconds": {
+          "generation": 207.00742339529097,
+          "kernel_readiness": 0.3434248883277178,
+          "lease": 15.086348081938922,
+          "queue": 320.19849010836333
+        },
+        "unclassified_within_observation_seconds": 57.4554717540741,
+        "unfinished": {}
+      },
+      "repeat": 0,
+      "seed": 140903,
+      "slot": 2,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "arm": "pipeline",
+      "block": 0,
+      "events_sha256": "2188cf798c0a734b5660e3f51790ccc4c3d06f280137c911735afac741d90543",
+      "index": 3,
+      "observed": true,
+      "phase_accounting": {
+        "boundary": "Per-run task-slot seconds. The budget after the last event is unobserved, not measured idle time. Lease includes scoring/cleanup; neither GPU kernel time nor measured savings.",
+        "budget_after_last_event_seconds": 0,
+        "complete": true,
+        "cross_phase_overlap_seconds": 0.0,
+        "observed_phase_union_seconds": 545.515135280788,
+        "observed_through_seconds": 600,
+        "seconds": {
+          "generation": 177.69784704968333,
+          "kernel_readiness": 0.27104703802615404,
+          "lease": 359.91306385118514,
+          "queue": 7.633177341893315
+        },
+        "unclassified_within_observation_seconds": 54.484864719212055,
+        "unfinished": {}
+      },
+      "repeat": 0,
+      "seed": 140904,
+      "slot": 3,
+      "task": "spooky-author-identification"
+    },
+    {
+      "arm": "share2",
+      "block": 1,
+      "index": 4,
+      "observed": false,
+      "phase_accounting": null,
+      "repeat": 0,
+      "seed": 140901,
+      "slot": 0,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "arm": "share2",
+      "block": 1,
+      "index": 5,
+      "observed": false,
+      "phase_accounting": null,
+      "repeat": 0,
+      "seed": 140902,
+      "slot": 1,
+      "task": "spooky-author-identification"
+    },
+    {
+      "arm": "share2",
+      "block": 1,
+      "index": 6,
+      "observed": false,
+      "phase_accounting": null,
+      "repeat": 0,
+      "seed": 140903,
+      "slot": 2,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "arm": "share2",
+      "block": 1,
+      "index": 7,
+      "observed": false,
+      "phase_accounting": null,
+      "repeat": 0,
+      "seed": 140904,
+      "slot": 3,
+      "task": "spooky-author-identification"
+    },
+    {
+      "arm": "share2",
+      "block": 2,
+      "index": 8,
+      "observed": false,
+      "phase_accounting": null,
+      "repeat": 1,
+      "seed": 141001,
+      "slot": 0,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "arm": "share2",
+      "block": 2,
+      "index": 9,
+      "observed": false,
+      "phase_accounting": null,
+      "repeat": 1,
+      "seed": 141002,
+      "slot": 1,
+      "task": "spooky-author-identification"
+    },
+    {
+      "arm": "share2",
+      "block": 2,
+      "index": 10,
+      "observed": false,
+      "phase_accounting": null,
+      "repeat": 1,
+      "seed": 141003,
+      "slot": 2,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "arm": "share2",
+      "block": 2,
+      "index": 11,
+      "observed": false,
+      "phase_accounting": null,
+      "repeat": 1,
+      "seed": 141004,
+      "slot": 3,
+      "task": "spooky-author-identification"
+    },
+    {
+      "arm": "pipeline",
+      "block": 3,
+      "index": 12,
+      "observed": false,
+      "phase_accounting": null,
+      "repeat": 1,
+      "seed": 141001,
+      "slot": 0,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "arm": "pipeline",
+      "block": 3,
+      "index": 13,
+      "observed": false,
+      "phase_accounting": null,
+      "repeat": 1,
+      "seed": 141002,
+      "slot": 1,
+      "task": "spooky-author-identification"
+    },
+    {
+      "arm": "pipeline",
+      "block": 3,
+      "index": 14,
+      "observed": false,
+      "phase_accounting": null,
+      "repeat": 1,
+      "seed": 141003,
+      "slot": 2,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "arm": "pipeline",
+      "block": 3,
+      "index": 15,
+      "observed": false,
+      "phase_accounting": null,
+      "repeat": 1,
+      "seed": 141004,
+      "slot": 3,
+      "task": "spooky-author-identification"
+    }
+  ]
+}

@@ -1,5 +1,7 @@
 # 当前短交接
 ## 最新：2026-10-09香港用户批准换GPU接续（旧窗口不自动重开）
+- 14:14核17255已于13:59:17资格失败闭合：4/16正常收尾、3有效终点/4有效候选；0已观测A/B配对，余12不启动，3315GPU秒=0.9208333333333333GPUh。readout-v1和phase-analysis-v1已一次写出，禁止重跑writer。closed SHA2bfd41a3babee547bb58fc3653b6cd3550510101ac9bf1c6d0253b2d4c49a785；三run排队308–330秒，run3租约359.91306385118514秒且0有效，是拥塞线索而非方法收益。
+- 用户14:11新六小时授权至约20:11香港。先闭合诊断，再决定独立新问题；不复用旧预算/更换seed救门。读出器身份检查确有两错误：要求生成step=执行step，要求affinity逻辑CPU数=6；现场生成step1/执行2，同job/GPU分离，12线程，节点ThreadsPerCore2。只另加诊断、保持旧readout；CPU物理拓扑仍须正式记录。
 - 13:52:14最后观察：17255在gpu27运行（13:40:52分配3卡），原镜像运算/清理通过（Torch2.5.1+cu124/CUDA12.4/3090），27B ready/startup462.32536694873124秒，首块4条搜索启动0完成，4候选记录/2dev评分回执（只计数），尚无质量对照。17252 native成功/1GPU秒；17251抢先于SCP完成失败1GPU秒。17254仅test-only。首次冷编译成本须单列，不把每run600s当两臂总GPU时相等，不改运行协议；资格门和90min上限自动执行。
 - v4 prepare session91072已退出0，不重跑；root=scheduling-live-search-20261009-v4，entry=live_gpu27_trial.py，stage=scheduling-placement-20261009.gunuHJ，source=e3e93d788cc6d8775d441d6945cf08529df5c4fd，plan6a91d2934959681b977d2d43ca0ea991dd6a1d3b0ce65ab6d1a88a7b5225d025。两臂同gpu27、16条ABBA/27B/3卡90min≤4.5GPUh与原门不变，模型/两镜像/8配对已核。25本地测试通过/3跳过、Linux3/3；状态用stage/live_status.py --version v4。own9c520403与senior0155c7de fetch未变，报告untracked保留。
 - 07:40香港最后核：v3/17232已FAILED，07:29:00–07:29:05，3GPU×5秒=15GPU秒；16轨迹0开始，服务/候选0启动。native_uuids在原镜像之前cuInit失败，错误码未知，不是Torch不兼容或方法负结果。原v3不重跑。
@@ -9,9 +11,7 @@
 - 07:50前零GPU补查17128的12个关闭回执：3/3配对share2累计返回数在所有截止时刻均不低于pipeline；但6个同程序配对中1个晚13.305168628692627秒。派生return-dominance-v1.json已一次写出，不重跑writer；这是旧阳性边界而非新样本/质量收益/因果归因。30项本地CPU测试27通过/3Linux跳过。
 - 17229已CANCELLED by7542，sacct ElapsedRaw=0、AllocTRES空，Start=End=07:13:25香港；原v2保留migration-intent/cancel-request，不重新提交或重跑writer。调度原预计20:44:39晚于六小时窗口；17230只是sbatch --test-only显示号，未实际提交。
 - 端口核验：现场叫_gateway_port而非本地_slurm_gateway_port。初版CPU回归1项接口错误，修正后远端3/3；本地25项含3Linux跳过。旧17128/17017无效钩子但server会解析自身实际ready端口；12+12日志检查全部重叠区间端口不同（前者6对、后者3对），不据此推翻阳性或断言已知readiness故障根因。
-- 06:45后重要修正：回读16307公开摘要，9B base四条native有效终点0、2合法候选遭analyzer误否决且生成/调试主导。不能拿它测主要质量调度收益；决定v1准备后不提交，已用GPU=0。不是新批次负结果或换seed救门。
-- v1 prepare已成功，source b124de46b4d7eb689aecad233a1219cd2d1b84c4，plan SHA d42f1440ef8a98d3476aa465f6e94fc16c7c3242f318adf3afc1eb7b2929961f；live_withdraw_9b.py已一次成功，withdrawn与submit-intent阻断回执已在，旧source/plan不覆盖，不重跑writer。
-- 替代v2入口live_27b_trial.py；相同16条/ABBA/600s/3GPU90min≤4.5GPUh，两臂共同用已部署27B，首pipeline块四条全部须有及时外部可核native有效终点，否则停止，不替补；完整比较仅条件性探索。
+- v1因历史9B资格不佳准备后撤回、0GPU；原件与阻断回执保持，详见Git3cfd887e；v2/v3/v4采用27B，均不重开。
 - 27B服务入口task-feedback-real-20261001-v6/service_entry.py已credential-scan与原manifest对hash：cd9e143abe79cdc71c97db3dba07930e0642b28faf52ac4f6b2ca5ba36a8379a；donor plan15751d3b52bdc42617df02006ce724635f4bf49df6e477686769fd1979d53403。模型local-qwen27b-20260914-zcx1k1dy/model在；served alias qwen3.8-27b，实际config qwen3_5/compressed-tensors4bit，不声称9B→27B能力提升已证实。
 - 27B仍2GPU，原服务131072ctx/6seq/seed49/FP8 KV；每块重启，跨块共享编译缓存（不共享活跃KV）。v2源ba44deec86822817d2349c68b380dbe5c5dc4621；prepare成功，CPU16配置、模型/镜像完整hash及host依赖回执齐；plan69b0532f77afc0c9f8607b557774b9fa66f06b82d339b35e36a1d4a6b75b757c。原prepare session56815已退出0，不重跑。
 - 读出source现8b59b481938b59be4c12b6eb198f0463019c0aa4：内部native选分必须对应截止前候选和外部dev回执，不信内部数值单源；本地16通过/3Linux跳过，远端3通过。未新增GPU或付费调用。
@@ -21,11 +21,10 @@
 - 新自限3张3090/90min/≤4.5GPUh，所有服务/失败/闲置计入；无API/底座训练/官方test。完整16分母，调度干预只有2配对块，不当16独立系统复制。
 - 共同适配器：preview/异常kernel关闭后释放许可；有界info握手；排队计入600s但从exec_time反馈扣除。两臂源/输入/镜像/模型/采样/预算相同。
 - 事前探索门：16端点/清理/审计齐，两配对池都增加有效dev返回，分任务配对选中dev分数中位差非负且无新增基础设施失败；不换seed救结论，缺失不补分。
-- v2根/research/d7/spc/yzyang4/scheduling-live-search-20261009-v2；唯一运行入口live_27b_trial.py，默认live_search_trial_20261009.py指向撤回v1不可提交。live_status.py仅白名单元数据与日志形状；不导出原日志。
+- 新v5唯一入口live_fixed_budget_trial.py；v1–v4均不提交。live_status.py仅白名单元数据；不导出原日志。
 - 另补live_phase_analysis.py只读描述生成/就绪/排队/租约时长，未结束跨度不补到600s，末事件后记未知而非空闲。未改冻结实验或资格门；本地24测试（3Linux跳过、其余通过），细化未知区间标签后重验相同。
 - tmp=/tmp/r14-live-20261009.M0hvVk。donor=policy9b-paired-20261005-gpu27-v1，plan SHA12d1264457158c936e4f1eff8e9c844ce5044365e77056066c4ded2ecfe6cd79，source b8e75052a9f69e19436f12bc5a36a0ca26a69a57。
 - 只读前检通过：donor闭合、模型/镜像在、dev评分器SHA匹配、private目录不存在；同任务各run工作/提交路径独立，不读donor结果值。冻结数值读出与全16分母门已写好。
-- 07:36前SSH恢复；07:40 fetch own/senior未见新head。gpu24本批驱动未过门；gpu29同3090且gpu_24h可申请不等于已通过。旧12535与下方旧writer均不动。
 
 ## 10/8已闭合历史（不作为当前授权/现场）
 更新：2026-10-08香港晚间；一小时窗口实际始于22:37，GPU已闭合，23:25前完成独立结果复核；动态现场须重新核实。

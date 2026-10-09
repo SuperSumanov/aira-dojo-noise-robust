@@ -1,0 +1,1011 @@
+{
+  "boundary": "Post-closure descriptive diagnosis, no replacement of v4 outcome gate. GPU utilization is device telemetry, not attribution to a particular kernel or workload.",
+  "closed_sha256": "2bfd41a3babee547bb58fc3653b6cd3550510101ac9bf1c6d0253b2d4c49a785",
+  "execution_affinity_logical_cpus": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37
+  ],
+  "original_readout_sha256": "f54f3501b0d87ebd0681b31481fb3e053db70a95e78ed2ae51451c3b4083cdb6",
+  "plan_sha256": "6a91d2934959681b977d2d43ca0ea991dd6a1d3b0ce65ab6d1a88a7b5225d025",
+  "rows": [
+    {
+      "candidates": [
+        {
+          "elapsed_seconds": 132.85760579258204,
+          "exec_seconds": 8.491765517741442,
+          "exit_code": 1,
+          "timed_out": false,
+          "valid": false
+        },
+        {
+          "elapsed_seconds": 493.7619262021035,
+          "exec_seconds": 7.8348969873040915,
+          "exit_code": 0,
+          "timed_out": false,
+          "valid": true
+        }
+      ],
+      "events": [
+        {
+          "elapsed": 37.835316116921604,
+          "event": "runtime_hooks_installed"
+        },
+        {
+          "elapsed": 38.13749291561544,
+          "event": "operation_ready",
+          "kind": "preview",
+          "operation": 0
+        },
+        {
+          "elapsed": 42.17998833488673,
+          "event": "kernel_ready",
+          "seconds": 0.05791126657277346,
+          "success": true
+        },
+        {
+          "elapsed": 42.21752160601318,
+          "event": "admitted",
+          "kind": "preview",
+          "operation": 0,
+          "wait_seconds": 0.02364612463861704
+        },
+        {
+          "elapsed": 44.03575952909887,
+          "event": "cell_return",
+          "exec_seconds": 1.889918270520866,
+          "exit_code": 0,
+          "queue_seconds": 0.02364612463861704,
+          "timed_out": false
+        },
+        {
+          "elapsed": 44.634207148104906,
+          "event": "cleanup",
+          "kind": "preview",
+          "operation": 0,
+          "verified": true
+        },
+        {
+          "elapsed": 44.653813865967095,
+          "event": "released",
+          "kind": "preview",
+          "operation": 0
+        },
+        {
+          "call": 0,
+          "elapsed": 44.660575564950705,
+          "event": "generation_started"
+        },
+        {
+          "call": 0,
+          "elapsed": 118.96143386606127,
+          "event": "generation_returned",
+          "seconds": 74.29787493497133,
+          "success": true
+        },
+        {
+          "elapsed": 119.67235412355512,
+          "event": "operation_ready",
+          "kind": "candidate",
+          "operation": 1
+        },
+        {
+          "elapsed": 123.33655094355345,
+          "event": "kernel_ready",
+          "seconds": 0.06064540334045887,
+          "success": true
+        },
+        {
+          "elapsed": 123.37094477470964,
+          "event": "admitted",
+          "kind": "candidate",
+          "operation": 1,
+          "wait_seconds": 0.020947983488440514
+        },
+        {
+          "elapsed": 131.78863643296063,
+          "event": "cell_return",
+          "exec_seconds": 8.491765517741442,
+          "exit_code": 1,
+          "queue_seconds": 0.020947983488440514,
+          "timed_out": false
+        },
+        {
+          "elapsed": 132.83722292631865,
+          "event": "cleanup",
+          "kind": "candidate",
+          "operation": 1,
+          "verified": true
+        },
+        {
+          "elapsed": 132.8548272550106,
+          "event": "released",
+          "kind": "candidate",
+          "operation": 1
+        },
+        {
+          "call": 1,
+          "elapsed": 132.86321165319532,
+          "event": "generation_started"
+        },
+        {
+          "call": 1,
+          "elapsed": 140.2165753506124,
+          "event": "generation_returned",
+          "seconds": 7.350004681386054,
+          "success": true
+        },
+        {
+          "call": 2,
+          "elapsed": 140.2434154264629,
+          "event": "generation_started"
+        },
+        {
+          "call": 2,
+          "elapsed": 205.50264270137995,
+          "event": "generation_returned",
+          "seconds": 65.25655876100063,
+          "success": true
+        },
+        {
+          "elapsed": 206.7392177209258,
+          "event": "operation_ready",
+          "kind": "candidate",
+          "operation": 2
+        },
+        {
+          "elapsed": 210.99465452320874,
+          "event": "kernel_ready",
+          "seconds": 0.06498692464083433,
+          "success": true
+        },
+        {
+          "elapsed": 484.83651511743665,
+          "event": "admitted",
+          "kind": "candidate",
+          "operation": 2,
+          "wait_seconds": 273.8312957799062
+        },
+        {
+          "elapsed": 492.5958074964583,
+          "event": "cell_return",
+          "exec_seconds": 7.8348969873040915,
+          "exit_code": 0,
+          "queue_seconds": 273.8312957799062,
+          "timed_out": false
+        },
+        {
+          "elapsed": 492.642799586989,
+          "event": "kernel_ready",
+          "seconds": 0.04327386524528265,
+          "success": true
+        },
+        {
+          "elapsed": 493.7425088211894,
+          "event": "cleanup",
+          "kind": "candidate",
+          "operation": 2,
+          "verified": true
+        },
+        {
+          "elapsed": 493.75962284673005,
+          "event": "released",
+          "kind": "candidate",
+          "operation": 2
+        },
+        {
+          "call": 3,
+          "elapsed": 493.7674234146252,
+          "event": "generation_started"
+        },
+        {
+          "call": 3,
+          "elapsed": 498.020579688251,
+          "event": "generation_returned",
+          "seconds": 4.250295467674732,
+          "success": true
+        },
+        {
+          "call": 4,
+          "elapsed": 498.05012514069676,
+          "event": "generation_started"
+        },
+        {
+          "call": 4,
+          "elapsed": 560.5934599973261,
+          "event": "generation_returned",
+          "seconds": 62.54067588225007,
+          "success": true
+        },
+        {
+          "elapsed": 561.8831858960912,
+          "event": "operation_ready",
+          "kind": "candidate",
+          "operation": 3
+        },
+        {
+          "elapsed": 565.8182929996401,
+          "event": "kernel_ready",
+          "seconds": 0.06034346856176853,
+          "success": true
+        },
+        {
+          "elapsed": 600.0804289709777,
+          "event": "admission_interrupted",
+          "held": false,
+          "kind": "candidate",
+          "operation": 3,
+          "wait_seconds": 34.25915777403861
+        },
+        {
+          "elapsed": 600.5513188503683,
+          "event": "cleanup",
+          "kind": "candidate",
+          "operation": 3,
+          "verified": true
+        }
+      ],
+      "index": 0,
+      "service_execution_steps_differ": true,
+      "source_event_sha256": "92ece3d042bd17abe6dea979b2a02a97737d1d9f76aee5c95e9adbd950bb9d7d",
+      "task": "random-acts-of-pizza",
+      "worker_execution_step_matches": true,
+      "worker_gpu_matches": true,
+      "worker_job_matches": true
+    },
+    {
+      "candidates": [
+        {
+          "elapsed_seconds": 106.61274796444923,
+          "exec_seconds": 10.88793963007629,
+          "exit_code": 0,
+          "timed_out": false,
+          "valid": true
+        },
+        {
+          "elapsed_seconds": 478.40525606647134,
+          "exec_seconds": 7.349844818003476,
+          "exit_code": 1,
+          "timed_out": false,
+          "valid": false
+        }
+      ],
+      "events": [
+        {
+          "elapsed": 37.82874145824462,
+          "event": "runtime_hooks_installed"
+        },
+        {
+          "elapsed": 38.13520892802626,
+          "event": "operation_ready",
+          "kind": "preview",
+          "operation": 0
+        },
+        {
+          "elapsed": 42.24334275908768,
+          "event": "kernel_ready",
+          "seconds": 0.07157090771943331,
+          "success": true
+        },
+        {
+          "elapsed": 49.16569280717522,
+          "event": "admitted",
+          "kind": "preview",
+          "operation": 0,
+          "wait_seconds": 6.9073192942887545
+        },
+        {
+          "elapsed": 50.54076916538179,
+          "event": "cell_return",
+          "exec_seconds": 1.4615931874141097,
+          "exit_code": 0,
+          "queue_seconds": 6.9073192942887545,
+          "timed_out": false
+        },
+        {
+          "elapsed": 51.09260058403015,
+          "event": "cleanup",
+          "kind": "preview",
+          "operation": 0,
+          "verified": true
+        },
+        {
+          "elapsed": 51.11281558871269,
+          "event": "released",
+          "kind": "preview",
+          "operation": 0
+        },
+        {
+          "call": 0,
+          "elapsed": 51.119655528105795,
+          "event": "generation_started"
+        },
+        {
+          "call": 0,
+          "elapsed": 90.82271481584758,
+          "event": "generation_returned",
+          "seconds": 39.70015059411526,
+          "success": true
+        },
+        {
+          "elapsed": 91.16028865426779,
+          "event": "operation_ready",
+          "kind": "candidate",
+          "operation": 1
+        },
+        {
+          "elapsed": 94.90568366460502,
+          "event": "kernel_ready",
+          "seconds": 0.06472592335194349,
+          "success": true
+        },
+        {
+          "elapsed": 94.93992507830262,
+          "event": "admitted",
+          "kind": "candidate",
+          "operation": 1,
+          "wait_seconds": 0.01893923431634903
+        },
+        {
+          "elapsed": 105.74778885859996,
+          "event": "cell_return",
+          "exec_seconds": 10.88793963007629,
+          "exit_code": 0,
+          "queue_seconds": 0.01893923431634903,
+          "timed_out": false
+        },
+        {
+          "elapsed": 105.79961596149951,
+          "event": "kernel_ready",
+          "seconds": 0.04670761898159981,
+          "success": true
+        },
+        {
+          "elapsed": 106.59809521399438,
+          "event": "cleanup",
+          "kind": "candidate",
+          "operation": 1,
+          "verified": true
+        },
+        {
+          "elapsed": 106.61106814909726,
+          "event": "released",
+          "kind": "candidate",
+          "operation": 1
+        },
+        {
+          "call": 1,
+          "elapsed": 106.61681387387216,
+          "event": "generation_started"
+        },
+        {
+          "call": 1,
+          "elapsed": 111.64590627979487,
+          "event": "generation_returned",
+          "seconds": 5.026996628381312,
+          "success": true
+        },
+        {
+          "call": 2,
+          "elapsed": 111.6676891548559,
+          "event": "generation_started"
+        },
+        {
+          "call": 2,
+          "elapsed": 189.49934078007936,
+          "event": "generation_returned",
+          "seconds": 77.82961230259389,
+          "success": true
+        },
+        {
+          "elapsed": 190.08313826750964,
+          "event": "operation_ready",
+          "kind": "candidate",
+          "operation": 2
+        },
+        {
+          "elapsed": 194.5100481249392,
+          "event": "kernel_ready",
+          "seconds": 0.06814022827893496,
+          "success": true
+        },
+        {
+          "elapsed": 470.1179836280644,
+          "event": "admitted",
+          "kind": "candidate",
+          "operation": 2,
+          "wait_seconds": 275.5957983350381
+        },
+        {
+          "elapsed": 477.387713403441,
+          "event": "cell_return",
+          "exec_seconds": 7.349844818003476,
+          "exit_code": 1,
+          "queue_seconds": 275.5957983350381,
+          "timed_out": false
+        },
+        {
+          "elapsed": 478.3920298330486,
+          "event": "cleanup",
+          "kind": "candidate",
+          "operation": 2,
+          "verified": true
+        },
+        {
+          "elapsed": 478.4037271188572,
+          "event": "released",
+          "kind": "candidate",
+          "operation": 2
+        },
+        {
+          "call": 3,
+          "elapsed": 478.4097453793511,
+          "event": "generation_started"
+        },
+        {
+          "call": 3,
+          "elapsed": 481.6777333430946,
+          "event": "generation_returned",
+          "seconds": 3.265862044878304,
+          "success": true
+        },
+        {
+          "call": 4,
+          "elapsed": 481.70439431630075,
+          "event": "generation_started"
+        },
+        {
+          "call": 4,
+          "elapsed": 547.1830697767437,
+          "event": "generation_returned",
+          "seconds": 65.47641763091087,
+          "success": true
+        },
+        {
+          "elapsed": 547.8775746850297,
+          "event": "operation_ready",
+          "kind": "candidate",
+          "operation": 3
+        },
+        {
+          "elapsed": 552.1318392958492,
+          "event": "kernel_ready",
+          "seconds": 0.05910687055438757,
+          "success": true
+        },
+        {
+          "elapsed": 600.1201616870239,
+          "event": "admission_interrupted",
+          "held": false,
+          "kind": "candidate",
+          "operation": 3,
+          "wait_seconds": 47.983727583661675
+        },
+        {
+          "elapsed": 600.5829402841628,
+          "event": "cleanup",
+          "kind": "candidate",
+          "operation": 3,
+          "verified": true
+        }
+      ],
+      "index": 1,
+      "service_execution_steps_differ": true,
+      "source_event_sha256": "e5f442b5b6cde173a5b9bd43316247d86395ab72eec8e5035cb6faff0b089ab4",
+      "task": "spooky-author-identification",
+      "worker_execution_step_matches": true,
+      "worker_gpu_matches": true,
+      "worker_job_matches": true
+    },
+    {
+      "candidates": [
+        {
+          "elapsed_seconds": 121.78215235099196,
+          "exec_seconds": 5.319237622432411,
+          "exit_code": 0,
+          "timed_out": false,
+          "valid": true
+        },
+        {
+          "elapsed_seconds": 484.8409674754366,
+          "exec_seconds": 5.422448392957449,
+          "exit_code": 0,
+          "timed_out": false,
+          "valid": true
+        }
+      ],
+      "events": [
+        {
+          "elapsed": 37.850877372547984,
+          "event": "runtime_hooks_installed"
+        },
+        {
+          "elapsed": 38.150394074618816,
+          "event": "operation_ready",
+          "kind": "preview",
+          "operation": 0
+        },
+        {
+          "elapsed": 42.2483296925202,
+          "event": "kernel_ready",
+          "seconds": 0.05986820440739393,
+          "success": true
+        },
+        {
+          "elapsed": 46.846853798255324,
+          "event": "admitted",
+          "kind": "preview",
+          "operation": 0,
+          "wait_seconds": 4.582283968105912
+        },
+        {
+          "elapsed": 48.54399204067886,
+          "event": "cell_return",
+          "exec_seconds": 1.7731741704046726,
+          "exit_code": 0,
+          "queue_seconds": 4.582283968105912,
+          "timed_out": false
+        },
+        {
+          "elapsed": 49.14686930179596,
+          "event": "cleanup",
+          "kind": "preview",
+          "operation": 0,
+          "verified": true
+        },
+        {
+          "elapsed": 49.1678691226989,
+          "event": "released",
+          "kind": "preview",
+          "operation": 0
+        },
+        {
+          "call": 0,
+          "elapsed": 49.17445063497871,
+          "event": "generation_started"
+        },
+        {
+          "call": 0,
+          "elapsed": 104.99410730786622,
+          "event": "generation_returned",
+          "seconds": 55.81640305835754,
+          "success": true
+        },
+        {
+          "elapsed": 105.47354981396347,
+          "event": "operation_ready",
+          "kind": "candidate",
+          "operation": 1
+        },
+        {
+          "elapsed": 108.99904918577522,
+          "event": "kernel_ready",
+          "seconds": 0.06962405517697334,
+          "success": true
+        },
+        {
+          "elapsed": 115.37777358666062,
+          "event": "admitted",
+          "kind": "candidate",
+          "operation": 1,
+          "wait_seconds": 6.369104634970427
+        },
+        {
+          "elapsed": 120.61781006585807,
+          "event": "cell_return",
+          "exec_seconds": 5.319237622432411,
+          "exit_code": 0,
+          "queue_seconds": 6.369104634970427,
+          "timed_out": false
+        },
+        {
+          "elapsed": 120.66468620672822,
+          "event": "kernel_ready",
+          "seconds": 0.04360889829695225,
+          "success": true
+        },
+        {
+          "elapsed": 121.76310525182635,
+          "event": "cleanup",
+          "kind": "candidate",
+          "operation": 1,
+          "verified": true
+        },
+        {
+          "elapsed": 121.77970025222749,
+          "event": "released",
+          "kind": "candidate",
+          "operation": 1
+        },
+        {
+          "call": 1,
+          "elapsed": 121.78726722858846,
+          "event": "generation_started"
+        },
+        {
+          "call": 1,
+          "elapsed": 128.68496871367097,
+          "event": "generation_returned",
+          "seconds": 6.894882088527083,
+          "success": true
+        },
+        {
+          "call": 2,
+          "elapsed": 128.70219449978322,
+          "event": "generation_started"
+        },
+        {
+          "call": 2,
+          "elapsed": 199.59287159424275,
+          "event": "generation_returned",
+          "seconds": 70.88842842448503,
+          "success": true
+        },
+        {
+          "elapsed": 201.01175177376717,
+          "event": "operation_ready",
+          "kind": "candidate",
+          "operation": 2
+        },
+        {
+          "elapsed": 205.33050908893347,
+          "event": "kernel_ready",
+          "seconds": 0.06290484592318535,
+          "success": true
+        },
+        {
+          "elapsed": 478.4751998204738,
+          "event": "admitted",
+          "kind": "candidate",
+          "operation": 2,
+          "wait_seconds": 273.134565920569
+        },
+        {
+          "elapsed": 483.8246543481946,
+          "event": "cell_return",
+          "exec_seconds": 5.422448392957449,
+          "exit_code": 0,
+          "queue_seconds": 273.134565920569,
+          "timed_out": false
+        },
+        {
+          "elapsed": 483.8765731137246,
+          "event": "kernel_ready",
+          "seconds": 0.047549329698085785,
+          "success": true
+        },
+        {
+          "elapsed": 484.82174783106893,
+          "event": "cleanup",
+          "kind": "candidate",
+          "operation": 2,
+          "verified": true
+        },
+        {
+          "elapsed": 484.8386059124023,
+          "event": "released",
+          "kind": "candidate",
+          "operation": 2
+        },
+        {
+          "call": 3,
+          "elapsed": 484.8461680812761,
+          "event": "generation_started"
+        },
+        {
+          "call": 3,
+          "elapsed": 489.0886223986745,
+          "event": "generation_returned",
+          "seconds": 4.23951197322458,
+          "success": true
+        },
+        {
+          "call": 4,
+          "elapsed": 489.11579441837966,
+          "event": "generation_started"
+        },
+        {
+          "call": 4,
+          "elapsed": 558.2727282438427,
+          "event": "generation_returned",
+          "seconds": 69.15517218317837,
+          "success": true
+        },
+        {
+          "elapsed": 559.4028513720259,
+          "event": "operation_ready",
+          "kind": "candidate",
+          "operation": 3
+        },
+        {
+          "elapsed": 563.884596071206,
+          "event": "kernel_ready",
+          "seconds": 0.059869554825127125,
+          "success": true
+        },
+        {
+          "elapsed": 600.0552188809961,
+          "event": "admission_interrupted",
+          "held": false,
+          "kind": "candidate",
+          "operation": 3,
+          "wait_seconds": 36.1677544657141
+        },
+        {
+          "elapsed": 600.5258838674054,
+          "event": "cleanup",
+          "kind": "candidate",
+          "operation": 3,
+          "verified": true
+        }
+      ],
+      "index": 2,
+      "service_execution_steps_differ": true,
+      "source_event_sha256": "470d5dd67618381b49691170006d27dcab58de5b072d050557315f00befd96e4",
+      "task": "random-acts-of-pizza",
+      "worker_execution_step_matches": true,
+      "worker_gpu_matches": true,
+      "worker_job_matches": true
+    },
+    {
+      "candidates": [
+        {
+          "elapsed_seconds": 115.4277370525524,
+          "exec_seconds": 7.872886528261006,
+          "exit_code": 1,
+          "timed_out": false,
+          "valid": false
+        },
+        {
+          "elapsed_seconds": 470.18286588974297,
+          "exec_seconds": 287.32442913018167,
+          "exit_code": 1,
+          "timed_out": true,
+          "valid": false
+        }
+      ],
+      "events": [
+        {
+          "elapsed": 37.90186359360814,
+          "event": "runtime_hooks_installed"
+        },
+        {
+          "elapsed": 38.229858443140984,
+          "event": "operation_ready",
+          "kind": "preview",
+          "operation": 0
+        },
+        {
+          "elapsed": 42.284073213115335,
+          "event": "kernel_ready",
+          "seconds": 0.06742242723703384,
+          "success": true
+        },
+        {
+          "elapsed": 44.76037455257028,
+          "event": "admitted",
+          "kind": "preview",
+          "operation": 0,
+          "wait_seconds": 2.464227837510407
+        },
+        {
+          "elapsed": 46.252107498236,
+          "event": "cell_return",
+          "exec_seconds": 1.5710684061050415,
+          "exit_code": 0,
+          "queue_seconds": 2.464227837510407,
+          "timed_out": false
+        },
+        {
+          "elapsed": 46.85002061724663,
+          "event": "cleanup",
+          "kind": "preview",
+          "operation": 0,
+          "verified": true
+        },
+        {
+          "elapsed": 46.87070339359343,
+          "event": "released",
+          "kind": "preview",
+          "operation": 0
+        },
+        {
+          "call": 0,
+          "elapsed": 46.877098955214024,
+          "event": "generation_started"
+        },
+        {
+          "call": 0,
+          "elapsed": 97.29305249173194,
+          "event": "generation_returned",
+          "seconds": 50.413089821115136,
+          "success": true
+        },
+        {
+          "elapsed": 97.66505968291312,
+          "event": "operation_ready",
+          "kind": "candidate",
+          "operation": 1
+        },
+        {
+          "elapsed": 101.57819232903421,
+          "event": "kernel_ready",
+          "seconds": 0.06528701260685921,
+          "success": true
+        },
+        {
+          "elapsed": 106.72032407484949,
+          "event": "admitted",
+          "kind": "candidate",
+          "operation": 1,
+          "wait_seconds": 5.128386231139302
+        },
+        {
+          "elapsed": 114.51417161151767,
+          "event": "cell_return",
+          "exec_seconds": 7.872886528261006,
+          "exit_code": 1,
+          "queue_seconds": 5.128386231139302,
+          "timed_out": false
+        },
+        {
+          "elapsed": 115.41240332368761,
+          "event": "cleanup",
+          "kind": "candidate",
+          "operation": 1,
+          "verified": true
+        },
+        {
+          "elapsed": 115.42590575758368,
+          "event": "released",
+          "kind": "candidate",
+          "operation": 1
+        },
+        {
+          "call": 1,
+          "elapsed": 115.43144338112324,
+          "event": "generation_started"
+        },
+        {
+          "call": 1,
+          "elapsed": 120.20971003454179,
+          "event": "generation_returned",
+          "seconds": 4.77634063269943,
+          "success": true
+        },
+        {
+          "call": 2,
+          "elapsed": 120.22196539863944,
+          "event": "generation_started"
+        },
+        {
+          "call": 2,
+          "elapsed": 177.1391292437911,
+          "event": "generation_returned",
+          "seconds": 56.91548174619675,
+          "success": true
+        },
+        {
+          "elapsed": 177.48856573738158,
+          "event": "operation_ready",
+          "kind": "candidate",
+          "operation": 2
+        },
+        {
+          "elapsed": 181.1119502177462,
+          "event": "kernel_ready",
+          "seconds": 0.07049648649990559,
+          "success": true
+        },
+        {
+          "elapsed": 181.14779360219836,
+          "event": "admitted",
+          "kind": "candidate",
+          "operation": 2,
+          "wait_seconds": 0.020382564514875412
+        },
+        {
+          "elapsed": 468.3899933490902,
+          "event": "cell_return",
+          "exec_seconds": 287.32442913018167,
+          "exit_code": 1,
+          "queue_seconds": 0.020382564514875412,
+          "timed_out": true
+        },
+        {
+          "elapsed": 470.15823818091303,
+          "event": "cleanup",
+          "kind": "candidate",
+          "operation": 2,
+          "verified": true
+        },
+        {
+          "elapsed": 470.1805260833353,
+          "event": "released",
+          "kind": "candidate",
+          "operation": 2
+        },
+        {
+          "call": 3,
+          "elapsed": 470.187342020683,
+          "event": "generation_started"
+        },
+        {
+          "call": 3,
+          "elapsed": 473.1792304776609,
+          "event": "generation_returned",
+          "seconds": 2.9898547837510705,
+          "success": true
+        },
+        {
+          "call": 4,
+          "elapsed": 473.20396150741726,
+          "event": "generation_started"
+        },
+        {
+          "call": 4,
+          "elapsed": 535.7985360650346,
+          "event": "generation_returned",
+          "seconds": 62.5919199641794,
+          "success": true
+        },
+        {
+          "elapsed": 536.4225250547752,
+          "event": "operation_ready",
+          "kind": "candidate",
+          "operation": 3
+        },
+        {
+          "elapsed": 539.903612962924,
+          "event": "kernel_ready",
+          "seconds": 0.0678411116823554,
+          "success": true
+        },
+        {
+          "elapsed": 539.9355791537091,
+          "event": "admitted",
+          "kind": "candidate",
+          "operation": 3,
+          "wait_seconds": 0.02018070872873068
+        },
+        {
+          "elapsed": 601.8103316659108,
+          "event": "cleanup",
+          "kind": "candidate",
+          "operation": 3,
+          "verified": true
+        },
+        {
+          "elapsed": 601.8534164847806,
+          "event": "released",
+          "kind": "candidate",
+          "operation": 3
+        }
+      ],
+      "index": 3,
+      "service_execution_steps_differ": true,
+      "source_event_sha256": "2188cf798c0a734b5660e3f51790ccc4c3d06f280137c911735afac741d90543",
+      "task": "spooky-author-identification",
+      "worker_execution_step_matches": true,
+      "worker_gpu_matches": true,
+      "worker_job_matches": true
+    }
+  ],
+  "service_execution_gpu_disjoint": true,
+  "service_has_two_distinct_gpus": true,
+  "telemetry": {
+    "memory_mib_max": 266.0,
+    "samples": 573,
+    "utilization_max": 7.0,
+    "utilization_median": 0.0
+  }
+}

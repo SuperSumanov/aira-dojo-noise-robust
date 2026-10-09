@@ -1,0 +1,17 @@
+arm,block,index,repeat,seed,slot,task,source_commit,run_seconds,complete,native_valid,native_score,native_score_verified,candidate_returns,valid_returns,late_returns,attempted,generation_calls,generation_returned,generation_seconds,queue_seconds,cleanup_failures
+pipeline,0,0,0,140901,0,random-acts-of-pizza,e3e93d788cc6d8775d441d6945cf08529df5c4fd,600,True,True,0.5647572351112174,True,2,1,0,3,5,5,213.69540972728282,308.1350476620719,0
+pipeline,0,1,0,140902,1,spooky-author-identification,e3e93d788cc6d8775d441d6945cf08529df5c4fd,600,True,True,0.4388246722245735,True,2,1,0,3,5,5,191.29903920087963,330.5057844473049,0
+pipeline,0,2,0,140903,2,random-acts-of-pizza,e3e93d788cc6d8775d441d6945cf08529df5c4fd,600,True,True,0.640397034202344,True,2,2,0,3,5,5,206.9943977277726,320.25370898935944,0
+pipeline,0,3,0,140904,3,spooky-author-identification,e3e93d788cc6d8775d441d6945cf08529df5c4fd,600,True,False,,True,2,0,0,3,5,5,177.68668694794178,7.633177341893315,0
+share2,1,4,0,140901,0,random-acts-of-pizza,e3e93d788cc6d8775d441d6945cf08529df5c4fd,600,False,False,,True,0,0,0,0,0,0,0,0,0
+share2,1,5,0,140902,1,spooky-author-identification,e3e93d788cc6d8775d441d6945cf08529df5c4fd,600,False,False,,True,0,0,0,0,0,0,0,0,0
+share2,1,6,0,140903,2,random-acts-of-pizza,e3e93d788cc6d8775d441d6945cf08529df5c4fd,600,False,False,,True,0,0,0,0,0,0,0,0,0
+share2,1,7,0,140904,3,spooky-author-identification,e3e93d788cc6d8775d441d6945cf08529df5c4fd,600,False,False,,True,0,0,0,0,0,0,0,0,0
+share2,2,8,1,141001,0,random-acts-of-pizza,e3e93d788cc6d8775d441d6945cf08529df5c4fd,600,False,False,,True,0,0,0,0,0,0,0,0,0
+share2,2,9,1,141002,1,spooky-author-identification,e3e93d788cc6d8775d441d6945cf08529df5c4fd,600,False,False,,True,0,0,0,0,0,0,0,0,0
+share2,2,10,1,141003,2,random-acts-of-pizza,e3e93d788cc6d8775d441d6945cf08529df5c4fd,600,False,False,,True,0,0,0,0,0,0,0,0,0
+share2,2,11,1,141004,3,spooky-author-identification,e3e93d788cc6d8775d441d6945cf08529df5c4fd,600,False,False,,True,0,0,0,0,0,0,0,0,0
+pipeline,3,12,1,141001,0,random-acts-of-pizza,e3e93d788cc6d8775d441d6945cf08529df5c4fd,600,False,False,,True,0,0,0,0,0,0,0,0,0
+pipeline,3,13,1,141002,1,spooky-author-identification,e3e93d788cc6d8775d441d6945cf08529df5c4fd,600,False,False,,True,0,0,0,0,0,0,0,0,0
+pipeline,3,14,1,141003,2,random-acts-of-pizza,e3e93d788cc6d8775d441d6945cf08529df5c4fd,600,False,False,,True,0,0,0,0,0,0,0,0,0
+pipeline,3,15,1,141004,3,spooky-author-identification,e3e93d788cc6d8775d441d6945cf08529df5c4fd,600,False,False,,True,0,0,0,0,0,0,0,0,0

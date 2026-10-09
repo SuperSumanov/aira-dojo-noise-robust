@@ -1,0 +1,70 @@
+[
+  {
+    "arm": "pipeline",
+    "attempted": true,
+    "block": 0,
+    "closed": true,
+    "identities_ok": false,
+    "queue": {
+      "admitted": 13,
+      "complete": true,
+      "lease_seconds": 419.5851180553436,
+      "peak": 1,
+      "queue_seconds": 848.0460076332092,
+      "released": 13,
+      "wait_median": 4.573371648788452
+    },
+    "valid_returns": 4
+  },
+  {
+    "arm": "share2",
+    "attempted": false,
+    "block": 1,
+    "closed": false,
+    "identities_ok": false,
+    "queue": {
+      "admitted": 0,
+      "complete": true,
+      "lease_seconds": 0,
+      "peak": 0,
+      "queue_seconds": 0,
+      "released": 0,
+      "wait_median": null
+    },
+    "valid_returns": 0
+  },
+  {
+    "arm": "share2",
+    "attempted": false,
+    "block": 2,
+    "closed": false,
+    "identities_ok": false,
+    "queue": {
+      "admitted": 0,
+      "complete": true,
+      "lease_seconds": 0,
+      "peak": 0,
+      "queue_seconds": 0,
+      "released": 0,
+      "wait_median": null
+    },
+    "valid_returns": 0
+  },
+  {
+    "arm": "pipeline",
+    "attempted": false,
+    "block": 3,
+    "closed": false,
+    "identities_ok": false,
+    "queue": {
+      "admitted": 0,
+      "complete": true,
+      "lease_seconds": 0,
+      "peak": 0,
+      "queue_seconds": 0,
+      "released": 0,
+      "wait_median": null
+    },
+    "valid_returns": 0
+  }
+]

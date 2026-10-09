@@ -46,7 +46,7 @@ def log_shape(path):
 
 def main():
     global ROOT
-    parser=argparse.ArgumentParser();parser.add_argument('--version',choices=('v2','v3','v4'),default='v2')
+    parser=argparse.ArgumentParser();parser.add_argument('--version',choices=('v2','v3','v4','v5'),default='v2')
     args=parser.parse_args()
     ROOT=ROOT.with_name('scheduling-live-search-20261009-'+args.version)
     p = read('plan.json')
@@ -61,6 +61,7 @@ def main():
     for b in range(4):
         closed = read(f'block-{b}/closed.json')
         result['blocks'].append(dict(block=b, service_ready=read(f'block-{b}/service-ready.json'),
+            budget_slot=read(f'block-{b}/budget-slot.json'),
             cycle_closed=bool(read(f'block-{b}/cycle-closed.json')),
             step_return=read(f'block-{b}/step-return.json'),
             supervisor_closed=sum((ROOT/f'episode-{i}/closed.json').exists() for i in range(4*b,4*b+4)),

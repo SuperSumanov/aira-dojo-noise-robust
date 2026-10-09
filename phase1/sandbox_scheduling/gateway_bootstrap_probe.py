@@ -3,6 +3,7 @@
 The original frozen observer remains unchanged. The alternate entry exists
 only in this diagnostic's private temporary directory, not production/runtime.
 """
+import argparse
 import hashlib
 import json
 import os
@@ -19,6 +20,12 @@ DEST = BASE/'scheduling-gateway-entry-probe-20261009-v1.json'
 
 
 def main():
+    global DEST
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--native-home', action='store_true')
+    args = parser.parse_args()
+    if args.native_home:
+        DEST = DEST.with_name('scheduling-gateway-entry-probe-20261009-v2.json')
     if DEST.exists():
         raise ValueError('one-time diagnostic already exists')
     original = ORIGINAL.read_text()
@@ -30,6 +37,10 @@ def main():
     os.chmod(probe, 0o700)
     rows = []
     env = {k: os.environ[k] for k in ('PATH', 'HOME', 'USER', 'LOGNAME') if k in os.environ}
+    if args.native_home:
+        env.update(SINGULARITYENV_HOME='/workspace/.home',
+                   SINGULARITYENV_PYTHONUSERBASE='/workspace/.local',
+                   SINGULARITYENV_JUPYTER_RUNTIME_DIR='/workspace/.home/.local/share/jupyter/runtime')
     for name, source in [('original_cli', original), ('direct_help_entry', original.replace(old, new))]:
         directory = probe/name
         directory.mkdir(mode=0o700)
@@ -48,9 +59,10 @@ def main():
     confirmed = (all(r['returncode'] == 0 for r in rows)
                  and not rows[0]['counter_exists'] and rows[1]['counter_exists'] and rows[1]['counts'] == {})
     value = dict(original_sha256=sha(ORIGINAL), analysis_sha256=sha(Path(__file__)),
+                 native_home_environment=args.native_home,
                  help_entry_process_boundary_confirmed=confirmed, rows=rows,
                  no_kernel_or_server_started=True, no_gpu_model_data_api=True,
-                 boundary='Confirms observer process survival on --help only, not operational transport capture, '
+                 boundary='Tests observer process survival on --help only; interpret confirmation boolean and return codes. Not operational transport capture, '
                           'not the cause/fix of original kernel readiness failure; no live experiment changed.')
     write(DEST, value)
     print(json.dumps(dict(receipt_sha256=sha(DEST), **value)))

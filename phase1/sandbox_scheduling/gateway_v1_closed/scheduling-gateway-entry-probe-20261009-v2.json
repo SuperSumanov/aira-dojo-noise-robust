@@ -1,0 +1,31 @@
+{
+  "analysis_sha256": "7bc5129fb70f11919ddc08906e8686a616a8cad0d4e96fb2d2b2f300c9428ef9",
+  "boundary": "Tests observer process survival on --help only; interpret confirmation boolean and return codes. Not operational transport capture, not the cause/fix of original kernel readiness failure; no live experiment changed.",
+  "help_entry_process_boundary_confirmed": true,
+  "native_home_environment": true,
+  "no_gpu_model_data_api": true,
+  "no_kernel_or_server_started": true,
+  "original_sha256": "9c56cc0af1a9aa8616da536579b40b96aca7967c64432bfa7f7ac103044b9009",
+  "rows": [
+    {
+      "counter_exists": false,
+      "counts": null,
+      "entry": "original_cli",
+      "returncode": 0,
+      "source_sha256": "9c56cc0af1a9aa8616da536579b40b96aca7967c64432bfa7f7ac103044b9009",
+      "stderr_bytes": 88,
+      "stdout_bytes": 3073,
+      "stdout_sha256": "4661646da069dc3467413c95c98dfa98a2ceb8434b6361ff42a676eb9a2446eb"
+    },
+    {
+      "counter_exists": true,
+      "counts": {},
+      "entry": "direct_help_entry",
+      "returncode": 0,
+      "source_sha256": "921299845efb3c62384ca020410808d1a538c42b83adc93b497c89fe894fc768",
+      "stderr_bytes": 88,
+      "stdout_bytes": 3073,
+      "stdout_sha256": "4661646da069dc3467413c95c98dfa98a2ceb8434b6361ff42a676eb9a2446eb"
+    }
+  ]
+}

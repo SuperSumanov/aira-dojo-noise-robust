@@ -1,0 +1,13 @@
+{
+  "date_hkt": "2026-10-09",
+  "applies_to_readout_sha256": "0f82b0cceaca2e876502369156927ba52bc11e38efc35a3d847ecf375386e11e",
+  "correction": "The original readout boundary says callbacks were instrumented and wrote counters. This is not supported: all 48 gateway counter files are absent. The original artifact is preserved, but its instrumentation-success sentence must not be used.",
+  "retained_observation": "48 assigned and observed empty-kernel attempts; client-side 47 pass cells and one readiness failure. No server-side localization is established.",
+  "entry_evidence": "Actual task-image Jupyter main calls _execvp, which calls os.execvp on Linux; this replaces the interpreter containing the monkeypatch. The corrected native-home CPU --help probe produces identical help output for original/direct entries, with observer shutdown receipt absent/present respectively.",
+  "cpu_probe_v1_sha256": "3712cd9e2564392a02cc235234b3c579b8e96f39becfcd856f6ecaf665541c52",
+  "cpu_probe_v2_sha256": "bb3ab8b17612905a05601cf83760b1080d6b2e74268046a6c85178da992b1e50",
+  "cpu_probe_v1_limitation": "Both entries exited 1 before useful confirmation; native HOME/PYTHONUSERBASE environment was omitted. Original failure retained.",
+  "cpu_probe_v2_limitation": "Only --help and interpreter survival tested. No server or kernel started; not a production transport acceptance or a fix for the original readiness failure.",
+  "live_experiment_changed": false,
+  "old_gates_overridden": false
+}

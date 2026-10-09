@@ -2,6 +2,9 @@
 更新：2026-10-09香港；旧79行完整留在Git 2b634744a92d17e5732419f11be30f6c0e9da04a。原实验与授权不因压缩改变。
 
 ## 当前六小时窗口
+- 18:55补核：17328服务ready耗时426.55167973134667s，4worker均启动；18:52见5候选回执/3评分回执，仅结构计数、未读效果/角色。预计搜索约19:37闭合，整窗仍至20:11。闭合前冻结辅助机会分析736515e4：只比同run Improve的外部得分与父方案/此前最好，8本地及12远端组合测试过；与原资格分开，不宣称单臂调度收益。
+- Gateway CPU --help probe v2确认CLI exec丢失observer、直接入口保留；不等于握手故障修复或真实服务验收。v1因未设原生home环境两入口均exit1保留。gateway_v1_closed/interpretation-correction.json纠正旧readout称计数已落盘的句子；不修改原件。新正式搜索未用该observer。
+- 18:46已快进push我方06aa7c328c0fa8b25988a42d09cbe602b88c1b71，37文件0凭据/敏感名命中，学长分支不动；后续736515e4、193b22d1尚未push。短文与实验结果有变时再同步，不每次另写长报告。
 - 18:41最新：17328 RUNNING gpu27/服务启动，root=scheduling-live-exposure-20261009-v1，stage=scheduling-exposure-20261009.RYQ2zq；source b3a5d0ee852f6013d3b1ca7f1ba1a44208f0163e、plan b78c0101dec77c6c919a9f7669a07e4c6a5f377a20437e301c0fb8025ab047aa。5本地/远端测试通过，47778 SSH断开但原PID自行完成，18:39完整preflight+PID退出核后只提交一次，submit退出0/job17328。监视stage/live_status.py --version exposure；不重投。
 - 独立阶段覆盖资格：4新run=Pizza/Spooky各2seed174901–174904，原生root5不改，share2单臂，每条3000s；3GPU/18物理核/65min≤3.25GPUh全成本。不是v7同预算A/B，不比较前600s作反事实（提示预算也改50分钟）。全4干净且两任务各有完成Improve及外部反馈才支持阶段资格，不自动放行live2/4。readout冻结652e357f7e0b9fcff17a34bbe1df9bad23294e2e/4测试通过；闭合后live_exposure_readout.py ROOT --plan-sha256 上述SHA --allocation-gpu-seconds 实际账单，一次writer；原源码/镜像/合法dev固定，无官方test。
 - 17326已COMPLETED18:21:40–18:27:37，357GPU秒；48尝试/清理、47pass，index37握手120秒/3status/120info/0reply。全部48 gateway-counts缺失，定位未完成；readout-v1 SHA0f82b0cceaca2e876502369156927ba52bc11e38efc35a3d847ecf375386e11e。原镜像CLI main最终调用_execvp→os.execvp，进程内计数补丁随替换丢失；这是observer入口错误，不是握手根因。停止新增GPU诊断；17328未用此修改。gateway_v1_closed三安全原件已下载。

@@ -6,7 +6,9 @@
 
 ## 当前裁决：R14 MLE沙箱资源调度
 
-10/9 18:41：独立单臂搜索阶段资格17328已RUNNING gpu27（服务启动期，未称候选开跑）。4新轨迹/2任务/seed174901–174904、原root5、share2、3000s；3GPU65min≤3.25GPUh。source b3a5d0ee852f6013d3b1ca7f1ba1a44208f0163e，plan b78c0101dec77c6c919a9f7669a07e4c6a5f377a20437e301c0fb8025ab047aa；提示时限也改50分钟，故不是v7同预算反事实。不改旧门；全4干净且两任务各有有效Improve才支持阶段覆盖，非收益结论。
+10/9 19:51核：17328于19:36:59闭合，3/4正常、1模型请求超时，执行/服务清理通过；10314GPU秒。本窗累计29281GPU秒=8.133611111111112GPUh。4新轨迹/两任务/原root5/share2/3000s；冻结资格false（Spooky无Improve且一run失败），不是v7同预算A/B，不改旧门。source b3a5d0ee852f6013d3b1ca7f1ba1a44208f0163e，plan b78c0101dec77c6c919a9f7669a07e4c6a5f377a20437e301c0fb8025ab047aa。
+闭合诊断：56回执/23外部可评分/17 native接受；6次Improve尝试中仅Pizza两次被native接受，一次相对父及全部此前外部最好+0.0197321215020330，另一次持平。单臂开发局部信号，不是可重复/跨任务/调度因果收益。Spooky一条12次代码提取为空；6个外部有效且exit0节点被native拒，但四run外部最好−native最好均0，不能宣传放行即有终分改善。
+原辅助读出因metric不一致拒绝；事后按冻结native extract_code纠正分析匹配假设、56/56对应，原primary不覆盖/门不改。本地exposure_v1_closed，native诊断SHA0733fb3b789e77f243a3bf64fe67ad5f43b8d3cf8b08de45ef2fe6d6a724844b，6本地/6远端测试与独立计数/hash核验通过。当前不再扩大复杂调度器或以修复另立新方法。
 10/9 18:18补核：v7全部16条仍未完成原生num_children=5的root Draft批，完成Improve=0；18个有效返回全部在最终journal，非观察到的丢交付。root-exposure-v1 SHA b10b9c44a95796dd7564db4343d65109f35fff614541d98a0b5f4c9e44883be7，3个AST反例测试通过。这是预算/搜索阶段覆盖诊断，非调度质量阳性，不能凭未完成调用猜后续内容。
 17322与17326各48尝试/47 pass，各一次握手失败；347/357GPU秒。串行各24/24、四并发各23/24，不判并发因果；失败在候选前。17326全部服务端计数缺失：原镜像Jupyter CLI实际os.execvp替换进程，丢失进程内observer，因此定位未完成，非修复成功。原Server2.20.0/Gateway3.0.1不升级，不追加GPU诊断，不改17308门。17328未采用诊断修改。
 

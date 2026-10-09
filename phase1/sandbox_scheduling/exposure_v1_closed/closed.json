@@ -1,0 +1,10 @@
+{
+  "attempted_blocks": [
+    0
+  ],
+  "complete": 3,
+  "controller_error": null,
+  "elapsed_seconds": 3435.1662675654516,
+  "planned": 4,
+  "service_closed": true
+}

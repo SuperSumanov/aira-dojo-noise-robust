@@ -1,0 +1,351 @@
+{
+  "allocation_gpu_hours": 2.865,
+  "allocation_gpu_seconds": 10314,
+  "analysis_sha256": "bf56cfab0ab980f487c5e3021ef8f7c9e9ce4392f5db590a8dba004474f188ea",
+  "boundary": "Single-arm exposure only. No same-budget A/B, no new algorithm, no final-quality gain, no inference that extra time alone caused exposure (fresh seeds and prompt budget differ). Previous17308/v7 gates unchanged. Temporal follow-on does not prove semantic feedback use.",
+  "closed_sha256": "ce1ba6b3354090f871f4a956dcf51cf1e7159ab95296349ff1373ab08f4380a4",
+  "exposure_qualified": false,
+  "plan_sha256": "b78c0101dec77c6c919a9f7669a07e4c6a5f377a20437e301c0fb8025ab047aa",
+  "queue": {
+    "admitted": 60,
+    "complete": true,
+    "lease_seconds": 3443.447803735733,
+    "peak": 2,
+    "queue_seconds": 484.0891559123993,
+    "released": 60,
+    "wait_median": 0.012860655784606934
+  },
+  "rows": [
+    {
+      "arm": "share2",
+      "block": 0,
+      "candidate_returns": 15,
+      "complete": true,
+      "completed_valid_improves": 2,
+      "events_sha256": "c602dc1062e987d3bb491a0a1161b277b99b5be1906cb15e70f3a3ad8cb6ea8d",
+      "generation_calls": 31,
+      "index": 0,
+      "journal_sha256": "dc56182161b1188cf6db8ea9b2bac99a7cf5636f9db543b17dc14e265417eb64",
+      "matched": [
+        {
+          "elapsed_seconds": 228.80318513326347,
+          "role": "draft",
+          "valid": true
+        },
+        {
+          "elapsed_seconds": 337.68246984574944,
+          "role": "draft",
+          "valid": true
+        },
+        {
+          "elapsed_seconds": 448.1046063527465,
+          "role": "draft",
+          "valid": false
+        },
+        {
+          "elapsed_seconds": 563.4414637153968,
+          "role": "debug",
+          "valid": false
+        },
+        {
+          "elapsed_seconds": 691.5794156957418,
+          "role": "debug",
+          "valid": true
+        },
+        {
+          "elapsed_seconds": 829.9804562451318,
+          "role": "draft",
+          "valid": true
+        },
+        {
+          "elapsed_seconds": 962.2346027037129,
+          "role": "draft",
+          "valid": true
+        },
+        {
+          "elapsed_seconds": 1177.8083462277427,
+          "role": "improve",
+          "valid": true
+        },
+        {
+          "elapsed_seconds": 1332.0481068566442,
+          "role": "improve",
+          "valid": true
+        },
+        {
+          "elapsed_seconds": 1509.4954426521435,
+          "role": "debug",
+          "valid": true
+        },
+        {
+          "elapsed_seconds": 1663.0618193252012,
+          "role": "improve",
+          "valid": false
+        },
+        {
+          "elapsed_seconds": 1815.8359959991649,
+          "role": "debug",
+          "valid": false
+        },
+        {
+          "elapsed_seconds": 2158.5631568552926,
+          "role": "debug",
+          "valid": true
+        },
+        {
+          "elapsed_seconds": 2519.041529861279,
+          "role": "improve",
+          "valid": false
+        },
+        {
+          "elapsed_seconds": 2853.5567613495514,
+          "role": "debug",
+          "valid": true
+        }
+      ],
+      "num_children": 5,
+      "readiness_failures": 0,
+      "recorded_roles": {
+        "debug": 6,
+        "draft": 5,
+        "improve": 4
+      },
+      "repeat": 0,
+      "run_seconds": 3000,
+      "seed": 174901,
+      "slot": 0,
+      "task": "random-acts-of-pizza",
+      "unmatched_recorded_nodes": 0,
+      "valid_returns": 10
+    },
+    {
+      "arm": "share2",
+      "block": 0,
+      "candidate_returns": 10,
+      "complete": true,
+      "completed_valid_improves": 0,
+      "events_sha256": "da768e512a062c26c0834bf9390c3a8f67cf070228bbe6da7caf6fe816bd879b",
+      "generation_calls": 21,
+      "index": 1,
+      "journal_sha256": "cef1e63300b4b3820e6471e4892554eb995b66d4cda0eddb8b2b7a17786f9a70",
+      "matched": [
+        {
+          "elapsed_seconds": 402.0227424595505,
+          "role": "draft",
+          "valid": false
+        },
+        {
+          "elapsed_seconds": 764.0928087811917,
+          "role": "debug",
+          "valid": false
+        },
+        {
+          "elapsed_seconds": 998.5804695291445,
+          "role": "debug",
+          "valid": false
+        },
+        {
+          "elapsed_seconds": 1322.8699696268886,
+          "role": "debug",
+          "valid": false
+        },
+        {
+          "elapsed_seconds": 1679.5567285958678,
+          "role": "debug",
+          "valid": false
+        },
+        {
+          "elapsed_seconds": 1868.6770573826507,
+          "role": "debug",
+          "valid": true
+        },
+        {
+          "elapsed_seconds": 2079.573180277832,
+          "role": "draft",
+          "valid": false
+        },
+        {
+          "elapsed_seconds": 2174.13421922829,
+          "role": "debug",
+          "valid": false
+        },
+        {
+          "elapsed_seconds": 2508.6405215635896,
+          "role": "debug",
+          "valid": false
+        },
+        {
+          "elapsed_seconds": 2807.569633997977,
+          "role": "debug",
+          "valid": false
+        }
+      ],
+      "num_children": 5,
+      "readiness_failures": 1,
+      "recorded_roles": {
+        "debug": 8,
+        "draft": 2
+      },
+      "repeat": 0,
+      "run_seconds": 3000,
+      "seed": 174902,
+      "slot": 1,
+      "task": "spooky-author-identification",
+      "unmatched_recorded_nodes": 0,
+      "valid_returns": 1
+    },
+    {
+      "arm": "share2",
+      "block": 0,
+      "candidate_returns": 10,
+      "complete": false,
+      "completed_valid_improves": 1,
+      "events_sha256": "3c745eab1da43fa5dac1ce17bcc5876f70e089a39ce538353cb2372d89df76bc",
+      "generation_calls": 21,
+      "index": 2,
+      "journal_sha256": "dd6b00d6030da6c130e751b0e8f354493fee7d900ab6de810282f2a3ee89a5d3",
+      "matched": [
+        {
+          "elapsed_seconds": 242.79489237442613,
+          "role": "draft",
+          "valid": true
+        },
+        {
+          "elapsed_seconds": 311.5875491928309,
+          "role": "draft",
+          "valid": true
+        },
+        {
+          "elapsed_seconds": 393.2925369339064,
+          "role": "draft",
+          "valid": true
+        },
+        {
+          "elapsed_seconds": 486.8567624911666,
+          "role": "debug",
+          "valid": true
+        },
+        {
+          "elapsed_seconds": 614.0368731459603,
+          "role": "draft",
+          "valid": false
+        },
+        {
+          "elapsed_seconds": 724.6836595293134,
+          "role": "debug",
+          "valid": true
+        },
+        {
+          "elapsed_seconds": 864.6372596155852,
+          "role": "debug",
+          "valid": true
+        },
+        {
+          "elapsed_seconds": 977.9114569379017,
+          "role": "draft",
+          "valid": true
+        },
+        {
+          "elapsed_seconds": 1193.6280896188691,
+          "role": "improve",
+          "valid": true
+        },
+        {
+          "elapsed_seconds": 1382.0160016026348,
+          "role": "improve",
+          "valid": false
+        }
+      ],
+      "num_children": 5,
+      "readiness_failures": 0,
+      "recorded_roles": {
+        "debug": 3,
+        "draft": 5,
+        "improve": 2
+      },
+      "repeat": 0,
+      "run_seconds": 3000,
+      "seed": 174903,
+      "slot": 2,
+      "task": "random-acts-of-pizza",
+      "unmatched_recorded_nodes": 0,
+      "valid_returns": 8
+    },
+    {
+      "arm": "share2",
+      "block": 0,
+      "candidate_returns": 21,
+      "complete": true,
+      "completed_valid_improves": 0,
+      "events_sha256": "2ecaf2af4f600098cde951d23d90539e9a748973639610b4113cafce450abe98",
+      "generation_calls": 43,
+      "index": 3,
+      "journal_sha256": "f01d035ce746bac5c41beb41b70a4099b93cb31c89839955239644b5aae8858b",
+      "matched": [
+        {
+          "elapsed_seconds": 1367.3884743638337,
+          "role": "debug",
+          "valid": false
+        },
+        {
+          "elapsed_seconds": 1467.2666064351797,
+          "role": "debug",
+          "valid": true
+        },
+        {
+          "elapsed_seconds": 1563.7861312953755,
+          "role": "debug",
+          "valid": true
+        },
+        {
+          "elapsed_seconds": 1654.4173055225983,
+          "role": "debug",
+          "valid": true
+        },
+        {
+          "elapsed_seconds": 1765.1263492684811,
+          "role": "debug",
+          "valid": true
+        },
+        {
+          "elapsed_seconds": 1854.687090751715,
+          "role": "draft",
+          "valid": false
+        },
+        {
+          "elapsed_seconds": 2176.7266547428444,
+          "role": "debug",
+          "valid": false
+        },
+        {
+          "elapsed_seconds": 2496.228897338733,
+          "role": "debug",
+          "valid": false
+        },
+        {
+          "elapsed_seconds": 2833.000841770321,
+          "role": "debug",
+          "valid": false
+        }
+      ],
+      "num_children": 5,
+      "readiness_failures": 1,
+      "recorded_roles": {
+        "debug": 19,
+        "draft": 2
+      },
+      "repeat": 0,
+      "run_seconds": 3000,
+      "seed": 174904,
+      "slot": 3,
+      "task": "spooky-author-identification",
+      "unmatched_recorded_nodes": 12,
+      "valid_returns": 4
+    }
+  ],
+  "structural": true,
+  "task_exposure": {
+    "random-acts-of-pizza": true,
+    "spooky-author-identification": false
+  }
+}

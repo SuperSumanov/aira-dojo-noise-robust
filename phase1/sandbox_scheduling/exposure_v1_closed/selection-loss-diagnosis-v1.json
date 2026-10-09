@@ -1,0 +1,44 @@
+{
+  "analysis_sha256": "4daf46ad2744df08569e767ed9a56a22a7f155ba3ea397031fd4d1779b5679c4",
+  "boundary": "Post-hoc ceiling using artifacts already produced. Not an intervention, restored score-channel policy, causal savings, or proof all rejected programs should be accepted. No node identities or raw scores exported.",
+  "plan_sha256": "b78c0101dec77c6c919a9f7669a07e4c6a5f377a20437e301c0fb8025ab047aa",
+  "prior_sha256": "0733fb3b789e77f243a3bf64fe67ad5f43b8d3cf8b08de45ef2fe6d6a724844b",
+  "rows": [
+    {
+      "complete": true,
+      "external_best_minus_native_best": "0E-16",
+      "external_valid_rejected": 1,
+      "index": 0,
+      "rejected_with_blank_analysis": 0,
+      "seed": 174901,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "complete": true,
+      "external_best_minus_native_best": "0E-16",
+      "external_valid_rejected": 0,
+      "index": 1,
+      "rejected_with_blank_analysis": 0,
+      "seed": 174902,
+      "task": "spooky-author-identification"
+    },
+    {
+      "complete": false,
+      "external_best_minus_native_best": "0E-16",
+      "external_valid_rejected": 2,
+      "index": 2,
+      "rejected_with_blank_analysis": 0,
+      "seed": 174903,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "complete": true,
+      "external_best_minus_native_best": "0E-16",
+      "external_valid_rejected": 3,
+      "index": 3,
+      "rejected_with_blank_analysis": 0,
+      "seed": 174904,
+      "task": "spooky-author-identification"
+    }
+  ]
+}

@@ -1,0 +1,153 @@
+{
+  "allocation_gpu_seconds": 10314,
+  "analysis_sha256": "5a50fce45007d270e5090feda66f333ae45efcc63118c67f6c538b8e00b04b27",
+  "boundary": "Post-outcome diagnosis after frozen secondary refused native/external mismatch. Frozen primary and failed cross-task/all4 qualification unchanged. Native accepted nodes only for parent/incumbent gains, all4 retained. Single-arm dependent development gains: not scheduling effects, generalization, repeatability or confirmation.",
+  "native_extractor_sha256": "dbbf56cf58b9597be44afa1b146909fb724281b8793e85cddead13ef7f9b7dca",
+  "plan_sha256": "b78c0101dec77c6c919a9f7669a07e4c6a5f377a20437e301c0fb8025ab047aa",
+  "primary_sha256": "632c411555e43b8459c7f91baa77621cad01210fe2da8fb0eba55af5fe90ade2",
+  "rows": [
+    {
+      "arm": "share2",
+      "block": 0,
+      "complete": true,
+      "counts": {
+        "accepted_improves_beating_all_external_history": 1,
+        "better_than_parent": 1,
+        "empty_executed_code": 0,
+        "external_valid": 10,
+        "external_valid_improves": 2,
+        "external_valid_native_rejected": 1,
+        "external_valid_rejected_exit_zero": 1,
+        "improve_attempts": 4,
+        "matched": 15,
+        "native_accepted": 9,
+        "native_accepted_improves": 1,
+        "strict_native_incumbent_improvements": 1
+      },
+      "improves": [
+        {
+          "accepted": true,
+          "all_external_history_oriented_delta": "0.0197321215020330",
+          "incumbent_oriented_delta": "0.0197321215020330",
+          "parent_grounded": true,
+          "parent_oriented_delta": "0.0197321215020330",
+          "returned_seconds": 1177.8083462277427
+        },
+        {
+          "accepted": false,
+          "all_external_history_oriented_delta": null,
+          "incumbent_oriented_delta": null,
+          "parent_grounded": true,
+          "parent_oriented_delta": null,
+          "returned_seconds": 1332.0481068566442
+        },
+        {
+          "accepted": false,
+          "all_external_history_oriented_delta": null,
+          "incumbent_oriented_delta": null,
+          "parent_grounded": true,
+          "parent_oriented_delta": null,
+          "returned_seconds": 1663.0618193252012
+        },
+        {
+          "accepted": false,
+          "all_external_history_oriented_delta": null,
+          "incumbent_oriented_delta": null,
+          "parent_grounded": true,
+          "parent_oriented_delta": null,
+          "returned_seconds": 2519.041529861279
+        }
+      ],
+      "index": 0,
+      "repeat": 0,
+      "seed": 174901,
+      "slot": 0,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "arm": "share2",
+      "block": 0,
+      "complete": true,
+      "counts": {
+        "accepted_improves_beating_all_external_history": 0,
+        "better_than_parent": 0,
+        "empty_executed_code": 0,
+        "external_valid": 1,
+        "matched": 10,
+        "native_accepted": 1,
+        "strict_native_incumbent_improvements": 0
+      },
+      "improves": [],
+      "index": 1,
+      "repeat": 0,
+      "seed": 174902,
+      "slot": 1,
+      "task": "spooky-author-identification"
+    },
+    {
+      "arm": "share2",
+      "block": 0,
+      "complete": false,
+      "counts": {
+        "accepted_improves_beating_all_external_history": 0,
+        "better_than_parent": 0,
+        "empty_executed_code": 0,
+        "external_valid": 8,
+        "external_valid_improves": 1,
+        "external_valid_native_rejected": 2,
+        "external_valid_rejected_exit_zero": 2,
+        "improve_attempts": 2,
+        "matched": 10,
+        "native_accepted": 6,
+        "native_accepted_improves": 1,
+        "strict_native_incumbent_improvements": 0
+      },
+      "improves": [
+        {
+          "accepted": true,
+          "all_external_history_oriented_delta": "0E-16",
+          "incumbent_oriented_delta": "0E-16",
+          "parent_grounded": true,
+          "parent_oriented_delta": "0E-16",
+          "returned_seconds": 1193.6280896188691
+        },
+        {
+          "accepted": false,
+          "all_external_history_oriented_delta": null,
+          "incumbent_oriented_delta": null,
+          "parent_grounded": true,
+          "parent_oriented_delta": null,
+          "returned_seconds": 1382.0160016026348
+        }
+      ],
+      "index": 2,
+      "repeat": 0,
+      "seed": 174903,
+      "slot": 2,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "arm": "share2",
+      "block": 0,
+      "complete": true,
+      "counts": {
+        "accepted_improves_beating_all_external_history": 0,
+        "better_than_parent": 0,
+        "empty_executed_code": 12,
+        "external_valid": 4,
+        "external_valid_native_rejected": 3,
+        "external_valid_rejected_exit_zero": 3,
+        "matched": 21,
+        "native_accepted": 1,
+        "strict_native_incumbent_improvements": 0
+      },
+      "improves": [],
+      "index": 3,
+      "repeat": 0,
+      "seed": 174904,
+      "slot": 3,
+      "task": "spooky-author-identification"
+    }
+  ],
+  "source_commit": "b3a5d0ee852f6013d3b1ca7f1ba1a44208f0163e"
+}

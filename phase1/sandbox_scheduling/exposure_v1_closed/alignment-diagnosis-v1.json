@@ -1,0 +1,80 @@
+{
+  "analysis_sha256": "4360e4fed731b1690c724091d78bfd2428bf7558a95912eec0034896e7f6cb28",
+  "boundary": "Post-readout metadata diagnosis only; not a replacement readout or corrected scientific result.",
+  "plan_sha256": "b78c0101dec77c6c919a9f7669a07e4c6a5f377a20437e301c0fb8025ab047aa",
+  "rows": [
+    {
+      "candidates": 15,
+      "code_multiset_matches": 15,
+      "counts": {
+        "direction_mismatch": 1,
+        "metric_mismatch": 1,
+        "native_marked_buggy": 1,
+        "native_metric_null": 1,
+        "valid_matched": 10
+      },
+      "duplicate_candidate_codes": 0,
+      "duplicate_journal_codes": 0,
+      "index": 0,
+      "nodes": 15,
+      "step_monotonic": true,
+      "task": "random-acts-of-pizza",
+      "unique_steps": true
+    },
+    {
+      "candidates": 10,
+      "code_multiset_matches": 10,
+      "counts": {
+        "direction_mismatch": 0,
+        "metric_mismatch": 0,
+        "native_marked_buggy": 0,
+        "native_metric_null": 0,
+        "valid_matched": 1
+      },
+      "duplicate_candidate_codes": 0,
+      "duplicate_journal_codes": 0,
+      "index": 1,
+      "nodes": 10,
+      "step_monotonic": true,
+      "task": "spooky-author-identification",
+      "unique_steps": true
+    },
+    {
+      "candidates": 10,
+      "code_multiset_matches": 10,
+      "counts": {
+        "direction_mismatch": 2,
+        "metric_mismatch": 2,
+        "native_marked_buggy": 2,
+        "native_metric_null": 2,
+        "valid_matched": 8
+      },
+      "duplicate_candidate_codes": 0,
+      "duplicate_journal_codes": 0,
+      "index": 2,
+      "nodes": 10,
+      "step_monotonic": true,
+      "task": "random-acts-of-pizza",
+      "unique_steps": true
+    },
+    {
+      "candidates": 21,
+      "code_multiset_matches": 9,
+      "counts": {
+        "chronological_unmatched": 12,
+        "direction_mismatch": 3,
+        "metric_mismatch": 3,
+        "native_marked_buggy": 3,
+        "native_metric_null": 3,
+        "valid_matched": 4
+      },
+      "duplicate_candidate_codes": 11,
+      "duplicate_journal_codes": 0,
+      "index": 3,
+      "nodes": 21,
+      "step_monotonic": true,
+      "task": "spooky-author-identification",
+      "unique_steps": true
+    }
+  ]
+}

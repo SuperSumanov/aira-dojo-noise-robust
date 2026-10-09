@@ -1,0 +1,1565 @@
+{
+  "analysis_sha256": "c4b1ce87390a2c44d6e10172504e20a5b27a15d9a623ba02b0f4b9c0e8671123",
+  "boundary": "Post-outcome structural diagnosis only; no raw text exported, no candidate executed, no outcome or gate changed. Saved last operator response does not account for earlier extraction retries. Token count alone does not prove truncation without a recorded finish reason.",
+  "native_extractor_sha256": "dbbf56cf58b9597be44afa1b146909fb724281b8793e85cddead13ef7f9b7dca",
+  "plan_sha256": "b78c0101dec77c6c919a9f7669a07e4c6a5f377a20437e301c0fb8025ab047aa",
+  "rows": [
+    {
+      "categories": {
+        "nonempty_native_execution": 15
+      },
+      "details": [
+        {
+          "alternative_parseable_nonempty_fences": 1,
+          "alternative_syntax_is_not_execution_evidence": true,
+          "answer_characters": 17910,
+          "category": "nonempty_native_execution",
+          "executed_characters": 13073,
+          "fence_markers": 2,
+          "journal_code_characters": 13073,
+          "native_fence_errors": {
+            "parseable": 1
+          },
+          "native_fences": 1,
+          "native_parseable_nonempty_fences": 1,
+          "ordinal": 0,
+          "response_characters": 17910,
+          "thinking_characters": 0,
+          "token_counts": {
+            "completion_tokens": 4948,
+            "prompt_tokens": 5061,
+            "total_tokens": 10009
+          },
+          "whole_answer": {
+            "error": "unterminated",
+            "nonempty": false,
+            "parseable": false
+          }
+        },
+        {
+          "alternative_parseable_nonempty_fences": 1,
+          "alternative_syntax_is_not_execution_evidence": true,
+          "answer_characters": 9038,
+          "category": "nonempty_native_execution",
+          "executed_characters": 7404,
+          "fence_markers": 2,
+          "journal_code_characters": 7404,
+          "native_fence_errors": {
+            "parseable": 1
+          },
+          "native_fences": 1,
+          "native_parseable_nonempty_fences": 1,
+          "ordinal": 1,
+          "response_characters": 9038,
+          "thinking_characters": 0,
+          "token_counts": {
+            "completion_tokens": 2664,
+            "prompt_tokens": 5061,
+            "total_tokens": 7725
+          },
+          "whole_answer": {
+            "error": "invalid_syntax",
+            "nonempty": false,
+            "parseable": false
+          }
+        },
+        {
+          "alternative_parseable_nonempty_fences": 1,
+          "alternative_syntax_is_not_execution_evidence": true,
+          "answer_characters": 10398,
+          "category": "nonempty_native_execution",
+          "executed_characters": 9346,
+          "fence_markers": 2,
+          "journal_code_characters": 9346,
+          "native_fence_errors": {
+            "parseable": 1
+          },
+          "native_fences": 1,
+          "native_parseable_nonempty_fences": 1,
+          "ordinal": 2,
+          "response_characters": 10398,
+          "thinking_characters": 0,
+          "token_counts": {
+            "completion_tokens": 3065,
+            "prompt_tokens": 5061,
+            "total_tokens": 8126
+          },
+          "whole_answer": {
+            "error": "other_parse_error",
+            "nonempty": false,
+            "parseable": false
+          }
+        },
+        {
+          "alternative_parseable_nonempty_fences": 1,
+          "alternative_syntax_is_not_execution_evidence": true,
+          "answer_characters": 10824,
+          "category": "nonempty_native_execution",
+          "executed_characters": 9916,
+          "fence_markers": 2,
+          "journal_code_characters": 9916,
+          "native_fence_errors": {
+            "parseable": 1
+          },
+          "native_fences": 1,
+          "native_parseable_nonempty_fences": 1,
+          "ordinal": 3,
+          "response_characters": 10824,
+          "thinking_characters": 0,
+          "token_counts": {
+            "completion_tokens": 3202,
+            "prompt_tokens": 8383,
+            "total_tokens": 11585
+          },
+          "whole_answer": {
+            "error": "invalid_syntax",
+            "nonempty": false,
+            "parseable": false
+          }
+        },
+        {
+          "alternative_parseable_nonempty_fences": 1,
+          "alternative_syntax_is_not_execution_evidence": true,
+          "answer_characters": 11047,
+          "category": "nonempty_native_execution",
+          "executed_characters": 10043,
+          "fence_markers": 2,
+          "journal_code_characters": 10043,
+          "native_fence_errors": {
+            "parseable": 1
+          },
+          "native_fences": 1,
+          "native_parseable_nonempty_fences": 1,
+          "ordinal": 4,
+          "response_characters": 11047,
+          "thinking_characters": 0,
+          "token_counts": {
+            "completion_tokens": 3269,
+            "prompt_tokens": 8885,
+            "total_tokens": 12154
+          },
+          "whole_answer": {
+            "error": "invalid_syntax",
+            "nonempty": false,
+            "parseable": false
+          }
+        },
+        {
+          "alternative_parseable_nonempty_fences": 1,
+          "alternative_syntax_is_not_execution_evidence": true,
+          "answer_characters": 13875,
+          "category": "nonempty_native_execution",
+          "executed_characters": 11821,
+          "fence_markers": 2,
+          "journal_code_characters": 11821,
+          "native_fence_errors": {
+            "parseable": 1
+          },
+          "native_fences": 1,
+          "native_parseable_nonempty_fences": 1,
+          "ordinal": 5,
+          "response_characters": 13875,
+          "thinking_characters": 0,
+          "token_counts": {
+            "completion_tokens": 4113,
+            "prompt_tokens": 5061,
+            "total_tokens": 9174
+          },
+          "whole_answer": {
+            "error": "unterminated",
+            "nonempty": false,
+            "parseable": false
+          }
+        },
+        {
+          "alternative_parseable_nonempty_fences": 1,
+          "alternative_syntax_is_not_execution_evidence": true,
+          "answer_characters": 11734,
+          "category": "nonempty_native_execution",
+          "executed_characters": 9805,
+          "fence_markers": 2,
+          "journal_code_characters": 9805,
+          "native_fence_errors": {
+            "parseable": 1
+          },
+          "native_fences": 1,
+          "native_parseable_nonempty_fences": 1,
+          "ordinal": 6,
+          "response_characters": 11734,
+          "thinking_characters": 0,
+          "token_counts": {
+            "completion_tokens": 3493,
+            "prompt_tokens": 5061,
+            "total_tokens": 8554
+          },
+          "whole_answer": {
+            "error": "unterminated",
+            "nonempty": false,
+            "parseable": false
+          }
+        },
+        {
+          "alternative_parseable_nonempty_fences": 1,
+          "alternative_syntax_is_not_execution_evidence": true,
+          "answer_characters": 14990,
+          "category": "nonempty_native_execution",
+          "executed_characters": 13085,
+          "fence_markers": 2,
+          "journal_code_characters": 13085,
+          "native_fence_errors": {
+            "parseable": 1
+          },
+          "native_fences": 1,
+          "native_parseable_nonempty_fences": 1,
+          "ordinal": 7,
+          "response_characters": 14990,
+          "thinking_characters": 0,
+          "token_counts": {
+            "completion_tokens": 4618,
+            "prompt_tokens": 8487,
+            "total_tokens": 13105
+          },
+          "whole_answer": {
+            "error": "other_parse_error",
+            "nonempty": false,
+            "parseable": false
+          }
+        },
+        {
+          "alternative_parseable_nonempty_fences": 1,
+          "alternative_syntax_is_not_execution_evidence": true,
+          "answer_characters": 13136,
+          "category": "nonempty_native_execution",
+          "executed_characters": 11517,
+          "fence_markers": 2,
+          "journal_code_characters": 11517,
+          "native_fence_errors": {
+            "parseable": 1
+          },
+          "native_fences": 1,
+          "native_parseable_nonempty_fences": 1,
+          "ordinal": 8,
+          "response_characters": 13136,
+          "thinking_characters": 0,
+          "token_counts": {
+            "completion_tokens": 3982,
+            "prompt_tokens": 8487,
+            "total_tokens": 12469
+          },
+          "whole_answer": {
+            "error": "other_parse_error",
+            "nonempty": false,
+            "parseable": false
+          }
+        },
+        {
+          "alternative_parseable_nonempty_fences": 1,
+          "alternative_syntax_is_not_execution_evidence": true,
+          "answer_characters": 14157,
+          "category": "nonempty_native_execution",
+          "executed_characters": 11823,
+          "fence_markers": 2,
+          "journal_code_characters": 11823,
+          "native_fence_errors": {
+            "parseable": 1
+          },
+          "native_fences": 1,
+          "native_parseable_nonempty_fences": 1,
+          "ordinal": 9,
+          "response_characters": 14157,
+          "thinking_characters": 0,
+          "token_counts": {
+            "completion_tokens": 4304,
+            "prompt_tokens": 9662,
+            "total_tokens": 13966
+          },
+          "whole_answer": {
+            "error": "unterminated",
+            "nonempty": false,
+            "parseable": false
+          }
+        },
+        {
+          "alternative_parseable_nonempty_fences": 1,
+          "alternative_syntax_is_not_execution_evidence": true,
+          "answer_characters": 16473,
+          "category": "nonempty_native_execution",
+          "executed_characters": 14050,
+          "fence_markers": 2,
+          "journal_code_characters": 14050,
+          "native_fence_errors": {
+            "parseable": 1
+          },
+          "native_fences": 1,
+          "native_parseable_nonempty_fences": 1,
+          "ordinal": 10,
+          "response_characters": 16473,
+          "thinking_characters": 0,
+          "token_counts": {
+            "completion_tokens": 5062,
+            "prompt_tokens": 8487,
+            "total_tokens": 13549
+          },
+          "whole_answer": {
+            "error": "unterminated",
+            "nonempty": false,
+            "parseable": false
+          }
+        },
+        {
+          "alternative_parseable_nonempty_fences": 1,
+          "alternative_syntax_is_not_execution_evidence": true,
+          "answer_characters": 15284,
+          "category": "nonempty_native_execution",
+          "executed_characters": 14298,
+          "fence_markers": 2,
+          "journal_code_characters": 14298,
+          "native_fence_errors": {
+            "parseable": 1
+          },
+          "native_fences": 1,
+          "native_parseable_nonempty_fences": 1,
+          "ordinal": 11,
+          "response_characters": 15284,
+          "thinking_characters": 0,
+          "token_counts": {
+            "completion_tokens": 4827,
+            "prompt_tokens": 10718,
+            "total_tokens": 15545
+          },
+          "whole_answer": {
+            "error": "other_parse_error",
+            "nonempty": false,
+            "parseable": false
+          }
+        },
+        {
+          "alternative_parseable_nonempty_fences": 1,
+          "alternative_syntax_is_not_execution_evidence": true,
+          "answer_characters": 15957,
+          "category": "nonempty_native_execution",
+          "executed_characters": 14760,
+          "fence_markers": 2,
+          "journal_code_characters": 14760,
+          "native_fence_errors": {
+            "parseable": 1
+          },
+          "native_fences": 1,
+          "native_parseable_nonempty_fences": 1,
+          "ordinal": 12,
+          "response_characters": 15957,
+          "thinking_characters": 0,
+          "token_counts": {
+            "completion_tokens": 5006,
+            "prompt_tokens": 11127,
+            "total_tokens": 16133
+          },
+          "whole_answer": {
+            "error": "unterminated",
+            "nonempty": false,
+            "parseable": false
+          }
+        },
+        {
+          "alternative_parseable_nonempty_fences": 1,
+          "alternative_syntax_is_not_execution_evidence": true,
+          "answer_characters": 15185,
+          "category": "nonempty_native_execution",
+          "executed_characters": 13433,
+          "fence_markers": 2,
+          "journal_code_characters": 13433,
+          "native_fence_errors": {
+            "parseable": 1
+          },
+          "native_fences": 1,
+          "native_parseable_nonempty_fences": 1,
+          "ordinal": 13,
+          "response_characters": 15185,
+          "thinking_characters": 0,
+          "token_counts": {
+            "completion_tokens": 4778,
+            "prompt_tokens": 8487,
+            "total_tokens": 13265
+          },
+          "whole_answer": {
+            "error": "unterminated",
+            "nonempty": false,
+            "parseable": false
+          }
+        },
+        {
+          "alternative_parseable_nonempty_fences": 1,
+          "alternative_syntax_is_not_execution_evidence": true,
+          "answer_characters": 15315,
+          "category": "nonempty_native_execution",
+          "executed_characters": 13821,
+          "fence_markers": 2,
+          "journal_code_characters": 13821,
+          "native_fence_errors": {
+            "parseable": 1
+          },
+          "native_fences": 1,
+          "native_parseable_nonempty_fences": 1,
+          "ordinal": 14,
+          "response_characters": 15315,
+          "thinking_characters": 0,
+          "token_counts": {
+            "completion_tokens": 4932,
+            "prompt_tokens": 11697,
+            "total_tokens": 16629
+          },
+          "whole_answer": {
+            "error": "invalid_syntax",
+            "nonempty": false,
+            "parseable": false
+          }
+        }
+      ],
+      "index": 0,
+      "journal_sha256": "dc56182161b1188cf6db8ea9b2bac99a7cf5636f9db543b17dc14e265417eb64",
+      "nodes": 15,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "categories": {
+        "nonempty_native_execution": 10
+      },
+      "details": [
+        {
+          "alternative_parseable_nonempty_fences": 1,
+          "alternative_syntax_is_not_execution_evidence": true,
+          "answer_characters": 12845,
+          "category": "nonempty_native_execution",
+          "executed_characters": 8128,
+          "fence_markers": 2,
+          "journal_code_characters": 8128,
+          "native_fence_errors": {
+            "parseable": 1
+          },
+          "native_fences": 1,
+          "native_parseable_nonempty_fences": 1,
+          "ordinal": 0,
+          "response_characters": 12845,
+          "thinking_characters": 0,
+          "token_counts": {
+            "completion_tokens": 3618,
+            "prompt_tokens": 3803,
+            "total_tokens": 7421
+          },
+          "whole_answer": {
+            "error": "other_parse_error",
+            "nonempty": false,
+            "parseable": false
+          }
+        },
+        {
+          "alternative_parseable_nonempty_fences": 1,
+          "alternative_syntax_is_not_execution_evidence": true,
+          "answer_characters": 10884,
+          "category": "nonempty_native_execution",
+          "executed_characters": 8753,
+          "fence_markers": 2,
+          "journal_code_characters": 8753,
+          "native_fence_errors": {
+            "parseable": 1
+          },
+          "native_fences": 1,
+          "native_parseable_nonempty_fences": 1,
+          "ordinal": 1,
+          "response_characters": 10884,
+          "thinking_characters": 0,
+          "token_counts": {
+            "completion_tokens": 3031,
+            "prompt_tokens": 6998,
+            "total_tokens": 10029
+          },
+          "whole_answer": {
+            "error": "other_parse_error",
+            "nonempty": false,
+            "parseable": false
+          }
+        },
+        {
+          "alternative_parseable_nonempty_fences": 1,
+          "alternative_syntax_is_not_execution_evidence": true,
+          "answer_characters": 9290,
+          "category": "nonempty_native_execution",
+          "executed_characters": 8352,
+          "fence_markers": 2,
+          "journal_code_characters": 8352,
+          "native_fence_errors": {
+            "parseable": 1
+          },
+          "native_fences": 1,
+          "native_parseable_nonempty_fences": 1,
+          "ordinal": 2,
+          "response_characters": 9290,
+          "thinking_characters": 0,
+          "token_counts": {
+            "completion_tokens": 2591,
+            "prompt_tokens": 7600,
+            "total_tokens": 10191
+          },
+          "whole_answer": {
+            "error": "other_parse_error",
+            "nonempty": false,
+            "parseable": false
+          }
+        },
+        {
+          "alternative_parseable_nonempty_fences": 1,
+          "alternative_syntax_is_not_execution_evidence": true,
+          "answer_characters": 9313,
+          "category": "nonempty_native_execution",
+          "executed_characters": 8578,
+          "fence_markers": 2,
+          "journal_code_characters": 8578,
+          "native_fence_errors": {
+            "parseable": 1
+          },
+          "native_fences": 1,
+          "native_parseable_nonempty_fences": 1,
+          "ordinal": 3,
+          "response_characters": 9313,
+          "thinking_characters": 0,
+          "token_counts": {
+            "completion_tokens": 2552,
+            "prompt_tokens": 8016,
+            "total_tokens": 10568
+          },
+          "whole_answer": {
+            "error": "invalid_syntax",
+            "nonempty": false,
+            "parseable": false
+          }
+        },
+        {
+          "alternative_parseable_nonempty_fences": 1,
+          "alternative_syntax_is_not_execution_evidence": true,
+          "answer_characters": 8759,
+          "category": "nonempty_native_execution",
+          "executed_characters": 8015,
+          "fence_markers": 2,
+          "journal_code_characters": 8015,
+          "native_fence_errors": {
+            "parseable": 1
+          },
+          "native_fences": 1,
+          "native_parseable_nonempty_fences": 1,
+          "ordinal": 4,
+          "response_characters": 8759,
+          "thinking_characters": 0,
+          "token_counts": {
+            "completion_tokens": 2458,
+            "prompt_tokens": 8139,
+            "total_tokens": 10597
+          },
+          "whole_answer": {
+            "error": "other_parse_error",
+            "nonempty": false,
+            "parseable": false
+          }
+        },
+        {
+          "alternative_parseable_nonempty_fences": 1,
+          "alternative_syntax_is_not_execution_evidence": true,
+          "answer_characters": 8775,
+          "category": "nonempty_native_execution",
+          "executed_characters": 8013,
+          "fence_markers": 2,
+          "journal_code_characters": 8013,
+          "native_fence_errors": {
+            "parseable": 1
+          },
+          "native_fences": 1,
+          "native_parseable_nonempty_fences": 1,
+          "ordinal": 5,
+          "response_characters": 8775,
+          "thinking_characters": 0,
+          "token_counts": {
+            "completion_tokens": 2459,
+            "prompt_tokens": 8344,
+            "total_tokens": 10803
+          },
+          "whole_answer": {
+            "error": "other_parse_error",
+            "nonempty": false,
+            "parseable": false
+          }
+        },
+        {
+          "alternative_parseable_nonempty_fences": 1,
+          "alternative_syntax_is_not_execution_evidence": true,
+          "answer_characters": 10729,
+          "category": "nonempty_native_execution",
+          "executed_characters": 8219,
+          "fence_markers": 2,
+          "journal_code_characters": 8219,
+          "native_fence_errors": {
+            "parseable": 1
+          },
+          "native_fences": 1,
+          "native_parseable_nonempty_fences": 1,
+          "ordinal": 6,
+          "response_characters": 10729,
+          "thinking_characters": 0,
+          "token_counts": {
+            "completion_tokens": 3184,
+            "prompt_tokens": 3803,
+            "total_tokens": 6987
+          },
+          "whole_answer": {
+            "error": "other_parse_error",
+            "nonempty": false,
+            "parseable": false
+          }
+        },
+        {
+          "alternative_parseable_nonempty_fences": 1,
+          "alternative_syntax_is_not_execution_evidence": true,
+          "answer_characters": 7869,
+          "category": "nonempty_native_execution",
+          "executed_characters": 6976,
+          "fence_markers": 2,
+          "journal_code_characters": 6976,
+          "native_fence_errors": {
+            "parseable": 1
+          },
+          "native_fences": 1,
+          "native_parseable_nonempty_fences": 1,
+          "ordinal": 7,
+          "response_characters": 7869,
+          "thinking_characters": 0,
+          "token_counts": {
+            "completion_tokens": 2430,
+            "prompt_tokens": 6926,
+            "total_tokens": 9356
+          },
+          "whole_answer": {
+            "error": "other_parse_error",
+            "nonempty": false,
+            "parseable": false
+          }
+        },
+        {
+          "alternative_parseable_nonempty_fences": 1,
+          "alternative_syntax_is_not_execution_evidence": true,
+          "answer_characters": 8309,
+          "category": "nonempty_native_execution",
+          "executed_characters": 7044,
+          "fence_markers": 2,
+          "journal_code_characters": 7044,
+          "native_fence_errors": {
+            "parseable": 1
+          },
+          "native_fences": 1,
+          "native_parseable_nonempty_fences": 1,
+          "ordinal": 8,
+          "response_characters": 8309,
+          "thinking_characters": 0,
+          "token_counts": {
+            "completion_tokens": 2528,
+            "prompt_tokens": 8389,
+            "total_tokens": 10917
+          },
+          "whole_answer": {
+            "error": "unterminated",
+            "nonempty": false,
+            "parseable": false
+          }
+        },
+        {
+          "alternative_parseable_nonempty_fences": 1,
+          "alternative_syntax_is_not_execution_evidence": true,
+          "answer_characters": 8283,
+          "category": "nonempty_native_execution",
+          "executed_characters": 7350,
+          "fence_markers": 2,
+          "journal_code_characters": 7350,
+          "native_fence_errors": {
+            "parseable": 1
+          },
+          "native_fences": 1,
+          "native_parseable_nonempty_fences": 1,
+          "ordinal": 9,
+          "response_characters": 8283,
+          "thinking_characters": 0,
+          "token_counts": {
+            "completion_tokens": 2515,
+            "prompt_tokens": 7163,
+            "total_tokens": 9678
+          },
+          "whole_answer": {
+            "error": "other_parse_error",
+            "nonempty": false,
+            "parseable": false
+          }
+        }
+      ],
+      "index": 1,
+      "journal_sha256": "cef1e63300b4b3820e6471e4892554eb995b66d4cda0eddb8b2b7a17786f9a70",
+      "nodes": 10,
+      "task": "spooky-author-identification"
+    },
+    {
+      "categories": {
+        "nonempty_native_execution": 10
+      },
+      "details": [
+        {
+          "alternative_parseable_nonempty_fences": 1,
+          "alternative_syntax_is_not_execution_evidence": true,
+          "answer_characters": 18461,
+          "category": "nonempty_native_execution",
+          "executed_characters": 18090,
+          "fence_markers": 2,
+          "journal_code_characters": 18090,
+          "native_fence_errors": {
+            "parseable": 1
+          },
+          "native_fences": 1,
+          "native_parseable_nonempty_fences": 1,
+          "ordinal": 0,
+          "response_characters": 18461,
+          "thinking_characters": 0,
+          "token_counts": {
+            "completion_tokens": 5779,
+            "prompt_tokens": 5061,
+            "total_tokens": 10840
+          },
+          "whole_answer": {
+            "error": "other_parse_error",
+            "nonempty": false,
+            "parseable": false
+          }
+        },
+        {
+          "alternative_parseable_nonempty_fences": 1,
+          "alternative_syntax_is_not_execution_evidence": true,
+          "answer_characters": 6205,
+          "category": "nonempty_native_execution",
+          "executed_characters": 5170,
+          "fence_markers": 2,
+          "journal_code_characters": 5170,
+          "native_fence_errors": {
+            "parseable": 1
+          },
+          "native_fences": 1,
+          "native_parseable_nonempty_fences": 1,
+          "ordinal": 1,
+          "response_characters": 6205,
+          "thinking_characters": 0,
+          "token_counts": {
+            "completion_tokens": 1802,
+            "prompt_tokens": 5061,
+            "total_tokens": 6863
+          },
+          "whole_answer": {
+            "error": "other_parse_error",
+            "nonempty": false,
+            "parseable": false
+          }
+        },
+        {
+          "alternative_parseable_nonempty_fences": 1,
+          "alternative_syntax_is_not_execution_evidence": true,
+          "answer_characters": 7500,
+          "category": "nonempty_native_execution",
+          "executed_characters": 6522,
+          "fence_markers": 2,
+          "journal_code_characters": 6522,
+          "native_fence_errors": {
+            "parseable": 1
+          },
+          "native_fences": 1,
+          "native_parseable_nonempty_fences": 1,
+          "ordinal": 2,
+          "response_characters": 7500,
+          "thinking_characters": 0,
+          "token_counts": {
+            "completion_tokens": 2178,
+            "prompt_tokens": 5061,
+            "total_tokens": 7239
+          },
+          "whole_answer": {
+            "error": "other_parse_error",
+            "nonempty": false,
+            "parseable": false
+          }
+        },
+        {
+          "alternative_parseable_nonempty_fences": 1,
+          "alternative_syntax_is_not_execution_evidence": true,
+          "answer_characters": 7631,
+          "category": "nonempty_native_execution",
+          "executed_characters": 6393,
+          "fence_markers": 2,
+          "journal_code_characters": 6393,
+          "native_fence_errors": {
+            "parseable": 1
+          },
+          "native_fences": 1,
+          "native_parseable_nonempty_fences": 1,
+          "ordinal": 3,
+          "response_characters": 7631,
+          "thinking_characters": 0,
+          "token_counts": {
+            "completion_tokens": 2193,
+            "prompt_tokens": 7509,
+            "total_tokens": 9702
+          },
+          "whole_answer": {
+            "error": "other_parse_error",
+            "nonempty": false,
+            "parseable": false
+          }
+        },
+        {
+          "alternative_parseable_nonempty_fences": 1,
+          "alternative_syntax_is_not_execution_evidence": true,
+          "answer_characters": 12397,
+          "category": "nonempty_native_execution",
+          "executed_characters": 12003,
+          "fence_markers": 2,
+          "journal_code_characters": 12003,
+          "native_fence_errors": {
+            "parseable": 1
+          },
+          "native_fences": 1,
+          "native_parseable_nonempty_fences": 1,
+          "ordinal": 4,
+          "response_characters": 12397,
+          "thinking_characters": 0,
+          "token_counts": {
+            "completion_tokens": 3592,
+            "prompt_tokens": 5061,
+            "total_tokens": 8653
+          },
+          "whole_answer": {
+            "error": "other_parse_error",
+            "nonempty": false,
+            "parseable": false
+          }
+        },
+        {
+          "alternative_parseable_nonempty_fences": 1,
+          "alternative_syntax_is_not_execution_evidence": true,
+          "answer_characters": 11781,
+          "category": "nonempty_native_execution",
+          "executed_characters": 12546,
+          "fence_markers": 2,
+          "journal_code_characters": 12546,
+          "native_fence_errors": {
+            "parseable": 1
+          },
+          "native_fences": 1,
+          "native_parseable_nonempty_fences": 1,
+          "ordinal": 5,
+          "response_characters": 11781,
+          "thinking_characters": 0,
+          "token_counts": {
+            "completion_tokens": 3490,
+            "prompt_tokens": 9851,
+            "total_tokens": 13341
+          },
+          "whole_answer": {
+            "error": "unterminated",
+            "nonempty": false,
+            "parseable": false
+          }
+        },
+        {
+          "alternative_parseable_nonempty_fences": 1,
+          "alternative_syntax_is_not_execution_evidence": true,
+          "answer_characters": 13677,
+          "category": "nonempty_native_execution",
+          "executed_characters": 12608,
+          "fence_markers": 2,
+          "journal_code_characters": 12608,
+          "native_fence_errors": {
+            "parseable": 1
+          },
+          "native_fences": 1,
+          "native_parseable_nonempty_fences": 1,
+          "ordinal": 6,
+          "response_characters": 13677,
+          "thinking_characters": 0,
+          "token_counts": {
+            "completion_tokens": 3946,
+            "prompt_tokens": 10100,
+            "total_tokens": 14046
+          },
+          "whole_answer": {
+            "error": "other_parse_error",
+            "nonempty": false,
+            "parseable": false
+          }
+        },
+        {
+          "alternative_parseable_nonempty_fences": 1,
+          "alternative_syntax_is_not_execution_evidence": true,
+          "answer_characters": 9340,
+          "category": "nonempty_native_execution",
+          "executed_characters": 7608,
+          "fence_markers": 2,
+          "journal_code_characters": 7608,
+          "native_fence_errors": {
+            "parseable": 1
+          },
+          "native_fences": 1,
+          "native_parseable_nonempty_fences": 1,
+          "ordinal": 7,
+          "response_characters": 9340,
+          "thinking_characters": 0,
+          "token_counts": {
+            "completion_tokens": 2719,
+            "prompt_tokens": 5061,
+            "total_tokens": 7780
+          },
+          "whole_answer": {
+            "error": "other_parse_error",
+            "nonempty": false,
+            "parseable": false
+          }
+        },
+        {
+          "alternative_parseable_nonempty_fences": 1,
+          "alternative_syntax_is_not_execution_evidence": true,
+          "answer_characters": 19469,
+          "category": "nonempty_native_execution",
+          "executed_characters": 18993,
+          "fence_markers": 2,
+          "journal_code_characters": 18993,
+          "native_fence_errors": {
+            "parseable": 1
+          },
+          "native_fences": 1,
+          "native_parseable_nonempty_fences": 1,
+          "ordinal": 8,
+          "response_characters": 19469,
+          "thinking_characters": 0,
+          "token_counts": {
+            "completion_tokens": 6293,
+            "prompt_tokens": 11491,
+            "total_tokens": 17784
+          },
+          "whole_answer": {
+            "error": "unterminated",
+            "nonempty": false,
+            "parseable": false
+          }
+        },
+        {
+          "alternative_parseable_nonempty_fences": 1,
+          "alternative_syntax_is_not_execution_evidence": true,
+          "answer_characters": 18913,
+          "category": "nonempty_native_execution",
+          "executed_characters": 17833,
+          "fence_markers": 2,
+          "journal_code_characters": 17833,
+          "native_fence_errors": {
+            "parseable": 1
+          },
+          "native_fences": 1,
+          "native_parseable_nonempty_fences": 1,
+          "ordinal": 9,
+          "response_characters": 18913,
+          "thinking_characters": 0,
+          "token_counts": {
+            "completion_tokens": 5848,
+            "prompt_tokens": 11491,
+            "total_tokens": 17339
+          },
+          "whole_answer": {
+            "error": "unterminated",
+            "nonempty": false,
+            "parseable": false
+          }
+        }
+      ],
+      "index": 2,
+      "journal_sha256": "dd6b00d6030da6c130e751b0e8f354493fee7d900ab6de810282f2a3ee89a5d3",
+      "nodes": 10,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "categories": {
+        "native_fences_rejected_or_empty": 12,
+        "nonempty_native_execution": 9
+      },
+      "details": [
+        {
+          "alternative_parseable_nonempty_fences": 0,
+          "alternative_syntax_is_not_execution_evidence": true,
+          "answer_characters": 9405,
+          "category": "native_fences_rejected_or_empty",
+          "executed_characters": 0,
+          "fence_markers": 2,
+          "journal_code_characters": 9405,
+          "native_fence_errors": {
+            "unterminated": 1
+          },
+          "native_fences": 1,
+          "native_parseable_nonempty_fences": 0,
+          "ordinal": 0,
+          "response_characters": 9405,
+          "thinking_characters": 0,
+          "token_counts": {
+            "completion_tokens": 2677,
+            "prompt_tokens": 3803,
+            "total_tokens": 6480
+          },
+          "whole_answer": {
+            "error": "other_parse_error",
+            "nonempty": false,
+            "parseable": false
+          }
+        },
+        {
+          "alternative_parseable_nonempty_fences": 0,
+          "alternative_syntax_is_not_execution_evidence": true,
+          "answer_characters": 8844,
+          "category": "native_fences_rejected_or_empty",
+          "executed_characters": 0,
+          "fence_markers": 2,
+          "journal_code_characters": 8844,
+          "native_fence_errors": {
+            "unterminated": 1
+          },
+          "native_fences": 1,
+          "native_parseable_nonempty_fences": 0,
+          "ordinal": 1,
+          "response_characters": 8844,
+          "thinking_characters": 0,
+          "token_counts": {
+            "completion_tokens": 2590,
+            "prompt_tokens": 6340,
+            "total_tokens": 8930
+          },
+          "whole_answer": {
+            "error": "unterminated",
+            "nonempty": false,
+            "parseable": false
+          }
+        },
+        {
+          "alternative_parseable_nonempty_fences": 0,
+          "alternative_syntax_is_not_execution_evidence": true,
+          "answer_characters": 8653,
+          "category": "native_fences_rejected_or_empty",
+          "executed_characters": 0,
+          "fence_markers": 2,
+          "journal_code_characters": 8653,
+          "native_fence_errors": {
+            "unterminated": 1
+          },
+          "native_fences": 1,
+          "native_parseable_nonempty_fences": 0,
+          "ordinal": 2,
+          "response_characters": 8653,
+          "thinking_characters": 0,
+          "token_counts": {
+            "completion_tokens": 2534,
+            "prompt_tokens": 6253,
+            "total_tokens": 8787
+          },
+          "whole_answer": {
+            "error": "unterminated",
+            "nonempty": false,
+            "parseable": false
+          }
+        },
+        {
+          "alternative_parseable_nonempty_fences": 0,
+          "alternative_syntax_is_not_execution_evidence": true,
+          "answer_characters": 8697,
+          "category": "native_fences_rejected_or_empty",
+          "executed_characters": 0,
+          "fence_markers": 2,
+          "journal_code_characters": 8697,
+          "native_fence_errors": {
+            "unterminated": 1
+          },
+          "native_fences": 1,
+          "native_parseable_nonempty_fences": 0,
+          "ordinal": 3,
+          "response_characters": 8697,
+          "thinking_characters": 0,
+          "token_counts": {
+            "completion_tokens": 2533,
+            "prompt_tokens": 6197,
+            "total_tokens": 8730
+          },
+          "whole_answer": {
+            "error": "unterminated",
+            "nonempty": false,
+            "parseable": false
+          }
+        },
+        {
+          "alternative_parseable_nonempty_fences": 0,
+          "alternative_syntax_is_not_execution_evidence": true,
+          "answer_characters": 8695,
+          "category": "native_fences_rejected_or_empty",
+          "executed_characters": 0,
+          "fence_markers": 2,
+          "journal_code_characters": 8695,
+          "native_fence_errors": {
+            "unterminated": 1
+          },
+          "native_fences": 1,
+          "native_parseable_nonempty_fences": 0,
+          "ordinal": 4,
+          "response_characters": 8695,
+          "thinking_characters": 0,
+          "token_counts": {
+            "completion_tokens": 2533,
+            "prompt_tokens": 6196,
+            "total_tokens": 8729
+          },
+          "whole_answer": {
+            "error": "unterminated",
+            "nonempty": false,
+            "parseable": false
+          }
+        },
+        {
+          "alternative_parseable_nonempty_fences": 0,
+          "alternative_syntax_is_not_execution_evidence": true,
+          "answer_characters": 8691,
+          "category": "native_fences_rejected_or_empty",
+          "executed_characters": 0,
+          "fence_markers": 2,
+          "journal_code_characters": 8691,
+          "native_fence_errors": {
+            "unterminated": 1
+          },
+          "native_fences": 1,
+          "native_parseable_nonempty_fences": 0,
+          "ordinal": 5,
+          "response_characters": 8691,
+          "thinking_characters": 0,
+          "token_counts": {
+            "completion_tokens": 2528,
+            "prompt_tokens": 6196,
+            "total_tokens": 8724
+          },
+          "whole_answer": {
+            "error": "unterminated",
+            "nonempty": false,
+            "parseable": false
+          }
+        },
+        {
+          "alternative_parseable_nonempty_fences": 0,
+          "alternative_syntax_is_not_execution_evidence": true,
+          "answer_characters": 8971,
+          "category": "native_fences_rejected_or_empty",
+          "executed_characters": 0,
+          "fence_markers": 2,
+          "journal_code_characters": 8971,
+          "native_fence_errors": {
+            "unterminated": 1
+          },
+          "native_fences": 1,
+          "native_parseable_nonempty_fences": 0,
+          "ordinal": 6,
+          "response_characters": 8971,
+          "thinking_characters": 0,
+          "token_counts": {
+            "completion_tokens": 2618,
+            "prompt_tokens": 6191,
+            "total_tokens": 8809
+          },
+          "whole_answer": {
+            "error": "other_parse_error",
+            "nonempty": false,
+            "parseable": false
+          }
+        },
+        {
+          "alternative_parseable_nonempty_fences": 0,
+          "alternative_syntax_is_not_execution_evidence": true,
+          "answer_characters": 9454,
+          "category": "native_fences_rejected_or_empty",
+          "executed_characters": 0,
+          "fence_markers": 2,
+          "journal_code_characters": 9454,
+          "native_fence_errors": {
+            "unterminated": 1
+          },
+          "native_fences": 1,
+          "native_parseable_nonempty_fences": 0,
+          "ordinal": 7,
+          "response_characters": 9454,
+          "thinking_characters": 0,
+          "token_counts": {
+            "completion_tokens": 2794,
+            "prompt_tokens": 6259,
+            "total_tokens": 9053
+          },
+          "whole_answer": {
+            "error": "other_parse_error",
+            "nonempty": false,
+            "parseable": false
+          }
+        },
+        {
+          "alternative_parseable_nonempty_fences": 0,
+          "alternative_syntax_is_not_execution_evidence": true,
+          "answer_characters": 9184,
+          "category": "native_fences_rejected_or_empty",
+          "executed_characters": 0,
+          "fence_markers": 2,
+          "journal_code_characters": 9184,
+          "native_fence_errors": {
+            "unterminated": 1
+          },
+          "native_fences": 1,
+          "native_parseable_nonempty_fences": 0,
+          "ordinal": 8,
+          "response_characters": 9184,
+          "thinking_characters": 0,
+          "token_counts": {
+            "completion_tokens": 2739,
+            "prompt_tokens": 6457,
+            "total_tokens": 9196
+          },
+          "whole_answer": {
+            "error": "other_parse_error",
+            "nonempty": false,
+            "parseable": false
+          }
+        },
+        {
+          "alternative_parseable_nonempty_fences": 0,
+          "alternative_syntax_is_not_execution_evidence": true,
+          "answer_characters": 9390,
+          "category": "native_fences_rejected_or_empty",
+          "executed_characters": 0,
+          "fence_markers": 2,
+          "journal_code_characters": 9390,
+          "native_fence_errors": {
+            "unterminated": 1
+          },
+          "native_fences": 1,
+          "native_parseable_nonempty_fences": 0,
+          "ordinal": 9,
+          "response_characters": 9390,
+          "thinking_characters": 0,
+          "token_counts": {
+            "completion_tokens": 2753,
+            "prompt_tokens": 6402,
+            "total_tokens": 9155
+          },
+          "whole_answer": {
+            "error": "other_parse_error",
+            "nonempty": false,
+            "parseable": false
+          }
+        },
+        {
+          "alternative_parseable_nonempty_fences": 0,
+          "alternative_syntax_is_not_execution_evidence": true,
+          "answer_characters": 9388,
+          "category": "native_fences_rejected_or_empty",
+          "executed_characters": 0,
+          "fence_markers": 2,
+          "journal_code_characters": 9388,
+          "native_fence_errors": {
+            "unterminated": 1
+          },
+          "native_fences": 1,
+          "native_parseable_nonempty_fences": 0,
+          "ordinal": 10,
+          "response_characters": 9388,
+          "thinking_characters": 0,
+          "token_counts": {
+            "completion_tokens": 2753,
+            "prompt_tokens": 6416,
+            "total_tokens": 9169
+          },
+          "whole_answer": {
+            "error": "other_parse_error",
+            "nonempty": false,
+            "parseable": false
+          }
+        },
+        {
+          "alternative_parseable_nonempty_fences": 0,
+          "alternative_syntax_is_not_execution_evidence": true,
+          "answer_characters": 9382,
+          "category": "native_fences_rejected_or_empty",
+          "executed_characters": 0,
+          "fence_markers": 2,
+          "journal_code_characters": 9382,
+          "native_fence_errors": {
+            "unterminated": 1
+          },
+          "native_fences": 1,
+          "native_parseable_nonempty_fences": 0,
+          "ordinal": 11,
+          "response_characters": 9382,
+          "thinking_characters": 0,
+          "token_counts": {
+            "completion_tokens": 2750,
+            "prompt_tokens": 6416,
+            "total_tokens": 9166
+          },
+          "whole_answer": {
+            "error": "other_parse_error",
+            "nonempty": false,
+            "parseable": false
+          }
+        },
+        {
+          "alternative_parseable_nonempty_fences": 1,
+          "alternative_syntax_is_not_execution_evidence": true,
+          "answer_characters": 8115,
+          "category": "nonempty_native_execution",
+          "executed_characters": 7367,
+          "fence_markers": 2,
+          "journal_code_characters": 7367,
+          "native_fence_errors": {
+            "parseable": 1
+          },
+          "native_fences": 1,
+          "native_parseable_nonempty_fences": 1,
+          "ordinal": 12,
+          "response_characters": 8115,
+          "thinking_characters": 0,
+          "token_counts": {
+            "completion_tokens": 2392,
+            "prompt_tokens": 6413,
+            "total_tokens": 8805
+          },
+          "whole_answer": {
+            "error": "other_parse_error",
+            "nonempty": false,
+            "parseable": false
+          }
+        },
+        {
+          "alternative_parseable_nonempty_fences": 1,
+          "alternative_syntax_is_not_execution_evidence": true,
+          "answer_characters": 8246,
+          "category": "nonempty_native_execution",
+          "executed_characters": 7388,
+          "fence_markers": 2,
+          "journal_code_characters": 7388,
+          "native_fence_errors": {
+            "parseable": 1
+          },
+          "native_fences": 1,
+          "native_parseable_nonempty_fences": 1,
+          "ordinal": 13,
+          "response_characters": 8246,
+          "thinking_characters": 0,
+          "token_counts": {
+            "completion_tokens": 2390,
+            "prompt_tokens": 6347,
+            "total_tokens": 8737
+          },
+          "whole_answer": {
+            "error": "other_parse_error",
+            "nonempty": false,
+            "parseable": false
+          }
+        },
+        {
+          "alternative_parseable_nonempty_fences": 1,
+          "alternative_syntax_is_not_execution_evidence": true,
+          "answer_characters": 8972,
+          "category": "nonempty_native_execution",
+          "executed_characters": 8146,
+          "fence_markers": 2,
+          "journal_code_characters": 8146,
+          "native_fence_errors": {
+            "parseable": 1
+          },
+          "native_fences": 1,
+          "native_parseable_nonempty_fences": 1,
+          "ordinal": 14,
+          "response_characters": 8972,
+          "thinking_characters": 0,
+          "token_counts": {
+            "completion_tokens": 2572,
+            "prompt_tokens": 6875,
+            "total_tokens": 9447
+          },
+          "whole_answer": {
+            "error": "other_parse_error",
+            "nonempty": false,
+            "parseable": false
+          }
+        },
+        {
+          "alternative_parseable_nonempty_fences": 1,
+          "alternative_syntax_is_not_execution_evidence": true,
+          "answer_characters": 8458,
+          "category": "nonempty_native_execution",
+          "executed_characters": 7494,
+          "fence_markers": 2,
+          "journal_code_characters": 7494,
+          "native_fence_errors": {
+            "parseable": 1
+          },
+          "native_fences": 1,
+          "native_parseable_nonempty_fences": 1,
+          "ordinal": 15,
+          "response_characters": 8458,
+          "thinking_characters": 0,
+          "token_counts": {
+            "completion_tokens": 2460,
+            "prompt_tokens": 7382,
+            "total_tokens": 9842
+          },
+          "whole_answer": {
+            "error": "other_parse_error",
+            "nonempty": false,
+            "parseable": false
+          }
+        },
+        {
+          "alternative_parseable_nonempty_fences": 1,
+          "alternative_syntax_is_not_execution_evidence": true,
+          "answer_characters": 8829,
+          "category": "nonempty_native_execution",
+          "executed_characters": 7783,
+          "fence_markers": 2,
+          "journal_code_characters": 7783,
+          "native_fence_errors": {
+            "parseable": 1
+          },
+          "native_fences": 1,
+          "native_parseable_nonempty_fences": 1,
+          "ordinal": 16,
+          "response_characters": 8829,
+          "thinking_characters": 0,
+          "token_counts": {
+            "completion_tokens": 2507,
+            "prompt_tokens": 7531,
+            "total_tokens": 10038
+          },
+          "whole_answer": {
+            "error": "other_parse_error",
+            "nonempty": false,
+            "parseable": false
+          }
+        },
+        {
+          "alternative_parseable_nonempty_fences": 1,
+          "alternative_syntax_is_not_execution_evidence": true,
+          "answer_characters": 8135,
+          "category": "nonempty_native_execution",
+          "executed_characters": 6485,
+          "fence_markers": 2,
+          "journal_code_characters": 6485,
+          "native_fence_errors": {
+            "parseable": 1
+          },
+          "native_fences": 1,
+          "native_parseable_nonempty_fences": 1,
+          "ordinal": 17,
+          "response_characters": 8135,
+          "thinking_characters": 0,
+          "token_counts": {
+            "completion_tokens": 2324,
+            "prompt_tokens": 3803,
+            "total_tokens": 6127
+          },
+          "whole_answer": {
+            "error": "other_parse_error",
+            "nonempty": false,
+            "parseable": false
+          }
+        },
+        {
+          "alternative_parseable_nonempty_fences": 1,
+          "alternative_syntax_is_not_execution_evidence": true,
+          "answer_characters": 8009,
+          "category": "nonempty_native_execution",
+          "executed_characters": 6679,
+          "fence_markers": 2,
+          "journal_code_characters": 6679,
+          "native_fence_errors": {
+            "parseable": 1
+          },
+          "native_fences": 1,
+          "native_parseable_nonempty_fences": 1,
+          "ordinal": 18,
+          "response_characters": 8009,
+          "thinking_characters": 0,
+          "token_counts": {
+            "completion_tokens": 2297,
+            "prompt_tokens": 6275,
+            "total_tokens": 8572
+          },
+          "whole_answer": {
+            "error": "invalid_syntax",
+            "nonempty": false,
+            "parseable": false
+          }
+        },
+        {
+          "alternative_parseable_nonempty_fences": 1,
+          "alternative_syntax_is_not_execution_evidence": true,
+          "answer_characters": 7719,
+          "category": "nonempty_native_execution",
+          "executed_characters": 6819,
+          "fence_markers": 2,
+          "journal_code_characters": 6819,
+          "native_fence_errors": {
+            "parseable": 1
+          },
+          "native_fences": 1,
+          "native_parseable_nonempty_fences": 1,
+          "ordinal": 19,
+          "response_characters": 7719,
+          "thinking_characters": 0,
+          "token_counts": {
+            "completion_tokens": 2254,
+            "prompt_tokens": 6543,
+            "total_tokens": 8797
+          },
+          "whole_answer": {
+            "error": "other_parse_error",
+            "nonempty": false,
+            "parseable": false
+          }
+        },
+        {
+          "alternative_parseable_nonempty_fences": 1,
+          "alternative_syntax_is_not_execution_evidence": true,
+          "answer_characters": 9067,
+          "category": "nonempty_native_execution",
+          "executed_characters": 6864,
+          "fence_markers": 2,
+          "journal_code_characters": 6864,
+          "native_fence_errors": {
+            "parseable": 1
+          },
+          "native_fences": 1,
+          "native_parseable_nonempty_fences": 1,
+          "ordinal": 20,
+          "response_characters": 9067,
+          "thinking_characters": 0,
+          "token_counts": {
+            "completion_tokens": 2592,
+            "prompt_tokens": 6907,
+            "total_tokens": 9499
+          },
+          "whole_answer": {
+            "error": "other_parse_error",
+            "nonempty": false,
+            "parseable": false
+          }
+        }
+      ],
+      "index": 3,
+      "journal_sha256": "f01d035ce746bac5c41beb41b70a4099b93cb31c89839955239644b5aae8858b",
+      "nodes": 21,
+      "task": "spooky-author-identification"
+    }
+  ]
+}

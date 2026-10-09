@@ -10,6 +10,7 @@
 - 第三批新设计live_twochild_20261010：两臂同num_children2/1500s，FIFO许可1/2，ABBA四池×4run=16条，新seed175001起，四2300s等全池槽，3卡12+6物理核/160min≤8GPUh；保留全部16及缺失，不按分数续跑/换seed。仅借学长24efc2e0的分支宽度，不复现其SFT/9B/memory/24h，不能与旧root5/600s合并。旧冻结门不改、只检验本配置调度作用；源码/CPU预检前不提交。本窗三批上限0.75+1.5+8=10.25GPUh，API0/底座训练0。
 - live twochild CPU/16配置/镜像权重预检全部完成，17366闭合后提交17368；source51b9daff161cb8e4b17ce729ca26cf1f7b5fdbe2，plan082645089d69e711f55057312d49e13d0fa99bf53942e91851791c12eb1525a6，root scheduling-live-twochild-20261010-v1。05:41提交前附prelaunch-prose-correction.json，纠正plan两处旧600s文字；实际numeric/config/运行deadline早已1500s，原plan/运行代码未改。四小预检回执已取回live_twochild_v1_preflight/且远近hash一致；仅预检，不当完成实验。
 - 新监控stage/live_status.py --version twochild、neural_status.py --kind extension；helper40da62f449103047a5bc816cdc9ddb52125c0558，本地22/远端7纯CPU测试通过；不修改冻结root内代码。入口/CSV远近hash及Git blob字节核一致。
+- 06:30只读旧17328提取形态诊断闭合：全部56节点顺序hash对应，12次空执行均在同一Spooky轨迹，最后保存响应各有一个语法不成立的代码块（unterminated），两种边界提取均0可解析块；不是纯thinking。未保存finish_reason，不据token数证明截断或其不存在；未修解析器、重执行或改变17368。source f22e14b1f21cf06debdd38860cf60cd7920cd51f，6本地/远端反例测试；response-shape-diagnosis-v1.json SHA7313d19a9cd347d6c9a2037aaf790a73f719f4a9dc46caeca247ac38ad154019，远近一致，只长度/类别/token统计，无原文。只能解释部分停滞，不称方法收益。
 - 05:46另在live提交前冻结pool-quality-secondary-plan.json：按任务比较每池两run的native最好成绩，四endpoint不全有效则配对差缺失；仅2独立池配对，4任务池差不作4独立重复。live_pool_quality.py@624573e688cb26386dd8d4bda1ec7b80b1d4a24a，SHA9f6945213779912299f18b1e13faa4ba11c16d6790bc7af92bd1a09b666fe944；本地/远端各5反例测试。原primary/资格/样本不变，分析等readout-v1闭合后执行一次；源文件在stage。
 - Fetch我方8d1e8ca5f6345eaba12fa0771da2f815afe3dd2d；学长更新24efc2e0a84ead449fb6dff71414d73693f70893。10/9 policy SFT报告为探索性：memory配置不同、缺失run/评分、同任务训练及多checkpoint选点，不能作干净scaling确认；不实施我方底座训练。
 - 安全事件：临时scan漏掉学长报告URL的camelCase访问令牌，工具曾显示该链接；不使用/再回显/入库，已提示建议撤销重发。旧safe_git_show合成测试另发现Authorization先替换Bearer会留下值；新safe_senior_reader.py已修顺序/URL编码/引号，2测试含9合成敏感形式通过。后续用新reader远端流式脱敏；不声称任意秘密都能检测。只记录类别，不存密钥。
@@ -44,6 +45,7 @@
 
 ## 同步与恢复
 - 活跃checkout=C:/Research/New/my_project/MLEvolve/_codex_tmp/publication-feedback-20261001；fetch→CURRENT_DIRECTION→ROUTE_DECISIONS→本交接，旧aira-dojo-codex-20260813用户dirty保留。
+- 10/10 06:23本窗首批40文件已快进push并ls-remote核80e86da805700a01ed2822a16de8d714e274ed3d；全未发布历史credential-shape/Bearer/URL命中0、敏感文件名0、最大67115字节，闭合证据Git/本地/远端一致。学长分支仍24efc2e0未改；后续形态诊断尚未push。
 - 20:00–20:01已快进push并ls-remote核我方branch=e5d563bd7933481977a1b11d4d0d89d7e50176f9；26文件/22证据源码字节一致，完整未发布历史及文件credential-shape命中0、敏感文件名0、最大66417字节。学长分支未改；Git环境hook进程有系统警告，不声称hook验收通过，人工检查另行完成。
 - 发布修复仅Git换行：三个CSV原始CRLF在窄路径-text后与远端SHA一致，数值无改动；详见exposure_v1_closed/publication-byte-audit.json。v7本地表对应远端readout-v1/runs.csv，非根目录控制器同名表；不是远端哈希漂移。所有原批次/失败/冻结门不变。
 - 学长dojo-reproduce最后核a5519bc8e0c85d0a3bd78c478ac8332120d415d9，10/9 15:42 offline-GRPO/data docs；只读元数据、不并入。不得推断有新语料已入库。

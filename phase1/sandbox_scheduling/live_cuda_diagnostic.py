@@ -10,7 +10,7 @@ def main():
     if not os.environ.get('SLURM_JOB_ID','').isdigit() or not os.environ.get('SLURM_STEP_ID','').isdigit():
         raise ValueError('native Slurm step required')
     node=socket.gethostname().split('.')[0]
-    if node not in ('gpu24','gpu29'):raise ValueError('bounded diagnostic nodes only')
+    if node not in ('gpu24','gpu27','gpu28','gpu29'):raise ValueError('bounded diagnostic nodes only')
     d=C.CDLL('libcuda.so.1');rc=d.cuInit(C.c_uint(0))
     name=C.c_char_p();desc=C.c_char_p()
     d.cuGetErrorName(C.c_int(rc),C.byref(name));d.cuGetErrorString(C.c_int(rc),C.byref(desc))

@@ -41,7 +41,7 @@ def log_shape(path):
 
 def main():
     global ROOT
-    parser=argparse.ArgumentParser();parser.add_argument('--version',choices=('v2','v3'),default='v2')
+    parser=argparse.ArgumentParser();parser.add_argument('--version',choices=('v2','v3','v4'),default='v2')
     args=parser.parse_args()
     ROOT=ROOT.with_name('scheduling-live-search-20261009-'+args.version)
     p = read('plan.json')

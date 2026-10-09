@@ -1,8 +1,8 @@
 # 当前短交接
-更新：2026-10-10香港06:22；旧全文保留于Git 8d1e8ca5。当前方向R14，历史动态不是现场。
+更新：2026-10-10香港06:43；旧全文保留于Git 8d1e8ca5。当前方向R14，历史动态不是现场。
 
 ## 当前六小时窗口与现场
-- 新窗口04:56:13–10:56:13香港，用户要求完整六小时会话内推进；不提前结束。17364/17366均COMPLETED，共2012GPU秒=0.5588888888888889GPUh。17368于06:19:57已RUNNING/gpu27/18CPU/3GPU，06:22在模型启动阶段。曾考虑转空闲gpu35，但撤回前发现已开跑，因此迁移/取消/新根目录均未执行。旧Held12535不动。
+- 新窗口04:56:13–10:56:13香港，用户要求完整六小时会话内推进；不提前结束。17364/17366均COMPLETED，共2012GPU秒=0.5588888888888889GPUh。17368于06:19:57已RUNNING/gpu27/18CPU/3GPU，06:27首服务ready/4worker开始；06:42最后观察首块20候选返回/11评分回执、0闭合worker、无基建错误，不读分数抢先比较。曾考虑gpu35，撤回前已开跑，因此迁移/取消均未执行。旧Held12535不动。
 - 17364 opportunity_recheck：17328全部两组native接受Pizza父子（正/平），原seed各2次，共8执行；原源码/输入/评分器/240s单次不变，1GPU/6物理核/45min≤0.75GPUh。局部事后重复性，非新样本或调度效应；root scheduling-opportunity-recheck-20261010-v1，stage scheduling-recheck-20261010.B5b9cz。source4534112ad4de74f5d7d44da855366b38583d659f，plan e201f64f3ddbc8e753751b8e412ebb6df840f4ea5ebea6da1cc21016d4828feb；本地/远端各6测试通过且上传字节一致。
 - 第二线17366：neural_extension_20261010，固定新CNN32增强版ea47bb6d与UNet3Residual c60e3f1c，沿用完整公开输入，pipeline/share2×3=12，1卡6CPU/90min≤1.5GPUh。两臂candidate450s不变，排队600s/worker1120s，整块预留1125s；首pipeline两程序不全完成则停，不换程序/改源码。依旧同两任务相关程序家族，不是新任务/训练seed或live质量证据。SETI公开输入缺失，未拿来充样本。
 - 17364闭合readout b87dd1c85d15d9bba86ab5b47ecd60493dedfdabeda2798faa328caba5483fb8；8/8精确外部评分/预测hash/设备隔离通过。正组两次+0.0197321215020330、平组两次0，CSV独立Decimal复核一致；只支持同seed局部重复性，不排除dev样本选择、不等于池中全局更好（另一父程序分数更高）。opportunity_recheck_v1_closed，原writer不再运行。
@@ -11,6 +11,7 @@
 - live twochild CPU/16配置/镜像权重预检全部完成，17366闭合后提交17368；source51b9daff161cb8e4b17ce729ca26cf1f7b5fdbe2，plan082645089d69e711f55057312d49e13d0fa99bf53942e91851791c12eb1525a6，root scheduling-live-twochild-20261010-v1。05:41提交前附prelaunch-prose-correction.json，纠正plan两处旧600s文字；实际numeric/config/运行deadline早已1500s，原plan/运行代码未改。四小预检回执已取回live_twochild_v1_preflight/且远近hash一致；仅预检，不当完成实验。
 - 新监控stage/live_status.py --version twochild、neural_status.py --kind extension；helper40da62f449103047a5bc816cdc9ddb52125c0558，本地22/远端7纯CPU测试通过；不修改冻结root内代码。入口/CSV远近hash及Git blob字节核一致。
 - 06:30只读旧17328提取形态诊断闭合：全部56节点顺序hash对应，12次空执行均在同一Spooky轨迹，最后保存响应各有一个语法不成立的代码块（unterminated），两种边界提取均0可解析块；不是纯thinking。未保存finish_reason，不据token数证明截断或其不存在；未修解析器、重执行或改变17368。source f22e14b1f21cf06debdd38860cf60cd7920cd51f，6本地/远端反例测试；response-shape-diagnosis-v1.json SHA7313d19a9cd347d6c9a2037aaf790a73f719f4a9dc46caeca247ac38ad154019，远近一致，只长度/类别/token统计，无原文。只能解释部分停滞，不称方法收益。
+- 06:43新独立反序复验已冻结源码，未prepare/提交：neural_reverse_order_20261010.py@147cc4cbc98fda85db22b20d9fa782f410ed3c42，SHA8628c29c3fbf6a551db22f5abb2ed829a7b7b48ba6142680a9c46afc67229316。仍同两程序/输入/150与588步/源码seed，12执行三对，顺序从PS/SP/PS变SP/PS/SP；1GPU6物理核75min≤1.25GPUh，原判定门不变，不混称新任务确认。root将为scheduling-neural-reverse-order-20261010-v1。只在17368闭合readout显示16完整且structure通过后prepare（不依赖分数/go），提交与实际开跑须距10:56:13至少CAP+90s；核17364/17366/17368实际全成本+新4500s≤36900s。当前已闭合0.5588889+live上限8+新1.25=9.8088889≤10.25。本地8+相关26测试通过；远端首测漏PYTHONPATH依赖失败，补stage:neural-extension根路径后8通过，未动冻结批次。两新文件已在stage且hash一致，CPU准备须等当前live结束，禁止重I/O干扰。
 - 05:46另在live提交前冻结pool-quality-secondary-plan.json：按任务比较每池两run的native最好成绩，四endpoint不全有效则配对差缺失；仅2独立池配对，4任务池差不作4独立重复。live_pool_quality.py@624573e688cb26386dd8d4bda1ec7b80b1d4a24a，SHA9f6945213779912299f18b1e13faa4ba11c16d6790bc7af92bd1a09b666fe944；本地/远端各5反例测试。原primary/资格/样本不变，分析等readout-v1闭合后执行一次；源文件在stage。
 - Fetch我方8d1e8ca5f6345eaba12fa0771da2f815afe3dd2d；学长更新24efc2e0a84ead449fb6dff71414d73693f70893。10/9 policy SFT报告为探索性：memory配置不同、缺失run/评分、同任务训练及多checkpoint选点，不能作干净scaling确认；不实施我方底座训练。
 - 安全事件：临时scan漏掉学长报告URL的camelCase访问令牌，工具曾显示该链接；不使用/再回显/入库，已提示建议撤销重发。旧safe_git_show合成测试另发现Authorization先替换Bearer会留下值；新safe_senior_reader.py已修顺序/URL编码/引号，2测试含9合成敏感形式通过。后续用新reader远端流式脱敏；不声称任意秘密都能检测。只记录类别，不存密钥。

@@ -7,7 +7,8 @@
 - 14:52独立CPU诊断17267完成：服务12物理核/执行6，物理和逻辑CPU集合均不重叠，36GPU秒。标准Slurm nomultithread hint有效，不叠加冲突cpu-bind；不是科学收益。先前session92814连接超时未提交，现场核无intent后才成功新提交。
 - v5/17262已CANCELLED：14:37:37–14:42:56，319×3=957GPU秒（0.2658333333333333GPUh）；16条0启动、服务未ready。服务实际9物理核违背12核契约，候选前停止；旧root不重开。operator_stop.json是取消回执，非合成完成结果。
 - v6/17273已FAILED：15:12:42–15:12:56，42GPU秒，0搜索。包装入口缺host导出，生成容器shim发生ImportError；我方接线遗漏，非节点GPU失败。readout-v1一次闭合/本地live_v6_closed，旧root不重开；plan9bd8dc3b786c69f3a98fb892f49722c5a4c545532346e46be0e392108ae5ad9a。
-- v7 root=/research/d7/spc/yzyang4/scheduling-live-search-20261009-v7；stage=/research/d7/spc/yzyang4/scheduling-entry-fix-20261009.yAyBZB；入口live_entry_fix_trial.py；source44fcf9b433d0ed26c7799f82e5052a82d888f5a1。15:18启动prepare，待完成/核回执后才提交，不重复prepare。
+- v7/17279于15:30:54在gpu27实际开跑；15:31最后核原镜像GPU算术/清理通过，正在启动27B服务，候选0。上限90min至约17:01；计划86aa8f7a3d534ef1eaaa5475482a8838fe29c06f1ee30cb367cc05aae411c774。禁止重跑prepare/submit。
+- v7 root=/research/d7/spc/yzyang4/scheduling-live-search-20261009-v7；stage=/research/d7/spc/yzyang4/scheduling-entry-fix-20261009.yAyBZB；入口live_entry_fix_trial.py；source44fcf9b433d0ed26c7799f82e5052a82d888f5a1。prepare会话36436断线但原PID1454405继续；最终preflight完整且PID退出才提交，不把传输退出码当进程成功码。
 - 本地37测试/34通过/3Linux跳过，远端12通过，含实际shim导入和入口不重复初始化的反例；纯工程测试不计科学样本。生成服务在模型加载前核12物理核，执行在候选前核6核且逻辑/物理/GPU集合分离。
 - v7矩阵保持v6所有任务/种子/预算，仅修入口（未见候选结果，不换种子）；不是新科学复制。Pizza/Spooky既有合法dev；4独立run/块，ABBA四块共16条600s；种子142901–142904、143001–143004。同27B/2GPU12物理核生成＋1GPU6物理核执行，只变FIFO许可1/2，保留run内顺序。
 - 每块固定1320秒，包含服务启动、搜索、清理与显式填充；4块5280秒，整个作业最多5400秒/4.5GPUh。全部GPU空闲与失败计入；固定预留不等于成本最优的生产部署。

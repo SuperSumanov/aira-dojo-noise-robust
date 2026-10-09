@@ -1,0 +1,2160 @@
+[
+  {
+    "arm": "serial",
+    "attempted": true,
+    "block": 0,
+    "index": 0,
+    "observation": {
+      "arm": "serial",
+      "block": 0,
+      "calls": [
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 1,
+            "received": 4,
+            "received_kernel_info_reply": 1,
+            "received_status": 3,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.06542051304131746,
+          "ready": true,
+          "seconds": 0.06543566938489676,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        }
+      ],
+      "cleanup": true,
+      "end": 1791541313.3242075,
+      "error_type": null,
+      "gpu_compute_in_empty_cell": false,
+      "index": 0,
+      "position": 0,
+      "repeat": 0,
+      "result": {
+        "exec_seconds": 0.11607626359909773,
+        "exit_code": 0,
+        "timed_out": false
+      },
+      "start": 1791541308.4238417,
+      "task_executions": 0
+    },
+    "position": 0,
+    "repeat": 0,
+    "returncode": 0
+  },
+  {
+    "arm": "serial",
+    "attempted": true,
+    "block": 0,
+    "index": 1,
+    "observation": {
+      "arm": "serial",
+      "block": 0,
+      "calls": [
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 2,
+            "received": 5,
+            "received_kernel_info_reply": 1,
+            "received_status": 4,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.07270162180066109,
+          "ready": true,
+          "seconds": 0.07271445170044899,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        }
+      ],
+      "cleanup": true,
+      "end": 1791541320.6659858,
+      "error_type": null,
+      "gpu_compute_in_empty_cell": false,
+      "index": 1,
+      "position": 1,
+      "repeat": 0,
+      "result": {
+        "exec_seconds": 0.12415041867643595,
+        "exit_code": 0,
+        "timed_out": false
+      },
+      "start": 1791541315.9721422,
+      "task_executions": 0
+    },
+    "position": 1,
+    "repeat": 0,
+    "returncode": 0
+  },
+  {
+    "arm": "serial",
+    "attempted": true,
+    "block": 0,
+    "index": 2,
+    "observation": {
+      "arm": "serial",
+      "block": 0,
+      "calls": [
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 2,
+            "received": 5,
+            "received_kernel_info_reply": 1,
+            "received_status": 4,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.06356638669967651,
+          "ready": true,
+          "seconds": 0.0635812385007739,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        }
+      ],
+      "cleanup": true,
+      "end": 1791541329.4253557,
+      "error_type": null,
+      "gpu_compute_in_empty_cell": false,
+      "index": 2,
+      "position": 2,
+      "repeat": 0,
+      "result": {
+        "exec_seconds": 0.11492571327835321,
+        "exit_code": 0,
+        "timed_out": false
+      },
+      "start": 1791541323.5036194,
+      "task_executions": 0
+    },
+    "position": 2,
+    "repeat": 0,
+    "returncode": 0
+  },
+  {
+    "arm": "serial",
+    "attempted": true,
+    "block": 0,
+    "index": 3,
+    "observation": {
+      "arm": "serial",
+      "block": 0,
+      "calls": [
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 2,
+            "received": 5,
+            "received_kernel_info_reply": 1,
+            "received_status": 4,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.059250809252262115,
+          "ready": true,
+          "seconds": 0.05926531180739403,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        }
+      ],
+      "cleanup": true,
+      "end": 1791541338.970216,
+      "error_type": null,
+      "gpu_compute_in_empty_cell": false,
+      "index": 3,
+      "position": 3,
+      "repeat": 0,
+      "result": {
+        "exec_seconds": 0.11044600326567888,
+        "exit_code": 0,
+        "timed_out": false
+      },
+      "start": 1791541332.107736,
+      "task_executions": 0
+    },
+    "position": 3,
+    "repeat": 0,
+    "returncode": 0
+  },
+  {
+    "arm": "parallel4",
+    "attempted": true,
+    "block": 1,
+    "index": 4,
+    "observation": {
+      "arm": "parallel4",
+      "block": 1,
+      "calls": [
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 2,
+            "received": 5,
+            "received_kernel_info_reply": 1,
+            "received_status": 4,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.05610345397144556,
+          "ready": true,
+          "seconds": 0.05611093528568745,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        }
+      ],
+      "cleanup": true,
+      "end": 1791541346.5189602,
+      "error_type": null,
+      "gpu_compute_in_empty_cell": false,
+      "index": 4,
+      "position": 0,
+      "repeat": 0,
+      "result": {
+        "exec_seconds": 0.10702944453805685,
+        "exit_code": 0,
+        "timed_out": false
+      },
+      "start": 1791541341.6115794,
+      "task_executions": 0
+    },
+    "position": 0,
+    "repeat": 0,
+    "returncode": 0
+  },
+  {
+    "arm": "parallel4",
+    "attempted": true,
+    "block": 1,
+    "index": 5,
+    "observation": {
+      "arm": "parallel4",
+      "block": 1,
+      "calls": [
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 1,
+            "received": 4,
+            "received_kernel_info_reply": 1,
+            "received_status": 3,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.09187729936093092,
+          "ready": true,
+          "seconds": 0.0918852249160409,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        }
+      ],
+      "cleanup": true,
+      "end": 1791541346.581797,
+      "error_type": null,
+      "gpu_compute_in_empty_cell": false,
+      "index": 5,
+      "position": 1,
+      "repeat": 0,
+      "result": {
+        "exec_seconds": 0.13677607662975788,
+        "exit_code": 0,
+        "timed_out": false
+      },
+      "start": 1791541341.6060073,
+      "task_executions": 0
+    },
+    "position": 1,
+    "repeat": 0,
+    "returncode": 0
+  },
+  {
+    "arm": "parallel4",
+    "attempted": true,
+    "block": 1,
+    "index": 6,
+    "observation": {
+      "arm": "parallel4",
+      "block": 1,
+      "calls": [
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 2,
+            "received": 5,
+            "received_kernel_info_reply": 1,
+            "received_status": 4,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.0607567373663187,
+          "ready": true,
+          "seconds": 0.060764688067138195,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        }
+      ],
+      "cleanup": true,
+      "end": 1791541346.6035707,
+      "error_type": null,
+      "gpu_compute_in_empty_cell": false,
+      "index": 6,
+      "position": 2,
+      "repeat": 0,
+      "result": {
+        "exec_seconds": 0.1083131255581975,
+        "exit_code": 0,
+        "timed_out": false
+      },
+      "start": 1791541341.5913649,
+      "task_executions": 0
+    },
+    "position": 2,
+    "repeat": 0,
+    "returncode": 0
+  },
+  {
+    "arm": "parallel4",
+    "attempted": true,
+    "block": 1,
+    "index": 7,
+    "observation": {
+      "arm": "parallel4",
+      "block": 1,
+      "calls": [
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 2,
+            "received": 5,
+            "received_kernel_info_reply": 1,
+            "received_status": 4,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.07170587405562401,
+          "ready": true,
+          "seconds": 0.07171979639679193,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        }
+      ],
+      "cleanup": true,
+      "end": 1791541353.8791788,
+      "error_type": null,
+      "gpu_compute_in_empty_cell": false,
+      "index": 7,
+      "position": 3,
+      "repeat": 0,
+      "result": {
+        "exec_seconds": 0.12225128896534443,
+        "exit_code": 0,
+        "timed_out": false
+      },
+      "start": 1791541346.295917,
+      "task_executions": 0
+    },
+    "position": 3,
+    "repeat": 0,
+    "returncode": 0
+  },
+  {
+    "arm": "parallel4",
+    "attempted": true,
+    "block": 2,
+    "index": 8,
+    "observation": {
+      "arm": "parallel4",
+      "block": 2,
+      "calls": [
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 2,
+            "received": 5,
+            "received_kernel_info_reply": 1,
+            "received_status": 4,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.06395948119461536,
+          "ready": true,
+          "seconds": 0.06396777182817459,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        }
+      ],
+      "cleanup": true,
+      "end": 1791541361.1041982,
+      "error_type": null,
+      "gpu_compute_in_empty_cell": false,
+      "index": 8,
+      "position": 0,
+      "repeat": 1,
+      "result": {
+        "exec_seconds": 0.11803274787962437,
+        "exit_code": 0,
+        "timed_out": false
+      },
+      "start": 1791541356.1424677,
+      "task_executions": 0
+    },
+    "position": 0,
+    "repeat": 1,
+    "returncode": 0
+  },
+  {
+    "arm": "parallel4",
+    "attempted": true,
+    "block": 2,
+    "index": 9,
+    "observation": {
+      "arm": "parallel4",
+      "block": 2,
+      "calls": [
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 2,
+            "received": 5,
+            "received_kernel_info_reply": 1,
+            "received_status": 4,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.061425209045410156,
+          "ready": true,
+          "seconds": 0.061432646587491035,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        }
+      ],
+      "cleanup": true,
+      "end": 1791541361.1237445,
+      "error_type": null,
+      "gpu_compute_in_empty_cell": false,
+      "index": 9,
+      "position": 1,
+      "repeat": 1,
+      "result": {
+        "exec_seconds": 0.11028674058616161,
+        "exit_code": 0,
+        "timed_out": false
+      },
+      "start": 1791541356.1295598,
+      "task_executions": 0
+    },
+    "position": 1,
+    "repeat": 1,
+    "returncode": 0
+  },
+  {
+    "arm": "parallel4",
+    "attempted": true,
+    "block": 2,
+    "index": 10,
+    "observation": {
+      "arm": "parallel4",
+      "block": 2,
+      "calls": [
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 2,
+            "received": 5,
+            "received_kernel_info_reply": 1,
+            "received_status": 4,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.06212347373366356,
+          "ready": true,
+          "seconds": 0.06213559675961733,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        }
+      ],
+      "cleanup": true,
+      "end": 1791541361.1100883,
+      "error_type": null,
+      "gpu_compute_in_empty_cell": false,
+      "index": 10,
+      "position": 2,
+      "repeat": 1,
+      "result": {
+        "exec_seconds": 0.11102851387113333,
+        "exit_code": 0,
+        "timed_out": false
+      },
+      "start": 1791541356.0627165,
+      "task_executions": 0
+    },
+    "position": 2,
+    "repeat": 1,
+    "returncode": 0
+  },
+  {
+    "arm": "parallel4",
+    "attempted": true,
+    "block": 2,
+    "index": 11,
+    "observation": {
+      "arm": "parallel4",
+      "block": 2,
+      "calls": [
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 3,
+            "received": 6,
+            "received_kernel_info_reply": 1,
+            "received_status": 5,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.06840358395129442,
+          "ready": true,
+          "seconds": 0.06840880308300257,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        }
+      ],
+      "cleanup": true,
+      "end": 1791541361.0616436,
+      "error_type": null,
+      "gpu_compute_in_empty_cell": false,
+      "index": 11,
+      "position": 3,
+      "repeat": 1,
+      "result": {
+        "exec_seconds": 0.11473210621625185,
+        "exit_code": 0,
+        "timed_out": false
+      },
+      "start": 1791541356.1394193,
+      "task_executions": 0
+    },
+    "position": 3,
+    "repeat": 1,
+    "returncode": 0
+  },
+  {
+    "arm": "serial",
+    "attempted": true,
+    "block": 3,
+    "index": 12,
+    "observation": {
+      "arm": "serial",
+      "block": 3,
+      "calls": [
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 2,
+            "received": 5,
+            "received_kernel_info_reply": 1,
+            "received_status": 4,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.06918289978057146,
+          "ready": true,
+          "seconds": 0.06919577717781067,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        }
+      ],
+      "cleanup": true,
+      "end": 1791541366.4754243,
+      "error_type": null,
+      "gpu_compute_in_empty_cell": false,
+      "index": 12,
+      "position": 0,
+      "repeat": 1,
+      "result": {
+        "exec_seconds": 0.12214801087975502,
+        "exit_code": 0,
+        "timed_out": false
+      },
+      "start": 1791541361.8961403,
+      "task_executions": 0
+    },
+    "position": 0,
+    "repeat": 1,
+    "returncode": 0
+  },
+  {
+    "arm": "serial",
+    "attempted": true,
+    "block": 3,
+    "index": 13,
+    "observation": {
+      "arm": "serial",
+      "block": 3,
+      "calls": [
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 2,
+            "received": 5,
+            "received_kernel_info_reply": 1,
+            "received_status": 4,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.06421978212893009,
+          "ready": true,
+          "seconds": 0.06424450501799583,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        }
+      ],
+      "cleanup": true,
+      "end": 1791541371.8524423,
+      "error_type": null,
+      "gpu_compute_in_empty_cell": false,
+      "index": 13,
+      "position": 1,
+      "repeat": 1,
+      "result": {
+        "exec_seconds": 0.11371805239468813,
+        "exit_code": 0,
+        "timed_out": false
+      },
+      "start": 1791541367.1869588,
+      "task_executions": 0
+    },
+    "position": 1,
+    "repeat": 1,
+    "returncode": 0
+  },
+  {
+    "arm": "serial",
+    "attempted": true,
+    "block": 3,
+    "index": 14,
+    "observation": {
+      "arm": "serial",
+      "block": 3,
+      "calls": [
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 2,
+            "received": 5,
+            "received_kernel_info_reply": 1,
+            "received_status": 4,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.07213205378502607,
+          "ready": true,
+          "seconds": 0.07214706856757402,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        }
+      ],
+      "cleanup": true,
+      "end": 1791541377.2436461,
+      "error_type": null,
+      "gpu_compute_in_empty_cell": false,
+      "index": 14,
+      "position": 2,
+      "repeat": 1,
+      "result": {
+        "exec_seconds": 0.12220324110239744,
+        "exit_code": 0,
+        "timed_out": false
+      },
+      "start": 1791541372.581776,
+      "task_executions": 0
+    },
+    "position": 2,
+    "repeat": 1,
+    "returncode": 0
+  },
+  {
+    "arm": "serial",
+    "attempted": true,
+    "block": 3,
+    "index": 15,
+    "observation": {
+      "arm": "serial",
+      "block": 3,
+      "calls": [
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 2,
+            "received": 5,
+            "received_kernel_info_reply": 1,
+            "received_status": 4,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.062432488426566124,
+          "ready": true,
+          "seconds": 0.062446000054478645,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        }
+      ],
+      "cleanup": true,
+      "end": 1791541382.5569453,
+      "error_type": null,
+      "gpu_compute_in_empty_cell": false,
+      "index": 15,
+      "position": 3,
+      "repeat": 1,
+      "result": {
+        "exec_seconds": 0.11107486020773649,
+        "exit_code": 0,
+        "timed_out": false
+      },
+      "start": 1791541377.955862,
+      "task_executions": 0
+    },
+    "position": 3,
+    "repeat": 1,
+    "returncode": 0
+  },
+  {
+    "arm": "serial",
+    "attempted": true,
+    "block": 4,
+    "index": 16,
+    "observation": {
+      "arm": "serial",
+      "block": 4,
+      "calls": [
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 2,
+            "received": 5,
+            "received_kernel_info_reply": 1,
+            "received_status": 4,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.062210443429648876,
+          "ready": true,
+          "seconds": 0.062224297784268856,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        }
+      ],
+      "cleanup": true,
+      "end": 1791541387.9529,
+      "error_type": null,
+      "gpu_compute_in_empty_cell": false,
+      "index": 16,
+      "position": 0,
+      "repeat": 2,
+      "result": {
+        "exec_seconds": 0.11242915596812963,
+        "exit_code": 0,
+        "timed_out": false
+      },
+      "start": 1791541383.318347,
+      "task_executions": 0
+    },
+    "position": 0,
+    "repeat": 2,
+    "returncode": 0
+  },
+  {
+    "arm": "serial",
+    "attempted": true,
+    "block": 4,
+    "index": 17,
+    "observation": {
+      "arm": "serial",
+      "block": 4,
+      "calls": [
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 3,
+            "received": 6,
+            "received_kernel_info_reply": 1,
+            "received_status": 5,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.07613971922546625,
+          "ready": true,
+          "seconds": 0.0761544918641448,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        }
+      ],
+      "cleanup": true,
+      "end": 1791541393.298599,
+      "error_type": null,
+      "gpu_compute_in_empty_cell": false,
+      "index": 17,
+      "position": 1,
+      "repeat": 2,
+      "result": {
+        "exec_seconds": 0.12691101618111134,
+        "exit_code": 0,
+        "timed_out": false
+      },
+      "start": 1791541388.642568,
+      "task_executions": 0
+    },
+    "position": 1,
+    "repeat": 2,
+    "returncode": 0
+  },
+  {
+    "arm": "serial",
+    "attempted": true,
+    "block": 4,
+    "index": 18,
+    "observation": {
+      "arm": "serial",
+      "block": 4,
+      "calls": [
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 1,
+            "received": 4,
+            "received_kernel_info_reply": 1,
+            "received_status": 3,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.07277144119143486,
+          "ready": true,
+          "seconds": 0.07278669532388449,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        }
+      ],
+      "cleanup": true,
+      "end": 1791541398.6500359,
+      "error_type": null,
+      "gpu_compute_in_empty_cell": false,
+      "index": 18,
+      "position": 2,
+      "repeat": 2,
+      "result": {
+        "exec_seconds": 0.12312387209385633,
+        "exit_code": 0,
+        "timed_out": false
+      },
+      "start": 1791541393.9976919,
+      "task_executions": 0
+    },
+    "position": 2,
+    "repeat": 2,
+    "returncode": 0
+  },
+  {
+    "arm": "serial",
+    "attempted": true,
+    "block": 4,
+    "index": 19,
+    "observation": {
+      "arm": "serial",
+      "block": 4,
+      "calls": [
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 2,
+            "received": 5,
+            "received_kernel_info_reply": 1,
+            "received_status": 4,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.0646567428484559,
+          "ready": true,
+          "seconds": 0.06467048078775406,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        }
+      ],
+      "cleanup": true,
+      "end": 1791541406.1937897,
+      "error_type": null,
+      "gpu_compute_in_empty_cell": false,
+      "index": 19,
+      "position": 3,
+      "repeat": 2,
+      "result": {
+        "exec_seconds": 0.11350564751774073,
+        "exit_code": 0,
+        "timed_out": false
+      },
+      "start": 1791541399.396153,
+      "task_executions": 0
+    },
+    "position": 3,
+    "repeat": 2,
+    "returncode": 0
+  },
+  {
+    "arm": "parallel4",
+    "attempted": true,
+    "block": 5,
+    "index": 20,
+    "observation": {
+      "arm": "parallel4",
+      "block": 5,
+      "calls": [
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 2,
+            "received": 5,
+            "received_kernel_info_reply": 1,
+            "received_status": 4,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.062136189080774784,
+          "ready": true,
+          "seconds": 0.062149411998689175,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        }
+      ],
+      "cleanup": true,
+      "end": 1791541419.4341397,
+      "error_type": null,
+      "gpu_compute_in_empty_cell": false,
+      "index": 20,
+      "position": 0,
+      "repeat": 2,
+      "result": {
+        "exec_seconds": 0.1113647073507309,
+        "exit_code": 0,
+        "timed_out": false
+      },
+      "start": 1791541408.5580132,
+      "task_executions": 0
+    },
+    "position": 0,
+    "repeat": 2,
+    "returncode": 0
+  },
+  {
+    "arm": "parallel4",
+    "attempted": true,
+    "block": 5,
+    "index": 21,
+    "observation": {
+      "arm": "parallel4",
+      "block": 5,
+      "calls": [
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 2,
+            "received": 5,
+            "received_kernel_info_reply": 1,
+            "received_status": 4,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.07207921892404556,
+          "ready": true,
+          "seconds": 0.0720957899466157,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        }
+      ],
+      "cleanup": true,
+      "end": 1791541414.3334234,
+      "error_type": null,
+      "gpu_compute_in_empty_cell": false,
+      "index": 21,
+      "position": 1,
+      "repeat": 2,
+      "result": {
+        "exec_seconds": 0.12300009094178677,
+        "exit_code": 0,
+        "timed_out": false
+      },
+      "start": 1791541408.619684,
+      "task_executions": 0
+    },
+    "position": 1,
+    "repeat": 2,
+    "returncode": 0
+  },
+  {
+    "arm": "parallel4",
+    "attempted": true,
+    "block": 5,
+    "index": 22,
+    "observation": {
+      "arm": "parallel4",
+      "block": 5,
+      "calls": [
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 2,
+            "received": 5,
+            "received_kernel_info_reply": 1,
+            "received_status": 4,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.05629232991486788,
+          "ready": true,
+          "seconds": 0.05630670674145222,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        }
+      ],
+      "cleanup": true,
+      "end": 1791541419.4096413,
+      "error_type": null,
+      "gpu_compute_in_empty_cell": false,
+      "index": 22,
+      "position": 2,
+      "repeat": 2,
+      "result": {
+        "exec_seconds": 0.1061610821634531,
+        "exit_code": 0,
+        "timed_out": false
+      },
+      "start": 1791541408.60019,
+      "task_executions": 0
+    },
+    "position": 2,
+    "repeat": 2,
+    "returncode": 0
+  },
+  {
+    "arm": "parallel4",
+    "attempted": true,
+    "block": 5,
+    "index": 23,
+    "observation": {
+      "arm": "parallel4",
+      "block": 5,
+      "calls": [
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 1,
+            "received": 4,
+            "received_kernel_info_reply": 1,
+            "received_status": 3,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.05988652538508177,
+          "ready": true,
+          "seconds": 0.05990082398056984,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        }
+      ],
+      "cleanup": true,
+      "end": 1791541414.3252234,
+      "error_type": null,
+      "gpu_compute_in_empty_cell": false,
+      "index": 23,
+      "position": 3,
+      "repeat": 2,
+      "result": {
+        "exec_seconds": 0.1120170745998621,
+        "exit_code": 0,
+        "timed_out": false
+      },
+      "start": 1791541408.6138315,
+      "task_executions": 0
+    },
+    "position": 3,
+    "repeat": 2,
+    "returncode": 0
+  },
+  {
+    "arm": "parallel4",
+    "attempted": true,
+    "block": 6,
+    "index": 24,
+    "observation": {
+      "arm": "parallel4",
+      "block": 6,
+      "calls": [
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 1,
+            "received": 4,
+            "received_kernel_info_reply": 1,
+            "received_status": 3,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.06477151345461607,
+          "ready": true,
+          "seconds": 0.06477632746100426,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        }
+      ],
+      "cleanup": true,
+      "end": 1791541426.7985806,
+      "error_type": null,
+      "gpu_compute_in_empty_cell": false,
+      "index": 24,
+      "position": 0,
+      "repeat": 3,
+      "result": {
+        "exec_seconds": 0.11197094433009624,
+        "exit_code": 0,
+        "timed_out": false
+      },
+      "start": 1791541421.8099232,
+      "task_executions": 0
+    },
+    "position": 0,
+    "repeat": 3,
+    "returncode": 0
+  },
+  {
+    "arm": "parallel4",
+    "attempted": true,
+    "block": 6,
+    "index": 25,
+    "observation": {
+      "arm": "parallel4",
+      "block": 6,
+      "calls": [
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 3,
+            "received": 6,
+            "received_kernel_info_reply": 1,
+            "received_status": 5,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.05626794695854187,
+          "ready": true,
+          "seconds": 0.056275821290910244,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        }
+      ],
+      "cleanup": true,
+      "end": 1791541426.8389766,
+      "error_type": null,
+      "gpu_compute_in_empty_cell": false,
+      "index": 25,
+      "position": 1,
+      "repeat": 3,
+      "result": {
+        "exec_seconds": 0.10566670913249254,
+        "exit_code": 0,
+        "timed_out": false
+      },
+      "start": 1791541421.8494415,
+      "task_executions": 0
+    },
+    "position": 1,
+    "repeat": 3,
+    "returncode": 0
+  },
+  {
+    "arm": "parallel4",
+    "attempted": true,
+    "block": 6,
+    "index": 26,
+    "observation": {
+      "arm": "parallel4",
+      "block": 6,
+      "calls": [
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 2,
+            "received": 5,
+            "received_kernel_info_reply": 1,
+            "received_status": 4,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.06604241020977497,
+          "ready": true,
+          "seconds": 0.06605939567089081,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        }
+      ],
+      "cleanup": true,
+      "end": 1791541426.8725314,
+      "error_type": null,
+      "gpu_compute_in_empty_cell": false,
+      "index": 26,
+      "position": 2,
+      "repeat": 3,
+      "result": {
+        "exec_seconds": 0.1158994771540165,
+        "exit_code": 0,
+        "timed_out": false
+      },
+      "start": 1791541421.8407016,
+      "task_executions": 0
+    },
+    "position": 2,
+    "repeat": 3,
+    "returncode": 0
+  },
+  {
+    "arm": "parallel4",
+    "attempted": true,
+    "block": 6,
+    "index": 27,
+    "observation": {
+      "arm": "parallel4",
+      "block": 6,
+      "calls": [
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 2,
+            "received": 5,
+            "received_kernel_info_reply": 1,
+            "received_status": 4,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.06503422930836678,
+          "ready": true,
+          "seconds": 0.06504937261343002,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        }
+      ],
+      "cleanup": true,
+      "end": 1791541426.915018,
+      "error_type": null,
+      "gpu_compute_in_empty_cell": false,
+      "index": 27,
+      "position": 3,
+      "repeat": 3,
+      "result": {
+        "exec_seconds": 0.11475561559200287,
+        "exit_code": 0,
+        "timed_out": false
+      },
+      "start": 1791541421.8566682,
+      "task_executions": 0
+    },
+    "position": 3,
+    "repeat": 3,
+    "returncode": 0
+  },
+  {
+    "arm": "serial",
+    "attempted": true,
+    "block": 7,
+    "index": 28,
+    "observation": {
+      "arm": "serial",
+      "block": 7,
+      "calls": [
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 3,
+            "received": 6,
+            "received_kernel_info_reply": 1,
+            "received_status": 5,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.07030505686998367,
+          "ready": true,
+          "seconds": 0.07031808234751225,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        }
+      ],
+      "cleanup": true,
+      "end": 1791541436.3177314,
+      "error_type": null,
+      "gpu_compute_in_empty_cell": false,
+      "index": 28,
+      "position": 0,
+      "repeat": 3,
+      "result": {
+        "exec_seconds": 0.12078456673771143,
+        "exit_code": 0,
+        "timed_out": false
+      },
+      "start": 1791541429.7821252,
+      "task_executions": 0
+    },
+    "position": 0,
+    "repeat": 3,
+    "returncode": 0
+  },
+  {
+    "arm": "serial",
+    "attempted": true,
+    "block": 7,
+    "index": 29,
+    "observation": {
+      "arm": "serial",
+      "block": 7,
+      "calls": [
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 2,
+            "received": 5,
+            "received_kernel_info_reply": 1,
+            "received_status": 4,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.06649416219443083,
+          "ready": true,
+          "seconds": 0.06650697439908981,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        }
+      ],
+      "cleanup": true,
+      "end": 1791541445.9273543,
+      "error_type": null,
+      "gpu_compute_in_empty_cell": false,
+      "index": 29,
+      "position": 1,
+      "repeat": 3,
+      "result": {
+        "exec_seconds": 0.11776975449174643,
+        "exit_code": 0,
+        "timed_out": false
+      },
+      "start": 1791541439.2047818,
+      "task_executions": 0
+    },
+    "position": 1,
+    "repeat": 3,
+    "returncode": 0
+  },
+  {
+    "arm": "serial",
+    "attempted": true,
+    "block": 7,
+    "index": 30,
+    "observation": {
+      "arm": "serial",
+      "block": 7,
+      "calls": [
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 2,
+            "received": 5,
+            "received_kernel_info_reply": 1,
+            "received_status": 4,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.0685091745108366,
+          "ready": true,
+          "seconds": 0.06852236110717058,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        }
+      ],
+      "cleanup": true,
+      "end": 1791541455.2254283,
+      "error_type": null,
+      "gpu_compute_in_empty_cell": false,
+      "index": 30,
+      "position": 2,
+      "repeat": 3,
+      "result": {
+        "exec_seconds": 0.11959025450050831,
+        "exit_code": 0,
+        "timed_out": false
+      },
+      "start": 1791541448.6856627,
+      "task_executions": 0
+    },
+    "position": 2,
+    "repeat": 3,
+    "returncode": 0
+  },
+  {
+    "arm": "serial",
+    "attempted": true,
+    "block": 7,
+    "index": 31,
+    "observation": {
+      "arm": "serial",
+      "block": 7,
+      "calls": [
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 2,
+            "received": 5,
+            "received_kernel_info_reply": 1,
+            "received_status": 4,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.07115523796528578,
+          "ready": true,
+          "seconds": 0.0711704296991229,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        }
+      ],
+      "cleanup": true,
+      "end": 1791541462.3831558,
+      "error_type": null,
+      "gpu_compute_in_empty_cell": false,
+      "index": 31,
+      "position": 3,
+      "repeat": 3,
+      "result": {
+        "exec_seconds": 0.12025454547256231,
+        "exit_code": 0,
+        "timed_out": false
+      },
+      "start": 1791541457.7768564,
+      "task_executions": 0
+    },
+    "position": 3,
+    "repeat": 3,
+    "returncode": 0
+  },
+  {
+    "arm": "serial",
+    "attempted": true,
+    "block": 8,
+    "index": 32,
+    "observation": {
+      "arm": "serial",
+      "block": 8,
+      "calls": [
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 2,
+            "received": 5,
+            "received_kernel_info_reply": 1,
+            "received_status": 4,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.06176719255745411,
+          "ready": true,
+          "seconds": 0.061781687662005424,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        }
+      ],
+      "cleanup": true,
+      "end": 1791541471.7890556,
+      "error_type": null,
+      "gpu_compute_in_empty_cell": false,
+      "index": 32,
+      "position": 0,
+      "repeat": 4,
+      "result": {
+        "exec_seconds": 0.11204841639846563,
+        "exit_code": 0,
+        "timed_out": false
+      },
+      "start": 1791541465.1269553,
+      "task_executions": 0
+    },
+    "position": 0,
+    "repeat": 4,
+    "returncode": 0
+  },
+  {
+    "arm": "serial",
+    "attempted": true,
+    "block": 8,
+    "index": 33,
+    "observation": {
+      "arm": "serial",
+      "block": 8,
+      "calls": [
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 2,
+            "received": 5,
+            "received_kernel_info_reply": 1,
+            "received_status": 4,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.07152342051267624,
+          "ready": true,
+          "seconds": 0.07153820525854826,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        }
+      ],
+      "cleanup": true,
+      "end": 1791541481.4903748,
+      "error_type": null,
+      "gpu_compute_in_empty_cell": false,
+      "index": 33,
+      "position": 1,
+      "repeat": 4,
+      "result": {
+        "exec_seconds": 0.12061012256890535,
+        "exit_code": 0,
+        "timed_out": false
+      },
+      "start": 1791541474.6717606,
+      "task_executions": 0
+    },
+    "position": 1,
+    "repeat": 4,
+    "returncode": 0
+  },
+  {
+    "arm": "serial",
+    "attempted": true,
+    "block": 8,
+    "index": 34,
+    "observation": {
+      "arm": "serial",
+      "block": 8,
+      "calls": [
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 3,
+            "received": 6,
+            "received_kernel_info_reply": 1,
+            "received_status": 5,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.063023935072124,
+          "ready": true,
+          "seconds": 0.06303888186812401,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        }
+      ],
+      "cleanup": true,
+      "end": 1791541487.1651824,
+      "error_type": null,
+      "gpu_compute_in_empty_cell": false,
+      "index": 34,
+      "position": 2,
+      "repeat": 4,
+      "result": {
+        "exec_seconds": 0.11204773746430874,
+        "exit_code": 0,
+        "timed_out": false
+      },
+      "start": 1791541482.5538619,
+      "task_executions": 0
+    },
+    "position": 2,
+    "repeat": 4,
+    "returncode": 0
+  },
+  {
+    "arm": "serial",
+    "attempted": true,
+    "block": 8,
+    "index": 35,
+    "observation": {
+      "arm": "serial",
+      "block": 8,
+      "calls": [
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 3,
+            "received": 6,
+            "received_kernel_info_reply": 1,
+            "received_status": 5,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.06074279546737671,
+          "ready": true,
+          "seconds": 0.060757119208574295,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        }
+      ],
+      "cleanup": true,
+      "end": 1791541492.3571622,
+      "error_type": null,
+      "gpu_compute_in_empty_cell": false,
+      "index": 35,
+      "position": 3,
+      "repeat": 4,
+      "result": {
+        "exec_seconds": 0.10928745660930872,
+        "exit_code": 0,
+        "timed_out": false
+      },
+      "start": 1791541487.8895223,
+      "task_executions": 0
+    },
+    "position": 3,
+    "repeat": 4,
+    "returncode": 0
+  },
+  {
+    "arm": "parallel4",
+    "attempted": true,
+    "block": 9,
+    "index": 36,
+    "observation": {
+      "arm": "parallel4",
+      "block": 9,
+      "calls": [
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 3,
+            "received": 6,
+            "received_kernel_info_reply": 1,
+            "received_status": 5,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.07294495962560177,
+          "ready": true,
+          "seconds": 0.07295771781355143,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        }
+      ],
+      "cleanup": true,
+      "end": 1791541507.1345928,
+      "error_type": null,
+      "gpu_compute_in_empty_cell": false,
+      "index": 36,
+      "position": 0,
+      "repeat": 4,
+      "result": {
+        "exec_seconds": 0.12372265104204416,
+        "exit_code": 0,
+        "timed_out": false
+      },
+      "start": 1791541499.9131687,
+      "task_executions": 0
+    },
+    "position": 0,
+    "repeat": 4,
+    "returncode": 0
+  },
+  {
+    "arm": "parallel4",
+    "attempted": true,
+    "block": 9,
+    "index": 37,
+    "observation": {
+      "arm": "parallel4",
+      "block": 9,
+      "calls": [
+        {
+          "counts": {
+            "receive_empty": 120,
+            "received": 3,
+            "received_status": 3,
+            "sent_info": 120
+          },
+          "error_type": null,
+          "first_reply_seconds": null,
+          "ready": false,
+          "seconds": 120.0001968741417,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        }
+      ],
+      "cleanup": true,
+      "end": 1791541619.516959,
+      "error_type": null,
+      "gpu_compute_in_empty_cell": false,
+      "index": 37,
+      "position": 1,
+      "repeat": 4,
+      "result": {
+        "exec_seconds": 120.00053396355361,
+        "exit_code": 1,
+        "timed_out": true
+      },
+      "start": 1791541494.6803052,
+      "task_executions": 0
+    },
+    "position": 1,
+    "repeat": 4,
+    "returncode": 0
+  },
+  {
+    "arm": "parallel4",
+    "attempted": true,
+    "block": 9,
+    "index": 38,
+    "observation": {
+      "arm": "parallel4",
+      "block": 9,
+      "calls": [
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 2,
+            "received": 5,
+            "received_kernel_info_reply": 1,
+            "received_status": 4,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.0635050730779767,
+          "ready": true,
+          "seconds": 0.06351961754262447,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        }
+      ],
+      "cleanup": true,
+      "end": 1791541499.3949814,
+      "error_type": null,
+      "gpu_compute_in_empty_cell": false,
+      "index": 38,
+      "position": 2,
+      "repeat": 4,
+      "result": {
+        "exec_seconds": 0.11353528127074242,
+        "exit_code": 0,
+        "timed_out": false
+      },
+      "start": 1791541494.6907763,
+      "task_executions": 0
+    },
+    "position": 2,
+    "repeat": 4,
+    "returncode": 0
+  },
+  {
+    "arm": "parallel4",
+    "attempted": true,
+    "block": 9,
+    "index": 39,
+    "observation": {
+      "arm": "parallel4",
+      "block": 9,
+      "calls": [
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 2,
+            "received": 5,
+            "received_kernel_info_reply": 1,
+            "received_status": 4,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.0616948027163744,
+          "ready": true,
+          "seconds": 0.061709897592663765,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        }
+      ],
+      "cleanup": true,
+      "end": 1791541499.621529,
+      "error_type": null,
+      "gpu_compute_in_empty_cell": false,
+      "index": 39,
+      "position": 3,
+      "repeat": 4,
+      "result": {
+        "exec_seconds": 0.11385299079120159,
+        "exit_code": 0,
+        "timed_out": false
+      },
+      "start": 1791541494.66994,
+      "task_executions": 0
+    },
+    "position": 3,
+    "repeat": 4,
+    "returncode": 0
+  },
+  {
+    "arm": "parallel4",
+    "attempted": true,
+    "block": 10,
+    "index": 40,
+    "observation": {
+      "arm": "parallel4",
+      "block": 10,
+      "calls": [
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 2,
+            "received": 5,
+            "received_kernel_info_reply": 1,
+            "received_status": 4,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.0676726158708334,
+          "ready": true,
+          "seconds": 0.06767768692225218,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        }
+      ],
+      "cleanup": true,
+      "end": 1791541627.0773492,
+      "error_type": null,
+      "gpu_compute_in_empty_cell": false,
+      "index": 40,
+      "position": 0,
+      "repeat": 5,
+      "result": {
+        "exec_seconds": 0.11575865838676691,
+        "exit_code": 0,
+        "timed_out": false
+      },
+      "start": 1791541622.2710593,
+      "task_executions": 0
+    },
+    "position": 0,
+    "repeat": 5,
+    "returncode": 0
+  },
+  {
+    "arm": "parallel4",
+    "attempted": true,
+    "block": 10,
+    "index": 41,
+    "observation": {
+      "arm": "parallel4",
+      "block": 10,
+      "calls": [
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 2,
+            "received": 5,
+            "received_kernel_info_reply": 1,
+            "received_status": 4,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.06910079903900623,
+          "ready": true,
+          "seconds": 0.06911882013082504,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        }
+      ],
+      "cleanup": true,
+      "end": 1791541627.1235974,
+      "error_type": null,
+      "gpu_compute_in_empty_cell": false,
+      "index": 41,
+      "position": 1,
+      "repeat": 5,
+      "result": {
+        "exec_seconds": 0.12113974057137966,
+        "exit_code": 0,
+        "timed_out": false
+      },
+      "start": 1791541622.2788432,
+      "task_executions": 0
+    },
+    "position": 1,
+    "repeat": 5,
+    "returncode": 0
+  },
+  {
+    "arm": "parallel4",
+    "attempted": true,
+    "block": 10,
+    "index": 42,
+    "observation": {
+      "arm": "parallel4",
+      "block": 10,
+      "calls": [
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 2,
+            "received": 5,
+            "received_kernel_info_reply": 1,
+            "received_status": 4,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.06128593161702156,
+          "ready": true,
+          "seconds": 0.06130701210349798,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        }
+      ],
+      "cleanup": true,
+      "end": 1791541627.1694622,
+      "error_type": null,
+      "gpu_compute_in_empty_cell": false,
+      "index": 42,
+      "position": 2,
+      "repeat": 5,
+      "result": {
+        "exec_seconds": 0.1114738266915083,
+        "exit_code": 0,
+        "timed_out": false
+      },
+      "start": 1791541622.2641163,
+      "task_executions": 0
+    },
+    "position": 2,
+    "repeat": 5,
+    "returncode": 0
+  },
+  {
+    "arm": "parallel4",
+    "attempted": true,
+    "block": 10,
+    "index": 43,
+    "observation": {
+      "arm": "parallel4",
+      "block": 10,
+      "calls": [
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 3,
+            "received": 6,
+            "received_kernel_info_reply": 1,
+            "received_status": 5,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.07349573262035847,
+          "ready": true,
+          "seconds": 0.07351030129939318,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        }
+      ],
+      "cleanup": true,
+      "end": 1791541627.0531683,
+      "error_type": null,
+      "gpu_compute_in_empty_cell": false,
+      "index": 43,
+      "position": 3,
+      "repeat": 5,
+      "result": {
+        "exec_seconds": 0.12095998134464025,
+        "exit_code": 0,
+        "timed_out": false
+      },
+      "start": 1791541622.2597127,
+      "task_executions": 0
+    },
+    "position": 3,
+    "repeat": 5,
+    "returncode": 0
+  },
+  {
+    "arm": "serial",
+    "attempted": true,
+    "block": 11,
+    "index": 44,
+    "observation": {
+      "arm": "serial",
+      "block": 11,
+      "calls": [
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 3,
+            "received": 6,
+            "received_kernel_info_reply": 1,
+            "received_status": 5,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.06508051510900259,
+          "ready": true,
+          "seconds": 0.06509397830814123,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        }
+      ],
+      "cleanup": true,
+      "end": 1791541632.232327,
+      "error_type": null,
+      "gpu_compute_in_empty_cell": false,
+      "index": 44,
+      "position": 0,
+      "repeat": 5,
+      "result": {
+        "exec_seconds": 0.11383900698274374,
+        "exit_code": 0,
+        "timed_out": false
+      },
+      "start": 1791541627.9434228,
+      "task_executions": 0
+    },
+    "position": 0,
+    "repeat": 5,
+    "returncode": 0
+  },
+  {
+    "arm": "serial",
+    "attempted": true,
+    "block": 11,
+    "index": 45,
+    "observation": {
+      "arm": "serial",
+      "block": 11,
+      "calls": [
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 2,
+            "received": 5,
+            "received_kernel_info_reply": 1,
+            "received_status": 4,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.05813513323664665,
+          "ready": true,
+          "seconds": 0.05814935453236103,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        }
+      ],
+      "cleanup": true,
+      "end": 1791541640.799413,
+      "error_type": null,
+      "gpu_compute_in_empty_cell": false,
+      "index": 45,
+      "position": 1,
+      "repeat": 5,
+      "result": {
+        "exec_seconds": 0.10875784512609243,
+        "exit_code": 0,
+        "timed_out": false
+      },
+      "start": 1791541634.7052073,
+      "task_executions": 0
+    },
+    "position": 1,
+    "repeat": 5,
+    "returncode": 0
+  },
+  {
+    "arm": "serial",
+    "attempted": true,
+    "block": 11,
+    "index": 46,
+    "observation": {
+      "arm": "serial",
+      "block": 11,
+      "calls": [
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 2,
+            "received": 5,
+            "received_kernel_info_reply": 1,
+            "received_status": 4,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.06012916285544634,
+          "ready": true,
+          "seconds": 0.06014319881796837,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        }
+      ],
+      "cleanup": true,
+      "end": 1791541648.4982598,
+      "error_type": null,
+      "gpu_compute_in_empty_cell": false,
+      "index": 46,
+      "position": 2,
+      "repeat": 5,
+      "result": {
+        "exec_seconds": 0.11120509821921587,
+        "exit_code": 0,
+        "timed_out": false
+      },
+      "start": 1791541643.3698676,
+      "task_executions": 0
+    },
+    "position": 2,
+    "repeat": 5,
+    "returncode": 0
+  },
+  {
+    "arm": "serial",
+    "attempted": true,
+    "block": 11,
+    "index": 47,
+    "observation": {
+      "arm": "serial",
+      "block": 11,
+      "calls": [
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 2,
+            "received": 5,
+            "received_kernel_info_reply": 1,
+            "received_status": 4,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.06105597969144583,
+          "ready": true,
+          "seconds": 0.06107000820338726,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        }
+      ],
+      "cleanup": true,
+      "end": 1791541656.5369074,
+      "error_type": null,
+      "gpu_compute_in_empty_cell": false,
+      "index": 47,
+      "position": 3,
+      "repeat": 5,
+      "result": {
+        "exec_seconds": 0.1115717776119709,
+        "exit_code": 0,
+        "timed_out": false
+      },
+      "start": 1791541651.3038194,
+      "task_executions": 0
+    },
+    "position": 3,
+    "repeat": 5,
+    "returncode": 0
+  }
+]

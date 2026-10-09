@@ -46,9 +46,10 @@ def log_shape(path):
 
 def main():
     global ROOT
-    parser=argparse.ArgumentParser();parser.add_argument('--version',choices=('v2','v3','v4','v5','v6','v7','width'),default='v2')
+    parser=argparse.ArgumentParser();parser.add_argument('--version',choices=('v2','v3','v4','v5','v6','v7','width','exposure'),default='v2')
     args=parser.parse_args()
-    ROOT=ROOT.with_name('scheduling-live-width-20261009-v1' if args.version=='width' else 'scheduling-live-search-20261009-'+args.version)
+    ROOT=ROOT.with_name({'width':'scheduling-live-width-20261009-v1',
+                         'exposure':'scheduling-live-exposure-20261009-v1'}.get(args.version,'scheduling-live-search-20261009-'+args.version))
     p = read('plan.json')
     launch = read('launch.json')
     result = dict(utc=datetime.datetime.now(datetime.timezone.utc).isoformat(),
@@ -58,7 +59,7 @@ def main():
                   node_qualification=read('node-qualification.json'),
                   generator_qualification=read('generator-qualification.json'))
     result['blocks'] = []
-    for b in range(4):
+    for b in range(1 if args.version=='exposure' else 4):
         closed = read(f'block-{b}/closed.json')
         result['blocks'].append(dict(block=b, service_ready=read(f'block-{b}/service-ready.json'),
             budget_slot=read(f'block-{b}/budget-slot.json'),

@@ -11,3 +11,6 @@ print(json.dumps({'versions':versions,'source_sha256':hashlib.sha256(inspect.get
 for name in ('connect','nudge','handle_incoming_message','create_stream','_create_stream','_register_session'):
     obj=getattr(C,name,None)
     if obj is not None:print(name,inspect.getsource(obj))
+
+import kernel_gateway.jupyter_websocket as personality
+print('ACTUAL_GATEWAY_PERSONALITY',inspect.getsource(personality))

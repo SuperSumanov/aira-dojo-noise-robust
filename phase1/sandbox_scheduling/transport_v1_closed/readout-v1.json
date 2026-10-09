@@ -1,0 +1,96 @@
+{
+  "allocation_gpu_hours": 0.09638888888888889,
+  "allocation_gpu_seconds": 347,
+  "analysis_sha256": "e7ea7134186b26cfd1a0fc01764701207ad7608af61f5212260a3932c3787f73",
+  "arms": {
+    "parallel4": {
+      "assigned": 24,
+      "attempted": 24,
+      "cleanup": 24,
+      "counts": {
+        "matched_info_reply": 23,
+        "matched_parent": 43,
+        "receive_empty": 120,
+        "received": 111,
+        "received_kernel_info_reply": 23,
+        "received_status": 88,
+        "sent_info": 143
+      },
+      "max_handshake_seconds": 120.00046924222261,
+      "median_handshake_seconds": 0.06578762456774712,
+      "observed": 24,
+      "pass_cells": 23,
+      "ready_false": 1,
+      "ready_true": 23,
+      "sample_std_handshake_seconds": 24.481670568406404
+    },
+    "serial": {
+      "assigned": 24,
+      "attempted": 24,
+      "cleanup": 24,
+      "counts": {
+        "matched_info_reply": 24,
+        "matched_parent": 43,
+        "received": 114,
+        "received_kernel_info_reply": 24,
+        "received_status": 90,
+        "sent_info": 24
+      },
+      "max_handshake_seconds": 0.07538434676826,
+      "median_handshake_seconds": 0.0678541362285614,
+      "observed": 24,
+      "pass_cells": 24,
+      "ready_false": 0,
+      "ready_true": 24,
+      "sample_std_handshake_seconds": 0.004449394446808303
+    }
+  },
+  "boundary": "Post-closure diagnosis. One failure in clustered startups does not establish concurrency causation or a failure-rate difference. Socket/thread liveness is not shell-channel health. No candidate executed; cannot infer candidate behavior, training throughput, or quality. Prior17308 gate remains false.",
+  "failures": [
+    {
+      "arm": "parallel4",
+      "block": 6,
+      "index": 24,
+      "observation": {
+        "arm": "parallel4",
+        "block": 6,
+        "calls": [
+          {
+            "counts": {
+              "receive_empty": 120,
+              "received": 3,
+              "received_status": 3,
+              "sent_info": 120
+            },
+            "error_type": null,
+            "first_reply_seconds": null,
+            "ready": false,
+            "seconds": 120.00046924222261,
+            "websocket_socket_connected": true,
+            "websocket_thread_alive": true
+          }
+        ],
+        "cleanup": true,
+        "end": 1791540302.5561929,
+        "error_type": null,
+        "gpu_compute_in_empty_cell": false,
+        "index": 24,
+        "position": 0,
+        "repeat": 3,
+        "result": {
+          "exec_seconds": 120.0008390545845,
+          "exit_code": 1,
+          "timed_out": true
+        },
+        "start": 1791540178.0191221,
+        "task_executions": 0
+      },
+      "repeat": 3
+    }
+  ],
+  "inputs": {
+    "closed.json": "d5d375c4e023d3739724e90bcc32c3291f050da213902233a86dd307478f89bc",
+    "rows.json": "a2e5ce4cd857d8c2d7754b59cf1dadafc77afb1e277b885c5e66a4c3d61739f7"
+  },
+  "job": "17322"
+}

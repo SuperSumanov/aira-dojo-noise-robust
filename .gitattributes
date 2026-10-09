@@ -885,3 +885,6 @@ phase1/sandbox_scheduling/gateway_bootstrap_probe.py -text diff whitespace=cr-at
 phase1/sandbox_scheduling/opportunity_recheck_20261010.py -text diff whitespace=cr-at-eol
 phase1/sandbox_scheduling/test_opportunity_recheck.py -text diff whitespace=cr-at-eol
 phase1/sandbox_scheduling/opportunity_recheck_v1_closed/** -text diff whitespace=cr-at-eol
+phase1/sandbox_scheduling/neural_extension_20261010.py -text diff whitespace=cr-at-eol
+phase1/sandbox_scheduling/test_neural_extension.py -text diff whitespace=cr-at-eol
+phase1/sandbox_scheduling/neural_extension_v1_closed/** -text diff whitespace=cr-at-eol

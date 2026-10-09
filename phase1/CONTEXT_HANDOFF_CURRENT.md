@@ -1,13 +1,15 @@
 # 当前短交接
-更新：2026-10-10香港05:26；旧全文保留于Git 8d1e8ca5。当前方向R14，历史动态不是现场。
+更新：2026-10-10香港05:43；旧全文保留于Git 8d1e8ca5。当前方向R14，历史动态不是现场。
 
 ## 当前六小时窗口与现场
-- 新窗口04:56:13–10:56:13香港，用户要求完整六小时会话内推进；不提前把准备当完成。17364已COMPLETED/216GPU秒=0.06GPUh，无新在跑；旧Held12535不动。
+- 新窗口04:56:13–10:56:13香港，用户要求完整六小时会话内推进；不提前把准备当完成。17364已COMPLETED/216GPU秒=0.06GPUh；05:43核17366 RUNNING/gpu27，入口初始化，尚无正式完成；旧Held12535不动。
 - 17364 opportunity_recheck：17328全部两组native接受Pizza父子（正/平），原seed各2次，共8执行；原源码/输入/评分器/240s单次不变，1GPU/6物理核/45min≤0.75GPUh。局部事后重复性，非新样本或调度效应；root scheduling-opportunity-recheck-20261010-v1，stage scheduling-recheck-20261010.B5b9cz。source4534112ad4de74f5d7d44da855366b38583d659f，plan e201f64f3ddbc8e753751b8e412ebb6df840f4ea5ebea6da1cc21016d4828feb；本地/远端各6测试通过且上传字节一致。
-- 第二线未提交：neural_extension_20261010，固定新CNN32增强版ea47bb6d与UNet3Residual c60e3f1c，沿用完整公开输入，pipeline/share2×3=12，1卡6CPU/90min≤1.5GPUh。两臂candidate450s不变，排队600s/worker1120s，整块预留1125s；先CPU依赖与隔离资格，首pipeline两程序不全完成则停，不换程序/改源码。依旧同两任务相关程序家族，不是新任务/训练seed或live质量证据。SETI公开输入缺失，未拿来充样本。
+- 第二线17366：neural_extension_20261010，固定新CNN32增强版ea47bb6d与UNet3Residual c60e3f1c，沿用完整公开输入，pipeline/share2×3=12，1卡6CPU/90min≤1.5GPUh。两臂candidate450s不变，排队600s/worker1120s，整块预留1125s；首pipeline两程序不全完成则停，不换程序/改源码。依旧同两任务相关程序家族，不是新任务/训练seed或live质量证据。SETI公开输入缺失，未拿来充样本。
 - 17364闭合readout b87dd1c85d15d9bba86ab5b47ecd60493dedfdabeda2798faa328caba5483fb8；8/8精确外部评分/预测hash/设备隔离通过。正组两次+0.0197321215020330、平组两次0，CSV独立Decimal复核一致；只支持同seed局部重复性，不排除dev样本选择、不等于池中全局更好（另一父程序分数更高）。opportunity_recheck_v1_closed，原writer不再运行。
-- 新神经扩展远端CPU已通过，本地/远端各5测试；source05e4c33ef28e29db6d510e8de92d90f14ba51f88、plan bf0e2b24c267880ade8da3457ca5674b1a545c234485b3479ac0df41be2caa85；root scheduling-neural-extension-20261010-v1。先完成下一项重I/O准备再提交，避免计时干扰。
+- 新神经扩展远端CPU已通过，本地/远端各5测试；source05e4c33ef28e29db6d510e8de92d90f14ba51f88、plan bf0e2b24c267880ade8da3457ca5674b1a545c234485b3479ac0df41be2caa85；root scheduling-neural-extension-20261010-v1。另一项重I/O已结束才提交；运行中不做我方重准备。
 - 第三批新设计live_twochild_20261010：两臂同num_children2/1500s，FIFO许可1/2，ABBA四池×4run=16条，新seed175001起，四2300s等全池槽，3卡12+6物理核/160min≤8GPUh；保留全部16及缺失，不按分数续跑/换seed。仅借学长24efc2e0的分支宽度，不复现其SFT/9B/memory/24h，不能与旧root5/600s合并。旧冻结门不改、只检验本配置调度作用；源码/CPU预检前不提交。本窗三批上限0.75+1.5+8=10.25GPUh，API0/底座训练0。
+- live twochild CPU/16配置/镜像权重预检全部完成，未提交；source51b9daff161cb8e4b17ce729ca26cf1f7b5fdbe2，plan082645089d69e711f55057312d49e13d0fa99bf53942e91851791c12eb1525a6，root scheduling-live-twochild-20261010-v1。05:41提交前附prelaunch-prose-correction.json，纠正plan两处旧600s文字；实际numeric/config/运行deadline早已1500s，原plan/运行代码未改。等待17366闭合再提交。
+- 新监控stage/live_status.py --version twochild、neural_status.py --kind extension；helper40da62f449103047a5bc816cdc9ddb52125c0558，本地22/远端7纯CPU测试通过；不修改冻结root内代码。入口/CSV远近hash及Git blob字节核一致。
 - Fetch我方8d1e8ca5f6345eaba12fa0771da2f815afe3dd2d；学长更新24efc2e0a84ead449fb6dff71414d73693f70893。10/9 policy SFT报告为探索性：memory配置不同、缺失run/评分、同任务训练及多checkpoint选点，不能作干净scaling确认；不实施我方底座训练。
 - 安全事件：临时scan漏掉学长报告URL的camelCase访问令牌，工具曾显示该链接；不使用/再回显/入库，已提示建议撤销重发。旧safe_git_show合成测试另发现Authorization先替换Bearer会留下值；新safe_senior_reader.py已修顺序/URL编码/引号，2测试含9合成敏感形式通过。后续用新reader远端流式脱敏；不声称任意秘密都能检测。只记录类别，不存密钥。
 - 本次14:11–20:11香港六小时窗口已完成；20:08:57只读复核17328四worker均闭合且清理通过，原56候选/23评分回执不变。20:05重新核本窗八作业最终账，无在跑批次；不新增跟进/作业或复用余额。
@@ -27,7 +29,7 @@
 - selection-loss-diagnosis-v1 SHA9e7b1f6ca69f1568a3c775a1ce21797d1d5532aefeff201e8afb572271b777fb：四条所有外部最好−native最好均0。放行6个被拒结果不提供本批直接终分收益；减少debug耗时或改变后续搜索需新对照。
 - 本地安全证据phase1/sandbox_scheduling/exposure_v1_closed；原候选/回复/预测/标签/权重均留远端。分析诊断与原冻结结果分文件，原失败不覆盖。
 - 结论：存在一个真实开发局部改善，但没有跨任务、同预算调度终分新收益。暂不扩大复杂LLM调度器；先据这批事实判断负载/共同基线是否适合检验R14，不把增预算、改root或反馈放行命名为新方法。
-- 投入判断：保留已有固定程序系统阳性，当前两文本任务配置不足以确认调度对Improve阶段的收益；不能直接扩大此配方。局部开发增益未原样重执行，不排除训练/评分波动。相同起点续跑9/13及10/5已做过，若将来使用只能算对照设计，不重命名为创新。
+- 19:51历史投入判断：保留固定程序阳性，但两文本任务原root5配方不足确认调度对Improve的收益；当时局部增益未重执行（已由上方17364补齐原seed重启，不是新seed确认）。相同起点续跑9/13及10/5已做过，只能算对照设计，不重命名创新。
 - 19:29重读AIRA-dojo v2 §5/附录C/E：原主实验24h，策略弱收益限于AIDE算子，不能笼统说策略普遍无效；我方600s未完成root批不能解释原论文或学长生产。已写ROUTE_DECISIONS。
 
 ## 本窗口之前已闭合的批次，不重跑或救门

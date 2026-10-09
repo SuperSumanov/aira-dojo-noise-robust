@@ -1,0 +1,17 @@
+{
+  "job": "17364",
+  "source_commit": "4534112ad4de74f5d7d44da855366b38583d659f",
+  "plan_sha256": "e201f64f3ddbc8e753751b8e412ebb6df840f4ea5ebea6da1cc21016d4828feb",
+  "readout_sha256": "b87dd1c85d15d9bba86ab5b47ecd60493dedfdabeda2798faa328caba5483fb8",
+  "runs_csv_sha256": "4fc636c32c6ee1f8f1ffa439813d3abba642d7efe33b271be086c2f050ae016c",
+  "planned": 8,
+  "complete": 8,
+  "independent_arithmetic": "PowerShell Decimal from the CSV: pair0 repeats +0.019732121502033, +0.019732121502033; pair1 repeats 0, 0. Same ordering as primary.",
+  "allocation_state": "COMPLETED",
+  "allocation_exit": "0:0",
+  "allocation_gpu_seconds": 216,
+  "allocation_gpu_hours": 0.06,
+  "source_and_upload_bytes_verified": true,
+  "primary_grounding": "All8 exact external score/submission hash and device namespace receipts checked by frozen readout.",
+  "boundary": "Post-selected two Pizza pairs, same original seeds. Independent arithmetic, NOT independent scorer reimplementation or unseen-data confirmation. Reexecution changes contention. No scheduling effect or population inference."
+}

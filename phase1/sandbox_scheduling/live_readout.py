@@ -98,6 +98,13 @@ def summarize(rows,blocks,arms=('pipeline','share2')):
         boundary='Two paired scheduling blocks, reused development tasks. No population significance, neural-workload replication or new-method claim.')
 
 
+def timely_returns(candidates,seconds):
+    if type(seconds) is not int or seconds<=0:raise ValueError('declared positive run budget')
+    if any(not finite(x.get('elapsed_seconds')) or x['elapsed_seconds']<0 for x in candidates):
+        raise ValueError('invalid return timestamp')
+    return [x for x in candidates if x['elapsed_seconds']<=seconds]
+
+
 def analyze(root,output,*,allocation_gpu_seconds):
     root=Path(root);output=Path(output)
     closed=read(root/'closed.json');plan=read(root/'plan.json')
@@ -121,11 +128,11 @@ def analyze(root,output,*,allocation_gpu_seconds):
         f=read(ep/'finished.json') if (ep/'finished.json').exists() else {}
         c=read(ep/'closed.json') if (ep/'closed.json').exists() else {}
         candidates=[read(p) for p in sorted(ep.glob('candidate-*.json')) if '.private.' not in p.name]
-        timely=[x for x in candidates if x['elapsed_seconds']<=600]
+        timely=timely_returns(candidates,plan.get('run_seconds',600))
         events=lines(ep/'events.jsonl')
         receipts=[read(p)['receipt'] for p in ep.glob('scored-*.json')]
         selected_verified=ground_scores(f,timely,receipts)
-        row=dict(**s,source_commit=plan['source_commit'],run_seconds=600,
+        row=dict(**s,source_commit=plan['source_commit'],run_seconds=plan.get('run_seconds',600),
             complete=c.get('returncode')==0 and c.get('cleanup_verified') is True and f.get('status') in ('completed','budget_exhausted'),
             native_valid=f.get('native_selected_valid') is True,native_score=f.get('native_selected_score'),
             native_score_verified=selected_verified,

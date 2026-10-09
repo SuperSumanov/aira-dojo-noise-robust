@@ -1,0 +1,22 @@
+{
+  "configs": 8,
+  "gpu_executions": 0,
+  "image_hash_verified": true,
+  "model_calls": 0,
+  "plan_sha256": "e201f64f3ddbc8e753751b8e412ebb6df840f4ea5ebea6da1cc21016d4828feb",
+  "private_task_path_absent": true,
+  "source_contracts": [
+    "original candidate bytes",
+    "original RNG prefix",
+    "original public view and external scorer",
+    "original image",
+    "240s candidate cap",
+    "one GPU/six CPUs for all",
+    "no generator or API",
+    "no protected/test reads",
+    "no old writer rerun",
+    "all failures charged",
+    "write-once fresh root"
+  ],
+  "source_input_score_pins_verified": true
+}

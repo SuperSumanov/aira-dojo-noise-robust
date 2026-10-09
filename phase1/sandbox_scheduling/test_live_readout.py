@@ -1,10 +1,17 @@
 import copy
 import unittest
 from live_search_trial_20261009 import schedule
-from live_readout import summarize,queue_verify,ground_scores
+from live_readout import summarize,queue_verify,ground_scores,timely_returns
 
 
 class ReadoutTests(unittest.TestCase):
+    def test_declared_budget_not_hardcoded_old_window(self):
+        rows=[{'elapsed_seconds':t} for t in (599,600,600.1,1499,1500,1500.1)]
+        self.assertEqual(len(timely_returns(rows,600)),2)
+        self.assertEqual(len(timely_returns(rows,1500)),5)
+        for bad in (-1,float('nan'),float('inf')):
+            with self.assertRaises(ValueError):timely_returns([{'elapsed_seconds':bad}],1500)
+        with self.assertRaises(ValueError):timely_returns(rows,True)
     def fixture(self):
         rows=[dict(**r,complete=True,native_valid=True,native_score=.5,
                    valid_returns=2 if r['arm']=='share2' else 1) for r in schedule()]

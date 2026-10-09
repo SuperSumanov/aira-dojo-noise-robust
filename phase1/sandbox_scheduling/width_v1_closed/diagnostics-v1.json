@@ -1,0 +1,772 @@
+{
+  "analysis_sha256": "6ebe90626e5cd5ce782fc39e341184913b406a8cc9589a432b551280b221b177",
+  "blocks": [
+    {
+      "arm": "pipeline",
+      "block": 0,
+      "complete": true,
+      "full_batch_return_seconds": 430.02031445503235,
+      "mean_return_seconds": 297.9126754999161,
+      "observed": true,
+      "ordered_return_seconds": [
+        165.64459681510925,
+        214.9002983570099,
+        381.0854923725128,
+        430.02031445503235
+      ],
+      "repeat": 0
+    },
+    {
+      "arm": "share2",
+      "block": 1,
+      "complete": true,
+      "full_batch_return_seconds": 169.8099982738495,
+      "mean_return_seconds": 127.3780569434166,
+      "observed": true,
+      "ordered_return_seconds": [
+        58.010249853134155,
+        115.90075135231018,
+        165.79122829437256,
+        169.8099982738495
+      ],
+      "repeat": 0
+    },
+    {
+      "arm": "share4",
+      "block": 2,
+      "complete": true,
+      "full_batch_return_seconds": 113.17889547348022,
+      "mean_return_seconds": 112.50655370950699,
+      "observed": true,
+      "ordered_return_seconds": [
+        111.9555230140686,
+        112.03100800514221,
+        112.86078834533691,
+        113.17889547348022
+      ],
+      "repeat": 0
+    },
+    {
+      "arm": "share2",
+      "block": 3,
+      "complete": true,
+      "full_batch_return_seconds": 258.2893831729889,
+      "mean_return_seconds": 146.03525012731552,
+      "observed": true,
+      "ordered_return_seconds": [
+        57.900415897369385,
+        108.2361352443695,
+        159.7150661945343,
+        258.2893831729889
+      ],
+      "repeat": 1
+    },
+    {
+      "arm": "share4",
+      "block": 4,
+      "complete": true,
+      "full_batch_return_seconds": 143.95749735832214,
+      "mean_return_seconds": 129.7977296113968,
+      "observed": true,
+      "ordered_return_seconds": [
+        115.5401542186737,
+        115.79789853096008,
+        143.89536833763123,
+        143.95749735832214
+      ],
+      "repeat": 1
+    },
+    {
+      "arm": "pipeline",
+      "block": 5,
+      "complete": false,
+      "observed": true,
+      "repeat": 1
+    },
+    {
+      "block": 6,
+      "complete": false,
+      "observed": false
+    },
+    {
+      "block": 7,
+      "complete": false,
+      "observed": false
+    },
+    {
+      "block": 8,
+      "complete": false,
+      "observed": false
+    }
+  ],
+  "boundary": "Post-result diagnosis, no gate change or selection. Missing third repeat stays missing. Exact observed numerical equality is not complete18/program coverage. Return-rank crossings are descriptive, not a new method, live quality gain, or proof of failure cause. Absence of named log events does not prove healthy transport.",
+  "frozen_complete_valid_comparison": false,
+  "frozen_summary_sha256": "c1dd1c6f746dd5502478a8eda32d30cf7b6c1796d280c307cc2bd45c631d8620",
+  "full_denominator": 36,
+  "job": "17308",
+  "observed_output_audit": [
+    {
+      "all_observed_decimal_tables_equal": true,
+      "all_observed_original_steps": true,
+      "expected_total": 18,
+      "observed_complete": 10,
+      "program": 0,
+      "required_steps": 150
+    },
+    {
+      "all_observed_decimal_tables_equal": true,
+      "all_observed_original_steps": true,
+      "expected_total": 18,
+      "observed_complete": 10,
+      "program": 1,
+      "required_steps": 640
+    }
+  ],
+  "plan_sha256": "783934f461321858efbca68c9b70505323729ba921f6c9aba002ff4c42f38c5c",
+  "rows": [
+    {
+      "arm": "pipeline",
+      "block": 0,
+      "candidate_started": true,
+      "error_type": null,
+      "index": 0,
+      "named_event_counts": {
+        "client_created": 1,
+        "executing_code": 6,
+        "getting_kernel_client": 1,
+        "starting_kernel": 1,
+        "waiting_ready": 3
+      },
+      "program": 0,
+      "repeat": 0,
+      "returncode": 0,
+      "status": "complete"
+    },
+    {
+      "arm": "pipeline",
+      "block": 0,
+      "candidate_started": true,
+      "error_type": null,
+      "index": 1,
+      "named_event_counts": {
+        "client_created": 1,
+        "executing_code": 6,
+        "getting_kernel_client": 1,
+        "starting_kernel": 1,
+        "waiting_ready": 3
+      },
+      "program": 1,
+      "repeat": 0,
+      "returncode": 0,
+      "status": "complete"
+    },
+    {
+      "arm": "pipeline",
+      "block": 0,
+      "candidate_started": true,
+      "error_type": null,
+      "index": 2,
+      "named_event_counts": {
+        "client_created": 1,
+        "executing_code": 6,
+        "getting_kernel_client": 1,
+        "starting_kernel": 1,
+        "waiting_ready": 3
+      },
+      "program": 0,
+      "repeat": 0,
+      "returncode": 0,
+      "status": "complete"
+    },
+    {
+      "arm": "pipeline",
+      "block": 0,
+      "candidate_started": true,
+      "error_type": null,
+      "index": 3,
+      "named_event_counts": {
+        "client_created": 1,
+        "executing_code": 6,
+        "getting_kernel_client": 1,
+        "starting_kernel": 1,
+        "waiting_ready": 3
+      },
+      "program": 1,
+      "repeat": 0,
+      "returncode": 0,
+      "status": "complete"
+    },
+    {
+      "arm": "share2",
+      "block": 1,
+      "candidate_started": true,
+      "error_type": null,
+      "index": 4,
+      "named_event_counts": {
+        "client_created": 1,
+        "executing_code": 6,
+        "getting_kernel_client": 1,
+        "starting_kernel": 1,
+        "waiting_ready": 3
+      },
+      "program": 0,
+      "repeat": 0,
+      "returncode": 0,
+      "status": "complete"
+    },
+    {
+      "arm": "share2",
+      "block": 1,
+      "candidate_started": true,
+      "error_type": null,
+      "index": 5,
+      "named_event_counts": {
+        "client_created": 1,
+        "executing_code": 6,
+        "getting_kernel_client": 1,
+        "starting_kernel": 1,
+        "waiting_ready": 3
+      },
+      "program": 1,
+      "repeat": 0,
+      "returncode": 0,
+      "status": "complete"
+    },
+    {
+      "arm": "share2",
+      "block": 1,
+      "candidate_started": true,
+      "error_type": null,
+      "index": 6,
+      "named_event_counts": {
+        "client_created": 1,
+        "executing_code": 6,
+        "getting_kernel_client": 1,
+        "starting_kernel": 1,
+        "waiting_ready": 3
+      },
+      "program": 0,
+      "repeat": 0,
+      "returncode": 0,
+      "status": "complete"
+    },
+    {
+      "arm": "share2",
+      "block": 1,
+      "candidate_started": true,
+      "error_type": null,
+      "index": 7,
+      "named_event_counts": {
+        "client_created": 1,
+        "executing_code": 6,
+        "getting_kernel_client": 1,
+        "starting_kernel": 1,
+        "waiting_ready": 3
+      },
+      "program": 1,
+      "repeat": 0,
+      "returncode": 0,
+      "status": "complete"
+    },
+    {
+      "arm": "share4",
+      "block": 2,
+      "candidate_started": true,
+      "error_type": null,
+      "index": 8,
+      "named_event_counts": {
+        "client_created": 1,
+        "executing_code": 6,
+        "getting_kernel_client": 1,
+        "starting_kernel": 1,
+        "waiting_ready": 3
+      },
+      "program": 0,
+      "repeat": 0,
+      "returncode": 0,
+      "status": "complete"
+    },
+    {
+      "arm": "share4",
+      "block": 2,
+      "candidate_started": true,
+      "error_type": null,
+      "index": 9,
+      "named_event_counts": {
+        "client_created": 1,
+        "executing_code": 6,
+        "getting_kernel_client": 1,
+        "starting_kernel": 1,
+        "waiting_ready": 3
+      },
+      "program": 1,
+      "repeat": 0,
+      "returncode": 0,
+      "status": "complete"
+    },
+    {
+      "arm": "share4",
+      "block": 2,
+      "candidate_started": true,
+      "error_type": null,
+      "index": 10,
+      "named_event_counts": {
+        "client_created": 1,
+        "executing_code": 6,
+        "getting_kernel_client": 1,
+        "starting_kernel": 1,
+        "waiting_ready": 3
+      },
+      "program": 0,
+      "repeat": 0,
+      "returncode": 0,
+      "status": "complete"
+    },
+    {
+      "arm": "share4",
+      "block": 2,
+      "candidate_started": true,
+      "error_type": null,
+      "index": 11,
+      "named_event_counts": {
+        "client_created": 1,
+        "executing_code": 6,
+        "getting_kernel_client": 1,
+        "starting_kernel": 1,
+        "waiting_ready": 3
+      },
+      "program": 1,
+      "repeat": 0,
+      "returncode": 0,
+      "status": "complete"
+    },
+    {
+      "arm": "share2",
+      "block": 3,
+      "candidate_started": true,
+      "error_type": null,
+      "index": 12,
+      "named_event_counts": {
+        "client_created": 1,
+        "executing_code": 6,
+        "getting_kernel_client": 1,
+        "starting_kernel": 1,
+        "waiting_ready": 3
+      },
+      "program": 1,
+      "repeat": 1,
+      "returncode": 0,
+      "status": "complete"
+    },
+    {
+      "arm": "share2",
+      "block": 3,
+      "candidate_started": true,
+      "error_type": null,
+      "index": 13,
+      "named_event_counts": {
+        "client_created": 1,
+        "executing_code": 6,
+        "getting_kernel_client": 1,
+        "starting_kernel": 1,
+        "waiting_ready": 3
+      },
+      "program": 0,
+      "repeat": 1,
+      "returncode": 0,
+      "status": "complete"
+    },
+    {
+      "arm": "share2",
+      "block": 3,
+      "candidate_started": true,
+      "error_type": null,
+      "index": 14,
+      "named_event_counts": {
+        "client_created": 1,
+        "executing_code": 6,
+        "getting_kernel_client": 1,
+        "starting_kernel": 1,
+        "waiting_ready": 3
+      },
+      "program": 1,
+      "repeat": 1,
+      "returncode": 0,
+      "status": "complete"
+    },
+    {
+      "arm": "share2",
+      "block": 3,
+      "candidate_started": true,
+      "error_type": null,
+      "index": 15,
+      "named_event_counts": {
+        "client_created": 1,
+        "executing_code": 6,
+        "getting_kernel_client": 1,
+        "starting_kernel": 1,
+        "waiting_ready": 3
+      },
+      "program": 0,
+      "repeat": 1,
+      "returncode": 0,
+      "status": "complete"
+    },
+    {
+      "arm": "share4",
+      "block": 4,
+      "candidate_started": true,
+      "error_type": null,
+      "index": 16,
+      "named_event_counts": {
+        "client_created": 1,
+        "executing_code": 6,
+        "getting_kernel_client": 1,
+        "starting_kernel": 1,
+        "waiting_ready": 3
+      },
+      "program": 1,
+      "repeat": 1,
+      "returncode": 0,
+      "status": "complete"
+    },
+    {
+      "arm": "share4",
+      "block": 4,
+      "candidate_started": true,
+      "error_type": null,
+      "index": 17,
+      "named_event_counts": {
+        "client_created": 1,
+        "executing_code": 6,
+        "getting_kernel_client": 1,
+        "starting_kernel": 1,
+        "waiting_ready": 3
+      },
+      "program": 0,
+      "repeat": 1,
+      "returncode": 0,
+      "status": "complete"
+    },
+    {
+      "arm": "share4",
+      "block": 4,
+      "candidate_started": true,
+      "error_type": null,
+      "index": 18,
+      "named_event_counts": {
+        "client_created": 1,
+        "executing_code": 6,
+        "getting_kernel_client": 1,
+        "starting_kernel": 1,
+        "waiting_ready": 3
+      },
+      "program": 1,
+      "repeat": 1,
+      "returncode": 0,
+      "status": "complete"
+    },
+    {
+      "arm": "share4",
+      "block": 4,
+      "candidate_started": true,
+      "error_type": null,
+      "index": 19,
+      "named_event_counts": {
+        "client_created": 1,
+        "executing_code": 6,
+        "getting_kernel_client": 1,
+        "starting_kernel": 1,
+        "waiting_ready": 3
+      },
+      "program": 0,
+      "repeat": 1,
+      "returncode": 0,
+      "status": "complete"
+    },
+    {
+      "arm": "pipeline",
+      "block": 5,
+      "candidate_started": false,
+      "cell_receipts": [
+        {
+          "exec_seconds": 3.218172423541546,
+          "exit_code": 0,
+          "stage": 0,
+          "timed_out": false,
+          "timeout_phase": null
+        }
+      ],
+      "error_type": "RuntimeError",
+      "index": 20,
+      "named_event_counts": {
+        "client_created": 1,
+        "executing_code": 2,
+        "getting_kernel_client": 1,
+        "starting_kernel": 1,
+        "waiting_ready": 1
+      },
+      "named_event_order": [
+        "starting_kernel",
+        "getting_kernel_client",
+        "client_created",
+        "waiting_ready",
+        "executing_code",
+        "executing_code"
+      ],
+      "program": 1,
+      "repeat": 1,
+      "returncode": 1,
+      "status": "failed"
+    },
+    {
+      "arm": "pipeline",
+      "block": 5,
+      "candidate_started": false,
+      "cell_receipts": [
+        {
+          "exec_seconds": 120.00047089718282,
+          "exit_code": 1,
+          "stage": 0,
+          "timed_out": true,
+          "timeout_phase": null
+        }
+      ],
+      "error_type": "ValueError",
+      "index": 21,
+      "named_event_counts": {
+        "client_created": 1,
+        "getting_kernel_client": 1,
+        "kernel_not_ready": 1,
+        "starting_kernel": 1,
+        "waiting_ready": 1
+      },
+      "named_event_order": [
+        "starting_kernel",
+        "getting_kernel_client",
+        "client_created",
+        "waiting_ready",
+        "kernel_not_ready"
+      ],
+      "program": 0,
+      "repeat": 1,
+      "returncode": 1,
+      "status": "failed"
+    },
+    {
+      "arm": "pipeline",
+      "block": 5,
+      "candidate_started": false,
+      "cell_receipts": [
+        {
+          "exec_seconds": 2.9569075675681233,
+          "exit_code": 0,
+          "stage": 0,
+          "timed_out": false,
+          "timeout_phase": null
+        }
+      ],
+      "error_type": "RuntimeError",
+      "index": 22,
+      "named_event_counts": {
+        "client_created": 1,
+        "executing_code": 2,
+        "getting_kernel_client": 1,
+        "starting_kernel": 1,
+        "waiting_ready": 1
+      },
+      "named_event_order": [
+        "starting_kernel",
+        "getting_kernel_client",
+        "client_created",
+        "waiting_ready",
+        "executing_code",
+        "executing_code"
+      ],
+      "program": 1,
+      "repeat": 1,
+      "returncode": 1,
+      "status": "failed"
+    },
+    {
+      "arm": "pipeline",
+      "block": 5,
+      "candidate_started": false,
+      "cell_receipts": [
+        {
+          "exec_seconds": 3.186957693658769,
+          "exit_code": 0,
+          "stage": 0,
+          "timed_out": false,
+          "timeout_phase": null
+        }
+      ],
+      "error_type": "RuntimeError",
+      "index": 23,
+      "named_event_counts": {
+        "client_created": 1,
+        "executing_code": 2,
+        "getting_kernel_client": 1,
+        "starting_kernel": 1,
+        "waiting_ready": 1
+      },
+      "named_event_order": [
+        "starting_kernel",
+        "getting_kernel_client",
+        "client_created",
+        "waiting_ready",
+        "executing_code",
+        "executing_code"
+      ],
+      "program": 0,
+      "repeat": 1,
+      "returncode": 1,
+      "status": "failed"
+    },
+    {
+      "arm": "share4",
+      "block": 6,
+      "candidate_started": false,
+      "index": 24,
+      "program": 0,
+      "repeat": 2,
+      "status": "not_started"
+    },
+    {
+      "arm": "share4",
+      "block": 6,
+      "candidate_started": false,
+      "index": 25,
+      "program": 1,
+      "repeat": 2,
+      "status": "not_started"
+    },
+    {
+      "arm": "share4",
+      "block": 6,
+      "candidate_started": false,
+      "index": 26,
+      "program": 0,
+      "repeat": 2,
+      "status": "not_started"
+    },
+    {
+      "arm": "share4",
+      "block": 6,
+      "candidate_started": false,
+      "index": 27,
+      "program": 1,
+      "repeat": 2,
+      "status": "not_started"
+    },
+    {
+      "arm": "pipeline",
+      "block": 7,
+      "candidate_started": false,
+      "index": 28,
+      "program": 0,
+      "repeat": 2,
+      "status": "not_started"
+    },
+    {
+      "arm": "pipeline",
+      "block": 7,
+      "candidate_started": false,
+      "index": 29,
+      "program": 1,
+      "repeat": 2,
+      "status": "not_started"
+    },
+    {
+      "arm": "pipeline",
+      "block": 7,
+      "candidate_started": false,
+      "index": 30,
+      "program": 0,
+      "repeat": 2,
+      "status": "not_started"
+    },
+    {
+      "arm": "pipeline",
+      "block": 7,
+      "candidate_started": false,
+      "index": 31,
+      "program": 1,
+      "repeat": 2,
+      "status": "not_started"
+    },
+    {
+      "arm": "share2",
+      "block": 8,
+      "candidate_started": false,
+      "index": 32,
+      "program": 0,
+      "repeat": 2,
+      "status": "not_started"
+    },
+    {
+      "arm": "share2",
+      "block": 8,
+      "candidate_started": false,
+      "index": 33,
+      "program": 1,
+      "repeat": 2,
+      "status": "not_started"
+    },
+    {
+      "arm": "share2",
+      "block": 8,
+      "candidate_started": false,
+      "index": 34,
+      "program": 0,
+      "repeat": 2,
+      "status": "not_started"
+    },
+    {
+      "arm": "share2",
+      "block": 8,
+      "candidate_started": false,
+      "index": 35,
+      "program": 1,
+      "repeat": 2,
+      "status": "not_started"
+    }
+  ],
+  "share4_minus_share2_return_rank_comparisons": [
+    {
+      "a_no_later_at_every_return_rank": false,
+      "b_no_later_at_every_return_rank": false,
+      "crosses": true,
+      "observed": true,
+      "repeat": 0,
+      "return_rank_differences_seconds": [
+        53.94527316093445,
+        -3.8697433471679688,
+        -52.930439949035645,
+        -56.63110280036926
+      ]
+    },
+    {
+      "a_no_later_at_every_return_rank": false,
+      "b_no_later_at_every_return_rank": false,
+      "crosses": true,
+      "observed": true,
+      "repeat": 1,
+      "return_rank_differences_seconds": [
+        57.63973832130432,
+        7.561763286590576,
+        -15.819697856903076,
+        -114.33188581466675
+      ]
+    },
+    {
+      "observed": false,
+      "repeat": 2
+    }
+  ],
+  "status_counts": {
+    "complete": 20,
+    "failed": 4,
+    "not_started": 12
+  }
+}

@@ -2,6 +2,9 @@
 更新：2026-10-09香港；旧79行完整留在Git 2b634744a92d17e5732419f11be30f6c0e9da04a。原实验与授权不因压缩改变。
 
 ## 当前六小时窗口
+- 17:42最新：17308已FAILED，17:05:19–17:27:24，1325GPU秒；36/24尝试/20完成/4失败/12未开始。episode21 cell0内核就绪120.00047089718282秒超时，20/22/23在共同屏障被阻断，四个均未开始候选。原门false，f13dfb条件live2/4不准启动，不重开root/复用余额。下面17:08 RUNNING仅历史观察；当前无本轮GPU任务。
+- width_v1_closed四文件远近端hash一致；summary c1dd1c6f746dd5502478a8eda32d30cf7b6c1796d280c307cc2bd45c631d8620，closed59e7d1d8092b90a473d7a2f1b010b44f51fd9498b8e5e9f6a38f592d563248d2。冻结readout一次闭合；独立diagnostics-v1 4f974ebb3578250cee3cd71311cc5e5486843ebd3b940838859a55f00fa2a7a8，20已观察输出Decimal完全相同、步数150/640均保留。原摘要equivalence=false因缺覆盖，不能说数值不一致；4个CPU诊断测试通过。
+- width两完整2/4配对整批比1.5013821747034244/1.7927649723239687；四并发首返晚53.94527316093445/57.63973832130432秒，末返早56.63110280036926/114.33188581466675秒，第三配对missing。描述性权衡而非门通过/独特方法/live收益。窗口实耗18263GPU秒=5.073055555555555GPUh，包含v5/CPUprobe/v6/v7/17308，不含14:11之前v4。
 - 用户14:11授权持续自主推进至约20:11香港；尚未完成窗口，不提前宣称六小时研究。主线R14沙箱资源调度，不恢复旧critic/HCE/Probe/TD/score-channel/K≥1。
 - 活跃checkout：C:/Research/New/my_project/MLEvolve/_codex_tmp/publication-feedback-20261001。fetch→CURRENT_DIRECTION→ROUTE_DECISIONS→本交接；旧aira-dojo-codex-20260813的用户dirty保留。
 - 14:52独立CPU诊断17267完成：服务12物理核/执行6，物理和逻辑CPU集合均不重叠，36GPU秒。标准Slurm nomultithread hint有效，不叠加冲突cpu-bind；不是科学收益。先前session92814连接超时未提交，现场核无intent后才成功新提交。
@@ -43,7 +46,7 @@
 - SchedMate已有源码/历史/日志调度与干扰撤销；MARS调度论文已有跨阶段遥测、AIMD准入与continuation优先。不能把队列阻塞、动态准入或适用MLE当首创；尚无胜这些强参照或重要新方法的确认。
 
 ## 恢复与安全
-- 15:38己方已安全快进push到2e571ee53218ec8d6d6dc5d20b3beea7084c5d1a；19提交全diff/62文件凭据扫描0命中，1敏感文件名是已审live_environment.py源码、不含环境值；未上传raw候选/标签/预测。16:23前fetch一度DNS失败，随后成功；senior a5519bc8e0c85d0a3bd78c478ac8332120d415d9(15:42)，仅读提交/path元数据，更新属offline-GRPO/数据处理，未读raw文档或改分支。己方58b817db/4a19588c尚未push。
+- 17:14己方已安全快进push到624f41afee10d7ce85b2732ea4a7b35df511e403（含58b817db/4a19588c/f13dfb及v7安全闭合）；4提交32文件安全扫描0凭据命中/0敏感文件名，未上传raw候选/标签/预测。17:33fetch仍相同；senior a5519bc8e0c85d0a3bd78c478ac8332120d415d9(15:42)，仅读提交/path元数据，更新属offline-GRPO/数据处理，未读raw文档或改分支。17308闭合待另commit。
 - 未跟踪报告phase1/reports/给学长_MLE沙箱资源调度进展_20261009.md是用户上一轮要求、13:01版本，保留，不冒充最新或主动另写长报告。
 - SSH linux5；PY=/research/d7/spc/yzyang4/venvs/aira/bin/python；SLURM_CONF=/opt1/slurm/gpu-slurm.conf。gpu27/gpu28 RTX3090已知兼容；不投projgpu39、不改驱动/权限或静默退CPU。旧Held12535不动。
 - first-960/Target-300/Target-522、D_val、官方test继续关闭；16560数值导出仍待单独授权。不输出密钥/raw候选/回复/预测/标签/权重；不使用付费API、不更新agent底座。

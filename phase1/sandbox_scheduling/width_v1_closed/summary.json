@@ -1,0 +1,303 @@
+{
+  "CPU_GPU_identity_verified": true,
+  "allocation_exit": "1:0",
+  "allocation_gpu_hours": 0.3680555555555556,
+  "allocation_gpu_seconds": 1325,
+  "allocation_state": "FAILED",
+  "assigned": 36,
+  "attempted": 24,
+  "blocks": [
+    {
+      "admission_verified": true,
+      "announced_gateway_ports_disjoint": true,
+      "arm": "pipeline",
+      "block": 0,
+      "completed": 4,
+      "first_return_seconds": 165.64459681510925,
+      "last_return_seconds": 430.02031445503235,
+      "makespan": 430.2517898082733,
+      "mean_return_seconds": 297.9126754999161,
+      "peak_execution_leases": 1,
+      "peak_gpu_memory_mib": 1558.0,
+      "peak_resident_gpu_clients": 1,
+      "repeat": 0,
+      "telemetry_samples": 771
+    },
+    {
+      "admission_verified": true,
+      "announced_gateway_ports_disjoint": true,
+      "arm": "share2",
+      "block": 1,
+      "completed": 4,
+      "first_return_seconds": 58.010249853134155,
+      "last_return_seconds": 169.8099982738495,
+      "makespan": 170.21248269081116,
+      "mean_return_seconds": 127.3780569434166,
+      "peak_execution_leases": 2,
+      "peak_gpu_memory_mib": 2639.0,
+      "peak_resident_gpu_clients": 2,
+      "repeat": 0,
+      "telemetry_samples": 305
+    },
+    {
+      "admission_verified": true,
+      "announced_gateway_ports_disjoint": true,
+      "arm": "share4",
+      "block": 2,
+      "completed": 4,
+      "first_return_seconds": 111.9555230140686,
+      "last_return_seconds": 113.17889547348022,
+      "makespan": 113.37052321434021,
+      "mean_return_seconds": 112.50655370950699,
+      "peak_execution_leases": 4,
+      "peak_gpu_memory_mib": 5274.0,
+      "peak_resident_gpu_clients": 4,
+      "repeat": 0,
+      "telemetry_samples": 202
+    },
+    {
+      "admission_verified": true,
+      "announced_gateway_ports_disjoint": true,
+      "arm": "share2",
+      "block": 3,
+      "completed": 4,
+      "first_return_seconds": 57.900415897369385,
+      "last_return_seconds": 258.2893831729889,
+      "makespan": 258.4719295501709,
+      "mean_return_seconds": 146.03525012731552,
+      "peak_execution_leases": 2,
+      "peak_gpu_memory_mib": 2639.0,
+      "peak_resident_gpu_clients": 2,
+      "repeat": 1,
+      "telemetry_samples": 463
+    },
+    {
+      "admission_verified": true,
+      "announced_gateway_ports_disjoint": true,
+      "arm": "share4",
+      "block": 4,
+      "completed": 4,
+      "first_return_seconds": 115.5401542186737,
+      "last_return_seconds": 143.95749735832214,
+      "makespan": 144.17502212524414,
+      "mean_return_seconds": 129.7977296113968,
+      "peak_execution_leases": 4,
+      "peak_gpu_memory_mib": 5274.0,
+      "peak_resident_gpu_clients": 4,
+      "repeat": 1,
+      "telemetry_samples": 256
+    },
+    {
+      "admission_verified": false,
+      "announced_gateway_ports_disjoint": true,
+      "arm": "pipeline",
+      "block": 5,
+      "completed": 0,
+      "first_return_seconds": null,
+      "last_return_seconds": null,
+      "makespan": 127.90210676193237,
+      "mean_return_seconds": null,
+      "peak_execution_leases": 0,
+      "peak_gpu_memory_mib": 4.0,
+      "peak_resident_gpu_clients": 0,
+      "repeat": 1,
+      "telemetry_samples": 227
+    }
+  ],
+  "boundary": "Two reused neural programs, two copies each, same seed42, three scheduling repeats. Exact outputs and steps are not quality/generalization. Resident GPU clients are not concurrent kernels. All failures retained; incomplete ratios are descriptive, not a rescued comparison.",
+  "closed_sha256": "59e7d1d8092b90a473d7a2f1b010b44f51fd9498b8e5e9f6a38f592d563248d2",
+  "complete": 20,
+  "complete_valid_comparison": false,
+  "controller_error": "ValueError",
+  "job": "17308",
+  "output_equivalence": [
+    {
+      "exact_numeric_equal": false,
+      "expected": 18,
+      "original_steps_preserved": false,
+      "present": 10,
+      "program": 0
+    },
+    {
+      "exact_numeric_equal": false,
+      "expected": 18,
+      "original_steps_preserved": false,
+      "present": 10,
+      "program": 1
+    }
+  ],
+  "plan_sha256": "783934f461321858efbca68c9b70505323729ba921f6c9aba002ff4c42f38c5c",
+  "ratios": {
+    "pipeline_over_share2": {
+      "median": null,
+      "paired": [
+        2.5277334717561244,
+        null,
+        null
+      ],
+      "sample_std": null
+    },
+    "pipeline_over_share4": {
+      "median": null,
+      "paired": [
+        3.795093976895847,
+        null,
+        null
+      ],
+      "sample_std": null
+    },
+    "share2_over_share4": {
+      "median": null,
+      "paired": [
+        1.5013821747034244,
+        1.7927649723239687,
+        null
+      ],
+      "sample_std": null
+    }
+  },
+  "readout_source_sha256": "359c34e48858e81cb71e369c5cb0d5b30df0ee8196e02dfa5a6bd47a756cd77f",
+  "source_commit": "4a19588cb24cea8ed1d1b91f563d4ed06a68f4af",
+  "stages": [
+    {
+      "candidate": 149.60988783836365,
+      "index": 0,
+      "queue": 5.583832502365112,
+      "return_seconds": 163.57097268104553,
+      "startup": 6.307892560958862
+    },
+    {
+      "candidate": 44.88415765762329,
+      "index": 1,
+      "queue": 157.5460820198059,
+      "return_seconds": 212.81183862686157,
+      "startup": 6.23841404914856
+    },
+    {
+      "candidate": 163.94614124298096,
+      "index": 2,
+      "queue": 206.53101181983948,
+      "return_seconds": 379.0035538673401,
+      "startup": 6.498624086380005
+    },
+    {
+      "candidate": 44.81340289115906,
+      "index": 3,
+      "queue": 367.3475329875946,
+      "return_seconds": 422.5212182998657,
+      "startup": 6.419847726821899
+    },
+    {
+      "candidate": 105.09599041938782,
+      "index": 4,
+      "queue": 0.06504511833190918,
+      "return_seconds": 113.50068497657776,
+      "startup": 6.294606447219849
+    },
+    {
+      "candidate": 45.19004201889038,
+      "index": 5,
+      "queue": 0.05756521224975586,
+      "return_seconds": 55.659035444259644,
+      "startup": 6.371489524841309
+    },
+    {
+      "candidate": 109.47708892822266,
+      "index": 6,
+      "queue": 49.552314043045044,
+      "return_seconds": 167.46501183509827,
+      "startup": 6.366409778594971
+    },
+    {
+      "candidate": 45.458757400512695,
+      "index": 7,
+      "queue": 107.54778742790222,
+      "return_seconds": 163.40750741958618,
+      "startup": 6.1748058795928955
+    },
+    {
+      "candidate": 99.56129598617554,
+      "index": 8,
+      "queue": 0.05835080146789551,
+      "return_seconds": 108.24124836921692,
+      "startup": 6.388074159622192
+    },
+    {
+      "candidate": 98.59753513336182,
+      "index": 9,
+      "queue": 0.1633291244506836,
+      "return_seconds": 109.40248131752014,
+      "startup": 6.237004518508911
+    },
+    {
+      "candidate": 99.53548955917358,
+      "index": 10,
+      "queue": 0.05776023864746094,
+      "return_seconds": 108.31442403793335,
+      "startup": 6.412994384765625
+    },
+    {
+      "candidate": 98.45351719856262,
+      "index": 11,
+      "queue": 0.22156929969787598,
+      "return_seconds": 109.07886981964111,
+      "startup": 6.2058093547821045
+    },
+    {
+      "candidate": 45.45209550857544,
+      "index": 12,
+      "queue": 0.05642247200012207,
+      "return_seconds": 55.80674600601196,
+      "startup": 6.342817544937134
+    },
+    {
+      "candidate": 148.9671130180359,
+      "index": 13,
+      "queue": 0.05682992935180664,
+      "return_seconds": 157.61748504638672,
+      "startup": 6.365613698959351
+    },
+    {
+      "candidate": 45.93538761138916,
+      "index": 14,
+      "queue": 49.65434002876282,
+      "return_seconds": 106.17134499549866,
+      "startup": 6.40832781791687
+    },
+    {
+      "candidate": 147.4919891357422,
+      "index": 15,
+      "queue": 100.16932487487793,
+      "return_seconds": 256.2302510738373,
+      "startup": 6.23431658744812
+    },
+    {
+      "candidate": 95.63013219833374,
+      "index": 16,
+      "queue": 0.006684541702270508,
+      "return_seconds": 107.31058955192566,
+      "startup": 7.1227123737335205
+    },
+    {
+      "candidate": 126.19659233093262,
+      "index": 17,
+      "queue": 5.988309621810913,
+      "return_seconds": 141.26526427268982,
+      "startup": 6.687433958053589
+    },
+    {
+      "candidate": 95.90981459617615,
+      "index": 18,
+      "queue": 6.0856969356536865,
+      "return_seconds": 113.18688225746155,
+      "startup": 6.679670095443726
+    },
+    {
+      "candidate": 126.13479399681091,
+      "index": 19,
+      "queue": 6.112569570541382,
+      "return_seconds": 141.20974564552307,
+      "startup": 6.631519794464111
+    }
+  ]
+}

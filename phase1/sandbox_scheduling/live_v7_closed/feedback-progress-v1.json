@@ -1,0 +1,1321 @@
+{
+  "analysis_sha256": "74cd7584a55a42be184d37177e0bed5f35b1a5c0c923676a510ce07f3332e896",
+  "blocks": [
+    {
+      "arm": "pipeline",
+      "block": 0,
+      "candidate_returns": 12,
+      "exact_valid_return_codes_missing_from_final_journal": 0,
+      "generation_calls": 27,
+      "timely_valid_feedback_followed_by_next_generation": 6,
+      "timely_valid_feedback_followed_by_next_operation": 4,
+      "timely_valid_feedback_followed_by_next_return": 4,
+      "valid_returns": 6
+    },
+    {
+      "arm": "share2",
+      "block": 1,
+      "candidate_returns": 14,
+      "exact_valid_return_codes_missing_from_final_journal": 0,
+      "generation_calls": 32,
+      "timely_valid_feedback_followed_by_next_generation": 6,
+      "timely_valid_feedback_followed_by_next_operation": 5,
+      "timely_valid_feedback_followed_by_next_return": 4,
+      "valid_returns": 6
+    },
+    {
+      "arm": "share2",
+      "block": 2,
+      "candidate_returns": 11,
+      "exact_valid_return_codes_missing_from_final_journal": 0,
+      "generation_calls": 26,
+      "timely_valid_feedback_followed_by_next_generation": 5,
+      "timely_valid_feedback_followed_by_next_operation": 3,
+      "timely_valid_feedback_followed_by_next_return": 3,
+      "valid_returns": 5
+    },
+    {
+      "arm": "pipeline",
+      "block": 3,
+      "candidate_returns": 4,
+      "exact_valid_return_codes_missing_from_final_journal": 0,
+      "generation_calls": 12,
+      "timely_valid_feedback_followed_by_next_generation": 1,
+      "timely_valid_feedback_followed_by_next_operation": 1,
+      "timely_valid_feedback_followed_by_next_return": 0,
+      "valid_returns": 1
+    }
+  ],
+  "boundary": "Post-result descriptive exposure; no counterfactual shifting/replay, no change of frozen gates. Event order does not establish semantic feedback use or mediation. Recorded-node role usage can miss interrupted calls; not total cost. Missing exact-code match may reflect representation, not proven lost solution. September action-delivery result is prior engineering evidence, not a new mechanism here.",
+  "frozen_primary_sha256": "f662677995ab85a61766dbf271cf2b93db89f9937c57a7048414d324e96eb859",
+  "plan_sha256": "86aa8f7a3d534ef1eaaa5475482a8838fe29c06f1ee30cb367cc05aae411c774",
+  "rows": [
+    {
+      "arm": "pipeline",
+      "block": 0,
+      "candidate_returns": 2,
+      "event_sha256": "cd90b1055438299613bb89bae5f9fd4df1ac66fd0e6f259b2a816b9a2ea1ac9c",
+      "exact_valid_return_codes_missing_from_final_journal": 0,
+      "feedback_progression": [
+        {
+          "completed_generation_calls_before_next_operation": 2,
+          "generation_calls_before_next_operation": 2,
+          "next_candidate_admitted_seconds": 408.8154958402738,
+          "next_candidate_operation_ready_seconds": 389.2312795612961,
+          "next_generation_started": true,
+          "next_return_valid": false,
+          "returned_seconds": 280.14151680096984,
+          "subsequent_candidate_returned": true,
+          "valid": false
+        },
+        {
+          "completed_generation_calls_before_next_operation": 2,
+          "generation_calls_before_next_operation": 2,
+          "next_candidate_admitted_seconds": 597.9056206271052,
+          "next_candidate_operation_ready_seconds": 500.3173474399373,
+          "next_generation_started": true,
+          "next_return_valid": null,
+          "returned_seconds": 414.21374806948006,
+          "subsequent_candidate_returned": false,
+          "valid": false
+        }
+      ],
+      "generation_calls": 5,
+      "index": 0,
+      "journal_exists": true,
+      "journal_sha256": "9254edf39ca136d9869fe2dd73599cd7b160d22270acb448937ef027717547f2",
+      "recorded_node_calls": {
+        "analysis": {
+          "calls": 2,
+          "completion_tokens": 260,
+          "latency_seconds": 13.009011317044497,
+          "missing_usage": 0,
+          "prompt_tokens": 12265
+        },
+        "debug": {
+          "calls": 1,
+          "completion_tokens": 3238,
+          "latency_seconds": 100.78905456047505,
+          "missing_usage": 0,
+          "prompt_tokens": 8628
+        },
+        "draft": {
+          "calls": 1,
+          "completion_tokens": 3542,
+          "latency_seconds": 103.30841157305986,
+          "missing_usage": 0,
+          "prompt_tokens": 5061
+        },
+        "improve": {
+          "calls": 0,
+          "completion_tokens": 0,
+          "latency_seconds": 0.0,
+          "missing_usage": 0,
+          "prompt_tokens": 0
+        }
+      },
+      "repeat": 0,
+      "seed": 142901,
+      "slot": 0,
+      "task": "random-acts-of-pizza",
+      "timely_valid_feedback_followed_by_next_generation": 0,
+      "timely_valid_feedback_followed_by_next_operation": 0,
+      "timely_valid_feedback_followed_by_next_return": 0,
+      "valid_returns": 0
+    },
+    {
+      "arm": "pipeline",
+      "block": 0,
+      "candidate_returns": 4,
+      "event_sha256": "91855c4b4393202abce44612ca2bb10a79068332662e4db8e705222e5eb85e09",
+      "exact_valid_return_codes_missing_from_final_journal": 0,
+      "feedback_progression": [
+        {
+          "completed_generation_calls_before_next_operation": 2,
+          "generation_calls_before_next_operation": 2,
+          "next_candidate_admitted_seconds": 316.9320568656549,
+          "next_candidate_operation_ready_seconds": 225.94198133423924,
+          "next_generation_started": true,
+          "next_return_valid": false,
+          "returned_seconds": 187.05022005736828,
+          "subsequent_candidate_returned": true,
+          "valid": true
+        },
+        {
+          "completed_generation_calls_before_next_operation": 2,
+          "generation_calls_before_next_operation": 2,
+          "next_candidate_admitted_seconds": 373.358305814676,
+          "next_candidate_operation_ready_seconds": 369.7960424600169,
+          "next_generation_started": true,
+          "next_return_valid": true,
+          "returned_seconds": 323.9788269549608,
+          "subsequent_candidate_returned": true,
+          "valid": false
+        },
+        {
+          "completed_generation_calls_before_next_operation": 2,
+          "generation_calls_before_next_operation": 2,
+          "next_candidate_admitted_seconds": 592.9486684743315,
+          "next_candidate_operation_ready_seconds": 453.64272604323924,
+          "next_generation_started": true,
+          "next_return_valid": false,
+          "returned_seconds": 408.81077757291496,
+          "subsequent_candidate_returned": true,
+          "valid": true
+        },
+        {
+          "completed_generation_calls_before_next_operation": 0,
+          "generation_calls_before_next_operation": 1,
+          "next_candidate_admitted_seconds": null,
+          "next_candidate_operation_ready_seconds": null,
+          "next_generation_started": true,
+          "next_return_valid": null,
+          "returned_seconds": 597.857415098697,
+          "subsequent_candidate_returned": false,
+          "valid": false
+        }
+      ],
+      "generation_calls": 8,
+      "index": 1,
+      "journal_exists": true,
+      "journal_sha256": "bad70f91459597ba54834e0af388f7e816147846a21d5368cd9ff72e224bcd21",
+      "recorded_node_calls": {
+        "analysis": {
+          "calls": 3,
+          "completion_tokens": 263,
+          "latency_seconds": 19.56755030527711,
+          "missing_usage": 0,
+          "prompt_tokens": 12873
+        },
+        "debug": {
+          "calls": 1,
+          "completion_tokens": 1077,
+          "latency_seconds": 34.848393940366805,
+          "missing_usage": 0,
+          "prompt_tokens": 5034
+        },
+        "draft": {
+          "calls": 2,
+          "completion_tokens": 4178,
+          "latency_seconds": 120.08894384931773,
+          "missing_usage": 0,
+          "prompt_tokens": 7606
+        },
+        "improve": {
+          "calls": 0,
+          "completion_tokens": 0,
+          "latency_seconds": 0.0,
+          "missing_usage": 0,
+          "prompt_tokens": 0
+        }
+      },
+      "repeat": 0,
+      "seed": 142902,
+      "slot": 1,
+      "task": "spooky-author-identification",
+      "timely_valid_feedback_followed_by_next_generation": 2,
+      "timely_valid_feedback_followed_by_next_operation": 2,
+      "timely_valid_feedback_followed_by_next_return": 2,
+      "valid_returns": 2
+    },
+    {
+      "arm": "pipeline",
+      "block": 0,
+      "candidate_returns": 3,
+      "event_sha256": "3407ef1f41e5f224e9b09ab9b89af50c9f992326df5489f2673f02b811a78fc7",
+      "exact_valid_return_codes_missing_from_final_journal": 0,
+      "feedback_progression": [
+        {
+          "completed_generation_calls_before_next_operation": 2,
+          "generation_calls_before_next_operation": 2,
+          "next_candidate_admitted_seconds": 323.9852062044665,
+          "next_candidate_operation_ready_seconds": 300.40856151934713,
+          "next_generation_started": true,
+          "next_return_valid": false,
+          "returned_seconds": 208.95547511987388,
+          "subsequent_candidate_returned": true,
+          "valid": true
+        },
+        {
+          "completed_generation_calls_before_next_operation": 2,
+          "generation_calls_before_next_operation": 2,
+          "next_candidate_admitted_seconds": 581.7572700968012,
+          "next_candidate_operation_ready_seconds": 439.66588329989463,
+          "next_generation_started": true,
+          "next_return_valid": true,
+          "returned_seconds": 330.23018044792116,
+          "subsequent_candidate_returned": true,
+          "valid": false
+        },
+        {
+          "completed_generation_calls_before_next_operation": 1,
+          "generation_calls_before_next_operation": 2,
+          "next_candidate_admitted_seconds": null,
+          "next_candidate_operation_ready_seconds": null,
+          "next_generation_started": true,
+          "next_return_valid": null,
+          "returned_seconds": 592.9005783079192,
+          "subsequent_candidate_returned": false,
+          "valid": true
+        }
+      ],
+      "generation_calls": 7,
+      "index": 2,
+      "journal_exists": true,
+      "journal_sha256": "c6a2080c6a61b6693655d0daf489fc575eb8f4d8986119f6eccec3f0ca430de5",
+      "recorded_node_calls": {
+        "analysis": {
+          "calls": 3,
+          "completion_tokens": 333,
+          "latency_seconds": 21.667113824747503,
+          "missing_usage": 0,
+          "prompt_tokens": 19714
+        },
+        "debug": {
+          "calls": 1,
+          "completion_tokens": 3381,
+          "latency_seconds": 99.0722482027486,
+          "missing_usage": 0,
+          "prompt_tokens": 9174
+        },
+        "draft": {
+          "calls": 2,
+          "completion_tokens": 6483,
+          "latency_seconds": 180.01295262388885,
+          "missing_usage": 0,
+          "prompt_tokens": 10122
+        },
+        "improve": {
+          "calls": 0,
+          "completion_tokens": 0,
+          "latency_seconds": 0.0,
+          "missing_usage": 0,
+          "prompt_tokens": 0
+        }
+      },
+      "repeat": 0,
+      "seed": 142903,
+      "slot": 2,
+      "task": "random-acts-of-pizza",
+      "timely_valid_feedback_followed_by_next_generation": 2,
+      "timely_valid_feedback_followed_by_next_operation": 1,
+      "timely_valid_feedback_followed_by_next_return": 1,
+      "valid_returns": 2
+    },
+    {
+      "arm": "pipeline",
+      "block": 0,
+      "candidate_returns": 3,
+      "event_sha256": "e88208ddcdce2a8281cdacf60f0d5bc90e2c449d998036802e03b58399c10a62",
+      "exact_valid_return_codes_missing_from_final_journal": 0,
+      "feedback_progression": [
+        {
+          "completed_generation_calls_before_next_operation": 2,
+          "generation_calls_before_next_operation": 2,
+          "next_candidate_admitted_seconds": 223.35453950520605,
+          "next_candidate_operation_ready_seconds": 219.495765093714,
+          "next_generation_started": true,
+          "next_return_valid": true,
+          "returned_seconds": 127.58783785998821,
+          "subsequent_candidate_returned": true,
+          "valid": false
+        },
+        {
+          "completed_generation_calls_before_next_operation": 2,
+          "generation_calls_before_next_operation": 2,
+          "next_candidate_admitted_seconds": 433.6630524164066,
+          "next_candidate_operation_ready_seconds": 429.97471373621374,
+          "next_generation_started": true,
+          "next_return_valid": true,
+          "returned_seconds": 316.9672981267795,
+          "subsequent_candidate_returned": true,
+          "valid": true
+        },
+        {
+          "completed_generation_calls_before_next_operation": 1,
+          "generation_calls_before_next_operation": 2,
+          "next_candidate_admitted_seconds": null,
+          "next_candidate_operation_ready_seconds": null,
+          "next_generation_started": true,
+          "next_return_valid": null,
+          "returned_seconds": 581.7935541123152,
+          "subsequent_candidate_returned": false,
+          "valid": true
+        }
+      ],
+      "generation_calls": 7,
+      "index": 3,
+      "journal_exists": true,
+      "journal_sha256": "8b609dc033d52d1a1baac538e0d2736a0e0681560dc57cf94859c61435546c43",
+      "recorded_node_calls": {
+        "analysis": {
+          "calls": 3,
+          "completion_tokens": 333,
+          "latency_seconds": 17.475241902284324,
+          "missing_usage": 0,
+          "prompt_tokens": 17492
+        },
+        "debug": {
+          "calls": 2,
+          "completion_tokens": 6364,
+          "latency_seconds": 189.03735483810306,
+          "missing_usage": 0,
+          "prompt_tokens": 15386
+        },
+        "draft": {
+          "calls": 1,
+          "completion_tokens": 2289,
+          "latency_seconds": 62.86744116898626,
+          "missing_usage": 0,
+          "prompt_tokens": 3803
+        },
+        "improve": {
+          "calls": 0,
+          "completion_tokens": 0,
+          "latency_seconds": 0.0,
+          "missing_usage": 0,
+          "prompt_tokens": 0
+        }
+      },
+      "repeat": 0,
+      "seed": 142904,
+      "slot": 3,
+      "task": "spooky-author-identification",
+      "timely_valid_feedback_followed_by_next_generation": 2,
+      "timely_valid_feedback_followed_by_next_operation": 1,
+      "timely_valid_feedback_followed_by_next_return": 1,
+      "valid_returns": 2
+    },
+    {
+      "arm": "share2",
+      "block": 1,
+      "candidate_returns": 3,
+      "event_sha256": "a9c80a2dfd8e43a6fe7b0cc3dbae04e25973e8897276887138b0cc9422ebea2d",
+      "exact_valid_return_codes_missing_from_final_journal": 0,
+      "feedback_progression": [
+        {
+          "completed_generation_calls_before_next_operation": 2,
+          "generation_calls_before_next_operation": 2,
+          "next_candidate_admitted_seconds": 365.341306922026,
+          "next_candidate_operation_ready_seconds": 311.2565961983055,
+          "next_generation_started": true,
+          "next_return_valid": false,
+          "returned_seconds": 213.18324801325798,
+          "subsequent_candidate_returned": true,
+          "valid": false
+        },
+        {
+          "completed_generation_calls_before_next_operation": 2,
+          "generation_calls_before_next_operation": 2,
+          "next_candidate_admitted_seconds": 498.05333919264376,
+          "next_candidate_operation_ready_seconds": 488.5075481617823,
+          "next_generation_started": true,
+          "next_return_valid": false,
+          "returned_seconds": 371.0253388080746,
+          "subsequent_candidate_returned": true,
+          "valid": false
+        },
+        {
+          "completed_generation_calls_before_next_operation": 1,
+          "generation_calls_before_next_operation": 2,
+          "next_candidate_admitted_seconds": null,
+          "next_candidate_operation_ready_seconds": null,
+          "next_generation_started": true,
+          "next_return_valid": null,
+          "returned_seconds": 506.2583019118756,
+          "subsequent_candidate_returned": false,
+          "valid": false
+        }
+      ],
+      "generation_calls": 7,
+      "index": 4,
+      "journal_exists": true,
+      "journal_sha256": "dc39715ed1533e60fc679890e2701c6287e5e3f3a5bc6f8212aa2eb5da9e5be8",
+      "recorded_node_calls": {
+        "analysis": {
+          "calls": 3,
+          "completion_tokens": 336,
+          "latency_seconds": 24.00914764404297,
+          "missing_usage": 0,
+          "prompt_tokens": 19848
+        },
+        "debug": {
+          "calls": 2,
+          "completion_tokens": 7094,
+          "latency_seconds": 194.70989027712494,
+          "missing_usage": 0,
+          "prompt_tokens": 19216
+        },
+        "draft": {
+          "calls": 1,
+          "completion_tokens": 3542,
+          "latency_seconds": 104.90979901328683,
+          "missing_usage": 0,
+          "prompt_tokens": 5061
+        },
+        "improve": {
+          "calls": 0,
+          "completion_tokens": 0,
+          "latency_seconds": 0.0,
+          "missing_usage": 0,
+          "prompt_tokens": 0
+        }
+      },
+      "repeat": 0,
+      "seed": 142901,
+      "slot": 0,
+      "task": "random-acts-of-pizza",
+      "timely_valid_feedback_followed_by_next_generation": 0,
+      "timely_valid_feedback_followed_by_next_operation": 0,
+      "timely_valid_feedback_followed_by_next_return": 0,
+      "valid_returns": 0
+    },
+    {
+      "arm": "share2",
+      "block": 1,
+      "candidate_returns": 4,
+      "event_sha256": "7eb8c3fa0f91e5c938719c4c67a1bf1baca8da79bf9e5e7c9555a1a4f9c2d39c",
+      "exact_valid_return_codes_missing_from_final_journal": 0,
+      "feedback_progression": [
+        {
+          "completed_generation_calls_before_next_operation": 2,
+          "generation_calls_before_next_operation": 2,
+          "next_candidate_admitted_seconds": 271.8691833168268,
+          "next_candidate_operation_ready_seconds": 267.6164187071845,
+          "next_generation_started": true,
+          "next_return_valid": true,
+          "returned_seconds": 222.44815613608807,
+          "subsequent_candidate_returned": true,
+          "valid": true
+        },
+        {
+          "completed_generation_calls_before_next_operation": 2,
+          "generation_calls_before_next_operation": 2,
+          "next_candidate_admitted_seconds": 425.3180641969666,
+          "next_candidate_operation_ready_seconds": 416.5920339990407,
+          "next_generation_started": true,
+          "next_return_valid": false,
+          "returned_seconds": 370.5231893612072,
+          "subsequent_candidate_returned": true,
+          "valid": true
+        },
+        {
+          "completed_generation_calls_before_next_operation": 2,
+          "generation_calls_before_next_operation": 2,
+          "next_candidate_admitted_seconds": 480.2594181308523,
+          "next_candidate_operation_ready_seconds": 475.2949533201754,
+          "next_generation_started": true,
+          "next_return_valid": true,
+          "returned_seconds": 431.4951856918633,
+          "subsequent_candidate_returned": true,
+          "valid": false
+        },
+        {
+          "completed_generation_calls_before_next_operation": 1,
+          "generation_calls_before_next_operation": 2,
+          "next_candidate_admitted_seconds": null,
+          "next_candidate_operation_ready_seconds": null,
+          "next_generation_started": true,
+          "next_return_valid": null,
+          "returned_seconds": 526.868425774388,
+          "subsequent_candidate_returned": false,
+          "valid": true
+        }
+      ],
+      "generation_calls": 9,
+      "index": 5,
+      "journal_exists": true,
+      "journal_sha256": "931196ccfbc28ce30265b87c2a08fba4ea23ec55046e397855ba6cc1eab9c410",
+      "recorded_node_calls": {
+        "analysis": {
+          "calls": 4,
+          "completion_tokens": 323,
+          "latency_seconds": 26.04274746682495,
+          "missing_usage": 0,
+          "prompt_tokens": 17078
+        },
+        "debug": {
+          "calls": 1,
+          "completion_tokens": 1267,
+          "latency_seconds": 40.02764643263072,
+          "missing_usage": 0,
+          "prompt_tokens": 5087
+        },
+        "draft": {
+          "calls": 3,
+          "completion_tokens": 5615,
+          "latency_seconds": 157.45658487919718,
+          "missing_usage": 0,
+          "prompt_tokens": 11409
+        },
+        "improve": {
+          "calls": 0,
+          "completion_tokens": 0,
+          "latency_seconds": 0.0,
+          "missing_usage": 0,
+          "prompt_tokens": 0
+        }
+      },
+      "repeat": 0,
+      "seed": 142902,
+      "slot": 1,
+      "task": "spooky-author-identification",
+      "timely_valid_feedback_followed_by_next_generation": 3,
+      "timely_valid_feedback_followed_by_next_operation": 2,
+      "timely_valid_feedback_followed_by_next_return": 2,
+      "valid_returns": 3
+    },
+    {
+      "arm": "share2",
+      "block": 1,
+      "candidate_returns": 3,
+      "event_sha256": "b7582cbd5c6783479ef9d4b64c7cf84523624bf25159b6e59a677f9a0f641f8b",
+      "exact_valid_return_codes_missing_from_final_journal": 0,
+      "feedback_progression": [
+        {
+          "completed_generation_calls_before_next_operation": 2,
+          "generation_calls_before_next_operation": 2,
+          "next_candidate_admitted_seconds": 355.98336468916386,
+          "next_candidate_operation_ready_seconds": 278.9005164736882,
+          "next_generation_started": true,
+          "next_return_valid": false,
+          "returned_seconds": 205.1796748843044,
+          "subsequent_candidate_returned": true,
+          "valid": true
+        },
+        {
+          "completed_generation_calls_before_next_operation": 2,
+          "generation_calls_before_next_operation": 2,
+          "next_candidate_admitted_seconds": 450.0509222811088,
+          "next_candidate_operation_ready_seconds": 446.0247306637466,
+          "next_generation_started": true,
+          "next_return_valid": true,
+          "returned_seconds": 365.37858692370355,
+          "subsequent_candidate_returned": true,
+          "valid": false
+        },
+        {
+          "completed_generation_calls_before_next_operation": 2,
+          "generation_calls_before_next_operation": 2,
+          "next_candidate_admitted_seconds": 578.6501024402678,
+          "next_candidate_operation_ready_seconds": 575.0764194158837,
+          "next_generation_started": true,
+          "next_return_valid": null,
+          "returned_seconds": 498.0605109957978,
+          "subsequent_candidate_returned": false,
+          "valid": true
+        }
+      ],
+      "generation_calls": 7,
+      "index": 6,
+      "journal_exists": true,
+      "journal_sha256": "a6882eb856ea8bb11436165099c27e67c16e9d1c127acdfc560d217decd84f43",
+      "recorded_node_calls": {
+        "analysis": {
+          "calls": 3,
+          "completion_tokens": 323,
+          "latency_seconds": 15.478096978738904,
+          "missing_usage": 0,
+          "prompt_tokens": 16540
+        },
+        "debug": {
+          "calls": 1,
+          "completion_tokens": 2210,
+          "latency_seconds": 75.43948092032224,
+          "missing_usage": 0,
+          "prompt_tokens": 7394
+        },
+        "draft": {
+          "calls": 2,
+          "completion_tokens": 5137,
+          "latency_seconds": 155.05061650369316,
+          "missing_usage": 0,
+          "prompt_tokens": 10122
+        },
+        "improve": {
+          "calls": 0,
+          "completion_tokens": 0,
+          "latency_seconds": 0.0,
+          "missing_usage": 0,
+          "prompt_tokens": 0
+        }
+      },
+      "repeat": 0,
+      "seed": 142903,
+      "slot": 2,
+      "task": "random-acts-of-pizza",
+      "timely_valid_feedback_followed_by_next_generation": 2,
+      "timely_valid_feedback_followed_by_next_operation": 2,
+      "timely_valid_feedback_followed_by_next_return": 1,
+      "valid_returns": 2
+    },
+    {
+      "arm": "share2",
+      "block": 1,
+      "candidate_returns": 4,
+      "event_sha256": "4bb1c7e6ea6793b03aa1b31e561173101da98fe5c0ea264c9ca05a2366b00366",
+      "exact_valid_return_codes_missing_from_final_journal": 0,
+      "feedback_progression": [
+        {
+          "completed_generation_calls_before_next_operation": 2,
+          "generation_calls_before_next_operation": 2,
+          "next_candidate_admitted_seconds": 270.7078256467357,
+          "next_candidate_operation_ready_seconds": 263.7762009669095,
+          "next_generation_started": true,
+          "next_return_valid": true,
+          "returned_seconds": 159.6581738004461,
+          "subsequent_candidate_returned": true,
+          "valid": false
+        },
+        {
+          "completed_generation_calls_before_next_operation": 2,
+          "generation_calls_before_next_operation": 2,
+          "next_candidate_admitted_seconds": 430.58098051231354,
+          "next_candidate_operation_ready_seconds": 426.86546361632645,
+          "next_generation_started": true,
+          "next_return_valid": false,
+          "returned_seconds": 355.8685267372057,
+          "subsequent_candidate_returned": true,
+          "valid": true
+        },
+        {
+          "completed_generation_calls_before_next_operation": 2,
+          "generation_calls_before_next_operation": 2,
+          "next_candidate_admitted_seconds": 506.258897007443,
+          "next_candidate_operation_ready_seconds": 498.7672902625054,
+          "next_generation_started": true,
+          "next_return_valid": false,
+          "returned_seconds": 442.00135204941034,
+          "subsequent_candidate_returned": true,
+          "valid": false
+        },
+        {
+          "completed_generation_calls_before_next_operation": 2,
+          "generation_calls_before_next_operation": 2,
+          "next_candidate_admitted_seconds": null,
+          "next_candidate_operation_ready_seconds": null,
+          "next_generation_started": true,
+          "next_return_valid": null,
+          "returned_seconds": 517.4597095223144,
+          "subsequent_candidate_returned": false,
+          "valid": false
+        }
+      ],
+      "generation_calls": 9,
+      "index": 7,
+      "journal_exists": true,
+      "journal_sha256": "935f77d5f5c3d4d3589a29d0e3200a153c40cb85c2818dd8adb0951e7aa13069",
+      "recorded_node_calls": {
+        "analysis": {
+          "calls": 4,
+          "completion_tokens": 376,
+          "latency_seconds": 21.039966944605112,
+          "missing_usage": 0,
+          "prompt_tokens": 22683
+        },
+        "debug": {
+          "calls": 2,
+          "completion_tokens": 5115,
+          "latency_seconds": 146.5917187705636,
+          "missing_usage": 0,
+          "prompt_tokens": 14096
+        },
+        "draft": {
+          "calls": 2,
+          "completion_tokens": 4324,
+          "latency_seconds": 130.13285262137651,
+          "missing_usage": 0,
+          "prompt_tokens": 7606
+        },
+        "improve": {
+          "calls": 0,
+          "completion_tokens": 0,
+          "latency_seconds": 0.0,
+          "missing_usage": 0,
+          "prompt_tokens": 0
+        }
+      },
+      "repeat": 0,
+      "seed": 142904,
+      "slot": 3,
+      "task": "spooky-author-identification",
+      "timely_valid_feedback_followed_by_next_generation": 1,
+      "timely_valid_feedback_followed_by_next_operation": 1,
+      "timely_valid_feedback_followed_by_next_return": 1,
+      "valid_returns": 1
+    },
+    {
+      "arm": "share2",
+      "block": 2,
+      "candidate_returns": 3,
+      "event_sha256": "ab2db5d75eeb7c11d9afff8091e35113392ed6d075b96b460a672932e1e71ea9",
+      "exact_valid_return_codes_missing_from_final_journal": 0,
+      "feedback_progression": [
+        {
+          "completed_generation_calls_before_next_operation": 2,
+          "generation_calls_before_next_operation": 2,
+          "next_candidate_admitted_seconds": 376.0628670109436,
+          "next_candidate_operation_ready_seconds": 178.0823323307559,
+          "next_generation_started": true,
+          "next_return_valid": true,
+          "returned_seconds": 132.262346024625,
+          "subsequent_candidate_returned": true,
+          "valid": false
+        },
+        {
+          "completed_generation_calls_before_next_operation": 2,
+          "generation_calls_before_next_operation": 2,
+          "next_candidate_admitted_seconds": 557.8605124223977,
+          "next_candidate_operation_ready_seconds": 554.4647935722023,
+          "next_generation_started": true,
+          "next_return_valid": true,
+          "returned_seconds": 482.86610961984843,
+          "subsequent_candidate_returned": true,
+          "valid": true
+        },
+        {
+          "completed_generation_calls_before_next_operation": 1,
+          "generation_calls_before_next_operation": 2,
+          "next_candidate_admitted_seconds": null,
+          "next_candidate_operation_ready_seconds": null,
+          "next_generation_started": true,
+          "next_return_valid": null,
+          "returned_seconds": 574.1627730522305,
+          "subsequent_candidate_returned": false,
+          "valid": true
+        }
+      ],
+      "generation_calls": 7,
+      "index": 8,
+      "journal_exists": true,
+      "journal_sha256": "c0544c9f1dbedd523480a5f86cd7c36e004c5c05ac25ecb72de65e4ed5977b01",
+      "recorded_node_calls": {
+        "analysis": {
+          "calls": 3,
+          "completion_tokens": 258,
+          "latency_seconds": 17.863503927364945,
+          "missing_usage": 0,
+          "prompt_tokens": 14691
+        },
+        "debug": {
+          "calls": 1,
+          "completion_tokens": 1662,
+          "latency_seconds": 39.47392924129963,
+          "missing_usage": 0,
+          "prompt_tokens": 7240
+        },
+        "draft": {
+          "calls": 2,
+          "completion_tokens": 4403,
+          "latency_seconds": 121.74321378115565,
+          "missing_usage": 0,
+          "prompt_tokens": 10122
+        },
+        "improve": {
+          "calls": 0,
+          "completion_tokens": 0,
+          "latency_seconds": 0.0,
+          "missing_usage": 0,
+          "prompt_tokens": 0
+        }
+      },
+      "repeat": 1,
+      "seed": 143001,
+      "slot": 0,
+      "task": "random-acts-of-pizza",
+      "timely_valid_feedback_followed_by_next_generation": 2,
+      "timely_valid_feedback_followed_by_next_operation": 1,
+      "timely_valid_feedback_followed_by_next_return": 1,
+      "valid_returns": 2
+    },
+    {
+      "arm": "share2",
+      "block": 2,
+      "candidate_returns": 3,
+      "event_sha256": "ff6f561fdc1f56c37c0c084c2d9f41c82207cb15c74a6689314bd2d7f010bac5",
+      "exact_valid_return_codes_missing_from_final_journal": 0,
+      "feedback_progression": [
+        {
+          "completed_generation_calls_before_next_operation": 2,
+          "generation_calls_before_next_operation": 2,
+          "next_candidate_admitted_seconds": 432.4995068591088,
+          "next_candidate_operation_ready_seconds": 428.25726903323084,
+          "next_generation_started": true,
+          "next_return_valid": false,
+          "returned_seconds": 364.4850065493956,
+          "subsequent_candidate_returned": true,
+          "valid": false
+        },
+        {
+          "completed_generation_calls_before_next_operation": 2,
+          "generation_calls_before_next_operation": 2,
+          "next_candidate_admitted_seconds": 507.30518882256,
+          "next_candidate_operation_ready_seconds": 503.71823331713676,
+          "next_generation_started": true,
+          "next_return_valid": false,
+          "returned_seconds": 446.99863696843386,
+          "subsequent_candidate_returned": true,
+          "valid": false
+        },
+        {
+          "completed_generation_calls_before_next_operation": 1,
+          "generation_calls_before_next_operation": 2,
+          "next_candidate_admitted_seconds": null,
+          "next_candidate_operation_ready_seconds": null,
+          "next_generation_started": true,
+          "next_return_valid": null,
+          "returned_seconds": 549.7644169321284,
+          "subsequent_candidate_returned": false,
+          "valid": false
+        }
+      ],
+      "generation_calls": 7,
+      "index": 9,
+      "journal_exists": true,
+      "journal_sha256": "774b9f550b72cc5a4327e5fc449277a8d74fb8a889cd46dece5e89ffbef3c1b3",
+      "recorded_node_calls": {
+        "analysis": {
+          "calls": 3,
+          "completion_tokens": 333,
+          "latency_seconds": 13.414523368701339,
+          "missing_usage": 0,
+          "prompt_tokens": 12371
+        },
+        "debug": {
+          "calls": 2,
+          "completion_tokens": 3308,
+          "latency_seconds": 109.548109610565,
+          "missing_usage": 0,
+          "prompt_tokens": 11426
+        },
+        "draft": {
+          "calls": 1,
+          "completion_tokens": 1682,
+          "latency_seconds": 48.523638295941055,
+          "missing_usage": 0,
+          "prompt_tokens": 3803
+        },
+        "improve": {
+          "calls": 0,
+          "completion_tokens": 0,
+          "latency_seconds": 0.0,
+          "missing_usage": 0,
+          "prompt_tokens": 0
+        }
+      },
+      "repeat": 1,
+      "seed": 143002,
+      "slot": 1,
+      "task": "spooky-author-identification",
+      "timely_valid_feedback_followed_by_next_generation": 0,
+      "timely_valid_feedback_followed_by_next_operation": 0,
+      "timely_valid_feedback_followed_by_next_return": 0,
+      "valid_returns": 0
+    },
+    {
+      "arm": "share2",
+      "block": 2,
+      "candidate_returns": 3,
+      "event_sha256": "c6c05267b4664fb9e1ab41b8fc6958df470b745e513d2d8eac638ca36190de83",
+      "exact_valid_return_codes_missing_from_final_journal": 0,
+      "feedback_progression": [
+        {
+          "completed_generation_calls_before_next_operation": 2,
+          "generation_calls_before_next_operation": 2,
+          "next_candidate_admitted_seconds": 471.6585420425981,
+          "next_candidate_operation_ready_seconds": 467.41691602393985,
+          "next_generation_started": true,
+          "next_return_valid": true,
+          "returned_seconds": 376.04834205284715,
+          "subsequent_candidate_returned": true,
+          "valid": true
+        },
+        {
+          "completed_generation_calls_before_next_operation": 2,
+          "generation_calls_before_next_operation": 2,
+          "next_candidate_admitted_seconds": 565.3968696184456,
+          "next_candidate_operation_ready_seconds": 561.6644733985886,
+          "next_generation_started": true,
+          "next_return_valid": true,
+          "returned_seconds": 480.7262889118865,
+          "subsequent_candidate_returned": true,
+          "valid": true
+        },
+        {
+          "completed_generation_calls_before_next_operation": 1,
+          "generation_calls_before_next_operation": 2,
+          "next_candidate_admitted_seconds": null,
+          "next_candidate_operation_ready_seconds": null,
+          "next_generation_started": true,
+          "next_return_valid": null,
+          "returned_seconds": 576.39930176083,
+          "subsequent_candidate_returned": false,
+          "valid": true
+        }
+      ],
+      "generation_calls": 7,
+      "index": 10,
+      "journal_exists": true,
+      "journal_sha256": "b6d679dfd3ae33da339426012d4db8d45482d19ac005e384c2e2a5da22a17fbd",
+      "recorded_node_calls": {
+        "analysis": {
+          "calls": 3,
+          "completion_tokens": 351,
+          "latency_seconds": 18.236509053967893,
+          "missing_usage": 0,
+          "prompt_tokens": 15683
+        },
+        "debug": {
+          "calls": 2,
+          "completion_tokens": 5226,
+          "latency_seconds": 156.9225463969633,
+          "missing_usage": 0,
+          "prompt_tokens": 17014
+        },
+        "draft": {
+          "calls": 1,
+          "completion_tokens": 2906,
+          "latency_seconds": 86.57806625496596,
+          "missing_usage": 0,
+          "prompt_tokens": 5061
+        },
+        "improve": {
+          "calls": 0,
+          "completion_tokens": 0,
+          "latency_seconds": 0.0,
+          "missing_usage": 0,
+          "prompt_tokens": 0
+        }
+      },
+      "repeat": 1,
+      "seed": 143003,
+      "slot": 2,
+      "task": "random-acts-of-pizza",
+      "timely_valid_feedback_followed_by_next_generation": 3,
+      "timely_valid_feedback_followed_by_next_operation": 2,
+      "timely_valid_feedback_followed_by_next_return": 2,
+      "valid_returns": 3
+    },
+    {
+      "arm": "share2",
+      "block": 2,
+      "candidate_returns": 2,
+      "event_sha256": "5d1296ba05731be255c2cfa46db3348bad5f5d70aab0682aa94b3cf63b6419bd",
+      "exact_valid_return_codes_missing_from_final_journal": 0,
+      "feedback_progression": [
+        {
+          "completed_generation_calls_before_next_operation": 2,
+          "generation_calls_before_next_operation": 2,
+          "next_candidate_admitted_seconds": 545.336808170192,
+          "next_candidate_operation_ready_seconds": 540.6628266433254,
+          "next_generation_started": true,
+          "next_return_valid": false,
+          "returned_seconds": 402.6369526060298,
+          "subsequent_candidate_returned": true,
+          "valid": false
+        },
+        {
+          "completed_generation_calls_before_next_operation": 1,
+          "generation_calls_before_next_operation": 2,
+          "next_candidate_admitted_seconds": null,
+          "next_candidate_operation_ready_seconds": null,
+          "next_generation_started": true,
+          "next_return_valid": null,
+          "returned_seconds": 554.2590348636732,
+          "subsequent_candidate_returned": false,
+          "valid": false
+        }
+      ],
+      "generation_calls": 5,
+      "index": 11,
+      "journal_exists": true,
+      "journal_sha256": "da065aa116ae8ccb7c75515c22ae94771a56ff89ccc50f60a288f2c8453b0d81",
+      "recorded_node_calls": {
+        "analysis": {
+          "calls": 2,
+          "completion_tokens": 180,
+          "latency_seconds": 12.89498867932707,
+          "missing_usage": 0,
+          "prompt_tokens": 11301
+        },
+        "debug": {
+          "calls": 1,
+          "completion_tokens": 4559,
+          "latency_seconds": 129.70931097492576,
+          "missing_usage": 0,
+          "prompt_tokens": 6242
+        },
+        "draft": {
+          "calls": 1,
+          "completion_tokens": 2521,
+          "latency_seconds": 71.13635403010994,
+          "missing_usage": 0,
+          "prompt_tokens": 3803
+        },
+        "improve": {
+          "calls": 0,
+          "completion_tokens": 0,
+          "latency_seconds": 0.0,
+          "missing_usage": 0,
+          "prompt_tokens": 0
+        }
+      },
+      "repeat": 1,
+      "seed": 143004,
+      "slot": 3,
+      "task": "spooky-author-identification",
+      "timely_valid_feedback_followed_by_next_generation": 0,
+      "timely_valid_feedback_followed_by_next_operation": 0,
+      "timely_valid_feedback_followed_by_next_return": 0,
+      "valid_returns": 0
+    },
+    {
+      "arm": "pipeline",
+      "block": 3,
+      "candidate_returns": 1,
+      "event_sha256": "3c8423a8186809362590bf47eb8069b6e3dca5b2eb0c1efe0fa46fd367ef4df6",
+      "exact_valid_return_codes_missing_from_final_journal": 0,
+      "feedback_progression": [
+        {
+          "completed_generation_calls_before_next_operation": 2,
+          "generation_calls_before_next_operation": 2,
+          "next_candidate_admitted_seconds": null,
+          "next_candidate_operation_ready_seconds": 449.1461248351261,
+          "next_generation_started": true,
+          "next_return_valid": null,
+          "returned_seconds": 353.94990432355553,
+          "subsequent_candidate_returned": false,
+          "valid": false
+        }
+      ],
+      "generation_calls": 3,
+      "index": 12,
+      "journal_exists": true,
+      "journal_sha256": "66c7c2c96e482fbcef99d2ff71bbbdde1220de51e866a735101f8738e2c9e630",
+      "recorded_node_calls": {
+        "analysis": {
+          "calls": 1,
+          "completion_tokens": 91,
+          "latency_seconds": 12.059530043043196,
+          "missing_usage": 0,
+          "prompt_tokens": 6034
+        },
+        "debug": {
+          "calls": 0,
+          "completion_tokens": 0,
+          "latency_seconds": 0.0,
+          "missing_usage": 0,
+          "prompt_tokens": 0
+        },
+        "draft": {
+          "calls": 1,
+          "completion_tokens": 2775,
+          "latency_seconds": 73.74010155070573,
+          "missing_usage": 0,
+          "prompt_tokens": 5061
+        },
+        "improve": {
+          "calls": 0,
+          "completion_tokens": 0,
+          "latency_seconds": 0.0,
+          "missing_usage": 0,
+          "prompt_tokens": 0
+        }
+      },
+      "repeat": 1,
+      "seed": 143001,
+      "slot": 0,
+      "task": "random-acts-of-pizza",
+      "timely_valid_feedback_followed_by_next_generation": 0,
+      "timely_valid_feedback_followed_by_next_operation": 0,
+      "timely_valid_feedback_followed_by_next_return": 0,
+      "valid_returns": 0
+    },
+    {
+      "arm": "pipeline",
+      "block": 3,
+      "candidate_returns": 1,
+      "event_sha256": "dc42e9dd5af8c144e42bde2cd9745aee025bfbc78b296ca2bf3d9f6c7c0ce457",
+      "exact_valid_return_codes_missing_from_final_journal": 0,
+      "feedback_progression": [
+        {
+          "completed_generation_calls_before_next_operation": 2,
+          "generation_calls_before_next_operation": 2,
+          "next_candidate_admitted_seconds": 413.4484155829996,
+          "next_candidate_operation_ready_seconds": 409.9766514627263,
+          "next_generation_started": true,
+          "next_return_valid": null,
+          "returned_seconds": 342.9475465733558,
+          "subsequent_candidate_returned": false,
+          "valid": false
+        }
+      ],
+      "generation_calls": 3,
+      "index": 13,
+      "journal_exists": true,
+      "journal_sha256": "60376d93fca907543769bd6567dce0ea73222357414e0e500312f1d0dc3ef407",
+      "recorded_node_calls": {
+        "analysis": {
+          "calls": 1,
+          "completion_tokens": 144,
+          "latency_seconds": 9.48405325319618,
+          "missing_usage": 0,
+          "prompt_tokens": 3676
+        },
+        "debug": {
+          "calls": 0,
+          "completion_tokens": 0,
+          "latency_seconds": 0.0,
+          "missing_usage": 0,
+          "prompt_tokens": 0
+        },
+        "draft": {
+          "calls": 1,
+          "completion_tokens": 1448,
+          "latency_seconds": 38.468092494644225,
+          "missing_usage": 0,
+          "prompt_tokens": 3803
+        },
+        "improve": {
+          "calls": 0,
+          "completion_tokens": 0,
+          "latency_seconds": 0.0,
+          "missing_usage": 0,
+          "prompt_tokens": 0
+        }
+      },
+      "repeat": 1,
+      "seed": 143002,
+      "slot": 1,
+      "task": "spooky-author-identification",
+      "timely_valid_feedback_followed_by_next_generation": 0,
+      "timely_valid_feedback_followed_by_next_operation": 0,
+      "timely_valid_feedback_followed_by_next_return": 0,
+      "valid_returns": 0
+    },
+    {
+      "arm": "pipeline",
+      "block": 3,
+      "candidate_returns": 1,
+      "event_sha256": "c463514a66b93eb7cd6156c4e0d30039fac2d12ff61ab3453465390eda9c459c",
+      "exact_valid_return_codes_missing_from_final_journal": 0,
+      "feedback_progression": [
+        {
+          "completed_generation_calls_before_next_operation": 2,
+          "generation_calls_before_next_operation": 2,
+          "next_candidate_admitted_seconds": null,
+          "next_candidate_operation_ready_seconds": 453.7558154286817,
+          "next_generation_started": true,
+          "next_return_valid": null,
+          "returned_seconds": 359.9057820821181,
+          "subsequent_candidate_returned": false,
+          "valid": false
+        }
+      ],
+      "generation_calls": 3,
+      "index": 14,
+      "journal_exists": true,
+      "journal_sha256": "8744f1e393b3dbe6d87e8630c1064353ddc0e4935d74a3edffe75c1bd6a1113a",
+      "recorded_node_calls": {
+        "analysis": {
+          "calls": 1,
+          "completion_tokens": 102,
+          "latency_seconds": 11.88971308246255,
+          "missing_usage": 0,
+          "prompt_tokens": 5952
+        },
+        "debug": {
+          "calls": 0,
+          "completion_tokens": 0,
+          "latency_seconds": 0.0,
+          "missing_usage": 0,
+          "prompt_tokens": 0
+        },
+        "draft": {
+          "calls": 1,
+          "completion_tokens": 2829,
+          "latency_seconds": 79.52948274929076,
+          "missing_usage": 0,
+          "prompt_tokens": 5061
+        },
+        "improve": {
+          "calls": 0,
+          "completion_tokens": 0,
+          "latency_seconds": 0.0,
+          "missing_usage": 0,
+          "prompt_tokens": 0
+        }
+      },
+      "repeat": 1,
+      "seed": 143003,
+      "slot": 2,
+      "task": "random-acts-of-pizza",
+      "timely_valid_feedback_followed_by_next_generation": 0,
+      "timely_valid_feedback_followed_by_next_operation": 0,
+      "timely_valid_feedback_followed_by_next_return": 0,
+      "valid_returns": 0
+    },
+    {
+      "arm": "pipeline",
+      "block": 3,
+      "candidate_returns": 1,
+      "event_sha256": "8ff5503cc0eddb2573a50549775e14c0fcfba28046097b7f1876dbee9d3890a6",
+      "exact_valid_return_codes_missing_from_final_journal": 0,
+      "feedback_progression": [
+        {
+          "completed_generation_calls_before_next_operation": 2,
+          "generation_calls_before_next_operation": 2,
+          "next_candidate_admitted_seconds": null,
+          "next_candidate_operation_ready_seconds": 445.17891454230994,
+          "next_generation_started": true,
+          "next_return_valid": null,
+          "returned_seconds": 386.077384268865,
+          "subsequent_candidate_returned": false,
+          "valid": true
+        }
+      ],
+      "generation_calls": 3,
+      "index": 15,
+      "journal_exists": true,
+      "journal_sha256": "53157eac5bf08dad272385ee8821cbd3b3a3545a491fbed388b2b2dde1ea806b",
+      "recorded_node_calls": {
+        "analysis": {
+          "calls": 1,
+          "completion_tokens": 85,
+          "latency_seconds": 6.170518006198108,
+          "missing_usage": 0,
+          "prompt_tokens": 6707
+        },
+        "debug": {
+          "calls": 0,
+          "completion_tokens": 0,
+          "latency_seconds": 0.0,
+          "missing_usage": 0,
+          "prompt_tokens": 0
+        },
+        "draft": {
+          "calls": 1,
+          "completion_tokens": 3994,
+          "latency_seconds": 101.78948259074241,
+          "missing_usage": 0,
+          "prompt_tokens": 3803
+        },
+        "improve": {
+          "calls": 0,
+          "completion_tokens": 0,
+          "latency_seconds": 0.0,
+          "missing_usage": 0,
+          "prompt_tokens": 0
+        }
+      },
+      "repeat": 1,
+      "seed": 143004,
+      "slot": 3,
+      "task": "spooky-author-identification",
+      "timely_valid_feedback_followed_by_next_generation": 1,
+      "timely_valid_feedback_followed_by_next_operation": 1,
+      "timely_valid_feedback_followed_by_next_return": 0,
+      "valid_returns": 1
+    }
+  ]
+}

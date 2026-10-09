@@ -52,6 +52,15 @@ class ReverseTests(unittest.TestCase):
              patch.object(r,'read',return_value={'plan_sha256':r.LIVE_PLAN,'complete':16,'structural_audit':True,'exploratory_go':False}):
             self.assertFalse(r.prerequisites(r.WINDOW_END-datetime.timedelta(hours=3))['exploratory_go'])
 
+    def test_manifest_has_reverse_matrix_and_honest_scope(self):
+        plan = {'programs':[{},{}], 'preflight_items':{}}
+        r.mutate(plan)
+        self.assertEqual(plan['schedule'],r.reverse_schedule())
+        self.assertIn('first block is now share2',plan['first_serial_gate'])
+        self.assertEqual(plan['reverse_order_batch_cap_gpu_hours'],1.25)
+        self.assertEqual(plan['new_window_cost_cap_gpu_hours'],10.25)
+        self.assertTrue(plan['original_frozen_gate_unchanged'])
+
 
 if __name__=='__main__':
     unittest.main()

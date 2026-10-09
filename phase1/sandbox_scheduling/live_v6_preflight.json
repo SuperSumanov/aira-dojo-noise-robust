@@ -1,0 +1,15 @@
+{
+  "date_hong_kong": "2026-10-09",
+  "question": "Does two-lease FIFO execution improve timely external development feedback over one-lease FIFO under identical whole-pool reservation?",
+  "authorization": "Latest user explicitly authorizes six-hour autonomous experiments; bounded matrix and design change communicated before preparation.",
+  "matrix": {"tasks": ["random-acts-of-pizza", "spooky-author-identification"], "pool_blocks": ["pipeline", "share2", "share2", "pipeline"], "runs_per_block": 4, "assigned": 16, "pool_pairs": 2, "search_seconds": 600, "block_seconds_including_service_cleanup_padding": 1320, "gpus": 3, "wall_seconds_cap": 5400, "gpu_hours_cap": 4.5, "seed_base": 142901},
+  "common_fix": "Standard Slurm nomultithread hint at allocation and step level; no conflicting cpu-bind=cores. Verify actual12 physical service cores before model load and actual6 execution cores, disjoint CPU/GPU sets before any candidate. Same fix in both arms; old roots immutable.",
+  "qualification_evidence": {"job": "17267", "state": "COMPLETED", "elapsed_seconds": 12, "reserved_gpus": 3, "actual_gpu_seconds": 36, "service_physical_cores": 12, "execution_physical_cores": 6, "physical_and_logical_disjoint": true, "summary_sha256": "0d5ce32ec0725ca327c6ffd84ad3874ab3d6979ce4d4a5306f75c5c771fd3c83"},
+  "v5_preserved": {"job": "17262", "state": "CANCELLED", "assigned": 16, "started": 0, "gpu_seconds": 957, "reason": "Service9 physical cores violated12-core contract before candidates; operator stopped allocation. Not a method null result."},
+  "fairness": "Only lease width differs within this experiment. Same AIRA source, operator/generator, legal dev adapters and pristine scorer, candidate timeout240s, native within-run search order, hardware and image. Generator startup, idle and padding count toward every arm's whole-pool cost.",
+  "protocol": "Unfiltered full16 assignments regardless of generator validity; safety/infrastructure stop retains missing assignments. No outcome-dependent replacement or repeated writer. 8 paired trajectories are clustered in only2 scheduling pool pairs.",
+  "go": "16 clean closures,4 structural/budget checks, both pool return differences strictly positive and neither pool reduces valid endpoint coverage. Separate final-quality gate additionally requires all8 finite valid paired scores and nonnegative per-task median oriented differences.",
+  "boundaries": "Repeated small NLP dev tasks, not neural workload or population confirmation. Missing scores are not zero. No claim of semantic novelty, SchedMate/MARS superiority or final quality from throughput alone.",
+  "preflight_routing": "Native config/8-pair/source/input/model/image pins verified during prepare; full16 synthetic readout tested. No training or corpus reshuffle, so training-label leakage/power rules not applicable. No protected cohort/test, paidAPI or base update. Actual CPU/GPU computation and cleanup checked inside capped allocation. All failed costs retained.",
+  "status": "DESIGNED_NOT_SUBMITTED"
+}

@@ -45,6 +45,7 @@ NODE_QUALIFICATION=False
 SEED_BASE=140901
 GENERATOR_ELIGIBILITY_GATE=True
 FIXED_BLOCK_SECONDS=0
+PHYSICAL_CPU_BINDING=False
 SERVICE27=B/'task-feedback-real-20261001-v6/service_entry.py'
 SERVICE27_SHA='cd9e143abe79cdc71c97db3dba07930e0642b28faf52ac4f6b2ca5ba36a8379a'
 TASKS=('random-acts-of-pizza','spooky-author-identification')
@@ -105,8 +106,10 @@ def service27():
     devices=x.native_uuids(2)
     extra={}
     if FIXED_BLOCK_SECONDS:
-        from live_identity import cpu_topology
+        from live_identity import cpu_topology, cores
         extra['cpu_topology']=cpu_topology()
+        if PHYSICAL_CPU_BINDING and len(cores(extra['cpu_topology']))!=12:
+            raise ValueError('service physical CPU contract before model loading')
     write(R/f'block-{block}/service-native.json',dict(job=os.environ['SLURM_JOB_ID'],
         step=os.environ['SLURM_STEP_ID'],gpu_uuids=devices,**extra))
     cmd=['/usr/bin/singularity','exec','--containall','--cleanenv','--no-home','--nv','--no-mount','bind-paths,cwd',
@@ -128,6 +131,8 @@ def check():
     if p.get('node','gpu27')!=NODE:raise ValueError('placement changed')
     if p.get('fixed_block_seconds',0)!=FIXED_BLOCK_SECONDS or p.get('generator_eligibility_gate',True)!=GENERATOR_ELIGIBILITY_GATE:
         raise ValueError('budget/eligibility protocol changed')
+    if p.get('physical_cpu_binding',False)!=PHYSICAL_CPU_BINDING:
+        raise ValueError('physical CPU protocol changed')
     for name,pin in p['files'].items():
         if sha(R/name)!=pin:raise ValueError('frozen file drift')
     return p
@@ -221,6 +226,7 @@ def prepare(commit):
 #SBATCH --ntasks=1
 #SBATCH --gres=gpu:3
 #SBATCH --cpus-per-task=18
+{('#SBATCH --hint=nomultithread' if PHYSICAL_CPU_BINDING else '')}
 #SBATCH --time=01:30:00
 #SBATCH --no-requeue
 set -euo pipefail
@@ -233,6 +239,7 @@ timeout --signal=TERM --kill-after=20s 5320s {PY} -B {R/NAME} controller
     write(R/'plan.json',dict(source_commit=commit,source_dojo_commit=old['source_commit'],
         donor_plan_sha256=DONOR_PLAN,schedule=schedule(),gpus=3,total_cpu=18,node=NODE,
         node_qualification_required=NODE_QUALIFICATION,
+        physical_cpu_binding=PHYSICAL_CPU_BINDING,
         gateway_contract='Unique job/run-index gateway ports; all workers share the same native Slurm step but not a server port.',
         service_gpus=2,execution_gpus=1,service_cpu=12,execution_cpu=6,
         allocation_seconds=CAP,gpu_hours_cap=4.5,run_seconds=600,candidate_timeout_seconds=240,
@@ -383,8 +390,13 @@ def block_run(block):
     if FIXED_BLOCK_SECONDS:
         from live_identity import cpu_topology
         extra['cpu_topology']=cpu_topology()
-    write(R/f'block-{block}/execution-native.json',dict(job=os.environ['SLURM_JOB_ID'],
-        step=os.environ['SLURM_STEP_ID'],gpu_uuid=gpu,affinity=sorted(os.sched_getaffinity(0)),start=start,**extra))
+    execution=dict(job=os.environ['SLURM_JOB_ID'],step=os.environ['SLURM_STEP_ID'],
+        gpu_uuid=gpu,affinity=sorted(os.sched_getaffinity(0)),start=start,**extra)
+    write(R/f'block-{block}/execution-native.json',execution)
+    if PHYSICAL_CPU_BINDING:
+        from live_identity import verify_allocation
+        if not verify_allocation(execution,read(R/f'block-{block}/service-native.json')):
+            raise ValueError('resource isolation before candidate execution')
     def monitor():
         while not stop.is_set():
             try:samples.append(gpu_sample(gpu))
@@ -432,7 +444,8 @@ def controller():
         if (R/'launch.json').exists():break
         time.sleep(.25)
     if read(R/'launch.json')['job']!=job:raise ValueError('job identity')
-    env=m.infra().clean_env();base=['srun','--exclusive','--nodes=1','--ntasks=1','--cpu-bind=cores']
+    env=m.infra().clean_env();base=['srun','--exclusive','--nodes=1','--ntasks=1',
+        '--hint=nomultithread' if PHYSICAL_CPU_BINDING else '--cpu-bind=cores']
     error=None;attempted=[]
     try:
         if NODE_QUALIFICATION:

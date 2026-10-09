@@ -15,7 +15,7 @@ class IdentityTests(unittest.TestCase):
         execution=dict(job='1',step='2',gpu_uuid='a',affinity=list(range(6))+list(range(32,38)),
             cpu_topology=[dict(logical_cpu=i,socket=0,core=i%32) for i in list(range(6))+list(range(32,38))])
         service=dict(job='1',step='1',gpu_uuids=['b','c'],
-            cpu_topology=[dict(logical_cpu=i,socket=1,core=i) for i in range(12)])
+            cpu_topology=[dict(logical_cpu=i+16,socket=1,core=i) for i in range(12)])
         workers=[dict(job='1',step='2',gpu_uuids=['a']) for _ in range(4)]
         return execution,service,workers
 
@@ -24,6 +24,12 @@ class IdentityTests(unittest.TestCase):
 
     def test_same_service_step_fails(self):
         e,s,w=self.fixture();s['step']=e['step'];self.assertFalse(verify(e,s,w))
+
+    def test_inconsistent_logical_id_or_nine_service_cores_fails(self):
+        e,s,w=self.fixture();s['cpu_topology'][0]['logical_cpu']=0
+        self.assertFalse(verify(e,s,w))
+        e,s,w=self.fixture();s['cpu_topology']=s['cpu_topology'][:9]
+        self.assertFalse(verify(e,s,w))
 
     def test_same_cpu_core_or_gpu_fails(self):
         e,s,w=self.fixture();s['cpu_topology'][0]=dict(logical_cpu=5,socket=0,core=5)
@@ -36,6 +42,20 @@ class IdentityTests(unittest.TestCase):
 
 
 class ProtocolTests(unittest.TestCase):
+    def test_v6_common_physical_cpu_fix_and_new_root(self):
+        command='''import json
+import live_physical_cpu_trial as entry
+t=entry.trial
+print(json.dumps(dict(root=str(t.R),hint=t.PHYSICAL_CPU_BINDING,seed=t.SEED_BASE,
+    fixed=t.FIXED_BLOCK_SECONDS,gate=t.GENERATOR_ELIGIBILITY_GATE,files=t.FILES)))
+'''
+        r=subprocess.run([sys.executable,'-B','-c',command],cwd=Path(__file__).parent,
+                         capture_output=True,text=True,check=True)
+        v=json.loads(r.stdout)
+        self.assertTrue(v['root'].endswith('-v6'));self.assertTrue(v['hint'])
+        self.assertEqual(v['seed'],142901);self.assertEqual(v['fixed'],1320)
+        self.assertFalse(v['gate']);self.assertEqual(len(v['files']),len(set(v['files'])))
+
     def test_full_synthetic_readout_checks_all_sixteen_and_budget(self):
         from live_search_trial_20261009 import schedule
         from live_readout import analyze

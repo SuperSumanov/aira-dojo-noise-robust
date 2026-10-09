@@ -1,8 +1,8 @@
 # 当前短交接
-更新：2026-10-09香港19:51；旧全文保留于Git e5e8bef4。当前方向R14，历史动态不是现场。
+更新：2026-10-09香港20:11；旧全文保留于Git e5e8bef4。当前方向R14，历史动态不是现场。
 
 ## 当前六小时窗口与现场
-- 用户14:11授权在会话内推进至约20:11香港；此刻尚未完成整窗，不提前宣称六小时结束。
+- 本次14:11–20:11香港六小时窗口已完成；20:08:57只读复核17328四worker均闭合且清理通过，原56候选/23评分回执不变。20:05重新核本窗八作业最终账，无在跑批次；不新增跟进/作业或复用余额。
 - 17328已COMPLETED，18:39:41–19:36:59，3×3438=10314GPU秒=2.865GPUh；4条开始、3正常预算结束、1模型请求TimeoutError失败。全部执行/服务GPU清理通过，无新GPU作业；旧Held12535不动。
 - 本窗实际总计29281GPU秒=8.133611111111112GPUh，含v5/CPUprobe/v6/v7/17308/17322/17326/17328全部失败、启动和空闲；不含14:11前v4的3315GPU秒。
 - 17328是单臂阶段资格，不是A/B：Pizza/Spooky各2seed174901–174904、原root5/share2/每run3000s；3张gpu27 RTX3090/18物理核/65min上限。提示预算也改50分钟，不能将前600s当v7反事实。
@@ -19,6 +19,7 @@
 - selection-loss-diagnosis-v1 SHA9e7b1f6ca69f1568a3c775a1ce21797d1d5532aefeff201e8afb572271b777fb：四条所有外部最好−native最好均0。放行6个被拒结果不提供本批直接终分收益；减少debug耗时或改变后续搜索需新对照。
 - 本地安全证据phase1/sandbox_scheduling/exposure_v1_closed；原候选/回复/预测/标签/权重均留远端。分析诊断与原冻结结果分文件，原失败不覆盖。
 - 结论：存在一个真实开发局部改善，但没有跨任务、同预算调度终分新收益。暂不扩大复杂LLM调度器；先据这批事实判断负载/共同基线是否适合检验R14，不把增预算、改root或反馈放行命名为新方法。
+- 投入判断：保留已有固定程序系统阳性，当前两文本任务配置不足以确认调度对Improve阶段的收益；不能直接扩大此配方。局部开发增益未原样重执行，不排除训练/评分波动。相同起点续跑9/13及10/5已做过，若将来使用只能算对照设计，不重命名为创新。
 - 19:29重读AIRA-dojo v2 §5/附录C/E：原主实验24h，策略弱收益限于AIDE算子，不能笼统说策略普遍无效；我方600s未完成root批不能解释原论文或学长生产。已写ROUTE_DECISIONS。
 
 ## 本窗口之前已闭合的批次，不重跑或救门
@@ -32,7 +33,8 @@
 
 ## 同步与恢复
 - 活跃checkout=C:/Research/New/my_project/MLEvolve/_codex_tmp/publication-feedback-20261001；fetch→CURRENT_DIRECTION→ROUTE_DECISIONS→本交接，旧aira-dojo-codex-20260813用户dirty保留。
-- 最新核远端自己branch为06aa7c328c0fa8b25988a42d09cbe602b88c1b71（18:46安全快进push）；本地e5e8bef4及后续本轮闭合待最终扫描/commit/push。未修改学长分支。
+- 20:00–20:01已快进push并ls-remote核我方branch=e5d563bd7933481977a1b11d4d0d89d7e50176f9；26文件/22证据源码字节一致，完整未发布历史及文件credential-shape命中0、敏感文件名0、最大66417字节。学长分支未改；Git环境hook进程有系统警告，不声称hook验收通过，人工检查另行完成。
+- 发布修复仅Git换行：三个CSV原始CRLF在窄路径-text后与远端SHA一致，数值无改动；详见exposure_v1_closed/publication-byte-audit.json。v7本地表对应远端readout-v1/runs.csv，非根目录控制器同名表；不是远端哈希漂移。所有原批次/失败/冻结门不变。
 - 学长dojo-reproduce最后核a5519bc8e0c85d0a3bd78c478ac8332120d415d9，10/9 15:42 offline-GRPO/data docs；只读元数据、不并入。不得推断有新语料已入库。
 - 未跟踪报告phase1/reports/给学长_MLE沙箱资源调度进展_20261009.md是13:01旧版本，保留，不误当本轮最新或擅自另写长报告。
 - SSH偶发DNS/连接中断，不等于远端进程失败；先核PID/回执再行动，SCP session须等exit0再使用。当前监控入口stage/live_status.py --version exposure含安全退出状态。

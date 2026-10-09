@@ -1,0 +1,24 @@
+{
+  "observed_hong_kong": "2026-10-09T19:58:00+08:00",
+  "issue": "Git text normalization removed CR from CSV CRLF. Numeric content did not change, but the published file bytes no longer matched the remote readout bytes.",
+  "action": "Set narrow -text attributes for this closeout's receipt-bound sources and artifacts; commit the original local bytes after remote SHA-256 verification. Preserve existing commits and all failed gates.",
+  "files": [
+    {
+      "local": "phase1/sandbox_scheduling/live_v7_closed/runs.csv",
+      "remote": "/research/d7/spc/yzyang4/scheduling-live-search-20261009-v7/readout-v1/runs.csv",
+      "sha256": "b2b2a3ad51e2ddfdc6abe8f8551eff7dc9ee36370e456a9e494bc7cdb231c6ac"
+    },
+    {
+      "local": "phase1/sandbox_scheduling/width_v1_closed/runs.csv",
+      "remote": "/research/d7/spc/yzyang4/scheduling-neural-width-20261009-v1/runs.csv",
+      "sha256": "5b50c7bc498edf4c82b8e5153bdde5f813926546331ef1671a208b0718581852"
+    },
+    {
+      "local": "phase1/sandbox_scheduling/exposure_v1_closed/native-opportunity-safe-runs-v1.csv",
+      "remote": "/research/d7/spc/yzyang4/scheduling-live-exposure-20261009-v1/native-opportunity-safe-runs-v1.csv",
+      "sha256": "b23366aa9b3e4770427746501f2a61772c06846707817f6e0427f7a06415d010"
+    }
+  ],
+  "path_check": "The v7 root/runs.csv is a different controller table. The correct source for the local summary is readout-v1/runs.csv; comparing the two distinct tables was not evidence of remote drift.",
+  "boundary": "Publication-byte repair only. No experiment, readout writer, numerical result, eligibility gate or remote original was rerun or modified. Independent audit means counting and hashing existing receipts, not independent scorer reexecution."
+}

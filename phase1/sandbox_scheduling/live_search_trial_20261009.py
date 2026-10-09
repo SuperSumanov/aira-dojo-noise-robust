@@ -46,6 +46,8 @@ SEED_BASE=140901
 GENERATOR_ELIGIBILITY_GATE=True
 FIXED_BLOCK_SECONDS=0
 PHYSICAL_CPU_BINDING=False
+ADMISSION_LIMITS={'pipeline':1,'share2':2}
+PREREQUISITE_RECEIPTS={}
 SERVICE27=B/'task-feedback-real-20261001-v6/service_entry.py'
 SERVICE27_SHA='cd9e143abe79cdc71c97db3dba07930e0642b28faf52ac4f6b2ca5ba36a8379a'
 TASKS=('random-acts-of-pizza','spooky-author-identification')
@@ -57,8 +59,11 @@ class GeneratorEligibilityFailed(RuntimeError):pass
 
 def schedule():
     rows=[]
+    arms=tuple(ADMISSION_LIMITS)
+    if len(arms)!=2 or sorted(ADMISSION_LIMITS.values())!=list(ADMISSION_LIMITS.values()):
+        raise ValueError('two ordered admission arms required')
     for rep in range(2):
-        for arm in (('pipeline','share2') if rep==0 else ('share2','pipeline')):
+        for arm in (arms if rep==0 else arms[::-1]):
             block=len(rows)//4
             for slot in range(4):
                 rows.append(dict(index=len(rows),block=block,arm=arm,repeat=rep,
@@ -133,6 +138,10 @@ def check():
         raise ValueError('budget/eligibility protocol changed')
     if p.get('physical_cpu_binding',False)!=PHYSICAL_CPU_BINDING:
         raise ValueError('physical CPU protocol changed')
+    if p.get('admission_limits',{'pipeline':1,'share2':2})!=ADMISSION_LIMITS:
+        raise ValueError('admission protocol changed')
+    for path,pin in p.get('prerequisite_receipts',{}).items():
+        if sha(path)!=pin:raise ValueError('prerequisite receipt drift')
     for name,pin in p['files'].items():
         if sha(R/name)!=pin:raise ValueError('frozen file drift')
     return p
@@ -256,6 +265,7 @@ timeout --signal=TERM --kill-after=20s 5320s {PY} -B {R/NAME} controller
         donor_plan_sha256=DONOR_PLAN,schedule=schedule(),gpus=3,total_cpu=18,node=NODE,
         node_qualification_required=NODE_QUALIFICATION,
         physical_cpu_binding=PHYSICAL_CPU_BINDING,
+        admission_limits=ADMISSION_LIMITS,prerequisite_receipts=PREREQUISITE_RECEIPTS,
         gateway_contract='Unique job/run-index gateway ports; all workers share the same native Slurm step but not a server port.',
         service_gpus=2,execution_gpus=1,service_cpu=12,execution_cpu=6,
         allocation_seconds=CAP,gpu_hours_cap=4.5,run_seconds=600,candidate_timeout_seconds=240,
@@ -274,11 +284,11 @@ timeout --signal=TERM --kill-after=20s 5320s {PY} -B {R/NAME} controller
         qualification=('Only image/safety qualifications. Complete all16 regardless of generator validity; stop on infrastructure/cleanup failure, retain16, no seed replacement.' if not GENERATOR_ELIGIBILITY_GATE else 'For 27B only: after the first pipeline block, require all four clean workers and finite valid native-selected dev endpoints. Otherwise stop the assigned batch, retain all16 denominator, no replacement seeds. Any full comparison is conditional exploratory evidence.'),
         adapter_unused=True,task_image_sha256=old['task_image_sha256'],
         service_image_sha256=old['service_image_sha256'],model_training=False,paid_api=False,
-        single_change='FIFO execution lease limit 1 versus 2; both overlap startup and preserve native within-run MCTS order.',
+        single_change=f'FIFO execution lease limits {ADMISSION_LIMITS}; both overlap startup and preserve native within-run MCTS order.',
         common_adapter='Close preview and failed task kernels before lease release; queue counted in 600s deadline but excluded from execution-duration feedback. Bounded info-only handshake common.',
         primary='Full assigned 16-run denominator: valid task.step candidate returns recorded by common 600s deadline, infrastructure failures, queue/ready/generation time, selected development score only where observed. A scored receipt without a completed task return does not count. No imputation of missing quality.',
         inference='Pool block is the scheduling intervention unit: only two paired block repeats. Run counts are not independent scheduling replications. No population significance or neural generalization claim.',
-        advance='Exploratory go only if all 16 endpoints, all 8 pairs of finite valid native-selected dev scores, and cleanup/audits complete, both paired pool blocks yield strictly more valid dev returns under share2, and per-task paired selected dev score medians are nonnegative with no additional infrastructure failures. Otherwise do not rescue with replacement seeds.',
+        advance='Exploratory go only if all 16 endpoints, all 8 pairs of finite valid native-selected dev scores, and cleanup/audits complete, both paired pool blocks yield strictly more valid dev returns under the wider-permit arm, and per-task paired selected dev score medians are nonnegative with no additional infrastructure failures. Otherwise do not rescue with replacement seeds.',
         boundary='Pizza and Spooky development workloads, not the reused neural fixed-program experiment; no protected cohorts, D_val, official test, critic or policy training.',
         allocation_accounting='Count all three reserved GPUs including model startup, idle/queue and failure; no reuse of old batch budgets.',
         public_inputs=public_inputs,
@@ -403,7 +413,7 @@ def block_run(block):
     if gpu in read(R/f'block-{block}/service-native.json')['gpu_uuids']:
         raise ValueError('service/execution GPU overlap')
     if gpu_sample(gpu)['pids']:raise ValueError('unclean execution GPU')
-    arm=rows[0]['arm'];initialize(R/f'queue-{block}',1 if arm=='pipeline' else 2)
+    arm=rows[0]['arm'];initialize(R/f'queue-{block}',ADMISSION_LIMITS[arm])
     start=time.time();stop=threading.Event();samples=[];errors=[]
     extra={}
     if FIXED_BLOCK_SECONDS:
@@ -428,7 +438,7 @@ def block_run(block):
     write(R/f'block-{block}/telemetry.json',samples)
     queue=R/f'queue-{block}'
     events=[json.loads(v) for v in (queue/'events.jsonl').read_text().splitlines()] if (queue/'events.jsonl').exists() else []
-    audit=audit_events(events,1 if arm=='pipeline' else 2)
+    audit=audit_events(events,ADMISSION_LIMITS[arm])
     clean=not gpu_sample(gpu)['pids']
     write(R/f'block-{block}/closed.json',dict(block=block,arm=arm,start=start,end=time.time(),
         results=results,queue_audit=audit,telemetry_errors=errors,gpu_clean=clean))

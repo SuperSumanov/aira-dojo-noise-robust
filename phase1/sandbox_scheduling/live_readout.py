@@ -60,22 +60,24 @@ def ground_scores(finished,timely,receipts):
         and finite(x.get('score')) and x['score']==finished.get('native_selected_score') for x in timely)
 
 
-def summarize(rows,blocks):
+def summarize(rows,blocks,arms=('pipeline','share2')):
     # Pool-level replication, not a test treating correlated runs as independent.
     diffs=[];raw_diffs=[];score_diffs={t:[] for t in sorted({r['task'] for r in rows})}
     attempted={b['block'] for b in blocks if b.get('attempted') is True}
     all_pairs=True
+    if len(arms)!=2 or len(set(arms))!=2:raise ValueError('two named arms required')
+    lower,wider=arms
     for repeat in (0,1):
         selected=[r for r in rows if r['repeat']==repeat]
-        totals={a:sum(r['valid_returns'] for r in selected if r['arm']==a) for a in ('pipeline','share2')}
-        raw_diffs.append(totals['share2']-totals['pipeline'])
+        totals={a:sum(r['valid_returns'] for r in selected if r['arm']==a) for a in arms}
+        raw_diffs.append(totals[wider]-totals[lower])
         # Absence of a launched comparator is not an observed zero return.
         # Retain assigned counts, including failures, separately; never rescue
         # a partial batch by summarizing only its completed pool pair.
         diffs.append(raw_diffs[-1] if {2*repeat,2*repeat+1} <= attempted else None)
         for slot in range(4):
             pair={r['arm']:r for r in selected if r['slot']==slot}
-            a,b=pair['pipeline'],pair['share2']
+            a,b=pair[lower],pair[wider]
             if not all(r['native_valid'] and finite(r['native_score']) and r['complete'] for r in (a,b)):
                 all_pairs=False;continue
             sign=-1 if a['task']=='spooky-author-identification' else 1
@@ -99,6 +101,9 @@ def summarize(rows,blocks):
 def analyze(root,output,*,allocation_gpu_seconds):
     root=Path(root);output=Path(output)
     closed=read(root/'closed.json');plan=read(root/'plan.json')
+    limits=plan.get('admission_limits',{'pipeline':1,'share2':2})
+    arms=tuple(sorted(limits,key=limits.get))
+    if len(arms)!=2 or len(set(limits.values()))!=2:raise ValueError('two distinct permit limits')
     if len(plan['schedule'])!=16 or plan['gpus']!=3:raise ValueError('wrong trial')
     if plan.get('node_qualification_required'):
         qualification=read(root/'node-qualification.json') if (root/'node-qualification.json').exists() else {}
@@ -135,7 +140,7 @@ def analyze(root,output,*,allocation_gpu_seconds):
         if row['late_returns'] or not selected_verified:row['complete']=False
         rows.append(row)
     for block in range(4):
-        bd=root/f'block-{block}';brows=[r for r in rows if r['block']==block];width=1 if brows[0]['arm']=='pipeline' else 2
+        bd=root/f'block-{block}';brows=[r for r in rows if r['block']==block];width=limits[brows[0]['arm']]
         events=lines(root/f'queue-{block}/events.jsonl');queue=queue_verify(events,width)
         c=read(bd/'closed.json') if (bd/'closed.json').exists() else {}
         execution=read(bd/'execution-native.json') if (bd/'execution-native.json').exists() else {}
@@ -153,19 +158,19 @@ def analyze(root,output,*,allocation_gpu_seconds):
         blocks.append(dict(block=block,arm=brows[0]['arm'],queue=queue,attempted=block in closed['attempted_blocks'],
             closed=c.get('gpu_clean') is True and service_cleanup.get('gpu_clean') is True and not c.get('telemetry_errors') and (bd/'cycle-closed.json').exists() and budget_ok,
             identities_ok=bool(identity_ok),valid_returns=sum(r['valid_returns'] for r in brows)))
-    result=summarize(rows,blocks)
+    result=summarize(rows,blocks,arms)
     if plan.get('fixed_block_seconds'):
         coverage=[]
         for rep in (0,1):
             totals={a:sum(r['native_valid'] and r['complete'] for r in rows if r['repeat']==rep and r['arm']==a)
-                    for a in ('pipeline','share2')}
-            coverage.append(totals['share2']-totals['pipeline'])
+                    for a in arms}
+            coverage.append(totals[arms[1]]-totals[arms[0]])
         result.update(fixed_block_seconds=plan['fixed_block_seconds'],paired_valid_endpoint_differences=coverage,
             feedback_throughput_signal=bool(result['complete']==16 and result['structural_audit']
                 and closed.get('controller_error') is None
                 and all(d is not None and d>0 for d in result['paired_pool_valid_return_differences'])
                 and all(d>=0 for d in coverage)))
-    result.update(plan_sha256=sha(root/'plan.json'),source_commit=plan['source_commit'],
+    result.update(admission_limits=limits,plan_sha256=sha(root/'plan.json'),source_commit=plan['source_commit'],
                   readout_source_sha256=sha(__file__),
                   closed_sha256=sha(root/'closed.json'),allocation_gpu_seconds=allocation_gpu_seconds,
                   allocation_gpu_hours=allocation_gpu_seconds/3600,controller_error=closed.get('controller_error'),

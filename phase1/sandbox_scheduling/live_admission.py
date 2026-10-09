@@ -14,7 +14,7 @@ import time
 
 class AdmissionState:
     def __init__(self, limit, queue=None, active=None, finished=None):
-        if limit not in (1, 2):
+        if limit not in (1, 2, 4):
             raise ValueError('fixed admission width')
         self.limit = limit
         self.queue = list(queue or [])

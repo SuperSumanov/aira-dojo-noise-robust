@@ -22,7 +22,7 @@ def use_lease(directory,key):
 @unittest.skipUnless(sys.platform=='linux','POSIX runtime required')
 class LinuxTests(unittest.TestCase):
     def test_process_concurrency(self):
-        for width in (1,2):
+        for width in (1,2,4):
             with tempfile.TemporaryDirectory(prefix='r14-lock-') as temp:
                 q=Path(temp)/'queue';initialize(q,width)
                 workers=[mp.Process(target=use_lease,args=(q,str(i))) for i in range(8)]

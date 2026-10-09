@@ -2,8 +2,8 @@
 ## 最新：2026-10-09香港六小时窗口（覆盖下方10/8动态状态）
 - 07:40香港最后核：v3/17232已FAILED，07:29:00–07:29:05，3GPU×5秒=15GPU秒；16轨迹0开始，服务/候选0启动。native_uuids在原镜像之前cuInit失败，错误码未知，不是Torch不兼容或方法负结果。原v3不重跑。
 - v3根scheduling-live-search-20261009-v3，source806727cabde249918d36d982c04e303f383799c5，plan a0820229fe936657c99345bd68292f89aaf71496053b0bed51486485bc4f7f5e；readout-v1与独立readout-missingness-v2均已一次闭合，原件不改。v2将未启动对照差标null，16分母与原判定不变；closed SHA93fe508f3c28a5d6f85cc83d378eae178a2c68149f5dbab0b5c9f8350458b0cc；读出source62b667e7a3eb0c2317b38235826a782eaa376a40f8a5b1aaa5c0b3824d4d3748。27项本地回归24通过/3Linux跳过。
-- 两次只读驱动诊断均入口失败：17234=2GPU秒（登录/tmp不共享），17235=1GPU秒（漏Python解释器），无驱动结果。第三次追加被安全审查拒绝，已异步请求明确批准；未获批前不再提交诊断、不绕过。全窗口已核总成本18GPU秒，现无本轮运行作业。
-- 诊断同一脚本已在共享scheduling-driver-diagnostic-20261009-v1/live_cuda_diagnostic.py，SHA052d173045ac4c7224401fc4226639a87fdfa8665b2de07703b0ab0a3a8d13ce；若获批，显式用venvs/aira/bin/python -B运行，单卡≤3分钟，只读cuInit错误码/driver版本，不改mask/驱动、不加载模型或数据。先核没有误提交的本轮作业。
+- 13:01香港最新：用户明确批准追加一次≤3min诊断，17250已COMPLETED/3GPU秒；但cuInit=999/CUDA_ERROR_UNKNOWN，CUDA仍不可用。nvidia-smi正常，RTX3090/615.71.09，libcuda.so.615.71.09，两个Slurm/CUDA mask均0。无模型/任务镜像/计算内核执行。仅确定失败阶段，未确定根因，不能据此宣称全gpu24损坏；需管理员检查原生CUDA/设备权限等，不擅改驱动或绕过隔离。
+- 诊断已闭合不补跑：共享scheduling-driver-diagnostic-20261009-v1/live_cuda_diagnostic.py SHA052d173045ac4c7224401fc4226639a87fdfa8665b2de07703b0ab0a3a8d13ce；证据sandbox_scheduling/driver_diagnostic_17250.json。两旧入口失败17234/17235=2/1GPU秒原样保留；加旧17232=15，本轮累计21GPU秒。队列只剩旧12535 Held、不动；无新GPU任务在跑。
 - 07:50前零GPU补查17128的12个关闭回执：3/3配对share2累计返回数在所有截止时刻均不低于pipeline；但6个同程序配对中1个晚13.305168628692627秒。派生return-dominance-v1.json已一次写出，不重跑writer；这是旧阳性边界而非新样本/质量收益/因果归因。30项本地CPU测试27通过/3Linux跳过。
 - 17229已CANCELLED by7542，sacct ElapsedRaw=0、AllocTRES空，Start=End=07:13:25香港；原v2保留migration-intent/cancel-request，不重新提交或重跑writer。调度原预计20:44:39晚于六小时窗口；17230只是sbatch --test-only显示号，未实际提交。
 - 端口核验：现场叫_gateway_port而非本地_slurm_gateway_port。初版CPU回归1项接口错误，修正后远端3/3；本地25项含3Linux跳过。旧17128/17017无效钩子但server会解析自身实际ready端口；12+12日志检查全部重叠区间端口不同（前者6对、后者3对），不据此推翻阳性或断言已知readiness故障根因。
@@ -13,7 +13,7 @@
 - 27B服务入口task-feedback-real-20261001-v6/service_entry.py已credential-scan与原manifest对hash：cd9e143abe79cdc71c97db3dba07930e0642b28faf52ac4f6b2ca5ba36a8379a；donor plan15751d3b52bdc42617df02006ce724635f4bf49df6e477686769fd1979d53403。模型local-qwen27b-20260914-zcx1k1dy/model在；served alias qwen3.8-27b，实际config qwen3_5/compressed-tensors4bit，不声称9B→27B能力提升已证实。
 - 27B仍2GPU，原服务131072ctx/6seq/seed49/FP8 KV；每块重启，跨块共享编译缓存（不共享活跃KV）。v2源ba44deec86822817d2349c68b380dbe5c5dc4621；prepare成功，CPU16配置、模型/镜像完整hash及host依赖回执齐；plan69b0532f77afc0c9f8607b557774b9fa66f06b82d339b35e36a1d4a6b75b757c。原prepare session56815已退出0，不重跑。
 - 读出source现8b59b481938b59be4c12b6eb198f0463019c0aa4：内部native选分必须对应截止前候选和外部dev回执，不信内部数值单源；本地16通过/3Linux跳过，远端3通过。未新增GPU或付费调用。
-- 本窗口约06:12–12:12，用户要求在会话内继续，既有自主批准适用；不另建自动化、不提前完成。
+- 原06:12–12:12六小时计划未完成，07:50前因追加诊断需批准而结束该轮，不能称连续六小时研究；13:00此次是用户新批准的独立一次诊断，不新建自动化或自动扩批。
 - 当前仍R14。fetch己方9c52040372909aa2173705903def1a4102f6bb3f；学长0155c7dedded47b59e29e81089e814250e38bd70（implement the grpo pipeline），仅核元数据，不读取新samples或采用GRPO。
 - live矩阵：2任务Pizza/Spooky dev、每池4独立run、FIFO执行许可1/2；ABBA四池块=16条×600s；27B/2GPU12CPU服务每块重启，1GPU6CPU执行池，无rolling，不改变run内顺序。
 - 新自限3张3090/90min/≤4.5GPUh，所有服务/失败/闲置计入；无API/底座训练/官方test。完整16分母，调度干预只有2配对块，不当16独立系统复制。

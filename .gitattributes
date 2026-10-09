@@ -866,3 +866,4 @@ phase1/sandbox_scheduling/live_v3_closed/** -text diff whitespace=cr-at-eol
 phase1/sandbox_scheduling/port_interface_audit_20261009.json -text diff whitespace=cr-at-eol
 phase1/sandbox_scheduling/return_dominance.py -text diff whitespace=cr-at-eol
 phase1/sandbox_scheduling/test_return_dominance.py -text diff whitespace=cr-at-eol
+phase1/sandbox_scheduling/driver_diagnostic_17250.json -text diff whitespace=cr-at-eol

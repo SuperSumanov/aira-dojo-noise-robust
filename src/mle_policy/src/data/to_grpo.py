@@ -96,7 +96,7 @@ verbose: bool = True,
 
     # Pass 1: decide which groups can carry an advantage at all, and compute it.
     plan: dict[str, dict[str, Any]] = {}
-    skipped = {"too_few_members": 0, "nothing_runnable": 0, "no_contrast": 0}
+    skipped = {"too_few_members": 0, "nothing_runnable": 0, "non_finite_reward": 0, "no_contrast": 0}
     clipped_episodes = 0
     for group in groups:
         members = eligible_members(group, operators)
@@ -120,6 +120,11 @@ verbose: bool = True,
                 scored[sample_id] = bounded
         floor = unresolved_reward if unresolved_reward is not None else min(scored.values()) - UNRESOLVED_REWARD_GAP
         group_rewards = [scored.get(member["sample_id"], floor) for member in members]
+        # One NaN reward would make the group mean/std NaN and poison every
+        # advantage in the group, so drop the group instead of writing it.
+        if not all(math.isfinite(reward) for reward in group_rewards):
+            skipped["non_finite_reward"] += 1
+            continue
         if max(group_rewards) - min(group_rewards) < MIN_REWARD_SPREAD:
             skipped["no_contrast"] += 1
             continue

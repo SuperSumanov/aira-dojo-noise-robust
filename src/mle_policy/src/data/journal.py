@@ -26,6 +26,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import math
 import re
 from pathlib import Path
 from typing import Any, Iterator
@@ -269,11 +270,19 @@ def _official_score(node: dict[str, Any], has_result: bool) -> float | None:
     Only trustworthy for nodes that actually ran: when a node fails, the grader
     re-scores whatever ``submission.csv`` the previous node left behind, so the
     field repeats the earlier value.  See the docs.
+
+    The grader has returned a literal ``NaN`` score for a submission that did run
+    (seen on ``google-quest-challenge``), so non-finite scores are treated the
+    same as a missing one -- otherwise one NaN poisons the whole episode, its
+    group, and every advantage derived from it.
     """
     if not has_result:
         return None
     score = (node.get("metric_info") or {}).get("score")
-    return None if score is None else float(score)
+    if score is None:
+        return None
+    score = float(score)
+    return score if math.isfinite(score) else None
 
 
 def reward_from_score(score: float | None, metric_info: dict[str, Any]) -> float | None:
@@ -283,16 +292,17 @@ def reward_from_score(score: float | None, metric_info: dict[str, Any]) -> float
     so ``0`` is the Kaggle median and ``1`` is the gold threshold.  The direction
     cancels out of the ratio, so lower-is-better competitions need no special
     case.  Missing or degenerate thresholds yield ``None``; the raw score stays
-    in the sample for any other normalisation downstream.
+    in the sample for any other normalisation downstream.  Non-finite inputs
+    yield ``None`` too (see ``_official_score``).
     """
-    if score is None:
+    if score is None or not math.isfinite(score):
         return None
     median = metric_info.get("median_threshold")
     gold = metric_info.get("gold_threshold")
     if median is None or gold is None:
         return None
     span = float(gold) - float(median)
-    if abs(span) < 1e-12:
+    if not math.isfinite(span) or abs(span) < 1e-12:
         return None
     sign = -1.0 if metric_info.get("is_lower_better") else 1.0
     return (sign * score - sign * float(median)) / (sign * span)

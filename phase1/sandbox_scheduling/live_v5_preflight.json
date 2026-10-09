@@ -48,7 +48,7 @@
   },
   "last_live_observation": {
     "job": "17262",
-    "state": "RUNNING",
+    "state": "RUNNING_AT_14_37_58_ONLY_SUPERSEDED_BY_OPERATOR_STOP",
     "node": "gpu27",
     "allocation_start_hong_kong": "2026-10-09T14:37:37+08:00",
     "allocated_gpu_cpu": [3, 18],

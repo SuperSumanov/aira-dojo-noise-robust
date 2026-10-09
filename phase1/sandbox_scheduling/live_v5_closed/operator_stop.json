@@ -1,0 +1,72 @@
+{
+  "kind": "operator_stop_receipt_not_frozen_readout",
+  "observed_utc": "2026-10-09T06:47:02.270958+00:00",
+  "job": "17262",
+  "root": "/research/d7/spc/yzyang4/scheduling-live-search-20261009-v5",
+  "plan_sha256": "1b145cdf4f9b74b7e4673bcba6dc2fd621343eae3f5246880a802c0a1e337de2",
+  "source_commit": "2e013b5c5d5d0a865916c2ef2ae4d2a6e7d02069",
+  "reason": "Observed generator affinity covers only nine physical cores, violating frozen twelve-core generator contract. Stop before service readiness or candidate execution; no hot patch, no budget reuse.",
+  "accounting": [
+    "17262|CANCELLED by 7542|319|billing=18,cpu=18,gres/gpu=3,node=1|0:0|2026-10-09T14:37:37|2026-10-09T14:42:56"
+  ],
+  "assigned": 16,
+  "started": 0,
+  "candidate_returns": 0,
+  "observed_pool_pairs": 0,
+  "paired_effect": null,
+  "gpu_seconds": 957,
+  "gpu_hours": 0.2658333333333333,
+  "closed_json_present": false,
+  "original_image_qualification": {
+    "complete": true,
+    "end": 1791527878.05142,
+    "error_type": null,
+    "gpu_clean": true,
+    "no_candidate_or_data_execution": true,
+    "node": "gpu27",
+    "receipt": {
+      "arithmetic_passed": true,
+      "cuda": "12.4",
+      "device": "NVIDIA GeForce RTX 3090",
+      "device_count": 1,
+      "torch": "2.5.1+cu124"
+    },
+    "start": 1791527868.2885303,
+    "task_image_sha256": "801f646bed3cae6e74e10d793e71b0086658d4303d54552333c58125ddf9beda"
+  },
+  "blocks": [
+    {
+      "block": 0,
+      "workers_started": 0,
+      "workers_finished": 0,
+      "candidate_receipts": 0,
+      "scoring_receipts": 0,
+      "service_ready": false
+    },
+    {
+      "block": 1,
+      "workers_started": 0,
+      "workers_finished": 0,
+      "candidate_receipts": 0,
+      "scoring_receipts": 0,
+      "service_ready": false
+    },
+    {
+      "block": 2,
+      "workers_started": 0,
+      "workers_finished": 0,
+      "candidate_receipts": 0,
+      "scoring_receipts": 0,
+      "service_ready": false
+    },
+    {
+      "block": 3,
+      "workers_started": 0,
+      "workers_finished": 0,
+      "candidate_receipts": 0,
+      "scoring_receipts": 0,
+      "service_ready": false
+    }
+  ],
+  "boundary": "Not a method-negative result. Original artifacts retained; no synthesized finished records. Resource-accounting ExitCode 0:0 does not override CANCELLED state."
+}

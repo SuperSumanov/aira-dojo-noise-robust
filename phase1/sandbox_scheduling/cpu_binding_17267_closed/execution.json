@@ -1,0 +1,71 @@
+{
+  "cpus_per_task": "6",
+  "hint": "nomultithread",
+  "job": "17267",
+  "role": "execution",
+  "source_sha256": "66affbcbdd8562bd41f4a0582efa83e0c394e26e4c3b8b28c12891ff60673d84",
+  "step": "1",
+  "time": 1791528747.2951088,
+  "topology": [
+    {
+      "core": 0,
+      "cpu": 16,
+      "socket": 1
+    },
+    {
+      "core": 1,
+      "cpu": 17,
+      "socket": 1
+    },
+    {
+      "core": 2,
+      "cpu": 18,
+      "socket": 1
+    },
+    {
+      "core": 3,
+      "cpu": 19,
+      "socket": 1
+    },
+    {
+      "core": 4,
+      "cpu": 20,
+      "socket": 1
+    },
+    {
+      "core": 5,
+      "cpu": 21,
+      "socket": 1
+    },
+    {
+      "core": 0,
+      "cpu": 48,
+      "socket": 1
+    },
+    {
+      "core": 1,
+      "cpu": 49,
+      "socket": 1
+    },
+    {
+      "core": 2,
+      "cpu": 50,
+      "socket": 1
+    },
+    {
+      "core": 3,
+      "cpu": 51,
+      "socket": 1
+    },
+    {
+      "core": 4,
+      "cpu": 52,
+      "socket": 1
+    },
+    {
+      "core": 5,
+      "cpu": 53,
+      "socket": 1
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "distinct_steps": true,
+  "execution_logical_cpus": 12,
+  "execution_physical_cores": 6,
+  "logical_disjoint": true,
+  "no_model_or_candidate_execution": true,
+  "passed": true,
+  "physical_disjoint": true,
+  "same_job": true,
+  "service_logical_cpus": 24,
+  "service_physical_cores": 12
+}

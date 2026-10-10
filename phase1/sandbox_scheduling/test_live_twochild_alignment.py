@@ -1,10 +1,16 @@
 import unittest
-from live_twochild_alignment import align, safe_excess
+from live_twochild_alignment import align, safe_excess, closed_rows
 
 A, B, C = ('a'*64, 'b'*64, 'c'*64)
 
 
 class AlignmentTests(unittest.TestCase):
+    def test_separate_primary_table(self):
+        rows=[dict(index=i) for i in range(16)]
+        self.assertEqual(closed_rows(dict(assigned=16),rows),rows)
+    def test_reject_summary_as_rows_and_duplicates(self):
+        with self.assertRaises(ValueError):closed_rows(dict(assigned=16),dict(assigned=16))
+        with self.assertRaises(ValueError):closed_rows(dict(assigned=16),[dict(index=0)]*16)
     def test_exact_repeated_hashes(self):
         self.assertEqual(align([A,A],[A,A])['status'],'exact_sequence')
     def test_unique_suffix_and_interior(self):

@@ -18,6 +18,14 @@ from live_twochild_stage_audit_v2 import counts
 ROOT = Path('/research/d7/spc/yzyang4/scheduling-live-twochild-20261010-v1')
 PLAN = '082645089d69e711f55057312d49e13d0fa99bf53942e91851791c12eb1525a6'
 PRIMARY = '447ecf6e19aace0029a3d1a0564e7c7589fca869b1152cca71146be70834b00a'
+RUNS = '8fee8abbaf3c98e1594386eaee5660cdcd8177f67f05295f768dfd7a6715eaba'
+
+
+def closed_rows(summary, rows):
+    # Frozen primary separates its summary from the per-run table.
+    if summary.get('assigned') != 16 or not isinstance(rows, list) or sorted(r['index'] for r in rows) != list(range(16)):
+        raise ValueError('separate complete original run table required')
+    return rows
 
 
 def align(recorded, returned):
@@ -53,7 +61,9 @@ def safe_excess(candidates, events, positions, horizon):
 def main():
     if sha(ROOT/'plan.json') != PLAN or sha(ROOT/'readout-v1/summary.json') != PRIMARY:
         raise ValueError('exact closed scope')
+    if sha(ROOT/'readout-v1/runs.json') != RUNS:raise ValueError('original per-run table drift')
     plan, primary = read(ROOT/'plan.json'), read(ROOT/'readout-v1/summary.json')
+    primary_rows = closed_rows(primary, read(ROOT/'readout-v1/runs.json'))
     if not (ROOT/'closed.json').exists() or sorted(r['index'] for r in plan['schedule']) != list(range(16)):
         raise ValueError('all original assignments')
     source = ROOT/'source/src/dojo/core/solvers/utils/response.py'
@@ -77,7 +87,7 @@ def main():
             raise ValueError('unique journal step order')
         recorded = [hashlib.sha256(module.extract_code(n['code']).encode()).hexdigest() for n in ns]
         returned = [c['code_sha256'] for c in cs]
-        original = next(r for r in primary['rows'] if r['index']==index)
+        original = next(r for r in primary_rows if r['index']==index)
         if len(cs) != original['candidate_returns'] + original['late_returns'] or len(ns) != stage['recorded_nodes']:
             raise ValueError('original denominator disagreement')
         alignment = align(recorded, returned)
@@ -87,9 +97,10 @@ def main():
             completed_cell_timeouts=sum(e['event']=='cell_return' and e.get('timed_out') is True for e in events),
             failed_generation_returns=sum(e['event']=='generation_returned' and e.get('success') is False for e in events)))
         for p in [journal,event_path,*cs_paths]:pins[str(p.relative_to(ROOT))]=sha(p)
-    result = dict(plan_sha256=PLAN, primary_sha256=PRIMARY, extractor_sha256=sha(source),
+    result = dict(plan_sha256=PLAN, primary_sha256=PRIMARY, runs_sha256=RUNS, extractor_sha256=sha(source),
         analysis_sha256=sha(__file__), assigned=16, rows=rows, receipt_sha256=pins,
         alignment_counts=dict(Counter(r['status'] for r in rows)),
+        diagnostic_correction='First invocation refused before writing because the reader incorrectly expected rows inside summary.json. The frozen primary has a separate runs.json. Exact-byte-pinned run table is now read explicitly; original experimental files and gates unchanged.',
         boundary='Post-result diagnosis only. A missing journal record is not necessarily a lost useful solution. Subsequent generation can be result analysis, not a new proposal. No event-timing counterfactual, no primary-gate change, no score/identity/content export. Hash ambiguity and mismatch remain explicit.')
     dest = ROOT/'return-alignment-v1.json'; write(dest,result)
     print(json.dumps(dict(written=True,sha256=sha(dest),assigned=16,alignment_counts=result['alignment_counts'],rows=rows),sort_keys=True))

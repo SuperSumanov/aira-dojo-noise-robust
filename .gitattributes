@@ -905,3 +905,5 @@ phase1/sandbox_scheduling/neural_status.py -text diff whitespace=cr-at-eol
 phase1/sandbox_scheduling/test_neural_status.py -text diff whitespace=cr-at-eol
 phase1/sandbox_scheduling/extension_phase_evidence.py -text diff whitespace=cr-at-eol
 phase1/sandbox_scheduling/test_extension_phase_evidence.py -text diff whitespace=cr-at-eol
+phase1/sandbox_scheduling/live_twochild_alignment.py -text diff whitespace=cr-at-eol
+phase1/sandbox_scheduling/test_live_twochild_alignment.py -text diff whitespace=cr-at-eol

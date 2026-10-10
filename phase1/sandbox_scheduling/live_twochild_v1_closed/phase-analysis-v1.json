@@ -1,0 +1,440 @@
+{
+  "analysis_source_sha256": "ae38d8c5af3d13978d2169a020702061221ae6bc550ad5841c6213f3b8e0e845",
+  "assigned": 16,
+  "plan_sha256": "082645089d69e711f55057312d49e13d0fa99bf53942e91851791c12eb1525a6",
+  "purpose": "Descriptive bottleneck localization only; no replacement of frozen outcome/advance criteria.",
+  "rows": [
+    {
+      "arm": "pipeline",
+      "block": 0,
+      "events_sha256": "36fa6b94d60222c28b9123049058b4d9b1ad17e235a530c29f89b5fb436b95d8",
+      "index": 0,
+      "observed": true,
+      "phase_accounting": {
+        "boundary": "Per-run task-slot seconds. The budget after the last event is unobserved, not measured idle time. Lease includes scoring/cleanup; neither GPU kernel time nor measured savings.",
+        "budget_after_last_event_seconds": 0,
+        "complete": true,
+        "cross_phase_overlap_seconds": 0.08688579220324755,
+        "observed_phase_union_seconds": 1429.3188392352313,
+        "observed_through_seconds": 1500,
+        "seconds": {
+          "generation": 749.7978869723156,
+          "kernel_readiness": 0.5270821284502745,
+          "lease": 117.52497121784836,
+          "queue": 561.5557847088203
+        },
+        "unclassified_within_observation_seconds": 70.68116076476872,
+        "unfinished": {}
+      },
+      "repeat": 0,
+      "seed": 175001,
+      "slot": 0,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "arm": "pipeline",
+      "block": 0,
+      "events_sha256": "e10398ba40e01fde6462c9bb87096fa719e8a326b11d9ca3aa5476c1ec47c4c4",
+      "index": 1,
+      "observed": true,
+      "phase_accounting": {
+        "boundary": "Per-run task-slot seconds. The budget after the last event is unobserved, not measured idle time. Lease includes scoring/cleanup; neither GPU kernel time nor measured savings.",
+        "budget_after_last_event_seconds": 0,
+        "complete": true,
+        "cross_phase_overlap_seconds": 0.13571645319461823,
+        "observed_phase_union_seconds": 1432.3030072031543,
+        "observed_through_seconds": 1500,
+        "seconds": {
+          "generation": 618.795237435028,
+          "kernel_readiness": 0.6403621146455407,
+          "lease": 545.0833943607286,
+          "queue": 267.9197297459468
+        },
+        "unclassified_within_observation_seconds": 67.69699279684573,
+        "unfinished": {}
+      },
+      "repeat": 0,
+      "seed": 175002,
+      "slot": 1,
+      "task": "spooky-author-identification"
+    },
+    {
+      "arm": "pipeline",
+      "block": 0,
+      "events_sha256": "7760f991bec18a053362d15d9d610442a4b09d865025bb66ebe2194231b17fff",
+      "index": 2,
+      "observed": true,
+      "phase_accounting": {
+        "boundary": "Per-run task-slot seconds. The budget after the last event is unobserved, not measured idle time. Lease includes scoring/cleanup; neither GPU kernel time nor measured savings.",
+        "budget_after_last_event_seconds": 0,
+        "complete": true,
+        "cross_phase_overlap_seconds": 0.2249723831191659,
+        "observed_phase_union_seconds": 1430.7115494348109,
+        "observed_through_seconds": 1500,
+        "seconds": {
+          "generation": 710.0376412691548,
+          "kernel_readiness": 0.834458764642477,
+          "lease": 40.11127840075642,
+          "queue": 679.9531433833763
+        },
+        "unclassified_within_observation_seconds": 69.28845056518912,
+        "unfinished": {}
+      },
+      "repeat": 0,
+      "seed": 175003,
+      "slot": 2,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "arm": "pipeline",
+      "block": 0,
+      "events_sha256": "5b2072c6f2bc3cab17436ec7dcf71fffc38f9dfc4bb4928f3ca8efbbaaf5dc9d",
+      "index": 3,
+      "observed": true,
+      "phase_accounting": {
+        "boundary": "Per-run task-slot seconds. The budget after the last event is unobserved, not measured idle time. Lease includes scoring/cleanup; neither GPU kernel time nor measured savings.",
+        "budget_after_last_event_seconds": 0,
+        "complete": true,
+        "cross_phase_overlap_seconds": 0.23440679255872965,
+        "observed_phase_union_seconds": 1428.2633333411068,
+        "observed_through_seconds": 1500,
+        "seconds": {
+          "generation": 553.0098891220987,
+          "kernel_readiness": 0.8752787467092276,
+          "lease": 536.4712382378057,
+          "queue": 338.1413340270519
+        },
+        "unclassified_within_observation_seconds": 71.73666665889323,
+        "unfinished": {}
+      },
+      "repeat": 0,
+      "seed": 175004,
+      "slot": 3,
+      "task": "spooky-author-identification"
+    },
+    {
+      "arm": "share2",
+      "block": 1,
+      "events_sha256": "5dbd7dada5e9d6054da8137f85a223878fc81e4acf452406d462046c57eba3bc",
+      "index": 4,
+      "observed": true,
+      "phase_accounting": {
+        "boundary": "Per-run task-slot seconds. The budget after the last event is unobserved, not measured idle time. Lease includes scoring/cleanup; neither GPU kernel time nor measured savings.",
+        "budget_after_last_event_seconds": 0,
+        "complete": true,
+        "cross_phase_overlap_seconds": 0.22132516093552113,
+        "observed_phase_union_seconds": 1418.725015903823,
+        "observed_through_seconds": 1500,
+        "seconds": {
+          "generation": 1102.0296801459044,
+          "kernel_readiness": 120.75700001232326,
+          "lease": 65.57029109634459,
+          "queue": 130.58936981018633
+        },
+        "unclassified_within_observation_seconds": 81.27498409617692,
+        "unfinished": {}
+      },
+      "repeat": 0,
+      "seed": 175001,
+      "slot": 0,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "arm": "share2",
+      "block": 1,
+      "events_sha256": "7abeefcd33e688eefdfd7c6c2f20f7814516e1741e16fe88384fe231909e5089",
+      "index": 5,
+      "observed": true,
+      "phase_accounting": {
+        "boundary": "Per-run task-slot seconds. The budget after the last event is unobserved, not measured idle time. Lease includes scoring/cleanup; neither GPU kernel time nor measured savings.",
+        "budget_after_last_event_seconds": 0,
+        "complete": true,
+        "cross_phase_overlap_seconds": 0.0,
+        "observed_phase_union_seconds": 1441.4917723517865,
+        "observed_through_seconds": 1500,
+        "seconds": {
+          "generation": 364.8572785286233,
+          "kernel_readiness": 0.3748320499435067,
+          "lease": 1076.1478800475597,
+          "queue": 0.11178172565996647
+        },
+        "unclassified_within_observation_seconds": 58.508227648213506,
+        "unfinished": {}
+      },
+      "repeat": 0,
+      "seed": 175002,
+      "slot": 1,
+      "task": "spooky-author-identification"
+    },
+    {
+      "arm": "share2",
+      "block": 1,
+      "events_sha256": "a1587a2f6ff041497840bc48df8cd399ad7cc1da4cc973044e2cb6d41e9cbe48",
+      "index": 6,
+      "observed": true,
+      "phase_accounting": {
+        "boundary": "Per-run task-slot seconds. The budget after the last event is unobserved, not measured idle time. Lease includes scoring/cleanup; neither GPU kernel time nor measured savings.",
+        "budget_after_last_event_seconds": 1205.4364634212106,
+        "complete": true,
+        "cross_phase_overlap_seconds": 0.0044159237295389175,
+        "observed_phase_union_seconds": 255.22014340851456,
+        "observed_through_seconds": 294.56353657878935,
+        "seconds": {
+          "generation": 243.35318645555526,
+          "kernel_readiness": 0.14470373559743166,
+          "lease": 11.693579799495637,
+          "queue": 0.03308934159576893
+        },
+        "unclassified_within_observation_seconds": 39.343393170274794,
+        "unfinished": {}
+      },
+      "repeat": 0,
+      "seed": 175003,
+      "slot": 2,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "arm": "share2",
+      "block": 1,
+      "events_sha256": "1277a43f6a01911f139ad1d0b94d718daa094f28340887bc099937c8e826bfe0",
+      "index": 7,
+      "observed": true,
+      "phase_accounting": {
+        "boundary": "Per-run task-slot seconds. The budget after the last event is unobserved, not measured idle time. Lease includes scoring/cleanup; neither GPU kernel time nor measured savings.",
+        "budget_after_last_event_seconds": 0,
+        "complete": true,
+        "cross_phase_overlap_seconds": 0.17845792416483164,
+        "observed_phase_union_seconds": 1415.821243838407,
+        "observed_through_seconds": 1500,
+        "seconds": {
+          "generation": 898.3434114847332,
+          "kernel_readiness": 0.8255225764587522,
+          "lease": 514.3926098216325,
+          "queue": 2.4381578797474504
+        },
+        "unclassified_within_observation_seconds": 84.1787561615929,
+        "unfinished": {}
+      },
+      "repeat": 0,
+      "seed": 175004,
+      "slot": 3,
+      "task": "spooky-author-identification"
+    },
+    {
+      "arm": "share2",
+      "block": 2,
+      "events_sha256": "9fc11cbd0a8a2a6bb26f36a4974e6cd7fada5e43933840900562da77af7eb22e",
+      "index": 8,
+      "observed": true,
+      "phase_accounting": {
+        "boundary": "Per-run task-slot seconds. The budget after the last event is unobserved, not measured idle time. Lease includes scoring/cleanup; neither GPU kernel time nor measured savings.",
+        "budget_after_last_event_seconds": 0,
+        "complete": true,
+        "cross_phase_overlap_seconds": 0.09140370320528746,
+        "observed_phase_union_seconds": 1423.1822358537465,
+        "observed_through_seconds": 1500,
+        "seconds": {
+          "generation": 649.4341555880383,
+          "kernel_readiness": 120.54616346117109,
+          "lease": 335.57471118029207,
+          "queue": 317.7186093274504
+        },
+        "unclassified_within_observation_seconds": 76.81776414625347,
+        "unfinished": {}
+      },
+      "repeat": 1,
+      "seed": 175101,
+      "slot": 0,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "arm": "share2",
+      "block": 2,
+      "events_sha256": "d19c1e35dbcdffca9833a9895782d08a121040e2fdd90fbddeeee14ef666d278",
+      "index": 9,
+      "observed": true,
+      "phase_accounting": {
+        "boundary": "Per-run task-slot seconds. The budget after the last event is unobserved, not measured idle time. Lease includes scoring/cleanup; neither GPU kernel time nor measured savings.",
+        "budget_after_last_event_seconds": 0,
+        "complete": true,
+        "cross_phase_overlap_seconds": 0.04602260049432516,
+        "observed_phase_union_seconds": 1436.6033237436786,
+        "observed_through_seconds": 1500,
+        "seconds": {
+          "generation": 327.780083257705,
+          "kernel_readiness": 120.42065353970975,
+          "lease": 854.554815822281,
+          "queue": 133.8937937244773
+        },
+        "unclassified_within_observation_seconds": 63.39667625632137,
+        "unfinished": {}
+      },
+      "repeat": 1,
+      "seed": 175102,
+      "slot": 1,
+      "task": "spooky-author-identification"
+    },
+    {
+      "arm": "share2",
+      "block": 2,
+      "events_sha256": "ced80f0c1687e7fe0274cdf5b4b6d3a456210a1ab7bba9c356054e5cf4b3b258",
+      "index": 10,
+      "observed": true,
+      "phase_accounting": {
+        "boundary": "Per-run task-slot seconds. The budget after the last event is unobserved, not measured idle time. Lease includes scoring/cleanup; neither GPU kernel time nor measured savings.",
+        "budget_after_last_event_seconds": 0,
+        "complete": true,
+        "cross_phase_overlap_seconds": 0.09504327923059464,
+        "observed_phase_union_seconds": 1410.932582830079,
+        "observed_through_seconds": 1500,
+        "seconds": {
+          "generation": 788.5891171926633,
+          "kernel_readiness": 0.7308309189975262,
+          "lease": 156.3834599275142,
+          "queue": 465.3242180701345
+        },
+        "unclassified_within_observation_seconds": 89.0674171699211,
+        "unfinished": {}
+      },
+      "repeat": 1,
+      "seed": 175103,
+      "slot": 2,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "arm": "share2",
+      "block": 2,
+      "events_sha256": "6c294db54d0384f0e08c30a1f859ae40203bff6909f13c76890d42af71177890",
+      "index": 11,
+      "observed": true,
+      "phase_accounting": {
+        "boundary": "Per-run task-slot seconds. The budget after the last event is unobserved, not measured idle time. Lease includes scoring/cleanup; neither GPU kernel time nor measured savings.",
+        "budget_after_last_event_seconds": 0,
+        "complete": true,
+        "cross_phase_overlap_seconds": 0.0,
+        "observed_phase_union_seconds": 1440.053783277981,
+        "observed_through_seconds": 1500,
+        "seconds": {
+          "generation": 254.00489826593548,
+          "kernel_readiness": 0.4390946077182889,
+          "lease": 1084.286374106072,
+          "queue": 101.32341629825532
+        },
+        "unclassified_within_observation_seconds": 59.94621672201902,
+        "unfinished": {}
+      },
+      "repeat": 1,
+      "seed": 175104,
+      "slot": 3,
+      "task": "spooky-author-identification"
+    },
+    {
+      "arm": "pipeline",
+      "block": 3,
+      "events_sha256": "cd09451c48a457e6dadac961e7557e328cd4e61c1088bf9e63d24ea7ead3dc78",
+      "index": 12,
+      "observed": true,
+      "phase_accounting": {
+        "boundary": "Per-run task-slot seconds. The budget after the last event is unobserved, not measured idle time. Lease includes scoring/cleanup; neither GPU kernel time nor measured savings.",
+        "budget_after_last_event_seconds": 0,
+        "complete": true,
+        "cross_phase_overlap_seconds": 0.04377147927880287,
+        "observed_phase_union_seconds": 1463.0106216697022,
+        "observed_through_seconds": 1500,
+        "seconds": {
+          "generation": 182.97154656331986,
+          "kernel_readiness": 0.2954820701852441,
+          "lease": 21.573194263502955,
+          "queue": 1258.214170251973
+        },
+        "unclassified_within_observation_seconds": 36.98937833029777,
+        "unfinished": {}
+      },
+      "repeat": 1,
+      "seed": 175101,
+      "slot": 0,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "arm": "pipeline",
+      "block": 3,
+      "events_sha256": "e2417bb274de143126d417cefacd08bfc575355c7167e5522dba7f0c28e236c8",
+      "index": 13,
+      "observed": true,
+      "phase_accounting": {
+        "boundary": "Per-run task-slot seconds. The budget after the last event is unobserved, not measured idle time. Lease includes scoring/cleanup; neither GPU kernel time nor measured savings.",
+        "budget_after_last_event_seconds": 0,
+        "complete": true,
+        "cross_phase_overlap_seconds": 0.0,
+        "observed_phase_union_seconds": 1462.1289047729224,
+        "observed_through_seconds": 1500,
+        "seconds": {
+          "generation": 160.67780858371407,
+          "kernel_readiness": 0.2634504474699497,
+          "lease": 498.25649784877896,
+          "queue": 802.9311478929594
+        },
+        "unclassified_within_observation_seconds": 37.8710952270776,
+        "unfinished": {}
+      },
+      "repeat": 1,
+      "seed": 175102,
+      "slot": 1,
+      "task": "spooky-author-identification"
+    },
+    {
+      "arm": "pipeline",
+      "block": 3,
+      "events_sha256": "854b9a7696545146304080d54b80d383b7fa68983a74ce1d9f7bc7d3367c979c",
+      "index": 14,
+      "observed": true,
+      "phase_accounting": {
+        "boundary": "Per-run task-slot seconds. The budget after the last event is unobserved, not measured idle time. Lease includes scoring/cleanup; neither GPU kernel time nor measured savings.",
+        "budget_after_last_event_seconds": 0,
+        "complete": true,
+        "cross_phase_overlap_seconds": 0.04395041801035404,
+        "observed_phase_union_seconds": 1371.980333342217,
+        "observed_through_seconds": 1500,
+        "seconds": {
+          "generation": 242.74596782308072,
+          "kernel_readiness": 0.25961459893733263,
+          "lease": 471.45898034609854,
+          "queue": 657.5597209921107
+        },
+        "unclassified_within_observation_seconds": 128.0196666577831,
+        "unfinished": {}
+      },
+      "repeat": 1,
+      "seed": 175103,
+      "slot": 2,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "arm": "pipeline",
+      "block": 3,
+      "events_sha256": "684bcab0ae30da1da1992eb4c3b521645b34ba405750f5e2b3d8fc227b5706c0",
+      "index": 15,
+      "observed": true,
+      "phase_accounting": {
+        "boundary": "Per-run task-slot seconds. The budget after the last event is unobserved, not measured idle time. Lease includes scoring/cleanup; neither GPU kernel time nor measured savings.",
+        "budget_after_last_event_seconds": 0,
+        "complete": true,
+        "cross_phase_overlap_seconds": 0.0,
+        "observed_phase_union_seconds": 1463.6978862863034,
+        "observed_through_seconds": 1500,
+        "seconds": {
+          "generation": 142.39861225243658,
+          "kernel_readiness": 0.2959794085472822,
+          "lease": 435.8148043276742,
+          "queue": 885.1884902976453
+        },
+        "unclassified_within_observation_seconds": 36.3021137136966,
+        "unfinished": {}
+      },
+      "repeat": 1,
+      "seed": 175104,
+      "slot": 3,
+      "task": "spooky-author-identification"
+    }
+  ]
+}

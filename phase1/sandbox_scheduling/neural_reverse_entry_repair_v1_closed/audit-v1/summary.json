@@ -1,0 +1,55 @@
+{
+  "blocks": [
+    {
+      "arm": "share2",
+      "block": 0,
+      "complete": false,
+      "interval_count": 1,
+      "outside": 86.36863970756531,
+      "overlap": 0.0,
+      "repeat": 0,
+      "seconds": 126.69747853279114,
+      "union": 40.32883882522583
+    }
+  ],
+  "boundary": "Independent audit, not additional trials; interval decomposition is not causal attribution.",
+  "completed": 1,
+  "frozen_files_match": true,
+  "full_denominator": 12,
+  "job": "17380",
+  "no_prediction_values_exported": true,
+  "no_quality_labels_read": true,
+  "numeric_comparisons": [
+    {
+      "comparisons": 0,
+      "comparisons_not_independent_observations": true,
+      "max_difference": null,
+      "outputs": 0,
+      "primary_numerical_gate": null,
+      "program": 0
+    },
+    {
+      "comparisons": 0,
+      "comparisons_not_independent_observations": true,
+      "max_difference": null,
+      "outputs": 1,
+      "primary_numerical_gate": null,
+      "program": 1
+    }
+  ],
+  "paired_median": null,
+  "plan_sha256": "85083556a438b450182bc2d0a28228c7f0072fd325e4a458aadbe4c2f4f5a1e8",
+  "primary_sha256": "fbaa468783f3ba1565b28a999171814a77a4298c8dbaa7d94647ef1dbcaa1a38",
+  "ratios": [],
+  "training_receipts": [
+    {
+      "arm": "share2",
+      "candidate_seconds": 40.32883882522583,
+      "host_calls_not_kernel_time": true,
+      "index": 1,
+      "program": 1,
+      "step_span_seconds": 31.091845750808716,
+      "steps": 588
+    }
+  ]
+}

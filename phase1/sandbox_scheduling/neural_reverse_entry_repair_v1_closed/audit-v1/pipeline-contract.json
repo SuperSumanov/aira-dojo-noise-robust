@@ -1,0 +1,17 @@
+{
+  "full_denominator": 12,
+  "pipeline_barriers_verified": true,
+  "plan_sha256": "85083556a438b450182bc2d0a28228c7f0072fd325e4a458aadbe4c2f4f5a1e8",
+  "same_CPU_GPU": true,
+  "stages": [
+    {
+      "after_candidate": 3.858952283859253,
+      "arm": "share2",
+      "candidate": 40.32883882522583,
+      "index": 1,
+      "initialization": 6.68874979019165,
+      "program": 1,
+      "queue": 0.004522562026977539
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "job": "17380",
+  "source_commit": "48f1a49ffa05f625810c14ce7e1b3308a39156cf",
+  "plan_sha256": "85083556a438b450182bc2d0a28228c7f0072fd325e4a458aadbe4c2f4f5a1e8",
+  "primary_sha256": "fbaa468783f3ba1565b28a999171814a77a4298c8dbaa7d94647ef1dbcaa1a38",
+  "audit_sha256": "b84191090c0818685e16ecb783a6781dcb39b835776008f2c1b4869a18200c52",
+  "allocation": {"state": "FAILED", "start_hkt": "2026-10-10T09:13:02+08:00", "end_hkt": "2026-10-10T09:15:52+08:00", "gpus": 1, "gpu_seconds": 170},
+  "denominator": {"planned": 12, "attempted": 2, "completed": 1, "failed": 1, "not_started": 10, "complete_arm_pairs": 0},
+  "observed": "Warmup and the restored configure import passed. UNet completed 588 optimizer steps. CNN timed out during the 120-second readiness prelude, before its candidate started. The first-block gate stopped the other ten assigned executions.",
+  "interpretation": "No reverse-order speedup estimate exists. This does not negate or confirm the earlier timing result; the chronology concern remains unresolved. The entry-interface error was fixed, but the separate intermittent kernel-readiness fault was not located or repaired.",
+  "independent_checks": {"remote_local_receipts": 8, "hash_mismatches": 0, "local_status_counts_match": true, "audit_numerical_comparisons": 0},
+  "whole_window_accounting": {"17364": 216, "17366": 1796, "17368": 27612, "17376": 63, "17380": 170, "total_gpu_seconds": 29857, "limit_gpu_seconds": 36900},
+  "decision": "Close this independent repair attempt without replacement or further GPU retries in this window; retain all twelve assignments and full cost. No paired result is imputed from the one completed program.",
+  "artifact_copy_note": "Initial copy requested a nonexistent readout-v1/audit.json. No analysis was rerun: copied the existing audit-v1/summary.json and pipeline-contract.json, then verified all eight hashes."
+}

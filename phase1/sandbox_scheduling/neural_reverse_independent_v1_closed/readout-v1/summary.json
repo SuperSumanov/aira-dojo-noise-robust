@@ -1,0 +1,185 @@
+{
+  "allocation_exit": "1:0",
+  "allocation_seconds": 63,
+  "allocation_state": "FAILED",
+  "attempted": 0,
+  "blocks": [],
+  "boundary": "Two fixed public-training-derived inputs, unchanged programs and source-seed restarts. No quality scores, live search, novel method or population inference.",
+  "completed": 0,
+  "exploratory_gate": false,
+  "job": "17376",
+  "output_equivalence": [
+    {
+      "all_six_present": false,
+      "available_outputs": 0,
+      "max_cross_arm": null,
+      "max_within_arm": null,
+      "numerical_gate": null,
+      "pairs": [],
+      "program": 0,
+      "step_counts_equal": null,
+      "steps": [],
+      "tolerance_is_not_quality_guarantee": true
+    },
+    {
+      "all_six_present": false,
+      "available_outputs": 0,
+      "max_cross_arm": null,
+      "max_within_arm": null,
+      "numerical_gate": null,
+      "pairs": [],
+      "program": 1,
+      "step_counts_equal": null,
+      "steps": [],
+      "tolerance_is_not_quality_guarantee": true
+    }
+  ],
+  "paired_ratios": [],
+  "plan_sha256": "88fd90528961d58e49ff79518d186b79048be5a8f9729f3a85aa80ce9f78b7cd",
+  "planned": 12,
+  "reference_arm": "pipeline",
+  "runs": [
+    {
+      "arm": "share2",
+      "harness_seed": 130701,
+      "index": 0,
+      "position": 0,
+      "program": 0,
+      "repeat": 0,
+      "source_commit": "255ed2eedd4718749e7198689a59bb570a953a73",
+      "source_seed": 42,
+      "status": "not_started"
+    },
+    {
+      "arm": "share2",
+      "harness_seed": 130701,
+      "index": 1,
+      "position": 1,
+      "program": 1,
+      "repeat": 0,
+      "source_commit": "255ed2eedd4718749e7198689a59bb570a953a73",
+      "source_seed": 42,
+      "status": "not_started"
+    },
+    {
+      "arm": "pipeline",
+      "harness_seed": 130701,
+      "index": 2,
+      "position": 0,
+      "program": 0,
+      "repeat": 0,
+      "source_commit": "255ed2eedd4718749e7198689a59bb570a953a73",
+      "source_seed": 42,
+      "status": "not_started"
+    },
+    {
+      "arm": "pipeline",
+      "harness_seed": 130701,
+      "index": 3,
+      "position": 1,
+      "program": 1,
+      "repeat": 0,
+      "source_commit": "255ed2eedd4718749e7198689a59bb570a953a73",
+      "source_seed": 42,
+      "status": "not_started"
+    },
+    {
+      "arm": "pipeline",
+      "harness_seed": 130701,
+      "index": 4,
+      "position": 0,
+      "program": 1,
+      "repeat": 1,
+      "source_commit": "255ed2eedd4718749e7198689a59bb570a953a73",
+      "source_seed": 42,
+      "status": "not_started"
+    },
+    {
+      "arm": "pipeline",
+      "harness_seed": 130701,
+      "index": 5,
+      "position": 1,
+      "program": 0,
+      "repeat": 1,
+      "source_commit": "255ed2eedd4718749e7198689a59bb570a953a73",
+      "source_seed": 42,
+      "status": "not_started"
+    },
+    {
+      "arm": "share2",
+      "harness_seed": 130701,
+      "index": 6,
+      "position": 0,
+      "program": 1,
+      "repeat": 1,
+      "source_commit": "255ed2eedd4718749e7198689a59bb570a953a73",
+      "source_seed": 42,
+      "status": "not_started"
+    },
+    {
+      "arm": "share2",
+      "harness_seed": 130701,
+      "index": 7,
+      "position": 1,
+      "program": 0,
+      "repeat": 1,
+      "source_commit": "255ed2eedd4718749e7198689a59bb570a953a73",
+      "source_seed": 42,
+      "status": "not_started"
+    },
+    {
+      "arm": "share2",
+      "harness_seed": 130701,
+      "index": 8,
+      "position": 0,
+      "program": 0,
+      "repeat": 2,
+      "source_commit": "255ed2eedd4718749e7198689a59bb570a953a73",
+      "source_seed": 42,
+      "status": "not_started"
+    },
+    {
+      "arm": "share2",
+      "harness_seed": 130701,
+      "index": 9,
+      "position": 1,
+      "program": 1,
+      "repeat": 2,
+      "source_commit": "255ed2eedd4718749e7198689a59bb570a953a73",
+      "source_seed": 42,
+      "status": "not_started"
+    },
+    {
+      "arm": "pipeline",
+      "harness_seed": 130701,
+      "index": 10,
+      "position": 0,
+      "program": 0,
+      "repeat": 2,
+      "source_commit": "255ed2eedd4718749e7198689a59bb570a953a73",
+      "source_seed": 42,
+      "status": "not_started"
+    },
+    {
+      "arm": "pipeline",
+      "harness_seed": 130701,
+      "index": 11,
+      "position": 1,
+      "program": 1,
+      "repeat": 2,
+      "source_commit": "255ed2eedd4718749e7198689a59bb570a953a73",
+      "source_seed": 42,
+      "status": "not_started"
+    }
+  ],
+  "source_commit": "255ed2eedd4718749e7198689a59bb570a953a73",
+  "speedup": {
+    "max": null,
+    "median": null,
+    "min": null,
+    "n": 0,
+    "sample_std": null
+  },
+  "whole_pool_gpu_hours": 0.0175,
+  "within_cap": true
+}

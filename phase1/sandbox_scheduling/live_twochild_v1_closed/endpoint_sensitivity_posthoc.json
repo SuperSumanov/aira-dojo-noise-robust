@@ -1,0 +1,156 @@
+{
+  "kind": "Post-hoc endpoint sensitivity, not a replacement primary endpoint",
+  "job": "17368",
+  "input": "readout-v1/runs.json",
+  "input_sha256": "8fee8abbaf3c98e1594386eaee5660cdcd8177f67f05295f768dfd7a6715eaba",
+  "rule": "Pair all eight assigned repeat/slot groups. A usable verified native artifact outranks no usable artifact; with both usable, orient Pizza larger-better and Spooky smaller-better; both unusable are tied. No numeric quality is imputed. Report both complete-run and salvage-artifact definitions.",
+  "analyses": [
+    {
+      "requireComplete": true,
+      "pairs": [
+        {
+          "repeat": 0,
+          "slot": 0,
+          "pipeline": 0,
+          "share2": 4,
+          "sign": -1,
+          "delta": -0.04406840468787376
+        },
+        {
+          "repeat": 0,
+          "slot": 1,
+          "pipeline": 1,
+          "share2": 5,
+          "sign": -1,
+          "delta": null
+        },
+        {
+          "repeat": 0,
+          "slot": 2,
+          "pipeline": 2,
+          "share2": 6,
+          "sign": -1,
+          "delta": null
+        },
+        {
+          "repeat": 0,
+          "slot": 3,
+          "pipeline": 3,
+          "share2": 7,
+          "sign": -1,
+          "delta": -0.009572227481040252
+        },
+        {
+          "repeat": 1,
+          "slot": 0,
+          "pipeline": 12,
+          "share2": 8,
+          "sign": -1,
+          "delta": -0.062485051423104565
+        },
+        {
+          "repeat": 1,
+          "slot": 1,
+          "pipeline": 13,
+          "share2": 9,
+          "sign": 1,
+          "delta": null
+        },
+        {
+          "repeat": 1,
+          "slot": 2,
+          "pipeline": 14,
+          "share2": 10,
+          "sign": 1,
+          "delta": null
+        },
+        {
+          "repeat": 1,
+          "slot": 3,
+          "pipeline": 15,
+          "share2": 11,
+          "sign": 0,
+          "delta": null
+        }
+      ],
+      "wins": 2,
+      "losses": 5,
+      "ties": 1
+    },
+    {
+      "requireComplete": false,
+      "pairs": [
+        {
+          "repeat": 0,
+          "slot": 0,
+          "pipeline": 0,
+          "share2": 4,
+          "sign": -1,
+          "delta": -0.04406840468787376
+        },
+        {
+          "repeat": 0,
+          "slot": 1,
+          "pipeline": 1,
+          "share2": 5,
+          "sign": -1,
+          "delta": null
+        },
+        {
+          "repeat": 0,
+          "slot": 2,
+          "pipeline": 2,
+          "share2": 6,
+          "sign": -1,
+          "delta": -0.01405166228175081
+        },
+        {
+          "repeat": 0,
+          "slot": 3,
+          "pipeline": 3,
+          "share2": 7,
+          "sign": -1,
+          "delta": -0.009572227481040252
+        },
+        {
+          "repeat": 1,
+          "slot": 0,
+          "pipeline": 12,
+          "share2": 8,
+          "sign": -1,
+          "delta": -0.062485051423104565
+        },
+        {
+          "repeat": 1,
+          "slot": 1,
+          "pipeline": 13,
+          "share2": 9,
+          "sign": 1,
+          "delta": null
+        },
+        {
+          "repeat": 1,
+          "slot": 2,
+          "pipeline": 14,
+          "share2": 10,
+          "sign": 1,
+          "delta": null
+        },
+        {
+          "repeat": 1,
+          "slot": 3,
+          "pipeline": 15,
+          "share2": 11,
+          "sign": 0,
+          "delta": null
+        }
+      ],
+      "wins": 2,
+      "losses": 5,
+      "ties": 1
+    }
+  ],
+  "independent_implementations": "PowerShell and JavaScript produced identical pair signs and differences.",
+  "inference": "Descriptive only: two independent pool-pair units, not eight independent treatment replicates. No p-value, population harm claim, primary-gate revision, or outcome-based expansion.",
+  "decision": "Counting the one failed run's verified artifact still does not support a favorable endpoint ordering. Its observed score is lower than its paired pipeline counterpart. This does not identify why native search failed or prove all sharing policies ineffective."
+}

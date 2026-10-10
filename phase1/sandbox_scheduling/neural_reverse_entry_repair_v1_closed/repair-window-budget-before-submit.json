@@ -1,0 +1,12 @@
+{
+  "closed_failed_batch_not_reopened": true,
+  "new_batch_gpu_seconds_cap": 4500,
+  "prior_actual_gpu_seconds": {
+    "17364": 216,
+    "17366": 1796,
+    "17368": 27612,
+    "17376": 63
+  },
+  "total_actual_plus_new_cap": 34187,
+  "window_cap": 36900
+}

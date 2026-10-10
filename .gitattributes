@@ -898,3 +898,8 @@ phase1/sandbox_scheduling/test_live_twochild_stage_audit.py -text diff whitespac
 phase1/sandbox_scheduling/neural_reverse_independent_20261010.py -text diff whitespace=cr-at-eol
 phase1/sandbox_scheduling/test_neural_reverse_independent.py -text diff whitespace=cr-at-eol
 phase1/sandbox_scheduling/neural_reverse_independent_v1_closed/** -text diff whitespace=cr-at-eol
+phase1/sandbox_scheduling/neural_reverse_entry_repair_20261010.py -text diff whitespace=cr-at-eol
+phase1/sandbox_scheduling/test_neural_reverse_entry_repair.py -text diff whitespace=cr-at-eol
+phase1/sandbox_scheduling/neural_reverse_entry_repair_v1_closed/** -text diff whitespace=cr-at-eol
+phase1/sandbox_scheduling/neural_status.py -text diff whitespace=cr-at-eol
+phase1/sandbox_scheduling/test_neural_status.py -text diff whitespace=cr-at-eol

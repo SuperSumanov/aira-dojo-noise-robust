@@ -1,0 +1,15 @@
+{
+  "job": "17376",
+  "plan_sha256": "88fd90528961d58e49ff79518d186b79048be5a8f9729f3a85aa80ce9f78b7cd",
+  "primary_sha256": "36a9bf3cc2552c6b7d2b96f65cde6dc34459df1e091f311ce3ee3b5c9f458506",
+  "state": "FAILED",
+  "allocated_gpu_seconds": 63,
+  "formal_planned": 12,
+  "formal_attempted": 0,
+  "formal_completed": 0,
+  "cause": "Generated container wrapper imported configure from the thin entry, which omitted that export. Warmup failed before formal programs; this is our entry-interface failure, not a measured scheduling or CUDA performance result.",
+  "diagnosis_source_commit": "48f1a49ffa05f625810c14ce7e1b3308a39156cf",
+  "independent_checks": {"remote_local_files": 5, "hash_mismatches": 0, "local_status_counts": {"not_started": 12}},
+  "preserved": "Original root, denominator, primary gate false and full allocation cost are not overwritten or reused.",
+  "followup": "One separately frozen entry repair delegates configure to the existing implementation. Same source/input/image/seeds/order/limits/effect gate; failure cost retained in whole-window accounting. It is not evidence that this failed batch passed."
+}

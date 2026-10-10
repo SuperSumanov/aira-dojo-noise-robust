@@ -1,0 +1,110 @@
+{
+  "boundary": "Secondary descriptive development endpoint; two task contrasts within a pool correlated; no population significance or fresh-data confirmation.",
+  "changes_primary_gate": false,
+  "contrasts": [
+    {
+      "all_four_endpoints_observed": false,
+      "assigned_per_arm": 2,
+      "complete_valid_per_arm": {
+        "pipeline": 2,
+        "share2": 1
+      },
+      "indices": {
+        "pipeline": [
+          0,
+          2
+        ],
+        "share2": [
+          4,
+          6
+        ]
+      },
+      "observed_best_per_arm": {
+        "pipeline": 0.7093996651518776,
+        "share2": 0.6653312604640038
+      },
+      "paired_oriented_best_difference": null,
+      "repeat": 0,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "all_four_endpoints_observed": false,
+      "assigned_per_arm": 2,
+      "complete_valid_per_arm": {
+        "pipeline": 2,
+        "share2": 1
+      },
+      "indices": {
+        "pipeline": [
+          1,
+          3
+        ],
+        "share2": [
+          5,
+          7
+        ]
+      },
+      "observed_best_per_arm": {
+        "pipeline": 0.4831998220084296,
+        "share2": 0.5984064461975654
+      },
+      "paired_oriented_best_difference": null,
+      "repeat": 0,
+      "task": "spooky-author-identification"
+    },
+    {
+      "all_four_endpoints_observed": false,
+      "assigned_per_arm": 2,
+      "complete_valid_per_arm": {
+        "pipeline": 1,
+        "share2": 2
+      },
+      "indices": {
+        "pipeline": [
+          12,
+          14
+        ],
+        "share2": [
+          8,
+          10
+        ]
+      },
+      "observed_best_per_arm": {
+        "pipeline": 0.7076656302320019,
+        "share2": 0.7410308538627123
+      },
+      "paired_oriented_best_difference": null,
+      "repeat": 1,
+      "task": "random-acts-of-pizza"
+    },
+    {
+      "all_four_endpoints_observed": false,
+      "assigned_per_arm": 2,
+      "complete_valid_per_arm": {
+        "pipeline": 0,
+        "share2": 1
+      },
+      "indices": {
+        "pipeline": [
+          13,
+          15
+        ],
+        "share2": [
+          9,
+          11
+        ]
+      },
+      "observed_best_per_arm": {
+        "pipeline": null,
+        "share2": 0.6625721737904985
+      },
+      "paired_oriented_best_difference": null,
+      "repeat": 1,
+      "task": "spooky-author-identification"
+    }
+  ],
+  "independent_pool_pairs": 2,
+  "plan_sha256": "082645089d69e711f55057312d49e13d0fa99bf53942e91851791c12eb1525a6",
+  "primary_rows_sha256": "8fee8abbaf3c98e1594386eaee5660cdcd8177f67f05295f768dfd7a6715eaba",
+  "secondary_plan_sha256": "15c15915086f869e809a0d2822a0fe51dd77cb91e0da939420a424dd888f6b71"
+}

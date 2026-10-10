@@ -1,0 +1,50 @@
+{
+  "admission_limits": {
+    "pipeline": 1,
+    "share2": 2
+  },
+  "all_eight_score_pairs_observed": false,
+  "allocation_gpu_hours": 7.67,
+  "allocation_gpu_seconds": 27612,
+  "assigned": 16,
+  "assigned_pool_return_count_differences": [
+    -4,
+    5
+  ],
+  "boundary": "Two paired scheduling blocks, reused development tasks. No population significance, neural-workload replication or new-method claim.",
+  "closed_sha256": "84863d629ddaa36fa5eb367b2a8a72566138ce559920439972a2189a063f3bbc",
+  "complete": 15,
+  "controller_error": null,
+  "exploratory_go": false,
+  "feedback_throughput_signal": false,
+  "fixed_block_seconds": 2300,
+  "observed_pool_pairs": 2,
+  "paired_pool_valid_return_differences": [
+    -4,
+    5
+  ],
+  "paired_task_medians": {
+    "random-acts-of-pizza": -0.053276728055489164,
+    "spooky-author-identification": -0.009572227481040252
+  },
+  "paired_task_oriented_score_differences": {
+    "random-acts-of-pizza": [
+      -0.04406840468787376,
+      -0.062485051423104565
+    ],
+    "spooky-author-identification": [
+      -0.009572227481040252
+    ]
+  },
+  "paired_valid_endpoint_differences": [
+    -2,
+    2
+  ],
+  "plan_sha256": "082645089d69e711f55057312d49e13d0fa99bf53942e91851791c12eb1525a6",
+  "pool_difference_median": 0.5,
+  "pool_difference_sample_std": 6.363961030678928,
+  "readout_source_sha256": "65730e45745ce5d596a93ea87643a2140df933211b93e2b081a8efa18fda1c5c",
+  "readout_utc": "2026-10-10T00:54:48.374749+00:00",
+  "source_commit": "51b9daff161cb8e4b17ce729ca26cf1f7b5fdbe2",
+  "structural_audit": true
+}

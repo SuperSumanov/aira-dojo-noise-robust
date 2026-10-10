@@ -1,0 +1,17 @@
+arm,block,index,repeat,seed,slot,task,source_commit,run_seconds,complete,native_valid,native_score,native_score_verified,candidate_returns,valid_returns,late_returns,attempted,generation_calls,generation_returned,generation_seconds,queue_seconds,cleanup_failures
+pipeline,0,0,0,175001,0,random-acts-of-pizza,51b9daff161cb8e4b17ce729ca26cf1f7b5fdbe2,1500,True,True,0.7093996651518776,True,5,2,0,6,11,11,749.775348175317,561.5683253090829,0
+pipeline,0,1,0,175002,1,spooky-author-identification,51b9daff161cb8e4b17ce729ca26cf1f7b5fdbe2,1500,True,True,0.4831998220084296,True,6,3,0,7,13,13,618.7704302975908,267.9459038088098,0
+pipeline,0,2,0,175003,2,random-acts-of-pizza,51b9daff161cb8e4b17ce729ca26cf1f7b5fdbe2,1500,True,True,0.6464960535756996,True,7,4,0,8,15,15,710.0045935092494,679.9913147194311,0
+pipeline,0,3,0,175004,3,spooky-author-identification,51b9daff161cb8e4b17ce729ca26cf1f7b5fdbe2,1500,True,True,0.5888342187165252,True,8,4,0,9,17,17,552.9740994237363,338.1413340270519,0
+share2,1,4,0,175001,0,random-acts-of-pizza,51b9daff161cb8e4b17ce729ca26cf1f7b5fdbe2,1500,True,True,0.6653312604640038,True,8,4,0,8,17,17,1101.9915308319032,130.58936981018633,0
+share2,1,5,0,175002,1,spooky-author-identification,51b9daff161cb8e4b17ce729ca26cf1f7b5fdbe2,1500,True,False,,True,4,0,0,5,9,9,364.8363014375791,0.11178172565996647,0
+share2,1,6,0,175003,2,random-acts-of-pizza,51b9daff161cb8e4b17ce729ca26cf1f7b5fdbe2,1500,False,True,0.6324443912939488,True,1,1,0,1,3,3,243.34681602567434,0.03308934159576893,0
+share2,1,7,0,175004,3,spooky-author-identification,51b9daff161cb8e4b17ce729ca26cf1f7b5fdbe2,1500,True,True,0.5984064461975654,True,9,4,0,9,19,19,898.302975830622,2.4381578797474504,0
+share2,2,8,1,175101,0,random-acts-of-pizza,51b9daff161cb8e4b17ce729ca26cf1f7b5fdbe2,1500,True,True,0.6451805788088973,True,7,3,0,7,15,15,649.3981407955289,317.7186093274504,0
+share2,2,9,1,175102,1,spooky-author-identification,51b9daff161cb8e4b17ce729ca26cf1f7b5fdbe2,1500,True,True,0.6625721737904985,True,6,1,0,6,12,12,327.75386344175786,133.8937937244773,0
+share2,2,10,1,175103,2,random-acts-of-pizza,51b9daff161cb8e4b17ce729ca26cf1f7b5fdbe2,1500,True,True,0.7410308538627123,True,8,3,0,8,17,17,788.5538661805913,465.3242180701345,0
+share2,2,11,1,175104,3,spooky-author-identification,51b9daff161cb8e4b17ce729ca26cf1f7b5fdbe2,1500,True,False,,True,4,0,0,5,9,9,253.98418290633708,101.32341629825532,0
+pipeline,3,12,1,175101,0,random-acts-of-pizza,51b9daff161cb8e4b17ce729ca26cf1f7b5fdbe2,1500,True,True,0.7076656302320019,True,2,1,0,3,5,5,182.9582586409524,1258.2336326045915,0
+pipeline,3,13,1,175102,1,spooky-author-identification,51b9daff161cb8e4b17ce729ca26cf1f7b5fdbe2,1500,True,False,,True,2,0,0,3,5,5,160.66575150098652,802.9481974802911,0
+pipeline,3,14,1,175103,2,random-acts-of-pizza,51b9daff161cb8e4b17ce729ca26cf1f7b5fdbe2,1500,True,False,,True,2,1,0,3,5,5,242.73606270644814,657.5597209921107,0
+pipeline,3,15,1,175104,3,spooky-author-identification,51b9daff161cb8e4b17ce729ca26cf1f7b5fdbe2,1500,True,False,,True,2,0,0,3,5,5,142.38728646188974,885.1884902976453,0

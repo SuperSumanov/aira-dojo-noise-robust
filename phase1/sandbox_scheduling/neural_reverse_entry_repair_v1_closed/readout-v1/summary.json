@@ -1,0 +1,221 @@
+{
+  "allocation_exit": "1:0",
+  "allocation_seconds": 170,
+  "allocation_state": "FAILED",
+  "attempted": 2,
+  "blocks": [
+    {
+      "arm": "share2",
+      "block": 0,
+      "candidate_overlap": {
+        "max_simultaneous": 1,
+        "two_or_more_seconds": 0.0
+      },
+      "completed": 1,
+      "gpu_peak_memory_mib": 1872.0,
+      "makespan": 126.69747853279114,
+      "max_resident_gpu_clients": 1,
+      "multi_client_samples": 0,
+      "not_kernel_concurrency_measurement": true,
+      "repeat": 0,
+      "telemetry_samples": 226
+    }
+  ],
+  "boundary": "Two fixed public-training-derived inputs, unchanged programs and source-seed restarts. No quality scores, live search, novel method or population inference.",
+  "completed": 1,
+  "exploratory_gate": false,
+  "job": "17380",
+  "output_equivalence": [
+    {
+      "all_six_present": false,
+      "available_outputs": 0,
+      "max_cross_arm": null,
+      "max_within_arm": null,
+      "numerical_gate": null,
+      "pairs": [],
+      "program": 0,
+      "step_counts_equal": null,
+      "steps": [],
+      "tolerance_is_not_quality_guarantee": true
+    },
+    {
+      "all_six_present": false,
+      "available_outputs": 1,
+      "max_cross_arm": null,
+      "max_within_arm": null,
+      "numerical_gate": null,
+      "pairs": [],
+      "program": 1,
+      "step_counts_equal": null,
+      "steps": [
+        588
+      ],
+      "tolerance_is_not_quality_guarantee": true
+    }
+  ],
+  "paired_ratios": [],
+  "plan_sha256": "85083556a438b450182bc2d0a28228c7f0072fd325e4a458aadbe4c2f4f5a1e8",
+  "planned": 12,
+  "reference_arm": "pipeline",
+  "runs": [
+    {
+      "arm": "share2",
+      "complete": false,
+      "end": 1791594952.317694,
+      "error_type": "ValueError",
+      "gpu_steps": null,
+      "harness_seed": 130701,
+      "index": 0,
+      "output_sha256": null,
+      "position": 0,
+      "program": 0,
+      "repeat": 0,
+      "returncode": 1,
+      "source_commit": "48f1a49ffa05f625810c14ce7e1b3308a39156cf",
+      "source_seed": 42,
+      "start": 1791594827.8414946,
+      "status": "failed"
+    },
+    {
+      "arm": "share2",
+      "complete": true,
+      "end": 1791594878.7315981,
+      "error_type": null,
+      "exec_seconds": 40.31252003647387,
+      "exit_code": 0,
+      "gpu_steps": 588,
+      "harness_seed": 130701,
+      "index": 1,
+      "output_sha256": "20a200911cfbc6fe17cbb17e375e94aa0502edc252a4bf075382248052f4d146",
+      "position": 1,
+      "program": 1,
+      "repeat": 0,
+      "returncode": 0,
+      "source_commit": "48f1a49ffa05f625810c14ce7e1b3308a39156cf",
+      "source_seed": 42,
+      "start": 1791594827.8461533,
+      "status": "complete",
+      "timed_out": false
+    },
+    {
+      "arm": "pipeline",
+      "harness_seed": 130701,
+      "index": 2,
+      "position": 0,
+      "program": 0,
+      "repeat": 0,
+      "source_commit": "48f1a49ffa05f625810c14ce7e1b3308a39156cf",
+      "source_seed": 42,
+      "status": "not_started"
+    },
+    {
+      "arm": "pipeline",
+      "harness_seed": 130701,
+      "index": 3,
+      "position": 1,
+      "program": 1,
+      "repeat": 0,
+      "source_commit": "48f1a49ffa05f625810c14ce7e1b3308a39156cf",
+      "source_seed": 42,
+      "status": "not_started"
+    },
+    {
+      "arm": "pipeline",
+      "harness_seed": 130701,
+      "index": 4,
+      "position": 0,
+      "program": 1,
+      "repeat": 1,
+      "source_commit": "48f1a49ffa05f625810c14ce7e1b3308a39156cf",
+      "source_seed": 42,
+      "status": "not_started"
+    },
+    {
+      "arm": "pipeline",
+      "harness_seed": 130701,
+      "index": 5,
+      "position": 1,
+      "program": 0,
+      "repeat": 1,
+      "source_commit": "48f1a49ffa05f625810c14ce7e1b3308a39156cf",
+      "source_seed": 42,
+      "status": "not_started"
+    },
+    {
+      "arm": "share2",
+      "harness_seed": 130701,
+      "index": 6,
+      "position": 0,
+      "program": 1,
+      "repeat": 1,
+      "source_commit": "48f1a49ffa05f625810c14ce7e1b3308a39156cf",
+      "source_seed": 42,
+      "status": "not_started"
+    },
+    {
+      "arm": "share2",
+      "harness_seed": 130701,
+      "index": 7,
+      "position": 1,
+      "program": 0,
+      "repeat": 1,
+      "source_commit": "48f1a49ffa05f625810c14ce7e1b3308a39156cf",
+      "source_seed": 42,
+      "status": "not_started"
+    },
+    {
+      "arm": "share2",
+      "harness_seed": 130701,
+      "index": 8,
+      "position": 0,
+      "program": 0,
+      "repeat": 2,
+      "source_commit": "48f1a49ffa05f625810c14ce7e1b3308a39156cf",
+      "source_seed": 42,
+      "status": "not_started"
+    },
+    {
+      "arm": "share2",
+      "harness_seed": 130701,
+      "index": 9,
+      "position": 1,
+      "program": 1,
+      "repeat": 2,
+      "source_commit": "48f1a49ffa05f625810c14ce7e1b3308a39156cf",
+      "source_seed": 42,
+      "status": "not_started"
+    },
+    {
+      "arm": "pipeline",
+      "harness_seed": 130701,
+      "index": 10,
+      "position": 0,
+      "program": 0,
+      "repeat": 2,
+      "source_commit": "48f1a49ffa05f625810c14ce7e1b3308a39156cf",
+      "source_seed": 42,
+      "status": "not_started"
+    },
+    {
+      "arm": "pipeline",
+      "harness_seed": 130701,
+      "index": 11,
+      "position": 1,
+      "program": 1,
+      "repeat": 2,
+      "source_commit": "48f1a49ffa05f625810c14ce7e1b3308a39156cf",
+      "source_seed": 42,
+      "status": "not_started"
+    }
+  ],
+  "source_commit": "48f1a49ffa05f625810c14ce7e1b3308a39156cf",
+  "speedup": {
+    "max": null,
+    "median": null,
+    "min": null,
+    "n": 0,
+    "sample_std": null
+  },
+  "whole_pool_gpu_hours": 0.04722222222222222,
+  "within_cap": true
+}

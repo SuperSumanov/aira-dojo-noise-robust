@@ -22,6 +22,9 @@ class CompletionTests(unittest.TestCase):
  def test_nonzero_exit_is_not_success(self):
   self.assertFalse(validated_completion({'complete':True,'error_type':None,'output':{'x':1}},{'returncode':1}))
  def test_reverse_monitor_preserves_full_schedule_without_preparing(self):
+  for kind,module in [('reverse-independent','neural_reverse_independent_20261010'),('reverse-entry-repair','neural_reverse_entry_repair_20261010')]:
+   with self.subTest(kind=kind):self.check_reverse_monitor(kind,module)
+ def check_reverse_monitor(self,kind,module):
   with tempfile.TemporaryDirectory(prefix='status-fixture-',dir=Path(__file__).resolve().parent) as tmp:
    root=Path(tmp)
    (root/'launch.json').write_text('{"job":"synthetic"}')
@@ -30,8 +33,8 @@ class CompletionTests(unittest.TestCase):
    rows=[{'index':i,'arm':'share2' if i//2 in (0,3,4) else 'pipeline'} for i in range(12)]
    stub=types.SimpleNamespace(old=types.SimpleNamespace(e=types.SimpleNamespace(R=root),reverse_schedule=lambda:rows))
    output=io.StringIO()
-   with patch.dict(sys.modules,{'neural_reverse_independent_20261010':stub}),contextlib.redirect_stdout(output):
-    main('reverse-independent')
+   with patch.dict(sys.modules,{module:stub}),contextlib.redirect_stdout(output):
+    main(kind)
    observed=json.loads(output.getvalue())
    self.assertEqual(observed['blocks_complete'],6)
    self.assertEqual([r['index'] for r in observed['rows']],[36]+list(range(12)))

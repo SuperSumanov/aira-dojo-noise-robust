@@ -1,14 +1,14 @@
 # 当前短交接
-更新：2026-10-10香港09:52。旧全文完整保留于Git 3c04f3049fc2004b1ff3ecbd1728ec49ce6b9916，本次只压缩状态索引，不改实验原件。
+更新：2026-10-10香港10:30。旧全文完整保留于Git 3c04f3049fc2004b1ff3ecbd1728ec49ce6b9916；方向/路线旧全文另存于Git96e129c8，本次只压缩状态索引，不改实验原件。
 恢复：fetch → CURRENT_DIRECTION → ROUTE_DECISIONS → 本文件；旧8月心跳与旧排队状态不作当前方向/许可。
 
 ## 当前窗口与真实现场
 - 用户要求会话内完整六小时：10/10香港04:56:13–10:56:13（UTC截止02:56:13）。当前尚未结束，不提前final。
 - 当前方向R14 MLE沙箱资源调度；本轮GPU工作全部闭合，不追加握手修复/补样本追正结果。剩余做只读机制/近邻/证据核验。
-- 最后队列观察09:21仅旧Held12535；不动它。只读分支守护exec72234至截止，无新automation/thread/goal。
+- 最后队列观察10:24附近仅旧Held12535；不动它。五个本窗job终态和资源账已再核。只读分支守护exec72234至截止，无新automation/thread/goal。
 - 本窗实际GPU秒：17364=216、17366=1796、17368=27612、17376=63、17380=170；合计29857=8.293611111111112GPUh，上限36900=10.25GPUh。含失败、启动、空闲、清理；API0，底座更新0。
-- 我方已快进push并ls-remote核207bd6884cb8d8bccf147724836a91e201e50cee（09:38附近）；学长仍24efc2e0a84ead449fb6dff71414d73693f70893，未改其分支。
-- 新只读alignment与GPU覆盖源码已提交至1d142731e12c4c302e88d04268494643337dfcb6，结果/本交接尚待本次安全发布；不要重复writer。
+- 我方已快进push并ls-remote核96e129c8b67bf8e0918abd5f4e69fe4e5ecc3f13（09:53附近）；学长仍24efc2e0a84ead449fb6dff71414d73693f70893，未改其分支。
+- alignment/GPU覆盖源码与结果均在上述公开head。随后仅整理入口/交接与MARS实现边界；18项相关本地CPU回归通过，暂存/未发布14个blob版本凭据形状命中0、证据字节不一致0。不要重复writer。
 
 ## 本窗结果：先看这些，不重跑验收
 - 所有本地证据位于phase1/sandbox_scheduling；下列目录的interpretation.json记录精确source/plan/审计hash和边界。
@@ -24,7 +24,7 @@
 - 新return-alignment-v1.json SHA ac9fb76a349e03925a89b68eab9127d8eaaac28283803e512266e3b2b362d6f4：15条顺序全匹配；index9多出的唯一返回在1494.305789416656秒、外部无效、最后一条，随后仅开始一次生成且截止前未返回。80日志节点/81执行返回，不支持丢失好解解释。
 - alignment使用冻结native extract_code后做全序列hash比较，不贪心吞重复；8本地/远端合成测试与PowerShell分母/hash核验通过。初次误以为summary含rows，写出前KeyError；改读独立精确pin的runs.json，原件/门不变。
 - phase-analysis-v1.json是task-slot时间，不是GPU成本/可省时间；generation_returned在finally发出，包括失败/截止取消。未观察到的尾部不是idle。失败生成event数不等于失败run数。
-- execution-gpu-coverage-v1.json SHA72e18bbbb786231a5157643a95826035697add72b5a6b745462d9b889159fdda：四执行块采样利用率0.007832619190892133/2.4975269503007285/0/0.05075266431498896%，覆盖均>99.9%，驻留clients峰值各1。3本地/远端测试、远近hash通过；只读旧遥测，无GPU调用。说明当前文本live未暴露持续GPU训练压力，不等于CPU瓶颈证明/可省GPU时，也不豁免原质量门。
+- execution-gpu-coverage-v1.json SHA72e18bbbb786231a5157643a95826035697add72b5a6b745462d9b889159fdda：四执行块采样利用率0.007832619190892133/2.4975269503007285/0/0.05075266431498896%，监控时间轴覆盖均>99.9%（不是完整kernel观测覆盖），驻留clients峰值各1。3本地/远端测试、远近hash通过；只读旧遥测，无GPU调用。说明当前文本live未暴露持续GPU训练压力，不等于CPU瓶颈证明/可省GPU时，也不豁免原质量门。
 - 17376 / neural_reverse_independent_v1_closed：09:00:06–09:01:09，63GPU秒；薄入口遗漏configure导出，warmup ImportError、正式0/12，保留失败，不是性能负结果。
 - 17380 / neural_reverse_entry_repair_v1_closed：09:13:02–09:15:52，170GPU秒；入口修复/warmup通过，CNN候选前120秒内核就绪超时，UNet588步完成；12计划/2尝试/1完成/10未开始/0配对。首组门停批，不重投、不称反序确认。
 - 17380 primary fbaa468783f3ba1565b28a999171814a77a4298c8dbaa7d94647ef1dbcaa1a38；audit b84191090c0818685e16ecb783a6781dcb39b835776008f2c1b4869a18200c52；8导出hash一致。原反序失败及更早未提交条件root均保留。
@@ -34,6 +34,7 @@
 - 当前不扩大两文本任务live配方/复杂LLM调度器。若下一轮继续，先分离时序漂移并检验廉价阶段准入强参照，不能只换名重跑；本条不是已冻结新矩阵。现有神经fixture仅作数值一致性，不能直接冒充新D_search质量基准；真实GPU搜索需合法独立开发适配，不只替换硬编码任务名。
 - 新颖性边界已核SchedMate源码/历史及干扰撤销，MARS跨阶段AIMD/续轮优先，DetShare语义/资源耦合，Synergy CPU/内存敏感度，Agentic CPU-GPU Scheduling profile/交换重测。近邻细节在README/ROUTE。
 - 本窗补核OpenMLE共享CPU/GPU沙箱、DSec生命周期/准入/暂停，宽“共享沙箱/阶段管理/无损并发”均不新。仅换成MLE不是科学增量。
+- MARS preview只读核7e649f33f40ceb5d977ea4b7c07538effdad88d7：外层新session准入不同于我方执行许可；不可把租约排队当CPU饱和、机械缩宽后称完整MARS。原实现还需KV/内层后端，未安装运行。Synergy补读CPU/内存画像与租约接口，README留原文链接。
 - 旧17128同两神经程序强参照12/12中位1.6617、17017大输入弱参照12/12中位1.6812；不同批次不拼成新确认。
 - 旧17308并发宽度36计划/20完成、原门false；条件live2/4不启动。17322/17326握手诊断各47/48；observer被Jupyter CLI os.execvp替换丢失，根因未定位，不再投GPU诊断。
 - 17328旧曝光单臂3/4正常，原资格false。17364只补其原seed局部重复性。旧12次空代码是不可解析响应，缺finish_reason不推断截断；不以修提取器另立方法。

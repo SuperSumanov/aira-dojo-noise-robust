@@ -179,8 +179,12 @@ class JupyterInterpreter(Interpreter):
         code_executor.stop()
 
     def close(self):
-        self.cleanup_session()
-        self.jupyter_server.stop()
+        # A failed kernel deletion must not skip the enclosing server cleanup.
+        # Preserve the failure for the caller; do not silently mark it closed.
+        try:
+            self.cleanup_session()
+        finally:
+            self.jupyter_server.stop()
 
 
 class JupyterInterpreterFactory(Interpreter):

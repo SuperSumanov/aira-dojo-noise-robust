@@ -1,0 +1,21 @@
+{
+  "attempted": 14,
+  "cap_gpu_seconds": 1200,
+  "closed_sha256": "bd87fd70eadefa35c8138e810417364dac71e0ce1f3737c88ac5e6a827a67db5",
+  "complete": 14,
+  "error_marker_counts": {
+    "can't start new thread": 0,
+    "cannot allocate memory": 0,
+    "pthread_create failed": 0,
+    "resource temporarily unavailable": 0
+  },
+  "full_matrix_pass": true,
+  "gpu_seconds": 102,
+  "job": "17543",
+  "manifest_ok": true,
+  "plan_sha256": "21a063ca6ca7b4d25822b963cd55533ed1ea276caabdc6e4b0cb958fbae30858",
+  "planned": 14,
+  "qualification": "Only fixed CPU kernels and container lifecycle; not MLE GPU execution or quality.",
+  "scheduler_state": "COMPLETED",
+  "unstarted": 0
+}

@@ -9,9 +9,9 @@ from __future__ import annotations
 import atexit
 import logging
 import os
+import queue
 import re
 import secrets
-import select
 import shutil
 import signal
 import subprocess
@@ -201,6 +201,8 @@ class SingularityJupyterServer(JupyterConnectable):
     ) -> None:
         self._subprocess: subprocess.Popen[str] | None = None
         self._output_thread: threading.Thread | None = None
+        self._startup_lines: queue.Queue[str | None] = queue.Queue()
+        self._startup_done = threading.Event()
 
         runtime_executable = shutil.which("singularity")
         if runtime_executable is None:
@@ -292,17 +294,19 @@ class SingularityJupyterServer(JupyterConnectable):
                 start_new_session=True,
                 env=_build_runtime_environment(os.environ),
             )
+            # One reader owns the buffered pipe from startup through shutdown.
+            # select(fd) cannot see lines already prefetched by TextIOWrapper.
+            self._output_thread = threading.Thread(
+                target=self._drain_output,
+                name=f"singularity-jupyter-{self._subprocess.pid}",
+                daemon=True,
+            )
+            self._output_thread.start()
             self._wait_until_ready(startup_timeout)
         except BaseException:
             self.stop()
             raise
 
-        self._output_thread = threading.Thread(
-            target=self._drain_output,
-            name=f"singularity-jupyter-{self._subprocess.pid}",
-            daemon=True,
-        )
-        self._output_thread.start()
         atexit.register(self.stop)
 
     def _wait_until_ready(self, startup_timeout: float) -> None:
@@ -315,14 +319,6 @@ class SingularityJupyterServer(JupyterConnectable):
         deadline = time.monotonic() + startup_timeout
         startup_output: list[str] = []
         while True:
-            result = process.poll()
-            if result is not None:
-                startup_output.extend(process.stdout.readlines())
-                output = "".join(startup_output)
-                raise RuntimeError(
-                    f"Singularity Jupyter server failed to start with exit code {result}. Output:\n{output}"
-                )
-
             remaining = deadline - time.monotonic()
             if remaining <= 0:
                 output = "".join(startup_output)
@@ -331,36 +327,43 @@ class SingularityJupyterServer(JupyterConnectable):
                     f"Output:\n{output}"
                 )
 
-            readable, _, _ = select.select(
-                [process.stdout], [], [], min(1.0, remaining)
-            )
-            if not readable:
+            try:
+                line = self._startup_lines.get(timeout=min(1.0, remaining))
+            except queue.Empty:
                 continue
-
-            line = process.stdout.readline()
-            if not line:
-                continue
+            if line is None:
+                output = "".join(startup_output)
+                raise RuntimeError(
+                    f"Singularity Jupyter output closed before readiness (exit code {process.poll()}). Output:\n{output}"
+                )
             startup_output.append(line)
-            log.warning(line.rstrip("\n"))
 
             match = _READY_PATTERN.search(line)
             if match:
                 self.ip = match.group(1)
                 self.port = int(match.group(2))
+                self._startup_done.set()
                 return
 
     def _drain_output(self) -> None:
         process = self._subprocess
         if process is None or process.stdout is None:
             return
-        for line in process.stdout:
-            log.warning(line.rstrip("\n"))
+        try:
+            for line in process.stdout:
+                log.warning(line.rstrip("\n"))
+                if not self._startup_done.is_set():
+                    self._startup_lines.put(line)
+        finally:
+            if not self._startup_done.is_set():
+                self._startup_lines.put(None)
 
     def stop(self) -> None:
         process = self._subprocess
         if process is None:
             return
 
+        self._startup_done.set()
         log.warning("Stopping Singularity Jupyter server...")
         if process.poll() is None:
             try:
@@ -384,8 +387,11 @@ class SingularityJupyterServer(JupyterConnectable):
         if (
             output_thread is not None
             and output_thread is not threading.current_thread()
+            and output_thread.is_alive()
         ):
             output_thread.join(timeout=5)
+        if process.stdout is not None and (output_thread is None or not output_thread.is_alive()):
+            process.stdout.close()
         self._output_thread = None
         try:
             atexit.unregister(self.stop)

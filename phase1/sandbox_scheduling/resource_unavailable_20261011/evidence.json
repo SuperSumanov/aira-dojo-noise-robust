@@ -1,0 +1,106 @@
+{
+  "observed_date_hkt": "2026-10-11",
+  "kind": "read_only_archive_diagnosis_not_experiment",
+  "senior_head": "f7ccd79323112b10ccc82d8e9ec9d6cf089df607",
+  "drive_folder": "mle/comparison/1009",
+  "drive_folder_id": "1-gphrBhugE03tQ8epnzvmR26CKHd-fsc",
+  "visible_task_archives": 8,
+  "scope": {
+    "raw_logs_exported": false,
+    "archives_saved": false,
+    "journal_grade_candidate_files_opened": false,
+    "gpu_jobs_submitted": 0,
+    "paid_api_calls": 0,
+    "production_limits_or_code_changed": false,
+    "diagnostic_helpers": "C:/Research/New/my_project/MLEvolve/_codex_tmp/resource-availability-20261011/",
+    "initial_dog_scan": "Unresolved ValueError without detailed reason; no negative inference. Narrower bounded scan followed.",
+    "spooky_scan": "282 tar members visited; 28 eligible logs scanned; 8 oversized logs skipped. Not complete log coverage.",
+    "dog_scan": "214 tar members visited; 39 eligible logs scanned; 5 oversized logs skipped; stopped at first literal resource-unavailable witness. Not complete archive coverage.",
+    "not_yet_known": ["whether these are the exact six-concurrency events the advisor meant", "simultaneous thread counts", "cgroup hierarchy limits and events", "memory pressure at failure", "remaining child processes after cleanup"]
+  },
+  "hash_rechecked_witnesses": [
+    {
+      "task": "spooky-author-identification",
+      "file_id": "1s32XaR7wDbV4C7uX5jsFerTJoicAohPo",
+      "member": "spooky-author-identification/7200/qwen-9b-minimal/v2-step665-lora/srun_pool/4f6d345b18f0/logs/user_hcyang_issue_spooky-author-identification-8seeds_seed_1_id_-12cfa8f6b3.attempt-1.err",
+      "sha256": "3dd567ebaebf882e5708033e7dd796052c6c2cc8bc3b851d78c2dbee10190da8",
+      "bytes": 9947129,
+      "literal_failure": "OpenBLAS pthread_create failed: Resource temporarily unavailable",
+      "requested_openblas_threads": 3,
+      "failed_zero_based_thread_indices_observed": [1, 2],
+      "printed_rlimit_nproc_soft": 1024,
+      "printed_rlimit_nproc_hard": 1029567,
+      "first_literal_witness_line": 38907,
+      "pids_current_max_events_telemetry_available": false
+    },
+    {
+      "task": "dog-breed-identification",
+      "file_id": "1ygKrVc9-tZDx5W45PjtjaAr_ZrBMWjxt",
+      "member": "dog-breed-identification/7200/qwen-medium/short/srun_pool/6e8664d3d442/logs/user_zjdai25_issue_dog-breed-identification-8seeds_seed_1_id_898-192cf69922.attempt-1.err",
+      "sha256": "93d84e661caac053fac43d3ea8cda0d8b2cee6d962a4caecdafb23c7cb9c3336",
+      "bytes": 7366342,
+      "literal_failure": "OpenBLAS pthread_create failed: Resource temporarily unavailable",
+      "requested_openblas_threads": 12,
+      "failed_zero_based_thread_indices_observed": [6, 7, 8, 9, 10, 11],
+      "printed_rlimit_nproc_soft": 1024,
+      "printed_rlimit_nproc_hard": 1543504,
+      "also_contains_cannot_start_new_thread": true,
+      "pids_current_max_events_telemetry_available": false
+    }
+  ],
+  "independent_current_login_reference": {
+    "host": "linux5",
+    "source": "/proc/self/limits",
+    "max_processes_soft": 1024,
+    "max_processes_hard": 1024,
+    "max_open_files_soft": 1024,
+    "max_open_files_hard": 1048576,
+    "not_the_archived_failure_node_or_job": true
+  },
+  "interpretation": {
+    "supported": "Concrete CPU-thread creation failures occur in at least two shared task archives; both logs print an RLIMIT_NPROC soft limit of 1024.",
+    "leading_hypothesis_not_confirmed": "Per-user aggregate thread/process pressure, potentially amplified by multiple kernels, DataLoader workers and library threads, or another task/memory limit.",
+    "not_supported": ["six concurrent tasks necessarily exceed the limit", "the soft limit was proven hit", "all resource-unavailable errors share this cause", "GPU count or model-serving capacity explains the observed failures", "raising a limit has been tested or fixed the failures"],
+    "next_discriminator": "Within the same failing job/container, capture per-real-UID thread counts, process limits, ancestor cgroup pids.current/max/events and memory events before changing one knob.",
+    "no_blind_fix": "Do not set unlimited limits, kill other tasks, change candidate algorithms or raise concurrency based on this archive-only result. Thread/worker caps and any permitted soft-limit change require separate matched validation."
+  },
+  "followup_source_and_lifecycle_review": {
+    "observed_hkt": "2026-10-11 06:54",
+    "same_witness_hashes_rechecked": true,
+    "both_witnesses": "Singularity startup markers present; no Sand startup marker found.",
+    "spooky_before_first_literal_thread_failure": {
+      "server_start_markers": 26,
+      "server_stop_request_markers": 25,
+      "server_stop_completed_markers": 25,
+      "kernel_stop_completed_markers": 25,
+      "interpretation": "One currently starting server is expected. No accumulating server-close deficit in this run before the first literal failure. Does not rule out other concurrent runs or hidden descendants."
+    },
+    "first_failure_nearby_categories": "Both near Jupyter/import context and timeout markers; Spooky near NumPy import, no DataLoader or fork trace. Dog has DataLoader/thread-start traces elsewhere in the file.",
+    "source_confirmed_defects_not_yet_historical_root_cause": [
+      "JupyterCodeExecutor.stop skips kernel deletion when socket stop raises.",
+      "JupyterInterpreter.close skips server shutdown when cleanup_session raises."
+    ],
+    "local_fault_injection": "Three real-method-source tests: two failure-path assertions fail before patch; all three pass with try/finally. This is not a live resource or six-concurrency fix confirmation.",
+    "upstream_openblas_interpretation": "OpenBLAS prints RLIMIT_NPROC for any pthread_create error when getrlimit succeeds, not only after proving that limit was hit.",
+    "openblas_source": "https://github.com/OpenMathLib/OpenBLAS/blob/develop/driver/others/blas_server.c"
+  },
+  "readiness_fix_validation": {
+    "observed_hkt": "2026-10-11 07:18",
+    "exact_upstream_source": "f7ccd79323112b10ccc82d8e9ec9d6cf089df607",
+    "mechanism": "select on the underlying fd cannot see lines already prefetched by the buffered text reader. A coalesced noise+readiness burst therefore falsely times out; an incomplete line can also block beyond the requested timeout.",
+    "before_linux_real_pipe_test": "Original upstream methods fail coalesced-burst readiness. This directly reproduces the code defect; it is not a claimed frequency estimate.",
+    "patch": "Single reader thread owns the buffered output from startup; readiness is transferred through a bounded-time queue wait. No timeout increase, retry, image change or limit increase.",
+    "after_tests": "5/5 real-OS-pipe tests pass on Linux and Windows; existing sandbox unit tests 11/11 pass on Linux against the patched exact upstream copy. Cleanup exception changes are separate and excluded from this live validation.",
+    "before_job": {"job": "17541", "planned": 14, "attempted": 7, "complete": 6, "unstarted": 7, "gpu_seconds": 132},
+    "after_job": {"job": "17543", "planned": 14, "attempted": 14, "complete": 14, "unstarted": 0, "gpu_seconds": 102},
+    "after_plan_sha256": "21a063ca6ca7b4d25822b963cd55533ed1ea276caabdc6e4b0cb958fbae30858",
+    "after_closed_sha256": "bd87fd70eadefa35c8138e810417364dac71e0ce1f3737c88ac5e6a827a67db5",
+    "after_cleanup": "All four blocks return to 5 visible UID processes / 8 threads / 0 zombies. These are visible-process snapshots, not proof about all possible descendants or sites.",
+    "independent_audit": "Manifest hashes, all 14 scheduled rows including failures/unstarted, return codes, kernel assertions, versions and scheduler costs cross-checked by verify_resource_diag.py. before-audit.json and after-audit.json retain both cohorts.",
+    "boundary": "Fixed CPU task-image kernels, with one unused GPU reserved only because QOS requires it. No task/model training or MLE quality outcome. Sequential before/after live jobs are not randomized failure-rate estimates. The deterministic code defect is established; historical OpenBLAS resource-exhaustion cause is still unresolved."
+  },
+  "primary_documentation": [
+    "https://www.man7.org/linux/man-pages/man3/pthread_create.3.html",
+    "https://www.kernel.org/doc/html/latest/admin-guide/cgroup-v2.html#pid"
+  ]
+}

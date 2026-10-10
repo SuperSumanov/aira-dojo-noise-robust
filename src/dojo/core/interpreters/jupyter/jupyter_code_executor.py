@@ -212,9 +212,12 @@ class JupyterCodeExecutor(CodeExecutor):
         log.warning(f"Stopping kernel {self._kernel_id}")
 
         log.warning(f"Stopping kernel client {self._jupyter_kernel_client}")
-        self._jupyter_kernel_client.stop()
-        log.warning(f"Deleting kernel {self._kernel_id}")
-        self._jupyter_client.delete_kernel(self._kernel_id)
+        try:
+            self._jupyter_kernel_client.stop()
+        finally:
+            # A WebSocket transport error is not evidence the kernel has exited.
+            log.warning(f"Deleting kernel {self._kernel_id}")
+            self._jupyter_client.delete_kernel(self._kernel_id)
         log.warning(f"Kernel {self._kernel_id} stopped")
 
     def __enter__(self) -> Self:

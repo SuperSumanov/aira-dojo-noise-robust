@@ -1,6 +1,20 @@
 # 当前短交接
-更新：2026-10-10香港10:56窗口闭合。旧全文完整保留于Git 3c04f3049fc2004b1ff3ecbd1728ec49ce6b9916；方向/路线旧全文另存于Git96e129c8，本次只压缩状态索引，不改实验原件。
+更新：2026-10-11香港07:29，本轮排障进行中。10/10旧窗口已闭合。旧全文完整保留于Git 3c04f3049fc2004b1ff3ecbd1728ec49ce6b9916；方向/路线旧全文另存于Git96e129c8，不改实验原件。
 恢复：fetch → CURRENT_DIRECTION → ROUTE_DECISIONS → 本文件；旧8月心跳与旧排队状态不作当前方向/许可。
+
+## 10/11新增：先排障帮助学长现有方向，调度保留探索
+- 用户转述学长建议两卡服务六卡MLE、medium，优先既有policy工作、部分投入资源调度，并要查六并发resource unavailable；随后明确去mle Google Drive找。全文要点入ADVISOR_DIRECTIVES X；不是我方底座训练许可或已测容量。
+- fetch本人仍265ebb6574876fc9f1428ecabbf196d0ed584b87；学长f7ccd79323112b10ccc82d8e9ec9d6cf089df607，仅LoRA配置/verl更新，无新outcome。10/9policy报告远端脱敏读取；未改学长分支。
+- 定位mle/comparison/1009八包；有界远端内存扫描Spooky/Dog日志，两个精确member独立重读SHA一致，均有OpenBLAS pthread_create失败且RLIMIT_NPROC soft=1024；请求线程数分别3/12。证据sandbox_scheduling/resource_unavailable_20261011/evidence.json，禁止把提示当已证上限命中或六并发阈值。
+- 缺故障时同UID总线程数、cgroup pids/memory events与清理后残留；下一步同作业/容器采集后单旋钮验证，不无限提limit、不清别人进程。当前SSH登录soft/hard=1024/1024仅作非现场参照。首Dog扫描ValueError无细节、后续收窄有证据；Spooky跳过8大日志、Dog跳过5且首资源报错即停，不称完整普查。
+- 新窗口用户授权：10/11香港06:37:30–12:37:30，会话内先解决六并发故障再推进实验；不靠新automation代替。已独立复核两份日志均为Singularity链，首次OpenBLAS故障邻近Jupyter导入，Spooky未见DataLoader。计数有重放，不当独立事件。
+- 本地故障注入确认两个清理缺口：socket关闭异常跳过kernel删除、kernel清理异常跳过server停止；原代码3测试2失败，try/finally补丁后3通过。只在我方源码，未改学长分支；未证明历史六并发根因或真实修复。
+- 原诊断17541已闭合：/research/d7/spc/yzyang4/resource-diag-20261011-v5，14计划/7尝试/6完成/1启动TimeoutError/7未开始，实际132GPU秒；单GPU仅因QOS必须预留，代码纯CPU，无MLE质量结论。v1/v2预检失败、v3零GPU/v4CPU比例被拒均无作业；不可抹除失败重算分母。
+- 新定位真实管道bug：select(fd)+缓冲readline会吞就绪通知；精确f7源码真实Linux管道可稳定复现。单reader+队列补丁5/5本地及Linux回归通过，未增加超时。历史Spooky故障前26启动/25停止完成，无明显累计清理缺口；OpenBLAS打印1024并不证明命中NPROC，尚需故障现场总UID线程/cgroup证据。
+- 17543 readiness-only独立复验已闭合：/research/d7/spc/yzyang4/resource-diag-readiness-fixed-20261011-v1，plan SHA21a063ca6ca7b4d25822b963cd55533ed1ea276caabdc6e4b0cb958fbae30858；1/6/6/1共14/14通过，实际102GPU秒，保留identity发布、不含cleanup补丁。每块清理后5进程/8线程/0zombie；独立审计和14行CSV已归档，f7补丁下既有11单元测试通过。不是历史EAGAIN根治或MLE收益。
+- 联合诊断17547最后观察RUNNING gpu27，CUDA身份/算术已通过，模型正在加载/编译，尚无请求/候选完成；/research/d7/spc/yzyang4/resource-service-diag-20261011-v3，plan SHA3477f072efbd114bda046b9cb0a849b458f6fe9b8d7867773506cdff2fc2e41e。2GPU服务+6CPU任务（不是6GPU任务），14内核/14本地medium请求、18CPU、≤40min/4800GPU秒，采样宿主UID/cgroup；模型/镜像精确哈希通过。模型别名qwen3.8-27b，实际qwen3_5 compressed-tensors INT4/group32，模板支持reasoning_effort。
+- 保留v1调度预检失败（18CPU/2GPU必须highcpucount；gpu27具备）；v2/17545因我方误用Slurm19不支持的--exact在服务前失败，0内核/0请求、实际10GPU秒。v3只删该参数，其余矩阵不变；已核srun --help及已有--exclusive参数。不许重开旧批次或抹失败；本窗累计已闭合244GPU秒，17547全成本另计。
+- stage=/research/d7/spc/yzyang4/resource-diag-stage-20261011.M5wKjU；无API，不改系统limit/他人进程/学长分支，原日志不落本地。额度耗尽后按用户授权已用一张现有重置卡，未购买；本窗不得重复消费。最新现场以本段为准，下方10/10为旧窗口。
 
 ## 当前窗口与真实现场
 - 用户要求的会话内完整六小时已完成：10/10香港04:56:13–10:56:13。只读分支守护exec72234于UTC02:56:22.941自然退出，exit0；无新automation/thread/goal。

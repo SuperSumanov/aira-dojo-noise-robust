@@ -23,7 +23,14 @@ def redact(raw):
     raw,n=BEARER.subn(r'\1[REDACTED]',raw);counts.append(n)
     urls=[0]
     def url(m):
-        value=m.group();u=urlsplit(value);pairs=parse_qsl(u.query,keep_blank_values=True)
+        value=m.group()
+        try:
+            u=urlsplit(value);pairs=parse_qsl(u.query,keep_blank_values=True)
+        except ValueError:
+            # Source-code URL templates may not be valid URLs. Do not expose a
+            # malformed value or let it bypass query-credential redaction.
+            urls[0]+=1
+            return '[REDACTED_UNPARSEABLE_URL]'
         if not any(NAMES.fullmatch(k) for k,v in pairs):return value
         urls[0]+=sum(bool(NAMES.fullmatch(k)) for k,v in pairs)
         return urlunsplit((u.scheme,u.netloc,u.path,urlencode([(k,'[REDACTED]' if NAMES.fullmatch(k) else v) for k,v in pairs],safe='[]'),u.fragment))

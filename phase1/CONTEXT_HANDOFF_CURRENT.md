@@ -1,11 +1,14 @@
 # 当前短交接
-更新：2026-10-11香港23:44。旧排障长交接已保存在Git4279975d；这里只保留当前事实，未复查的状态写最后观察。
+更新：2026-10-11香港23:58。旧排障长交接已保存在Git4279975d；这里只保留当前事实，未复查的状态写最后观察。
 恢复：fetch → CURRENT_DIRECTION → ROUTE_DECISIONS → 本文件；不得回到旧8月路线。
 
 ## 最新用户裁决与当前实验
 - 新用户要求：沿局部信号验证、一小时给有价值反馈。23:39 SSH banner曾HTTP404三次，用户修复后23:41重连成功；没有把连接失败算实验失败。gpu3有空余，旧Held不动。
 - 当前准备新request-deadline screen（尚未提交）：16条=2任务×4新seed212001–212008×2条件，deadline600先/deadline240后；执行许可两臂均2，run900s/候选300s/池1500s，2服务+4执行、cap3120s=5.2GPUh。只有1个池配对，不能称跨seed独立调度确认。旧17592不重开、不补旧seed；代理超时范围校验在新目录共同支持600，未改原件/生产分支。
-- 9项本地CPU测试通过；正式新配置/远端预检仍待完成。新入口image_generation_deadline_20261011.py，读出image_deadline_readout_20261011.py；目标=/research/d7/spc/yzyang4/scheduling-image-generation-deadline-20261011-v1。服务实测启动431.7356105109211/435.4283121100161秒，批运行约50分钟，准备/排队另计；不承诺一小时完整结果。
+- 9项CPU测试复验通过，远端16配置/8配对预检通过；source9b23d621ffb1937b831435386effd01e38cc4f08已push/ls-remote一致，planSHAd153e408fb88e7ac120fceadbab79528275943e356a639871abb7e9dcc5f86b7。新入口image_generation_deadline_20261011.py，读出image_deadline_readout_20261011.py；目标=/research/d7/spc/yzyang4/scheduling-image-generation-deadline-20261011-v1。
+- 23:58最后观察：唯一submit进程PID187646已运行9m41s，尚在模型分片4/6哈希、无submit-intent/launch；SSH曾中断，重连证实该PID仍活，严禁盲重投。用户已告知准备比预计慢、未占GPU；服务另约7分钟/池，整批运行约50分钟，准备/排队另计。
+- 已追加只读数字诊断：原32条首生成失败18（aerial7/16、denoising11/16），四池首请求跨度0.6937–14.8490秒，服务峰6运行/2等待。240s为我方运输保护设置，不是上游默认1500s/10重试；不能把修复该设置包装为方法突破。证据image_live_v3_closed/generation_funnel_audit_20261011.json；新screen不改。
+- 结束读出image_deadline_finish_20261011.py已传stage但尚未启动；必须先获得唯一launch.job，确认不存在completion-claim后只启动一次，最多7200s等待，无新job/API。当前没有新GPU作业号，不可写开跑。
 - 新screen只认全16分母、两个任务有效终点不下降且总体增加/首次生成失败减少、等预算及隔离清理/外部分数复算通过；不是旧32完整门，亦不是方法确认，无自动扩大。区分生成覆盖、有效反馈、实际成绩，缺失不填0。
 
 ## 已闭合17592及前置事实（不是当前运行）
@@ -55,7 +58,7 @@
 
 ## 工作区、权限与现场
 - 活跃checkout=C:/Research/New/my_project/MLEvolve/_codex_tmp/publication-feedback-20261001，detached HEAD有意；旧aira-dojo-codex-20260813用户dirty不动。
-- 最近公开head 2c015037281c8183aca85c02954bbdf61bd2d58c；21:51 fetch学长到64fd78e98cfdc945b1af03f29f570975d58b88b7（两新提交改policy数据/训练文档代码及verl引用，仅查元数据，未读新内容）。本次状态请求未push，只更新本地短交接/安全汇总。
+- 最近公开head9b23d621ffb1937b831435386effd01e38cc4f08；学长64fd78e98cfdc945b1af03f29f570975d58b88b7（21:51元数据，仅policy数据/训练文档及verl引用，未改其分支）。冻结源码发布前0凭据/敏感文件/字节漂移；原Git hook曾MSYS拒绝，独立guard通过，不冒称hook通过。
 - 用户未跟踪报告phase1/reports/给学长_MLE沙箱资源调度进展_20261009.md保留、不stage。
 - 17587/17590/17592均已闭合；新screen见顶部，未见launch前不得称开跑。旧Held12535未动；排除projgpu7/8/33、gpu36/38；旧MLE镜像不投projgpu39。
 - SSH linux5；PY=/research/d7/spc/yzyang4/venvs/aira/bin/python；SLURM_CONF=/opt1/slurm/gpu-slurm.conf。

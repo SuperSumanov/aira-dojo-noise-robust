@@ -1,0 +1,202 @@
+{
+  "type": "Post-hoc numeric mechanism audit; does not replace frozen job17592 gate",
+  "job": "17592",
+  "plan_sha256": "95825b54b256eb69f7a2a372db66c4f63b4c0d9840d3253f5ade5685f448fe66",
+  "assigned": 32,
+  "first_generation_failed": 18,
+  "per_task": {
+    "aerial-cactus-identification": {
+      "assigned": 16,
+      "first_failures": 7,
+      "survived": 9,
+      "successful_request_seconds_median": 160.03663023305126,
+      "successful_request_seconds_sample_sd": 19.442420606051297,
+      "successful_latency_is_survivor_conditional": true
+    },
+    "denoising-dirty-documents": {
+      "assigned": 16,
+      "first_failures": 11,
+      "survived": 5,
+      "successful_request_seconds_median": 212.05442470894195,
+      "successful_request_seconds_sample_sd": 20.44699290962792,
+      "successful_latency_is_survivor_conditional": true
+    }
+  },
+  "pools": [
+    {
+      "block": "block-0",
+      "metrics": {
+        "running_requests": {
+          "n": 103,
+          "median": 1,
+          "max": 6,
+          "min": 0
+        },
+        "waiting_requests": {
+          "n": 103,
+          "median": 0,
+          "max": 2,
+          "min": 0
+        },
+        "prompt_tokens_per_second": {
+          "n": 103,
+          "median": 0,
+          "max": 1059.3,
+          "min": 0
+        },
+        "generation_tokens_per_second": {
+          "n": 103,
+          "median": 49.3,
+          "max": 207,
+          "min": 0
+        },
+        "gpu_kv_cache_percent": {
+          "n": 103,
+          "median": 3,
+          "max": 14.8,
+          "min": 0
+        },
+        "prefix_cache_hit_percent": {
+          "n": 103,
+          "median": 0,
+          "max": 4.1,
+          "min": 0
+        }
+      },
+      "first_arrival_span_seconds": 14.849031686782837
+    },
+    {
+      "block": "block-1",
+      "metrics": {
+        "running_requests": {
+          "n": 144,
+          "median": 3,
+          "max": 6,
+          "min": 0
+        },
+        "waiting_requests": {
+          "n": 144,
+          "median": 0,
+          "max": 2,
+          "min": 0
+        },
+        "prompt_tokens_per_second": {
+          "n": 144,
+          "median": 0,
+          "max": 1357.9,
+          "min": 0
+        },
+        "generation_tokens_per_second": {
+          "n": 144,
+          "median": 90.9,
+          "max": 210.6,
+          "min": 0
+        },
+        "gpu_kv_cache_percent": {
+          "n": 144,
+          "median": 6.5,
+          "max": 14.6,
+          "min": 0
+        },
+        "prefix_cache_hit_percent": {
+          "n": 144,
+          "median": 0,
+          "max": 4.9,
+          "min": 0
+        }
+      },
+      "first_arrival_span_seconds": 0.693718671798706
+    },
+    {
+      "block": "block-2",
+      "metrics": {
+        "running_requests": {
+          "n": 147,
+          "median": 2,
+          "max": 6,
+          "min": 1
+        },
+        "waiting_requests": {
+          "n": 147,
+          "median": 0,
+          "max": 2,
+          "min": 0
+        },
+        "prompt_tokens_per_second": {
+          "n": 147,
+          "median": 0,
+          "max": 1339.6,
+          "min": 0
+        },
+        "generation_tokens_per_second": {
+          "n": 147,
+          "median": 83.6,
+          "max": 204.6,
+          "min": 2.5
+        },
+        "gpu_kv_cache_percent": {
+          "n": 147,
+          "median": 5.7,
+          "max": 14,
+          "min": 1.9
+        },
+        "prefix_cache_hit_percent": {
+          "n": 147,
+          "median": 1.8,
+          "max": 2.8,
+          "min": 0
+        }
+      },
+      "first_arrival_span_seconds": 1.0542073249816895
+    },
+    {
+      "block": "block-3",
+      "metrics": {
+        "running_requests": {
+          "n": 142,
+          "median": 2,
+          "max": 6,
+          "min": 0
+        },
+        "waiting_requests": {
+          "n": 142,
+          "median": 0,
+          "max": 2,
+          "min": 0
+        },
+        "prompt_tokens_per_second": {
+          "n": 142,
+          "median": 0,
+          "max": 1274.7,
+          "min": 0
+        },
+        "generation_tokens_per_second": {
+          "n": 142,
+          "median": 82.8,
+          "max": 208.8,
+          "min": 0
+        },
+        "gpu_kv_cache_percent": {
+          "n": 142,
+          "median": 4.3,
+          "max": 12.9,
+          "min": 0
+        },
+        "prefix_cache_hit_percent": {
+          "n": 142,
+          "median": 3.8,
+          "max": 4.9,
+          "min": 0
+        }
+      },
+      "first_arrival_span_seconds": 8.87804102897644
+    }
+  ],
+  "limitations": [
+    "Timeout240 is an experiment transport protection setting, not the native upstream default (TIMEOUT1500, NUM_RETRIES10).",
+    "Metrics are sampled pool aggregates, not per-request TTFT or GPU kernel time.",
+    "Eight near-simultaneous requests and peak6 running/2 waiting do not independently prove queueing caused each timeout.",
+    "Survival4vs1 coincides with denoising endpoint coverage4vs1; execution-sharing causality remains unestablished.",
+    "The deadline600/240 screen is a fresh common900s run setting and must not be pooled with old1500s outcomes."
+  ]
+}

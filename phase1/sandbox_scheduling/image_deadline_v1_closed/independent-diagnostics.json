@@ -1,0 +1,305 @@
+{
+  "schema": "r14-request-deadline-independent-diagnostics-v1",
+  "job": "17656",
+  "source_commit": "9b23d621ffb1937b831435386effd01e38cc4f08",
+  "plan_sha256": "d153e408fb88e7ac120fceadbab79528275943e356a639871abb7e9dcc5f86b7",
+  "observed_unix_seconds": 1791737484.341821,
+  "root": "/research/d7/spc/yzyang4/scheduling-image-generation-deadline-20261011-v1",
+  "frozen_summary_sha256": "ef4a2d9ea398488370dcbd750f6706105a825d1c6ed6b3188653e8e88bec4f99",
+  "by_arm": {
+    "deadline600": {
+      "assigned": 8,
+      "finished": 8,
+      "normal": 8,
+      "first_generation_success": 8,
+      "first_generation_failures": 0,
+      "first_generation_success_over_240": 7,
+      "successful_first_generation_seconds": {
+        "n": 8,
+        "median": 257.66510681505315
+      },
+      "candidate_returns": 17,
+      "valid_timely_returns": 3,
+      "sum_candidate_queue_seconds": 0.3546661902219057,
+      "sum_candidate_execution_seconds": 1332.6933064688928,
+      "by_task": {
+        "aerial-cactus-identification": {
+          "assigned": 4,
+          "runs_with_valid_candidate": 1
+        },
+        "denoising-dirty-documents": {
+          "assigned": 4,
+          "runs_with_valid_candidate": 2
+        }
+      }
+    },
+    "deadline240": {
+      "assigned": 8,
+      "finished": 8,
+      "normal": 5,
+      "first_generation_success": 5,
+      "first_generation_failures": 3,
+      "first_generation_success_over_240": 0,
+      "successful_first_generation_seconds": {
+        "n": 5,
+        "median": 178.11862562200986
+      },
+      "candidate_returns": 10,
+      "valid_timely_returns": 2,
+      "sum_candidate_queue_seconds": 0.187119722366333,
+      "sum_candidate_execution_seconds": 1766.9593687995803,
+      "by_task": {
+        "aerial-cactus-identification": {
+          "assigned": 4,
+          "runs_with_valid_candidate": 1
+        },
+        "denoising-dirty-documents": {
+          "assigned": 4,
+          "runs_with_valid_candidate": 0
+        }
+      }
+    }
+  },
+  "pools": [
+    {
+      "block": "block-0",
+      "budget": {
+        "active_seconds": 1336.0431334269233,
+        "actual_seconds": 1500.000146699138,
+        "gpus": 6,
+        "reserved_seconds": 1500,
+        "start": 1791734429.4621732
+      },
+      "service_ready": {
+        "startup_seconds": 425.2388320090249
+      },
+      "identity": {
+        "complete": true,
+        "independent_identity_check": true,
+        "service_cleanup_verified": true,
+        "lane_devices": [
+          "GPU-933b7bac-bb2e-5adc-ef66-33cf94640c41",
+          "GPU-1dcada8c-97b6-bea4-f7ed-774d5f399e69",
+          "GPU-b88044c1-2c9a-aaea-1e5e-03b920691f7d",
+          "GPU-4a058615-2fd0-56bd-6bda-22caa96b58d0"
+        ],
+        "service_devices": [
+          "GPU-43b9e099-38f8-f1ae-9008-ca93e584f8ee",
+          "GPU-89807a87-f29f-c724-0483-82d4131474a6"
+        ]
+      },
+      "first_generations": [
+        {
+          "index": 0,
+          "task": "aerial-cactus-identification",
+          "started": true,
+          "start_time": 1791734891.041877,
+          "start_elapsed": 33.807795132976025,
+          "returned": true,
+          "success": true,
+          "seconds": 412.647643472068
+        },
+        {
+          "index": 1,
+          "task": "denoising-dirty-documents",
+          "started": true,
+          "start_time": 1791734889.6479683,
+          "start_elapsed": 32.41082822205499,
+          "returned": true,
+          "success": true,
+          "seconds": 256.6313599580899
+        },
+        {
+          "index": 2,
+          "task": "aerial-cactus-identification",
+          "started": true,
+          "start_time": 1791734891.0321083,
+          "start_elapsed": 33.794759711949155,
+          "returned": true,
+          "success": true,
+          "seconds": 258.01890193112195
+        },
+        {
+          "index": 3,
+          "task": "denoising-dirty-documents",
+          "started": true,
+          "start_time": 1791734889.9678984,
+          "start_elapsed": 32.73079100996256,
+          "returned": true,
+          "success": true,
+          "seconds": 258.98279492300935
+        },
+        {
+          "index": 4,
+          "task": "aerial-cactus-identification",
+          "started": true,
+          "start_time": 1791734891.0382607,
+          "start_elapsed": 33.800282559823245,
+          "returned": true,
+          "success": true,
+          "seconds": 402.45387243898585
+        },
+        {
+          "index": 5,
+          "task": "denoising-dirty-documents",
+          "started": true,
+          "start_time": 1791734889.940797,
+          "start_elapsed": 32.707025673938915,
+          "returned": true,
+          "success": true,
+          "seconds": 257.31131169898435
+        },
+        {
+          "index": 6,
+          "task": "aerial-cactus-identification",
+          "started": true,
+          "start_time": 1791734890.990843,
+          "start_elapsed": 33.75368387601338,
+          "returned": true,
+          "success": true,
+          "seconds": 176.23095144401304
+        },
+        {
+          "index": 7,
+          "task": "denoising-dirty-documents",
+          "started": true,
+          "start_time": 1791734889.9563007,
+          "start_elapsed": 32.72246604086831,
+          "returned": true,
+          "success": true,
+          "seconds": 243.27165298094042
+        }
+      ]
+    },
+    {
+      "block": "block-1",
+      "budget": {
+        "active_seconds": 1338.2988090040162,
+        "actual_seconds": 1500.0001521890517,
+        "gpus": 6,
+        "reserved_seconds": 1500,
+        "start": 1791735929.470371
+      },
+      "service_ready": {
+        "startup_seconds": 429.51907250098884
+      },
+      "identity": {
+        "complete": true,
+        "independent_identity_check": true,
+        "service_cleanup_verified": true,
+        "lane_devices": [
+          "GPU-933b7bac-bb2e-5adc-ef66-33cf94640c41",
+          "GPU-b88044c1-2c9a-aaea-1e5e-03b920691f7d",
+          "GPU-4a058615-2fd0-56bd-6bda-22caa96b58d0",
+          "GPU-1dcada8c-97b6-bea4-f7ed-774d5f399e69"
+        ],
+        "service_devices": [
+          "GPU-43b9e099-38f8-f1ae-9008-ca93e584f8ee",
+          "GPU-89807a87-f29f-c724-0483-82d4131474a6"
+        ]
+      },
+      "first_generations": [
+        {
+          "index": 8,
+          "task": "aerial-cactus-identification",
+          "started": true,
+          "start_time": 1791736394.9806619,
+          "start_elapsed": 33.63697439082898,
+          "returned": true,
+          "success": true,
+          "seconds": 173.81312196003273
+        },
+        {
+          "index": 9,
+          "task": "denoising-dirty-documents",
+          "started": true,
+          "start_time": 1791736395.5556571,
+          "start_elapsed": 34.212195922853425,
+          "returned": true,
+          "success": false,
+          "seconds": 240.1142172832042
+        },
+        {
+          "index": 10,
+          "task": "aerial-cactus-identification",
+          "started": true,
+          "start_time": 1791736395.0287542,
+          "start_elapsed": 33.68311750795692,
+          "returned": true,
+          "success": true,
+          "seconds": 178.11862562200986
+        },
+        {
+          "index": 11,
+          "task": "denoising-dirty-documents",
+          "started": true,
+          "start_time": 1791736396.2345574,
+          "start_elapsed": 34.890520507935435,
+          "returned": true,
+          "success": true,
+          "seconds": 203.8001818729099
+        },
+        {
+          "index": 12,
+          "task": "aerial-cactus-identification",
+          "started": true,
+          "start_time": 1791736394.9953094,
+          "start_elapsed": 33.65182081097737,
+          "returned": true,
+          "success": true,
+          "seconds": 150.32735573500395
+        },
+        {
+          "index": 13,
+          "task": "denoising-dirty-documents",
+          "started": true,
+          "start_time": 1791736396.4807348,
+          "start_elapsed": 35.13690002099611,
+          "returned": true,
+          "success": false,
+          "seconds": 240.11448988504708
+        },
+        {
+          "index": 14,
+          "task": "aerial-cactus-identification",
+          "started": true,
+          "start_time": 1791736394.8341906,
+          "start_elapsed": 33.49008948705159,
+          "returned": true,
+          "success": true,
+          "seconds": 193.2055850860197
+        },
+        {
+          "index": 15,
+          "task": "denoising-dirty-documents",
+          "started": true,
+          "start_time": 1791736396.50611,
+          "start_elapsed": 35.16246570297517,
+          "returned": true,
+          "success": false,
+          "seconds": 240.11300947493874
+        }
+      ]
+    }
+  ],
+  "interpretation": {
+    "endpoint": "Native-selected valid development endpoints, not post-hoc best candidates.",
+    "quality_pairs": 0,
+    "generation_funnel": "All 3 first-generation failures under deadline240 were denoising; deadline600 had none. Seven of 8 successful first requests in deadline600 took more than240 seconds.",
+    "same_pool_hardware": true,
+    "same_service_devices": true,
+    "same_physical_execution_gpu_per_lane": [
+      true,
+      false,
+      false,
+      false
+    ],
+    "initial_arrival_order": "Denoising preceded aerial in600; aerial preceded denoising in240. One fixed-order pool pair cannot separate temporal/arrival variation.",
+    "candidate_queue": "Sums exclude preview and are observed admission waits, not GPU kernel time. Little execution queue contention was exposed in either arm.",
+    "scope": "Exploratory diagnostic of our bounded request settings; no scheduling-method superiority, statistical confirmation, held-out test, or general quality gain.",
+    "baseline": "240 seconds was our experimental guard. Collaborator dojo-reproduce@64fd78e98cfdc945b1af03f29f570975d58b88b7 has backend TIMEOUT14400/NUM_RETRIES10; deployment overrides unknown.",
+    "syntax": "AST checks concern stored journal code, not proven identical executed code; do not infer SyntaxError from AST-unparseable journals with exit_code0.",
+    "novelty": "MARS already discusses framework timeout truncation/completion. Extending a timeout is not our method novelty.",
+    "next_boundary": "No automatic GPU expansion, no retuning this completed gate, no comparison pooled with prior1500-second runs."
+  }
+}

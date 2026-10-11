@@ -1,0 +1,108 @@
+{
+  "assigned": 16,
+  "by_arm": {
+    "deadline240": {
+      "assigned": 8,
+      "complete": 5,
+      "first_generation_failed": 3,
+      "per_task_valid": {
+        "aerial-cactus-identification": 1,
+        "denoising-dirty-documents": 0
+      },
+      "started": 8,
+      "valid_endpoints": 1,
+      "valid_returns": 2
+    },
+    "deadline600": {
+      "assigned": 8,
+      "complete": 8,
+      "first_generation_failed": 0,
+      "per_task_valid": {
+        "aerial-cactus-identification": 1,
+        "denoising-dirty-documents": 2
+      },
+      "started": 8,
+      "valid_endpoints": 3,
+      "valid_returns": 3
+    }
+  },
+  "cpu_pairs_checked": 8,
+  "cpu_pairs_passed": 8,
+  "gpu_hours": 5.008333333333334,
+  "gpu_seconds": 18030,
+  "independent_pool_pairs": 1,
+  "limitation": "Exploratory fixed-order single-pool-pair timeout screen. No scheduling superiority or general method claim. Missing scores are not zero and are not excluded from assigned denominators.",
+  "no_auto_expansion": true,
+  "paired_medians": {
+    "aerial-cactus-identification": null,
+    "denoising-dirty-documents": null
+  },
+  "paired_sample_sd": {
+    "aerial-cactus-identification": null,
+    "denoising-dirty-documents": null
+  },
+  "pairs": [
+    {
+      "endpoint_coverage_delta": 0,
+      "lane": 0,
+      "oriented_delta": null,
+      "seed": 212001,
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "endpoint_coverage_delta": 1,
+      "lane": 0,
+      "oriented_delta": null,
+      "seed": 212002,
+      "task": "denoising-dirty-documents"
+    },
+    {
+      "endpoint_coverage_delta": 0,
+      "lane": 1,
+      "oriented_delta": null,
+      "seed": 212003,
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "endpoint_coverage_delta": 0,
+      "lane": 1,
+      "oriented_delta": null,
+      "seed": 212004,
+      "task": "denoising-dirty-documents"
+    },
+    {
+      "endpoint_coverage_delta": -1,
+      "lane": 2,
+      "oriented_delta": null,
+      "seed": 212005,
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "endpoint_coverage_delta": 0,
+      "lane": 2,
+      "oriented_delta": null,
+      "seed": 212006,
+      "task": "denoising-dirty-documents"
+    },
+    {
+      "endpoint_coverage_delta": 1,
+      "lane": 3,
+      "oriented_delta": null,
+      "seed": 212007,
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "endpoint_coverage_delta": 1,
+      "lane": 3,
+      "oriented_delta": null,
+      "seed": 212008,
+      "task": "denoising-dirty-documents"
+    }
+  ],
+  "plan_sha256": "d153e408fb88e7ac120fceadbab79528275943e356a639871abb7e9dcc5f86b7",
+  "scores_recomputed": 5,
+  "screen_positive": true,
+  "screen_positive_before_structure": true,
+  "source_commit": "9b23d621ffb1937b831435386effd01e38cc4f08",
+  "structural_complete": true
+}

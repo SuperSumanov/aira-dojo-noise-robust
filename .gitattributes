@@ -1020,3 +1020,5 @@ phase1/sandbox_scheduling/test_image_generation_deadline_20261011.py -text diff 
 phase1/sandbox_scheduling/image_live_v3_closed/*.json -text diff whitespace=cr-at-eol
 phase1/sandbox_scheduling/image_deadline_inspect_20261011.py -text diff whitespace=cr-at-eol
 phase1/sandbox_scheduling/image_deadline_finish_20261011.py -text diff whitespace=cr-at-eol
+phase1/sandbox_scheduling/image_deadline_v1_closed/*.json -text diff whitespace=cr-at-eol
+phase1/sandbox_scheduling/image_deadline_v1_closed/*.csv -text diff whitespace=cr-at-eol

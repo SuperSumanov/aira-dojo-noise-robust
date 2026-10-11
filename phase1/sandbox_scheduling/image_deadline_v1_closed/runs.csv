@@ -1,0 +1,17 @@
+arm,block,index,lane,repeat,seed,slot,task,started,complete,valid,score,first_generation_failed,first_generation_seconds,valid_returns,candidate_returns,late_returns,score_grounded,cleanup,source_commit
+deadline600,0,0,0,0,212001,0,aerial-cactus-identification,True,True,False,,False,412.647643472068,0,1,0,True,True,9b23d621ffb1937b831435386effd01e38cc4f08
+deadline600,0,1,0,0,212002,1,denoising-dirty-documents,True,True,True,0.031235835124769212,False,256.6313599580899,1,3,0,True,True,9b23d621ffb1937b831435386effd01e38cc4f08
+deadline600,0,2,1,0,212003,2,aerial-cactus-identification,True,True,False,,False,258.01890193112195,0,1,0,True,True,9b23d621ffb1937b831435386effd01e38cc4f08
+deadline600,0,3,1,0,212004,3,denoising-dirty-documents,True,True,False,,False,258.98279492300935,0,2,0,True,True,9b23d621ffb1937b831435386effd01e38cc4f08
+deadline600,0,4,2,0,212005,4,aerial-cactus-identification,True,True,False,,False,402.45387243898585,0,3,0,True,True,9b23d621ffb1937b831435386effd01e38cc4f08
+deadline600,0,5,2,0,212006,5,denoising-dirty-documents,True,True,False,,False,257.31131169898435,0,2,0,True,True,9b23d621ffb1937b831435386effd01e38cc4f08
+deadline600,0,6,3,0,212007,6,aerial-cactus-identification,True,True,True,0.9998850777462409,False,176.23095144401304,1,3,0,True,True,9b23d621ffb1937b831435386effd01e38cc4f08
+deadline600,0,7,3,0,212008,7,denoising-dirty-documents,True,True,True,0.01904880250364682,False,243.27165298094042,1,2,0,True,True,9b23d621ffb1937b831435386effd01e38cc4f08
+deadline240,1,8,0,0,212001,0,aerial-cactus-identification,True,True,False,,False,173.81312196003273,0,1,0,True,True,9b23d621ffb1937b831435386effd01e38cc4f08
+deadline240,1,9,0,0,212002,1,denoising-dirty-documents,True,False,False,,True,240.1142172832042,0,0,0,True,True,9b23d621ffb1937b831435386effd01e38cc4f08
+deadline240,1,10,1,0,212003,2,aerial-cactus-identification,True,True,False,,False,178.11862562200986,0,1,0,True,True,9b23d621ffb1937b831435386effd01e38cc4f08
+deadline240,1,11,1,0,212004,3,denoising-dirty-documents,True,True,False,,False,203.8001818729099,0,3,0,True,True,9b23d621ffb1937b831435386effd01e38cc4f08
+deadline240,1,12,2,0,212005,4,aerial-cactus-identification,True,True,True,0.9999732738944747,False,150.32735573500395,2,3,0,True,True,9b23d621ffb1937b831435386effd01e38cc4f08
+deadline240,1,13,2,0,212006,5,denoising-dirty-documents,True,False,False,,True,240.11448988504708,0,0,0,True,True,9b23d621ffb1937b831435386effd01e38cc4f08
+deadline240,1,14,3,0,212007,6,aerial-cactus-identification,True,True,False,,False,193.2055850860197,0,2,0,True,True,9b23d621ffb1937b831435386effd01e38cc4f08
+deadline240,1,15,3,0,212008,7,denoising-dirty-documents,True,False,False,,True,240.11300947493874,0,0,0,True,True,9b23d621ffb1937b831435386effd01e38cc4f08

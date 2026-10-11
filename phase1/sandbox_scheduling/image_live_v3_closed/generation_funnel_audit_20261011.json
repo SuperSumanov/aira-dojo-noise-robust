@@ -193,7 +193,7 @@
     }
   ],
   "limitations": [
-    "Timeout240 is an experiment transport protection setting, not the native upstream default (TIMEOUT1500, NUM_RETRIES10).",
+    "Timeout240 is our experiment transport protection setting. The local original backend has TIMEOUT1500/NUM_RETRIES10; collaborator branch64fd78e98cfdc945b1af03f29f570975d58b88b7 has TIMEOUT14400/NUM_RETRIES10. Neither is the bounded240 setting. These constants alone do not establish all deployed production overrides.",
     "Metrics are sampled pool aggregates, not per-request TTFT or GPU kernel time.",
     "Eight near-simultaneous requests and peak6 running/2 waiting do not independently prove queueing caused each timeout.",
     "Survival4vs1 coincides with denoising endpoint coverage4vs1; execution-sharing causality remains unestablished.",

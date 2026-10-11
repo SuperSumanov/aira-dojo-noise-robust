@@ -109,9 +109,11 @@ def summarize(rows, initial):
 
 def analyze(root, output, gpu_seconds):
     root=Path(root);p=read(root/'plan.json');closed=read(root/'closed.json')
-    assert p['planned']==48 and p['allocation_seconds']==7920 and p['slot_seconds']==1180 and p['run_seconds']==1020
+    assert p['planned']==48 and p['allocation_seconds']==7560 and p['slot_seconds']==1180 and p['run_seconds']==1020
     assert p['prior_failures'][0]['job']=='17673' and p['prior_failures'][0]['gpu_seconds']==2856
-    assert 0<gpu_seconds<=7920*6 and gpu_seconds+2856<=50400
+    assert p['prior_failures'][1]['job']=='17674' and p['prior_failures'][1]['gpu_seconds']==2118
+    prior=sum(r['gpu_seconds'] for r in p['prior_failures'])
+    assert 0<gpu_seconds<=7560*6 and gpu_seconds+prior<=50400
     for name,h in p['files'].items():assert sha(root/name)==h
     for name,h in p['input_files'].items():assert sha(root/name)==h
     # This imports the pinned scoring code from THIS trial, not a mutable tree.
@@ -166,8 +168,8 @@ def analyze(root, output, gpu_seconds):
     signal=any(r['scarce_choices'] and r['resource_changed_choices'] for r in policies if r['arm']=='joint')
     result=summarize(rows,initial)
     result.update(source_commit=p['source_commit'],plan_sha256=sha(root/'plan.json'),readout_sha256=sha(__file__),
-        gpu_seconds=gpu_seconds,gpu_hours=gpu_seconds/3600,prior_failure_gpu_seconds=2856,
-        window_gpu_seconds=gpu_seconds+2856,window_gpu_hours=(gpu_seconds+2856)/3600,structural_complete=bool(structural),
+        gpu_seconds=gpu_seconds,gpu_hours=gpu_seconds/3600,prior_failure_gpu_seconds=prior,
+        window_gpu_seconds=gpu_seconds+prior,window_gpu_hours=(gpu_seconds+prior)/3600,structural_complete=bool(structural),
         policy_choices=policies,live_resource_choice_divergence=signal,scores_recomputed=recomputed,
         cpu_pairs_passed=sum(cpu),cpu_pairs_planned=24,physical_identity_passed=physical,
         exploratory_quality_signal=bool(structural and signal and result['quality_signal_before_structure']),

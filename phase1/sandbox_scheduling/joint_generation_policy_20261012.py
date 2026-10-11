@@ -187,8 +187,8 @@ def install(row, ep, deadline, warm):
     MCTS.create_root_node = root
 
     original_parse = MCTS.parse_eval_result
-    def parse(self, node, evaluation):
-        original_parse(self, node, evaluation)
+    def parse(self, node, eval_result):
+        original_parse(self, node, eval_result)
         with locked(directory) as state:
             stats = state['stats'][str(row['index'])]; stats['completed'] += 1
             mean_update(stats, 'execution', max(0., node.exec_time))

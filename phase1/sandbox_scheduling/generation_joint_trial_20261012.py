@@ -1,7 +1,7 @@
 """Bounded three-policy warm-start development experiment, 48 assigned runs.
 
-Six reversed-order pools share one local service, 6 GPUs x 7920s maximum;
-including failed17673's476s, below the original6x8400s total allocation cap.
+Six reversed-order pools share one local service, 6 GPUs x 7560s maximum;
+including failed17673's476s and cancelled17674's353s, below6x8400s.
 This estimates conditional refinement from a supplied common checkpoint,
 not from-scratch performance, and not a complete published-baseline replica.
 """
@@ -23,7 +23,7 @@ import traceback
 # During preparation reuse the exact closed native harness, not a newer
 # checkout's same-named source. The prepared directory takes precedence later.
 _closed = Path('/research/d7/spc/yzyang4/scheduling-image-deadline-replication-20261012-v1')
-if _closed.exists() and Path(__file__).parent != Path('/research/d7/spc/yzyang4/scheduling-generation-joint-20261012-v4'):
+if _closed.exists() and Path(__file__).parent != Path('/research/d7/spc/yzyang4/scheduling-generation-joint-20261012-v5'):
     sys.path.insert(1, str(_closed))
 import image_live_cpu_repair_20261011 as c
 from lifecycle_pilot import read, write, sha
@@ -31,9 +31,9 @@ from joint_generation_policy_20261012 import ARMS
 
 OLD = c.trial.B/'scheduling-image-deadline-replication-20261012-v1'
 OLD_PIN = '23f368399f6c735ef81142ec46831ae4e9f45d58d80edf5d2559b4cbb7a22ea6'
-R = c.trial.B/'scheduling-generation-joint-20261012-v4'
+R = c.trial.B/'scheduling-generation-joint-20261012-v5'
 NAME = Path(__file__).name
-CAP = 7920
+CAP = 7560
 RUN = 1020
 SLOT = 1180
 ORDER = ('continuation', 'cost', 'joint', 'joint', 'cost', 'continuation')
@@ -166,17 +166,17 @@ def prepare(commit):
 #SBATCH --gres=gpu:6
 #SBATCH --cpus-per-task=24
 #SBATCH --hint=nomultithread
-#SBATCH --time=02:12:00
+#SBATCH --time=02:06:00
 #SBATCH --no-requeue
 set -euo pipefail
 umask 077
 export SLURM_CONF=/opt1/slurm/gpu-slurm.conf
 export PYTHON_DOTENV_DISABLED=1 PYTHONDONTWRITEBYTECODE=1
-timeout --signal=TERM --kill-after=30s 7860s {c.trial.PY} -B {R/NAME} controller
+timeout --signal=TERM --kill-after=30s 7500s {c.trial.PY} -B {R/NAME} controller
 '''
     (R/'run.sbatch').write_text(sb);subprocess.run(['bash','-n',str(R/'run.sbatch')],check=True)
     p.update(source_commit=commit,source_parent_commit=p['source_commit'],source_donor_plan_sha256=OLD_PIN,
-        schedule=schedule(),planned=48,allocation_seconds=CAP,gpu_hours_cap=CAP*6/3600,combined_gpu_seconds_cap=(CAP+476)*6,
+        schedule=schedule(),planned=48,allocation_seconds=CAP,gpu_hours_cap=CAP*6/3600,combined_gpu_seconds_cap=(CAP+829)*6,
         run_seconds=RUN,slot_seconds=SLOT,execution_permits=1,generation_permits_per_task=2,
         independent_pool_pairs=2,request_seconds=600,service_restart_between_blocks=False,
         primary='Best native accepted D_search endpoint per task/pool including the common supplied warm start; joint must beat BOTH matched references, per-task deltas and all assigned runs.',
@@ -193,12 +193,20 @@ timeout --signal=TERM --kill-after=30s 7860s {c.trial.PY} -B {R/NAME} controller
     assert not any((failed/f'generation-{b}/events.jsonl').exists() for b in range(6))
     p['prior_failures']=[dict(job='17673',elapsed_seconds=476,gpu_seconds=2856,generated_candidates=0,
         plan_sha256=sha(failed/'plan.json'),closure_sha256=sha(failed/'closed.json'))]
+    cancelled=c.trial.B/'scheduling-generation-joint-20261012-v4'
+    assert read(cancelled/'launch.json')['job']=='17674'
+    accounting=subprocess.run(['sacct','-j','17674','-X','-n','-P','-o','JobID,State,ElapsedRaw,AllocGRES'],
+        env=dict(os.environ,SLURM_CONF='/opt1/slurm/gpu-slurm.conf'),capture_output=True,text=True,check=True).stdout.strip().split('|')
+    assert accounting[:1]==['17674'] and accounting[1].startswith('CANCELLED') and accounting[2:4]==['353','gpu:6']
+    p['prior_failures'].append(dict(job='17674',elapsed_seconds=353,gpu_seconds=2118,
+        plan_sha256=sha(cancelled/'plan.json'),reason='Cancelled after frozen-source inspection confirmed parse_eval_result keyword mismatch; no outcome-guided decision.'))
     # Reuse only offline compilation products, copying rather than modifying
     # the closed failed batch. No generated prompt/response exists in it.
     for cache in ('vllm','triton'):
-        old_cache=failed/'block-0/service-cache'/cache
+        old_cache=cancelled/'block-0/service-cache'/cache
         if old_cache.is_dir():shutil.copytree(old_cache,R/'block-0/service-cache'/cache,symlinks=True)
     p['preflight_history'] += ' v3 preparation stopped copying transient IPC sockets from /tmp (zero GPU); v4 only copies vllm/triton offline compilation directories, never /tmp.'
+    p['preflight_history'] += ' v4/17674 cancelled at353s after code-only inspection found eval_result keyword mismatch. v5 repairs callback signature and CPU-tests actual expansion->evaluation->analysis->journal->backprop including debug; no strategy/input/run/pool/seed changes. Allocation7560s plus prior829s stays below8400s.'
     p['files']={n:sha(R/n) for n in p['files'] if not n.startswith('configs/')}
     p['files'].update({f'configs/{i}.json':sha(R/f'configs/{i}.json') for i in range(48)})
     for n in names+('warm.private.json','warm-receipt.json'):p['files'][n]=sha(R/n)
@@ -244,16 +252,32 @@ def preflight():
     saved=[json.loads(s) for s in (fixture/'checkpoint/journal.jsonl').read_text().splitlines()]
     assert len(saved)==solver.state.current_step==2 and saved[1]['metric']==warm[row['task']]['metric']
     path=solver.search_policy(solver.root_node);assert path[-1].code==warm[row['task']]['code']
-    # Run the real permit wrapper, with only its operator stubbed (no LLM).
+    # Exercise actual expansion, keyword call, parse, analysis, journal,
+    # backprop and debug. Only external model/task execution is synthetic.
     import dojo.solvers.mcts.mcts as mm
     original_op=mm.execute_op_plan_code
     mm.execute_op_plan_code=lambda *args,**kwargs:('fixture plan','print(1)',[])
+    solver.analyze_fn=lambda *args:({'metric':None,'summary':'CPU fixture','is_bug':True},[])
+    from dojo.core.interpreters.base import ExecutionResult
+    from dojo.core.tasks.constants import EXECUTION_OUTPUT,VALIDATION_FITNESS,VALID_SOLUTION
+    class FixtureTask:
+        calls=0
+        def step_task(self,state,code):
+            self.calls+=1
+            valid=self.calls!=2
+            return state,{EXECUTION_OUTPUT:ExecutionResult(term_out=['CPU fixture'],exec_time=.1,exit_code=0 if valid else 1),
+                VALIDATION_FITNESS:warm[row['task']]['metric'] if valid else None,VALID_SOLUTION:valid}
+    fixture_task=FixtureTask()
     try:
-        child=solver._improve(path[-1]);assert child.code=='print(1)'
+        solver._expand_leaf_and_backprop(path,{},fixture_task)
+        assert fixture_task.calls==3 and len(solver.journal.nodes)==solver.state.current_step==5
+        assert [n.is_buggy for n in solver.journal.nodes[2:]]==[False,True,False]
+        solver.save_checkpoint()
     finally:mm.execute_op_plan_code=original_op
     gs=read(fixture/'generation-0/state.json');assert not gs['active'] and not gs['waiting']
+    assert gs['stats']['0']['completed']==3
     write(R/'preflight.json',dict(source_commit=p['source_commit'],plan_sha256=sha(R/'plan.json'),
-        configs=48,matched_comparisons=32,real_frozen_warm_root=True,no_gpu=True,no_model_calls=True))
+        configs=48,matched_comparisons=32,real_frozen_warm_root=True,real_expand_parse_debug_checkpoint=True,no_gpu=True,no_model_calls=True))
     print(json.dumps(read(R/'preflight.json')))
 
 

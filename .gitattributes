@@ -1031,3 +1031,5 @@ phase1/sandbox_scheduling/image_deadline_replication_v1_preflight/*.json -text d
 phase1/sandbox_scheduling/image_deadline_replication_v1_closed/*.json -text diff whitespace=cr-at-eol
 phase1/sandbox_scheduling/image_deadline_replication_v1_closed/*.csv -text diff whitespace=cr-at-eol
 phase1/sandbox_scheduling/image_replication_closed_diagnostic_20261012.py -text diff whitespace=cr-at-eol
+phase1/sandbox_scheduling/generation_joint_v5_closed/*.json -text diff whitespace=cr-at-eol
+phase1/sandbox_scheduling/generation_joint_v5_closed/*.csv -text diff whitespace=cr-at-eol

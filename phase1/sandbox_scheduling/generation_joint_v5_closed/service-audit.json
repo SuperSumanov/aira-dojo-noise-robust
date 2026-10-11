@@ -1,0 +1,66 @@
+{
+  "samples": 606,
+  "missing_timestamp": 0,
+  "closed": true,
+  "source_sha256": "d8a1eeae9acdbf50e3ae003b4685117972beae7717f2b101507ab89300306753",
+  "boundary": "Sampled queue counters only, not a continuous per-request trace or quality evidence.",
+  "status": "checked",
+  "logger_utc_offset_hours": 0,
+  "pools": [
+    {
+      "block": 0,
+      "observed": true,
+      "zero_after_workers": true,
+      "samples": 1,
+      "last_running": 0,
+      "last_waiting": 0,
+      "last_sample_to_boundary_seconds": 142.06368017196655
+    },
+    {
+      "block": 1,
+      "observed": true,
+      "zero_after_workers": true,
+      "samples": 1,
+      "last_running": 0,
+      "last_waiting": 0,
+      "last_sample_to_boundary_seconds": 142.07320475578308
+    },
+    {
+      "block": 2,
+      "observed": true,
+      "zero_after_workers": true,
+      "samples": 2,
+      "last_running": 0,
+      "last_waiting": 0,
+      "last_sample_to_boundary_seconds": 142.08165955543518
+    },
+    {
+      "block": 3,
+      "observed": true,
+      "zero_after_workers": true,
+      "samples": 1,
+      "last_running": 0,
+      "last_waiting": 0,
+      "last_sample_to_boundary_seconds": 142.09159898757935
+    },
+    {
+      "block": 4,
+      "observed": true,
+      "zero_after_workers": true,
+      "samples": 2,
+      "last_running": 0,
+      "last_waiting": 0,
+      "last_sample_to_boundary_seconds": 142.0989167690277
+    },
+    {
+      "block": 5,
+      "observed": true,
+      "zero_after_workers": true,
+      "samples": 1,
+      "last_running": 0,
+      "last_waiting": 0,
+      "last_sample_to_boundary_seconds": 142.10920596122742
+    }
+  ],
+  "all_six_sampled_quiescent": true
+}

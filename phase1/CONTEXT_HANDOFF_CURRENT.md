@@ -1,50 +1,39 @@
-# 当前短交接
-更新：2026-10-12香港06:04。压缩前完整交接保存在Git dcb0975864d53307c57d07c214f1a313ba6b27f5。
-恢复：fetch → CURRENT_DIRECTION → ROUTE_DECISIONS → 本文件；未复查的动态状态只写最后观察。
+# 当前短交接：恢复先读本文件，不从旧心跳恢复任务
 
-## 最新用户请求与本轮完成
-- 新请求是三小时内真实同预算效果验证，不能再只筛轨迹，窗口约04:30–07:30。48续跑/6池=2任务×4seed×3臂×2重复，ABCCBA；1020s/run、每任务生成2/每卡执行1三臂相同，2+4GPU。原窗口cap8400秒×6=14GPUh；v5仍1180s/池，作业cap7560s，加前败476+353s，合计cap13.981666666666667GPUh（4974已耗GPU秒）。
-- **17673已FAILED闭合**，不是仍运行：04:56–05:03:56，476秒×6=2856GPU秒。首8条在生成前IndexError、候选0/48、其余池未启动。根因是暖起点append后先递增current_step再原生log_journal，越界；原CPU检查错误地stub掉日志，漏过。旧v2/root与planSHA18257b6b24b195332723004d0271d1a2ff2049174c07dbe588d25f5f6d8e4c3c原样保留，不重开该批/不解释为方法结果。
-- **17674已取消**：05:14:08–05:20:01，353s/2118GPU秒。冻结源码检查发现parse包装器用evaluation形参，但原生按eval_result关键字调用；先于结果判读主动停止。结构8起点加载、4生成获准、0轮完成，旧计划48保留，无closed.json，不冒称完成读数。v4原planSHA8aace9d8d65a190a7da2efc573766fcc5ea287c60d61738a3cf7c6b57b9ab8ff不改。
-- **17675最后观察05:52:49 RUNNING：池0八条均写结束记录、13轮解析、预算槽已关闭；池1八条已启动**；无新增failure回执。单次submit36471已成功退出，禁止重复。source e180a0b5e8289c99bad27872fd63629e7421d8ff；root=/research/d7/spc/yzyang4/scheduling-generation-joint-20261012-v5；planSHAe923a7eefe6b69fdf9416bed58cab10218553760351022cc0b31920d039c32db。真实expand→parse→analysis→journal/backprop→debug→checkpoint CPU门已过。三臂策略/任务/seed/run/池未改；闭合前不读成绩。结构monitor session19407持续，45秒间隔仅变化输出；预计07:30后闭合。v1/v3仅CPU失败零GPU，原件保留。
-- 闭合读数器0e33153c60406324fd160a36e7fe33c34b23e9dd只修独立复算的签名时间语义（poll时钟先于占用采样，保留原有signed间隔），不改运行策略/成功门；31项CPU测试含服务采样检查通过。新增generation_joint_service_audit_20261012.py只解析日志队列计数：首池在workers退出后有1次running/waiting均0采样，距槽边界142.06368017196655s；logger时区由首样本/槽起点推得UTC0。只是采样空闲，不称连续请求级证明；六池闭合后再完整复核。
-- stage=/research/d7/spc/yzyang4/gen-joint-stage-20261012.NvlXeX，内有结构状态、闭合后readout及joint_submit_fresh_hash_20261012.py。后者新鲜并行计算所有镜像/权重SHA、核对读取前后stat再调用原提交门，不是跳过或复用历史哈希。只提交一次；先等prepare成功。读数尚未执行。
-- 06:02:57结构观察：池1已7轮/22次生成获准，8启动0结束，无failure；06:04 Slurm仍RUNNING。闭合分析器及服务采样脚本已传输并逐字节SHA一致；34项纯CPU单测通过。新加次要retention诊断比较同截止前外部有效最佳程序与原生保留终点，明确在首池结束后、任何质量读数前添加，不改变或挽救原主判据；所有成绩仍未揭读。
-- 最近核实公开headf6b307ade32a90b4effbceb132838b1a57a1ba07，含v5修复e180a0b5；已push并ls-remote核实。独立发布guard全0，Git旧MSYS hook报错没有伪称通过。学长dojo-reproduce仍64fd78e98cfdc945b1af03f29f570975d58b88b7未改。
-- v1 CPU前检失败于search_policy实际返回path却断言node，未提交GPU；完整v1原件保留，不重跑该prepare。v2修断言，并真实stub一次原生_improve许可接线；三臂共同去掉已知LLM is_bug误否决，外部评分/exit/有效提交门不变。
-- 起点固定17592按run/step序首个accepted且外部ground节点，原始程序与输出不导出。新终点含起点，主分析看两任务/两个池重复joint相对两个参照的终分差；历史起点构建是共同已有资产，不计作在线节省/从零E2E。仅小型明确成本/资源baseline适配，不能冒称完整论文复现或已确认创新。
-- 前轮04:26机会筛查已闭合：17592/17656/17670分开分析80run/40队列，候选稀缺选择均0，仅2次preview竞争；journal Improve1/0/0且accepted均0。21单测和独立复算通过，该轮零GPU、原质量门不改。它解释了为什么这次将干预提前到生成端，不是新质量阳性。
-- 前轮本地产物sandbox_scheduling/opportunity_screen_20261012；screenSHA c1cb507322bf01065cb673221471c6007eb8c06bd3de856c69e01b0e26331abd；verifierSHA0e440c9bf30aa0ee02836264efb14b1b55db2a7f9bbb3d420ccd1af84431cb8d。远端/resource-diag-stage-20261011.M5wKjU/opportunity-screen-20261012.q7Tlx8位于研究盘根下，不覆盖或重跑旧输出。
-- 已再核CostAda v4（2607.26828v4）、MARS（2604.26963v1）、SAGA v2；收益/成本、预算预留、续轮与动态资源准入均有近邻。当前只是资源状态附加项的受控试验，不承诺新颖性；小型适配不能冒称完整强方法复现。
+更新：2026-10-12香港07:37。此前详细交接保存在Git 26110279cd92a2fdf05f80186de82c465f615e69。
+恢复顺序：fetch → CURRENT_DIRECTION → ROUTE_DECISIONS → 本文件 → 必要原始证据。
 
-## 独立重复17670：已闭合，不再提交
-- 32/32开始/结束/清理：2任务×4新seed×2臂×2池对，ABBA240/600/600/240；900s/run、300s候选、1500s池、2服务+4执行。最后核COMPLETED，6005秒×6=36030GPU秒=10.008333333333333GPUh，cap10.2。
-- 600/240正常16/3、原生有效终点4/1、首生成失败0/13。仅1/4池任务终分可比：aerial 600−240 AUC=-0.0001309579170742925；0/16同seed质量对，冻结质量门false。缺失不填0、不合并17656、不补seed救门。
-- root=/research/d7/spc/yzyang4/scheduling-image-deadline-replication-20261012-v1；source13f8ebcb1cd76ca210aacf5c7f43ea2d086d7f85，planSHA23f368399f6c735ef81142ec46831ae4e9f45d58d80edf5d2559b4cbb7a22ea6，summarySHA99ae98964305d29a444d7d5ba86c347395f70ef96280e2cf53b47491c5ae569c。
-- PID317337一次性closure已结束，禁止重启动prepare/submit/finish/analyze。6评分重算、16CPU对/4池同物理lane与服务卡、独立JSON/CSV/成本复算通过；本地image_deadline_replication_v1_closed。
-- episode3有外部有效exit0提交，却被实际冻结MCTS的LLM is_bug条件否决；journal非导出漏记。源SHAf75a93f69fd79029ae4d3ce5b9dad81520480cbf36b56b05d8719a8b84c2a63d；本地同名代码不同。原终点不改，不以修基线称新方法。
-- 候选准入累计等候600/240仅0.6042536979075521/0.18352756975218654秒；包含preview的总等待不同，不混口径。它们不是GPU利用率或内核竞争测量。
+## 本轮已闭合：生成前联合准入，不再提交
+- 用户要求三小时内验证同预算最终质量，不能停留轨迹筛查。17675于07:30:49正式COMPLETED；48/48正常结束、48/48有效终点。6池顺序continuation/cost/joint/joint/cost/continuation，2开发任务×4搜索seed×3臂×2池重复；1020秒/run、1180秒/池、2服务+4执行GPU。
+- 冻结原质量门false，结构门true。8个池/任务/参照对比为3胜4负1平（相关对比，不作8个独立样本）；两次joint共15个稀缺选择点，额外资源项实际改变选择0次。参照池有2次假想反事实差异，不能算作joint实际干预。
+- 去噪RMSE越低越好：重复0 continuation/cost/joint=0.01773766034675879/0.017483073139600545/0.04551226514614451；重复1=0.01773342357652896/0.018683635028191925/0.013718285978365746。第二次joint局部最佳不能抹掉第一次退步，也不能归因未介入的资源项。
+- Aerial AUC：重复0 continuation/cost/joint=0.9998022268191125/0.9998690420829258/0.999855679030163；重复1=0.9999385299572917/0.9997140306708787/0.9997140306708787。给定起点0.9997140306708787只余0.0002859693291212828上升空间，小于0.001实质门；不得再把该起点当大幅改善任务。此局限不撤销去噪的失败重复。
+- 去噪8个搜索seed的终分中位数 continuation/cost/joint=0.02062521564578909/0.020789326370465523/0.03396904349923425；样本SD=0.01372515140952784/0.01200366080140969/0.014488577463408195。只作描述，不当8个独立调度池。
+- 45份外部分数复算、24物理CPU配对、固定物理GPU/lane与清理通过；6池收尾均有服务队列0/0采样（不是连续请求级证明）。独立JavaScript核48行、CSV/JSON逐字段、32同seed对比、8池对比和费用通过。
+- 次要external-best保留诊断仅发现index28有AUC+0.00001202674748634891未进入原生终点，去噪不变、质量门仍false。诊断是在首池结束后但任何质量读取前添加，原主判据未改，不能用次要口径救结论。
+- 裁决：停止当前等待惩罚配方，不补seed、不重开批、不把局部最优或多完成轮数包装成方法收益。普通续改已证明去噪可改善；联合项的独立收益未被本负载识别，不推所有联合控制普遍无效。后续新矩阵必须先说明实际可干预差别和强参照，不能只是重命名。
+- 重要限制：共享有效起点后的条件续跑，历史构建不是免费从零E2E；2个重复开发任务、2个池重复。cost用链内改善频率，不是CostAda完整global-best credit/探索控制复现；补核出处在ROUTE_DECISIONS。没有文献强方法胜出或论文创新确认。
 
-## 17656与17592：历史闭合，非运行中
-- 17656固定16条、900s/run/300s候选/1500s池、先600后240，2+4。原生有效3/8对1/8、首生成失败0对3、探索覆盖门true，0/8完整质量对；顺序/部分lane换卡/请求先后混杂。18030GPU秒=5.008333333333334GPUh，非方法确认。
-- 17656 root=/research/d7/spc/yzyang4/scheduling-image-generation-deadline-20261011-v1；source9b23d621ffb1937b831435386effd01e38cc4f08；planSHAd153e408fb88e7ac120fceadbab79528275943e356a639871abb7e9dcc5f86b7；summarySHAef4a2d9ea398488370dcbd750f6706105a825d1c6ed6b3188653e8e88bec4f99。5评分重算/CPU8对通过；两个旧PID187646/198703已闭合，不重启。本地image_deadline_v1_closed。
-- 17592固定32条、1500s/run/300s候选/2200s池、FIFO许可1/2、ABBA、2+4；32开始14正常13原生有效。仅2/16完整分对，均aerial；denoising share2覆盖4/8对fifo1的1/8等于生成存活差，不能归因共享。候选20有效/58返回均重算，原exploratory_go=false。
-- 17592 root=/research/d7/spc/yzyang4/scheduling-image-live-2plus4-20261011-v3；source52d22146145c5377c8e8adb889d5bc3afa5d0237；planSHA95825b54b256eb69f7a2a372db66c4f63b4c0d9840d3253f5ade5685f448fe66；summarySHA7918c85f5257a82d66e28d52c9a557e7c924ed2e0dc5a5f4ef7b0131f6a84a9c。52836GPU秒；含失败59052秒，不变旧账单。
-- 17587入口物理核/SMT错误，17590旧CUDA mask错误，均搜索0/32；失败原件不重开。v3已共同修复，不再重复G0或容量验收。17592 completion字段为readout_sha256，后两批为summary_sha256。
-- 三批都是同两个图像任务、既有public训练数据80/10/10新开发视图；另10%未读。不是独立盲评，不能合并异质效果或把run数当独立池数。
+## 精确证据与成本
+- root=/research/d7/spc/yzyang4/scheduling-generation-joint-20261012-v5；正式结果readout-v1。source=e180a0b5e8289c99bad27872fd63629e7421d8ff；planSHA=e923a7eefe6b69fdf9416bed58cab10218553760351022cc0b31920d039c32db。
+- summarySHA=865496de253120f0224558b93e0d35fdf8e333d1b3b427f4522e022f44056399；readoutSHA=fe7e55fe475e6ff49839ad25d4493de8db918e560842b76c6b8258014d7ead1b。分析器揭读前公开commit=26110279cd92a2fdf05f80186de82c465f615e69。
+- 本地结果phase1/sandbox_scheduling/generation_joint_v5_closed：summary、runs JSON/CSV、identity、accounting、service-audit、independent-verification；四个远端结果SHA与本地全部一致。原始代码/预测/标签仍仅远端私有。
+- 发布门曾拦下CSV的CRLF→LF暂存转换；仅补精确结果目录的-text属性并重新暂存原字节，数值/远端原件未改，复查credential/敏感文件名/字节不一致均0。
+- Slurm7366秒×6=44196GPU秒=12.276666666666667GPUh；连同前败4974GPU秒，总49170秒=13.658333333333333GPUh，低于原14GPUh。启动/预留空闲/清理全部计入，不是GPU busy时间；无付费API、无agent底座训练。
+- 17673 FAILED：476秒×6=2856GPU秒；暖起点current_step先增导致原生日志越界，候选0。17674主动取消：353秒×6=2118GPU秒；代码检查发现evaluation/eval_result关键字错配，8暖起点/4调用准入/0轮完成。均我方接线错误，旧48分配与原件分别保留，不计入成功效果样本、不复用预算。
+- v1 path/list断言、v3复制/tmp IPC socket均CPU前检失败零GPU。修复后真实原生expand/parse/analysis/debug/journal/backprop/checkpoint门通过，离线34单测通过；不是以合成测试替代实际48条。
+- 06:17一次SSH超时仅结束monitor19407；只读重连成功，原GPU作业未重启。替代monitor50598、readout1052、取回13698均已exit0；本轮没有运行中的GPU作业或待启动跟进，不得重复submit/readout覆盖。
 
-## 可复用与禁止重验
-- 17571联合2+4：10程序/10短请求、输出一致、8508GPU秒；17570六GPU执行：14/14、1428GPU秒；均不代表新质量收益。17576原factory六项通过、191GPU秒。
-- 就绪/清理补丁A与退出报告/gateway竞态补丁B配套；bundle=sandbox_scheduling/resource_unavailable_20261011/collaborator-patches-v2，未改学长生产分支。
-- 跨节点17577/78/80空命令失败已交管理员；17579gpu27本地通过。不重诊断、不升级镜像或静默退CPU。
-- 历史OpenBLAS EAGAIN根因未确认，容量通过不等于找出原因。R14固定程序有限阳性17366中位1.248439822872127仍有时序混杂；17368文本质量门false，均不作为新阳性。
-- first-960/Target-300/Target-522、D_val、官方test、16560数值导出继续关闭。无agent底座训练/RL、无付费API。
+## 历史与不可恢复事项
+- 17670独立请求时限复验已闭合：32条、只有1/4池任务分对、0/16同seed分对、质量门false；不再扩240/600秒配方。17656仅覆盖信号、17592质量门false；旧原件和详细数字见上列Git交接及各closed目录。
+- 17571联合2+4容量、17570六GPU执行、17576原factory门已过，不重复G0。17577/78/80跨节点派发失败已交管理员，不再围绕它排障；历史OpenBLAS EAGAIN根因仍未确认。
+- first-960/Target-300/Target-522、D_val、官方test、16560数值导出继续关闭。旧critic/HCE/多保真/Probe/自然父程序修复等不自动恢复；不训练或RL更新agent底座。
+- 学长分支最近只读核实仍64fd78e98cfdc945b1af03f29f570975d58b88b7，未改对方分支。旧Held12535不动，不删旧失败或检查点。
 
-## 工作区与操作
-- 活跃checkout=C:/Research/New/my_project/MLEvolve/_codex_tmp/publication-feedback-20261001，detached HEAD有意；本轮前公开head dcb0975864d53307c57d07c214f1a313ba6b27f5，当前以git核实。不动旧checkout用户dirty。
-- 未跟踪用户报告phase1/reports/给学长_MLE沙箱资源调度进展_20261009.md不stage/改动。
-- SSH linux5；PY=/research/d7/spc/yzyang4/venvs/aira/bin/python；SLURM_CONF=/opt1/slurm/gpu-slurm.conf。Slurm19.05.4无--exact，核物理CPU/GPU UUID，不猜step=设备号。
-- 优先gpu27/gpu28 RTX3090；旧MLE镜像不投projgpu39，gpu24 cuInit999未解；排除projgpu7/8/33、gpu36/38。研究盘4TB至2027-08-30，不是实时余量。
-- 本地Windows Python不可用，用WSL纯CPU；SCP返回session必须等exit0再启动依赖命令。只读计时分析不能与GPU测量争用大文件I/O。
-- 凭据只远端，学长新材料先credential scan；不导出raw日志/候选/标签/预测。发布前显式stage+敏感名扫描+独立guard；Git hook旧MSYS失败不能伪称通过。
-- 新贵实验先具体矩阵/全成本/停止条件；广泛授权不是无限预算。记录要轻，不为每轮新建报告或自动化。
+## 操作与恢复
+- 活跃checkout=C:/Research/New/my_project/MLEvolve/_codex_tmp/publication-feedback-20261001；detached HEAD有意，发布仅myfork/phase1-value-critic，先显式stage/安全guard/fast-forward，再ls-remote核实。当前发布head以Git为准，不把本条中的揭读前hash当永远最新。
+- 未跟踪用户文件phase1/reports/给学长_MLE沙箱资源调度进展_20261009.md及旧checkout用户dirty均不动、不stage。
+- SSH linux5；PY=/research/d7/spc/yzyang4/venvs/aira/bin/python；SLURM_CONF=/opt1/slurm/gpu-slurm.conf。Slurm19.05.4无--exact，设备按实际UUID/物理核核对。
+- 本轮gpu3 RTX3090已使用既定资格；优先gpu27/gpu28，现有任务镜像不投projgpu39、不升级Torch、不退CPU。gpu24 cuInit999未解；排除projgpu7/8/33、gpu36/38。
+- 研究盘4TB至2027-08-30；不是实时剩余空间。Windows Python不可用，用WSL纯CPU。SCP必须等exit0再核全文件SHA；不把复制中的缺文件当最终结果。
+- 凭据只远端；学长新材料先credential scan。保护原件，新贵批次事前矩阵/全成本/停止门；本轮停扩，不用广泛授权自动重开。

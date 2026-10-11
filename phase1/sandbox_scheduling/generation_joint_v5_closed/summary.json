@@ -1,0 +1,900 @@
+{
+  "assigned": 48,
+  "boundary": "Conditional refinement from supplied valid checkpoint; all48 assigned. Two reversed-order pool replicates, not48 independent scheduling samples. Common checkpoint construction is historical initialization, not free from-scratch performance. Small controlled baseline adaptations, not published SOTA replicas.",
+  "by_arm": {
+    "continuation": {
+      "assigned": 16,
+      "complete": 16,
+      "improved": 9,
+      "started": 16,
+      "task_gain": {
+        "aerial-cactus-identification": {
+          "median": 4.276176884054905e-05,
+          "n": 8,
+          "sample_sd": 8.44670581447136e-05
+        },
+        "denoising-dirty-documents": {
+          "median": 0.024887049500355418,
+          "n": 8,
+          "sample_sd": 0.01372515140952784
+        }
+      },
+      "valid": 16
+    },
+    "cost": {
+      "assigned": 16,
+      "complete": 16,
+      "improved": 7,
+      "started": 16,
+      "task_gain": {
+        "aerial-cactus-identification": {
+          "median": 0.0,
+          "n": 8,
+          "sample_sd": 5.480481030990372e-05
+        },
+        "denoising-dirty-documents": {
+          "median": 0.024722938775678986,
+          "n": 8,
+          "sample_sd": 0.01200366080140969
+        }
+      },
+      "valid": 16
+    },
+    "joint": {
+      "assigned": 16,
+      "complete": 16,
+      "improved": 7,
+      "started": 16,
+      "task_gain": {
+        "aerial-cactus-identification": {
+          "median": 0.0,
+          "n": 8,
+          "sample_sd": 5.124467523622055e-05
+        },
+        "denoising-dirty-documents": {
+          "median": 0.011543221646910263,
+          "n": 8,
+          "sample_sd": 0.014488577463408195
+        }
+      },
+      "valid": 16
+    }
+  },
+  "contrast_distribution": {
+    "aerial-cactus-identification": {
+      "continuation": {
+        "median": -8.552353768120913e-05,
+        "n": 2,
+        "sample_sd": 0.000196541388697445
+      },
+      "cost": {
+        "median": -6.681526381391301e-06,
+        "n": 2,
+        "sample_sd": 9.449105225917207e-06
+      }
+    },
+    "denoising-dirty-documents": {
+      "continuation": {
+        "median": -0.011879733600611252,
+        "n": 2,
+        "sample_sd": 0.022478742421480347
+      },
+      "cost": {
+        "median": -0.011531921478358893,
+        "n": 2,
+        "sample_sd": 0.02333066372309728
+      }
+    }
+  },
+  "cpu_pairs_passed": 24,
+  "cpu_pairs_planned": 24,
+  "exploratory_quality_signal": false,
+  "external_endpoint_diagnostic": {
+    "cannot_rescue_failed_primary": true,
+    "definition": "Best externally graded timely exit0 non-timeout program plus supplied initial checkpoint. No new execution or hidden evaluation.",
+    "native_outside_strict_external_contract": [],
+    "native_retention_gaps": [
+      {
+        "arm": "continuation",
+        "index": 0,
+        "oriented_gap": 0.0,
+        "task": "aerial-cactus-identification"
+      },
+      {
+        "arm": "continuation",
+        "index": 1,
+        "oriented_gap": -0.0,
+        "task": "denoising-dirty-documents"
+      },
+      {
+        "arm": "continuation",
+        "index": 2,
+        "oriented_gap": 0.0,
+        "task": "aerial-cactus-identification"
+      },
+      {
+        "arm": "continuation",
+        "index": 3,
+        "oriented_gap": -0.0,
+        "task": "denoising-dirty-documents"
+      },
+      {
+        "arm": "continuation",
+        "index": 4,
+        "oriented_gap": 0.0,
+        "task": "aerial-cactus-identification"
+      },
+      {
+        "arm": "continuation",
+        "index": 5,
+        "oriented_gap": -0.0,
+        "task": "denoising-dirty-documents"
+      },
+      {
+        "arm": "continuation",
+        "index": 6,
+        "oriented_gap": 0.0,
+        "task": "aerial-cactus-identification"
+      },
+      {
+        "arm": "continuation",
+        "index": 7,
+        "oriented_gap": -0.0,
+        "task": "denoising-dirty-documents"
+      },
+      {
+        "arm": "cost",
+        "index": 8,
+        "oriented_gap": 0.0,
+        "task": "aerial-cactus-identification"
+      },
+      {
+        "arm": "cost",
+        "index": 9,
+        "oriented_gap": -0.0,
+        "task": "denoising-dirty-documents"
+      },
+      {
+        "arm": "cost",
+        "index": 10,
+        "oriented_gap": 0.0,
+        "task": "aerial-cactus-identification"
+      },
+      {
+        "arm": "cost",
+        "index": 11,
+        "oriented_gap": -0.0,
+        "task": "denoising-dirty-documents"
+      },
+      {
+        "arm": "cost",
+        "index": 12,
+        "oriented_gap": 0.0,
+        "task": "aerial-cactus-identification"
+      },
+      {
+        "arm": "cost",
+        "index": 13,
+        "oriented_gap": -0.0,
+        "task": "denoising-dirty-documents"
+      },
+      {
+        "arm": "cost",
+        "index": 14,
+        "oriented_gap": 0.0,
+        "task": "aerial-cactus-identification"
+      },
+      {
+        "arm": "cost",
+        "index": 15,
+        "oriented_gap": -0.0,
+        "task": "denoising-dirty-documents"
+      },
+      {
+        "arm": "joint",
+        "index": 16,
+        "oriented_gap": 0.0,
+        "task": "aerial-cactus-identification"
+      },
+      {
+        "arm": "joint",
+        "index": 17,
+        "oriented_gap": -0.0,
+        "task": "denoising-dirty-documents"
+      },
+      {
+        "arm": "joint",
+        "index": 18,
+        "oriented_gap": 0.0,
+        "task": "aerial-cactus-identification"
+      },
+      {
+        "arm": "joint",
+        "index": 19,
+        "oriented_gap": -0.0,
+        "task": "denoising-dirty-documents"
+      },
+      {
+        "arm": "joint",
+        "index": 20,
+        "oriented_gap": 0.0,
+        "task": "aerial-cactus-identification"
+      },
+      {
+        "arm": "joint",
+        "index": 21,
+        "oriented_gap": -0.0,
+        "task": "denoising-dirty-documents"
+      },
+      {
+        "arm": "joint",
+        "index": 22,
+        "oriented_gap": 0.0,
+        "task": "aerial-cactus-identification"
+      },
+      {
+        "arm": "joint",
+        "index": 23,
+        "oriented_gap": -0.0,
+        "task": "denoising-dirty-documents"
+      },
+      {
+        "arm": "joint",
+        "index": 24,
+        "oriented_gap": 0.0,
+        "task": "aerial-cactus-identification"
+      },
+      {
+        "arm": "joint",
+        "index": 25,
+        "oriented_gap": -0.0,
+        "task": "denoising-dirty-documents"
+      },
+      {
+        "arm": "joint",
+        "index": 26,
+        "oriented_gap": 0.0,
+        "task": "aerial-cactus-identification"
+      },
+      {
+        "arm": "joint",
+        "index": 27,
+        "oriented_gap": -0.0,
+        "task": "denoising-dirty-documents"
+      },
+      {
+        "arm": "joint",
+        "index": 28,
+        "oriented_gap": 1.202674748634891e-05,
+        "task": "aerial-cactus-identification"
+      },
+      {
+        "arm": "joint",
+        "index": 29,
+        "oriented_gap": -0.0,
+        "task": "denoising-dirty-documents"
+      },
+      {
+        "arm": "joint",
+        "index": 30,
+        "oriented_gap": 0.0,
+        "task": "aerial-cactus-identification"
+      },
+      {
+        "arm": "joint",
+        "index": 31,
+        "oriented_gap": -0.0,
+        "task": "denoising-dirty-documents"
+      },
+      {
+        "arm": "cost",
+        "index": 32,
+        "oriented_gap": 0.0,
+        "task": "aerial-cactus-identification"
+      },
+      {
+        "arm": "cost",
+        "index": 33,
+        "oriented_gap": -0.0,
+        "task": "denoising-dirty-documents"
+      },
+      {
+        "arm": "cost",
+        "index": 34,
+        "oriented_gap": 0.0,
+        "task": "aerial-cactus-identification"
+      },
+      {
+        "arm": "cost",
+        "index": 35,
+        "oriented_gap": -0.0,
+        "task": "denoising-dirty-documents"
+      },
+      {
+        "arm": "cost",
+        "index": 36,
+        "oriented_gap": 0.0,
+        "task": "aerial-cactus-identification"
+      },
+      {
+        "arm": "cost",
+        "index": 37,
+        "oriented_gap": -0.0,
+        "task": "denoising-dirty-documents"
+      },
+      {
+        "arm": "cost",
+        "index": 38,
+        "oriented_gap": 0.0,
+        "task": "aerial-cactus-identification"
+      },
+      {
+        "arm": "cost",
+        "index": 39,
+        "oriented_gap": -0.0,
+        "task": "denoising-dirty-documents"
+      },
+      {
+        "arm": "continuation",
+        "index": 40,
+        "oriented_gap": 0.0,
+        "task": "aerial-cactus-identification"
+      },
+      {
+        "arm": "continuation",
+        "index": 41,
+        "oriented_gap": -0.0,
+        "task": "denoising-dirty-documents"
+      },
+      {
+        "arm": "continuation",
+        "index": 42,
+        "oriented_gap": 0.0,
+        "task": "aerial-cactus-identification"
+      },
+      {
+        "arm": "continuation",
+        "index": 43,
+        "oriented_gap": -0.0,
+        "task": "denoising-dirty-documents"
+      },
+      {
+        "arm": "continuation",
+        "index": 44,
+        "oriented_gap": 0.0,
+        "task": "aerial-cactus-identification"
+      },
+      {
+        "arm": "continuation",
+        "index": 45,
+        "oriented_gap": -0.0,
+        "task": "denoising-dirty-documents"
+      },
+      {
+        "arm": "continuation",
+        "index": 46,
+        "oriented_gap": 0.0,
+        "task": "aerial-cactus-identification"
+      },
+      {
+        "arm": "continuation",
+        "index": 47,
+        "oriented_gap": -0.0,
+        "task": "denoising-dirty-documents"
+      }
+    ],
+    "pool_task_contrasts": [
+      {
+        "all_assigned_clean": true,
+        "all_assigned_started": true,
+        "joint_best": 0.999855679030163,
+        "oriented_delta": 5.3452211050575293e-05,
+        "reference": "continuation",
+        "reference_best": 0.9998022268191125,
+        "repeat": 0,
+        "task": "aerial-cactus-identification"
+      },
+      {
+        "all_assigned_clean": true,
+        "all_assigned_started": true,
+        "joint_best": 0.999855679030163,
+        "oriented_delta": -1.3363052762782601e-05,
+        "reference": "cost",
+        "reference_best": 0.9998690420829258,
+        "repeat": 0,
+        "task": "aerial-cactus-identification"
+      },
+      {
+        "all_assigned_clean": true,
+        "all_assigned_started": true,
+        "joint_best": 0.04551226514614451,
+        "oriented_delta": -0.02777460479938572,
+        "reference": "continuation",
+        "reference_best": 0.01773766034675879,
+        "repeat": 0,
+        "task": "denoising-dirty-documents"
+      },
+      {
+        "all_assigned_clean": true,
+        "all_assigned_started": true,
+        "joint_best": 0.04551226514614451,
+        "oriented_delta": -0.028029192006543965,
+        "reference": "cost",
+        "reference_best": 0.017483073139600545,
+        "repeat": 0,
+        "task": "denoising-dirty-documents"
+      },
+      {
+        "all_assigned_clean": true,
+        "all_assigned_started": true,
+        "joint_best": 0.9997260574183651,
+        "oriented_delta": -0.00021247253892664464,
+        "reference": "continuation",
+        "reference_best": 0.9999385299572917,
+        "repeat": 1,
+        "task": "aerial-cactus-identification"
+      },
+      {
+        "all_assigned_clean": true,
+        "all_assigned_started": true,
+        "joint_best": 0.9997260574183651,
+        "oriented_delta": 1.202674748634891e-05,
+        "reference": "cost",
+        "reference_best": 0.9997140306708787,
+        "repeat": 1,
+        "task": "aerial-cactus-identification"
+      },
+      {
+        "all_assigned_clean": true,
+        "all_assigned_started": true,
+        "joint_best": 0.013718285978365746,
+        "oriented_delta": 0.004015137598163215,
+        "reference": "continuation",
+        "reference_best": 0.01773342357652896,
+        "repeat": 1,
+        "task": "denoising-dirty-documents"
+      },
+      {
+        "all_assigned_clean": true,
+        "all_assigned_started": true,
+        "joint_best": 0.013718285978365746,
+        "oriented_delta": 0.004965349049826179,
+        "reference": "cost",
+        "reference_best": 0.018683635028191925,
+        "repeat": 1,
+        "task": "denoising-dirty-documents"
+      }
+    ],
+    "quality_condition": false,
+    "status": "Secondary retention check added before any quality readout, after first pool finished; frozen primary gate unchanged."
+  },
+  "gpu_hours": 12.276666666666667,
+  "gpu_seconds": 44196,
+  "initial_score": {
+    "aerial-cactus-identification": 0.9997140306708787,
+    "denoising-dirty-documents": 0.04551226514614451
+  },
+  "live_resource_choice_divergence": false,
+  "no_automatic_expansion": true,
+  "no_task_repeat_loss_to_either_reference": false,
+  "physical_identity_passed": true,
+  "plan_sha256": "e923a7eefe6b69fdf9416bed58cab10218553760351022cc0b31920d039c32db",
+  "policy_choices": [
+    {
+      "admissions": 34,
+      "all_released": true,
+      "arm": "continuation",
+      "block": 0,
+      "completed_rounds": 13,
+      "improving_rounds": 5,
+      "peak_active": 4,
+      "resource_changed_choices": 1,
+      "scarce_choices": 6
+    },
+    {
+      "admissions": 34,
+      "all_released": true,
+      "arm": "cost",
+      "block": 1,
+      "completed_rounds": 13,
+      "improving_rounds": 5,
+      "peak_active": 4,
+      "resource_changed_choices": 0,
+      "scarce_choices": 6
+    },
+    {
+      "admissions": 40,
+      "all_released": true,
+      "arm": "joint",
+      "block": 2,
+      "completed_rounds": 17,
+      "improving_rounds": 3,
+      "peak_active": 4,
+      "resource_changed_choices": 0,
+      "scarce_choices": 10
+    },
+    {
+      "admissions": 37,
+      "all_released": true,
+      "arm": "joint",
+      "block": 3,
+      "completed_rounds": 15,
+      "improving_rounds": 4,
+      "peak_active": 4,
+      "resource_changed_choices": 0,
+      "scarce_choices": 5
+    },
+    {
+      "admissions": 35,
+      "all_released": true,
+      "arm": "cost",
+      "block": 4,
+      "completed_rounds": 14,
+      "improving_rounds": 3,
+      "peak_active": 4,
+      "resource_changed_choices": 1,
+      "scarce_choices": 10
+    },
+    {
+      "admissions": 36,
+      "all_released": true,
+      "arm": "continuation",
+      "block": 5,
+      "completed_rounds": 14,
+      "improving_rounds": 4,
+      "peak_active": 4,
+      "resource_changed_choices": 0,
+      "scarce_choices": 7
+    }
+  ],
+  "pool_repeats": 2,
+  "pool_task_contrasts": [
+    {
+      "all_assigned_clean": true,
+      "all_assigned_started": true,
+      "joint_best": 0.999855679030163,
+      "oriented_delta": 5.3452211050575293e-05,
+      "reference": "continuation",
+      "reference_best": 0.9998022268191125,
+      "repeat": 0,
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "all_assigned_clean": true,
+      "all_assigned_started": true,
+      "joint_best": 0.999855679030163,
+      "oriented_delta": -1.3363052762782601e-05,
+      "reference": "cost",
+      "reference_best": 0.9998690420829258,
+      "repeat": 0,
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "all_assigned_clean": true,
+      "all_assigned_started": true,
+      "joint_best": 0.04551226514614451,
+      "oriented_delta": -0.02777460479938572,
+      "reference": "continuation",
+      "reference_best": 0.01773766034675879,
+      "repeat": 0,
+      "task": "denoising-dirty-documents"
+    },
+    {
+      "all_assigned_clean": true,
+      "all_assigned_started": true,
+      "joint_best": 0.04551226514614451,
+      "oriented_delta": -0.028029192006543965,
+      "reference": "cost",
+      "reference_best": 0.017483073139600545,
+      "repeat": 0,
+      "task": "denoising-dirty-documents"
+    },
+    {
+      "all_assigned_clean": true,
+      "all_assigned_started": true,
+      "joint_best": 0.9997140306708787,
+      "oriented_delta": -0.00022449928641299355,
+      "reference": "continuation",
+      "reference_best": 0.9999385299572917,
+      "repeat": 1,
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "all_assigned_clean": true,
+      "all_assigned_started": true,
+      "joint_best": 0.9997140306708787,
+      "oriented_delta": 0.0,
+      "reference": "cost",
+      "reference_best": 0.9997140306708787,
+      "repeat": 1,
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "all_assigned_clean": true,
+      "all_assigned_started": true,
+      "joint_best": 0.013718285978365746,
+      "oriented_delta": 0.004015137598163215,
+      "reference": "continuation",
+      "reference_best": 0.01773342357652896,
+      "repeat": 1,
+      "task": "denoising-dirty-documents"
+    },
+    {
+      "all_assigned_clean": true,
+      "all_assigned_started": true,
+      "joint_best": 0.013718285978365746,
+      "oriented_delta": 0.004965349049826179,
+      "reference": "cost",
+      "reference_best": 0.018683635028191925,
+      "repeat": 1,
+      "task": "denoising-dirty-documents"
+    }
+  ],
+  "prior_failure_gpu_seconds": 4974,
+  "quality_signal_before_structure": false,
+  "readout_sha256": "fe7e55fe475e6ff49839ad25d4493de8db918e560842b76c6b8258014d7ead1b",
+  "run_pairs": [
+    {
+      "lane": 0,
+      "oriented_delta": 6.68152638133579e-05,
+      "reference": "continuation",
+      "repeat": 0,
+      "seed": 212401,
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "lane": 1,
+      "oriented_delta": 5.3452211050575293e-05,
+      "reference": "continuation",
+      "repeat": 0,
+      "seed": 212403,
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "lane": 2,
+      "oriented_delta": -8.55235376810981e-05,
+      "reference": "continuation",
+      "repeat": 0,
+      "seed": 212405,
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "lane": 3,
+      "oriented_delta": 2.1380884420274526e-05,
+      "reference": "continuation",
+      "repeat": 0,
+      "seed": 212407,
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "lane": 0,
+      "oriented_delta": 6.68152638133579e-05,
+      "reference": "cost",
+      "repeat": 0,
+      "seed": 212401,
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "lane": 1,
+      "oriented_delta": 0.00014164835928431874,
+      "reference": "cost",
+      "repeat": 0,
+      "seed": 212403,
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "lane": 2,
+      "oriented_delta": 0.0,
+      "reference": "cost",
+      "repeat": 0,
+      "seed": 212405,
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "lane": 3,
+      "oriented_delta": -0.0001336305276268268,
+      "reference": "cost",
+      "repeat": 0,
+      "seed": 212407,
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "lane": 0,
+      "oriented_delta": -0.0249911493360713,
+      "reference": "continuation",
+      "repeat": 0,
+      "seed": 212402,
+      "task": "denoising-dirty-documents"
+    },
+    {
+      "lane": 1,
+      "oriented_delta": -0.02777460479938572,
+      "reference": "continuation",
+      "repeat": 0,
+      "seed": 212404,
+      "task": "denoising-dirty-documents"
+    },
+    {
+      "lane": 2,
+      "oriented_delta": -0.0,
+      "reference": "continuation",
+      "repeat": 0,
+      "seed": 212406,
+      "task": "denoising-dirty-documents"
+    },
+    {
+      "lane": 3,
+      "oriented_delta": -0.026838087107230728,
+      "reference": "continuation",
+      "repeat": 0,
+      "seed": 212408,
+      "task": "denoising-dirty-documents"
+    },
+    {
+      "lane": 0,
+      "oriented_delta": -0.0,
+      "reference": "cost",
+      "repeat": 0,
+      "seed": 212402,
+      "task": "denoising-dirty-documents"
+    },
+    {
+      "lane": 1,
+      "oriented_delta": -0.021998962490788882,
+      "reference": "cost",
+      "repeat": 0,
+      "seed": 212404,
+      "task": "denoising-dirty-documents"
+    },
+    {
+      "lane": 2,
+      "oriented_delta": -0.028029192006543965,
+      "reference": "cost",
+      "repeat": 0,
+      "seed": 212406,
+      "task": "denoising-dirty-documents"
+    },
+    {
+      "lane": 3,
+      "oriented_delta": -0.027065600534928232,
+      "reference": "cost",
+      "repeat": 0,
+      "seed": 212408,
+      "task": "denoising-dirty-documents"
+    },
+    {
+      "lane": 0,
+      "oriented_delta": -0.00022449928641299355,
+      "reference": "continuation",
+      "repeat": 1,
+      "seed": 212501,
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "lane": 1,
+      "oriented_delta": 0.0,
+      "reference": "continuation",
+      "repeat": 1,
+      "seed": 212503,
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "lane": 2,
+      "oriented_delta": -0.0001469935803894984,
+      "reference": "continuation",
+      "repeat": 1,
+      "seed": 212505,
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "lane": 3,
+      "oriented_delta": 0.0,
+      "reference": "continuation",
+      "repeat": 1,
+      "seed": 212507,
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "lane": 0,
+      "oriented_delta": 0.0,
+      "reference": "cost",
+      "repeat": 1,
+      "seed": 212501,
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "lane": 1,
+      "oriented_delta": 0.0,
+      "reference": "cost",
+      "repeat": 1,
+      "seed": 212503,
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "lane": 2,
+      "oriented_delta": 0.0,
+      "reference": "cost",
+      "repeat": 1,
+      "seed": 212505,
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "lane": 3,
+      "oriented_delta": 0.0,
+      "reference": "cost",
+      "repeat": 1,
+      "seed": 212507,
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "lane": 0,
+      "oriented_delta": 0.028175155787351976,
+      "reference": "continuation",
+      "repeat": 1,
+      "seed": 212502,
+      "task": "denoising-dirty-documents"
+    },
+    {
+      "lane": 1,
+      "oriented_delta": -0.0016965063708190148,
+      "reference": "continuation",
+      "repeat": 1,
+      "seed": 212504,
+      "task": "denoising-dirty-documents"
+    },
+    {
+      "lane": 2,
+      "oriented_delta": -0.0043397458857262275,
+      "reference": "continuation",
+      "repeat": 1,
+      "seed": 212506,
+      "task": "denoising-dirty-documents"
+    },
+    {
+      "lane": 3,
+      "oriented_delta": 0.03179397916777876,
+      "reference": "continuation",
+      "repeat": 1,
+      "seed": 212508,
+      "task": "denoising-dirty-documents"
+    },
+    {
+      "lane": 0,
+      "oriented_delta": 0.028175155787351976,
+      "reference": "cost",
+      "repeat": 1,
+      "seed": 212502,
+      "task": "denoising-dirty-documents"
+    },
+    {
+      "lane": 1,
+      "oriented_delta": -0.00013922730040671558,
+      "reference": "cost",
+      "repeat": 1,
+      "seed": 212504,
+      "task": "denoising-dirty-documents"
+    },
+    {
+      "lane": 2,
+      "oriented_delta": -0.002781111273241408,
+      "reference": "cost",
+      "repeat": 1,
+      "seed": 212506,
+      "task": "denoising-dirty-documents"
+    },
+    {
+      "lane": 3,
+      "oriented_delta": 0.004965349049826179,
+      "reference": "cost",
+      "repeat": 1,
+      "seed": 212508,
+      "task": "denoising-dirty-documents"
+    }
+  ],
+  "same_task_material_gain_both_references_both_repeats": false,
+  "scores_recomputed": 45,
+  "source_commit": "e180a0b5e8289c99bad27872fd63629e7421d8ff",
+  "structural_complete": true,
+  "window_gpu_hours": 13.658333333333333,
+  "window_gpu_seconds": 49170
+}

@@ -7,6 +7,7 @@ Partial observations are labelled; pooled generation time is not GPU time.
 import hashlib
 import json
 import statistics
+import sys
 import time
 from pathlib import Path
 
@@ -77,5 +78,38 @@ def summarize():
         allow_nan=False, sort_keys=True))
 
 
+def verify_available_scores():
+    """Recompute development scores without exporting predictions or labels."""
+    assert hashlib.sha256((ROOT/'plan.json').read_bytes()).hexdigest() == PIN
+    plan = read(ROOT/'plan.json')
+    for name in ('image_dev_data_20261011.py', 'lifecycle_pilot.py'):
+        assert hashlib.sha256((ROOT/name).read_bytes()).hexdigest() == plan['files'][name]
+    sys.path.insert(0, str(ROOT))
+    from image_dev_data_20261011 import score_at
+    spec = read(ROOT/'dev-views/spec.json')
+    checked = []
+    for assignment in plan['schedule']:
+        ep = ROOT / ('episode-' + str(assignment['index']))
+        for file in sorted(ep.glob('scored-*.json')):
+            saved = read(file)
+            if saved is None:
+                continue
+            metric = spec[assignment['task']]['metric_name']
+            actual = score_at(ROOT, spec, assignment['task'], ep/(file.stem+'.private.csv'))
+            receipt = saved['receipt']
+            assert actual['submission_sha256'] == receipt['submission_sha256']
+            assert abs(actual[metric] - receipt[metric]) <= 1e-12
+            training = read(ep/('gpu-training-'+file.stem.split('-')[-1]+'.json')) or {}
+            checked.append(dict(index=assignment['index'], task=assignment['task'],
+                elapsed_seconds=saved['elapsed_seconds'], timely=saved['elapsed_seconds']<=plan['run_seconds'],
+                score_recomputed=True, cuda_gradient_steps=training.get('cuda_gradient_steps')))
+    print(json.dumps(dict(plan_sha256=PIN, checked=checked,
+        limitation='Scoring receipts only; native-selected endpoints and paired treatment effect require the completed frozen readout.'), allow_nan=False))
+
+
 if __name__ == '__main__':
-    summarize()
+    if sys.argv[1:] == ['--verify-scores']:
+        verify_available_scores()
+    else:
+        assert not sys.argv[1:]
+        summarize()

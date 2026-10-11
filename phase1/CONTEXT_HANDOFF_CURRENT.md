@@ -1,5 +1,5 @@
 # 当前短交接
-更新：2026-10-11香港14:47。旧排障长交接已保存在Git4279975d；这里只保留当前事实，未复查的状态写最后观察。
+更新：2026-10-11香港14:51。旧排障长交接已保存在Git4279975d；这里只保留当前事实，未复查的状态写最后观察。
 恢复：fetch → CURRENT_DIRECTION → ROUTE_DECISIONS → 本文件；不得回到旧8月路线。
 
 ## 最新用户裁决与当前实验
@@ -13,7 +13,8 @@
 - 扩大门：完整32终点/16有效分对、两池CUDA有效反馈都增加、逐任务配对分中位不负且至少一任务正、无更多无效终点、等预算/隔离/清理通过。不换seed、不因单池结果加跑。
 - 当前路径=/research/d7/spc/yzyang4/scheduling-image-live-2plus4-20261011-v3；旧v1/v2同前缀仍保留。
 - v3 source52d22146145c5377c8e8adb889d5bc3afa5d0237已push/ls-remote一致；planSHA95825b54b256eb69f7a2a372db66c4f63b4c0d9840d3253f5ade5685f448fe66。24项CPU测试/32配置/16配对通过。
-- 17592在香港14:26:12于gpu3 RUNNING，24CPU/6GPU；14:46最后观察首池8搜索/8预览已完成，6条在首次240s生成请求上限失败；另2条首候选执行超时，均继续原生搜索。2返回/0有效开发分，0完整对照；不能报质量收益。cap02:30:00，正常约16:53完成、allocation上限16:56:12，严禁重复submit。
+- 17592在香港14:26:12于gpu3 RUNNING，24CPU/6GPU；14:48最后观察首池8搜索/8预览已完成，6条在首次240s生成请求上限失败；另2条首候选执行超时后继续原生搜索，4返回/2有效开发分，0完整臂配对；不能报调度收益。cap02:30:00，正常约16:53完成、allocation上限16:56:12，严禁重复submit。
+- 14:50独立复算当前2评分回执均一致：run0/aerial在855.0537607108708秒有效返回、CUDA梯度2700步；run5/denoising在898.8122389670461秒、1655步。只证明真实任务训练/评分已发生，不是终点/共享收益；6生成失败使原完整32扩大门无法通过。
 - 服务仍健康，日志采样峰6运行/2排队；这不是队列致因证明。6个请求失败留在32分母，不能中途调240s上限、补seed或放宽原扩大门；按冻结对照走完且不自动扩跑。2条仍在运行的轨迹中候选累计队列等待各0.04406109801493585/0.056249343091621995秒（含后来入场候选），不把执行超时说成等卡。
 - 独立只读image_live_funnel_20261011.py仅统计本批数字回执，不读保护集、不改冻结结果；0优化器回执不证明无CUDA训练（回执只在成功评分后抓取），最终需结合遥测。当前尚无改善信号。
 - 有界一次性结束复算PID3971306已确认，最长8h、只等17592；完成后读取冻结开发分并核验32分母/物理核/全成本，不提交新job。stage/image_live_status_20261011.py v3读计数；completion-claim.json记录进程。原8月自动化指令不恢复。
@@ -46,7 +47,7 @@
 
 ## 工作区、权限与现场
 - 活跃checkout=C:/Research/New/my_project/MLEvolve/_codex_tmp/publication-feedback-20261001，detached HEAD有意；旧aira-dojo-codex-20260813用户dirty不动。
-- 最近公开head 7d38dc89de25b32a28d4543f05e0086750091c1f；14:44 fetch学长到524b5e0351090795c6bf09f32c0fafbfb41d71d4（13:59仅删除sample.jsonl/samples.jsonl，未读内容，无新outcome/实验代码）。只推自己的myfork/phase1-value-critic，FF、不force。
+- 最近公开head 33338b352ba92dfae8f4ad93d00757e6a04c0124；14:44 fetch学长到524b5e0351090795c6bf09f32c0fafbfb41d71d4（13:59仅删除sample.jsonl/samples.jsonl，未读内容，无新outcome/实验代码）。只推自己的myfork/phase1-value-critic，FF、不force。
 - 用户未跟踪报告phase1/reports/给学长_MLE沙箱资源调度进展_20261009.md保留、不stage。
 - 17587/17590均已闭合；v3只申请gpu3六卡24物理核。旧Held12535未动；排除projgpu7/8/33、gpu36/38；旧MLE镜像不投projgpu39。
 - SSH linux5；PY=/research/d7/spc/yzyang4/venvs/aira/bin/python；SLURM_CONF=/opt1/slurm/gpu-slurm.conf。

@@ -1,0 +1,62 @@
+{
+  "accepted": 6,
+  "after_host_uid_counts": {
+    "largest_process_thread_counts": [
+      9,
+      4,
+      1,
+      1,
+      1
+    ],
+    "lower_bound": true,
+    "unreadable_or_racing": 0,
+    "visible_processes": 5,
+    "visible_threads": 16,
+    "zombies": 0
+  },
+  "attempted": 6,
+  "boundary": "Integration/known-fault test,not historical EAGAIN reproduction,production deployment,6-way service capacity,speedup or quality.",
+  "cleanup_flags": {
+    "forced_kill": false,
+    "http500": false,
+    "invalid_state": false,
+    "sitecustomize": false
+  },
+  "fresh_gateway_receipts": 6,
+  "gate": true,
+  "gateway_receipts_ok": true,
+  "gpu_seconds": 191,
+  "gpu_seconds_cap": 900,
+  "input_manifest_ok": true,
+  "job": "17576",
+  "known_exit_median": 1.607325836084783,
+  "known_exit_sample_sd": 0.15274187894372407,
+  "known_exit_seconds": [
+    1.607325836084783,
+    1.560827537206933,
+    1.8455507310573012
+  ],
+  "manifest_ok": true,
+  "normal_comparisons": [
+    {
+      "byte_equal": true,
+      "index": 0,
+      "max_abs_diff": 0.0
+    },
+    {
+      "byte_equal": true,
+      "index": 2,
+      "max_abs_diff": 0.0
+    },
+    {
+      "byte_equal": true,
+      "index": 4,
+      "max_abs_diff": 0.0
+    }
+  ],
+  "owned_descendants_clean": true,
+  "plan_sha256": "0772f12abc510953140ecb13ddbb3574ce629ee995b25e8efcb783a4d336db52",
+  "planned": 6,
+  "scheduler_state": "COMPLETED",
+  "unstarted": 0
+}

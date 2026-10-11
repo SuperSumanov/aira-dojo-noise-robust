@@ -1,0 +1,42 @@
+{
+  "accepted": 0,
+  "after_host_uid_counts": {
+    "largest_process_thread_counts": [
+      9,
+      4,
+      1,
+      1,
+      1
+    ],
+    "lower_bound": true,
+    "unreadable_or_racing": 0,
+    "visible_processes": 5,
+    "visible_threads": 16,
+    "zombies": 0
+  },
+  "attempted": 1,
+  "boundary": "Integration/known-fault test,not historical EAGAIN reproduction,production deployment,6-way service capacity,speedup or quality.",
+  "cleanup_flags": {
+    "forced_kill": false,
+    "http500": false,
+    "invalid_state": false,
+    "sitecustomize": false
+  },
+  "fresh_gateway_receipts": 0,
+  "gate": false,
+  "gateway_receipts_ok": false,
+  "gpu_seconds": 6,
+  "gpu_seconds_cap": 900,
+  "input_manifest_ok": true,
+  "job": "17575",
+  "known_exit_median": null,
+  "known_exit_sample_sd": null,
+  "known_exit_seconds": [],
+  "manifest_ok": true,
+  "normal_comparisons": [],
+  "owned_descendants_clean": true,
+  "plan_sha256": "e25b471a56c77cd1b17afc7d004bd3bfaa300a3dbe4beb7d55e6b2274247c33a",
+  "planned": 6,
+  "scheduler_state": "FAILED",
+  "unstarted": 5
+}

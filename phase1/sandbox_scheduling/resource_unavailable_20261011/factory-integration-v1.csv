@@ -1,0 +1,7 @@
+index,condition,repeat,job,plan_sha256,attempted,accepted,error_type,execution_seconds,exit_code,timed_out,training_steps,output_sha256
+0,normal,0,17575,e25b471a56c77cd1b17afc7d004bd3bfaa300a3dbe4beb7d55e6b2274247c33a,True,False,ValueError,,,,,
+1,exit17,0,17575,e25b471a56c77cd1b17afc7d004bd3bfaa300a3dbe4beb7d55e6b2274247c33a,False,False,,,,,,
+2,normal,1,17575,e25b471a56c77cd1b17afc7d004bd3bfaa300a3dbe4beb7d55e6b2274247c33a,False,False,,,,,,
+3,exit17,1,17575,e25b471a56c77cd1b17afc7d004bd3bfaa300a3dbe4beb7d55e6b2274247c33a,False,False,,,,,,
+4,normal,2,17575,e25b471a56c77cd1b17afc7d004bd3bfaa300a3dbe4beb7d55e6b2274247c33a,False,False,,,,,,
+5,exit17,2,17575,e25b471a56c77cd1b17afc7d004bd3bfaa300a3dbe4beb7d55e6b2274247c33a,False,False,,,,,,

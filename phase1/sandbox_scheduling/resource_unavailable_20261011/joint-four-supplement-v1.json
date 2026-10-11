@@ -1,0 +1,201 @@
+{
+  "audit_sha256": "c4e437d5e5facd82235dfccb3ac7daaa5ddae31428b35978f83d528673644743",
+  "boundary": "Transport successes may be length-truncated. Fixed-seed timings are not independent-seed performance estimates; sequential/parallel phases differ. Four processes do not imply four simultaneous CUDA kernels.",
+  "closed_window_cost": {
+    "jobs": [
+      {
+        "gpu_seconds": 132,
+        "gpus": 1,
+        "job": "17541",
+        "seconds": 132,
+        "state": "COMPLETED"
+      },
+      {
+        "gpu_seconds": 102,
+        "gpus": 1,
+        "job": "17543",
+        "seconds": 102,
+        "state": "COMPLETED"
+      },
+      {
+        "gpu_seconds": 10,
+        "gpus": 2,
+        "job": "17545",
+        "seconds": 5,
+        "state": "FAILED"
+      },
+      {
+        "gpu_seconds": 1078,
+        "gpus": 2,
+        "job": "17547",
+        "seconds": 539,
+        "state": "COMPLETED"
+      },
+      {
+        "gpu_seconds": 4120,
+        "gpus": 8,
+        "job": "17550",
+        "seconds": 515,
+        "state": "FAILED"
+      },
+      {
+        "gpu_seconds": 496,
+        "gpus": 1,
+        "job": "17552",
+        "seconds": 496,
+        "state": "COMPLETED"
+      },
+      {
+        "gpu_seconds": 7720,
+        "gpus": 8,
+        "job": "17554",
+        "seconds": 965,
+        "state": "FAILED"
+      },
+      {
+        "gpu_seconds": 132,
+        "gpus": 1,
+        "job": "17555",
+        "seconds": 132,
+        "state": "FAILED"
+      },
+      {
+        "gpu_seconds": 162,
+        "gpus": 1,
+        "job": "17556",
+        "seconds": 162,
+        "state": "COMPLETED"
+      },
+      {
+        "gpu_seconds": 4512,
+        "gpus": 8,
+        "job": "17557",
+        "seconds": 564,
+        "state": "FAILED"
+      },
+      {
+        "gpu_seconds": 200,
+        "gpus": 8,
+        "job": "17559",
+        "seconds": 25,
+        "state": "COMPLETED"
+      },
+      {
+        "gpu_seconds": 804,
+        "gpus": 6,
+        "job": "17561",
+        "seconds": 134,
+        "state": "FAILED"
+      },
+      {
+        "gpu_seconds": 586,
+        "gpus": 1,
+        "job": "17563",
+        "seconds": 586,
+        "state": "COMPLETED"
+      },
+      {
+        "gpu_seconds": 148,
+        "gpus": 1,
+        "job": "17564",
+        "seconds": 148,
+        "state": "COMPLETED"
+      },
+      {
+        "gpu_seconds": 3576,
+        "gpus": 6,
+        "job": "17565",
+        "seconds": 596,
+        "state": "FAILED"
+      },
+      {
+        "gpu_seconds": 785,
+        "gpus": 1,
+        "job": "17566",
+        "seconds": 785,
+        "state": "FAILED"
+      },
+      {
+        "gpu_seconds": 578,
+        "gpus": 1,
+        "job": "17567",
+        "seconds": 578,
+        "state": "COMPLETED"
+      },
+      {
+        "gpu_seconds": 163,
+        "gpus": 1,
+        "job": "17568",
+        "seconds": 163,
+        "state": "FAILED"
+      },
+      {
+        "gpu_seconds": 129,
+        "gpus": 1,
+        "job": "17569",
+        "seconds": 129,
+        "state": "COMPLETED"
+      },
+      {
+        "gpu_seconds": 1428,
+        "gpus": 6,
+        "job": "17570",
+        "seconds": 238,
+        "state": "COMPLETED"
+      },
+      {
+        "gpu_seconds": 8508,
+        "gpus": 6,
+        "job": "17571",
+        "seconds": 1418,
+        "state": "COMPLETED"
+      }
+    ],
+    "note": "All21 closed allocations in this window including failures; later integration job,if submitted,is not included.",
+    "total_gpu_seconds": 35369
+  },
+  "csv_sha256": "0521939ed6dc6e500bbdfce7c9683f78b4a803f3900dc7cbf5b6fb045b342170",
+  "execution_by_family": [
+    {
+      "median": 277.1561461992096,
+      "n": 5,
+      "program": 0,
+      "sample_sd": 33.019669091722484,
+      "seconds": [
+        337.6461559429299,
+        257.29299853392877,
+        257.3029010640457,
+        277.1561461992096,
+        277.1844365000725
+      ]
+    },
+    {
+      "median": 39.37714073504321,
+      "n": 5,
+      "program": 1,
+      "sample_sd": 0.6455997369765165,
+      "seconds": [
+        40.310067461105064,
+        39.37714073504321,
+        39.5765516650863,
+        38.49966091196984,
+        39.37617931701243
+      ]
+    }
+  ],
+  "finish_reasons": {
+    "length": 10
+  },
+  "request_seconds": [
+    17.24254322052002,
+    17.83089566230774,
+    15.57073163986206,
+    15.480052947998047,
+    15.527223587036133,
+    15.54908561706543,
+    15.565037727355957,
+    15.544513940811157,
+    15.52136492729187,
+    15.473331928253174
+  ]
+}

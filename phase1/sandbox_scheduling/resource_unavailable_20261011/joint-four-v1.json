@@ -1,0 +1,530 @@
+{
+  "after_uid_counts": {
+    "largest_process_thread_counts": [
+      1,
+      1,
+      1
+    ],
+    "lower_bound": true,
+    "unreadable_or_racing": 0,
+    "visible_processes": 3,
+    "visible_threads": 3,
+    "zombies": 0
+  },
+  "all_execute_resource_flags": {
+    "can't start new thread": 0,
+    "out of memory": 0,
+    "pthread_create": 0,
+    "resource temporarily unavailable": 0
+  },
+  "attempted": 10,
+  "available_memory_min_gib": 346.16886138916016,
+  "blocks": [
+    {
+      "block": 0,
+      "gpus": 3,
+      "host_optimizer_envelope_overlap_peak": 1,
+      "physical_cores": 12
+    },
+    {
+      "block": 1,
+      "gpus": 3,
+      "host_optimizer_envelope_overlap_peak": 1,
+      "physical_cores": 12
+    },
+    {
+      "block": 2,
+      "gpus": 6,
+      "host_optimizer_envelope_overlap_peak": 2,
+      "physical_cores": 24
+    },
+    {
+      "block": 3,
+      "gpus": 6,
+      "host_optimizer_envelope_overlap_peak": 2,
+      "physical_cores": 24
+    }
+  ],
+  "boundary": "2local serving+4task GPUs,2fixed public-fixture programs/seed42. Not2+6,production failure-rate proof,EAGAIN root cause,newtasks,agent quality or speedup.",
+  "candidate_started": 10,
+  "closed_sha256": "9aa5e76180db42971a86ce1d0f60a9686a7502aca144d1fb7b054336cc5778b3",
+  "comparisons": [
+    {
+      "byte_equal": true,
+      "left": 0,
+      "max_abs_diff": 0.0,
+      "program": 0,
+      "right": 2,
+      "within_frozen_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 0,
+      "max_abs_diff": 0.0,
+      "program": 0,
+      "right": 4,
+      "within_frozen_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 0,
+      "max_abs_diff": 0.0,
+      "program": 0,
+      "right": 7,
+      "within_frozen_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 0,
+      "max_abs_diff": 0.0,
+      "program": 0,
+      "right": 9,
+      "within_frozen_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 2,
+      "max_abs_diff": 0.0,
+      "program": 0,
+      "right": 4,
+      "within_frozen_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 2,
+      "max_abs_diff": 0.0,
+      "program": 0,
+      "right": 7,
+      "within_frozen_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 2,
+      "max_abs_diff": 0.0,
+      "program": 0,
+      "right": 9,
+      "within_frozen_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 4,
+      "max_abs_diff": 0.0,
+      "program": 0,
+      "right": 7,
+      "within_frozen_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 4,
+      "max_abs_diff": 0.0,
+      "program": 0,
+      "right": 9,
+      "within_frozen_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 7,
+      "max_abs_diff": 0.0,
+      "program": 0,
+      "right": 9,
+      "within_frozen_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 1,
+      "max_abs_diff": 0.0,
+      "program": 1,
+      "right": 3,
+      "within_frozen_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 1,
+      "max_abs_diff": 0.0,
+      "program": 1,
+      "right": 5,
+      "within_frozen_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 1,
+      "max_abs_diff": 0.0,
+      "program": 1,
+      "right": 6,
+      "within_frozen_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 1,
+      "max_abs_diff": 0.0,
+      "program": 1,
+      "right": 8,
+      "within_frozen_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 3,
+      "max_abs_diff": 0.0,
+      "program": 1,
+      "right": 5,
+      "within_frozen_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 3,
+      "max_abs_diff": 0.0,
+      "program": 1,
+      "right": 6,
+      "within_frozen_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 3,
+      "max_abs_diff": 0.0,
+      "program": 1,
+      "right": 8,
+      "within_frozen_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 5,
+      "max_abs_diff": 0.0,
+      "program": 1,
+      "right": 6,
+      "within_frozen_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 5,
+      "max_abs_diff": 0.0,
+      "program": 1,
+      "right": 8,
+      "within_frozen_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 6,
+      "max_abs_diff": 0.0,
+      "program": 1,
+      "right": 8,
+      "within_frozen_tolerance": true
+    }
+  ],
+  "complete": 10,
+  "cuda_gradient_receipts": 10,
+  "exact_training_steps": true,
+  "execution_observer_coverage": true,
+  "full_capacity_gate": true,
+  "gpu_seconds": 8508,
+  "gpu_seconds_cap": 14400,
+  "host_uid_threads_are_visible_lower_bounds": true,
+  "host_uid_threads_peak": 510,
+  "input_manifest_ok": true,
+  "job": "17571",
+  "lifecycle": [
+    {
+      "cleanup_flags": {
+        "forced_server_kill": false,
+        "http500": false,
+        "invalid_state": false
+      },
+      "events": [
+        {
+          "event": "launched",
+          "pid": 18,
+          "time": 1791687362.14992
+        },
+        {
+          "event": "exit_observed",
+          "pid": 18,
+          "returncode": 0,
+          "time": 1791687705.6537244
+        }
+      ],
+      "execute_calls": 3,
+      "exits_during_candidate": [],
+      "index": 0
+    },
+    {
+      "cleanup_flags": {
+        "forced_server_kill": false,
+        "http500": false,
+        "invalid_state": false
+      },
+      "events": [
+        {
+          "event": "launched",
+          "pid": 17,
+          "time": 1791687715.9465501
+        },
+        {
+          "event": "exit_observed",
+          "pid": 17,
+          "returncode": 0,
+          "time": 1791687764.3511255
+        }
+      ],
+      "execute_calls": 3,
+      "exits_during_candidate": [],
+      "index": 1
+    },
+    {
+      "cleanup_flags": {
+        "forced_server_kill": false,
+        "http500": false,
+        "invalid_state": false
+      },
+      "events": [
+        {
+          "event": "launched",
+          "pid": 17,
+          "time": 1791687773.3843853
+        },
+        {
+          "event": "exit_observed",
+          "pid": 17,
+          "returncode": 0,
+          "time": 1791688037.1291113
+        }
+      ],
+      "execute_calls": 3,
+      "exits_during_candidate": [],
+      "index": 2
+    },
+    {
+      "cleanup_flags": {
+        "forced_server_kill": false,
+        "http500": false,
+        "invalid_state": false
+      },
+      "events": [
+        {
+          "event": "launched",
+          "pid": 17,
+          "time": 1791687773.47162
+        },
+        {
+          "event": "exit_observed",
+          "pid": 17,
+          "returncode": 0,
+          "time": 1791687821.3164313
+        }
+      ],
+      "execute_calls": 3,
+      "exits_during_candidate": [],
+      "index": 3
+    },
+    {
+      "cleanup_flags": {
+        "forced_server_kill": false,
+        "http500": false,
+        "invalid_state": false
+      },
+      "events": [
+        {
+          "event": "launched",
+          "pid": 17,
+          "time": 1791687773.5244534
+        },
+        {
+          "event": "exit_observed",
+          "pid": 17,
+          "returncode": 0,
+          "time": 1791688037.2302337
+        }
+      ],
+      "execute_calls": 3,
+      "exits_during_candidate": [],
+      "index": 4
+    },
+    {
+      "cleanup_flags": {
+        "forced_server_kill": false,
+        "http500": false,
+        "invalid_state": false
+      },
+      "events": [
+        {
+          "event": "launched",
+          "pid": 17,
+          "time": 1791687773.3379517
+        },
+        {
+          "event": "exit_observed",
+          "pid": 17,
+          "returncode": 0,
+          "time": 1791687821.4511943
+        }
+      ],
+      "execute_calls": 3,
+      "exits_during_candidate": [],
+      "index": 5
+    },
+    {
+      "cleanup_flags": {
+        "forced_server_kill": false,
+        "http500": false,
+        "invalid_state": false
+      },
+      "events": [
+        {
+          "event": "launched",
+          "pid": 17,
+          "time": 1791688046.9508772
+        },
+        {
+          "event": "exit_observed",
+          "pid": 17,
+          "returncode": 0,
+          "time": 1791688094.1472287
+        }
+      ],
+      "execute_calls": 3,
+      "exits_during_candidate": [],
+      "index": 6
+    },
+    {
+      "cleanup_flags": {
+        "forced_server_kill": false,
+        "http500": false,
+        "invalid_state": false
+      },
+      "events": [
+        {
+          "event": "launched",
+          "pid": 17,
+          "time": 1791688047.220924
+        },
+        {
+          "event": "exit_observed",
+          "pid": 17,
+          "returncode": 0,
+          "time": 1791688331.349005
+        }
+      ],
+      "execute_calls": 3,
+      "exits_during_candidate": [],
+      "index": 7
+    },
+    {
+      "cleanup_flags": {
+        "forced_server_kill": false,
+        "http500": false,
+        "invalid_state": false
+      },
+      "events": [
+        {
+          "event": "launched",
+          "pid": 17,
+          "time": 1791688046.9725313
+        },
+        {
+          "event": "exit_observed",
+          "pid": 17,
+          "returncode": 0,
+          "time": 1791688095.0844517
+        }
+      ],
+      "execute_calls": 3,
+      "exits_during_candidate": [],
+      "index": 8
+    },
+    {
+      "cleanup_flags": {
+        "forced_server_kill": false,
+        "http500": false,
+        "invalid_state": false
+      },
+      "events": [
+        {
+          "event": "launched",
+          "pid": 17,
+          "time": 1791688047.20496
+        },
+        {
+          "event": "exit_observed",
+          "pid": 17,
+          "returncode": 0,
+          "time": 1791688331.4683776
+        }
+      ],
+      "execute_calls": 3,
+      "exits_during_candidate": [],
+      "index": 9
+    }
+  ],
+  "manifest_ok": true,
+  "no_cleanup_race_flags": true,
+  "nproc_soft_values": [
+    1024
+  ],
+  "numerical_tolerance": 1e-05,
+  "output_shapes": [
+    {
+      "columns": 2,
+      "index": 0,
+      "rows": 64
+    },
+    {
+      "columns": 2,
+      "index": 1,
+      "rows": 278640
+    },
+    {
+      "columns": 2,
+      "index": 2,
+      "rows": 64
+    },
+    {
+      "columns": 2,
+      "index": 3,
+      "rows": 278640
+    },
+    {
+      "columns": 2,
+      "index": 4,
+      "rows": 64
+    },
+    {
+      "columns": 2,
+      "index": 5,
+      "rows": 278640
+    },
+    {
+      "columns": 2,
+      "index": 6,
+      "rows": 278640
+    },
+    {
+      "columns": 2,
+      "index": 7,
+      "rows": 64
+    },
+    {
+      "columns": 2,
+      "index": 8,
+      "rows": 278640
+    },
+    {
+      "columns": 2,
+      "index": 9,
+      "rows": 64
+    }
+  ],
+  "plan_sha256": "fb949c4c6cbe9ee5d02ae467e45a08fb3b1409e01530555d4b0ccf7bdaaab0b2",
+  "planned": 10,
+  "pressure_rows": 1388,
+  "private_predictions_exported": false,
+  "qualification": "Two fixed public-data source families, seed42 restarts; capacity acceptance, not production agent/search quality or causal scheduling speedup.",
+  "requests_attempted": 10,
+  "requests_complete": 10,
+  "resource_error_marker_counts": {
+    "can't start new thread": 0,
+    "out of memory": 0,
+    "pthread_create": 0,
+    "resource temporarily unavailable": 0
+  },
+  "scheduler_state": "COMPLETED",
+  "service_stopped": true,
+  "unstarted": 0
+}

@@ -1,0 +1,30 @@
+{
+  "checked_on_utc": "2026-10-11",
+  "credential_shape_scan_before_extraction": true,
+  "raw_logs_exported": false,
+  "extractor_revision": "v2: match generic Starting Jupyter with; explicit missing-marker state; bounded24literal output",
+  "v1_limitation": "Over-specific startup marker was missing; initial extractor fell back to whole prefix and over-emitted numeric hints. That output was not used as current-program or causal evidence.",
+  "witnesses": [
+    {
+      "target": "spooky",
+      "log_sha256": "3dd567ebaebf882e5708033e7dd796052c6c2cc8bc3b851d78c2dbee10190da8",
+      "first_failure_line": 38907,
+      "last_startup_relative_line": -274,
+      "thread_or_worker_literals_in_that_segment": [],
+      "earlier_n_jobs_minus_one_mentions": 64,
+      "boundary": "Earlier mentions include quoted history; they are not proof that the failing program used n_jobs=-1."
+    },
+    {
+      "target": "dog",
+      "log_sha256": "93d84e661caac053fac43d3ea8cda0d8b2cee6d962a4caecdafb23c7cb9c3336",
+      "first_failure_line": 23876,
+      "last_startup_relative_line": -472,
+      "thread_or_worker_literals_in_that_segment": [
+        {"setting": "torch_num_threads_literal", "value": 2, "relative_to_first_error": -404},
+        {"setting": "num_workers_literal", "value": 0, "relative_to_first_error": -183}
+      ],
+      "boundary": "Literal settings are not runtime enforcement. Do not assert DataLoader multiprocess exhaustion; the independently observed OpenBLAS message requested12threads."
+    }
+  ],
+  "conclusion_boundary": "No fault-time UID/cgroup/memory evidence recovered. Different library pools and other same-UID processes remain alternatives; no root-cause attribution or production-fix claim."
+}

@@ -1,0 +1,1565 @@
+{
+  "boundary": "Injected child-only NPROC limit. Does not establish the cause of historical OpenBLAS EAGAIN or production capacity.",
+  "complete": 3,
+  "gpu_seconds": 0,
+  "parent_limits_unchanged": true,
+  "planned": 3,
+  "rows": [
+    {
+      "after": {
+        "boundary": "Sampled host real-UID and owned worker-descendant evidence,not atomic/exhaustive ucounts or EAGAIN causal proof. Supervisor and kernel limits can differ. Capture alongside the actual failure timestamp.",
+        "ended": 1791688323.7310057,
+        "host_pressure": {
+          "affinity_count": 40,
+          "available_memory_kib": 373001072,
+          "cgroups": [
+            {
+              "ancestor_depth": 0,
+              "controller": "v2",
+              "counters": {
+                "memory.current": 22732800,
+                "memory.events": {
+                  "high": 0,
+                  "low": 0,
+                  "max": 0,
+                  "oom": 0,
+                  "oom_group_kill": 0,
+                  "oom_kill": 0
+                },
+                "memory.max": "max",
+                "pids.current": 4,
+                "pids.events": {
+                  "max": 0
+                },
+                "pids.max": "max"
+              }
+            },
+            {
+              "ancestor_depth": 1,
+              "controller": "v2",
+              "counters": {
+                "memory.current": 31839457280,
+                "memory.events": {
+                  "high": 0,
+                  "low": 0,
+                  "max": 0,
+                  "oom": 0,
+                  "oom_group_kill": 0,
+                  "oom_kill": 0
+                },
+                "memory.max": "max",
+                "pids.current": 9,
+                "pids.events": {
+                  "max": 0
+                },
+                "pids.max": 1017755
+              }
+            },
+            {
+              "ancestor_depth": 2,
+              "controller": "v2",
+              "counters": {
+                "memory.current": 378676416512,
+                "memory.events": {
+                  "high": 0,
+                  "low": 0,
+                  "max": 0,
+                  "oom": 0,
+                  "oom_group_kill": 0,
+                  "oom_kill": 0
+                },
+                "memory.max": "max",
+                "pids.current": 1527,
+                "pids.events": {
+                  "max": 0
+                },
+                "pids.max": "max"
+              }
+            },
+            {
+              "ancestor_depth": 3,
+              "controller": "v2",
+              "counters": {
+                "memory.current": null,
+                "memory.events": null,
+                "memory.max": null,
+                "pids.current": null,
+                "pids.events": null,
+                "pids.max": null
+              }
+            }
+          ],
+          "host": "linux5",
+          "limits": {
+            "RLIMIT_AS": [
+              -1,
+              -1
+            ],
+            "RLIMIT_NOFILE": [
+              1024,
+              1048576
+            ],
+            "RLIMIT_NPROC": [
+              1024,
+              1024
+            ],
+            "RLIMIT_STACK": [
+              8388608,
+              -1
+            ]
+          },
+          "pid": 3775955,
+          "pid_max": 4194304,
+          "self_fd_count": 5,
+          "self_threads": 1,
+          "threads_max": 3084108,
+          "time_utc_seconds": 1791688323.731292,
+          "uid_counts": {
+            "largest_process_thread_counts": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "lower_bound": true,
+            "unreadable_or_racing": 0,
+            "visible_processes": 7,
+            "visible_threads": 7,
+            "zombies": 0
+          }
+        },
+        "owned_descendants": [
+          {
+            "VmData_kib": 19228,
+            "VmHWM_kib": 18572,
+            "VmPeak_kib": 182248,
+            "VmRSS_kib": 18572,
+            "VmSize_kib": 116712,
+            "VmStk_kib": 132,
+            "limits": {
+              "RLIMIT_AS": [
+                "unlimited",
+                "unlimited"
+              ],
+              "RLIMIT_NOFILE": [
+                1024,
+                1048576
+              ],
+              "RLIMIT_NPROC": [
+                1024,
+                1024
+              ],
+              "RLIMIT_STACK": [
+                8388608,
+                "unlimited"
+              ]
+            },
+            "namespace_pids": [
+              3775955
+            ],
+            "pid": 3775955,
+            "ppid": 3775954,
+            "start_ticks": 295646132,
+            "state": "R",
+            "threads": 1,
+            "uid": 7542
+          }
+        ],
+        "root_identity_stable": true,
+        "root_pid": 3775955,
+        "root_start_ticks": 295646132,
+        "started": 1791688323.717118,
+        "uid_scan_unreadable": 0,
+        "unreadable_or_racing": [],
+        "visible_descendant_threads": 1
+      },
+      "baseline_thread": true,
+      "before": {
+        "boundary": "Sampled host real-UID and owned worker-descendant evidence,not atomic/exhaustive ucounts or EAGAIN causal proof. Supervisor and kernel limits can differ. Capture alongside the actual failure timestamp.",
+        "ended": 1791688323.67368,
+        "host_pressure": {
+          "affinity_count": 40,
+          "available_memory_kib": 373000220,
+          "cgroups": [
+            {
+              "ancestor_depth": 0,
+              "controller": "v2",
+              "counters": {
+                "memory.current": 22740992,
+                "memory.events": {
+                  "high": 0,
+                  "low": 0,
+                  "max": 0,
+                  "oom": 0,
+                  "oom_group_kill": 0,
+                  "oom_kill": 0
+                },
+                "memory.max": "max",
+                "pids.current": 4,
+                "pids.events": {
+                  "max": 0
+                },
+                "pids.max": "max"
+              }
+            },
+            {
+              "ancestor_depth": 1,
+              "controller": "v2",
+              "counters": {
+                "memory.current": 31839465472,
+                "memory.events": {
+                  "high": 0,
+                  "low": 0,
+                  "max": 0,
+                  "oom": 0,
+                  "oom_group_kill": 0,
+                  "oom_kill": 0
+                },
+                "memory.max": "max",
+                "pids.current": 9,
+                "pids.events": {
+                  "max": 0
+                },
+                "pids.max": 1017755
+              }
+            },
+            {
+              "ancestor_depth": 2,
+              "controller": "v2",
+              "counters": {
+                "memory.current": 378676195328,
+                "memory.events": {
+                  "high": 0,
+                  "low": 0,
+                  "max": 0,
+                  "oom": 0,
+                  "oom_group_kill": 0,
+                  "oom_kill": 0
+                },
+                "memory.max": "max",
+                "pids.current": 1527,
+                "pids.events": {
+                  "max": 0
+                },
+                "pids.max": "max"
+              }
+            },
+            {
+              "ancestor_depth": 3,
+              "controller": "v2",
+              "counters": {
+                "memory.current": null,
+                "memory.events": null,
+                "memory.max": null,
+                "pids.current": null,
+                "pids.events": null,
+                "pids.max": null
+              }
+            }
+          ],
+          "host": "linux5",
+          "limits": {
+            "RLIMIT_AS": [
+              -1,
+              -1
+            ],
+            "RLIMIT_NOFILE": [
+              1024,
+              1048576
+            ],
+            "RLIMIT_NPROC": [
+              1024,
+              1024
+            ],
+            "RLIMIT_STACK": [
+              8388608,
+              -1
+            ]
+          },
+          "pid": 3775955,
+          "pid_max": 4194304,
+          "self_fd_count": 5,
+          "self_threads": 1,
+          "threads_max": 3084108,
+          "time_utc_seconds": 1791688323.6739895,
+          "uid_counts": {
+            "largest_process_thread_counts": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "lower_bound": true,
+            "unreadable_or_racing": 0,
+            "visible_processes": 7,
+            "visible_threads": 7,
+            "zombies": 0
+          }
+        },
+        "owned_descendants": [
+          {
+            "VmData_kib": 19228,
+            "VmHWM_kib": 18156,
+            "VmPeak_kib": 182248,
+            "VmRSS_kib": 18156,
+            "VmSize_kib": 116712,
+            "VmStk_kib": 132,
+            "limits": {
+              "RLIMIT_AS": [
+                "unlimited",
+                "unlimited"
+              ],
+              "RLIMIT_NOFILE": [
+                1024,
+                1048576
+              ],
+              "RLIMIT_NPROC": [
+                1024,
+                1024
+              ],
+              "RLIMIT_STACK": [
+                8388608,
+                "unlimited"
+              ]
+            },
+            "namespace_pids": [
+              3775955
+            ],
+            "pid": 3775955,
+            "ppid": 3775954,
+            "start_ticks": 295646132,
+            "state": "R",
+            "threads": 1,
+            "uid": 7542
+          }
+        ],
+        "root_identity_stable": true,
+        "root_pid": 3775955,
+        "root_start_ticks": 295646132,
+        "started": 1791688323.6580362,
+        "uid_scan_unreadable": 0,
+        "unreadable_or_racing": [],
+        "visible_descendant_threads": 1
+      },
+      "error_type": "RuntimeError",
+      "index": 0,
+      "limited": {
+        "boundary": "Sampled host real-UID and owned worker-descendant evidence,not atomic/exhaustive ucounts or EAGAIN causal proof. Supervisor and kernel limits can differ. Capture alongside the actual failure timestamp.",
+        "ended": 1791688323.702233,
+        "host_pressure": {
+          "affinity_count": 40,
+          "available_memory_kib": 373000220,
+          "cgroups": [
+            {
+              "ancestor_depth": 0,
+              "controller": "v2",
+              "counters": {
+                "memory.current": 22740992,
+                "memory.events": {
+                  "high": 0,
+                  "low": 0,
+                  "max": 0,
+                  "oom": 0,
+                  "oom_group_kill": 0,
+                  "oom_kill": 0
+                },
+                "memory.max": "max",
+                "pids.current": 4,
+                "pids.events": {
+                  "max": 0
+                },
+                "pids.max": "max"
+              }
+            },
+            {
+              "ancestor_depth": 1,
+              "controller": "v2",
+              "counters": {
+                "memory.current": 31839465472,
+                "memory.events": {
+                  "high": 0,
+                  "low": 0,
+                  "max": 0,
+                  "oom": 0,
+                  "oom_group_kill": 0,
+                  "oom_kill": 0
+                },
+                "memory.max": "max",
+                "pids.current": 9,
+                "pids.events": {
+                  "max": 0
+                },
+                "pids.max": 1017755
+              }
+            },
+            {
+              "ancestor_depth": 2,
+              "controller": "v2",
+              "counters": {
+                "memory.current": 378676424704,
+                "memory.events": {
+                  "high": 0,
+                  "low": 0,
+                  "max": 0,
+                  "oom": 0,
+                  "oom_group_kill": 0,
+                  "oom_kill": 0
+                },
+                "memory.max": "max",
+                "pids.current": 1527,
+                "pids.events": {
+                  "max": 0
+                },
+                "pids.max": "max"
+              }
+            },
+            {
+              "ancestor_depth": 3,
+              "controller": "v2",
+              "counters": {
+                "memory.current": null,
+                "memory.events": null,
+                "memory.max": null,
+                "pids.current": null,
+                "pids.events": null,
+                "pids.max": null
+              }
+            }
+          ],
+          "host": "linux5",
+          "limits": {
+            "RLIMIT_AS": [
+              -1,
+              -1
+            ],
+            "RLIMIT_NOFILE": [
+              1024,
+              1048576
+            ],
+            "RLIMIT_NPROC": [
+              1,
+              1024
+            ],
+            "RLIMIT_STACK": [
+              8388608,
+              -1
+            ]
+          },
+          "pid": 3775955,
+          "pid_max": 4194304,
+          "self_fd_count": 5,
+          "self_threads": 1,
+          "threads_max": 3084108,
+          "time_utc_seconds": 1791688323.7025204,
+          "uid_counts": {
+            "largest_process_thread_counts": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "lower_bound": true,
+            "unreadable_or_racing": 0,
+            "visible_processes": 7,
+            "visible_threads": 7,
+            "zombies": 0
+          }
+        },
+        "owned_descendants": [
+          {
+            "VmData_kib": 19228,
+            "VmHWM_kib": 18496,
+            "VmPeak_kib": 182248,
+            "VmRSS_kib": 18496,
+            "VmSize_kib": 116712,
+            "VmStk_kib": 132,
+            "limits": {
+              "RLIMIT_AS": [
+                "unlimited",
+                "unlimited"
+              ],
+              "RLIMIT_NOFILE": [
+                1024,
+                1048576
+              ],
+              "RLIMIT_NPROC": [
+                1,
+                1024
+              ],
+              "RLIMIT_STACK": [
+                8388608,
+                "unlimited"
+              ]
+            },
+            "namespace_pids": [
+              3775955
+            ],
+            "pid": 3775955,
+            "ppid": 3775954,
+            "start_ticks": 295646132,
+            "state": "R",
+            "threads": 1,
+            "uid": 7542
+          }
+        ],
+        "root_identity_stable": true,
+        "root_pid": 3775955,
+        "root_start_ticks": 295646132,
+        "started": 1791688323.6883428,
+        "uid_scan_unreadable": 0,
+        "unreadable_or_racing": [],
+        "visible_descendant_threads": 1
+      },
+      "limits_restored": true,
+      "restored_thread": true
+    },
+    {
+      "after": {
+        "boundary": "Sampled host real-UID and owned worker-descendant evidence,not atomic/exhaustive ucounts or EAGAIN causal proof. Supervisor and kernel limits can differ. Capture alongside the actual failure timestamp.",
+        "ended": 1791688323.92565,
+        "host_pressure": {
+          "affinity_count": 40,
+          "available_memory_kib": 372988552,
+          "cgroups": [
+            {
+              "ancestor_depth": 0,
+              "controller": "v2",
+              "counters": {
+                "memory.current": 22827008,
+                "memory.events": {
+                  "high": 0,
+                  "low": 0,
+                  "max": 0,
+                  "oom": 0,
+                  "oom_group_kill": 0,
+                  "oom_kill": 0
+                },
+                "memory.max": "max",
+                "pids.current": 4,
+                "pids.events": {
+                  "max": 0
+                },
+                "pids.max": "max"
+              }
+            },
+            {
+              "ancestor_depth": 1,
+              "controller": "v2",
+              "counters": {
+                "memory.current": 31839551488,
+                "memory.events": {
+                  "high": 0,
+                  "low": 0,
+                  "max": 0,
+                  "oom": 0,
+                  "oom_group_kill": 0,
+                  "oom_kill": 0
+                },
+                "memory.max": "max",
+                "pids.current": 9,
+                "pids.events": {
+                  "max": 0
+                },
+                "pids.max": 1017755
+              }
+            },
+            {
+              "ancestor_depth": 2,
+              "controller": "v2",
+              "counters": {
+                "memory.current": 378676011008,
+                "memory.events": {
+                  "high": 0,
+                  "low": 0,
+                  "max": 0,
+                  "oom": 0,
+                  "oom_group_kill": 0,
+                  "oom_kill": 0
+                },
+                "memory.max": "max",
+                "pids.current": 1527,
+                "pids.events": {
+                  "max": 0
+                },
+                "pids.max": "max"
+              }
+            },
+            {
+              "ancestor_depth": 3,
+              "controller": "v2",
+              "counters": {
+                "memory.current": null,
+                "memory.events": null,
+                "memory.max": null,
+                "pids.current": null,
+                "pids.events": null,
+                "pids.max": null
+              }
+            }
+          ],
+          "host": "linux5",
+          "limits": {
+            "RLIMIT_AS": [
+              -1,
+              -1
+            ],
+            "RLIMIT_NOFILE": [
+              1024,
+              1048576
+            ],
+            "RLIMIT_NPROC": [
+              1024,
+              1024
+            ],
+            "RLIMIT_STACK": [
+              8388608,
+              -1
+            ]
+          },
+          "pid": 3775958,
+          "pid_max": 4194304,
+          "self_fd_count": 5,
+          "self_threads": 1,
+          "threads_max": 3084108,
+          "time_utc_seconds": 1791688323.9259179,
+          "uid_counts": {
+            "largest_process_thread_counts": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "lower_bound": true,
+            "unreadable_or_racing": 0,
+            "visible_processes": 7,
+            "visible_threads": 7,
+            "zombies": 0
+          }
+        },
+        "owned_descendants": [
+          {
+            "VmData_kib": 19228,
+            "VmHWM_kib": 18504,
+            "VmPeak_kib": 182248,
+            "VmRSS_kib": 18504,
+            "VmSize_kib": 116712,
+            "VmStk_kib": 132,
+            "limits": {
+              "RLIMIT_AS": [
+                "unlimited",
+                "unlimited"
+              ],
+              "RLIMIT_NOFILE": [
+                1024,
+                1048576
+              ],
+              "RLIMIT_NPROC": [
+                1024,
+                1024
+              ],
+              "RLIMIT_STACK": [
+                8388608,
+                "unlimited"
+              ]
+            },
+            "namespace_pids": [
+              3775958
+            ],
+            "pid": 3775958,
+            "ppid": 3775954,
+            "start_ticks": 295646154,
+            "state": "R",
+            "threads": 1,
+            "uid": 7542
+          }
+        ],
+        "root_identity_stable": true,
+        "root_pid": 3775958,
+        "root_start_ticks": 295646154,
+        "started": 1791688323.9133048,
+        "uid_scan_unreadable": 0,
+        "unreadable_or_racing": [],
+        "visible_descendant_threads": 1
+      },
+      "baseline_thread": true,
+      "before": {
+        "boundary": "Sampled host real-UID and owned worker-descendant evidence,not atomic/exhaustive ucounts or EAGAIN causal proof. Supervisor and kernel limits can differ. Capture alongside the actual failure timestamp.",
+        "ended": 1791688323.8749816,
+        "host_pressure": {
+          "affinity_count": 40,
+          "available_memory_kib": 372988520,
+          "cgroups": [
+            {
+              "ancestor_depth": 0,
+              "controller": "v2",
+              "counters": {
+                "memory.current": 23093248,
+                "memory.events": {
+                  "high": 0,
+                  "low": 0,
+                  "max": 0,
+                  "oom": 0,
+                  "oom_group_kill": 0,
+                  "oom_kill": 0
+                },
+                "memory.max": "max",
+                "pids.current": 4,
+                "pids.events": {
+                  "max": 0
+                },
+                "pids.max": "max"
+              }
+            },
+            {
+              "ancestor_depth": 1,
+              "controller": "v2",
+              "counters": {
+                "memory.current": 31839817728,
+                "memory.events": {
+                  "high": 0,
+                  "low": 0,
+                  "max": 0,
+                  "oom": 0,
+                  "oom_group_kill": 0,
+                  "oom_kill": 0
+                },
+                "memory.max": "max",
+                "pids.current": 9,
+                "pids.events": {
+                  "max": 0
+                },
+                "pids.max": 1017755
+              }
+            },
+            {
+              "ancestor_depth": 2,
+              "controller": "v2",
+              "counters": {
+                "memory.current": 378676375552,
+                "memory.events": {
+                  "high": 0,
+                  "low": 0,
+                  "max": 0,
+                  "oom": 0,
+                  "oom_group_kill": 0,
+                  "oom_kill": 0
+                },
+                "memory.max": "max",
+                "pids.current": 1527,
+                "pids.events": {
+                  "max": 0
+                },
+                "pids.max": "max"
+              }
+            },
+            {
+              "ancestor_depth": 3,
+              "controller": "v2",
+              "counters": {
+                "memory.current": null,
+                "memory.events": null,
+                "memory.max": null,
+                "pids.current": null,
+                "pids.events": null,
+                "pids.max": null
+              }
+            }
+          ],
+          "host": "linux5",
+          "limits": {
+            "RLIMIT_AS": [
+              -1,
+              -1
+            ],
+            "RLIMIT_NOFILE": [
+              1024,
+              1048576
+            ],
+            "RLIMIT_NPROC": [
+              1024,
+              1024
+            ],
+            "RLIMIT_STACK": [
+              8388608,
+              -1
+            ]
+          },
+          "pid": 3775958,
+          "pid_max": 4194304,
+          "self_fd_count": 5,
+          "self_threads": 1,
+          "threads_max": 3084108,
+          "time_utc_seconds": 1791688323.8752496,
+          "uid_counts": {
+            "largest_process_thread_counts": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "lower_bound": true,
+            "unreadable_or_racing": 0,
+            "visible_processes": 7,
+            "visible_threads": 7,
+            "zombies": 0
+          }
+        },
+        "owned_descendants": [
+          {
+            "VmData_kib": 19228,
+            "VmHWM_kib": 18088,
+            "VmPeak_kib": 182248,
+            "VmRSS_kib": 18088,
+            "VmSize_kib": 116712,
+            "VmStk_kib": 132,
+            "limits": {
+              "RLIMIT_AS": [
+                "unlimited",
+                "unlimited"
+              ],
+              "RLIMIT_NOFILE": [
+                1024,
+                1048576
+              ],
+              "RLIMIT_NPROC": [
+                1024,
+                1024
+              ],
+              "RLIMIT_STACK": [
+                8388608,
+                "unlimited"
+              ]
+            },
+            "namespace_pids": [
+              3775958
+            ],
+            "pid": 3775958,
+            "ppid": 3775954,
+            "start_ticks": 295646154,
+            "state": "R",
+            "threads": 1,
+            "uid": 7542
+          }
+        ],
+        "root_identity_stable": true,
+        "root_pid": 3775958,
+        "root_start_ticks": 295646154,
+        "started": 1791688323.8612547,
+        "uid_scan_unreadable": 0,
+        "unreadable_or_racing": [],
+        "visible_descendant_threads": 1
+      },
+      "error_type": "RuntimeError",
+      "index": 1,
+      "limited": {
+        "boundary": "Sampled host real-UID and owned worker-descendant evidence,not atomic/exhaustive ucounts or EAGAIN causal proof. Supervisor and kernel limits can differ. Capture alongside the actual failure timestamp.",
+        "ended": 1791688323.900387,
+        "host_pressure": {
+          "affinity_count": 40,
+          "available_memory_kib": 372988552,
+          "cgroups": [
+            {
+              "ancestor_depth": 0,
+              "controller": "v2",
+              "counters": {
+                "memory.current": 23093248,
+                "memory.events": {
+                  "high": 0,
+                  "low": 0,
+                  "max": 0,
+                  "oom": 0,
+                  "oom_group_kill": 0,
+                  "oom_kill": 0
+                },
+                "memory.max": "max",
+                "pids.current": 4,
+                "pids.events": {
+                  "max": 0
+                },
+                "pids.max": "max"
+              }
+            },
+            {
+              "ancestor_depth": 1,
+              "controller": "v2",
+              "counters": {
+                "memory.current": 31839817728,
+                "memory.events": {
+                  "high": 0,
+                  "low": 0,
+                  "max": 0,
+                  "oom": 0,
+                  "oom_group_kill": 0,
+                  "oom_kill": 0
+                },
+                "memory.max": "max",
+                "pids.current": 9,
+                "pids.events": {
+                  "max": 0
+                },
+                "pids.max": 1017755
+              }
+            },
+            {
+              "ancestor_depth": 2,
+              "controller": "v2",
+              "counters": {
+                "memory.current": 378676375552,
+                "memory.events": {
+                  "high": 0,
+                  "low": 0,
+                  "max": 0,
+                  "oom": 0,
+                  "oom_group_kill": 0,
+                  "oom_kill": 0
+                },
+                "memory.max": "max",
+                "pids.current": 1527,
+                "pids.events": {
+                  "max": 0
+                },
+                "pids.max": "max"
+              }
+            },
+            {
+              "ancestor_depth": 3,
+              "controller": "v2",
+              "counters": {
+                "memory.current": null,
+                "memory.events": null,
+                "memory.max": null,
+                "pids.current": null,
+                "pids.events": null,
+                "pids.max": null
+              }
+            }
+          ],
+          "host": "linux5",
+          "limits": {
+            "RLIMIT_AS": [
+              -1,
+              -1
+            ],
+            "RLIMIT_NOFILE": [
+              1024,
+              1048576
+            ],
+            "RLIMIT_NPROC": [
+              1,
+              1024
+            ],
+            "RLIMIT_STACK": [
+              8388608,
+              -1
+            ]
+          },
+          "pid": 3775958,
+          "pid_max": 4194304,
+          "self_fd_count": 5,
+          "self_threads": 1,
+          "threads_max": 3084108,
+          "time_utc_seconds": 1791688323.9006455,
+          "uid_counts": {
+            "largest_process_thread_counts": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "lower_bound": true,
+            "unreadable_or_racing": 0,
+            "visible_processes": 7,
+            "visible_threads": 7,
+            "zombies": 0
+          }
+        },
+        "owned_descendants": [
+          {
+            "VmData_kib": 19228,
+            "VmHWM_kib": 18428,
+            "VmPeak_kib": 182248,
+            "VmRSS_kib": 18428,
+            "VmSize_kib": 116712,
+            "VmStk_kib": 132,
+            "limits": {
+              "RLIMIT_AS": [
+                "unlimited",
+                "unlimited"
+              ],
+              "RLIMIT_NOFILE": [
+                1024,
+                1048576
+              ],
+              "RLIMIT_NPROC": [
+                1,
+                1024
+              ],
+              "RLIMIT_STACK": [
+                8388608,
+                "unlimited"
+              ]
+            },
+            "namespace_pids": [
+              3775958
+            ],
+            "pid": 3775958,
+            "ppid": 3775954,
+            "start_ticks": 295646154,
+            "state": "R",
+            "threads": 1,
+            "uid": 7542
+          }
+        ],
+        "root_identity_stable": true,
+        "root_pid": 3775958,
+        "root_start_ticks": 295646154,
+        "started": 1791688323.8880002,
+        "uid_scan_unreadable": 0,
+        "unreadable_or_racing": [],
+        "visible_descendant_threads": 1
+      },
+      "limits_restored": true,
+      "restored_thread": true
+    },
+    {
+      "after": {
+        "boundary": "Sampled host real-UID and owned worker-descendant evidence,not atomic/exhaustive ucounts or EAGAIN causal proof. Supervisor and kernel limits can differ. Capture alongside the actual failure timestamp.",
+        "ended": 1791688324.0826929,
+        "host_pressure": {
+          "affinity_count": 40,
+          "available_memory_kib": 372976704,
+          "cgroups": [
+            {
+              "ancestor_depth": 0,
+              "controller": "v2",
+              "counters": {
+                "memory.current": 23416832,
+                "memory.events": {
+                  "high": 0,
+                  "low": 0,
+                  "max": 0,
+                  "oom": 0,
+                  "oom_group_kill": 0,
+                  "oom_kill": 0
+                },
+                "memory.max": "max",
+                "pids.current": 4,
+                "pids.events": {
+                  "max": 0
+                },
+                "pids.max": "max"
+              }
+            },
+            {
+              "ancestor_depth": 1,
+              "controller": "v2",
+              "counters": {
+                "memory.current": 31840141312,
+                "memory.events": {
+                  "high": 0,
+                  "low": 0,
+                  "max": 0,
+                  "oom": 0,
+                  "oom_group_kill": 0,
+                  "oom_kill": 0
+                },
+                "memory.max": "max",
+                "pids.current": 9,
+                "pids.events": {
+                  "max": 0
+                },
+                "pids.max": 1017755
+              }
+            },
+            {
+              "ancestor_depth": 2,
+              "controller": "v2",
+              "counters": {
+                "memory.current": 378676154368,
+                "memory.events": {
+                  "high": 0,
+                  "low": 0,
+                  "max": 0,
+                  "oom": 0,
+                  "oom_group_kill": 0,
+                  "oom_kill": 0
+                },
+                "memory.max": "max",
+                "pids.current": 1527,
+                "pids.events": {
+                  "max": 0
+                },
+                "pids.max": "max"
+              }
+            },
+            {
+              "ancestor_depth": 3,
+              "controller": "v2",
+              "counters": {
+                "memory.current": null,
+                "memory.events": null,
+                "memory.max": null,
+                "pids.current": null,
+                "pids.events": null,
+                "pids.max": null
+              }
+            }
+          ],
+          "host": "linux5",
+          "limits": {
+            "RLIMIT_AS": [
+              -1,
+              -1
+            ],
+            "RLIMIT_NOFILE": [
+              1024,
+              1048576
+            ],
+            "RLIMIT_NPROC": [
+              1024,
+              1024
+            ],
+            "RLIMIT_STACK": [
+              8388608,
+              -1
+            ]
+          },
+          "pid": 3775967,
+          "pid_max": 4194304,
+          "self_fd_count": 5,
+          "self_threads": 1,
+          "threads_max": 3084108,
+          "time_utc_seconds": 1791688324.0828857,
+          "uid_counts": {
+            "largest_process_thread_counts": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "lower_bound": true,
+            "unreadable_or_racing": 0,
+            "visible_processes": 7,
+            "visible_threads": 7,
+            "zombies": 0
+          }
+        },
+        "owned_descendants": [
+          {
+            "VmData_kib": 19228,
+            "VmHWM_kib": 18420,
+            "VmPeak_kib": 182248,
+            "VmRSS_kib": 18420,
+            "VmSize_kib": 116712,
+            "VmStk_kib": 132,
+            "limits": {
+              "RLIMIT_AS": [
+                "unlimited",
+                "unlimited"
+              ],
+              "RLIMIT_NOFILE": [
+                1024,
+                1048576
+              ],
+              "RLIMIT_NPROC": [
+                1024,
+                1024
+              ],
+              "RLIMIT_STACK": [
+                8388608,
+                "unlimited"
+              ]
+            },
+            "namespace_pids": [
+              3775967
+            ],
+            "pid": 3775967,
+            "ppid": 3775954,
+            "start_ticks": 295646174,
+            "state": "R",
+            "threads": 1,
+            "uid": 7542
+          }
+        ],
+        "root_identity_stable": true,
+        "root_pid": 3775967,
+        "root_start_ticks": 295646174,
+        "started": 1791688324.074729,
+        "uid_scan_unreadable": 0,
+        "unreadable_or_racing": [],
+        "visible_descendant_threads": 1
+      },
+      "baseline_thread": true,
+      "before": {
+        "boundary": "Sampled host real-UID and owned worker-descendant evidence,not atomic/exhaustive ucounts or EAGAIN causal proof. Supervisor and kernel limits can differ. Capture alongside the actual failure timestamp.",
+        "ended": 1791688324.0497582,
+        "host_pressure": {
+          "affinity_count": 40,
+          "available_memory_kib": 372976832,
+          "cgroups": [
+            {
+              "ancestor_depth": 0,
+              "controller": "v2",
+              "counters": {
+                "memory.current": 23166976,
+                "memory.events": {
+                  "high": 0,
+                  "low": 0,
+                  "max": 0,
+                  "oom": 0,
+                  "oom_group_kill": 0,
+                  "oom_kill": 0
+                },
+                "memory.max": "max",
+                "pids.current": 4,
+                "pids.events": {
+                  "max": 0
+                },
+                "pids.max": "max"
+              }
+            },
+            {
+              "ancestor_depth": 1,
+              "controller": "v2",
+              "counters": {
+                "memory.current": 31839891456,
+                "memory.events": {
+                  "high": 0,
+                  "low": 0,
+                  "max": 0,
+                  "oom": 0,
+                  "oom_group_kill": 0,
+                  "oom_kill": 0
+                },
+                "memory.max": "max",
+                "pids.current": 9,
+                "pids.events": {
+                  "max": 0
+                },
+                "pids.max": 1017755
+              }
+            },
+            {
+              "ancestor_depth": 2,
+              "controller": "v2",
+              "counters": {
+                "memory.current": 378676056064,
+                "memory.events": {
+                  "high": 0,
+                  "low": 0,
+                  "max": 0,
+                  "oom": 0,
+                  "oom_group_kill": 0,
+                  "oom_kill": 0
+                },
+                "memory.max": "max",
+                "pids.current": 1527,
+                "pids.events": {
+                  "max": 0
+                },
+                "pids.max": "max"
+              }
+            },
+            {
+              "ancestor_depth": 3,
+              "controller": "v2",
+              "counters": {
+                "memory.current": null,
+                "memory.events": null,
+                "memory.max": null,
+                "pids.current": null,
+                "pids.events": null,
+                "pids.max": null
+              }
+            }
+          ],
+          "host": "linux5",
+          "limits": {
+            "RLIMIT_AS": [
+              -1,
+              -1
+            ],
+            "RLIMIT_NOFILE": [
+              1024,
+              1048576
+            ],
+            "RLIMIT_NPROC": [
+              1024,
+              1024
+            ],
+            "RLIMIT_STACK": [
+              8388608,
+              -1
+            ]
+          },
+          "pid": 3775967,
+          "pid_max": 4194304,
+          "self_fd_count": 5,
+          "self_threads": 1,
+          "threads_max": 3084108,
+          "time_utc_seconds": 1791688324.0499573,
+          "uid_counts": {
+            "largest_process_thread_counts": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "lower_bound": true,
+            "unreadable_or_racing": 0,
+            "visible_processes": 7,
+            "visible_threads": 7,
+            "zombies": 0
+          }
+        },
+        "owned_descendants": [
+          {
+            "VmData_kib": 19228,
+            "VmHWM_kib": 18000,
+            "VmPeak_kib": 182248,
+            "VmRSS_kib": 18000,
+            "VmSize_kib": 116712,
+            "VmStk_kib": 132,
+            "limits": {
+              "RLIMIT_AS": [
+                "unlimited",
+                "unlimited"
+              ],
+              "RLIMIT_NOFILE": [
+                1024,
+                1048576
+              ],
+              "RLIMIT_NPROC": [
+                1024,
+                1024
+              ],
+              "RLIMIT_STACK": [
+                8388608,
+                "unlimited"
+              ]
+            },
+            "namespace_pids": [
+              3775967
+            ],
+            "pid": 3775967,
+            "ppid": 3775954,
+            "start_ticks": 295646174,
+            "state": "R",
+            "threads": 1,
+            "uid": 7542
+          }
+        ],
+        "root_identity_stable": true,
+        "root_pid": 3775967,
+        "root_start_ticks": 295646174,
+        "started": 1791688324.0403185,
+        "uid_scan_unreadable": 0,
+        "unreadable_or_racing": [],
+        "visible_descendant_threads": 1
+      },
+      "error_type": "RuntimeError",
+      "index": 2,
+      "limited": {
+        "boundary": "Sampled host real-UID and owned worker-descendant evidence,not atomic/exhaustive ucounts or EAGAIN causal proof. Supervisor and kernel limits can differ. Capture alongside the actual failure timestamp.",
+        "ended": 1791688324.066179,
+        "host_pressure": {
+          "affinity_count": 40,
+          "available_memory_kib": 372976928,
+          "cgroups": [
+            {
+              "ancestor_depth": 0,
+              "controller": "v2",
+              "counters": {
+                "memory.current": 23166976,
+                "memory.events": {
+                  "high": 0,
+                  "low": 0,
+                  "max": 0,
+                  "oom": 0,
+                  "oom_group_kill": 0,
+                  "oom_kill": 0
+                },
+                "memory.max": "max",
+                "pids.current": 4,
+                "pids.events": {
+                  "max": 0
+                },
+                "pids.max": "max"
+              }
+            },
+            {
+              "ancestor_depth": 1,
+              "controller": "v2",
+              "counters": {
+                "memory.current": 31839891456,
+                "memory.events": {
+                  "high": 0,
+                  "low": 0,
+                  "max": 0,
+                  "oom": 0,
+                  "oom_group_kill": 0,
+                  "oom_kill": 0
+                },
+                "memory.max": "max",
+                "pids.current": 9,
+                "pids.events": {
+                  "max": 0
+                },
+                "pids.max": 1017755
+              }
+            },
+            {
+              "ancestor_depth": 2,
+              "controller": "v2",
+              "counters": {
+                "memory.current": 378676056064,
+                "memory.events": {
+                  "high": 0,
+                  "low": 0,
+                  "max": 0,
+                  "oom": 0,
+                  "oom_group_kill": 0,
+                  "oom_kill": 0
+                },
+                "memory.max": "max",
+                "pids.current": 1527,
+                "pids.events": {
+                  "max": 0
+                },
+                "pids.max": "max"
+              }
+            },
+            {
+              "ancestor_depth": 3,
+              "controller": "v2",
+              "counters": {
+                "memory.current": null,
+                "memory.events": null,
+                "memory.max": null,
+                "pids.current": null,
+                "pids.events": null,
+                "pids.max": null
+              }
+            }
+          ],
+          "host": "linux5",
+          "limits": {
+            "RLIMIT_AS": [
+              -1,
+              -1
+            ],
+            "RLIMIT_NOFILE": [
+              1024,
+              1048576
+            ],
+            "RLIMIT_NPROC": [
+              1,
+              1024
+            ],
+            "RLIMIT_STACK": [
+              8388608,
+              -1
+            ]
+          },
+          "pid": 3775967,
+          "pid_max": 4194304,
+          "self_fd_count": 5,
+          "self_threads": 1,
+          "threads_max": 3084108,
+          "time_utc_seconds": 1791688324.066367,
+          "uid_counts": {
+            "largest_process_thread_counts": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "lower_bound": true,
+            "unreadable_or_racing": 0,
+            "visible_processes": 7,
+            "visible_threads": 7,
+            "zombies": 0
+          }
+        },
+        "owned_descendants": [
+          {
+            "VmData_kib": 19228,
+            "VmHWM_kib": 18344,
+            "VmPeak_kib": 182248,
+            "VmRSS_kib": 18344,
+            "VmSize_kib": 116712,
+            "VmStk_kib": 132,
+            "limits": {
+              "RLIMIT_AS": [
+                "unlimited",
+                "unlimited"
+              ],
+              "RLIMIT_NOFILE": [
+                1024,
+                1048576
+              ],
+              "RLIMIT_NPROC": [
+                1,
+                1024
+              ],
+              "RLIMIT_STACK": [
+                8388608,
+                "unlimited"
+              ]
+            },
+            "namespace_pids": [
+              3775967
+            ],
+            "pid": 3775967,
+            "ppid": 3775954,
+            "start_ticks": 295646174,
+            "state": "R",
+            "threads": 1,
+            "uid": 7542
+          }
+        ],
+        "root_identity_stable": true,
+        "root_pid": 3775967,
+        "root_start_ticks": 295646174,
+        "started": 1791688324.0582225,
+        "uid_scan_unreadable": 0,
+        "unreadable_or_racing": [],
+        "visible_descendant_threads": 1
+      },
+      "limits_restored": true,
+      "restored_thread": true
+    }
+  ],
+  "source_sha256": {
+    "owned_process_pressure.py": "25ceafc73affe2a985468d4916b49f346f245f996a82b76097d6378294485b98",
+    "resource_pressure.py": "401a3636110873bb5973cbcf1af382d2ecf40d643648c635333269d3fa277742",
+    "test_owned_pressure_live.py": "688cb7086ca75e926ad4b592357314ac37c11eb866de13232c2be39abcf808d3"
+  }
+}

@@ -977,4 +977,16 @@ phase1/sandbox_scheduling/collaborator_reliability_patch.py -text diff whitespac
 phase1/sandbox_scheduling/test_collaborator_reliability_patch.py -text diff whitespace=cr-at-eol
 phase1/sandbox_scheduling/resource_unavailable_20261011/collaborator-patches-v2/*.patch -text diff whitespace=-blank-at-eol
 phase1/sandbox_scheduling/reusable_shutdown_receipt.py -text diff whitespace=cr-at-eol
+phase1/sandbox_scheduling/owned_process_pressure.py -text diff whitespace=cr-at-eol
+phase1/sandbox_scheduling/test_owned_process_pressure.py -text diff whitespace=cr-at-eol
+phase1/sandbox_scheduling/test_owned_pressure_live.py -text diff whitespace=cr-at-eol
+phase1/sandbox_scheduling/factory_integration_20261011.py -text diff whitespace=cr-at-eol
+phase1/sandbox_scheduling/factory_integration_readout_20261011.py -text diff whitespace=cr-at-eol
+phase1/sandbox_scheduling/test_factory_integration.py -text diff whitespace=cr-at-eol
+phase1/sandbox_scheduling/factory_integration_v2_20261011.py -text diff whitespace=cr-at-eol
+phase1/sandbox_scheduling/factory_integration_v2_readout_20261011.py -text diff whitespace=cr-at-eol
+phase1/sandbox_scheduling/test_factory_integration_v2.py -text diff whitespace=cr-at-eol
+phase1/sandbox_scheduling/joint_two_node_20261011.py -text diff whitespace=cr-at-eol
+phase1/sandbox_scheduling/joint_two_node_readout_20261011.py -text diff whitespace=cr-at-eol
+phase1/sandbox_scheduling/test_joint_two_node.py -text diff whitespace=cr-at-eol
 phase1/sandbox_scheduling/resource_unavailable_20261011/collaborator-patches-v2/gateway/*.py -text diff whitespace=cr-at-eol

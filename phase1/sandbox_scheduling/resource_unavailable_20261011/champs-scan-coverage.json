@@ -1,0 +1,14 @@
+{
+  "observed_date_utc": "2026-10-11",
+  "drive_file_id": "1bvNBjcXcFYYkbM_omG8dodItNnIJZyJ0",
+  "compressed_bytes_consumed": 110845270,
+  "stream_digest_not_attested_full_archive_sha": "93a1c62ed3bc7992f0c94199f6d2995688fe0b702d3af5431d53fdb6df855695",
+  "members_seen": 205,
+  "eligible_logs_scanned": 14,
+  "oversize_logs_skipped": 10,
+  "log_bytes_scanned": 30558264,
+  "matched_error_members": 0,
+  "archive_saved": false,
+  "raw_logs_exported": false,
+  "boundary": "Bounded infrastructure-only scan, maximum16MiB/log. Ten larger logs skipped. No matching enumerated error in covered logs is not absence of resource failures in this archive. Earlier network-failed attempts produced no completed scan."
+}

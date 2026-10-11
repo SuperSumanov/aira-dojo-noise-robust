@@ -1,0 +1,28 @@
+{
+  "observed_utc": "2026-10-11T00:40:05Z",
+  "source": "Second bounded remote stream of the same two exact hash-pinned shared infrastructure log members; enum-only export, no raw logs retained locally.",
+  "spooky": {
+    "log_sha256": "3dd567ebaebf882e5708033e7dd796052c6c2cc8bc3b851d78c2dbee10190da8",
+    "first_pthread_failure_line": 38907,
+    "nearby_preceding_waiting_ready_relative_line": -25,
+    "nearby_preceding_executing_code_relative_line": -21,
+    "recognized_nearby_traceback_packages": ["numpy"],
+    "nearby_dataloader_frame_observed": false,
+    "nearby_server_stop_relative_line": 123,
+    "labelled_slurm_job_ids_found": [],
+    "labelled_source_commits_found": []
+  },
+  "dog": {
+    "log_sha256": "93d84e661caac053fac43d3ea8cda0d8b2cee6d962a4caecdafb23c7cb9c3336",
+    "first_pthread_failure_line": 23876,
+    "nearby_preceding_waiting_ready_relative_line": -14,
+    "nearby_preceding_executing_code_relative_line": -10,
+    "recognized_nearby_traceback_packages": [],
+    "nearby_server_stop_relative_line": 43,
+    "labelled_slurm_job_ids_found": [],
+    "labelled_source_commits_found": []
+  },
+  "interpretation": "In both selected log sequences the first OpenBLAS failure follows Executing code; nearby Jupyter wording does not establish server startup as the failing phase. This is a different observed symptom from our kernel-info readiness failures.",
+  "unknown": ["fault-time host real-UID thread total", "runtime UID identity and concurrent other jobs", "fault-time ancestor cgroup PID/memory counters", "exact causal candidate process/fork tree"],
+  "limits": ["Events can include echoed prior output, not unique failure instances", "This is localization evidence, not proof of NPROC saturation or its fix", "No justified change to global limits, candidate source, image or training CPU budget follows from these logs alone"]
+}

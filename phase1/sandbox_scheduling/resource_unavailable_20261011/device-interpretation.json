@@ -1,0 +1,19 @@
+{
+  "job": "17559",
+  "evidence_sha256": "742ea8631fb3e747c9bb5399a155457963da63ef6b32760cea51886d94a155e4",
+  "observed": "One of eight gpu1 Slurm GPU-step allocations reports CUDA_ERROR_NO_DEVICE (100) in all four host/image and default/unset visibility subprobes. The other seven have distinct UUIDs and pass task-image CUDA arithmetic under both masks.",
+  "failed_allocation_identifier": "SLURM_STEP_GPUS=3; not asserted to be physical device index3",
+  "failed_probe_slot": 2,
+  "supported": [
+    "Task-image-only incompatibility and default visibility-mask-only explanation do not explain this observed failed slot",
+    "Changing only the visibility mask did not restore that slot",
+    "The full eight-device gate fails even though the diagnostic job completed and collected all32 subprobes"
+  ],
+  "unknown": [
+    "Missing or inaccessible mapped device versus device-health or scheduler/cgroup configuration cause",
+    "Whether the failed17557 slot was the same Slurm GPU allocation; its old helper did not preserve numeric cuInit status",
+    "Historical OpenBLAS EAGAIN cause: this is a distinct symptom"
+  ],
+  "action": "Do not use gpu1 for this full eight-device capacity experiment until access/health is resolved. Preserve original image, use only already-authorized resources; do not modify device permissions, reset GPUs, unmask unallocated devices, borrow course QOS or silently fall back to CPU.",
+  "successful_candidate_warning_coverage": "Older capacity jobs saved complete term_out only on failure; zero saved-log error markers does not establish no recoverable warning in successful executions. Original gates remain unchanged. New execution-only diagnosis records resource-error enums from every execute call without exporting output values."
+}

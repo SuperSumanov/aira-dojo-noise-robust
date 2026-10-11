@@ -1,0 +1,3056 @@
+{
+  "after_uid_counts": {
+    "largest_process_thread_counts": [
+      4,
+      1,
+      1,
+      1,
+      1
+    ],
+    "lower_bound": true,
+    "unreadable_or_racing": 0,
+    "visible_processes": 5,
+    "visible_threads": 8,
+    "zombies": 0
+  },
+  "attempted": 48,
+  "boundary": "Original CLI with observer imports and at most48 fixed CPU kernels, stopped on first failure; localization only, not unchanged-production reproduction, performance, six-GPU capacity or quality.",
+  "closed_sha256": "96ad0136eb735f21880a4fdd73675faaa668ad61daa41d49f8113e257eaf5ca2",
+  "complete": 48,
+  "gateway_files": 48,
+  "gateway_forwarding_observed": 48,
+  "gpu_seconds": 148,
+  "gpu_seconds_cap": 900,
+  "job": "17564",
+  "nproc_soft_values": [
+    1024
+  ],
+  "plan_sha256": "3605debc1dc7678ad71d2fc06478f7343f3c45956970ad012dc20d459ab3a378",
+  "planned": 48,
+  "rows": [
+    {
+      "attempted": true,
+      "calls": [
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 1,
+            "received": 4,
+            "received_kernel_info_reply": 1,
+            "received_status": 3,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.06923442310653627,
+          "ready": true,
+          "seconds": 0.06923763104714453,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        },
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 3,
+            "received": 4,
+            "received_execute_reply": 1,
+            "received_kernel_info_reply": 1,
+            "received_status": 2,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.04667126480489969,
+          "ready": true,
+          "seconds": 0.04668859695084393,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        }
+      ],
+      "complete": true,
+      "error_type": null,
+      "execution": {
+        "exit_code": 0,
+        "seconds": 12.733766542049125,
+        "timed_out": false
+      },
+      "gateway_counts": {
+        "incoming_execute_request": 2,
+        "incoming_forwarded": 4,
+        "incoming_kernel_info_request": 2,
+        "nudge_done": 1,
+        "nudge_enter": 1,
+        "nudge_state_idle": 1,
+        "outgoing_execute_reply": 2,
+        "outgoing_forwarded": 19,
+        "outgoing_kernel_info_reply": 2,
+        "outgoing_other": 4,
+        "outgoing_status": 11
+      },
+      "host_fds": 5,
+      "host_threads": 3,
+      "resource_failure": false,
+      "round": 0,
+      "slot": 0
+    },
+    {
+      "attempted": true,
+      "calls": [
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 1,
+            "received": 3,
+            "received_kernel_info_reply": 1,
+            "received_status": 2,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.07094216695986688,
+          "ready": true,
+          "seconds": 0.07094967481680214,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        },
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 2,
+            "received": 3,
+            "received_execute_reply": 1,
+            "received_kernel_info_reply": 1,
+            "received_status": 1,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.04633745504543185,
+          "ready": true,
+          "seconds": 0.04635095107369125,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        }
+      ],
+      "complete": true,
+      "error_type": null,
+      "execution": {
+        "exit_code": 0,
+        "seconds": 12.846666153054684,
+        "timed_out": false
+      },
+      "gateway_counts": {
+        "incoming_execute_request": 2,
+        "incoming_forwarded": 4,
+        "incoming_kernel_info_request": 2,
+        "nudge_done": 1,
+        "nudge_enter": 1,
+        "nudge_state_idle": 1,
+        "outgoing_execute_reply": 2,
+        "outgoing_forwarded": 19,
+        "outgoing_kernel_info_reply": 2,
+        "outgoing_other": 4,
+        "outgoing_status": 11
+      },
+      "host_fds": 5,
+      "host_threads": 3,
+      "resource_failure": false,
+      "round": 0,
+      "slot": 1
+    },
+    {
+      "attempted": true,
+      "calls": [
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 1,
+            "received": 3,
+            "received_kernel_info_reply": 1,
+            "received_status": 2,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.07606781297363341,
+          "ready": true,
+          "seconds": 0.07607199414633214,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        },
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 3,
+            "received": 4,
+            "received_execute_reply": 1,
+            "received_kernel_info_reply": 1,
+            "received_status": 2,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.04618879780173302,
+          "ready": true,
+          "seconds": 0.04620196111500263,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        }
+      ],
+      "complete": true,
+      "error_type": null,
+      "execution": {
+        "exit_code": 0,
+        "seconds": 12.779140853090212,
+        "timed_out": false
+      },
+      "gateway_counts": {
+        "incoming_execute_request": 2,
+        "incoming_forwarded": 4,
+        "incoming_kernel_info_request": 2,
+        "nudge_done": 1,
+        "nudge_enter": 1,
+        "nudge_state_idle": 1,
+        "outgoing_execute_reply": 2,
+        "outgoing_forwarded": 19,
+        "outgoing_kernel_info_reply": 2,
+        "outgoing_other": 4,
+        "outgoing_status": 11
+      },
+      "host_fds": 5,
+      "host_threads": 3,
+      "resource_failure": false,
+      "round": 0,
+      "slot": 2
+    },
+    {
+      "attempted": true,
+      "calls": [
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 1,
+            "received": 3,
+            "received_kernel_info_reply": 1,
+            "received_status": 2,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.067543710116297,
+          "ready": true,
+          "seconds": 0.06755363289266825,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        },
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 1,
+            "received": 2,
+            "received_execute_reply": 1,
+            "received_kernel_info_reply": 1,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.04483839403837919,
+          "ready": true,
+          "seconds": 0.04485945706255734,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        }
+      ],
+      "complete": true,
+      "error_type": null,
+      "execution": {
+        "exit_code": 0,
+        "seconds": 12.86378517281264,
+        "timed_out": false
+      },
+      "gateway_counts": {
+        "incoming_execute_request": 2,
+        "incoming_forwarded": 4,
+        "incoming_kernel_info_request": 2,
+        "nudge_done": 1,
+        "nudge_enter": 1,
+        "nudge_state_idle": 1,
+        "outgoing_execute_reply": 2,
+        "outgoing_forwarded": 19,
+        "outgoing_kernel_info_reply": 2,
+        "outgoing_other": 4,
+        "outgoing_status": 11
+      },
+      "host_fds": 5,
+      "host_threads": 3,
+      "resource_failure": false,
+      "round": 0,
+      "slot": 3
+    },
+    {
+      "attempted": true,
+      "calls": [
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 1,
+            "received": 3,
+            "received_kernel_info_reply": 1,
+            "received_status": 2,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.06427816511131823,
+          "ready": true,
+          "seconds": 0.06428205710835755,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        },
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 2,
+            "received": 3,
+            "received_execute_reply": 1,
+            "received_kernel_info_reply": 1,
+            "received_status": 1,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.046491989167407155,
+          "ready": true,
+          "seconds": 0.046504945028573275,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        }
+      ],
+      "complete": true,
+      "error_type": null,
+      "execution": {
+        "exit_code": 0,
+        "seconds": 12.751641142182052,
+        "timed_out": false
+      },
+      "gateway_counts": {
+        "incoming_execute_request": 2,
+        "incoming_forwarded": 4,
+        "incoming_kernel_info_request": 2,
+        "nudge_done": 1,
+        "nudge_enter": 1,
+        "nudge_state_idle": 1,
+        "outgoing_execute_reply": 2,
+        "outgoing_forwarded": 19,
+        "outgoing_kernel_info_reply": 2,
+        "outgoing_other": 4,
+        "outgoing_status": 11
+      },
+      "host_fds": 5,
+      "host_threads": 3,
+      "resource_failure": false,
+      "round": 0,
+      "slot": 4
+    },
+    {
+      "attempted": true,
+      "calls": [
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 1,
+            "received": 3,
+            "received_kernel_info_reply": 1,
+            "received_status": 2,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.07667270884849131,
+          "ready": true,
+          "seconds": 0.07667812798172235,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        },
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 3,
+            "received": 4,
+            "received_execute_reply": 1,
+            "received_kernel_info_reply": 1,
+            "received_status": 2,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.048481501173228025,
+          "ready": true,
+          "seconds": 0.048499902011826634,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        }
+      ],
+      "complete": true,
+      "error_type": null,
+      "execution": {
+        "exit_code": 0,
+        "seconds": 12.89041706896387,
+        "timed_out": false
+      },
+      "gateway_counts": {
+        "incoming_execute_request": 2,
+        "incoming_forwarded": 4,
+        "incoming_kernel_info_request": 2,
+        "nudge_done": 1,
+        "nudge_enter": 1,
+        "nudge_state_idle": 1,
+        "outgoing_execute_reply": 2,
+        "outgoing_forwarded": 19,
+        "outgoing_kernel_info_reply": 2,
+        "outgoing_other": 4,
+        "outgoing_status": 11
+      },
+      "host_fds": 5,
+      "host_threads": 3,
+      "resource_failure": false,
+      "round": 0,
+      "slot": 5
+    },
+    {
+      "attempted": true,
+      "calls": [
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 1,
+            "received": 3,
+            "received_kernel_info_reply": 1,
+            "received_status": 2,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.07521806191653013,
+          "ready": true,
+          "seconds": 0.07522462611086667,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        },
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 3,
+            "received": 4,
+            "received_execute_reply": 1,
+            "received_kernel_info_reply": 1,
+            "received_status": 2,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.046268317848443985,
+          "ready": true,
+          "seconds": 0.04627884482033551,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        }
+      ],
+      "complete": true,
+      "error_type": null,
+      "execution": {
+        "exit_code": 0,
+        "seconds": 13.048928168136626,
+        "timed_out": false
+      },
+      "gateway_counts": {
+        "incoming_execute_request": 2,
+        "incoming_forwarded": 4,
+        "incoming_kernel_info_request": 2,
+        "nudge_done": 1,
+        "nudge_enter": 1,
+        "nudge_state_idle": 1,
+        "outgoing_execute_reply": 2,
+        "outgoing_forwarded": 19,
+        "outgoing_kernel_info_reply": 2,
+        "outgoing_other": 4,
+        "outgoing_status": 11
+      },
+      "host_fds": 5,
+      "host_threads": 3,
+      "resource_failure": false,
+      "round": 1,
+      "slot": 0
+    },
+    {
+      "attempted": true,
+      "calls": [
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 1,
+            "received": 4,
+            "received_kernel_info_reply": 1,
+            "received_status": 3,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.07241555512882769,
+          "ready": true,
+          "seconds": 0.07242114399559796,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        },
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 3,
+            "received": 4,
+            "received_execute_reply": 1,
+            "received_kernel_info_reply": 1,
+            "received_status": 2,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.05457136197946966,
+          "ready": true,
+          "seconds": 0.05458230013027787,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        }
+      ],
+      "complete": true,
+      "error_type": null,
+      "execution": {
+        "exit_code": 0,
+        "seconds": 12.81242009694688,
+        "timed_out": false
+      },
+      "gateway_counts": {
+        "incoming_execute_request": 2,
+        "incoming_forwarded": 4,
+        "incoming_kernel_info_request": 2,
+        "nudge_done": 1,
+        "nudge_enter": 1,
+        "nudge_state_idle": 1,
+        "outgoing_execute_reply": 2,
+        "outgoing_forwarded": 19,
+        "outgoing_kernel_info_reply": 2,
+        "outgoing_other": 4,
+        "outgoing_status": 11
+      },
+      "host_fds": 5,
+      "host_threads": 3,
+      "resource_failure": false,
+      "round": 1,
+      "slot": 1
+    },
+    {
+      "attempted": true,
+      "calls": [
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 1,
+            "received": 3,
+            "received_kernel_info_reply": 1,
+            "received_status": 2,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.07514505088329315,
+          "ready": true,
+          "seconds": 0.07515077199786901,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        },
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 3,
+            "received": 4,
+            "received_execute_reply": 1,
+            "received_kernel_info_reply": 1,
+            "received_status": 2,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.04752305313013494,
+          "ready": true,
+          "seconds": 0.04753006901592016,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        }
+      ],
+      "complete": true,
+      "error_type": null,
+      "execution": {
+        "exit_code": 0,
+        "seconds": 12.906014182139188,
+        "timed_out": false
+      },
+      "gateway_counts": {
+        "incoming_execute_request": 2,
+        "incoming_forwarded": 4,
+        "incoming_kernel_info_request": 2,
+        "nudge_done": 1,
+        "nudge_enter": 1,
+        "nudge_state_idle": 1,
+        "outgoing_execute_reply": 2,
+        "outgoing_forwarded": 19,
+        "outgoing_kernel_info_reply": 2,
+        "outgoing_other": 4,
+        "outgoing_status": 11
+      },
+      "host_fds": 5,
+      "host_threads": 3,
+      "resource_failure": false,
+      "round": 1,
+      "slot": 2
+    },
+    {
+      "attempted": true,
+      "calls": [
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 1,
+            "received": 3,
+            "received_kernel_info_reply": 1,
+            "received_status": 2,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.07989362091757357,
+          "ready": true,
+          "seconds": 0.07989869313314557,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        },
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 2,
+            "received": 3,
+            "received_execute_reply": 1,
+            "received_kernel_info_reply": 1,
+            "received_status": 1,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.04428527504205704,
+          "ready": true,
+          "seconds": 0.04429914290085435,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        }
+      ],
+      "complete": true,
+      "error_type": null,
+      "execution": {
+        "exit_code": 0,
+        "seconds": 13.079871498979628,
+        "timed_out": false
+      },
+      "gateway_counts": {
+        "incoming_execute_request": 2,
+        "incoming_forwarded": 4,
+        "incoming_kernel_info_request": 2,
+        "nudge_done": 1,
+        "nudge_enter": 1,
+        "nudge_state_idle": 1,
+        "outgoing_execute_reply": 2,
+        "outgoing_forwarded": 19,
+        "outgoing_kernel_info_reply": 2,
+        "outgoing_other": 4,
+        "outgoing_status": 11
+      },
+      "host_fds": 5,
+      "host_threads": 3,
+      "resource_failure": false,
+      "round": 1,
+      "slot": 3
+    },
+    {
+      "attempted": true,
+      "calls": [
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 1,
+            "received": 4,
+            "received_kernel_info_reply": 1,
+            "received_status": 3,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.07437477703206241,
+          "ready": true,
+          "seconds": 0.07437791698612273,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        },
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 3,
+            "received": 4,
+            "received_execute_reply": 1,
+            "received_kernel_info_reply": 1,
+            "received_status": 2,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.044006286887452006,
+          "ready": true,
+          "seconds": 0.04401598987169564,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        }
+      ],
+      "complete": true,
+      "error_type": null,
+      "execution": {
+        "exit_code": 0,
+        "seconds": 13.114294616971165,
+        "timed_out": false
+      },
+      "gateway_counts": {
+        "incoming_execute_request": 2,
+        "incoming_forwarded": 4,
+        "incoming_kernel_info_request": 2,
+        "nudge_done": 1,
+        "nudge_enter": 1,
+        "nudge_state_idle": 1,
+        "outgoing_execute_reply": 2,
+        "outgoing_forwarded": 19,
+        "outgoing_kernel_info_reply": 2,
+        "outgoing_other": 4,
+        "outgoing_status": 11
+      },
+      "host_fds": 5,
+      "host_threads": 3,
+      "resource_failure": false,
+      "round": 1,
+      "slot": 4
+    },
+    {
+      "attempted": true,
+      "calls": [
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 1,
+            "received": 4,
+            "received_kernel_info_reply": 1,
+            "received_status": 3,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.07756637199781835,
+          "ready": true,
+          "seconds": 0.07757099508307874,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        },
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 3,
+            "received": 4,
+            "received_execute_reply": 1,
+            "received_kernel_info_reply": 1,
+            "received_status": 2,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.05069304001517594,
+          "ready": true,
+          "seconds": 0.050707560032606125,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        }
+      ],
+      "complete": true,
+      "error_type": null,
+      "execution": {
+        "exit_code": 0,
+        "seconds": 12.93856115709059,
+        "timed_out": false
+      },
+      "gateway_counts": {
+        "incoming_execute_request": 2,
+        "incoming_forwarded": 4,
+        "incoming_kernel_info_request": 2,
+        "nudge_done": 1,
+        "nudge_enter": 1,
+        "nudge_state_idle": 1,
+        "outgoing_execute_reply": 2,
+        "outgoing_forwarded": 19,
+        "outgoing_kernel_info_reply": 2,
+        "outgoing_other": 4,
+        "outgoing_status": 11
+      },
+      "host_fds": 5,
+      "host_threads": 3,
+      "resource_failure": false,
+      "round": 1,
+      "slot": 5
+    },
+    {
+      "attempted": true,
+      "calls": [
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 1,
+            "received": 3,
+            "received_kernel_info_reply": 1,
+            "received_status": 2,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.06261880393140018,
+          "ready": true,
+          "seconds": 0.06262263795360923,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        },
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 3,
+            "received": 4,
+            "received_execute_reply": 1,
+            "received_kernel_info_reply": 1,
+            "received_status": 2,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.048765746876597404,
+          "ready": true,
+          "seconds": 0.04877888294868171,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        }
+      ],
+      "complete": true,
+      "error_type": null,
+      "execution": {
+        "exit_code": 0,
+        "seconds": 12.917750668013468,
+        "timed_out": false
+      },
+      "gateway_counts": {
+        "incoming_execute_request": 2,
+        "incoming_forwarded": 4,
+        "incoming_kernel_info_request": 2,
+        "nudge_done": 1,
+        "nudge_enter": 1,
+        "nudge_state_idle": 1,
+        "outgoing_execute_reply": 2,
+        "outgoing_forwarded": 19,
+        "outgoing_kernel_info_reply": 2,
+        "outgoing_other": 4,
+        "outgoing_status": 11
+      },
+      "host_fds": 5,
+      "host_threads": 3,
+      "resource_failure": false,
+      "round": 2,
+      "slot": 0
+    },
+    {
+      "attempted": true,
+      "calls": [
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 1,
+            "received": 3,
+            "received_kernel_info_reply": 1,
+            "received_status": 2,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.06988553190603852,
+          "ready": true,
+          "seconds": 0.069890514947474,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        },
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 2,
+            "received": 3,
+            "received_execute_reply": 1,
+            "received_kernel_info_reply": 1,
+            "received_status": 1,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.04440728994086385,
+          "ready": true,
+          "seconds": 0.04442032380029559,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        }
+      ],
+      "complete": true,
+      "error_type": null,
+      "execution": {
+        "exit_code": 0,
+        "seconds": 12.984707830939442,
+        "timed_out": false
+      },
+      "gateway_counts": {
+        "incoming_execute_request": 2,
+        "incoming_forwarded": 4,
+        "incoming_kernel_info_request": 2,
+        "nudge_done": 1,
+        "nudge_enter": 1,
+        "nudge_state_idle": 1,
+        "outgoing_execute_reply": 2,
+        "outgoing_forwarded": 19,
+        "outgoing_kernel_info_reply": 2,
+        "outgoing_other": 4,
+        "outgoing_status": 11
+      },
+      "host_fds": 5,
+      "host_threads": 3,
+      "resource_failure": false,
+      "round": 2,
+      "slot": 1
+    },
+    {
+      "attempted": true,
+      "calls": [
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 1,
+            "received": 3,
+            "received_kernel_info_reply": 1,
+            "received_status": 2,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.06858506915159523,
+          "ready": true,
+          "seconds": 0.06858822796493769,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        },
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 2,
+            "received": 3,
+            "received_execute_reply": 1,
+            "received_kernel_info_reply": 1,
+            "received_status": 1,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.044818148016929626,
+          "ready": true,
+          "seconds": 0.04482921096496284,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        }
+      ],
+      "complete": true,
+      "error_type": null,
+      "execution": {
+        "exit_code": 0,
+        "seconds": 13.071234736125916,
+        "timed_out": false
+      },
+      "gateway_counts": {
+        "incoming_execute_request": 2,
+        "incoming_forwarded": 4,
+        "incoming_kernel_info_request": 2,
+        "nudge_done": 1,
+        "nudge_enter": 1,
+        "nudge_state_idle": 1,
+        "outgoing_execute_reply": 2,
+        "outgoing_forwarded": 19,
+        "outgoing_kernel_info_reply": 2,
+        "outgoing_other": 4,
+        "outgoing_status": 11
+      },
+      "host_fds": 5,
+      "host_threads": 3,
+      "resource_failure": false,
+      "round": 2,
+      "slot": 2
+    },
+    {
+      "attempted": true,
+      "calls": [
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 1,
+            "received": 3,
+            "received_kernel_info_reply": 1,
+            "received_status": 2,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.07192979007959366,
+          "ready": true,
+          "seconds": 0.0719355489127338,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        },
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 3,
+            "received": 4,
+            "received_execute_reply": 1,
+            "received_kernel_info_reply": 1,
+            "received_status": 2,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.04931899905204773,
+          "ready": true,
+          "seconds": 0.04932225379161537,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        }
+      ],
+      "complete": true,
+      "error_type": null,
+      "execution": {
+        "exit_code": 0,
+        "seconds": 12.765136000001803,
+        "timed_out": false
+      },
+      "gateway_counts": {
+        "incoming_execute_request": 2,
+        "incoming_forwarded": 4,
+        "incoming_kernel_info_request": 2,
+        "nudge_done": 1,
+        "nudge_enter": 1,
+        "nudge_state_idle": 1,
+        "outgoing_execute_reply": 2,
+        "outgoing_forwarded": 19,
+        "outgoing_kernel_info_reply": 2,
+        "outgoing_other": 4,
+        "outgoing_status": 11
+      },
+      "host_fds": 5,
+      "host_threads": 3,
+      "resource_failure": false,
+      "round": 2,
+      "slot": 3
+    },
+    {
+      "attempted": true,
+      "calls": [
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 1,
+            "received": 3,
+            "received_kernel_info_reply": 1,
+            "received_status": 2,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.0757120989728719,
+          "ready": true,
+          "seconds": 0.07571603101678193,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        },
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 2,
+            "received": 3,
+            "received_execute_reply": 1,
+            "received_kernel_info_reply": 1,
+            "received_status": 1,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.046159248100593686,
+          "ready": true,
+          "seconds": 0.04617145797237754,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        }
+      ],
+      "complete": true,
+      "error_type": null,
+      "execution": {
+        "exit_code": 0,
+        "seconds": 12.97967519517988,
+        "timed_out": false
+      },
+      "gateway_counts": {
+        "incoming_execute_request": 2,
+        "incoming_forwarded": 4,
+        "incoming_kernel_info_request": 2,
+        "nudge_done": 1,
+        "nudge_enter": 1,
+        "nudge_state_idle": 1,
+        "outgoing_execute_reply": 2,
+        "outgoing_forwarded": 19,
+        "outgoing_kernel_info_reply": 2,
+        "outgoing_other": 4,
+        "outgoing_status": 11
+      },
+      "host_fds": 5,
+      "host_threads": 3,
+      "resource_failure": false,
+      "round": 2,
+      "slot": 4
+    },
+    {
+      "attempted": true,
+      "calls": [
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 1,
+            "received": 3,
+            "received_kernel_info_reply": 1,
+            "received_status": 2,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.07808236707933247,
+          "ready": true,
+          "seconds": 0.07808959810063243,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        },
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 3,
+            "received": 4,
+            "received_execute_reply": 1,
+            "received_kernel_info_reply": 1,
+            "received_status": 2,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.0470478639472276,
+          "ready": true,
+          "seconds": 0.0470529580488801,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        }
+      ],
+      "complete": true,
+      "error_type": null,
+      "execution": {
+        "exit_code": 0,
+        "seconds": 12.998816085979342,
+        "timed_out": false
+      },
+      "gateway_counts": {
+        "incoming_execute_request": 2,
+        "incoming_forwarded": 4,
+        "incoming_kernel_info_request": 2,
+        "nudge_done": 1,
+        "nudge_enter": 1,
+        "nudge_state_idle": 1,
+        "outgoing_execute_reply": 2,
+        "outgoing_forwarded": 19,
+        "outgoing_kernel_info_reply": 2,
+        "outgoing_other": 4,
+        "outgoing_status": 11
+      },
+      "host_fds": 5,
+      "host_threads": 3,
+      "resource_failure": false,
+      "round": 2,
+      "slot": 5
+    },
+    {
+      "attempted": true,
+      "calls": [
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 1,
+            "received": 3,
+            "received_kernel_info_reply": 1,
+            "received_status": 2,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.06670698197558522,
+          "ready": true,
+          "seconds": 0.06671106815338135,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        },
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 1,
+            "received": 2,
+            "received_execute_reply": 1,
+            "received_kernel_info_reply": 1,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.04473818396218121,
+          "ready": true,
+          "seconds": 0.0447543750051409,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        }
+      ],
+      "complete": true,
+      "error_type": null,
+      "execution": {
+        "exit_code": 0,
+        "seconds": 12.971556748030707,
+        "timed_out": false
+      },
+      "gateway_counts": {
+        "incoming_execute_request": 2,
+        "incoming_forwarded": 4,
+        "incoming_kernel_info_request": 2,
+        "nudge_done": 1,
+        "nudge_enter": 1,
+        "nudge_state_idle": 1,
+        "outgoing_execute_reply": 2,
+        "outgoing_forwarded": 19,
+        "outgoing_kernel_info_reply": 2,
+        "outgoing_other": 4,
+        "outgoing_status": 11
+      },
+      "host_fds": 5,
+      "host_threads": 3,
+      "resource_failure": false,
+      "round": 3,
+      "slot": 0
+    },
+    {
+      "attempted": true,
+      "calls": [
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 1,
+            "received": 4,
+            "received_kernel_info_reply": 1,
+            "received_status": 3,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.07338676997460425,
+          "ready": true,
+          "seconds": 0.0733921299688518,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        },
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 3,
+            "received": 4,
+            "received_execute_reply": 1,
+            "received_kernel_info_reply": 1,
+            "received_status": 2,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.05666189407929778,
+          "ready": true,
+          "seconds": 0.05666598188690841,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        }
+      ],
+      "complete": true,
+      "error_type": null,
+      "execution": {
+        "exit_code": 0,
+        "seconds": 13.030622813850641,
+        "timed_out": false
+      },
+      "gateway_counts": {
+        "incoming_execute_request": 2,
+        "incoming_forwarded": 4,
+        "incoming_kernel_info_request": 2,
+        "nudge_done": 1,
+        "nudge_enter": 1,
+        "nudge_state_idle": 1,
+        "outgoing_execute_reply": 2,
+        "outgoing_forwarded": 19,
+        "outgoing_kernel_info_reply": 2,
+        "outgoing_other": 4,
+        "outgoing_status": 11
+      },
+      "host_fds": 5,
+      "host_threads": 3,
+      "resource_failure": false,
+      "round": 3,
+      "slot": 1
+    },
+    {
+      "attempted": true,
+      "calls": [
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 1,
+            "received": 3,
+            "received_kernel_info_reply": 1,
+            "received_status": 2,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.07550990697927773,
+          "ready": true,
+          "seconds": 0.07551545603200793,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        },
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 2,
+            "received": 3,
+            "received_execute_reply": 1,
+            "received_kernel_info_reply": 1,
+            "received_status": 1,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.04406097996979952,
+          "ready": true,
+          "seconds": 0.0440795908216387,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        }
+      ],
+      "complete": true,
+      "error_type": null,
+      "execution": {
+        "exit_code": 0,
+        "seconds": 13.021696461830288,
+        "timed_out": false
+      },
+      "gateway_counts": {
+        "incoming_execute_request": 2,
+        "incoming_forwarded": 4,
+        "incoming_kernel_info_request": 2,
+        "nudge_done": 1,
+        "nudge_enter": 1,
+        "nudge_state_idle": 1,
+        "outgoing_execute_reply": 2,
+        "outgoing_forwarded": 19,
+        "outgoing_kernel_info_reply": 2,
+        "outgoing_other": 4,
+        "outgoing_status": 11
+      },
+      "host_fds": 5,
+      "host_threads": 3,
+      "resource_failure": false,
+      "round": 3,
+      "slot": 2
+    },
+    {
+      "attempted": true,
+      "calls": [
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 1,
+            "received": 3,
+            "received_kernel_info_reply": 1,
+            "received_status": 2,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.06995991803705692,
+          "ready": true,
+          "seconds": 0.0699648279696703,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        },
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 3,
+            "received": 4,
+            "received_execute_reply": 1,
+            "received_kernel_info_reply": 1,
+            "received_status": 2,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.04512873408384621,
+          "ready": true,
+          "seconds": 0.0451389760710299,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        }
+      ],
+      "complete": true,
+      "error_type": null,
+      "execution": {
+        "exit_code": 0,
+        "seconds": 12.840178470127285,
+        "timed_out": false
+      },
+      "gateway_counts": {
+        "incoming_execute_request": 2,
+        "incoming_forwarded": 4,
+        "incoming_kernel_info_request": 2,
+        "nudge_done": 1,
+        "nudge_enter": 1,
+        "nudge_state_idle": 1,
+        "outgoing_execute_reply": 2,
+        "outgoing_forwarded": 19,
+        "outgoing_kernel_info_reply": 2,
+        "outgoing_other": 4,
+        "outgoing_status": 11
+      },
+      "host_fds": 5,
+      "host_threads": 3,
+      "resource_failure": false,
+      "round": 3,
+      "slot": 3
+    },
+    {
+      "attempted": true,
+      "calls": [
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 1,
+            "received": 4,
+            "received_kernel_info_reply": 1,
+            "received_status": 3,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.07646558410488069,
+          "ready": true,
+          "seconds": 0.07647047401405871,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        },
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 2,
+            "received": 3,
+            "received_execute_reply": 1,
+            "received_kernel_info_reply": 1,
+            "received_status": 1,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.04459376400336623,
+          "ready": true,
+          "seconds": 0.04460072098299861,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        }
+      ],
+      "complete": true,
+      "error_type": null,
+      "execution": {
+        "exit_code": 0,
+        "seconds": 13.1237141340971,
+        "timed_out": false
+      },
+      "gateway_counts": {
+        "incoming_execute_request": 2,
+        "incoming_forwarded": 4,
+        "incoming_kernel_info_request": 2,
+        "nudge_done": 1,
+        "nudge_enter": 1,
+        "nudge_state_idle": 1,
+        "outgoing_execute_reply": 2,
+        "outgoing_forwarded": 19,
+        "outgoing_kernel_info_reply": 2,
+        "outgoing_other": 4,
+        "outgoing_status": 11
+      },
+      "host_fds": 5,
+      "host_threads": 3,
+      "resource_failure": false,
+      "round": 3,
+      "slot": 4
+    },
+    {
+      "attempted": true,
+      "calls": [
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 1,
+            "received": 3,
+            "received_kernel_info_reply": 1,
+            "received_status": 2,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.07647714600898325,
+          "ready": true,
+          "seconds": 0.0764812040142715,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        },
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 2,
+            "received": 3,
+            "received_execute_reply": 1,
+            "received_kernel_info_reply": 1,
+            "received_status": 1,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.04332411801442504,
+          "ready": true,
+          "seconds": 0.04333532601594925,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        }
+      ],
+      "complete": true,
+      "error_type": null,
+      "execution": {
+        "exit_code": 0,
+        "seconds": 13.13001865008846,
+        "timed_out": false
+      },
+      "gateway_counts": {
+        "incoming_execute_request": 2,
+        "incoming_forwarded": 4,
+        "incoming_kernel_info_request": 2,
+        "nudge_done": 1,
+        "nudge_enter": 1,
+        "nudge_state_idle": 1,
+        "outgoing_execute_reply": 2,
+        "outgoing_forwarded": 19,
+        "outgoing_kernel_info_reply": 2,
+        "outgoing_other": 4,
+        "outgoing_status": 11
+      },
+      "host_fds": 5,
+      "host_threads": 3,
+      "resource_failure": false,
+      "round": 3,
+      "slot": 5
+    },
+    {
+      "attempted": true,
+      "calls": [
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 1,
+            "received": 3,
+            "received_kernel_info_reply": 1,
+            "received_status": 2,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.07716479990631342,
+          "ready": true,
+          "seconds": 0.07716837478801608,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        },
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 3,
+            "received": 4,
+            "received_execute_reply": 1,
+            "received_kernel_info_reply": 1,
+            "received_status": 2,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.04538392391987145,
+          "ready": true,
+          "seconds": 0.0453869909979403,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        }
+      ],
+      "complete": true,
+      "error_type": null,
+      "execution": {
+        "exit_code": 0,
+        "seconds": 13.051736207911745,
+        "timed_out": false
+      },
+      "gateway_counts": {
+        "incoming_execute_request": 2,
+        "incoming_forwarded": 4,
+        "incoming_kernel_info_request": 2,
+        "nudge_done": 1,
+        "nudge_enter": 1,
+        "nudge_state_idle": 1,
+        "outgoing_execute_reply": 2,
+        "outgoing_forwarded": 19,
+        "outgoing_kernel_info_reply": 2,
+        "outgoing_other": 4,
+        "outgoing_status": 11
+      },
+      "host_fds": 5,
+      "host_threads": 3,
+      "resource_failure": false,
+      "round": 4,
+      "slot": 0
+    },
+    {
+      "attempted": true,
+      "calls": [
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 1,
+            "received": 3,
+            "received_kernel_info_reply": 1,
+            "received_status": 2,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.07420194009318948,
+          "ready": true,
+          "seconds": 0.07420573895797133,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        },
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 3,
+            "received": 4,
+            "received_execute_reply": 1,
+            "received_kernel_info_reply": 1,
+            "received_status": 2,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.050182634964585304,
+          "ready": true,
+          "seconds": 0.05019231094047427,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        }
+      ],
+      "complete": true,
+      "error_type": null,
+      "execution": {
+        "exit_code": 0,
+        "seconds": 12.830883916001767,
+        "timed_out": false
+      },
+      "gateway_counts": {
+        "incoming_execute_request": 2,
+        "incoming_forwarded": 4,
+        "incoming_kernel_info_request": 2,
+        "nudge_done": 1,
+        "nudge_enter": 1,
+        "nudge_state_idle": 1,
+        "outgoing_execute_reply": 2,
+        "outgoing_forwarded": 19,
+        "outgoing_kernel_info_reply": 2,
+        "outgoing_other": 4,
+        "outgoing_status": 11
+      },
+      "host_fds": 5,
+      "host_threads": 3,
+      "resource_failure": false,
+      "round": 4,
+      "slot": 1
+    },
+    {
+      "attempted": true,
+      "calls": [
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 1,
+            "received": 3,
+            "received_kernel_info_reply": 1,
+            "received_status": 2,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.07442054385319352,
+          "ready": true,
+          "seconds": 0.07442834903486073,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        },
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 3,
+            "received": 4,
+            "received_execute_reply": 1,
+            "received_kernel_info_reply": 1,
+            "received_status": 2,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.04596045799553394,
+          "ready": true,
+          "seconds": 0.045968664111569524,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        }
+      ],
+      "complete": true,
+      "error_type": null,
+      "execution": {
+        "exit_code": 0,
+        "seconds": 12.913966946071014,
+        "timed_out": false
+      },
+      "gateway_counts": {
+        "incoming_execute_request": 2,
+        "incoming_forwarded": 4,
+        "incoming_kernel_info_request": 2,
+        "nudge_done": 1,
+        "nudge_enter": 1,
+        "nudge_state_idle": 1,
+        "outgoing_execute_reply": 2,
+        "outgoing_forwarded": 19,
+        "outgoing_kernel_info_reply": 2,
+        "outgoing_other": 4,
+        "outgoing_status": 11
+      },
+      "host_fds": 5,
+      "host_threads": 3,
+      "resource_failure": false,
+      "round": 4,
+      "slot": 2
+    },
+    {
+      "attempted": true,
+      "calls": [
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 1,
+            "received": 3,
+            "received_kernel_info_reply": 1,
+            "received_status": 2,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.07094477489590645,
+          "ready": true,
+          "seconds": 0.07094823592342436,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        },
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 2,
+            "received": 3,
+            "received_execute_reply": 1,
+            "received_kernel_info_reply": 1,
+            "received_status": 1,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.047730361111462116,
+          "ready": true,
+          "seconds": 0.0477339921053499,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        }
+      ],
+      "complete": true,
+      "error_type": null,
+      "execution": {
+        "exit_code": 0,
+        "seconds": 13.002016422804445,
+        "timed_out": false
+      },
+      "gateway_counts": {
+        "incoming_execute_request": 2,
+        "incoming_forwarded": 4,
+        "incoming_kernel_info_request": 2,
+        "nudge_done": 1,
+        "nudge_enter": 1,
+        "nudge_state_idle": 1,
+        "outgoing_execute_reply": 2,
+        "outgoing_forwarded": 19,
+        "outgoing_kernel_info_reply": 2,
+        "outgoing_other": 4,
+        "outgoing_status": 11
+      },
+      "host_fds": 5,
+      "host_threads": 3,
+      "resource_failure": false,
+      "round": 4,
+      "slot": 3
+    },
+    {
+      "attempted": true,
+      "calls": [
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 1,
+            "received": 4,
+            "received_kernel_info_reply": 1,
+            "received_status": 3,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.07164407311938703,
+          "ready": true,
+          "seconds": 0.07164856814779341,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        },
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 3,
+            "received": 4,
+            "received_execute_reply": 1,
+            "received_kernel_info_reply": 1,
+            "received_status": 2,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.04489636700600386,
+          "ready": true,
+          "seconds": 0.044900035951286554,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        }
+      ],
+      "complete": true,
+      "error_type": null,
+      "execution": {
+        "exit_code": 0,
+        "seconds": 13.025598790030926,
+        "timed_out": false
+      },
+      "gateway_counts": {
+        "incoming_execute_request": 2,
+        "incoming_forwarded": 4,
+        "incoming_kernel_info_request": 2,
+        "nudge_done": 1,
+        "nudge_enter": 1,
+        "nudge_state_idle": 1,
+        "outgoing_execute_reply": 2,
+        "outgoing_forwarded": 19,
+        "outgoing_kernel_info_reply": 2,
+        "outgoing_other": 4,
+        "outgoing_status": 11
+      },
+      "host_fds": 5,
+      "host_threads": 3,
+      "resource_failure": false,
+      "round": 4,
+      "slot": 4
+    },
+    {
+      "attempted": true,
+      "calls": [
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 1,
+            "received": 3,
+            "received_kernel_info_reply": 1,
+            "received_status": 2,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.07709004217758775,
+          "ready": true,
+          "seconds": 0.07709424616768956,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        },
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 3,
+            "received": 4,
+            "received_execute_reply": 1,
+            "received_kernel_info_reply": 1,
+            "received_status": 2,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.0458752631675452,
+          "ready": true,
+          "seconds": 0.04587649810127914,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        }
+      ],
+      "complete": true,
+      "error_type": null,
+      "execution": {
+        "exit_code": 0,
+        "seconds": 13.09647896210663,
+        "timed_out": false
+      },
+      "gateway_counts": {
+        "incoming_execute_request": 2,
+        "incoming_forwarded": 4,
+        "incoming_kernel_info_request": 2,
+        "nudge_done": 1,
+        "nudge_enter": 1,
+        "nudge_state_idle": 1,
+        "outgoing_execute_reply": 2,
+        "outgoing_forwarded": 19,
+        "outgoing_kernel_info_reply": 2,
+        "outgoing_other": 4,
+        "outgoing_status": 11
+      },
+      "host_fds": 5,
+      "host_threads": 3,
+      "resource_failure": false,
+      "round": 4,
+      "slot": 5
+    },
+    {
+      "attempted": true,
+      "calls": [
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 1,
+            "received": 3,
+            "received_kernel_info_reply": 1,
+            "received_status": 2,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.06828935397788882,
+          "ready": true,
+          "seconds": 0.06829904695041478,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        },
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 3,
+            "received": 4,
+            "received_execute_reply": 1,
+            "received_kernel_info_reply": 1,
+            "received_status": 2,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.043304694816470146,
+          "ready": true,
+          "seconds": 0.04330929508432746,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        }
+      ],
+      "complete": true,
+      "error_type": null,
+      "execution": {
+        "exit_code": 0,
+        "seconds": 13.211063069058582,
+        "timed_out": false
+      },
+      "gateway_counts": {
+        "incoming_execute_request": 2,
+        "incoming_forwarded": 4,
+        "incoming_kernel_info_request": 2,
+        "nudge_done": 1,
+        "nudge_enter": 1,
+        "nudge_state_idle": 1,
+        "outgoing_execute_reply": 2,
+        "outgoing_forwarded": 19,
+        "outgoing_kernel_info_reply": 2,
+        "outgoing_other": 4,
+        "outgoing_status": 11
+      },
+      "host_fds": 5,
+      "host_threads": 3,
+      "resource_failure": false,
+      "round": 5,
+      "slot": 0
+    },
+    {
+      "attempted": true,
+      "calls": [
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 1,
+            "received": 3,
+            "received_kernel_info_reply": 1,
+            "received_status": 2,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.07688894611783326,
+          "ready": true,
+          "seconds": 0.07689253613352776,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        },
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 1,
+            "received": 2,
+            "received_execute_reply": 1,
+            "received_kernel_info_reply": 1,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.0465783909894526,
+          "ready": true,
+          "seconds": 0.046583650866523385,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        }
+      ],
+      "complete": true,
+      "error_type": null,
+      "execution": {
+        "exit_code": 0,
+        "seconds": 13.143504861975089,
+        "timed_out": false
+      },
+      "gateway_counts": {
+        "incoming_execute_request": 2,
+        "incoming_forwarded": 4,
+        "incoming_kernel_info_request": 2,
+        "nudge_done": 1,
+        "nudge_enter": 1,
+        "nudge_state_idle": 1,
+        "outgoing_execute_reply": 2,
+        "outgoing_forwarded": 19,
+        "outgoing_kernel_info_reply": 2,
+        "outgoing_other": 4,
+        "outgoing_status": 11
+      },
+      "host_fds": 5,
+      "host_threads": 3,
+      "resource_failure": false,
+      "round": 5,
+      "slot": 1
+    },
+    {
+      "attempted": true,
+      "calls": [
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 1,
+            "received": 3,
+            "received_kernel_info_reply": 1,
+            "received_status": 2,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.07833899487741292,
+          "ready": true,
+          "seconds": 0.07834258489310741,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        },
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 3,
+            "received": 4,
+            "received_execute_reply": 1,
+            "received_kernel_info_reply": 1,
+            "received_status": 2,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.04428912396542728,
+          "ready": true,
+          "seconds": 0.04429921298287809,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        }
+      ],
+      "complete": true,
+      "error_type": null,
+      "execution": {
+        "exit_code": 0,
+        "seconds": 13.101986148161814,
+        "timed_out": false
+      },
+      "gateway_counts": {
+        "incoming_execute_request": 2,
+        "incoming_forwarded": 4,
+        "incoming_kernel_info_request": 2,
+        "nudge_done": 1,
+        "nudge_enter": 1,
+        "nudge_state_idle": 1,
+        "outgoing_execute_reply": 2,
+        "outgoing_forwarded": 19,
+        "outgoing_kernel_info_reply": 2,
+        "outgoing_other": 4,
+        "outgoing_status": 11
+      },
+      "host_fds": 5,
+      "host_threads": 3,
+      "resource_failure": false,
+      "round": 5,
+      "slot": 2
+    },
+    {
+      "attempted": true,
+      "calls": [
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 1,
+            "received": 4,
+            "received_kernel_info_reply": 1,
+            "received_status": 3,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.08814781694673002,
+          "ready": true,
+          "seconds": 0.08815248403698206,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        },
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 2,
+            "received": 3,
+            "received_execute_reply": 1,
+            "received_kernel_info_reply": 1,
+            "received_status": 1,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.04589866986498237,
+          "ready": true,
+          "seconds": 0.0459146429784596,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        }
+      ],
+      "complete": true,
+      "error_type": null,
+      "execution": {
+        "exit_code": 0,
+        "seconds": 13.111643105978146,
+        "timed_out": false
+      },
+      "gateway_counts": {
+        "incoming_execute_request": 2,
+        "incoming_forwarded": 4,
+        "incoming_kernel_info_request": 2,
+        "nudge_done": 1,
+        "nudge_enter": 1,
+        "nudge_state_idle": 1,
+        "outgoing_execute_reply": 2,
+        "outgoing_forwarded": 19,
+        "outgoing_kernel_info_reply": 2,
+        "outgoing_other": 4,
+        "outgoing_status": 11
+      },
+      "host_fds": 5,
+      "host_threads": 3,
+      "resource_failure": false,
+      "round": 5,
+      "slot": 3
+    },
+    {
+      "attempted": true,
+      "calls": [
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 1,
+            "received": 4,
+            "received_kernel_info_reply": 1,
+            "received_status": 3,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.07587409997358918,
+          "ready": true,
+          "seconds": 0.07587787392549217,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        },
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 3,
+            "received": 4,
+            "received_execute_reply": 1,
+            "received_kernel_info_reply": 1,
+            "received_status": 2,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.047107608057558537,
+          "ready": true,
+          "seconds": 0.04710998199880123,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        }
+      ],
+      "complete": true,
+      "error_type": null,
+      "execution": {
+        "exit_code": 0,
+        "seconds": 13.056487909052521,
+        "timed_out": false
+      },
+      "gateway_counts": {
+        "incoming_execute_request": 2,
+        "incoming_forwarded": 4,
+        "incoming_kernel_info_request": 2,
+        "nudge_done": 1,
+        "nudge_enter": 1,
+        "nudge_state_idle": 1,
+        "outgoing_execute_reply": 2,
+        "outgoing_forwarded": 19,
+        "outgoing_kernel_info_reply": 2,
+        "outgoing_other": 4,
+        "outgoing_status": 11
+      },
+      "host_fds": 6,
+      "host_threads": 4,
+      "resource_failure": false,
+      "round": 5,
+      "slot": 4
+    },
+    {
+      "attempted": true,
+      "calls": [
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 1,
+            "received": 3,
+            "received_kernel_info_reply": 1,
+            "received_status": 2,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.0769888530485332,
+          "ready": true,
+          "seconds": 0.07699319394305348,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        },
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 2,
+            "received": 3,
+            "received_execute_reply": 1,
+            "received_kernel_info_reply": 1,
+            "received_status": 1,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.044334652135148644,
+          "ready": true,
+          "seconds": 0.044345372123643756,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        }
+      ],
+      "complete": true,
+      "error_type": null,
+      "execution": {
+        "exit_code": 0,
+        "seconds": 13.245443640975282,
+        "timed_out": false
+      },
+      "gateway_counts": {
+        "incoming_execute_request": 2,
+        "incoming_forwarded": 4,
+        "incoming_kernel_info_request": 2,
+        "nudge_done": 1,
+        "nudge_enter": 1,
+        "nudge_state_idle": 1,
+        "outgoing_execute_reply": 2,
+        "outgoing_forwarded": 19,
+        "outgoing_kernel_info_reply": 2,
+        "outgoing_other": 4,
+        "outgoing_status": 11
+      },
+      "host_fds": 5,
+      "host_threads": 3,
+      "resource_failure": false,
+      "round": 5,
+      "slot": 5
+    },
+    {
+      "attempted": true,
+      "calls": [
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 1,
+            "received": 3,
+            "received_kernel_info_reply": 1,
+            "received_status": 2,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.07428585109300911,
+          "ready": true,
+          "seconds": 0.07429835805669427,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        },
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 3,
+            "received": 4,
+            "received_execute_reply": 1,
+            "received_kernel_info_reply": 1,
+            "received_status": 2,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.046068870928138494,
+          "ready": true,
+          "seconds": 0.04608779214322567,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        }
+      ],
+      "complete": true,
+      "error_type": null,
+      "execution": {
+        "exit_code": 0,
+        "seconds": 13.015606618020684,
+        "timed_out": false
+      },
+      "gateway_counts": {
+        "incoming_execute_request": 2,
+        "incoming_forwarded": 4,
+        "incoming_kernel_info_request": 2,
+        "nudge_done": 1,
+        "nudge_enter": 1,
+        "nudge_state_idle": 1,
+        "outgoing_execute_reply": 2,
+        "outgoing_forwarded": 19,
+        "outgoing_kernel_info_reply": 2,
+        "outgoing_other": 4,
+        "outgoing_status": 11
+      },
+      "host_fds": 5,
+      "host_threads": 3,
+      "resource_failure": false,
+      "round": 6,
+      "slot": 0
+    },
+    {
+      "attempted": true,
+      "calls": [
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 1,
+            "received": 4,
+            "received_kernel_info_reply": 1,
+            "received_status": 3,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.08174740010872483,
+          "ready": true,
+          "seconds": 0.08175103086978197,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        },
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 3,
+            "received": 4,
+            "received_execute_reply": 1,
+            "received_kernel_info_reply": 1,
+            "received_status": 2,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.04495063913054764,
+          "ready": true,
+          "seconds": 0.04495843010954559,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        }
+      ],
+      "complete": true,
+      "error_type": null,
+      "execution": {
+        "exit_code": 0,
+        "seconds": 12.985753811197355,
+        "timed_out": false
+      },
+      "gateway_counts": {
+        "incoming_execute_request": 2,
+        "incoming_forwarded": 4,
+        "incoming_kernel_info_request": 2,
+        "nudge_done": 1,
+        "nudge_enter": 1,
+        "nudge_state_idle": 1,
+        "outgoing_execute_reply": 2,
+        "outgoing_forwarded": 19,
+        "outgoing_kernel_info_reply": 2,
+        "outgoing_other": 4,
+        "outgoing_status": 11
+      },
+      "host_fds": 5,
+      "host_threads": 3,
+      "resource_failure": false,
+      "round": 6,
+      "slot": 1
+    },
+    {
+      "attempted": true,
+      "calls": [
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 1,
+            "received": 3,
+            "received_kernel_info_reply": 1,
+            "received_status": 2,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.09668902098201215,
+          "ready": true,
+          "seconds": 0.09669678891077638,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        },
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 3,
+            "received": 4,
+            "received_execute_reply": 1,
+            "received_kernel_info_reply": 1,
+            "received_status": 2,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.04688105103559792,
+          "ready": true,
+          "seconds": 0.046892393846064806,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        }
+      ],
+      "complete": true,
+      "error_type": null,
+      "execution": {
+        "exit_code": 0,
+        "seconds": 13.17461573309265,
+        "timed_out": false
+      },
+      "gateway_counts": {
+        "incoming_execute_request": 2,
+        "incoming_forwarded": 4,
+        "incoming_kernel_info_request": 2,
+        "nudge_done": 1,
+        "nudge_enter": 1,
+        "nudge_state_idle": 1,
+        "outgoing_execute_reply": 2,
+        "outgoing_forwarded": 19,
+        "outgoing_kernel_info_reply": 2,
+        "outgoing_other": 4,
+        "outgoing_status": 11
+      },
+      "host_fds": 5,
+      "host_threads": 3,
+      "resource_failure": false,
+      "round": 6,
+      "slot": 2
+    },
+    {
+      "attempted": true,
+      "calls": [
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 1,
+            "received": 4,
+            "received_kernel_info_reply": 1,
+            "received_status": 3,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.08050873596221209,
+          "ready": true,
+          "seconds": 0.08051465218886733,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        },
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 3,
+            "received": 4,
+            "received_execute_reply": 1,
+            "received_kernel_info_reply": 1,
+            "received_status": 2,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.04614757793024182,
+          "ready": true,
+          "seconds": 0.04615864693187177,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        }
+      ],
+      "complete": true,
+      "error_type": null,
+      "execution": {
+        "exit_code": 0,
+        "seconds": 12.917157605988905,
+        "timed_out": false
+      },
+      "gateway_counts": {
+        "incoming_execute_request": 2,
+        "incoming_forwarded": 4,
+        "incoming_kernel_info_request": 2,
+        "nudge_done": 1,
+        "nudge_enter": 1,
+        "nudge_state_idle": 1,
+        "outgoing_execute_reply": 2,
+        "outgoing_forwarded": 19,
+        "outgoing_kernel_info_reply": 2,
+        "outgoing_other": 4,
+        "outgoing_status": 11
+      },
+      "host_fds": 5,
+      "host_threads": 3,
+      "resource_failure": false,
+      "round": 6,
+      "slot": 3
+    },
+    {
+      "attempted": true,
+      "calls": [
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 1,
+            "received": 3,
+            "received_kernel_info_reply": 1,
+            "received_status": 2,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.07608502195216715,
+          "ready": true,
+          "seconds": 0.07608932885341346,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        },
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 2,
+            "received": 3,
+            "received_execute_reply": 1,
+            "received_kernel_info_reply": 1,
+            "received_status": 1,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.04713484598323703,
+          "ready": true,
+          "seconds": 0.04714783909730613,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        }
+      ],
+      "complete": true,
+      "error_type": null,
+      "execution": {
+        "exit_code": 0,
+        "seconds": 13.019949940033257,
+        "timed_out": false
+      },
+      "gateway_counts": {
+        "incoming_execute_request": 2,
+        "incoming_forwarded": 4,
+        "incoming_kernel_info_request": 2,
+        "nudge_done": 1,
+        "nudge_enter": 1,
+        "nudge_state_idle": 1,
+        "outgoing_execute_reply": 2,
+        "outgoing_forwarded": 19,
+        "outgoing_kernel_info_reply": 2,
+        "outgoing_other": 4,
+        "outgoing_status": 11
+      },
+      "host_fds": 5,
+      "host_threads": 3,
+      "resource_failure": false,
+      "round": 6,
+      "slot": 4
+    },
+    {
+      "attempted": true,
+      "calls": [
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 1,
+            "received": 3,
+            "received_kernel_info_reply": 1,
+            "received_status": 2,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.07219713996164501,
+          "ready": true,
+          "seconds": 0.07220526691526175,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        },
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 3,
+            "received": 4,
+            "received_execute_reply": 1,
+            "received_kernel_info_reply": 1,
+            "received_status": 2,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.045369073981419206,
+          "ready": true,
+          "seconds": 0.04537942982278764,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        }
+      ],
+      "complete": true,
+      "error_type": null,
+      "execution": {
+        "exit_code": 0,
+        "seconds": 13.040956629207358,
+        "timed_out": false
+      },
+      "gateway_counts": {
+        "incoming_execute_request": 2,
+        "incoming_forwarded": 4,
+        "incoming_kernel_info_request": 2,
+        "nudge_done": 1,
+        "nudge_enter": 1,
+        "nudge_state_idle": 1,
+        "outgoing_execute_reply": 2,
+        "outgoing_forwarded": 19,
+        "outgoing_kernel_info_reply": 2,
+        "outgoing_other": 4,
+        "outgoing_status": 11
+      },
+      "host_fds": 5,
+      "host_threads": 3,
+      "resource_failure": false,
+      "round": 6,
+      "slot": 5
+    },
+    {
+      "attempted": true,
+      "calls": [
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 1,
+            "received": 4,
+            "received_kernel_info_reply": 1,
+            "received_status": 3,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.074881809996441,
+          "ready": true,
+          "seconds": 0.0748857359867543,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        },
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 2,
+            "received": 3,
+            "received_execute_reply": 1,
+            "received_kernel_info_reply": 1,
+            "received_status": 1,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.04425262496806681,
+          "ready": true,
+          "seconds": 0.04426337801851332,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        }
+      ],
+      "complete": true,
+      "error_type": null,
+      "execution": {
+        "exit_code": 0,
+        "seconds": 13.139470847090706,
+        "timed_out": false
+      },
+      "gateway_counts": {
+        "incoming_execute_request": 2,
+        "incoming_forwarded": 4,
+        "incoming_kernel_info_request": 2,
+        "nudge_done": 1,
+        "nudge_enter": 1,
+        "nudge_state_idle": 1,
+        "outgoing_execute_reply": 2,
+        "outgoing_forwarded": 19,
+        "outgoing_kernel_info_reply": 2,
+        "outgoing_other": 4,
+        "outgoing_status": 11
+      },
+      "host_fds": 5,
+      "host_threads": 3,
+      "resource_failure": false,
+      "round": 7,
+      "slot": 0
+    },
+    {
+      "attempted": true,
+      "calls": [
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 1,
+            "received": 3,
+            "received_kernel_info_reply": 1,
+            "received_status": 2,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.07529675378464162,
+          "ready": true,
+          "seconds": 0.07530117500573397,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        },
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 3,
+            "received": 4,
+            "received_execute_reply": 1,
+            "received_kernel_info_reply": 1,
+            "received_status": 2,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.04526391997933388,
+          "ready": true,
+          "seconds": 0.04527541412971914,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        }
+      ],
+      "complete": true,
+      "error_type": null,
+      "execution": {
+        "exit_code": 0,
+        "seconds": 13.052781347883865,
+        "timed_out": false
+      },
+      "gateway_counts": {
+        "incoming_execute_request": 2,
+        "incoming_forwarded": 4,
+        "incoming_kernel_info_request": 2,
+        "nudge_done": 1,
+        "nudge_enter": 1,
+        "nudge_state_idle": 1,
+        "outgoing_execute_reply": 2,
+        "outgoing_forwarded": 19,
+        "outgoing_kernel_info_reply": 2,
+        "outgoing_other": 4,
+        "outgoing_status": 11
+      },
+      "host_fds": 5,
+      "host_threads": 3,
+      "resource_failure": false,
+      "round": 7,
+      "slot": 1
+    },
+    {
+      "attempted": true,
+      "calls": [
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 1,
+            "received": 3,
+            "received_kernel_info_reply": 1,
+            "received_status": 2,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.0712131280452013,
+          "ready": true,
+          "seconds": 0.07121763192117214,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        },
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 3,
+            "received": 4,
+            "received_execute_reply": 1,
+            "received_kernel_info_reply": 1,
+            "received_status": 2,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.04499076306819916,
+          "ready": true,
+          "seconds": 0.04499479103833437,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        }
+      ],
+      "complete": true,
+      "error_type": null,
+      "execution": {
+        "exit_code": 0,
+        "seconds": 12.987168876919895,
+        "timed_out": false
+      },
+      "gateway_counts": {
+        "incoming_execute_request": 2,
+        "incoming_forwarded": 4,
+        "incoming_kernel_info_request": 2,
+        "nudge_done": 1,
+        "nudge_enter": 1,
+        "nudge_state_idle": 1,
+        "outgoing_execute_reply": 2,
+        "outgoing_forwarded": 19,
+        "outgoing_kernel_info_reply": 2,
+        "outgoing_other": 4,
+        "outgoing_status": 11
+      },
+      "host_fds": 5,
+      "host_threads": 3,
+      "resource_failure": false,
+      "round": 7,
+      "slot": 2
+    },
+    {
+      "attempted": true,
+      "calls": [
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 1,
+            "received": 3,
+            "received_kernel_info_reply": 1,
+            "received_status": 2,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.06549590779468417,
+          "ready": true,
+          "seconds": 0.06549925613217056,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        },
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 2,
+            "received": 3,
+            "received_execute_reply": 1,
+            "received_kernel_info_reply": 1,
+            "received_status": 1,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.04501612694002688,
+          "ready": true,
+          "seconds": 0.04502631211653352,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        }
+      ],
+      "complete": true,
+      "error_type": null,
+      "execution": {
+        "exit_code": 0,
+        "seconds": 12.875855083111674,
+        "timed_out": false
+      },
+      "gateway_counts": {
+        "incoming_execute_request": 2,
+        "incoming_forwarded": 4,
+        "incoming_kernel_info_request": 2,
+        "nudge_done": 1,
+        "nudge_enter": 1,
+        "nudge_state_idle": 1,
+        "outgoing_execute_reply": 2,
+        "outgoing_forwarded": 19,
+        "outgoing_kernel_info_reply": 2,
+        "outgoing_other": 4,
+        "outgoing_status": 11
+      },
+      "host_fds": 5,
+      "host_threads": 3,
+      "resource_failure": false,
+      "round": 7,
+      "slot": 3
+    },
+    {
+      "attempted": true,
+      "calls": [
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 1,
+            "received": 3,
+            "received_kernel_info_reply": 1,
+            "received_status": 2,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.07012994401156902,
+          "ready": true,
+          "seconds": 0.07013404695317149,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        },
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 3,
+            "received": 4,
+            "received_execute_reply": 1,
+            "received_kernel_info_reply": 1,
+            "received_status": 2,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.04610927193425596,
+          "ready": true,
+          "seconds": 0.04611818306148052,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        }
+      ],
+      "complete": true,
+      "error_type": null,
+      "execution": {
+        "exit_code": 0,
+        "seconds": 12.979081325931475,
+        "timed_out": false
+      },
+      "gateway_counts": {
+        "incoming_execute_request": 2,
+        "incoming_forwarded": 4,
+        "incoming_kernel_info_request": 2,
+        "nudge_done": 1,
+        "nudge_enter": 1,
+        "nudge_state_idle": 1,
+        "outgoing_execute_reply": 2,
+        "outgoing_forwarded": 19,
+        "outgoing_kernel_info_reply": 2,
+        "outgoing_other": 4,
+        "outgoing_status": 11
+      },
+      "host_fds": 5,
+      "host_threads": 3,
+      "resource_failure": false,
+      "round": 7,
+      "slot": 4
+    },
+    {
+      "attempted": true,
+      "calls": [
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 1,
+            "received": 3,
+            "received_kernel_info_reply": 1,
+            "received_status": 2,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.07214699010364711,
+          "ready": true,
+          "seconds": 0.0721500120125711,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        },
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 2,
+            "received": 3,
+            "received_execute_reply": 1,
+            "received_kernel_info_reply": 1,
+            "received_status": 1,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.04609662597067654,
+          "ready": true,
+          "seconds": 0.04610666004009545,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        }
+      ],
+      "complete": true,
+      "error_type": null,
+      "execution": {
+        "exit_code": 0,
+        "seconds": 12.894331320887432,
+        "timed_out": false
+      },
+      "gateway_counts": {
+        "incoming_execute_request": 2,
+        "incoming_forwarded": 4,
+        "incoming_kernel_info_request": 2,
+        "nudge_done": 1,
+        "nudge_enter": 1,
+        "nudge_state_idle": 1,
+        "outgoing_execute_reply": 2,
+        "outgoing_forwarded": 19,
+        "outgoing_kernel_info_reply": 2,
+        "outgoing_other": 4,
+        "outgoing_status": 11
+      },
+      "host_fds": 5,
+      "host_threads": 3,
+      "resource_failure": false,
+      "round": 7,
+      "slot": 5
+    }
+  ],
+  "scheduler_state": "COMPLETED",
+  "uid_threads_peak": 256,
+  "unstarted": 0
+}

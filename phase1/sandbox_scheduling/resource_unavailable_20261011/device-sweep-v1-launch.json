@@ -1,0 +1,10 @@
+{
+  "job": "17559",
+  "root": "/research/d7/spc/yzyang4/resource-device-sweep-20261011-v1",
+  "plan_sha256": "5954490a7b23ad9dc6a4d038f1fa5af2eac8a238aaeafb9c0e8d3bc5bc41990c",
+  "gpu_seconds_cap": 4800,
+  "status_at_record": "Submitted, not yet independently verified running or complete",
+  "no_model": true,
+  "no_task_data": true,
+  "no_api": true
+}

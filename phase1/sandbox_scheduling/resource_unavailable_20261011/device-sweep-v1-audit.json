@@ -1,0 +1,1035 @@
+{
+  "boundary": "Only eight owned-GPU initialization/arithmetic diagnostics. No model, task, capacity, speedup, quality or historical EAGAIN causal claim.",
+  "closed_sha256": "6b1ed38214d032a2c5a73a5c8cd53233c3cf6b09f29fd66837c9c763f89de7b4",
+  "cpu_sets_disjoint": true,
+  "cuinit_status_counts": {
+    "host-default": {
+      "0": 7,
+      "100": 1
+    },
+    "host-unset": {
+      "0": 7,
+      "100": 1
+    },
+    "image-default": {
+      "0": 7,
+      "100": 1
+    },
+    "image-unset": {
+      "0": 7,
+      "100": 1
+    }
+  },
+  "default_device_gate": false,
+  "default_host_image_aligned": false,
+  "expected_subprobes": 32,
+  "gpu_seconds": 200,
+  "gpu_seconds_cap": 4800,
+  "identities": [
+    {
+      "affinity": [
+        24,
+        25,
+        26,
+        27,
+        56,
+        57,
+        58,
+        59
+      ],
+      "job": "17559",
+      "masks": {
+        "CUDA_VISIBLE_DEVICES": "0",
+        "SLURM_JOB_GPUS": "0,1,2,3,4,5,6,7",
+        "SLURM_STEP_GPUS": "6"
+      },
+      "physical_cores": [
+        [
+          1,
+          8
+        ],
+        [
+          1,
+          9
+        ],
+        [
+          1,
+          10
+        ],
+        [
+          1,
+          11
+        ]
+      ],
+      "step": "6"
+    },
+    {
+      "affinity": [
+        0,
+        1,
+        2,
+        3,
+        32,
+        33,
+        34,
+        35
+      ],
+      "job": "17559",
+      "masks": {
+        "CUDA_VISIBLE_DEVICES": "0",
+        "SLURM_JOB_GPUS": "0,1,2,3,4,5,6,7",
+        "SLURM_STEP_GPUS": "0"
+      },
+      "physical_cores": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ]
+      ],
+      "step": "0"
+    },
+    {
+      "affinity": [
+        12,
+        13,
+        14,
+        15,
+        44,
+        45,
+        46,
+        47
+      ],
+      "job": "17559",
+      "masks": {
+        "CUDA_VISIBLE_DEVICES": "0",
+        "SLURM_JOB_GPUS": "0,1,2,3,4,5,6,7",
+        "SLURM_STEP_GPUS": "3"
+      },
+      "physical_cores": [
+        [
+          0,
+          12
+        ],
+        [
+          0,
+          13
+        ],
+        [
+          0,
+          14
+        ],
+        [
+          0,
+          15
+        ]
+      ],
+      "step": "3"
+    },
+    {
+      "affinity": [
+        20,
+        21,
+        22,
+        23,
+        52,
+        53,
+        54,
+        55
+      ],
+      "job": "17559",
+      "masks": {
+        "CUDA_VISIBLE_DEVICES": "0",
+        "SLURM_JOB_GPUS": "0,1,2,3,4,5,6,7",
+        "SLURM_STEP_GPUS": "5"
+      },
+      "physical_cores": [
+        [
+          1,
+          4
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          1,
+          6
+        ],
+        [
+          1,
+          7
+        ]
+      ],
+      "step": "5"
+    },
+    {
+      "affinity": [
+        16,
+        17,
+        18,
+        19,
+        48,
+        49,
+        50,
+        51
+      ],
+      "job": "17559",
+      "masks": {
+        "CUDA_VISIBLE_DEVICES": "0",
+        "SLURM_JOB_GPUS": "0,1,2,3,4,5,6,7",
+        "SLURM_STEP_GPUS": "4"
+      },
+      "physical_cores": [
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ]
+      ],
+      "step": "4"
+    },
+    {
+      "affinity": [
+        4,
+        5,
+        6,
+        7,
+        36,
+        37,
+        38,
+        39
+      ],
+      "job": "17559",
+      "masks": {
+        "CUDA_VISIBLE_DEVICES": "0",
+        "SLURM_JOB_GPUS": "0,1,2,3,4,5,6,7",
+        "SLURM_STEP_GPUS": "1"
+      },
+      "physical_cores": [
+        [
+          0,
+          4
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          0,
+          6
+        ],
+        [
+          0,
+          7
+        ]
+      ],
+      "step": "1"
+    },
+    {
+      "affinity": [
+        8,
+        9,
+        10,
+        11,
+        40,
+        41,
+        42,
+        43
+      ],
+      "job": "17559",
+      "masks": {
+        "CUDA_VISIBLE_DEVICES": "0",
+        "SLURM_JOB_GPUS": "0,1,2,3,4,5,6,7",
+        "SLURM_STEP_GPUS": "2"
+      },
+      "physical_cores": [
+        [
+          0,
+          8
+        ],
+        [
+          0,
+          9
+        ],
+        [
+          0,
+          10
+        ],
+        [
+          0,
+          11
+        ]
+      ],
+      "step": "2"
+    },
+    {
+      "affinity": [
+        28,
+        29,
+        30,
+        31,
+        60,
+        61,
+        62,
+        63
+      ],
+      "job": "17559",
+      "masks": {
+        "CUDA_VISIBLE_DEVICES": "0",
+        "SLURM_JOB_GPUS": "0,1,2,3,4,5,6,7",
+        "SLURM_STEP_GPUS": "7"
+      },
+      "physical_cores": [
+        [
+          1,
+          12
+        ],
+        [
+          1,
+          13
+        ],
+        [
+          1,
+          14
+        ],
+        [
+          1,
+          15
+        ]
+      ],
+      "step": "7"
+    }
+  ],
+  "job": "17559",
+  "observed_slots": 8,
+  "observed_subprobes": 32,
+  "physical_cores": 32,
+  "plan_sha256": "5954490a7b23ad9dc6a4d038f1fa5af2eac8a238aaeafb9c0e8d3bc5bc41990c",
+  "planned_slots": 8,
+  "rows": [
+    {
+      "index": 0,
+      "observed": 4,
+      "rows": [
+        {
+          "mask": "default",
+          "mode": "host",
+          "probe": {
+            "affinity_count": 8,
+            "arithmetic_pass": null,
+            "arithmetic_requested": false,
+            "count_rc": 0,
+            "cuinit_name": "CUDA_SUCCESS",
+            "cuinit_rc": 0,
+            "mask": "0",
+            "pid": 3437672,
+            "uuids": [
+              "GPU-c6d6a269-5c9b-3055-bc5c-abeae987995a"
+            ],
+            "visible_devices": 1
+          },
+          "returncode": 0,
+          "seconds": 1.5023963451385498
+        },
+        {
+          "mask": "unset",
+          "mode": "host",
+          "probe": {
+            "affinity_count": 8,
+            "arithmetic_pass": null,
+            "arithmetic_requested": false,
+            "count_rc": 0,
+            "cuinit_name": "CUDA_SUCCESS",
+            "cuinit_rc": 0,
+            "mask": null,
+            "pid": 3437764,
+            "uuids": [
+              "GPU-c6d6a269-5c9b-3055-bc5c-abeae987995a"
+            ],
+            "visible_devices": 1
+          },
+          "returncode": 0,
+          "seconds": 1.1172981262207031
+        },
+        {
+          "mask": "default",
+          "mode": "image",
+          "probe": {
+            "affinity_count": 8,
+            "arithmetic_pass": true,
+            "arithmetic_requested": true,
+            "count_rc": 0,
+            "cuinit_name": "CUDA_SUCCESS",
+            "cuinit_rc": 0,
+            "mask": "0",
+            "pid": 13,
+            "torch_cuda_version": "12.4",
+            "torch_version": "2.5.1+cu124",
+            "uuids": [
+              "GPU-c6d6a269-5c9b-3055-bc5c-abeae987995a"
+            ],
+            "visible_devices": 1
+          },
+          "returncode": 0,
+          "seconds": 14.710106134414673
+        },
+        {
+          "mask": "unset",
+          "mode": "image",
+          "probe": {
+            "affinity_count": 8,
+            "arithmetic_pass": true,
+            "arithmetic_requested": true,
+            "count_rc": 0,
+            "cuinit_name": "CUDA_SUCCESS",
+            "cuinit_rc": 0,
+            "mask": null,
+            "pid": 14,
+            "torch_cuda_version": "12.4",
+            "torch_version": "2.5.1+cu124",
+            "uuids": [
+              "GPU-c6d6a269-5c9b-3055-bc5c-abeae987995a"
+            ],
+            "visible_devices": 1
+          },
+          "returncode": 0,
+          "seconds": 5.402222156524658
+        }
+      ]
+    },
+    {
+      "index": 1,
+      "observed": 4,
+      "rows": [
+        {
+          "mask": "default",
+          "mode": "host",
+          "probe": {
+            "affinity_count": 8,
+            "arithmetic_pass": null,
+            "arithmetic_requested": false,
+            "count_rc": 0,
+            "cuinit_name": "CUDA_SUCCESS",
+            "cuinit_rc": 0,
+            "mask": "0",
+            "pid": 3437666,
+            "uuids": [
+              "GPU-35233dc3-93b7-32f3-ca7b-5f6ff1b6c2de"
+            ],
+            "visible_devices": 1
+          },
+          "returncode": 0,
+          "seconds": 1.3062543869018555
+        },
+        {
+          "mask": "unset",
+          "mode": "host",
+          "probe": {
+            "affinity_count": 8,
+            "arithmetic_pass": null,
+            "arithmetic_requested": false,
+            "count_rc": 0,
+            "cuinit_name": "CUDA_SUCCESS",
+            "cuinit_rc": 0,
+            "mask": null,
+            "pid": 3437756,
+            "uuids": [
+              "GPU-35233dc3-93b7-32f3-ca7b-5f6ff1b6c2de"
+            ],
+            "visible_devices": 1
+          },
+          "returncode": 0,
+          "seconds": 1.206298828125
+        },
+        {
+          "mask": "default",
+          "mode": "image",
+          "probe": {
+            "affinity_count": 8,
+            "arithmetic_pass": true,
+            "arithmetic_requested": true,
+            "count_rc": 0,
+            "cuinit_name": "CUDA_SUCCESS",
+            "cuinit_rc": 0,
+            "mask": "0",
+            "pid": 14,
+            "torch_cuda_version": "12.4",
+            "torch_version": "2.5.1+cu124",
+            "uuids": [
+              "GPU-35233dc3-93b7-32f3-ca7b-5f6ff1b6c2de"
+            ],
+            "visible_devices": 1
+          },
+          "returncode": 0,
+          "seconds": 14.88420844078064
+        },
+        {
+          "mask": "unset",
+          "mode": "image",
+          "probe": {
+            "affinity_count": 8,
+            "arithmetic_pass": true,
+            "arithmetic_requested": true,
+            "count_rc": 0,
+            "cuinit_name": "CUDA_SUCCESS",
+            "cuinit_rc": 0,
+            "mask": null,
+            "pid": 14,
+            "torch_cuda_version": "12.4",
+            "torch_version": "2.5.1+cu124",
+            "uuids": [
+              "GPU-35233dc3-93b7-32f3-ca7b-5f6ff1b6c2de"
+            ],
+            "visible_devices": 1
+          },
+          "returncode": 0,
+          "seconds": 5.9548046588897705
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "observed": 4,
+      "rows": [
+        {
+          "mask": "default",
+          "mode": "host",
+          "probe": {
+            "affinity_count": 8,
+            "cuinit_name": "CUDA_ERROR_NO_DEVICE",
+            "cuinit_rc": 100,
+            "mask": "0",
+            "pid": 3437668
+          },
+          "returncode": 0,
+          "seconds": 0.30837059020996094
+        },
+        {
+          "mask": "unset",
+          "mode": "host",
+          "probe": {
+            "affinity_count": 8,
+            "cuinit_name": "CUDA_ERROR_NO_DEVICE",
+            "cuinit_rc": 100,
+            "mask": null,
+            "pid": 3437686
+          },
+          "returncode": 0,
+          "seconds": 0.4417414665222168
+        },
+        {
+          "mask": "default",
+          "mode": "image",
+          "probe": {
+            "affinity_count": 8,
+            "cuinit_name": "CUDA_ERROR_NO_DEVICE",
+            "cuinit_rc": 100,
+            "mask": "0",
+            "pid": 14
+          },
+          "returncode": 0,
+          "seconds": 1.9082868099212646
+        },
+        {
+          "mask": "unset",
+          "mode": "image",
+          "probe": {
+            "affinity_count": 8,
+            "cuinit_name": "CUDA_ERROR_NO_DEVICE",
+            "cuinit_rc": 100,
+            "mask": null,
+            "pid": 14
+          },
+          "returncode": 0,
+          "seconds": 1.215728998184204
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "observed": 4,
+      "rows": [
+        {
+          "mask": "default",
+          "mode": "host",
+          "probe": {
+            "affinity_count": 8,
+            "arithmetic_pass": null,
+            "arithmetic_requested": false,
+            "count_rc": 0,
+            "cuinit_name": "CUDA_SUCCESS",
+            "cuinit_rc": 0,
+            "mask": "0",
+            "pid": 3437669,
+            "uuids": [
+              "GPU-ec54cc34-47dd-c65a-1eed-49d3aae29748"
+            ],
+            "visible_devices": 1
+          },
+          "returncode": 0,
+          "seconds": 1.3417017459869385
+        },
+        {
+          "mask": "unset",
+          "mode": "host",
+          "probe": {
+            "affinity_count": 8,
+            "arithmetic_pass": null,
+            "arithmetic_requested": false,
+            "count_rc": 0,
+            "cuinit_name": "CUDA_SUCCESS",
+            "cuinit_rc": 0,
+            "mask": null,
+            "pid": 3437757,
+            "uuids": [
+              "GPU-ec54cc34-47dd-c65a-1eed-49d3aae29748"
+            ],
+            "visible_devices": 1
+          },
+          "returncode": 0,
+          "seconds": 1.2040483951568604
+        },
+        {
+          "mask": "default",
+          "mode": "image",
+          "probe": {
+            "affinity_count": 8,
+            "arithmetic_pass": true,
+            "arithmetic_requested": true,
+            "count_rc": 0,
+            "cuinit_name": "CUDA_SUCCESS",
+            "cuinit_rc": 0,
+            "mask": "0",
+            "pid": 15,
+            "torch_cuda_version": "12.4",
+            "torch_version": "2.5.1+cu124",
+            "uuids": [
+              "GPU-ec54cc34-47dd-c65a-1eed-49d3aae29748"
+            ],
+            "visible_devices": 1
+          },
+          "returncode": 0,
+          "seconds": 14.867348432540894
+        },
+        {
+          "mask": "unset",
+          "mode": "image",
+          "probe": {
+            "affinity_count": 8,
+            "arithmetic_pass": true,
+            "arithmetic_requested": true,
+            "count_rc": 0,
+            "cuinit_name": "CUDA_SUCCESS",
+            "cuinit_rc": 0,
+            "mask": null,
+            "pid": 14,
+            "torch_cuda_version": "12.4",
+            "torch_version": "2.5.1+cu124",
+            "uuids": [
+              "GPU-ec54cc34-47dd-c65a-1eed-49d3aae29748"
+            ],
+            "visible_devices": 1
+          },
+          "returncode": 0,
+          "seconds": 6.027437448501587
+        }
+      ]
+    },
+    {
+      "index": 4,
+      "observed": 4,
+      "rows": [
+        {
+          "mask": "default",
+          "mode": "host",
+          "probe": {
+            "affinity_count": 8,
+            "arithmetic_pass": null,
+            "arithmetic_requested": false,
+            "count_rc": 0,
+            "cuinit_name": "CUDA_SUCCESS",
+            "cuinit_rc": 0,
+            "mask": "0",
+            "pid": 3437671,
+            "uuids": [
+              "GPU-963ba2be-4abf-e52c-8f69-170c78176a7d"
+            ],
+            "visible_devices": 1
+          },
+          "returncode": 0,
+          "seconds": 1.268998384475708
+        },
+        {
+          "mask": "unset",
+          "mode": "host",
+          "probe": {
+            "affinity_count": 8,
+            "arithmetic_pass": null,
+            "arithmetic_requested": false,
+            "count_rc": 0,
+            "cuinit_name": "CUDA_SUCCESS",
+            "cuinit_rc": 0,
+            "mask": null,
+            "pid": 3437755,
+            "uuids": [
+              "GPU-963ba2be-4abf-e52c-8f69-170c78176a7d"
+            ],
+            "visible_devices": 1
+          },
+          "returncode": 0,
+          "seconds": 1.1673505306243896
+        },
+        {
+          "mask": "default",
+          "mode": "image",
+          "probe": {
+            "affinity_count": 8,
+            "arithmetic_pass": true,
+            "arithmetic_requested": true,
+            "count_rc": 0,
+            "cuinit_name": "CUDA_SUCCESS",
+            "cuinit_rc": 0,
+            "mask": "0",
+            "pid": 15,
+            "torch_cuda_version": "12.4",
+            "torch_version": "2.5.1+cu124",
+            "uuids": [
+              "GPU-963ba2be-4abf-e52c-8f69-170c78176a7d"
+            ],
+            "visible_devices": 1
+          },
+          "returncode": 0,
+          "seconds": 14.981632947921753
+        },
+        {
+          "mask": "unset",
+          "mode": "image",
+          "probe": {
+            "affinity_count": 8,
+            "arithmetic_pass": true,
+            "arithmetic_requested": true,
+            "count_rc": 0,
+            "cuinit_name": "CUDA_SUCCESS",
+            "cuinit_rc": 0,
+            "mask": null,
+            "pid": 14,
+            "torch_cuda_version": "12.4",
+            "torch_version": "2.5.1+cu124",
+            "uuids": [
+              "GPU-963ba2be-4abf-e52c-8f69-170c78176a7d"
+            ],
+            "visible_devices": 1
+          },
+          "returncode": 0,
+          "seconds": 5.81616473197937
+        }
+      ]
+    },
+    {
+      "index": 5,
+      "observed": 4,
+      "rows": [
+        {
+          "mask": "default",
+          "mode": "host",
+          "probe": {
+            "affinity_count": 8,
+            "arithmetic_pass": null,
+            "arithmetic_requested": false,
+            "count_rc": 0,
+            "cuinit_name": "CUDA_SUCCESS",
+            "cuinit_rc": 0,
+            "mask": "0",
+            "pid": 3437667,
+            "uuids": [
+              "GPU-406fee87-8538-2c54-1967-decab38005c2"
+            ],
+            "visible_devices": 1
+          },
+          "returncode": 0,
+          "seconds": 1.4428722858428955
+        },
+        {
+          "mask": "unset",
+          "mode": "host",
+          "probe": {
+            "affinity_count": 8,
+            "arithmetic_pass": null,
+            "arithmetic_requested": false,
+            "count_rc": 0,
+            "cuinit_name": "CUDA_SUCCESS",
+            "cuinit_rc": 0,
+            "mask": null,
+            "pid": 3437762,
+            "uuids": [
+              "GPU-406fee87-8538-2c54-1967-decab38005c2"
+            ],
+            "visible_devices": 1
+          },
+          "returncode": 0,
+          "seconds": 1.1666014194488525
+        },
+        {
+          "mask": "default",
+          "mode": "image",
+          "probe": {
+            "affinity_count": 8,
+            "arithmetic_pass": true,
+            "arithmetic_requested": true,
+            "count_rc": 0,
+            "cuinit_name": "CUDA_SUCCESS",
+            "cuinit_rc": 0,
+            "mask": "0",
+            "pid": 14,
+            "torch_cuda_version": "12.4",
+            "torch_version": "2.5.1+cu124",
+            "uuids": [
+              "GPU-406fee87-8538-2c54-1967-decab38005c2"
+            ],
+            "visible_devices": 1
+          },
+          "returncode": 0,
+          "seconds": 14.693275213241577
+        },
+        {
+          "mask": "unset",
+          "mode": "image",
+          "probe": {
+            "affinity_count": 8,
+            "arithmetic_pass": true,
+            "arithmetic_requested": true,
+            "count_rc": 0,
+            "cuinit_name": "CUDA_SUCCESS",
+            "cuinit_rc": 0,
+            "mask": null,
+            "pid": 14,
+            "torch_cuda_version": "12.4",
+            "torch_version": "2.5.1+cu124",
+            "uuids": [
+              "GPU-406fee87-8538-2c54-1967-decab38005c2"
+            ],
+            "visible_devices": 1
+          },
+          "returncode": 0,
+          "seconds": 6.151914358139038
+        }
+      ]
+    },
+    {
+      "index": 6,
+      "observed": 4,
+      "rows": [
+        {
+          "mask": "default",
+          "mode": "host",
+          "probe": {
+            "affinity_count": 8,
+            "arithmetic_pass": null,
+            "arithmetic_requested": false,
+            "count_rc": 0,
+            "cuinit_name": "CUDA_SUCCESS",
+            "cuinit_rc": 0,
+            "mask": "0",
+            "pid": 3437665,
+            "uuids": [
+              "GPU-3967cc0c-322f-aa05-fdfb-8c8f4291e18e"
+            ],
+            "visible_devices": 1
+          },
+          "returncode": 0,
+          "seconds": 1.375396490097046
+        },
+        {
+          "mask": "unset",
+          "mode": "host",
+          "probe": {
+            "affinity_count": 8,
+            "arithmetic_pass": null,
+            "arithmetic_requested": false,
+            "count_rc": 0,
+            "cuinit_name": "CUDA_SUCCESS",
+            "cuinit_rc": 0,
+            "mask": null,
+            "pid": 3437759,
+            "uuids": [
+              "GPU-3967cc0c-322f-aa05-fdfb-8c8f4291e18e"
+            ],
+            "visible_devices": 1
+          },
+          "returncode": 0,
+          "seconds": 1.2046868801116943
+        },
+        {
+          "mask": "default",
+          "mode": "image",
+          "probe": {
+            "affinity_count": 8,
+            "arithmetic_pass": true,
+            "arithmetic_requested": true,
+            "count_rc": 0,
+            "cuinit_name": "CUDA_SUCCESS",
+            "cuinit_rc": 0,
+            "mask": "0",
+            "pid": 14,
+            "torch_cuda_version": "12.4",
+            "torch_version": "2.5.1+cu124",
+            "uuids": [
+              "GPU-3967cc0c-322f-aa05-fdfb-8c8f4291e18e"
+            ],
+            "visible_devices": 1
+          },
+          "returncode": 0,
+          "seconds": 14.800232410430908
+        },
+        {
+          "mask": "unset",
+          "mode": "image",
+          "probe": {
+            "affinity_count": 8,
+            "arithmetic_pass": true,
+            "arithmetic_requested": true,
+            "count_rc": 0,
+            "cuinit_name": "CUDA_SUCCESS",
+            "cuinit_rc": 0,
+            "mask": null,
+            "pid": 15,
+            "torch_cuda_version": "12.4",
+            "torch_version": "2.5.1+cu124",
+            "uuids": [
+              "GPU-3967cc0c-322f-aa05-fdfb-8c8f4291e18e"
+            ],
+            "visible_devices": 1
+          },
+          "returncode": 0,
+          "seconds": 5.8783488273620605
+        }
+      ]
+    },
+    {
+      "index": 7,
+      "observed": 4,
+      "rows": [
+        {
+          "mask": "default",
+          "mode": "host",
+          "probe": {
+            "affinity_count": 8,
+            "arithmetic_pass": null,
+            "arithmetic_requested": false,
+            "count_rc": 0,
+            "cuinit_name": "CUDA_SUCCESS",
+            "cuinit_rc": 0,
+            "mask": "0",
+            "pid": 3437670,
+            "uuids": [
+              "GPU-4330bd09-9b5f-c296-eb4a-9bfccabcb1eb"
+            ],
+            "visible_devices": 1
+          },
+          "returncode": 0,
+          "seconds": 1.5772860050201416
+        },
+        {
+          "mask": "unset",
+          "mode": "host",
+          "probe": {
+            "affinity_count": 8,
+            "arithmetic_pass": null,
+            "arithmetic_requested": false,
+            "count_rc": 0,
+            "cuinit_name": "CUDA_SUCCESS",
+            "cuinit_rc": 0,
+            "mask": null,
+            "pid": 3437766,
+            "uuids": [
+              "GPU-4330bd09-9b5f-c296-eb4a-9bfccabcb1eb"
+            ],
+            "visible_devices": 1
+          },
+          "returncode": 0,
+          "seconds": 0.8979637622833252
+        },
+        {
+          "mask": "default",
+          "mode": "image",
+          "probe": {
+            "affinity_count": 8,
+            "arithmetic_pass": true,
+            "arithmetic_requested": true,
+            "count_rc": 0,
+            "cuinit_name": "CUDA_SUCCESS",
+            "cuinit_rc": 0,
+            "mask": "0",
+            "pid": 14,
+            "torch_cuda_version": "12.4",
+            "torch_version": "2.5.1+cu124",
+            "uuids": [
+              "GPU-4330bd09-9b5f-c296-eb4a-9bfccabcb1eb"
+            ],
+            "visible_devices": 1
+          },
+          "returncode": 0,
+          "seconds": 14.813759088516235
+        },
+        {
+          "mask": "unset",
+          "mode": "image",
+          "probe": {
+            "affinity_count": 8,
+            "arithmetic_pass": true,
+            "arithmetic_requested": true,
+            "count_rc": 0,
+            "cuinit_name": "CUDA_SUCCESS",
+            "cuinit_rc": 0,
+            "mask": null,
+            "pid": 14,
+            "torch_cuda_version": "12.4",
+            "torch_version": "2.5.1+cu124",
+            "uuids": [
+              "GPU-4330bd09-9b5f-c296-eb4a-9bfccabcb1eb"
+            ],
+            "visible_devices": 1
+          },
+          "returncode": 0,
+          "seconds": 5.58268928527832
+        }
+      ]
+    }
+  ],
+  "scheduler_state": "COMPLETED",
+  "single_device_pass_counts": {
+    "host-default": 7,
+    "host-unset": 7,
+    "image-default": 7,
+    "image-unset": 7
+  },
+  "unique_single_device_uuids": {
+    "host-default": 7,
+    "host-unset": 7,
+    "image-default": 7,
+    "image-unset": 7
+  }
+}

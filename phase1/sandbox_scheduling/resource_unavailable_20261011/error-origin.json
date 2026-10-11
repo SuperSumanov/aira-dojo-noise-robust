@@ -1,0 +1,31 @@
+{
+  "observed_date_hkt": "2026-10-11",
+  "scope": "Credential-screened remote-memory reread of the same two hash-pinned log members. No raw log export, no candidate or grade file access.",
+  "witnesses": [
+    {
+      "task": "spooky-author-identification",
+      "sha256": "3dd567ebaebf882e5708033e7dd796052c6c2cc8bc3b851d78c2dbee10190da8",
+      "first_pthread_failure_line": 38907,
+      "preceding_execute_begin_relative_line": -21,
+      "preceding_execute_end_relative_line": -1635,
+      "code_fences_between_begin_and_error": 0,
+      "nearby_matching_lines": 2,
+      "all_matching_lines_have_log_prefix": true,
+      "comment_prefixed_error_lines": 0
+    },
+    {
+      "task": "dog-breed-identification",
+      "sha256": "93d84e661caac053fac43d3ea8cda0d8b2cee6d962a4caecdafb23c7cb9c3336",
+      "first_pthread_failure_line": 23876,
+      "preceding_execute_begin_relative_line": -10,
+      "preceding_execute_end_relative_line": -1874,
+      "code_fences_between_begin_and_error": 0,
+      "nearby_matching_lines": 10,
+      "all_matching_lines_have_log_prefix": true,
+      "comment_prefixed_error_lines": 0
+    }
+  ],
+  "interpretation": "The first literal errors follow execution-start markers and are not inside recognized fenced source blocks. This supports execution/import-phase localization, not a proof of process/thread-limit saturation, the exact six-way event, or the unique causal origin of every log occurrence.",
+  "remaining_alternatives": ["host UID aggregate process/thread pressure", "cgroup PID limit", "memory/resource exhaustion", "other concurrent jobs or descendants not recorded"],
+  "newer_shared_material_check": "At the current metadata check, comparison contains0912,0918,0930,1001,1009 only; mlebench/spooky points to prepared data, not an experiment log directory. Listing completeness is not attested."
+}

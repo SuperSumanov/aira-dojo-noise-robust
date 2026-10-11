@@ -1,0 +1,71 @@
+{
+  "after_uid_counts": {
+    "largest_process_thread_counts": [
+      1,
+      1,
+      1
+    ],
+    "lower_bound": true,
+    "unreadable_or_racing": 0,
+    "visible_processes": 3,
+    "visible_threads": 3,
+    "zombies": 0
+  },
+  "all_same_source": true,
+  "attempted": 8,
+  "blocks": [
+    {
+      "block": 0,
+      "gpus": 3,
+      "host_optimizer_envelope_overlap_peak": 1,
+      "physical_cores": 12
+    },
+    {
+      "block": 1,
+      "gpus": 3,
+      "host_optimizer_envelope_overlap_peak": 1,
+      "physical_cores": 12
+    }
+  ],
+  "boundary": "Post-failure fast UNet-only capacity check. Cannot rescue two-family failure, generalize to six tasks or heavy agent generation, infer historical EAGAIN cause, speedup or quality.",
+  "closed_sha256": "7ce5f780c0f7a0e8720e64641cf34bb14f4edccf0a99f4164f349984ba35cbab",
+  "comparisons": [
+    {
+      "byte_equal": true,
+      "left": 0,
+      "max_abs_diff": 0.0,
+      "right": 1,
+      "within_frozen_tolerance": true
+    }
+  ],
+  "complete": 2,
+  "gpu_seconds": 4512,
+  "gpu_seconds_cap": 19200,
+  "independent_source_families": 1,
+  "input_manifest_ok": true,
+  "job": "17557",
+  "manifest_ok": true,
+  "narrow_capacity_gate": false,
+  "nproc_soft_values": [
+    1024
+  ],
+  "plan_sha256": "0e41eb5b34d3918357b60999ddff2ac929a0498c7aedbd9b4034fefb76943ff1",
+  "planned": 14,
+  "request_host_overlap_peak": 1,
+  "requests_attempted": 2,
+  "requests_complete": 2,
+  "requests_finish_reason": {
+    "length": 2
+  },
+  "resource_error_markers": {
+    "can't start new thread": 0,
+    "out of memory": 0,
+    "pthread_create": 0,
+    "resource temporarily unavailable": 0
+  },
+  "scheduler_state": "FAILED",
+  "seed_restarts_not_new_seeds": true,
+  "service_stopped": true,
+  "uid_threads_peak": 341,
+  "unstarted": 6
+}

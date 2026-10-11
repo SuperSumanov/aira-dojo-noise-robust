@@ -1,0 +1,27 @@
+{
+  "source_commit": "f7ccd79323112b10ccc82d8e9ec9d6cf089df607",
+  "observed_date_hkt": "2026-10-11",
+  "source_sha256": {
+    "dojo/main_local_worker.py": "f3a56cc5d39867b0c2e99ccd9f8e673bf85ed88af54bd136c96040c48abe4ee2",
+    "dojo/main_run.py": "8f37258e2e1c30ea5d8775320f8dadaaae4540d39237da9fb7bd09048d9e92e7"
+  },
+  "cpu_only": true,
+  "gpu_jobs": 0,
+  "model_or_candidate_execution": false,
+  "raw_output_exported": false,
+  "affinity_count": 8,
+  "nproc": [1024, 1024],
+  "numpy_loaded": true,
+  "torch_loaded": false,
+  "solver_instantiated": false,
+  "network_disabled": true,
+  "dotenv_disabled": true,
+  "rows": [
+    {"index": 0, "mode": "capped", "import_complete": true, "before_threads": 1, "after_threads": [7, 7, 7], "elapsed_seconds": 6.816676913294941},
+    {"index": 1, "mode": "unset", "import_complete": true, "before_threads": 1, "after_threads": [25, 25, 25], "elapsed_seconds": 2.335584670305252},
+    {"index": 2, "mode": "unset", "import_complete": true, "before_threads": 1, "after_threads": [25, 25, 25], "elapsed_seconds": 1.7019374589435756},
+    {"index": 3, "mode": "capped", "import_complete": true, "before_threads": 1, "after_threads": [7, 7, 7], "elapsed_seconds": 1.735122648999095}
+  ],
+  "intervention": "OMP_NUM_THREADS, OPENBLAS_NUM_THREADS and MKL_NUM_THREADS are all3 versus all unset; no other intentional change.",
+  "boundary": "Same-login-host imports only, not full agent lifetime, GPU kernels, exact historical failing environment, or causal explanation of archived EAGAIN. Import latency has a cold-cache order confound and is not a speedup result."
+}

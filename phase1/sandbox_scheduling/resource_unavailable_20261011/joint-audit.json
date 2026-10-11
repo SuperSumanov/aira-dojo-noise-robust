@@ -1,0 +1,30 @@
+{
+  "after": {
+    "largest_process_thread_counts": [
+      1,
+      1,
+      1
+    ],
+    "lower_bound": true,
+    "unreadable_or_racing": 0,
+    "visible_processes": 3,
+    "visible_threads": 3,
+    "zombies": 0
+  },
+  "all_requests_transport_complete": true,
+  "available_memory_min_gib": 255.38475036621094,
+  "finish_reasons": {
+    "stop": 14
+  },
+  "gpu_seconds": 1078,
+  "host_uid_threads_peak": 561,
+  "inference_quality_not_tested": true,
+  "job": "17547",
+  "positive_cgroup_failure_counter_observations": 0,
+  "requests": 14,
+  "resource_exhaustion_not_reproduced": true,
+  "sampler_rows": 529,
+  "soft_nproc": [
+    1024
+  ]
+}

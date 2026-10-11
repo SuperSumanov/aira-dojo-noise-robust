@@ -1,0 +1,53 @@
+{
+  "attempted": 2,
+  "boundary": "Entry/cache qualification only; not six-way capacity, speedup, quality, or historical EAGAIN root cause.",
+  "closed_sha256": "510a24af0a247c59cdaa9246bfebe9d694a67162593c070b7055eaec2dc7c38e",
+  "complete": 2,
+  "gate": true,
+  "gpu_seconds": 496,
+  "gpu_seconds_cap": 1200,
+  "job": "17552",
+  "manifest_ok": true,
+  "plan_sha256": "09fb0ca0488bf29106f0aa71c8f5dbd970debce8d24c60a7ce51e9749d6aa0c6",
+  "planned": 2,
+  "rows": [
+    {
+      "attempted": true,
+      "block": 0,
+      "complete": true,
+      "error_type": null,
+      "execution_seconds": 403.6959457718767,
+      "gpu_steps": 150,
+      "index": 0,
+      "job": "17552",
+      "output_rows": 64,
+      "output_sha256": "9b0350891690641b373ede18b04be679ceaa7604c2560eb5a6780b0bcf899a38",
+      "plan_sha256": "09fb0ca0488bf29106f0aa71c8f5dbd970debce8d24c60a7ce51e9749d6aa0c6",
+      "program": 0,
+      "slot": 0,
+      "source_commit": "f7ccd79323112b10ccc82d8e9ec9d6cf089df607",
+      "source_seed": 42,
+      "width": 1
+    },
+    {
+      "attempted": true,
+      "block": 1,
+      "complete": true,
+      "error_type": null,
+      "execution_seconds": 44.26712930109352,
+      "gpu_steps": 588,
+      "index": 1,
+      "job": "17552",
+      "output_rows": 278640,
+      "output_sha256": "20a200911cfbc6fe17cbb17e375e94aa0502edc252a4bf075382248052f4d146",
+      "plan_sha256": "09fb0ca0488bf29106f0aa71c8f5dbd970debce8d24c60a7ce51e9749d6aa0c6",
+      "program": 1,
+      "slot": 0,
+      "source_commit": "f7ccd79323112b10ccc82d8e9ec9d6cf089df607",
+      "source_seed": 42,
+      "width": 1
+    }
+  ],
+  "scheduler_state": "COMPLETED",
+  "unstarted": 0
+}

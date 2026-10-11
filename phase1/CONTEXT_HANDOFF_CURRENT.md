@@ -1,5 +1,5 @@
 # 当前短交接
-更新：2026-10-11香港，17587失败后。旧排障长交接已保存在Git4279975d；这里只保留当前事实，未复查的状态写最后观察。
+更新：2026-10-11香港14:06。旧排障长交接已保存在Git4279975d；这里只保留当前事实，未复查的状态写最后观察。
 恢复：fetch → CURRENT_DIRECTION → ROUTE_DECISIONS → 本文件；不得回到旧8月路线。
 
 ## 最新用户裁决与当前实验
@@ -13,7 +13,10 @@
 - 扩大门：完整32终点/16有效分对、两池CUDA有效反馈都增加、逐任务配对分中位不负且至少一任务正、无更多无效终点、等预算/隔离/清理通过。不换seed、不因单池结果加跑。
 - 本轮路径=/research/d7/spc/yzyang4/scheduling-image-live-2plus4-20261011-v1。
 - 17587已FAILED闭合：八worker在搜索前退出，0/32搜索、0候选；服务正常。原入口错误要求4逻辑线程，但lane回执实际4物理核/8SMT线程；不是CUDA或跨节点故障。439秒×6=2634GPU秒，原32分母与失败保留。原planSHAb44f6002b5da35d953a0ae1ead7b88d7776428cf7e775a26475fcce545837e78。
-- 独立v2拟原32配置/seed/2400秒池，不改变任务/模型/评分；仅按物理核分成每worker两核、CUDA初始化前绑核。五项CPU回归通过。新cap9720秒×6，合并旧失败60954GPU秒，不超原17GPUh；尚未提交，不能称开跑。
+- 独立v2已完成原32配置/16对配平及14项CPU测试；原seed/2400秒池/任务/模型/评分不变，仅按物理核分成每worker两核、CUDA初始化前绑核。新cap9720秒×6，合并旧失败60954GPU秒=16.93166666666667GPUh。
+- 17590已于香港14:05:04在gpu3 RUNNING，六GPU/24物理核；14:06最后观察模型加载中、尚无搜索轨迹。预计四池约16:45完成、allocation最迟16:47。SSH回传中断但launch和sacct已确认，严禁重复submit。
+- 一次性结束复算PID3949562，claim已确认；只等待17590，最长8h，完成后复算开发分/全32分母/物理核隔离/整池成本，不提交或重跑实验。证据completion-claim.json；状态读取stage/image_live_status_20261011.py v2。
+- v2源码b2f82aec6246336d095a7b7b088e3293761749e6已push/ls-remote一致，planSHAdf7b44e3a89f5c6fd110424aeffd5ea7ad569cafa8a139ea667c1083614ab6e8；路径同v1前缀改v2。准备时重复创建配置的CPU失败另存v2-prepare-incomplete-1，无GPU使用。
 - 32配置/16对配平及原生搜索实例化通过；九项CPU测试通过，另1项Adam/AdamW/SGD被动观察器参数字节一致检查通过。无GPU准备原planSHA06a81639237cedc1fde6d550559cb9a1f9578254a4931f5f091e59e46aee768a保存在prelaunch-preparation，数据/config/seed未改。
 - 原提交前完整数据/模型/两镜像校验通过；v2只做入口CPU回归和源/输入确认，不另开GPU容量或模型验收。
 - 真实标签/预测/候选留远端私有；只导出本轮聚合/行级安全指标。观察器覆盖常见优化器，未观测不否定成绩，host时间不是CUDA kernel时间。
@@ -37,9 +40,9 @@
 
 ## 工作区、权限与现场
 - 活跃checkout=C:/Research/New/my_project/MLEvolve/_codex_tmp/publication-feedback-20261001，detached HEAD有意；旧aira-dojo-codex-20260813用户dirty不动。
-- 最近公开head bdefe67729d69e39097199ba6b2e27c6de2962f3；学长f7ccd79323112b10ccc82d8e9ec9d6cf089df607，未见更新。只推自己的myfork/phase1-value-critic，FF、不force。
+- 最近公开head b2f82aec6246336d095a7b7b088e3293761749e6；学长f7ccd79323112b10ccc82d8e9ec9d6cf089df607，未见更新。只推自己的myfork/phase1-value-critic，FF、不force。
 - 用户未跟踪报告phase1/reports/给学长_MLE沙箱资源调度进展_20261009.md保留、不stage。
-- 提交前只有Held12535，未动；本轮新17587只申请gpu3六卡24物理核。排除projgpu7/8/33、gpu36/38；旧MLE镜像不投projgpu39。
+- 17587已闭合；v2只申请gpu3六卡24物理核。旧Held12535未动；排除projgpu7/8/33、gpu36/38；旧MLE镜像不投projgpu39。
 - SSH linux5；PY=/research/d7/spc/yzyang4/venvs/aira/bin/python；SLURM_CONF=/opt1/slurm/gpu-slurm.conf。
 - stage=/research/d7/spc/yzyang4/resource-diag-stage-20261011.M5wKjU；研究盘4TB至2027-08-30。
 - Slurm19.05.4无--exact；hint=nomultithread核物理CPU；SCP返回session须等exit0；不要在计时GPU时重hash大镜像。

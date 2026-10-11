@@ -17,6 +17,7 @@ def status():
     out['pools_with_ready_service']=sum((R/f'block-{i}/service-ready.json').exists() for i in range(4))
     out['closed_equal_budget_pools']=sum((R/f'block-{i}/budget-slot.json').exists() for i in range(4))
     out['returned_candidates']=out['valid_development_returns']=out['cuda_observed_runs']=0
+    out['event_counts']={s:0 for s in ('runtime_hooks_installed','kernel_ready','generation_started','generation_returned','operation_ready','cell_return','cleanup')}
     for i in range(32):
         ep=R/f'episode-{i}'
         for p in ep.glob('candidate-*.json'):
@@ -26,6 +27,12 @@ def status():
                 out['returned_candidates']+=1;out['valid_development_returns']+=int(r['valid'])
         trainings=[read(p) for p in ep.glob('gpu-training-*.json') if 'missing' not in p.name]
         out['cuda_observed_runs']+=int(any(r and r.get('cuda_gradient_steps',0)>0 for r in trainings))
+        events=ep/'events.jsonl'
+        if events.exists():
+            for line in events.read_text().splitlines():
+                try:event=json.loads(line).get('event')
+                except json.JSONDecodeError:continue
+                if event in out['event_counts']:out['event_counts'][event]+=1
     c=read(R/'closed.json')
     if c:out['closure']=c
     # Only predefined classes/flags, never arbitrary private error lines.
@@ -46,4 +53,8 @@ def status():
                  'Graph capturing','Capturing CUDA graphs','Application startup complete','Traceback','ValueError','RuntimeError')
         out['service_phases'].append(dict(block=p.parent.name,bytes=p.stat().st_size,markers={s:text.count(s) for s in markers}))
     print(json.dumps(out,sort_keys=True))
-if __name__=='__main__':status()
+if __name__=='__main__':
+    if len(sys.argv)>1:
+        assert sys.argv[1]=='v2'
+        R=R.with_name('scheduling-image-live-2plus4-20261011-v2')
+    status()

@@ -1,0 +1,10 @@
+{
+  "combined_gpu_hours_cap": 16.93166666666667,
+  "commit": "b2f82aec6246336d095a7b7b088e3293761749e6",
+  "configs": 32,
+  "old_failure_retained": true,
+  "original_tests": 9,
+  "pairs": 16,
+  "physical_partition_tests": 5,
+  "plan_sha256": "df7b44e3a89f5c6fd110424aeffd5ea7ad569cafa8a139ea667c1083614ab6e8"
+}

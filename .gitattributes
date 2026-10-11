@@ -1007,3 +1007,5 @@ phase1/sandbox_scheduling/image_live_status_20261011.py -text diff whitespace=cr
 phase1/sandbox_scheduling/image_live_finalize_20261011.py -text diff whitespace=cr-at-eol
 phase1/sandbox_scheduling/test_image_observer_20261011.py -text diff whitespace=cr-at-eol
 phase1/sandbox_scheduling/image_live_v1_preflight/*.json -text diff whitespace=cr-at-eol
+phase1/sandbox_scheduling/image_live_finish_v2_20261011.py -text diff whitespace=cr-at-eol
+phase1/sandbox_scheduling/image_live_v2_preflight/*.json -text diff whitespace=cr-at-eol

@@ -22,7 +22,7 @@ import traceback
 # During preparation reuse the exact closed native harness, not a newer
 # checkout's same-named source. The prepared directory takes precedence later.
 _closed = Path('/research/d7/spc/yzyang4/scheduling-image-deadline-replication-20261012-v1')
-if _closed.exists() and Path(__file__).parent != Path('/research/d7/spc/yzyang4/scheduling-generation-joint-20261012-v1'):
+if _closed.exists() and Path(__file__).parent != Path('/research/d7/spc/yzyang4/scheduling-generation-joint-20261012-v2'):
     sys.path.insert(1, str(_closed))
 import image_live_cpu_repair_20261011 as c
 from lifecycle_pilot import read, write, sha
@@ -30,7 +30,7 @@ from joint_generation_policy_20261012 import ARMS
 
 OLD = c.trial.B/'scheduling-image-deadline-replication-20261012-v1'
 OLD_PIN = '23f368399f6c735ef81142ec46831ae4e9f45d58d80edf5d2559b4cbb7a22ea6'
-R = c.trial.B/'scheduling-generation-joint-20261012-v1'
+R = c.trial.B/'scheduling-generation-joint-20261012-v2'
 NAME = Path(__file__).name
 CAP = 8400
 RUN = 1020
@@ -147,6 +147,8 @@ def prepare(commit):
     driver.write_text(s)
     hooks=R/'live_runtime_hooks.py';s=change(hooks.read_text(),'0 <= index <= 31','0 <= index <= 47')
     hooks.write_text(change(s,'(int(job) % 400) * 40 + index','(int(job) % 300) * 64 + index'))
+    mcts=R/'source/src/dojo/solvers/mcts/mcts.py'
+    mcts.write_text(change(mcts.read_text(),'response["is_bug"] or (not node.exit_code == 0)', '(not node.exit_code == 0)'))
     names=(NAME,'joint_generation_policy_20261012.py','test_joint_generation_20261012.py')
     for name in names:shutil.copyfile(Path(__file__).with_name(name),R/name)
     shim=R/'bin/singularity';shim.write_text(f'#!{c.trial.PY}\nimport sys\nsys.path.insert(0,{str(R)!r})\nfrom {Path(__file__).stem} import host\nhost().task_runtime()\n');shim.chmod(0o700)
@@ -183,6 +185,8 @@ timeout --signal=TERM --kill-after=30s 8340s {c.trial.PY} -B {R/NAME} controller
         advance='Exploratory signal only if all six equal pools and48 starts valid, real scarce admission/choice divergence, no task-repeat loss against either reference and same task gains >=.001 against both references in both repeats. Otherwise no automatic expansion.',
         limitation='Checkpoint-conditional refinement; shared sunk warm construction excluded from online budget, no from-scratch cost/quality claim. Two reused development tasks; two reversed-order pool repeats, not48 independent scheduling replicates. Small explicit cost/resource baseline adaptations, not full CostAda/MARS/SchedMate.',
         warm_start=receipts,stop='Stop remaining pools on infrastructure/identity/cleanup failure; retain48. No outcome-dependent replacement/seed rescue; no API or base training.')
+    p['common_repairs']='Deterministic external validity replaces known unreliable LLM is_bug veto in all arms; not a treatment. Warm checkpoint/candidate queue1/request600/persistent service all common.'
+    p['preflight_history']='v1 CPU-only preflight: 15 unit tests and48 constructors passed; path-list return was incorrectly asserted as a node. No GPU/submission. v1 retained unchanged; v2 corrects this assertion and adds common external-validity repair before outcomes.'
     p['files']={n:sha(R/n) for n in p['files'] if not n.startswith('configs/')}
     p['files'].update({f'configs/{i}.json':sha(R/f'configs/{i}.json') for i in range(48)})
     for n in names+('warm.private.json','warm-receipt.json'):p['files'][n]=sha(R/n)
@@ -217,7 +221,15 @@ def preflight():
     solver=MCTS(OmegaConf.structured(cfg.solver),{TASK_DESCRIPTION:task.task_description,'lower_is_better':task._search_only_lower_is_better})
     solver.log_journal=lambda:None;solver.create_root_node()
     assert len(solver.journal.nodes)==2 and solver.journal.get_best_node().metric.value==warm[row['task']]['metric']
-    leaf=solver.search_policy(solver.root_node);assert leaf.code==warm[row['task']]['code']
+    path=solver.search_policy(solver.root_node);assert path[-1].code==warm[row['task']]['code']
+    # Run the real permit wrapper, with only its operator stubbed (no LLM).
+    import dojo.solvers.mcts.mcts as mm
+    original_op=mm.execute_op_plan_code
+    mm.execute_op_plan_code=lambda *args,**kwargs:('fixture plan','print(1)',[])
+    try:
+        child=solver._improve(path[-1]);assert child.code=='print(1)'
+    finally:mm.execute_op_plan_code=original_op
+    gs=read(fixture/'generation-0/state.json');assert not gs['active'] and not gs['waiting']
     write(R/'preflight.json',dict(source_commit=p['source_commit'],plan_sha256=sha(R/'plan.json'),
         configs=48,matched_comparisons=32,real_frozen_warm_root=True,no_gpu=True,no_model_calls=True))
     print(json.dumps(read(R/'preflight.json')))

@@ -86,7 +86,7 @@ def observe_occupancy(root, block, state):
     result = {}
     for lane in range(4):
         directory = root/f'queue-{block}-{lane}'
-        if not directory.exists():
+        if not (directory/'mutex').exists():
             continue  # A lane not initialized yet has no execution occupancy.
         with execution_locked(directory) as lease:
             active = list(lease.active)
@@ -139,7 +139,7 @@ def install(row, ep, deadline, warm):
                         alternatives = {a:choose(state, row['task'], now, a, occupancy) for a in ARMS}
                         waiting = [r for r in state['waiting'] if r['task'] == row['task']]
                         free = 2-sum(r['task'] == row['task'] for r in state['active'])
-                        event('admitted', key=request['key'], role=role, alternatives=alternatives,
+                        event('admitted', key=request['key'], role=role, decision_time=now, alternatives=alternatives,
                             scarce=len(waiting)>free, occupancy=occupancy,
                             snapshot=dict(waiting=state['waiting'], active=state['active'], stats=state['stats']))
                         state['waiting'].remove(request); state['active'].append(request)

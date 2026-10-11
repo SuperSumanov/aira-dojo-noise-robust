@@ -1,6 +1,7 @@
 """Structural-only status; no provisional outcome-guided intervention."""
 import json
 import os
+import re
 from pathlib import Path
 import subprocess
 import sys
@@ -10,6 +11,17 @@ from lifecycle_pilot import read
 
 out=dict(root=str(root),launch=read(root/'launch.json') if (root/'launch.json').exists() else None,
     service_ready=(root/'service-ready.json').exists(),closed=(root/'closed.json').exists(),pools=[])
+log=root/'block-0/service.private.log'
+if log.exists():
+    # Export only numeric loading progress / fixed booleans, never raw log lines.
+    raw=log.read_bytes()
+    marks=re.findall(rb'Loading safetensors checkpoint shards:\s*(\d+)%',raw)
+    out['model_startup']=dict(log_bytes=len(raw),weights_percent=int(marks[-1]) if marks else None,
+        application_ready=b'Application startup complete' in raw,
+        cuda_graph_seen=b'Capturing CUDA graphs' in raw,
+        traceback_seen=b'Traceback (most recent call last)' in raw,
+        compilation_seen=b'compil' in raw.lower(),
+        graph_capture_seen=b'graph captur' in raw.lower())
 for b in range(6):
     es=[];path=root/f'generation-{b}/events.jsonl'
     if path.exists():

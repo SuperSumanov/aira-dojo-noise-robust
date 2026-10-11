@@ -1,6 +1,6 @@
 import copy
 import unittest
-from generation_joint_readout_20261012 import ARMS,TASKS,summarize,generation_audit,independent_rank
+from generation_joint_readout_20261012 import ARMS,TASKS,summarize,generation_audit,independent_rank,deployable_best
 from test_joint_generation_20261012 import fixture
 from joint_generation_policy_20261012 import rank_request
 
@@ -13,6 +13,20 @@ def rows():
 
 
 class ReadoutTests(unittest.TestCase):
+    def test_external_retention_maximize(self):
+        r=dict(valid=True,exit_code=0,timed_out=False,score=.7)
+        self.assertEqual(deployable_best(TASKS[0],.5,[r]),.7)
+
+    def test_external_retention_minimize(self):
+        r=dict(valid=True,exit_code=0,timed_out=False,score=.08)
+        self.assertEqual(deployable_best(TASKS[1],.1,[r]),.08)
+
+    def test_external_retention_never_rescues_invalid_or_timeout(self):
+        rows=[dict(valid=True,exit_code=1,timed_out=False,score=.9),
+              dict(valid=True,exit_code=0,timed_out=True,score=.9),
+              dict(valid=False,exit_code=0,timed_out=False,score=.9)]
+        self.assertEqual(deployable_best(TASKS[0],.5,rows),.5)
+
     def test_null_no_gain(self):
         s=summarize(rows(),dict(zip(TASKS,(.5,.1))))
         self.assertFalse(s['quality_signal_before_structure']);self.assertEqual(len(s['pool_task_contrasts']),8)

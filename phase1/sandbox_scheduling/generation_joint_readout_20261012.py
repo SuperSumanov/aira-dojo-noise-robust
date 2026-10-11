@@ -74,6 +74,14 @@ def distribution(values):
         sample_sd=statistics.stdev(values) if len(values)>1 else None)
 
 
+def deployable_best(task, initial, timely):
+    # Diagnostic only: same cutoff/exit/validity, but does not require the
+    # optional LLM analysis to finish before retaining an already graded code.
+    scores=[initial]+[r['score'] for r in timely if r.get('valid') is True
+        and r.get('exit_code')==0 and not r.get('timed_out') and finite(r.get('score'))]
+    return max(scores,key=lambda x:SIGN[task]*x)
+
+
 def summarize(rows, initial):
     assert len(rows)==48 and {r['index'] for r in rows}==set(range(48))
     assert len({(r['repeat'],r['task'],r['lane'],r['arm']) for r in rows})==48
@@ -144,6 +152,7 @@ def analyze(root, output, gpu_seconds):
             cleanup=closure.get('cleanup_verified') is True,returncode=closure.get('returncode'),
             valid=f.get('native_selected_valid') is True and grounded and finite(f.get('native_selected_score')),
             score=f.get('native_selected_score'),initial_score=initial[s['task']],selected_warm=is_warm,
+            external_best_score=deployable_best(s['task'],initial[s['task']],timely),
             candidate_returns=len(timely),valid_returns=sum(r['valid'] for r in timely),late_returns=len(cs)-len(timely),
             score_grounded=grounded))
     budgets=[];identities=[];policies=[];cpu=[]
@@ -170,6 +179,16 @@ def analyze(root, output, gpu_seconds):
     structural=all(budgets) and all(cpu) and physical and cleaned.get('gpu_clean') is True and closed['error'] is None and all(r['started'] and r['cleanup'] and r['score_grounded'] for r in rows) and all(r['all_released'] for r in policies)
     signal=any(r['scarce_choices'] and r['resource_changed_choices'] for r in policies if r['arm']=='joint')
     result=summarize(rows,initial)
+    external=summarize([dict(r,valid=True,score=r['external_best_score']) for r in rows],initial)
+    retention=[dict(index=r['index'],arm=r['arm'],task=r['task'],
+        oriented_gap=SIGN[r['task']]*(r['external_best_score']-r['score'])) for r in rows if r['valid']]
+    result['external_endpoint_diagnostic']=dict(
+        status='Secondary retention check added before any quality readout, after first pool finished; frozen primary gate unchanged.',
+        definition='Best externally graded timely exit0 non-timeout program plus supplied initial checkpoint. No new execution or hidden evaluation.',
+        pool_task_contrasts=external['pool_task_contrasts'],native_retention_gaps=retention,
+        native_outside_strict_external_contract=[r['index'] for r in retention if r['oriented_gap'] < -1e-12],
+        quality_condition=external['quality_signal_before_structure'],
+        cannot_rescue_failed_primary=True)
     result.update(source_commit=p['source_commit'],plan_sha256=sha(root/'plan.json'),readout_sha256=sha(__file__),
         gpu_seconds=gpu_seconds,gpu_hours=gpu_seconds/3600,prior_failure_gpu_seconds=prior,
         window_gpu_seconds=gpu_seconds+prior,window_gpu_hours=(gpu_seconds+prior)/3600,structural_complete=bool(structural),

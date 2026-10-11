@@ -16,12 +16,15 @@ if log.exists():
     # Export only numeric loading progress / fixed booleans, never raw log lines.
     raw=log.read_bytes()
     marks=re.findall(rb'Loading safetensors checkpoint shards:\s*(\d+)%',raw)
+    queue_marks=re.findall(rb'Running:\s*(\d+)\s+reqs,\s*Waiting:\s*(\d+)\s+reqs',raw)
     out['model_startup']=dict(log_bytes=len(raw),weights_percent=int(marks[-1]) if marks else None,
         application_ready=b'Application startup complete' in raw,
         cuda_graph_seen=b'Capturing CUDA graphs' in raw,
         traceback_seen=b'Traceback (most recent call last)' in raw,
         compilation_seen=b'compil' in raw.lower(),
-        graph_capture_seen=b'graph captur' in raw.lower())
+        graph_capture_seen=b'graph captur' in raw.lower(),
+        engine_last_running=int(queue_marks[-1][0]) if queue_marks else None,
+        engine_last_waiting=int(queue_marks[-1][1]) if queue_marks else None)
 for b in range(6):
     es=[];path=root/f'generation-{b}/events.jsonl'
     if path.exists():

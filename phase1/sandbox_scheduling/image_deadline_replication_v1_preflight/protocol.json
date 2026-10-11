@@ -1,0 +1,27 @@
+{
+  "authorized": "User2026-10-12 independent repeat focused on final quality within3h",
+  "matrix": "32 native trajectories;2tasks x4newseeds x2arms x2poolpairs;ABBA240/600/600/240",
+  "cap_gpu_hours": 10.2,
+  "wall_seconds": 6120,
+  "run_seconds": 900,
+  "pool_seconds": 1500,
+  "candidate_seconds": 300,
+  "knob": "bounded generation request timeout only",
+  "unit": "pool;four preassigned searches per task;native selected endpoints",
+  "gate": "4 finite nonnegative task-pool quality contrasts, same task>=0.001 oriented improvement in both repeats, no task-pool endpoint coverage loss,32attempted, structure/identity/score checks pass",
+  "preflight13": [
+    "1 exact timeout and seeds in both paired configs;32config/16pair CPU native validation before submission",
+    "2 eleven localCPU tests pass; frozen readout edge cases include coverage-only,missing,task loss andone-repeat failure",
+    "3 no training/oversampling;new fixedseeds;older pilot outcomes excluded",
+    "4 two tasks balanced;medians/sampleSD bytask/repeat,complete-case denominator explicit",
+    "5 same foursearches/task/pool,hardware/image/base/medium/8192tokens and900seconds fixed",
+    "6 no critic/base training;native search checkpoints persist incrementally",
+    "7 existing public-training devviews only;protectedcohorts/D_val/officialtest not read;no new model-fit",
+    "8 all32task-seed assignments explicit beforecollection,none shuffled/selected bynew outcomes",
+    "9 raw logs/credentials/predictions stayremote;prepush staged/outgoing credential guard mandatory",
+    "10 four1500second pool slots+120second allocation margin;startup/idle/failures included",
+    "11 two poolpairs provide exploratory repeat signal,not sufficient statistical proof;missing quality blocks success",
+    "12 returncodes preserved;CPU preparation and submission failclosed;launchintent exclusive;no auto retry",
+    "13 immutable inherited devviews/config-source/model/image SHA;new append-only root;no redraw/replacement"
+  ]
+}

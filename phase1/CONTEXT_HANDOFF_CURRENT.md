@@ -1,8 +1,13 @@
 # 当前短交接
-更新：2026-10-12香港00:54。旧排障长交接已保存在Git4279975d；这里只保留当前事实，未复查的状态写最后观察。
+更新：2026-10-12香港01:58。旧排障长交接已保存在Git4279975d；这里只保留当前事实，未复查的状态写最后观察。
 恢复：fetch → CURRENT_DIRECTION → ROUTE_DECISIONS → 本文件；不得回到旧8月路线。
 
-## 最新用户裁决与刚闭合实验
+## 最新用户裁决与新重复
+- 用户新授权三小时独立重复、验证同预算最终成绩；准备32条=2任务×4新seed×2臂×2池对，ABBA240/600/600/240，seed212101–212108、212201–212208，不合并旧17656。cap6120s×6=10.2GPUh；900s/run、300s候选、1500s/池均不变，GPU3两服务+四执行。01:56无新作业，旧Held12535不动；不另做GPU验收，11项CPU测试通过。
+- 新入口image_deadline_replication_20261012.py、结果读取image_deadline_replication_readout_20261012.py；目标=/research/d7/spc/yzyang4/scheduling-image-deadline-replication-20261012-v1。逻辑lane按首池物理UUID匹配，服务卡对固定；未知设备即停，不越权选卡。原始记录仍远端；新冻结计划/SHA及唯一job待准备/提交后更新。
+- 新主终点：每任务每池预分配4搜索的最好原生有效终点。两重复×两任务的4个差都须有分且不负，同一任务两次均达到0.001改善、每池任务覆盖不降、全32开始且结构通过；否则不称复验成功。逐run缺失不填0、完整对仅描述；2池对不是统计确认。无自动扩跑/换样本，不把旧覆盖门改成质量门。
+
+## 刚闭合17656（不是运行作业）
 - 新用户要求：沿局部信号验证、一小时给有价值反馈。23:39 SSH banner曾HTTP404三次，用户修复后23:41重连成功；没有把连接失败算实验失败。gpu3有空余，旧Held不动。
 - 新request-deadline screen已唯一提交为17656：16条=2任务×4新seed212001–212008×2条件，deadline600先/deadline240后；执行许可两臂均2，run900s/候选300s/池1500s，2服务+4执行、cap3120s=5.2GPUh。只有1个池配对，不能称跨seed独立调度确认。旧17592不重开、不补旧seed；代理超时范围校验在新目录共同支持600，未改原件/生产分支。
 - 9项CPU测试复验通过，远端16配置/8配对预检通过；source9b23d621ffb1937b831435386effd01e38cc4f08已push/ls-remote一致，planSHAd153e408fb88e7ac120fceadbab79528275943e356a639871abb7e9dcc5f86b7。新入口image_generation_deadline_20261011.py，读出image_deadline_readout_20261011.py；目标=/research/d7/spc/yzyang4/scheduling-image-generation-deadline-20261011-v1。

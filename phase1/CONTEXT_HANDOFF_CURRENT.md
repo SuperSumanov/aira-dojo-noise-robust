@@ -1,10 +1,10 @@
 # 当前短交接
-更新：2026-10-12香港01:58。旧排障长交接已保存在Git4279975d；这里只保留当前事实，未复查的状态写最后观察。
+更新：2026-10-12香港02:18。旧排障长交接已保存在Git4279975d；这里只保留当前事实，未复查的状态写最后观察。
 恢复：fetch → CURRENT_DIRECTION → ROUTE_DECISIONS → 本文件；不得回到旧8月路线。
 
 ## 最新用户裁决与新重复
-- 用户新授权三小时独立重复、验证同预算最终成绩；准备32条=2任务×4新seed×2臂×2池对，ABBA240/600/600/240，seed212101–212108、212201–212208，不合并旧17656。cap6120s×6=10.2GPUh；900s/run、300s候选、1500s/池均不变，GPU3两服务+四执行。01:56无新作业，旧Held12535不动；不另做GPU验收，11项CPU测试通过。
-- 新入口image_deadline_replication_20261012.py、结果读取image_deadline_replication_readout_20261012.py；目标=/research/d7/spc/yzyang4/scheduling-image-deadline-replication-20261012-v1。逻辑lane按首池物理UUID匹配，服务卡对固定；未知设备即停，不越权选卡。原始记录仍远端；新冻结计划/SHA及唯一job待准备/提交后更新。
+- 用户新授权三小时独立重复、验证同预算最终成绩；32条=2任务×4新seed×2臂×2池对，ABBA240/600/600/240，seed212101–212108、212201–212208，不合并旧17656。cap6120s×6=10.2GPUh；900s/run、300s候选、1500s/池均不变，GPU3两服务+四执行。02:16最后观察唯一job17670 RUNNING/gpu3、6GPU/24CPU、首池服务启动；约02:13开跑，预计03:54完整闭合但以现场为准。submit PID301835已退出、途中SSH超时未重投；旧Held12535不动。11项本地/远端CPU测试及32配置/16配对预检通过。
+- 新入口image_deadline_replication_20261012.py、结果读取image_deadline_replication_readout_20261012.py；目标=/research/d7/spc/yzyang4/scheduling-image-deadline-replication-20261012-v1。source13f8ebcb1cd76ca210aacf5c7f43ea2d086d7f85已push/ls-remote一致，planSHA23f368399f6c735ef81142ec46831ae4e9f45d58d80edf5d2559b4cbb7a22ea6。逻辑lane按首池物理UUID匹配、服务卡对固定；未知设备即停。安全status入口image_deadline_replication_status_20261012.py；一次性CPU结束读出PID317337已注册（image_deadline_replication_finish_20261012.py），SHA5c00e9434b804bfb8c4a05db3f0c268bdb615207cd759ea90a7bd4113b704712，切勿重复启动。
 - 新主终点：每任务每池预分配4搜索的最好原生有效终点。两重复×两任务的4个差都须有分且不负，同一任务两次均达到0.001改善、每池任务覆盖不降、全32开始且结构通过；否则不称复验成功。逐run缺失不填0、完整对仅描述；2池对不是统计确认。无自动扩跑/换样本，不把旧覆盖门改成质量门。
 
 ## 刚闭合17656（不是运行作业）
@@ -69,7 +69,7 @@
 - 活跃checkout=C:/Research/New/my_project/MLEvolve/_codex_tmp/publication-feedback-20261001，detached HEAD有意；旧aira-dojo-codex-20260813用户dirty不动。
 - 本轮闭合提交前公开head424a33a8dec044363d00cb37c4de758ab8f6e8f7已复查，当前HEAD以git log为准；实验source仍9b23d621。学长64fd78e98cfdc945b1af03f29f570975d58b88b7于00:43再次fetch无更新、未改其分支。原Git hook曾MSYS拒绝，独立guard通过，不冒称hook通过；本轮仍需发布前guard。
 - 用户未跟踪报告phase1/reports/给学长_MLE沙箱资源调度进展_20261009.md保留、不stage。
-- 17587/17590/17592/17656均已闭合，本轮未再提交；旧Held12535未动。排除projgpu7/8/33、gpu36/38；旧MLE镜像不投projgpu39。
+- 17587/17590/17592/17656均已闭合，只有新17670，实时状态看顶部；旧Held12535未动。排除projgpu7/8/33、gpu36/38；旧MLE镜像不投projgpu39。
 - SSH linux5；PY=/research/d7/spc/yzyang4/venvs/aira/bin/python；SLURM_CONF=/opt1/slurm/gpu-slurm.conf。
 - stage=/research/d7/spc/yzyang4/resource-diag-stage-20261011.M5wKjU；研究盘4TB至2027-08-30。
 - Slurm19.05.4无--exact；hint=nomultithread核物理CPU；SCP返回session须等exit0；不要在计时GPU时重hash大镜像。

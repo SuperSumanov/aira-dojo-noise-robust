@@ -1,0 +1,8 @@
+{
+  "configs": 32,
+  "independent_pool_pairs": 2,
+  "matched_pairs": 16,
+  "no_gpu": true,
+  "plan_sha256": "23f368399f6c735ef81142ec46831ae4e9f45d58d80edf5d2559b4cbb7a22ea6",
+  "source_commit": "13f8ebcb1cd76ca210aacf5c7f43ea2d086d7f85"
+}

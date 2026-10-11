@@ -1,0 +1,62 @@
+{
+  "boundary": "Independent structural/role verification only; no counterfactual utility or new quality endpoint.",
+  "checks": [
+    {
+      "all_checks_pass": true,
+      "job": "17592",
+      "journal_role_counts": {
+        "debug": 33,
+        "draft": 24,
+        "improve": 1
+      },
+      "queues": 16,
+      "runs": 32
+    },
+    {
+      "all_checks_pass": true,
+      "job": "17656",
+      "journal_role_counts": {
+        "debug": 11,
+        "draft": 16
+      },
+      "queues": 8,
+      "runs": 16
+    },
+    {
+      "all_checks_pass": true,
+      "job": "17670",
+      "journal_role_counts": {
+        "debug": 22,
+        "draft": 20
+      },
+      "queues": 16,
+      "runs": 32
+    }
+  ],
+  "scarce_choice_contexts": [
+    {
+      "actual_kind": "preview",
+      "block": 0,
+      "free_permits": 1,
+      "job": "17592",
+      "lane": 3,
+      "ordered_ready_kinds": [
+        "preview",
+        "preview"
+      ]
+    },
+    {
+      "actual_kind": "preview",
+      "block": 3,
+      "free_permits": 1,
+      "job": "17592",
+      "lane": 2,
+      "ordered_ready_kinds": [
+        "preview",
+        "preview"
+      ]
+    }
+  ],
+  "screen_sha256": "c1cb507322bf01065cb673221471c6007eb8c06bd3de856c69e01b0e26331abd",
+  "verifier_sha256": "a3df3bc724e757b8493559b046e7af1b8a6f297e8e6d71c31134038c05aa3c60"
+}

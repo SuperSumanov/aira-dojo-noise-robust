@@ -1,0 +1,87 @@
+{
+  "after_uid": {
+    "largest_process_thread_counts": [
+      4,
+      1,
+      1,
+      1,
+      1
+    ],
+    "lower_bound": true,
+    "unreadable_or_racing": 0,
+    "visible_processes": 5,
+    "visible_threads": 8,
+    "zombies": 0
+  },
+  "attempted": 12,
+  "before_uid": {
+    "largest_process_thread_counts": [
+      4,
+      1,
+      1,
+      1,
+      1
+    ],
+    "lower_bound": true,
+    "unreadable_or_racing": 0,
+    "visible_processes": 5,
+    "visible_threads": 8,
+    "zombies": 0
+  },
+  "boundary": "Controlled CPU-only exit17 fault. Not prevention of native crash, six-GPU capacity, historical EAGAIN root cause or MLE quality. UID counts are visible lower bounds.",
+  "closed_sha256": "745ae8d8769731b79393ca91de70123b59280848c15babfb4b077e47da2a8538",
+  "complete": 12,
+  "gate": true,
+  "gpu_seconds": 129,
+  "gpu_seconds_cap": 600,
+  "job": "17569",
+  "manifest_ok": true,
+  "normal_outputs_equal": true,
+  "plan_sha256": "4a27286e2480951f8b0114107f751e3cc8685a2317226038dccf22430f979929",
+  "planned": 12,
+  "scheduler_state": "COMPLETED",
+  "summary": [
+    {
+      "arm": "old",
+      "case": "normal",
+      "complete": 3,
+      "median_cleanup_seconds": 0.43987083435058594,
+      "median_seconds": 0.13841260503977537,
+      "observed": 3,
+      "planned": 3,
+      "sample_sd_seconds": 0.00696432626452844
+    },
+    {
+      "arm": "old",
+      "case": "exit",
+      "complete": 3,
+      "median_cleanup_seconds": 0.4381248950958252,
+      "median_seconds": 16.39422196894884,
+      "observed": 3,
+      "planned": 3,
+      "sample_sd_seconds": 0.014168659872206123
+    },
+    {
+      "arm": "guard",
+      "case": "normal",
+      "complete": 3,
+      "median_cleanup_seconds": 0.43559718132019043,
+      "median_seconds": 0.13639268605038524,
+      "observed": 3,
+      "planned": 3,
+      "sample_sd_seconds": 0.008758760111952313
+    },
+    {
+      "arm": "guard",
+      "case": "exit",
+      "complete": 3,
+      "median_cleanup_seconds": 0.3674750328063965,
+      "median_seconds": 2.385627934942022,
+      "observed": 3,
+      "planned": 3,
+      "sample_sd_seconds": 0.0386125174152679
+    }
+  ],
+  "uid_returned_to_baseline": true,
+  "unstarted": 0
+}

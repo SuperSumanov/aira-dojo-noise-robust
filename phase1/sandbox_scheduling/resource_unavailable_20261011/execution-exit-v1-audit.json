@@ -1,0 +1,760 @@
+{
+  "after_uid_counts": {
+    "largest_process_thread_counts": [
+      13,
+      8,
+      7,
+      4,
+      4,
+      4,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "lower_bound": true,
+    "unreadable_or_racing": 0,
+    "visible_processes": 13,
+    "visible_threads": 47,
+    "zombies": 0
+  },
+  "attempted": 10,
+  "blocks": [
+    {
+      "block": 0,
+      "gpus": 1,
+      "host_optimizer_envelope_overlap_peak": 1,
+      "physical_cores": 4
+    },
+    {
+      "block": 1,
+      "gpus": 1,
+      "host_optimizer_envelope_overlap_peak": 1,
+      "physical_cores": 4
+    },
+    {
+      "block": 2,
+      "gpus": 1,
+      "host_optimizer_envelope_overlap_peak": 1,
+      "physical_cores": 4
+    },
+    {
+      "block": 3,
+      "gpus": 1,
+      "host_optimizer_envelope_overlap_peak": 1,
+      "physical_cores": 4
+    },
+    {
+      "block": 4,
+      "gpus": 1,
+      "host_optimizer_envelope_overlap_peak": 1,
+      "physical_cores": 4
+    },
+    {
+      "block": 5,
+      "gpus": 1,
+      "host_optimizer_envelope_overlap_peak": 1,
+      "physical_cores": 4
+    },
+    {
+      "block": 6,
+      "gpus": 1,
+      "host_optimizer_envelope_overlap_peak": 1,
+      "physical_cores": 4
+    },
+    {
+      "block": 7,
+      "gpus": 1,
+      "host_optimizer_envelope_overlap_peak": 1,
+      "physical_cores": 4
+    },
+    {
+      "block": 8,
+      "gpus": 1,
+      "host_optimizer_envelope_overlap_peak": 1,
+      "physical_cores": 4
+    },
+    {
+      "block": 9,
+      "gpus": 1,
+      "host_optimizer_envelope_overlap_peak": 1,
+      "physical_cores": 4
+    }
+  ],
+  "boundary": "Original source/seed/image10serial maximum,first failure stops;no watchdog. Provisioner instrumentation may affect timing. Native exit is not the historical OpenBLAS root cause or6-way capacity/quality.",
+  "closed_sha256": "afa155703ef2988dfc902a8f88a690a01a65865d171c2a2ddde5fd62a4122b35",
+  "comparisons": [
+    {
+      "byte_equal": true,
+      "left": 0,
+      "max_abs_diff": 0.0,
+      "right": 1,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 0,
+      "max_abs_diff": 0.0,
+      "right": 2,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 0,
+      "max_abs_diff": 0.0,
+      "right": 3,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 0,
+      "max_abs_diff": 0.0,
+      "right": 4,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 0,
+      "max_abs_diff": 0.0,
+      "right": 5,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 0,
+      "max_abs_diff": 0.0,
+      "right": 6,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 0,
+      "max_abs_diff": 0.0,
+      "right": 7,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 0,
+      "max_abs_diff": 0.0,
+      "right": 8,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 0,
+      "max_abs_diff": 0.0,
+      "right": 9,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 1,
+      "max_abs_diff": 0.0,
+      "right": 2,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 1,
+      "max_abs_diff": 0.0,
+      "right": 3,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 1,
+      "max_abs_diff": 0.0,
+      "right": 4,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 1,
+      "max_abs_diff": 0.0,
+      "right": 5,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 1,
+      "max_abs_diff": 0.0,
+      "right": 6,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 1,
+      "max_abs_diff": 0.0,
+      "right": 7,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 1,
+      "max_abs_diff": 0.0,
+      "right": 8,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 1,
+      "max_abs_diff": 0.0,
+      "right": 9,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 2,
+      "max_abs_diff": 0.0,
+      "right": 3,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 2,
+      "max_abs_diff": 0.0,
+      "right": 4,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 2,
+      "max_abs_diff": 0.0,
+      "right": 5,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 2,
+      "max_abs_diff": 0.0,
+      "right": 6,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 2,
+      "max_abs_diff": 0.0,
+      "right": 7,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 2,
+      "max_abs_diff": 0.0,
+      "right": 8,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 2,
+      "max_abs_diff": 0.0,
+      "right": 9,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 3,
+      "max_abs_diff": 0.0,
+      "right": 4,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 3,
+      "max_abs_diff": 0.0,
+      "right": 5,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 3,
+      "max_abs_diff": 0.0,
+      "right": 6,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 3,
+      "max_abs_diff": 0.0,
+      "right": 7,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 3,
+      "max_abs_diff": 0.0,
+      "right": 8,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 3,
+      "max_abs_diff": 0.0,
+      "right": 9,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 4,
+      "max_abs_diff": 0.0,
+      "right": 5,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 4,
+      "max_abs_diff": 0.0,
+      "right": 6,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 4,
+      "max_abs_diff": 0.0,
+      "right": 7,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 4,
+      "max_abs_diff": 0.0,
+      "right": 8,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 4,
+      "max_abs_diff": 0.0,
+      "right": 9,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 5,
+      "max_abs_diff": 0.0,
+      "right": 6,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 5,
+      "max_abs_diff": 0.0,
+      "right": 7,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 5,
+      "max_abs_diff": 0.0,
+      "right": 8,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 5,
+      "max_abs_diff": 0.0,
+      "right": 9,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 6,
+      "max_abs_diff": 0.0,
+      "right": 7,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 6,
+      "max_abs_diff": 0.0,
+      "right": 8,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 6,
+      "max_abs_diff": 0.0,
+      "right": 9,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 7,
+      "max_abs_diff": 0.0,
+      "right": 8,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 7,
+      "max_abs_diff": 0.0,
+      "right": 9,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 8,
+      "max_abs_diff": 0.0,
+      "right": 9,
+      "within_tolerance": true
+    }
+  ],
+  "complete": 10,
+  "execute_calls_observed": 30,
+  "execution_gate": true,
+  "gpu_seconds": 578,
+  "gpu_seconds_cap": 1800,
+  "input_manifest_ok": true,
+  "job": "17567",
+  "lifecycle": [
+    {
+      "attempted": true,
+      "call": {
+        "call": 1,
+        "end": 1791684180.6769557,
+        "error_type": null,
+        "exit_code": 0,
+        "flags": {
+          "can't start new thread": false,
+          "out of memory": false,
+          "pthread_create": false,
+          "resource temporarily unavailable": false
+        },
+        "start": 1791684141.7545307,
+        "timed_out": false
+      },
+      "complete": true,
+      "events": [
+        {
+          "event": "launched",
+          "pid": 17,
+          "time": 1791684137.1846106
+        },
+        {
+          "event": "exit_observed",
+          "pid": 17,
+          "returncode": 0,
+          "time": 1791684184.2525125
+        }
+      ],
+      "exits_during_candidate": [],
+      "index": 0
+    },
+    {
+      "attempted": true,
+      "call": {
+        "call": 1,
+        "end": 1791684237.8429508,
+        "error_type": null,
+        "exit_code": 0,
+        "flags": {
+          "can't start new thread": false,
+          "out of memory": false,
+          "pthread_create": false,
+          "resource temporarily unavailable": false
+        },
+        "start": 1791684198.8529022,
+        "timed_out": false
+      },
+      "complete": true,
+      "events": [
+        {
+          "event": "launched",
+          "pid": 17,
+          "time": 1791684194.5167322
+        },
+        {
+          "event": "exit_observed",
+          "pid": 17,
+          "returncode": 0,
+          "time": 1791684241.4851556
+        }
+      ],
+      "exits_during_candidate": [],
+      "index": 1
+    },
+    {
+      "attempted": true,
+      "call": {
+        "call": 1,
+        "end": 1791684295.1645567,
+        "error_type": null,
+        "exit_code": 0,
+        "flags": {
+          "can't start new thread": false,
+          "out of memory": false,
+          "pthread_create": false,
+          "resource temporarily unavailable": false
+        },
+        "start": 1791684256.2286842,
+        "timed_out": false
+      },
+      "complete": true,
+      "events": [
+        {
+          "event": "launched",
+          "pid": 17,
+          "time": 1791684252.108342
+        },
+        {
+          "event": "exit_observed",
+          "pid": 17,
+          "returncode": 0,
+          "time": 1791684299.6445916
+        }
+      ],
+      "exits_during_candidate": [],
+      "index": 2
+    },
+    {
+      "attempted": true,
+      "call": {
+        "call": 1,
+        "end": 1791684353.7853215,
+        "error_type": null,
+        "exit_code": 0,
+        "flags": {
+          "can't start new thread": false,
+          "out of memory": false,
+          "pthread_create": false,
+          "resource temporarily unavailable": false
+        },
+        "start": 1791684314.3075998,
+        "timed_out": false
+      },
+      "complete": true,
+      "events": [
+        {
+          "event": "launched",
+          "pid": 17,
+          "time": 1791684310.2265792
+        },
+        {
+          "event": "exit_observed",
+          "pid": 17,
+          "returncode": 0,
+          "time": 1791684357.3256686
+        }
+      ],
+      "exits_during_candidate": [],
+      "index": 3
+    },
+    {
+      "attempted": true,
+      "call": {
+        "call": 1,
+        "end": 1791684411.3263762,
+        "error_type": null,
+        "exit_code": 0,
+        "flags": {
+          "can't start new thread": false,
+          "out of memory": false,
+          "pthread_create": false,
+          "resource temporarily unavailable": false
+        },
+        "start": 1791684371.9918497,
+        "timed_out": false
+      },
+      "complete": true,
+      "events": [
+        {
+          "event": "launched",
+          "pid": 17,
+          "time": 1791684367.567777
+        },
+        {
+          "event": "exit_observed",
+          "pid": 17,
+          "returncode": 0,
+          "time": 1791684414.8266094
+        }
+      ],
+      "exits_during_candidate": [],
+      "index": 4
+    },
+    {
+      "attempted": true,
+      "call": {
+        "call": 1,
+        "end": 1791684468.8949983,
+        "error_type": null,
+        "exit_code": 0,
+        "flags": {
+          "can't start new thread": false,
+          "out of memory": false,
+          "pthread_create": false,
+          "resource temporarily unavailable": false
+        },
+        "start": 1791684429.4832118,
+        "timed_out": false
+      },
+      "complete": true,
+      "events": [
+        {
+          "event": "launched",
+          "pid": 17,
+          "time": 1791684425.3139644
+        },
+        {
+          "event": "exit_observed",
+          "pid": 17,
+          "returncode": 0,
+          "time": 1791684472.4965935
+        }
+      ],
+      "exits_during_candidate": [],
+      "index": 5
+    },
+    {
+      "attempted": true,
+      "call": {
+        "call": 1,
+        "end": 1791684526.1224408,
+        "error_type": null,
+        "exit_code": 0,
+        "flags": {
+          "can't start new thread": false,
+          "out of memory": false,
+          "pthread_create": false,
+          "resource temporarily unavailable": false
+        },
+        "start": 1791684486.720541,
+        "timed_out": false
+      },
+      "complete": true,
+      "events": [
+        {
+          "event": "launched",
+          "pid": 17,
+          "time": 1791684482.6696994
+        },
+        {
+          "event": "exit_observed",
+          "pid": 17,
+          "returncode": 0,
+          "time": 1791684529.6920455
+        }
+      ],
+      "exits_during_candidate": [],
+      "index": 6
+    },
+    {
+      "attempted": true,
+      "call": {
+        "call": 1,
+        "end": 1791684584.0578187,
+        "error_type": null,
+        "exit_code": 0,
+        "flags": {
+          "can't start new thread": false,
+          "out of memory": false,
+          "pthread_create": false,
+          "resource temporarily unavailable": false
+        },
+        "start": 1791684544.5023239,
+        "timed_out": false
+      },
+      "complete": true,
+      "events": [
+        {
+          "event": "launched",
+          "pid": 17,
+          "time": 1791684540.0184977
+        },
+        {
+          "event": "exit_observed",
+          "pid": 17,
+          "returncode": 0,
+          "time": 1791684587.568298
+        }
+      ],
+      "exits_during_candidate": [],
+      "index": 7
+    },
+    {
+      "attempted": true,
+      "call": {
+        "call": 1,
+        "end": 1791684641.121078,
+        "error_type": null,
+        "exit_code": 0,
+        "flags": {
+          "can't start new thread": false,
+          "out of memory": false,
+          "pthread_create": false,
+          "resource temporarily unavailable": false
+        },
+        "start": 1791684601.8723297,
+        "timed_out": false
+      },
+      "complete": true,
+      "events": [
+        {
+          "event": "launched",
+          "pid": 17,
+          "time": 1791684597.9254622
+        },
+        {
+          "event": "exit_observed",
+          "pid": 17,
+          "returncode": 0,
+          "time": 1791684644.6610675
+        }
+      ],
+      "exits_during_candidate": [],
+      "index": 8
+    },
+    {
+      "attempted": true,
+      "call": {
+        "call": 1,
+        "end": 1791684699.107635,
+        "error_type": null,
+        "exit_code": 0,
+        "flags": {
+          "can't start new thread": false,
+          "out of memory": false,
+          "pthread_create": false,
+          "resource temporarily unavailable": false
+        },
+        "start": 1791684659.3813016,
+        "timed_out": false
+      },
+      "complete": true,
+      "events": [
+        {
+          "event": "launched",
+          "pid": 17,
+          "time": 1791684654.9820805
+        },
+        {
+          "event": "exit_observed",
+          "pid": 17,
+          "returncode": 0,
+          "time": 1791684702.7120724
+        }
+      ],
+      "exits_during_candidate": [],
+      "index": 9
+    }
+  ],
+  "manifest_ok": true,
+  "nproc_soft_values": [
+    1024
+  ],
+  "plan_sha256": "64d4d03d1b4513bfac11518736671031691f334334195e134eab564ba99931f0",
+  "planned": 10,
+  "resource_error_flags": {
+    "can't start new thread": 0,
+    "out of memory": 0,
+    "pthread_create": 0,
+    "resource temporarily unavailable": 0
+  },
+  "scheduler_state": "COMPLETED",
+  "successful_execute_warning_coverage": true,
+  "uid_threads_peak": 286,
+  "unstarted": 0
+}

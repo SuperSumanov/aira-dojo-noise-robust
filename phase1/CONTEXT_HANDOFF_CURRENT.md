@@ -1,5 +1,5 @@
 # 当前短交接
-更新：2026-10-11香港09:50附近工具观察；当前六小时窗口06:37:30–12:37:30，继续会话内工作，不新建automation/thread/goal。
+更新：2026-10-11香港10:31附近工具观察；当前六小时窗口06:37:30–12:37:30，继续会话内工作，不新建automation/thread/goal。
 恢复：fetch → CURRENT_DIRECTION → ROUTE_DECISIONS → 本文件。旧8月任务不恢复，未核现场的状态一律“最后观察”。
 
 ## 当前任务与硬边界
@@ -7,16 +7,22 @@
 - 用户广泛批准，但新批仍先公告矩阵、完整资源上限、停止门。学长两卡模型服务六卡MLE/medium只是建议，尚未完成真实2+6容量验证。
 - 不更新agent底座、不改学长分支、无付费API；first-960/Target-300/Target-522、D_val、官方test、16560数值导出仍关闭。旧HCE/多保真/Probe/TD等不自动恢复。
 - 活跃checkout=C:/Research/New/my_project/MLEvolve/_codex_tmp/publication-feedback-20261001；detached HEAD有意保留。旧aira-dojo-codex-20260813用户dirty不动。
-- 最后公开且ls-remote核验b24c8b933836fd6c819c24af110aedeb26e45171；最近fetch学长仍f7ccd79323112b10ccc82d8e9ec9d6cf089df607。新本窗文件待发布，不能称已push。
+- 最后公开且ls-remote核验53a42fe73d129e1a71b0a7ee8778d17417ac8528；最近fetch学长仍f7ccd79323112b10ccc82d8e9ec9d6cf089df607。17566闭合/新exit观察器尚未发布。
 - 用户未跟踪报告phase1/reports/给学长_MLE沙箱资源调度进展_20261009.md保留、不stage。旧长细节Git b24及原实验目录可恢复，不覆写原件。
 
-## 现场：17566单卡堆栈诊断，其余本窗作业已闭合
-- 最后09:50：17566六次候选已开始、五次完成、未闭合；root=/research/d7/spc/yzyang4/resource-execution-stack-capture-20261011-v1。
+## 现场：17569完整修正12/12；17570真实六卡运行
+- 最后17566：10计划/6尝试/5完成/4未开始，785GPU秒；root=/research/d7/spc/yzyang4/resource-execution-stack-capture-20261011-v1。失效仍发生单卡，不能归因六并发。
 - plan SHA4741e0748c51affd413700690d1f3f24e879c522f194b74e5226a63917ca27b8；最多10次串行UNet原seed42/588步/450s，gpu3一卡4物理核最多30min≤1800GPU秒。首失败闭合、不补样本；无模型/API。
 - 17565已闭合14计划/8尝试/7完成/6未开始；失败index5两次握手均正常，候选调用452.858323012013秒超时；没有线程创建/OOM枚举报错。7完成均588步，21输出比较全字节一致，仍不称六并发门通过。
 - 17565 source/input/image未变；原CLI与client观察器可能影响时序。失败时gateway收到2个execute、仅1个execute_reply（prelude）；候选尚未产出文件。源码DataLoader num_workers=2，仅为假说线索。
 - 17566只在prelude加30s父内核堆栈watchdog、分配卡内部2s NVML；父堆栈不含DataLoader子进程，采样不是GPU kernel时间。source原样、不改线程或训练参数。
-- stage/stack_capture_readout_20261011.py已记录launch及审核器hash；观察exec17737。结束后audit只运行一次并核远近hash。旧Held12535不动；不重复提交。只读跨step GPU查询此前失败，原因未捕获，不作零利用率。
+- 17566审核已完成且gate false，UID峰243、清理3/3/0；GPU失败期间采样237/237、中位0，后期显存4MiB。单次30s堆栈不完整且不再更新。末次观察内存failcnt/pids.events无增加（有不可读祖先），不排除其他故障。
+- 同分配内Slurm零GPU只读进程核查：gateway子进程启动晚于候选，疑似死亡后重启，确切退出码未采到。不能说DataLoader死锁/历史OpenBLAS根因。节点SSH主机验证未通过，未禁用验证；改走本作业Slurm诊断步。
+- 17567 resource-execution-exit-capture-20261011-v1：plan64d4d03d1b4513bfac11518736671031691f334334195e134eab564ba99931f0，原样UNet串行10/10、578GPU秒；30execute均完成，UID峰286、无执行中非零exit。去faulthandler同时加退出观察器，不能因本批成功就归因旧watchdog或称根治。末13进程47线程含同时17568，不作泄漏结论。
+- 17568 restart-guard-v1：12计划/4尝试/3完整/8未开始，163GPU秒；旧exit17等16.388614677125588秒超时，新guard于2.371317527955398秒收到真实parentless restarting并返回非timeout失败，但清理HTTP500。原门false保留。
+- 精确栈：Jupyter8.9.1 MultiKernelManager._async_shutdown_kernel在restart的ready Future未完成时调用exception()→InvalidStateError；关闭server也触发，120s后强杀。新增窄gateway覆盖只在delete前等ready≤15s，不升级image、不重执行候选、不吞错误；8异步单元+2矩阵测试、原CLI无内核预检通过。
+- 17569 resource-restart-guard-trial-20261011-v2：plan4a27286e2480951f8b0114107f751e3cc8685a2317226038dccf22430f979929，12/12、129GPU秒；正常六输出相同，exit旧中位16.39422196894884秒、新2.385627934942022秒，SD0.014168659872206123/0.0386125174152679；guard清理中位0.3674750328063965秒、无500/InvalidState/强杀，UID前后5进程8线程0zombie。原错误仍是已知人工exit17，非EAGAIN根因。
+- 17570 resource-execution-guarded-six-20261011-v1：pland96fba91f303325714b8a7320571776cbec66a87ccaa45f12d01afd5a2b418a5，14=2串行+2×6；6卡/24物理核30min≤10800GPU秒。原UNet/输入/588步/seed42/450s不变、无watchdog，仅已验证restart/cleanup修正+退出/协议/NVML观察；首失败停不补。10:31最后2开始/1完成，无非零exit；watch exec22451。独立readout已pin，原14分母/91数值比较门不放宽。模型服务不在本批。
 
 ## 本窗已确认的工程事实与未解决问题
 - 共享mle/comparison/1009八包已定位；Spooky/Dog各一精确日志SHA独立复核，OpenBLAS pthread_create失败，NPROC soft1024，请求线程分别3/12。原始日志仅远端内存凭据先筛，不导出代码/标签。
@@ -31,6 +37,7 @@
 - 17559发现gpu1一分配槽（STEP_GPUS=3，不推物理编号）宿主/镜像×默认/撤mask四组合全cuInit100；另七槽单GPU算术正常。设备门false，不冒称17557也是同数字码；不reset/改权限/绕cgroup。
 - 单纯主进程导入数学库帽3/未设/未设/3，线程7/25/25/7；无训练，只是线程余量线索，不是六并发修复或性能结论。
 - 本窗新增源已运行46项指定Linux回归通过（含堆栈解析/单卡接线），单项远端预检按各receipt。不是46次生产实验。
+- 学长9/24已有mlebench_multiprocessing_resource_limits.patch提示math线程≤4、torch8、loader≤4；当前src只找到patch，不能由此认定生产已应用。LOCAL_VLLM_SERVER.md凭据形命中，原文输出已抑制，须远端脱敏后读。
 
 ## 所有失败和实际成本保留
 - 17541：14计划/7尝试/6成功/1服务器readiness超时，132GPU秒。
@@ -60,5 +67,6 @@
 - Slurm19.05.4无--exact；hint=nomultithread按物理CPU集合验收；>6且≤10CPU/GPU需highcpucount。gpu35等课程卡QOS未授权不可借用；prod32属farnia不是普通gpu队列。
 - 研究盘4TB至2027-08-30，不是实时余量。凭据只远端批准.env，不回显/导出；共享原材料先凭据扫描，日志只枚举输出。
 - SCP返回session须等exit0；共享盘重hash不要与计时GPU候选重叠；审核writer只运行一次。
+- Windows沙箱asyncio单元测试挂起，已只终止我方指定PID264344；WSL需权限，8项异步测试真实通过。Linux-only resource模块不能用Windows套跑；不要再把这两种环境失败解释成实验失败。
 - 发布只显式stage我方文件；扫描暂存及所有未发布blob、敏感文件名、Git/本地/远端字节。无force push、无学长分支修改。hook历史MSYS警告不是hook通过。
 - 用户授权耗尽后本窗已消费一张现有重置卡，未购买；不要因上下文长再消费。无变化轮询不是进展。

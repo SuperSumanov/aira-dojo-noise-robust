@@ -1,0 +1,392 @@
+{
+  "attempted": 4,
+  "boundary": "Artificial os._exit17 cause known by construction. Confirms control-event handling only; not spontaneous crash prevention,historical EAGAIN resolution,GPU throughput or MLE quality.",
+  "closed_sha256": "54d607a5162996dcca15986b76b27c8b732ea86fc3fe0ac89667716a6482ce73",
+  "complete": 3,
+  "gate": false,
+  "gpu_seconds": 163,
+  "gpu_seconds_cap": 600,
+  "job": "17568",
+  "manifest_ok": true,
+  "normal_stdout_all_equal": false,
+  "plan_sha256": "47f008933f0bb055bf26d1866444ff074eafb8f950b281d32b8340ada2024f62",
+  "planned": 12,
+  "scheduler_state": "FAILED",
+  "summary": [
+    {
+      "arm": "old",
+      "case": "normal",
+      "complete": 1,
+      "gate": false,
+      "median_seconds": 0.1400812070351094,
+      "observed": 1,
+      "planned": 3,
+      "sample_sd_seconds": null
+    },
+    {
+      "arm": "old",
+      "case": "exit",
+      "complete": 1,
+      "gate": false,
+      "median_seconds": 16.388614677125588,
+      "observed": 1,
+      "planned": 3,
+      "sample_sd_seconds": null
+    },
+    {
+      "arm": "guard",
+      "case": "normal",
+      "complete": 1,
+      "gate": false,
+      "median_seconds": 0.13764281710609794,
+      "observed": 1,
+      "planned": 3,
+      "sample_sd_seconds": null
+    },
+    {
+      "arm": "guard",
+      "case": "exit",
+      "complete": 0,
+      "gate": false,
+      "median_seconds": 2.371317527955398,
+      "observed": 1,
+      "planned": 3,
+      "sample_sd_seconds": null
+    }
+  ],
+  "traces": [
+    {
+      "events": [
+        {
+          "event": "launched",
+          "pid": 18,
+          "time": 1791684601.459966
+        },
+        {
+          "event": "exit_observed",
+          "pid": 18,
+          "returncode": 0,
+          "time": 1791684602.4132462
+        }
+      ],
+      "index": 0,
+      "messages": [
+        {
+          "has_parent": true,
+          "kind": "status",
+          "state": "busy",
+          "time": 1791684602.1076798
+        },
+        {
+          "has_parent": true,
+          "kind": "status",
+          "state": "idle",
+          "time": 1791684602.1491501
+        },
+        {
+          "has_parent": true,
+          "kind": "kernel_info_reply",
+          "state": null,
+          "time": 1791684602.1492531
+        },
+        {
+          "has_parent": true,
+          "kind": "status",
+          "state": "idle",
+          "time": 1791684602.1507823
+        },
+        {
+          "has_parent": true,
+          "kind": "status",
+          "state": "busy",
+          "time": 1791684602.1509094
+        },
+        {
+          "has_parent": true,
+          "kind": "status",
+          "state": "idle",
+          "time": 1791684602.1527817
+        },
+        {
+          "has_parent": true,
+          "kind": "status",
+          "state": "busy",
+          "time": 1791684602.1937573
+        },
+        {
+          "has_parent": true,
+          "kind": "execute_reply",
+          "state": null,
+          "time": 1791684602.19522
+        },
+        {
+          "has_parent": true,
+          "kind": "status",
+          "state": "idle",
+          "time": 1791684602.2054474
+        }
+      ]
+    },
+    {
+      "events": [
+        {
+          "event": "launched",
+          "pid": 17,
+          "time": 1791684607.1432505
+        },
+        {
+          "event": "exit_observed",
+          "pid": 17,
+          "returncode": 17,
+          "time": 1791684610.150804
+        },
+        {
+          "event": "launched",
+          "pid": 33,
+          "time": 1791684610.176561
+        },
+        {
+          "event": "exit_observed",
+          "pid": 33,
+          "returncode": 0,
+          "time": 1791684624.3705366
+        }
+      ],
+      "index": 1,
+      "messages": [
+        {
+          "has_parent": true,
+          "kind": "status",
+          "state": "idle",
+          "time": 1791684607.803703
+        },
+        {
+          "has_parent": true,
+          "kind": "status",
+          "state": "busy",
+          "time": 1791684607.8438666
+        },
+        {
+          "has_parent": true,
+          "kind": "status",
+          "state": "idle",
+          "time": 1791684607.8458273
+        },
+        {
+          "has_parent": true,
+          "kind": "kernel_info_reply",
+          "state": null,
+          "time": 1791684607.8459089
+        },
+        {
+          "has_parent": true,
+          "kind": "status",
+          "state": "busy",
+          "time": 1791684607.8470502
+        },
+        {
+          "has_parent": true,
+          "kind": "status",
+          "state": "idle",
+          "time": 1791684607.847674
+        },
+        {
+          "has_parent": true,
+          "kind": "status",
+          "state": "busy",
+          "time": 1791684607.8707995
+        },
+        {
+          "has_parent": false,
+          "kind": "status",
+          "state": "restarting",
+          "time": 1791684610.1566215
+        }
+      ]
+    },
+    {
+      "events": [
+        {
+          "event": "launched",
+          "pid": 17,
+          "time": 1791684629.758721
+        },
+        {
+          "event": "exit_observed",
+          "pid": 17,
+          "returncode": 0,
+          "time": 1791684630.7039924
+        }
+      ],
+      "index": 2,
+      "messages": [
+        {
+          "has_parent": true,
+          "kind": "status",
+          "state": "idle",
+          "time": 1791684630.391426
+        },
+        {
+          "has_parent": true,
+          "kind": "status",
+          "state": "busy",
+          "time": 1791684630.4335964
+        },
+        {
+          "has_parent": true,
+          "kind": "status",
+          "state": "idle",
+          "time": 1791684630.433665
+        },
+        {
+          "has_parent": true,
+          "kind": "kernel_info_reply",
+          "state": null,
+          "time": 1791684630.433746
+        },
+        {
+          "has_parent": true,
+          "kind": "status",
+          "state": "busy",
+          "time": 1791684630.4349215
+        },
+        {
+          "has_parent": true,
+          "kind": "status",
+          "state": "idle",
+          "time": 1791684630.437306
+        },
+        {
+          "has_parent": true,
+          "kind": "status",
+          "state": "busy",
+          "time": 1791684630.4778569
+        },
+        {
+          "has_parent": true,
+          "kind": "execute_reply",
+          "state": null,
+          "time": 1791684630.4793942
+        },
+        {
+          "has_parent": true,
+          "kind": "status",
+          "state": "idle",
+          "time": 1791684630.4926195
+        }
+      ]
+    },
+    {
+      "events": [
+        {
+          "event": "launched",
+          "pid": 17,
+          "time": 1791684634.9331574
+        },
+        {
+          "event": "exit_observed",
+          "pid": 17,
+          "returncode": 17,
+          "time": 1791684637.9400966
+        },
+        {
+          "event": "launched",
+          "pid": 33,
+          "time": 1791684637.9946418
+        }
+      ],
+      "index": 3,
+      "messages": [
+        {
+          "has_parent": true,
+          "kind": "status",
+          "state": "busy",
+          "time": 1791684635.6097786
+        },
+        {
+          "has_parent": true,
+          "kind": "status",
+          "state": "idle",
+          "time": 1791684635.651283
+        },
+        {
+          "has_parent": true,
+          "kind": "kernel_info_reply",
+          "state": null,
+          "time": 1791684635.6513884
+        },
+        {
+          "has_parent": true,
+          "kind": "status",
+          "state": "idle",
+          "time": 1791684635.6525192
+        },
+        {
+          "has_parent": true,
+          "kind": "status",
+          "state": "busy",
+          "time": 1791684635.6540937
+        },
+        {
+          "has_parent": true,
+          "kind": "status",
+          "state": "idle",
+          "time": 1791684635.654197
+        },
+        {
+          "has_parent": true,
+          "kind": "status",
+          "state": "busy",
+          "time": 1791684635.695207
+        },
+        {
+          "has_parent": false,
+          "kind": "status",
+          "state": "restarting",
+          "time": 1791684637.9458814
+        }
+      ]
+    },
+    {
+      "events": [],
+      "index": 4,
+      "messages": []
+    },
+    {
+      "events": [],
+      "index": 5,
+      "messages": []
+    },
+    {
+      "events": [],
+      "index": 6,
+      "messages": []
+    },
+    {
+      "events": [],
+      "index": 7,
+      "messages": []
+    },
+    {
+      "events": [],
+      "index": 8,
+      "messages": []
+    },
+    {
+      "events": [],
+      "index": 9,
+      "messages": []
+    },
+    {
+      "events": [],
+      "index": 10,
+      "messages": []
+    },
+    {
+      "events": [],
+      "index": 11,
+      "messages": []
+    }
+  ],
+  "unstarted": 8
+}

@@ -1,0 +1,3947 @@
+{
+  "after_uid_counts": {
+    "largest_process_thread_counts": [
+      1,
+      1,
+      1
+    ],
+    "lower_bound": true,
+    "unreadable_or_racing": 0,
+    "visible_processes": 3,
+    "visible_threads": 3,
+    "zombies": 0
+  },
+  "attempted": 6,
+  "blocks": [
+    {
+      "block": 0,
+      "gpus": 1,
+      "host_optimizer_envelope_overlap_peak": 1,
+      "physical_cores": 4
+    },
+    {
+      "block": 1,
+      "gpus": 1,
+      "host_optimizer_envelope_overlap_peak": 1,
+      "physical_cores": 4
+    },
+    {
+      "block": 2,
+      "gpus": 1,
+      "host_optimizer_envelope_overlap_peak": 1,
+      "physical_cores": 4
+    },
+    {
+      "block": 3,
+      "gpus": 1,
+      "host_optimizer_envelope_overlap_peak": 1,
+      "physical_cores": 4
+    },
+    {
+      "block": 4,
+      "gpus": 1,
+      "host_optimizer_envelope_overlap_peak": 1,
+      "physical_cores": 4
+    },
+    {
+      "block": 5,
+      "gpus": 1,
+      "host_optimizer_envelope_overlap_peak": 0,
+      "physical_cores": 4
+    }
+  ],
+  "boundary": "Ten serial repeats maximum,first failure stops. Parent watchdog and gateway observers can change timing. Not six-way capacity, historical EAGAIN causal proof, new source/seed, speedup or quality.",
+  "closed_sha256": "265e79c4fad8efb40bcc7f6e13d4f8b3ce54e05ef2d7695ad0b32097bd033475",
+  "comparisons": [
+    {
+      "byte_equal": true,
+      "left": 0,
+      "max_abs_diff": 0.0,
+      "right": 1,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 0,
+      "max_abs_diff": 0.0,
+      "right": 2,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 0,
+      "max_abs_diff": 0.0,
+      "right": 3,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 0,
+      "max_abs_diff": 0.0,
+      "right": 4,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 1,
+      "max_abs_diff": 0.0,
+      "right": 2,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 1,
+      "max_abs_diff": 0.0,
+      "right": 3,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 1,
+      "max_abs_diff": 0.0,
+      "right": 4,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 2,
+      "max_abs_diff": 0.0,
+      "right": 3,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 2,
+      "max_abs_diff": 0.0,
+      "right": 4,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 3,
+      "max_abs_diff": 0.0,
+      "right": 4,
+      "within_tolerance": true
+    }
+  ],
+  "complete": 5,
+  "evidence": [
+    {
+      "attempted": true,
+      "complete": true,
+      "gateway_counts": {
+        "incoming_execute_request": 5,
+        "incoming_forwarded": 10,
+        "incoming_kernel_info_request": 5,
+        "nudge_done": 1,
+        "nudge_enter": 1,
+        "nudge_state_idle": 1,
+        "outgoing_execute_reply": 5,
+        "outgoing_forwarded": 53,
+        "outgoing_kernel_info_reply": 5,
+        "outgoing_other": 20,
+        "outgoing_status": 23
+      },
+      "gpu": {
+        "boundary": "Assigned device, sampled whole-GPU utilization during the candidate execute call, not per-process kernel time; errors/missing values are not zero.",
+        "maximum_sample_gap": 2.0396857261657715,
+        "sample_span_fraction": 0.9866953268783302,
+        "samples_in_call": 20,
+        "utilization_max": 68.0,
+        "utilization_median": 62.0,
+        "utilization_min": 0.0,
+        "valid_utilization_samples": 20
+      },
+      "index": 0,
+      "protocol_calls": [
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 1,
+            "received": 4,
+            "received_kernel_info_reply": 1,
+            "received_status": 3,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.0900426129810512,
+          "ready": true,
+          "seconds": 0.09005772112868726,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        },
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 1,
+            "received": 1,
+            "received_kernel_info_reply": 1,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.020348130958154798,
+          "ready": true,
+          "seconds": 0.02036142419092357,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        },
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 3,
+            "received": 4,
+            "received_execute_reply": 1,
+            "received_kernel_info_reply": 1,
+            "received_status": 2,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.05884739011526108,
+          "ready": true,
+          "seconds": 0.05885917600244284,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        },
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 1,
+            "received": 1,
+            "received_kernel_info_reply": 1,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.01920630782842636,
+          "ready": true,
+          "seconds": 0.01921707298606634,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        },
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 2,
+            "received": 2,
+            "received_kernel_info_reply": 1,
+            "received_status": 1,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.058582440949976444,
+          "ready": true,
+          "seconds": 0.05859499401412904,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        }
+      ],
+      "stacks": {
+        "boundary": "Parent-kernel thread stacks only;30s nominal watchdog interval, actual emission times unavailable. A single waiting stack does not prove deadlock. No local variables or source lines.",
+        "credential_shape_hits_redacted": 0,
+        "dumps": [
+          {
+            "ordinal": 0,
+            "threads": [
+              {
+                "category": "other",
+                "frames": [
+                  {
+                    "function": "wait",
+                    "line": 355,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "_feed",
+                    "line": 251,
+                    "module": "queues.py",
+                    "package": "multiprocessing"
+                  },
+                  {
+                    "function": "run",
+                    "line": 1012,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "_bootstrap_inner",
+                    "line": 1075,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "_bootstrap",
+                    "line": 1032,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  }
+                ],
+                "kernel_cell": false
+              },
+              {
+                "category": "other",
+                "frames": [
+                  {
+                    "function": "wait",
+                    "line": 355,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "_feed",
+                    "line": 251,
+                    "module": "queues.py",
+                    "package": "multiprocessing"
+                  },
+                  {
+                    "function": "run",
+                    "line": 1012,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "_bootstrap_inner",
+                    "line": 1075,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "_bootstrap",
+                    "line": 1032,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  }
+                ],
+                "kernel_cell": false
+              },
+              {
+                "category": "other",
+                "frames": [
+                  {
+                    "function": "select",
+                    "line": 415,
+                    "module": "selectors.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "wait",
+                    "line": 1136,
+                    "module": "connection.py",
+                    "package": "multiprocessing"
+                  },
+                  {
+                    "function": "_poll",
+                    "line": 440,
+                    "module": "connection.py",
+                    "package": "multiprocessing"
+                  },
+                  {
+                    "function": "poll",
+                    "line": 257,
+                    "module": "connection.py",
+                    "package": "multiprocessing"
+                  },
+                  {
+                    "function": "get",
+                    "line": 113,
+                    "module": "queues.py",
+                    "package": "multiprocessing"
+                  },
+                  {
+                    "function": "do_one_step",
+                    "line": 35,
+                    "module": "pin_memory.py",
+                    "package": "torch-data"
+                  },
+                  {
+                    "function": "_pin_memory_loop",
+                    "line": 59,
+                    "module": "pin_memory.py",
+                    "package": "torch-data"
+                  },
+                  {
+                    "function": "run",
+                    "line": 1012,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "_bootstrap_inner",
+                    "line": 1075,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "_bootstrap",
+                    "line": 1032,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  }
+                ],
+                "kernel_cell": false
+              },
+              {
+                "category": "other",
+                "frames": [],
+                "kernel_cell": false
+              },
+              {
+                "category": "other",
+                "frames": [
+                  {
+                    "function": "run",
+                    "line": 62,
+                    "module": "parentpoller.py",
+                    "package": "ipykernel"
+                  },
+                  {
+                    "function": "_bootstrap_inner",
+                    "line": 1075,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "_bootstrap",
+                    "line": 1032,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  }
+                ],
+                "kernel_cell": false
+              },
+              {
+                "category": "other",
+                "frames": [
+                  {
+                    "function": "wait",
+                    "line": 355,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "wait",
+                    "line": 655,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "run",
+                    "line": 903,
+                    "module": "history.py",
+                    "package": "IPython"
+                  },
+                  {
+                    "function": "only_when_enabled",
+                    "line": 61,
+                    "module": "history.py",
+                    "package": "IPython"
+                  },
+                  {
+                    "function": "_bootstrap_inner",
+                    "line": 1075,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "_bootstrap",
+                    "line": 1032,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  }
+                ],
+                "kernel_cell": true
+              },
+              {
+                "category": "other",
+                "frames": [
+                  {
+                    "function": "select",
+                    "line": 468,
+                    "module": "selectors.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "run",
+                    "line": 24,
+                    "module": "thread.py",
+                    "package": "ipykernel"
+                  },
+                  {
+                    "function": "run",
+                    "line": 52,
+                    "module": "shellchannel.py",
+                    "package": "ipykernel"
+                  },
+                  {
+                    "function": "_bootstrap_inner",
+                    "line": 1075,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "_bootstrap",
+                    "line": 1032,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  }
+                ],
+                "kernel_cell": false
+              },
+              {
+                "category": "other",
+                "frames": [
+                  {
+                    "function": "select",
+                    "line": 468,
+                    "module": "selectors.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "run",
+                    "line": 24,
+                    "module": "thread.py",
+                    "package": "ipykernel"
+                  },
+                  {
+                    "function": "_bootstrap_inner",
+                    "line": 1075,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "_bootstrap",
+                    "line": 1032,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  }
+                ],
+                "kernel_cell": false
+              },
+              {
+                "category": "other",
+                "frames": [
+                  {
+                    "function": "_watch_pipe_fd",
+                    "line": 477,
+                    "module": "iostream.py",
+                    "package": "ipykernel"
+                  },
+                  {
+                    "function": "run",
+                    "line": 1012,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "_bootstrap_inner",
+                    "line": 1075,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "_bootstrap",
+                    "line": 1032,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  }
+                ],
+                "kernel_cell": false
+              },
+              {
+                "category": "other",
+                "frames": [
+                  {
+                    "function": "_watch_pipe_fd",
+                    "line": 477,
+                    "module": "iostream.py",
+                    "package": "ipykernel"
+                  },
+                  {
+                    "function": "run",
+                    "line": 1012,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "_bootstrap_inner",
+                    "line": 1075,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "_bootstrap",
+                    "line": 1032,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  }
+                ],
+                "kernel_cell": false
+              },
+              {
+                "category": "other",
+                "frames": [
+                  {
+                    "function": "run",
+                    "line": 124,
+                    "module": "heartbeat.py",
+                    "package": "ipykernel"
+                  },
+                  {
+                    "function": "_bootstrap_inner",
+                    "line": 1075,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "_bootstrap",
+                    "line": 1032,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  }
+                ],
+                "kernel_cell": false
+              },
+              {
+                "category": "other",
+                "frames": [
+                  {
+                    "function": "select",
+                    "line": 468,
+                    "module": "selectors.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "_thread_main",
+                    "line": 167,
+                    "module": "iostream.py",
+                    "package": "ipykernel"
+                  },
+                  {
+                    "function": "run",
+                    "line": 1012,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "_bootstrap_inner",
+                    "line": 1075,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "_bootstrap",
+                    "line": 1032,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  }
+                ],
+                "kernel_cell": false
+              },
+              {
+                "category": "torch_compute",
+                "frames": [
+                  {
+                    "function": "_conv_forward",
+                    "line": 549,
+                    "module": "conv.py",
+                    "package": "torch-nn"
+                  },
+                  {
+                    "function": "forward",
+                    "line": 554,
+                    "module": "conv.py",
+                    "package": "torch-nn"
+                  },
+                  {
+                    "function": "_call_impl",
+                    "line": 1747,
+                    "module": "module.py",
+                    "package": "torch-nn"
+                  },
+                  {
+                    "function": "_wrapped_call_impl",
+                    "line": 1736,
+                    "module": "module.py",
+                    "package": "torch-nn"
+                  },
+                  {
+                    "function": "<withheld>",
+                    "line": 339,
+                    "module": "<withheld>",
+                    "package": "candidate"
+                  },
+                  {
+                    "function": "_call_impl",
+                    "line": 1747,
+                    "module": "module.py",
+                    "package": "torch-nn"
+                  },
+                  {
+                    "function": "_wrapped_call_impl",
+                    "line": 1736,
+                    "module": "module.py",
+                    "package": "torch-nn"
+                  },
+                  {
+                    "function": "<withheld>",
+                    "line": 365,
+                    "module": "<withheld>",
+                    "package": "candidate"
+                  },
+                  {
+                    "function": "<withheld>",
+                    "line": 921,
+                    "module": "<withheld>",
+                    "package": "candidate"
+                  },
+                  {
+                    "function": "<withheld>",
+                    "line": 1029,
+                    "module": "<withheld>",
+                    "package": "candidate"
+                  },
+                  {
+                    "function": "run_code",
+                    "line": 3577,
+                    "module": "interactiveshell.py",
+                    "package": "IPython"
+                  },
+                  {
+                    "function": "run_ast_nodes",
+                    "line": 3517,
+                    "module": "interactiveshell.py",
+                    "package": "IPython"
+                  },
+                  {
+                    "function": "run_cell_async",
+                    "line": 3334,
+                    "module": "interactiveshell.py",
+                    "package": "IPython"
+                  },
+                  {
+                    "function": "_pseudo_sync_runner",
+                    "line": 128,
+                    "module": "async_helpers.py",
+                    "package": "IPython"
+                  },
+                  {
+                    "function": "_run_cell",
+                    "line": 3130,
+                    "module": "interactiveshell.py",
+                    "package": "IPython"
+                  },
+                  {
+                    "function": "run_cell",
+                    "line": 3075,
+                    "module": "interactiveshell.py",
+                    "package": "IPython"
+                  },
+                  {
+                    "function": "run_cell",
+                    "line": 665,
+                    "module": "zmqshell.py",
+                    "package": "ipykernel"
+                  },
+                  {
+                    "function": "do_execute",
+                    "line": 460,
+                    "module": "ipkernel.py",
+                    "package": "ipykernel"
+                  },
+                  {
+                    "function": "execute_request",
+                    "line": 834,
+                    "module": "kernelbase.py",
+                    "package": "ipykernel"
+                  },
+                  {
+                    "function": "execute_request",
+                    "line": 372,
+                    "module": "ipkernel.py",
+                    "package": "ipykernel"
+                  },
+                  {
+                    "function": "dispatch_shell",
+                    "line": 478,
+                    "module": "kernelbase.py",
+                    "package": "ipykernel"
+                  },
+                  {
+                    "function": "shell_main",
+                    "line": 621,
+                    "module": "kernelbase.py",
+                    "package": "ipykernel"
+                  },
+                  {
+                    "function": "start",
+                    "line": 807,
+                    "module": "kernelapp.py",
+                    "package": "ipykernel"
+                  }
+                ],
+                "kernel_cell": true
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "attempted": true,
+      "complete": true,
+      "gateway_counts": {
+        "incoming_execute_request": 5,
+        "incoming_forwarded": 10,
+        "incoming_kernel_info_request": 5,
+        "nudge_done": 1,
+        "nudge_enter": 1,
+        "nudge_state_starting": 1,
+        "outgoing_execute_reply": 5,
+        "outgoing_forwarded": 53,
+        "outgoing_kernel_info_reply": 5,
+        "outgoing_other": 20,
+        "outgoing_status": 23
+      },
+      "gpu": {
+        "boundary": "Assigned device, sampled whole-GPU utilization during the candidate execute call, not per-process kernel time; errors/missing values are not zero.",
+        "maximum_sample_gap": 2.037968873977661,
+        "sample_span_fraction": 0.9788465477968364,
+        "samples_in_call": 20,
+        "utilization_max": 70.0,
+        "utilization_median": 63.0,
+        "utilization_min": 0.0,
+        "valid_utilization_samples": 20
+      },
+      "index": 1,
+      "protocol_calls": [
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 1,
+            "received": 3,
+            "received_kernel_info_reply": 1,
+            "received_status": 2,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.08367318310774863,
+          "ready": true,
+          "seconds": 0.08368394686840475,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        },
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 2,
+            "received": 2,
+            "received_kernel_info_reply": 1,
+            "received_status": 1,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.0272893609944731,
+          "ready": true,
+          "seconds": 0.027304799063131213,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        },
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 3,
+            "received": 4,
+            "received_execute_reply": 1,
+            "received_kernel_info_reply": 1,
+            "received_status": 2,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.06092056096531451,
+          "ready": true,
+          "seconds": 0.060932346852496266,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        },
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 2,
+            "received": 2,
+            "received_kernel_info_reply": 1,
+            "received_status": 1,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.028794479789212346,
+          "ready": true,
+          "seconds": 0.028808346949517727,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        },
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 3,
+            "received": 4,
+            "received_execute_reply": 1,
+            "received_kernel_info_reply": 1,
+            "received_status": 2,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.045941219897940755,
+          "ready": true,
+          "seconds": 0.04595114593394101,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        }
+      ],
+      "stacks": {
+        "boundary": "Parent-kernel thread stacks only;30s nominal watchdog interval, actual emission times unavailable. A single waiting stack does not prove deadlock. No local variables or source lines.",
+        "credential_shape_hits_redacted": 0,
+        "dumps": [
+          {
+            "ordinal": 0,
+            "threads": [
+              {
+                "category": "other",
+                "frames": [
+                  {
+                    "function": "wait",
+                    "line": 355,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "_feed",
+                    "line": 251,
+                    "module": "queues.py",
+                    "package": "multiprocessing"
+                  },
+                  {
+                    "function": "run",
+                    "line": 1012,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "_bootstrap_inner",
+                    "line": 1075,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "_bootstrap",
+                    "line": 1032,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  }
+                ],
+                "kernel_cell": false
+              },
+              {
+                "category": "other",
+                "frames": [
+                  {
+                    "function": "wait",
+                    "line": 355,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "_feed",
+                    "line": 251,
+                    "module": "queues.py",
+                    "package": "multiprocessing"
+                  },
+                  {
+                    "function": "run",
+                    "line": 1012,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "_bootstrap_inner",
+                    "line": 1075,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "_bootstrap",
+                    "line": 1032,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  }
+                ],
+                "kernel_cell": false
+              },
+              {
+                "category": "other",
+                "frames": [
+                  {
+                    "function": "select",
+                    "line": 415,
+                    "module": "selectors.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "wait",
+                    "line": 1136,
+                    "module": "connection.py",
+                    "package": "multiprocessing"
+                  },
+                  {
+                    "function": "_poll",
+                    "line": 440,
+                    "module": "connection.py",
+                    "package": "multiprocessing"
+                  },
+                  {
+                    "function": "poll",
+                    "line": 257,
+                    "module": "connection.py",
+                    "package": "multiprocessing"
+                  },
+                  {
+                    "function": "get",
+                    "line": 113,
+                    "module": "queues.py",
+                    "package": "multiprocessing"
+                  },
+                  {
+                    "function": "do_one_step",
+                    "line": 35,
+                    "module": "pin_memory.py",
+                    "package": "torch-data"
+                  },
+                  {
+                    "function": "_pin_memory_loop",
+                    "line": 59,
+                    "module": "pin_memory.py",
+                    "package": "torch-data"
+                  },
+                  {
+                    "function": "run",
+                    "line": 1012,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "_bootstrap_inner",
+                    "line": 1075,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "_bootstrap",
+                    "line": 1032,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  }
+                ],
+                "kernel_cell": false
+              },
+              {
+                "category": "other",
+                "frames": [],
+                "kernel_cell": false
+              },
+              {
+                "category": "other",
+                "frames": [
+                  {
+                    "function": "run",
+                    "line": 62,
+                    "module": "parentpoller.py",
+                    "package": "ipykernel"
+                  },
+                  {
+                    "function": "_bootstrap_inner",
+                    "line": 1075,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "_bootstrap",
+                    "line": 1032,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  }
+                ],
+                "kernel_cell": false
+              },
+              {
+                "category": "other",
+                "frames": [
+                  {
+                    "function": "wait",
+                    "line": 355,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "wait",
+                    "line": 655,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "run",
+                    "line": 903,
+                    "module": "history.py",
+                    "package": "IPython"
+                  },
+                  {
+                    "function": "only_when_enabled",
+                    "line": 61,
+                    "module": "history.py",
+                    "package": "IPython"
+                  },
+                  {
+                    "function": "_bootstrap_inner",
+                    "line": 1075,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "_bootstrap",
+                    "line": 1032,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  }
+                ],
+                "kernel_cell": true
+              },
+              {
+                "category": "other",
+                "frames": [
+                  {
+                    "function": "select",
+                    "line": 468,
+                    "module": "selectors.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "run",
+                    "line": 24,
+                    "module": "thread.py",
+                    "package": "ipykernel"
+                  },
+                  {
+                    "function": "run",
+                    "line": 52,
+                    "module": "shellchannel.py",
+                    "package": "ipykernel"
+                  },
+                  {
+                    "function": "_bootstrap_inner",
+                    "line": 1075,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "_bootstrap",
+                    "line": 1032,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  }
+                ],
+                "kernel_cell": false
+              },
+              {
+                "category": "other",
+                "frames": [
+                  {
+                    "function": "select",
+                    "line": 468,
+                    "module": "selectors.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "run",
+                    "line": 24,
+                    "module": "thread.py",
+                    "package": "ipykernel"
+                  },
+                  {
+                    "function": "_bootstrap_inner",
+                    "line": 1075,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "_bootstrap",
+                    "line": 1032,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  }
+                ],
+                "kernel_cell": false
+              },
+              {
+                "category": "other",
+                "frames": [
+                  {
+                    "function": "_watch_pipe_fd",
+                    "line": 477,
+                    "module": "iostream.py",
+                    "package": "ipykernel"
+                  },
+                  {
+                    "function": "run",
+                    "line": 1012,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "_bootstrap_inner",
+                    "line": 1075,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "_bootstrap",
+                    "line": 1032,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  }
+                ],
+                "kernel_cell": false
+              },
+              {
+                "category": "other",
+                "frames": [
+                  {
+                    "function": "_watch_pipe_fd",
+                    "line": 477,
+                    "module": "iostream.py",
+                    "package": "ipykernel"
+                  },
+                  {
+                    "function": "run",
+                    "line": 1012,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "_bootstrap_inner",
+                    "line": 1075,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "_bootstrap",
+                    "line": 1032,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  }
+                ],
+                "kernel_cell": false
+              },
+              {
+                "category": "other",
+                "frames": [
+                  {
+                    "function": "run",
+                    "line": 124,
+                    "module": "heartbeat.py",
+                    "package": "ipykernel"
+                  },
+                  {
+                    "function": "_bootstrap_inner",
+                    "line": 1075,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "_bootstrap",
+                    "line": 1032,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  }
+                ],
+                "kernel_cell": false
+              },
+              {
+                "category": "other",
+                "frames": [
+                  {
+                    "function": "select",
+                    "line": 468,
+                    "module": "selectors.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "_thread_main",
+                    "line": 167,
+                    "module": "iostream.py",
+                    "package": "ipykernel"
+                  },
+                  {
+                    "function": "run",
+                    "line": 1012,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "_bootstrap_inner",
+                    "line": 1075,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "_bootstrap",
+                    "line": 1032,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  }
+                ],
+                "kernel_cell": false
+              },
+              {
+                "category": "torch_compute",
+                "frames": [
+                  {
+                    "function": "_conv_forward",
+                    "line": 549,
+                    "module": "conv.py",
+                    "package": "torch-nn"
+                  },
+                  {
+                    "function": "forward",
+                    "line": 554,
+                    "module": "conv.py",
+                    "package": "torch-nn"
+                  },
+                  {
+                    "function": "_call_impl",
+                    "line": 1747,
+                    "module": "module.py",
+                    "package": "torch-nn"
+                  },
+                  {
+                    "function": "_wrapped_call_impl",
+                    "line": 1736,
+                    "module": "module.py",
+                    "package": "torch-nn"
+                  },
+                  {
+                    "function": "<withheld>",
+                    "line": 327,
+                    "module": "<withheld>",
+                    "package": "candidate"
+                  },
+                  {
+                    "function": "_call_impl",
+                    "line": 1747,
+                    "module": "module.py",
+                    "package": "torch-nn"
+                  },
+                  {
+                    "function": "_wrapped_call_impl",
+                    "line": 1736,
+                    "module": "module.py",
+                    "package": "torch-nn"
+                  },
+                  {
+                    "function": "<withheld>",
+                    "line": 365,
+                    "module": "<withheld>",
+                    "package": "candidate"
+                  },
+                  {
+                    "function": "<withheld>",
+                    "line": 921,
+                    "module": "<withheld>",
+                    "package": "candidate"
+                  },
+                  {
+                    "function": "<withheld>",
+                    "line": 1029,
+                    "module": "<withheld>",
+                    "package": "candidate"
+                  },
+                  {
+                    "function": "run_code",
+                    "line": 3577,
+                    "module": "interactiveshell.py",
+                    "package": "IPython"
+                  },
+                  {
+                    "function": "run_ast_nodes",
+                    "line": 3517,
+                    "module": "interactiveshell.py",
+                    "package": "IPython"
+                  },
+                  {
+                    "function": "run_cell_async",
+                    "line": 3334,
+                    "module": "interactiveshell.py",
+                    "package": "IPython"
+                  },
+                  {
+                    "function": "_pseudo_sync_runner",
+                    "line": 128,
+                    "module": "async_helpers.py",
+                    "package": "IPython"
+                  },
+                  {
+                    "function": "_run_cell",
+                    "line": 3130,
+                    "module": "interactiveshell.py",
+                    "package": "IPython"
+                  },
+                  {
+                    "function": "run_cell",
+                    "line": 3075,
+                    "module": "interactiveshell.py",
+                    "package": "IPython"
+                  },
+                  {
+                    "function": "run_cell",
+                    "line": 665,
+                    "module": "zmqshell.py",
+                    "package": "ipykernel"
+                  },
+                  {
+                    "function": "do_execute",
+                    "line": 460,
+                    "module": "ipkernel.py",
+                    "package": "ipykernel"
+                  },
+                  {
+                    "function": "execute_request",
+                    "line": 834,
+                    "module": "kernelbase.py",
+                    "package": "ipykernel"
+                  },
+                  {
+                    "function": "execute_request",
+                    "line": 372,
+                    "module": "ipkernel.py",
+                    "package": "ipykernel"
+                  },
+                  {
+                    "function": "dispatch_shell",
+                    "line": 478,
+                    "module": "kernelbase.py",
+                    "package": "ipykernel"
+                  },
+                  {
+                    "function": "shell_main",
+                    "line": 621,
+                    "module": "kernelbase.py",
+                    "package": "ipykernel"
+                  },
+                  {
+                    "function": "start",
+                    "line": 807,
+                    "module": "kernelapp.py",
+                    "package": "ipykernel"
+                  }
+                ],
+                "kernel_cell": true
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "attempted": true,
+      "complete": true,
+      "gateway_counts": {
+        "incoming_execute_request": 5,
+        "incoming_forwarded": 10,
+        "incoming_kernel_info_request": 5,
+        "nudge_done": 1,
+        "nudge_enter": 1,
+        "nudge_state_idle": 1,
+        "outgoing_execute_reply": 5,
+        "outgoing_forwarded": 53,
+        "outgoing_kernel_info_reply": 5,
+        "outgoing_other": 20,
+        "outgoing_status": 23
+      },
+      "gpu": {
+        "boundary": "Assigned device, sampled whole-GPU utilization during the candidate execute call, not per-process kernel time; errors/missing values are not zero.",
+        "maximum_sample_gap": 2.0393269062042236,
+        "sample_span_fraction": 0.9762116822475627,
+        "samples_in_call": 20,
+        "utilization_max": 78.0,
+        "utilization_median": 62.0,
+        "utilization_min": 0.0,
+        "valid_utilization_samples": 20
+      },
+      "index": 2,
+      "protocol_calls": [
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 1,
+            "received": 4,
+            "received_kernel_info_reply": 1,
+            "received_status": 3,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.08718574210070074,
+          "ready": true,
+          "seconds": 0.08720101998187602,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        },
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 3,
+            "received": 3,
+            "received_kernel_info_reply": 1,
+            "received_status": 2,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.03847537795081735,
+          "ready": true,
+          "seconds": 0.0384896679315716,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        },
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 3,
+            "received": 4,
+            "received_execute_reply": 1,
+            "received_kernel_info_reply": 1,
+            "received_status": 2,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.0646187539678067,
+          "ready": true,
+          "seconds": 0.06463061296381056,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        },
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 2,
+            "received": 2,
+            "received_kernel_info_reply": 1,
+            "received_status": 1,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.03367145895026624,
+          "ready": true,
+          "seconds": 0.03368508303537965,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        },
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 1,
+            "received": 1,
+            "received_kernel_info_reply": 1,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.01841334393247962,
+          "ready": true,
+          "seconds": 0.018423019908368587,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        }
+      ],
+      "stacks": {
+        "boundary": "Parent-kernel thread stacks only;30s nominal watchdog interval, actual emission times unavailable. A single waiting stack does not prove deadlock. No local variables or source lines.",
+        "credential_shape_hits_redacted": 0,
+        "dumps": [
+          {
+            "ordinal": 0,
+            "threads": [
+              {
+                "category": "other",
+                "frames": [
+                  {
+                    "function": "wait",
+                    "line": 355,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "_feed",
+                    "line": 251,
+                    "module": "queues.py",
+                    "package": "multiprocessing"
+                  },
+                  {
+                    "function": "run",
+                    "line": 1012,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "_bootstrap_inner",
+                    "line": 1075,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "_bootstrap",
+                    "line": 1032,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  }
+                ],
+                "kernel_cell": false
+              },
+              {
+                "category": "other",
+                "frames": [
+                  {
+                    "function": "wait",
+                    "line": 355,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "_feed",
+                    "line": 251,
+                    "module": "queues.py",
+                    "package": "multiprocessing"
+                  },
+                  {
+                    "function": "run",
+                    "line": 1012,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "_bootstrap_inner",
+                    "line": 1075,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "_bootstrap",
+                    "line": 1032,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  }
+                ],
+                "kernel_cell": false
+              },
+              {
+                "category": "other",
+                "frames": [
+                  {
+                    "function": "do_one_step",
+                    "line": 46,
+                    "module": "pin_memory.py",
+                    "package": "torch-data"
+                  },
+                  {
+                    "function": "_pin_memory_loop",
+                    "line": 59,
+                    "module": "pin_memory.py",
+                    "package": "torch-data"
+                  },
+                  {
+                    "function": "run",
+                    "line": 1012,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "_bootstrap_inner",
+                    "line": 1075,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "_bootstrap",
+                    "line": 1032,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  }
+                ],
+                "kernel_cell": false
+              },
+              {
+                "category": "other",
+                "frames": [],
+                "kernel_cell": false
+              },
+              {
+                "category": "other",
+                "frames": [
+                  {
+                    "function": "run",
+                    "line": 62,
+                    "module": "parentpoller.py",
+                    "package": "ipykernel"
+                  },
+                  {
+                    "function": "_bootstrap_inner",
+                    "line": 1075,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "_bootstrap",
+                    "line": 1032,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  }
+                ],
+                "kernel_cell": false
+              },
+              {
+                "category": "other",
+                "frames": [
+                  {
+                    "function": "wait",
+                    "line": 355,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "wait",
+                    "line": 655,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "run",
+                    "line": 903,
+                    "module": "history.py",
+                    "package": "IPython"
+                  },
+                  {
+                    "function": "only_when_enabled",
+                    "line": 61,
+                    "module": "history.py",
+                    "package": "IPython"
+                  },
+                  {
+                    "function": "_bootstrap_inner",
+                    "line": 1075,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "_bootstrap",
+                    "line": 1032,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  }
+                ],
+                "kernel_cell": true
+              },
+              {
+                "category": "other",
+                "frames": [
+                  {
+                    "function": "select",
+                    "line": 468,
+                    "module": "selectors.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "run",
+                    "line": 24,
+                    "module": "thread.py",
+                    "package": "ipykernel"
+                  },
+                  {
+                    "function": "run",
+                    "line": 52,
+                    "module": "shellchannel.py",
+                    "package": "ipykernel"
+                  },
+                  {
+                    "function": "_bootstrap_inner",
+                    "line": 1075,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "_bootstrap",
+                    "line": 1032,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  }
+                ],
+                "kernel_cell": false
+              },
+              {
+                "category": "other",
+                "frames": [
+                  {
+                    "function": "select",
+                    "line": 468,
+                    "module": "selectors.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "run",
+                    "line": 24,
+                    "module": "thread.py",
+                    "package": "ipykernel"
+                  },
+                  {
+                    "function": "_bootstrap_inner",
+                    "line": 1075,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "_bootstrap",
+                    "line": 1032,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  }
+                ],
+                "kernel_cell": false
+              },
+              {
+                "category": "other",
+                "frames": [
+                  {
+                    "function": "_watch_pipe_fd",
+                    "line": 477,
+                    "module": "iostream.py",
+                    "package": "ipykernel"
+                  },
+                  {
+                    "function": "run",
+                    "line": 1012,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "_bootstrap_inner",
+                    "line": 1075,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "_bootstrap",
+                    "line": 1032,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  }
+                ],
+                "kernel_cell": false
+              },
+              {
+                "category": "other",
+                "frames": [
+                  {
+                    "function": "_watch_pipe_fd",
+                    "line": 477,
+                    "module": "iostream.py",
+                    "package": "ipykernel"
+                  },
+                  {
+                    "function": "run",
+                    "line": 1012,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "_bootstrap_inner",
+                    "line": 1075,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "_bootstrap",
+                    "line": 1032,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  }
+                ],
+                "kernel_cell": false
+              },
+              {
+                "category": "other",
+                "frames": [
+                  {
+                    "function": "run",
+                    "line": 124,
+                    "module": "heartbeat.py",
+                    "package": "ipykernel"
+                  },
+                  {
+                    "function": "_bootstrap_inner",
+                    "line": 1075,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "_bootstrap",
+                    "line": 1032,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  }
+                ],
+                "kernel_cell": false
+              },
+              {
+                "category": "other",
+                "frames": [
+                  {
+                    "function": "select",
+                    "line": 468,
+                    "module": "selectors.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "_thread_main",
+                    "line": 167,
+                    "module": "iostream.py",
+                    "package": "ipykernel"
+                  },
+                  {
+                    "function": "run",
+                    "line": 1012,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "_bootstrap_inner",
+                    "line": 1075,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "_bootstrap",
+                    "line": 1032,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  }
+                ],
+                "kernel_cell": false
+              },
+              {
+                "category": "torch_compute",
+                "frames": [
+                  {
+                    "function": "<withheld>",
+                    "line": 334,
+                    "module": "<withheld>",
+                    "package": "candidate"
+                  },
+                  {
+                    "function": "_call_impl",
+                    "line": 1747,
+                    "module": "module.py",
+                    "package": "torch-nn"
+                  },
+                  {
+                    "function": "_wrapped_call_impl",
+                    "line": 1736,
+                    "module": "module.py",
+                    "package": "torch-nn"
+                  },
+                  {
+                    "function": "<withheld>",
+                    "line": 365,
+                    "module": "<withheld>",
+                    "package": "candidate"
+                  },
+                  {
+                    "function": "<withheld>",
+                    "line": 921,
+                    "module": "<withheld>",
+                    "package": "candidate"
+                  },
+                  {
+                    "function": "<withheld>",
+                    "line": 1029,
+                    "module": "<withheld>",
+                    "package": "candidate"
+                  },
+                  {
+                    "function": "run_code",
+                    "line": 3577,
+                    "module": "interactiveshell.py",
+                    "package": "IPython"
+                  },
+                  {
+                    "function": "run_ast_nodes",
+                    "line": 3517,
+                    "module": "interactiveshell.py",
+                    "package": "IPython"
+                  },
+                  {
+                    "function": "run_cell_async",
+                    "line": 3334,
+                    "module": "interactiveshell.py",
+                    "package": "IPython"
+                  },
+                  {
+                    "function": "_pseudo_sync_runner",
+                    "line": 128,
+                    "module": "async_helpers.py",
+                    "package": "IPython"
+                  },
+                  {
+                    "function": "_run_cell",
+                    "line": 3130,
+                    "module": "interactiveshell.py",
+                    "package": "IPython"
+                  },
+                  {
+                    "function": "run_cell",
+                    "line": 3075,
+                    "module": "interactiveshell.py",
+                    "package": "IPython"
+                  },
+                  {
+                    "function": "run_cell",
+                    "line": 665,
+                    "module": "zmqshell.py",
+                    "package": "ipykernel"
+                  },
+                  {
+                    "function": "do_execute",
+                    "line": 460,
+                    "module": "ipkernel.py",
+                    "package": "ipykernel"
+                  },
+                  {
+                    "function": "execute_request",
+                    "line": 834,
+                    "module": "kernelbase.py",
+                    "package": "ipykernel"
+                  },
+                  {
+                    "function": "execute_request",
+                    "line": 372,
+                    "module": "ipkernel.py",
+                    "package": "ipykernel"
+                  },
+                  {
+                    "function": "dispatch_shell",
+                    "line": 478,
+                    "module": "kernelbase.py",
+                    "package": "ipykernel"
+                  },
+                  {
+                    "function": "shell_main",
+                    "line": 621,
+                    "module": "kernelbase.py",
+                    "package": "ipykernel"
+                  },
+                  {
+                    "function": "start",
+                    "line": 807,
+                    "module": "kernelapp.py",
+                    "package": "ipykernel"
+                  }
+                ],
+                "kernel_cell": true
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "attempted": true,
+      "complete": true,
+      "gateway_counts": {
+        "incoming_execute_request": 5,
+        "incoming_forwarded": 10,
+        "incoming_kernel_info_request": 5,
+        "nudge_done": 1,
+        "nudge_enter": 1,
+        "nudge_state_idle": 1,
+        "outgoing_execute_reply": 5,
+        "outgoing_forwarded": 53,
+        "outgoing_kernel_info_reply": 5,
+        "outgoing_other": 20,
+        "outgoing_status": 23
+      },
+      "gpu": {
+        "boundary": "Assigned device, sampled whole-GPU utilization during the candidate execute call, not per-process kernel time; errors/missing values are not zero.",
+        "maximum_sample_gap": 2.0497922897338867,
+        "sample_span_fraction": 0.9947763110303335,
+        "samples_in_call": 20,
+        "utilization_max": 77.0,
+        "utilization_median": 61.0,
+        "utilization_min": 0.0,
+        "valid_utilization_samples": 20
+      },
+      "index": 3,
+      "protocol_calls": [
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 1,
+            "received": 3,
+            "received_kernel_info_reply": 1,
+            "received_status": 2,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.0793778127990663,
+          "ready": true,
+          "seconds": 0.07939356216229498,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        },
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 2,
+            "received": 2,
+            "received_kernel_info_reply": 1,
+            "received_status": 1,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.02727568312548101,
+          "ready": true,
+          "seconds": 0.027290078112855554,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        },
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 3,
+            "received": 4,
+            "received_execute_reply": 1,
+            "received_kernel_info_reply": 1,
+            "received_status": 2,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.06119188014417887,
+          "ready": true,
+          "seconds": 0.06120288488455117,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        },
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 2,
+            "received": 2,
+            "received_kernel_info_reply": 1,
+            "received_status": 1,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.0308684220071882,
+          "ready": true,
+          "seconds": 0.03088049520738423,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        },
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 1,
+            "received": 1,
+            "received_kernel_info_reply": 1,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.01970936800353229,
+          "ready": true,
+          "seconds": 0.019718776922672987,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        }
+      ],
+      "stacks": {
+        "boundary": "Parent-kernel thread stacks only;30s nominal watchdog interval, actual emission times unavailable. A single waiting stack does not prove deadlock. No local variables or source lines.",
+        "credential_shape_hits_redacted": 0,
+        "dumps": [
+          {
+            "ordinal": 0,
+            "threads": [
+              {
+                "category": "other",
+                "frames": [
+                  {
+                    "function": "wait",
+                    "line": 355,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "_feed",
+                    "line": 251,
+                    "module": "queues.py",
+                    "package": "multiprocessing"
+                  },
+                  {
+                    "function": "run",
+                    "line": 1012,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "_bootstrap_inner",
+                    "line": 1075,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "_bootstrap",
+                    "line": 1032,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  }
+                ],
+                "kernel_cell": false
+              },
+              {
+                "category": "other",
+                "frames": [
+                  {
+                    "function": "wait",
+                    "line": 355,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "_feed",
+                    "line": 251,
+                    "module": "queues.py",
+                    "package": "multiprocessing"
+                  },
+                  {
+                    "function": "run",
+                    "line": 1012,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "_bootstrap_inner",
+                    "line": 1075,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "_bootstrap",
+                    "line": 1032,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  }
+                ],
+                "kernel_cell": false
+              },
+              {
+                "category": "other",
+                "frames": [
+                  {
+                    "function": "select",
+                    "line": 415,
+                    "module": "selectors.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "wait",
+                    "line": 1136,
+                    "module": "connection.py",
+                    "package": "multiprocessing"
+                  },
+                  {
+                    "function": "_poll",
+                    "line": 440,
+                    "module": "connection.py",
+                    "package": "multiprocessing"
+                  },
+                  {
+                    "function": "poll",
+                    "line": 257,
+                    "module": "connection.py",
+                    "package": "multiprocessing"
+                  },
+                  {
+                    "function": "get",
+                    "line": 113,
+                    "module": "queues.py",
+                    "package": "multiprocessing"
+                  },
+                  {
+                    "function": "do_one_step",
+                    "line": 35,
+                    "module": "pin_memory.py",
+                    "package": "torch-data"
+                  },
+                  {
+                    "function": "_pin_memory_loop",
+                    "line": 59,
+                    "module": "pin_memory.py",
+                    "package": "torch-data"
+                  },
+                  {
+                    "function": "run",
+                    "line": 1012,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "_bootstrap_inner",
+                    "line": 1075,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "_bootstrap",
+                    "line": 1032,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  }
+                ],
+                "kernel_cell": false
+              },
+              {
+                "category": "other",
+                "frames": [],
+                "kernel_cell": false
+              },
+              {
+                "category": "other",
+                "frames": [
+                  {
+                    "function": "run",
+                    "line": 62,
+                    "module": "parentpoller.py",
+                    "package": "ipykernel"
+                  },
+                  {
+                    "function": "_bootstrap_inner",
+                    "line": 1075,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "_bootstrap",
+                    "line": 1032,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  }
+                ],
+                "kernel_cell": false
+              },
+              {
+                "category": "other",
+                "frames": [
+                  {
+                    "function": "wait",
+                    "line": 355,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "wait",
+                    "line": 655,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "run",
+                    "line": 903,
+                    "module": "history.py",
+                    "package": "IPython"
+                  },
+                  {
+                    "function": "only_when_enabled",
+                    "line": 61,
+                    "module": "history.py",
+                    "package": "IPython"
+                  },
+                  {
+                    "function": "_bootstrap_inner",
+                    "line": 1075,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "_bootstrap",
+                    "line": 1032,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  }
+                ],
+                "kernel_cell": true
+              },
+              {
+                "category": "other",
+                "frames": [
+                  {
+                    "function": "select",
+                    "line": 468,
+                    "module": "selectors.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "run",
+                    "line": 24,
+                    "module": "thread.py",
+                    "package": "ipykernel"
+                  },
+                  {
+                    "function": "run",
+                    "line": 52,
+                    "module": "shellchannel.py",
+                    "package": "ipykernel"
+                  },
+                  {
+                    "function": "_bootstrap_inner",
+                    "line": 1075,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "_bootstrap",
+                    "line": 1032,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  }
+                ],
+                "kernel_cell": false
+              },
+              {
+                "category": "other",
+                "frames": [
+                  {
+                    "function": "select",
+                    "line": 468,
+                    "module": "selectors.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "run",
+                    "line": 24,
+                    "module": "thread.py",
+                    "package": "ipykernel"
+                  },
+                  {
+                    "function": "_bootstrap_inner",
+                    "line": 1075,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "_bootstrap",
+                    "line": 1032,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  }
+                ],
+                "kernel_cell": false
+              },
+              {
+                "category": "other",
+                "frames": [
+                  {
+                    "function": "_watch_pipe_fd",
+                    "line": 477,
+                    "module": "iostream.py",
+                    "package": "ipykernel"
+                  },
+                  {
+                    "function": "run",
+                    "line": 1012,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "_bootstrap_inner",
+                    "line": 1075,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "_bootstrap",
+                    "line": 1032,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  }
+                ],
+                "kernel_cell": false
+              },
+              {
+                "category": "other",
+                "frames": [
+                  {
+                    "function": "_watch_pipe_fd",
+                    "line": 477,
+                    "module": "iostream.py",
+                    "package": "ipykernel"
+                  },
+                  {
+                    "function": "run",
+                    "line": 1012,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "_bootstrap_inner",
+                    "line": 1075,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "_bootstrap",
+                    "line": 1032,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  }
+                ],
+                "kernel_cell": false
+              },
+              {
+                "category": "other",
+                "frames": [
+                  {
+                    "function": "run",
+                    "line": 124,
+                    "module": "heartbeat.py",
+                    "package": "ipykernel"
+                  },
+                  {
+                    "function": "_bootstrap_inner",
+                    "line": 1075,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "_bootstrap",
+                    "line": 1032,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  }
+                ],
+                "kernel_cell": false
+              },
+              {
+                "category": "other",
+                "frames": [
+                  {
+                    "function": "select",
+                    "line": 468,
+                    "module": "selectors.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "_thread_main",
+                    "line": 167,
+                    "module": "iostream.py",
+                    "package": "ipykernel"
+                  },
+                  {
+                    "function": "run",
+                    "line": 1012,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "_bootstrap_inner",
+                    "line": 1075,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "_bootstrap",
+                    "line": 1032,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  }
+                ],
+                "kernel_cell": false
+              },
+              {
+                "category": "other",
+                "frames": [
+                  {
+                    "function": "_multi_tensor_adam",
+                    "line": 614,
+                    "module": "adam.py",
+                    "package": "torch"
+                  },
+                  {
+                    "function": "adam",
+                    "line": 784,
+                    "module": "adam.py",
+                    "package": "torch"
+                  },
+                  {
+                    "function": "maybe_fallback",
+                    "line": 154,
+                    "module": "optimizer.py",
+                    "package": "torch"
+                  },
+                  {
+                    "function": "step",
+                    "line": 223,
+                    "module": "adam.py",
+                    "package": "torch"
+                  },
+                  {
+                    "function": "_use_grad",
+                    "line": 91,
+                    "module": "optimizer.py",
+                    "package": "torch"
+                  },
+                  {
+                    "function": "<withheld>",
+                    "line": 13,
+                    "module": "<withheld>",
+                    "package": "candidate"
+                  },
+                  {
+                    "function": "wrapper",
+                    "line": 487,
+                    "module": "optimizer.py",
+                    "package": "torch"
+                  },
+                  {
+                    "function": "_maybe_opt_step",
+                    "line": 352,
+                    "module": "grad_scaler.py",
+                    "package": "torch"
+                  },
+                  {
+                    "function": "step",
+                    "line": 457,
+                    "module": "grad_scaler.py",
+                    "package": "torch"
+                  },
+                  {
+                    "function": "<withheld>",
+                    "line": 374,
+                    "module": "<withheld>",
+                    "package": "candidate"
+                  },
+                  {
+                    "function": "<withheld>",
+                    "line": 921,
+                    "module": "<withheld>",
+                    "package": "candidate"
+                  },
+                  {
+                    "function": "<withheld>",
+                    "line": 1029,
+                    "module": "<withheld>",
+                    "package": "candidate"
+                  },
+                  {
+                    "function": "run_code",
+                    "line": 3577,
+                    "module": "interactiveshell.py",
+                    "package": "IPython"
+                  },
+                  {
+                    "function": "run_ast_nodes",
+                    "line": 3517,
+                    "module": "interactiveshell.py",
+                    "package": "IPython"
+                  },
+                  {
+                    "function": "run_cell_async",
+                    "line": 3334,
+                    "module": "interactiveshell.py",
+                    "package": "IPython"
+                  },
+                  {
+                    "function": "_pseudo_sync_runner",
+                    "line": 128,
+                    "module": "async_helpers.py",
+                    "package": "IPython"
+                  },
+                  {
+                    "function": "_run_cell",
+                    "line": 3130,
+                    "module": "interactiveshell.py",
+                    "package": "IPython"
+                  },
+                  {
+                    "function": "run_cell",
+                    "line": 3075,
+                    "module": "interactiveshell.py",
+                    "package": "IPython"
+                  },
+                  {
+                    "function": "run_cell",
+                    "line": 665,
+                    "module": "zmqshell.py",
+                    "package": "ipykernel"
+                  },
+                  {
+                    "function": "do_execute",
+                    "line": 460,
+                    "module": "ipkernel.py",
+                    "package": "ipykernel"
+                  },
+                  {
+                    "function": "execute_request",
+                    "line": 834,
+                    "module": "kernelbase.py",
+                    "package": "ipykernel"
+                  },
+                  {
+                    "function": "execute_request",
+                    "line": 372,
+                    "module": "ipkernel.py",
+                    "package": "ipykernel"
+                  },
+                  {
+                    "function": "dispatch_shell",
+                    "line": 478,
+                    "module": "kernelbase.py",
+                    "package": "ipykernel"
+                  },
+                  {
+                    "function": "shell_main",
+                    "line": 621,
+                    "module": "kernelbase.py",
+                    "package": "ipykernel"
+                  },
+                  {
+                    "function": "start",
+                    "line": 807,
+                    "module": "kernelapp.py",
+                    "package": "ipykernel"
+                  }
+                ],
+                "kernel_cell": true
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "attempted": true,
+      "complete": true,
+      "gateway_counts": {
+        "incoming_execute_request": 5,
+        "incoming_forwarded": 10,
+        "incoming_kernel_info_request": 5,
+        "nudge_done": 1,
+        "nudge_enter": 1,
+        "nudge_state_idle": 1,
+        "outgoing_execute_reply": 5,
+        "outgoing_forwarded": 53,
+        "outgoing_kernel_info_reply": 5,
+        "outgoing_other": 20,
+        "outgoing_status": 23
+      },
+      "gpu": {
+        "boundary": "Assigned device, sampled whole-GPU utilization during the candidate execute call, not per-process kernel time; errors/missing values are not zero.",
+        "maximum_sample_gap": 2.0383052825927734,
+        "sample_span_fraction": 0.981682705518346,
+        "samples_in_call": 20,
+        "utilization_max": 78.0,
+        "utilization_median": 63.0,
+        "utilization_min": 0.0,
+        "valid_utilization_samples": 20
+      },
+      "index": 4,
+      "protocol_calls": [
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 1,
+            "received": 3,
+            "received_kernel_info_reply": 1,
+            "received_status": 2,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.08133355202153325,
+          "ready": true,
+          "seconds": 0.08134608808904886,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        },
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 3,
+            "received": 3,
+            "received_kernel_info_reply": 1,
+            "received_status": 2,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.04305253690108657,
+          "ready": true,
+          "seconds": 0.043068238999694586,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        },
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 2,
+            "received": 3,
+            "received_execute_reply": 1,
+            "received_kernel_info_reply": 1,
+            "received_status": 1,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.06439784192480147,
+          "ready": true,
+          "seconds": 0.06441160500980914,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        },
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 2,
+            "received": 2,
+            "received_kernel_info_reply": 1,
+            "received_status": 1,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.028029019944369793,
+          "ready": true,
+          "seconds": 0.028040421893820167,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        },
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 2,
+            "received": 3,
+            "received_execute_reply": 1,
+            "received_kernel_info_reply": 1,
+            "received_status": 1,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.04577939002774656,
+          "ready": true,
+          "seconds": 0.045790781965479255,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        }
+      ],
+      "stacks": {
+        "boundary": "Parent-kernel thread stacks only;30s nominal watchdog interval, actual emission times unavailable. A single waiting stack does not prove deadlock. No local variables or source lines.",
+        "credential_shape_hits_redacted": 0,
+        "dumps": [
+          {
+            "ordinal": 0,
+            "threads": [
+              {
+                "category": "other",
+                "frames": [
+                  {
+                    "function": "wait",
+                    "line": 355,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "_feed",
+                    "line": 251,
+                    "module": "queues.py",
+                    "package": "multiprocessing"
+                  },
+                  {
+                    "function": "run",
+                    "line": 1012,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "_bootstrap_inner",
+                    "line": 1075,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "_bootstrap",
+                    "line": 1032,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  }
+                ],
+                "kernel_cell": false
+              },
+              {
+                "category": "other",
+                "frames": [
+                  {
+                    "function": "wait",
+                    "line": 355,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "_feed",
+                    "line": 251,
+                    "module": "queues.py",
+                    "package": "multiprocessing"
+                  },
+                  {
+                    "function": "run",
+                    "line": 1012,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "_bootstrap_inner",
+                    "line": 1075,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "_bootstrap",
+                    "line": 1032,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  }
+                ],
+                "kernel_cell": false
+              },
+              {
+                "category": "other",
+                "frames": [
+                  {
+                    "function": "select",
+                    "line": 415,
+                    "module": "selectors.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "wait",
+                    "line": 1136,
+                    "module": "connection.py",
+                    "package": "multiprocessing"
+                  },
+                  {
+                    "function": "_poll",
+                    "line": 440,
+                    "module": "connection.py",
+                    "package": "multiprocessing"
+                  },
+                  {
+                    "function": "poll",
+                    "line": 257,
+                    "module": "connection.py",
+                    "package": "multiprocessing"
+                  },
+                  {
+                    "function": "get",
+                    "line": 113,
+                    "module": "queues.py",
+                    "package": "multiprocessing"
+                  },
+                  {
+                    "function": "do_one_step",
+                    "line": 35,
+                    "module": "pin_memory.py",
+                    "package": "torch-data"
+                  },
+                  {
+                    "function": "_pin_memory_loop",
+                    "line": 59,
+                    "module": "pin_memory.py",
+                    "package": "torch-data"
+                  },
+                  {
+                    "function": "run",
+                    "line": 1012,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "_bootstrap_inner",
+                    "line": 1075,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "_bootstrap",
+                    "line": 1032,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  }
+                ],
+                "kernel_cell": false
+              },
+              {
+                "category": "other",
+                "frames": [],
+                "kernel_cell": false
+              },
+              {
+                "category": "other",
+                "frames": [
+                  {
+                    "function": "run",
+                    "line": 62,
+                    "module": "parentpoller.py",
+                    "package": "ipykernel"
+                  },
+                  {
+                    "function": "_bootstrap_inner",
+                    "line": 1075,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "_bootstrap",
+                    "line": 1032,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  }
+                ],
+                "kernel_cell": false
+              },
+              {
+                "category": "other",
+                "frames": [
+                  {
+                    "function": "wait",
+                    "line": 355,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "wait",
+                    "line": 655,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "run",
+                    "line": 903,
+                    "module": "history.py",
+                    "package": "IPython"
+                  },
+                  {
+                    "function": "only_when_enabled",
+                    "line": 61,
+                    "module": "history.py",
+                    "package": "IPython"
+                  },
+                  {
+                    "function": "_bootstrap_inner",
+                    "line": 1075,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "_bootstrap",
+                    "line": 1032,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  }
+                ],
+                "kernel_cell": true
+              },
+              {
+                "category": "other",
+                "frames": [
+                  {
+                    "function": "select",
+                    "line": 468,
+                    "module": "selectors.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "run",
+                    "line": 24,
+                    "module": "thread.py",
+                    "package": "ipykernel"
+                  },
+                  {
+                    "function": "run",
+                    "line": 52,
+                    "module": "shellchannel.py",
+                    "package": "ipykernel"
+                  },
+                  {
+                    "function": "_bootstrap_inner",
+                    "line": 1075,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "_bootstrap",
+                    "line": 1032,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  }
+                ],
+                "kernel_cell": false
+              },
+              {
+                "category": "other",
+                "frames": [
+                  {
+                    "function": "select",
+                    "line": 468,
+                    "module": "selectors.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "run",
+                    "line": 24,
+                    "module": "thread.py",
+                    "package": "ipykernel"
+                  },
+                  {
+                    "function": "_bootstrap_inner",
+                    "line": 1075,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "_bootstrap",
+                    "line": 1032,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  }
+                ],
+                "kernel_cell": false
+              },
+              {
+                "category": "other",
+                "frames": [
+                  {
+                    "function": "_watch_pipe_fd",
+                    "line": 477,
+                    "module": "iostream.py",
+                    "package": "ipykernel"
+                  },
+                  {
+                    "function": "run",
+                    "line": 1012,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "_bootstrap_inner",
+                    "line": 1075,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "_bootstrap",
+                    "line": 1032,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  }
+                ],
+                "kernel_cell": false
+              },
+              {
+                "category": "other",
+                "frames": [
+                  {
+                    "function": "_watch_pipe_fd",
+                    "line": 477,
+                    "module": "iostream.py",
+                    "package": "ipykernel"
+                  },
+                  {
+                    "function": "run",
+                    "line": 1012,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "_bootstrap_inner",
+                    "line": 1075,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "_bootstrap",
+                    "line": 1032,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  }
+                ],
+                "kernel_cell": false
+              },
+              {
+                "category": "other",
+                "frames": [
+                  {
+                    "function": "run",
+                    "line": 124,
+                    "module": "heartbeat.py",
+                    "package": "ipykernel"
+                  },
+                  {
+                    "function": "_bootstrap_inner",
+                    "line": 1075,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "_bootstrap",
+                    "line": 1032,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  }
+                ],
+                "kernel_cell": false
+              },
+              {
+                "category": "other",
+                "frames": [
+                  {
+                    "function": "select",
+                    "line": 468,
+                    "module": "selectors.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "_thread_main",
+                    "line": 167,
+                    "module": "iostream.py",
+                    "package": "ipykernel"
+                  },
+                  {
+                    "function": "run",
+                    "line": 1012,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "_bootstrap_inner",
+                    "line": 1075,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "_bootstrap",
+                    "line": 1032,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  }
+                ],
+                "kernel_cell": false
+              },
+              {
+                "category": "torch_compute",
+                "frames": [
+                  {
+                    "function": "pad",
+                    "line": 5096,
+                    "module": "functional.py",
+                    "package": "torch-nn"
+                  },
+                  {
+                    "function": "forward",
+                    "line": 368,
+                    "module": "padding.py",
+                    "package": "torch-nn"
+                  },
+                  {
+                    "function": "_call_impl",
+                    "line": 1747,
+                    "module": "module.py",
+                    "package": "torch-nn"
+                  },
+                  {
+                    "function": "_wrapped_call_impl",
+                    "line": 1736,
+                    "module": "module.py",
+                    "package": "torch-nn"
+                  },
+                  {
+                    "function": "<withheld>",
+                    "line": 335,
+                    "module": "<withheld>",
+                    "package": "candidate"
+                  },
+                  {
+                    "function": "_call_impl",
+                    "line": 1747,
+                    "module": "module.py",
+                    "package": "torch-nn"
+                  },
+                  {
+                    "function": "_wrapped_call_impl",
+                    "line": 1736,
+                    "module": "module.py",
+                    "package": "torch-nn"
+                  },
+                  {
+                    "function": "<withheld>",
+                    "line": 365,
+                    "module": "<withheld>",
+                    "package": "candidate"
+                  },
+                  {
+                    "function": "<withheld>",
+                    "line": 921,
+                    "module": "<withheld>",
+                    "package": "candidate"
+                  },
+                  {
+                    "function": "<withheld>",
+                    "line": 1029,
+                    "module": "<withheld>",
+                    "package": "candidate"
+                  },
+                  {
+                    "function": "run_code",
+                    "line": 3577,
+                    "module": "interactiveshell.py",
+                    "package": "IPython"
+                  },
+                  {
+                    "function": "run_ast_nodes",
+                    "line": 3517,
+                    "module": "interactiveshell.py",
+                    "package": "IPython"
+                  },
+                  {
+                    "function": "run_cell_async",
+                    "line": 3334,
+                    "module": "interactiveshell.py",
+                    "package": "IPython"
+                  },
+                  {
+                    "function": "_pseudo_sync_runner",
+                    "line": 128,
+                    "module": "async_helpers.py",
+                    "package": "IPython"
+                  },
+                  {
+                    "function": "_run_cell",
+                    "line": 3130,
+                    "module": "interactiveshell.py",
+                    "package": "IPython"
+                  },
+                  {
+                    "function": "run_cell",
+                    "line": 3075,
+                    "module": "interactiveshell.py",
+                    "package": "IPython"
+                  },
+                  {
+                    "function": "run_cell",
+                    "line": 665,
+                    "module": "zmqshell.py",
+                    "package": "ipykernel"
+                  },
+                  {
+                    "function": "do_execute",
+                    "line": 460,
+                    "module": "ipkernel.py",
+                    "package": "ipykernel"
+                  },
+                  {
+                    "function": "execute_request",
+                    "line": 834,
+                    "module": "kernelbase.py",
+                    "package": "ipykernel"
+                  },
+                  {
+                    "function": "execute_request",
+                    "line": 372,
+                    "module": "ipkernel.py",
+                    "package": "ipykernel"
+                  },
+                  {
+                    "function": "dispatch_shell",
+                    "line": 478,
+                    "module": "kernelbase.py",
+                    "package": "ipykernel"
+                  },
+                  {
+                    "function": "shell_main",
+                    "line": 621,
+                    "module": "kernelbase.py",
+                    "package": "ipykernel"
+                  },
+                  {
+                    "function": "start",
+                    "line": 807,
+                    "module": "kernelapp.py",
+                    "package": "ipykernel"
+                  }
+                ],
+                "kernel_cell": true
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "attempted": true,
+      "complete": false,
+      "gateway_counts": {
+        "incoming_execute_request": 2,
+        "incoming_forwarded": 4,
+        "incoming_kernel_info_request": 2,
+        "nudge_done": 1,
+        "nudge_enter": 1,
+        "nudge_state_idle": 1,
+        "outgoing_execute_reply": 1,
+        "outgoing_forwarded": 23,
+        "outgoing_kernel_info_reply": 2,
+        "outgoing_other": 10,
+        "outgoing_status": 10
+      },
+      "gpu": {
+        "boundary": "Assigned device, sampled whole-GPU utilization during the candidate execute call, not per-process kernel time; errors/missing values are not zero.",
+        "maximum_sample_gap": 2.0461111068725586,
+        "sample_span_fraction": 0.9991656974321875,
+        "samples_in_call": 237,
+        "utilization_max": 66.0,
+        "utilization_median": 0.0,
+        "utilization_min": 0.0,
+        "valid_utilization_samples": 237
+      },
+      "index": 5,
+      "protocol_calls": [
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 1,
+            "received": 4,
+            "received_kernel_info_reply": 1,
+            "received_status": 3,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.08489143894985318,
+          "ready": true,
+          "seconds": 0.0849065559450537,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        },
+        {
+          "counts": {
+            "matched_info_reply": 1,
+            "matched_parent": 2,
+            "received": 2,
+            "received_kernel_info_reply": 1,
+            "received_status": 1,
+            "sent_info": 1
+          },
+          "error_type": null,
+          "first_reply_seconds": 0.025026676012203097,
+          "ready": true,
+          "seconds": 0.02504118997603655,
+          "websocket_socket_connected": true,
+          "websocket_thread_alive": true
+        }
+      ],
+      "stacks": {
+        "boundary": "Parent-kernel thread stacks only;30s nominal watchdog interval, actual emission times unavailable. A single waiting stack does not prove deadlock. No local variables or source lines.",
+        "credential_shape_hits_redacted": 0,
+        "dumps": [
+          {
+            "ordinal": 0,
+            "threads": [
+              {
+                "category": "other",
+                "frames": [
+                  {
+                    "function": "wait",
+                    "line": 355,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "_feed",
+                    "line": 251,
+                    "module": "queues.py",
+                    "package": "multiprocessing"
+                  },
+                  {
+                    "function": "run",
+                    "line": 1012,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "_bootstrap_inner",
+                    "line": 1075,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "_bootstrap",
+                    "line": 1032,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  }
+                ],
+                "kernel_cell": false
+              },
+              {
+                "category": "other",
+                "frames": [
+                  {
+                    "function": "wait",
+                    "line": 355,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "_feed",
+                    "line": 251,
+                    "module": "queues.py",
+                    "package": "multiprocessing"
+                  },
+                  {
+                    "function": "run",
+                    "line": 1012,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "_bootstrap_inner",
+                    "line": 1075,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "_bootstrap",
+                    "line": 1032,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  }
+                ],
+                "kernel_cell": false
+              },
+              {
+                "category": "other",
+                "frames": [
+                  {
+                    "function": "select",
+                    "line": 415,
+                    "module": "selectors.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "wait",
+                    "line": 1136,
+                    "module": "connection.py",
+                    "package": "multiprocessing"
+                  },
+                  {
+                    "function": "_poll",
+                    "line": 440,
+                    "module": "connection.py",
+                    "package": "multiprocessing"
+                  },
+                  {
+                    "function": "poll",
+                    "line": 257,
+                    "module": "connection.py",
+                    "package": "multiprocessing"
+                  },
+                  {
+                    "function": "get",
+                    "line": 113,
+                    "module": "queues.py",
+                    "package": "multiprocessing"
+                  },
+                  {
+                    "function": "do_one_step",
+                    "line": 35,
+                    "module": "pin_memory.py",
+                    "package": "torch-data"
+                  },
+                  {
+                    "function": "_pin_memory_loop",
+                    "line": 59,
+                    "module": "pin_memory.py",
+                    "package": "torch-data"
+                  },
+                  {
+                    "function": "run",
+                    "line": 1012,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "_bootstrap_inner",
+                    "line": 1075,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "_bootstrap",
+                    "line": 1032,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  }
+                ],
+                "kernel_cell": false
+              },
+              {
+                "category": "other",
+                "frames": [],
+                "kernel_cell": false
+              },
+              {
+                "category": "other",
+                "frames": [
+                  {
+                    "function": "run",
+                    "line": 62,
+                    "module": "parentpoller.py",
+                    "package": "ipykernel"
+                  },
+                  {
+                    "function": "_bootstrap_inner",
+                    "line": 1075,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "_bootstrap",
+                    "line": 1032,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  }
+                ],
+                "kernel_cell": false
+              },
+              {
+                "category": "other",
+                "frames": [
+                  {
+                    "function": "wait",
+                    "line": 355,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "wait",
+                    "line": 655,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "run",
+                    "line": 903,
+                    "module": "history.py",
+                    "package": "IPython"
+                  },
+                  {
+                    "function": "only_when_enabled",
+                    "line": 61,
+                    "module": "history.py",
+                    "package": "IPython"
+                  },
+                  {
+                    "function": "_bootstrap_inner",
+                    "line": 1075,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "_bootstrap",
+                    "line": 1032,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  }
+                ],
+                "kernel_cell": true
+              },
+              {
+                "category": "other",
+                "frames": [
+                  {
+                    "function": "select",
+                    "line": 468,
+                    "module": "selectors.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "run",
+                    "line": 24,
+                    "module": "thread.py",
+                    "package": "ipykernel"
+                  },
+                  {
+                    "function": "run",
+                    "line": 52,
+                    "module": "shellchannel.py",
+                    "package": "ipykernel"
+                  },
+                  {
+                    "function": "_bootstrap_inner",
+                    "line": 1075,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "_bootstrap",
+                    "line": 1032,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  }
+                ],
+                "kernel_cell": false
+              },
+              {
+                "category": "other",
+                "frames": [
+                  {
+                    "function": "select",
+                    "line": 468,
+                    "module": "selectors.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "run",
+                    "line": 24,
+                    "module": "thread.py",
+                    "package": "ipykernel"
+                  },
+                  {
+                    "function": "_bootstrap_inner",
+                    "line": 1075,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "_bootstrap",
+                    "line": 1032,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  }
+                ],
+                "kernel_cell": false
+              },
+              {
+                "category": "other",
+                "frames": [
+                  {
+                    "function": "_watch_pipe_fd",
+                    "line": 477,
+                    "module": "iostream.py",
+                    "package": "ipykernel"
+                  },
+                  {
+                    "function": "run",
+                    "line": 1012,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "_bootstrap_inner",
+                    "line": 1075,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "_bootstrap",
+                    "line": 1032,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  }
+                ],
+                "kernel_cell": false
+              },
+              {
+                "category": "other",
+                "frames": [
+                  {
+                    "function": "_watch_pipe_fd",
+                    "line": 477,
+                    "module": "iostream.py",
+                    "package": "ipykernel"
+                  },
+                  {
+                    "function": "run",
+                    "line": 1012,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "_bootstrap_inner",
+                    "line": 1075,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "_bootstrap",
+                    "line": 1032,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  }
+                ],
+                "kernel_cell": false
+              },
+              {
+                "category": "other",
+                "frames": [
+                  {
+                    "function": "run",
+                    "line": 124,
+                    "module": "heartbeat.py",
+                    "package": "ipykernel"
+                  },
+                  {
+                    "function": "_bootstrap_inner",
+                    "line": 1075,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "_bootstrap",
+                    "line": 1032,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  }
+                ],
+                "kernel_cell": false
+              },
+              {
+                "category": "other",
+                "frames": [
+                  {
+                    "function": "select",
+                    "line": 468,
+                    "module": "selectors.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "_thread_main",
+                    "line": 167,
+                    "module": "iostream.py",
+                    "package": "ipykernel"
+                  },
+                  {
+                    "function": "run",
+                    "line": 1012,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "_bootstrap_inner",
+                    "line": 1075,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  },
+                  {
+                    "function": "_bootstrap",
+                    "line": 1032,
+                    "module": "threading.py",
+                    "package": "stdlib"
+                  }
+                ],
+                "kernel_cell": false
+              },
+              {
+                "category": "other",
+                "frames": [
+                  {
+                    "function": "mse_loss",
+                    "line": 3792,
+                    "module": "functional.py",
+                    "package": "torch-nn"
+                  },
+                  {
+                    "function": "forward",
+                    "line": 608,
+                    "module": "loss.py",
+                    "package": "torch-nn"
+                  },
+                  {
+                    "function": "_call_impl",
+                    "line": 1747,
+                    "module": "module.py",
+                    "package": "torch-nn"
+                  },
+                  {
+                    "function": "_wrapped_call_impl",
+                    "line": 1736,
+                    "module": "module.py",
+                    "package": "torch-nn"
+                  }
+                ],
+                "kernel_cell": false
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "attempted": false,
+      "complete": false,
+      "gateway_counts": null,
+      "gpu": null,
+      "index": 6,
+      "protocol_calls": null,
+      "stacks": null
+    },
+    {
+      "attempted": false,
+      "complete": false,
+      "gateway_counts": null,
+      "gpu": null,
+      "index": 7,
+      "protocol_calls": null,
+      "stacks": null
+    },
+    {
+      "attempted": false,
+      "complete": false,
+      "gateway_counts": null,
+      "gpu": null,
+      "index": 8,
+      "protocol_calls": null,
+      "stacks": null
+    },
+    {
+      "attempted": false,
+      "complete": false,
+      "gateway_counts": null,
+      "gpu": null,
+      "index": 9,
+      "protocol_calls": null,
+      "stacks": null
+    }
+  ],
+  "execute_calls_observed": 17,
+  "execution_gate": false,
+  "gpu_seconds": 785,
+  "gpu_seconds_cap": 1800,
+  "input_manifest_ok": true,
+  "job": "17566",
+  "manifest_ok": true,
+  "nproc_soft_values": [
+    1024
+  ],
+  "plan_sha256": "4741e0748c51affd413700690d1f3f24e879c522f194b74e5226a63917ca27b8",
+  "planned": 10,
+  "resource_error_flags": {
+    "can't start new thread": 0,
+    "out of memory": 0,
+    "pthread_create": 0,
+    "resource temporarily unavailable": 0
+  },
+  "scheduler_state": "FAILED",
+  "successful_execute_warning_coverage": true,
+  "uid_threads_peak": 243,
+  "unstarted": 4
+}

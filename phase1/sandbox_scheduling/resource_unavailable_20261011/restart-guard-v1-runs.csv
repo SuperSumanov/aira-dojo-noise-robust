@@ -1,0 +1,13 @@
+index,repeat,arm,case,job,source_commit,seed,plan_sha256,attempted,complete,error_type,exit_code,timed_out,seconds,normal_marker,stdout_sha256,lifecycle_marker,exit17_recorded,parentless_restart_received,observer_installed
+0,0,old,normal,17568,f7ccd79323112b10ccc82d8e9ec9d6cf089df607,101101,47f008933f0bb055bf26d1866444ff074eafb8f950b281d32b8340ada2024f62,True,True,,0,False,0.1400812070351094,True,c96d1895cd349857f3bc5141d5f81deea75ca41e604aa7b9f911ae9a2ba1f318,False,False,False,True
+1,0,old,exit,17568,f7ccd79323112b10ccc82d8e9ec9d6cf089df607,101101,47f008933f0bb055bf26d1866444ff074eafb8f950b281d32b8340ada2024f62,True,True,,1,True,16.388614677125588,False,,False,True,True,True
+2,0,guard,normal,17568,f7ccd79323112b10ccc82d8e9ec9d6cf089df607,101101,47f008933f0bb055bf26d1866444ff074eafb8f950b281d32b8340ada2024f62,True,True,,0,False,0.13764281710609794,True,c96d1895cd349857f3bc5141d5f81deea75ca41e604aa7b9f911ae9a2ba1f318,False,False,False,True
+3,0,guard,exit,17568,f7ccd79323112b10ccc82d8e9ec9d6cf089df607,101101,47f008933f0bb055bf26d1866444ff074eafb8f950b281d32b8340ada2024f62,True,False,HTTPError,1,False,2.371317527955398,False,,True,True,True,True
+4,1,guard,exit,17568,f7ccd79323112b10ccc82d8e9ec9d6cf089df607,101101,47f008933f0bb055bf26d1866444ff074eafb8f950b281d32b8340ada2024f62,False,False,,,,,,,,False,False,False
+5,1,guard,normal,17568,f7ccd79323112b10ccc82d8e9ec9d6cf089df607,101101,47f008933f0bb055bf26d1866444ff074eafb8f950b281d32b8340ada2024f62,False,False,,,,,,,,False,False,False
+6,1,old,exit,17568,f7ccd79323112b10ccc82d8e9ec9d6cf089df607,101101,47f008933f0bb055bf26d1866444ff074eafb8f950b281d32b8340ada2024f62,False,False,,,,,,,,False,False,False
+7,1,old,normal,17568,f7ccd79323112b10ccc82d8e9ec9d6cf089df607,101101,47f008933f0bb055bf26d1866444ff074eafb8f950b281d32b8340ada2024f62,False,False,,,,,,,,False,False,False
+8,2,old,normal,17568,f7ccd79323112b10ccc82d8e9ec9d6cf089df607,101101,47f008933f0bb055bf26d1866444ff074eafb8f950b281d32b8340ada2024f62,False,False,,,,,,,,False,False,False
+9,2,old,exit,17568,f7ccd79323112b10ccc82d8e9ec9d6cf089df607,101101,47f008933f0bb055bf26d1866444ff074eafb8f950b281d32b8340ada2024f62,False,False,,,,,,,,False,False,False
+10,2,guard,normal,17568,f7ccd79323112b10ccc82d8e9ec9d6cf089df607,101101,47f008933f0bb055bf26d1866444ff074eafb8f950b281d32b8340ada2024f62,False,False,,,,,,,,False,False,False
+11,2,guard,exit,17568,f7ccd79323112b10ccc82d8e9ec9d6cf089df607,101101,47f008933f0bb055bf26d1866444ff074eafb8f950b281d32b8340ada2024f62,False,False,,,,,,,,False,False,False

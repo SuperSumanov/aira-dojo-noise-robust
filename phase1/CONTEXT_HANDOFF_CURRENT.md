@@ -1,11 +1,12 @@
 # 当前短交接
-更新：2026-10-12香港02:18。旧排障长交接已保存在Git4279975d；这里只保留当前事实，未复查的状态写最后观察。
+更新：2026-10-12香港04:05。旧排障长交接已保存在Git4279975d；这里只保留当前事实，未复查的状态写最后观察。
 恢复：fetch → CURRENT_DIRECTION → ROUTE_DECISIONS → 本文件；不得回到旧8月路线。
 
-## 最新用户裁决与新重复
-- 用户新授权三小时独立重复、验证同预算最终成绩；32条=2任务×4新seed×2臂×2池对，ABBA240/600/600/240，seed212101–212108、212201–212208，不合并旧17656。cap6120s×6=10.2GPUh；900s/run、300s候选、1500s/池均不变，GPU3两服务+四执行。02:16最后观察唯一job17670 RUNNING/gpu3、6GPU/24CPU、首池服务启动；约02:13开跑，预计03:54完整闭合但以现场为准。submit PID301835已退出、途中SSH超时未重投；旧Held12535不动。11项本地/远端CPU测试及32配置/16配对预检通过。
-- 新入口image_deadline_replication_20261012.py、结果读取image_deadline_replication_readout_20261012.py；目标=/research/d7/spc/yzyang4/scheduling-image-deadline-replication-20261012-v1。source13f8ebcb1cd76ca210aacf5c7f43ea2d086d7f85已push/ls-remote一致，planSHA23f368399f6c735ef81142ec46831ae4e9f45d58d80edf5d2559b4cbb7a22ea6。逻辑lane按首池物理UUID匹配、服务卡对固定；未知设备即停。安全status入口image_deadline_replication_status_20261012.py；一次性CPU结束读出PID317337已注册（image_deadline_replication_finish_20261012.py），SHA5c00e9434b804bfb8c4a05db3f0c268bdb615207cd759ea90a7bd4113b704712，切勿重复启动。
-- 新主终点：每任务每池预分配4搜索的最好原生有效终点。两重复×两任务的4个差都须有分且不负，同一任务两次均达到0.001改善、每池任务覆盖不降、全32开始且结构通过；否则不称复验成功。逐run缺失不填0、完整对仅描述；2池对不是统计确认。无自动扩跑/换样本，不把旧覆盖门改成质量门。
+## 最新独立重复17670：已闭合，不再提交
+- 用户三小时授权已执行：32条=2任务×4新搜索seed×2臂×2池对，ABBA240/600/600/240，seed212101–212108、212201–212208；900s/run、300s候选、1500s/池、gpu3两服务+四执行。03:54最后核17670 COMPLETED，6005秒×6=36030GPU秒=10.008333333333333GPUh，cap10.2；32启动/32结束/32清理，无重投/补样本。600/240正常16/3、原生有效终点4/1、首生成失败0/13。旧Held12535不动。
+- 主终点为每池每任务固定4搜索的最好原生有效终点：仅1/4对可比，第二轮aerial为240:0.9999412025678442、600:0.99981024465077，差-0.0001309579170742925；0/16同seed质量分对，原质量门false。600的去噪原生有效终点仅第二轮1条，RMSE0.021014815657146736，无有效对照。缺失不填0，不能称稳定终分收益或普遍有害；停止当前确认配方，无自动扩跑、不合并旧17656。
+- 目标=/research/d7/spc/yzyang4/scheduling-image-deadline-replication-20261012-v1；source13f8ebcb1cd76ca210aacf5c7f43ea2d086d7f85，planSHA23f368399f6c735ef81142ec46831ae4e9f45d58d80edf5d2559b4cbb7a22ea6，summarySHA99ae98964305d29a444d7d5ba86c347395f70ef96280e2cf53b47491c5ae569c。一次性PID317337已写completion-closed，禁止重启动prepare/submit/finish/analyze。6评分复算、16CPU配对、4池同物理lane/服务卡、清理通过；7下载原件SHA一致，独立JS从32行+CSV复算全部统计/门/成本通过。安全结果在sandbox_scheduling/image_deadline_replication_v1_closed；发布状态核Git，勿混用实验source和文档HEAD。
+- 只读诊断32份journal选点一致；episode3外部有效RMSE0.023206723010400613、exit0/无超时，却在journal标buggy、metric null；实际冻结MCTS仍有LLM is_bug否决（源码SHAf75a93f69fd79029ae4d3ce5b9dad81520480cbf36b56b05d8719a8b84c2a63d），本地同名代码不同，不能以工作树推断快照。有效返回867.9104325049557秒、后续分析874.0977735728957秒返回，非导出漏记；不改原终点、不称新方法或已验证修复收益。600共35候选/4有效、非零退出21、超时6；240为7/2、非零5、超时1（两类未作互斥加总）；准入排队合计0.6042536979075521/0.18352756975218654秒，不是GPU内核争用测量。原始候选/标签/预测未导出，无新GPU/API。
 
 ## 刚闭合17656（不是运行作业）
 - 新用户要求：沿局部信号验证、一小时给有价值反馈。23:39 SSH banner曾HTTP404三次，用户修复后23:41重连成功；没有把连接失败算实验失败。gpu3有空余，旧Held不动。

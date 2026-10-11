@@ -1028,3 +1028,6 @@ phase1/sandbox_scheduling/image_deadline_replication_finish_20261012.py -text di
 phase1/sandbox_scheduling/image_deadline_replication_status_20261012.py -text diff whitespace=cr-at-eol
 phase1/sandbox_scheduling/test_image_deadline_replication_20261012.py -text diff whitespace=cr-at-eol
 phase1/sandbox_scheduling/image_deadline_replication_v1_preflight/*.json -text diff whitespace=cr-at-eol
+phase1/sandbox_scheduling/image_deadline_replication_v1_closed/*.json -text diff whitespace=cr-at-eol
+phase1/sandbox_scheduling/image_deadline_replication_v1_closed/*.csv -text diff whitespace=cr-at-eol
+phase1/sandbox_scheduling/image_replication_closed_diagnostic_20261012.py -text diff whitespace=cr-at-eol

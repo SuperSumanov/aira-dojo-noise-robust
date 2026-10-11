@@ -1,0 +1,124 @@
+{
+  "verification": "PASS",
+  "method": "Independent JavaScript recomputation from full32 rows plus CSV, identity and accounting; no import of frozen Python readout.",
+  "summary_sha256": "99ae98964305d29a444d7d5ba86c347395f70ef96280e2cf53b47491c5ae569c",
+  "remote_download_hashes": {
+    "summary.json": "99ae98964305d29a444d7d5ba86c347395f70ef96280e2cf53b47491c5ae569c",
+    "runs.json": "7d5a18a8cf91eec3f0f9df5a138bebb20ab4e3ed913b88532d620797bbd06d34",
+    "runs.csv": "00e6fffcece3bf8a4c2f550a014f690c51205234d490f23c737a7d9fe25c678c",
+    "identity.json": "51940090f3ff9094d9d06c9f9dd5dd31d7d5656a1941888bdb5511dae0f44365",
+    "accounting-v1.json": "af2ef3646d5040d30c3de8fa4e3aca8f1f384531a6ac80c7035d0ff74eab4947",
+    "completion-closed.json": "4f9ad1b0173488b0add6aeaece12b7a83c120bac168cd04a3c8cd577089296e3",
+    "completion-claim.json": "e8682b84f372feef58e6f0731f9914046556b408fbdb5aa32c82f449d3091fc7"
+  },
+  "rows": 32,
+  "csv_rows": 32,
+  "complete_pool_task_contrasts": 1,
+  "complete_run_quality_pairs": 0,
+  "replicated_quality_signal": false,
+  "by_arm": {
+    "deadline240": {
+      "assigned": 16,
+      "started": 16,
+      "complete": 3,
+      "valid_endpoints": 1,
+      "valid_returns": 2,
+      "first_generation_failed": 13,
+      "task_score_descriptive": {
+        "aerial-cactus-identification": {
+          "n": 1,
+          "median": 0.9999412025678442,
+          "sample_sd": null
+        },
+        "denoising-dirty-documents": {
+          "n": 0,
+          "median": null,
+          "sample_sd": null
+        }
+      }
+    },
+    "deadline600": {
+      "assigned": 16,
+      "started": 16,
+      "complete": 16,
+      "valid_endpoints": 4,
+      "valid_returns": 4,
+      "first_generation_failed": 0,
+      "task_score_descriptive": {
+        "aerial-cactus-identification": {
+          "n": 3,
+          "median": 0.99981024465077,
+          "sample_sd": 0.0001993081885837696
+        },
+        "denoising-dirty-documents": {
+          "n": 1,
+          "median": 0.021014815657146736,
+          "sample_sd": null
+        }
+      }
+    }
+  },
+  "pool_task_contrasts": [
+    {
+      "assigned_per_arm": 4,
+      "best_native_endpoint": {
+        "deadline240": null,
+        "deadline600": 0.999965256062817
+      },
+      "oriented_delta": null,
+      "repeat": 0,
+      "task": "aerial-cactus-identification",
+      "valid_endpoint_count": {
+        "deadline240": 0,
+        "deadline600": 1
+      }
+    },
+    {
+      "assigned_per_arm": 4,
+      "best_native_endpoint": {
+        "deadline240": null,
+        "deadline600": null
+      },
+      "oriented_delta": null,
+      "repeat": 0,
+      "task": "denoising-dirty-documents",
+      "valid_endpoint_count": {
+        "deadline240": 0,
+        "deadline600": 0
+      }
+    },
+    {
+      "assigned_per_arm": 4,
+      "best_native_endpoint": {
+        "deadline240": 0.9999412025678442,
+        "deadline600": 0.99981024465077
+      },
+      "oriented_delta": -0.0001309579170742925,
+      "repeat": 1,
+      "task": "aerial-cactus-identification",
+      "valid_endpoint_count": {
+        "deadline240": 1,
+        "deadline600": 2
+      }
+    },
+    {
+      "assigned_per_arm": 4,
+      "best_native_endpoint": {
+        "deadline240": null,
+        "deadline600": 0.021014815657146736
+      },
+      "oriented_delta": null,
+      "repeat": 1,
+      "task": "denoising-dirty-documents",
+      "valid_endpoint_count": {
+        "deadline240": 0,
+        "deadline600": 1
+      }
+    }
+  ],
+  "independent_device_pin_checks": 4,
+  "gpu_seconds": 36030,
+  "gpu_hours": 10.008333333333333,
+  "diagnostic_journal_selection_checks": 32,
+  "limitation": "Numerical statistics, artifact identity, endpoints and device mapping checked independently. CPU topology and raw-score recomputation are the frozen remote verifier's checks, not re-labelled as a second implementation."
+}

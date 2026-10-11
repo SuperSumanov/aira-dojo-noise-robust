@@ -1,0 +1,8 @@
+{
+  "gpu_seconds": 36030,
+  "job": "17670",
+  "no_gpu_or_api_or_new_job": true,
+  "plan_sha256": "23f368399f6c735ef81142ec46831ae4e9f45d58d80edf5d2559b4cbb7a22ea6",
+  "replicated_quality_signal": false,
+  "summary_sha256": "99ae98964305d29a444d7d5ba86c347395f70ef96280e2cf53b47491c5ae569c"
+}

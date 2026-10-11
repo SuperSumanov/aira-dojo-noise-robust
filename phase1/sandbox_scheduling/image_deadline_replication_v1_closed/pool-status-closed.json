@@ -1,0 +1,467 @@
+{
+  "observed": 1791748471.0951579,
+  "plan_sha256": "23f368399f6c735ef81142ec46831ae4e9f45d58d80edf5d2559b4cbb7a22ea6",
+  "launch": {
+    "job": "17670",
+    "plan_sha256": "23f368399f6c735ef81142ec46831ae4e9f45d58d80edf5d2559b4cbb7a22ea6"
+  },
+  "accounting": [
+    [
+      "17670",
+      "COMPLETED",
+      "6005",
+      "billing=24,cpu=24,gres/gpu=6,node=1"
+    ]
+  ],
+  "assigned": 32,
+  "rows": [
+    {
+      "index": 0,
+      "block": 0,
+      "arm": "deadline240",
+      "task": "aerial-cactus-identification",
+      "seed": 212101,
+      "started": true,
+      "finished": true,
+      "status": "failed",
+      "worker_returncode": 1,
+      "cleanup": true
+    },
+    {
+      "index": 1,
+      "block": 0,
+      "arm": "deadline240",
+      "task": "denoising-dirty-documents",
+      "seed": 212102,
+      "started": true,
+      "finished": true,
+      "status": "failed",
+      "worker_returncode": 1,
+      "cleanup": true
+    },
+    {
+      "index": 2,
+      "block": 0,
+      "arm": "deadline240",
+      "task": "aerial-cactus-identification",
+      "seed": 212103,
+      "started": true,
+      "finished": true,
+      "status": "failed",
+      "worker_returncode": 1,
+      "cleanup": true
+    },
+    {
+      "index": 3,
+      "block": 0,
+      "arm": "deadline240",
+      "task": "denoising-dirty-documents",
+      "seed": 212104,
+      "started": true,
+      "finished": true,
+      "status": "budget_exhausted",
+      "worker_returncode": 0,
+      "cleanup": true
+    },
+    {
+      "index": 4,
+      "block": 0,
+      "arm": "deadline240",
+      "task": "aerial-cactus-identification",
+      "seed": 212105,
+      "started": true,
+      "finished": true,
+      "status": "failed",
+      "worker_returncode": 1,
+      "cleanup": true
+    },
+    {
+      "index": 5,
+      "block": 0,
+      "arm": "deadline240",
+      "task": "denoising-dirty-documents",
+      "seed": 212106,
+      "started": true,
+      "finished": true,
+      "status": "failed",
+      "worker_returncode": 1,
+      "cleanup": true
+    },
+    {
+      "index": 6,
+      "block": 0,
+      "arm": "deadline240",
+      "task": "aerial-cactus-identification",
+      "seed": 212107,
+      "started": true,
+      "finished": true,
+      "status": "failed",
+      "worker_returncode": 1,
+      "cleanup": true
+    },
+    {
+      "index": 7,
+      "block": 0,
+      "arm": "deadline240",
+      "task": "denoising-dirty-documents",
+      "seed": 212108,
+      "started": true,
+      "finished": true,
+      "status": "failed",
+      "worker_returncode": 1,
+      "cleanup": true
+    },
+    {
+      "index": 8,
+      "block": 1,
+      "arm": "deadline600",
+      "task": "aerial-cactus-identification",
+      "seed": 212101,
+      "started": true,
+      "finished": true,
+      "status": "budget_exhausted",
+      "worker_returncode": 0,
+      "cleanup": true
+    },
+    {
+      "index": 9,
+      "block": 1,
+      "arm": "deadline600",
+      "task": "denoising-dirty-documents",
+      "seed": 212102,
+      "started": true,
+      "finished": true,
+      "status": "budget_exhausted",
+      "worker_returncode": 0,
+      "cleanup": true
+    },
+    {
+      "index": 10,
+      "block": 1,
+      "arm": "deadline600",
+      "task": "aerial-cactus-identification",
+      "seed": 212103,
+      "started": true,
+      "finished": true,
+      "status": "budget_exhausted",
+      "worker_returncode": 0,
+      "cleanup": true
+    },
+    {
+      "index": 11,
+      "block": 1,
+      "arm": "deadline600",
+      "task": "denoising-dirty-documents",
+      "seed": 212104,
+      "started": true,
+      "finished": true,
+      "status": "budget_exhausted",
+      "worker_returncode": 0,
+      "cleanup": true
+    },
+    {
+      "index": 12,
+      "block": 1,
+      "arm": "deadline600",
+      "task": "aerial-cactus-identification",
+      "seed": 212105,
+      "started": true,
+      "finished": true,
+      "status": "budget_exhausted",
+      "worker_returncode": 0,
+      "cleanup": true
+    },
+    {
+      "index": 13,
+      "block": 1,
+      "arm": "deadline600",
+      "task": "denoising-dirty-documents",
+      "seed": 212106,
+      "started": true,
+      "finished": true,
+      "status": "budget_exhausted",
+      "worker_returncode": 0,
+      "cleanup": true
+    },
+    {
+      "index": 14,
+      "block": 1,
+      "arm": "deadline600",
+      "task": "aerial-cactus-identification",
+      "seed": 212107,
+      "started": true,
+      "finished": true,
+      "status": "budget_exhausted",
+      "worker_returncode": 0,
+      "cleanup": true
+    },
+    {
+      "index": 15,
+      "block": 1,
+      "arm": "deadline600",
+      "task": "denoising-dirty-documents",
+      "seed": 212108,
+      "started": true,
+      "finished": true,
+      "status": "budget_exhausted",
+      "worker_returncode": 0,
+      "cleanup": true
+    },
+    {
+      "index": 16,
+      "block": 2,
+      "arm": "deadline600",
+      "task": "aerial-cactus-identification",
+      "seed": 212201,
+      "started": true,
+      "finished": true,
+      "status": "budget_exhausted",
+      "worker_returncode": 0,
+      "cleanup": true
+    },
+    {
+      "index": 17,
+      "block": 2,
+      "arm": "deadline600",
+      "task": "denoising-dirty-documents",
+      "seed": 212202,
+      "started": true,
+      "finished": true,
+      "status": "budget_exhausted",
+      "worker_returncode": 0,
+      "cleanup": true
+    },
+    {
+      "index": 18,
+      "block": 2,
+      "arm": "deadline600",
+      "task": "aerial-cactus-identification",
+      "seed": 212203,
+      "started": true,
+      "finished": true,
+      "status": "budget_exhausted",
+      "worker_returncode": 0,
+      "cleanup": true
+    },
+    {
+      "index": 19,
+      "block": 2,
+      "arm": "deadline600",
+      "task": "denoising-dirty-documents",
+      "seed": 212204,
+      "started": true,
+      "finished": true,
+      "status": "budget_exhausted",
+      "worker_returncode": 0,
+      "cleanup": true
+    },
+    {
+      "index": 20,
+      "block": 2,
+      "arm": "deadline600",
+      "task": "aerial-cactus-identification",
+      "seed": 212205,
+      "started": true,
+      "finished": true,
+      "status": "budget_exhausted",
+      "worker_returncode": 0,
+      "cleanup": true
+    },
+    {
+      "index": 21,
+      "block": 2,
+      "arm": "deadline600",
+      "task": "denoising-dirty-documents",
+      "seed": 212206,
+      "started": true,
+      "finished": true,
+      "status": "budget_exhausted",
+      "worker_returncode": 0,
+      "cleanup": true
+    },
+    {
+      "index": 22,
+      "block": 2,
+      "arm": "deadline600",
+      "task": "aerial-cactus-identification",
+      "seed": 212207,
+      "started": true,
+      "finished": true,
+      "status": "budget_exhausted",
+      "worker_returncode": 0,
+      "cleanup": true
+    },
+    {
+      "index": 23,
+      "block": 2,
+      "arm": "deadline600",
+      "task": "denoising-dirty-documents",
+      "seed": 212208,
+      "started": true,
+      "finished": true,
+      "status": "budget_exhausted",
+      "worker_returncode": 0,
+      "cleanup": true
+    },
+    {
+      "index": 24,
+      "block": 3,
+      "arm": "deadline240",
+      "task": "aerial-cactus-identification",
+      "seed": 212201,
+      "started": true,
+      "finished": true,
+      "status": "budget_exhausted",
+      "worker_returncode": 0,
+      "cleanup": true
+    },
+    {
+      "index": 25,
+      "block": 3,
+      "arm": "deadline240",
+      "task": "denoising-dirty-documents",
+      "seed": 212202,
+      "started": true,
+      "finished": true,
+      "status": "failed",
+      "worker_returncode": 1,
+      "cleanup": true
+    },
+    {
+      "index": 26,
+      "block": 3,
+      "arm": "deadline240",
+      "task": "aerial-cactus-identification",
+      "seed": 212203,
+      "started": true,
+      "finished": true,
+      "status": "failed",
+      "worker_returncode": 1,
+      "cleanup": true
+    },
+    {
+      "index": 27,
+      "block": 3,
+      "arm": "deadline240",
+      "task": "denoising-dirty-documents",
+      "seed": 212204,
+      "started": true,
+      "finished": true,
+      "status": "failed",
+      "worker_returncode": 1,
+      "cleanup": true
+    },
+    {
+      "index": 28,
+      "block": 3,
+      "arm": "deadline240",
+      "task": "aerial-cactus-identification",
+      "seed": 212205,
+      "started": true,
+      "finished": true,
+      "status": "failed",
+      "worker_returncode": 1,
+      "cleanup": true
+    },
+    {
+      "index": 29,
+      "block": 3,
+      "arm": "deadline240",
+      "task": "denoising-dirty-documents",
+      "seed": 212206,
+      "started": true,
+      "finished": true,
+      "status": "failed",
+      "worker_returncode": 1,
+      "cleanup": true
+    },
+    {
+      "index": 30,
+      "block": 3,
+      "arm": "deadline240",
+      "task": "aerial-cactus-identification",
+      "seed": 212207,
+      "started": true,
+      "finished": true,
+      "status": "budget_exhausted",
+      "worker_returncode": 0,
+      "cleanup": true
+    },
+    {
+      "index": 31,
+      "block": 3,
+      "arm": "deadline240",
+      "task": "denoising-dirty-documents",
+      "seed": 212208,
+      "started": true,
+      "finished": true,
+      "status": "failed",
+      "worker_returncode": 1,
+      "cleanup": true
+    }
+  ],
+  "pools": [
+    {
+      "block": 0,
+      "service_ready": {
+        "startup_seconds": 453.79301375709474
+      },
+      "budget": {
+        "active_seconds": 1360.8356920131482,
+        "actual_seconds": 1500.0001488609705,
+        "gpus": 6,
+        "reserved_seconds": 1500,
+        "start": 1791742403.4444423
+      }
+    },
+    {
+      "block": 1,
+      "service_ready": {
+        "startup_seconds": 453.7045790210832
+      },
+      "budget": {
+        "active_seconds": 1363.1551498111803,
+        "actual_seconds": 1500.0001581839751,
+        "gpus": 6,
+        "reserved_seconds": 1500,
+        "start": 1791743903.4550488
+      }
+    },
+    {
+      "block": 2,
+      "service_ready": {
+        "startup_seconds": 453.51145718083717
+      },
+      "budget": {
+        "active_seconds": 1366.9289761078544,
+        "actual_seconds": 1500.0001497089397,
+        "gpus": 6,
+        "reserved_seconds": 1500,
+        "start": 1791745403.4656231
+      }
+    },
+    {
+      "block": 3,
+      "service_ready": {
+        "startup_seconds": 447.30193530395627
+      },
+      "budget": {
+        "active_seconds": 1358.7470313450322,
+        "actual_seconds": 1500.000149309868,
+        "gpus": 6,
+        "reserved_seconds": 1500,
+        "start": 1791746903.4757414
+      }
+    }
+  ],
+  "closure": {
+    "completion-closed.json": {
+      "gpu_seconds": 36030,
+      "job": "17670",
+      "no_gpu_or_api_or_new_job": true,
+      "plan_sha256": "23f368399f6c735ef81142ec46831ae4e9f45d58d80edf5d2559b4cbb7a22ea6",
+      "replicated_quality_signal": false,
+      "summary_sha256": "99ae98964305d29a444d7d5ba86c347395f70ef96280e2cf53b47491c5ae569c"
+    }
+  }
+}

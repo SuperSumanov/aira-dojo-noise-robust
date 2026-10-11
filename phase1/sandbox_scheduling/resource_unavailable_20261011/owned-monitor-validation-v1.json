@@ -1,0 +1,30 @@
+{
+  "checked_utc": "2026-10-11T04:16:55Z",
+  "base_commit": "e6ac9a06400717d8ed8335141ad468c91fdcc230",
+  "source_sha256": {
+    "owned_pressure_monitor.py": "c3201ec55200c3929fcdec97efeaae4ce6c6c32ba40cc8ddb1d6a794c7c3670a",
+    "owned_cgroup_pressure.py": "277841ecc348000288ab3bed029b1038b2f4c51bf9a359b9463491d977fc548a",
+    "test_owned_pressure_monitor.py": "33f593d9964a531ec5cd5becd2419ae32a71b70670a55781f70129e46a8ebfcc",
+    "test_owned_cgroup_pressure.py": "aab22e058193e9b7c76dd54e05f7c9c3171e95d4e22993d1df06bb664e92c65e"
+  },
+  "remote_local_source_bytes_equal": true,
+  "test_command": "python -B -m unittest test_owned_pressure_monitor test_owned_process_pressure test_owned_cgroup_pressure",
+  "wsl": {"tests": 16, "passed": 16},
+  "remote_linux": {"tests": 16, "passed": 16},
+  "coverage": [
+    "bounded duration and no overwrite; output mode0600",
+    "stop on root exit including unreaped zombie, or PID identity change",
+    "permission/observation errors remain distinct from normal exit",
+    "real owned Linux child lifecycle with numeric-only process metadata",
+    "target cgroups differ from the observer cgroup; parent traversal rejected",
+    "target ownership/identity rechecked before deduplication; unavailable counters remain null"
+  ],
+  "review_corrections_before_release": [
+    "The initial lifecycle test permitted waiting until the duration limit on an unreaped zombie; the implementation and assertion now explicitly stop at root exit.",
+    "The initial host snapshot described the observer cgroup. Target descendant cgroups are now recorded separately with ownership and PID-identity checks; this was not silently relabelled."
+  ],
+  "gpu_allocations": 0,
+  "paid_api_calls": 0,
+  "production_deployed": false,
+  "boundary": "Optional diagnostic, not a causal proof or production repair. Adds one process plus CPU/I/O overhead and must be enabled symmetrically in comparisons. Sampled counts can miss transients; conventional host cgroup layout is assumed. Neither this tool nor its passing tests demonstrate the cause of historical OpenBLAS failures."
+}

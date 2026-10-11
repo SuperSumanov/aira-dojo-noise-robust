@@ -1,0 +1,61 @@
+{
+  "accepted": 1,
+  "attempted": 2,
+  "boundary": "Empty-command/dispatch diagnostic, not GPU computation, model capacity, failure-rate estimate or historical OpenBLAS cause. Cleanup envelope is conservative, not a billing statement.",
+  "cleanup_inclusive_envelope_gpu_seconds": 208,
+  "gate": false,
+  "gpu_seconds_cap": 600,
+  "job": "17578",
+  "logs": {
+    "allocation.private.log": {
+      "bytes": 0,
+      "categories": {
+        "aborted before step completely launched": 0,
+        "connection refused": 0,
+        "connection timed out": 0,
+        "cpu binding outside": 0,
+        "no route to host": 0,
+        "permission denied": 0,
+        "pthread_create": 0,
+        "resource temporarily unavailable": 0,
+        "unable to establish": 0
+      },
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "step-0.private.log": {
+      "bytes": 0,
+      "categories": {
+        "aborted before step completely launched": 0,
+        "connection refused": 0,
+        "connection timed out": 0,
+        "cpu binding outside": 0,
+        "no route to host": 0,
+        "permission denied": 0,
+        "pthread_create": 0,
+        "resource temporarily unavailable": 0,
+        "unable to establish": 0
+      },
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "step-1.private.log": {
+      "bytes": 168,
+      "categories": {
+        "aborted before step completely launched": 1,
+        "connection refused": 0,
+        "connection timed out": 0,
+        "cpu binding outside": 0,
+        "no route to host": 0,
+        "permission denied": 0,
+        "pthread_create": 0,
+        "resource temporarily unavailable": 0,
+        "unable to establish": 0
+      },
+      "sha256": "bd3990f8ec3a86d86de250e93b8dfafbb97503b2e09fc1f4acee024bf0170d2d"
+    }
+  },
+  "plan_sha256": "070a329861b846ca117d21c99173adc2df973f34a502f7950fb12bc5b19f8e63",
+  "planned": 6,
+  "scheduler_elapsed_gpu_seconds": 82,
+  "scheduler_state": "FAILED",
+  "unstarted": 4
+}

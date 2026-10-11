@@ -1,0 +1,7 @@
+job,index,mode,node,attempted,accepted,seconds,returncode,error_type,source_sha256
+17578,0,true,gpu3,True,True,0.12799501419067383,0,,73f2da1fcb19111e4ecee8f407761d5add3a65abdc3ac63224ddd1cb7ead081d
+17578,1,true,gpu27,True,False,40.007739782333374,-9,TimeoutExpired,73f2da1fcb19111e4ecee8f407761d5add3a65abdc3ac63224ddd1cb7ead081d
+17578,2,sampler,gpu3,False,False,,,,73f2da1fcb19111e4ecee8f407761d5add3a65abdc3ac63224ddd1cb7ead081d
+17578,3,sampler,gpu27,False,False,,,,73f2da1fcb19111e4ecee8f407761d5add3a65abdc3ac63224ddd1cb7ead081d
+17578,4,original-import,gpu3,False,False,,,,73f2da1fcb19111e4ecee8f407761d5add3a65abdc3ac63224ddd1cb7ead081d
+17578,5,original-import,gpu27,False,False,,,,73f2da1fcb19111e4ecee8f407761d5add3a65abdc3ac63224ddd1cb7ead081d

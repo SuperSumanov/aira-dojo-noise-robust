@@ -1,0 +1,200 @@
+{
+  "cleanup_inclusive_envelope_gpu_seconds": 36532,
+  "count": 24,
+  "jobs": [
+    {
+      "gpus": 1,
+      "job": "17541",
+      "note": "Last-step span is a conservative cleanup-inclusive accounting envelope, not proof of actual billed GPU occupancy.",
+      "scheduler_elapsed_gpu_seconds": 132,
+      "state": "COMPLETED",
+      "through_last_step_gpu_seconds": 132
+    },
+    {
+      "gpus": 1,
+      "job": "17543",
+      "note": "Last-step span is a conservative cleanup-inclusive accounting envelope, not proof of actual billed GPU occupancy.",
+      "scheduler_elapsed_gpu_seconds": 102,
+      "state": "COMPLETED",
+      "through_last_step_gpu_seconds": 102
+    },
+    {
+      "gpus": 2,
+      "job": "17545",
+      "note": "Last-step span is a conservative cleanup-inclusive accounting envelope, not proof of actual billed GPU occupancy.",
+      "scheduler_elapsed_gpu_seconds": 10,
+      "state": "FAILED",
+      "through_last_step_gpu_seconds": 10
+    },
+    {
+      "gpus": 2,
+      "job": "17547",
+      "note": "Last-step span is a conservative cleanup-inclusive accounting envelope, not proof of actual billed GPU occupancy.",
+      "scheduler_elapsed_gpu_seconds": 1078,
+      "state": "COMPLETED",
+      "through_last_step_gpu_seconds": 1078
+    },
+    {
+      "gpus": 8,
+      "job": "17550",
+      "note": "Last-step span is a conservative cleanup-inclusive accounting envelope, not proof of actual billed GPU occupancy.",
+      "scheduler_elapsed_gpu_seconds": 4120,
+      "state": "FAILED",
+      "through_last_step_gpu_seconds": 4120
+    },
+    {
+      "gpus": 1,
+      "job": "17552",
+      "note": "Last-step span is a conservative cleanup-inclusive accounting envelope, not proof of actual billed GPU occupancy.",
+      "scheduler_elapsed_gpu_seconds": 496,
+      "state": "COMPLETED",
+      "through_last_step_gpu_seconds": 496
+    },
+    {
+      "gpus": 8,
+      "job": "17554",
+      "note": "Last-step span is a conservative cleanup-inclusive accounting envelope, not proof of actual billed GPU occupancy.",
+      "scheduler_elapsed_gpu_seconds": 7720,
+      "state": "FAILED",
+      "through_last_step_gpu_seconds": 7728
+    },
+    {
+      "gpus": 1,
+      "job": "17555",
+      "note": "Last-step span is a conservative cleanup-inclusive accounting envelope, not proof of actual billed GPU occupancy.",
+      "scheduler_elapsed_gpu_seconds": 132,
+      "state": "FAILED",
+      "through_last_step_gpu_seconds": 132
+    },
+    {
+      "gpus": 1,
+      "job": "17556",
+      "note": "Last-step span is a conservative cleanup-inclusive accounting envelope, not proof of actual billed GPU occupancy.",
+      "scheduler_elapsed_gpu_seconds": 162,
+      "state": "COMPLETED",
+      "through_last_step_gpu_seconds": 162
+    },
+    {
+      "gpus": 8,
+      "job": "17557",
+      "note": "Last-step span is a conservative cleanup-inclusive accounting envelope, not proof of actual billed GPU occupancy.",
+      "scheduler_elapsed_gpu_seconds": 4512,
+      "state": "FAILED",
+      "through_last_step_gpu_seconds": 4512
+    },
+    {
+      "gpus": 8,
+      "job": "17559",
+      "note": "Last-step span is a conservative cleanup-inclusive accounting envelope, not proof of actual billed GPU occupancy.",
+      "scheduler_elapsed_gpu_seconds": 200,
+      "state": "COMPLETED",
+      "through_last_step_gpu_seconds": 200
+    },
+    {
+      "gpus": 6,
+      "job": "17561",
+      "note": "Last-step span is a conservative cleanup-inclusive accounting envelope, not proof of actual billed GPU occupancy.",
+      "scheduler_elapsed_gpu_seconds": 804,
+      "state": "FAILED",
+      "through_last_step_gpu_seconds": 810
+    },
+    {
+      "gpus": 1,
+      "job": "17563",
+      "note": "Last-step span is a conservative cleanup-inclusive accounting envelope, not proof of actual billed GPU occupancy.",
+      "scheduler_elapsed_gpu_seconds": 586,
+      "state": "COMPLETED",
+      "through_last_step_gpu_seconds": 586
+    },
+    {
+      "gpus": 1,
+      "job": "17564",
+      "note": "Last-step span is a conservative cleanup-inclusive accounting envelope, not proof of actual billed GPU occupancy.",
+      "scheduler_elapsed_gpu_seconds": 148,
+      "state": "COMPLETED",
+      "through_last_step_gpu_seconds": 148
+    },
+    {
+      "gpus": 6,
+      "job": "17565",
+      "note": "Last-step span is a conservative cleanup-inclusive accounting envelope, not proof of actual billed GPU occupancy.",
+      "scheduler_elapsed_gpu_seconds": 3576,
+      "state": "FAILED",
+      "through_last_step_gpu_seconds": 3576
+    },
+    {
+      "gpus": 1,
+      "job": "17566",
+      "note": "Last-step span is a conservative cleanup-inclusive accounting envelope, not proof of actual billed GPU occupancy.",
+      "scheduler_elapsed_gpu_seconds": 785,
+      "state": "FAILED",
+      "through_last_step_gpu_seconds": 785
+    },
+    {
+      "gpus": 1,
+      "job": "17567",
+      "note": "Last-step span is a conservative cleanup-inclusive accounting envelope, not proof of actual billed GPU occupancy.",
+      "scheduler_elapsed_gpu_seconds": 578,
+      "state": "COMPLETED",
+      "through_last_step_gpu_seconds": 578
+    },
+    {
+      "gpus": 1,
+      "job": "17568",
+      "note": "Last-step span is a conservative cleanup-inclusive accounting envelope, not proof of actual billed GPU occupancy.",
+      "scheduler_elapsed_gpu_seconds": 163,
+      "state": "FAILED",
+      "through_last_step_gpu_seconds": 163
+    },
+    {
+      "gpus": 1,
+      "job": "17569",
+      "note": "Last-step span is a conservative cleanup-inclusive accounting envelope, not proof of actual billed GPU occupancy.",
+      "scheduler_elapsed_gpu_seconds": 129,
+      "state": "COMPLETED",
+      "through_last_step_gpu_seconds": 129
+    },
+    {
+      "gpus": 6,
+      "job": "17570",
+      "note": "Last-step span is a conservative cleanup-inclusive accounting envelope, not proof of actual billed GPU occupancy.",
+      "scheduler_elapsed_gpu_seconds": 1428,
+      "state": "COMPLETED",
+      "through_last_step_gpu_seconds": 1428
+    },
+    {
+      "gpus": 6,
+      "job": "17571",
+      "note": "Last-step span is a conservative cleanup-inclusive accounting envelope, not proof of actual billed GPU occupancy.",
+      "scheduler_elapsed_gpu_seconds": 8508,
+      "state": "COMPLETED",
+      "through_last_step_gpu_seconds": 8508
+    },
+    {
+      "gpus": 1,
+      "job": "17575",
+      "note": "Last-step span is a conservative cleanup-inclusive accounting envelope, not proof of actual billed GPU occupancy.",
+      "scheduler_elapsed_gpu_seconds": 6,
+      "state": "FAILED",
+      "through_last_step_gpu_seconds": 6
+    },
+    {
+      "gpus": 1,
+      "job": "17576",
+      "note": "Last-step span is a conservative cleanup-inclusive accounting envelope, not proof of actual billed GPU occupancy.",
+      "scheduler_elapsed_gpu_seconds": 191,
+      "state": "COMPLETED",
+      "through_last_step_gpu_seconds": 191
+    },
+    {
+      "gpus": 8,
+      "job": "17577",
+      "note": "Last-step span is a conservative cleanup-inclusive accounting envelope, not proof of actual billed GPU occupancy.",
+      "scheduler_elapsed_gpu_seconds": 448,
+      "state": "FAILED",
+      "through_last_step_gpu_seconds": 952
+    }
+  ],
+  "method": "Include every closed GPU job in this window, including failures. Preserve old elapsed-only receipts; the larger envelope also covers delayed final step cleanup. Zero-GPU rejected submission contributes no GPU seconds.",
+  "scheduler_elapsed_gpu_seconds": 36014
+}

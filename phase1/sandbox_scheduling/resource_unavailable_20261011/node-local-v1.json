@@ -1,0 +1,91 @@
+{
+  "accepted": 4,
+  "attempted": 4,
+  "boundary": "Empty-command/dispatch diagnostic, not GPU computation, model capacity, failure-rate estimate or historical OpenBLAS cause. Cleanup envelope is conservative, not a billing statement.",
+  "cleanup_inclusive_envelope_gpu_seconds": 2,
+  "gate": true,
+  "gpu_seconds_cap": 300,
+  "job": "17579",
+  "logs": {
+    "allocation.private.log": {
+      "bytes": 0,
+      "categories": {
+        "aborted before step completely launched": 0,
+        "connection refused": 0,
+        "connection timed out": 0,
+        "cpu binding outside": 0,
+        "no route to host": 0,
+        "permission denied": 0,
+        "pthread_create": 0,
+        "resource temporarily unavailable": 0,
+        "unable to establish": 0
+      },
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "step-0.private.log": {
+      "bytes": 0,
+      "categories": {
+        "aborted before step completely launched": 0,
+        "connection refused": 0,
+        "connection timed out": 0,
+        "cpu binding outside": 0,
+        "no route to host": 0,
+        "permission denied": 0,
+        "pthread_create": 0,
+        "resource temporarily unavailable": 0,
+        "unable to establish": 0
+      },
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "step-1.private.log": {
+      "bytes": 2080,
+      "categories": {
+        "aborted before step completely launched": 0,
+        "connection refused": 0,
+        "connection timed out": 0,
+        "cpu binding outside": 0,
+        "no route to host": 0,
+        "permission denied": 0,
+        "pthread_create": 0,
+        "resource temporarily unavailable": 0,
+        "unable to establish": 0
+      },
+      "sha256": "8b5012cc4771c7dda72e17e35a9ec19fb8b511cd76a329d0794ec8eef3f816a1"
+    },
+    "step-2.private.log": {
+      "bytes": 2080,
+      "categories": {
+        "aborted before step completely launched": 0,
+        "connection refused": 0,
+        "connection timed out": 0,
+        "cpu binding outside": 0,
+        "no route to host": 0,
+        "permission denied": 0,
+        "pthread_create": 0,
+        "resource temporarily unavailable": 0,
+        "unable to establish": 0
+      },
+      "sha256": "1f263626567b6d251b8d0af3cac31ee09d6fbfba1b1caf7ba2943ecce75a2f7e"
+    },
+    "step-3.private.log": {
+      "bytes": 2080,
+      "categories": {
+        "aborted before step completely launched": 0,
+        "connection refused": 0,
+        "connection timed out": 0,
+        "cpu binding outside": 0,
+        "no route to host": 0,
+        "permission denied": 0,
+        "pthread_create": 0,
+        "resource temporarily unavailable": 0,
+        "unable to establish": 0
+      },
+      "sha256": "97e4c66f3a5cb732a2e9b3940a70f9f18a53af31153a619f2ab4fce220c53072"
+    }
+  },
+  "plan_sha256": "f0f476a26c482ec0063aa8e0d9c28791bf6f351dcf7ad31180f6c4dbbf826c66",
+  "planned": 4,
+  "scheduler_elapsed_gpu_seconds": 2,
+  "scheduler_state": "COMPLETED",
+  "unstarted": 0
+}

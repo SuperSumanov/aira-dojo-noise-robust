@@ -1,0 +1,31 @@
+{
+  "attempted_programs": 0,
+  "attempted_requests": 0,
+  "boundary": "Startup failure, not a failed model/ML program, nor evidence of2+6 capacity or historical EAGAIN cause. Original missing runtime closures remain missing.",
+  "cause": "undetermined; no Python traceback in node-monitor log, no captured EAGAIN or CUDA failure",
+  "complete_programs": 0,
+  "cost": {
+    "gpus": 8,
+    "job": "17577",
+    "note": "Last-step span is a conservative cleanup-inclusive accounting envelope, not proof of actual billed GPU occupancy.",
+    "scheduler_elapsed_gpu_seconds": 448,
+    "state": "FAILED",
+    "through_last_step_gpu_seconds": 952
+  },
+  "gate": false,
+  "job": "17577",
+  "log_sha256": {
+    "allocation.private.log": "9f2ece6a4e16b5f354afa60cae1d5f37b029a6c49ecbc33b56931c5efcdbe3ee",
+    "node-monitor.private.log": "56a7177f91a967abe430201b50e2d523d34624b142a12159abdfd9162adc5ad4"
+  },
+  "manifest_ok": true,
+  "missing_allocation_closure": true,
+  "missing_controller_closure": true,
+  "node_monitor_stopped": true,
+  "plan_sha256": "ec40294858e917ba4a773af69f50c6ca8998193388db80973b6154b474502dc7",
+  "planned": 14,
+  "planned_requests": 14,
+  "service_started": false,
+  "stage": "second-node sampler step aborted before complete launch; controller raised monitor-unavailable",
+  "unstarted_programs": 14
+}

@@ -1,0 +1,20 @@
+{
+  "scope": "All 27 closed GPU allocations in the current 2026-10-11 six-hour work window, including startup failures and reserved-but-unused GPUs in dispatch diagnostics.",
+  "closed_jobs": 27,
+  "scheduler_elapsed_gpu_seconds": 36260,
+  "scheduler_gpu_hours": 10.072222222222223,
+  "cleanup_envelope_gpu_seconds": 37030,
+  "cleanup_envelope_gpu_hours": 10.286111111111111,
+  "base_receipt": "window-cost-reconciliation-v1.json",
+  "base_receipt_sha256": "833c38d841a2e7df1930368ce0384904dc174427b5320871c4d543a16661d335",
+  "additional_receipts": [
+    {"file": "node-cross-v1.json", "job": "17578", "sha256": "c878d6f7aa005490e7d1d8d020c845a92b0fe478248f31ff7556e675d58a13c6", "scheduler_elapsed_gpu_seconds": 82, "cleanup_envelope_gpu_seconds": 208},
+    {"file": "node-local-v1.json", "job": "17579", "sha256": "7f5267967760554fbdf6da1284a05b131809c65c4673467be4ca632e82528fef", "scheduler_elapsed_gpu_seconds": 2, "cleanup_envelope_gpu_seconds": 2},
+    {"file": "node-remote-verbose-v1.json", "job": "17580", "sha256": "4277c669a97b99f8f5dd2b3cfad7d688ea82d5e7c6860c43922f07cd1b341c56", "scheduler_elapsed_gpu_seconds": 162, "cleanup_envelope_gpu_seconds": 288}
+  ],
+  "zero_gpu_submission": "Rejected before job creation by CPU:GPU-ratio policy. Suggested ex_gpu partition is absent and this account exposes only gpu QOS. No alternate account/private partition was used.",
+  "accounting_boundary": "The scheduler elapsed-time total is not assumed to include delayed extern cleanup. The second total conservatively charges all allocated GPUs through the last recorded step end, without claiming it equals billed occupancy. This refines rather than overwrites earlier elapsed-only receipts.",
+  "paid_api_calls": 0,
+  "agent_base_updates": 0,
+  "experimental_scope_boundary": "Do not aggregate heterogeneous diagnostics into an overall success rate or a method/quality gain. No added jobs after17580 are included."
+}

@@ -1,0 +1,61 @@
+{
+  "attempted": 2,
+  "boundary": "Both empty-command remote steps are preselected controls; neither uses model/Torch/image. Not a test of original OpenBLAS error or GPU computation. Actual blocked layer requires interpretation of launch logs; no system limits/network configuration altered.",
+  "cleanup_inclusive_envelope_gpu_seconds": 288,
+  "complete": 0,
+  "gpu_seconds_cap": 360,
+  "job": "17580",
+  "log_witnesses": [
+    {
+      "bytes": 2364,
+      "index": 0,
+      "selected_lines": [
+        "srun: debug2: srun PMI messages to port=37661",
+        "srun: debug:  Entering slurm_step_launch",
+        "srun: debug:  initialized stdio listening socket, port 41923",
+        "srun: debug:  Entering _launch_tasks",
+        "srun: launching 17580.0 on host gpu27, 1 tasks: 0",
+        "srun: debug:  launch returned msg_rc=0 err=0 type=8001",
+        "srun: forcing job termination",
+        "srun: Job step 17580.0 aborted before step completely launched.",
+        "srun: Job step aborted: Waiting up to 302 seconds for job step to finish."
+      ],
+      "sha256": "887248631247a6c8fe5b0bd18fd7626fe55f755642c23b1c32e6c4337f11c894"
+    },
+    {
+      "bytes": 2364,
+      "index": 1,
+      "selected_lines": [
+        "srun: debug2: srun PMI messages to port=37361",
+        "srun: debug:  Entering slurm_step_launch",
+        "srun: debug:  initialized stdio listening socket, port 41283",
+        "srun: debug:  Entering _launch_tasks",
+        "srun: launching 17580.1 on host gpu27, 1 tasks: 0",
+        "srun: debug:  launch returned msg_rc=0 err=0 type=8001",
+        "srun: forcing job termination",
+        "srun: Job step 17580.1 aborted before step completely launched.",
+        "srun: Job step aborted: Waiting up to 302 seconds for job step to finish."
+      ],
+      "sha256": "a7629b35bfad1dcb23c55ac19eac7de66ad7df8ff51fa2101bb14d95a479e441"
+    }
+  ],
+  "plan_sha256": "21bc9a1375bae2c781a62115fc3a0884a3e9db9025e667206bf7ea459faf0687",
+  "planned": 2,
+  "rows": [
+    {
+      "error_type": "TimeoutExpired",
+      "index": 0,
+      "returncode": -9,
+      "seconds": 40.01730179786682,
+      "step_gpus": 0
+    },
+    {
+      "error_type": "TimeoutExpired",
+      "index": 1,
+      "returncode": -9,
+      "seconds": 40.00545358657837,
+      "step_gpus": 1
+    }
+  ],
+  "scheduler_elapsed_gpu_seconds": 162
+}

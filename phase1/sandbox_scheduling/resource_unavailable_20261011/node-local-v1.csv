@@ -1,0 +1,5 @@
+job,index,mode,node,attempted,accepted,seconds,returncode,error_type,source_sha256
+17579,0,direct,gpu27,True,True,0.014284849166870117,0,,f2e4fff923ccc74d1e90878100ec60f9b926228f66b70fd00ccaee36beff3fbf
+17579,1,zero-gpu-step,gpu27,True,True,0.3180382251739502,0,,f2e4fff923ccc74d1e90878100ec60f9b926228f66b70fd00ccaee36beff3fbf
+17579,2,one-gpu-step,gpu27,True,True,0.16698837280273438,0,,f2e4fff923ccc74d1e90878100ec60f9b926228f66b70fd00ccaee36beff3fbf
+17579,3,repeat-zero-gpu-step,gpu27,True,True,0.1673870086669922,0,,f2e4fff923ccc74d1e90878100ec60f9b926228f66b70fd00ccaee36beff3fbf

@@ -1,6 +1,7 @@
 """Bounded three-policy warm-start development experiment, 48 assigned runs.
 
-Six reversed-order pools share one local service, 6 GPUs x 8400s maximum.
+Six reversed-order pools share one local service, 6 GPUs x 7920s maximum;
+including failed17673's476s, below the original6x8400s total allocation cap.
 This estimates conditional refinement from a supplied common checkpoint,
 not from-scratch performance, and not a complete published-baseline replica.
 """
@@ -22,7 +23,7 @@ import traceback
 # During preparation reuse the exact closed native harness, not a newer
 # checkout's same-named source. The prepared directory takes precedence later.
 _closed = Path('/research/d7/spc/yzyang4/scheduling-image-deadline-replication-20261012-v1')
-if _closed.exists() and Path(__file__).parent != Path('/research/d7/spc/yzyang4/scheduling-generation-joint-20261012-v2'):
+if _closed.exists() and Path(__file__).parent != Path('/research/d7/spc/yzyang4/scheduling-generation-joint-20261012-v3'):
     sys.path.insert(1, str(_closed))
 import image_live_cpu_repair_20261011 as c
 from lifecycle_pilot import read, write, sha
@@ -30,11 +31,11 @@ from joint_generation_policy_20261012 import ARMS
 
 OLD = c.trial.B/'scheduling-image-deadline-replication-20261012-v1'
 OLD_PIN = '23f368399f6c735ef81142ec46831ae4e9f45d58d80edf5d2559b4cbb7a22ea6'
-R = c.trial.B/'scheduling-generation-joint-20261012-v2'
+R = c.trial.B/'scheduling-generation-joint-20261012-v3'
 NAME = Path(__file__).name
-CAP = 8400
+CAP = 7920
 RUN = 1020
-SLOT = 1200
+SLOT = 1180
 ORDER = ('continuation', 'cost', 'joint', 'joint', 'cost', 'continuation')
 BASE_HOOK = c.trial.install_hooks
 BASE_HOST = c.trial.host
@@ -165,17 +166,17 @@ def prepare(commit):
 #SBATCH --gres=gpu:6
 #SBATCH --cpus-per-task=24
 #SBATCH --hint=nomultithread
-#SBATCH --time=02:20:00
+#SBATCH --time=02:12:00
 #SBATCH --no-requeue
 set -euo pipefail
 umask 077
 export SLURM_CONF=/opt1/slurm/gpu-slurm.conf
 export PYTHON_DOTENV_DISABLED=1 PYTHONDONTWRITEBYTECODE=1
-timeout --signal=TERM --kill-after=30s 8340s {c.trial.PY} -B {R/NAME} controller
+timeout --signal=TERM --kill-after=30s 7860s {c.trial.PY} -B {R/NAME} controller
 '''
     (R/'run.sbatch').write_text(sb);subprocess.run(['bash','-n',str(R/'run.sbatch')],check=True)
     p.update(source_commit=commit,source_parent_commit=p['source_commit'],source_donor_plan_sha256=OLD_PIN,
-        schedule=schedule(),planned=48,allocation_seconds=CAP,gpu_hours_cap=14,combined_gpu_seconds_cap=CAP*6,
+        schedule=schedule(),planned=48,allocation_seconds=CAP,gpu_hours_cap=CAP*6/3600,combined_gpu_seconds_cap=(CAP+476)*6,
         run_seconds=RUN,slot_seconds=SLOT,execution_permits=1,generation_permits_per_task=2,
         independent_pool_pairs=2,request_seconds=600,service_restart_between_blocks=False,
         primary='Best native accepted D_search endpoint per task/pool including the common supplied warm start; joint must beat BOTH matched references, per-task deltas and all assigned runs.',
@@ -186,12 +187,23 @@ timeout --signal=TERM --kill-after=30s 8340s {c.trial.PY} -B {R/NAME} controller
         limitation='Checkpoint-conditional refinement; shared sunk warm construction excluded from online budget, no from-scratch cost/quality claim. Two reused development tasks; two reversed-order pool repeats, not48 independent scheduling replicates. Small explicit cost/resource baseline adaptations, not full CostAda/MARS/SchedMate.',
         warm_start=receipts,stop='Stop remaining pools on infrastructure/identity/cleanup failure; retain48. No outcome-dependent replacement/seed rescue; no API or base training.')
     p['common_repairs']='Deterministic external validity replaces known unreliable LLM is_bug veto in all arms; not a treatment. Warm checkpoint/candidate queue1/request600/persistent service all common.'
-    p['preflight_history']='v1 CPU-only preflight: 15 unit tests and48 constructors passed; path-list return was incorrectly asserted as a node. No GPU/submission. v1 retained unchanged; v2 corrects this assertion and adds common external-validity repair before outcomes.'
+    p['preflight_history']='v1 CPU-only path-list assertion failed. v2/17673 failed before generation: warm root incremented current_step before native log_journal indexed the node. Its preflight had stubbed log_journal and missed this path. v3 uses actual native logging+checkpoint serialization, same source/input/seed/arm rules; pool1180 and cap7920 contain the earlier476s allocation within original8400s total. All old files retained.'
+    failed=c.trial.B/'scheduling-generation-joint-20261012-v2'
+    assert read(failed/'launch.json')['job']=='17673' and read(failed/'closed.json')['complete']==0
+    assert not any((failed/f'generation-{b}/events.jsonl').exists() for b in range(6))
+    p['prior_failures']=[dict(job='17673',elapsed_seconds=476,gpu_seconds=2856,generated_candidates=0,
+        plan_sha256=sha(failed/'plan.json'),closure_sha256=sha(failed/'closed.json'))]
+    # Reuse only offline compilation products, copying rather than modifying
+    # the closed failed batch. No generated prompt/response exists in it.
+    shutil.copytree(failed/'block-0/service-cache',R/'block-0/service-cache',dirs_exist_ok=True)
     p['files']={n:sha(R/n) for n in p['files'] if not n.startswith('configs/')}
     p['files'].update({f'configs/{i}.json':sha(R/f'configs/{i}.json') for i in range(48)})
     for n in names+('warm.private.json','warm-receipt.json'):p['files'][n]=sha(R/n)
     write(R/'plan.json',p)
-    subprocess.run([str(c.trial.PY),'-B',str(R/NAME),'preflight'],cwd=R,check=True)
+    checked=subprocess.run([str(c.trial.PY),'-B',str(R/NAME),'preflight'],cwd=R,capture_output=True)
+    (R/'preflight.private.log').write_bytes(checked.stdout+checked.stderr)
+    if checked.returncode:raise RuntimeError('CPU preflight failed; inspect whitelisted frames in remote private log')
+    print(json.dumps(read(R/'preflight.json')))
 
 
 def preflight():
@@ -218,9 +230,16 @@ def preflight():
     fixture=R/'cpu-hook-fixture';fixture.mkdir();ep=fixture/'episode-0';ep.mkdir()
     warm=read(R/'warm.private.json');initialize(fixture/'generation-0',rows[:8],warm)
     install(row,ep,ExperimentDeadline(10),warm[row['task']])
+    cfg.solver.checkpoint_path=str(fixture/'checkpoint');cfg.logger.output_dir=str(fixture/'native-log')
+    from dojo.utils.logger import config_logger
+    config_logger(cfg)
     solver=MCTS(OmegaConf.structured(cfg.solver),{TASK_DESCRIPTION:task.task_description,'lower_is_better':task._search_only_lower_is_better})
-    solver.log_journal=lambda:None;solver.create_root_node()
+    native_log=solver.log_journal
+    def real_log_and_save():native_log();solver.save_checkpoint()
+    solver.log_journal=real_log_and_save;solver.create_root_node()
     assert len(solver.journal.nodes)==2 and solver.journal.get_best_node().metric.value==warm[row['task']]['metric']
+    saved=[json.loads(s) for s in (fixture/'checkpoint/journal.jsonl').read_text().splitlines()]
+    assert len(saved)==solver.state.current_step==2 and saved[1]['metric']==warm[row['task']]['metric']
     path=solver.search_policy(solver.root_node);assert path[-1].code==warm[row['task']]['code']
     # Run the real permit wrapper, with only its operator stubbed (no LLM).
     import dojo.solvers.mcts.mcts as mm
@@ -261,7 +280,7 @@ def controller():
     try:
         slog=(R/'block-0/service.private.log').open('xb');logs.append(slog)
         server=subprocess.Popen(base+['--cpus-per-task=8','--gres=gpu:2','--time=02:19:00',str(c.trial.PY),'-B',str(R/NAME),'service','--block','0'],env=env,stdout=slog,stderr=slog,start_new_session=True)
-        while time.monotonic()-begin<660:
+        while time.monotonic()-begin<600:
             if server.poll() is not None:raise RuntimeError('service died')
             try:
                 if {r['id'] for r in m.api('/v1/models')['data']}=={'qwen3.8-27b'}:break

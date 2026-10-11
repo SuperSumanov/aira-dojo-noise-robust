@@ -178,10 +178,11 @@ def install(row, ep, deadline, warm):
             metric=MetricValue(warm['metric'], maximize=warm['metric_maximize']),
             operators_used=['warm_start'])
         node.explore_count = 1; node.node_value = warm['metric']
-        self.journal.append(node); self.state.current_step += 1
+        self.journal.append(node)
         self.global_max_q_val = self.global_min_q_val = node.q_value(self.lower_is_better)
         self.root_node.increment_explore_count()
         self.log_journal()
+        self.state.current_step += 1
         event('warm_start', metric=warm['metric'], code_sha256=warm['code_sha256'])
     MCTS.create_root_node = root
 

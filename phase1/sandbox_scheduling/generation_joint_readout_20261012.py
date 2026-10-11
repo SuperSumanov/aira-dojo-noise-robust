@@ -109,8 +109,9 @@ def summarize(rows, initial):
 
 def analyze(root, output, gpu_seconds):
     root=Path(root);p=read(root/'plan.json');closed=read(root/'closed.json')
-    assert p['planned']==48 and p['allocation_seconds']==8400 and p['run_seconds']==1020
-    assert 0<gpu_seconds<=50400
+    assert p['planned']==48 and p['allocation_seconds']==7920 and p['slot_seconds']==1180 and p['run_seconds']==1020
+    assert p['prior_failures'][0]['job']=='17673' and p['prior_failures'][0]['gpu_seconds']==2856
+    assert 0<gpu_seconds<=7920*6 and gpu_seconds+2856<=50400
     for name,h in p['files'].items():assert sha(root/name)==h
     for name,h in p['input_files'].items():assert sha(root/name)==h
     # This imports the pinned scoring code from THIS trial, not a mutable tree.
@@ -146,7 +147,7 @@ def analyze(root, output, gpu_seconds):
         slot=read(bd/'budget-slot.json') if (bd/'budget-slot.json').exists() else {}
         steps=read(bd/'steps.json') if (bd/'steps.json').exists() else {}
         q=[queue_verify(lines(root/f'queue-{block}-{lane}/events.jsonl'),1) for lane in range(4)]
-        budgets.append(slot.get('reserved_seconds')==1200 and 1200<=slot.get('actual_seconds',0)<=1202 and steps.get('returncodes')==[0]*4 and all(r['complete'] for r in q))
+        budgets.append(slot.get('reserved_seconds')==1180 and 1180<=slot.get('actual_seconds',0)<=1182 and steps.get('returncodes')==[0]*4 and all(r['complete'] for r in q))
         policies.append(dict(block=block,arm=arm,**generation_audit(lines(root/f'generation-{block}/events.jsonl'),arm)))
         service=read(bd/'service-native.json') if (bd/'service-native.json').exists() else {}
         lanes=[read(bd/f'lane-{i}-native.json') if (bd/f'lane-{i}-native.json').exists() else {} for i in range(4)]
@@ -165,7 +166,8 @@ def analyze(root, output, gpu_seconds):
     signal=any(r['scarce_choices'] and r['resource_changed_choices'] for r in policies if r['arm']=='joint')
     result=summarize(rows,initial)
     result.update(source_commit=p['source_commit'],plan_sha256=sha(root/'plan.json'),readout_sha256=sha(__file__),
-        gpu_seconds=gpu_seconds,gpu_hours=gpu_seconds/3600,structural_complete=bool(structural),
+        gpu_seconds=gpu_seconds,gpu_hours=gpu_seconds/3600,prior_failure_gpu_seconds=2856,
+        window_gpu_seconds=gpu_seconds+2856,window_gpu_hours=(gpu_seconds+2856)/3600,structural_complete=bool(structural),
         policy_choices=policies,live_resource_choice_divergence=signal,scores_recomputed=recomputed,
         cpu_pairs_passed=sum(cpu),cpu_pairs_planned=24,physical_identity_passed=physical,
         exploratory_quality_signal=bool(structural and signal and result['quality_signal_before_structure']),

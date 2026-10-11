@@ -1,8 +1,14 @@
 # 当前短交接
-更新：2026-10-11香港14:51。旧排障长交接已保存在Git4279975d；这里只保留当前事实，未复查的状态写最后观察。
+更新：2026-10-11香港23:44。旧排障长交接已保存在Git4279975d；这里只保留当前事实，未复查的状态写最后观察。
 恢复：fetch → CURRENT_DIRECTION → ROUTE_DECISIONS → 本文件；不得回到旧8月路线。
 
 ## 最新用户裁决与当前实验
+- 新用户要求：沿局部信号验证、一小时给有价值反馈。23:39 SSH banner曾HTTP404三次，用户修复后23:41重连成功；没有把连接失败算实验失败。gpu3有空余，旧Held不动。
+- 当前准备新request-deadline screen（尚未提交）：16条=2任务×4新seed212001–212008×2条件，deadline600先/deadline240后；执行许可两臂均2，run900s/候选300s/池1500s，2服务+4执行、cap3120s=5.2GPUh。只有1个池配对，不能称跨seed独立调度确认。旧17592不重开、不补旧seed；代理超时范围校验在新目录共同支持600，未改原件/生产分支。
+- 9项本地CPU测试通过；正式新配置/远端预检仍待完成。新入口image_generation_deadline_20261011.py，读出image_deadline_readout_20261011.py；目标=/research/d7/spc/yzyang4/scheduling-image-generation-deadline-20261011-v1。服务实测启动431.7356105109211/435.4283121100161秒，批运行约50分钟，准备/排队另计；不承诺一小时完整结果。
+- 新screen只认全16分母、两个任务有效终点不下降且总体增加/首次生成失败减少、等预算及隔离清理/外部分数复算通过；不是旧32完整门，亦不是方法确认，无自动扩大。区分生成覆盖、有效反馈、实际成绩，缺失不填0。
+
+## 已闭合17592及前置事实（不是当前运行）
 - 用户：跨节点问题由其问管理员；先用已跑通的两卡服务＋四卡执行推进同预算真实收益，不再反复验收。
 - 本轮只改每执行卡的FIFO候选许可1→2；四GPU各固定配对两个独立run，保持run内MCTS顺序。不是全局迁移/一般phase-aware强基线，更不是SchedMate复现。
 - 新任务：aerial-cactus-identification、denoising-dirty-documents。仅从既有prepared/public训练数据划80/10/10；10%开发评分引用仅宿主可读，另10%不复制不评分。新视图不是独立盲评。
@@ -13,11 +19,13 @@
 - 扩大门：完整32终点/16有效分对、两池CUDA有效反馈都增加、逐任务配对分中位不负且至少一任务正、无更多无效终点、等预算/隔离/清理通过。不换seed、不因单池结果加跑。
 - 当前路径=/research/d7/spc/yzyang4/scheduling-image-live-2plus4-20261011-v3；旧v1/v2同前缀仍保留。
 - v3 source52d22146145c5377c8e8adb889d5bc3afa5d0237已push/ls-remote一致；planSHA95825b54b256eb69f7a2a372db66c4f63b4c0d9840d3253f5ade5685f448fe66。24项CPU测试/32配置/16配对通过。
-- 17592在香港14:26:12于gpu3 RUNNING，24CPU/6GPU；14:48最后观察首池8搜索/8预览已完成，6条在首次240s生成请求上限失败；另2条首候选执行超时后继续原生搜索，4返回/2有效开发分，0完整臂配对；不能报调度收益。cap02:30:00，正常约16:53完成、allocation上限16:56:12，严禁重复submit。
-- 14:50独立复算当前2评分回执均一致：run0/aerial在855.0537607108708秒有效返回、CUDA梯度2700步；run5/denoising在898.8122389670461秒、1655步。只证明真实任务训练/评分已发生，不是终点/共享收益；6生成失败使原完整32扩大门无法通过。
-- 服务仍健康，日志采样峰6运行/2排队；这不是队列致因证明。6个请求失败留在32分母，不能中途调240s上限、补seed或放宽原扩大门；按冻结对照走完且不自动扩跑。2条仍在运行的轨迹中候选累计队列等待各0.04406109801493585/0.056249343091621995秒（含后来入场候选），不把执行超时说成等卡。
-- 独立只读image_live_funnel_20261011.py仅统计本批数字回执，不读保护集、不改冻结结果；0优化器回执不证明无CUDA训练（回执只在成功评分后抓取），最终需结合遥测。当前尚无改善信号。
-- 有界一次性结束复算PID3971306已确认，最长8h、只等17592；完成后读取冻结开发分并核验32分母/物理核/全成本，不提交新job。stage/image_live_status_20261011.py v3读计数；completion-claim.json记录进程。原8月自动化指令不恢复。
+- 17592已于香港16:52:58 COMPLETED（14:26:12开始，8806秒）；四个ABBA池各2200秒，32全部开始、14正常闭合、13有效终点。58候选返回、20有效评分全部独立复算，结构/CPU配对16/16通过；原exploratory_go=false，禁止重投本批或改门。
+- 同16条分母：fifo1正常6/有效终点6/有效候选12；share2正常8/有效终点7/有效候选8。两个配对池有效反馈差+1/-5，非稳定提升。16个同seed分对仅2个完整（均aerial、小幅正），denoising无完整同seed分对。
+- denoising有效终点share2为4/8、fifo1为1/8；第一池最好RMSE为0.019668933511051076 vs0.04551226514614451，另一池fifo1缺有效终点。只能报局部探索线索，不替代完整主门；aerial池最好差一正一负。
+- 18失败run全部在首次生成请求约240s退出、无候选执行；具体服务排队/长生成占比未定因。所有候选（不含preview）累计等执行许可fifo1仅0.4998949011787772秒、share2为1.03202722244896秒，本批没有明显执行队列竞争，不能凭共置推质量收益。
+- 真实CUDA训练已确认（早期run0/aerial2700步、run5/denoising1655步）；优化器回执不完整不等于无训练。现有只读funnel不改冻结结果；无新增GPU/API。结束后未自动扩大。
+- 独立结束复算16:54闭合；summarySHA7918c85f5257a82d66e28d52c9a557e7c924ed2e0dc5a5f4ef7b0131f6a84a9c，本次21:52核SHA一致。成本52836GPU秒=14.676666666666666GPUh；含前两失败保守59052秒=16.403333333333332GPUh，低于17上限。本地安全汇总sandbox_scheduling/image_live_v3_closed/status_checked_20261011.json。
+- 21:53队列仅旧Held12535，无本轮运行作业；不动旧Held。旧status脚本对已退出队列的job报Invalid job id，不能据此称实验失败；此时查sacct及completion-closed。原8月自动化不恢复。
 - 17587已FAILED闭合：八worker在搜索前退出，0/32搜索、0候选；服务正常。原入口错误要求4逻辑线程，但lane回执实际4物理核/8SMT线程；不是CUDA或跨节点故障。439秒×6=2634GPU秒，原32分母与失败保留。原planSHAb44f6002b5da35d953a0ae1ead7b88d7776428cf7e775a26475fcce545837e78。
 - v2已解决4物理核/8线程入口，保留每worker两物理核、CUDA初始化前绑核；本轮继续复用。
 - 17590在香港14:05:04开跑，八worker越过CPU入口；八预览因旧native CUDA adapter要求mask='0'、而当前传已核UUID失败，0generation/0候选。14:15已主动取消余池，不能称有质量结果；原controller没有最终closure，completion-incomplete已记录。
@@ -47,9 +55,9 @@
 
 ## 工作区、权限与现场
 - 活跃checkout=C:/Research/New/my_project/MLEvolve/_codex_tmp/publication-feedback-20261001，detached HEAD有意；旧aira-dojo-codex-20260813用户dirty不动。
-- 最近公开head 33338b352ba92dfae8f4ad93d00757e6a04c0124；14:44 fetch学长到524b5e0351090795c6bf09f32c0fafbfb41d71d4（13:59仅删除sample.jsonl/samples.jsonl，未读内容，无新outcome/实验代码）。只推自己的myfork/phase1-value-critic，FF、不force。
+- 最近公开head 2c015037281c8183aca85c02954bbdf61bd2d58c；21:51 fetch学长到64fd78e98cfdc945b1af03f29f570975d58b88b7（两新提交改policy数据/训练文档代码及verl引用，仅查元数据，未读新内容）。本次状态请求未push，只更新本地短交接/安全汇总。
 - 用户未跟踪报告phase1/reports/给学长_MLE沙箱资源调度进展_20261009.md保留、不stage。
-- 17587/17590均已闭合；v3只申请gpu3六卡24物理核。旧Held12535未动；排除projgpu7/8/33、gpu36/38；旧MLE镜像不投projgpu39。
+- 17587/17590/17592均已闭合；新screen见顶部，未见launch前不得称开跑。旧Held12535未动；排除projgpu7/8/33、gpu36/38；旧MLE镜像不投projgpu39。
 - SSH linux5；PY=/research/d7/spc/yzyang4/venvs/aira/bin/python；SLURM_CONF=/opt1/slurm/gpu-slurm.conf。
 - stage=/research/d7/spc/yzyang4/resource-diag-stage-20261011.M5wKjU；研究盘4TB至2027-08-30。
 - Slurm19.05.4无--exact；hint=nomultithread核物理CPU；SCP返回session须等exit0；不要在计时GPU时重hash大镜像。

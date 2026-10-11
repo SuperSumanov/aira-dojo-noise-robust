@@ -1,0 +1,265 @@
+{
+  "observed_hong_kong": "2026-10-11 21:53",
+  "job": "17592",
+  "scheduler_state": "COMPLETED",
+  "start": "2026-10-11 14:26:12",
+  "end": "2026-10-11 16:52:58",
+  "remote_root": "/research/d7/spc/yzyang4/scheduling-image-live-2plus4-20261011-v3",
+  "plan_sha256": "95825b54b256eb69f7a2a372db66c4f63b4c0d9840d3253f5ade5685f448fe66",
+  "remote_summary_sha256": "7918c85f5257a82d66e28d52c9a557e7c924ed2e0dc5a5f4ef7b0131f6a84a9c",
+  "summary": {
+    "all_scores_grounded": true,
+    "assigned": 32,
+    "complete": 14,
+    "controller_error": null,
+    "exploratory_go": false,
+    "gpu_hours": 14.676666666666666,
+    "gpu_seconds": 52836,
+    "independent_pool_pairs": 2,
+    "limitation": "Exploratory public-training development only; 32 trajectories are not32 independent scheduling replicates. No missing score imputation, posthoc seed replacement or SchedMate claim.",
+    "paired_pool_cuda_valid_return_differences": [
+      1,
+      -5
+    ],
+    "paired_pool_valid_return_differences": [
+      1,
+      -5
+    ],
+    "pairs": [
+      {
+        "lane": 0,
+        "oriented_delta": 0.00021380884420274526,
+        "repeat": 0,
+        "seed": 211001,
+        "task": "aerial-cactus-identification",
+        "validity_rank_sign": 1
+      },
+      {
+        "lane": 0,
+        "oriented_delta": null,
+        "repeat": 0,
+        "seed": 211002,
+        "task": "denoising-dirty-documents",
+        "validity_rank_sign": 0
+      },
+      {
+        "lane": 1,
+        "oriented_delta": null,
+        "repeat": 0,
+        "seed": 211003,
+        "task": "aerial-cactus-identification",
+        "validity_rank_sign": 0
+      },
+      {
+        "lane": 1,
+        "oriented_delta": null,
+        "repeat": 0,
+        "seed": 211004,
+        "task": "denoising-dirty-documents",
+        "validity_rank_sign": 1
+      },
+      {
+        "lane": 2,
+        "oriented_delta": null,
+        "repeat": 0,
+        "seed": 211005,
+        "task": "aerial-cactus-identification",
+        "validity_rank_sign": 1
+      },
+      {
+        "lane": 2,
+        "oriented_delta": null,
+        "repeat": 0,
+        "seed": 211006,
+        "task": "denoising-dirty-documents",
+        "validity_rank_sign": -1
+      },
+      {
+        "lane": 3,
+        "oriented_delta": null,
+        "repeat": 0,
+        "seed": 211007,
+        "task": "aerial-cactus-identification",
+        "validity_rank_sign": 0
+      },
+      {
+        "lane": 3,
+        "oriented_delta": null,
+        "repeat": 0,
+        "seed": 211008,
+        "task": "denoising-dirty-documents",
+        "validity_rank_sign": 1
+      },
+      {
+        "lane": 0,
+        "oriented_delta": null,
+        "repeat": 1,
+        "seed": 211101,
+        "task": "aerial-cactus-identification",
+        "validity_rank_sign": -1
+      },
+      {
+        "lane": 0,
+        "oriented_delta": null,
+        "repeat": 1,
+        "seed": 211102,
+        "task": "denoising-dirty-documents",
+        "validity_rank_sign": 0
+      },
+      {
+        "lane": 1,
+        "oriented_delta": 0.000024053494972808842,
+        "repeat": 1,
+        "seed": 211103,
+        "task": "aerial-cactus-identification",
+        "validity_rank_sign": 1
+      },
+      {
+        "lane": 1,
+        "oriented_delta": null,
+        "repeat": 1,
+        "seed": 211104,
+        "task": "denoising-dirty-documents",
+        "validity_rank_sign": 1
+      },
+      {
+        "lane": 2,
+        "oriented_delta": null,
+        "repeat": 1,
+        "seed": 211105,
+        "task": "aerial-cactus-identification",
+        "validity_rank_sign": -1
+      },
+      {
+        "lane": 2,
+        "oriented_delta": null,
+        "repeat": 1,
+        "seed": 211106,
+        "task": "denoising-dirty-documents",
+        "validity_rank_sign": 0
+      },
+      {
+        "lane": 3,
+        "oriented_delta": null,
+        "repeat": 1,
+        "seed": 211107,
+        "task": "aerial-cactus-identification",
+        "validity_rank_sign": -1
+      },
+      {
+        "lane": 3,
+        "oriented_delta": null,
+        "repeat": 1,
+        "seed": 211108,
+        "task": "denoising-dirty-documents",
+        "validity_rank_sign": 1
+      }
+    ],
+    "per_task_medians": {
+      "aerial-cactus-identification": 0.00011893116958777705,
+      "denoising-dirty-documents": null
+    },
+    "per_task_oriented_differences": {
+      "aerial-cactus-identification": [
+        0.00021380884420274526,
+        0.000024053494972808842
+      ],
+      "denoising-dirty-documents": []
+    },
+    "per_task_sample_sd": {
+      "aerial-cactus-identification": 0.00013417729420690957,
+      "denoising-dirty-documents": null
+    },
+    "plan_sha256": "95825b54b256eb69f7a2a372db66c4f63b4c0d9840d3253f5ade5685f448fe66",
+    "pool_task_best": [
+      {
+        "best": {
+          "fifo1": 0.9997140306708787,
+          "share2": 0.9999278395150815
+        },
+        "complete_pool_assignment": true,
+        "oriented_best_delta": 0.00021380884420274526,
+        "repeat": 0,
+        "task": "aerial-cactus-identification"
+      },
+      {
+        "best": {
+          "fifo1": 0.04551226514614451,
+          "share2": 0.019668933511051076
+        },
+        "complete_pool_assignment": true,
+        "oriented_best_delta": 0.025843331635093433,
+        "repeat": 0,
+        "task": "denoising-dirty-documents"
+      },
+      {
+        "best": {
+          "fifo1": 0.9999545656206068,
+          "share2": 0.9998342981457428
+        },
+        "complete_pool_assignment": true,
+        "oriented_best_delta": -0.00012026747486404421,
+        "repeat": 1,
+        "task": "aerial-cactus-identification"
+      },
+      {
+        "best": {
+          "fifo1": null,
+          "share2": 0.03633188144527243
+        },
+        "complete_pool_assignment": true,
+        "oriented_best_delta": null,
+        "repeat": 1,
+        "task": "denoising-dirty-documents"
+      }
+    ],
+    "quality_gate_before_structure": false,
+    "scores_recomputed": 20,
+    "started": 32,
+    "structural_complete": true,
+    "valid": 13,
+    "validity_rank": {
+      "aerial-cactus-identification": {
+        "loss": 3,
+        "tie": 2,
+        "unobserved": 0,
+        "win": 3
+      },
+      "denoising-dirty-documents": {
+        "loss": 1,
+        "tie": 3,
+        "unobserved": 0,
+        "win": 4
+      }
+    }
+  },
+  "all_assigned_funnel": {
+    "generation_fatal_runs": 18,
+    "all_fatal_first_request_near_240s": true,
+    "candidate_returns": 58,
+    "valid_candidate_returns": 20,
+    "fifo1": {
+      "assigned": 16,
+      "complete": 6,
+      "valid_endpoints": 6,
+      "valid_returns": 12,
+      "candidate_queue_seconds": 0.4998949011787772
+    },
+    "share2": {
+      "assigned": 16,
+      "complete": 8,
+      "valid_endpoints": 7,
+      "valid_returns": 8,
+      "candidate_queue_seconds": 1.03202722244896
+    }
+  },
+  "cost": {
+    "current_gpu_seconds": 52836,
+    "current_gpu_hours": 14.676666666666666,
+    "prior_failed_gpu_seconds_conservative": 6216,
+    "combined_gpu_seconds": 59052,
+    "combined_gpu_hours": 16.403333333333332
+  },
+  "boundary": "Descriptive full-assignment result. No model benefit confirmed, no causality from generation queue timing, no posthoc seed replacement. Candidate waits exclude preview. Only two complete score pairs; only two pool-pair replications.",
+  "new_experiments_submitted": false
+}

@@ -1,0 +1,8 @@
+{
+  "assigned": 32,
+  "fixed_data_and_configs": true,
+  "old_plan_sha256": "06a81639237cedc1fde6d550559cb9a1f9578254a4931f5f091e59e46aee768a",
+  "plan_sha256": "b44f6002b5da35d953a0ae1ead7b88d7776428cf7e775a26475fcce545837e78",
+  "source_commit": "bdefe67729d69e39097199ba6b2e27c6de2962f3",
+  "source_tests_exit": 0
+}

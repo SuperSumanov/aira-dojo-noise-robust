@@ -1,0 +1,7 @@
+{
+  "configs": 32,
+  "no_kernel": true,
+  "no_model": true,
+  "paired_equal": 16,
+  "plan_sha256": "b44f6002b5da35d953a0ae1ead7b88d7776428cf7e775a26475fcce545837e78"
+}

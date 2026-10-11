@@ -61,6 +61,10 @@ bash src/mle_policy/scripts/data/to_grpo.sh "$OUT_ROOT"
 # 只使用kimi，glm，minimax，gpt luna，hy，和mimo的数据
 bash src/mle_policy/scripts/data/aggregate_batches.sh "$OUT_ROOT" non_thinking \
      --client glm+kimi+minimax+luna+ox-alpha+hy+mimo
+
+# 只使用reasoning effort为medium的qwen3.8-27b的数据
+bash src/mle_policy/scripts/data/aggregate_batches.sh "$OUT_ROOT" thinking \
+     --client qwen3.8-27b --reasoning-effort medium
 ```
 
 `--client` / `--base-url` 都用 `+` 连接多个值（OR），单个模型 run 太少时可以一次选好几个；

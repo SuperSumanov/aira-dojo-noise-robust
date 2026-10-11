@@ -83,6 +83,8 @@ def build_batch(
                 "hardware": run_meta["hardware"],
                 "clients": run_meta["clients"],
                 "client_endpoints": run_meta["client_endpoints"],
+                "reasoning_effort": run_meta["reasoning_effort"],
+                "enable_reasoning": run_meta["enable_reasoning"],
             }
             env_signatures.add(run_meta["env_signature"])
             tasks.add(run_meta["task"])

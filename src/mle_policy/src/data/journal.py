@@ -136,18 +136,27 @@ def read_run_meta(run_dir: Path) -> dict[str, Any]:
     clients: set[str] = set()
     providers: set[str] = set()
     client_endpoints: set[tuple[str, str]] = set()
+    reasoning_effort: set[str] = set()
+    enable_reasoning: set[str] = set()
     for operator in operators.values():
         client = operator.get("llm", {}).get("client") if isinstance(operator, dict) else None
+        generation_kwargs = operator.get("llm", {}).get("generation_kwargs") if isinstance(operator, dict) else None
+        chat_template_kwargs = generation_kwargs.get("chat_template_kwargs") if isinstance(generation_kwargs, dict) else None
         if not isinstance(client, dict):
             continue
         model_id = str(client.get("model_id") or "")
         base_url = str(client.get("base_url") or "")
+
         if model_id:
             clients.add(model_id)
         if client.get("provider"):
             providers.add(str(client["provider"]))
         if model_id or base_url:
             client_endpoints.add((base_url, model_id))
+        if generation_kwargs and isinstance(generation_kwargs, dict):
+            reasoning_effort.add(str(generation_kwargs.get("reasoning_effort", "default")))
+        if chat_template_kwargs and isinstance(chat_template_kwargs, dict):
+            enable_reasoning.add(str(chat_template_kwargs.get("enable_reasoning", "True")))
 
     hardware = None
     env_path = run_dir / "env_variables.json"
@@ -170,6 +179,8 @@ def read_run_meta(run_dir: Path) -> dict[str, Any]:
         "time_limit_secs": solver.get("time_limit_secs"),
         "execution_timeout": solver.get("execution_timeout"),
         "num_children": solver.get("num_children"),
+        "reasoning_effort": sorted(reasoning_effort),
+        "enable_reasoning": sorted(enable_reasoning),
     }
     meta["env_signature"] = stable_id(json.dumps({key: meta[key] for key in ENV_FIELDS}, sort_keys=True))
     return meta

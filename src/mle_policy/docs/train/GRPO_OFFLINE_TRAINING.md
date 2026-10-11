@@ -161,6 +161,15 @@ python my_recipes/mle_policy/src/dataset/build_grpo_parquet.py \
   --output-dir data/mle_policy_grpo/non_thinking \
   --model-path Qwen/Qwen3.5-9B \
   --max-length 65536
+
+# 针对qwen3.8-27b的medium思考强度
+python my_recipes/mle_policy/src/dataset/build_grpo_parquet.py \
+  --input  ../../data/mle_policy/dataset/thinking/grpo.jsonl \
+  --output-dir data/mle_policy_grpo/thinking \
+  --model-path Qwen/Qwen3.8-27B \
+  --max-length 65536 \
+  --enable-thinking true \
+  --reasoning-effort medium
 ```
 
 输出 `train.parquet` / `val.parquet` / `conversion_report.json`。转换里做两件事：

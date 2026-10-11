@@ -109,6 +109,8 @@ class RunFilters:
     time_limit: tuple[int, int] | None = None
     execution_timeout: tuple[int, int] | None = None
     date: tuple[datetime.date, datetime.date] | None = None
+    reasoning_effort: tuple[str, ...] | None = None
+    enable_reasoning: tuple[str, ...] | None = None
 
     def matches(self, run: dict[str, Any]) -> bool:
         if self.tasks is not None and run.get("task") not in self.tasks:
@@ -123,7 +125,23 @@ class RunFilters:
             return False
         if self.date is not None and not (self.date[0] <= _launch_date(run) <= self.date[1]):
             return False
+        if self._matches_reasoning(run):
+            return False
         return True
+
+    def _matches_reasoning(self, run: dict[str, Any]) -> bool:
+        """ A run is dropped if any of the run's reasoning attributes does not match the filter. """
+        if self.enable_reasoning is not None:
+            for value in run.get("enable_reasoning", []):
+                if str(value) in self.enable_reasoning:
+                    continue
+                return True
+        if self.reasoning_effort is not None:
+            for value in run.get("reasoning_effort", []):
+                if str(value) in self.reasoning_effort:
+                    continue
+                return True
+        return False
 
     def _matches_client_endpoint(self, run: dict[str, Any]) -> bool:
         if not self.client and not self.base_url:
@@ -334,11 +352,21 @@ def main() -> None:
     )
     parser.add_argument(
         "--date",
-        "--date-range",
-        dest="date",
         nargs=2,
         metavar=("START", "END"),
         help="Keep runs whose launch date is in the inclusive YYYY-MM-DD range.",
+    )
+    parser.add_argument(
+        "--reasoning-effort",
+        type=str,
+        nargs="+",
+        help="Keep runs whose reasoning effort is in the list of specified values."
+    )
+    parser.add_argument(
+        "--enable-thinking",
+        type=str,
+        nargs="+",
+        help="Keep runs whose enable thinking is in the list of specified values."
     )
     args = parser.parse_args()
 
@@ -352,6 +380,8 @@ def main() -> None:
             _validate_integer_range("execution_timeout", tuple(args.execution_timeout) if args.execution_timeout else None)
         ),
         date=_validate_date_range(tuple(args.date) if args.date else None),
+        reasoning_effort=tuple(args.reasoning_effort) if args.reasoning_effort else None,
+        enable_reasoning=tuple(args.enable_thinking) if args.enable_thinking else None,
     )
     aggregate(
         find_batch_dirs([Path(path) for path in args.input]),

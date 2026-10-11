@@ -23,7 +23,7 @@ import traceback
 # During preparation reuse the exact closed native harness, not a newer
 # checkout's same-named source. The prepared directory takes precedence later.
 _closed = Path('/research/d7/spc/yzyang4/scheduling-image-deadline-replication-20261012-v1')
-if _closed.exists() and Path(__file__).parent != Path('/research/d7/spc/yzyang4/scheduling-generation-joint-20261012-v3'):
+if _closed.exists() and Path(__file__).parent != Path('/research/d7/spc/yzyang4/scheduling-generation-joint-20261012-v4'):
     sys.path.insert(1, str(_closed))
 import image_live_cpu_repair_20261011 as c
 from lifecycle_pilot import read, write, sha
@@ -31,7 +31,7 @@ from joint_generation_policy_20261012 import ARMS
 
 OLD = c.trial.B/'scheduling-image-deadline-replication-20261012-v1'
 OLD_PIN = '23f368399f6c735ef81142ec46831ae4e9f45d58d80edf5d2559b4cbb7a22ea6'
-R = c.trial.B/'scheduling-generation-joint-20261012-v3'
+R = c.trial.B/'scheduling-generation-joint-20261012-v4'
 NAME = Path(__file__).name
 CAP = 7920
 RUN = 1020
@@ -195,7 +195,10 @@ timeout --signal=TERM --kill-after=30s 7860s {c.trial.PY} -B {R/NAME} controller
         plan_sha256=sha(failed/'plan.json'),closure_sha256=sha(failed/'closed.json'))]
     # Reuse only offline compilation products, copying rather than modifying
     # the closed failed batch. No generated prompt/response exists in it.
-    shutil.copytree(failed/'block-0/service-cache',R/'block-0/service-cache',dirs_exist_ok=True)
+    for cache in ('vllm','triton'):
+        old_cache=failed/'block-0/service-cache'/cache
+        if old_cache.is_dir():shutil.copytree(old_cache,R/'block-0/service-cache'/cache,symlinks=True)
+    p['preflight_history'] += ' v3 preparation stopped copying transient IPC sockets from /tmp (zero GPU); v4 only copies vllm/triton offline compilation directories, never /tmp.'
     p['files']={n:sha(R/n) for n in p['files'] if not n.startswith('configs/')}
     p['files'].update({f'configs/{i}.json':sha(R/f'configs/{i}.json') for i in range(48)})
     for n in names+('warm.private.json','warm-receipt.json'):p['files'][n]=sha(R/n)

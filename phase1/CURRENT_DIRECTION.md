@@ -6,8 +6,8 @@
 
 ## 当前裁决：R14 MLE沙箱资源调度
 
-- 10/12：17673已在生成前失败并闭合，476秒×6=2856GPU秒；暖起点递增current_step后才调用原生log_journal导致IndexError。此前CPU门stub日志漏过，承认是我方接线失误，不是策略效果；候选0/48，旧原件不重开。v4修正版已通过真实log_journal+checkpoint CPU回归、24单测、48配置/32跨臂配对；源1e804cd0c41b36edda17dfce500d4d5b0ba11220，planSHA8aace9d8d65a190a7da2efc573766fcc5ea287c60d61738a3cf7c6b57b9ab8ff。新提交现场看短交接，不重复submit。
-- 新用户明确要求生成前联合决策的真实同预算质量对照。48续跑=2图像开发任务×4搜索seed×3策略×2池重复，顺序continuation/cost/joint/joint/cost/continuation；1020s/run、修正版1180s池、2服务+4执行、作业cap7920s；加前败476s总cap13.993333333333334GPUh，仍低于原14GPUh。起点取17592按run/step序首个accepted且外部复算通过节点，不按分数挑选；仅估计给定起点后的条件收益，历史构建不冒充免费从零E2E。成本参照使用已见改善频率/整轮耗时，joint唯一额外项为生成完成时lane剩余等待；每任务2生成许可、每卡1执行许可三臂一致。小型Cost/continuation适配不是完整CostAda/MARS复现。
+- 10/12：17673在生成前日志索引错误闭合（2856GPU秒）；17674因冻结源码发现parse包装器evaluation/原生eval_result关键字错配主动取消（2118GPU秒，8起点/4生成获准/0轮完成），均是我方接线错误，不是策略效果，旧原件与48分母分别保留。v5已通过真实expand/parse/analysis/debug/journal/backprop/checkpoint CPU门、24单测、48配置/32跨臂配对；source e180a0b5e8289c99bad27872fd63629e7421d8ff，planSHAe923a7eefe6b69fdf9416bed58cab10218553760351022cc0b31920d039c32db。现场看短交接，禁止重复submit。
+- 新用户明确要求生成前联合决策的真实同预算质量对照。48续跑=2图像开发任务×4搜索seed×3策略×2池重复，顺序continuation/cost/joint/joint/cost/continuation；1020s/run、1180s池、2服务+4执行、v5作业cap7560s；加前败829s总cap13.981666666666667GPUh，仍低于原14GPUh。起点取17592按run/step序首个accepted且外部复算通过节点，不按分数挑选；仅估计给定起点后的条件收益，历史构建不冒充免费从零E2E。成本参照使用已见改善频率/整轮耗时，joint唯一额外项为生成完成时lane剩余等待；每任务2生成许可、每卡1执行许可三臂一致。小型Cost/continuation适配不是完整CostAda/MARS复现。
 - 三臂共同去除已知LLM is_bug误否决（外部有效性/exit/metric仍必需），不作为处理臂增益。v1 CPU门path/list断言错误和v3 CPU缓存复制碰/tmp socket都零GPU，原件保留。新起点/候选/决策详细值留远端私有，保护集边界不变；新鲜并行hash工具只并行重算内容并核读取前后身份，不跳过镜像/权重验证。
 - 10/12 04:26只读机会筛查完成：固定17592/17656/17670共80分配run、40条lane队列，三批分别分析。候选之间的稀缺准入选择点均0；仅17592有2次preview/preview竞争。原生journal的Improve为1/0/0，accepted Improve均0；不是只看排队均值猜测。21项CPU测试、独立原队列/角色复核通过，screenSHA c1cb507322bf01065cb673221471c6007eb8c06bd3de856c69e01b0e26331abd，证据sandbox_scheduling/opportunity_screen_20261012。额外GPU/API均0，原质量门不改；记录未完成调用不一定进入journal，不能推所有Improve机制无效。
 - 04:26筛查后的决策：不在这三批负载上扩大候选执行优先级，转测生成前、同任务多搜索链的资源状态条件化分配，跨任务不挪预算。现在已有实现与待测批，仍未确认质量/新颖性。它改变搜索控制，不能称只改物理调度；不是恢复旧自然父程序修复、critic或K≥1路线。

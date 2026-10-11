@@ -1,13 +1,14 @@
 # 当前短交接
-更新：2026-10-12香港05:15。压缩前完整交接保存在Git dcb0975864d53307c57d07c214f1a313ba6b27f5。
+更新：2026-10-12香港05:24。压缩前完整交接保存在Git dcb0975864d53307c57d07c214f1a313ba6b27f5。
 恢复：fetch → CURRENT_DIRECTION → ROUTE_DECISIONS → 本文件；未复查的动态状态只写最后观察。
 
 ## 最新用户请求与本轮完成
-- 新请求是三小时内真实同预算效果验证，不能再只筛轨迹，窗口约04:30–07:30。48续跑/6池=2任务×4seed×3臂×2重复，ABCCBA；1020s/run、每任务生成2/每卡执行1三臂相同，2+4GPU。原窗口cap8400秒×6=14GPUh，修正版池1180s/作业7920s，加17673失败476s共8396s，cap13.993333333333334GPUh。
+- 新请求是三小时内真实同预算效果验证，不能再只筛轨迹，窗口约04:30–07:30。48续跑/6池=2任务×4seed×3臂×2重复，ABCCBA；1020s/run、每任务生成2/每卡执行1三臂相同，2+4GPU。原窗口cap8400秒×6=14GPUh；v5仍1180s/池，作业cap7560s，加前败476+353s，合计cap13.981666666666667GPUh（4974已耗GPU秒）。
 - **17673已FAILED闭合**，不是仍运行：04:56–05:03:56，476秒×6=2856GPU秒。首8条在生成前IndexError、候选0/48、其余池未启动。根因是暖起点append后先递增current_step再原生log_journal，越界；原CPU检查错误地stub掉日志，漏过。旧v2/root与planSHA18257b6b24b195332723004d0271d1a2ff2049174c07dbe588d25f5f6d8e4c3c原样保留，不重开该批/不解释为方法结果。
-- **17674最后观察RUNNING/gpu3，05:15模型服务初始化、候选尚0**，一次提交session56227已成功退出；禁止重复submit。修正版源码1e804cd0c41b36edda17dfce500d4d5b0ba11220；entry generation_joint_trial_20261012.py、policy joint_generation_policy_20261012.py。24单测通过；v4 root=/research/d7/spc/yzyang4/scheduling-generation-joint-20261012-v4 已完成真实原生日志/checkpoint CPU门；planSHA8aace9d8d65a190a7da2efc573766fcc5ea287c60d61738a3cf7c6b57b9ab8ff。v3只在CPU复制/tmp IPC socket失败、零GPU；v4仅复用vllm/triton离线编译缓存。预计07:25附近闭合后读数，现场不可读中途成绩/改策略。
+- **17674已取消**：05:14:08–05:20:01，353s/2118GPU秒。冻结源码检查发现parse包装器用evaluation形参，但原生按eval_result关键字调用；先于结果判读主动停止。结构8起点加载、4生成获准、0轮完成，旧计划48保留，无closed.json，不冒称完成读数。v4原planSHA8aace9d8d65a190a7da2efc573766fcc5ea287c60d61738a3cf7c6b57b9ab8ff不改。
+- **v5完整CPU门已过，单次submit会话36471进行中，尚无新job**：source e180a0b5e8289c99bad27872fd63629e7421d8ff；root=/research/d7/spc/yzyang4/scheduling-generation-joint-20261012-v5；planSHAe923a7eefe6b69fdf9416bed58cab10218553760351022cc0b31920d039c32db。24单测/48配置/32配对，真实expand→task返回→parse关键字→analysis→journal/backprop→debug→checkpoint通过，仅模型/执行在CPU fixture中合成。三臂策略/任务/seed/run/池未改；闭合前不读成绩，不重复submit。v1/v3仅CPU失败零GPU，原件保留。
 - stage=/research/d7/spc/yzyang4/gen-joint-stage-20261012.NvlXeX，内有结构状态、闭合后readout及joint_submit_fresh_hash_20261012.py。后者新鲜并行计算所有镜像/权重SHA、核对读取前后stat再调用原提交门，不是跳过或复用历史哈希。只提交一次；先等prepare成功。读数尚未执行。
-- 本轮代码/预设读数公开head16150089fee36a77684ff56fafa75870c2d53c90，已push并ls-remote核实；独立发布guard全0，Git旧MSYS hook报错没有伪称通过。学长dojo-reproduce仍64fd78e98cfdc945b1af03f29f570975d58b88b7未改。
+- 最近核实公开head5bc75e860788f1412aca6719ea457075bcc226d0，已push并ls-remote核实；随后v5修复本地e180a0b5尚待发布。独立发布guard此前全0，Git旧MSYS hook报错没有伪称通过。学长dojo-reproduce仍64fd78e98cfdc945b1af03f29f570975d58b88b7未改。
 - v1 CPU前检失败于search_policy实际返回path却断言node，未提交GPU；完整v1原件保留，不重跑该prepare。v2修断言，并真实stub一次原生_improve许可接线；三臂共同去掉已知LLM is_bug误否决，外部评分/exit/有效提交门不变。
 - 起点固定17592按run/step序首个accepted且外部ground节点，原始程序与输出不导出。新终点含起点，主分析看两任务/两个池重复joint相对两个参照的终分差；历史起点构建是共同已有资产，不计作在线节省/从零E2E。仅小型明确成本/资源baseline适配，不能冒称完整论文复现或已确认创新。
 - 前轮04:26机会筛查已闭合：17592/17656/17670分开分析80run/40队列，候选稀缺选择均0，仅2次preview竞争；journal Improve1/0/0且accepted均0。21单测和独立复算通过，该轮零GPU、原质量门不改。它解释了为什么这次将干预提前到生成端，不是新质量阳性。

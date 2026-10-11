@@ -65,5 +65,10 @@ class ReadoutTests(unittest.TestCase):
         es[4]['alternatives']['joint']='1'
         with self.assertRaises(AssertionError):generation_audit(es,'joint')
 
+    def test_concurrent_lease_observation_timestamp(self):
+        s=fixture();busy={'0':dict(start=10.01,expected_seconds=300.)}
+        self.assertEqual(independent_rank(s['waiting'][0],s,10.,'joint',busy),
+                         rank_request(s['waiting'][0],s,10.,'joint',busy))
+
 
 if __name__=='__main__':unittest.main()

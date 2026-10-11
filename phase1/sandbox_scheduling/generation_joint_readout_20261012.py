@@ -27,7 +27,10 @@ def independent_rank(request, snapshot, now, arm, busy):
     if arm=='continuation':return (role,s['completed']+int(request['role']=='debug'),age,-request['run'])
     lane=busy.get(str(request['lane']));extra=0.
     if arm=='joint' and lane and request['role']!='analyze':
-        extra=max(0.,lane['expected_seconds']-max(0.,now-lane['start'])-s['generation_mean'])
+        # Frozen caller samples decision_time immediately before reading lane
+        # occupancy. A concurrently acquired lease can have a slightly later
+        # timestamp; replay the signed interval, not a new clamped policy.
+        extra=max(0.,lane['expected_seconds']-(now-lane['start'])-s['generation_mean'])
     cost=max(1.,s['generation_mean']+s['execution_mean']+s['analysis_mean']+extra)
     feasible=request['role']=='analyze' or request['deadline']-now>=cost
     return(role,int(feasible),(s['improvements']+1)/(s['completed']+2)*(1+age/300)/cost,age,-request['run'])

@@ -35,10 +35,13 @@ def prepare(commit):
     p=read(OLD/'plan.json');assert all(sha(OLD/n)==h for n,h in p['files'].items())
     R.mkdir(mode=0o700)
     for n in p['files']:
+        if n.startswith('configs/'):continue
         dst=R/n;dst.parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(OLD/n,dst)
     # The immutable old public-training development views are reused read-only.
     (R/'dev-views').symlink_to(OLD/'dev-views',target_is_directory=True)
     for b in range(4):(R/f'block-{b}/service-cache/tmp').mkdir(parents=True)
+    (R/'configs').mkdir()
+    scorer=R/'image_scorer.py';scorer.write_text(scorer.read_text().replace(str(OLD),str(R)))
     for row in trial.schedule():
         ep=R/f"episode-{row['index']}";(ep/'work/input_cache').mkdir(parents=True)
         cfg=read(OLD/f"configs/{row['index']}.json")
@@ -46,10 +49,7 @@ def prepare(commit):
         original=json.dumps(cfg,sort_keys=True)
         cfg=json.loads(original.replace(str(OLD),str(R)))
         for name in ('public_dir','data_dir','private_dir'):cfg['task'][name]=read(OLD/f"configs/{row['index']}.json")['task'][name]
-        write(R/f"configs/{row['index']}.json",cfg)
-    scorer=R/'image_scorer.py';scorer.write_text(scorer.read_text().replace(str(OLD),str(R)))
-    for row in trial.schedule():
-        cfg=read(R/f"configs/{row['index']}.json");cfg['task']['search_only_dev_scorer_sha256']=sha(scorer)
+        cfg['task']['search_only_dev_scorer_sha256']=sha(scorer)
         write(R/f"configs/{row['index']}.json",cfg)
     shim=R/'bin/singularity';shim.write_text(f'#!{trial.PY}\nimport sys\nsys.path.insert(0,{str(R)!r})\nfrom {Path(__file__).stem} import host\nhost().task_runtime()\n');shim.chmod(0o700)
     for n in (Path(__file__).name,'image_cpu_partition_20261011.py','test_image_cpu_partition_20261011.py'):

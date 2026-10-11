@@ -1,0 +1,52 @@
+{
+  "boundary": "Startup/receipt reuse only. Python sitecustomize can report errors while CLI exits zero; do not call exit0 alone proof of clean installation or production cleanup.",
+  "expected_pattern": true,
+  "no_data": true,
+  "no_gpu": true,
+  "no_kernel": true,
+  "original_source_sha256": "0087af54ad0345ee34defebc294893584e717f79b75c7f70a8991961a07e4f37",
+  "root": "/research/d7/spc/yzyang4/reusable-guard-preflight-mql_m92m",
+  "rows": [
+    {
+      "arm": "original",
+      "cli_help": true,
+      "file_exists_error": false,
+      "receipt_values_valid": true,
+      "receipts": 1,
+      "repeat": 0,
+      "returncode": 0,
+      "sitecustomize_error": false
+    },
+    {
+      "arm": "original",
+      "cli_help": true,
+      "file_exists_error": true,
+      "receipt_values_valid": true,
+      "receipts": 1,
+      "repeat": 1,
+      "returncode": 0,
+      "sitecustomize_error": true
+    },
+    {
+      "arm": "unique_receipt",
+      "cli_help": true,
+      "file_exists_error": false,
+      "receipt_values_valid": true,
+      "receipts": 1,
+      "repeat": 0,
+      "returncode": 0,
+      "sitecustomize_error": false
+    },
+    {
+      "arm": "unique_receipt",
+      "cli_help": true,
+      "file_exists_error": false,
+      "receipt_values_valid": true,
+      "receipts": 2,
+      "repeat": 1,
+      "returncode": 0,
+      "sitecustomize_error": false
+    }
+  ],
+  "updated_source_sha256": "ac890ba1a61d371e04f8c1b8faec87b20d64b10a10c95b027656745baa36313e"
+}

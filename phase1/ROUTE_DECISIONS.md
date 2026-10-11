@@ -37,6 +37,7 @@
 - [SchedMate](https://arxiv.org/html/2510.03334)已有源码/历史/日志、免部分profile、干扰撤销；[2024 poster](https://wang-zerui.github.io/publication/schedmate/)还含版本跟踪。[Synergy](https://www.usenix.org/system/files/osdi22-mohan.pdf)、TGS/Salus、ElastiCo、DetShare/Pollux覆盖资源互补/透明共享/行为耦合。对象接口不同不能直接称创新。
 - [MARS调度](https://arxiv.org/html/2604.26963v1)、Cortex/SpecBox、SAGA、AgentSysBench、Agentic CPU-GPU Scheduling覆盖阶段管理、续轮优先、准入与工具放置；不是下文同名记忆论文。MARS公开实现的session入口控制不等于我方执行许可，删KV/内层功能不能冒称完整复现。
 - OpenMLE、DSec已有MLE共享后端或沙箱生命周期；Latency-Aware Orchestration、Aragog、VenusRL、SJF-BSBF限制广义关键路径/质量约束/资源增长/首返权衡；AgBench、On the Clock、SWEET已有吞吐/成功率/搜索偏差讨论。详细原文、版本和适用限制见sandbox_scheduling/README及本次压缩前Git；不能凭一个限定不完全相同就忽视强近邻。
+- 10/11再核SchedMate§3.3：已有首错误定位、基础设施/框架/应用分类、诊断后恢复；本窗就绪/内核生命周期修复不能称新的故障处理方法。其日志语义也不替我们提供历史EAGAIN的现场线程/cgroup证据；错误信息分类不等于根因已获干预验证。
 - 原AIRA-dojo的策略结果依赖算子条件且主实验24h；我方旧600s/root5无Improve只说明本轮覆盖不足，不解释原论文，也不是新发现。旧16370的22.72%预留窗口、16624释放原语、AST显存选参都不是已兑现的调度收益。
 - 接口公平性：先跨独立run共享、保留run内返回/调试顺序；同源码仍可能随资源改变batch等行为。先测代表性真实GPU开发负载与廉价阶段准入；只有重要剩余损失才研究语义方法，不预设LLM调度必要。硬边界与预算不因本索引整理改变。
 

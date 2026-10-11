@@ -1,0 +1,46 @@
+{
+  "base_commit": "f7ccd79323112b10ccc82d8e9ec9d6cf089df607",
+  "boundary": "B is NOT standalone: requires pinned kernel_shutdown_guard inside the gateway. Neither patch proves historical EAGAIN prevention. No candidate retry,timeout,source,image,GPU mapping or global limit changes.",
+  "branches_changed": false,
+  "files": {
+    "A-readiness-cleanup.patch": "c06d03393fa309fcdaff04cc2feed2469d81843088e76670eb8147b04ec8fdce",
+    "B-lost-kernel-reporting.patch": "3f2640e6de19474b3875ee980c0caaa7ead729e231c87213b4128c17109ee5a8"
+  },
+  "isolated_index_apply_check": true,
+  "modified_methods": {
+    "jupyter_client.py": [
+      "JupyterKernelClient.execute"
+    ],
+    "jupyter_code_executor.py": [
+      "JupyterCodeExecutor.stop"
+    ],
+    "jupyter_interpreter.py": [
+      "JupyterInterpreter.close"
+    ],
+    "singularity_jupyter_server.py": [
+      "SingularityJupyterServer.__init__",
+      "SingularityJupyterServer._drain_output",
+      "SingularityJupyterServer._wait_until_ready",
+      "SingularityJupyterServer.stop"
+    ]
+  },
+  "source_sha256": {
+    "jupyter_client.py": {
+      "after": "e2ff88eb64c121db409c8b95e0ddb8cd956e9572c9eb3586fad30a5e5cca9c19",
+      "before": "a6c6abdca37745ce8d5137f48595a3c0e6332c113e8133b0782425b7bbb291bf"
+    },
+    "jupyter_code_executor.py": {
+      "after": "703971c1227560d310d5f0c747084bf1e6ed96372d54cc614b8797bb7aaa48c2",
+      "before": "99681e6a519a14bcdcc0c56caacfb108760b73e98af71c5b054efe5dead9efc0"
+    },
+    "jupyter_interpreter.py": {
+      "after": "180e39d6fc744305f6a6a50c04cf3645373d6c01b6becf36758308f5774df755",
+      "before": "d60eb92f48457b6f1f1e8a69665a2c689b3340be1efa8f66a7b9cc242446e47c"
+    },
+    "singularity_jupyter_server.py": {
+      "after": "20b641dbae8f8332670ee5c84a9956fc11af44ca42ea97f6103c01687fa43f0c",
+      "before": "e68071b7f50bd53785e8e237fcdd1d9914e0f0e7c02b341b79a7b19e0a9a2290"
+    }
+  },
+  "tested_reference": "600a994dfb420b362f048daf0e0e002a6130110a"
+}

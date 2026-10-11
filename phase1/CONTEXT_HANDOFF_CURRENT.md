@@ -1,5 +1,5 @@
 # 当前短交接
-更新：2026-10-11香港10:31附近工具观察；当前六小时窗口06:37:30–12:37:30，继续会话内工作，不新建automation/thread/goal。
+更新：2026-10-11香港11:01附近工具观察；当前六小时窗口06:37:30–12:37:30，继续会话内工作，不新建automation/thread/goal。
 恢复：fetch → CURRENT_DIRECTION → ROUTE_DECISIONS → 本文件。旧8月任务不恢复，未核现场的状态一律“最后观察”。
 
 ## 当前任务与硬边界
@@ -7,10 +7,10 @@
 - 用户广泛批准，但新批仍先公告矩阵、完整资源上限、停止门。学长两卡模型服务六卡MLE/medium只是建议，尚未完成真实2+6容量验证。
 - 不更新agent底座、不改学长分支、无付费API；first-960/Target-300/Target-522、D_val、官方test、16560数值导出仍关闭。旧HCE/多保真/Probe/TD等不自动恢复。
 - 活跃checkout=C:/Research/New/my_project/MLEvolve/_codex_tmp/publication-feedback-20261001；detached HEAD有意保留。旧aira-dojo-codex-20260813用户dirty不动。
-- 最后公开且ls-remote核验53a42fe73d129e1a71b0a7ee8778d17417ac8528；最近fetch学长仍f7ccd79323112b10ccc82d8e9ec9d6cf089df607。17566闭合/新exit观察器尚未发布。
+- 最后公开且ls-remote核验600a994dfb420b362f048daf0e0e002a6130110a；最近fetch学长仍f7ccd79323112b10ccc82d8e9ec9d6cf089df607。17566–69及17570代码已发布；17570结果和2+4代码尚未发布。
 - 用户未跟踪报告phase1/reports/给学长_MLE沙箱资源调度进展_20261009.md保留、不stage。旧长细节Git b24及原实验目录可恢复，不覆写原件。
 
-## 现场：17569完整修正12/12；17570真实六卡运行
+## 现场：17570真实六卡14/14；17571两服务+四执行卡运行
 - 最后17566：10计划/6尝试/5完成/4未开始，785GPU秒；root=/research/d7/spc/yzyang4/resource-execution-stack-capture-20261011-v1。失效仍发生单卡，不能归因六并发。
 - plan SHA4741e0748c51affd413700690d1f3f24e879c522f194b74e5226a63917ca27b8；最多10次串行UNet原seed42/588步/450s，gpu3一卡4物理核最多30min≤1800GPU秒。首失败闭合、不补样本；无模型/API。
 - 17565已闭合14计划/8尝试/7完成/6未开始；失败index5两次握手均正常，候选调用452.858323012013秒超时；没有线程创建/OOM枚举报错。7完成均588步，21输出比较全字节一致，仍不称六并发门通过。
@@ -22,7 +22,10 @@
 - 17568 restart-guard-v1：12计划/4尝试/3完整/8未开始，163GPU秒；旧exit17等16.388614677125588秒超时，新guard于2.371317527955398秒收到真实parentless restarting并返回非timeout失败，但清理HTTP500。原门false保留。
 - 精确栈：Jupyter8.9.1 MultiKernelManager._async_shutdown_kernel在restart的ready Future未完成时调用exception()→InvalidStateError；关闭server也触发，120s后强杀。新增窄gateway覆盖只在delete前等ready≤15s，不升级image、不重执行候选、不吞错误；8异步单元+2矩阵测试、原CLI无内核预检通过。
 - 17569 resource-restart-guard-trial-20261011-v2：plan4a27286e2480951f8b0114107f751e3cc8685a2317226038dccf22430f979929，12/12、129GPU秒；正常六输出相同，exit旧中位16.39422196894884秒、新2.385627934942022秒，SD0.014168659872206123/0.0386125174152679；guard清理中位0.3674750328063965秒、无500/InvalidState/强杀，UID前后5进程8线程0zombie。原错误仍是已知人工exit17，非EAGAIN根因。
-- 17570 resource-execution-guarded-six-20261011-v1：pland96fba91f303325714b8a7320571776cbec66a87ccaa45f12d01afd5a2b418a5，14=2串行+2×6；6卡/24物理核30min≤10800GPU秒。原UNet/输入/588步/seed42/450s不变、无watchdog，仅已验证restart/cleanup修正+退出/协议/NVML观察；首失败停不补。10:31最后2开始/1完成，无非零exit；watch exec22451。独立readout已pin，原14分母/91数值比较门不放宽。模型服务不在本批。
+- 17570 resource-execution-guarded-six-20261011-v1：pland96fba91f303325714b8a7320571776cbec66a87ccaa45f12d01afd5a2b418a5；完整14/14、全部588步、42execute、91输出对字节一致、两块各6独立GPU/24物理核、UID峰358、末3/3/0，无非零exit/关闭竞态。1428GPU秒≤10800，独立gate true；模型不在本批。audit966ccfa1cce5888a4dbe18429406fe2ffe7ab17ac11c1738112d4cc949478d23、CSV9f50307c818fbaa1264cfaa3777c99796ff1d09cf5b3d00919afc179d3b5a2e5远近一致，审核已写勿重写。
+- 新resource-joint-four-capacity-20261011-v1：公告固定10程序+10本地请求；2串行、两组4并发，CNN150/UNet588步各5次，原seed42/450s/source/input/image；2服务+4执行GPU/24物理核/40min≤14400GPU秒。原模型medium/seed49/max512，无付费API/底座训练，首失败闭合，不补样本。可用普通分区暂无8张健康同节点空闲卡，不能称2+6。
+- 2+4准备exec55592连接reset但原进程完成，独立核plan后仅提交一次：17571、planfb949c4c6cbe9ee5d02ae467e45a08fb3b1409e01530555d4b0ccf7bdaaab0b2。readout已在提交前pin；矩阵3项Linux、验收2项Windows/Linux通过。10:49 Slurm RUNNING gpu3，10:56服务ready、首CNN进入候选执行，11:01尚无终态；watch exec54746。readout audit需plan/job参数，只写一次；只读结构/公开fixture数值，不导出预测。
+- 最小补丁collaborator-patches-v2已生成、独立临时Git index应用校验通过、3个精确f7故障单元通过；不改分支。ready/client与17570源码SHA逐字节一致，两finally仅故障单元覆盖。B必须配gateway guard。四次无GPU/无kernel原CLI同目录启动确认旧回执二次报FileExistsError但rc0；只改成独立回执后两次无错误，源码ac890ba1a61d371e04f8c1b8faec87b20d64b10a10c95b027656745baa36313e已取回gateway/。安装检查不冒称生产接入完成，validation-boundaries.json保留边界。v1仅本地相对路径解析失败，无GPU影响。
 
 ## 本窗已确认的工程事实与未解决问题
 - 共享mle/comparison/1009八包已定位；Spooky/Dog各一精确日志SHA独立复核，OpenBLAS pthread_create失败，NPROC soft1024，请求线程分别3/12。原始日志仅远端内存凭据先筛，不导出代码/标签。

@@ -1,0 +1,1241 @@
+{
+  "after_uid_counts": {
+    "largest_process_thread_counts": [
+      1,
+      1,
+      1
+    ],
+    "lower_bound": true,
+    "unreadable_or_racing": 0,
+    "visible_processes": 3,
+    "visible_threads": 3,
+    "zombies": 0
+  },
+  "attempted": 14,
+  "blocks": [
+    {
+      "block": 0,
+      "gpus": 1,
+      "host_optimizer_envelope_overlap_peak": 1,
+      "physical_cores": 4
+    },
+    {
+      "block": 1,
+      "gpus": 1,
+      "host_optimizer_envelope_overlap_peak": 1,
+      "physical_cores": 4
+    },
+    {
+      "block": 2,
+      "gpus": 6,
+      "host_optimizer_envelope_overlap_peak": 6,
+      "physical_cores": 24
+    },
+    {
+      "block": 3,
+      "gpus": 6,
+      "host_optimizer_envelope_overlap_peak": 6,
+      "physical_cores": 24
+    }
+  ],
+  "boundary": "One fixed source/seed/public synthetic fixture. Complete six-GPU gate only; not six tasks,co-resident model capacity,EAGAIN root cause,speedup or quality. No retries.",
+  "closed_sha256": "6ccd2894629e6756447f7c53ea662bc9108d5ead7beff229c16edbca8b4f7fc8",
+  "comparisons": [
+    {
+      "byte_equal": true,
+      "left": 0,
+      "max_abs_diff": 0.0,
+      "right": 1,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 0,
+      "max_abs_diff": 0.0,
+      "right": 2,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 0,
+      "max_abs_diff": 0.0,
+      "right": 3,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 0,
+      "max_abs_diff": 0.0,
+      "right": 4,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 0,
+      "max_abs_diff": 0.0,
+      "right": 5,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 0,
+      "max_abs_diff": 0.0,
+      "right": 6,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 0,
+      "max_abs_diff": 0.0,
+      "right": 7,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 0,
+      "max_abs_diff": 0.0,
+      "right": 8,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 0,
+      "max_abs_diff": 0.0,
+      "right": 9,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 0,
+      "max_abs_diff": 0.0,
+      "right": 10,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 0,
+      "max_abs_diff": 0.0,
+      "right": 11,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 0,
+      "max_abs_diff": 0.0,
+      "right": 12,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 0,
+      "max_abs_diff": 0.0,
+      "right": 13,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 1,
+      "max_abs_diff": 0.0,
+      "right": 2,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 1,
+      "max_abs_diff": 0.0,
+      "right": 3,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 1,
+      "max_abs_diff": 0.0,
+      "right": 4,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 1,
+      "max_abs_diff": 0.0,
+      "right": 5,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 1,
+      "max_abs_diff": 0.0,
+      "right": 6,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 1,
+      "max_abs_diff": 0.0,
+      "right": 7,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 1,
+      "max_abs_diff": 0.0,
+      "right": 8,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 1,
+      "max_abs_diff": 0.0,
+      "right": 9,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 1,
+      "max_abs_diff": 0.0,
+      "right": 10,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 1,
+      "max_abs_diff": 0.0,
+      "right": 11,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 1,
+      "max_abs_diff": 0.0,
+      "right": 12,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 1,
+      "max_abs_diff": 0.0,
+      "right": 13,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 2,
+      "max_abs_diff": 0.0,
+      "right": 3,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 2,
+      "max_abs_diff": 0.0,
+      "right": 4,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 2,
+      "max_abs_diff": 0.0,
+      "right": 5,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 2,
+      "max_abs_diff": 0.0,
+      "right": 6,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 2,
+      "max_abs_diff": 0.0,
+      "right": 7,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 2,
+      "max_abs_diff": 0.0,
+      "right": 8,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 2,
+      "max_abs_diff": 0.0,
+      "right": 9,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 2,
+      "max_abs_diff": 0.0,
+      "right": 10,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 2,
+      "max_abs_diff": 0.0,
+      "right": 11,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 2,
+      "max_abs_diff": 0.0,
+      "right": 12,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 2,
+      "max_abs_diff": 0.0,
+      "right": 13,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 3,
+      "max_abs_diff": 0.0,
+      "right": 4,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 3,
+      "max_abs_diff": 0.0,
+      "right": 5,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 3,
+      "max_abs_diff": 0.0,
+      "right": 6,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 3,
+      "max_abs_diff": 0.0,
+      "right": 7,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 3,
+      "max_abs_diff": 0.0,
+      "right": 8,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 3,
+      "max_abs_diff": 0.0,
+      "right": 9,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 3,
+      "max_abs_diff": 0.0,
+      "right": 10,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 3,
+      "max_abs_diff": 0.0,
+      "right": 11,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 3,
+      "max_abs_diff": 0.0,
+      "right": 12,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 3,
+      "max_abs_diff": 0.0,
+      "right": 13,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 4,
+      "max_abs_diff": 0.0,
+      "right": 5,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 4,
+      "max_abs_diff": 0.0,
+      "right": 6,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 4,
+      "max_abs_diff": 0.0,
+      "right": 7,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 4,
+      "max_abs_diff": 0.0,
+      "right": 8,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 4,
+      "max_abs_diff": 0.0,
+      "right": 9,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 4,
+      "max_abs_diff": 0.0,
+      "right": 10,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 4,
+      "max_abs_diff": 0.0,
+      "right": 11,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 4,
+      "max_abs_diff": 0.0,
+      "right": 12,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 4,
+      "max_abs_diff": 0.0,
+      "right": 13,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 5,
+      "max_abs_diff": 0.0,
+      "right": 6,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 5,
+      "max_abs_diff": 0.0,
+      "right": 7,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 5,
+      "max_abs_diff": 0.0,
+      "right": 8,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 5,
+      "max_abs_diff": 0.0,
+      "right": 9,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 5,
+      "max_abs_diff": 0.0,
+      "right": 10,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 5,
+      "max_abs_diff": 0.0,
+      "right": 11,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 5,
+      "max_abs_diff": 0.0,
+      "right": 12,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 5,
+      "max_abs_diff": 0.0,
+      "right": 13,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 6,
+      "max_abs_diff": 0.0,
+      "right": 7,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 6,
+      "max_abs_diff": 0.0,
+      "right": 8,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 6,
+      "max_abs_diff": 0.0,
+      "right": 9,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 6,
+      "max_abs_diff": 0.0,
+      "right": 10,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 6,
+      "max_abs_diff": 0.0,
+      "right": 11,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 6,
+      "max_abs_diff": 0.0,
+      "right": 12,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 6,
+      "max_abs_diff": 0.0,
+      "right": 13,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 7,
+      "max_abs_diff": 0.0,
+      "right": 8,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 7,
+      "max_abs_diff": 0.0,
+      "right": 9,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 7,
+      "max_abs_diff": 0.0,
+      "right": 10,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 7,
+      "max_abs_diff": 0.0,
+      "right": 11,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 7,
+      "max_abs_diff": 0.0,
+      "right": 12,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 7,
+      "max_abs_diff": 0.0,
+      "right": 13,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 8,
+      "max_abs_diff": 0.0,
+      "right": 9,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 8,
+      "max_abs_diff": 0.0,
+      "right": 10,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 8,
+      "max_abs_diff": 0.0,
+      "right": 11,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 8,
+      "max_abs_diff": 0.0,
+      "right": 12,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 8,
+      "max_abs_diff": 0.0,
+      "right": 13,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 9,
+      "max_abs_diff": 0.0,
+      "right": 10,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 9,
+      "max_abs_diff": 0.0,
+      "right": 11,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 9,
+      "max_abs_diff": 0.0,
+      "right": 12,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 9,
+      "max_abs_diff": 0.0,
+      "right": 13,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 10,
+      "max_abs_diff": 0.0,
+      "right": 11,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 10,
+      "max_abs_diff": 0.0,
+      "right": 12,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 10,
+      "max_abs_diff": 0.0,
+      "right": 13,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 11,
+      "max_abs_diff": 0.0,
+      "right": 12,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 11,
+      "max_abs_diff": 0.0,
+      "right": 13,
+      "within_tolerance": true
+    },
+    {
+      "byte_equal": true,
+      "left": 12,
+      "max_abs_diff": 0.0,
+      "right": 13,
+      "within_tolerance": true
+    }
+  ],
+  "complete": 14,
+  "execute_calls_observed": 42,
+  "execution_gate": true,
+  "gpu_seconds": 1428,
+  "gpu_seconds_cap": 10800,
+  "input_manifest_ok": true,
+  "job": "17570",
+  "lifecycle": [
+    {
+      "attempted": true,
+      "call": {
+        "call": 1,
+        "end": 1791685819.535515,
+        "error_type": null,
+        "exit_code": 0,
+        "flags": {
+          "can't start new thread": false,
+          "out of memory": false,
+          "pthread_create": false,
+          "resource temporarily unavailable": false
+        },
+        "start": 1791685777.9644456,
+        "timed_out": false
+      },
+      "cleanup_flags": {
+        "forced_server_kill": false,
+        "http500": false,
+        "invalid_state": false
+      },
+      "complete": true,
+      "events": [
+        {
+          "event": "launched",
+          "pid": 17,
+          "time": 1791685771.7485497
+        },
+        {
+          "event": "exit_observed",
+          "pid": 17,
+          "returncode": 0,
+          "time": 1791685823.1279156
+        }
+      ],
+      "exits_during_candidate": [],
+      "index": 0
+    },
+    {
+      "attempted": true,
+      "call": {
+        "call": 1,
+        "end": 1791685877.199528,
+        "error_type": null,
+        "exit_code": 0,
+        "flags": {
+          "can't start new thread": false,
+          "out of memory": false,
+          "pthread_create": false,
+          "resource temporarily unavailable": false
+        },
+        "start": 1791685837.772398,
+        "timed_out": false
+      },
+      "cleanup_flags": {
+        "forced_server_kill": false,
+        "http500": false,
+        "invalid_state": false
+      },
+      "complete": true,
+      "events": [
+        {
+          "event": "launched",
+          "pid": 17,
+          "time": 1791685833.4122355
+        },
+        {
+          "event": "exit_observed",
+          "pid": 17,
+          "returncode": 0,
+          "time": 1791685880.8357449
+        }
+      ],
+      "exits_during_candidate": [],
+      "index": 1
+    },
+    {
+      "attempted": true,
+      "call": {
+        "call": 1,
+        "end": 1791685934.5997183,
+        "error_type": null,
+        "exit_code": 0,
+        "flags": {
+          "can't start new thread": false,
+          "out of memory": false,
+          "pthread_create": false,
+          "resource temporarily unavailable": false
+        },
+        "start": 1791685895.84153,
+        "timed_out": false
+      },
+      "cleanup_flags": {
+        "forced_server_kill": false,
+        "http500": false,
+        "invalid_state": false
+      },
+      "complete": true,
+      "events": [
+        {
+          "event": "launched",
+          "pid": 17,
+          "time": 1791685890.677023
+        },
+        {
+          "event": "exit_observed",
+          "pid": 17,
+          "returncode": 0,
+          "time": 1791685938.3205013
+        }
+      ],
+      "exits_during_candidate": [],
+      "index": 2
+    },
+    {
+      "attempted": true,
+      "call": {
+        "call": 1,
+        "end": 1791685934.9411023,
+        "error_type": null,
+        "exit_code": 0,
+        "flags": {
+          "can't start new thread": false,
+          "out of memory": false,
+          "pthread_create": false,
+          "resource temporarily unavailable": false
+        },
+        "start": 1791685895.927486,
+        "timed_out": false
+      },
+      "cleanup_flags": {
+        "forced_server_kill": false,
+        "http500": false,
+        "invalid_state": false
+      },
+      "complete": true,
+      "events": [
+        {
+          "event": "launched",
+          "pid": 17,
+          "time": 1791685891.0303297
+        },
+        {
+          "event": "exit_observed",
+          "pid": 17,
+          "returncode": 0,
+          "time": 1791685938.7322261
+        }
+      ],
+      "exits_during_candidate": [],
+      "index": 3
+    },
+    {
+      "attempted": true,
+      "call": {
+        "call": 1,
+        "end": 1791685934.4454455,
+        "error_type": null,
+        "exit_code": 0,
+        "flags": {
+          "can't start new thread": false,
+          "out of memory": false,
+          "pthread_create": false,
+          "resource temporarily unavailable": false
+        },
+        "start": 1791685895.8285677,
+        "timed_out": false
+      },
+      "cleanup_flags": {
+        "forced_server_kill": false,
+        "http500": false,
+        "invalid_state": false
+      },
+      "complete": true,
+      "events": [
+        {
+          "event": "launched",
+          "pid": 17,
+          "time": 1791685890.6359482
+        },
+        {
+          "event": "exit_observed",
+          "pid": 17,
+          "returncode": 0,
+          "time": 1791685938.1858985
+        }
+      ],
+      "exits_during_candidate": [],
+      "index": 4
+    },
+    {
+      "attempted": true,
+      "call": {
+        "call": 1,
+        "end": 1791685934.444667,
+        "error_type": null,
+        "exit_code": 0,
+        "flags": {
+          "can't start new thread": false,
+          "out of memory": false,
+          "pthread_create": false,
+          "resource temporarily unavailable": false
+        },
+        "start": 1791685895.8419373,
+        "timed_out": false
+      },
+      "cleanup_flags": {
+        "forced_server_kill": false,
+        "http500": false,
+        "invalid_state": false
+      },
+      "complete": true,
+      "events": [
+        {
+          "event": "launched",
+          "pid": 17,
+          "time": 1791685890.558856
+        },
+        {
+          "event": "exit_observed",
+          "pid": 17,
+          "returncode": 0,
+          "time": 1791685938.0848658
+        }
+      ],
+      "exits_during_candidate": [],
+      "index": 5
+    },
+    {
+      "attempted": true,
+      "call": {
+        "call": 1,
+        "end": 1791685934.2571096,
+        "error_type": null,
+        "exit_code": 0,
+        "flags": {
+          "can't start new thread": false,
+          "out of memory": false,
+          "pthread_create": false,
+          "resource temporarily unavailable": false
+        },
+        "start": 1791685895.8685598,
+        "timed_out": false
+      },
+      "cleanup_flags": {
+        "forced_server_kill": false,
+        "http500": false,
+        "invalid_state": false
+      },
+      "complete": true,
+      "events": [
+        {
+          "event": "launched",
+          "pid": 17,
+          "time": 1791685891.0217185
+        },
+        {
+          "event": "exit_observed",
+          "pid": 17,
+          "returncode": 0,
+          "time": 1791685938.1738641
+        }
+      ],
+      "exits_during_candidate": [],
+      "index": 6
+    },
+    {
+      "attempted": true,
+      "call": {
+        "call": 1,
+        "end": 1791685935.2018573,
+        "error_type": null,
+        "exit_code": 0,
+        "flags": {
+          "can't start new thread": false,
+          "out of memory": false,
+          "pthread_create": false,
+          "resource temporarily unavailable": false
+        },
+        "start": 1791685895.8627446,
+        "timed_out": false
+      },
+      "cleanup_flags": {
+        "forced_server_kill": false,
+        "http500": false,
+        "invalid_state": false
+      },
+      "complete": true,
+      "events": [
+        {
+          "event": "launched",
+          "pid": 17,
+          "time": 1791685891.0125968
+        },
+        {
+          "event": "exit_observed",
+          "pid": 17,
+          "returncode": 0,
+          "time": 1791685939.0340383
+        }
+      ],
+      "exits_during_candidate": [],
+      "index": 7
+    },
+    {
+      "attempted": true,
+      "call": {
+        "call": 1,
+        "end": 1791685991.601893,
+        "error_type": null,
+        "exit_code": 0,
+        "flags": {
+          "can't start new thread": false,
+          "out of memory": false,
+          "pthread_create": false,
+          "resource temporarily unavailable": false
+        },
+        "start": 1791685953.1377084,
+        "timed_out": false
+      },
+      "cleanup_flags": {
+        "forced_server_kill": false,
+        "http500": false,
+        "invalid_state": false
+      },
+      "complete": true,
+      "events": [
+        {
+          "event": "launched",
+          "pid": 17,
+          "time": 1791685948.2583673
+        },
+        {
+          "event": "exit_observed",
+          "pid": 17,
+          "returncode": 0,
+          "time": 1791685995.456439
+        }
+      ],
+      "exits_during_candidate": [],
+      "index": 8
+    },
+    {
+      "attempted": true,
+      "call": {
+        "call": 1,
+        "end": 1791685991.8966641,
+        "error_type": null,
+        "exit_code": 0,
+        "flags": {
+          "can't start new thread": false,
+          "out of memory": false,
+          "pthread_create": false,
+          "resource temporarily unavailable": false
+        },
+        "start": 1791685953.249961,
+        "timed_out": false
+      },
+      "cleanup_flags": {
+        "forced_server_kill": false,
+        "http500": false,
+        "invalid_state": false
+      },
+      "complete": true,
+      "events": [
+        {
+          "event": "launched",
+          "pid": 17,
+          "time": 1791685948.2558746
+        },
+        {
+          "event": "exit_observed",
+          "pid": 17,
+          "returncode": 0,
+          "time": 1791685995.5841088
+        }
+      ],
+      "exits_during_candidate": [],
+      "index": 9
+    },
+    {
+      "attempted": true,
+      "call": {
+        "call": 1,
+        "end": 1791685991.7296968,
+        "error_type": null,
+        "exit_code": 0,
+        "flags": {
+          "can't start new thread": false,
+          "out of memory": false,
+          "pthread_create": false,
+          "resource temporarily unavailable": false
+        },
+        "start": 1791685953.1661987,
+        "timed_out": false
+      },
+      "cleanup_flags": {
+        "forced_server_kill": false,
+        "http500": false,
+        "invalid_state": false
+      },
+      "complete": true,
+      "events": [
+        {
+          "event": "launched",
+          "pid": 17,
+          "time": 1791685948.1612475
+        },
+        {
+          "event": "exit_observed",
+          "pid": 17,
+          "returncode": 0,
+          "time": 1791685995.387791
+        }
+      ],
+      "exits_during_candidate": [],
+      "index": 10
+    },
+    {
+      "attempted": true,
+      "call": {
+        "call": 1,
+        "end": 1791685992.2754872,
+        "error_type": null,
+        "exit_code": 0,
+        "flags": {
+          "can't start new thread": false,
+          "out of memory": false,
+          "pthread_create": false,
+          "resource temporarily unavailable": false
+        },
+        "start": 1791685953.1377304,
+        "timed_out": false
+      },
+      "cleanup_flags": {
+        "forced_server_kill": false,
+        "http500": false,
+        "invalid_state": false
+      },
+      "complete": true,
+      "events": [
+        {
+          "event": "launched",
+          "pid": 17,
+          "time": 1791685948.3932607
+        },
+        {
+          "event": "exit_observed",
+          "pid": 17,
+          "returncode": 0,
+          "time": 1791685996.1460865
+        }
+      ],
+      "exits_during_candidate": [],
+      "index": 11
+    },
+    {
+      "attempted": true,
+      "call": {
+        "call": 1,
+        "end": 1791685992.0916052,
+        "error_type": null,
+        "exit_code": 0,
+        "flags": {
+          "can't start new thread": false,
+          "out of memory": false,
+          "pthread_create": false,
+          "resource temporarily unavailable": false
+        },
+        "start": 1791685953.273314,
+        "timed_out": false
+      },
+      "cleanup_flags": {
+        "forced_server_kill": false,
+        "http500": false,
+        "invalid_state": false
+      },
+      "complete": true,
+      "events": [
+        {
+          "event": "launched",
+          "pid": 17,
+          "time": 1791685948.3481195
+        },
+        {
+          "event": "exit_observed",
+          "pid": 17,
+          "returncode": 0,
+          "time": 1791685995.89809
+        }
+      ],
+      "exits_during_candidate": [],
+      "index": 12
+    },
+    {
+      "attempted": true,
+      "call": {
+        "call": 1,
+        "end": 1791685992.025273,
+        "error_type": null,
+        "exit_code": 0,
+        "flags": {
+          "can't start new thread": false,
+          "out of memory": false,
+          "pthread_create": false,
+          "resource temporarily unavailable": false
+        },
+        "start": 1791685953.152911,
+        "timed_out": false
+      },
+      "cleanup_flags": {
+        "forced_server_kill": false,
+        "http500": false,
+        "invalid_state": false
+      },
+      "complete": true,
+      "events": [
+        {
+          "event": "launched",
+          "pid": 17,
+          "time": 1791685948.5005984
+        },
+        {
+          "event": "exit_observed",
+          "pid": 17,
+          "returncode": 0,
+          "time": 1791685995.914028
+        }
+      ],
+      "exits_during_candidate": [],
+      "index": 13
+    }
+  ],
+  "lifecycle_coverage": true,
+  "manifest_ok": true,
+  "no_cleanup_race_flags": true,
+  "nproc_soft_values": [
+    1024
+  ],
+  "plan_sha256": "d96fba91f303325714b8a7320571776cbec66a87ccaa45f12d01afd5a2b418a5",
+  "planned": 14,
+  "resource_error_flags": {
+    "can't start new thread": 0,
+    "out of memory": 0,
+    "pthread_create": 0,
+    "resource temporarily unavailable": 0
+  },
+  "scheduler_state": "COMPLETED",
+  "successful_execute_warning_coverage": true,
+  "uid_threads_peak": 358,
+  "unstarted": 0
+}

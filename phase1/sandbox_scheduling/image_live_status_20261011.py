@@ -36,7 +36,7 @@ def status():
     c=read(R/'closed.json')
     if c:out['closure']=c
     # Only predefined classes/flags, never arbitrary private error lines.
-    flags={s:0 for s in ('Traceback','ValueError','AssertionError','TypeError','ModuleNotFoundError','PermissionError',
+    flags={s:0 for s in ('Traceback','ValueError','RuntimeError','AssertionError','TypeError','ModuleNotFoundError','PermissionError',
                          'resource temporarily unavailable','pthread_create','CUDA out of memory','InvalidStateError','TimeoutError')}
     frames=[]
     for p in list(R.glob('allocation-*.err'))+list(R.glob('block-*/lane-*.private.log'))+list(R.glob('episode-*/worker.private.log')):
@@ -45,7 +45,12 @@ def status():
         for file,line,func in re.findall(r'File "([^"\n]+)", line (\d+), in ([A-Za-z_][A-Za-z_0-9]*)',text):
             frames.append(dict(log=str(p.relative_to(R)),file=Path(file).name,line=int(line),function=func))
     out['error_flag_counts']=flags
-    out['exception_frames']=frames
+    unique={}
+    for f in frames:
+        key=(f['file'],f['line'],f['function'])
+        if key not in unique:unique[key]=dict(file=key[0],line=key[1],function=key[2],occurrences=0)
+        unique[key]['occurrences']+=1
+    out['exception_frames']=list(unique.values())
     out['service_phases']=[]
     for p in sorted(R.glob('block-*/service.private.log')):
         text=p.read_text(errors='replace')
@@ -55,6 +60,6 @@ def status():
     print(json.dumps(out,sort_keys=True))
 if __name__=='__main__':
     if len(sys.argv)>1:
-        assert sys.argv[1]=='v2'
-        R=R.with_name('scheduling-image-live-2plus4-20261011-v2')
+        assert sys.argv[1] in ('v2','v3')
+        R=R.with_name('scheduling-image-live-2plus4-20261011-'+sys.argv[1])
     status()

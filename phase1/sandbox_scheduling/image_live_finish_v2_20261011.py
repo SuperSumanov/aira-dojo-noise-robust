@@ -5,7 +5,11 @@ from lifecycle_pilot import read,write,sha
 
 R=Path('/research/d7/spc/yzyang4/scheduling-image-live-2plus4-20261011-v2')
 
-def run(job,pin):
+def run(job,pin,version='v2'):
+    global R
+    assert version in ('v2','v3')
+    R=R.with_name('scheduling-image-live-2plus4-20261011-'+version)
+    prior=2634 if version=='v2' else 6216
     assert re.fullmatch(r'\d+',job) and re.fullmatch(r'[a-f0-9]{64}',pin)
     assert sha(R/'plan.json')==pin and read(R/'launch.json')['job']==job
     write(R/'completion-claim.json',dict(job=job,pid=os.getpid(),plan_sha256=pin,start=time.time(),max_wait_seconds=28800))
@@ -15,7 +19,7 @@ def run(job,pin):
         rows=[s.split('|') for s in raw.splitlines() if s.split('|')[0]==job];assert len(rows)<=1
         if rows and rows[0][1].split()[0] in ('COMPLETED','FAILED','CANCELLED','TIMEOUT','OUT_OF_MEMORY','NODE_FAIL','PREEMPTED'):
             row=rows[0];tres=dict(x.split('=',1) for x in row[3].split(',') if '=' in x);assert int(tres['gres/gpu'])==6
-            cost=6*int(row[2]);write(R/'accounting-v1.json',dict(job=job,state=row[1],seconds=int(row[2]),gpus=6,gpu_seconds=cost,combined_gpu_seconds=cost+2634))
+            cost=6*int(row[2]);write(R/'accounting-v1.json',dict(job=job,state=row[1],seconds=int(row[2]),gpus=6,gpu_seconds=cost,combined_gpu_seconds=cost+prior))
             break
         time.sleep(30)
     else:raise TimeoutError('bounded completion expired')
@@ -37,7 +41,7 @@ def run(job,pin):
                 and worker[0]|worker[1]==cores(pair[0]['parent_topology'])==cores(pair[1]['parent_topology']))
     summary=read(R/'readout-v1/summary.json')
     write(R/'completion-closed.json',dict(job=job,plan_sha256=pin,readout_sha256=sha(R/'readout-v1/summary.json'),
-        cpu_pairs_checked=16,cpu_pairs_passed=sum(checks),scheduler_gpu_seconds=cost,combined_gpu_seconds=cost+2634,
+        cpu_pairs_checked=16,cpu_pairs_passed=sum(checks),scheduler_gpu_seconds=cost,combined_gpu_seconds=cost+prior,
         exploratory_go=summary['exploratory_go'] and all(checks),no_new_job=True))
 
 if __name__=='__main__':

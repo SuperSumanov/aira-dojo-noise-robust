@@ -1,5 +1,5 @@
 # 当前短交接
-更新：2026-10-11香港14:06。旧排障长交接已保存在Git4279975d；这里只保留当前事实，未复查的状态写最后观察。
+更新：2026-10-11香港14:16。旧排障长交接已保存在Git4279975d；这里只保留当前事实，未复查的状态写最后观察。
 恢复：fetch → CURRENT_DIRECTION → ROUTE_DECISIONS → 本文件；不得回到旧8月路线。
 
 ## 最新用户裁决与当前实验
@@ -14,8 +14,9 @@
 - 本轮路径=/research/d7/spc/yzyang4/scheduling-image-live-2plus4-20261011-v1。
 - 17587已FAILED闭合：八worker在搜索前退出，0/32搜索、0候选；服务正常。原入口错误要求4逻辑线程，但lane回执实际4物理核/8SMT线程；不是CUDA或跨节点故障。439秒×6=2634GPU秒，原32分母与失败保留。原planSHAb44f6002b5da35d953a0ae1ead7b88d7776428cf7e775a26475fcce545837e78。
 - 独立v2已完成原32配置/16对配平及14项CPU测试；原seed/2400秒池/任务/模型/评分不变，仅按物理核分成每worker两核、CUDA初始化前绑核。新cap9720秒×6，合并旧失败60954GPU秒=16.93166666666667GPUh。
-- 17590已于香港14:05:04在gpu3 RUNNING，六GPU/24物理核；14:06最后观察模型加载中、尚无搜索轨迹。预计四池约16:45完成、allocation最迟16:47。SSH回传中断但launch和sacct已确认，严禁重复submit。
-- 一次性结束复算PID3949562，claim已确认；只等待17590，最长8h，完成后复算开发分/全32分母/物理核隔离/整池成本，不提交或重跑实验。证据completion-claim.json；状态读取stage/image_live_status_20261011.py v2。
+- 17590在香港14:05:04开跑，八worker越过CPU入口；八预览因旧native CUDA adapter要求mask='0'、而当前传已核UUID失败，0generation/0候选。14:15已主动取消余池，不能称有质量结果；原controller没有最终closure，completion-incomplete已记录。
+- 17590 scheduler596秒/3576GPU秒；最后batch到14:15:01，保守597×6=3582GPU秒。连17587合计6216GPU秒。原作业/原件不重开。
+- 独立v3准备：只兼容已核单GPU UUID并保留数量/PCI/设备节点/期望UUID/namespace检查；加生成前入口失败即终止后池。仍32原seed×1500s，两个臂共同池预留2400→2200秒，总cap9000秒×6；连旧失败60216GPU秒，仍≤17GPUh。尚未提交，不称开跑。
 - v2源码b2f82aec6246336d095a7b7b088e3293761749e6已push/ls-remote一致，planSHAdf7b44e3a89f5c6fd110424aeffd5ea7ad569cafa8a139ea667c1083614ab6e8；路径同v1前缀改v2。准备时重复创建配置的CPU失败另存v2-prepare-incomplete-1，无GPU使用。
 - 32配置/16对配平及原生搜索实例化通过；九项CPU测试通过，另1项Adam/AdamW/SGD被动观察器参数字节一致检查通过。无GPU准备原planSHA06a81639237cedc1fde6d550559cb9a1f9578254a4931f5f091e59e46aee768a保存在prelaunch-preparation，数据/config/seed未改。
 - 原提交前完整数据/模型/两镜像校验通过；v2只做入口CPU回归和源/输入确认，不另开GPU容量或模型验收。
@@ -40,7 +41,7 @@
 
 ## 工作区、权限与现场
 - 活跃checkout=C:/Research/New/my_project/MLEvolve/_codex_tmp/publication-feedback-20261001，detached HEAD有意；旧aira-dojo-codex-20260813用户dirty不动。
-- 最近公开head b2f82aec6246336d095a7b7b088e3293761749e6；学长f7ccd79323112b10ccc82d8e9ec9d6cf089df607，未见更新。只推自己的myfork/phase1-value-critic，FF、不force。
+- 最近公开head 013031eeb296e6ccb67ebf06963c33680ed768a4；学长f7ccd79323112b10ccc82d8e9ec9d6cf089df607，未见更新。只推自己的myfork/phase1-value-critic，FF、不force。
 - 用户未跟踪报告phase1/reports/给学长_MLE沙箱资源调度进展_20261009.md保留、不stage。
 - 17587已闭合；v2只申请gpu3六卡24物理核。旧Held12535未动；排除projgpu7/8/33、gpu36/38；旧MLE镜像不投projgpu39。
 - SSH linux5；PY=/research/d7/spc/yzyang4/venvs/aira/bin/python；SLURM_CONF=/opt1/slurm/gpu-slurm.conf。

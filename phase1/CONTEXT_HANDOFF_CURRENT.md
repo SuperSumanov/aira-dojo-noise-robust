@@ -1,8 +1,12 @@
 # 当前短交接
-更新：2026-10-12香港04:26。压缩前完整交接保存在Git dcb0975864d53307c57d07c214f1a313ba6b27f5。
+更新：2026-10-12香港04:44。压缩前完整交接保存在Git dcb0975864d53307c57d07c214f1a313ba6b27f5。
 恢复：fetch → CURRENT_DIRECTION → ROUTE_DECISIONS → 本文件；未复查的动态状态只写最后观察。
 
 ## 最新用户请求与本轮完成
+- 新请求是三小时内完成生成前联合决策真实同预算效果验证，不能再只筛轨迹。已固定48续跑/6池，2任务×4seed×3臂×2重复，ABCCBA，1020s/run/1200s池，2+4GPU，cap8400s/14GPUh（含失败/启动）。不使用付费API/不更新底座；每任务生成2/每卡执行1三臂相同。
+- 活跃源码939e6fd242a31472cf170c69c4ad79221558e385；新entry generation_joint_trial_20261012.py，policy joint_generation_policy_20261012.py，15纯CPU单测通过。远端stage=/research/d7/spc/yzyang4/gen-joint-stage-20261012.NvlXeX；目标root=/research/d7/spc/yzyang4/scheduling-generation-joint-20261012-v2。04:44仍CPU prepare/preflight中，尚无GPU提交；会话session62062。
+- v1 CPU前检失败于search_policy实际返回path却断言node，未提交GPU；完整v1原件保留，不重跑该prepare。v2修断言，并真实stub一次原生_improve许可接线；三臂共同去掉已知LLM is_bug误否决，外部评分/exit/有效提交门不变。
+- 起点固定17592按run/step序首个accepted且外部ground节点，原始程序与输出不导出。新终点含起点，主分析看两任务/两个池重复joint相对两个参照的终分差；历史起点构建是共同已有资产，不计作在线节省/从零E2E。仅小型明确成本/资源baseline适配，不能冒称完整论文复现或已确认创新。
 - 用户允许沿新假说做小尝试；当前仍R14，不自动恢复旧critic/HCE/多保真/Probe/TD/score-channel/K≥1或自然父程序修复。
 - 本轮固定17592/17656/17670的80已分配开发run，三个批次分开做CPU只读机会筛查，没有新GPU/API/训练/automation，也未重新评分或改旧实验。
 - 40条lane队列均独立复核：候选之间需要取舍的稀缺准入选择点均0；仅17592有2次preview/preview竞争。原生journal Improve为1/0/0，accepted Improve均0；未完成调用可能不进journal，不推所有改进均无效。

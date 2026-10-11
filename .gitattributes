@@ -1013,3 +1013,4 @@ phase1/sandbox_scheduling/image_cuda_contract_20261011.py -text diff whitespace=
 phase1/sandbox_scheduling/test_image_cuda_contract_20261011.py -text diff whitespace=cr-at-eol
 phase1/sandbox_scheduling/image_live_identity_repair_20261011.py -text diff whitespace=cr-at-eol
 phase1/sandbox_scheduling/image_live_v3_preflight/*.json -text diff whitespace=cr-at-eol
+phase1/sandbox_scheduling/image_live_funnel_20261011.py -text diff whitespace=cr-at-eol

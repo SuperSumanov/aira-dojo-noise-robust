@@ -56,7 +56,10 @@ def status():
         text=p.read_text(errors='replace')
         markers=('Loading safetensors checkpoint shards','Loading model weights','Model loading took',
                  'Graph capturing','Capturing CUDA graphs','Application startup complete','Traceback','ValueError','RuntimeError')
-        out['service_phases'].append(dict(block=p.parent.name,bytes=p.stat().st_size,markers={s:text.count(s) for s in markers}))
+        running=[int(v) for v in re.findall(r'Running:\s*(\d+)\s*reqs',text)]
+        waiting=[int(v) for v in re.findall(r'Waiting:\s*(\d+)\s*reqs',text)]
+        out['service_phases'].append(dict(block=p.parent.name,bytes=p.stat().st_size,markers={s:text.count(s) for s in markers},
+            sampled_running_peak=max(running,default=None),sampled_waiting_peak=max(waiting,default=None)))
     print(json.dumps(out,sort_keys=True))
 if __name__=='__main__':
     if len(sys.argv)>1:

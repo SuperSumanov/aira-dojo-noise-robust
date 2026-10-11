@@ -1,10 +1,10 @@
 # 当前短交接
-更新：2026-10-11香港08:04，本轮排障进行中；六小时窗口至12:37:30。10/10旧窗口已闭合。旧全文保留于Git 3c04f3049fc2004b1ff3ecbd1728ec49ce6b9916；方向/路线旧全文另存于Git96e129c8，不改实验原件。
+更新：2026-10-11香港08:37，本轮排障进行中；六小时窗口至12:37:30。10/10旧窗口已闭合。旧全文保留于Git 3c04f3049fc2004b1ff3ecbd1728ec49ce6b9916；方向/路线旧全文另存于Git96e129c8，不改实验原件。
 恢复：fetch → CURRENT_DIRECTION → ROUTE_DECISIONS → 本文件；旧8月心跳与旧排队状态不作当前方向/许可。
 
 ## 10/11新增：先排障帮助学长现有方向，调度保留探索
 - 用户转述学长建议两卡服务六卡MLE、medium，优先既有policy工作、部分投入资源调度，并要查六并发resource unavailable；随后明确去mle Google Drive找。全文要点入ADVISOR_DIRECTIVES X；不是我方底座训练许可或已测容量。
-- 本人已快进发布并核验0a7307812c6db059f22639746fe73e70fde01bd1（readiness修复、独立审计及CSV字节修正）；07:44 fetch学长仍f7ccd79323112b10ccc82d8e9ec9d6cf089df607，无新outcome。未改学长分支；源码/25未发布blob凭据形状0，MSYS hook警告不是hook通过。
+- 本人已快进发布并核验6606350921536098bb9bcc3a68f23bb18ae2f240（readiness修复、独立审计、缓存资格及失败保留）；08:18 fetch学长仍f7ccd79323112b10ccc82d8e9ec9d6cf089df607。未改学长分支；最新18文件/18未发布blob凭据形状0、字节差0；此前MSYS hook警告不是hook通过。
 - 定位mle/comparison/1009八包；有界远端内存扫描Spooky/Dog日志，两个精确member独立重读SHA一致，均有OpenBLAS pthread_create失败且RLIMIT_NPROC soft=1024；请求线程数分别3/12。证据sandbox_scheduling/resource_unavailable_20261011/evidence.json，禁止把提示当已证上限命中或六并发阈值。
 - 缺故障时同UID总线程数、cgroup pids/memory events与清理后残留；下一步同作业/容器采集后单旋钮验证，不无限提limit、不清别人进程。当前SSH登录soft/hard=1024/1024仅作非现场参照。首Dog扫描ValueError无细节、后续收窄有证据；Spooky跳过8大日志、Dog跳过5且首资源报错即停，不称完整普查。
 - 新窗口用户授权：10/11香港06:37:30–12:37:30，会话内先解决六并发故障再推进实验；不靠新automation代替。已独立复核两份日志均为Singularity链，首次OpenBLAS故障邻近Jupyter导入，Spooky未见DataLoader。计数有重放，不当独立事件。
@@ -16,7 +16,10 @@
 - 保留v1调度预检失败（18CPU/2GPU须highcpucount）；v2/17545误用Slurm19不支持的--exact在服务前失败，0内核/0请求、实际10GPU秒。v3仅去该参数；本窗已闭合成本17541=132、17543=102、17545=10、17547=1078 GPU秒，所有失败保留。
 - 条件八卡17550已闭合失败并独立核验：/research/d7/spc/yzyang4/resource-six-gpu-capacity-20261011-v1，plan SHAa2ae3c0ad57ecd7822f140e8c2adc7ab09fc21033500eb971da0c94983b77243。14计划/1尝试/0完成/13未开始；串行首程序6.5676928190514445秒报错，1/1请求成功，实际4120GPU秒；UID峰334、无资源报错标记、末3进程/3线程/0zombie。尚未进入六并发，不能称容量失败；完整门false，原件不动。原term_out漏存，不能事后断言精确异常。
 - 定位入口漏建私有input_cache；原任务镜像零GPU复现FileExistsError，补空私有目录通过。不改源程序/镜像/输入/seed/450s预算，仅私有缓存及远端错误保存。独立17552已闭合2/2，150/588 CUDA步、公开query输出64/278640行，实际496GPU秒；独立资格审计gate=true。plan SHA09fb0ca0488bf29106f0aa71c8f5dbd970debce8d24c60a7ce51e9749d6aa0c6，root=/research/d7/spc/yzyang4/resource-cache-qualification-20261011-v1。不是六并发/新seed/质量确认。
-- 条件八卡新17554于08:03提交，root=/research/d7/spc/yzyang4/resource-six-gpu-capacity-20261011-v2，plan SHA024b608742e3934a8e716bd4c867243cf1f76be9c4439e25f19b9e54930f2120；14执行/14本地请求、gpu1两服务卡＋六执行卡、32物理CPU、70min/33600GPU秒上限。原14分母、450s候选、容差1e-5、首次失败停止不变；补私有空缓存且资格已过，不重开17550。只在完成后用独立verify_six_gpu_capacity.py核验，当前不能称已通过。
+- 17554已闭合并由其冻结原auditor独立核：root=/research/d7/spc/yzyang4/resource-six-gpu-capacity-20261011-v2，plan SHA024b608742e3934a8e716bd4c867243cf1f76be9c4439e25f19b9e54930f2120；14计划/1尝试/0完成/13未开始，1请求完成，首CNN固定450s超时（调用453.42841303208843s），尚未进入六并发；实际7720GPU秒，UID峰344，无资源报错类别，末3进程/3线程/0zombie。完整门false，不延时/换样本改原门。gpu-capacity-v2-failed-audit.json已保存；本地auditor新增诊断字段未用于此原审核。
+- 生命周期17555已闭合：resource-persistent-hosts-20261011-v1，plan SHA8435e7595bc316fc4ee08b8e48a710adc5b5bcc5529dcad1bb88336f607d62cb；192计划/6尝试/5成功/186未开始，首轮第六内核120s readiness超时、无算术执行/资源错误，实际132GPU秒；6宿主首轮均回到3线程/5FD。不能推32轮无泄漏。独立persistent-hosts-v1-failed-audit.json保留。当前已闭合成本总额以sacct重新计算，不复用失败预算。
+- 查重：bounded_readiness重复info查询已有17322/17326的47/48，不能当新修复；旧gateway观察器被Jupyter CLI exec替换、计数48份均缺失，旧--help已验证直接入口。新17556已闭合：resource-kernel-protocol-20261011-v1，plan SHAdab97495194cf57248451b24c806113456a91dd5d6d5ddb62fafd20c924183ac；48/48 CPU算术通过、48/48网关计数和实际forwarding均存在，UID线程峰255、结束5进程/8线程/0zombie，162GPU秒。原单次info查询、6宿主×8轮；观察器确实生效，但未复现缺失回复，不称因果修复/长期零泄漏。独立kernel-protocol-v1-audit.json已核远近SHA一致。
+- 17557于08:33提交并已分配gpu1：resource-unet-six-capacity-20261011-v2，plan SHA0e41eb5b34d3918357b60999ddff2ac929a0498c7aedbd9b4034fefb76943ff1；单一合格UNet源14次原seed、1/1/6/6，两服务＋六执行GPU/32物理CPU、40min≤19200GPU秒，无API。原588步/450s/输出容差1e-5，独立核全部91输出对；刻意收窄负载，不能替换17554双家族失败/称六任务或真实agent质量。未提交v1因批处理外层4170/4140字段断言失败保留，0GPU；v2显式batch且实际入口预检通过。当前只称启动，真实完成看回执。
 - 无GPU生产入口导入对照：同8逻辑CPU亲和，数学库线程帽3/未设/未设/3，实际线程7/25/25/7，均成功；网络/dotenv禁用、未实例化solver或运行任务。证据import-thread-profile.json；可解释不同宿主配置的线程余量，不是历史EAGAIN根因或速度收益。当前生产src/dojo未检出显式这些线程帽；外部launch/image环境仍未知。
 - stage=/research/d7/spc/yzyang4/resource-diag-stage-20261011.M5wKjU；无API，不改系统limit/他人进程/学长分支，原日志不落本地。额度耗尽后按用户授权已用一张现有重置卡，未购买；本窗不得重复消费。最新现场以本段为准，下方10/10为旧窗口。
 

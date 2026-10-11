@@ -1,0 +1,57 @@
+{
+  "after_uid_counts": {
+    "largest_process_thread_counts": [
+      1,
+      1,
+      1
+    ],
+    "lower_bound": true,
+    "unreadable_or_racing": 0,
+    "visible_processes": 3,
+    "visible_threads": 3,
+    "zombies": 0
+  },
+  "attempted": 1,
+  "available_memory_min_gib": 362.63208770751953,
+  "blocks": [
+    {
+      "block": 0,
+      "gpus": 3,
+      "host_optimizer_envelope_overlap_peak": 0,
+      "physical_cores": 12
+    }
+  ],
+  "candidate_started": 1,
+  "closed_sha256": "34d3faf18d4bf8b54254290bb8188415b83fccc0b39f735d3be75e96c0e8c22e",
+  "comparisons": [],
+  "complete": 0,
+  "cuda_gradient_receipts": 0,
+  "full_capacity_gate": false,
+  "gpu_seconds": 7720,
+  "gpu_seconds_cap": 33600,
+  "host_uid_threads_are_visible_lower_bounds": true,
+  "host_uid_threads_peak": 344,
+  "job": "17554",
+  "manifest_ok": true,
+  "nproc_soft_values": [
+    1024
+  ],
+  "numerical_tolerance": 1e-05,
+  "output_shapes": [],
+  "plan_sha256": "024b608742e3934a8e716bd4c867243cf1f76be9c4439e25f19b9e54930f2120",
+  "planned": 14,
+  "pressure_rows": 946,
+  "private_predictions_exported": false,
+  "qualification": "Two fixed public-data source families, seed42 restarts; capacity acceptance, not production agent/search quality or causal scheduling speedup.",
+  "requests_attempted": 1,
+  "requests_complete": 1,
+  "resource_error_marker_counts": {
+    "can't start new thread": 0,
+    "out of memory": 0,
+    "pthread_create": 0,
+    "resource temporarily unavailable": 0
+  },
+  "scheduler_state": "FAILED",
+  "service_stopped": true,
+  "unstarted": 13
+}

@@ -1,0 +1,144 @@
+{
+  "after_round_uid_counts": [
+    {
+      "largest_process_thread_counts": [
+        4,
+        3,
+        3,
+        3,
+        3,
+        3,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "lower_bound": true,
+      "round": 0,
+      "unreadable_or_racing": 0,
+      "visible_processes": 11,
+      "visible_threads": 24,
+      "zombies": 1
+    }
+  ],
+  "attempted": 6,
+  "closed_sha256": "bcf2b74073487c80093a3117021cce5f0d4106a77a01049632e8cb46b964cf70",
+  "complete": 5,
+  "complete_rounds": 1,
+  "controller_after_uid": {
+    "largest_process_thread_counts": [
+      4,
+      1,
+      1,
+      1,
+      1
+    ],
+    "lower_bound": true,
+    "unreadable_or_racing": 0,
+    "visible_processes": 5,
+    "visible_threads": 8,
+    "zombies": 0
+  },
+  "error_type": "RuntimeError",
+  "full_lifecycle_gate": false,
+  "gpu_seconds": 132,
+  "gpu_seconds_cap": 1800,
+  "hosts": [
+    {
+      "baseline_fds": 5,
+      "baseline_threads": 3,
+      "fds": [
+        5
+      ],
+      "observed_rounds": 1,
+      "pid": 3430453,
+      "slot": 0,
+      "threads": [
+        3
+      ]
+    },
+    {
+      "baseline_fds": 5,
+      "baseline_threads": 3,
+      "fds": [
+        5
+      ],
+      "observed_rounds": 1,
+      "pid": 3430454,
+      "slot": 1,
+      "threads": [
+        3
+      ]
+    },
+    {
+      "baseline_fds": 5,
+      "baseline_threads": 3,
+      "fds": [
+        5
+      ],
+      "observed_rounds": 1,
+      "pid": 3430455,
+      "slot": 2,
+      "threads": [
+        3
+      ]
+    },
+    {
+      "baseline_fds": 5,
+      "baseline_threads": 3,
+      "fds": [
+        5
+      ],
+      "observed_rounds": 1,
+      "pid": 3430456,
+      "slot": 3,
+      "threads": [
+        3
+      ]
+    },
+    {
+      "baseline_fds": 5,
+      "baseline_threads": 3,
+      "fds": [
+        5
+      ],
+      "observed_rounds": 1,
+      "pid": 3430457,
+      "slot": 4,
+      "threads": [
+        3
+      ]
+    },
+    {
+      "baseline_fds": 5,
+      "baseline_threads": 3,
+      "fds": [
+        5
+      ],
+      "observed_rounds": 1,
+      "pid": 3430458,
+      "slot": 5,
+      "threads": [
+        3
+      ]
+    }
+  ],
+  "job": "17555",
+  "limits": [
+    "CPU-only fixed arithmetic, no production DataLoader/model pressure",
+    "round31 group counts may include hosts already exiting",
+    "visible UID counts are lower bounds; no universal no-leak or historical-cause claim",
+    "Slurm process-cgroup cleanup must be checked independently"
+  ],
+  "plan_sha256": "8435e7595bc316fc4ee08b8e48a710adc5b5bcc5529dcad1bb88336f607d62cb",
+  "planned": 192,
+  "resource_error_markers": {
+    "can't start new thread": 0,
+    "out of memory": 0,
+    "pthread_create": 0,
+    "resource temporarily unavailable": 0
+  },
+  "scheduler_state": "FAILED",
+  "unstarted": 186
+}

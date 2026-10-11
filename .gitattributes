@@ -925,3 +925,12 @@ phase1/sandbox_scheduling/capacity_cache_repair_20261011.py -text diff whitespac
 phase1/sandbox_scheduling/test_capacity_cache_repair.py -text diff whitespace=cr-at-eol
 phase1/sandbox_scheduling/verify_cache_qualification.py -text diff whitespace=cr-at-eol
 phase1/sandbox_scheduling/import_thread_profile.py -text diff whitespace=cr-at-eol
+phase1/sandbox_scheduling/persistent_kernel_diag_20261011.py -text diff whitespace=cr-at-eol
+phase1/sandbox_scheduling/test_persistent_kernel_diag.py -text diff whitespace=cr-at-eol
+phase1/sandbox_scheduling/kernel_protocol_trace_20261011.py -text diff whitespace=cr-at-eol
+phase1/sandbox_scheduling/test_kernel_protocol_trace.py -text diff whitespace=cr-at-eol
+phase1/sandbox_scheduling/unet_capacity_20261011.py -text diff whitespace=cr-at-eol
+phase1/sandbox_scheduling/test_unet_capacity.py -text diff whitespace=cr-at-eol
+phase1/sandbox_scheduling/verify_unet_capacity.py -text diff whitespace=cr-at-eol
+phase1/sandbox_scheduling/persistent_readout.py -text diff whitespace=cr-at-eol
+phase1/sandbox_scheduling/protocol_readout.py -text diff whitespace=cr-at-eol

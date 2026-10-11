@@ -5,6 +5,7 @@ fixed structural checks and the entire planned denominator, including failures.
 Does not import the experiment driver or change its frozen acceptance criteria.
 """
 import csv
+from collections import Counter
 import hashlib
 import itertools
 import json
@@ -136,9 +137,13 @@ def verify(root, pin, job):
     after=read(root/'allocation-after.json'); counts=after['uid_counts']
     categories=('resource temporarily unavailable','pthread_create',"can't start new thread",'out of memory')
     markers={k:0 for k in categories}
-    for path in [root/'service.private.log']+list(root.glob('episode-*/worker.private.log')):
+    for path in [root/'service.private.log']+list(root.glob('episode-*/worker.private.log'))+list(root.glob('episode-*/execution.private.txt')):
         raw=path.read_text(errors='replace').lower() if path.exists() else ''
         for k in categories: markers[k]+=raw.count(k)
+    task_flags={k:0 for k in categories}
+    for path in root.glob('episode-*/errors.json'):
+        value=read(path)
+        for k in categories:task_flags[k]+=int(value.get(k,False))
     env=dict(os.environ,SLURM_CONF='/opt1/slurm/gpu-slurm.conf')
     raw=subprocess.check_output(['sacct','-j',job,'-X','-n','-P','-o','JobID,State,ElapsedRaw,AllocTRES'],env=env,text=True)
     account=[l.split('|') for l in raw.splitlines() if l.split('|')[0]==job]; assert len(account)==1
@@ -148,12 +153,16 @@ def verify(root, pin, job):
     summary=dict(job=job,plan_sha256=pin,closed_sha256=sha(root/'closed.json'),manifest_ok=manifest_ok,
         planned=14,attempted=close['attempted'],complete=close['complete'],unstarted=14-close['attempted'],
         candidate_started=sum(r['candidate_started'] for r in records),requests_attempted=len(requests),requests_complete=close['requests_complete'],
+        request_finish_reasons=dict(Counter(x.get('finish_reason','error') for x in requests)),
+        request_host_overlap_peak=overlap([(x['start'],x['end']) for x in requests]),
+        request_usage_totals={k:sum((x.get('usage') or {}).get(k,0) for x in requests) for k in ('prompt_tokens','completion_tokens','total_tokens')},
         cuda_gradient_receipts=sum(r['cuda_gradient_receipt'] for r in records),blocks=blocks,output_shapes=shapes,
+        steps_by_program={str(i):sorted({r['gpu_steps'] for r in records if r['program']==i and r['gpu_steps'] is not None}) for i in (0,1)},
         comparisons=comparisons,numerical_tolerance=1e-5,private_predictions_exported=False,
         pressure_rows=len(pressure),host_uid_threads_peak=max(x['uid_counts']['visible_threads'] for x in pressure),
         host_uid_threads_are_visible_lower_bounds=True,nproc_soft_values=sorted({x['limits']['RLIMIT_NPROC'][0] for x in pressure}),
         available_memory_min_gib=min(x['available_memory_kib'] for x in pressure)/1024**2,
-        after_uid_counts=counts,resource_error_marker_counts=markers,scheduler_state=state,
+        after_uid_counts=counts,resource_error_marker_counts=markers,task_resource_error_flags=task_flags,scheduler_state=state,
         gpu_seconds=cost,gpu_seconds_cap=p['gpu_seconds_cap'],service_stopped=end['service_stopped'],
         qualification='Two fixed public-data source families, seed42 restarts; capacity acceptance, not production agent/search quality or causal scheduling speedup.')
     summary['full_capacity_gate']=bool(manifest_ok and state=='COMPLETED' and close['complete']==close['requests_complete']==14

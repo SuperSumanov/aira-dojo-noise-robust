@@ -74,6 +74,21 @@ class ParentTests(unittest.TestCase):
         s=fixture();s['waiting']=[dict(key=str(i),run=i,task='A',role='improve',requested=i) for i in (3,1)]
         for arm in p.ARMS:self.assertEqual(p.select_request(s,'A',arm)[0],'1')
 
+    def test_effective_wait_requires_free_generation_capacity(self):
+        s=fixture();s['archive']['A'].pop('b');s['pending']['old']=dict(task='A',parent='a')
+        s['waiting']=[dict(key='new',run=1,task='A',role='improve',requested=1)]
+        s['active']=[dict(task='A')]
+        self.assertEqual(p.select_request(s,'A','pending_ucb'),('new','a'))
+        self.assertEqual(p.select_request(s,'A','feedback_gate'),(None,None))
+        s['active'].append(dict(task='A'))
+        self.assertEqual(p.select_request(s,'A','pending_ucb'),(None,None))
+
+    def test_independent_audit_rejects_false_wait(self):
+        from feedback_parent_readout_20261012 import audit
+        es=[dict(event='queued',request=dict(key='new',run=1,task='A',role='improve',requested=1)),
+            dict(event='feedback_wait',key='new',reference_parent='not-pending',task='A',active_generation=0)]
+        with self.assertRaises(AssertionError):audit(es,'feedback_gate')
+
     def test_initialize_unique_code_and_isolated_tasks(self):
         warm=dict(code='print(1)',plan='',analysis='',_term_out=[],exec_time=1.,metric=.5,metric_maximize=True)
         with tempfile.TemporaryDirectory() as d:

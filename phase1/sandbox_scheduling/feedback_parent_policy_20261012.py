@@ -108,8 +108,10 @@ def install(row, ep, deadline, warm):
                 deadline.check()
                 with locked(directory) as state:
                     selected, parent = select_request(state, row['task'], row['arm'])
-                    if role == 'improve' and parent_choice(state, row['task'], row['arm']) is None and not withheld:
-                        event('feedback_wait', key=request['key'])
+                    baseline_selected, baseline_parent = select_request(state, row['task'], 'pending_ucb')
+                    if role == 'improve' and parent_choice(state, row['task'], row['arm']) is None and not withheld and baseline_selected == request['key']:
+                        event('feedback_wait', key=request['key'], reference_parent=baseline_parent,
+                              task=row['task'], active_generation=sum(r['task']==row['task'] for r in state['active']))
                         withheld = True
                     if selected == request['key']:
                         alternatives = {a: parent_choice(state, row['task'], a) for a in ARMS} if role == 'improve' else {}

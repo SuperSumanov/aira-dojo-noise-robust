@@ -96,7 +96,7 @@ def native_cpu_test(root,host,install_hooks):
 
 
 def audit(events,arm):
-    pending={};active=set();waiting=set();admitted=0;waits=0;changes=0;used={};completed=set()
+    pending={};active=set();waiting=set();admitted=0;waits=0;changes=0;used={};completed=set();requests={}
     nonwarm=set()
     def independent_choice(s,task,a):
         arc=s['archive'][task];n={k:0 for k in arc}
@@ -111,9 +111,11 @@ def audit(events,arm):
     for e in events:
         k=e.get('key');kind=e['event']
         if kind=='queued':
-            k=e['request']['key'];assert k not in waiting and k not in active;waiting.add(k)
+            k=e['request']['key'];assert k not in waiting and k not in active;waiting.add(k);requests[k]=e['request']
         elif kind=='admitted':
-            assert k in waiting;waiting.remove(k);active.add(k);admitted+=1
+            assert k in waiting
+            assert sum(requests[x]['task']==requests[k]['task'] for x in active)<2
+            waiting.remove(k);active.add(k);admitted+=1
             if e['role']=='improve':
                 tasks=[t for t,arc in e['snapshot']['archive'].items() if e['parent'] in arc]
                 assert len(tasks)==1
@@ -129,7 +131,10 @@ def audit(events,arm):
                 changes+=int(choices['feedback_gate']!=choices['pending_ucb'])
         elif kind=='released':assert k in active;active.remove(k)
         elif kind=='cancelled':assert k in waiting;waiting.remove(k)
-        elif kind=='feedback_wait':waits+=1
+        elif kind=='feedback_wait':
+            assert arm=='feedback_gate' and k in waiting and e['reference_parent'] in pending.values()
+            assert e['active_generation']==sum(requests[x]['task']==e['task'] for x in active)<2
+            waits+=1
         elif kind=='parent_used':assert pending[k]==e['parent'];used[k]=e
         elif kind=='round_complete':
             if k is not None:assert k in pending and k in used;pending.pop(k);completed.add(k)

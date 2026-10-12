@@ -86,6 +86,8 @@
 - **Rehearse**：早在8/23历史0EB已读，本次仅补回短索引，非新发现。执行前同父提案判断、按候选检索既有修改及结果、深层判断退化及收益均已有；训练run数预算不等于全推理/执行成本配平。不能把这些机制重命名为新critic或记忆路线，历史score-channel授权也不因此复活。https://arxiv.org/html/2607.27687v1
 - **优化时钟／预算适配**：AdamW的学习率、衰减、数据量、batch耦合已有理论与实验；Budgeted Training已有按预算调整学习率。10/6固定80公开对的只读检查没有确认训练时钟错配：八对支持设置变化不是八个错误；Quest还包含debug时钟修正，唯一OneCycle父子均在batch内step。暂不为此新开GPU或把已知调度器修正当方法。https://arxiv.org/html/2405.13698v3 / https://www.cs.cmu.edu/~mengtial/proj/budgetnn/ ；证据：results/research_synthesis_20261006/clock_hypothesis_screen.json。
 
+- **PLAyBOOK / delayed-feedback BO**：10/12补核ICML原文主页；已有在途查询避让、异步与同步效率比较及随机延迟反馈下的探索。等待/避重本身不是新方法；当前MLE父程序会随真实反馈产生新可修改对象，但这个问题差异也不等于创新已成立。只做硬预约vs共享greedy/pending-UCB的整体效果验证；阳性仍须排除固定低并发参照。https://proceedings.mlr.press/v97/alvi19a.html / https://proceedings.mlr.press/v162/verma22a.html
+
 旧检索可能不是论文最新版本；正式新颖性判断须重新核原文与实现。查不到词不等于排除了近邻。
 
 ## 新提案准入：不是新的工程审核流水线

@@ -1,7 +1,15 @@
 # 当前短交接：恢复先读本文件，不从旧心跳恢复任务
 
-更新：2026-10-12香港07:37。此前详细交接保存在Git 26110279cd92a2fdf05f80186de82c465f615e69。
+更新：2026-10-12香港08:28。此前详细交接保存在Git 26110279cd92a2fdf05f80186de82c465f615e69。
 恢复顺序：fetch → CURRENT_DIRECTION → ROUTE_DECISIONS → 本文件 → 必要原始证据。
+
+## 当前新窗口：反馈预约，不重开旧联合罚项
+- 用户要求重新思考并在三小时内实测；首次时钟为10/12香港07:58:39，目标约10:58。新批48条、2旧开发任务×4搜索seed×greedy/pending_ucb/feedback_gate×2反序池重复；1020s/run、1180s/pool、6GPU allocation7800s=13GPUh，窗口含失败cap14GPUh。去噪两重复各胜两参照≥0.001、Aerial不退步、真实空闲名额等待后使用新父程序且结构全过才扩大。没有新质量结果。
+- 新处理是同父code仅一个在途Improve，等待首个外部反馈；三臂共同共享已评分archive。不是旧等待惩罚换名，不是完整WU-UCT/CostAda复现。公开source=53de94e3b2bf07b5a46a9c388efe40d7dfdff8d7（push/ls-remote核实），planSHA=e6d41cd7b40598f349e7956d3daaf610d85c5e00170b4d358b9e5cfdaa9910ee。
+- root=/research/d7/spc/yzyang4/scheduling-feedback-parent-20261012-v1；stage=/research/d7/spc/yzyang4/feedback-parent-stage-20261012.Sdes1e。17CPU单测、48配置/32配对、真实native导入/展开/parse/debug/checkpoint通过。前两次CPU前检分别因无Slurm环境和旧独占cpu.json停，零GPU，原回执在cpu-preparation-attempt1/2/3。后一已通过门因提交前观测定义修正重新冻结，策略/预算未改。
+- 08:28最后观察：单次submit已exit0，job17681=RUNNING/gpu3；模型加载中，service-ready=false，搜索0/48开始，不当作效果实验已运行。allocation cap7800秒/13GPUh，约两小时闭合；不重复提交。结构观察器stage/feedback_live_status_20261012.py只报计数，不读中途分数。当前无新automation，用户要求会话内继续。
+- 如有阳性，仍需分离“反馈内容更新”与“并发降低后模型请求变快”的中介；本批识别硬预约整体效应，不能声称已分开两机制。固定单生成许可是后续可能的强消融，不能加入当前矩阵。异步BO/局部惩罚已有近邻，硬预约本身不自动具有原创性。
+- DNS一度失败；用已观察同一IP137.189.88.148 + HostKeyAlias=linux5.cse.cuhk.edu.hk + StrictHostKeyChecking=yes可连；不改SSH配置、不跳过hostkey。所有私密候选/标签留远端，不在中途读取终分。完结读出feedback_parent_readout_20261012.py，原运行/读出均已冻结；评分重算后独立再核CSV/JSON。
 
 ## 本轮已闭合：生成前联合准入，不再提交
 - 用户要求三小时内验证同预算最终质量，不能停留轨迹筛查。17675于07:30:49正式COMPLETED；48/48正常结束、48/48有效终点。6池顺序continuation/cost/joint/joint/cost/continuation，2开发任务×4搜索seed×3臂×2池重复；1020秒/run、1180秒/池、2服务+4执行GPU。

@@ -1,7 +1,13 @@
 # 当前短交接：恢复先读本文件，不从旧心跳恢复任务
 
-更新：2026-10-12香港10:29。主体结果已发布52ec4a0f6834a3895d8cd82bb227c3ee9f10a9d2；揭读前规则4a14831e。
+更新：2026-10-12香港15:49准备新推理开销实验。旧主体结果已发布f422915074a01a5728cd6d92abe0d15e83245987。
 恢复顺序：fetch → CURRENT_DIRECTION → ROUTE_DECISIONS → 本文件 → 必要原始证据。
+
+## 当前新窗口：推理开销时机，尚未提交
+- 用户新三小时始于HK15:29:56，目标约18:30；不是旧17681补跑。medium-code/fast-code/fast-Improve+medium-Debug三臂，共享greedy/Analyze-medium，其余科学旋钮不变。48=2任务×4新seed×3臂×2反序池，1020s/run1180s/pool，6GPU×7800s≤13GPUh含失败；严格最终质量门，速度或有效率不算赢；无训练/API，保护集不碰。
+- 先做闭合轨迹census：17681两参照12次Debug无起点过时机会，未扩该假说；cheap-proposal+reasoned-repair是假说，Ares是直接近邻，不能称新颖性确认。2旧开发任务仅探索，Aerial近满分只作不退控制。
+- stage=/research/d7/spc/yzyang4/feedback-effort-stage-20261012.b8rv0c；拟root=/research/d7/spc/yzyang4/scheduling-feedback-effort-20261012-v1。新source feedback_effort_*_20261012；共同deferred_alarm_transaction只延迟短临界区内Python SIGALRM，评分截止不变。CPU25测试已过，新增质量门单测待联合重跑；真实远端配置/template/native前检仍待完成。未提交/未开跑，禁止重复submit。
+- 最后队列观察HK15:34仅12535 Held（不碰）；fetch本地/public f4229150，学长分支64fd78e9未变。原用户未跟踪报告不得stage。闭合统计临时文件仅remote feedback-parent-stage-20261012.Sdes1e/role-census-v1.json、stale-repair-census-v1.json；不是新收益。
 
 ## 本轮闭合：反馈预约停止扩大，不重开旧联合罚项
 - 用户要求重新思考并在三小时内实测；首次时钟为10/12香港07:58:39，目标约10:58。48条=2旧开发任务×4搜索seed×greedy/pending_ucb/feedback_gate×2反序池重复；1020s/run、1180s/pool、6GPU cap13GPUh，窗口cap14GPUh。原去噪两重复均胜两参照≥0.001/Aerial不退步/机制与结构全过的门未通过；不是新方法阳性，不自动再开GPU。

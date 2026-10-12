@@ -1,0 +1,239 @@
+{
+  "execution_queues": [
+    {
+      "block": 0,
+      "counts": {
+        "active": 0,
+        "finished": 6,
+        "queue": 0
+      },
+      "lane": 0
+    },
+    {
+      "block": 0,
+      "counts": {
+        "active": 0,
+        "finished": 6,
+        "queue": 0
+      },
+      "lane": 1
+    },
+    {
+      "block": 0,
+      "counts": {
+        "active": 0,
+        "finished": 6,
+        "queue": 0
+      },
+      "lane": 2
+    },
+    {
+      "block": 0,
+      "counts": {
+        "active": 0,
+        "finished": 6,
+        "queue": 0
+      },
+      "lane": 3
+    },
+    {
+      "block": 1,
+      "counts": {
+        "active": 0,
+        "finished": 7,
+        "queue": 0
+      },
+      "lane": 0
+    },
+    {
+      "block": 1,
+      "counts": {
+        "active": 0,
+        "finished": 6,
+        "queue": 0
+      },
+      "lane": 1
+    },
+    {
+      "block": 1,
+      "counts": {
+        "active": 0,
+        "finished": 6,
+        "queue": 0
+      },
+      "lane": 2
+    },
+    {
+      "block": 1,
+      "counts": {
+        "active": 0,
+        "finished": 7,
+        "queue": 0
+      },
+      "lane": 3
+    },
+    {
+      "block": 2,
+      "counts": {
+        "active": 0,
+        "finished": 5,
+        "queue": 0
+      },
+      "lane": 0
+    },
+    {
+      "block": 2,
+      "counts": {
+        "active": 0,
+        "finished": 4,
+        "queue": 0
+      },
+      "lane": 1
+    },
+    {
+      "block": 2,
+      "counts": {
+        "active": 0,
+        "finished": 5,
+        "queue": 0
+      },
+      "lane": 2
+    },
+    {
+      "block": 2,
+      "counts": {
+        "active": 0,
+        "finished": 5,
+        "queue": 0
+      },
+      "lane": 3
+    },
+    {
+      "block": 3,
+      "counts": {
+        "active": 0,
+        "finished": 6,
+        "queue": 0
+      },
+      "lane": 0
+    },
+    {
+      "block": 3,
+      "counts": {
+        "active": 0,
+        "finished": 5,
+        "queue": 0
+      },
+      "lane": 1
+    },
+    {
+      "block": 3,
+      "counts": {
+        "active": 0,
+        "finished": 4,
+        "queue": 0
+      },
+      "lane": 2
+    },
+    {
+      "block": 3,
+      "counts": {
+        "active": 0,
+        "finished": 4,
+        "queue": 0
+      },
+      "lane": 3
+    },
+    {
+      "block": 4,
+      "counts": {
+        "active": 0,
+        "finished": 6,
+        "queue": 0
+      },
+      "lane": 0
+    },
+    {
+      "block": 4,
+      "counts": {
+        "active": 0,
+        "finished": 7,
+        "queue": 1
+      },
+      "lane": 1
+    },
+    {
+      "block": 4,
+      "counts": {
+        "active": 0,
+        "finished": 6,
+        "queue": 0
+      },
+      "lane": 2
+    },
+    {
+      "block": 4,
+      "counts": {
+        "active": 0,
+        "finished": 6,
+        "queue": 0
+      },
+      "lane": 3
+    }
+  ],
+  "frozen_input_files_match": true,
+  "frozen_sources_match": true,
+  "generations": [
+    {
+      "block": 0,
+      "counts": {
+        "active": 0,
+        "pending": 0,
+        "waiting": 0
+      }
+    },
+    {
+      "block": 1,
+      "counts": {
+        "active": 0,
+        "pending": 0,
+        "waiting": 0
+      }
+    },
+    {
+      "block": 2,
+      "counts": {
+        "active": 0,
+        "pending": 0,
+        "waiting": 0
+      }
+    },
+    {
+      "block": 3,
+      "counts": {
+        "active": 0,
+        "pending": 0,
+        "waiting": 0
+      }
+    },
+    {
+      "block": 4,
+      "counts": {
+        "active": 0,
+        "pending": 0,
+        "waiting": 0
+      }
+    }
+  ],
+  "note": "Read-only persisted-state counts; raw requests, candidate identities and contents not exported. Failed pool retained, never admitted as a complete quality comparator.",
+  "plan_sha256": "e6d41cd7b40598f349e7956d3daaf610d85c5e00170b4d358b9e5cfdaa9910ee",
+  "result_hashes": {
+    "identity.json": "45bed7ad8c63f8516f124230b6e9884e6a7a129c26e0911d024ad9bf32dabc3c",
+    "overlap-diagnostic.json": "837f0f96468769a420e1b25e1eb822e02aa759c4bb21356bcaf4f92d1b438f33",
+    "runs.csv": "741c638e92b1cd10a93e9a8be80fc25f0a4842fd67d8dec8afcda2f71d79ead7",
+    "runs.json": "bcef817254e902ab89669859c86794173f548d159d5053fbce1a096e8daddfd3",
+    "summary.json": "9192a25577d5880b33ed3d8813aa26e430b88a19ff4068390bb8ff4677e78503"
+  },
+  "service_gpu_clean": true,
+  "source_commit": "53de94e3b2bf07b5a46a9c388efe40d7dfdff8d7"
+}

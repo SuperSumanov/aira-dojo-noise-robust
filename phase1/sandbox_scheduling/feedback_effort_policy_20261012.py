@@ -24,6 +24,33 @@ def normalize(cfg):
 
 initialize=parent.initialize
 
+def traced_call(original,row,ep,deadline,role,append_event):
+    def begin(self):
+        r=role.get();expected=thinking(row['arm'],r);kw=self.generation_kwargs
+        actual=kw['extra_body']['chat_template_kwargs']['enable_thinking']
+        assert actual is expected and kw['reasoning_effort']==('medium' if expected else 'none')
+        return r,actual,kw['reasoning_effort'],time.monotonic()
+    def end(start,ok,output=None):
+        r,actual,effort,t=start;usage={}
+        if isinstance(output,tuple) and len(output)==2 and isinstance(output[1],dict):
+            raw=output[1].get('usage',{})
+            if isinstance(raw,dict):usage={k:v for k,v in raw.items() if type(v) in (int,float)}
+        append_event(ep/'effort.jsonl',dict(role=r,arm=row['arm'],enable_thinking=actual,
+                     effort=effort,success=ok,seconds=time.monotonic()-t,usage=usage,elapsed=deadline.elapsed()))
+    if inspect.iscoroutinefunction(original):
+        async def invoke(self,*args,**kwargs):
+            start=begin(self);ok=False;output=None
+            try:
+                output=await original(self,*args,**kwargs);ok=True;return output
+            finally:end(start,ok,output)
+    else:
+        def invoke(self,*args,**kwargs):
+            start=begin(self);ok=False;output=None
+            try:
+                output=original(self,*args,**kwargs);ok=True;return output
+            finally:end(start,ok,output)
+    return invoke
+
 def install(row,ep,deadline,warm):
     import live_admission
     live_admission.locked=protect(live_admission.locked)
@@ -42,23 +69,4 @@ def install(row,ep,deadline,warm):
                 finally:role.reset(token)
             return call
         setattr(MCTS,name,factory())
-    original=GenericLLM.__call__
-    if inspect.iscoroutinefunction(original):raise ValueError('unexpected async LLM interface')
-    def invoke(self,*args,**kwargs):
-        r=role.get();expected=thinking(row['arm'],r)
-        kw=self.generation_kwargs
-        actual=kw['extra_body']['chat_template_kwargs']['enable_thinking']
-        assert actual is expected and kw['reasoning_effort']==('medium' if expected else 'none')
-        begin=time.monotonic();ok=False;usage={}
-        try:
-            output=original(self,*args,**kwargs);ok=True
-            # Only numeric usage metadata, never prompt, response or thought text.
-            if isinstance(output,tuple) and len(output)==2 and isinstance(output[1],dict):
-                raw=output[1].get('usage',{})
-                if isinstance(raw,dict):usage={k:v for k,v in raw.items() if type(v) in (int,float)}
-            return output
-        finally:
-            append_event(ep/'effort.jsonl',dict(role=r,arm=row['arm'],enable_thinking=actual,
-                 effort=kw['reasoning_effort'],success=ok,seconds=time.monotonic()-begin,usage=usage,
-                 elapsed=deadline.elapsed()))
-    GenericLLM.__call__=invoke
+    GenericLLM.__call__=traced_call(GenericLLM.__call__,row,ep,deadline,role,append_event)

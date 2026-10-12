@@ -20,8 +20,9 @@ def quality(scores):
 
 def analyze(root,out,gpu_seconds):
     root=Path(root);p=read(root/'plan.json');cl=read(root/'closed.json')
-    assert p['planned']==48 and p['allocation_seconds']==7800 and p['prior_failures']==[]
-    assert 0<gpu_seconds<=46800 and p['run_seconds']==1020 and p['slot_seconds']==1180
+    assert p['planned']==48 and p['allocation_seconds']==7470
+    assert p['prior_failures']==[dict(job='17736',gpu_seconds=1968,started=8,complete=0,model_calls=0)]
+    assert 0<gpu_seconds<=44820 and p['run_seconds']==1020 and p['slot_seconds']==1180
     assert all(sha(root/n)==h for n,h in p['files'].items())
     assert all(sha(root/n)==h for n,h in p['input_files'].items())
     sys.path.insert(0,str(root))
@@ -59,7 +60,8 @@ def analyze(root,out,gpu_seconds):
     if not all(r['complete'] for r in rows):
         result=dict(assigned=48,started=sum(r['started'] for r in rows),complete=sum(r['complete'] for r in rows),
             predeclared_success_gate_met=False,incomplete=True,scores_recomputed=recomputed,gpu_seconds=gpu_seconds,gpu_hours=gpu_seconds/3600,
-            plan_sha256=sha(root/'plan.json'),source_commit=p['source_commit'],no_automatic_expansion=True)
+            plan_sha256=sha(root/'plan.json'),source_commit=p['source_commit'],no_automatic_expansion=True,
+            prior_failure_gpu_seconds=1968,window_gpu_seconds=1968+gpu_seconds,window_gpu_hours=(1968+gpu_seconds)/3600)
         write(out/'summary.json',result);print(json.dumps(result));return
     identities=[];budgets=[];cpu=[];policies=[]
     for b in range(6):
@@ -85,6 +87,7 @@ def analyze(root,out,gpu_seconds):
         scores_recomputed=recomputed,contrasts=contrasts,quality_gate=passed,structural_gate=bool(structure),mechanism_gate=mechanism,
         predeclared_success_gate_met=bool(passed and structure and mechanism),gpu_seconds=gpu_seconds,gpu_hours=gpu_seconds/3600,
         cpu_pairs_passed=sum(cpu),no_automatic_expansion=True,policies=policies,
+        prior_failure_gpu_seconds=1968,window_gpu_seconds=1968+gpu_seconds,window_gpu_hours=(1968+gpu_seconds)/3600,
         by_arm={a:{t:dict(median=statistics.median([r['score'] for r in rows if (r['arm'],r['task'])==(a,t)]),sample_sd=statistics.stdev([r['score'] for r in rows if (r['arm'],r['task'])==(a,t)])) for t in TASKS} for a in ARMS},limitation=p['limitation'])
     write(out/'identity.json',identities);write(out/'summary.json',result);print(json.dumps(result,allow_nan=False))
 if __name__=='__main__':

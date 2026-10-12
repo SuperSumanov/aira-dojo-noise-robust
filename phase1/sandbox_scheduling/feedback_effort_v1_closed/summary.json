@@ -1,0 +1,13 @@
+{
+  "assigned": 48,
+  "complete": 0,
+  "gpu_hours": 0.5466666666666666,
+  "gpu_seconds": 1968,
+  "incomplete": true,
+  "no_automatic_expansion": true,
+  "plan_sha256": "a85d6332621414e7a5fae031bb419e769769b5724ec6cf574677bf211176462a",
+  "predeclared_success_gate_met": false,
+  "scores_recomputed": 0,
+  "source_commit": "3f119700a84d5975acef8bcff9949e188c60aefc",
+  "started": 8
+}

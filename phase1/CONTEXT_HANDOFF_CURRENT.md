@@ -1,12 +1,16 @@
 # 当前短交接：恢复先读本文件，不从旧心跳恢复任务
 
-更新：2026-10-12香港15:49准备新推理开销实验。旧主体结果已发布f422915074a01a5728cd6d92abe0d15e83245987。
+更新：2026-10-12香港16:15，17736入口失败已闭合。独立v2修正准备中，未提交；窗口总上限仍13GPUh。
 恢复顺序：fetch → CURRENT_DIRECTION → ROUTE_DECISIONS → 本文件 → 必要原始证据。
 
-## 当前新窗口：推理开销时机，尚未提交
+## 当前新窗口：推理开销时机，v1闭合/v2准备
+- HK15:49 CPU正式前检完成：48配置/32只模式不同配对、26CPU单测、真实native展开/parse/debug/checkpoint、实际tokenizer双模式前缀区别均过。source=3f119700a84d5975acef8bcff9949e188c60aefc公开核实；planSHA=a85d6332621414e7a5fae031bb419e769769b5724ec6cf574677bf211176462a。提交前查到CoT-retry直接先例（ROUTE链接），明确降格文献参照资格实验，不是创新确认；用户已被告知。
+- 17736在16:03:16 FAILED：48分配/8入口启动/0生成调用/0评分/0完成/40未开始。实际328秒×6=1968GPU秒=0.5466666666666666GPUh；8worker及服务GPU清理通过。错误为新记录器拒绝真实async GenericLLM；旧CPU native测试只调用parent.install并mock掉LLM，未测新effort路径，已纠正此前前检覆盖表述。source3f119700原件/原门保留；frozen readout-v1已闭合。
+- 用户最新授权自主判断并做验证。16:09在零模型/评分结果时明确告知独立入口修正的协议修订；不是暗中重开17736或把失败分母删掉。v2仅支持真实async记录器；48科学配置/seed/池预算/成绩门原样，总cap7470秒×6，连v1为46788GPU秒，低于原46800。若再次入口失败，本窗不再重提；无策略/任务/阈值救结果。
+- v2新root=/research/d7/spc/yzyang4/scheduling-feedback-effort-20261012-v2；stage=/research/d7/spc/yzyang4/feedback-effort-v2-stage-20261012.VWYr66。同步/异步24组合及异常传播本地测试已过；实际冻结GenericLLM四角色和MCTS Improve路径CPU前检仍待通过。未提交，先看新root/launch避免重复。
 - 用户新三小时始于HK15:29:56，目标约18:30；不是旧17681补跑。medium-code/fast-code/fast-Improve+medium-Debug三臂，共享greedy/Analyze-medium，其余科学旋钮不变。48=2任务×4新seed×3臂×2反序池，1020s/run1180s/pool，6GPU×7800s≤13GPUh含失败；严格最终质量门，速度或有效率不算赢；无训练/API，保护集不碰。
 - 先做闭合轨迹census：17681两参照12次Debug无起点过时机会，未扩该假说；cheap-proposal+reasoned-repair是假说，Ares是直接近邻，不能称新颖性确认。2旧开发任务仅探索，Aerial近满分只作不退控制。
-- stage=/research/d7/spc/yzyang4/feedback-effort-stage-20261012.b8rv0c；拟root=/research/d7/spc/yzyang4/scheduling-feedback-effort-20261012-v1。新source feedback_effort_*_20261012；共同deferred_alarm_transaction只延迟短临界区内Python SIGALRM，评分截止不变。CPU25测试已过，新增质量门单测待联合重跑；真实远端配置/template/native前检仍待完成。未提交/未开跑，禁止重复submit。
+- v1 stage=/research/d7/spc/yzyang4/feedback-effort-stage-20261012.b8rv0c；root=/research/d7/spc/yzyang4/scheduling-feedback-effort-20261012-v1。此root永不覆盖/重提；独立Node核验文件verify_feedback_effort_20261012.cjs。共同deferred_alarm_transaction只延迟短临界区SIGALRM，评分截止不变；不将该修复称策略收益。
 - 最后队列观察HK15:34仅12535 Held（不碰）；fetch本地/public f4229150，学长分支64fd78e9未变。原用户未跟踪报告不得stage。闭合统计临时文件仅remote feedback-parent-stage-20261012.Sdes1e/role-census-v1.json、stale-repair-census-v1.json；不是新收益。
 
 ## 本轮闭合：反馈预约停止扩大，不重开旧联合罚项

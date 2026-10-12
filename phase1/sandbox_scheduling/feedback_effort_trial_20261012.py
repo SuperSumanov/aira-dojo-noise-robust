@@ -12,12 +12,13 @@ import generation_joint_trial_20261012 as base
 import joint_generation_policy_20261012 as old_policy
 import feedback_effort_policy_20261012 as policy
 from lifecycle_pilot import read,write,sha
-R=DONOR.parent/'scheduling-feedback-effort-20261012-v1'
-CAP=7800
+R=DONOR.parent/'scheduling-feedback-effort-20261012-v2'
+CAP=7470
+FAILED=DONOR.parent/'scheduling-feedback-effort-20261012-v1'
 NAME=Path(__file__).name
 NAMES=(NAME,'feedback_effort_policy_20261012.py','feedback_effort_readout_20261012.py',
        'test_feedback_effort_20261012.py','deferred_alarm_transaction_20261012.py',
-       'test_deferred_alarm_transaction_20261012.py')
+       'test_deferred_alarm_transaction_20261012.py','feedback_effort_native_cpu_20261012.py')
 
 def schedule():
     return [dict(index=8*b+2*lane+k,block=b,lane=lane,slot=2*lane+k,repeat=b//3,
@@ -36,6 +37,9 @@ host=base.host
 
 def prepare(commit):
     assert re.fullmatch('[a-f0-9]{40}',commit)
+    failure=read(FAILED/'readout-v1/summary.json')
+    assert read(FAILED/'launch.json')['job']=='17736' and failure['complete']==0 and failure['scores_recomputed']==0
+    assert failure['gpu_seconds']==1968 and not any(FAILED.glob('episode-*/effort.jsonl'))
     assert sha(DONOR/'plan.json')=='e6d41cd7b40598f349e7956d3daaf610d85c5e00170b4d358b9e5cfdaa9910ee'
     closed=read(DONOR/'partial-readout-v1/summary.json')
     assert closed['predeclared_success_gate_met'] is False
@@ -65,19 +69,21 @@ def prepare(commit):
     with (R/'.service.env').open('x') as f:f.write('PRIMARY_KEY_QWEN3_8_27B='+secrets.token_hex(32)+'\n')
     (R/'.service.env').chmod(0o600)
     sb=R/'run.sbatch';s=sb.read_text().replace(str(DONOR),str(R)).replace('r14-feedback-parent','r14-feedback-effort').replace('feedback_parent_trial_20261012.py controller',NAME+' controller')
+    s=s.replace('#SBATCH --time=02:10:00','#SBATCH --time=02:04:30')
     sb.write_text(s);subprocess.run(['bash','-n',str(sb)],check=True)
+    assert '#SBATCH --time=02:04:30' in s
     for cache in ('vllm','triton'):
         src=DONOR/'block-0/service-cache'/cache
         if src.is_dir():shutil.copytree(src,R/'block-0/service-cache'/cache,symlinks=True)
     p.update(source_commit=commit,source_parent_commit=p['source_commit'],source_donor_plan_sha256=sha(DONOR/'plan.json'),
-        schedule=schedule(),allocation_seconds=CAP,gpu_hours_cap=13,combined_gpu_seconds_cap=CAP*6,
-        prior_failures=[],new_window_gpu_seconds_cap=CAP*6,
+        schedule=schedule(),allocation_seconds=CAP,gpu_hours_cap=CAP*6/3600,combined_gpu_seconds_cap=1968+CAP*6,
+        prior_failures=[dict(job='17736',gpu_seconds=1968,started=8,complete=0,model_calls=0)],new_window_gpu_seconds_cap=46800,
         primary='Best timely externally valid score per task/pool, common supplied warm start included.',
         single_change='Inference effort for code roles: all medium; all nonthinking; nonthinking Improve plus medium Debug. Analyze remains medium. Shared best-parent greedy, FIFO completion priority, prompts, caps, seeds, images and data fixed.',
-        common_repairs='Python SIGALRM deferral across short locked state transactions; no extra score time. Same in all arms. Existing snapshots untouched.',
+        common_repairs='Python SIGALRM deferral across short locked state transactions; no extra score time. v2 only adds native async call support to the common effort recorder. Old17736 and its48 assigned rows remain separately closed; explicit zero-outcome entry amendment announced before new batch. No strategy, seeds, prompts or within-pool budgets change.',
         practical_margin={'denoising-dirty-documents':.001,'aerial-cactus-identification':0.0},
         advance='All48 normal with six equal pools and actual mode receipts. feedback_think must beat both constant modes by denoising RMSE>=.001 in BOTH pool repeats, and not lose aerial AUC; otherwise stop this recipe. More generated/valid candidates alone cannot pass.',
-        limitation='Exploratory two already-observed development tasks, aerial near ceiling only regression control. Conditional refinement, not from-scratch or official test. Two pool repeats, not48 independent samples. Ares covers adaptive reasoning effort; this is not established novelty or SOTA superiority. No claim that faster generation implies improvement.',
+        limitation='Exploratory two already-observed development tasks, aerial near ceiling only regression control. Conditional refinement, not from-scratch or official test. Two pool repeats, not48 independent samples. CoT-retry and Ares are direct prior art; this is known-strategy baseline qualification, not novelty or SOTA superiority. No claim that faster generation implies improvement.',
         stop='No intermediate outcomes. Fixed48; infrastructure failure stops later pools, all failures retained, no replacement or rescue.',
         preflight_history='New effort-timing hypothesis; waiting and stale-repair opportunity schemes rejected. CPU real operator path, mode-only config comparisons, signal interruption tests and tokenizer template distinction required.')
     p['files']={n:sha(R/n) for n in p['files']}
@@ -103,6 +109,8 @@ def preflight():
     subprocess.run([str(base.c.trial.PY),'-B','-m','unittest','test_feedback_effort_20261012','test_deferred_alarm_transaction_20261012','test_feedback_parent_20261012','-v'],cwd=R,check=True)
     from feedback_parent_readout_20261012 import native_cpu_test
     native_cpu_test(R,host,install_hooks)
+    for arm in policy.ARMS:
+        subprocess.run([str(base.c.trial.PY),'-B',str(R/'feedback_effort_native_cpu_20261012.py'),str(R),arm],cwd=R,check=True)
     # Actual shipped tokenizer template, never an inferred low/medium mapping.
     model=DONOR.parent/'local-qwen27b-20260914-zcx1k1dy/model'
     from jinja2.sandbox import ImmutableSandboxedEnvironment
@@ -117,8 +125,9 @@ def preflight():
         values.append(rendered)
     assert values[0]!=values[1] and '</think>' in values[0][-100:] and '<think>' in values[1][-100:]
     write(R/'preflight.json',dict(source_commit=p['source_commit'],plan_sha256=sha(R/'plan.json'),configs=48,mode_only_pairs=32,
-        native_expand_parse_debug_checkpoint=True,signal_tests=4,mode_tests=5,parent_tests=17,tokenizer_modes_distinct=True,
-        tokenizer_config_sha256=sha(model/'tokenizer_config.json'),no_gpu=True,no_model_calls=True,gpu_hours_cap=13))
+        native_expand_parse_debug_checkpoint=True,native_async_recorder_arms=3,signal_tests=4,mode_tests=7,parent_tests=17,tokenizer_modes_distinct=True,
+        tokenizer_config_sha256=sha(model/'tokenizer_config.json'),no_gpu=True,no_model_calls=True,gpu_hours_cap=CAP*6/3600,
+        prior_failed_gpu_seconds=1968,window_gpu_hours_cap=(1968+CAP*6)/3600))
 
 configure()
 if __name__=='__main__':

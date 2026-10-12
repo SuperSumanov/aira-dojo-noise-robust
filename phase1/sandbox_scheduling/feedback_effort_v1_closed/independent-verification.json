@@ -1,0 +1,25 @@
+{
+  "status": "passed",
+  "method": "Independent Node arithmetic and CSV parsing; not an independent rerun of every remote integrity check.",
+  "assigned": 48,
+  "started": 8,
+  "complete": 0,
+  "csv_json_cell_parity": true,
+  "complete_matrix": false,
+  "quality_gate": null,
+  "mechanism_gate": null,
+  "original_gate": false,
+  "source_commit": "3f119700a84d5975acef8bcff9949e188c60aefc",
+  "plan_sha256": "a85d6332621414e7a5fae031bb419e769769b5724ec6cf574677bf211176462a",
+  "gpu_seconds": 1968,
+  "gpu_hours": 0.5466666666666666,
+  "contrasts": null,
+  "by_arm": null,
+  "transfer_sha256": {
+    "summary.json": "d52d216619fe25aa535b09b977a3f6420a80a6f2c51101ef2b6bcc0ab57f694f",
+    "runs.json": "7dbedc6f21aefa4d6eadd2bf15cdd5c6d2651e716d62e0c882173d606336e0eb",
+    "runs.csv": "699bca91153c4f41735afbb4b2d987beb6d476235c7d3c34d21d8bbe36723bef",
+    "effort.json": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+  },
+  "limitation": "Two pool repeats and two already-used development tasks; within-pool searches are dependent. Known CoT-retry-like strategy qualification, not novelty confirmation."
+}

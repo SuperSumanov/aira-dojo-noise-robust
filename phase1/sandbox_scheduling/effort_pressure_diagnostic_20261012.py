@@ -61,7 +61,9 @@ def integrate(streams,start,end):
             if t<start-0.01 or t>end+0.01:raise ValueError('event outside reserved pool')
             points.append((max(start,min(end,t)),i,q,a))
     # Zero-duration simultaneous transitions contribute no artificial overlap.
-    points.sort();state=[(0,0)]*len(streams);last=start;totals=collections.Counter()
+    # Preserve the original order within a stream when timestamps coincide.
+    # Sorting q/a values would invent a different state after a zero-time step.
+    points.sort(key=lambda p:(p[0],p[1]));state=[(0,0)]*len(streams);last=start;totals=collections.Counter()
     def account(dt):
         gq,ga=state[0];eq=sum(v[0] for v in state[1:]);ea=sum(v[1] for v in state[1:])
         totals['generation_queued_seconds']+=gq*dt

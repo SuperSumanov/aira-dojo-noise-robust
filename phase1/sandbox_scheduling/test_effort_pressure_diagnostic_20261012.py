@@ -32,5 +32,11 @@ class PressureTest(unittest.TestCase):
         self.assertEqual(r['generation_full_seconds'],1)
         self.assertEqual(r['neither_seconds'],2)
 
+    def test_same_stream_timestamp_keeps_event_order(self):
+        r=integrate([[(0,1,0),(0,0,1),(2,0,0)]],0,3)
+        self.assertEqual(r['generation_queued_seconds'],0)
+        self.assertEqual(r['generation_held_seconds'],2)
+        self.assertEqual(r['generation_only_seconds'],2)
+
 
 if __name__=='__main__':unittest.main()

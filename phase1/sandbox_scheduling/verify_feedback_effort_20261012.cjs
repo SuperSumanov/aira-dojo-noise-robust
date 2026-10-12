@@ -21,6 +21,12 @@ function csvParse(text) {
 const thinking=(arm,role)=>role==='analyze'||arm==='medium'||(arm==='feedback_think'&&role==='debug');
 const median=vs=>{vs=[...vs].sort((a,b)=>a-b);const n=vs.length;return n%2?vs[(n-1)/2]:(vs[n/2-1]+vs[n/2])/2;};
 const sd=vs=>{const m=vs.reduce((a,b)=>a+b)/vs.length;return Math.sqrt(vs.reduce((a,b)=>a+(b-m)**2,0)/(vs.length-1));};
+function csvCellMatches(value,cell) {
+  // Python and JS may serialize the same numeric value differently (1.0/1,
+  // e-08/e-8). Check exact numeric equality, not spelling; missing stays missing.
+  if(typeof value==='number') return Number.isFinite(value)&&/^[+-]?(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][+-]?\d+)?$/.test(cell)&&Object.is(Number(cell),value);
+  return cell===(value===null?'':typeof value==='boolean'?(value?'True':'False'):String(value));
+}
 function contrast(rows) {
   const scores=new Map();
   for(let b=0;b<6;b++) for(const task of TASKS) {
@@ -44,13 +50,12 @@ function verify(root,expectedSource='3f119700a84d5975acef8bcff9949e188c60aefc',e
   const s=read('summary.json'),rows=read('runs.json'),efforts=read('effort.json');
   const csv=csvParse(fs.readFileSync(path.join(root,'runs.csv'),'utf8')),header=csv.shift();
   assert.equal(rows.length,48);assert.equal(csv.length,48);assert.equal(s.assigned,48);
-  const encode=v=>v===null?'':typeof v==='boolean'?(v?'True':'False'):String(v);
   rows.forEach((r,i)=>{
     assert.equal(r.index,i);assert.equal(r.block,Math.floor(i/8));assert.equal(r.lane,Math.floor(i%8/2));
     assert.equal(r.repeat,Math.floor(r.block/3));assert.equal(r.task,TASKS[i%2]);assert.equal(r.arm,ORDER[r.block]);
     assert.equal(r.seed,213101+100*r.repeat+2*r.lane+i%2);assert.equal(r.run_seconds,1020);assert.equal(r.pool_seconds,1180);
     assert.equal(r.source_commit,expectedSource);
-    assert.equal(csv[i].length,header.length);header.forEach((k,j)=>assert.equal(csv[i][j],encode(r[k]),`csv${i}/${k}`));
+    assert.equal(csv[i].length,header.length);header.forEach((k,j)=>assert(csvCellMatches(r[k],csv[i][j]),`csv${i}/${k}`));
     if(r.complete){assert(r.started&&r.cleanup&&Number.isFinite(r.score));assert(r.score>=0&&r.score<=1);}
     else assert.equal(r.score,null);
   });
@@ -81,4 +86,4 @@ function verify(root,expectedSource='3f119700a84d5975acef8bcff9949e188c60aefc',e
     limitation:'Two pool repeats and two already-used development tasks; within-pool searches are dependent. Known CoT-retry-like strategy qualification, not novelty confirmation.'};
 }
 if(require.main===module){const root=process.argv[2];const out=verify(root,process.argv[3],process.argv[4]);fs.writeFileSync(path.join(root,'independent-verification.json'),JSON.stringify(out,null,2)+'\n',{flag:'wx'});console.log(JSON.stringify(out));}
-module.exports={verify,contrast,csvParse,thinking,median,sd};
+module.exports={verify,contrast,csvParse,csvCellMatches,thinking,median,sd};

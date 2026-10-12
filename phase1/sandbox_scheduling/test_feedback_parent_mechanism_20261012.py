@@ -23,6 +23,13 @@ def fixture():
 
 
 class MechanismTests(unittest.TestCase):
+    def test_duplicates_do_not_conflate_different_runs_or_parents(self):
+        from feedback_parent_secondary_20261012 import duplicates
+        es=[dict(event='parent_used',run=r,parent=p,child=c) for r,p,c in
+            [(0,'a','x'),(0,'a','x'),(1,'a','x'),(0,'b','x'),(0,'a','y')]]
+        self.assertEqual(duplicates(es),dict(completed_generations=5,unique_generated_code=2,
+                         repeated_code_calls=3,same_run_parent_child_repeat_calls=1))
+
     def test_real_idle_interval_not_only_logged_wait(self):
         out=analyze_events(fixture(),ROWS,'feedback_gate')
         self.assertEqual(out['mandatory_wait_task_seconds'],{'T':4.})

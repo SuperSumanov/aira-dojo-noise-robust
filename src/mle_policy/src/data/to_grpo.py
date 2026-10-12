@@ -76,11 +76,12 @@ def to_grpo(
     dataset_dir: Path,
     output_dir: Path,
     operators: set[str] | None = None,
-unresolved_reward: float | None = None,
-norm_by_std: bool = True,
-strip_memory: bool = True,
-reward_clip: tuple[float, float] | None = None,
-verbose: bool = True,
+    unresolved_reward: float | None = None,
+    norm_by_std: bool = True,
+    strip_memory: bool = True,
+    reward_clip: tuple[float, float] | None = None,
+    verbose: bool = True,
+    use_metric_reward: bool = False,
 ) -> dict[str, Any]:
     """Write ``grpo.jsonl``: one advantage-carrying row per operation."""
     dataset_dir = Path(dataset_dir).resolve()
@@ -103,11 +104,18 @@ verbose: bool = True,
         if len(members) < 2:
             skipped["too_few_members"] += 1
             continue
-        scored = {
-            member["sample_id"]: member["episode_reward"]
-            for member in members
-            if member["episode_reward"] is not None
-        }
+        if use_metric_reward:
+            scored = {
+                member["sample_id"]: member["episode_metric_reward"]
+                for member in members
+                if member["episode_metric_reward"] is not None
+            }
+        else:
+            scored = {
+                member["sample_id"]: member["episode_reward"]
+                for member in members
+                if member["episode_reward"] is not None
+            }
         if not scored:
             skipped["nothing_runnable"] += 1
             continue
@@ -250,6 +258,12 @@ def main() -> None:
         action="store_false",
         help="Keep the 'PREVIOUSLY EXPLORED ...' section of proposal prompts (SFT strips it).",
     )
+    parser.add_argument(
+        "--use-metric-reward",
+        dest="use_metric_reward",
+        action="store_true",
+        help="Use the metric reward instead of the score reward.",
+    )
     args = parser.parse_args()
     operators = {name.strip() for name in args.operators.split(",") if name.strip()} if args.operators else None
     to_grpo(
@@ -260,6 +274,7 @@ def main() -> None:
         norm_by_std=args.norm_by_std,
         strip_memory=args.strip_memory,
         reward_clip=tuple(args.reward_clip) if args.reward_clip else None,
+        use_metric_reward=args.use_metric_reward,
     )
 
 

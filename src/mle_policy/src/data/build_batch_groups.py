@@ -127,6 +127,7 @@ def build_batch(
                         "node_reward": episode["root_node_reward"],
                         "episode_resolved": episode["episode_resolved"],
                         "episode_reward": episode["episode_reward"],
+                        "episode_metric_reward": episode["episode_metric_reward"],
                     }
                 )
                 if group_id not in seen_groups:

@@ -1,0 +1,534 @@
+{
+  "source_commit": "1cd338f86dac1381795c0295abcefefc8391df8d",
+  "plan_sha256": "4b33b157e65ba4b14668dfb9e3309ba2e9173ba62c0d542614ef9bad7befd0fc",
+  "script_sha256": "b92c0b65de4aa48697b80b5d7a4c0aabefa3da8cad1cb2772b0c7dddc85f03ec",
+  "pools": [
+    {
+      "block": 0,
+      "arm": "medium",
+      "complete": true,
+      "reserved_seconds": 1180.0001516698394,
+      "timing": {
+        "generation_queued_seconds": 1749.9604551792145,
+        "generation_held_seconds": 3623.9475553035736,
+        "execution_queued_seconds": 649.9032247066498,
+        "execution_held_seconds": 1845.440634727478,
+        "generation_full_seconds": 743.2128119468689,
+        "execution_full_seconds": 72.183997631073,
+        "neither_seconds": 184.83598804473877,
+        "execution_only_seconds": 12.252479553222656,
+        "both_seconds": 873.8330709934235,
+        "generation_only_seconds": 109.07861304283142
+      },
+      "roles": {
+        "improve": {
+          "calls": 12,
+          "returned": 11,
+          "seconds": 2107.2175858607516,
+          "thinking_calls": 12
+        },
+        "analyze": {
+          "calls": 14,
+          "returned": 14,
+          "seconds": 104.19072296633385,
+          "thinking_calls": 14
+        },
+        "debug": {
+          "calls": 9,
+          "returned": 6,
+          "seconds": 1407.708697045222,
+          "thinking_calls": 9
+        }
+      },
+      "event_audits": [
+        {
+          "counts": {
+            "queued": 38,
+            "admitted": 35,
+            "released": 35,
+            "cancelled": 3
+          },
+          "waiting_seconds": 1749.9604551792145,
+          "holding_seconds": 3623.9475553035736
+        },
+        {
+          "counts": {
+            "queued": 7,
+            "admitted": 7,
+            "released": 7
+          },
+          "waiting_seconds": 10.039019346237183,
+          "holding_seconds": 466.94073939323425
+        },
+        {
+          "counts": {
+            "queued": 5,
+            "admitted": 5,
+            "released": 5
+          },
+          "waiting_seconds": 262.1633036136627,
+          "holding_seconds": 339.04148411750793
+        },
+        {
+          "counts": {
+            "queued": 6,
+            "admitted": 6,
+            "released": 6
+          },
+          "waiting_seconds": 317.10601234436035,
+          "holding_seconds": 635.8091700077057
+        },
+        {
+          "counts": {
+            "queued": 7,
+            "admitted": 7,
+            "released": 7
+          },
+          "waiting_seconds": 60.594889402389526,
+          "holding_seconds": 403.64924120903015
+        }
+      ]
+    },
+    {
+      "block": 1,
+      "arm": "fast_code",
+      "complete": true,
+      "reserved_seconds": 1180.000166670885,
+      "timing": {
+        "generation_queued_seconds": 1160.9688792228699,
+        "generation_held_seconds": 3646.9411294460297,
+        "execution_queued_seconds": 786.1602818965912,
+        "execution_held_seconds": 2112.4740648269653,
+        "generation_full_seconds": 715.8789548873901,
+        "execution_full_seconds": 32.841126918792725,
+        "neither_seconds": 185.070862531662,
+        "execution_only_seconds": 11.693622589111328,
+        "both_seconds": 893.7513942718506,
+        "generation_only_seconds": 89.48428726196289
+      },
+      "roles": {
+        "improve": {
+          "calls": 14,
+          "returned": 13,
+          "seconds": 1486.9668007632717,
+          "thinking_calls": 0
+        },
+        "analyze": {
+          "calls": 21,
+          "returned": 21,
+          "seconds": 213.68055072403513,
+          "thinking_calls": 21
+        },
+        "debug": {
+          "calls": 15,
+          "returned": 14,
+          "seconds": 1903.7334877010435,
+          "thinking_calls": 0
+        }
+      },
+      "event_audits": [
+        {
+          "counts": {
+            "queued": 50,
+            "admitted": 50,
+            "released": 50
+          },
+          "waiting_seconds": 1160.9688792228699,
+          "holding_seconds": 3646.9411294460297
+        },
+        {
+          "counts": {
+            "queued": 7,
+            "admitted": 6,
+            "released": 6,
+            "cancelled": 1
+          },
+          "waiting_seconds": 422.9093894958496,
+          "holding_seconds": 759.4476048946381
+        },
+        {
+          "counts": {
+            "queued": 10,
+            "admitted": 9,
+            "released": 9,
+            "cancelled": 1
+          },
+          "waiting_seconds": 103.04310059547424,
+          "holding_seconds": 407.0534372329712
+        },
+        {
+          "counts": {
+            "queued": 10,
+            "admitted": 10,
+            "released": 10
+          },
+          "waiting_seconds": 111.73876714706421,
+          "holding_seconds": 432.8327696323395
+        },
+        {
+          "counts": {
+            "queued": 6,
+            "admitted": 6,
+            "released": 6
+          },
+          "waiting_seconds": 148.46902465820312,
+          "holding_seconds": 513.1402530670166
+        }
+      ]
+    },
+    {
+      "block": 2,
+      "arm": "feedback_think",
+      "complete": true,
+      "reserved_seconds": 1180.0001462979708,
+      "timing": {
+        "generation_queued_seconds": 952.2454340457916,
+        "generation_held_seconds": 3367.153078556061,
+        "execution_queued_seconds": 944.875247001648,
+        "execution_held_seconds": 2551.300351381302,
+        "generation_full_seconds": 574.7361607551575,
+        "execution_full_seconds": 141.82998204231262,
+        "neither_seconds": 188.59226870536804,
+        "execution_only_seconds": 17.044090509414673,
+        "both_seconds": 887.9181582927704,
+        "generation_only_seconds": 86.44562888145447
+      },
+      "roles": {
+        "improve": {
+          "calls": 17,
+          "returned": 15,
+          "seconds": 1792.459011968458,
+          "thinking_calls": 0
+        },
+        "analyze": {
+          "calls": 18,
+          "returned": 18,
+          "seconds": 156.3445997510571,
+          "thinking_calls": 18
+        },
+        "debug": {
+          "calls": 8,
+          "returned": 6,
+          "seconds": 1391.8412372646853,
+          "thinking_calls": 8
+        }
+      },
+      "event_audits": [
+        {
+          "counts": {
+            "queued": 45,
+            "admitted": 43,
+            "released": 43,
+            "cancelled": 2
+          },
+          "waiting_seconds": 952.2454340457916,
+          "holding_seconds": 3367.153078556061
+        },
+        {
+          "counts": {
+            "queued": 7,
+            "admitted": 6,
+            "released": 6,
+            "cancelled": 1
+          },
+          "waiting_seconds": 320.74725675582886,
+          "holding_seconds": 742.400538444519
+        },
+        {
+          "counts": {
+            "queued": 7,
+            "admitted": 7,
+            "released": 7
+          },
+          "waiting_seconds": 164.02428197860718,
+          "holding_seconds": 719.6034212112427
+        },
+        {
+          "counts": {
+            "queued": 8,
+            "admitted": 8,
+            "released": 8
+          },
+          "waiting_seconds": 47.12303161621094,
+          "holding_seconds": 354.3738627433777
+        },
+        {
+          "counts": {
+            "queued": 7,
+            "admitted": 7,
+            "released": 7
+          },
+          "waiting_seconds": 412.980676651001,
+          "holding_seconds": 734.9225289821625
+        }
+      ]
+    },
+    {
+      "block": 3,
+      "arm": "feedback_think",
+      "complete": true,
+      "reserved_seconds": 1180.0001695998944,
+      "timing": {
+        "generation_queued_seconds": 672.4911735057831,
+        "generation_held_seconds": 2867.680995464325,
+        "execution_queued_seconds": 1424.2970638275146,
+        "execution_held_seconds": 2935.8045766353607,
+        "generation_full_seconds": 353.4080991744995,
+        "execution_full_seconds": 269.7889497280121,
+        "neither_seconds": 179.41551637649536,
+        "execution_only_seconds": 11.18649697303772,
+        "both_seconds": 902.34001994133,
+        "generation_only_seconds": 87.0581362247467
+      },
+      "roles": {
+        "improve": {
+          "calls": 17,
+          "returned": 15,
+          "seconds": 1629.4019045128953,
+          "thinking_calls": 0
+        },
+        "analyze": {
+          "calls": 16,
+          "returned": 16,
+          "seconds": 143.7166899049189,
+          "thinking_calls": 16
+        },
+        "debug": {
+          "calls": 7,
+          "returned": 5,
+          "seconds": 1069.4005192106124,
+          "thinking_calls": 7
+        }
+      },
+      "event_audits": [
+        {
+          "counts": {
+            "queued": 42,
+            "admitted": 40,
+            "released": 40,
+            "cancelled": 2
+          },
+          "waiting_seconds": 672.4911735057831,
+          "holding_seconds": 2867.680995464325
+        },
+        {
+          "counts": {
+            "queued": 6,
+            "admitted": 6,
+            "released": 6
+          },
+          "waiting_seconds": 446.0723624229431,
+          "holding_seconds": 825.5537023544312
+        },
+        {
+          "counts": {
+            "queued": 8,
+            "admitted": 8,
+            "released": 8
+          },
+          "waiting_seconds": 330.30085921287537,
+          "holding_seconds": 585.2614965438843
+        },
+        {
+          "counts": {
+            "queued": 7,
+            "admitted": 7,
+            "released": 7
+          },
+          "waiting_seconds": 290.0086979866028,
+          "holding_seconds": 775.52392745018
+        },
+        {
+          "counts": {
+            "queued": 7,
+            "admitted": 7,
+            "released": 7
+          },
+          "waiting_seconds": 357.9151442050934,
+          "holding_seconds": 749.4654502868652
+        }
+      ]
+    },
+    {
+      "block": 4,
+      "arm": "fast_code",
+      "complete": true,
+      "reserved_seconds": 1180.0001485298853,
+      "timing": {
+        "generation_queued_seconds": 837.6103074550629,
+        "generation_held_seconds": 3065.076595067978,
+        "execution_queued_seconds": 1114.030545949936,
+        "execution_held_seconds": 2629.4512741565704,
+        "generation_full_seconds": 500.76125288009644,
+        "execution_full_seconds": 190.39323902130127,
+        "neither_seconds": 186.29592537879944,
+        "execution_only_seconds": 51.58096480369568,
+        "both_seconds": 859.4263286590576,
+        "generation_only_seconds": 82.69692969322205
+      },
+      "roles": {
+        "improve": {
+          "calls": 17,
+          "returned": 16,
+          "seconds": 1846.107904481236,
+          "thinking_calls": 0
+        },
+        "analyze": {
+          "calls": 18,
+          "returned": 18,
+          "seconds": 148.67670920491219,
+          "thinking_calls": 18
+        },
+        "debug": {
+          "calls": 9,
+          "returned": 8,
+          "seconds": 1032.784392383881,
+          "thinking_calls": 0
+        }
+      },
+      "event_audits": [
+        {
+          "counts": {
+            "queued": 44,
+            "admitted": 44,
+            "released": 44
+          },
+          "waiting_seconds": 837.6103074550629,
+          "holding_seconds": 3065.076595067978
+        },
+        {
+          "counts": {
+            "queued": 9,
+            "admitted": 8,
+            "released": 8,
+            "cancelled": 1
+          },
+          "waiting_seconds": 244.28807926177979,
+          "holding_seconds": 567.6892402172089
+        },
+        {
+          "counts": {
+            "queued": 7,
+            "admitted": 7,
+            "released": 7
+          },
+          "waiting_seconds": 176.82130122184753,
+          "holding_seconds": 575.9240655899048
+        },
+        {
+          "counts": {
+            "queued": 7,
+            "admitted": 7,
+            "released": 7
+          },
+          "waiting_seconds": 306.57256531715393,
+          "holding_seconds": 747.8763809204102
+        },
+        {
+          "counts": {
+            "queued": 7,
+            "admitted": 6,
+            "released": 6,
+            "cancelled": 1
+          },
+          "waiting_seconds": 386.34860014915466,
+          "holding_seconds": 737.9615874290466
+        }
+      ]
+    },
+    {
+      "block": 5,
+      "arm": "medium",
+      "complete": true,
+      "reserved_seconds": 1180.0002025701106,
+      "timing": {
+        "generation_queued_seconds": 1622.3420100212097,
+        "generation_held_seconds": 3540.285129547119,
+        "execution_queued_seconds": 523.4458591938019,
+        "execution_held_seconds": 2219.3771879673004,
+        "generation_full_seconds": 652.5910420417786,
+        "execution_full_seconds": 184.1280586719513,
+        "neither_seconds": 180.70582604408264,
+        "execution_only_seconds": 10.528303146362305,
+        "both_seconds": 869.4424064159393,
+        "generation_only_seconds": 119.32366704940796
+      },
+      "roles": {
+        "improve": {
+          "calls": 13,
+          "returned": 11,
+          "seconds": 2331.8159912941046,
+          "thinking_calls": 13
+        },
+        "analyze": {
+          "calls": 14,
+          "returned": 14,
+          "seconds": 89.11821908154525,
+          "thinking_calls": 14
+        },
+        "debug": {
+          "calls": 8,
+          "returned": 6,
+          "seconds": 1114.7532010795549,
+          "thinking_calls": 8
+        }
+      },
+      "event_audits": [
+        {
+          "counts": {
+            "queued": 38,
+            "admitted": 35,
+            "released": 35,
+            "cancelled": 3
+          },
+          "waiting_seconds": 1622.3420100212097,
+          "holding_seconds": 3540.285129547119
+        },
+        {
+          "counts": {
+            "queued": 6,
+            "admitted": 6,
+            "released": 6
+          },
+          "waiting_seconds": 134.91236424446106,
+          "holding_seconds": 754.9038321971893
+        },
+        {
+          "counts": {
+            "queued": 7,
+            "admitted": 7,
+            "released": 7
+          },
+          "waiting_seconds": 8.928785562515259,
+          "holding_seconds": 378.77144289016724
+        },
+        {
+          "counts": {
+            "queued": 6,
+            "admitted": 6,
+            "released": 6
+          },
+          "waiting_seconds": 315.0980236530304,
+          "holding_seconds": 497.0875632762909
+        },
+        {
+          "counts": {
+            "queued": 6,
+            "admitted": 6,
+            "released": 6
+          },
+          "waiting_seconds": 64.50668573379517,
+          "holding_seconds": 588.614349603653
+        }
+      ]
+    }
+  ],
+  "closed_runs": 48,
+  "secondary": true,
+  "limitations": [
+    "Host permits include non-kernel work; these are not GPU utilization or saved compute.",
+    "Role latencies overlap; their sum is not wall-clock cost.",
+    "Finite closed-loop workload, not stationary throughput; no new quality gate or automatic expansion.",
+    "Queue changes do not establish a causal mechanism without an additional intervention."
+  ]
+}

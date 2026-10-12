@@ -1,0 +1,4656 @@
+[
+  {
+    "arm": "medium",
+    "effort": "medium",
+    "elapsed": 150.10417793109082,
+    "enable_thinking": true,
+    "index": 0,
+    "role": "improve",
+    "seconds": 112.83858797699213,
+    "success": true,
+    "task": "aerial-cactus-identification",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 4059,
+      "cumulative_num_llm_calls": 1,
+      "latency": 112.79638425493613,
+      "prompt_tokens": 5680,
+      "total_tokens": 9739
+    }
+  },
+  {
+    "arm": "medium",
+    "effort": "medium",
+    "elapsed": 450.2398944760207,
+    "enable_thinking": true,
+    "index": 0,
+    "role": "analyze",
+    "seconds": 6.619287536013871,
+    "success": true,
+    "task": "aerial-cactus-identification",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 172,
+      "cumulative_num_llm_calls": 1,
+      "latency": 6.609846537001431,
+      "prompt_tokens": 4130,
+      "structured_output_requests": 1,
+      "total_tokens": 4302
+    }
+  },
+  {
+    "arm": "medium",
+    "effort": "medium",
+    "elapsed": 613.8697892909404,
+    "enable_thinking": true,
+    "index": 0,
+    "role": "improve",
+    "seconds": 163.5606887950562,
+    "success": true,
+    "task": "aerial-cactus-identification",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 5869,
+      "cumulative_num_llm_calls": 2,
+      "latency": 163.55209523416124,
+      "prompt_tokens": 5996,
+      "total_tokens": 11865
+    }
+  },
+  {
+    "arm": "medium",
+    "effort": "medium",
+    "elapsed": 673.3687922910322,
+    "enable_thinking": true,
+    "index": 0,
+    "role": "analyze",
+    "seconds": 11.572519832989201,
+    "success": true,
+    "task": "aerial-cactus-identification",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 116,
+      "cumulative_num_llm_calls": 2,
+      "latency": 11.563621707027778,
+      "prompt_tokens": 5011,
+      "structured_output_requests": 1,
+      "total_tokens": 5127
+    }
+  },
+  {
+    "arm": "medium",
+    "effort": "medium",
+    "elapsed": 900.8702125190757,
+    "enable_thinking": true,
+    "index": 0,
+    "role": "debug",
+    "seconds": 221.71653927210718,
+    "success": true,
+    "task": "aerial-cactus-identification",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 7881,
+      "cumulative_num_llm_calls": 1,
+      "latency": 221.69178390013985,
+      "prompt_tokens": 7188,
+      "total_tokens": 15069
+    }
+  },
+  {
+    "arm": "medium",
+    "effort": "medium",
+    "elapsed": 442.83675468410365,
+    "enable_thinking": true,
+    "index": 1,
+    "role": "improve",
+    "seconds": 218.93734023417346,
+    "success": true,
+    "task": "denoising-dirty-documents",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 8192,
+      "cumulative_num_llm_calls": 1,
+      "latency": 218.91410542093217,
+      "prompt_tokens": 6190,
+      "total_tokens": 14382
+    }
+  },
+  {
+    "arm": "medium",
+    "effort": "medium",
+    "elapsed": 460.0373453120701,
+    "enable_thinking": true,
+    "index": 1,
+    "role": "analyze",
+    "seconds": 9.746100114891306,
+    "success": true,
+    "task": "denoising-dirty-documents",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 151,
+      "cumulative_num_llm_calls": 1,
+      "latency": 9.704320523887873,
+      "prompt_tokens": 3938,
+      "structured_output_requests": 1,
+      "total_tokens": 4089
+    }
+  },
+  {
+    "arm": "medium",
+    "effort": "medium",
+    "elapsed": 653.0126897951122,
+    "enable_thinking": true,
+    "index": 1,
+    "role": "debug",
+    "seconds": 192.91083660698496,
+    "success": true,
+    "task": "denoising-dirty-documents",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 6752,
+      "cumulative_num_llm_calls": 1,
+      "latency": 192.90392352896743,
+      "prompt_tokens": 5199,
+      "total_tokens": 11951
+    }
+  },
+  {
+    "arm": "medium",
+    "effort": "medium",
+    "elapsed": 873.3918128320947,
+    "enable_thinking": true,
+    "index": 1,
+    "role": "analyze",
+    "seconds": 6.412850111955777,
+    "success": true,
+    "task": "denoising-dirty-documents",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 110,
+      "cumulative_num_llm_calls": 2,
+      "latency": 6.379049165872857,
+      "prompt_tokens": 5648,
+      "structured_output_requests": 1,
+      "total_tokens": 5758
+    }
+  },
+  {
+    "arm": "medium",
+    "effort": "medium",
+    "elapsed": 1020.0061599870678,
+    "enable_thinking": true,
+    "index": 1,
+    "role": "debug",
+    "seconds": 141.35698530310765,
+    "success": false,
+    "task": "denoising-dirty-documents",
+    "usage": {}
+  },
+  {
+    "arm": "medium",
+    "effort": "medium",
+    "elapsed": 154.91368842800148,
+    "enable_thinking": true,
+    "index": 2,
+    "role": "improve",
+    "seconds": 117.57654858892784,
+    "success": true,
+    "task": "aerial-cactus-identification",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 4193,
+      "cumulative_num_llm_calls": 1,
+      "latency": 117.55681278486736,
+      "prompt_tokens": 5680,
+      "total_tokens": 9873
+    }
+  },
+  {
+    "arm": "medium",
+    "effort": "medium",
+    "elapsed": 270.4359233540017,
+    "enable_thinking": true,
+    "index": 2,
+    "role": "analyze",
+    "seconds": 5.994696334935725,
+    "success": true,
+    "task": "aerial-cactus-identification",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 103,
+      "cumulative_num_llm_calls": 1,
+      "latency": 5.979019604856148,
+      "prompt_tokens": 4236,
+      "structured_output_requests": 1,
+      "total_tokens": 4339
+    }
+  },
+  {
+    "arm": "medium",
+    "effort": "medium",
+    "elapsed": 383.70578272198327,
+    "enable_thinking": true,
+    "index": 2,
+    "role": "debug",
+    "seconds": 113.20779014797881,
+    "success": true,
+    "task": "aerial-cactus-identification",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 4350,
+      "cumulative_num_llm_calls": 1,
+      "latency": 113.2012468080502,
+      "prompt_tokens": 6318,
+      "total_tokens": 10668
+    }
+  },
+  {
+    "arm": "medium",
+    "effort": "medium",
+    "elapsed": 679.0956455860287,
+    "enable_thinking": true,
+    "index": 2,
+    "role": "analyze",
+    "seconds": 5.6827109339646995,
+    "success": true,
+    "task": "aerial-cactus-identification",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 119,
+      "cumulative_num_llm_calls": 2,
+      "latency": 5.671907454961911,
+      "prompt_tokens": 4176,
+      "structured_output_requests": 1,
+      "total_tokens": 4295
+    }
+  },
+  {
+    "arm": "medium",
+    "effort": "medium",
+    "elapsed": 1020.0056044149678,
+    "enable_thinking": true,
+    "index": 2,
+    "role": "improve",
+    "seconds": 179.90210380405188,
+    "success": false,
+    "task": "aerial-cactus-identification",
+    "usage": {}
+  },
+  {
+    "arm": "medium",
+    "effort": "medium",
+    "elapsed": 408.40918398904614,
+    "enable_thinking": true,
+    "index": 3,
+    "role": "improve",
+    "seconds": 212.65349865402095,
+    "success": true,
+    "task": "denoising-dirty-documents",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 8192,
+      "cumulative_num_llm_calls": 1,
+      "latency": 212.62778626708314,
+      "prompt_tokens": 6190,
+      "total_tokens": 14382
+    }
+  },
+  {
+    "arm": "medium",
+    "effort": "medium",
+    "elapsed": 878.5832634239923,
+    "enable_thinking": true,
+    "index": 3,
+    "role": "analyze",
+    "seconds": 5.12045093299821,
+    "success": true,
+    "task": "denoising-dirty-documents",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 139,
+      "cumulative_num_llm_calls": 1,
+      "latency": 5.053090692963451,
+      "prompt_tokens": 2283,
+      "structured_output_requests": 1,
+      "total_tokens": 2422
+    }
+  },
+  {
+    "arm": "medium",
+    "effort": "medium",
+    "elapsed": 1020.0050359771121,
+    "enable_thinking": true,
+    "index": 3,
+    "role": "debug",
+    "seconds": 132.29666561400518,
+    "success": false,
+    "task": "denoising-dirty-documents",
+    "usage": {}
+  },
+  {
+    "arm": "medium",
+    "effort": "medium",
+    "elapsed": 264.2476360350847,
+    "enable_thinking": true,
+    "index": 4,
+    "role": "improve",
+    "seconds": 109.08964405488223,
+    "success": true,
+    "task": "aerial-cactus-identification",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 4210,
+      "cumulative_num_llm_calls": 1,
+      "latency": 109.06651518400759,
+      "prompt_tokens": 5678,
+      "total_tokens": 9888
+    }
+  },
+  {
+    "arm": "medium",
+    "effort": "medium",
+    "elapsed": 546.9785498650745,
+    "enable_thinking": true,
+    "index": 4,
+    "role": "analyze",
+    "seconds": 4.508285437012091,
+    "success": true,
+    "task": "aerial-cactus-identification",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 76,
+      "cumulative_num_llm_calls": 1,
+      "latency": 4.498674872098491,
+      "prompt_tokens": 4171,
+      "structured_output_requests": 1,
+      "total_tokens": 4247
+    }
+  },
+  {
+    "arm": "medium",
+    "effort": "medium",
+    "elapsed": 661.5836727099959,
+    "enable_thinking": true,
+    "index": 4,
+    "role": "debug",
+    "seconds": 114.53022344294004,
+    "success": true,
+    "task": "aerial-cactus-identification",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 3675,
+      "cumulative_num_llm_calls": 1,
+      "latency": 114.52252446999773,
+      "prompt_tokens": 6245,
+      "total_tokens": 9920
+    }
+  },
+  {
+    "arm": "medium",
+    "effort": "medium",
+    "elapsed": 953.3175166631117,
+    "enable_thinking": true,
+    "index": 4,
+    "role": "analyze",
+    "seconds": 7.219976535066962,
+    "success": true,
+    "task": "aerial-cactus-identification",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 182,
+      "cumulative_num_llm_calls": 2,
+      "latency": 7.207588396966457,
+      "prompt_tokens": 4217,
+      "structured_output_requests": 1,
+      "total_tokens": 4399
+    }
+  },
+  {
+    "arm": "medium",
+    "effort": "medium",
+    "elapsed": 195.47675338294357,
+    "enable_thinking": true,
+    "index": 5,
+    "role": "improve",
+    "seconds": 157.70776302693412,
+    "success": true,
+    "task": "denoising-dirty-documents",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 5743,
+      "cumulative_num_llm_calls": 1,
+      "latency": 157.69729013787583,
+      "prompt_tokens": 6188,
+      "total_tokens": 11931
+    }
+  },
+  {
+    "arm": "medium",
+    "effort": "medium",
+    "elapsed": 625.799359893892,
+    "enable_thinking": true,
+    "index": 5,
+    "role": "analyze",
+    "seconds": 9.45203028502874,
+    "success": true,
+    "task": "denoising-dirty-documents",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 159,
+      "cumulative_num_llm_calls": 1,
+      "latency": 9.441181475995108,
+      "prompt_tokens": 4955,
+      "structured_output_requests": 1,
+      "total_tokens": 5114
+    }
+  },
+  {
+    "arm": "medium",
+    "effort": "medium",
+    "elapsed": 866.9401205028407,
+    "enable_thinking": true,
+    "index": 5,
+    "role": "improve",
+    "seconds": 241.06848970800638,
+    "success": true,
+    "task": "denoising-dirty-documents",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 8192,
+      "cumulative_num_llm_calls": 2,
+      "latency": 241.0559329809621,
+      "prompt_tokens": 6369,
+      "total_tokens": 14561
+    }
+  },
+  {
+    "arm": "medium",
+    "effort": "medium",
+    "elapsed": 351.82637677202,
+    "enable_thinking": true,
+    "index": 6,
+    "role": "improve",
+    "seconds": 201.07295654085465,
+    "success": true,
+    "task": "aerial-cactus-identification",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 7541,
+      "cumulative_num_llm_calls": 1,
+      "latency": 201.05046952399425,
+      "prompt_tokens": 5680,
+      "total_tokens": 13221
+    }
+  },
+  {
+    "arm": "medium",
+    "effort": "medium",
+    "elapsed": 632.6194961979054,
+    "enable_thinking": true,
+    "index": 6,
+    "role": "analyze",
+    "seconds": 9.71836264594458,
+    "success": true,
+    "task": "aerial-cactus-identification",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 133,
+      "cumulative_num_llm_calls": 1,
+      "latency": 9.706353604095057,
+      "prompt_tokens": 4057,
+      "structured_output_requests": 1,
+      "total_tokens": 4190
+    }
+  },
+  {
+    "arm": "medium",
+    "effort": "medium",
+    "elapsed": 839.5985412979499,
+    "enable_thinking": true,
+    "index": 6,
+    "role": "improve",
+    "seconds": 206.90057827089913,
+    "success": true,
+    "task": "aerial-cactus-identification",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 7158,
+      "cumulative_num_llm_calls": 2,
+      "latency": 206.88644875609316,
+      "prompt_tokens": 5923,
+      "total_tokens": 13081
+    }
+  },
+  {
+    "arm": "medium",
+    "effort": "medium",
+    "elapsed": 946.070254144026,
+    "enable_thinking": true,
+    "index": 6,
+    "role": "analyze",
+    "seconds": 5.675701107829809,
+    "success": true,
+    "task": "aerial-cactus-identification",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 99,
+      "cumulative_num_llm_calls": 2,
+      "latency": 5.664358753012493,
+      "prompt_tokens": 5077,
+      "structured_output_requests": 1,
+      "total_tokens": 5176
+    }
+  },
+  {
+    "arm": "medium",
+    "effort": "medium",
+    "elapsed": 1020.0069927349687,
+    "enable_thinking": true,
+    "index": 6,
+    "role": "debug",
+    "seconds": 66.65188162191771,
+    "success": false,
+    "task": "aerial-cactus-identification",
+    "usage": {}
+  },
+  {
+    "arm": "medium",
+    "effort": "medium",
+    "elapsed": 223.58425416098908,
+    "enable_thinking": true,
+    "index": 7,
+    "role": "improve",
+    "seconds": 185.90938620595261,
+    "success": true,
+    "task": "denoising-dirty-documents",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 6831,
+      "cumulative_num_llm_calls": 1,
+      "latency": 185.89010378392413,
+      "prompt_tokens": 6196,
+      "total_tokens": 13027
+    }
+  },
+  {
+    "arm": "medium",
+    "effort": "medium",
+    "elapsed": 416.8537098208908,
+    "enable_thinking": true,
+    "index": 7,
+    "role": "analyze",
+    "seconds": 8.372896178858355,
+    "success": true,
+    "task": "denoising-dirty-documents",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 185,
+      "cumulative_num_llm_calls": 1,
+      "latency": 8.35710093099624,
+      "prompt_tokens": 6352,
+      "structured_output_requests": 1,
+      "total_tokens": 6537
+    }
+  },
+  {
+    "arm": "medium",
+    "effort": "medium",
+    "elapsed": 616.0304091779981,
+    "enable_thinking": true,
+    "index": 7,
+    "role": "debug",
+    "seconds": 199.1067300280556,
+    "success": true,
+    "task": "denoising-dirty-documents",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 7060,
+      "cumulative_num_llm_calls": 1,
+      "latency": 199.09636829816736,
+      "prompt_tokens": 8201,
+      "total_tokens": 15261
+    }
+  },
+  {
+    "arm": "medium",
+    "effort": "medium",
+    "elapsed": 661.3829638548195,
+    "enable_thinking": true,
+    "index": 7,
+    "role": "analyze",
+    "seconds": 8.094854978844523,
+    "success": true,
+    "task": "denoising-dirty-documents",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 146,
+      "cumulative_num_llm_calls": 2,
+      "latency": 8.083833049051464,
+      "prompt_tokens": 7015,
+      "structured_output_requests": 1,
+      "total_tokens": 7161
+    }
+  },
+  {
+    "arm": "medium",
+    "effort": "medium",
+    "elapsed": 887.3893206520006,
+    "enable_thinking": true,
+    "index": 7,
+    "role": "debug",
+    "seconds": 225.93104500812478,
+    "success": true,
+    "task": "denoising-dirty-documents",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 7691,
+      "cumulative_num_llm_calls": 2,
+      "latency": 225.9025944210589,
+      "prompt_tokens": 9298,
+      "total_tokens": 16989
+    }
+  },
+  {
+    "arm": "fast_code",
+    "effort": "none",
+    "elapsed": 134.34046360687353,
+    "enable_thinking": false,
+    "index": 8,
+    "role": "improve",
+    "seconds": 97.52950304700062,
+    "success": true,
+    "task": "aerial-cactus-identification",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 3635,
+      "cumulative_num_llm_calls": 1,
+      "latency": 97.51801732904278,
+      "prompt_tokens": 5680,
+      "total_tokens": 9315
+    }
+  },
+  {
+    "arm": "fast_code",
+    "effort": "medium",
+    "elapsed": 462.62346177804284,
+    "enable_thinking": true,
+    "index": 8,
+    "role": "analyze",
+    "seconds": 8.168989412020892,
+    "success": true,
+    "task": "aerial-cactus-identification",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 207,
+      "cumulative_num_llm_calls": 1,
+      "latency": 8.155714933061972,
+      "prompt_tokens": 4536,
+      "structured_output_requests": 1,
+      "total_tokens": 4743
+    }
+  },
+  {
+    "arm": "fast_code",
+    "effort": "none",
+    "elapsed": 637.7472033069935,
+    "enable_thinking": false,
+    "index": 8,
+    "role": "improve",
+    "seconds": 113.60458626388572,
+    "success": true,
+    "task": "aerial-cactus-identification",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 3654,
+      "cumulative_num_llm_calls": 2,
+      "latency": 113.58761298796162,
+      "prompt_tokens": 5680,
+      "total_tokens": 9334
+    }
+  },
+  {
+    "arm": "fast_code",
+    "effort": "medium",
+    "elapsed": 735.9599948339164,
+    "enable_thinking": true,
+    "index": 8,
+    "role": "analyze",
+    "seconds": 18.08221433800645,
+    "success": true,
+    "task": "aerial-cactus-identification",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 571,
+      "cumulative_num_llm_calls": 2,
+      "latency": 18.073967864969745,
+      "prompt_tokens": 6076,
+      "structured_output_requests": 1,
+      "total_tokens": 6647
+    }
+  },
+  {
+    "arm": "fast_code",
+    "effort": "none",
+    "elapsed": 852.85876468895,
+    "enable_thinking": false,
+    "index": 8,
+    "role": "debug",
+    "seconds": 116.79606022196822,
+    "success": true,
+    "task": "aerial-cactus-identification",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 3550,
+      "cumulative_num_llm_calls": 1,
+      "latency": 116.78464334481396,
+      "prompt_tokens": 8694,
+      "total_tokens": 12244
+    }
+  },
+  {
+    "arm": "fast_code",
+    "effort": "none",
+    "elapsed": 140.79409183817916,
+    "enable_thinking": false,
+    "index": 9,
+    "role": "improve",
+    "seconds": 95.38227777485736,
+    "success": true,
+    "task": "denoising-dirty-documents",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 3643,
+      "cumulative_num_llm_calls": 1,
+      "latency": 95.36338515509851,
+      "prompt_tokens": 6194,
+      "total_tokens": 9837
+    }
+  },
+  {
+    "arm": "fast_code",
+    "effort": "medium",
+    "elapsed": 792.9317477880977,
+    "enable_thinking": true,
+    "index": 9,
+    "role": "analyze",
+    "seconds": 6.705141361802816,
+    "success": true,
+    "task": "denoising-dirty-documents",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 154,
+      "cumulative_num_llm_calls": 1,
+      "latency": 6.693301924970001,
+      "prompt_tokens": 4554,
+      "structured_output_requests": 1,
+      "total_tokens": 4708
+    }
+  },
+  {
+    "arm": "fast_code",
+    "effort": "none",
+    "elapsed": 929.2210238021798,
+    "enable_thinking": false,
+    "index": 9,
+    "role": "improve",
+    "seconds": 113.5402958120685,
+    "success": true,
+    "task": "denoising-dirty-documents",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 3753,
+      "cumulative_num_llm_calls": 2,
+      "latency": 113.52753894706257,
+      "prompt_tokens": 5974,
+      "total_tokens": 9727
+    }
+  },
+  {
+    "arm": "fast_code",
+    "effort": "none",
+    "elapsed": 223.42320274212398,
+    "enable_thinking": false,
+    "index": 10,
+    "role": "improve",
+    "seconds": 87.67741984105669,
+    "success": true,
+    "task": "aerial-cactus-identification",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 3339,
+      "cumulative_num_llm_calls": 1,
+      "latency": 87.65290630189702,
+      "prompt_tokens": 5678,
+      "total_tokens": 9017
+    }
+  },
+  {
+    "arm": "fast_code",
+    "effort": "medium",
+    "elapsed": 331.3826659619808,
+    "enable_thinking": true,
+    "index": 10,
+    "role": "analyze",
+    "seconds": 6.510752060916275,
+    "success": true,
+    "task": "aerial-cactus-identification",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 136,
+      "cumulative_num_llm_calls": 1,
+      "latency": 6.500359585043043,
+      "prompt_tokens": 4856,
+      "structured_output_requests": 1,
+      "total_tokens": 4992
+    }
+  },
+  {
+    "arm": "fast_code",
+    "effort": "none",
+    "elapsed": 445.9226570499595,
+    "enable_thinking": false,
+    "index": 10,
+    "role": "debug",
+    "seconds": 114.468663407024,
+    "success": true,
+    "task": "aerial-cactus-identification",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 3617,
+      "cumulative_num_llm_calls": 1,
+      "latency": 114.45665568602271,
+      "prompt_tokens": 7180,
+      "total_tokens": 10797
+    }
+  },
+  {
+    "arm": "fast_code",
+    "effort": "medium",
+    "elapsed": 621.4502679780126,
+    "enable_thinking": true,
+    "index": 10,
+    "role": "analyze",
+    "seconds": 10.848137525841594,
+    "success": true,
+    "task": "aerial-cactus-identification",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 162,
+      "cumulative_num_llm_calls": 2,
+      "latency": 10.837423450080678,
+      "prompt_tokens": 5343,
+      "structured_output_requests": 1,
+      "total_tokens": 5505
+    }
+  },
+  {
+    "arm": "fast_code",
+    "effort": "none",
+    "elapsed": 729.2899858921301,
+    "enable_thinking": false,
+    "index": 10,
+    "role": "debug",
+    "seconds": 107.76851502503268,
+    "success": true,
+    "task": "aerial-cactus-identification",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 3509,
+      "cumulative_num_llm_calls": 2,
+      "latency": 107.76153666386381,
+      "prompt_tokens": 8099,
+      "total_tokens": 11608
+    }
+  },
+  {
+    "arm": "fast_code",
+    "effort": "medium",
+    "elapsed": 771.5784787901212,
+    "enable_thinking": true,
+    "index": 10,
+    "role": "analyze",
+    "seconds": 5.933373944833875,
+    "success": true,
+    "task": "aerial-cactus-identification",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 125,
+      "cumulative_num_llm_calls": 3,
+      "latency": 5.927777213044465,
+      "prompt_tokens": 4606,
+      "structured_output_requests": 1,
+      "total_tokens": 4731
+    }
+  },
+  {
+    "arm": "fast_code",
+    "effort": "none",
+    "elapsed": 886.702638433082,
+    "enable_thinking": false,
+    "index": 10,
+    "role": "debug",
+    "seconds": 115.04402993014082,
+    "success": true,
+    "task": "aerial-cactus-identification",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 3482,
+      "cumulative_num_llm_calls": 3,
+      "latency": 115.03631729492918,
+      "prompt_tokens": 7792,
+      "total_tokens": 11274
+    }
+  },
+  {
+    "arm": "fast_code",
+    "effort": "none",
+    "elapsed": 149.50864224904217,
+    "enable_thinking": false,
+    "index": 11,
+    "role": "improve",
+    "seconds": 112.64720233390108,
+    "success": true,
+    "task": "denoising-dirty-documents",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 4148,
+      "cumulative_num_llm_calls": 1,
+      "latency": 112.63890916691162,
+      "prompt_tokens": 6192,
+      "total_tokens": 10340
+    }
+  },
+  {
+    "arm": "fast_code",
+    "effort": "medium",
+    "elapsed": 261.2568795159459,
+    "enable_thinking": true,
+    "index": 11,
+    "role": "analyze",
+    "seconds": 5.3829103778116405,
+    "success": true,
+    "task": "denoising-dirty-documents",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 89,
+      "cumulative_num_llm_calls": 1,
+      "latency": 5.367532033007592,
+      "prompt_tokens": 4983,
+      "structured_output_requests": 1,
+      "total_tokens": 5072
+    }
+  },
+  {
+    "arm": "fast_code",
+    "effort": "none",
+    "elapsed": 399.47996918694116,
+    "enable_thinking": false,
+    "index": 11,
+    "role": "debug",
+    "seconds": 138.17124319588766,
+    "success": true,
+    "task": "denoising-dirty-documents",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 4360,
+      "cumulative_num_llm_calls": 1,
+      "latency": 138.16363314609043,
+      "prompt_tokens": 6893,
+      "total_tokens": 11253
+    }
+  },
+  {
+    "arm": "fast_code",
+    "effort": "medium",
+    "elapsed": 525.2535745890345,
+    "enable_thinking": true,
+    "index": 11,
+    "role": "analyze",
+    "seconds": 7.1373012259136885,
+    "success": true,
+    "task": "denoising-dirty-documents",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 125,
+      "cumulative_num_llm_calls": 2,
+      "latency": 7.126410031924024,
+      "prompt_tokens": 5511,
+      "structured_output_requests": 1,
+      "total_tokens": 5636
+    }
+  },
+  {
+    "arm": "fast_code",
+    "effort": "none",
+    "elapsed": 667.4999035790097,
+    "enable_thinking": false,
+    "index": 11,
+    "role": "improve",
+    "seconds": 142.19674849696457,
+    "success": true,
+    "task": "denoising-dirty-documents",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 4816,
+      "cumulative_num_llm_calls": 2,
+      "latency": 142.18977919290774,
+      "prompt_tokens": 6929,
+      "total_tokens": 11745
+    }
+  },
+  {
+    "arm": "fast_code",
+    "effort": "medium",
+    "elapsed": 786.1889411068987,
+    "enable_thinking": true,
+    "index": 11,
+    "role": "analyze",
+    "seconds": 14.398837344022468,
+    "success": true,
+    "task": "denoising-dirty-documents",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 251,
+      "cumulative_num_llm_calls": 3,
+      "latency": 14.390781773021445,
+      "prompt_tokens": 7191,
+      "structured_output_requests": 1,
+      "total_tokens": 7442
+    }
+  },
+  {
+    "arm": "fast_code",
+    "effort": "none",
+    "elapsed": 957.4591410518624,
+    "enable_thinking": false,
+    "index": 11,
+    "role": "debug",
+    "seconds": 164.4973344639875,
+    "success": true,
+    "task": "denoising-dirty-documents",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 5234,
+      "cumulative_num_llm_calls": 2,
+      "latency": 164.48425004282035,
+      "prompt_tokens": 9171,
+      "total_tokens": 14405
+    }
+  },
+  {
+    "arm": "fast_code",
+    "effort": "none",
+    "elapsed": 129.49508528388105,
+    "enable_thinking": false,
+    "index": 12,
+    "role": "improve",
+    "seconds": 92.56892714696005,
+    "success": true,
+    "task": "aerial-cactus-identification",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 3497,
+      "cumulative_num_llm_calls": 1,
+      "latency": 92.55964177800342,
+      "prompt_tokens": 5682,
+      "total_tokens": 9179
+    }
+  },
+  {
+    "arm": "fast_code",
+    "effort": "medium",
+    "elapsed": 230.62107051583007,
+    "enable_thinking": true,
+    "index": 12,
+    "role": "analyze",
+    "seconds": 6.059100846992806,
+    "success": true,
+    "task": "aerial-cactus-identification",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 95,
+      "cumulative_num_llm_calls": 1,
+      "latency": 6.042917291866615,
+      "prompt_tokens": 5636,
+      "structured_output_requests": 1,
+      "total_tokens": 5731
+    }
+  },
+  {
+    "arm": "fast_code",
+    "effort": "none",
+    "elapsed": 362.5340649569407,
+    "enable_thinking": false,
+    "index": 12,
+    "role": "debug",
+    "seconds": 131.7416011011228,
+    "success": true,
+    "task": "aerial-cactus-identification",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 4140,
+      "cumulative_num_llm_calls": 1,
+      "latency": 131.7333956528455,
+      "prompt_tokens": 7889,
+      "total_tokens": 12029
+    }
+  },
+  {
+    "arm": "fast_code",
+    "effort": "medium",
+    "elapsed": 454.3877430600114,
+    "enable_thinking": true,
+    "index": 12,
+    "role": "analyze",
+    "seconds": 7.238909231033176,
+    "success": true,
+    "task": "aerial-cactus-identification",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 117,
+      "cumulative_num_llm_calls": 2,
+      "latency": 7.212738249916583,
+      "prompt_tokens": 6744,
+      "structured_output_requests": 1,
+      "total_tokens": 6861
+    }
+  },
+  {
+    "arm": "fast_code",
+    "effort": "none",
+    "elapsed": 608.6958856510464,
+    "enable_thinking": false,
+    "index": 12,
+    "role": "debug",
+    "seconds": 146.01615390204825,
+    "success": true,
+    "task": "aerial-cactus-identification",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 5010,
+      "cumulative_num_llm_calls": 2,
+      "latency": 146.00467376597226,
+      "prompt_tokens": 9318,
+      "total_tokens": 14328
+    }
+  },
+  {
+    "arm": "fast_code",
+    "effort": "medium",
+    "elapsed": 895.4533203549217,
+    "enable_thinking": true,
+    "index": 12,
+    "role": "analyze",
+    "seconds": 16.086519351927564,
+    "success": true,
+    "task": "aerial-cactus-identification",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 250,
+      "cumulative_num_llm_calls": 3,
+      "latency": 16.079857602948323,
+      "prompt_tokens": 6235,
+      "structured_output_requests": 1,
+      "total_tokens": 6485
+    }
+  },
+  {
+    "arm": "fast_code",
+    "effort": "none",
+    "elapsed": 988.5012023209129,
+    "enable_thinking": false,
+    "index": 12,
+    "role": "improve",
+    "seconds": 92.9727848819457,
+    "success": true,
+    "task": "aerial-cactus-identification",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 3040,
+      "cumulative_num_llm_calls": 2,
+      "latency": 92.96421143994667,
+      "prompt_tokens": 5682,
+      "total_tokens": 8722
+    }
+  },
+  {
+    "arm": "fast_code",
+    "effort": "none",
+    "elapsed": 267.9759690950159,
+    "enable_thinking": false,
+    "index": 13,
+    "role": "improve",
+    "seconds": 125.85813518590294,
+    "success": true,
+    "task": "denoising-dirty-documents",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 4302,
+      "cumulative_num_llm_calls": 1,
+      "latency": 125.83599370904267,
+      "prompt_tokens": 6192,
+      "total_tokens": 10494
+    }
+  },
+  {
+    "arm": "fast_code",
+    "effort": "medium",
+    "elapsed": 293.2350189250428,
+    "enable_thinking": true,
+    "index": 13,
+    "role": "analyze",
+    "seconds": 6.636365849059075,
+    "success": true,
+    "task": "denoising-dirty-documents",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 101,
+      "cumulative_num_llm_calls": 1,
+      "latency": 6.623601807048544,
+      "prompt_tokens": 6423,
+      "structured_output_requests": 1,
+      "total_tokens": 6524
+    }
+  },
+  {
+    "arm": "fast_code",
+    "effort": "none",
+    "elapsed": 425.00673559401184,
+    "enable_thinking": false,
+    "index": 13,
+    "role": "debug",
+    "seconds": 131.6941148499027,
+    "success": true,
+    "task": "denoising-dirty-documents",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 4121,
+      "cumulative_num_llm_calls": 1,
+      "latency": 131.68540961993858,
+      "prompt_tokens": 8250,
+      "total_tokens": 12371
+    }
+  },
+  {
+    "arm": "fast_code",
+    "effort": "medium",
+    "elapsed": 462.44705003197305,
+    "enable_thinking": true,
+    "index": 13,
+    "role": "analyze",
+    "seconds": 20.057750982930884,
+    "success": true,
+    "task": "denoising-dirty-documents",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 390,
+      "cumulative_num_llm_calls": 2,
+      "latency": 20.046553468797356,
+      "prompt_tokens": 5562,
+      "structured_output_requests": 1,
+      "total_tokens": 5952
+    }
+  },
+  {
+    "arm": "fast_code",
+    "effort": "none",
+    "elapsed": 597.5183220158797,
+    "enable_thinking": false,
+    "index": 13,
+    "role": "debug",
+    "seconds": 134.99077214789577,
+    "success": true,
+    "task": "denoising-dirty-documents",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 4570,
+      "cumulative_num_llm_calls": 2,
+      "latency": 134.98120980989188,
+      "prompt_tokens": 8063,
+      "total_tokens": 12633
+    }
+  },
+  {
+    "arm": "fast_code",
+    "effort": "medium",
+    "elapsed": 630.0510288900696,
+    "enable_thinking": true,
+    "index": 13,
+    "role": "analyze",
+    "seconds": 13.896792924031615,
+    "success": true,
+    "task": "denoising-dirty-documents",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 214,
+      "cumulative_num_llm_calls": 3,
+      "latency": 13.882330235093832,
+      "prompt_tokens": 5926,
+      "structured_output_requests": 1,
+      "total_tokens": 6140
+    }
+  },
+  {
+    "arm": "fast_code",
+    "effort": "none",
+    "elapsed": 769.9423609129153,
+    "enable_thinking": false,
+    "index": 13,
+    "role": "debug",
+    "seconds": 139.83494228799827,
+    "success": true,
+    "task": "denoising-dirty-documents",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 4679,
+      "cumulative_num_llm_calls": 3,
+      "latency": 139.82829283899628,
+      "prompt_tokens": 9026,
+      "total_tokens": 13705
+    }
+  },
+  {
+    "arm": "fast_code",
+    "effort": "medium",
+    "elapsed": 938.1482935410459,
+    "enable_thinking": true,
+    "index": 13,
+    "role": "analyze",
+    "seconds": 7.585641026031226,
+    "success": true,
+    "task": "denoising-dirty-documents",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 161,
+      "cumulative_num_llm_calls": 4,
+      "latency": 7.5754787609912455,
+      "prompt_tokens": 5670,
+      "structured_output_requests": 1,
+      "total_tokens": 5831
+    }
+  },
+  {
+    "arm": "fast_code",
+    "effort": "none",
+    "elapsed": 1020.0037724019494,
+    "enable_thinking": false,
+    "index": 13,
+    "role": "debug",
+    "seconds": 81.74623190006241,
+    "success": false,
+    "task": "denoising-dirty-documents",
+    "usage": {}
+  },
+  {
+    "arm": "fast_code",
+    "effort": "none",
+    "elapsed": 249.32591595198028,
+    "enable_thinking": false,
+    "index": 14,
+    "role": "improve",
+    "seconds": 118.55454069888219,
+    "success": true,
+    "task": "aerial-cactus-identification",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 4161,
+      "cumulative_num_llm_calls": 1,
+      "latency": 118.53136133193038,
+      "prompt_tokens": 5680,
+      "total_tokens": 9841
+    }
+  },
+  {
+    "arm": "fast_code",
+    "effort": "medium",
+    "elapsed": 379.99298363993876,
+    "enable_thinking": true,
+    "index": 14,
+    "role": "analyze",
+    "seconds": 8.539404194802046,
+    "success": true,
+    "task": "aerial-cactus-identification",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 183,
+      "cumulative_num_llm_calls": 1,
+      "latency": 8.529840603005141,
+      "prompt_tokens": 5947,
+      "structured_output_requests": 1,
+      "total_tokens": 6130
+    }
+  },
+  {
+    "arm": "fast_code",
+    "effort": "none",
+    "elapsed": 522.3001684998162,
+    "enable_thinking": false,
+    "index": 14,
+    "role": "debug",
+    "seconds": 142.2322291790042,
+    "success": true,
+    "task": "aerial-cactus-identification",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 4223,
+      "cumulative_num_llm_calls": 1,
+      "latency": 142.2196385099087,
+      "prompt_tokens": 8256,
+      "total_tokens": 12479
+    }
+  },
+  {
+    "arm": "fast_code",
+    "effort": "medium",
+    "elapsed": 879.2967351989355,
+    "enable_thinking": true,
+    "index": 14,
+    "role": "analyze",
+    "seconds": 25.156023653922603,
+    "success": true,
+    "task": "aerial-cactus-identification",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 832,
+      "cumulative_num_llm_calls": 2,
+      "latency": 25.146102108992636,
+      "prompt_tokens": 6669,
+      "structured_output_requests": 1,
+      "total_tokens": 7501
+    }
+  },
+  {
+    "arm": "fast_code",
+    "effort": "none",
+    "elapsed": 1017.1177655688953,
+    "enable_thinking": false,
+    "index": 14,
+    "role": "debug",
+    "seconds": 129.23316841991618,
+    "success": true,
+    "task": "aerial-cactus-identification",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 4245,
+      "cumulative_num_llm_calls": 2,
+      "latency": 129.2210424009245,
+      "prompt_tokens": 10128,
+      "total_tokens": 14373
+    }
+  },
+  {
+    "arm": "fast_code",
+    "effort": "none",
+    "elapsed": 254.2369717680849,
+    "enable_thinking": false,
+    "index": 15,
+    "role": "improve",
+    "seconds": 103.10571449087001,
+    "success": true,
+    "task": "denoising-dirty-documents",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 3703,
+      "cumulative_num_llm_calls": 1,
+      "latency": 103.08291777200066,
+      "prompt_tokens": 6192,
+      "total_tokens": 9895
+    }
+  },
+  {
+    "arm": "fast_code",
+    "effort": "medium",
+    "elapsed": 407.2855745612178,
+    "enable_thinking": true,
+    "index": 15,
+    "role": "analyze",
+    "seconds": 5.839031561976299,
+    "success": true,
+    "task": "denoising-dirty-documents",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 120,
+      "cumulative_num_llm_calls": 1,
+      "latency": 5.826602527871728,
+      "prompt_tokens": 4476,
+      "structured_output_requests": 1,
+      "total_tokens": 4596
+    }
+  },
+  {
+    "arm": "fast_code",
+    "effort": "none",
+    "elapsed": 516.8430712970439,
+    "enable_thinking": false,
+    "index": 15,
+    "role": "debug",
+    "seconds": 109.49842766905203,
+    "success": true,
+    "task": "denoising-dirty-documents",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 3365,
+      "cumulative_num_llm_calls": 1,
+      "latency": 109.49065483617596,
+      "prompt_tokens": 6191,
+      "total_tokens": 9556
+    }
+  },
+  {
+    "arm": "fast_code",
+    "effort": "medium",
+    "elapsed": 675.8898451910354,
+    "enable_thinking": true,
+    "index": 15,
+    "role": "analyze",
+    "seconds": 6.548101688036695,
+    "success": true,
+    "task": "denoising-dirty-documents",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 149,
+      "cumulative_num_llm_calls": 2,
+      "latency": 6.537130225915462,
+      "prompt_tokens": 4570,
+      "structured_output_requests": 1,
+      "total_tokens": 4719
+    }
+  },
+  {
+    "arm": "fast_code",
+    "effort": "none",
+    "elapsed": 813.9198345202021,
+    "enable_thinking": false,
+    "index": 15,
+    "role": "improve",
+    "seconds": 137.95285242493264,
+    "success": true,
+    "task": "denoising-dirty-documents",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 4242,
+      "cumulative_num_llm_calls": 2,
+      "latency": 137.9452886909712,
+      "prompt_tokens": 6929,
+      "total_tokens": 11171
+    }
+  },
+  {
+    "arm": "fast_code",
+    "effort": "medium",
+    "elapsed": 966.5352589841932,
+    "enable_thinking": true,
+    "index": 15,
+    "role": "analyze",
+    "seconds": 6.869251822121441,
+    "success": true,
+    "task": "denoising-dirty-documents",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 145,
+      "cumulative_num_llm_calls": 3,
+      "latency": 6.857229009037837,
+      "prompt_tokens": 5149,
+      "structured_output_requests": 1,
+      "total_tokens": 5294
+    }
+  },
+  {
+    "arm": "fast_code",
+    "effort": "none",
+    "elapsed": 1020.0038865241222,
+    "enable_thinking": false,
+    "index": 15,
+    "role": "improve",
+    "seconds": 53.37581236404367,
+    "success": false,
+    "task": "denoising-dirty-documents",
+    "usage": {}
+  },
+  {
+    "arm": "feedback_think",
+    "effort": "none",
+    "elapsed": 144.44796052295715,
+    "enable_thinking": false,
+    "index": 16,
+    "role": "improve",
+    "seconds": 95.93846548185684,
+    "success": true,
+    "task": "aerial-cactus-identification",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 3581,
+      "cumulative_num_llm_calls": 1,
+      "latency": 95.92031481908634,
+      "prompt_tokens": 5682,
+      "total_tokens": 9263
+    }
+  },
+  {
+    "arm": "feedback_think",
+    "effort": "medium",
+    "elapsed": 531.9724626329262,
+    "enable_thinking": true,
+    "index": 16,
+    "role": "analyze",
+    "seconds": 7.038770679151639,
+    "success": true,
+    "task": "aerial-cactus-identification",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 156,
+      "cumulative_num_llm_calls": 1,
+      "latency": 7.025986097054556,
+      "prompt_tokens": 4759,
+      "structured_output_requests": 1,
+      "total_tokens": 4915
+    }
+  },
+  {
+    "arm": "feedback_think",
+    "effort": "none",
+    "elapsed": 646.3319662490394,
+    "enable_thinking": false,
+    "index": 16,
+    "role": "improve",
+    "seconds": 106.53503128094599,
+    "success": true,
+    "task": "aerial-cactus-identification",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 3889,
+      "cumulative_num_llm_calls": 2,
+      "latency": 106.52673063799739,
+      "prompt_tokens": 6271,
+      "total_tokens": 10160
+    }
+  },
+  {
+    "arm": "feedback_think",
+    "effort": "medium",
+    "elapsed": 690.9420058669057,
+    "enable_thinking": true,
+    "index": 16,
+    "role": "analyze",
+    "seconds": 9.757427907083184,
+    "success": true,
+    "task": "aerial-cactus-identification",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 121,
+      "cumulative_num_llm_calls": 2,
+      "latency": 9.748914057156071,
+      "prompt_tokens": 4709,
+      "structured_output_requests": 1,
+      "total_tokens": 4830
+    }
+  },
+  {
+    "arm": "feedback_think",
+    "effort": "medium",
+    "elapsed": 810.4577518529259,
+    "enable_thinking": true,
+    "index": 16,
+    "role": "debug",
+    "seconds": 119.45711786393076,
+    "success": true,
+    "task": "aerial-cactus-identification",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 4212,
+      "cumulative_num_llm_calls": 1,
+      "latency": 119.44980342290364,
+      "prompt_tokens": 7388,
+      "total_tokens": 11600
+    }
+  },
+  {
+    "arm": "feedback_think",
+    "effort": "none",
+    "elapsed": 267.53878708393313,
+    "enable_thinking": false,
+    "index": 17,
+    "role": "improve",
+    "seconds": 114.47019799309783,
+    "success": true,
+    "task": "denoising-dirty-documents",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 4310,
+      "cumulative_num_llm_calls": 1,
+      "latency": 114.44984309910797,
+      "prompt_tokens": 6192,
+      "total_tokens": 10502
+    }
+  },
+  {
+    "arm": "feedback_think",
+    "effort": "medium",
+    "elapsed": 699.1334811048582,
+    "enable_thinking": true,
+    "index": 17,
+    "role": "analyze",
+    "seconds": 12.777881869114935,
+    "success": true,
+    "task": "denoising-dirty-documents",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 113,
+      "cumulative_num_llm_calls": 1,
+      "latency": 12.76727229799144,
+      "prompt_tokens": 5197,
+      "structured_output_requests": 1,
+      "total_tokens": 5310
+    }
+  },
+  {
+    "arm": "feedback_think",
+    "effort": "none",
+    "elapsed": 879.2973682067823,
+    "enable_thinking": false,
+    "index": 17,
+    "role": "improve",
+    "seconds": 117.32494158507325,
+    "success": true,
+    "task": "denoising-dirty-documents",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 4134,
+      "cumulative_num_llm_calls": 2,
+      "latency": 117.31342918705195,
+      "prompt_tokens": 6192,
+      "total_tokens": 10326
+    }
+  },
+  {
+    "arm": "feedback_think",
+    "effort": "none",
+    "elapsed": 232.05670512095094,
+    "enable_thinking": false,
+    "index": 18,
+    "role": "improve",
+    "seconds": 86.30050672893412,
+    "success": true,
+    "task": "aerial-cactus-identification",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 3243,
+      "cumulative_num_llm_calls": 1,
+      "latency": 86.27883901982568,
+      "prompt_tokens": 5680,
+      "total_tokens": 8923
+    }
+  },
+  {
+    "arm": "feedback_think",
+    "effort": "medium",
+    "elapsed": 539.73452274804,
+    "enable_thinking": true,
+    "index": 18,
+    "role": "analyze",
+    "seconds": 7.709183870116249,
+    "success": true,
+    "task": "aerial-cactus-identification",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 197,
+      "cumulative_num_llm_calls": 1,
+      "latency": 7.699452767148614,
+      "prompt_tokens": 4403,
+      "structured_output_requests": 1,
+      "total_tokens": 4600
+    }
+  },
+  {
+    "arm": "feedback_think",
+    "effort": "none",
+    "elapsed": 661.3603908480145,
+    "enable_thinking": false,
+    "index": 18,
+    "role": "improve",
+    "seconds": 113.73856575903483,
+    "success": true,
+    "task": "aerial-cactus-identification",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 4324,
+      "cumulative_num_llm_calls": 2,
+      "latency": 113.72571974387392,
+      "prompt_tokens": 6269,
+      "total_tokens": 10593
+    }
+  },
+  {
+    "arm": "feedback_think",
+    "effort": "medium",
+    "elapsed": 970.4150977809913,
+    "enable_thinking": true,
+    "index": 18,
+    "role": "analyze",
+    "seconds": 10.988421305082738,
+    "success": true,
+    "task": "aerial-cactus-identification",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 154,
+      "cumulative_num_llm_calls": 2,
+      "latency": 10.979796023108065,
+      "prompt_tokens": 4809,
+      "structured_output_requests": 1,
+      "total_tokens": 4963
+    }
+  },
+  {
+    "arm": "feedback_think",
+    "effort": "none",
+    "elapsed": 1020.0056003630161,
+    "enable_thinking": false,
+    "index": 18,
+    "role": "improve",
+    "seconds": 42.25003035017289,
+    "success": false,
+    "task": "aerial-cactus-identification",
+    "usage": {}
+  },
+  {
+    "arm": "feedback_think",
+    "effort": "none",
+    "elapsed": 152.71414450393058,
+    "enable_thinking": false,
+    "index": 19,
+    "role": "improve",
+    "seconds": 95.6309771060478,
+    "success": true,
+    "task": "denoising-dirty-documents",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 3648,
+      "cumulative_num_llm_calls": 1,
+      "latency": 95.61300400691107,
+      "prompt_tokens": 6190,
+      "total_tokens": 9838
+    }
+  },
+  {
+    "arm": "feedback_think",
+    "effort": "medium",
+    "elapsed": 272.3762081740424,
+    "enable_thinking": true,
+    "index": 19,
+    "role": "analyze",
+    "seconds": 9.423896983964369,
+    "success": true,
+    "task": "denoising-dirty-documents",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 238,
+      "cumulative_num_llm_calls": 1,
+      "latency": 9.407709600869566,
+      "prompt_tokens": 5939,
+      "structured_output_requests": 1,
+      "total_tokens": 6177
+    }
+  },
+  {
+    "arm": "feedback_think",
+    "effort": "medium",
+    "elapsed": 508.7486649148632,
+    "enable_thinking": true,
+    "index": 19,
+    "role": "debug",
+    "seconds": 236.3087612418458,
+    "success": true,
+    "task": "denoising-dirty-documents",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 8074,
+      "cumulative_num_llm_calls": 1,
+      "latency": 236.28208039794117,
+      "prompt_tokens": 7982,
+      "total_tokens": 16056
+    }
+  },
+  {
+    "arm": "feedback_think",
+    "effort": "medium",
+    "elapsed": 686.3039600220509,
+    "enable_thinking": true,
+    "index": 19,
+    "role": "analyze",
+    "seconds": 10.008040979970247,
+    "success": true,
+    "task": "denoising-dirty-documents",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 142,
+      "cumulative_num_llm_calls": 2,
+      "latency": 10.000119770178571,
+      "prompt_tokens": 4795,
+      "structured_output_requests": 1,
+      "total_tokens": 4937
+    }
+  },
+  {
+    "arm": "feedback_think",
+    "effort": "none",
+    "elapsed": 809.2875514728948,
+    "enable_thinking": false,
+    "index": 19,
+    "role": "improve",
+    "seconds": 110.11923372605816,
+    "success": true,
+    "task": "denoising-dirty-documents",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 4110,
+      "cumulative_num_llm_calls": 2,
+      "latency": 110.10197173501365,
+      "prompt_tokens": 6190,
+      "total_tokens": 10300
+    }
+  },
+  {
+    "arm": "feedback_think",
+    "effort": "none",
+    "elapsed": 323.8908342020586,
+    "enable_thinking": false,
+    "index": 20,
+    "role": "improve",
+    "seconds": 185.1018206870649,
+    "success": true,
+    "task": "aerial-cactus-identification",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 6511,
+      "cumulative_num_llm_calls": 1,
+      "latency": 185.0782617519144,
+      "prompt_tokens": 5684,
+      "total_tokens": 12195
+    }
+  },
+  {
+    "arm": "feedback_think",
+    "effort": "medium",
+    "elapsed": 378.8619840738829,
+    "enable_thinking": true,
+    "index": 20,
+    "role": "analyze",
+    "seconds": 11.54260512907058,
+    "success": true,
+    "task": "aerial-cactus-identification",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 273,
+      "cumulative_num_llm_calls": 1,
+      "latency": 11.531835089903325,
+      "prompt_tokens": 7688,
+      "structured_output_requests": 1,
+      "total_tokens": 7961
+    }
+  },
+  {
+    "arm": "feedback_think",
+    "effort": "medium",
+    "elapsed": 524.4197179509792,
+    "enable_thinking": true,
+    "index": 20,
+    "role": "debug",
+    "seconds": 145.50289822812192,
+    "success": true,
+    "task": "aerial-cactus-identification",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 4715,
+      "cumulative_num_llm_calls": 1,
+      "latency": 145.4939310599584,
+      "prompt_tokens": 10119,
+      "total_tokens": 14834
+    }
+  },
+  {
+    "arm": "feedback_think",
+    "effort": "medium",
+    "elapsed": 820.6457715278957,
+    "enable_thinking": true,
+    "index": 20,
+    "role": "analyze",
+    "seconds": 9.944386371178553,
+    "success": true,
+    "task": "aerial-cactus-identification",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 161,
+      "cumulative_num_llm_calls": 2,
+      "latency": 9.931598236085847,
+      "prompt_tokens": 4978,
+      "structured_output_requests": 1,
+      "total_tokens": 5139
+    }
+  },
+  {
+    "arm": "feedback_think",
+    "effort": "none",
+    "elapsed": 942.3076182978693,
+    "enable_thinking": false,
+    "index": 20,
+    "role": "improve",
+    "seconds": 121.58391172019765,
+    "success": true,
+    "task": "aerial-cactus-identification",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 4433,
+      "cumulative_num_llm_calls": 2,
+      "latency": 121.5752906058915,
+      "prompt_tokens": 5952,
+      "total_tokens": 10385
+    }
+  },
+  {
+    "arm": "feedback_think",
+    "effort": "medium",
+    "elapsed": 958.9870248008519,
+    "enable_thinking": true,
+    "index": 20,
+    "role": "analyze",
+    "seconds": 5.090425533009693,
+    "success": true,
+    "task": "aerial-cactus-identification",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 80,
+      "cumulative_num_llm_calls": 3,
+      "latency": 5.0840330719947815,
+      "prompt_tokens": 4973,
+      "structured_output_requests": 1,
+      "total_tokens": 5053
+    }
+  },
+  {
+    "arm": "feedback_think",
+    "effort": "medium",
+    "elapsed": 1020.0043011459056,
+    "enable_thinking": true,
+    "index": 20,
+    "role": "debug",
+    "seconds": 60.958686902187765,
+    "success": false,
+    "task": "aerial-cactus-identification",
+    "usage": {}
+  },
+  {
+    "arm": "feedback_think",
+    "effort": "none",
+    "elapsed": 261.3871730081737,
+    "enable_thinking": false,
+    "index": 21,
+    "role": "improve",
+    "seconds": 107.5296481589321,
+    "success": true,
+    "task": "denoising-dirty-documents",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 4197,
+      "cumulative_num_llm_calls": 1,
+      "latency": 107.50909568904899,
+      "prompt_tokens": 6194,
+      "total_tokens": 10391
+    }
+  },
+  {
+    "arm": "feedback_think",
+    "effort": "medium",
+    "elapsed": 282.70295482408255,
+    "enable_thinking": true,
+    "index": 21,
+    "role": "analyze",
+    "seconds": 7.66545823100023,
+    "success": true,
+    "task": "denoising-dirty-documents",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 91,
+      "cumulative_num_llm_calls": 1,
+      "latency": 7.654302287846804,
+      "prompt_tokens": 5102,
+      "structured_output_requests": 1,
+      "total_tokens": 5193
+    }
+  },
+  {
+    "arm": "feedback_think",
+    "effort": "medium",
+    "elapsed": 494.55387070705183,
+    "enable_thinking": true,
+    "index": 21,
+    "role": "debug",
+    "seconds": 211.79249164788052,
+    "success": true,
+    "task": "denoising-dirty-documents",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 7735,
+      "cumulative_num_llm_calls": 1,
+      "latency": 211.76612170087174,
+      "prompt_tokens": 7129,
+      "total_tokens": 14864
+    }
+  },
+  {
+    "arm": "feedback_think",
+    "effort": "medium",
+    "elapsed": 516.4015767441597,
+    "enable_thinking": true,
+    "index": 21,
+    "role": "analyze",
+    "seconds": 7.196234300034121,
+    "success": true,
+    "task": "denoising-dirty-documents",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 147,
+      "cumulative_num_llm_calls": 2,
+      "latency": 7.186276957159862,
+      "prompt_tokens": 5154,
+      "structured_output_requests": 1,
+      "total_tokens": 5301
+    }
+  },
+  {
+    "arm": "feedback_think",
+    "effort": "medium",
+    "elapsed": 761.9280997731257,
+    "enable_thinking": true,
+    "index": 21,
+    "role": "debug",
+    "seconds": 245.44080435787328,
+    "success": true,
+    "task": "denoising-dirty-documents",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 8192,
+      "cumulative_num_llm_calls": 2,
+      "latency": 245.43023293511942,
+      "prompt_tokens": 7623,
+      "total_tokens": 15815
+    }
+  },
+  {
+    "arm": "feedback_think",
+    "effort": "medium",
+    "elapsed": 820.5745220710523,
+    "enable_thinking": true,
+    "index": 21,
+    "role": "analyze",
+    "seconds": 9.563509284052998,
+    "success": true,
+    "task": "denoising-dirty-documents",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 155,
+      "cumulative_num_llm_calls": 3,
+      "latency": 9.551344778155908,
+      "prompt_tokens": 4818,
+      "structured_output_requests": 1,
+      "total_tokens": 4973
+    }
+  },
+  {
+    "arm": "feedback_think",
+    "effort": "medium",
+    "elapsed": 1020.0041681770235,
+    "enable_thinking": true,
+    "index": 21,
+    "role": "debug",
+    "seconds": 199.35624159290455,
+    "success": false,
+    "task": "denoising-dirty-documents",
+    "usage": {}
+  },
+  {
+    "arm": "feedback_think",
+    "effort": "none",
+    "elapsed": 137.5030589119997,
+    "enable_thinking": false,
+    "index": 22,
+    "role": "improve",
+    "seconds": 88.92028894694522,
+    "success": true,
+    "task": "aerial-cactus-identification",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 3366,
+      "cumulative_num_llm_calls": 1,
+      "latency": 88.91051842388697,
+      "prompt_tokens": 5678,
+      "total_tokens": 9044
+    }
+  },
+  {
+    "arm": "feedback_think",
+    "effort": "medium",
+    "elapsed": 442.82422749116085,
+    "enable_thinking": true,
+    "index": 22,
+    "role": "analyze",
+    "seconds": 6.099517242982984,
+    "success": true,
+    "task": "aerial-cactus-identification",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 130,
+      "cumulative_num_llm_calls": 1,
+      "latency": 6.085576812969521,
+      "prompt_tokens": 4459,
+      "structured_output_requests": 1,
+      "total_tokens": 4589
+    }
+  },
+  {
+    "arm": "feedback_think",
+    "effort": "none",
+    "elapsed": 546.4517729121726,
+    "enable_thinking": false,
+    "index": 22,
+    "role": "improve",
+    "seconds": 103.56388962594792,
+    "success": true,
+    "task": "aerial-cactus-identification",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 3028,
+      "cumulative_num_llm_calls": 2,
+      "latency": 103.5551285338588,
+      "prompt_tokens": 5678,
+      "total_tokens": 8706
+    }
+  },
+  {
+    "arm": "feedback_think",
+    "effort": "medium",
+    "elapsed": 701.6602306561545,
+    "enable_thinking": true,
+    "index": 22,
+    "role": "analyze",
+    "seconds": 9.851609357167035,
+    "success": true,
+    "task": "aerial-cactus-identification",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 111,
+      "cumulative_num_llm_calls": 2,
+      "latency": 9.840389464050531,
+      "prompt_tokens": 4082,
+      "structured_output_requests": 1,
+      "total_tokens": 4193
+    }
+  },
+  {
+    "arm": "feedback_think",
+    "effort": "none",
+    "elapsed": 817.8700467760209,
+    "enable_thinking": false,
+    "index": 22,
+    "role": "improve",
+    "seconds": 116.12548281112686,
+    "success": true,
+    "task": "aerial-cactus-identification",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 4155,
+      "cumulative_num_llm_calls": 3,
+      "latency": 116.11525791417807,
+      "prompt_tokens": 5946,
+      "total_tokens": 10101
+    }
+  },
+  {
+    "arm": "feedback_think",
+    "effort": "medium",
+    "elapsed": 977.6720409940463,
+    "enable_thinking": true,
+    "index": 22,
+    "role": "analyze",
+    "seconds": 7.159318885067478,
+    "success": true,
+    "task": "aerial-cactus-identification",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 160,
+      "cumulative_num_llm_calls": 3,
+      "latency": 7.147990592056885,
+      "prompt_tokens": 4927,
+      "structured_output_requests": 1,
+      "total_tokens": 5087
+    }
+  },
+  {
+    "arm": "feedback_think",
+    "effort": "none",
+    "elapsed": 151.6422609228175,
+    "enable_thinking": false,
+    "index": 23,
+    "role": "improve",
+    "seconds": 105.79925752314739,
+    "success": true,
+    "task": "denoising-dirty-documents",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 3796,
+      "cumulative_num_llm_calls": 1,
+      "latency": 105.7768881318625,
+      "prompt_tokens": 6194,
+      "total_tokens": 9990
+    }
+  },
+  {
+    "arm": "feedback_think",
+    "effort": "medium",
+    "elapsed": 502.79054978489876,
+    "enable_thinking": true,
+    "index": 23,
+    "role": "analyze",
+    "seconds": 7.829648321960121,
+    "success": true,
+    "task": "denoising-dirty-documents",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 160,
+      "cumulative_num_llm_calls": 1,
+      "latency": 7.813812172971666,
+      "prompt_tokens": 6010,
+      "structured_output_requests": 1,
+      "total_tokens": 6170
+    }
+  },
+  {
+    "arm": "feedback_think",
+    "effort": "medium",
+    "elapsed": 675.8793388488702,
+    "enable_thinking": true,
+    "index": 23,
+    "role": "debug",
+    "seconds": 173.02423542994075,
+    "success": true,
+    "task": "denoising-dirty-documents",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 5835,
+      "cumulative_num_llm_calls": 1,
+      "latency": 173.01729217381217,
+      "prompt_tokens": 7982,
+      "total_tokens": 13817
+    }
+  },
+  {
+    "arm": "feedback_think",
+    "effort": "medium",
+    "elapsed": 938.4185988157988,
+    "enable_thinking": true,
+    "index": 23,
+    "role": "analyze",
+    "seconds": 6.698263501049951,
+    "success": true,
+    "task": "denoising-dirty-documents",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 153,
+      "cumulative_num_llm_calls": 2,
+      "latency": 6.686275503830984,
+      "prompt_tokens": 4640,
+      "structured_output_requests": 1,
+      "total_tokens": 4793
+    }
+  },
+  {
+    "arm": "feedback_think",
+    "effort": "none",
+    "elapsed": 1020.004746491788,
+    "enable_thinking": false,
+    "index": 23,
+    "role": "improve",
+    "seconds": 81.52676248387434,
+    "success": false,
+    "task": "denoising-dirty-documents",
+    "usage": {}
+  },
+  {
+    "arm": "feedback_think",
+    "effort": "none",
+    "elapsed": 121.3187984181568,
+    "enable_thinking": false,
+    "index": 24,
+    "role": "improve",
+    "seconds": 90.49713151413016,
+    "success": true,
+    "task": "aerial-cactus-identification",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 3421,
+      "cumulative_num_llm_calls": 1,
+      "latency": 90.4779927530326,
+      "prompt_tokens": 5680,
+      "total_tokens": 9101
+    }
+  },
+  {
+    "arm": "feedback_think",
+    "effort": "medium",
+    "elapsed": 418.7911308170296,
+    "enable_thinking": true,
+    "index": 24,
+    "role": "analyze",
+    "seconds": 11.243786878883839,
+    "success": true,
+    "task": "aerial-cactus-identification",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 183,
+      "cumulative_num_llm_calls": 1,
+      "latency": 11.23144699796103,
+      "prompt_tokens": 4430,
+      "structured_output_requests": 1,
+      "total_tokens": 4613
+    }
+  },
+  {
+    "arm": "feedback_think",
+    "effort": "none",
+    "elapsed": 509.2803531270474,
+    "enable_thinking": false,
+    "index": 24,
+    "role": "improve",
+    "seconds": 90.42705364199355,
+    "success": true,
+    "task": "aerial-cactus-identification",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 3196,
+      "cumulative_num_llm_calls": 2,
+      "latency": 90.41768945893273,
+      "prompt_tokens": 6296,
+      "total_tokens": 9492
+    }
+  },
+  {
+    "arm": "feedback_think",
+    "effort": "medium",
+    "elapsed": 931.2058854929637,
+    "enable_thinking": true,
+    "index": 24,
+    "role": "analyze",
+    "seconds": 5.4879697621800005,
+    "success": true,
+    "task": "aerial-cactus-identification",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 124,
+      "cumulative_num_llm_calls": 2,
+      "latency": 5.481158958980814,
+      "prompt_tokens": 4056,
+      "structured_output_requests": 1,
+      "total_tokens": 4180
+    }
+  },
+  {
+    "arm": "feedback_think",
+    "effort": "none",
+    "elapsed": 1020.0041915150359,
+    "enable_thinking": false,
+    "index": 24,
+    "role": "improve",
+    "seconds": 88.73397857602686,
+    "success": false,
+    "task": "aerial-cactus-identification",
+    "usage": {}
+  },
+  {
+    "arm": "feedback_think",
+    "effort": "none",
+    "elapsed": 254.70021716086194,
+    "enable_thinking": false,
+    "index": 25,
+    "role": "improve",
+    "seconds": 107.44135693903081,
+    "success": true,
+    "task": "denoising-dirty-documents",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 3985,
+      "cumulative_num_llm_calls": 1,
+      "latency": 107.42054038308561,
+      "prompt_tokens": 6190,
+      "total_tokens": 10175
+    }
+  },
+  {
+    "arm": "feedback_think",
+    "effort": "medium",
+    "elapsed": 665.45277515403,
+    "enable_thinking": true,
+    "index": 25,
+    "role": "analyze",
+    "seconds": 6.134392696898431,
+    "success": true,
+    "task": "denoising-dirty-documents",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 122,
+      "cumulative_num_llm_calls": 1,
+      "latency": 6.127187115140259,
+      "prompt_tokens": 4974,
+      "structured_output_requests": 1,
+      "total_tokens": 5096
+    }
+  },
+  {
+    "arm": "feedback_think",
+    "effort": "none",
+    "elapsed": 773.7981451218948,
+    "enable_thinking": false,
+    "index": 25,
+    "role": "improve",
+    "seconds": 108.23116756393574,
+    "success": true,
+    "task": "denoising-dirty-documents",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 4232,
+      "cumulative_num_llm_calls": 2,
+      "latency": 108.22233534697443,
+      "prompt_tokens": 6390,
+      "total_tokens": 10622
+    }
+  },
+  {
+    "arm": "feedback_think",
+    "effort": "medium",
+    "elapsed": 950.729148343904,
+    "enable_thinking": true,
+    "index": 25,
+    "role": "analyze",
+    "seconds": 15.671493062051013,
+    "success": true,
+    "task": "denoising-dirty-documents",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 479,
+      "cumulative_num_llm_calls": 2,
+      "latency": 15.661995586007833,
+      "prompt_tokens": 5906,
+      "structured_output_requests": 1,
+      "total_tokens": 6385
+    }
+  },
+  {
+    "arm": "feedback_think",
+    "effort": "medium",
+    "elapsed": 1020.0044082880486,
+    "enable_thinking": true,
+    "index": 25,
+    "role": "debug",
+    "seconds": 69.20206037303433,
+    "success": false,
+    "task": "denoising-dirty-documents",
+    "usage": {}
+  },
+  {
+    "arm": "feedback_think",
+    "effort": "none",
+    "elapsed": 135.55361491302028,
+    "enable_thinking": false,
+    "index": 26,
+    "role": "improve",
+    "seconds": 104.79063464398496,
+    "success": true,
+    "task": "aerial-cactus-identification",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 3900,
+      "cumulative_num_llm_calls": 1,
+      "latency": 104.77239736309275,
+      "prompt_tokens": 5682,
+      "total_tokens": 9582
+    }
+  },
+  {
+    "arm": "feedback_think",
+    "effort": "medium",
+    "elapsed": 294.14569294801913,
+    "enable_thinking": true,
+    "index": 26,
+    "role": "analyze",
+    "seconds": 6.189270228147507,
+    "success": true,
+    "task": "aerial-cactus-identification",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 127,
+      "cumulative_num_llm_calls": 1,
+      "latency": 6.176294112112373,
+      "prompt_tokens": 4835,
+      "structured_output_requests": 1,
+      "total_tokens": 4962
+    }
+  },
+  {
+    "arm": "feedback_think",
+    "effort": "none",
+    "elapsed": 378.16992683615535,
+    "enable_thinking": false,
+    "index": 26,
+    "role": "improve",
+    "seconds": 83.91723859799094,
+    "success": true,
+    "task": "aerial-cactus-identification",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 3018,
+      "cumulative_num_llm_calls": 2,
+      "latency": 83.900596647989,
+      "prompt_tokens": 5682,
+      "total_tokens": 8700
+    }
+  },
+  {
+    "arm": "feedback_think",
+    "effort": "medium",
+    "elapsed": 424.96469341614284,
+    "enable_thinking": true,
+    "index": 26,
+    "role": "analyze",
+    "seconds": 9.492423991207033,
+    "success": true,
+    "task": "aerial-cactus-identification",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 100,
+      "cumulative_num_llm_calls": 2,
+      "latency": 9.48161816294305,
+      "prompt_tokens": 4786,
+      "structured_output_requests": 1,
+      "total_tokens": 4886
+    }
+  },
+  {
+    "arm": "feedback_think",
+    "effort": "medium",
+    "elapsed": 530.5818870209623,
+    "enable_thinking": true,
+    "index": 26,
+    "role": "debug",
+    "seconds": 105.55281393392943,
+    "success": true,
+    "task": "aerial-cactus-identification",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 3682,
+      "cumulative_num_llm_calls": 1,
+      "latency": 105.54563932493329,
+      "prompt_tokens": 6931,
+      "total_tokens": 10613
+    }
+  },
+  {
+    "arm": "feedback_think",
+    "effort": "medium",
+    "elapsed": 822.7475750441663,
+    "enable_thinking": true,
+    "index": 26,
+    "role": "analyze",
+    "seconds": 7.908705384936184,
+    "success": true,
+    "task": "aerial-cactus-identification",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 147,
+      "cumulative_num_llm_calls": 3,
+      "latency": 7.902570132864639,
+      "prompt_tokens": 4253,
+      "structured_output_requests": 1,
+      "total_tokens": 4400
+    }
+  },
+  {
+    "arm": "feedback_think",
+    "effort": "none",
+    "elapsed": 919.6587573110592,
+    "enable_thinking": false,
+    "index": 26,
+    "role": "improve",
+    "seconds": 96.70040357694961,
+    "success": true,
+    "task": "aerial-cactus-identification",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 3759,
+      "cumulative_num_llm_calls": 3,
+      "latency": 96.69033290888183,
+      "prompt_tokens": 6298,
+      "total_tokens": 10057
+    }
+  },
+  {
+    "arm": "feedback_think",
+    "effort": "none",
+    "elapsed": 227.2770688191522,
+    "enable_thinking": false,
+    "index": 27,
+    "role": "improve",
+    "seconds": 97.62631786195561,
+    "success": true,
+    "task": "denoising-dirty-documents",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 3732,
+      "cumulative_num_llm_calls": 1,
+      "latency": 97.60500654298812,
+      "prompt_tokens": 6192,
+      "total_tokens": 9924
+    }
+  },
+  {
+    "arm": "feedback_think",
+    "effort": "medium",
+    "elapsed": 307.06763916509226,
+    "enable_thinking": true,
+    "index": 27,
+    "role": "analyze",
+    "seconds": 9.876334747998044,
+    "success": true,
+    "task": "denoising-dirty-documents",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 259,
+      "cumulative_num_llm_calls": 1,
+      "latency": 9.862428589025512,
+      "prompt_tokens": 5328,
+      "structured_output_requests": 1,
+      "total_tokens": 5587
+    }
+  },
+  {
+    "arm": "feedback_think",
+    "effort": "medium",
+    "elapsed": 542.4354831101373,
+    "enable_thinking": true,
+    "index": 27,
+    "role": "debug",
+    "seconds": 235.30060349986888,
+    "success": true,
+    "task": "denoising-dirty-documents",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 8192,
+      "cumulative_num_llm_calls": 1,
+      "latency": 235.29325196309946,
+      "prompt_tokens": 7276,
+      "total_tokens": 15468
+    }
+  },
+  {
+    "arm": "feedback_think",
+    "effort": "medium",
+    "elapsed": 822.9139703821857,
+    "enable_thinking": true,
+    "index": 27,
+    "role": "analyze",
+    "seconds": 3.9738277248106897,
+    "success": true,
+    "task": "denoising-dirty-documents",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 87,
+      "cumulative_num_llm_calls": 2,
+      "latency": 3.966806231997907,
+      "prompt_tokens": 2965,
+      "structured_output_requests": 1,
+      "total_tokens": 3052
+    }
+  },
+  {
+    "arm": "feedback_think",
+    "effort": "medium",
+    "elapsed": 1020.0045345840044,
+    "enable_thinking": true,
+    "index": 27,
+    "role": "debug",
+    "seconds": 196.83610609686002,
+    "success": false,
+    "task": "denoising-dirty-documents",
+    "usage": {}
+  },
+  {
+    "arm": "feedback_think",
+    "effort": "none",
+    "elapsed": 225.33518250007182,
+    "enable_thinking": false,
+    "index": 28,
+    "role": "improve",
+    "seconds": 88.21485911007039,
+    "success": true,
+    "task": "aerial-cactus-identification",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 3386,
+      "cumulative_num_llm_calls": 1,
+      "latency": 88.19293139595538,
+      "prompt_tokens": 5682,
+      "total_tokens": 9068
+    }
+  },
+  {
+    "arm": "feedback_think",
+    "effort": "medium",
+    "elapsed": 523.2465118169785,
+    "enable_thinking": true,
+    "index": 28,
+    "role": "analyze",
+    "seconds": 12.636695444816723,
+    "success": true,
+    "task": "aerial-cactus-identification",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 381,
+      "cumulative_num_llm_calls": 1,
+      "latency": 12.624509951099753,
+      "prompt_tokens": 4470,
+      "structured_output_requests": 1,
+      "total_tokens": 4851
+    }
+  },
+  {
+    "arm": "feedback_think",
+    "effort": "none",
+    "elapsed": 622.4089951531496,
+    "enable_thinking": false,
+    "index": 28,
+    "role": "improve",
+    "seconds": 99.08445587195456,
+    "success": true,
+    "task": "aerial-cactus-identification",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 3581,
+      "cumulative_num_llm_calls": 2,
+      "latency": 99.07503081299365,
+      "prompt_tokens": 6298,
+      "total_tokens": 9879
+    }
+  },
+  {
+    "arm": "feedback_think",
+    "effort": "medium",
+    "elapsed": 980.8267566070426,
+    "enable_thinking": true,
+    "index": 28,
+    "role": "analyze",
+    "seconds": 7.07583760493435,
+    "success": true,
+    "task": "aerial-cactus-identification",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 176,
+      "cumulative_num_llm_calls": 2,
+      "latency": 7.067847606958821,
+      "prompt_tokens": 4227,
+      "structured_output_requests": 1,
+      "total_tokens": 4403
+    }
+  },
+  {
+    "arm": "feedback_think",
+    "effort": "none",
+    "elapsed": 1020.0036413040943,
+    "enable_thinking": false,
+    "index": 28,
+    "role": "improve",
+    "seconds": 39.08598783798516,
+    "success": false,
+    "task": "aerial-cactus-identification",
+    "usage": {}
+  },
+  {
+    "arm": "feedback_think",
+    "effort": "none",
+    "elapsed": 128.3622769410722,
+    "enable_thinking": false,
+    "index": 29,
+    "role": "improve",
+    "seconds": 96.79255575407296,
+    "success": true,
+    "task": "denoising-dirty-documents",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 3643,
+      "cumulative_num_llm_calls": 1,
+      "latency": 96.77397586405277,
+      "prompt_tokens": 6188,
+      "total_tokens": 9831
+    }
+  },
+  {
+    "arm": "feedback_think",
+    "effort": "medium",
+    "elapsed": 245.5208357940428,
+    "enable_thinking": true,
+    "index": 29,
+    "role": "analyze",
+    "seconds": 16.847972332965583,
+    "success": true,
+    "task": "denoising-dirty-documents",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 578,
+      "cumulative_num_llm_calls": 1,
+      "latency": 16.835198689019307,
+      "prompt_tokens": 4756,
+      "structured_output_requests": 1,
+      "total_tokens": 5334
+    }
+  },
+  {
+    "arm": "feedback_think",
+    "effort": "medium",
+    "elapsed": 401.4477134910412,
+    "enable_thinking": true,
+    "index": 29,
+    "role": "debug",
+    "seconds": 155.87650375207886,
+    "success": true,
+    "task": "denoising-dirty-documents",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 5935,
+      "cumulative_num_llm_calls": 1,
+      "latency": 155.8698278667871,
+      "prompt_tokens": 7166,
+      "total_tokens": 13101
+    }
+  },
+  {
+    "arm": "feedback_think",
+    "effort": "medium",
+    "elapsed": 781.4352619689889,
+    "enable_thinking": true,
+    "index": 29,
+    "role": "analyze",
+    "seconds": 5.993625859031454,
+    "success": true,
+    "task": "denoising-dirty-documents",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 132,
+      "cumulative_num_llm_calls": 2,
+      "latency": 5.982777124969289,
+      "prompt_tokens": 4517,
+      "structured_output_requests": 1,
+      "total_tokens": 4649
+    }
+  },
+  {
+    "arm": "feedback_think",
+    "effort": "none",
+    "elapsed": 875.2202887621243,
+    "enable_thinking": false,
+    "index": 29,
+    "role": "improve",
+    "seconds": 93.71307937288657,
+    "success": true,
+    "task": "denoising-dirty-documents",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 3498,
+      "cumulative_num_llm_calls": 2,
+      "latency": 93.70409212796949,
+      "prompt_tokens": 5931,
+      "total_tokens": 9429
+    }
+  },
+  {
+    "arm": "feedback_think",
+    "effort": "none",
+    "elapsed": 222.36128044384532,
+    "enable_thinking": false,
+    "index": 30,
+    "role": "improve",
+    "seconds": 99.80860920296982,
+    "success": true,
+    "task": "aerial-cactus-identification",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 3756,
+      "cumulative_num_llm_calls": 1,
+      "latency": 99.78985497285612,
+      "prompt_tokens": 5686,
+      "total_tokens": 9442
+    }
+  },
+  {
+    "arm": "feedback_think",
+    "effort": "medium",
+    "elapsed": 594.7072517208289,
+    "enable_thinking": true,
+    "index": 30,
+    "role": "analyze",
+    "seconds": 6.721256504999474,
+    "success": true,
+    "task": "aerial-cactus-identification",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 154,
+      "cumulative_num_llm_calls": 1,
+      "latency": 6.705973593052477,
+      "prompt_tokens": 4759,
+      "structured_output_requests": 1,
+      "total_tokens": 4913
+    }
+  },
+  {
+    "arm": "feedback_think",
+    "effort": "medium",
+    "elapsed": 726.1731017569546,
+    "enable_thinking": true,
+    "index": 30,
+    "role": "debug",
+    "seconds": 131.4009221768938,
+    "success": true,
+    "task": "aerial-cactus-identification",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 4530,
+      "cumulative_num_llm_calls": 1,
+      "latency": 131.39419738482684,
+      "prompt_tokens": 7240,
+      "total_tokens": 11770
+    }
+  },
+  {
+    "arm": "feedback_think",
+    "effort": "none",
+    "elapsed": 145.74556395597756,
+    "enable_thinking": false,
+    "index": 31,
+    "role": "improve",
+    "seconds": 114.28998557315208,
+    "success": true,
+    "task": "denoising-dirty-documents",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 4245,
+      "cumulative_num_llm_calls": 1,
+      "latency": 114.28072491497733,
+      "prompt_tokens": 6192,
+      "total_tokens": 10437
+    }
+  },
+  {
+    "arm": "feedback_think",
+    "effort": "medium",
+    "elapsed": 410.98764474806376,
+    "enable_thinking": true,
+    "index": 31,
+    "role": "analyze",
+    "seconds": 9.262334891129285,
+    "success": true,
+    "task": "denoising-dirty-documents",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 143,
+      "cumulative_num_llm_calls": 1,
+      "latency": 9.252374015981331,
+      "prompt_tokens": 5012,
+      "structured_output_requests": 1,
+      "total_tokens": 5155
+    }
+  },
+  {
+    "arm": "feedback_think",
+    "effort": "none",
+    "elapsed": 541.0963811259717,
+    "enable_thinking": false,
+    "index": 31,
+    "role": "improve",
+    "seconds": 130.04708887380548,
+    "success": true,
+    "task": "denoising-dirty-documents",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 4352,
+      "cumulative_num_llm_calls": 2,
+      "latency": 130.0369500129018,
+      "prompt_tokens": 6192,
+      "total_tokens": 10544
+    }
+  },
+  {
+    "arm": "feedback_think",
+    "effort": "medium",
+    "elapsed": 606.1450286300387,
+    "enable_thinking": true,
+    "index": 31,
+    "role": "analyze",
+    "seconds": 9.200762789929286,
+    "success": true,
+    "task": "denoising-dirty-documents",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 125,
+      "cumulative_num_llm_calls": 2,
+      "latency": 9.191393524874002,
+      "prompt_tokens": 6051,
+      "structured_output_requests": 1,
+      "total_tokens": 6176
+    }
+  },
+  {
+    "arm": "feedback_think",
+    "effort": "medium",
+    "elapsed": 781.4349478580989,
+    "enable_thinking": true,
+    "index": 31,
+    "role": "debug",
+    "seconds": 175.23150937794708,
+    "success": true,
+    "task": "denoising-dirty-documents",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 6589,
+      "cumulative_num_llm_calls": 1,
+      "latency": 175.22293428704143,
+      "prompt_tokens": 7971,
+      "total_tokens": 14560
+    }
+  },
+  {
+    "arm": "fast_code",
+    "effort": "none",
+    "elapsed": 146.31292923004366,
+    "enable_thinking": false,
+    "index": 32,
+    "role": "improve",
+    "seconds": 108.54903334495611,
+    "success": true,
+    "task": "aerial-cactus-identification",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 4041,
+      "cumulative_num_llm_calls": 1,
+      "latency": 108.5309795960784,
+      "prompt_tokens": 5684,
+      "total_tokens": 9725
+    }
+  },
+  {
+    "arm": "fast_code",
+    "effort": "medium",
+    "elapsed": 232.83868778916076,
+    "enable_thinking": true,
+    "index": 32,
+    "role": "analyze",
+    "seconds": 6.960800339002162,
+    "success": true,
+    "task": "aerial-cactus-identification",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 145,
+      "cumulative_num_llm_calls": 1,
+      "latency": 6.948879939969629,
+      "prompt_tokens": 5336,
+      "structured_output_requests": 1,
+      "total_tokens": 5481
+    }
+  },
+  {
+    "arm": "fast_code",
+    "effort": "none",
+    "elapsed": 360.84848369215615,
+    "enable_thinking": false,
+    "index": 32,
+    "role": "debug",
+    "seconds": 127.9506565630436,
+    "success": true,
+    "task": "aerial-cactus-identification",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 4900,
+      "cumulative_num_llm_calls": 1,
+      "latency": 127.72870115516707,
+      "prompt_tokens": 7676,
+      "total_tokens": 12576
+    }
+  },
+  {
+    "arm": "fast_code",
+    "effort": "medium",
+    "elapsed": 572.0320587509777,
+    "enable_thinking": true,
+    "index": 32,
+    "role": "analyze",
+    "seconds": 8.491229339968413,
+    "success": true,
+    "task": "aerial-cactus-identification",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 158,
+      "cumulative_num_llm_calls": 2,
+      "latency": 8.484069261001423,
+      "prompt_tokens": 7250,
+      "structured_output_requests": 1,
+      "total_tokens": 7408
+    }
+  },
+  {
+    "arm": "fast_code",
+    "effort": "none",
+    "elapsed": 717.3335145881865,
+    "enable_thinking": false,
+    "index": 32,
+    "role": "debug",
+    "seconds": 145.23944984888658,
+    "success": true,
+    "task": "aerial-cactus-identification",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 4732,
+      "cumulative_num_llm_calls": 2,
+      "latency": 145.23284963192418,
+      "prompt_tokens": 10124,
+      "total_tokens": 14856
+    }
+  },
+  {
+    "arm": "fast_code",
+    "effort": "medium",
+    "elapsed": 800.126687257085,
+    "enable_thinking": true,
+    "index": 32,
+    "role": "analyze",
+    "seconds": 8.614100380102172,
+    "success": true,
+    "task": "aerial-cactus-identification",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 168,
+      "cumulative_num_llm_calls": 3,
+      "latency": 8.606419480172917,
+      "prompt_tokens": 7024,
+      "structured_output_requests": 1,
+      "total_tokens": 7192
+    }
+  },
+  {
+    "arm": "fast_code",
+    "effort": "none",
+    "elapsed": 945.2995281121694,
+    "enable_thinking": false,
+    "index": 32,
+    "role": "debug",
+    "seconds": 145.09253389388323,
+    "success": true,
+    "task": "aerial-cactus-identification",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 4891,
+      "cumulative_num_llm_calls": 3,
+      "latency": 145.08491803403012,
+      "prompt_tokens": 10216,
+      "total_tokens": 15107
+    }
+  },
+  {
+    "arm": "fast_code",
+    "effort": "none",
+    "elapsed": 268.4410935160704,
+    "enable_thinking": false,
+    "index": 33,
+    "role": "improve",
+    "seconds": 124.43887930503115,
+    "success": true,
+    "task": "denoising-dirty-documents",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 4277,
+      "cumulative_num_llm_calls": 1,
+      "latency": 124.41688517597504,
+      "prompt_tokens": 6190,
+      "total_tokens": 10467
+    }
+  },
+  {
+    "arm": "fast_code",
+    "effort": "medium",
+    "elapsed": 540.6670250860043,
+    "enable_thinking": true,
+    "index": 33,
+    "role": "analyze",
+    "seconds": 6.534167719073594,
+    "success": true,
+    "task": "denoising-dirty-documents",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 129,
+      "cumulative_num_llm_calls": 1,
+      "latency": 6.525324651971459,
+      "prompt_tokens": 5158,
+      "structured_output_requests": 1,
+      "total_tokens": 5287
+    }
+  },
+  {
+    "arm": "fast_code",
+    "effort": "none",
+    "elapsed": 664.4029310948681,
+    "enable_thinking": false,
+    "index": 33,
+    "role": "improve",
+    "seconds": 123.6581152419094,
+    "success": true,
+    "task": "denoising-dirty-documents",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 4456,
+      "cumulative_num_llm_calls": 2,
+      "latency": 123.65119859599508,
+      "prompt_tokens": 6574,
+      "total_tokens": 11030
+    }
+  },
+  {
+    "arm": "fast_code",
+    "effort": "medium",
+    "elapsed": 689.282460388029,
+    "enable_thinking": true,
+    "index": 33,
+    "role": "analyze",
+    "seconds": 10.92250246903859,
+    "success": true,
+    "task": "denoising-dirty-documents",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 120,
+      "cumulative_num_llm_calls": 2,
+      "latency": 10.916464771144092,
+      "prompt_tokens": 5837,
+      "structured_output_requests": 1,
+      "total_tokens": 5957
+    }
+  },
+  {
+    "arm": "fast_code",
+    "effort": "none",
+    "elapsed": 822.9740258830134,
+    "enable_thinking": false,
+    "index": 33,
+    "role": "debug",
+    "seconds": 133.6304848359432,
+    "success": true,
+    "task": "denoising-dirty-documents",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 4510,
+      "cumulative_num_llm_calls": 1,
+      "latency": 133.62365554296412,
+      "prompt_tokens": 7670,
+      "total_tokens": 12180
+    }
+  },
+  {
+    "arm": "fast_code",
+    "effort": "none",
+    "elapsed": 123.91553221619688,
+    "enable_thinking": false,
+    "index": 34,
+    "role": "improve",
+    "seconds": 86.07606836594641,
+    "success": true,
+    "task": "aerial-cactus-identification",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 3268,
+      "cumulative_num_llm_calls": 1,
+      "latency": 86.05571615090594,
+      "prompt_tokens": 5680,
+      "total_tokens": 8948
+    }
+  },
+  {
+    "arm": "fast_code",
+    "effort": "medium",
+    "elapsed": 418.55592054501176,
+    "enable_thinking": true,
+    "index": 34,
+    "role": "analyze",
+    "seconds": 5.086686609080061,
+    "success": true,
+    "task": "aerial-cactus-identification",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 107,
+      "cumulative_num_llm_calls": 1,
+      "latency": 5.076347497059032,
+      "prompt_tokens": 4210,
+      "structured_output_requests": 1,
+      "total_tokens": 4317
+    }
+  },
+  {
+    "arm": "fast_code",
+    "effort": "none",
+    "elapsed": 539.9038210010622,
+    "enable_thinking": false,
+    "index": 34,
+    "role": "improve",
+    "seconds": 121.24244651081972,
+    "success": true,
+    "task": "aerial-cactus-identification",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 4050,
+      "cumulative_num_llm_calls": 2,
+      "latency": 121.23165089008398,
+      "prompt_tokens": 6076,
+      "total_tokens": 10126
+    }
+  },
+  {
+    "arm": "fast_code",
+    "effort": "medium",
+    "elapsed": 682.6796191369649,
+    "enable_thinking": true,
+    "index": 34,
+    "role": "analyze",
+    "seconds": 16.695122871082276,
+    "success": true,
+    "task": "aerial-cactus-identification",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 147,
+      "cumulative_num_llm_calls": 2,
+      "latency": 16.68799812090583,
+      "prompt_tokens": 4412,
+      "structured_output_requests": 1,
+      "total_tokens": 4559
+    }
+  },
+  {
+    "arm": "fast_code",
+    "effort": "none",
+    "elapsed": 790.2721048421226,
+    "enable_thinking": false,
+    "index": 34,
+    "role": "debug",
+    "seconds": 107.52978762215935,
+    "success": true,
+    "task": "aerial-cactus-identification",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 3690,
+      "cumulative_num_llm_calls": 1,
+      "latency": 107.52245374699123,
+      "prompt_tokens": 7040,
+      "total_tokens": 10730
+    }
+  },
+  {
+    "arm": "fast_code",
+    "effort": "medium",
+    "elapsed": 856.9930788229685,
+    "enable_thinking": true,
+    "index": 34,
+    "role": "analyze",
+    "seconds": 11.27574249706231,
+    "success": true,
+    "task": "aerial-cactus-identification",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 324,
+      "cumulative_num_llm_calls": 3,
+      "latency": 11.264925357885659,
+      "prompt_tokens": 4838,
+      "structured_output_requests": 1,
+      "total_tokens": 5162
+    }
+  },
+  {
+    "arm": "fast_code",
+    "effort": "none",
+    "elapsed": 958.1726279880386,
+    "enable_thinking": false,
+    "index": 34,
+    "role": "improve",
+    "seconds": 101.11229133815505,
+    "success": true,
+    "task": "aerial-cactus-identification",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 3808,
+      "cumulative_num_llm_calls": 3,
+      "latency": 101.10422458918765,
+      "prompt_tokens": 6076,
+      "total_tokens": 9884
+    }
+  },
+  {
+    "arm": "fast_code",
+    "effort": "none",
+    "elapsed": 240.35733851301484,
+    "enable_thinking": false,
+    "index": 35,
+    "role": "improve",
+    "seconds": 101.71549049811438,
+    "success": true,
+    "task": "denoising-dirty-documents",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 3619,
+      "cumulative_num_llm_calls": 1,
+      "latency": 101.69394349190407,
+      "prompt_tokens": 6192,
+      "total_tokens": 9811
+    }
+  },
+  {
+    "arm": "fast_code",
+    "effort": "medium",
+    "elapsed": 428.2988327529747,
+    "enable_thinking": true,
+    "index": 35,
+    "role": "analyze",
+    "seconds": 6.300812719156966,
+    "success": true,
+    "task": "denoising-dirty-documents",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 120,
+      "cumulative_num_llm_calls": 1,
+      "latency": 6.292006539879367,
+      "prompt_tokens": 5063,
+      "structured_output_requests": 1,
+      "total_tokens": 5183
+    }
+  },
+  {
+    "arm": "fast_code",
+    "effort": "none",
+    "elapsed": 538.0570505168289,
+    "enable_thinking": false,
+    "index": 35,
+    "role": "debug",
+    "seconds": 109.68362204404548,
+    "success": true,
+    "task": "denoising-dirty-documents",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 3839,
+      "cumulative_num_llm_calls": 1,
+      "latency": 109.67386423004791,
+      "prompt_tokens": 6841,
+      "total_tokens": 10680
+    }
+  },
+  {
+    "arm": "fast_code",
+    "effort": "medium",
+    "elapsed": 842.0733195869252,
+    "enable_thinking": true,
+    "index": 35,
+    "role": "analyze",
+    "seconds": 10.181719172978774,
+    "success": true,
+    "task": "denoising-dirty-documents",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 113,
+      "cumulative_num_llm_calls": 2,
+      "latency": 10.169030915945768,
+      "prompt_tokens": 4864,
+      "structured_output_requests": 1,
+      "total_tokens": 4977
+    }
+  },
+  {
+    "arm": "fast_code",
+    "effort": "none",
+    "elapsed": 949.7073211299721,
+    "enable_thinking": false,
+    "index": 35,
+    "role": "improve",
+    "seconds": 107.54648756491952,
+    "success": true,
+    "task": "denoising-dirty-documents",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 4034,
+      "cumulative_num_llm_calls": 2,
+      "latency": 107.53781323507428,
+      "prompt_tokens": 6576,
+      "total_tokens": 10610
+    }
+  },
+  {
+    "arm": "fast_code",
+    "effort": "none",
+    "elapsed": 224.4946193790529,
+    "enable_thinking": false,
+    "index": 36,
+    "role": "improve",
+    "seconds": 99.41156758693978,
+    "success": true,
+    "task": "aerial-cactus-identification",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 3772,
+      "cumulative_num_llm_calls": 1,
+      "latency": 99.3888815890532,
+      "prompt_tokens": 5682,
+      "total_tokens": 9454
+    }
+  },
+  {
+    "arm": "fast_code",
+    "effort": "medium",
+    "elapsed": 517.6188169920351,
+    "enable_thinking": true,
+    "index": 36,
+    "role": "analyze",
+    "seconds": 7.928174989996478,
+    "success": true,
+    "task": "aerial-cactus-identification",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 188,
+      "cumulative_num_llm_calls": 1,
+      "latency": 7.920962115051225,
+      "prompt_tokens": 4786,
+      "structured_output_requests": 1,
+      "total_tokens": 4974
+    }
+  },
+  {
+    "arm": "fast_code",
+    "effort": "none",
+    "elapsed": 632.1021890300326,
+    "enable_thinking": false,
+    "index": 36,
+    "role": "improve",
+    "seconds": 114.35401367605664,
+    "success": true,
+    "task": "aerial-cactus-identification",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 3722,
+      "cumulative_num_llm_calls": 2,
+      "latency": 114.34603425487876,
+      "prompt_tokens": 6078,
+      "total_tokens": 9800
+    }
+  },
+  {
+    "arm": "fast_code",
+    "effort": "medium",
+    "elapsed": 955.633784575155,
+    "enable_thinking": true,
+    "index": 36,
+    "role": "analyze",
+    "seconds": 6.05206520203501,
+    "success": true,
+    "task": "aerial-cactus-identification",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 127,
+      "cumulative_num_llm_calls": 2,
+      "latency": 6.042887605028227,
+      "prompt_tokens": 4733,
+      "structured_output_requests": 1,
+      "total_tokens": 4860
+    }
+  },
+  {
+    "arm": "fast_code",
+    "effort": "none",
+    "elapsed": 1020.0052617120091,
+    "enable_thinking": false,
+    "index": 36,
+    "role": "improve",
+    "seconds": 64.29690077411942,
+    "success": false,
+    "task": "aerial-cactus-identification",
+    "usage": {}
+  },
+  {
+    "arm": "fast_code",
+    "effort": "none",
+    "elapsed": 142.5311539019458,
+    "enable_thinking": false,
+    "index": 37,
+    "role": "improve",
+    "seconds": 104.16347892116755,
+    "success": true,
+    "task": "denoising-dirty-documents",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 3919,
+      "cumulative_num_llm_calls": 1,
+      "latency": 104.14518925081939,
+      "prompt_tokens": 6198,
+      "total_tokens": 10117
+    }
+  },
+  {
+    "arm": "fast_code",
+    "effort": "medium",
+    "elapsed": 247.83075826591812,
+    "enable_thinking": true,
+    "index": 37,
+    "role": "analyze",
+    "seconds": 6.24576376308687,
+    "success": true,
+    "task": "denoising-dirty-documents",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 121,
+      "cumulative_num_llm_calls": 1,
+      "latency": 6.231309623923153,
+      "prompt_tokens": 5169,
+      "structured_output_requests": 1,
+      "total_tokens": 5290
+    }
+  },
+  {
+    "arm": "fast_code",
+    "effort": "none",
+    "elapsed": 347.5005990578793,
+    "enable_thinking": false,
+    "index": 37,
+    "role": "debug",
+    "seconds": 99.5862892807927,
+    "success": true,
+    "task": "denoising-dirty-documents",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 3965,
+      "cumulative_num_llm_calls": 1,
+      "latency": 99.57880874816328,
+      "prompt_tokens": 7157,
+      "total_tokens": 11122
+    }
+  },
+  {
+    "arm": "fast_code",
+    "effort": "medium",
+    "elapsed": 674.4013815550134,
+    "enable_thinking": true,
+    "index": 37,
+    "role": "analyze",
+    "seconds": 8.007421974092722,
+    "success": true,
+    "task": "denoising-dirty-documents",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 104,
+      "cumulative_num_llm_calls": 2,
+      "latency": 8.0021536371205,
+      "prompt_tokens": 5204,
+      "structured_output_requests": 1,
+      "total_tokens": 5308
+    }
+  },
+  {
+    "arm": "fast_code",
+    "effort": "none",
+    "elapsed": 831.0280331419781,
+    "enable_thinking": false,
+    "index": 37,
+    "role": "improve",
+    "seconds": 156.5671529811807,
+    "success": true,
+    "task": "denoising-dirty-documents",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 4842,
+      "cumulative_num_llm_calls": 2,
+      "latency": 156.55975225497968,
+      "prompt_tokens": 6582,
+      "total_tokens": 11424
+    }
+  },
+  {
+    "arm": "fast_code",
+    "effort": "medium",
+    "elapsed": 965.0083480698522,
+    "enable_thinking": true,
+    "index": 37,
+    "role": "analyze",
+    "seconds": 6.149209850933403,
+    "success": true,
+    "task": "denoising-dirty-documents",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 102,
+      "cumulative_num_llm_calls": 3,
+      "latency": 6.136291139060631,
+      "prompt_tokens": 6013,
+      "structured_output_requests": 1,
+      "total_tokens": 6115
+    }
+  },
+  {
+    "arm": "fast_code",
+    "effort": "none",
+    "elapsed": 1020.0052363260183,
+    "enable_thinking": false,
+    "index": 37,
+    "role": "debug",
+    "seconds": 54.91896363906562,
+    "success": false,
+    "task": "denoising-dirty-documents",
+    "usage": {}
+  },
+  {
+    "arm": "fast_code",
+    "effort": "none",
+    "elapsed": 245.90041250898503,
+    "enable_thinking": false,
+    "index": 38,
+    "role": "improve",
+    "seconds": 98.10774381202646,
+    "success": true,
+    "task": "aerial-cactus-identification",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 3420,
+      "cumulative_num_llm_calls": 1,
+      "latency": 98.08652917691506,
+      "prompt_tokens": 5682,
+      "total_tokens": 9102
+    }
+  },
+  {
+    "arm": "fast_code",
+    "effort": "medium",
+    "elapsed": 730.130376124056,
+    "enable_thinking": true,
+    "index": 38,
+    "role": "analyze",
+    "seconds": 10.994246229995042,
+    "success": true,
+    "task": "aerial-cactus-identification",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 315,
+      "cumulative_num_llm_calls": 1,
+      "latency": 10.983788731042296,
+      "prompt_tokens": 4603,
+      "structured_output_requests": 1,
+      "total_tokens": 4918
+    }
+  },
+  {
+    "arm": "fast_code",
+    "effort": "none",
+    "elapsed": 844.243263968965,
+    "enable_thinking": false,
+    "index": 38,
+    "role": "improve",
+    "seconds": 114.02982993191108,
+    "success": true,
+    "task": "aerial-cactus-identification",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 3598,
+      "cumulative_num_llm_calls": 2,
+      "latency": 114.02195593994111,
+      "prompt_tokens": 6078,
+      "total_tokens": 9676
+    }
+  },
+  {
+    "arm": "fast_code",
+    "effort": "none",
+    "elapsed": 137.2604945730418,
+    "enable_thinking": false,
+    "index": 39,
+    "role": "improve",
+    "seconds": 98.92256916803308,
+    "success": true,
+    "task": "denoising-dirty-documents",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 3743,
+      "cumulative_num_llm_calls": 1,
+      "latency": 98.90384782501496,
+      "prompt_tokens": 6192,
+      "total_tokens": 9935
+    }
+  },
+  {
+    "arm": "fast_code",
+    "effort": "medium",
+    "elapsed": 408.22338764416054,
+    "enable_thinking": true,
+    "index": 39,
+    "role": "analyze",
+    "seconds": 5.1541155490558594,
+    "success": true,
+    "task": "denoising-dirty-documents",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 116,
+      "cumulative_num_llm_calls": 1,
+      "latency": 5.14387680310756,
+      "prompt_tokens": 4583,
+      "structured_output_requests": 1,
+      "total_tokens": 4699
+    }
+  },
+  {
+    "arm": "fast_code",
+    "effort": "none",
+    "elapsed": 530.1905910470523,
+    "enable_thinking": false,
+    "index": 39,
+    "role": "improve",
+    "seconds": 121.91583545994945,
+    "success": true,
+    "task": "denoising-dirty-documents",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 3998,
+      "cumulative_num_llm_calls": 2,
+      "latency": 121.90800994588062,
+      "prompt_tokens": 6001,
+      "total_tokens": 9999
+    }
+  },
+  {
+    "arm": "fast_code",
+    "effort": "medium",
+    "elapsed": 831.8246854341123,
+    "enable_thinking": true,
+    "index": 39,
+    "role": "analyze",
+    "seconds": 7.082827529171482,
+    "success": true,
+    "task": "denoising-dirty-documents",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 150,
+      "cumulative_num_llm_calls": 2,
+      "latency": 7.071447178954259,
+      "prompt_tokens": 5253,
+      "structured_output_requests": 1,
+      "total_tokens": 5403
+    }
+  },
+  {
+    "arm": "fast_code",
+    "effort": "none",
+    "elapsed": 942.3271393890027,
+    "enable_thinking": false,
+    "index": 39,
+    "role": "debug",
+    "seconds": 109.15260465606116,
+    "success": true,
+    "task": "denoising-dirty-documents",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 3850,
+      "cumulative_num_llm_calls": 1,
+      "latency": 109.14102458581328,
+      "prompt_tokens": 7237,
+      "total_tokens": 11087
+    }
+  },
+  {
+    "arm": "medium",
+    "effort": "medium",
+    "elapsed": 155.12748092296533,
+    "enable_thinking": true,
+    "index": 40,
+    "role": "improve",
+    "seconds": 123.71047843713313,
+    "success": true,
+    "task": "aerial-cactus-identification",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 4706,
+      "cumulative_num_llm_calls": 1,
+      "latency": 123.6911520648282,
+      "prompt_tokens": 5678,
+      "total_tokens": 10384
+    }
+  },
+  {
+    "arm": "medium",
+    "effort": "medium",
+    "elapsed": 448.3191479980014,
+    "enable_thinking": true,
+    "index": 40,
+    "role": "analyze",
+    "seconds": 6.651920939795673,
+    "success": true,
+    "task": "aerial-cactus-identification",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 161,
+      "cumulative_num_llm_calls": 1,
+      "latency": 6.64058107114397,
+      "prompt_tokens": 4190,
+      "structured_output_requests": 1,
+      "total_tokens": 4351
+    }
+  },
+  {
+    "arm": "medium",
+    "effort": "medium",
+    "elapsed": 665.4784111641347,
+    "enable_thinking": true,
+    "index": 40,
+    "role": "improve",
+    "seconds": 217.09852345800027,
+    "success": true,
+    "task": "aerial-cactus-identification",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 7571,
+      "cumulative_num_llm_calls": 2,
+      "latency": 217.09039241913706,
+      "prompt_tokens": 6054,
+      "total_tokens": 13625
+    }
+  },
+  {
+    "arm": "medium",
+    "effort": "medium",
+    "elapsed": 958.6087997939903,
+    "enable_thinking": true,
+    "index": 40,
+    "role": "analyze",
+    "seconds": 5.621951496927068,
+    "success": true,
+    "task": "aerial-cactus-identification",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 127,
+      "cumulative_num_llm_calls": 2,
+      "latency": 5.612127962056547,
+      "prompt_tokens": 3801,
+      "structured_output_requests": 1,
+      "total_tokens": 3928
+    }
+  },
+  {
+    "arm": "medium",
+    "effort": "medium",
+    "elapsed": 407.71867833309807,
+    "enable_thinking": true,
+    "index": 41,
+    "role": "improve",
+    "seconds": 160.11628392594866,
+    "success": true,
+    "task": "denoising-dirty-documents",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 6040,
+      "cumulative_num_llm_calls": 1,
+      "latency": 160.09276704699732,
+      "prompt_tokens": 6192,
+      "total_tokens": 12232
+    }
+  },
+  {
+    "arm": "medium",
+    "effort": "medium",
+    "elapsed": 635.7225104370154,
+    "enable_thinking": true,
+    "index": 41,
+    "role": "analyze",
+    "seconds": 9.299649551976472,
+    "success": true,
+    "task": "denoising-dirty-documents",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 240,
+      "cumulative_num_llm_calls": 1,
+      "latency": 9.287367001874372,
+      "prompt_tokens": 4858,
+      "structured_output_requests": 1,
+      "total_tokens": 5098
+    }
+  },
+  {
+    "arm": "medium",
+    "effort": "medium",
+    "elapsed": 845.5441824630834,
+    "enable_thinking": true,
+    "index": 41,
+    "role": "debug",
+    "seconds": 204.5964568858035,
+    "success": true,
+    "task": "denoising-dirty-documents",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 7343,
+      "cumulative_num_llm_calls": 1,
+      "latency": 204.58323888108134,
+      "prompt_tokens": 6685,
+      "total_tokens": 14028
+    }
+  },
+  {
+    "arm": "medium",
+    "effort": "medium",
+    "elapsed": 360.76842383877374,
+    "enable_thinking": true,
+    "index": 42,
+    "role": "improve",
+    "seconds": 192.87395311007276,
+    "success": true,
+    "task": "aerial-cactus-identification",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 7218,
+      "cumulative_num_llm_calls": 1,
+      "latency": 192.85280631296337,
+      "prompt_tokens": 5678,
+      "total_tokens": 12896
+    }
+  },
+  {
+    "arm": "medium",
+    "effort": "medium",
+    "elapsed": 672.6874093438964,
+    "enable_thinking": true,
+    "index": 42,
+    "role": "analyze",
+    "seconds": 6.81771694496274,
+    "success": true,
+    "task": "aerial-cactus-identification",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 173,
+      "cumulative_num_llm_calls": 1,
+      "latency": 6.806901592994109,
+      "prompt_tokens": 3927,
+      "structured_output_requests": 1,
+      "total_tokens": 4100
+    }
+  },
+  {
+    "arm": "medium",
+    "effort": "medium",
+    "elapsed": 857.1965690879151,
+    "enable_thinking": true,
+    "index": 42,
+    "role": "improve",
+    "seconds": 184.43589044897817,
+    "success": true,
+    "task": "aerial-cactus-identification",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 6918,
+      "cumulative_num_llm_calls": 2,
+      "latency": 184.42639012588188,
+      "prompt_tokens": 6054,
+      "total_tokens": 12972
+    }
+  },
+  {
+    "arm": "medium",
+    "effort": "medium",
+    "elapsed": 952.9429155618418,
+    "enable_thinking": true,
+    "index": 42,
+    "role": "analyze",
+    "seconds": 9.465128985932097,
+    "success": true,
+    "task": "aerial-cactus-identification",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 276,
+      "cumulative_num_llm_calls": 2,
+      "latency": 9.452312666922808,
+      "prompt_tokens": 3726,
+      "structured_output_requests": 1,
+      "total_tokens": 4002
+    }
+  },
+  {
+    "arm": "medium",
+    "effort": "medium",
+    "elapsed": 1020.0039331309963,
+    "enable_thinking": true,
+    "index": 42,
+    "role": "debug",
+    "seconds": 61.34881972381845,
+    "success": false,
+    "task": "aerial-cactus-identification",
+    "usage": {}
+  },
+  {
+    "arm": "medium",
+    "effort": "medium",
+    "elapsed": 247.56094253901392,
+    "enable_thinking": true,
+    "index": 43,
+    "role": "improve",
+    "seconds": 215.79989561089315,
+    "success": true,
+    "task": "denoising-dirty-documents",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 8192,
+      "cumulative_num_llm_calls": 1,
+      "latency": 215.77996935183182,
+      "prompt_tokens": 6194,
+      "total_tokens": 14386
+    }
+  },
+  {
+    "arm": "medium",
+    "effort": "medium",
+    "elapsed": 411.24816616089083,
+    "enable_thinking": true,
+    "index": 43,
+    "role": "analyze",
+    "seconds": 3.2672399969305843,
+    "success": true,
+    "task": "denoising-dirty-documents",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 101,
+      "cumulative_num_llm_calls": 1,
+      "latency": 3.251657919958234,
+      "prompt_tokens": 1258,
+      "structured_output_requests": 1,
+      "total_tokens": 1359
+    }
+  },
+  {
+    "arm": "medium",
+    "effort": "medium",
+    "elapsed": 651.9989517228678,
+    "enable_thinking": true,
+    "index": 43,
+    "role": "debug",
+    "seconds": 232.49345110496506,
+    "success": true,
+    "task": "denoising-dirty-documents",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 8192,
+      "cumulative_num_llm_calls": 1,
+      "latency": 232.47931123315357,
+      "prompt_tokens": 2523,
+      "total_tokens": 10715
+    }
+  },
+  {
+    "arm": "medium",
+    "effort": "medium",
+    "elapsed": 808.8520766978618,
+    "enable_thinking": true,
+    "index": 43,
+    "role": "analyze",
+    "seconds": 4.756227095145732,
+    "success": true,
+    "task": "denoising-dirty-documents",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 139,
+      "cumulative_num_llm_calls": 2,
+      "latency": 4.746932545909658,
+      "prompt_tokens": 1859,
+      "structured_output_requests": 1,
+      "total_tokens": 1998
+    }
+  },
+  {
+    "arm": "medium",
+    "effort": "medium",
+    "elapsed": 971.8863028539345,
+    "enable_thinking": true,
+    "index": 43,
+    "role": "debug",
+    "seconds": 162.94947820995003,
+    "success": true,
+    "task": "denoising-dirty-documents",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 5739,
+      "cumulative_num_llm_calls": 2,
+      "latency": 162.9398427149281,
+      "prompt_tokens": 3124,
+      "total_tokens": 8863
+    }
+  },
+  {
+    "arm": "medium",
+    "effort": "medium",
+    "elapsed": 992.5053223909345,
+    "enable_thinking": true,
+    "index": 43,
+    "role": "analyze",
+    "seconds": 6.536775483051315,
+    "success": true,
+    "task": "denoising-dirty-documents",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 150,
+      "cumulative_num_llm_calls": 3,
+      "latency": 6.527139878133312,
+      "prompt_tokens": 4294,
+      "structured_output_requests": 1,
+      "total_tokens": 4444
+    }
+  },
+  {
+    "arm": "medium",
+    "effort": "medium",
+    "elapsed": 1020.0032538559753,
+    "enable_thinking": true,
+    "index": 43,
+    "role": "debug",
+    "seconds": 27.42329154489562,
+    "success": false,
+    "task": "denoising-dirty-documents",
+    "usage": {}
+  },
+  {
+    "arm": "medium",
+    "effort": "medium",
+    "elapsed": 299.2068295320496,
+    "enable_thinking": true,
+    "index": 44,
+    "role": "improve",
+    "seconds": 143.8277513908688,
+    "success": true,
+    "task": "aerial-cactus-identification",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 5473,
+      "cumulative_num_llm_calls": 1,
+      "latency": 143.80543141788803,
+      "prompt_tokens": 5678,
+      "total_tokens": 11151
+    }
+  },
+  {
+    "arm": "medium",
+    "effort": "medium",
+    "elapsed": 581.5395258888602,
+    "enable_thinking": true,
+    "index": 44,
+    "role": "analyze",
+    "seconds": 5.244436742039397,
+    "success": true,
+    "task": "aerial-cactus-identification",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 112,
+      "cumulative_num_llm_calls": 1,
+      "latency": 5.233718651114032,
+      "prompt_tokens": 3817,
+      "structured_output_requests": 1,
+      "total_tokens": 3929
+    }
+  },
+  {
+    "arm": "medium",
+    "effort": "medium",
+    "elapsed": 812.4572398909368,
+    "enable_thinking": true,
+    "index": 44,
+    "role": "improve",
+    "seconds": 230.8530347221531,
+    "success": true,
+    "task": "aerial-cactus-identification",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 8192,
+      "cumulative_num_llm_calls": 2,
+      "latency": 230.8448887099512,
+      "prompt_tokens": 6054,
+      "total_tokens": 14246
+    }
+  },
+  {
+    "arm": "medium",
+    "effort": "medium",
+    "elapsed": 457.1551180528477,
+    "enable_thinking": true,
+    "index": 45,
+    "role": "improve",
+    "seconds": 225.0326491771266,
+    "success": true,
+    "task": "denoising-dirty-documents",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 8192,
+      "cumulative_num_llm_calls": 1,
+      "latency": 225.01101537491195,
+      "prompt_tokens": 6190,
+      "total_tokens": 14382
+    }
+  },
+  {
+    "arm": "medium",
+    "effort": "medium",
+    "elapsed": 640.9079820138868,
+    "enable_thinking": true,
+    "index": 45,
+    "role": "analyze",
+    "seconds": 5.138470767997205,
+    "success": true,
+    "task": "denoising-dirty-documents",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 111,
+      "cumulative_num_llm_calls": 1,
+      "latency": 5.128192062024027,
+      "prompt_tokens": 3631,
+      "structured_output_requests": 1,
+      "total_tokens": 3742
+    }
+  },
+  {
+    "arm": "medium",
+    "effort": "medium",
+    "elapsed": 803.6449493949767,
+    "enable_thinking": true,
+    "index": 45,
+    "role": "debug",
+    "seconds": 151.6132847839035,
+    "success": true,
+    "task": "denoising-dirty-documents",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 5682,
+      "cumulative_num_llm_calls": 1,
+      "latency": 151.35503453109413,
+      "prompt_tokens": 4892,
+      "total_tokens": 10574
+    }
+  },
+  {
+    "arm": "medium",
+    "effort": "medium",
+    "elapsed": 167.66432329802774,
+    "enable_thinking": true,
+    "index": 46,
+    "role": "improve",
+    "seconds": 136.21764832991175,
+    "success": true,
+    "task": "aerial-cactus-identification",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 5141,
+      "cumulative_num_llm_calls": 1,
+      "latency": 136.20814053108916,
+      "prompt_tokens": 5680,
+      "total_tokens": 10821
+    }
+  },
+  {
+    "arm": "medium",
+    "effort": "medium",
+    "elapsed": 304.0765173099935,
+    "enable_thinking": true,
+    "index": 46,
+    "role": "analyze",
+    "seconds": 4.661385351791978,
+    "success": true,
+    "task": "aerial-cactus-identification",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 75,
+      "cumulative_num_llm_calls": 1,
+      "latency": 4.6476990589872,
+      "prompt_tokens": 4435,
+      "structured_output_requests": 1,
+      "total_tokens": 4510
+    }
+  },
+  {
+    "arm": "medium",
+    "effort": "medium",
+    "elapsed": 409.7239191851113,
+    "enable_thinking": true,
+    "index": 46,
+    "role": "debug",
+    "seconds": 105.54536215821281,
+    "success": true,
+    "task": "aerial-cactus-identification",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 3992,
+      "cumulative_num_llm_calls": 1,
+      "latency": 105.53597794217058,
+      "prompt_tokens": 6486,
+      "total_tokens": 10478
+    }
+  },
+  {
+    "arm": "medium",
+    "effort": "medium",
+    "elapsed": 819.8286770929117,
+    "enable_thinking": true,
+    "index": 46,
+    "role": "analyze",
+    "seconds": 7.28578473511152,
+    "success": true,
+    "task": "aerial-cactus-identification",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 180,
+      "cumulative_num_llm_calls": 2,
+      "latency": 7.27250504004769,
+      "prompt_tokens": 4393,
+      "structured_output_requests": 1,
+      "total_tokens": 4573
+    }
+  },
+  {
+    "arm": "medium",
+    "effort": "medium",
+    "elapsed": 1020.0035427359398,
+    "enable_thinking": true,
+    "index": 46,
+    "role": "improve",
+    "seconds": 200.0583248459734,
+    "success": false,
+    "task": "aerial-cactus-identification",
+    "usage": {}
+  },
+  {
+    "arm": "medium",
+    "effort": "medium",
+    "elapsed": 231.86276114312932,
+    "enable_thinking": true,
+    "index": 47,
+    "role": "improve",
+    "seconds": 191.8270790290553,
+    "success": true,
+    "task": "denoising-dirty-documents",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 7421,
+      "cumulative_num_llm_calls": 1,
+      "latency": 191.80878541106358,
+      "prompt_tokens": 6192,
+      "total_tokens": 13613
+    }
+  },
+  {
+    "arm": "medium",
+    "effort": "medium",
+    "elapsed": 419.4615456860047,
+    "enable_thinking": true,
+    "index": 47,
+    "role": "analyze",
+    "seconds": 8.179338732967153,
+    "success": true,
+    "task": "denoising-dirty-documents",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 204,
+      "cumulative_num_llm_calls": 1,
+      "latency": 8.165526462020352,
+      "prompt_tokens": 5282,
+      "structured_output_requests": 1,
+      "total_tokens": 5486
+    }
+  },
+  {
+    "arm": "medium",
+    "effort": "medium",
+    "elapsed": 625.9701919720974,
+    "enable_thinking": true,
+    "index": 47,
+    "role": "debug",
+    "seconds": 168.78305666800588,
+    "success": true,
+    "task": "denoising-dirty-documents",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 6269,
+      "cumulative_num_llm_calls": 1,
+      "latency": 168.6940203369595,
+      "prompt_tokens": 7013,
+      "total_tokens": 13282
+    }
+  },
+  {
+    "arm": "medium",
+    "effort": "medium",
+    "elapsed": 909.9119514261838,
+    "enable_thinking": true,
+    "index": 47,
+    "role": "analyze",
+    "seconds": 6.192192256916314,
+    "success": true,
+    "task": "denoising-dirty-documents",
+    "usage": {
+      "adapter_attempts": 1,
+      "completion_tokens": 119,
+      "cumulative_num_llm_calls": 2,
+      "latency": 6.17718938505277,
+      "prompt_tokens": 5056,
+      "structured_output_requests": 1,
+      "total_tokens": 5175
+    }
+  },
+  {
+    "arm": "medium",
+    "effort": "medium",
+    "elapsed": 1020.0038730751257,
+    "enable_thinking": true,
+    "index": 47,
+    "role": "improve",
+    "seconds": 109.96447880798951,
+    "success": false,
+    "task": "denoising-dirty-documents",
+    "usage": {}
+  }
+]

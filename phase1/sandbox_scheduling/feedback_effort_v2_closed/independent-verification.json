@@ -1,0 +1,122 @@
+{
+  "status": "passed",
+  "method": "Independent Node arithmetic and CSV parsing; not an independent rerun of every remote integrity check.",
+  "assigned": 48,
+  "started": 48,
+  "complete": 48,
+  "csv_json_cell_parity": true,
+  "complete_matrix": true,
+  "quality_gate": false,
+  "mechanism_gate": true,
+  "original_gate": false,
+  "source_commit": "1cd338f86dac1381795c0295abcefefc8391df8d",
+  "plan_sha256": "4b33b157e65ba4b14668dfb9e3309ba2e9173ba62c0d542614ef9bad7befd0fc",
+  "gpu_seconds": 44166,
+  "gpu_hours": 12.268333333333333,
+  "contrasts": [
+    {
+      "repeat": 0,
+      "task": "aerial-cactus-identification",
+      "reference": "medium",
+      "method_best": 0.9999171490728714,
+      "reference_best": 0.9998530064196105,
+      "oriented_delta": 0.0000641426532609346
+    },
+    {
+      "repeat": 0,
+      "task": "aerial-cactus-identification",
+      "reference": "fast_code",
+      "method_best": 0.9999171490728714,
+      "reference_best": 0.9997140306708787,
+      "oriented_delta": 0.00020311840199271902
+    },
+    {
+      "repeat": 0,
+      "task": "denoising-dirty-documents",
+      "reference": "medium",
+      "method_best": 0.01841157291063107,
+      "reference_best": 0.019929967149881492,
+      "oriented_delta": 0.0015183942392504209
+    },
+    {
+      "repeat": 0,
+      "task": "denoising-dirty-documents",
+      "reference": "fast_code",
+      "method_best": 0.01841157291063107,
+      "reference_best": 0.014879316923648044,
+      "oriented_delta": -0.003532255986983028
+    },
+    {
+      "repeat": 1,
+      "task": "aerial-cactus-identification",
+      "reference": "medium",
+      "method_best": 0.9998824051356884,
+      "reference_best": 0.9998316255351902,
+      "oriented_delta": 0.000050779600498152
+    },
+    {
+      "repeat": 1,
+      "task": "aerial-cactus-identification",
+      "reference": "fast_code",
+      "method_best": 0.9998824051356884,
+      "reference_best": 0.9998129172613225,
+      "oriented_delta": 0.00006948787436589221
+    },
+    {
+      "repeat": 1,
+      "task": "denoising-dirty-documents",
+      "reference": "medium",
+      "method_best": 0.014526227565536542,
+      "reference_best": 0.016919910295110023,
+      "oriented_delta": 0.002393682729573481
+    },
+    {
+      "repeat": 1,
+      "task": "denoising-dirty-documents",
+      "reference": "fast_code",
+      "method_best": 0.014526227565536542,
+      "reference_best": 0.016424072925913014,
+      "oriented_delta": 0.0018978453603764722
+    }
+  ],
+  "by_arm": {
+    "medium": {
+      "aerial-cactus-identification": {
+        "median": 0.9997273937236414,
+        "sample_sd": 0.0000566361066872225
+      },
+      "denoising-dirty-documents": {
+        "median": 0.04551226514614451,
+        "sample_sd": 0.013582224329383927
+      }
+    },
+    "fast_code": {
+      "aerial-cactus-identification": {
+        "median": 0.9997140306708787,
+        "sample_sd": 0.0000349616893356032
+      },
+      "denoising-dirty-documents": {
+        "median": 0.03114072240264385,
+        "sample_sd": 0.013074607116314111
+      }
+    },
+    "feedback_think": {
+      "aerial-cactus-identification": {
+        "median": 0.9997300663341939,
+        "sample_sd": 0.00008714206442841128
+      },
+      "denoising-dirty-documents": {
+        "median": 0.04551226514614451,
+        "sample_sd": 0.013161720461574223
+      }
+    }
+  },
+  "transfer_sha256": {
+    "summary.json": "ecf3dc4123e657c3f4221e7b061c7a0a7550be27f4febc21034367c7282e3b8a",
+    "runs.json": "81eb58979c723619a1c405245078231ede881f557597c8f93d5d72482b95148b",
+    "runs.csv": "7ab808b507ead07ad64f035d73527a21db6a658f7f89ca0902ce2e04ff7251de",
+    "effort.json": "76466058c7f1a472e5b21826562a1310e078440c21f33a2bf8e02087a08c2d62",
+    "identity.json": "6c9dba82c6dc0c176f5624aec61b1fe0229245aa9f619f22b25be013e69429d3"
+  },
+  "limitation": "Two pool repeats and two already-used development tasks; within-pool searches are dependent. Known CoT-retry-like strategy qualification, not novelty confirmation."
+}

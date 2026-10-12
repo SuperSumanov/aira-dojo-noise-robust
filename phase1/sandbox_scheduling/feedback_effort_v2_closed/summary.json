@@ -1,0 +1,180 @@
+{
+  "assigned": 48,
+  "by_arm": {
+    "fast_code": {
+      "aerial-cactus-identification": {
+        "median": 0.9997140306708787,
+        "sample_sd": 3.496168933560319e-05
+      },
+      "denoising-dirty-documents": {
+        "median": 0.03114072240264385,
+        "sample_sd": 0.01307460711631411
+      }
+    },
+    "feedback_think": {
+      "aerial-cactus-identification": {
+        "median": 0.9997300663341939,
+        "sample_sd": 8.714206442841128e-05
+      },
+      "denoising-dirty-documents": {
+        "median": 0.04551226514614451,
+        "sample_sd": 0.013161720461574225
+      }
+    },
+    "medium": {
+      "aerial-cactus-identification": {
+        "median": 0.9997273937236414,
+        "sample_sd": 5.66361066872225e-05
+      },
+      "denoising-dirty-documents": {
+        "median": 0.04551226514614451,
+        "sample_sd": 0.013582224329383927
+      }
+    }
+  },
+  "complete": 48,
+  "contrasts": [
+    {
+      "method_best": 0.9999171490728714,
+      "oriented_delta": 6.41426532609346e-05,
+      "reference": "medium",
+      "reference_best": 0.9998530064196105,
+      "repeat": 0,
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "method_best": 0.9999171490728714,
+      "oriented_delta": 0.00020311840199271902,
+      "reference": "fast_code",
+      "reference_best": 0.9997140306708787,
+      "repeat": 0,
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "method_best": 0.01841157291063107,
+      "oriented_delta": 0.0015183942392504209,
+      "reference": "medium",
+      "reference_best": 0.019929967149881492,
+      "repeat": 0,
+      "task": "denoising-dirty-documents"
+    },
+    {
+      "method_best": 0.01841157291063107,
+      "oriented_delta": -0.003532255986983028,
+      "reference": "fast_code",
+      "reference_best": 0.014879316923648044,
+      "repeat": 0,
+      "task": "denoising-dirty-documents"
+    },
+    {
+      "method_best": 0.9998824051356884,
+      "oriented_delta": 5.0779600498152e-05,
+      "reference": "medium",
+      "reference_best": 0.9998316255351902,
+      "repeat": 1,
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "method_best": 0.9998824051356884,
+      "oriented_delta": 6.948787436589221e-05,
+      "reference": "fast_code",
+      "reference_best": 0.9998129172613225,
+      "repeat": 1,
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "method_best": 0.014526227565536542,
+      "oriented_delta": 0.002393682729573481,
+      "reference": "medium",
+      "reference_best": 0.016919910295110023,
+      "repeat": 1,
+      "task": "denoising-dirty-documents"
+    },
+    {
+      "method_best": 0.014526227565536542,
+      "oriented_delta": 0.0018978453603764722,
+      "reference": "fast_code",
+      "reference_best": 0.016424072925913014,
+      "repeat": 1,
+      "task": "denoising-dirty-documents"
+    }
+  ],
+  "cpu_pairs_passed": 24,
+  "gpu_hours": 12.268333333333333,
+  "gpu_seconds": 44166,
+  "limitation": "Exploratory two already-observed development tasks, aerial near ceiling only regression control. Conditional refinement, not from-scratch or official test. Two pool repeats, not48 independent samples. CoT-retry and Ares are direct prior art; this is known-strategy baseline qualification, not novelty or SOTA superiority. No claim that faster generation implies improvement.",
+  "mechanism_gate": true,
+  "no_automatic_expansion": true,
+  "plan_sha256": "4b33b157e65ba4b14668dfb9e3309ba2e9173ba62c0d542614ef9bad7befd0fc",
+  "policies": [
+    {
+      "admitted": 35,
+      "all_released": true,
+      "arm": "medium",
+      "block": 0,
+      "completed_improvements": 10,
+      "completed_nonwarm_parent": 2,
+      "counterfactual_parent_difference": 7,
+      "feedback_waits": 0
+    },
+    {
+      "admitted": 50,
+      "all_released": true,
+      "arm": "fast_code",
+      "block": 1,
+      "completed_improvements": 11,
+      "completed_nonwarm_parent": 2,
+      "counterfactual_parent_difference": 8,
+      "feedback_waits": 0
+    },
+    {
+      "admitted": 43,
+      "all_released": true,
+      "arm": "feedback_think",
+      "block": 2,
+      "completed_improvements": 13,
+      "completed_nonwarm_parent": 4,
+      "counterfactual_parent_difference": 8,
+      "feedback_waits": 0
+    },
+    {
+      "admitted": 40,
+      "all_released": true,
+      "arm": "feedback_think",
+      "block": 3,
+      "completed_improvements": 13,
+      "completed_nonwarm_parent": 3,
+      "counterfactual_parent_difference": 9,
+      "feedback_waits": 0
+    },
+    {
+      "admitted": 44,
+      "all_released": true,
+      "arm": "fast_code",
+      "block": 4,
+      "completed_improvements": 13,
+      "completed_nonwarm_parent": 5,
+      "counterfactual_parent_difference": 8,
+      "feedback_waits": 0
+    },
+    {
+      "admitted": 35,
+      "all_released": true,
+      "arm": "medium",
+      "block": 5,
+      "completed_improvements": 10,
+      "completed_nonwarm_parent": 2,
+      "counterfactual_parent_difference": 8,
+      "feedback_waits": 0
+    }
+  ],
+  "predeclared_success_gate_met": false,
+  "prior_failure_gpu_seconds": 1968,
+  "quality_gate": false,
+  "readout_sha256": "a81d0b2a82ffd59c44257aa3d21a07021a013f5ef9e29dfacd10afd8d3e13380",
+  "scores_recomputed": 46,
+  "source_commit": "1cd338f86dac1381795c0295abcefefc8391df8d",
+  "structural_gate": true,
+  "window_gpu_hours": 12.815,
+  "window_gpu_seconds": 46134
+}

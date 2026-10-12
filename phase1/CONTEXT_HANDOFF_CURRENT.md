@@ -1,9 +1,9 @@
 # 当前短交接：恢复先读本文件，不从旧心跳恢复任务
 
-更新：2026-10-12香港17:34，独立v2=17740最后观察前三池24条全部正常且整池预算闭合，第四池8条已启动；尚未读取成绩，窗口总上限仍13GPUh。
+更新：2026-10-12香港17:48，独立v2=17740最后观察32条正常结束，前三池整池预算闭合；尚未读取成绩，窗口总上限仍13GPUh。
 恢复顺序：fetch → CURRENT_DIRECTION → ROUTE_DECISIONS → 本文件 → 必要原始证据。
 
-## 当前新窗口：推理开销时机，v1闭合/v2准备
+## 当前新窗口：推理开销时机，v1闭合/v2运行
 - HK15:49 CPU正式前检完成：48配置/32只模式不同配对、26CPU单测、真实native展开/parse/debug/checkpoint、实际tokenizer双模式前缀区别均过。source=3f119700a84d5975acef8bcff9949e188c60aefc公开核实；planSHA=a85d6332621414e7a5fae031bb419e769769b5724ec6cf574677bf211176462a。提交前查到CoT-retry直接先例（ROUTE链接），明确降格文献参照资格实验，不是创新确认；用户已被告知。
 - 17736在16:03:16 FAILED：48分配/8入口启动/0生成调用/0评分/0完成/40未开始。实际328秒×6=1968GPU秒=0.5466666666666666GPUh；8worker及服务GPU清理通过。错误为新记录器拒绝真实async GenericLLM；旧CPU native测试只调用parent.install并mock掉LLM，未测新effort路径，已纠正此前前检覆盖表述。source3f119700原件/原门保留；frozen readout-v1已闭合。
 - 用户最新授权自主判断并做验证。16:09在零模型/评分结果时明确告知独立入口修正的协议修订；不是暗中重开17736或把失败分母删掉。v2仅支持真实async记录器；48科学配置/seed/池预算/成绩门原样，总cap7470秒×6，连v1为46788GPU秒，低于原46800。若再次入口失败，本窗不再重提；无策略/任务/阈值救结果。
@@ -12,6 +12,7 @@
 - 16:32只读核服务事实：startup271.66944062593393s，八入口已记generation_started；实际日志prefix_cache=True/enforce_eager=False。六池同一服务的缓存保留，ABCCBA不能严格分离非线性热身/缓存与池顺序，因此本轮即使阳性也只算资格信号；不事中切cache或改原门。两旧开发任务/两池重复不当48个独立样本。只读checker在本地_codex_tmp/effort_service_facts_20261012.py与v2 stage，无运行源码改动。
 - 17:05已确认两常数模式真实返回：medium Improve11/Debug6、fast Improve13/Debug14（成功调用，不是有效/改善候选）。16条均budget_exhausted/return0/cleanup通过，不能提前读分。两次SSH瞬时超时均复连后job正常；低频结构监视cell1711，最多3次连续失败停监视并报告，不重提作业。公开head8fd8aba8已push，运行source仍1cd338；独立复核器数值CSV支持1.0/1和指数写法，17边界例及旧48失败分母通过；不改主门。
 - 后续监视：cell1711因本地自动权限审核超时停止，单次获准重试已成功；现为会话内只读session79459（约150秒一次，到18:40封顶，三连失败停）。前三池24条已正常闭合，第二重复已开始；不是远端实验重启。pressure次要积分新增同流同时间戳测试并保持原顺序，6项过；揭读前修复，主读出/评分门不变，远端新辅助文件使用effort_pressure_diagnostic_20261012_v2.py，不覆盖旧脚本。
+- 17:37取回公开/学长分支：我方5fef840a43e736ace35b05461b8afd9cee1f4aca已push核实；学长新增ff0b8f10ae2c877cd183102ddd992489323b6024（commit时间17:35:28），仅aira_mcts_qwen_medium_lora.yaml新增。形状/凭据赋值扫描0后读到四角色LoRA-medium、seed1–8；没有新outcome或效果数据，不切换本批模型。未改学长分支。pressure辅助新文件远端/本地SHA均b92c0b65de4aa48697b80b5d7a4c0aabefa3da8cad1cb2772b0c7dddc85f03ec，SCP已核实完成。
 - 先做闭合轨迹census：17681两参照12次Debug无起点过时机会，未扩该假说；cheap-proposal+reasoned-repair是假说，Ares是直接近邻，不能称新颖性确认。2旧开发任务仅探索，Aerial近满分只作不退控制。
 - v1 stage=/research/d7/spc/yzyang4/feedback-effort-stage-20261012.b8rv0c；root=/research/d7/spc/yzyang4/scheduling-feedback-effort-20261012-v1。此root永不覆盖/重提；独立Node核验文件verify_feedback_effort_20261012.cjs。共同deferred_alarm_transaction只延迟短临界区SIGALRM，评分截止不变；不将该修复称策略收益。
 - 最后队列观察HK15:34仅12535 Held（不碰）；fetch本地/public f4229150，学长分支64fd78e9未变。原用户未跟踪报告不得stage。闭合统计临时文件仅remote feedback-parent-stage-20261012.Sdes1e/role-census-v1.json、stale-repair-census-v1.json；不是新收益。

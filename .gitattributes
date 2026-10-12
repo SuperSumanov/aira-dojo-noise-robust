@@ -1037,3 +1037,5 @@ phase1/sandbox_scheduling/feedback_parent_policy_20261012.py -text diff whitespa
 phase1/sandbox_scheduling/feedback_parent_trial_20261012.py -text diff whitespace=cr-at-eol
 phase1/sandbox_scheduling/feedback_parent_readout_20261012.py -text diff whitespace=cr-at-eol
 phase1/sandbox_scheduling/test_feedback_parent_20261012.py -text diff whitespace=cr-at-eol
+phase1/sandbox_scheduling/feedback_parent_mechanism_20261012.py -text diff whitespace=cr-at-eol
+phase1/sandbox_scheduling/test_feedback_parent_mechanism_20261012.py -text diff whitespace=cr-at-eol

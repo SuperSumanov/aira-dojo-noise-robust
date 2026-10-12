@@ -1,0 +1,209 @@
+{
+  "limitation": "Descriptive factual outcomes of overlapping admissions; not the counterfactual outcome if withheld. Exact code diversity is not behavioral diversity. Direct Improve only; debug descendants not attributed. No new success gate or expansion.",
+  "plan_sha256": "e6d41cd7b40598f349e7956d3daaf610d85c5e00170b4d358b9e5cfdaa9910ee",
+  "pools": [
+    {
+      "arm": "greedy",
+      "block": 0,
+      "by_task": {
+        "aerial-cactus-identification": {
+          "no_overlapping_same_parent": {
+            "admitted": 3,
+            "ambiguous_multiple_valid_executions": 0,
+            "direct_best": 0.9997487746080617,
+            "direct_timely_valid": 3,
+            "generated": 3,
+            "improves_incumbent_at_admission": 1,
+            "improves_selected_parent": 1,
+            "unique_generated_code": 3
+          },
+          "overlapping_same_parent": {
+            "admitted": 6,
+            "ambiguous_multiple_valid_executions": 0,
+            "direct_best": 0.9999037860201088,
+            "direct_timely_valid": 2,
+            "generated": 5,
+            "improves_incumbent_at_admission": 1,
+            "improves_selected_parent": 1,
+            "unique_generated_code": 5
+          }
+        },
+        "denoising-dirty-documents": {
+          "no_overlapping_same_parent": {
+            "admitted": 3,
+            "ambiguous_multiple_valid_executions": 0,
+            "direct_best": 0.018832665787061206,
+            "direct_timely_valid": 1,
+            "generated": 2,
+            "improves_incumbent_at_admission": 1,
+            "improves_selected_parent": 1,
+            "unique_generated_code": 2
+          },
+          "overlapping_same_parent": {
+            "admitted": 5,
+            "ambiguous_multiple_valid_executions": 0,
+            "direct_best": 0.025381287697879014,
+            "direct_timely_valid": 1,
+            "generated": 4,
+            "improves_incumbent_at_admission": 1,
+            "improves_selected_parent": 1,
+            "unique_generated_code": 4
+          }
+        }
+      }
+    },
+    {
+      "arm": "pending_ucb",
+      "block": 1,
+      "by_task": {
+        "aerial-cactus-identification": {
+          "no_overlapping_same_parent": {
+            "admitted": 4,
+            "ambiguous_multiple_valid_executions": 0,
+            "direct_best": 0.9885612268351481,
+            "direct_timely_valid": 1,
+            "generated": 2,
+            "improves_incumbent_at_admission": 0,
+            "improves_selected_parent": 0,
+            "unique_generated_code": 2
+          },
+          "overlapping_same_parent": {
+            "admitted": 5,
+            "ambiguous_multiple_valid_executions": 0,
+            "direct_best": 0.9997434293869565,
+            "direct_timely_valid": 1,
+            "generated": 5,
+            "improves_incumbent_at_admission": 1,
+            "improves_selected_parent": 1,
+            "unique_generated_code": 5
+          }
+        },
+        "denoising-dirty-documents": {
+          "no_overlapping_same_parent": {
+            "admitted": 2,
+            "ambiguous_multiple_valid_executions": 0,
+            "direct_best": null,
+            "direct_timely_valid": 0,
+            "generated": 1,
+            "improves_incumbent_at_admission": 0,
+            "improves_selected_parent": 0,
+            "unique_generated_code": 1
+          },
+          "overlapping_same_parent": {
+            "admitted": 3,
+            "ambiguous_multiple_valid_executions": 0,
+            "direct_best": null,
+            "direct_timely_valid": 0,
+            "generated": 3,
+            "improves_incumbent_at_admission": 0,
+            "improves_selected_parent": 0,
+            "unique_generated_code": 3
+          }
+        }
+      }
+    },
+    {
+      "arm": "feedback_gate",
+      "block": 2,
+      "by_task": {
+        "aerial-cactus-identification": {
+          "no_overlapping_same_parent": {
+            "admitted": 5,
+            "ambiguous_multiple_valid_executions": 0,
+            "direct_best": 0.9995590192588317,
+            "direct_timely_valid": 1,
+            "generated": 5,
+            "improves_incumbent_at_admission": 0,
+            "improves_selected_parent": 0,
+            "unique_generated_code": 5
+          },
+          "overlapping_same_parent": {
+            "admitted": 0,
+            "ambiguous_multiple_valid_executions": 0,
+            "direct_best": null,
+            "direct_timely_valid": 0,
+            "generated": 0,
+            "improves_incumbent_at_admission": 0,
+            "improves_selected_parent": 0,
+            "unique_generated_code": 0
+          }
+        },
+        "denoising-dirty-documents": {
+          "no_overlapping_same_parent": {
+            "admitted": 5,
+            "ambiguous_multiple_valid_executions": 0,
+            "direct_best": 0.30303961333206353,
+            "direct_timely_valid": 1,
+            "generated": 4,
+            "improves_incumbent_at_admission": 0,
+            "improves_selected_parent": 0,
+            "unique_generated_code": 4
+          },
+          "overlapping_same_parent": {
+            "admitted": 0,
+            "ambiguous_multiple_valid_executions": 0,
+            "direct_best": null,
+            "direct_timely_valid": 0,
+            "generated": 0,
+            "improves_incumbent_at_admission": 0,
+            "improves_selected_parent": 0,
+            "unique_generated_code": 0
+          }
+        }
+      }
+    },
+    {
+      "arm": "feedback_gate",
+      "block": 3,
+      "by_task": {
+        "aerial-cactus-identification": {
+          "no_overlapping_same_parent": {
+            "admitted": 6,
+            "ambiguous_multiple_valid_executions": 0,
+            "direct_best": 0.9998182624824276,
+            "direct_timely_valid": 1,
+            "generated": 5,
+            "improves_incumbent_at_admission": 1,
+            "improves_selected_parent": 1,
+            "unique_generated_code": 5
+          },
+          "overlapping_same_parent": {
+            "admitted": 0,
+            "ambiguous_multiple_valid_executions": 0,
+            "direct_best": null,
+            "direct_timely_valid": 0,
+            "generated": 0,
+            "improves_incumbent_at_admission": 0,
+            "improves_selected_parent": 0,
+            "unique_generated_code": 0
+          }
+        },
+        "denoising-dirty-documents": {
+          "no_overlapping_same_parent": {
+            "admitted": 6,
+            "ambiguous_multiple_valid_executions": 0,
+            "direct_best": 0.02132434553892021,
+            "direct_timely_valid": 2,
+            "generated": 4,
+            "improves_incumbent_at_admission": 2,
+            "improves_selected_parent": 2,
+            "unique_generated_code": 4
+          },
+          "overlapping_same_parent": {
+            "admitted": 0,
+            "ambiguous_multiple_valid_executions": 0,
+            "direct_best": null,
+            "direct_timely_valid": 0,
+            "generated": 0,
+            "improves_incumbent_at_admission": 0,
+            "improves_selected_parent": 0,
+            "unique_generated_code": 0
+          }
+        }
+      }
+    }
+  ],
+  "posthoc_after_quality_read": true,
+  "script_sha256": "5ef4c6b37d425893ef9ccaef3dd28df893c8a22b3d3b2c00acadc08115f4f9c0",
+  "source_commit": "53de94e3b2bf07b5a46a9c388efe40d7dfdff8d7"
+}

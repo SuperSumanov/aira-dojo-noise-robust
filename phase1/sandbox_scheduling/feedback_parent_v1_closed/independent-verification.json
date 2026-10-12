@@ -1,0 +1,135 @@
+{
+  "status": "passed",
+  "method": "Independent Node arithmetic and CSV parsing; no Python analysis helpers.",
+  "source_commit": "53de94e3b2bf07b5a46a9c388efe40d7dfdff8d7",
+  "plan_sha256": "e6d41cd7b40598f349e7956d3daaf610d85c5e00170b4d358b9e5cfdaa9910ee",
+  "assigned": 48,
+  "started": 40,
+  "complete": 39,
+  "failed": 1,
+  "unstarted": 8,
+  "complete_equal_budget_pools": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "comparable_contrasts": 4,
+  "missing_contrasts": 4,
+  "csv_json_cell_parity": true,
+  "first_repeat_quality_rule": false,
+  "original_success_gate": false,
+  "contrasts": [
+    {
+      "repeat": 0,
+      "task": "aerial-cactus-identification",
+      "reference": "greedy",
+      "method_best": 0.9998476611985055,
+      "reference_best": 0.9999037860201088,
+      "oriented_delta": -0.00005612482160322063
+    },
+    {
+      "repeat": 0,
+      "task": "aerial-cactus-identification",
+      "reference": "pending_ucb",
+      "method_best": 0.9998476611985055,
+      "reference_best": 0.9997434293869565,
+      "oriented_delta": 0.00010423181154906036
+    },
+    {
+      "repeat": 0,
+      "task": "denoising-dirty-documents",
+      "reference": "greedy",
+      "method_best": 0.04551226514614451,
+      "reference_best": 0.013749410741741694,
+      "oriented_delta": -0.03176285440440282
+    },
+    {
+      "repeat": 0,
+      "task": "denoising-dirty-documents",
+      "reference": "pending_ucb",
+      "method_best": 0.04551226514614451,
+      "reference_best": 0.02482337877709754,
+      "oriented_delta": -0.02068888636904697
+    },
+    {
+      "repeat": 1,
+      "task": "aerial-cactus-identification",
+      "reference": "greedy",
+      "method_best": 0.9998182624824276,
+      "reference_best": null,
+      "oriented_delta": null
+    },
+    {
+      "repeat": 1,
+      "task": "aerial-cactus-identification",
+      "reference": "pending_ucb",
+      "method_best": 0.9998182624824276,
+      "reference_best": null,
+      "oriented_delta": null
+    },
+    {
+      "repeat": 1,
+      "task": "denoising-dirty-documents",
+      "reference": "greedy",
+      "method_best": 0.02132434553892021,
+      "reference_best": null,
+      "oriented_delta": null
+    },
+    {
+      "repeat": 1,
+      "task": "denoising-dirty-documents",
+      "reference": "pending_ucb",
+      "method_best": 0.02132434553892021,
+      "reference_best": null,
+      "oriented_delta": null
+    }
+  ],
+  "qualified_run_summary": {
+    "greedy": {
+      "aerial-cactus-identification": {
+        "n": 4,
+        "median": 0.9997314026394701,
+        "sample_sd": 0.000090580077523342
+      },
+      "denoising-dirty-documents": {
+        "n": 4,
+        "median": 0.018440277454204734,
+        "sample_sd": 0.0048036099080672615
+      }
+    },
+    "pending_ucb": {
+      "aerial-cactus-identification": {
+        "n": 4,
+        "median": 0.9997140306708787,
+        "sample_sd": 0.000014699358038883224
+      },
+      "denoising-dirty-documents": {
+        "n": 4,
+        "median": 0.04551226514614451,
+        "sample_sd": 0.010344443184523485
+      }
+    },
+    "feedback_gate": {
+      "aerial-cactus-identification": {
+        "n": 8,
+        "median": 0.9997140306708787,
+        "sample_sd": 0.00005430329568066601
+      },
+      "denoising-dirty-documents": {
+        "n": 8,
+        "median": 0.04551226514614451,
+        "sample_sd": 0.010558712175463685
+      }
+    }
+  },
+  "gpu_seconds": 36402,
+  "gpu_hours": 10.111666666666666,
+  "transfer_sha256": {
+    "summary.json": "9192a25577d5880b33ed3d8813aa26e430b88a19ff4068390bb8ff4677e78503",
+    "runs.json": "bcef817254e902ab89669859c86794173f548d159d5053fbce1a096e8daddfd3",
+    "runs.csv": "741c638e92b1cd10a93e9a8be80fc25f0a4842fd67d8dec8afcda2f71d79ead7",
+    "identity.json": "45bed7ad8c63f8516f124230b6e9884e6a7a129c26e0911d024ad9bf32dabc3c"
+  },
+  "limitation": "One whole-budget pool per reference. Correlated task/seed comparisons are not independent experimental repetitions. Partial second-reference pool excluded, never imputed."
+}

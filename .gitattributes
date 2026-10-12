@@ -1044,3 +1044,6 @@ phase1/sandbox_scheduling/feedback_parent_partial_readout_20261012.py -text diff
 phase1/sandbox_scheduling/test_feedback_parent_partial_readout_20261012.py -text diff whitespace=cr-at-eol
 phase1/sandbox_scheduling/feedback_parent_v1_closed/*.json -text diff whitespace=cr-at-eol
 phase1/sandbox_scheduling/feedback_parent_v1_closed/*.csv -text diff whitespace=cr-at-eol
+phase1/sandbox_scheduling/verify_feedback_parent_partial_20261012.cjs -text diff whitespace=cr-at-eol
+phase1/sandbox_scheduling/feedback_parent_overlap_diagnostic_20261012.py -text diff whitespace=cr-at-eol
+phase1/sandbox_scheduling/test_feedback_parent_overlap_diagnostic_20261012.py -text diff whitespace=cr-at-eol

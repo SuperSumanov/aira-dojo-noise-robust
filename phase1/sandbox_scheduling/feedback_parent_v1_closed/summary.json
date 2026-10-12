@@ -1,0 +1,664 @@
+{
+  "assigned": 48,
+  "blocks": [
+    {
+      "arm": "greedy",
+      "attempted": true,
+      "block": 0,
+      "complete": 8,
+      "cpu_pairs_passed": 4,
+      "equal_budget_closed": true,
+      "identity_ok": true,
+      "qualified": true,
+      "queues": [
+        {
+          "admitted": 6,
+          "audit_error": null,
+          "complete": true,
+          "lease_seconds": 361.7499027252197,
+          "peak": 1,
+          "queue_seconds": 168.787780046463,
+          "released": 6,
+          "wait_median": 0.015208840370178223
+        },
+        {
+          "admitted": 6,
+          "audit_error": null,
+          "complete": true,
+          "lease_seconds": 528.5303475856781,
+          "peak": 1,
+          "queue_seconds": 254.67357683181763,
+          "released": 6,
+          "wait_median": 4.024042248725891
+        },
+        {
+          "admitted": 6,
+          "audit_error": null,
+          "complete": true,
+          "lease_seconds": 831.3091895580292,
+          "peak": 1,
+          "queue_seconds": 304.9082419872284,
+          "released": 6,
+          "wait_median": 25.028611302375793
+        },
+        {
+          "admitted": 6,
+          "audit_error": null,
+          "complete": true,
+          "lease_seconds": 632.3589673042297,
+          "peak": 1,
+          "queue_seconds": 246.3310432434082,
+          "released": 6,
+          "wait_median": 0.014078617095947266
+        }
+      ],
+      "scores": {
+        "aerial-cactus-identification": 0.9999037860201088,
+        "denoising-dirty-documents": 0.013749410741741694
+      }
+    },
+    {
+      "arm": "pending_ucb",
+      "attempted": true,
+      "block": 1,
+      "complete": 8,
+      "cpu_pairs_passed": 4,
+      "equal_budget_closed": true,
+      "identity_ok": true,
+      "qualified": true,
+      "queues": [
+        {
+          "admitted": 7,
+          "audit_error": null,
+          "complete": true,
+          "lease_seconds": 394.09241580963135,
+          "peak": 1,
+          "queue_seconds": 125.66933965682983,
+          "released": 7,
+          "wait_median": 0.014070749282836914
+        },
+        {
+          "admitted": 6,
+          "audit_error": null,
+          "complete": true,
+          "lease_seconds": 303.057825088501,
+          "peak": 1,
+          "queue_seconds": 139.25076723098755,
+          "released": 6,
+          "wait_median": 0.016432762145996094
+        },
+        {
+          "admitted": 6,
+          "audit_error": null,
+          "complete": true,
+          "lease_seconds": 793.1551444530487,
+          "peak": 1,
+          "queue_seconds": 284.0104010105133,
+          "released": 6,
+          "wait_median": 27.77729558944702
+        },
+        {
+          "admitted": 6,
+          "audit_error": null,
+          "complete": true,
+          "lease_seconds": 408.0521328449249,
+          "peak": 1,
+          "queue_seconds": 266.76274847984314,
+          "released": 6,
+          "wait_median": 0.016886591911315918
+        }
+      ],
+      "scores": {
+        "aerial-cactus-identification": 0.9997434293869565,
+        "denoising-dirty-documents": 0.02482337877709754
+      }
+    },
+    {
+      "arm": "feedback_gate",
+      "attempted": true,
+      "block": 2,
+      "complete": 8,
+      "cpu_pairs_passed": 4,
+      "equal_budget_closed": true,
+      "identity_ok": true,
+      "qualified": true,
+      "queues": [
+        {
+          "admitted": 5,
+          "audit_error": null,
+          "complete": true,
+          "lease_seconds": 112.9642596244812,
+          "peak": 1,
+          "queue_seconds": 9.994999885559082,
+          "released": 5,
+          "wait_median": 0.015746116638183594
+        },
+        {
+          "admitted": 4,
+          "audit_error": null,
+          "complete": true,
+          "lease_seconds": 52.54010224342346,
+          "peak": 1,
+          "queue_seconds": 9.303370237350464,
+          "released": 4,
+          "wait_median": 0.01154792308807373
+        },
+        {
+          "admitted": 5,
+          "audit_error": null,
+          "complete": true,
+          "lease_seconds": 306.44022607803345,
+          "peak": 1,
+          "queue_seconds": 10.151229858398438,
+          "released": 5,
+          "wait_median": 0.01487421989440918
+        },
+        {
+          "admitted": 5,
+          "audit_error": null,
+          "complete": true,
+          "lease_seconds": 498.07673168182373,
+          "peak": 1,
+          "queue_seconds": 9.183608531951904,
+          "released": 5,
+          "wait_median": 0.01429128646850586
+        }
+      ],
+      "scores": {
+        "aerial-cactus-identification": 0.9998476611985055,
+        "denoising-dirty-documents": 0.04551226514614451
+      }
+    },
+    {
+      "arm": "feedback_gate",
+      "attempted": true,
+      "block": 3,
+      "complete": 8,
+      "cpu_pairs_passed": 4,
+      "equal_budget_closed": true,
+      "identity_ok": true,
+      "qualified": true,
+      "queues": [
+        {
+          "admitted": 6,
+          "audit_error": null,
+          "complete": true,
+          "lease_seconds": 574.3209717273712,
+          "peak": 1,
+          "queue_seconds": 86.00929093360901,
+          "released": 6,
+          "wait_median": 0.01344907283782959
+        },
+        {
+          "admitted": 5,
+          "audit_error": null,
+          "complete": true,
+          "lease_seconds": 475.6757822036743,
+          "peak": 1,
+          "queue_seconds": 156.7816846370697,
+          "released": 5,
+          "wait_median": 0.01602625846862793
+        },
+        {
+          "admitted": 3,
+          "audit_error": null,
+          "complete": true,
+          "lease_seconds": 217.78266739845276,
+          "peak": 1,
+          "queue_seconds": 9.905206203460693,
+          "released": 3,
+          "wait_median": 0.011536121368408203
+        },
+        {
+          "admitted": 4,
+          "audit_error": null,
+          "complete": true,
+          "lease_seconds": 235.81986904144287,
+          "peak": 1,
+          "queue_seconds": 8.489442825317383,
+          "released": 4,
+          "wait_median": 0.010930418968200684
+        }
+      ],
+      "scores": {
+        "aerial-cactus-identification": 0.9998182624824276,
+        "denoising-dirty-documents": 0.02132434553892021
+      }
+    },
+    {
+      "arm": "pending_ucb",
+      "attempted": true,
+      "block": 4,
+      "complete": 7,
+      "cpu_pairs_passed": 4,
+      "equal_budget_closed": false,
+      "identity_ok": true,
+      "qualified": false,
+      "queues": [
+        {
+          "admitted": 6,
+          "audit_error": null,
+          "complete": true,
+          "lease_seconds": 549.2251996994019,
+          "peak": 1,
+          "queue_seconds": 199.22141075134277,
+          "released": 6,
+          "wait_median": 0.016784191131591797
+        },
+        {
+          "audit_error": "ValueError",
+          "complete": false
+        },
+        {
+          "admitted": 6,
+          "audit_error": null,
+          "complete": true,
+          "lease_seconds": 821.6837766170502,
+          "peak": 1,
+          "queue_seconds": 274.03504633903503,
+          "released": 6,
+          "wait_median": 10.784937262535095
+        },
+        {
+          "admitted": 6,
+          "audit_error": null,
+          "complete": true,
+          "lease_seconds": 413.9000449180603,
+          "peak": 1,
+          "queue_seconds": 193.7830309867859,
+          "released": 6,
+          "wait_median": 0.01756739616394043
+        }
+      ],
+      "scores": {
+        "aerial-cactus-identification": null,
+        "denoising-dirty-documents": null
+      }
+    },
+    {
+      "arm": "greedy",
+      "attempted": false,
+      "block": 5,
+      "complete": 0,
+      "cpu_pairs_passed": 0,
+      "equal_budget_closed": false,
+      "identity_ok": false,
+      "qualified": false,
+      "queues": [],
+      "scores": {
+        "aerial-cactus-identification": null,
+        "denoising-dirty-documents": null
+      }
+    }
+  ],
+  "comparable_contrasts": 4,
+  "complete": 39,
+  "contrasts": [
+    {
+      "comparable": true,
+      "meets_original_margin": false,
+      "method_best": 0.9998476611985055,
+      "oriented_delta": -5.612482160322063e-05,
+      "reference": "greedy",
+      "reference_best": 0.9999037860201088,
+      "repeat": 0,
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "comparable": true,
+      "meets_original_margin": true,
+      "method_best": 0.9998476611985055,
+      "oriented_delta": 0.00010423181154906036,
+      "reference": "pending_ucb",
+      "reference_best": 0.9997434293869565,
+      "repeat": 0,
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "comparable": true,
+      "meets_original_margin": false,
+      "method_best": 0.04551226514614451,
+      "oriented_delta": -0.03176285440440282,
+      "reference": "greedy",
+      "reference_best": 0.013749410741741694,
+      "repeat": 0,
+      "task": "denoising-dirty-documents"
+    },
+    {
+      "comparable": true,
+      "meets_original_margin": false,
+      "method_best": 0.04551226514614451,
+      "oriented_delta": -0.02068888636904697,
+      "reference": "pending_ucb",
+      "reference_best": 0.02482337877709754,
+      "repeat": 0,
+      "task": "denoising-dirty-documents"
+    },
+    {
+      "comparable": false,
+      "meets_original_margin": null,
+      "method_best": 0.9998182624824276,
+      "oriented_delta": null,
+      "reference": "greedy",
+      "reference_best": null,
+      "repeat": 1,
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "comparable": false,
+      "meets_original_margin": null,
+      "method_best": 0.9998182624824276,
+      "oriented_delta": null,
+      "reference": "pending_ucb",
+      "reference_best": null,
+      "repeat": 1,
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "comparable": false,
+      "meets_original_margin": null,
+      "method_best": 0.02132434553892021,
+      "oriented_delta": null,
+      "reference": "greedy",
+      "reference_best": null,
+      "repeat": 1,
+      "task": "denoising-dirty-documents"
+    },
+    {
+      "comparable": false,
+      "meets_original_margin": null,
+      "method_best": 0.02132434553892021,
+      "oriented_delta": null,
+      "reference": "pending_ucb",
+      "reference_best": null,
+      "repeat": 1,
+      "task": "denoising-dirty-documents"
+    }
+  ],
+  "first_repeat_meets_quality_rule": false,
+  "full_quality_comparison_available": false,
+  "gpu_hours": 10.111666666666666,
+  "gpu_seconds": 36402,
+  "limitation": "Post-infrastructure-closure, pre-quality-read partial analysis. Only the first repeat has both whole-budget references. No two-repeat confirmation, no missing arm imputation, no original-gate rescue. Development checkpoint-conditioned search, not official test or SOTA proof.",
+  "mechanisms": [
+    {
+      "arm": "greedy",
+      "block": 0,
+      "by_task": {
+        "aerial-cactus-identification": {
+          "chosen_parent_differs_from_pending_ucb": 2,
+          "completed_generations": 8,
+          "completed_nonwarm_parent": 3,
+          "limitation": "Descriptive state intervals, not physical GPU idle, feedback causal mediation, or counterfactual scores.",
+          "mandatory_wait_task_seconds": {
+            "aerial-cactus-identification": 0.0
+          },
+          "repeated_code_calls": 0,
+          "same_parent_pending_admissions": 6,
+          "same_run_parent_child_repeat_calls": 0,
+          "unique_generated_code": 8,
+          "withheld_generation_permit_seconds": {
+            "aerial-cactus-identification": 0.0
+          }
+        },
+        "denoising-dirty-documents": {
+          "chosen_parent_differs_from_pending_ucb": 1,
+          "completed_generations": 6,
+          "completed_nonwarm_parent": 1,
+          "limitation": "Descriptive state intervals, not physical GPU idle, feedback causal mediation, or counterfactual scores.",
+          "mandatory_wait_task_seconds": {
+            "denoising-dirty-documents": 0.0
+          },
+          "repeated_code_calls": 0,
+          "same_parent_pending_admissions": 5,
+          "same_run_parent_child_repeat_calls": 0,
+          "unique_generated_code": 6,
+          "withheld_generation_permit_seconds": {
+            "denoising-dirty-documents": 0.0
+          }
+        }
+      },
+      "policy": {
+        "admitted": 36,
+        "all_released": true,
+        "completed_improvements": 12,
+        "completed_nonwarm_parent": 4,
+        "counterfactual_parent_difference": 8,
+        "feedback_waits": 0
+      }
+    },
+    {
+      "arm": "pending_ucb",
+      "block": 1,
+      "by_task": {
+        "aerial-cactus-identification": {
+          "chosen_parent_differs_from_pending_ucb": 0,
+          "completed_generations": 7,
+          "completed_nonwarm_parent": 2,
+          "limitation": "Descriptive state intervals, not physical GPU idle, feedback causal mediation, or counterfactual scores.",
+          "mandatory_wait_task_seconds": {
+            "aerial-cactus-identification": 0.0
+          },
+          "repeated_code_calls": 0,
+          "same_parent_pending_admissions": 5,
+          "same_run_parent_child_repeat_calls": 0,
+          "unique_generated_code": 7,
+          "withheld_generation_permit_seconds": {
+            "aerial-cactus-identification": 0.0
+          }
+        },
+        "denoising-dirty-documents": {
+          "chosen_parent_differs_from_pending_ucb": 0,
+          "completed_generations": 4,
+          "completed_nonwarm_parent": 0,
+          "limitation": "Descriptive state intervals, not physical GPU idle, feedback causal mediation, or counterfactual scores.",
+          "mandatory_wait_task_seconds": {
+            "denoising-dirty-documents": 0.0
+          },
+          "repeated_code_calls": 0,
+          "same_parent_pending_admissions": 3,
+          "same_run_parent_child_repeat_calls": 0,
+          "unique_generated_code": 4,
+          "withheld_generation_permit_seconds": {
+            "denoising-dirty-documents": 0.0
+          }
+        }
+      },
+      "policy": {
+        "admitted": 37,
+        "all_released": true,
+        "completed_improvements": 10,
+        "completed_nonwarm_parent": 2,
+        "counterfactual_parent_difference": 8,
+        "feedback_waits": 0
+      }
+    },
+    {
+      "arm": "feedback_gate",
+      "block": 2,
+      "by_task": {
+        "aerial-cactus-identification": {
+          "chosen_parent_differs_from_pending_ucb": 2,
+          "completed_generations": 5,
+          "completed_nonwarm_parent": 2,
+          "limitation": "Descriptive state intervals, not physical GPU idle, feedback causal mediation, or counterfactual scores.",
+          "mandatory_wait_task_seconds": {
+            "aerial-cactus-identification": 460.4357113838196
+          },
+          "repeated_code_calls": 0,
+          "same_parent_pending_admissions": 0,
+          "same_run_parent_child_repeat_calls": 0,
+          "unique_generated_code": 5,
+          "withheld_generation_permit_seconds": {
+            "aerial-cactus-identification": 765.4788374900818
+          }
+        },
+        "denoising-dirty-documents": {
+          "chosen_parent_differs_from_pending_ucb": 2,
+          "completed_generations": 4,
+          "completed_nonwarm_parent": 1,
+          "limitation": "Descriptive state intervals, not physical GPU idle, feedback causal mediation, or counterfactual scores.",
+          "mandatory_wait_task_seconds": {
+            "denoising-dirty-documents": 335.71048188209534
+          },
+          "repeated_code_calls": 0,
+          "same_parent_pending_admissions": 0,
+          "same_run_parent_child_repeat_calls": 0,
+          "unique_generated_code": 4,
+          "withheld_generation_permit_seconds": {
+            "denoising-dirty-documents": 524.4091486930847
+          }
+        }
+      },
+      "policy": {
+        "admitted": 24,
+        "all_released": true,
+        "completed_improvements": 8,
+        "completed_nonwarm_parent": 3,
+        "counterfactual_parent_difference": 4,
+        "feedback_waits": 5
+      }
+    },
+    {
+      "arm": "feedback_gate",
+      "block": 3,
+      "by_task": {
+        "aerial-cactus-identification": {
+          "chosen_parent_differs_from_pending_ucb": 2,
+          "completed_generations": 5,
+          "completed_nonwarm_parent": 0,
+          "limitation": "Descriptive state intervals, not physical GPU idle, feedback causal mediation, or counterfactual scores.",
+          "mandatory_wait_task_seconds": {
+            "aerial-cactus-identification": 637.9080429077148
+          },
+          "repeated_code_calls": 0,
+          "same_parent_pending_admissions": 0,
+          "same_run_parent_child_repeat_calls": 0,
+          "unique_generated_code": 5,
+          "withheld_generation_permit_seconds": {
+            "aerial-cactus-identification": 870.7300066947937
+          }
+        },
+        "denoising-dirty-documents": {
+          "chosen_parent_differs_from_pending_ucb": 3,
+          "completed_generations": 4,
+          "completed_nonwarm_parent": 1,
+          "limitation": "Descriptive state intervals, not physical GPU idle, feedback causal mediation, or counterfactual scores.",
+          "mandatory_wait_task_seconds": {
+            "denoising-dirty-documents": 522.1648397445679
+          },
+          "repeated_code_calls": 0,
+          "same_parent_pending_admissions": 0,
+          "same_run_parent_child_repeat_calls": 0,
+          "unique_generated_code": 4,
+          "withheld_generation_permit_seconds": {
+            "denoising-dirty-documents": 832.5413680076599
+          }
+        }
+      },
+      "policy": {
+        "admitted": 22,
+        "all_released": true,
+        "completed_improvements": 6,
+        "completed_nonwarm_parent": 1,
+        "counterfactual_parent_difference": 5,
+        "feedback_waits": 6
+      }
+    },
+    {
+      "arm": "pending_ucb",
+      "block": 4,
+      "by_task": {
+        "aerial-cactus-identification": {
+          "chosen_parent_differs_from_pending_ucb": 0,
+          "completed_generations": 7,
+          "completed_nonwarm_parent": 1,
+          "limitation": "Descriptive state intervals, not physical GPU idle, feedback causal mediation, or counterfactual scores.",
+          "mandatory_wait_task_seconds": {
+            "aerial-cactus-identification": 0.0
+          },
+          "repeated_code_calls": 0,
+          "same_parent_pending_admissions": 3,
+          "same_run_parent_child_repeat_calls": 0,
+          "unique_generated_code": 7,
+          "withheld_generation_permit_seconds": {
+            "aerial-cactus-identification": 0.0
+          }
+        },
+        "denoising-dirty-documents": {
+          "chosen_parent_differs_from_pending_ucb": 0,
+          "completed_generations": 4,
+          "completed_nonwarm_parent": 0,
+          "limitation": "Descriptive state intervals, not physical GPU idle, feedback causal mediation, or counterfactual scores.",
+          "mandatory_wait_task_seconds": {
+            "denoising-dirty-documents": 0.0
+          },
+          "repeated_code_calls": 0,
+          "same_parent_pending_admissions": 3,
+          "same_run_parent_child_repeat_calls": 0,
+          "unique_generated_code": 4,
+          "withheld_generation_permit_seconds": {
+            "denoising-dirty-documents": 0.0
+          }
+        }
+      },
+      "policy": {
+        "admitted": 36,
+        "all_released": true,
+        "completed_improvements": 9,
+        "completed_nonwarm_parent": 1,
+        "counterfactual_parent_difference": 6,
+        "feedback_waits": 0
+      }
+    }
+  ],
+  "no_automatic_expansion": true,
+  "observed_margin_failures": 3,
+  "original_reader_sha256": "f218d883364ee22b93c7ec3e9a447f0c58eb586ca67196b139831e6fce083893",
+  "plan_sha256": "e6d41cd7b40598f349e7956d3daaf610d85c5e00170b4d358b9e5cfdaa9910ee",
+  "predeclared_success_gate_met": false,
+  "qualified_run_summary": {
+    "feedback_gate": {
+      "aerial-cactus-identification": {
+        "median": 0.9997140306708787,
+        "n": 8,
+        "sample_sd": 5.4303295680666005e-05
+      },
+      "denoising-dirty-documents": {
+        "median": 0.04551226514614451,
+        "n": 8,
+        "sample_sd": 0.010558712175463685
+      }
+    },
+    "greedy": {
+      "aerial-cactus-identification": {
+        "median": 0.9997314026394701,
+        "n": 4,
+        "sample_sd": 9.058007752334201e-05
+      },
+      "denoising-dirty-documents": {
+        "median": 0.018440277454204734,
+        "n": 4,
+        "sample_sd": 0.0048036099080672615
+      }
+    },
+    "pending_ucb": {
+      "aerial-cactus-identification": {
+        "median": 0.9997140306708787,
+        "n": 4,
+        "sample_sd": 1.4699358038883226e-05
+      },
+      "denoising-dirty-documents": {
+        "median": 0.04551226514614451,
+        "n": 4,
+        "sample_sd": 0.010344443184523485
+      }
+    }
+  },
+  "readout_sha256": "8c2bf4d5f3a2f46111d45b5fd7c5ee34d2937405a99d0ed9b347996705476552",
+  "scores_recomputed": 29,
+  "service_gpu_clean": true,
+  "source_commit": "53de94e3b2bf07b5a46a9c388efe40d7dfdff8d7",
+  "started": 40,
+  "structural_gate": false
+}

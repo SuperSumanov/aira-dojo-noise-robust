@@ -1,0 +1,20 @@
+{
+  "job": "17681",
+  "state": "FAILED",
+  "elapsed_seconds": 6067,
+  "gpus": 6,
+  "node": "gpu3",
+  "start": "2026-10-12T08:27:52+08:00",
+  "end": "2026-10-12T10:08:59+08:00",
+  "gpu_seconds": 36402,
+  "gpu_hours": 10.111666666666666,
+  "trial_cap_gpu_seconds": 46800,
+  "window_cap_gpu_seconds": 50400,
+  "source_commit": "53de94e3b2bf07b5a46a9c388efe40d7dfdff8d7",
+  "plan_sha256": "e6d41cd7b40598f349e7956d3daaf610d85c5e00170b4d358b9e5cfdaa9910ee",
+  "accounting_basis": "Slurm allocated GPU-seconds, including startup, fixed idle padding, failure and cleanup; not GPU busy time. No previous-window job is pooled into this comparison.",
+  "unused_budget_reusable_for_rescue": false,
+  "paid_api_calls": 0,
+  "agent_base_updates": 0,
+  "initialization_boundary": "Same historical warm programs; conditional refinement, not free from-scratch end-to-end search."
+}

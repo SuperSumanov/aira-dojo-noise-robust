@@ -1,0 +1,72 @@
+[
+  {
+    "block": 0,
+    "lanes": [
+      "GPU-933b7bac-bb2e-5adc-ef66-33cf94640c41",
+      "GPU-b88044c1-2c9a-aaea-1e5e-03b920691f7d",
+      "GPU-1dcada8c-97b6-bea4-f7ed-774d5f399e69",
+      "GPU-4a058615-2fd0-56bd-6bda-22caa96b58d0"
+    ],
+    "service": [
+      "GPU-43b9e099-38f8-f1ae-9008-ca93e584f8ee",
+      "GPU-89807a87-f29f-c724-0483-82d4131474a6"
+    ],
+    "valid": true
+  },
+  {
+    "block": 1,
+    "lanes": [
+      "GPU-933b7bac-bb2e-5adc-ef66-33cf94640c41",
+      "GPU-b88044c1-2c9a-aaea-1e5e-03b920691f7d",
+      "GPU-1dcada8c-97b6-bea4-f7ed-774d5f399e69",
+      "GPU-4a058615-2fd0-56bd-6bda-22caa96b58d0"
+    ],
+    "service": [
+      "GPU-43b9e099-38f8-f1ae-9008-ca93e584f8ee",
+      "GPU-89807a87-f29f-c724-0483-82d4131474a6"
+    ],
+    "valid": true
+  },
+  {
+    "block": 2,
+    "lanes": [
+      "GPU-933b7bac-bb2e-5adc-ef66-33cf94640c41",
+      "GPU-b88044c1-2c9a-aaea-1e5e-03b920691f7d",
+      "GPU-1dcada8c-97b6-bea4-f7ed-774d5f399e69",
+      "GPU-4a058615-2fd0-56bd-6bda-22caa96b58d0"
+    ],
+    "service": [
+      "GPU-43b9e099-38f8-f1ae-9008-ca93e584f8ee",
+      "GPU-89807a87-f29f-c724-0483-82d4131474a6"
+    ],
+    "valid": true
+  },
+  {
+    "block": 3,
+    "lanes": [
+      "GPU-933b7bac-bb2e-5adc-ef66-33cf94640c41",
+      "GPU-b88044c1-2c9a-aaea-1e5e-03b920691f7d",
+      "GPU-1dcada8c-97b6-bea4-f7ed-774d5f399e69",
+      "GPU-4a058615-2fd0-56bd-6bda-22caa96b58d0"
+    ],
+    "service": [
+      "GPU-43b9e099-38f8-f1ae-9008-ca93e584f8ee",
+      "GPU-89807a87-f29f-c724-0483-82d4131474a6"
+    ],
+    "valid": true
+  },
+  {
+    "block": 4,
+    "lanes": [
+      "GPU-933b7bac-bb2e-5adc-ef66-33cf94640c41",
+      "GPU-b88044c1-2c9a-aaea-1e5e-03b920691f7d",
+      "GPU-1dcada8c-97b6-bea4-f7ed-774d5f399e69",
+      "GPU-4a058615-2fd0-56bd-6bda-22caa96b58d0"
+    ],
+    "service": [
+      "GPU-43b9e099-38f8-f1ae-9008-ca93e584f8ee",
+      "GPU-89807a87-f29f-c724-0483-82d4131474a6"
+    ],
+    "valid": true
+  }
+]

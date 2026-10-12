@@ -1,18 +1,22 @@
 # 当前短交接：恢复先读本文件，不从旧心跳恢复任务
 
-更新：2026-10-12香港10:19。此前详细交接保存在Git a9e4b847477e78f2b100dd6534c21e4827eaffdb。
+更新：2026-10-12香港10:26。揭读前规则保存在Git 4a14831e853929e28612e9b9212e9205ff24416f。
 恢复顺序：fetch → CURRENT_DIRECTION → ROUTE_DECISIONS → 本文件 → 必要原始证据。
 
-## 当前新窗口：反馈预约，不重开旧联合罚项
-- 用户要求重新思考并在三小时内实测；首次时钟为10/12香港07:58:39，目标约10:58。新批48条、2旧开发任务×4搜索seed×greedy/pending_ucb/feedback_gate×2反序池重复；1020s/run、1180s/pool、6GPU allocation7800s=13GPUh，窗口含失败cap14GPUh。去噪两重复各胜两参照≥0.001、Aerial不退步、真实空闲名额等待后使用新父程序且结构全过才扩大。没有新质量结果。
+## 本轮闭合：反馈预约停止扩大，不重开旧联合罚项
+- 用户要求重新思考并在三小时内实测；首次时钟为10/12香港07:58:39，目标约10:58。48条=2旧开发任务×4搜索seed×greedy/pending_ucb/feedback_gate×2反序池重复；1020s/run、1180s/pool、6GPU cap13GPUh，窗口cap14GPUh。原去噪两重复均胜两参照≥0.001/Aerial不退步/机制与结构全过的门未通过；不是新方法阳性，不自动再开GPU。
 - 新处理是同父code仅一个在途Improve，等待首个外部反馈；三臂共同共享已评分archive。不是旧等待惩罚换名，不是完整WU-UCT/CostAda复现。公开source=53de94e3b2bf07b5a46a9c388efe40d7dfdff8d7（push/ls-remote核实），planSHA=e6d41cd7b40598f349e7956d3daaf610d85c5e00170b4d358b9e5cfdaa9910ee。
 - root=/research/d7/spc/yzyang4/scheduling-feedback-parent-20261012-v1；stage=/research/d7/spc/yzyang4/feedback-parent-stage-20261012.Sdes1e。17CPU单测、48配置/32配对、真实native导入/展开/parse/debug/checkpoint通过。前两次CPU前检分别因无Slurm环境和旧独占cpu.json停，零GPU，原回执在cpu-preparation-attempt1/2/3。后一已通过门因提交前观测定义修正重新冻结，策略/预算未改。
 - 10:08:59 job17681已FAILED/闭合：48计划、40启动、39正常、1失败、8未开始。首4池各1180秒正常；第五池pending_ucb返回码0/0/0/1且未闭合等预算，最后greedy未开始。原48条完整成功门不可通过，不补跑、不复用余款。6067秒×6=36402GPU秒，服务GPU清理通过；无GPU作业在跑，monitor23494已exit0，无新automation。
 - 失败episode34的执行队列locked在截止中断后，清理再进同PID/thread临时文件exclusive-create时FileExistsError；原源码已有SIGALRM屏蔽，具体信号绕过机制未证实，不称缺少屏蔽。只读错误栈已保留，不能将该基础设施失败解释成模型失败，也不以补丁重开本批。
-- 10:19尚未读取本批任何质量值；新增partial_readout先固定缺失规则再揭读：48行全部保留，仅完整等预算池0–3可比较，第二重复缺失对照为null，禁止用起点补值/翻转原门。两个缺失测试通过；原冻结reader和运行源码不改。机制secondary只在此partial入口使用纯函数，不能运行要求48完整的旧main。
+- 缺失规则在读取质量前以4a14831e公开冻结：48行保留，仅完整等预算池0–3比较，第二重复缺失对照为null，禁止用起点补值/翻转原门；2缺失测试通过。原冻结reader/运行源码不改，不能运行要求48完整的旧main。
+- 实际读出完成：完整首轮去噪greedy/pending_ucb/gate=0.013749410741741694/0.02482337877709754/0.04551226514614451；Aerial=0.9999037860201088/0.9997434293869565/0.9998476611985055。方法第二轮去噪0.02132434553892021无完整参照，不能救门。29评分重算、4合格池16CPU对/物理卡一致/队列清理通过；第五池执行queue审计失败如实保留，不过滤失败run拼对照。
+- 两方法池5/6次实际feedback_wait、3/1次非起点父解Improve完成；去噪强制等待区间335.71048188209534/522.1648397445679秒（非GPU idle）。首轮gate去噪生成4个不同代码仍未胜起点；不能称没有干预，也不能只看多样性或等待少判断效果。
+- 事后只读overlap诊断（非预注册主检验）：首轮两参照同父在途准入19、返回17、及时有效4、胜准入时incumbent3；两个Aerial参照最佳均在其中。没有把debug后代归于直接Improve。它否定同父必冗余的前提，不识别若当时阻止调用的反事实；停硬预约，不改阈值救结果。
+- 本地结果sandbox_scheduling/feedback_parent_v1_closed；summarySHA=9192a25577d5880b33ed3d8813aa26e430b88a19ff4068390bb8ff4677e78503。4结果远端/本地SHA一致；独立Node核48行、CSV逐格、4可比/4缺失差值及费用通过。实际36402GPU秒=10.111666666666666GPUh，含失败/闲置/清理。
 - 如有阳性，仍需分离“反馈内容更新”与“并发降低后模型请求变快”的中介；本批识别硬预约整体效应，不能声称已分开两机制。固定单生成许可是后续可能的强消融，不能加入当前矩阵。异步BO/局部惩罚已有近邻，硬预约本身不自动具有原创性。
 - 08:40揭读前补充只读机制分析feedback_parent_mechanism_20261012.py，6CPU测试通过；闭合后才运行，不改主门/在线源码。独立重建空闲生成许可被硬预约阻止的时长、同父在途重复、新父使用；该时长不是GPU idle/节省，不能估反事实质量。
-- 最新已核实公开head=4ab8590f5674a13c49c77b93d6b0f364962cb398（只读机制分析与6测试）；运行source仍53de94e3，不混淆。机制分析已放stage，未执行本批数据。09:26只读seed检查核过48配置和冻结Improve源码：模板含memory/packages，11包随调用shuffle，有memory配置；固定seed不等于同提示/同输出，闭合后另数真实重复，不据此修改在跑协议。检查器最初误读operator层的包数0，已纠正到solver层，不是运行配置修复。
+- 揭读前最后公开head=4a14831e（缺失规则）；运行source仍53de94e3，不混淆。09:26核48配置/冻结Improve：模板含memory/packages，11包shuffle，有memory；固定seed不等于同提示/同输出。检查器原误读operator层包数0已纠正到solver层，不是运行配置修复。
 - 09:53揭读前补secondary读出：逐任务机制计数、精确生成代码重复（不导出hash/内容），7CPU测试通过；不改变main readout/质量门。需在closed.complete=48后运行stage中的feedback_parent_mechanism/secondary，均写新文件；这种事中但揭读前的描述分析不冒充原计划主检验，代码重复也不等于同提示或seed因果。
 - DNS一度失败；用已观察同一IP137.189.88.148 + HostKeyAlias=linux5.cse.cuhk.edu.hk + StrictHostKeyChecking=yes可连；不改SSH配置、不跳过hostkey。所有私密候选/标签留远端，不在中途读取终分。完结读出feedback_parent_readout_20261012.py，原运行/读出均已冻结；评分重算后独立再核CSV/JSON。
 

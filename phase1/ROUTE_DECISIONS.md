@@ -30,6 +30,8 @@
 
 ## R14（2026-10-06起）：MLE沙箱资源调度，尚非已成立方法
 
+- 10/12补核[LASER §4–5](https://arxiv.org/html/2606.31580v1)与[Queueing-Aware Optimization of Reasoning Tokens](https://arxiv.org/html/2601.10274v1)：前者已有负载感知推理预算/退出，服务指标采用实测单请求成本后的离散事件模拟；后者在Poisson异质请求/MG1下联合精度与等待优化固定类型预算。因此“拥塞时少想、空闲时多想”本身不是创新。MLE生成—执行—修复的内生工作量或最终best目标只是可检验的问题差别，不能据此宣布原创；若两种模式无质量—执行需求差异，不开发新的队列effort控制器。
+- 同日补核[InfraMind §3–5](https://arxiv.org/html/2606.11440v1)：已有实时queue/KV/latency条件化模型与推理深度、剩余预算/EDF、多agent拓扑的联合控制。不能将“资源状态决定推理投入”称空白；本文主要异质模型服务和推理基准，我方原程序执行反馈是待检验差别，不是创新充分条件。不因其训练controller而借机更新agent底座。
 - 10/12又核[FlashEvolve §3.2–3.4](https://arxiv.org/html/2605.08520v1)：已有版本差过滤、反思重基、异步队列及worker流量平衡；因此“修复过时工作/压队列”不是新的宽主张。[Scepsy](https://arxiv.org/html/2604.15186v1)已优化多LLM的GPU份额/TP/replica；[Shadow Price of Intelligence](https://arxiv.org/html/2608.23986v1)以理论/数值模型分析降质量引发重试和拥塞，不能再把“便宜调用反而贵”当未知。可检验的剩余问题是本地生成模式是否真实改变下游执行压力及最终质量，当前尚无证据；需要超过固定mode、CoT-retry和合理队列控制，而非仅添加等待罚项。
 - 17736的48条资格批止于记录器不支持冻结源码的异步接口，0模型调用/0评分；不是CoT-retry负效果。零结果时显式追加一个独立入口修正v2，源/分母/费用均分开，窗口不超13GPUh；若再入口失败本窗不重提。不得把CPU修复或已有文献策略资格当论文创新。
 - 10/12提交前进一步查到直接先例[What Makes LLMs Reason in (Multi-Turn) Code Generation? §5.2/D.3，CoT-retry](https://arxiv.org/html/2410.08105v1)：先无推理生成、失败后增加推理已有。故feedback-effort降格为已知策略在MLE整池同预算下的参照资格检验，不能称方法创新；已冻结矩阵/门不改，不靠改名字或“我们是MLE”主张首创。若阳性也只是更强实用参照，仍需新机制超过它。

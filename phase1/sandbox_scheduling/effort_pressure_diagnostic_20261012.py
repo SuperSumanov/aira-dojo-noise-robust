@@ -81,7 +81,7 @@ def integrate(streams,start,end):
 
 def analyze(root,out):
     root=Path(root);plan=read(root/'plan.json');closed=read(root/'closed.json');pools=[]
-    assert plan['source_commit']=='3f119700a84d5975acef8bcff9949e188c60aefc'
+    assert plan['source_commit'] in ('3f119700a84d5975acef8bcff9949e188c60aefc','1cd338f86dac1381795c0295abcefefc8391df8d')
     # Closed-only secondary output. Incomplete/unattempted pools are not imputed.
     for b in range(6):
         bd=root/f'block-{b}';budget=bd/'budget-slot.json'

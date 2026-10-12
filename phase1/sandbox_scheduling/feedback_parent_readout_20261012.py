@@ -7,6 +7,7 @@ import math
 from pathlib import Path
 import statistics
 import sys
+import tempfile
 
 ARMS=('greedy','pending_ucb','feedback_gate')
 ORDER=ARMS+tuple(reversed(ARMS))
@@ -37,7 +38,7 @@ def quality_summary(scores):
 
 
 def native_cpu_test(root,host,install_hooks):
-    from feedback_parent_policy_20261012 import initialize,locked,key_for,record
+    from feedback_parent_policy_20261012 import initialize,locked,key_for,record,install
     host().setup()
     from dojo.config_dataclasses.run import RunConfig
     from dojo.solvers.mcts.mcts import MCTS
@@ -49,9 +50,11 @@ def native_cpu_test(root,host,install_hooks):
     from omegaconf import OmegaConf
     import dojo.solvers.mcts.mcts as mm
     p=read(root/'plan.json');row=dict(p['schedule'][0],arm='feedback_gate');warm=read(root/'warm.private.json')
-    fixture=root/'cpu-native-fixture';fixture.mkdir();ep=fixture/'episode-0';ep.mkdir()
+    fixture=Path(tempfile.mkdtemp(prefix='cpu-native-fixture-',dir=root));ep=fixture/'episode-0';ep.mkdir()
     initialize(fixture/'generation-0',p['schedule'][:8],warm)
-    install_hooks(row,ep,ExperimentDeadline(60))
+    # The unchanged container lease hook requires a real Slurm allocation.
+    # Exercise the new native parent hook directly, as in the donor CPU gate.
+    install(row,ep,ExperimentDeadline(60),warm[row['task']])
     cfg=RunConfig.load_from_json(root/'configs/0.json');cfg.solver.checkpoint_path=str(fixture/'checkpoint');cfg.logger.output_dir=str(fixture/'log')
     task=MLEBenchTask(cfg.task);config_logger(cfg)
     solver=MCTS(OmegaConf.structured(cfg.solver),{TASK_DESCRIPTION:task.task_description,'lower_is_better':task._search_only_lower_is_better})

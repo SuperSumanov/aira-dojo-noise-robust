@@ -1,13 +1,15 @@
 # 当前短交接：恢复先读本文件，不从旧心跳恢复任务
 
-更新：2026-10-12香港09:54。此前详细交接保存在Git 26110279cd92a2fdf05f80186de82c465f615e69。
+更新：2026-10-12香港10:19。此前详细交接保存在Git a9e4b847477e78f2b100dd6534c21e4827eaffdb。
 恢复顺序：fetch → CURRENT_DIRECTION → ROUTE_DECISIONS → 本文件 → 必要原始证据。
 
 ## 当前新窗口：反馈预约，不重开旧联合罚项
 - 用户要求重新思考并在三小时内实测；首次时钟为10/12香港07:58:39，目标约10:58。新批48条、2旧开发任务×4搜索seed×greedy/pending_ucb/feedback_gate×2反序池重复；1020s/run、1180s/pool、6GPU allocation7800s=13GPUh，窗口含失败cap14GPUh。去噪两重复各胜两参照≥0.001、Aerial不退步、真实空闲名额等待后使用新父程序且结构全过才扩大。没有新质量结果。
 - 新处理是同父code仅一个在途Improve，等待首个外部反馈；三臂共同共享已评分archive。不是旧等待惩罚换名，不是完整WU-UCT/CostAda复现。公开source=53de94e3b2bf07b5a46a9c388efe40d7dfdff8d7（push/ls-remote核实），planSHA=e6d41cd7b40598f349e7956d3daaf610d85c5e00170b4d358b9e5cfdaa9910ee。
 - root=/research/d7/spc/yzyang4/scheduling-feedback-parent-20261012-v1；stage=/research/d7/spc/yzyang4/feedback-parent-stage-20261012.Sdes1e。17CPU单测、48配置/32配对、真实native导入/展开/parse/debug/checkpoint通过。前两次CPU前检分别因无Slurm环境和旧独占cpu.json停，零GPU，原回执在cpu-preparation-attempt1/2/3。后一已通过门因提交前观测定义修正重新冻结，策略/预算未改。
-- 09:54最后观察：job17681=RUNNING/gpu3；首4池闭合，第五池pending_ucb已8启动/4准入。两feedback_gate池分别24/22准入、9/9父程序使用、8/7轮返回、5/6次等待事件，仅结构计数；没有读本批质量。allocation cap7800秒/13GPUh；预计10:32–10:40闭合，不重复提交。当前SSH只读持续观察session23494（stage/feedback_watch_20261012.py）仍活着；外层1537在4池闭合处正常返回，可继续write_stdin23494。旧18760异常退出、1515解析失败、1519 SSH超时均不是实验重启；只读重连确认原job正常。submit4091已exit0，无新automation。
+- 10:08:59 job17681已FAILED/闭合：48计划、40启动、39正常、1失败、8未开始。首4池各1180秒正常；第五池pending_ucb返回码0/0/0/1且未闭合等预算，最后greedy未开始。原48条完整成功门不可通过，不补跑、不复用余款。6067秒×6=36402GPU秒，服务GPU清理通过；无GPU作业在跑，monitor23494已exit0，无新automation。
+- 失败episode34的执行队列locked在截止中断后，清理再进同PID/thread临时文件exclusive-create时FileExistsError；原源码已有SIGALRM屏蔽，具体信号绕过机制未证实，不称缺少屏蔽。只读错误栈已保留，不能将该基础设施失败解释成模型失败，也不以补丁重开本批。
+- 10:19尚未读取本批任何质量值；新增partial_readout先固定缺失规则再揭读：48行全部保留，仅完整等预算池0–3可比较，第二重复缺失对照为null，禁止用起点补值/翻转原门。两个缺失测试通过；原冻结reader和运行源码不改。机制secondary只在此partial入口使用纯函数，不能运行要求48完整的旧main。
 - 如有阳性，仍需分离“反馈内容更新”与“并发降低后模型请求变快”的中介；本批识别硬预约整体效应，不能声称已分开两机制。固定单生成许可是后续可能的强消融，不能加入当前矩阵。异步BO/局部惩罚已有近邻，硬预约本身不自动具有原创性。
 - 08:40揭读前补充只读机制分析feedback_parent_mechanism_20261012.py，6CPU测试通过；闭合后才运行，不改主门/在线源码。独立重建空闲生成许可被硬预约阻止的时长、同父在途重复、新父使用；该时长不是GPU idle/节省，不能估反事实质量。
 - 最新已核实公开head=4ab8590f5674a13c49c77b93d6b0f364962cb398（只读机制分析与6测试）；运行source仍53de94e3，不混淆。机制分析已放stage，未执行本批数据。09:26只读seed检查核过48配置和冻结Improve源码：模板含memory/packages，11包随调用shuffle，有memory配置；固定seed不等于同提示/同输出，闭合后另数真实重复，不据此修改在跑协议。检查器最初误读operator层的包数0，已纠正到solver层，不是运行配置修复。

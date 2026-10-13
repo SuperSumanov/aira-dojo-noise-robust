@@ -1,0 +1,50 @@
+{
+  "status": "passed",
+  "assigned": 24,
+  "complete": 24,
+  "quality_gate": false,
+  "actual_mode_gate": true,
+  "original_gate": false,
+  "gpu_seconds": 37206,
+  "contrasts": [
+    {
+      "task": "aerial-cactus-identification",
+      "reference": "fast_code",
+      "method_best": 0.9997140306708787,
+      "reference_best": 0.9999011134095561,
+      "oriented_delta": -0.0001870827386774021
+    },
+    {
+      "task": "aerial-cactus-identification",
+      "reference": "medium",
+      "method_best": 0.9997140306708787,
+      "reference_best": 0.9998663694723732,
+      "oriented_delta": -0.000152338801494456
+    },
+    {
+      "task": "denoising-dirty-documents",
+      "reference": "fast_code",
+      "method_best": 0.04551226514614451,
+      "reference_best": 0.01968566134361319,
+      "oriented_delta": -0.02582660380253132
+    },
+    {
+      "task": "denoising-dirty-documents",
+      "reference": "medium",
+      "method_best": 0.04551226514614451,
+      "reference_best": 0.016646375501812607,
+      "oriented_delta": -0.028865889644331903
+    }
+  ],
+  "source_commit": "49dec91477e7d6dc8cfc1f7e86780a69205d499d",
+  "plan_sha256": "cef33dddaf5973d067b8b7c1b415a1f1512e73b6fae5cdb23deb6a3ed410bd00",
+  "scope": "Independent matrix, CSV and arithmetic only; remote scoring, timing and CPU isolation are separate receipts.",
+  "limitation": "One pool per arm, shared archive, fixed order and prefix cache. Not independent replication or novelty evidence.",
+  "transfer_sha256": {
+    "summary.json": "a1deb9cd0c894521e965edd53f0878a1c8aead5d42b27577b6ca2f46e93cc1be",
+    "runs.json": "82cb0f1c8b8f8d3ebf8e72466e90a1676da340ab7dc15449ce756411ef282b6c",
+    "runs.csv": "ed4d6db9dd133e8d39406b7f4d88d32ad2b3685a05c620a47457db0ffdb8268e",
+    "effort.json": "4c6e3e4bb67f115e4cb35d2af96ae95d8148c089946b2e60eef6a52edbad6504",
+    "identity.json": "39d621f39a750c139f981c2acfbd0cbb3dce0d0f3c7b6bc5acf85fc1dac24ace"
+  }
+}

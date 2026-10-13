@@ -1,0 +1,113 @@
+{
+  "actual_mode_gate": true,
+  "assigned": 24,
+  "by_arm": {
+    "fast_code": {
+      "aerial-cactus-identification": {
+        "median": 0.9997527835238904,
+        "sample_sd": 8.8516146003479e-05
+      },
+      "denoising-dirty-documents": {
+        "median": 0.04551226514614451,
+        "sample_sd": 0.01291330190126566
+      }
+    },
+    "medium": {
+      "aerial-cactus-identification": {
+        "median": 0.9997314026394701,
+        "sample_sd": 7.225940269607477e-05
+      },
+      "denoising-dirty-documents": {
+        "median": 0.019070756520558854,
+        "sample_sd": 0.0022984008422853542
+      }
+    },
+    "xhigh": {
+      "aerial-cactus-identification": {
+        "median": 0.9997140306708787,
+        "sample_sd": 0.0
+      },
+      "denoising-dirty-documents": {
+        "median": 0.04551226514614451,
+        "sample_sd": 0.0
+      }
+    }
+  },
+  "complete": 24,
+  "contrasts": [
+    {
+      "method_best": 0.9997140306708787,
+      "oriented_delta": -0.0001870827386774021,
+      "reference": "fast_code",
+      "reference_best": 0.9999011134095561,
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "method_best": 0.9997140306708787,
+      "oriented_delta": -0.000152338801494456,
+      "reference": "medium",
+      "reference_best": 0.9998663694723732,
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "method_best": 0.04551226514614451,
+      "oriented_delta": -0.02582660380253132,
+      "reference": "fast_code",
+      "reference_best": 0.01968566134361319,
+      "task": "denoising-dirty-documents"
+    },
+    {
+      "method_best": 0.04551226514614451,
+      "oriented_delta": -0.028865889644331903,
+      "reference": "medium",
+      "reference_best": 0.016646375501812607,
+      "task": "denoising-dirty-documents"
+    }
+  ],
+  "cpu_pairs_passed": 12,
+  "gpu_hours": 10.335,
+  "gpu_seconds": 37206,
+  "independent_pools_per_arm": 1,
+  "limitation": "Two reused development tasks, aerial near ceiling is regression only. Fixed medium/xhigh/fast order and shared prefix cache remain confounded with pool. Four seeds within shared task archive are NOT independent pool replicates. Conditional warm-start utility, not from-scratch, model-training payoff, test generalization or a novel algorithm.",
+  "no_automatic_expansion": true,
+  "plan_sha256": "cef33dddaf5973d067b8b7c1b415a1f1512e73b6fae5cdb23deb6a3ed410bd00",
+  "policies": [
+    {
+      "admitted": 56,
+      "all_released": true,
+      "arm": "medium",
+      "block": 0,
+      "completed_improvements": 19,
+      "completed_nonwarm_parent": 11,
+      "counterfactual_parent_difference": 7,
+      "feedback_waits": 0
+    },
+    {
+      "admitted": 10,
+      "all_released": true,
+      "arm": "xhigh",
+      "block": 1,
+      "completed_improvements": 1,
+      "completed_nonwarm_parent": 0,
+      "counterfactual_parent_difference": 6,
+      "feedback_waits": 0
+    },
+    {
+      "admitted": 72,
+      "all_released": true,
+      "arm": "fast_code",
+      "block": 2,
+      "completed_improvements": 18,
+      "completed_nonwarm_parent": 10,
+      "counterfactual_parent_difference": 8,
+      "feedback_waits": 0
+    }
+  ],
+  "predeclared_success_gate_met": false,
+  "quality_gate": false,
+  "readout_sha256": "09b873a4496b8239191f2adc03df65f34db6faa7000efb387c6b6c917538b77c",
+  "scores_recomputed": 28,
+  "source_commit": "49dec91477e7d6dc8cfc1f7e86780a69205d499d",
+  "started": 24,
+  "structural_gate": true
+}

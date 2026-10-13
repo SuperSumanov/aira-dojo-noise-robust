@@ -1,16 +1,19 @@
 # 当前短交接：恢复先读本文件，不从旧心跳恢复任务
 
-最后核验：2026-10-13 HK20:46:08；新独立24条长推理对照已提交18161，PENDING(Resources)，0条启动，尚未开跑。
+最后核验：2026-10-14 HK05:54；18161已于00:17:28 COMPLETED，24/24闭合，原质量门false；本批无作业继续运行，未提交下一批。
 恢复顺序：fetch → CURRENT_DIRECTION → ROUTE_DECISIONS → 本文件 → 必要原始证据。
 本次覆盖前的完整交接：Git 72167a42feccaec44f5793c3bc7d2f4e9132d581:phase1/CONTEXT_HANDOFF_CURRENT.md。
 
-## 本轮独立xhigh批次（10/13晚，覆盖早间只读授权状态）
+## 本轮独立xhigh批次（18161已闭合，不重跑）
 - 用户批准24条=2旧开发任务×4配对seed×fast/medium/xhigh；run1800秒、pool1960秒、2服务+4执行卡，allocation7500秒/12.5GPUh含失败，API/底座训练0。每臂一池，固定medium→xhigh→fast，不声称重复确认，不改旧17740。
 - 共同代码输出32768、请求1500秒；Analyze仍medium/8192/600。相同warm父程序/greedy/镜像/数据/任务预算，候选自身执行300秒不延长。新目录/research/d7/spc/yzyang4/scheduling-long-effort-20261013-v1；临时源码/tmp/long-effort-20261013-4iRdot。不存在launch回执时不得说已跑。
-- source=49dec91477e7d6dc8cfc1f7e86780a69205d499d；planSHA=cef33dddaf5973d067b8b7c1b415a1f1512e73b6fae5cdb23deb6a3ed410bd00，与18161 launch回执一致；不得重复submit。gpu3同一节点2+4 RTX3090，限7500秒；不是已开跑或完成。
-- HK20:40调度估计开跑22:43:14（非保证），按此整批约次日00:48前后才齐；已告知用户原一小时节点不能有完整终分。排队不计GPU使用，不减对照、不复用旧预算。
-- Git fetch无新提交，myfork/dojo-reproduce仍ff0e8d51；SSH先两次认证前关闭，用户修复后已正常。旧Held12535禁止操作。六项单测本地/远端均过；24配置/16跨臂同旋钮配对、3臂实际冻结async后端+MCTS Improve CPU前检全过，无GPU/真实模型调用。提交前已重新核镜像/六个模型shard，未跳过哈希。
-- 结果只在三池闭合后读。独立Node读出verify_long_effort_20261013.cjs已完成、9个合成测试过；仅核矩阵/CSV/统计/成本，不代替远端外部评分和隔离核验。未改冻结GPU代码，尚无新质量结论。
+- source=49dec91477e7d6dc8cfc1f7e86780a69205d499d；planSHA=cef33dddaf5973d067b8b7c1b415a1f1512e73b6fae5cdb23deb6a3ed410bd00，与18161 launch回执一致；不得重复submit。gpu3同一节点2+4 RTX3090，实际6201秒×6=37206GPU秒=10.335GPUh，低于12.5。
+- 实际启动10/13 HK22:34:07、10/14 00:17:28退出0。24均budget_exhausted正常闭合、清理true，三池完整；无失败启动计费项。旧排队估计不再作现场。SSH正常；squeue已移除旧job，按sacct核完成，不能误报监控失败或实验失败。
+- 前检六单测、24配置/16跨臂配对、三实际async/MCTS CPU门和镜像/六shard哈希此前均通过。闭合后28外部开发评分重算、12CPU配对、物理GPU/清理/预算检查通过；独立Node 9单测重过，真实矩阵/CSV/统计/成本及五文件传输哈希一致。
+- 原quality=false、structural=true、actual_mode=true；去噪池最佳fast/medium/xhigh RMSE=0.01968566134361319/0.016646375501812607/0.04551226514614451。各四条的中位/SD分别0.04551226514614451/0.01291330190126566、0.019070756520558854/0.0022984008422853542、0.04551226514614451/0。xhigh Aerial也停起点，未过门；只一池/臂，不作独立seed显著性。
+- 事后机制：fast/medium/xhigh code返回37/29/4，候选返回33/24/4，外部有效12/16/0；xhigh四返回均length/32768，其余五调用success=false且结束elapsed均约1800（四Improve、一Debug），不据此断言1500请求超时。返回调用延迟中位101.70844331290573/192.58446529414505/864.891065380536秒，只含返回且非GPU耗时。xhigh被截断不能推出自然完成长推理无用，不加长救本门。
+- medium去噪4/4搜索改善起点、fast1/4，池最佳RMSE相对fast低15.43908425909526%，但只是单池开发探索，不称稳定或新机制；Aerial fast更高且近上限。停止xhigh配方扩大；优先同底座同谱系、事前日期固定的新旧checkpoint同archive对照，不自动恢复模型训练/新router。
+- 本地证据sandbox_scheduling/long_effort_v1_closed；远端readout-20261014-v1；summarySHAa1deb9cd0c894521e965edd53f0878a1c8aead5d42b27577b6ca2f46e93cc1be，readerSHA09b873a4496b8239191f2adc03df65f34db6faa7000efb387c6b6c917538b77c，独立结果independent-verification.json。未改冻结GPU源码或原质量门。
 - 新源码long_effort_{trial,policy,readout,native_cpu}_20261013.py与test_long_effort_20261013.py。改超时是新批共同改动，不改旧snapshot。finish_reason只记安全枚举；未完成不填造warm分数，完整质量门需胜两常数参照，不用生成数代替终分。
 
 ## 本轮用户要求与学长建议
@@ -24,11 +27,11 @@
 - validation/D_search若参与训练/搜索就不是最终封存集；“不用官方分数训练”和“部署不接收外部分数”不是一个问题。这里只澄清后续设想，不启动score-channel消融或analyzer。
 
 ## Git/材料最后观察
-- 本轮fetch成功：公开myfork/phase1-value-critic仍72167a42feccaec44f5793c3bc7d2f4e9132d581，本地新增实验commit49dec914；学长myfork/dojo-reproduce=ff0e8d5148a25ecdaffdc40db990465b4bf24525（10/12 HK22:26，use metric as reward），另有69dffe5e客户端配置；未修改学长分支。
+- 10/14 fetch成功：公开myfork/phase1-value-critic仍72167a42feccaec44f5793c3bc7d2f4e9132d581，本地HEAD a52d4ea2184c0c955070c530fd6a724fe7aee821含49dec实验及独立reader。学长myfork/dojo-reproduce新8d39164c5b4c2c1c304fc28801e60467e0ad5de5（10/14 HK00:26:32，sync verl），仅src/verl gitlink由08523dd4变51ff1b4c；没有新outcome文件，不能当训练收益。未修改学长分支。
 - 四个新增/修改文件credential-shape scan为0后读取；新增use_metric_reward默认false，不证明生产启用。policy outcome最后修改仍13d28830c66a96988c180532495326dc144eb93b（10/9 HK20:15）；没有确认新训练效果。
 - overview明确metric=内部验证、metric_info.score=官方评分；reward=1是gold阈值，不等于任务满分。实际日更训练所用字段未确认；同组标准化可抵消正仿射变换，不能仅凭阈值复用认定训练bug。
 - selection.training_messages源码默认对draft/improve/crossover strip memory，debug/analysis不改；overview末尾仍有旧相反描述，以固定源码为准，不能据文档猜实际训练产物。
-- 本轮实验五文件及四notes已在49dec914本地commit，未push；独立读出/新状态后续单独记录。用户未跟踪报告仍不动。
+- 实验源码49dec914与独立读出/启动状态a52d4ea2均本地commit、未push；本次闭合证据及短状态另外保留，用户未跟踪报告仍不动。
 - 10/13新Drive元数据：checkpoint/qwen3.8-27B-lora-adapter含v2_step665、grpo_v3_step50及online_thinking/grpo_v1_step30三份tar；comparison/1012含Chaii/Champs/Dog/OSIC/TGS五任务档。仅远端各读8MiB归档前缀，均未到配置；未保存/加载权重或读结果，不扩下载。文件名不证明底座兼容、训练日期、单一日更谱系或效果。安全ID/覆盖清单在本地_codex_tmp/long-effort-20261013-drive-metadata.json；原9B不能当27B干净前后对照。
 
 ## 实际effort语义：已查到什么，没查到什么

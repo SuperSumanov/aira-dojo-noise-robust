@@ -1,12 +1,14 @@
 # 当前研究方向：唯一短入口
 
-整理：2026-10-13香港。动态状态只认短交接中的最后观察时间。
+整理：2026-10-14香港。动态状态只认短交接中的最后观察时间。
 压缩前全文：Git 96e129c8b67bf8e0918abd5f4e69fe4e5ecc3f13:phase1/CURRENT_DIRECTION.md。
 更早历史见 CURRENT_DIRECTION_HISTORY_THROUGH_20261005.md；不改原件、实验门或保护集权限。
 
 ## 当前裁决：R14 MLE沙箱资源调度
 
-- 10/13晚用户批准独立xhigh探索：2旧开发任务×4配对seed×fast/medium/xhigh=24条，每条1800秒/池1960秒；代码共同32768输出/1500秒请求，Analyze保持medium/8192/600。2服务+4执行RTX3090、allocation≤7500秒/12.5GPUh，失败启动清理均计；无付费API/底座更新。只有一池/臂，固定medium→xhigh→fast顺序及共享cache限制明确，不称独立重复。资格门为完整结构/档位回执＋去噪xhigh胜两常数≥.001＋Aerial不退；旧17740门不动、不补跑。CPU前检通过并已提交18161，最后观察状态见短交接；本授权不是日更新模型训练授权。
+- 10/14 HK05:54复核：18161于00:17:28完成24/24，实际37206GPU秒=10.335GPUh≤12.5；28份外部开发评分重算、12CPU配对、物理卡/清理/档位、独立CSV统计与五文件传输哈希均通过。原quality gate=false，停止本长推理配方自动扩大，不补seed/延上限救门。去噪池最佳fast/medium/xhigh RMSE=0.01968566134361319/0.016646375501812607/0.04551226514614451；xhigh两任务均停暖起点。证据sandbox_scheduling/long_effort_v1_closed，summarySHAa1deb9cd0c894521e965edd53f0878a1c8aead5d42b27577b6ca2f46e93cc1be。
+- 事后诊断：fast/medium/xhigh成功返回code调用37/29/4、候选返回33/24/4、外部有效12/16/0。xhigh四次均finish_reason=length且completion_tokens=32768；不能把被截断的预算内失败推为无限长度xhigh能力低。medium去噪4/4条改善、fast1/4（池内相关），只支持保留medium与fast两强参照，不证明新的router。优先识别学长日期固定、同底座同谱系旧/新权重在相同archive/历史下是否提高单位总成本的真实改善；不是恢复底座训练或宣布“少想总更好”。
+- 18161冻结设计：2旧开发任务×4配对seed×fast/medium/xhigh=24条，1800秒/run、1960秒/池；共同32768输出/1500秒请求，Analyze medium/8192/600，2服务+4执行RTX3090。source49dec91477e7d6dc8cfc1f7e86780a69205d499d，planSHAcef33dddaf5973d067b8b7c1b415a1f1512e73b6fae5cdb23deb6a3ed410bd00。仅一池/臂、固定medium→xhigh→fast/共享cache/旧开发任务/条件暖起点，不能称独立重复、测试泛化或新算法。原门去噪xhigh胜两常数≥.001＋Aerial不退不改，旧17740也不改。
 - 10/13早间用户要求记录学长xhigh/每日policy自举/未来validation–D_search对抗建议，并用约一小时形成研究判断。当时仅分析、只读源码/既有开发证据与必要CPU检查；晚间新增GPU授权仅限上一条24条独立批次，不授权API/agent训练，不把学长计划当新结果。建议原话与边界见ADVISOR_DIRECTIVES Y；17740完整门仍false且停止自动扩大，不通过换档位救旧门。
 - 10/13研究优先级：xhigh作为强参照，不先造新动态router。推荐用学长按日期固定的旧/新checkpoint×fast/medium/xhigh，在相同最新archive/起点/可见历史与整池预算下识别部署收益；该六格是机制对照，不是已冻结批次或新算法。真正E2E问题仍是“训练+继续搜”能否胜“把同等新增总算力给不训练的强搜索”；训练/额外采集不能免费，六格赢不等于整循环回本。找出一个更好程序与得到普遍更强policy是两种产物，不用后者作为前者的额外必过门，也不将旧分数累计上涨当作学习证明。
 - 10/12 HK18:26:18，17740完整闭合48/48、6等预算池；46评分重算、24CPU配对、物理GPU/清理、实际mode与独立CSV/统计核验通过，原quality gate=false、structure/mechanism=true。去噪重复0 medium/fast/feedback_think RMSE=0.019929967149881492/0.014879316923648044/0.01841157291063107，重复1=0.016919910295110023/0.016424072925913014/0.014526227565536542。混合比medium两次改善0.0015183942392504209/0.002393682729573481，Aerial两次也不退；但对fast一负一正，不能称稳定超过强参照。停止本混合配方自动扩大、不补seed或改门；保留“全程medium不是唯一强参照”的探索信号，尚无新方法确认。

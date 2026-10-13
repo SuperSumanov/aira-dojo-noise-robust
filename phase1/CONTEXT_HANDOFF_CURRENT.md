@@ -1,13 +1,16 @@
 # 当前短交接：恢复先读本文件，不从旧心跳恢复任务
 
-最后核验：2026-10-13香港晚；新独立24条长推理对照已获用户明确批准，当前准备/CPU预检，尚未提交GPU。
+最后核验：2026-10-13 HK20:46:08；新独立24条长推理对照已提交18161，PENDING(Resources)，0条启动，尚未开跑。
 恢复顺序：fetch → CURRENT_DIRECTION → ROUTE_DECISIONS → 本文件 → 必要原始证据。
 本次覆盖前的完整交接：Git 72167a42feccaec44f5793c3bc7d2f4e9132d581:phase1/CONTEXT_HANDOFF_CURRENT.md。
 
 ## 本轮独立xhigh批次（10/13晚，覆盖早间只读授权状态）
 - 用户批准24条=2旧开发任务×4配对seed×fast/medium/xhigh；run1800秒、pool1960秒、2服务+4执行卡，allocation7500秒/12.5GPUh含失败，API/底座训练0。每臂一池，固定medium→xhigh→fast，不声称重复确认，不改旧17740。
 - 共同代码输出32768、请求1500秒；Analyze仍medium/8192/600。相同warm父程序/greedy/镜像/数据/任务预算，候选自身执行300秒不延长。新目录/research/d7/spc/yzyang4/scheduling-long-effort-20261013-v1；临时源码/tmp/long-effort-20261013-4iRdot。不存在launch回执时不得说已跑。
-- Git fetch无新提交，myfork/dojo-reproduce仍ff0e8d51；SSH先两次认证前关闭，用户修复后已正常。仅见旧Held12535，禁止操作。新六项本地CPU单测通过；真实冻结后端/24配置预检仍待核验。
+- source=49dec91477e7d6dc8cfc1f7e86780a69205d499d；planSHA=cef33dddaf5973d067b8b7c1b415a1f1512e73b6fae5cdb23deb6a3ed410bd00，与18161 launch回执一致；不得重复submit。gpu3同一节点2+4 RTX3090，限7500秒；不是已开跑或完成。
+- HK20:40调度估计开跑22:43:14（非保证），按此整批约次日00:48前后才齐；已告知用户原一小时节点不能有完整终分。排队不计GPU使用，不减对照、不复用旧预算。
+- Git fetch无新提交，myfork/dojo-reproduce仍ff0e8d51；SSH先两次认证前关闭，用户修复后已正常。旧Held12535禁止操作。六项单测本地/远端均过；24配置/16跨臂同旋钮配对、3臂实际冻结async后端+MCTS Improve CPU前检全过，无GPU/真实模型调用。提交前已重新核镜像/六个模型shard，未跳过哈希。
+- 结果只在三池闭合后读。独立Node读出verify_long_effort_20261013.cjs已完成、9个合成测试过；仅核矩阵/CSV/统计/成本，不代替远端外部评分和隔离核验。未改冻结GPU代码，尚无新质量结论。
 - 新源码long_effort_{trial,policy,readout,native_cpu}_20261013.py与test_long_effort_20261013.py。改超时是新批共同改动，不改旧snapshot。finish_reason只记安全枚举；未完成不填造warm分数，完整质量门需胜两常数参照，不用生成数代替终分。
 
 ## 本轮用户要求与学长建议
@@ -21,11 +24,12 @@
 - validation/D_search若参与训练/搜索就不是最终封存集；“不用官方分数训练”和“部署不接收外部分数”不是一个问题。这里只澄清后续设想，不启动score-channel消融或analyzer。
 
 ## Git/材料最后观察
-- 本轮fetch成功：本地/公开72167a42feccaec44f5793c3bc7d2f4e9132d581；学长myfork/dojo-reproduce=ff0e8d5148a25ecdaffdc40db990465b4bf24525（10/12 HK22:26，use metric as reward），另有69dffe5e客户端配置；未修改学长分支。
+- 本轮fetch成功：公开myfork/phase1-value-critic仍72167a42feccaec44f5793c3bc7d2f4e9132d581，本地新增实验commit49dec914；学长myfork/dojo-reproduce=ff0e8d5148a25ecdaffdc40db990465b4bf24525（10/12 HK22:26，use metric as reward），另有69dffe5e客户端配置；未修改学长分支。
 - 四个新增/修改文件credential-shape scan为0后读取；新增use_metric_reward默认false，不证明生产启用。policy outcome最后修改仍13d28830c66a96988c180532495326dc144eb93b（10/9 HK20:15）；没有确认新训练效果。
 - overview明确metric=内部验证、metric_info.score=官方评分；reward=1是gold阈值，不等于任务满分。实际日更训练所用字段未确认；同组标准化可抵消正仿射变换，不能仅凭阈值复用认定训练bug。
 - selection.training_messages源码默认对draft/improve/crossover strip memory，debug/analysis不改；overview末尾仍有旧相反描述，以固定源码为准，不能据文档猜实际训练产物。
-- 本轮仅改ADVISOR_DIRECTIVES、CURRENT_DIRECTION、ROUTE_DECISIONS和本交接；暂未commit/push。用户未跟踪报告仍不动。
+- 本轮实验五文件及四notes已在49dec914本地commit，未push；独立读出/新状态后续单独记录。用户未跟踪报告仍不动。
+- 10/13新Drive元数据：checkpoint/qwen3.8-27B-lora-adapter含v2_step665、grpo_v3_step50及online_thinking/grpo_v1_step30三份tar；comparison/1012含Chaii/Champs/Dog/OSIC/TGS五任务档。仅远端各读8MiB归档前缀，均未到配置；未保存/加载权重或读结果，不扩下载。文件名不证明底座兼容、训练日期、单一日更谱系或效果。安全ID/覆盖清单在本地_codex_tmp/long-effort-20261013-drive-metadata.json；原9B不能当27B干净前后对照。
 
 ## 实际effort语义：已查到什么，没查到什么
 - 旧root=/research/d7/spc/yzyang4/scheduling-feedback-effort-20261012-v2。只读tokenizer模板及配置，合成固定提示的default=xhigh、medium≠xhigh；不是实际模型输出验证。
@@ -47,7 +51,7 @@
 - 混合比medium相对误差低7.618648981362969%/14.147136053465204%，但对fast一负一正；Aerial近天花板只作不退控制。混合去噪胜起点3/8，fast5/8，medium3/8；池内相关，只有2池重复，不能称普遍可靠性/新方法确认。
 - 46评分重算、24CPU配对、固定物理GPU/清理、独立Node逐格CSV与统计核验通过；原门不变。成功code调用触8192计medium7/34、fast0/51、混合2/41，未记录finish_reason，不证明截断因果。
 - source1cd338f86dac1381795c0295abcefefc8391df8d；planSHA4b33b157e65ba4b14668dfb9e3309ba2e9173ba62c0d542614ef9bad7befd0fc；summarySHAecf3dc4123e657c3f4221e7b061c7a0a7550be27f4febc21034367c7282e3b8a；结果sandbox_scheduling/feedback_effort_v2_closed。
-- 实际44166GPU秒；含17736入口失败1968秒，共46134秒=12.815GPUh≤13。17736零模型调用/零评分，旧48分母保留。最后观察本批GPU/monitor/readout/SCP全部闭合；本日未提交新作业，未重新查询全队列。
+- 旧批实际44166GPU秒；含17736入口失败1968秒，共46134秒=12.815GPUh≤13。17736零模型调用/零评分，旧48分母保留。旧17740 GPU/monitor/readout/SCP已闭合；本轮18161是独立新授权，不能混账或重开旧门。
 - ABCCBA共享prefix-cache/两复用任务/条件暖起点限制保留。停止本角色混合配方自动扩大，不补seed、延上限或换任务救旧门。xhigh若做是独立新研究，不翻转旧门。
 
 ## 历史关闭与操作

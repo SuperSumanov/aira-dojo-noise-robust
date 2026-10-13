@@ -9,7 +9,7 @@ from weight_effort_readout_20261014 import quality, TASKS
 
 class Tests(unittest.TestCase):
     def fixture(self, arm, role):
-        return SimpleNamespace(client=SimpleNamespace(model=p.model(arm)), generation_kwargs=dict(
+        return SimpleNamespace(client=SimpleNamespace(model='openai/'+p.model(arm)), generation_kwargs=dict(
             reasoning_effort=p.effort(arm, role), max_tokens=8192 if role == 'analyze' else 32768,
             bounded_request_timeout_seconds=600 if role == 'analyze' else 1500,
             extra_body=dict(chat_template_kwargs=dict(enable_thinking=p.effort(arm, role) != 'none'))))

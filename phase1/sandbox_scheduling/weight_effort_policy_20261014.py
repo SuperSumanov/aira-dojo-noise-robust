@@ -36,13 +36,13 @@ def normalize(cfg):
 
 def trace(original, row, ep, deadline, role, append_event):
     async def checked(self, *args, **kwargs):
-        assert self.client.model == model(row['arm'])
+        assert self.client.model == 'openai/'+model(row['arm'])
         output = await original(self, *args, **kwargs)
         if isinstance(output, tuple) and isinstance(output[1], dict):
             messages = output[1].get('prompt_messages')
             if messages is not None:
                 append_event(ep/'prompt-hashes.jsonl', dict(role=role.get(), arm=row['arm'],
-                    model_id=self.client.model,
+                    model_id=model(row['arm']),
                     sha256=hashlib.sha256(json.dumps(messages, sort_keys=True, ensure_ascii=False).encode()).hexdigest()))
         return output
     def emit(path, event):

@@ -200,15 +200,38 @@ def preflight():
         no_gpu=True, no_model_calls=True, gpu_hours_cap=15))
 
 
+def refreeze_before_submission(commit):
+    """Only entry/test fixes while no launch, deadline or model result exists."""
+    assert re.fullmatch('[a-f0-9]{40}', commit)
+    assert not (R/'launch.json').exists() and not (R/'submit-intent.json').exists()
+    assert not list(R.glob('episode-*/deadline.json')) and not list(R.glob('generation-*'))
+    p = base.c.trial.check()
+    previous = sha(R/'plan.json')
+    shutil.copyfile(R/'plan.json', R/('prelaunch-plan-'+previous+'.json'))
+    if (R/'preflight.private.log').exists():
+        shutil.copyfile(R/'preflight.private.log', R/('preflight-'+previous+'.private.log'))
+    for name in NAMES:
+        shutil.copyfile(Path(__file__).with_name(name), R/name)
+    p.update(source_commit=commit, prelaunch_repair=dict(previous_plan_sha256=previous,
+        previous_commit=p['source_commit'], reason='Native LiteLLM stores explicit openai/ prefix; strict route assertion now matches actual backend. No scientific configuration changed.', gpu_seconds=0))
+    p['files'].update({n: sha(R/n) for n in NAMES})
+    write(R/'plan.json', p)
+    cp = subprocess.run([str(base.c.trial.PY), '-B', str(R/NAME), 'preflight'], cwd=R, capture_output=True)
+    (R/'preflight.private.log').write_bytes(cp.stdout+cp.stderr)
+    if cp.returncode: raise RuntimeError('CPU preflight failed; no submission')
+    print(json.dumps(read(R/'preflight.json')))
+
+
 configure()
 if __name__ == '__main__':
     os.umask(0o077)
     os.environ.update(PYTHON_DOTENV_DISABLED='1', PYTHONDONTWRITEBYTECODE='1')
     ap = argparse.ArgumentParser()
-    ap.add_argument('mode', choices=['prepare', 'preflight', 'submit', 'controller', 'service', 'lane', 'worker'])
+    ap.add_argument('mode', choices=['prepare', 'refreeze', 'preflight', 'submit', 'controller', 'service', 'lane', 'worker'])
     ap.add_argument('--commit'); ap.add_argument('--block', type=int); ap.add_argument('--lane', type=int); ap.add_argument('--index', type=int)
     a = ap.parse_args()
     if a.mode == 'prepare': prepare(a.commit)
+    elif a.mode == 'refreeze': refreeze_before_submission(a.commit)
     elif a.mode == 'preflight': preflight()
     elif a.mode == 'submit': base.c.submit()
     elif a.mode == 'controller': base.controller()

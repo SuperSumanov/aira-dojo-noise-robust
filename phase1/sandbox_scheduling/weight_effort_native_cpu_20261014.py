@@ -20,6 +20,8 @@ change('import long_effort_policy_20261013 as policy', 'import weight_effort_pol
 change("os.environ.update(PYTHON_DOTENV_DISABLED='1', PRIMARY_KEY_QWEN3_8_27B='cpu-fixture-not-a-credential')",
        "os.environ.update(PYTHON_DOTENV_DISABLED='1', PRIMARY_KEY='cpu-fixture-not-a-credential', PRIMARY_KEY_QWEN3_8_27B='cpu-fixture-not-a-credential')")
 change('policy.traced_call(', 'policy.trace(')
+change("row = next(r for r in p['schedule'] if r['arm'] == arm)",
+       "row = next(r for r in p['schedule'] if r['arm'] == arm)\nimport random\nrandom.seed(row['seed'])")
 change('lambda p, e: events.append(e)', "lambda p, e: events.append(e) if 'success' in e else None")
 change('async def transport(**kwargs):', """async def transport(**kwargs):
     assert kwargs['model'] == 'openai/'+policy.model(arm), 'actual transport model mismatch'

@@ -21,7 +21,7 @@ import feedback_parent_policy_20261012 as parent
 import weight_effort_policy_20261014 as policy
 from lifecycle_pilot import read, write, sha
 
-R = DONOR.parent/'scheduling-weight-effort-20261014-v3'
+R = DONOR.parent/'scheduling-weight-effort-20261014-v4'
 ADAPTER = DONOR.parent/'weight-effort-adapter-20261014-ynf9spm3/accepted_adapter'
 NAME = Path(__file__).name
 NAMES = (NAME, 'weight_effort_policy_20261014.py', 'weight_effort_readout_20261014.py',

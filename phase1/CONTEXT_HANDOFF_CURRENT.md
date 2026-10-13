@@ -1,6 +1,6 @@
 # 当前短交接：恢复先读本文件，不从旧心跳恢复任务
 
-最后核验：2026-10-14 HK06:55；新四格v4 job18253于06:45:29在gpu29实际RUNNING；新旧两个模型真实请求资格通过，第一格old_fast的8条搜索已开始。submit exec78194已exit0；绝不重复submit。18161已闭合，不重跑。
+最后核验：2026-10-14 HK07:57；新四格v4 job18253于06:45:29在gpu29实际RUNNING；服务资格通过，old_fast/new_medium各8条已有结束记录、无清理失败，第二格整池尚待闭合，成绩未读。submit已exit0；绝不重复submit。18161已闭合，不重跑。
 恢复顺序：fetch → CURRENT_DIRECTION → ROUTE_DECISIONS → 本文件 → 必要原始证据。
 本次覆盖前的完整交接：Git 72167a42feccaec44f5793c3bc7d2f4e9132d581:phase1/CONTEXT_HANDOFF_CURRENT.md。
 
@@ -10,7 +10,7 @@
 - intake/形状/镜像源码/完整文件哈希检查均完成，不重下。冻结源码commit6b592cb150be38b9b3bd140cd77dd448d96add12，root=/research/d7/spc/yzyang4/scheduling-weight-effort-20261014-v4；18253已分配gpu29六卡，四格同机同3090，未升级镜像。既有真实任务沙箱每次启动已有CUDA算术/namespace门，不增G0。状态工具/tmp/long-effort-20261013-4iRdot/weight_effort_status_20261014.py只读结构；预计搜索闭合HK09:05附近、再独立读出，Slurm硬上限09:15:29。
 - v1/v2/v3均仅CPU准备、零GPU/真实模型调用。依次发现我方模型前缀断言漏openai/、测试混计prompt哈希事件、测试未按正式worker设置random.seed而软件包列表被原生shuffle。前两已修；v4只补测试seed，不改原算子。v1尝试重写exclusive plan被拒，保留原件，不再原地改。独立JS读出8合成测试通过；正式首提示必须同哈希，不能跳过门。
 - v4前检32配置/24配对、4原生async角色/MCTS请求门通过，首Improve提示同SHA ef71abe51bc72d0d5af91c2a1d75656628838f922066392a04cb23bf8e929263。planSHA cba9bad500a106b8c44f18116c491a1744edb50c3744c7f7ef1f498e45cdbd4f；readerSHA 1f2ae31840a8d72d084fb487058712c581fcdf18abfdf44b296599edbde0c6c5。独立读出verify_weight_effort_20261014.cjs，pins在本地_codex_tmp/weight_effort_pins_20261014.json。仅完整闭合后读分，不中途选权重/模式/样本。
-- 另有只读weight_effort_runtime_prompts_20261014.py在本地_codex_tmp与远端/tmp/long-effort-20261013-4iRdot；闭合后运行，对8组同seed四格首次实际返回提示哈希核验，首次失败则未验证，不以后续成功替代。5项合成测试本地/远端均过；不改冻结GPU源码或原质量门、不读提示正文/中间成绩。
+- 只读weight_effort_runtime_prompts_20261014.py已纳入sandbox_scheduling（远端仍/tmp/long-effort-20261013-4iRdot）；闭合后核8组同seed四格首次实际返回提示哈希，首次失败则未验证，不以后续成功替代。5项合成测试本地/远端均过；不改冻结GPU源码/质量门、不读提示正文/中间成绩。主要medium内比较不变；即使过门，若仍输旧fast则不能称超过强参照。
 - 用户批准24条=2旧开发任务×4配对seed×fast/medium/xhigh；run1800秒、pool1960秒、2服务+4执行卡，allocation7500秒/12.5GPUh含失败，API/底座训练0。每臂一池，固定medium→xhigh→fast，不声称重复确认，不改旧17740。
 - 共同代码输出32768、请求1500秒；Analyze仍medium/8192/600。相同warm父程序/greedy/镜像/数据/任务预算，候选自身执行300秒不延长。新目录/research/d7/spc/yzyang4/scheduling-long-effort-20261013-v1；临时源码/tmp/long-effort-20261013-4iRdot。不存在launch回执时不得说已跑。
 - source=49dec91477e7d6dc8cfc1f7e86780a69205d499d；planSHA=cef33dddaf5973d067b8b7c1b415a1f1512e73b6fae5cdb23deb6a3ed410bd00，与18161 launch回执一致；不得重复submit。gpu3同一节点2+4 RTX3090，实际6201秒×6=37206GPU秒=10.335GPUh，低于12.5。

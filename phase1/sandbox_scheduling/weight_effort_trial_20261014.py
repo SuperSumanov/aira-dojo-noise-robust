@@ -101,7 +101,10 @@ def prepare(commit):
     driver = R/'image_live_2plus4_20261011.py'
     s = change(driver.read_text(), 'dict(configs=24,paired_equal=16,no_kernel=True', 'dict(configs=32,paired_equal=24,no_kernel=True')
     s = change(s, "'--bind',str(model)+':/model:ro'", "'--bind',str(Path("+repr(str(ADAPTER))+"))+':/adapter:ro','--bind',str(model)+':/model:ro'")
+    s = change(s, "socket.gethostname().split('.')[0]=='gpu3'", "socket.gethostname().split('.')[0]=='gpu29'", n=2)
     driver.write_text(s)
+    identity = R/'forets_native_cuda_identity_20260911.py'
+    identity.write_text(change(identity.read_text(), "split('.')[0]!='gpu3'", "split('.')[0]!='gpu29'"))
     shared = R/'generation_joint_trial_20261012.py'
     s = change(shared.read_text(), 'for block in range(3):', 'for block in range(4):')
     s = change(s, "'--time=02:05:00'", "'--time=02:30:00'")
@@ -123,6 +126,7 @@ def prepare(commit):
     s = sb.read_text().replace(str(DONOR), str(R)).replace('r14-long-effort', 'r14-weight-effort')
     s = change(s, 'long_effort_trial_20261013.py controller', NAME+' controller')
     s = change(s, '#SBATCH --time=02:05:00', '#SBATCH --time=02:30:00')
+    s = change(s, '#SBATCH --nodelist=gpu3', '#SBATCH --nodelist=gpu29')
     s = change(s, '7440s', '8940s')
     sb.write_text(s); subprocess.run(['bash', '-n', str(sb)], check=True)
     for cache in ('vllm', 'triton'):
@@ -132,7 +136,7 @@ def prepare(commit):
         source_donor_plan_sha256=sha(DONOR/'plan.json'), schedule=schedule(), planned=32,
         allocation_seconds=policy.CAP, gpu_hours_cap=15, combined_gpu_seconds_cap=54000,
         new_window_gpu_seconds_cap=54000, prior_failures=[], run_seconds=policy.RUN,
-        slot_seconds=policy.SLOT, independent_pool_pairs=0,
+        slot_seconds=policy.SLOT, independent_pool_pairs=0, node='gpu29',
         approval='Explicit user approved32 runs,2service+4execution,<=9000allocation seconds,<=15GPUh on2026-10-14HK. No automatic retry.',
         primary='New-medium versus old-medium: best timely externally valid development score/task/pool, including IDENTICAL supplied warm start. Fast within-mode contrast is secondary.',
         single_change='Factorial deployed weights (unadapted exact base vs that base+one preselected adapter) x constant code effort none/medium. Analyze effort medium always, weights follow arm for every role.',

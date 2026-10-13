@@ -1,10 +1,13 @@
 # 当前短交接：恢复先读本文件，不从旧心跳恢复任务
 
-最后核验：2026-10-14 HK05:54；18161已于00:17:28 COMPLETED，24/24闭合，原质量门false；本批无作业继续运行，未提交下一批。
+最后核验：2026-10-14 HK06:18；新四格32条已明确获批，GPU尚未提交。18161已闭合，不重跑。当前先做新适配器CPU兼容/来源核验。
 恢复顺序：fetch → CURRENT_DIRECTION → ROUTE_DECISIONS → 本文件 → 必要原始证据。
 本次覆盖前的完整交接：Git 72167a42feccaec44f5793c3bc7d2f4e9132d581:phase1/CONTEXT_HANDOFF_CURRENT.md。
 
 ## 本轮独立xhigh批次（18161已闭合，不重跑）
+- 新授权32条=2任务×4搜索seed×原始/共享训练后权重×fast/medium；1800s/run、1960s/池、2服务+4执行，含启动/验收/失败/清理≤9000s=15GPUh。不训练/API、不自动补跑；每格一池非独立重复。主比较新medium−旧medium，fast为次要。所有格初始历史相同，后续不跨格共享。
+- 新adapter已远端完整下载到/research/d7/spc/yzyang4/weight-effort-adapter-20261014-ynf9spm3/accepted_adapter，选Drive 1_GXBwH5jRXTnt-lW_-ur4l0rUPBav2ZK（online_thinking_score/step30）。archiveSHA b6958bb33821a0a1d7e3203bcc6eec18470c0d3e4c0218667ed2452dbf5d0d9e；weightsSHA c7666264904a3490958e46cfbb989a22bc52b9a81c9714631751c7bf8445b61f；configSHA f0a0264f243f57a126a9903499ee48984e660a6bf0ad7b3d351431ce4546198e。992有限BF16张量/rank128；496组形状全部对应（240dense/256int4）。base/revision字段空，不能称相邻日更因果；运行兼容未过，不提交。
+- intake已完成（原exec81020），不要重下。兼容CPU源码weight_effort_{intake,compat}_20261014.py，新文件尚未commit。当前镜像源码检查exec34088仍运行，先poll；gpu3最后AllocTRES=4/8 GPU，6卡批次可能排队。首次沙箱DNS失败，已通过授权SSH验证连接正常，不误报VPN断开。
 - 用户批准24条=2旧开发任务×4配对seed×fast/medium/xhigh；run1800秒、pool1960秒、2服务+4执行卡，allocation7500秒/12.5GPUh含失败，API/底座训练0。每臂一池，固定medium→xhigh→fast，不声称重复确认，不改旧17740。
 - 共同代码输出32768、请求1500秒；Analyze仍medium/8192/600。相同warm父程序/greedy/镜像/数据/任务预算，候选自身执行300秒不延长。新目录/research/d7/spc/yzyang4/scheduling-long-effort-20261013-v1；临时源码/tmp/long-effort-20261013-4iRdot。不存在launch回执时不得说已跑。
 - source=49dec91477e7d6dc8cfc1f7e86780a69205d499d；planSHA=cef33dddaf5973d067b8b7c1b415a1f1512e73b6fae5cdb23deb6a3ed410bd00，与18161 launch回执一致；不得重复submit。gpu3同一节点2+4 RTX3090，实际6201秒×6=37206GPU秒=10.335GPUh，低于12.5。

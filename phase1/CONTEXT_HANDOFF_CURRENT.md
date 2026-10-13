@@ -1,13 +1,15 @@
 # 当前短交接：恢复先读本文件，不从旧心跳恢复任务
 
-最后核验：2026-10-14 HK06:18；新四格32条已明确获批，GPU尚未提交。18161已闭合，不重跑。当前先做新适配器CPU兼容/来源核验。
+最后核验：2026-10-14 HK06:31；新四格v4 CPU门已过，submit命令exec78194正在核模型/镜像哈希，未拿到job号；绝不重复submit。18161已闭合，不重跑。
 恢复顺序：fetch → CURRENT_DIRECTION → ROUTE_DECISIONS → 本文件 → 必要原始证据。
 本次覆盖前的完整交接：Git 72167a42feccaec44f5793c3bc7d2f4e9132d581:phase1/CONTEXT_HANDOFF_CURRENT.md。
 
 ## 本轮独立xhigh批次（18161已闭合，不重跑）
 - 新授权32条=2任务×4搜索seed×原始/共享训练后权重×fast/medium；1800s/run、1960s/池、2服务+4执行，含启动/验收/失败/清理≤9000s=15GPUh。不训练/API、不自动补跑；每格一池非独立重复。主比较新medium−旧medium，fast为次要。所有格初始历史相同，后续不跨格共享。
 - 新adapter已远端完整下载到/research/d7/spc/yzyang4/weight-effort-adapter-20261014-ynf9spm3/accepted_adapter，选Drive 1_GXBwH5jRXTnt-lW_-ur4l0rUPBav2ZK（online_thinking_score/step30）。archiveSHA b6958bb33821a0a1d7e3203bcc6eec18470c0d3e4c0218667ed2452dbf5d0d9e；weightsSHA c7666264904a3490958e46cfbb989a22bc52b9a81c9714631751c7bf8445b61f；configSHA f0a0264f243f57a126a9903499ee48984e660a6bf0ad7b3d351431ce4546198e。992有限BF16张量/rank128；496组形状全部对应（240dense/256int4）。base/revision字段空，不能称相邻日更因果；运行兼容未过，不提交。
-- intake已完成（原exec81020），不要重下。兼容CPU源码weight_effort_{intake,compat}_20261014.py，新文件尚未commit。当前镜像源码检查exec34088仍运行，先poll；gpu3最后AllocTRES=4/8 GPU，6卡批次可能排队。首次沙箱DNS失败，已通过授权SSH验证连接正常，不误报VPN断开。
+- intake/形状/镜像源码检查均完成，不重下。当前源码commit6b592cb150be38b9b3bd140cd77dd448d96add12，远端待提交root=/research/d7/spc/yzyang4/scheduling-weight-effort-20261014-v4；gpu29最后6/8空闲，四格同机同3090，未升级镜像。既有真实任务沙箱每次启动已有CUDA算术/namespace门，不增G0。状态工具/tmp/long-effort-20261013-4iRdot/weight_effort_status_20261014.py只读结构。
+- v1/v2/v3均仅CPU准备、零GPU/真实模型调用。依次发现我方模型前缀断言漏openai/、测试混计prompt哈希事件、测试未按正式worker设置random.seed而软件包列表被原生shuffle。前两已修；v4只补测试seed，不改原算子。v1尝试重写exclusive plan被拒，保留原件，不再原地改。独立JS读出8合成测试通过；正式首提示必须同哈希，不能跳过门。
+- v4前检32配置/24配对、4原生async角色/MCTS请求门通过，首Improve提示同SHA ef71abe51bc72d0d5af91c2a1d75656628838f922066392a04cb23bf8e929263。planSHA cba9bad500a106b8c44f18116c491a1744edb50c3744c7f7ef1f498e45cdbd4f；readerSHA 1f2ae31840a8d72d084fb487058712c581fcdf18abfdf44b296599edbde0c6c5。独立读出verify_weight_effort_20261014.cjs，pins在本地_codex_tmp/weight_effort_pins_20261014.json。仅完整闭合后读分，不中途选权重/模式/样本。
 - 用户批准24条=2旧开发任务×4配对seed×fast/medium/xhigh；run1800秒、pool1960秒、2服务+4执行卡，allocation7500秒/12.5GPUh含失败，API/底座训练0。每臂一池，固定medium→xhigh→fast，不声称重复确认，不改旧17740。
 - 共同代码输出32768、请求1500秒；Analyze仍medium/8192/600。相同warm父程序/greedy/镜像/数据/任务预算，候选自身执行300秒不延长。新目录/research/d7/spc/yzyang4/scheduling-long-effort-20261013-v1；临时源码/tmp/long-effort-20261013-4iRdot。不存在launch回执时不得说已跑。
 - source=49dec91477e7d6dc8cfc1f7e86780a69205d499d；planSHA=cef33dddaf5973d067b8b7c1b415a1f1512e73b6fae5cdb23deb6a3ed410bd00，与18161 launch回执一致；不得重复submit。gpu3同一节点2+4 RTX3090，实际6201秒×6=37206GPU秒=10.335GPUh，低于12.5。

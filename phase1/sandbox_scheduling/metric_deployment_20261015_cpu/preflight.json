@@ -1,0 +1,11 @@
+{
+  "configs": 48,
+  "gpu_hours_cap": 22.5,
+  "native_input_matrix_sha256": "aac18ad5891b801181e717e755d6de9e6fb9ec222e80df19724edf81e6ae2e7e",
+  "no_gpu": true,
+  "no_model_calls": true,
+  "paired_groups": 16,
+  "plan_sha256": "e3baf5d2fa704cdd0c3fc458549aa21449fdbf3209bac87337b370e2a416e154",
+  "public_preview_sha256": "d12d04af8684983be97f5ae6277731a65b505b5034244be34343daee02947006",
+  "source_commit": "63623208e8918bf3b1351c595382d0108aecdb31"
+}

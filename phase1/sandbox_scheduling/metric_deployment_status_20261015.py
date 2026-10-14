@@ -8,6 +8,14 @@ out=dict(root=str(R),prepared=(R/'plan.json').exists(),preflight=(R/'preflight.j
 if out['submitted']:
     launch=read(R/'launch.json');out.update(job=launch['job'],plan_sha256=launch['plan_sha256'])
 out['service_ready']=(R/'service-ready.json').exists()
+out['cpu_input_receipts']=sum((R/f'input-matrix/{i}.safe.json').exists() for i in range(48))
+qualification=R/'adapter-service-qualification.json'
+out['adapter_routes_qualified']=False
+if qualification.exists():
+    q=read(qualification)
+    out['adapter_routes_qualified']=(q['synthetic_only'] is True and q['quality_claim'] is False
+        and len(q['rows'])==2 and all(r['response_received'] is True for r in q['rows'])
+        and {r['model_id'] for r in q['rows']}=={'qwen3.8-27b','qwen3.8-27b-metric-step30'})
 out['pool_slots_finished']=sum((R/f'block-{i}/budget-slot.json').exists() for i in range(6))
 out['started']=sum((R/f'episode-{i}/deadline.json').exists() for i in range(48))
 out['finished_receipts']=sum((R/f'episode-{i}/finished.json').exists() for i in range(48))

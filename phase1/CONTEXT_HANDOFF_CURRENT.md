@@ -1,6 +1,6 @@
 # 当前短交接：恢复先读本文件，不从旧心跳恢复任务
 
-最后核验：2026-10-14 HK13:48；18269于13:12:06实际启动，gpu29 RUNNING；8启动/8首请求一致性通过/8完成回执，pool_slots_finished=0（池级闭合尚未确认），closed=false。未读取中间成绩；预计约15:30完整闭合，allocation硬时限15:42:06，非完成保证。六卡≤9000秒/15GPUh不改对照/重投。32真实输入/16组、17CPU回归/9独立测试已过。watch=/tmp/weight-confirmation-20261014-DaZkp3、会话74672原三小时约14:27到期；不是自动读出/补跑。18253原quality/输入门false、不重开；18161不重跑。
+最后核验：2026-10-14 HK13:51；18269于13:12:06实际启动，gpu29 RUNNING；16启动/12首请求已检查且均通过/8完成回执，首池已闭合、第二池开始，closed=false。未读取中间成绩；预计约15:30完整闭合，allocation硬时限15:42:06，非完成保证。六卡≤9000秒/15GPUh不改对照/重投。32真实输入/16组、17CPU回归/9独立测试已过。watch=/tmp/weight-confirmation-20261014-DaZkp3、会话74672原三小时约14:27到期；不是自动读出/补跑。18253原quality/输入门false、不重开；18161不重跑。
 恢复顺序：fetch → CURRENT_DIRECTION → ROUTE_DECISIONS → 本文件 → 必要原始证据。
 本次覆盖前的完整交接：Git 72167a42feccaec44f5793c3bc7d2f4e9132d581:phase1/CONTEXT_HANDOFF_CURRENT.md。
 

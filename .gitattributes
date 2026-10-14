@@ -1072,3 +1072,7 @@ phase1/sandbox_scheduling/weight_first_proposal_diagnostic_20261014.py -text dif
 phase1/sandbox_scheduling/weight_confirmation*_20261014.py -text
 phase1/sandbox_scheduling/test_weight_confirmation_20261014.py -text
 phase1/sandbox_scheduling/verify_weight_confirmation_20261014.cjs -text
+phase1/sandbox_scheduling/closed_role_origin_20261014.py -text
+phase1/sandbox_scheduling/test_closed_role_origin_20261014.py -text
+phase1/sandbox_scheduling/verify_closed_role_origin_20261014.cjs -text
+phase1/sandbox_scheduling/role_origin_20261014_cpu/*.json -text

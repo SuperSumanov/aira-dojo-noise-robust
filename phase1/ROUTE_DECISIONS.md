@@ -32,6 +32,7 @@
 
 ## R14（2026-10-06起）：MLE沙箱资源调度，尚非已成立方法
 
+- 10/14等待期复盘：已闭合104条只逐批描述，不混成总体胜率；更多改善/更高第二名不能替代原pool-best门，删除best也不是共享archive反事实。学长8d39164c的to_grpo组内中心化使“同组终分减同一父分”在无clip/失败floor同移时等价，不能包装为新训练目标；debug链逐call同advantage的行数差是待核实际sampler/loss与生产manifest的问题，不是已确认偏差或训练授权。查重再核CostAda v4§4.3/B.3已只给global-best改善分配信用；When Agents Slow Down原摘要及作者代码README已有best-so-far/token与长短session分配（全文仍未核），不以重启/曲线/尾部目标更名为创新。
 - 10/14：共同真实public预览/首请求前置拒绝通过新32配置及16配对组CPU门，用户批准两反序池确认≤15GPUh后唯一提交18269（现场见短交接），不补跑。旧首提案不支持“新权重只因较慢才输去噪”的单一解释（新旧medium各2/4首有效，中位新更差）；不是新质量结论或训练普遍无效证明。此次只识别同历史的既有adapter部署增量，不把修控制漏洞/更多改善次数称创新；无fast强参照，未知训练成本不称整循环回本。
 - 10/14：18253四格32/32闭合，原质量门false；新medium Aerial开发AUC1.0是局部信号，去噪新fast/new-medium均未胜同档旧模型，不能称整体部署收益，更不是日更训练因果。实际提示另有随机harness回执文件名和episode25预览超时差异；mock preview前检不等于生产输入一致，不删样本/归一化救门/复用余款重跑。证据weight_effort_18253_closed及CURRENT_DIRECTION；先冻结真实public-data preview才谈未来独立对照，不把控制修复称方法创新。
 

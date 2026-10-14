@@ -1,10 +1,11 @@
 # 当前短交接：恢复先读本文件，不从旧心跳恢复任务
 
-最后核验：2026-10-14 HK11:36；18269唯一提交后PENDING(Resources)，gpu29/gpu3各仅4卡空闲；调度器估计13:06:17启动（非保证），若如期完整读出约15:25–15:40。保持六卡≤9000秒/15GPUh，不改对照/重投。32真实输入/16组、17CPU回归/9独立测试通过。watch在/tmp/weight-confirmation-20261014-DaZkp3、本地会话74672；submit24545已exit0。18253原quality/输入门false，不重开；18161不重跑。
+最后核验：2026-10-14 HK12:28；18269仍PENDING(Resources)，0启动/0首请求/0完成；调度器仍估计13:06:17启动（非保证），若如期完整读出约15:25–15:40。保持六卡≤9000秒/15GPUh，不改对照/重投；gpu29/gpu3各4卡空闲是11:36旧观察。32真实输入/16组、17CPU回归/9独立测试通过。watch在/tmp/weight-confirmation-20261014-DaZkp3、本地会话74672；submit24545已exit0。18253原quality/输入门false，不重开；18161不重跑。
 恢复顺序：fetch → CURRENT_DIRECTION → ROUTE_DECISIONS → 本文件 → 必要原始证据。
 本次覆盖前的完整交接：Git 72167a42feccaec44f5793c3bc7d2f4e9132d581:phase1/CONTEXT_HANDOFF_CURRENT.md。
 
-## 本轮四格权重×effort（18253）及已闭合18161
+## 本轮18269确认及已闭合18253/18161
+- 10/14等待期只读复盘：17740/18161/18253共104条逐批CSV/JSON分数一致，未合并作独立样本。17740混合去噪两池仅1/4、2/4条改善；best优势不等于整体分布变好，第二名只作敏感性描述，不是删除轨迹的反事实（共享archive）。dojo-reproduce@8d39164c七源码/文档credential-shape scan0：selection/to_grpo按episode终分组内中心化、每call继承advantage；同组减同一parent常数在无clip且失败floor同移时会抵消（12合成代数检查，非训练/效果）。长debug链多行是否经实际sampler/loss校正、step30是否用此构建仍未知；不能归因为训练bug或启动训练。18269只识别部署增量，无fast对照/训练成本，过门也不是新算法或整循环回本；不因等候另造router。
 - 新root=/research/d7/spc/yzyang4/scheduling-weight-confirmation-20261014-v1，顺序旧/新/新/旧；seed214501..508、214601..608，共同warm不跨池传历史。source c9d2953f0857106bf4e26724d1dc2646b78c2544；planSHA316381bce41c9ceb9c34fb165e94996eeeb8c9968eff3cb4e63642fbfa549626；readerSHA83d18a0646c57ed9e9879dae8ec7a1d8c612c856b22a69b2a9b0594930b62d0a；真实32输入matrixSHAd404be9491a103824bd6992c0d869e45cd803f6fb4a85bcc3756c809cedc2746。runtime每条发请求前强核哈希，失败停后续池；两重复去噪各胜≥.001且Aerial各不退，不能合并救门。不读中间分；仅两池重复/单服务，不是32独立证据；未知训练来源/成本不称日更因果。原public-preview-v2 SHAd12d04af8684983be97f5ae6277731a65b505b5034244be34343daee02947006；正文不导出。
 - 32首提案与执行码hash/warm父hash全关联；去噪新/旧medium均2/4首步有效/改善，中位incumbent RMSE0.0388058016782502/0.03190758597843126。新medium全程4/4改善而旧3/4仍不代表更优终分；生成墙钟含排队/预填充，不能称纯decode或归因LoRA。deployment-diagnostic/first-proposal.safe.json保留完整分母；事后描述不解除原输入差异、单共享池或训练来源未知。Windows本地Python测试停于环境故障，已停止；实际测试用远端原venv。
 - 已核32/32、46外部评分重算、16CPU配对、4池物理卡/清理/模式、独立CSV统计/五文件哈希，13.931666666666667GPUh≤15。质量门false；去噪best旧fast/旧medium/新fast/新medium=0.010427187690454438/0.013598094008495543/0.022176433381460952/0.017121281517189432；对应中位0.03253226552125881/0.019368611681579734/0.03583616059994125/0.020786268184847655。新medium Aerial best1.0、median0.9999184853781478仅局部开发阳性；不能称整体或日更训练收益。

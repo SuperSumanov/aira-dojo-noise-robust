@@ -1077,6 +1077,6 @@ phase1/sandbox_scheduling/test_closed_role_origin_20261014.py -text
 phase1/sandbox_scheduling/verify_closed_role_origin_20261014.cjs -text
 phase1/sandbox_scheduling/role_origin_20261014_cpu/*.json -text
 phase1/sandbox_scheduling/weight_confirmation_18269_closed/*.json -text
-phase1/sandbox_scheduling/weight_confirmation_18269_closed/*.csv -text
+phase1/sandbox_scheduling/weight_confirmation_18269_closed/*.csv -text diff whitespace=cr-at-eol
 phase1/sandbox_scheduling/drive_training_config_20261014.safe.json -text
 phase1/sandbox_scheduling/drive_training_config_manifest_20261014.py -text

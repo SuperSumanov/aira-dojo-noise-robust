@@ -1062,3 +1062,5 @@ phase1/sandbox_scheduling/long_effort_v1_closed/*.csv -text diff whitespace=cr-a
 phase1/sandbox_scheduling/weight_effort*.py -text diff whitespace=cr-at-eol
 phase1/sandbox_scheduling/test_weight_effort_20261014.py -text diff whitespace=cr-at-eol
 phase1/sandbox_scheduling/test_weight_effort_runtime_prompts_20261014.py -text diff whitespace=cr-at-eol
+phase1/sandbox_scheduling/weight_effort_18253_closed/*.json -text diff whitespace=cr-at-eol
+phase1/sandbox_scheduling/weight_effort_18253_closed/*.csv -text diff whitespace=cr-at-eol

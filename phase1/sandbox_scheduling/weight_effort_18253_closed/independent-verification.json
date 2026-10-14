@@ -1,0 +1,62 @@
+{
+  "status": "passed",
+  "assigned": 32,
+  "complete": 32,
+  "quality_gate": false,
+  "actual_mode_gate": true,
+  "original_gate": false,
+  "contrasts": [
+    {
+      "task": "aerial-cactus-identification",
+      "mode": "medium",
+      "primary": true,
+      "reference": "old_medium",
+      "method": "new_medium",
+      "method_best": 1,
+      "reference_best": 0.9998930955778985,
+      "oriented_delta": 0.00010690442210148365
+    },
+    {
+      "task": "denoising-dirty-documents",
+      "mode": "medium",
+      "primary": true,
+      "reference": "old_medium",
+      "method": "new_medium",
+      "method_best": 0.017121281517189432,
+      "reference_best": 0.013598094008495543,
+      "oriented_delta": -0.0035231875086938896
+    },
+    {
+      "task": "aerial-cactus-identification",
+      "mode": "fast",
+      "primary": false,
+      "reference": "old_fast",
+      "method": "new_fast",
+      "method_best": 0.999764810271377,
+      "reference_best": 0.9998342981457429,
+      "oriented_delta": -0.00006948787436589221
+    },
+    {
+      "task": "denoising-dirty-documents",
+      "mode": "fast",
+      "primary": false,
+      "reference": "old_fast",
+      "method": "new_fast",
+      "method_best": 0.022176433381460952,
+      "reference_best": 0.010427187690454438,
+      "oriented_delta": -0.011749245691006514
+    }
+  ],
+  "gpu_seconds": 50154,
+  "source_commit": "6b592cb150be38b9b3bd140cd77dd448d96add12",
+  "plan_sha256": "cba9bad500a106b8c44f18116c491a1744edb50c3744c7f7ef1f498e45cdbd4f",
+  "readout_sha256": "1f2ae31840a8d72d084fb487058712c581fcdf18abfdf44b296599edbde0c6c5",
+  "limitation": "One pool per condition. Arithmetic/CSV/metadata verification does not replace remote scoring and runtime receipts or establish daily training causality.",
+  "transfer_sha256": {
+    "summary.json": "bdcfbf37e185f92204584d94c503a72b7ece274d83d01a32b8d15589da5058c0",
+    "runs.json": "f739e7ea279d185dae236d2c5afc27343514b8973326804d3074648ffa9cd7da",
+    "runs.csv": "0a8eab73584a32b824b41c00c3cf2748abf745ad226493ebc98068f627dcea42",
+    "effort.json": "f8458001c06ee57ec4f95860615752abbcb3dd6496e71250a5c7bc9e126eebb4",
+    "identity.json": "022786638ed3789112f6b842e544dd950c7166062625afe4ae64b9f5efd39656"
+  }
+}

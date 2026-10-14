@@ -1,0 +1,12 @@
+{
+  "job": "18253",
+  "state": "COMPLETED",
+  "elapsed_seconds": 8359,
+  "allocated_gpus": 6,
+  "start_hk": "2026-10-14T06:45:29",
+  "end_hk": "2026-10-14T09:04:48",
+  "exit_code": "0:0",
+  "gpu_seconds": 50154,
+  "gpu_hours": 13.931666666666667,
+  "cap_gpu_hours": 15
+}

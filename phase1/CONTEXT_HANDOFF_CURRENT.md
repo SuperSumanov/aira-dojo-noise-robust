@@ -1,13 +1,16 @@
 # 当前短交接：恢复先读本文件，不从旧心跳恢复任务
 
-最后核验：2026-10-14 HK08:30；新四格v4 job18253于06:45:29在gpu29实际RUNNING；前三格各8条已有结束记录，无清理失败；前两池已闭合，第三池尚待计时闭合，最后old_medium未开始，成绩未读。submit已exit0；绝不重复submit。18161已闭合，不重跑。
+最后核验：2026-10-14 HK09:16；18253已于09:04:48正常闭合32/32，8359秒×6=50154GPU秒；外部/独立读出完成，原质量门false，额外实际提示一致性也失败。无本轮GPU/monitor/读出继续运行，不自动重投。18161也不重跑。
 恢复顺序：fetch → CURRENT_DIRECTION → ROUTE_DECISIONS → 本文件 → 必要原始证据。
 本次覆盖前的完整交接：Git 72167a42feccaec44f5793c3bc7d2f4e9132d581:phase1/CONTEXT_HANDOFF_CURRENT.md。
 
 ## 本轮四格权重×effort（18253）及已闭合18161
+- 已核32/32、46外部评分重算、16CPU配对、4池物理卡/清理/模式、独立CSV统计/五文件哈希，13.931666666666667GPUh≤15。质量门false；去噪best旧fast/旧medium/新fast/新medium=0.010427187690454438/0.013598094008495543/0.022176433381460952/0.017121281517189432；对应中位0.03253226552125881/0.019368611681579734/0.03583616059994125/0.020786268184847655。新medium Aerial best1.0、median0.9999184853781478仅局部开发阳性；不能称整体或日更训练收益。
+- 证据sandbox_scheduling/weight_effort_18253_closed；summarySHA bdcfbf37e185f92204584d94c503a72b7ece274d83d01a32b8d15589da5058c0。远端readout-20261014-v1；独立verification与final-assessment保留原门false，不覆盖。源仍6b592cb150be38b9b3bd140cd77dd448d96add12，plan/reader SHA见下。两次监测读取问题独立复核后正常；一次仅exec返回running session，不能当作业失败。
+- 实际首次提示8组都不全同：24对比中23只差data preview内随机kernel守护回执文件名，episode25旧medium去噪的预览被内核就绪超时替代。原始提示哈希失败不改，32条全保留，没按分数删样本。mock preview CPU门不代表生产输入一致；下次先冻结真实public-data preview、隔离harness回执、禁止preview错误进入生成，需独立新批而非复用余款。未声称这些差异造成了质量差距。
 - 新授权32条=2任务×4搜索seed×原始/共享训练后权重×fast/medium；1800s/run、1960s/池、2服务+4执行，含启动/验收/失败/清理≤9000s=15GPUh。不训练/API、不自动补跑；每格一池非独立重复。主比较新medium−旧medium，fast为次要。所有格初始历史相同，后续不跨格共享。
 - 新adapter已远端完整下载到/research/d7/spc/yzyang4/weight-effort-adapter-20261014-ynf9spm3/accepted_adapter，选Drive 1_GXBwH5jRXTnt-lW_-ur4l0rUPBav2ZK（online_thinking_score/step30）。archiveSHA b6958bb33821a0a1d7e3203bcc6eec18470c0d3e4c0218667ed2452dbf5d0d9e；weightsSHA c7666264904a3490958e46cfbb989a22bc52b9a81c9714631751c7bf8445b61f；configSHA f0a0264f243f57a126a9903499ee48984e660a6bf0ad7b3d351431ce4546198e。992有限BF16张量/rank128；496组形状全部对应（240dense/256int4）。base/revision字段空，不能称相邻日更因果；运行资格在本批9000秒预算内先测，通过才搜索，失败即闭合不重试。
-- intake/形状/镜像源码/完整文件哈希检查均完成，不重下。冻结源码commit6b592cb150be38b9b3bd140cd77dd448d96add12，root=/research/d7/spc/yzyang4/scheduling-weight-effort-20261014-v4；18253已分配gpu29六卡，四格同机同3090，未升级镜像。既有真实任务沙箱每次启动已有CUDA算术/namespace门，不增G0。状态工具/tmp/long-effort-20261013-4iRdot/weight_effort_status_20261014.py只读结构；预计搜索闭合HK09:05附近、再独立读出，Slurm硬上限09:15:29。
+- intake/形状/镜像源码/完整文件哈希检查均完成，不重下。冻结源码commit6b592cb150be38b9b3bd140cd77dd448d96add12，root=/research/d7/spc/yzyang4/scheduling-weight-effort-20261014-v4；18253曾用gpu29六卡、四格同机同3090，未升级镜像。任务CUDA/namespace门通过，不增G0；作业现已闭合，旧预计时间不再当现场。状态工具/tmp/long-effort-20261013-4iRdot/weight_effort_status_20261014.py只读结构。
 - v1/v2/v3均仅CPU准备、零GPU/真实模型调用。依次发现我方模型前缀断言漏openai/、测试混计prompt哈希事件、测试未按正式worker设置random.seed而软件包列表被原生shuffle。前两已修；v4只补测试seed，不改原算子。v1尝试重写exclusive plan被拒，保留原件，不再原地改。独立JS读出8合成测试通过；正式首提示必须同哈希，不能跳过门。
 - v4前检32配置/24配对、4原生async角色/MCTS请求门通过，首Improve提示同SHA ef71abe51bc72d0d5af91c2a1d75656628838f922066392a04cb23bf8e929263。planSHA cba9bad500a106b8c44f18116c491a1744edb50c3744c7f7ef1f498e45cdbd4f；readerSHA 1f2ae31840a8d72d084fb487058712c581fcdf18abfdf44b296599edbde0c6c5。独立读出verify_weight_effort_20261014.cjs，pins在本地_codex_tmp/weight_effort_pins_20261014.json。仅完整闭合后读分，不中途选权重/模式/样本。
 - 只读weight_effort_runtime_prompts_20261014.py已纳入sandbox_scheduling（远端仍/tmp/long-effort-20261013-4iRdot）；闭合后核8组同seed四格首次实际返回提示哈希，首次失败则未验证，不以后续成功替代。5项合成测试本地/远端均过；不改冻结GPU源码/质量门、不读提示正文/中间成绩。主要medium内比较不变；即使过门，若仍输旧fast则不能称超过强参照。

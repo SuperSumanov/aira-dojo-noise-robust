@@ -1,0 +1,34 @@
+{
+  "schema": "weight-effort-18253-claim-boundary-v1",
+  "job": "18253",
+  "source_commit": "6b592cb150be38b9b3bd140cd77dd448d96add12",
+  "plan_sha256": "cba9bad500a106b8c44f18116c491a1744edb50c3744c7f7ef1f498e45cdbd4f",
+  "assigned": 32,
+  "complete": 32,
+  "gpu_seconds": 50154,
+  "gpu_hours": 13.931666666666667,
+  "frozen_quality_gate": false,
+  "frozen_structural_gate": true,
+  "frozen_actual_mode_gate": true,
+  "frozen_overall_gate": false,
+  "additional_exact_prompt_gate": false,
+  "claimable_clean_weight_gain": false,
+  "prompt_diagnostic": {
+    "paired_first_prompt_groups": 8,
+    "raw_all_four_equal_groups": 0,
+    "comparisons_to_old_fast": 24,
+    "guard_filename_only_pairs": 23,
+    "preview_error_episode": 25,
+    "preview_error_arm": "old_medium",
+    "preview_error_task": "denoising-dirty-documents",
+    "all_original_rows_retained": true
+  },
+  "decision": "No automatic expansion or retry. Preserve localized aerial/new-medium exploratory signal but do not claim overall gain, training causality, generalization or ROI.",
+  "notes": [
+    "All46 available score receipts independently recomputed;32-row CSV and arithmetic verified independently;five transferred readout files match remote SHA256.",
+    "One shared pool/condition; seeded searches are correlated. Same supplied archive and code, but actual first prompt bytes were not identical.",
+    "Random kernel shutdown receipt filenames entered the data preview;episode25 instead received a preview kernel timeout. Post-hoc normalization is diagnostic, not a changed gate or proof of equal inputs.",
+    "The preset quality gate already failed before applying the additional prompt-contract restriction. No run is removed to rescue the result."
+  ],
+  "followup_requirement": "Any future independent batch must freeze and hash the actual public-data preview before model calls, exclude harness receipts from the agent view, and reject preview errors. This is a needed control repair, not method novelty or approval to rerun."
+}

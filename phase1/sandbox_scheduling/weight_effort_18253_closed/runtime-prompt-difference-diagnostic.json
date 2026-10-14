@@ -1,0 +1,1290 @@
+{
+  "comparisons": [
+    {
+      "differences": [
+        {
+          "budget_related": false,
+          "guard_filename_only_change": true,
+          "identifier_only_change": false,
+          "kind": "replace",
+          "left_chars": 55,
+          "left_heading_classes": [],
+          "left_lines": [
+            355,
+            356
+          ],
+          "message": 1,
+          "numeric_only_change": false,
+          "package_enumeration": false,
+          "right_chars": 55,
+          "right_heading_classes": [],
+          "right_lines": [
+            355,
+            356
+          ],
+          "safe_anomaly_lines": [],
+          "safe_identifier_templates": [
+            "kernel-shutdown-guard-installed-mybe4sn_.json (1 lines)",
+            "kernel-shutdown-guard-installed-33if0blj.json (1 lines)"
+          ],
+          "same_word_multiset": false
+        },
+        {
+          "budget_related": false,
+          "guard_filename_only_change": true,
+          "identifier_only_change": false,
+          "kind": "replace",
+          "left_chars": 80,
+          "left_heading_classes": [],
+          "left_lines": [
+            397,
+            398
+          ],
+          "message": 1,
+          "numeric_only_change": false,
+          "package_enumeration": false,
+          "right_chars": 80,
+          "right_heading_classes": [],
+          "right_lines": [
+            397,
+            398
+          ],
+          "safe_anomaly_lines": [],
+          "safe_identifier_templates": [
+            "-> kernel-shutdown-guard-installed-mybe4sn_.json has auto-generated json schema:",
+            "-> kernel-shutdown-guard-installed-33if0blj.json has auto-generated json schema:"
+          ],
+          "same_word_multiset": false
+        }
+      ],
+      "index": 8,
+      "reference": 0
+    },
+    {
+      "differences": [
+        {
+          "budget_related": false,
+          "guard_filename_only_change": true,
+          "identifier_only_change": false,
+          "kind": "replace",
+          "left_chars": 55,
+          "left_heading_classes": [],
+          "left_lines": [
+            355,
+            356
+          ],
+          "message": 1,
+          "numeric_only_change": false,
+          "package_enumeration": false,
+          "right_chars": 55,
+          "right_heading_classes": [],
+          "right_lines": [
+            355,
+            356
+          ],
+          "safe_anomaly_lines": [],
+          "safe_identifier_templates": [],
+          "same_word_multiset": false
+        },
+        {
+          "budget_related": false,
+          "guard_filename_only_change": true,
+          "identifier_only_change": false,
+          "kind": "replace",
+          "left_chars": 80,
+          "left_heading_classes": [],
+          "left_lines": [
+            397,
+            398
+          ],
+          "message": 1,
+          "numeric_only_change": false,
+          "package_enumeration": false,
+          "right_chars": 80,
+          "right_heading_classes": [],
+          "right_lines": [
+            397,
+            398
+          ],
+          "safe_anomaly_lines": [],
+          "safe_identifier_templates": [],
+          "same_word_multiset": false
+        }
+      ],
+      "index": 16,
+      "reference": 0
+    },
+    {
+      "differences": [
+        {
+          "budget_related": false,
+          "guard_filename_only_change": true,
+          "identifier_only_change": false,
+          "kind": "replace",
+          "left_chars": 55,
+          "left_heading_classes": [],
+          "left_lines": [
+            355,
+            356
+          ],
+          "message": 1,
+          "numeric_only_change": false,
+          "package_enumeration": false,
+          "right_chars": 55,
+          "right_heading_classes": [],
+          "right_lines": [
+            355,
+            356
+          ],
+          "safe_anomaly_lines": [],
+          "safe_identifier_templates": [],
+          "same_word_multiset": false
+        },
+        {
+          "budget_related": false,
+          "guard_filename_only_change": true,
+          "identifier_only_change": false,
+          "kind": "replace",
+          "left_chars": 80,
+          "left_heading_classes": [],
+          "left_lines": [
+            397,
+            398
+          ],
+          "message": 1,
+          "numeric_only_change": false,
+          "package_enumeration": false,
+          "right_chars": 80,
+          "right_heading_classes": [],
+          "right_lines": [
+            397,
+            398
+          ],
+          "safe_anomaly_lines": [],
+          "safe_identifier_templates": [],
+          "same_word_multiset": false
+        }
+      ],
+      "index": 24,
+      "reference": 0
+    },
+    {
+      "differences": [
+        {
+          "budget_related": false,
+          "guard_filename_only_change": true,
+          "identifier_only_change": false,
+          "kind": "replace",
+          "left_chars": 55,
+          "left_heading_classes": [],
+          "left_lines": [
+            434,
+            435
+          ],
+          "message": 1,
+          "numeric_only_change": false,
+          "package_enumeration": false,
+          "right_chars": 55,
+          "right_heading_classes": [],
+          "right_lines": [
+            434,
+            435
+          ],
+          "safe_anomaly_lines": [],
+          "safe_identifier_templates": [],
+          "same_word_multiset": false
+        },
+        {
+          "budget_related": false,
+          "guard_filename_only_change": true,
+          "identifier_only_change": false,
+          "kind": "replace",
+          "left_chars": 80,
+          "left_heading_classes": [],
+          "left_lines": [
+            480,
+            481
+          ],
+          "message": 1,
+          "numeric_only_change": false,
+          "package_enumeration": false,
+          "right_chars": 80,
+          "right_heading_classes": [],
+          "right_lines": [
+            480,
+            481
+          ],
+          "safe_anomaly_lines": [],
+          "safe_identifier_templates": [],
+          "same_word_multiset": false
+        }
+      ],
+      "index": 9,
+      "reference": 1
+    },
+    {
+      "differences": [
+        {
+          "budget_related": false,
+          "guard_filename_only_change": true,
+          "identifier_only_change": false,
+          "kind": "replace",
+          "left_chars": 55,
+          "left_heading_classes": [],
+          "left_lines": [
+            434,
+            435
+          ],
+          "message": 1,
+          "numeric_only_change": false,
+          "package_enumeration": false,
+          "right_chars": 55,
+          "right_heading_classes": [],
+          "right_lines": [
+            434,
+            435
+          ],
+          "safe_anomaly_lines": [],
+          "safe_identifier_templates": [],
+          "same_word_multiset": false
+        },
+        {
+          "budget_related": false,
+          "guard_filename_only_change": true,
+          "identifier_only_change": false,
+          "kind": "replace",
+          "left_chars": 80,
+          "left_heading_classes": [],
+          "left_lines": [
+            480,
+            481
+          ],
+          "message": 1,
+          "numeric_only_change": false,
+          "package_enumeration": false,
+          "right_chars": 80,
+          "right_heading_classes": [],
+          "right_lines": [
+            480,
+            481
+          ],
+          "safe_anomaly_lines": [],
+          "safe_identifier_templates": [],
+          "same_word_multiset": false
+        }
+      ],
+      "index": 17,
+      "reference": 1
+    },
+    {
+      "differences": [
+        {
+          "budget_related": false,
+          "guard_filename_only_change": false,
+          "identifier_only_change": false,
+          "kind": "replace",
+          "left_chars": 2278,
+          "left_heading_classes": [],
+          "left_lines": [
+            433,
+            502
+          ],
+          "message": 1,
+          "numeric_only_change": false,
+          "package_enumeration": false,
+          "right_chars": 102,
+          "right_heading_classes": [],
+          "right_lines": [
+            433,
+            436
+          ],
+          "safe_anomaly_lines": [
+            "ERROR:",
+            "Kernel did not become ready in time.",
+            "TimeoutError: Execution exceeded the time limit of 5 minutes"
+          ],
+          "safe_identifier_templates": [],
+          "same_word_multiset": false
+        }
+      ],
+      "index": 25,
+      "reference": 1
+    },
+    {
+      "differences": [
+        {
+          "budget_related": false,
+          "guard_filename_only_change": true,
+          "identifier_only_change": false,
+          "kind": "replace",
+          "left_chars": 55,
+          "left_heading_classes": [],
+          "left_lines": [
+            355,
+            356
+          ],
+          "message": 1,
+          "numeric_only_change": false,
+          "package_enumeration": false,
+          "right_chars": 55,
+          "right_heading_classes": [],
+          "right_lines": [
+            355,
+            356
+          ],
+          "safe_anomaly_lines": [],
+          "safe_identifier_templates": [],
+          "same_word_multiset": false
+        },
+        {
+          "budget_related": false,
+          "guard_filename_only_change": true,
+          "identifier_only_change": false,
+          "kind": "replace",
+          "left_chars": 80,
+          "left_heading_classes": [],
+          "left_lines": [
+            397,
+            398
+          ],
+          "message": 1,
+          "numeric_only_change": false,
+          "package_enumeration": false,
+          "right_chars": 80,
+          "right_heading_classes": [],
+          "right_lines": [
+            397,
+            398
+          ],
+          "safe_anomaly_lines": [],
+          "safe_identifier_templates": [],
+          "same_word_multiset": false
+        }
+      ],
+      "index": 10,
+      "reference": 2
+    },
+    {
+      "differences": [
+        {
+          "budget_related": false,
+          "guard_filename_only_change": true,
+          "identifier_only_change": false,
+          "kind": "replace",
+          "left_chars": 55,
+          "left_heading_classes": [],
+          "left_lines": [
+            355,
+            356
+          ],
+          "message": 1,
+          "numeric_only_change": false,
+          "package_enumeration": false,
+          "right_chars": 55,
+          "right_heading_classes": [],
+          "right_lines": [
+            355,
+            356
+          ],
+          "safe_anomaly_lines": [],
+          "safe_identifier_templates": [],
+          "same_word_multiset": false
+        },
+        {
+          "budget_related": false,
+          "guard_filename_only_change": true,
+          "identifier_only_change": false,
+          "kind": "replace",
+          "left_chars": 80,
+          "left_heading_classes": [],
+          "left_lines": [
+            397,
+            398
+          ],
+          "message": 1,
+          "numeric_only_change": false,
+          "package_enumeration": false,
+          "right_chars": 80,
+          "right_heading_classes": [],
+          "right_lines": [
+            397,
+            398
+          ],
+          "safe_anomaly_lines": [],
+          "safe_identifier_templates": [],
+          "same_word_multiset": false
+        }
+      ],
+      "index": 18,
+      "reference": 2
+    },
+    {
+      "differences": [
+        {
+          "budget_related": false,
+          "guard_filename_only_change": true,
+          "identifier_only_change": false,
+          "kind": "replace",
+          "left_chars": 55,
+          "left_heading_classes": [],
+          "left_lines": [
+            355,
+            356
+          ],
+          "message": 1,
+          "numeric_only_change": false,
+          "package_enumeration": false,
+          "right_chars": 55,
+          "right_heading_classes": [],
+          "right_lines": [
+            355,
+            356
+          ],
+          "safe_anomaly_lines": [],
+          "safe_identifier_templates": [],
+          "same_word_multiset": false
+        },
+        {
+          "budget_related": false,
+          "guard_filename_only_change": true,
+          "identifier_only_change": false,
+          "kind": "replace",
+          "left_chars": 80,
+          "left_heading_classes": [],
+          "left_lines": [
+            397,
+            398
+          ],
+          "message": 1,
+          "numeric_only_change": false,
+          "package_enumeration": false,
+          "right_chars": 80,
+          "right_heading_classes": [],
+          "right_lines": [
+            397,
+            398
+          ],
+          "safe_anomaly_lines": [],
+          "safe_identifier_templates": [],
+          "same_word_multiset": false
+        }
+      ],
+      "index": 26,
+      "reference": 2
+    },
+    {
+      "differences": [
+        {
+          "budget_related": false,
+          "guard_filename_only_change": true,
+          "identifier_only_change": false,
+          "kind": "replace",
+          "left_chars": 55,
+          "left_heading_classes": [],
+          "left_lines": [
+            434,
+            435
+          ],
+          "message": 1,
+          "numeric_only_change": false,
+          "package_enumeration": false,
+          "right_chars": 55,
+          "right_heading_classes": [],
+          "right_lines": [
+            434,
+            435
+          ],
+          "safe_anomaly_lines": [],
+          "safe_identifier_templates": [],
+          "same_word_multiset": false
+        },
+        {
+          "budget_related": false,
+          "guard_filename_only_change": true,
+          "identifier_only_change": false,
+          "kind": "replace",
+          "left_chars": 80,
+          "left_heading_classes": [],
+          "left_lines": [
+            480,
+            481
+          ],
+          "message": 1,
+          "numeric_only_change": false,
+          "package_enumeration": false,
+          "right_chars": 80,
+          "right_heading_classes": [],
+          "right_lines": [
+            480,
+            481
+          ],
+          "safe_anomaly_lines": [],
+          "safe_identifier_templates": [],
+          "same_word_multiset": false
+        }
+      ],
+      "index": 11,
+      "reference": 3
+    },
+    {
+      "differences": [
+        {
+          "budget_related": false,
+          "guard_filename_only_change": true,
+          "identifier_only_change": false,
+          "kind": "replace",
+          "left_chars": 55,
+          "left_heading_classes": [],
+          "left_lines": [
+            434,
+            435
+          ],
+          "message": 1,
+          "numeric_only_change": false,
+          "package_enumeration": false,
+          "right_chars": 55,
+          "right_heading_classes": [],
+          "right_lines": [
+            434,
+            435
+          ],
+          "safe_anomaly_lines": [],
+          "safe_identifier_templates": [],
+          "same_word_multiset": false
+        },
+        {
+          "budget_related": false,
+          "guard_filename_only_change": true,
+          "identifier_only_change": false,
+          "kind": "replace",
+          "left_chars": 80,
+          "left_heading_classes": [],
+          "left_lines": [
+            480,
+            481
+          ],
+          "message": 1,
+          "numeric_only_change": false,
+          "package_enumeration": false,
+          "right_chars": 80,
+          "right_heading_classes": [],
+          "right_lines": [
+            480,
+            481
+          ],
+          "safe_anomaly_lines": [],
+          "safe_identifier_templates": [],
+          "same_word_multiset": false
+        }
+      ],
+      "index": 19,
+      "reference": 3
+    },
+    {
+      "differences": [
+        {
+          "budget_related": false,
+          "guard_filename_only_change": true,
+          "identifier_only_change": false,
+          "kind": "replace",
+          "left_chars": 55,
+          "left_heading_classes": [],
+          "left_lines": [
+            434,
+            435
+          ],
+          "message": 1,
+          "numeric_only_change": false,
+          "package_enumeration": false,
+          "right_chars": 55,
+          "right_heading_classes": [],
+          "right_lines": [
+            434,
+            435
+          ],
+          "safe_anomaly_lines": [],
+          "safe_identifier_templates": [],
+          "same_word_multiset": false
+        },
+        {
+          "budget_related": false,
+          "guard_filename_only_change": true,
+          "identifier_only_change": false,
+          "kind": "replace",
+          "left_chars": 80,
+          "left_heading_classes": [],
+          "left_lines": [
+            480,
+            481
+          ],
+          "message": 1,
+          "numeric_only_change": false,
+          "package_enumeration": false,
+          "right_chars": 80,
+          "right_heading_classes": [],
+          "right_lines": [
+            480,
+            481
+          ],
+          "safe_anomaly_lines": [],
+          "safe_identifier_templates": [],
+          "same_word_multiset": false
+        }
+      ],
+      "index": 27,
+      "reference": 3
+    },
+    {
+      "differences": [
+        {
+          "budget_related": false,
+          "guard_filename_only_change": true,
+          "identifier_only_change": false,
+          "kind": "replace",
+          "left_chars": 55,
+          "left_heading_classes": [],
+          "left_lines": [
+            355,
+            356
+          ],
+          "message": 1,
+          "numeric_only_change": false,
+          "package_enumeration": false,
+          "right_chars": 55,
+          "right_heading_classes": [],
+          "right_lines": [
+            355,
+            356
+          ],
+          "safe_anomaly_lines": [],
+          "safe_identifier_templates": [],
+          "same_word_multiset": false
+        },
+        {
+          "budget_related": false,
+          "guard_filename_only_change": true,
+          "identifier_only_change": false,
+          "kind": "replace",
+          "left_chars": 80,
+          "left_heading_classes": [],
+          "left_lines": [
+            397,
+            398
+          ],
+          "message": 1,
+          "numeric_only_change": false,
+          "package_enumeration": false,
+          "right_chars": 80,
+          "right_heading_classes": [],
+          "right_lines": [
+            397,
+            398
+          ],
+          "safe_anomaly_lines": [],
+          "safe_identifier_templates": [],
+          "same_word_multiset": false
+        }
+      ],
+      "index": 12,
+      "reference": 4
+    },
+    {
+      "differences": [
+        {
+          "budget_related": false,
+          "guard_filename_only_change": true,
+          "identifier_only_change": false,
+          "kind": "replace",
+          "left_chars": 55,
+          "left_heading_classes": [],
+          "left_lines": [
+            355,
+            356
+          ],
+          "message": 1,
+          "numeric_only_change": false,
+          "package_enumeration": false,
+          "right_chars": 55,
+          "right_heading_classes": [],
+          "right_lines": [
+            355,
+            356
+          ],
+          "safe_anomaly_lines": [],
+          "safe_identifier_templates": [],
+          "same_word_multiset": false
+        },
+        {
+          "budget_related": false,
+          "guard_filename_only_change": true,
+          "identifier_only_change": false,
+          "kind": "replace",
+          "left_chars": 80,
+          "left_heading_classes": [],
+          "left_lines": [
+            397,
+            398
+          ],
+          "message": 1,
+          "numeric_only_change": false,
+          "package_enumeration": false,
+          "right_chars": 80,
+          "right_heading_classes": [],
+          "right_lines": [
+            397,
+            398
+          ],
+          "safe_anomaly_lines": [],
+          "safe_identifier_templates": [],
+          "same_word_multiset": false
+        }
+      ],
+      "index": 20,
+      "reference": 4
+    },
+    {
+      "differences": [
+        {
+          "budget_related": false,
+          "guard_filename_only_change": true,
+          "identifier_only_change": false,
+          "kind": "replace",
+          "left_chars": 55,
+          "left_heading_classes": [],
+          "left_lines": [
+            355,
+            356
+          ],
+          "message": 1,
+          "numeric_only_change": false,
+          "package_enumeration": false,
+          "right_chars": 55,
+          "right_heading_classes": [],
+          "right_lines": [
+            355,
+            356
+          ],
+          "safe_anomaly_lines": [],
+          "safe_identifier_templates": [],
+          "same_word_multiset": false
+        },
+        {
+          "budget_related": false,
+          "guard_filename_only_change": true,
+          "identifier_only_change": false,
+          "kind": "replace",
+          "left_chars": 80,
+          "left_heading_classes": [],
+          "left_lines": [
+            397,
+            398
+          ],
+          "message": 1,
+          "numeric_only_change": false,
+          "package_enumeration": false,
+          "right_chars": 80,
+          "right_heading_classes": [],
+          "right_lines": [
+            397,
+            398
+          ],
+          "safe_anomaly_lines": [],
+          "safe_identifier_templates": [],
+          "same_word_multiset": false
+        }
+      ],
+      "index": 28,
+      "reference": 4
+    },
+    {
+      "differences": [
+        {
+          "budget_related": false,
+          "guard_filename_only_change": true,
+          "identifier_only_change": false,
+          "kind": "replace",
+          "left_chars": 55,
+          "left_heading_classes": [],
+          "left_lines": [
+            434,
+            435
+          ],
+          "message": 1,
+          "numeric_only_change": false,
+          "package_enumeration": false,
+          "right_chars": 55,
+          "right_heading_classes": [],
+          "right_lines": [
+            434,
+            435
+          ],
+          "safe_anomaly_lines": [],
+          "safe_identifier_templates": [],
+          "same_word_multiset": false
+        },
+        {
+          "budget_related": false,
+          "guard_filename_only_change": true,
+          "identifier_only_change": false,
+          "kind": "replace",
+          "left_chars": 80,
+          "left_heading_classes": [],
+          "left_lines": [
+            480,
+            481
+          ],
+          "message": 1,
+          "numeric_only_change": false,
+          "package_enumeration": false,
+          "right_chars": 80,
+          "right_heading_classes": [],
+          "right_lines": [
+            480,
+            481
+          ],
+          "safe_anomaly_lines": [],
+          "safe_identifier_templates": [],
+          "same_word_multiset": false
+        }
+      ],
+      "index": 13,
+      "reference": 5
+    },
+    {
+      "differences": [
+        {
+          "budget_related": false,
+          "guard_filename_only_change": true,
+          "identifier_only_change": false,
+          "kind": "replace",
+          "left_chars": 55,
+          "left_heading_classes": [],
+          "left_lines": [
+            434,
+            435
+          ],
+          "message": 1,
+          "numeric_only_change": false,
+          "package_enumeration": false,
+          "right_chars": 55,
+          "right_heading_classes": [],
+          "right_lines": [
+            434,
+            435
+          ],
+          "safe_anomaly_lines": [],
+          "safe_identifier_templates": [],
+          "same_word_multiset": false
+        },
+        {
+          "budget_related": false,
+          "guard_filename_only_change": true,
+          "identifier_only_change": false,
+          "kind": "replace",
+          "left_chars": 80,
+          "left_heading_classes": [],
+          "left_lines": [
+            480,
+            481
+          ],
+          "message": 1,
+          "numeric_only_change": false,
+          "package_enumeration": false,
+          "right_chars": 80,
+          "right_heading_classes": [],
+          "right_lines": [
+            480,
+            481
+          ],
+          "safe_anomaly_lines": [],
+          "safe_identifier_templates": [],
+          "same_word_multiset": false
+        }
+      ],
+      "index": 21,
+      "reference": 5
+    },
+    {
+      "differences": [
+        {
+          "budget_related": false,
+          "guard_filename_only_change": true,
+          "identifier_only_change": false,
+          "kind": "replace",
+          "left_chars": 55,
+          "left_heading_classes": [],
+          "left_lines": [
+            434,
+            435
+          ],
+          "message": 1,
+          "numeric_only_change": false,
+          "package_enumeration": false,
+          "right_chars": 55,
+          "right_heading_classes": [],
+          "right_lines": [
+            434,
+            435
+          ],
+          "safe_anomaly_lines": [],
+          "safe_identifier_templates": [],
+          "same_word_multiset": false
+        },
+        {
+          "budget_related": false,
+          "guard_filename_only_change": true,
+          "identifier_only_change": false,
+          "kind": "replace",
+          "left_chars": 80,
+          "left_heading_classes": [],
+          "left_lines": [
+            480,
+            481
+          ],
+          "message": 1,
+          "numeric_only_change": false,
+          "package_enumeration": false,
+          "right_chars": 80,
+          "right_heading_classes": [],
+          "right_lines": [
+            480,
+            481
+          ],
+          "safe_anomaly_lines": [],
+          "safe_identifier_templates": [],
+          "same_word_multiset": false
+        }
+      ],
+      "index": 29,
+      "reference": 5
+    },
+    {
+      "differences": [
+        {
+          "budget_related": false,
+          "guard_filename_only_change": true,
+          "identifier_only_change": false,
+          "kind": "replace",
+          "left_chars": 55,
+          "left_heading_classes": [],
+          "left_lines": [
+            355,
+            356
+          ],
+          "message": 1,
+          "numeric_only_change": false,
+          "package_enumeration": false,
+          "right_chars": 55,
+          "right_heading_classes": [],
+          "right_lines": [
+            355,
+            356
+          ],
+          "safe_anomaly_lines": [],
+          "safe_identifier_templates": [],
+          "same_word_multiset": false
+        },
+        {
+          "budget_related": false,
+          "guard_filename_only_change": true,
+          "identifier_only_change": false,
+          "kind": "replace",
+          "left_chars": 80,
+          "left_heading_classes": [],
+          "left_lines": [
+            397,
+            398
+          ],
+          "message": 1,
+          "numeric_only_change": false,
+          "package_enumeration": false,
+          "right_chars": 80,
+          "right_heading_classes": [],
+          "right_lines": [
+            397,
+            398
+          ],
+          "safe_anomaly_lines": [],
+          "safe_identifier_templates": [],
+          "same_word_multiset": false
+        }
+      ],
+      "index": 14,
+      "reference": 6
+    },
+    {
+      "differences": [
+        {
+          "budget_related": false,
+          "guard_filename_only_change": true,
+          "identifier_only_change": false,
+          "kind": "replace",
+          "left_chars": 55,
+          "left_heading_classes": [],
+          "left_lines": [
+            355,
+            356
+          ],
+          "message": 1,
+          "numeric_only_change": false,
+          "package_enumeration": false,
+          "right_chars": 55,
+          "right_heading_classes": [],
+          "right_lines": [
+            355,
+            356
+          ],
+          "safe_anomaly_lines": [],
+          "safe_identifier_templates": [],
+          "same_word_multiset": false
+        },
+        {
+          "budget_related": false,
+          "guard_filename_only_change": true,
+          "identifier_only_change": false,
+          "kind": "replace",
+          "left_chars": 80,
+          "left_heading_classes": [],
+          "left_lines": [
+            397,
+            398
+          ],
+          "message": 1,
+          "numeric_only_change": false,
+          "package_enumeration": false,
+          "right_chars": 80,
+          "right_heading_classes": [],
+          "right_lines": [
+            397,
+            398
+          ],
+          "safe_anomaly_lines": [],
+          "safe_identifier_templates": [],
+          "same_word_multiset": false
+        }
+      ],
+      "index": 22,
+      "reference": 6
+    },
+    {
+      "differences": [
+        {
+          "budget_related": false,
+          "guard_filename_only_change": true,
+          "identifier_only_change": false,
+          "kind": "replace",
+          "left_chars": 55,
+          "left_heading_classes": [],
+          "left_lines": [
+            355,
+            356
+          ],
+          "message": 1,
+          "numeric_only_change": false,
+          "package_enumeration": false,
+          "right_chars": 55,
+          "right_heading_classes": [],
+          "right_lines": [
+            355,
+            356
+          ],
+          "safe_anomaly_lines": [],
+          "safe_identifier_templates": [],
+          "same_word_multiset": false
+        },
+        {
+          "budget_related": false,
+          "guard_filename_only_change": true,
+          "identifier_only_change": false,
+          "kind": "replace",
+          "left_chars": 80,
+          "left_heading_classes": [],
+          "left_lines": [
+            397,
+            398
+          ],
+          "message": 1,
+          "numeric_only_change": false,
+          "package_enumeration": false,
+          "right_chars": 80,
+          "right_heading_classes": [],
+          "right_lines": [
+            397,
+            398
+          ],
+          "safe_anomaly_lines": [],
+          "safe_identifier_templates": [],
+          "same_word_multiset": false
+        }
+      ],
+      "index": 30,
+      "reference": 6
+    },
+    {
+      "differences": [
+        {
+          "budget_related": false,
+          "guard_filename_only_change": true,
+          "identifier_only_change": false,
+          "kind": "replace",
+          "left_chars": 55,
+          "left_heading_classes": [],
+          "left_lines": [
+            434,
+            435
+          ],
+          "message": 1,
+          "numeric_only_change": false,
+          "package_enumeration": false,
+          "right_chars": 55,
+          "right_heading_classes": [],
+          "right_lines": [
+            434,
+            435
+          ],
+          "safe_anomaly_lines": [],
+          "safe_identifier_templates": [],
+          "same_word_multiset": false
+        },
+        {
+          "budget_related": false,
+          "guard_filename_only_change": true,
+          "identifier_only_change": false,
+          "kind": "replace",
+          "left_chars": 80,
+          "left_heading_classes": [],
+          "left_lines": [
+            480,
+            481
+          ],
+          "message": 1,
+          "numeric_only_change": false,
+          "package_enumeration": false,
+          "right_chars": 80,
+          "right_heading_classes": [],
+          "right_lines": [
+            480,
+            481
+          ],
+          "safe_anomaly_lines": [],
+          "safe_identifier_templates": [],
+          "same_word_multiset": false
+        }
+      ],
+      "index": 15,
+      "reference": 7
+    },
+    {
+      "differences": [
+        {
+          "budget_related": false,
+          "guard_filename_only_change": true,
+          "identifier_only_change": false,
+          "kind": "replace",
+          "left_chars": 55,
+          "left_heading_classes": [],
+          "left_lines": [
+            434,
+            435
+          ],
+          "message": 1,
+          "numeric_only_change": false,
+          "package_enumeration": false,
+          "right_chars": 55,
+          "right_heading_classes": [],
+          "right_lines": [
+            434,
+            435
+          ],
+          "safe_anomaly_lines": [],
+          "safe_identifier_templates": [],
+          "same_word_multiset": false
+        },
+        {
+          "budget_related": false,
+          "guard_filename_only_change": true,
+          "identifier_only_change": false,
+          "kind": "replace",
+          "left_chars": 80,
+          "left_heading_classes": [],
+          "left_lines": [
+            480,
+            481
+          ],
+          "message": 1,
+          "numeric_only_change": false,
+          "package_enumeration": false,
+          "right_chars": 80,
+          "right_heading_classes": [],
+          "right_lines": [
+            480,
+            481
+          ],
+          "safe_anomaly_lines": [],
+          "safe_identifier_templates": [],
+          "same_word_multiset": false
+        }
+      ],
+      "index": 23,
+      "reference": 7
+    },
+    {
+      "differences": [
+        {
+          "budget_related": false,
+          "guard_filename_only_change": true,
+          "identifier_only_change": false,
+          "kind": "replace",
+          "left_chars": 55,
+          "left_heading_classes": [],
+          "left_lines": [
+            434,
+            435
+          ],
+          "message": 1,
+          "numeric_only_change": false,
+          "package_enumeration": false,
+          "right_chars": 55,
+          "right_heading_classes": [],
+          "right_lines": [
+            434,
+            435
+          ],
+          "safe_anomaly_lines": [],
+          "safe_identifier_templates": [],
+          "same_word_multiset": false
+        },
+        {
+          "budget_related": false,
+          "guard_filename_only_change": true,
+          "identifier_only_change": false,
+          "kind": "replace",
+          "left_chars": 80,
+          "left_heading_classes": [],
+          "left_lines": [
+            480,
+            481
+          ],
+          "message": 1,
+          "numeric_only_change": false,
+          "package_enumeration": false,
+          "right_chars": 80,
+          "right_heading_classes": [],
+          "right_lines": [
+            480,
+            481
+          ],
+          "safe_anomaly_lines": [],
+          "safe_identifier_templates": [],
+          "same_word_multiset": false
+        }
+      ],
+      "index": 31,
+      "reference": 7
+    }
+  ],
+  "diagnostic_only": true,
+  "first_returned_prompt_digests_reproduced": 32,
+  "original_exact_prompt_gate": false,
+  "original_receipt_unchanged": true
+}

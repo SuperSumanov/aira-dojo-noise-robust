@@ -10,7 +10,9 @@ import sys
 
 def run(root, bundle, out):
     root, bundle, out=Path(root).resolve(),Path(bundle).resolve(),Path(out).resolve()
-    plan=json.loads((root/'plan.json').read_text())
+    plan_path=root/'plan.json'
+    if not plan_path.exists(): plan_path=root/'preparation-plan.json'
+    plan=json.loads(plan_path.read_text())
     rows=plan['schedule'];out.mkdir(mode=0o700)
     script=Path(__file__).with_name('fixed_preview_native_cpu_20261014.py')
     def one(row):
@@ -36,7 +38,7 @@ def run(root, bundle, out):
             same_start=good and len({r['warm_sha256'] for r in group})==1))
     summary=dict(assigned=len(rows),passed=sum(r['passed'] for r in result),paired_groups=groups,
         exact_input_gate=all(g['identical'] and g['same_preview'] and g['same_start'] for g in groups),
-        rows=result,donor_plan_sha256=hashlib.sha256((root/'plan.json').read_bytes()).hexdigest(),
+        rows=result,donor_plan_sha256=hashlib.sha256(plan_path.read_bytes()).hexdigest(),
         native_test_sha256=hashlib.sha256(script.read_bytes()).hexdigest(),
         old_batch_unchanged=True,no_gpu=True,no_model_calls=True,
         limitation='Real public input/native MCTS and transport serialization, but fake final response. Does not fix or reinterpret18253 and is not live performance evidence.')

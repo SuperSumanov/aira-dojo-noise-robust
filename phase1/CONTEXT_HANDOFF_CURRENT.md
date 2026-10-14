@@ -1,11 +1,11 @@
 # 当前短交接：恢复先读本文件，不从旧心跳恢复任务
 
-最后核验：2026-10-14 HK09:39；本窗输入修复6项CPU回归、32配置原生hook门通过；无新GPU/模型调用。已异步请求独立32条、两反序池重复、≤15GPUh，尚未收到回复，未提交。18253原quality及实际提示门仍false，不重开/复用余款；18161也不重跑。
+最后核验：2026-10-14 HK11:15；用户已明确批准独立32条旧/新medium×两反序池重复、≤9000秒/15GPUh，含启动失败清理，不补跑。SSH正常；队列仅旧Held12535不动，gpu29兼容。新入口weight_confirmation_trial_20261014.py准备中，尚未提交；真实公开预览/首请求门须先过。18253原quality及输入门false不重开；18161不重跑。
 恢复顺序：fetch → CURRENT_DIRECTION → ROUTE_DECISIONS → 本文件 → 必要原始证据。
 本次覆盖前的完整交接：Git 72167a42feccaec44f5793c3bc7d2f4e9132d581:phase1/CONTEXT_HANDOFF_CURRENT.md。
 
 ## 本轮四格权重×effort（18253）及已闭合18161
-- 新CPU证据sandbox_scheduling/fixed_input_20261014_cpu：最终native-matrix-installed.json为32/32、8配对组首提示/公开预览/warm相同，真实native安装接线通过且错提示零传输；非GPU/模型质量验收。远端/tmp/weight-history-input-20261014-gNF3Jd，canonical public-preview-v2.private.json SHA d12d04af8684983be97f5ae6277731a65b505b5034244be34343daee02947006，仅远端保存正文。v1计时字段误称CPU，实为wall；v2纠正命名，文本/公开manifest相同。327旧冻结文件未变。若获新批授权，先把此hook及本批真实首提示预计算接入新入口，当前尚无新批目录/提交器，不把CPU修复说成已开跑。
+- 原CPU证据sandbox_scheduling/fixed_input_20261014_cpu：32/32旧配置、8组真实首提示/预览/warm一致，非GPU质量。远端/tmp/weight-history-input-20261014-gNF3Jd/public-preview-v2.private.json SHA d12d04af8684983be97f5ae6277731a65b505b5034244be34343daee02947006，正文仅远端。新确认计划root scheduling-weight-confirmation-20261014-v1，顺序旧/新/新/旧；每重复独立新seed214501..508、214601..608；共同warm不跨池传历史。需重做新配置32首提示/16配对组CPU门再冻结；旧v1wall误标CPU不作成本，327旧冻结文件不改。
 - 32首提案与执行码hash/warm父hash全关联；去噪新/旧medium均2/4首步有效/改善，中位incumbent RMSE0.0388058016782502/0.03190758597843126。新medium全程4/4改善而旧3/4仍不代表更优终分；生成墙钟含排队/预填充，不能称纯decode或归因LoRA。deployment-diagnostic/first-proposal.safe.json保留完整分母；事后描述不解除原输入差异、单共享池或训练来源未知。Windows本地Python测试停于环境故障，已停止；实际测试用远端原venv。
 - 已核32/32、46外部评分重算、16CPU配对、4池物理卡/清理/模式、独立CSV统计/五文件哈希，13.931666666666667GPUh≤15。质量门false；去噪best旧fast/旧medium/新fast/新medium=0.010427187690454438/0.013598094008495543/0.022176433381460952/0.017121281517189432；对应中位0.03253226552125881/0.019368611681579734/0.03583616059994125/0.020786268184847655。新medium Aerial best1.0、median0.9999184853781478仅局部开发阳性；不能称整体或日更训练收益。
 - 证据sandbox_scheduling/weight_effort_18253_closed；summarySHA bdcfbf37e185f92204584d94c503a72b7ece274d83d01a32b8d15589da5058c0。远端readout-20261014-v1；独立verification与final-assessment保留原门false，不覆盖。源仍6b592cb150be38b9b3bd140cd77dd448d96add12，plan/reader SHA见下。两次监测读取问题独立复核后正常；一次仅exec返回running session，不能当作业失败。

@@ -1069,3 +1069,5 @@ phase1/sandbox_scheduling/test_fixed_public_preview_20261014.py -text diff white
 phase1/sandbox_scheduling/weight_effort_cost_diagnostic_20261014.cjs -text diff whitespace=cr-at-eol
 phase1/sandbox_scheduling/fixed_input_20261014_cpu/*.json -text diff whitespace=cr-at-eol
 phase1/sandbox_scheduling/weight_first_proposal_diagnostic_20261014.py -text diff whitespace=cr-at-eol
+phase1/sandbox_scheduling/weight_confirmation*_20261014.py -text
+phase1/sandbox_scheduling/test_weight_confirmation_20261014.py -text

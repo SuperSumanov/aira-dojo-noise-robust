@@ -7,6 +7,7 @@ import argparse
 import asyncio
 import hashlib
 import inspect
+import importlib
 import json
 import os
 from pathlib import Path
@@ -29,7 +30,10 @@ def main(root, bundle, index, output):
         TIME_LIMIT='30 minutes', TIME_LIMIT_SECS='1800', STEP_LIMIT='10000')
     def deny(*args, **kwargs): raise AssertionError('network forbidden in CPU fixture')
     socket.socket.connect=deny; socket.create_connection=deny
-    import weight_effort_trial_20261014 as trial
+    plan_path = root/'plan.json'
+    if not plan_path.exists(): plan_path = root/'preparation-plan.json'
+    plan=json.loads(plan_path.read_text())
+    trial=importlib.import_module(plan.get('native_trial_module','weight_effort_trial_20261014'))
     import weight_effort_policy_20261014 as policy
     trial.host().setup()
     from dojo.config_dataclasses.run import RunConfig
@@ -42,7 +46,7 @@ def main(root, bundle, index, output):
     from dojo.utils.logger import config_logger
     from omegaconf import OmegaConf
     import feedback_parent_policy_20261012 as parent
-    plan=json.loads((root/'plan.json').read_text());row=plan['schedule'][index]
+    row=plan['schedule'][index]
     assert row['index']==index
     warm=json.loads((root/'warm.private.json').read_text())
     random.seed(row['seed'])

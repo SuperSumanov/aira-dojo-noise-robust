@@ -10,6 +10,15 @@ metadata:
 
 **用法:每次设计实验、下结论、写汇报前,逐条过一遍这个清单。我已经因为漏掉其中一条(「免费」)白做两天。**
 
+## Z. 2026-10-14：score/metric各自采集、各自训练
+
+- 用户转述学长原话：“online_thinking_score是拿score训的checkpoint，online_thinking_metric是拿metric训的checkpoint，每天我会拿它们各自造的数据训练新的checkpoint。”共享目录ID：1_e_qBc5t15hN28LRHdZCPjw-FlSoIVl9。不把此信息当我方底座训练授权。
+- 这是两条分别自举的谱系，不是固定同一训练集只换reward的消融。跨谱系部署差异会混入生成数据分布、训练来源/成本等；同名step30不证明同一天、同祖先或同训练量。用户转述确认意图，实际训练命令/损失归一化仍未取得。
+- HK22:51直接公开Drive元数据核到metric目录新增可见step30（ID 1w_vb2g8wAZV_NcLPTpRSZgIbi4Bzrkw5）；score仍ID 1_GXBwH5jRXTnt-lW_-ur4l0rUPBav2ZK。只读目录，不下载/加载；同文件名必须按ID与后续内容哈希区分。证据sandbox_scheduling/lineage_intake_20261014.safe.json；不据可见目录断言全球完整。
+- 精确源码8d39164c：score来自metric_info.score，metric来自程序内部验证并经分析器提取；二者调用同一official median/gold阈值映射。此metric不是可信外部评分；“不直接用official score当逐例奖励”不等于完全去除official metadata依赖，更不等于无作弊风险。
+- 8项纯合成、固定源码首遍AST检查通过：全有效/无截断/标准化下正仿射不变；含缺失奖励时固定min−1地板可破坏该不变性，改变较差有效样本advantage的符号。另核绝对spread门、可选clip、缺失阈值/方向边界。独立JS复核地板算术；没有读真实训练行/私有trainer，不认定实际模型失败原因或建议盲改奖励。证据reward_contract_20261014.safe.json。
+- 下一问题优先为新metric产物在固定起点/历史下的真实部署增量，并保留旧模型fast/medium两强参照；不是每天盲测新点或恢复score-channel排序。先内容/兼容/来源与独立矩阵预算，再新批；18269负结果/原门不改，不用历史旧臂冒充新批同期对照。训练成本未知时只称部署验证，不能宣称完整自举回本或原创方法。
+
 ## Y. 2026-10-13：补xhigh参照，与每日policy自举循环分工
 
 - 用户本日转述学长原话：“可以考虑比一下xhigh，xhigh可以推到几万长度，不过我目前的重点是每天拿上一天产的轨迹和score训练一个新模型，然后再把新模型拿去产轨迹和score，看看这样循环能不能刷到满分。如果能的话再尝试通过validation和dsearch对抗的方式去掉对score的依赖。”

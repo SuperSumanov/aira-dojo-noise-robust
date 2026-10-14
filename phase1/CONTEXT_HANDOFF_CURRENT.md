@@ -1,6 +1,6 @@
 # 当前短交接：恢复先读本文件，不从旧心跳恢复任务
 
-最后核验：2026-10-14 HK17:16；18269已于15:28:28 COMPLETED（13:12:06启动、8182秒×6=49092GPU秒=13.636666666666667GPUh≤15）。32/32完整、32实际输入检查通过、39外部评分重算、16CPU配对、4池硬件/清理/模式通过；独立Node9测试、逐行CSV/统计及6文件传输哈希通过。quality=false：去噪新medium两反序重复均更差，Aerial一正一负。停止本检查点自动扩大，不补跑/救门。结果sandbox_scheduling/weight_confirmation_18269_closed，summarySHAd45a9678d64482d036e2f4bb3fcd4f6e0090907ca3de4d7e649e193831d4640b；无新GPU/API/训练。旧watch期限已过，不称仍在监控。
+最后核验：2026-10-14 HK22:51公开Drive：metric新可见step30，ID 1w_vb2g8wAZV_NcLPTpRSZgIbi4Bzrkw5；score仍旧ID。学长确认各自采集/训练，详ADVISOR Z、lineage_intake_20261014.safe.json；未下载/加载新模型。8项固定源码合成reward检查及独立地板算术通过，不是实际训练/质量证据。本轮SSH主机名/固定IP均认证前closed，再试仍失败，Git/公开Drive正常；无新GPU/API/训练。远端实验最后现场仍18269于15:28:28完成、32/32/13.636666666666667GPUh、原quality=false；停止旧step30扩大，不补跑/救门、不称仍在监控。
 恢复顺序：fetch → CURRENT_DIRECTION → ROUTE_DECISIONS → 本文件 → 必要原始证据。
 本次覆盖前的完整交接：Git 72167a42feccaec44f5793c3bc7d2f4e9132d581:phase1/CONTEXT_HANDOFF_CURRENT.md。
 
@@ -29,7 +29,7 @@
 - 新源码long_effort_{trial,policy,readout,native_cpu}_20261013.py与test_long_effort_20261013.py。改超时是新批共同改动，不改旧snapshot。finish_reason只记安全枚举；未完成不填造warm分数，完整质量门需胜两常数参照，不用生成数代替终分。
 
 ## 本轮用户要求与学长建议
-- 用户转述学长建议补xhigh（可至几万长度）；学长当前重点是逐日用上一日轨迹/score训练新policy再采集，未来想用validation/D_search对抗去除score依赖。原话与边界已存ADVISOR_DIRECTIVES Y。
+- 用户最新确认score/metric两谱系每天用各自生成数据更新，非同数据reward消融；原话与边界存ADVISOR Z。新metric仅部署资格待核，下一对照保留旧fast/medium同期参照、同起点/历史/整池预算；先新产物内容/兼容及独立矩阵预算，不自动提交或试遍日更点。奖励尺度/缺失地板风险仅合成验证，不认定实际故障、不改学长训练。先前xhigh/未来validation–D_search建议仍见Y。
 - 学长计划不记为已跑通/满分；我方不更新agent底座的禁令不因此解除。继续R14相关的推理成本/真实质量研究支持，不恢复旧critic/HCE/多保真/score-channel。
 - 当前建议：旧/新日期固定checkpoint×fast/medium/xhigh，同最新archive、起点、可见历史、硬件及整池预算；版本效应和effort效应分别在另一轴固定时识别。先验证权重更新是否超出历史积累，能否降低推理成本；这是设计，不是新算法/新收益。
 - 不用逐日累计最高分当学习证明：未训练旧模型也应获得同样最佳程序/历史。学长训练默认去掉proposal搜索记忆是明确设计，不先验判错；更需与上下文复用的廉价参照比较。
@@ -39,9 +39,9 @@
 - validation/D_search若参与训练/搜索就不是最终封存集；“不用官方分数训练”和“部署不接收外部分数”不是一个问题。这里只澄清后续设想，不启动score-channel消融或analyzer。
 
 ## Git/材料最后观察
-- 10/14 HK17:06 fetch成功：公开myfork/phase1-value-critic仍72167a42feccaec44f5793c3bc7d2f4e9132d581；本轮编辑前本地HEAD9cd18510efca18e46869bcce4b08858603204eba，冻结18269源码另为c9d2953f。学长myfork/dojo-reproduce=8d39164c5b4c2c1c304fc28801e60467e0ad5de5，仅src/verl gitlink更新，无新outcome，不能当训练收益。未修改学长分支，本轮未push。
+- 10/14 HK22:46窗口fetch成功：公开myfork/phase1-value-critic仍72167a42feccaec44f5793c3bc7d2f4e9132d581；本轮编辑前本地HEAD3ce0fb5fce21bf5a733e7c3fbb1224063f31cdfd，冻结18269源码另为c9d2953f。学长myfork/dojo-reproduce=8d39164c5b4c2c1c304fc28801e60467e0ad5de5，未见新outcome。最新Drive/源码检查不等于模型收益；未修改学长分支，本轮未push。
 - 四个新增/修改文件credential-shape scan为0后读取；新增use_metric_reward默认false，不证明生产启用。policy outcome最后修改仍13d28830c66a96988c180532495326dc144eb93b（10/9 HK20:15）；没有确认新训练效果。
-- overview明确metric=内部验证、metric_info.score=官方评分；reward=1是gold阈值，不等于任务满分。实际日更训练所用字段未确认；同组标准化可抵消正仿射变换，不能仅凭阈值复用认定训练bug。
+- 精确journal/to_grpo源码确认metric=内部验证经分析器提取、score=metric_info.score；两者都用official median/gold阈值映射，reward1是gold不是满分。学长已确认两线预期字段，实际命令/损失归一化未取得。8项纯合成首遍AST检查：全有效且无clip/过门才有标准化正仿射不变；缺失min−1地板可翻转较差有效样本advantage符号，绝对spread门/可选clip另有限制。证据reward_contract_20261014.safe.json；无真实训练行/损失/梯度，不认定失败原因或新方法。
 - selection.training_messages源码默认对draft/improve/crossover strip memory，debug/analysis不改；overview末尾仍有旧相反描述，以固定源码为准，不能据文档猜实际训练产物。
 - 实验源码49dec914与独立读出/启动状态a52d4ea2均本地commit、未push；本次闭合证据及短状态另外保留，用户未跟踪报告仍不动。
 - 10/13新Drive元数据：checkpoint/qwen3.8-27B-lora-adapter含v2_step665、grpo_v3_step50及online_thinking/grpo_v1_step30三份tar；comparison/1012含Chaii/Champs/Dog/OSIC/TGS五任务档。仅远端各读8MiB归档前缀，均未到配置；未保存/加载权重或读结果，不扩下载。文件名不证明底座兼容、训练日期、单一日更谱系或效果。安全ID/覆盖清单在本地_codex_tmp/long-effort-20261013-drive-metadata.json；原9B不能当27B干净前后对照。
@@ -77,4 +77,4 @@
 - 用户未跟踪phase1/reports/给学长_MLE沙箱资源调度进展_20261009.md与旧checkout dirty不动。凭据只远端，学长新材料先scan；不导出候选/预测/标签/权重。
 - SSH linux5；PY=/research/d7/spc/yzyang4/venvs/aira/bin/python；SLURM_CONF=/opt1/slurm/gpu-slurm.conf。已知IP137.189.88.148可配HostKeyAlias=linux5.cse.cuhk.edu.hk和StrictHostKeyChecking=yes，不跳过hostkey。
 - 本轮gpu3 RTX3090已有资格；优先gpu27/gpu28。现有MLE镜像不投projgpu39、不升级Torch/退CPU；排除projgpu7/8/33、gpu36/38；gpu24 cuInit999未解。
-- 研究盘4TB至2027-08-30，不是实时剩余空间。Windows Python不可用；SCP必须等exit0再核SHA，不拿复制中缺文件当最终失败。长贵批次先矩阵/全成本/停止门，不复用旧失败预算。
+- 研究盘4TB至2027-08-30，不是实时剩余空间。系统Python此前不可用，本轮应用自带C:/Users/yanze/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe（3.12.14）已跑纯CPU检查；不等于远端训练环境。SCP等exit0再核SHA；长贵批次先矩阵/全成本/停止门，不复用旧失败预算。

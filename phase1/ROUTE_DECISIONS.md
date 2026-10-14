@@ -6,6 +6,8 @@
 
 ## 本次必须纠正的重复推荐
 
+10/14晚：学长确认score与metric各自采集训练；HK22:51 metric step30已新可见，未下载。新产物可另问固定历史下部署收益，但两线对比不是固定数据reward消融，同名step不证明同祖先/成本；旧score的18269结果不能转移到metric。8项合成源码检查限定了仿射不变的适用范围：缺失地板/绝对spread门/可选clip可破坏它；不是实际训练故障或新方法。先内容身份和新批预算，不自动试遍日更点；证据lineage_intake_20261014.safe.json、reward_contract_20261014.safe.json。
+
 10/14 18269完成32/32真实输入配平的新旧medium反序两池确认；去噪两重复best与median均新权重更差，Aerial一正一负，原门false。停止扩此step30部署配方，不用训练信用猜想救结论；两旧开发任务/单服务不证明policy训练普遍无效。Drive对应day0包的转换报告只证明27B/65536准备设置，实际训练配置未取得。证据weight_confirmation_18269_closed及drive_training_config_20261014.safe.json；不把旧队列/准备当当前工作。
 
 10/14：长Debug链多导出训练条目已在10/5的sft-target-semantics.safe.json验证（纯合成、不是实际损失/梯度），不当新发现重跑。真实step30采样/损失配置未取得，更多条目与广播终分不自动是错误；一律按链长降权没有效果依据。新增闭合18253的101返回/46有效来源核对中，8任务×臂格有4格最佳终步为Debug；这是关联，不是删Debug反事实，不能重开17740混合档位。来源数据与独立安全导出复核见sandbox_scheduling/role_origin_20261014_cpu及verify_closed_role_origin_20261014.cjs。

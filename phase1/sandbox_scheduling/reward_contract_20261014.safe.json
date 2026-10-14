@@ -1,0 +1,61 @@
+{
+  "schema": 1,
+  "source_commit": "8d39164c5b4c2c1c304fc28801e60467e0ad5de5",
+  "source_sha256": {
+    "src/mle_policy/src/data/journal.py": "e4b1dd9e1e3c6719321995094758a08c952a9f6b836994b5f8507ed007a9fe00",
+    "src/mle_policy/src/data/to_grpo.py": "d18676dc1ce6064cf6e8f7361d3931abf3575f630a72f0a5095f97caeeb9b565",
+    "src/mle_policy/src/data/selection.py": "2d1675754657b733f7f4d98f6a466b08549806ff7f4f891c9cbf215e48fab4f9"
+  },
+  "scope": "synthetic pinned exporter first-pass AST; not private trainer or checkpoint provenance",
+  "tests_passed": 8,
+  "cases": [
+    {
+      "name": "resolved_positive_affine_invariance",
+      "passed": true
+    },
+    {
+      "name": "fixed_failure_gap_can_flip_valid_advantage_sign",
+      "passed": true,
+      "synthetic_advantages_before": [
+        -0.21821789023599236,
+        1.0910894511799618,
+        -0.8728715609439694
+      ],
+      "synthetic_advantages_after": [
+        0.560118894996481,
+        0.5944118885676942,
+        -1.1545307835641752
+      ]
+    },
+    {
+      "name": "absolute_contrast_gate_not_scale_invariant",
+      "passed": true
+    },
+    {
+      "name": "optional_clipping_can_remove_contrast",
+      "passed": true
+    },
+    {
+      "name": "missing_selected_reward_uses_failure_floor",
+      "passed": true
+    },
+    {
+      "name": "metric_transform_still_requires_threshold_metadata",
+      "passed": true
+    },
+    {
+      "name": "official_lower_direction_not_internal_metric_direction",
+      "passed": true,
+      "condition": "Only a risk if internal metric is higher-better; no real mismatch measured."
+    },
+    {
+      "name": "no_std_mode_preserves_reward_scale",
+      "passed": true
+    }
+  ],
+  "real_data_rows_read": 0,
+  "gpu_jobs": 0,
+  "model_calls": 0,
+  "training_updates": 0,
+  "interpretation": "Boundary checks, not proof of production misconfiguration or model-quality causality."
+}

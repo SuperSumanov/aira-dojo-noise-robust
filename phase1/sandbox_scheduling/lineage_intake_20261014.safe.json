@@ -1,0 +1,55 @@
+{
+  "schema": 1,
+  "user_relay_date_hk": "2026-10-14",
+  "confirmed_intent": "online_thinking_score uses score; online_thinking_metric uses metric. Each lineage trains daily on data it generated itself.",
+  "source_commit": "8d39164c5b4c2c1c304fc28801e60467e0ad5de5",
+  "public_branch_last_fetched": "72167a42feccaec44f5793c3bc7d2f4e9132d581",
+  "metadata_endpoint": "https://drive.google.com/embeddedfolderview?id=FOLDER_ID",
+  "method": "Bounded HTTPS directory read, 8 MiB cap, unique Drive IDs, credential-shaped output blocked; no archive downloads.",
+  "observations": [
+    {
+      "scope": "adapters", "folder_id": "1_e_qBc5t15hN28LRHdZCPjw-FlSoIVl9",
+      "observed_utc": "2026-10-14T14:51:37.983Z", "visible_entries": 5,
+      "html_sha256": "8ea08256ba24e799dee758b18aa289a1672b846f8928a228c7e47d9193067a3e",
+      "entries": [
+        {"id": "1jXYSJCc91gPEE9l11Cp-i-YrmIfzsk2I", "kind": "folder", "name": "archive"},
+        {"id": "1p_Vozl9SnFyM-kILC92cJR7i2P_rmWxD", "kind": "folder", "name": "online_thinking_metric"},
+        {"id": "1wsilHpXWMLNgGtYbDSJi2xPdWyh6fjpU", "kind": "folder", "name": "online_thinking_score"},
+        {"id": "1lHr51uTmmTf_GIkcMmU0NlOiI6wOhWZI", "kind": "file", "name": "lora_adapter_vllm_grpo_v3_step50.tar.gz"},
+        {"id": "1yKR43iQzWANh-kXtk70zPuDhsqIE5sGA", "kind": "file", "name": "lora_adapter_vllm_v2_step665.tar.gz"}
+      ]
+    },
+    {
+      "scope": "score", "folder_id": "1wsilHpXWMLNgGtYbDSJi2xPdWyh6fjpU",
+      "observed_utc": "2026-10-14T14:51:38.328Z", "visible_entries": 1,
+      "html_sha256": "30a4100fcc23e68412201cb3b2eb4146eeebaa4c34409312ad51723e8cad9099",
+      "entries": [{"id": "1_GXBwH5jRXTnt-lW_-ur4l0rUPBav2ZK", "kind": "file", "name": "lora_adapter_vllm_grpo_v1_step30.tar.gz"}]
+    },
+    {
+      "scope": "metric", "folder_id": "1p_Vozl9SnFyM-kILC92cJR7i2P_rmWxD",
+      "observed_utc": "2026-10-14T14:51:38.779Z", "visible_entries": 1,
+      "html_sha256": "64ff8950d5dddc3975d72b4330164598d9ef5c5581e3f5afebc43a908896b7b7",
+      "entries": [{"id": "1w_vb2g8wAZV_NcLPTpRSZgIbi4Bzrkw5", "kind": "file", "name": "lora_adapter_vllm_grpo_v1_step30.tar.gz"}]
+    }
+  ],
+  "completeness_attested": false,
+  "change_from_1715_hk": "metric folder now has one visible file, previously zero visible; no exact upload time inferred.",
+  "content_identity": {"metric_archive_sha256": null, "metric_weights_sha256": null, "metric_runtime_compatible": null},
+  "interpretation": [
+    "Equal filenames/step numbers do not establish equal files, ancestry, training data, update counts, or cost.",
+    "Comparing the latest score and metric checkpoints combines reward choice with induced data-distribution and potentially other training differences.",
+    "The closed score-step30 comparison is not a result for the newly visible metric checkpoint.",
+    "Pinned code maps program-internal metric using official threshold metadata; actual training flags and private loss normalization remain unverified."
+  ],
+  "source_trace": {
+    "src/mle_policy/src/data/journal.py": "e4b1dd9e1e3c6719321995094758a08c952a9f6b836994b5f8507ed007a9fe00",
+    "src/mle_policy/src/data/to_grpo.py": "d18676dc1ce6064cf6e8f7361d3931abf3575f630a72f0a5095f97caeeb9b565",
+    "src/mle_policy/src/data/selection.py": "2d1675754657b733f7f4d98f6a466b08549806ff7f4f891c9cbf215e48fab4f9",
+    "src/dojo/core/solvers/operators/analyze.py": "53c82ef4de907ac7cdea01904c2116680fecc8b1ba766053e8c53ebf60fd66ab",
+    "src/dojo/core/solvers/utils/journal.py": "7c847a1c40541537b1cbefd3f84951d98bb7d406e68cee0ae790839b1023ac22",
+    "src/dojo/core/solvers/utils/metric.py": "c629bd051180ff1ff287a466ecd9466d60638e7986cb9624e651ef39f7421e83"
+  },
+  "credential_shape_hits_in_inspected_sources": 0,
+  "archive_downloads": 0, "real_training_rows_read": 0, "gpu_jobs_submitted": 0,
+  "remote_ssh_this_turn": "hostname and fixed-IP with host-key verification both closed before authentication; local public Drive metadata retrieval succeeded"
+}

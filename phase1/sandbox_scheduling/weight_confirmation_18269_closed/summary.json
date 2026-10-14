@@ -1,0 +1,205 @@
+{
+  "actual_mode_gate": true,
+  "assigned": 32,
+  "by_arm": {
+    "new_medium": {
+      "aerial-cactus-identification": {
+        "median": 0.9997394204711278,
+        "sample_sd": 0.00010226446648872508
+      },
+      "denoising-dirty-documents": {
+        "median": 0.03366372877911196,
+        "sample_sd": 0.014254727131508091
+      }
+    },
+    "old_medium": {
+      "aerial-cactus-identification": {
+        "median": 0.9997474383027853,
+        "sample_sd": 9.595844336093499e-05
+      },
+      "denoising-dirty-documents": {
+        "median": 0.017922601384194527,
+        "sample_sd": 0.010512273830830005
+      }
+    }
+  },
+  "by_pool": [
+    {
+      "arm": "old_medium",
+      "best": 0.9998636968618206,
+      "block": 0,
+      "median": 0.9997300663341939,
+      "n": 4,
+      "repeat": 0,
+      "sample_sd": 7.111354155986459e-05,
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "arm": "old_medium",
+      "best": 0.013654153292274094,
+      "block": 0,
+      "median": 0.017496977748638058,
+      "n": 4,
+      "repeat": 0,
+      "sample_sd": 0.014886257492010543,
+      "task": "denoising-dirty-documents"
+    },
+    {
+      "arm": "new_medium",
+      "best": 0.9999118038517664,
+      "block": 1,
+      "median": 0.9997140306708787,
+      "n": 4,
+      "repeat": 0,
+      "sample_sd": 9.88865904438252e-05,
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "arm": "new_medium",
+      "best": 0.015045886425786793,
+      "block": 1,
+      "median": 0.03366372877911196,
+      "n": 4,
+      "repeat": 0,
+      "sample_sd": 0.0158779891687826,
+      "task": "denoising-dirty-documents"
+    },
+    {
+      "arm": "new_medium",
+      "best": 0.9999759465050272,
+      "block": 2,
+      "median": 0.9997821822399684,
+      "n": 4,
+      "repeat": 1,
+      "sample_sd": 0.00011379537193503064,
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "arm": "new_medium",
+      "best": 0.01844707231236221,
+      "block": 2,
+      "median": 0.03332520917522325,
+      "n": 4,
+      "repeat": 1,
+      "sample_sd": 0.014889834083846004,
+      "task": "denoising-dirty-documents"
+    },
+    {
+      "arm": "old_medium",
+      "best": 0.9999839643366848,
+      "block": 3,
+      "median": 0.9997514472186142,
+      "n": 4,
+      "repeat": 1,
+      "sample_sd": 0.0001237772674313908,
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "arm": "old_medium",
+      "best": 0.01543541427703299,
+      "block": 3,
+      "median": 0.018188728444833158,
+      "n": 4,
+      "repeat": 1,
+      "sample_sd": 0.005059734721535185,
+      "task": "denoising-dirty-documents"
+    }
+  ],
+  "common_preview_preparation_wall_seconds": 60.32944286800921,
+  "complete": 32,
+  "contrasts": [
+    {
+      "method": "new_medium",
+      "method_best": 0.9999118038517664,
+      "oriented_delta": 4.8106989945728706e-05,
+      "reference": "old_medium",
+      "reference_best": 0.9998636968618206,
+      "repeat": 0,
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "method": "new_medium",
+      "method_best": 0.015045886425786793,
+      "oriented_delta": -0.0013917331335126983,
+      "reference": "old_medium",
+      "reference_best": 0.013654153292274094,
+      "repeat": 0,
+      "task": "denoising-dirty-documents"
+    },
+    {
+      "method": "new_medium",
+      "method_best": 0.9999759465050272,
+      "oriented_delta": -8.017831657602947e-06,
+      "reference": "old_medium",
+      "reference_best": 0.9999839643366848,
+      "repeat": 1,
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "method": "new_medium",
+      "method_best": 0.01844707231236221,
+      "oriented_delta": -0.003011658035329221,
+      "reference": "old_medium",
+      "reference_best": 0.01543541427703299,
+      "repeat": 1,
+      "task": "denoising-dirty-documents"
+    }
+  ],
+  "cpu_pairs_passed": 16,
+  "gpu_hours": 13.636666666666667,
+  "gpu_seconds": 49092,
+  "independent_pools_per_arm": 2,
+  "limitation": "Two reversed-order pool repeats within one allocation/service, not32 independent replicates; residual shared service/time effects remain. Reused developer tasks and supplied warm start. Adapter training revision/cost/overlap unknown. Deployment contrast, not daily-training causality, training-cost ROI, generalization or new algorithm. No fast baseline in this batch.",
+  "no_automatic_expansion": true,
+  "plan_sha256": "316381bce41c9ceb9c34fb165e94996eeeb8c9968eff3cb4e63642fbfa549626",
+  "policies": [
+    {
+      "admitted": 50,
+      "all_released": true,
+      "arm": "old_medium",
+      "block": 0,
+      "completed_improvements": 14,
+      "completed_nonwarm_parent": 5,
+      "counterfactual_parent_difference": 7,
+      "feedback_waits": 0
+    },
+    {
+      "admitted": 45,
+      "all_released": true,
+      "arm": "new_medium",
+      "block": 1,
+      "completed_improvements": 15,
+      "completed_nonwarm_parent": 6,
+      "counterfactual_parent_difference": 9,
+      "feedback_waits": 0
+    },
+    {
+      "admitted": 42,
+      "all_released": true,
+      "arm": "new_medium",
+      "block": 2,
+      "completed_improvements": 12,
+      "completed_nonwarm_parent": 3,
+      "counterfactual_parent_difference": 7,
+      "feedback_waits": 0
+    },
+    {
+      "admitted": 56,
+      "all_released": true,
+      "arm": "old_medium",
+      "block": 3,
+      "completed_improvements": 18,
+      "completed_nonwarm_parent": 6,
+      "counterfactual_parent_difference": 8,
+      "feedback_waits": 0
+    }
+  ],
+  "predeclared_success_gate_met": false,
+  "quality_gate": false,
+  "readout_sha256": "83d18a0646c57ed9e9879dae8ec7a1d8c612c856b22a69b2a9b0594930b62d0a",
+  "runtime_input_gate": true,
+  "scores_recomputed": 39,
+  "source_commit": "c9d2953f0857106bf4e26724d1dc2646b78c2544",
+  "started": 32,
+  "structural_gate": true
+}

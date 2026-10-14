@@ -1,0 +1,59 @@
+{
+  "status": "passed",
+  "assigned": 32,
+  "complete": 32,
+  "contrasts": [
+    {
+      "repeat": 0,
+      "task": "aerial-cactus-identification",
+      "method": "new_medium",
+      "reference": "old_medium",
+      "method_best": 0.9999118038517664,
+      "reference_best": 0.9998636968618206,
+      "oriented_delta": 0.000048106989945728706
+    },
+    {
+      "repeat": 0,
+      "task": "denoising-dirty-documents",
+      "method": "new_medium",
+      "reference": "old_medium",
+      "method_best": 0.015045886425786793,
+      "reference_best": 0.013654153292274094,
+      "oriented_delta": -0.0013917331335126983
+    },
+    {
+      "repeat": 1,
+      "task": "aerial-cactus-identification",
+      "method": "new_medium",
+      "reference": "old_medium",
+      "method_best": 0.9999759465050272,
+      "reference_best": 0.9999839643366848,
+      "oriented_delta": -0.000008017831657602947
+    },
+    {
+      "repeat": 1,
+      "task": "denoising-dirty-documents",
+      "method": "new_medium",
+      "reference": "old_medium",
+      "method_best": 0.01844707231236221,
+      "reference_best": 0.01543541427703299,
+      "oriented_delta": -0.003011658035329221
+    }
+  ],
+  "quality_gate": false,
+  "runtime_input_gate": true,
+  "original_gate": false,
+  "gpu_seconds": 49092,
+  "source_commit": "c9d2953f0857106bf4e26724d1dc2646b78c2544",
+  "plan_sha256": "316381bce41c9ceb9c34fb165e94996eeeb8c9968eff3cb4e63642fbfa549626",
+  "readout_sha256": "83d18a0646c57ed9e9879dae8ec7a1d8c612c856b22a69b2a9b0594930b62d0a",
+  "limitation": "Two paired pool repeats share one service/allocation. Not32 independent replicates, test generalization or training-cost ROI.",
+  "transfer_sha256": {
+    "summary.json": "d45a9678d64482d036e2f4bb3fcd4f6e0090907ca3de4d7e649e193831d4640b",
+    "runs.json": "f345f0850bcbe47a03cbc7cefef793cb85d447b5fe1248b5e193eb3867687dbb",
+    "effort.json": "efa5bc03364b025ef77c8be610fa4a025de8e3083ea762a545227e0663421b4a",
+    "runs.csv": "b01b28592f024442ada38c368dd29863d8b36c4df3979d15aafc7de104d8c575",
+    "input-checks.json": "340b2fdbfcfeac624b770d3f2379054a2069845c2b943f5d85144be37bfbdda9",
+    "identity.json": "ed730abbfa16ddbddf318574fd35b137962afda73b859000fdb8f38019602edc"
+  }
+}

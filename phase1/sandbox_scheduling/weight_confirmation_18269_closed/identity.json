@@ -1,0 +1,58 @@
+[
+  {
+    "block": 0,
+    "lanes": [
+      "GPU-b26d5511-6492-3c64-0384-489f38ab6ba7",
+      "GPU-158df4f4-012d-1d41-595d-cf7202a7c27f",
+      "GPU-84050538-3a9f-94e7-290f-97db3550ff24",
+      "GPU-a400a9a7-e70a-137c-bcee-7492d1834b0e"
+    ],
+    "service": [
+      "GPU-3a556a64-6441-d9b5-1475-d18756dc0297",
+      "GPU-2fe44a87-8810-96e9-ea84-2760c37613fb"
+    ],
+    "valid": true
+  },
+  {
+    "block": 1,
+    "lanes": [
+      "GPU-b26d5511-6492-3c64-0384-489f38ab6ba7",
+      "GPU-158df4f4-012d-1d41-595d-cf7202a7c27f",
+      "GPU-84050538-3a9f-94e7-290f-97db3550ff24",
+      "GPU-a400a9a7-e70a-137c-bcee-7492d1834b0e"
+    ],
+    "service": [
+      "GPU-3a556a64-6441-d9b5-1475-d18756dc0297",
+      "GPU-2fe44a87-8810-96e9-ea84-2760c37613fb"
+    ],
+    "valid": true
+  },
+  {
+    "block": 2,
+    "lanes": [
+      "GPU-b26d5511-6492-3c64-0384-489f38ab6ba7",
+      "GPU-158df4f4-012d-1d41-595d-cf7202a7c27f",
+      "GPU-84050538-3a9f-94e7-290f-97db3550ff24",
+      "GPU-a400a9a7-e70a-137c-bcee-7492d1834b0e"
+    ],
+    "service": [
+      "GPU-3a556a64-6441-d9b5-1475-d18756dc0297",
+      "GPU-2fe44a87-8810-96e9-ea84-2760c37613fb"
+    ],
+    "valid": true
+  },
+  {
+    "block": 3,
+    "lanes": [
+      "GPU-b26d5511-6492-3c64-0384-489f38ab6ba7",
+      "GPU-158df4f4-012d-1d41-595d-cf7202a7c27f",
+      "GPU-84050538-3a9f-94e7-290f-97db3550ff24",
+      "GPU-a400a9a7-e70a-137c-bcee-7492d1834b0e"
+    ],
+    "service": [
+      "GPU-3a556a64-6441-d9b5-1475-d18756dc0297",
+      "GPU-2fe44a87-8810-96e9-ea84-2760c37613fb"
+    ],
+    "valid": true
+  }
+]

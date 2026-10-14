@@ -1,0 +1,62 @@
+{
+  "observed_utc": "2026-10-14T09:15:31.533953+00:00",
+  "scope": "Visible shared Drive metadata, already accepted adapter inventory, and score/day0 archive member inventory plus configuration-only conversion report. No training rows parsed or copied.",
+  "global_drive_completeness_attested": false,
+  "checkpoint_score_folder": {
+    "id": "1wsilHpXWMLNgGtYbDSJi2xPdWyh6fjpU",
+    "visible_files": ["lora_adapter_vllm_grpo_v1_step30.tar.gz"],
+    "archive_id": "1_GXBwH5jRXTnt-lW_-ur4l0rUPBav2ZK",
+    "archive_sha256_from_prior_complete_intake": "b6958bb33821a0a1d7e3203bcc6eec18470c0d3e4c0218667ed2452dbf5d0d9e",
+    "archive_files": ["lora_adapter_vllm/adapter_model.safetensors", "lora_adapter_vllm/adapter_config.json"],
+    "actual_training_config_or_sampler_source_found": false
+  },
+  "training_score_folder": {
+    "id": "1xP1ZEeWu9kmIOlpAnEboeOmkLUeCtaR_",
+    "archive_id": "1bdNU0JCoDvd3TUy1e6zzCPAydHdiUAsN",
+    "archive_name": "grpo_qwen_thinking_day0.tar.gz",
+    "tar_end_reached": true,
+    "entries": [
+      {"name": "thinking", "bytes": 0, "directory": true},
+      {"name": "thinking/train.parquet", "bytes": 218868266, "directory": false},
+      {"name": "thinking/val.parquet", "bytes": 13369367, "directory": false},
+      {"name": "thinking/conversion_report.json", "bytes": 1962, "directory": false}
+    ],
+    "stream_bytes_v4": 169237057,
+    "transferred_prefix_sha256": "adda5d614ad77ff9cce194f6c606167bdc046abf9bdba021d7a0f712b8388d0a",
+    "full_archive_digest_attested": false,
+    "archive_saved": false,
+    "training_rows_parsed": 0,
+    "archive_members_written": 0,
+    "conversion_report_sha256": "b543cf6c1a0c5e35d1a413bd3f662889f5bd81497af804e39b466f9044e03da2",
+    "conversion_report_credential_shape_hits": 0,
+    "conversion_configuration": {"model_path": "Qwen/Qwen3.8-27B", "max_length": 65536},
+    "not_present_in_report_top_level_keys": ["actual_sampler_config", "loss_agg_mode", "runtime_training_commit"],
+    "limitations": "A conversion report establishes tokenizer/data preparation settings, not the actual step30 training run or its loss weighting. Reward/advantage distributions and train/val row values were not exported."
+  },
+  "other_visible_metadata": {
+    "checkpoint_online_thinking_metric_entries": 0,
+    "training_online_thinking_metric_archive": "grpo_qwen_thinking_metric_day0.tar.gz",
+    "metric_archive_id": "16yS10KHzSu-QNDMViH-luSWPiI3r4Qtv",
+    "metric_archive_opened": false
+  },
+  "corroborating_repository_document": {
+    "repository_commit": "8d39164c5b4c2c1c304fc28801e60467e0ad5de5",
+    "path": "src/mle_policy/docs/train/GRPO_OFFLINE_TRAINING.md",
+    "file_last_change": "64fd78e98cfdc945b1af03f29f570975d58b88b7",
+    "file_last_change_hk": "2026-10-11T21:40:22+08:00",
+    "sha256": "224ca570fc0ee48d0fbcbf326aca3f5eec73c962c75d54be589a36f4b9165062",
+    "credential_shape_hits": 0,
+    "documented_semantics": ["One operation per row; ordinary shuffled DataLoader", "Episode advantage copied to each operation, then broadcast over response mask", "Default training example is 9B, batch and mini-batch 32 with ppo_epochs=1"],
+    "step30_actual_config_binding_confirmed": false,
+    "private_verl_gitlink": "51ff1b4c6480b449dba823133ff8045d21c8feab"
+  },
+  "remaining_needed": ["step30 resolved training configuration or launch record", "Actual dataset sampler and loss aggregation implementation at its training revision"],
+  "method_decision": "Do not infer a training bug or prescribe blanket inverse-chain-length weighting from these artifacts.",
+  "inspection_attempts": [
+    "v1 stopped with RuntimeError at the bounded read and exported no inventory; retained remotely.",
+    "v2 exported a 2MiB partial prefix ending at train.parquet; not treated as complete.",
+    "v3 and v4 reached tar end with the same transferred-prefix digest; v4 additionally scanned the small conversion report."
+  ],
+  "reproduction_script": "phase1/sandbox_scheduling/drive_training_config_manifest_20261014.py",
+  "remote_script_sha256": "f383055328eabb4b8d38283a589d6d7ef6376035596af8588e992c495b357cb2"
+}

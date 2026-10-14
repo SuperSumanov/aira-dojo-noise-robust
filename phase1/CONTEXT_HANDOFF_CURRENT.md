@@ -1,6 +1,6 @@
 # 当前短交接：恢复先读本文件，不从旧心跳恢复任务
 
-最后核验：2026-10-14 HK07:57；新四格v4 job18253于06:45:29在gpu29实际RUNNING；服务资格通过，old_fast/new_medium各8条已有结束记录、无清理失败，第二格整池尚待闭合，成绩未读。submit已exit0；绝不重复submit。18161已闭合，不重跑。
+最后核验：2026-10-14 HK08:30；新四格v4 job18253于06:45:29在gpu29实际RUNNING；前三格各8条已有结束记录，无清理失败；前两池已闭合，第三池尚待计时闭合，最后old_medium未开始，成绩未读。submit已exit0；绝不重复submit。18161已闭合，不重跑。
 恢复顺序：fetch → CURRENT_DIRECTION → ROUTE_DECISIONS → 本文件 → 必要原始证据。
 本次覆盖前的完整交接：Git 72167a42feccaec44f5793c3bc7d2f4e9132d581:phase1/CONTEXT_HANDOFF_CURRENT.md。
 

@@ -61,23 +61,25 @@ def header(path):
     return tensors
 
 
-def main():
+def main(file_id=FID, lineage='score', date='20261014'):
     import requests
+    if not re.fullmatch(r'[A-Za-z0-9_-]{25,80}', file_id) or lineage not in ('score', 'metric') or not re.fullmatch(r'20[0-9]{6}', date):
+        raise ValueError('invalid explicit intake identity')
     os.umask(0o077)
     assert json.loads((DONOR/'closed.json').read_text())['complete'] == 24
-    out = Path(tempfile.mkdtemp(prefix='weight-effort-adapter-20261014-', dir=ROOT))
+    out = Path(tempfile.mkdtemp(prefix=f'weight-effort-adapter-{lineage}-{date}-', dir=ROOT))
     print(json.dumps(dict(status='STAGING', directory=str(out))), flush=True)
     free = shutil.disk_usage(ROOT).free
     if free < 8*1024**3:
         raise ValueError('filesystem reserve')
-    archive = out/'online_thinking_score_step30.tar.gz'
+    archive = out/f'online_thinking_{lineage}_step30.tar.gz'
     part = out/'download.part'
     start = time.monotonic()
     session = requests.Session(); session.trust_env = False
     session.proxies = dict(http='http://137.189.90.241:8000/', https='http://137.189.90.241:8000/')
     total = 0
     with session.get('https://drive.usercontent.google.com/download',
-                     params=dict(id=FID, export='download', confirm='t'),
+                     params=dict(id=file_id, export='download', confirm='t'),
                      stream=True, timeout=(15, 45)) as res:
         res.raise_for_status()
         host = urlparse(res.url).hostname or ''
@@ -132,7 +134,7 @@ def main():
             nonfinite += int((~value.isfinite()).sum().item())
             zero += int((value == 0).all().item())
     report = dict(status='CPU_INTAKE_ONLY', utc=datetime.now(timezone.utc).isoformat(),
-        file_id=FID, archive_sha256=digest(archive), archive_bytes=total,
+        file_id=file_id, declared_lineage=lineage, archive_sha256=digest(archive), archive_bytes=total,
         directory=str(out), adapter_directory=str(dest), inventory=inventory,
         config={k: cfg.get(k) for k in FIELDS}, config_sha256=digest(dest/'adapter_config.json'),
         weights_sha256=digest(weights), tensors=len(tensors), elements=elements,
@@ -150,7 +152,12 @@ def main():
 
 if __name__ == '__main__':
     try:
-        main()
+        parser = argparse.ArgumentParser()
+        parser.add_argument('--file-id', default=FID)
+        parser.add_argument('--lineage', choices=('score', 'metric'), default='score')
+        parser.add_argument('--date', default='20261014')
+        args = parser.parse_args()
+        main(args.file_id, args.lineage, args.date)
     except Exception as exc:
         print(json.dumps(dict(status='FAILED_CLOSED', error_type=type(exc).__name__)), flush=True)
         raise SystemExit(2)

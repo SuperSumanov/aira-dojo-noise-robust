@@ -6,6 +6,7 @@
 
 ## 当前裁决：R14 MLE沙箱资源调度
 
+- 10/15香港新批授权：用户明确批准metric部署48条=2旧开发任务×4配对搜索seed×旧fast/旧medium/新metric-medium×2反序池，2服务+4执行、每条1800s/每池1960s、总≤13500s/22.5GPUh含失败启动清理。唯一预选metric Drive ID 1w_vb2g8wAZV_NcLPTpRSZgIbi4Bzrkw5；CPU接入992有限BF16张量、496组底座形状对应，尚非runtime/质量确认。原32条score负结果不重开；新质量门每重复去噪须胜两个同期参照≥.001、Aerial对两者不退；不池间传历史，不补跑。8项设计测试及11项独立读出测试通过；48真实输入CPU门未齐不提交。新目录scheduling-metric-deployment-20261015-v1，现场只认短交接。
 - 10/14 HK22:51新信息：学长确认score/metric两线各自生成数据、各自日更训练；不是同数据reward消融。Drive metric目录现有独立step30（ID 1w_vb2g8wAZV_NcLPTpRSZgIbi4Bzrkw5），score仍旧ID；同文件名不当同产物，未下载/验收新模型。精确源码+8项纯合成检查显示内部metric仍用official阈值映射、缺失地板可破坏组内仿射不变性；不是实际训练bug/效果证据。下一优先固定输入、同预算的新metric部署资格，对旧fast/medium同期强参照；内容/兼容及新矩阵预算未齐不提交，不重开18269。证据lineage_intake_20261014.safe.json、reward_contract_20261014.safe.json、ADVISOR Z；SSH本轮认证前断开，Git/公开Drive正常，无新GPU/训练/API。
 - 10/14 HK15:28:28确认18269闭合：32/32、32真实输入一致、39外部评分重算、16CPU配对、4池硬件/清理及独立统计通过；49092GPU秒=13.636666666666667GPUh≤15。原质量门false：去噪两反序重复best旧/新RMSE=0.013654153292274094/0.015045886425786793、0.01543541427703299/0.01844707231236221，两个median也更差；Aerial一正一负且近上限。停止扩大此step30部署配方，不补seed/改门；没有把历史积累算作权重收益。只否定此限定对照，不推所有policy训练无效；信用分配猜想仍未经因果验证。证据sandbox_scheduling/weight_confirmation_18269_closed，summarySHAd45a9678d64482d036e2f4bb3fcd4f6e0090907ca3de4d7e649e193831d4640b。用户让查Drive，已核对应资料仅有数据/转换设置，实际训练loss配置仍缺；不因此启动训练。
 - 10/14 HK09:39新窗口仅CPU/已闭合记录分析：真实公开data preview已冻结（不读search reference），6项回归及32配置原生hook/首请求检查通过，8组提示/预览/warm同哈希；327个18253冻结源码/配置未变。错误输入在模型传输前拒绝，旧kernel清理回执不删除。证据sandbox_scheduling/fixed_input_20261014_cpu；这只是未来对照的输入修复，不翻转18253，不是GPU/质量收益。

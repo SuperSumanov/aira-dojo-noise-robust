@@ -1,5 +1,6 @@
 """CPU-only shape/source compatibility; never claims exact training provenance."""
 from collections import Counter
+import argparse
 import json
 from pathlib import Path
 import sys
@@ -55,7 +56,8 @@ def check():
         training_base_revision_known=bool(ac.get('revision')),
         limitation='Shape compatibility alone is not exact training-base lineage or runtime/quality acceptance.')
     out = ADAPTER.parent/'shape-compat.safe.json'
-    out.write_text(json.dumps(result, indent=2)+'\n')
+    with out.open('x') as handle:
+        handle.write(json.dumps(result, indent=2)+'\n')
     print(json.dumps(result))
     assert result['shape_compatible']
 
@@ -80,4 +82,11 @@ def source():
 
 
 if __name__ == '__main__':
-    source() if '--source' in sys.argv else check()
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--adapter', type=Path, default=ADAPTER)
+    parser.add_argument('--source', action='store_true')
+    args = parser.parse_args()
+    ADAPTER = args.adapter.resolve()
+    if not ADAPTER.is_relative_to(B.resolve()) or ADAPTER.name != 'accepted_adapter':
+        raise ValueError('adapter outside research intake scope')
+    source() if args.source else check()

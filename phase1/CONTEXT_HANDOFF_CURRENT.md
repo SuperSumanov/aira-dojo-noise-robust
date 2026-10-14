@@ -1,6 +1,6 @@
 # 当前短交接：恢复先读本文件，不从旧心跳恢复任务
 
-最后核验：2026-10-14 HK22:51公开Drive：metric新可见step30，ID 1w_vb2g8wAZV_NcLPTpRSZgIbi4Bzrkw5；score仍旧ID。学长确认各自采集/训练，详ADVISOR Z、lineage_intake_20261014.safe.json；未下载/加载新模型。8项固定源码合成reward检查及独立地板算术通过，不是实际训练/质量证据。本轮SSH主机名/固定IP均认证前closed，再试仍失败，Git/公开Drive正常；无新GPU/API/训练。远端实验最后现场仍18269于15:28:28完成、32/32/13.636666666666667GPUh、原quality=false；停止旧step30扩大，不补跑/救门、不称仍在监控。
+最后核验：2026-10-15香港01:05 SSH恢复且fetch无变；仅旧Held12535在队列不动。用户明确批准独立metric48条、2服务+4执行、≤3h45/22.5GPUh；旧fast/旧medium/metric-medium反序两池、相同起点历史，每重复须胜两参照且控制不退，不补跑/训练/API。01:11:53 metric CPU接入完成，992有限BF16/496组形状对应；目录weight-effort-adapter-metric-20261015-ke666d70，weightsSHA b30d1d19131bfc569e3424a8da6ed6dc901c413d3eb28afac4accddde4194853，configSHA3e3fd66a40c83e2d0c9826311b30191d76b2187d012ec0fa79dc50c03580b3ed。8设计测试/11独立读出测试通过；正在准备48真实输入CPU门，尚未提交GPU。新root scheduling-metric-deployment-20261015-v1，脚本/tmp/metric-intake-20261015-AW6OJC；不重下、不重开旧18269。
 恢复顺序：fetch → CURRENT_DIRECTION → ROUTE_DECISIONS → 本文件 → 必要原始证据。
 本次覆盖前的完整交接：Git 72167a42feccaec44f5793c3bc7d2f4e9132d581:phase1/CONTEXT_HANDOFF_CURRENT.md。
 

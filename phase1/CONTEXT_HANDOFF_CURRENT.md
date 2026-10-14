@@ -1,11 +1,11 @@
 # 当前短交接：恢复先读本文件，不从旧心跳恢复任务
 
-最后核验：2026-10-14 HK11:15；用户已明确批准独立32条旧/新medium×两反序池重复、≤9000秒/15GPUh，含启动失败清理，不补跑。SSH正常；队列仅旧Held12535不动，gpu29兼容。新入口weight_confirmation_trial_20261014.py准备中，尚未提交；真实公开预览/首请求门须先过。18253原quality及输入门false不重开；18161不重跑。
+最后核验：2026-10-14 HK11:23；用户批准独立32条旧/新medium×两反序池重复、≤9000秒/15GPUh含启动失败清理、不补跑。新批真实输入32/32、16配对组，17CPU回归及9独立读出测试通过，传输哈希一致。submit命令正在全文件检查，尚无job回执，不重复提交。18253原quality及输入门false不重开；18161不重跑。
 恢复顺序：fetch → CURRENT_DIRECTION → ROUTE_DECISIONS → 本文件 → 必要原始证据。
 本次覆盖前的完整交接：Git 72167a42feccaec44f5793c3bc7d2f4e9132d581:phase1/CONTEXT_HANDOFF_CURRENT.md。
 
 ## 本轮四格权重×effort（18253）及已闭合18161
-- 原CPU证据sandbox_scheduling/fixed_input_20261014_cpu：32/32旧配置、8组真实首提示/预览/warm一致，非GPU质量。远端/tmp/weight-history-input-20261014-gNF3Jd/public-preview-v2.private.json SHA d12d04af8684983be97f5ae6277731a65b505b5034244be34343daee02947006，正文仅远端。新确认计划root scheduling-weight-confirmation-20261014-v1，顺序旧/新/新/旧；每重复独立新seed214501..508、214601..608；共同warm不跨池传历史。需重做新配置32首提示/16配对组CPU门再冻结；旧v1wall误标CPU不作成本，327旧冻结文件不改。
+- 新root=/research/d7/spc/yzyang4/scheduling-weight-confirmation-20261014-v1，顺序旧/新/新/旧；seed214501..508、214601..608，共同warm不跨池传历史。source c9d2953f0857106bf4e26724d1dc2646b78c2544；planSHA316381bce41c9ceb9c34fb165e94996eeeb8c9968eff3cb4e63642fbfa549626；readerSHA83d18a0646c57ed9e9879dae8ec7a1d8c612c856b22a69b2a9b0594930b62d0a；真实32输入matrixSHAd404be9491a103824bd6992c0d869e45cd803f6fb4a85bcc3756c809cedc2746。runtime每条发请求前强核哈希，失败停后续池；两重复去噪各胜≥.001且Aerial各不退，不能合并救门。不读中间分；仅两池重复/单服务，不是32独立证据；未知训练来源/成本不称日更因果。原public-preview-v2 SHAd12d04af8684983be97f5ae6277731a65b505b5034244be34343daee02947006；正文不导出。
 - 32首提案与执行码hash/warm父hash全关联；去噪新/旧medium均2/4首步有效/改善，中位incumbent RMSE0.0388058016782502/0.03190758597843126。新medium全程4/4改善而旧3/4仍不代表更优终分；生成墙钟含排队/预填充，不能称纯decode或归因LoRA。deployment-diagnostic/first-proposal.safe.json保留完整分母；事后描述不解除原输入差异、单共享池或训练来源未知。Windows本地Python测试停于环境故障，已停止；实际测试用远端原venv。
 - 已核32/32、46外部评分重算、16CPU配对、4池物理卡/清理/模式、独立CSV统计/五文件哈希，13.931666666666667GPUh≤15。质量门false；去噪best旧fast/旧medium/新fast/新medium=0.010427187690454438/0.013598094008495543/0.022176433381460952/0.017121281517189432；对应中位0.03253226552125881/0.019368611681579734/0.03583616059994125/0.020786268184847655。新medium Aerial best1.0、median0.9999184853781478仅局部开发阳性；不能称整体或日更训练收益。
 - 证据sandbox_scheduling/weight_effort_18253_closed；summarySHA bdcfbf37e185f92204584d94c503a72b7ece274d83d01a32b8d15589da5058c0。远端readout-20261014-v1；独立verification与final-assessment保留原门false，不覆盖。源仍6b592cb150be38b9b3bd140cd77dd448d96add12，plan/reader SHA见下。两次监测读取问题独立复核后正常；一次仅exec返回running session，不能当作业失败。

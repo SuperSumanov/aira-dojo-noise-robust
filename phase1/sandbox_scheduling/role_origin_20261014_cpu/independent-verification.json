@@ -1,0 +1,16 @@
+{
+  "safe_export_sha256": "c5cc1cbedb89acf823158170949260164369766b160967626654b19af10c8bd2",
+  "assigned": 32,
+  "candidate_returns": 101,
+  "valid_returns": 46,
+  "valid_origin_unresolved": 0,
+  "endpoint_matches": 32,
+  "task_arm_cells": 8,
+  "debug_best_cells": 4,
+  "original_quality_gate": false,
+  "independent_safe_export_checks": "pass",
+  "raw_join_independently_recomputed": false,
+  "causal_ablation": false,
+  "reproduce": "node phase1/sandbox_scheduling/verify_closed_role_origin_20261014.cjs",
+  "limits": "Closed18253 only; no intermediate18269 outcomes read; no new model or candidate execution."
+}

@@ -1,13 +1,13 @@
 # 当前短交接：恢复先读本文件，不从旧心跳恢复任务
 
-最后核验：2026-10-14 HK12:28；18269仍PENDING(Resources)，0启动/0首请求/0完成；调度器仍估计13:06:17启动（非保证），若如期完整读出约15:25–15:40。保持六卡≤9000秒/15GPUh，不改对照/重投；gpu29/gpu3各4卡空闲是11:36旧观察。32真实输入/16组、17CPU回归/9独立测试通过。watch在/tmp/weight-confirmation-20261014-DaZkp3、本地会话74672；submit24545已exit0。18253原quality/输入门false，不重开；18161不重跑。
+最后核验：2026-10-14 HK13:48；18269于13:12:06实际启动，gpu29 RUNNING；8启动/8首请求一致性通过/8完成回执，pool_slots_finished=0（池级闭合尚未确认），closed=false。未读取中间成绩；预计约15:30完整闭合，allocation硬时限15:42:06，非完成保证。六卡≤9000秒/15GPUh不改对照/重投。32真实输入/16组、17CPU回归/9独立测试已过。watch=/tmp/weight-confirmation-20261014-DaZkp3、会话74672原三小时约14:27到期；不是自动读出/补跑。18253原quality/输入门false、不重开；18161不重跑。
 恢复顺序：fetch → CURRENT_DIRECTION → ROUTE_DECISIONS → 本文件 → 必要原始证据。
 本次覆盖前的完整交接：Git 72167a42feccaec44f5793c3bc7d2f4e9132d581:phase1/CONTEXT_HANDOFF_CURRENT.md。
 
 ## 本轮18269确认及已闭合18253/18161
-- 10/14等待期只读复盘：17740/18161/18253共104条逐批CSV/JSON分数一致，未合并作独立样本。17740混合去噪两池仅1/4、2/4条改善；best优势不等于整体分布变好，第二名只作敏感性描述，不是删除轨迹的反事实（共享archive）。dojo-reproduce@8d39164c七源码/文档credential-shape scan0：selection/to_grpo按episode终分组内中心化、每call继承advantage；同组减同一parent常数在无clip且失败floor同移时会抵消（12合成代数检查，非训练/效果）。长debug链多行是否经实际sampler/loss校正、step30是否用此构建仍未知；不能归因为训练bug或启动训练。18269只识别部署增量，无fast对照/训练成本，过门也不是新算法或整循环回本；不因等候另造router。
+- 10/14等待期复盘：17740/18161/18253共104条逐批CSV/JSON一致，不合并为独立样本。17740混合去噪两池仅1/4、2/4条改善，第二名只是描述、不是删除轨迹反事实。8d39164c七源码/文档credential scan0；同组减同一parent常数在无clip且失败floor同移时会被中心化抵消（12合成检查，非训练）。纠正重复推荐：长debug链多导出行已于10/5在results/policy9b_intake_20261005/sft-target-semantics.safe.json验证，非新发现；并不等于错误梯度权重。真实src/verl gitlink=51ff1b4c6480b449dba823133ff8045d21c8feab，私有仓库不可读、远端工作树目录缺失，已异步请求实际step30配置/sampler/loss位置，不重复索要；不拿公共verl默认值替代。18269只识别部署增量，无fast/训练成本，过门也不是新算法或整循环回本。
 - 新root=/research/d7/spc/yzyang4/scheduling-weight-confirmation-20261014-v1，顺序旧/新/新/旧；seed214501..508、214601..608，共同warm不跨池传历史。source c9d2953f0857106bf4e26724d1dc2646b78c2544；planSHA316381bce41c9ceb9c34fb165e94996eeeb8c9968eff3cb4e63642fbfa549626；readerSHA83d18a0646c57ed9e9879dae8ec7a1d8c612c856b22a69b2a9b0594930b62d0a；真实32输入matrixSHAd404be9491a103824bd6992c0d869e45cd803f6fb4a85bcc3756c809cedc2746。runtime每条发请求前强核哈希，失败停后续池；两重复去噪各胜≥.001且Aerial各不退，不能合并救门。不读中间分；仅两池重复/单服务，不是32独立证据；未知训练来源/成本不称日更因果。原public-preview-v2 SHAd12d04af8684983be97f5ae6277731a65b505b5034244be34343daee02947006；正文不导出。
-- 32首提案与执行码hash/warm父hash全关联；去噪新/旧medium均2/4首步有效/改善，中位incumbent RMSE0.0388058016782502/0.03190758597843126。新medium全程4/4改善而旧3/4仍不代表更优终分；生成墙钟含排队/预填充，不能称纯decode或归因LoRA。deployment-diagnostic/first-proposal.safe.json保留完整分母；事后描述不解除原输入差异、单共享池或训练来源未知。Windows本地Python测试停于环境故障，已停止；实际测试用远端原venv。
+- 10/14新增闭合18253来源分析：101候选返回、46有效均code-hash关联原生角色，7未匹配均无效；8任务×臂格中4格最佳终步Debug（包括旧fast去噪）。32终点逐值复现，4CPU单测及独立Node安全导出统计复核通过；后者未独立重算原始join。证据sandbox_scheduling/role_origin_20261014_cpu/result.json，SHAc5cc1cbedb89acf823158170949260164369766b160967626654b19af10c8bd2，复现closed_role_origin_20261014.py。只支持不能先验把Debug当浪费；不是移除Debug反事实或角色因果，不恢复已失败混合档位。旧首步新/旧medium各2/4改善的diagnostic仍保留；原输入差异、共享池、训练来源未知不解除。
 - 已核32/32、46外部评分重算、16CPU配对、4池物理卡/清理/模式、独立CSV统计/五文件哈希，13.931666666666667GPUh≤15。质量门false；去噪best旧fast/旧medium/新fast/新medium=0.010427187690454438/0.013598094008495543/0.022176433381460952/0.017121281517189432；对应中位0.03253226552125881/0.019368611681579734/0.03583616059994125/0.020786268184847655。新medium Aerial best1.0、median0.9999184853781478仅局部开发阳性；不能称整体或日更训练收益。
 - 证据sandbox_scheduling/weight_effort_18253_closed；summarySHA bdcfbf37e185f92204584d94c503a72b7ece274d83d01a32b8d15589da5058c0。远端readout-20261014-v1；独立verification与final-assessment保留原门false，不覆盖。源仍6b592cb150be38b9b3bd140cd77dd448d96add12，plan/reader SHA见下。两次监测读取问题独立复核后正常；一次仅exec返回running session，不能当作业失败。
 - 实际首次提示8组都不全同：24对比中23只差data preview内随机kernel守护回执文件名，episode25旧medium去噪的预览被内核就绪超时替代。原始提示哈希失败不改，32条全保留，没按分数删样本。mock preview CPU门不代表生产输入一致；下次先冻结真实public-data preview、隔离harness回执、禁止preview错误进入生成，需独立新批而非复用余款。未声称这些差异造成了质量差距。
@@ -39,7 +39,7 @@
 - validation/D_search若参与训练/搜索就不是最终封存集；“不用官方分数训练”和“部署不接收外部分数”不是一个问题。这里只澄清后续设想，不启动score-channel消融或analyzer。
 
 ## Git/材料最后观察
-- 10/14 fetch成功：公开myfork/phase1-value-critic仍72167a42feccaec44f5793c3bc7d2f4e9132d581，本地HEAD a52d4ea2184c0c955070c530fd6a724fe7aee821含49dec实验及独立reader。学长myfork/dojo-reproduce新8d39164c5b4c2c1c304fc28801e60467e0ad5de5（10/14 HK00:26:32，sync verl），仅src/verl gitlink由08523dd4变51ff1b4c；没有新outcome文件，不能当训练收益。未修改学长分支。
+- 10/14 fetch成功：公开myfork/phase1-value-critic仍72167a42feccaec44f5793c3bc7d2f4e9132d581；本轮编辑前本地HEAD e620d345b3b18a0f066413bf5f5764203437175e，冻结18269源码另为c9d2953f。学长myfork/dojo-reproduce=8d39164c5b4c2c1c304fc28801e60467e0ad5de5（10/14 HK00:26:32，sync verl），仅src/verl gitlink更新，无新outcome，不能当训练收益。未修改学长分支。
 - 四个新增/修改文件credential-shape scan为0后读取；新增use_metric_reward默认false，不证明生产启用。policy outcome最后修改仍13d28830c66a96988c180532495326dc144eb93b（10/9 HK20:15）；没有确认新训练效果。
 - overview明确metric=内部验证、metric_info.score=官方评分；reward=1是gold阈值，不等于任务满分。实际日更训练所用字段未确认；同组标准化可抵消正仿射变换，不能仅凭阈值复用认定训练bug。
 - selection.training_messages源码默认对draft/improve/crossover strip memory，debug/analysis不改；overview末尾仍有旧相反描述，以固定源码为准，不能据文档猜实际训练产物。
@@ -58,7 +58,7 @@
 ## 本轮文献与判断边界
 - AREX-2同Qwen3.8-27B长轨迹训练及MLE相同skills/rounds参照已读；无正确性反馈实验是BrowseComp，不当MLE去score已解决。Guidance-TTT已训练小指导器配冻结执行器，不把这个拆分称新。
 - RHI已有harness优化与高effort比较（合成研究任务/LLM judge，不是真执行MLE）；Ares/CoT-retry/LASER/InfraMind限制简单动态档位主张。When Agents Slow Down仅核摘要，不能声称已排除全文近邻。
-- 优先问同预算最终质量—成本关系是否真改善，不开发新的复杂router救17740。暂无新方法阳性，引用和较细边界见ROUTE_DECISIONS。
+- 10/14补核FACTOR摘要/§2–3.1已有动作/词元信用与长度归一化；TRACE仅摘要/引言，已有TD回合信用但依赖gold-answer。通用信用分配不是空白，不能以未来最好MLE程序充当无代价gold。公共verl agg_loss多种归一化不证明私有训练配置；不恢复底座训练/TD，不开发router救17740。暂无新方法阳性，链接/边界见ROUTE_DECISIONS。
 
 ## 最近真实实验17740：已闭合，不重跑
 - 10/12 HK18:26:18 COMPLETED，48/48、6等预算池；2旧开发任务×4搜索seed×3臂×2反序重复。medium/fast/feedback_think，共享greedy，Analyze固定medium；1020秒/run、1180秒/池、2服务+4执行。

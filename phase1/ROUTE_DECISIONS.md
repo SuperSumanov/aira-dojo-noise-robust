@@ -6,6 +6,8 @@
 
 ## 本次必须纠正的重复推荐
 
+10/14：长Debug链多导出训练条目已在10/5的sft-target-semantics.safe.json验证（纯合成、不是实际损失/梯度），不当新发现重跑。真实step30采样/损失配置未取得，更多条目与广播终分不自动是错误；一律按链长降权没有效果依据。新增闭合18253的101返回/46有效来源核对中，8任务×臂格有4格最佳终步为Debug；这是关联，不是删Debug反事实，不能重开17740混合档位。来源数据与独立安全导出复核见sandbox_scheduling/role_origin_20261014_cpu及verify_closed_role_origin_20261014.cjs。
+
 10/13新增：学长建议xhigh与每日policy自举，不是我方新方法确认或训练授权。旧17740混合配方停扩；新问题只保留“固定archive后，日更新权重是否改善同预算质量—推理成本关系”。版本×effort只是识别设计，不包装成新算法；不把参数学习、历史起点积累、延长预算合成一个未经分解的正结论。
 
 聊天提案“学习修改在何种条件有用 / 可迁移修改经验 / 受控验证后形成经验库”不能列作全新优先突破。
@@ -112,6 +114,8 @@
 - **Guidance-TTT（10/5，10/13补读§3–4、A/B）**：已训练小型父条件指导器、固定更强执行器并用group-relative验证反馈；“只学短战略/不训大执行器”不是新机制。四任务与单轨迹规模分析不能替代我方跨任务重复；部分成本比较训练配置/调用数不同，不能搬成严格同成本因果结论。https://arxiv.org/html/2610.06269v1
 - **Recursive Harness Self-Improvement（RHI）**：10/13核原文，已有harness改进与高effort参照、模型—harness共同演化设想；主任务为合成ML研究设计/LLM评判，不是真实执行MLE质量，也未实现每日底座训练闭环。固定底座加harness超过更高档位的宽主张并非空白。https://arxiv.org/html/2607.15524v1
 - **When Agents Slow Down**：10/13仅核原始摘要（HTML不可用），已有best-so-far/token曲线、独立采样参照与分配长短session；简单画成本曲线/平台期重启不构成原创。尚未核全文，不能断言其未计执行成本或无相关消融。https://arxiv.org/abs/2609.15309
+- **FACTOR / How Much, Then Where**：10/14核摘要、§2–3.1，已有动作信用与动作内词元分配分离、信用守恒和action-mean归一化；长度无关性针对行为策略处、裁剪前的标量目标，不是完整梯度或任意训练状态保证。任务是ALFWorld/WebShop/ScienceWorld，不替代MLE效果；通用“把终分合理分配给步骤”不是空白，不因此授权我方训练agent或恢复TD。https://arxiv.org/html/2608.07118v1
+- **TRACE / Turn-level Reward Assignment via Credit Estimation**：10/14仅核摘要/引言，使用冻结参考模型对gold-answer的概率构造回合信用，不额外训练critic不等于不训练agent。不能把MLE未来最好程序当作无代价gold-answer，或把修复/创新信用分离直接宣称原创。公共verl的agg_loss已有token/sequence多种归一化，但不能用其默认实现推断学长私有51ff1b4c的实际训练。https://arxiv.org/html/2607.13988v1 / https://verl.readthedocs.io/en/latest/_modules/verl/trainer/ppo/core_algos.html
 
 ## 新提案准入：不是新的工程审核流水线
 

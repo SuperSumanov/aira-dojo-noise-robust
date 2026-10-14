@@ -1,0 +1,966 @@
+{
+  "kind": "closed_pool_timing_export",
+  "plan_sha256": "316381bce41c9ceb9c34fb165e94996eeeb8c9968eff3cb4e63642fbfa549626",
+  "screen_sha256": "a1a50d97472aab9a03d211eeabe08151989008ed4d4d8bcffdc5e80be6bd8739",
+  "script_sha256": "22c6c1399f979138c24c5302ae06110a5f43cbc6df166b848690c69448f6d6cf",
+  "assigned": 32,
+  "pools": [
+    {
+      "block": 0,
+      "arm": "old_medium",
+      "jobs": [
+        {
+          "session": 0,
+          "task": 0,
+          "lane": 0,
+          "arrival": 463.5530757904053,
+          "original_start": 463.56340765953064,
+          "duration": 30.60130524635315,
+          "deadline": 1802.5858969688416
+        },
+        {
+          "session": 0,
+          "task": 0,
+          "lane": 0,
+          "arrival": 773.7631754875183,
+          "original_start": 773.7738976478577,
+          "duration": 13.71520733833313,
+          "deadline": 1802.5858969688416
+        },
+        {
+          "session": 1,
+          "task": 1,
+          "lane": 0,
+          "arrival": 807.4799752235413,
+          "original_start": 807.4945278167725,
+          "duration": 294.09315752983093,
+          "deadline": 1802.5856189727783
+        },
+        {
+          "session": 0,
+          "task": 0,
+          "lane": 0,
+          "arrival": 925.9268565177917,
+          "original_start": 1101.6403999328613,
+          "duration": 135.6848542690277,
+          "deadline": 1802.5858969688416
+        },
+        {
+          "session": 0,
+          "task": 0,
+          "lane": 0,
+          "arrival": 1602.7078108787537,
+          "original_start": 1602.7183215618134,
+          "duration": 76.68849349021912,
+          "deadline": 1802.5858969688416
+        },
+        {
+          "session": 1,
+          "task": 1,
+          "lane": 0,
+          "arrival": 1712.9405558109283,
+          "original_start": 1712.9509191513062,
+          "duration": 9.538179874420166,
+          "deadline": 1802.5856189727783
+        },
+        {
+          "session": 2,
+          "task": 0,
+          "lane": 1,
+          "arrival": 424.4244387149811,
+          "original_start": 424.43686294555664,
+          "duration": 28.812619924545288,
+          "deadline": 1802.5870180130005
+        },
+        {
+          "session": 3,
+          "task": 1,
+          "lane": 1,
+          "arrival": 563.8139605522156,
+          "original_start": 563.8275451660156,
+          "duration": 7.662898302078247,
+          "deadline": 1802.586993932724
+        },
+        {
+          "session": 2,
+          "task": 0,
+          "lane": 1,
+          "arrival": 625.606901884079,
+          "original_start": 625.6223137378693,
+          "duration": 277.60644721984863,
+          "deadline": 1802.5870180130005
+        },
+        {
+          "session": 3,
+          "task": 1,
+          "lane": 1,
+          "arrival": 812.7220499515533,
+          "original_start": 903.2504978179932,
+          "duration": 9.490327835083008,
+          "deadline": 1802.586993932724
+        },
+        {
+          "session": 2,
+          "task": 0,
+          "lane": 1,
+          "arrival": 1311.2952373027802,
+          "original_start": 1311.310925245285,
+          "duration": 32.06168818473816,
+          "deadline": 1802.5870180130005
+        },
+        {
+          "session": 3,
+          "task": 1,
+          "lane": 1,
+          "arrival": 1366.1024613380432,
+          "original_start": 1366.1179361343384,
+          "duration": 217.91363716125488,
+          "deadline": 1802.586993932724
+        },
+        {
+          "session": 4,
+          "task": 0,
+          "lane": 2,
+          "arrival": 195.61827039718628,
+          "original_start": 195.63009691238403,
+          "duration": 277.60796070098877,
+          "deadline": 1802.5869400501251
+        },
+        {
+          "session": 5,
+          "task": 1,
+          "lane": 2,
+          "arrival": 337.7591652870178,
+          "original_start": 473.29019045829773,
+          "duration": 229.03158020973206,
+          "deadline": 1802.5870940685272
+        },
+        {
+          "session": 4,
+          "task": 0,
+          "lane": 2,
+          "arrival": 852.0410468578339,
+          "original_start": 852.0573635101318,
+          "duration": 39.76520395278931,
+          "deadline": 1802.5869400501251
+        },
+        {
+          "session": 4,
+          "task": 0,
+          "lane": 2,
+          "arrival": 1017.86154961586,
+          "original_start": 1017.8709828853607,
+          "duration": 270.5126383304596,
+          "deadline": 1802.5869400501251
+        },
+        {
+          "session": 5,
+          "task": 1,
+          "lane": 2,
+          "arrival": 1300.4498007297516,
+          "original_start": 1300.462033033371,
+          "duration": 308.58585953712463,
+          "deadline": 1802.5870940685272
+        },
+        {
+          "session": 6,
+          "task": 0,
+          "lane": 3,
+          "arrival": 177.96708393096924,
+          "original_start": 177.98161840438843,
+          "duration": 54.356088399887085,
+          "deadline": 1802.5849540233612
+        },
+        {
+          "session": 7,
+          "task": 1,
+          "lane": 3,
+          "arrival": 448.88486194610596,
+          "original_start": 448.8955674171448,
+          "duration": 298.81581950187683,
+          "deadline": 1802.58491396904
+        },
+        {
+          "session": 6,
+          "task": 0,
+          "lane": 3,
+          "arrival": 571.7285101413727,
+          "original_start": 747.725084066391,
+          "duration": 247.30471873283386,
+          "deadline": 1802.5849540233612
+        },
+        {
+          "session": 7,
+          "task": 1,
+          "lane": 3,
+          "arrival": 1127.5066587924957,
+          "original_start": 1127.5209238529205,
+          "duration": 9.87258791923523,
+          "deadline": 1802.58491396904
+        },
+        {
+          "session": 6,
+          "task": 0,
+          "lane": 3,
+          "arrival": 1250.26176571846,
+          "original_start": 1250.2736780643463,
+          "duration": 125.99171137809753,
+          "deadline": 1802.5849540233612
+        },
+        {
+          "session": 7,
+          "task": 1,
+          "lane": 3,
+          "arrival": 1527.155993461609,
+          "original_start": 1527.1705911159515,
+          "duration": 9.9220130443573,
+          "deadline": 1802.58491396904
+        },
+        {
+          "session": 7,
+          "task": 1,
+          "lane": 3,
+          "arrival": 1789.6132237911224,
+          "original_start": 1789.6245126724243,
+          "duration": 15.124130964279175,
+          "deadline": 1802.58491396904
+        }
+      ],
+      "cancelled": [],
+      "assigned_sessions": 8,
+      "pool_seconds": 1960.0001939292997,
+      "original_completed_by_search_deadline": 23,
+      "source_queue_hashes_match_first_screen": true
+    },
+    {
+      "block": 1,
+      "arm": "new_medium",
+      "jobs": [
+        {
+          "session": 0,
+          "task": 0,
+          "lane": 0,
+          "arrival": 452.92852663993835,
+          "original_start": 452.9416148662567,
+          "duration": 279.38763070106506,
+          "deadline": 1802.3301467895508
+        },
+        {
+          "session": 1,
+          "task": 1,
+          "lane": 0,
+          "arrival": 747.224808216095,
+          "original_start": 747.2355253696442,
+          "duration": 302.8135497570038,
+          "deadline": 1802.3321578502655
+        },
+        {
+          "session": 0,
+          "task": 0,
+          "lane": 0,
+          "arrival": 1031.822360754013,
+          "original_start": 1050.0946142673492,
+          "duration": 203.7944278717041,
+          "deadline": 1802.3301467895508
+        },
+        {
+          "session": 0,
+          "task": 0,
+          "lane": 0,
+          "arrival": 1512.7230563163757,
+          "original_start": 1512.7349956035614,
+          "duration": 33.85777163505554,
+          "deadline": 1802.3301467895508
+        },
+        {
+          "session": 1,
+          "task": 1,
+          "lane": 0,
+          "arrival": 1725.777497291565,
+          "original_start": 1725.7869629859924,
+          "duration": 33.87443685531616,
+          "deadline": 1802.3321578502655
+        },
+        {
+          "session": 2,
+          "task": 0,
+          "lane": 1,
+          "arrival": 469.42519998550415,
+          "original_start": 469.4337077140808,
+          "duration": 271.39503240585327,
+          "deadline": 1802.3337337970734
+        },
+        {
+          "session": 3,
+          "task": 1,
+          "lane": 1,
+          "arrival": 932.7458348274231,
+          "original_start": 932.7557950019836,
+          "duration": 7.810674428939819,
+          "deadline": 1802.3340809345245
+        },
+        {
+          "session": 2,
+          "task": 0,
+          "lane": 1,
+          "arrival": 1256.8979978561401,
+          "original_start": 1256.905746936798,
+          "duration": 285.19535851478577,
+          "deadline": 1802.3337337970734
+        },
+        {
+          "session": 3,
+          "task": 1,
+          "lane": 1,
+          "arrival": 1267.927625656128,
+          "original_start": 1542.1096076965332,
+          "duration": 9.232161283493042,
+          "deadline": 1802.3340809345245
+        },
+        {
+          "session": 4,
+          "task": 0,
+          "lane": 2,
+          "arrival": 248.70260787010193,
+          "original_start": 248.71374821662903,
+          "duration": 281.92867827415466,
+          "deadline": 1802.3304378986359
+        },
+        {
+          "session": 5,
+          "task": 1,
+          "lane": 2,
+          "arrival": 378.26583218574524,
+          "original_start": 530.6661734580994,
+          "duration": 8.04434871673584,
+          "deadline": 1802.3305468559265
+        },
+        {
+          "session": 4,
+          "task": 0,
+          "lane": 2,
+          "arrival": 741.1387100219727,
+          "original_start": 741.1505093574524,
+          "duration": 86.43469405174255,
+          "deadline": 1802.3304378986359
+        },
+        {
+          "session": 5,
+          "task": 1,
+          "lane": 2,
+          "arrival": 965.3495020866394,
+          "original_start": 965.3605968952179,
+          "duration": 9.126503229141235,
+          "deadline": 1802.3305468559265
+        },
+        {
+          "session": 4,
+          "task": 0,
+          "lane": 2,
+          "arrival": 1249.045681476593,
+          "original_start": 1249.0585441589355,
+          "duration": 24.88562798500061,
+          "deadline": 1802.3304378986359
+        },
+        {
+          "session": 5,
+          "task": 1,
+          "lane": 2,
+          "arrival": 1610.369993686676,
+          "original_start": 1610.3795764446259,
+          "duration": 11.254686832427979,
+          "deadline": 1802.3305468559265
+        },
+        {
+          "session": 4,
+          "task": 0,
+          "lane": 2,
+          "arrival": 1738.6866388320923,
+          "original_start": 1738.698902606964,
+          "duration": 65.84740591049194,
+          "deadline": 1802.3304378986359
+        },
+        {
+          "session": 6,
+          "task": 0,
+          "lane": 3,
+          "arrival": 228.0583357810974,
+          "original_start": 228.07473134994507,
+          "duration": 268.33554220199585,
+          "deadline": 1807.0662608146667
+        },
+        {
+          "session": 7,
+          "task": 1,
+          "lane": 3,
+          "arrival": 387.2749161720276,
+          "original_start": 496.4443347454071,
+          "duration": 248.86342787742615,
+          "deadline": 1807.0636777877808
+        },
+        {
+          "session": 6,
+          "task": 0,
+          "lane": 3,
+          "arrival": 865.5466606616974,
+          "original_start": 865.5579073429108,
+          "duration": 29.265637636184692,
+          "deadline": 1807.0662608146667
+        },
+        {
+          "session": 7,
+          "task": 1,
+          "lane": 3,
+          "arrival": 1317.2150270938873,
+          "original_start": 1317.2257435321808,
+          "duration": 239.51585626602173,
+          "deadline": 1807.0636777877808
+        },
+        {
+          "session": 6,
+          "task": 0,
+          "lane": 3,
+          "arrival": 1464.582162618637,
+          "original_start": 1556.7935817241669,
+          "duration": 29.281089305877686,
+          "deadline": 1807.0662608146667
+        }
+      ],
+      "cancelled": [],
+      "assigned_sessions": 8,
+      "pool_seconds": 1960.0002125306055,
+      "original_completed_by_search_deadline": 20,
+      "source_queue_hashes_match_first_screen": true
+    },
+    {
+      "block": 2,
+      "arm": "new_medium",
+      "jobs": [
+        {
+          "session": 1,
+          "task": 1,
+          "lane": 0,
+          "arrival": 345.8400545120239,
+          "original_start": 345.86767959594727,
+          "duration": 267.668114900589,
+          "deadline": 1802.5946998596191
+        },
+        {
+          "session": 0,
+          "task": 0,
+          "lane": 0,
+          "arrival": 471.1287796497345,
+          "original_start": 613.5526206493378,
+          "duration": 277.374374628067,
+          "deadline": 1802.5941879749298
+        },
+        {
+          "session": 1,
+          "task": 1,
+          "lane": 0,
+          "arrival": 1053.3174276351929,
+          "original_start": 1053.3268270492554,
+          "duration": 282.7021553516388,
+          "deadline": 1802.5946998596191
+        },
+        {
+          "session": 0,
+          "task": 0,
+          "lane": 0,
+          "arrival": 1197.6221787929535,
+          "original_start": 1336.0455865859985,
+          "duration": 67.0983362197876,
+          "deadline": 1802.5941879749298
+        },
+        {
+          "session": 2,
+          "task": 0,
+          "lane": 1,
+          "arrival": 517.8288376331329,
+          "original_start": 517.842954158783,
+          "duration": 36.39259147644043,
+          "deadline": 1802.594072818756
+        },
+        {
+          "session": 3,
+          "task": 1,
+          "lane": 1,
+          "arrival": 680.8394412994385,
+          "original_start": 680.8508541584015,
+          "duration": 7.947106838226318,
+          "deadline": 1802.594053030014
+        },
+        {
+          "session": 2,
+          "task": 0,
+          "lane": 1,
+          "arrival": 902.6724009513855,
+          "original_start": 902.6836512088776,
+          "duration": 284.8883249759674,
+          "deadline": 1802.594072818756
+        },
+        {
+          "session": 3,
+          "task": 1,
+          "lane": 1,
+          "arrival": 1328.2360424995422,
+          "original_start": 1328.249674797058,
+          "duration": 10.301950693130493,
+          "deadline": 1802.594053030014
+        },
+        {
+          "session": 2,
+          "task": 0,
+          "lane": 1,
+          "arrival": 1782.0421636104584,
+          "original_start": 1782.0681581497192,
+          "duration": 22.487394332885742,
+          "deadline": 1802.594072818756
+        },
+        {
+          "session": 4,
+          "task": 0,
+          "lane": 2,
+          "arrival": 262.4260165691376,
+          "original_start": 262.438040971756,
+          "duration": 228.05763959884644,
+          "deadline": 1802.5943360328674
+        },
+        {
+          "session": 5,
+          "task": 1,
+          "lane": 2,
+          "arrival": 313.98938846588135,
+          "original_start": 490.5192143917084,
+          "duration": 11.410844326019287,
+          "deadline": 1802.596575975418
+        },
+        {
+          "session": 4,
+          "task": 0,
+          "lane": 2,
+          "arrival": 820.994880437851,
+          "original_start": 821.0206763744354,
+          "duration": 224.68240928649902,
+          "deadline": 1802.5943360328674
+        },
+        {
+          "session": 5,
+          "task": 1,
+          "lane": 2,
+          "arrival": 981.3247466087341,
+          "original_start": 1045.757241487503,
+          "duration": 161.8667550086975,
+          "deadline": 1802.596575975418
+        },
+        {
+          "session": 5,
+          "task": 1,
+          "lane": 2,
+          "arrival": 1605.8542082309723,
+          "original_start": 1605.868367433548,
+          "duration": 9.267203569412231,
+          "deadline": 1802.596575975418
+        },
+        {
+          "session": 4,
+          "task": 0,
+          "lane": 2,
+          "arrival": 1773.5920407772064,
+          "original_start": 1773.6026380062103,
+          "duration": 31.050955057144165,
+          "deadline": 1802.5943360328674
+        },
+        {
+          "session": 6,
+          "task": 0,
+          "lane": 3,
+          "arrival": 233.28417921066284,
+          "original_start": 233.38579177856445,
+          "duration": 47.91624045372009,
+          "deadline": 1802.5961828231812
+        },
+        {
+          "session": 7,
+          "task": 1,
+          "lane": 3,
+          "arrival": 669.0483212471008,
+          "original_start": 669.0619056224823,
+          "duration": 8.999069690704346,
+          "deadline": 1802.5940589904785
+        },
+        {
+          "session": 6,
+          "task": 0,
+          "lane": 3,
+          "arrival": 696.5377185344696,
+          "original_start": 696.5489909648895,
+          "duration": 271.31391048431396,
+          "deadline": 1802.5961828231812
+        },
+        {
+          "session": 7,
+          "task": 1,
+          "lane": 3,
+          "arrival": 1262.3028554916382,
+          "original_start": 1262.311829328537,
+          "duration": 10.496363162994385,
+          "deadline": 1802.5940589904785
+        },
+        {
+          "session": 6,
+          "task": 0,
+          "lane": 3,
+          "arrival": 1361.6706171035767,
+          "original_start": 1361.679451227188,
+          "duration": 44.14194393157959,
+          "deadline": 1802.5961828231812
+        },
+        {
+          "session": 7,
+          "task": 1,
+          "lane": 3,
+          "arrival": 1606.003000497818,
+          "original_start": 1606.0145993232727,
+          "duration": 198.72103643417358,
+          "deadline": 1802.5940589904785
+        }
+      ],
+      "cancelled": [],
+      "assigned_sessions": 8,
+      "pool_seconds": 1960.000200160779,
+      "original_completed_by_search_deadline": 18,
+      "source_queue_hashes_match_first_screen": true
+    },
+    {
+      "block": 3,
+      "arm": "old_medium",
+      "jobs": [
+        {
+          "session": 1,
+          "task": 1,
+          "lane": 0,
+          "arrival": 301.6737608909607,
+          "original_start": 301.6878969669342,
+          "duration": 287.25839853286743,
+          "deadline": 1802.784343957901
+        },
+        {
+          "session": 0,
+          "task": 0,
+          "lane": 0,
+          "arrival": 351.5230665206909,
+          "original_start": 588.952178478241,
+          "duration": 279.8633487224579,
+          "deadline": 1802.7817180156708
+        },
+        {
+          "session": 1,
+          "task": 1,
+          "lane": 0,
+          "arrival": 888.9469382762909,
+          "original_start": 888.9561824798584,
+          "duration": 8.650341272354126,
+          "deadline": 1802.784343957901
+        },
+        {
+          "session": 0,
+          "task": 0,
+          "lane": 0,
+          "arrival": 1158.6405487060547,
+          "original_start": 1158.657114982605,
+          "duration": 34.24022197723389,
+          "deadline": 1802.7817180156708
+        },
+        {
+          "session": 1,
+          "task": 1,
+          "lane": 0,
+          "arrival": 1370.8164567947388,
+          "original_start": 1370.8311159610748,
+          "duration": 18.88275671005249,
+          "deadline": 1802.784343957901
+        },
+        {
+          "session": 0,
+          "task": 0,
+          "lane": 0,
+          "arrival": 1594.535463809967,
+          "original_start": 1594.546269416809,
+          "duration": 210.4008595943451,
+          "deadline": 1802.7817180156708
+        },
+        {
+          "session": 2,
+          "task": 0,
+          "lane": 1,
+          "arrival": 435.18332862854004,
+          "original_start": 435.19281816482544,
+          "duration": 161.65362668037415,
+          "deadline": 1802.7803959846497
+        },
+        {
+          "session": 3,
+          "task": 1,
+          "lane": 1,
+          "arrival": 585.5935773849487,
+          "original_start": 596.9660696983337,
+          "duration": 263.4665336608887,
+          "deadline": 1802.780652999878
+        },
+        {
+          "session": 2,
+          "task": 0,
+          "lane": 1,
+          "arrival": 761.779972076416,
+          "original_start": 860.4827089309692,
+          "duration": 262.25513339042664,
+          "deadline": 1802.7803959846497
+        },
+        {
+          "session": 3,
+          "task": 1,
+          "lane": 1,
+          "arrival": 1142.8520948886871,
+          "original_start": 1142.8630039691925,
+          "duration": 315.6227197647095,
+          "deadline": 1802.780652999878
+        },
+        {
+          "session": 2,
+          "task": 0,
+          "lane": 1,
+          "arrival": 1427.5483989715576,
+          "original_start": 1458.493169784546,
+          "duration": 49.22387146949768,
+          "deadline": 1802.7803959846497
+        },
+        {
+          "session": 3,
+          "task": 1,
+          "lane": 1,
+          "arrival": 1802.3215346336365,
+          "original_start": 1802.3332364559174,
+          "duration": 2.9056222438812256,
+          "deadline": 1802.780652999878
+        },
+        {
+          "session": 4,
+          "task": 0,
+          "lane": 2,
+          "arrival": 196.41868448257446,
+          "original_start": 196.43147134780884,
+          "duration": 284.33987069129944,
+          "deadline": 1802.7804880142212
+        },
+        {
+          "session": 5,
+          "task": 1,
+          "lane": 2,
+          "arrival": 521.4528889656067,
+          "original_start": 521.465092420578,
+          "duration": 293.1781916618347,
+          "deadline": 1802.7839369773865
+        },
+        {
+          "session": 4,
+          "task": 0,
+          "lane": 2,
+          "arrival": 662.4379978179932,
+          "original_start": 814.7145285606384,
+          "duration": 36.92081022262573,
+          "deadline": 1802.7804880142212
+        },
+        {
+          "session": 4,
+          "task": 0,
+          "lane": 2,
+          "arrival": 987.5476543903351,
+          "original_start": 987.5609412193298,
+          "duration": 171.29649209976196,
+          "deadline": 1802.7804880142212
+        },
+        {
+          "session": 5,
+          "task": 1,
+          "lane": 2,
+          "arrival": 1232.9068911075592,
+          "original_start": 1232.9165346622467,
+          "duration": 5.486674785614014,
+          "deadline": 1802.7839369773865
+        },
+        {
+          "session": 4,
+          "task": 0,
+          "lane": 2,
+          "arrival": 1466.4843060970306,
+          "original_start": 1466.4959778785706,
+          "duration": 36.002394914627075,
+          "deadline": 1802.7804880142212
+        },
+        {
+          "session": 5,
+          "task": 1,
+          "lane": 2,
+          "arrival": 1543.8040544986725,
+          "original_start": 1543.8128991127014,
+          "duration": 7.846322298049927,
+          "deadline": 1802.7839369773865
+        },
+        {
+          "session": 4,
+          "task": 0,
+          "lane": 2,
+          "arrival": 1779.8052415847778,
+          "original_start": 1779.8316032886505,
+          "duration": 25.01347041130066,
+          "deadline": 1802.7804880142212
+        },
+        {
+          "session": 6,
+          "task": 0,
+          "lane": 3,
+          "arrival": 171.69395232200623,
+          "original_start": 171.70543360710144,
+          "duration": 48.32523512840271,
+          "deadline": 1802.780433177948
+        },
+        {
+          "session": 7,
+          "task": 1,
+          "lane": 3,
+          "arrival": 245.11963319778442,
+          "original_start": 245.13123178482056,
+          "duration": 307.8652722835541,
+          "deadline": 1802.7811591625214
+        },
+        {
+          "session": 6,
+          "task": 0,
+          "lane": 3,
+          "arrival": 510.2051753997803,
+          "original_start": 553.0478053092957,
+          "duration": 284.3158447742462,
+          "deadline": 1802.780433177948
+        },
+        {
+          "session": 7,
+          "task": 1,
+          "lane": 3,
+          "arrival": 778.6239056587219,
+          "original_start": 837.4042255878448,
+          "duration": 135.20818042755127,
+          "deadline": 1802.7811591625214
+        },
+        {
+          "session": 6,
+          "task": 0,
+          "lane": 3,
+          "arrival": 1022.3501491546631,
+          "original_start": 1022.3586461544037,
+          "duration": 38.639440059661865,
+          "deadline": 1802.780433177948
+        },
+        {
+          "session": 6,
+          "task": 0,
+          "lane": 3,
+          "arrival": 1218.048017501831,
+          "original_start": 1218.062356710434,
+          "duration": 271.6452627182007,
+          "deadline": 1802.780433177948
+        },
+        {
+          "session": 7,
+          "task": 1,
+          "lane": 3,
+          "arrival": 1443.1008441448212,
+          "original_start": 1489.7553567886353,
+          "duration": 9.330955743789673,
+          "deadline": 1802.7811591625214
+        },
+        {
+          "session": 6,
+          "task": 0,
+          "lane": 3,
+          "arrival": 1722.2898519039154,
+          "original_start": 1722.3041276931763,
+          "duration": 83.18695282936096,
+          "deadline": 1802.780433177948
+        }
+      ],
+      "cancelled": [
+        {
+          "session": 1,
+          "task": 1,
+          "lane": 0,
+          "arrival": 1699.199251651764,
+          "cancelled_at": 1802.7938594818115,
+          "deadline": 1802.784343957901,
+          "duration": null
+        }
+      ],
+      "assigned_sessions": 8,
+      "pool_seconds": 1960.00020976644,
+      "original_completed_by_search_deadline": 24,
+      "source_queue_hashes_match_first_screen": true
+    }
+  ],
+  "source_hashes": {
+    "episode-0/deadline.json": "26df1e11ce2d23c541b3328ef7bec72241ac2337aa1d260d1dabe9b6fb0fa575",
+    "episode-1/deadline.json": "8564692bf36a850aa2f7ec540ef5e72e74fcda7ea35e291aa106f47bc492d4b5",
+    "episode-2/deadline.json": "380d1afc743dd792ef17fe7ee8aa535299da0bd15543c95e75c91f70d70bcd8e",
+    "episode-3/deadline.json": "c758046ea8eb3f1a598977f91a1868d13fef3b8f98695373f7d8915ed08daee2",
+    "episode-4/deadline.json": "39fde5f0675ad2dac59419fbb836d07f11110683b41cb0d6545524818846ad89",
+    "episode-5/deadline.json": "9efa32402c85f92c51535be55b18d3b05faab3dd61f7618ad52944a3b55d9f49",
+    "episode-6/deadline.json": "a386f0607cd3bb265a90df1b8041c125c441f33e89d05e4cedfedc1ba8cfedbf",
+    "episode-7/deadline.json": "307f85cb7f85b6938ca635b05f7571cf3cd88b7fa93a82721057ff8b6363034f",
+    "queue-0-0/events.jsonl": "a572c4f3fd50c84520c68157b0f7c7d101b22f37c68cc7e082a5fba6def6d99e",
+    "queue-0-1/events.jsonl": "bf11f6214204b74292b81797a0643f337acc2096670f164d01c9ba4e5aec8785",
+    "queue-0-2/events.jsonl": "242b3234dd5d3727cbdc91f7fa1e8e4d9bcb96e789bd0182a78f8bf544d24df6",
+    "queue-0-3/events.jsonl": "fcdc643b06a08952ce1593781402771231c136493f6ab195fbda4cd0897d4247",
+    "episode-8/deadline.json": "c2a7f86a4ea9360659f415d110b82ec2c42d2f5f27fe93ee28d89d686ec6d8c2",
+    "episode-9/deadline.json": "704ef075f958edd0c04ecdb21d90de82004453c5cf3bf9611b5cb85e4342aeb9",
+    "episode-10/deadline.json": "9c081c2b1231435a1c9d3bdfb5685bb54592cf25700cc391dc904bf10550e044",
+    "episode-11/deadline.json": "fea1917a01a701e4f8387aa209df4dc29f45eb1e956da0965d12b345d508c558",
+    "episode-12/deadline.json": "6b3d39cd4c78e9cf8d0157261fbedde4f3575c9966db4b0bb3d2d56d4f897d30",
+    "episode-13/deadline.json": "549c4db8d9b889366ebb98c561a7e428a44858703887802612f170f8796ab19a",
+    "episode-14/deadline.json": "37056287ace721bfa38c871766fd2e59f8d1651bbac757c196940450ebaa85cc",
+    "episode-15/deadline.json": "78bd8d13b8e6e1f8d5f3f17de82d75bcd36e731e8d631c7af67f50baf65f94b3",
+    "queue-1-0/events.jsonl": "b1a9a909bf0c57953bc79eafdc8f23f50f025cb12fe8370060f11c230534ac10",
+    "queue-1-1/events.jsonl": "72fc586fa3cf209c6afea0691b312162d8da774a967d9debdb3ad8a09c2cfdbc",
+    "queue-1-2/events.jsonl": "25a3bb6d3b68d0102b85d63c54d0542956a7facbfcd9f2b333eb91e7deed7a7d",
+    "queue-1-3/events.jsonl": "ae00a9a45ce2ea2dee1c153d11c7960633a4afb20d106397199398f401ad0c09",
+    "episode-16/deadline.json": "c4e53dec2df86ac4c52eeb0f73cf9a5636db2d0292e2261405b50997bc7c01f1",
+    "episode-17/deadline.json": "97cc943d2d87e0d4385c7857dfb7650151878a14bd81311063f7ad3375089988",
+    "episode-18/deadline.json": "a27b697ef786a16bb9172e0431ceaec41cc0bc0bcd22cae49a9d034289da0345",
+    "episode-19/deadline.json": "20dbd8255d55804816d1853e1a96972978957c30f95ce18d136e3d6edbe71614",
+    "episode-20/deadline.json": "93b561da10e2da92c0a23fe8e0d30d4f56352b12c2557af739a7e39f9d9bf5b8",
+    "episode-21/deadline.json": "4524806b93734749f20361bfeeb46a004922323218f9404f39a25d61f684087f",
+    "episode-22/deadline.json": "80951eb1a20477982745fe9dfff1709d0972eb058c345a1b5ed23129cc4d844c",
+    "episode-23/deadline.json": "993fe143d28dac1232613e26ab1b619cc1e6295b5f25c8f27f628d05f1e94576",
+    "queue-2-0/events.jsonl": "0755b3237e92c1a3390d6b22aba729935800cd2babc478dacb58afb502362ef0",
+    "queue-2-1/events.jsonl": "42e6507a66b67e9d492569fea9ee0289c946a396dd3ed820f30bcbe2814dba98",
+    "queue-2-2/events.jsonl": "74bc2a99732610c45ee11636b3710b2779e4c3d721b8c04b9c265df38543755b",
+    "queue-2-3/events.jsonl": "372ffd89bf3359403f41678fa3a07f76d8afc489a366a1f8b190ea68f3bc24dc",
+    "episode-24/deadline.json": "8251b8c9275eb192a3042abfb69a22ade90e81ed90b77b80713db5bb2b5039ed",
+    "episode-25/deadline.json": "3e84eb83123b250213ceee2a6e296c24e5c28e62301dd3bc493b34e7a6303a27",
+    "episode-26/deadline.json": "266fe5ee8f55cba6c9d6445b18c9961b796c38a91343e8a1062f603e366ca6f2",
+    "episode-27/deadline.json": "b552a5e77b07555c8fc3668224739b2e69f54b401661b17352561e3a729bafa0",
+    "episode-28/deadline.json": "f729b8a142f996cd5919ec135a83932ad738a3792c8b6b608f96a1a5e2a40486",
+    "episode-29/deadline.json": "fac90a9a7c3abbd67b4997ab5d81c49f1f9b2f29e2725a7723d7fc22077248e5",
+    "episode-30/deadline.json": "b3031d0ef030bf08e94a75de887693acbd491ef3f197cfd776a8b8f2ab03b00f",
+    "episode-31/deadline.json": "26d22116e0001d8683fa140cd3d56f3a1aa724b26a1f436c9453c40414c3f0a7",
+    "queue-3-0/events.jsonl": "22f259dae5e47fee9d37b677f2fd4693c9688a6f812cbd71d668f609b9d49800",
+    "queue-3-1/events.jsonl": "67047b6312200e853018f5adfec85de58afac555fcdfc7b0a37893c92f3d805a",
+    "queue-3-2/events.jsonl": "40146019e7be212f5f2d464f2bd58449b082a584fd8fa9858eca397f003d6844",
+    "queue-3-3/events.jsonl": "7453dab2a0c189bbc135722ceb7f41352e7867ca46ca99b76709c64cba9368ec"
+  },
+  "quality_claim": false,
+  "new_gpu_jobs": 0,
+  "limits": [
+    "Post-hoc observed execution requests only; cancelled requests have unknown durations and remain listed.",
+    "Release includes cleanup; completion by search deadline is a conservative resource-release count, NOT valid feedback or final-score count.",
+    "Fixed arrival replay ignores feedback-dependent future work and changed CPU contention. Session slots are structural, not model or candidate identities."
+  ]
+}

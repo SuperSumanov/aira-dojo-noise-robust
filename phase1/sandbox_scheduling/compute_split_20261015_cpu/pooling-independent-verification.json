@@ -1,0 +1,389 @@
+{
+  "passed": true,
+  "independent_replay_cases": 280,
+  "verifier_sha256": "7ae424217c7302ede02b51d20a5f392db14b2e737baf92fd70e1d1d52d2877af",
+  "sensitivity_sha256": "72e22a84c9cf674ca4219988136e911af298e18cc3dacc0a45b717d48e436186",
+  "rows": [
+    {
+      "batch": 48,
+      "block": 0,
+      "arm": "old_fast",
+      "known": 32,
+      "cancelled": 1,
+      "observed_on_time": 30,
+      "overheads": [
+        {
+          "seconds": 0,
+          "on_time": 31,
+          "response_time_reduction_pct": 26.74120310964796,
+          "response_time_reduction_vs_hindsight_best_pairing_pct": 16.33139821022702,
+          "static_pairings_dominated": 24
+        },
+        {
+          "seconds": 5,
+          "on_time": 31,
+          "response_time_reduction_pct": 23.14728383292577,
+          "response_time_reduction_vs_hindsight_best_pairing_pct": 12.226796256707095,
+          "static_pairings_dominated": 24
+        },
+        {
+          "seconds": 15,
+          "on_time": 31,
+          "response_time_reduction_pct": 15.776231637230797,
+          "response_time_reduction_vs_hindsight_best_pairing_pct": 3.808344724445367,
+          "static_pairings_dominated": 24
+        },
+        {
+          "seconds": 30,
+          "on_time": 30,
+          "response_time_reduction_pct": 3.3676477412388217,
+          "response_time_reduction_vs_hindsight_best_pairing_pct": -10.363453187041639,
+          "static_pairings_dominated": 8
+        }
+      ]
+    },
+    {
+      "batch": 48,
+      "block": 1,
+      "arm": "old_medium",
+      "known": 28,
+      "cancelled": 1,
+      "observed_on_time": 25,
+      "overheads": [
+        {
+          "seconds": 0,
+          "on_time": 26,
+          "response_time_reduction_pct": 17.324946915751262,
+          "response_time_reduction_vs_hindsight_best_pairing_pct": 11.790410804200013,
+          "static_pairings_dominated": 24
+        },
+        {
+          "seconds": 5,
+          "on_time": 26,
+          "response_time_reduction_pct": 14.497455542868886,
+          "response_time_reduction_vs_hindsight_best_pairing_pct": 8.773637991215388,
+          "static_pairings_dominated": 24
+        },
+        {
+          "seconds": 15,
+          "on_time": 26,
+          "response_time_reduction_pct": 8.48239454621551,
+          "response_time_reduction_vs_hindsight_best_pairing_pct": 2.355909308757953,
+          "static_pairings_dominated": 24
+        },
+        {
+          "seconds": 30,
+          "on_time": 25,
+          "response_time_reduction_pct": -1.5883486486988563,
+          "response_time_reduction_vs_hindsight_best_pairing_pct": -8.389002088088082,
+          "static_pairings_dominated": 14
+        }
+      ]
+    },
+    {
+      "batch": 48,
+      "block": 2,
+      "arm": "new_medium",
+      "known": 20,
+      "cancelled": 0,
+      "observed_on_time": 18,
+      "overheads": [
+        {
+          "seconds": 0,
+          "on_time": 19,
+          "response_time_reduction_pct": 12.592956656962972,
+          "response_time_reduction_vs_hindsight_best_pairing_pct": 9.102734362003117,
+          "static_pairings_dominated": 24
+        },
+        {
+          "seconds": 5,
+          "on_time": 19,
+          "response_time_reduction_pct": 9.270683427690896,
+          "response_time_reduction_vs_hindsight_best_pairing_pct": 5.647800518079582,
+          "static_pairings_dominated": 24
+        },
+        {
+          "seconds": 15,
+          "on_time": 18,
+          "response_time_reduction_pct": 2.6261369691467418,
+          "response_time_reduction_vs_hindsight_best_pairing_pct": -1.262067169767489,
+          "static_pairings_dominated": 16
+        },
+        {
+          "seconds": 30,
+          "on_time": 17,
+          "response_time_reduction_pct": -8.212117547957543,
+          "response_time_reduction_vs_hindsight_best_pairing_pct": -12.53310051232166,
+          "static_pairings_dominated": 3
+        }
+      ]
+    },
+    {
+      "batch": 48,
+      "block": 3,
+      "arm": "new_medium",
+      "known": 21,
+      "cancelled": 1,
+      "observed_on_time": 19,
+      "overheads": [
+        {
+          "seconds": 0,
+          "on_time": 19,
+          "response_time_reduction_pct": 19.32852502936865,
+          "response_time_reduction_vs_hindsight_best_pairing_pct": 4.163651243338052,
+          "static_pairings_dominated": 24
+        },
+        {
+          "seconds": 5,
+          "on_time": 19,
+          "response_time_reduction_pct": 16.736618111119494,
+          "response_time_reduction_vs_hindsight_best_pairing_pct": 1.0845096328423787,
+          "static_pairings_dominated": 24
+        },
+        {
+          "seconds": 15,
+          "on_time": 19,
+          "response_time_reduction_pct": 11.49251409563351,
+          "response_time_reduction_vs_hindsight_best_pairing_pct": -5.145397301762333,
+          "static_pairings_dominated": 18
+        },
+        {
+          "seconds": 30,
+          "on_time": 19,
+          "response_time_reduction_pct": 3.5346585424855803,
+          "response_time_reduction_vs_hindsight_best_pairing_pct": -14.599195195308567,
+          "static_pairings_dominated": 8
+        }
+      ]
+    },
+    {
+      "batch": 48,
+      "block": 4,
+      "arm": "old_medium",
+      "known": 27,
+      "cancelled": 0,
+      "observed_on_time": 25,
+      "overheads": [
+        {
+          "seconds": 0,
+          "on_time": 25,
+          "response_time_reduction_pct": 14.657793699650579,
+          "response_time_reduction_vs_hindsight_best_pairing_pct": 5.623319731482345,
+          "static_pairings_dominated": 24
+        },
+        {
+          "seconds": 5,
+          "on_time": 25,
+          "response_time_reduction_pct": 11.63947709545412,
+          "response_time_reduction_vs_hindsight_best_pairing_pct": 2.285478896891202,
+          "static_pairings_dominated": 24
+        },
+        {
+          "seconds": 15,
+          "on_time": 24,
+          "response_time_reduction_pct": 5.5949141894582555,
+          "response_time_reduction_vs_hindsight_best_pairing_pct": -4.398971921434769,
+          "static_pairings_dominated": 7
+        },
+        {
+          "seconds": 30,
+          "on_time": 24,
+          "response_time_reduction_pct": -4.6873008001754535,
+          "response_time_reduction_vs_hindsight_best_pairing_pct": -15.769680022343625,
+          "static_pairings_dominated": 1
+        }
+      ]
+    },
+    {
+      "batch": 48,
+      "block": 5,
+      "arm": "old_fast",
+      "known": 40,
+      "cancelled": 1,
+      "observed_on_time": 38,
+      "overheads": [
+        {
+          "seconds": 0,
+          "on_time": 38,
+          "response_time_reduction_pct": 25.951030920390096,
+          "response_time_reduction_vs_hindsight_best_pairing_pct": 18.45599971298233,
+          "static_pairings_dominated": 24
+        },
+        {
+          "seconds": 5,
+          "on_time": 38,
+          "response_time_reduction_pct": 21.27054870903119,
+          "response_time_reduction_vs_hindsight_best_pairing_pct": 13.301772077806163,
+          "static_pairings_dominated": 24
+        },
+        {
+          "seconds": 15,
+          "on_time": 38,
+          "response_time_reduction_pct": 11.799344257388178,
+          "response_time_reduction_vs_hindsight_best_pairing_pct": 2.8719185886527665,
+          "static_pairings_dominated": 24
+        },
+        {
+          "seconds": 30,
+          "on_time": 38,
+          "response_time_reduction_pct": -3.505330489264402,
+          "response_time_reduction_vs_hindsight_best_pairing_pct": -13.981852874283085,
+          "static_pairings_dominated": 4
+        }
+      ]
+    },
+    {
+      "batch": 32,
+      "block": 0,
+      "arm": "old_medium",
+      "known": 24,
+      "cancelled": 0,
+      "observed_on_time": 23,
+      "overheads": [
+        {
+          "seconds": 0,
+          "on_time": 23,
+          "response_time_reduction_pct": 16.061692592648914,
+          "response_time_reduction_vs_hindsight_best_pairing_pct": 7.697582649258649,
+          "static_pairings_dominated": 24
+        },
+        {
+          "seconds": 5,
+          "on_time": 23,
+          "response_time_reduction_pct": 12.727233783263959,
+          "response_time_reduction_vs_hindsight_best_pairing_pct": 4.03085862099033,
+          "static_pairings_dominated": 24
+        },
+        {
+          "seconds": 15,
+          "on_time": 23,
+          "response_time_reduction_pct": 5.928161598875192,
+          "response_time_reduction_vs_hindsight_best_pairing_pct": -3.445713372720216,
+          "static_pairings_dominated": 21
+        },
+        {
+          "seconds": 30,
+          "on_time": 23,
+          "response_time_reduction_pct": -4.624187147561742,
+          "response_time_reduction_vs_hindsight_best_pairing_pct": -15.049560628030644,
+          "static_pairings_dominated": 6
+        }
+      ]
+    },
+    {
+      "batch": 32,
+      "block": 1,
+      "arm": "new_medium",
+      "known": 21,
+      "cancelled": 0,
+      "observed_on_time": 20,
+      "overheads": [
+        {
+          "seconds": 0,
+          "on_time": 20,
+          "response_time_reduction_pct": 18.345462364059394,
+          "response_time_reduction_vs_hindsight_best_pairing_pct": 5.3142616705976975,
+          "static_pairings_dominated": 24
+        },
+        {
+          "seconds": 5,
+          "on_time": 20,
+          "response_time_reduction_pct": 15.087707450096532,
+          "response_time_reduction_vs_hindsight_best_pairing_pct": 1.5366035237828202,
+          "static_pairings_dominated": 24
+        },
+        {
+          "seconds": 15,
+          "on_time": 20,
+          "response_time_reduction_pct": 8.572197622170808,
+          "response_time_reduction_vs_hindsight_best_pairing_pct": -6.018712769846912,
+          "static_pairings_dominated": 15
+        },
+        {
+          "seconds": 30,
+          "on_time": 20,
+          "response_time_reduction_pct": -1.2010671197177913,
+          "response_time_reduction_vs_hindsight_best_pairing_pct": -17.351687210291523,
+          "static_pairings_dominated": 3
+        }
+      ]
+    },
+    {
+      "batch": 32,
+      "block": 2,
+      "arm": "new_medium",
+      "known": 21,
+      "cancelled": 0,
+      "observed_on_time": 18,
+      "overheads": [
+        {
+          "seconds": 0,
+          "on_time": 18,
+          "response_time_reduction_pct": 17.249890598667463,
+          "response_time_reduction_vs_hindsight_best_pairing_pct": 0.8974153556644437,
+          "static_pairings_dominated": 24
+        },
+        {
+          "seconds": 5,
+          "on_time": 18,
+          "response_time_reduction_pct": 13.781025024591266,
+          "response_time_reduction_vs_hindsight_best_pairing_pct": -3.2569422235797063,
+          "static_pairings_dominated": 22
+        },
+        {
+          "seconds": 15,
+          "on_time": 18,
+          "response_time_reduction_pct": 6.843293876438872,
+          "response_time_reduction_vs_hindsight_best_pairing_pct": -11.565657382067984,
+          "static_pairings_dominated": 11
+        },
+        {
+          "seconds": 30,
+          "on_time": 18,
+          "response_time_reduction_pct": -3.5633028457897176,
+          "response_time_reduction_vs_hindsight_best_pairing_pct": -24.02873011980042,
+          "static_pairings_dominated": 0
+        }
+      ]
+    },
+    {
+      "batch": 32,
+      "block": 3,
+      "arm": "old_medium",
+      "known": 28,
+      "cancelled": 1,
+      "observed_on_time": 24,
+      "overheads": [
+        {
+          "seconds": 0,
+          "on_time": 24,
+          "response_time_reduction_pct": 9.083396076994344,
+          "response_time_reduction_vs_hindsight_best_pairing_pct": 9.06543284747996,
+          "static_pairings_dominated": 24
+        },
+        {
+          "seconds": 5,
+          "on_time": 24,
+          "response_time_reduction_pct": 5.328997009376046,
+          "response_time_reduction_vs_hindsight_best_pairing_pct": 5.31029198871209,
+          "static_pairings_dominated": 24
+        },
+        {
+          "seconds": 15,
+          "on_time": 24,
+          "response_time_reduction_pct": -2.7130482402707434,
+          "response_time_reduction_vs_hindsight_best_pairing_pct": -2.7333422017700615,
+          "static_pairings_dominated": 19
+        },
+        {
+          "seconds": 30,
+          "on_time": 24,
+          "response_time_reduction_pct": -15.560337801681602,
+          "response_time_reduction_vs_hindsight_best_pairing_pct": -15.583170120324397,
+          "static_pairings_dominated": 3
+        }
+      ]
+    }
+  ],
+  "limitation": "Checks structural exports, not raw extraction or actual GPU/new-search performance. All cost values are sensitivity, not measured overhead."
+}

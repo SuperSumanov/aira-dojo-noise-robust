@@ -1,0 +1,95 @@
+{
+  "status": "passed",
+  "assigned": 48,
+  "complete": 48,
+  "contrasts": [
+    {
+      "repeat": 0,
+      "task": "aerial-cactus-identification",
+      "method": "new_medium",
+      "reference": "old_fast",
+      "method_best": 0.9999759465050271,
+      "reference_best": 0.9998075720402175,
+      "oriented_delta": 0.00016837446480955087
+    },
+    {
+      "repeat": 0,
+      "task": "denoising-dirty-documents",
+      "method": "new_medium",
+      "reference": "old_fast",
+      "method_best": 0.016851028985227796,
+      "reference_best": 0.009738903630219946,
+      "oriented_delta": -0.00711212535500785
+    },
+    {
+      "repeat": 0,
+      "task": "aerial-cactus-identification",
+      "method": "new_medium",
+      "reference": "old_medium",
+      "method_best": 0.9999759465050271,
+      "reference_best": 0.9998182624824276,
+      "oriented_delta": 0.00015768402259952463
+    },
+    {
+      "repeat": 0,
+      "task": "denoising-dirty-documents",
+      "method": "new_medium",
+      "reference": "old_medium",
+      "method_best": 0.016851028985227796,
+      "reference_best": 0.014217226114657332,
+      "oriented_delta": -0.002633802870570464
+    },
+    {
+      "repeat": 1,
+      "task": "aerial-cactus-identification",
+      "method": "new_medium",
+      "reference": "old_fast",
+      "method_best": 0.9997594650502718,
+      "reference_best": 0.9997861911557971,
+      "oriented_delta": -0.000026726105525343158
+    },
+    {
+      "repeat": 1,
+      "task": "denoising-dirty-documents",
+      "method": "new_medium",
+      "reference": "old_fast",
+      "method_best": 0.01356582535832205,
+      "reference_best": 0.013387899427844734,
+      "oriented_delta": -0.00017792593047731564
+    },
+    {
+      "repeat": 1,
+      "task": "aerial-cactus-identification",
+      "method": "new_medium",
+      "reference": "old_medium",
+      "method_best": 0.9997594650502718,
+      "reference_best": 0.9999786191155797,
+      "oriented_delta": -0.00021915406530792492
+    },
+    {
+      "repeat": 1,
+      "task": "denoising-dirty-documents",
+      "method": "new_medium",
+      "reference": "old_medium",
+      "method_best": 0.01356582535832205,
+      "reference_best": 0.01314423284656948,
+      "oriented_delta": -0.0004215925117525693
+    }
+  ],
+  "quality_gate": false,
+  "runtime_input_gate": true,
+  "original_gate": false,
+  "gpu_seconds": 72678,
+  "source_commit": "63623208e8918bf3b1351c595382d0108aecdb31",
+  "plan_sha256": "e3baf5d2fa704cdd0c3fc458549aa21449fdbf3209bac87337b370e2a416e154",
+  "readout_sha256": "bea121ae777dd88fc6defbad3d6f640b2ce18d6d26242ead61569e391424d1df",
+  "limitation": "Two reverse-order pool repeats share one service/allocation. Not48 independent trials, fixed-data reward ablation or training-cost ROI.",
+  "transfer_sha256": {
+    "summary.json": "c68e4c4caafb3b63ad22443c5e7e2f330a0f22a3ddd47887dc06b10820e366e9",
+    "runs.json": "e38c35f5f4a8c1fe173ecd58b3b62b34df865488af0b90d86fc3e09a6750dfa1",
+    "effort.json": "e1e27746eaca9be493147601e647d501156142621c6e7bbf5b4a4d71ed49da91",
+    "runs.csv": "cbd228af259fdc4e314058e60607e389915eb912ff5f400a8670763951acfdf6",
+    "input-checks.json": "baa51373ec0388772e0e0c57a5640f1341179c5a8515af35887386aef4d3fb7c",
+    "identity.json": "e3c52b6d56558268d0b7a129f234bab69a753361e090d4b8daa2f383a648ad08"
+  }
+}

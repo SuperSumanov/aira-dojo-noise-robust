@@ -1,11 +1,12 @@
 # 当前研究方向：唯一短入口
 
-整理：2026-10-14香港。动态状态只认短交接中的最后观察时间。
+整理：2026-10-15香港。动态状态只认短交接中的最后观察时间。
 压缩前全文：Git 96e129c8b67bf8e0918abd5f4e69fe4e5ecc3f13:phase1/CURRENT_DIRECTION.md。
 更早历史见 CURRENT_DIRECTION_HISTORY_THROUGH_20261005.md；不改原件、实验门或保护集权限。
 
 ## 当前裁决：R14 MLE沙箱资源调度
 
+- 10/15 HK06:38:58闭合复核18412：48/48完成、48真实首输入一致、77份外部开发评分重算、24CPU配对/6池硬件清理及独立Node统计/六文件传输SHA通过；72678GPU秒=20.188333333333333GPUh≤22.5。原quality gate=false：去噪重复0/1的best（旧fast/旧medium/新metric）为0.009738903630219946/0.014217226114657332/0.016851028985227796、0.013387899427844734/0.01314423284656948/0.01356582535832205；新metric两轮均不胜两参照，median也两轮差于旧medium。Aerial一轮优于两参照、一轮低于两者；近上限局部改善不救门。停止扩大本metric-step30部署配方，不补seed/换点/改门；共同起点历史固定且池间无新历史转移，不能把历史积累算权重收益，也不推所有训练无效。证据sandbox_scheduling/metric_deployment_18412_closed，summarySHA c68e4c4caafb3b63ad22443c5e7e2f330a0f22a3ddd47887dc06b10820e366e9；新旧输入修复后仍未出现可重复部署收益。没有新GPU/API/训练或本轮push。
 - 10/15香港新批授权：用户批准metric部署48条=2旧开发任务×4配对搜索seed×旧fast/旧medium/新metric-medium×2反序池，2服务+4执行、每条1800s/每池1960s、总≤13500s/22.5GPUh含失败启动清理。唯一预选metric Drive ID 1w_vb2g8wAZV_NcLPTpRSZgIbi4Bzrkw5；CPU接入992有限BF16、496组形状对应，非质量确认。新门每重复去噪胜两个同期参照≥.001、Aerial对两者不退；不池间传历史、不补跑、18269不重开。8项设计/11项独立读出测试通过；48真实输入CPU门未齐不提交。v1仅CPU前检48/48后封存、零GPU：gpu29只有4卡空闲，事前统一改兼容gpu3；正式目录scheduling-metric-deployment-20261015-v2，科学矩阵不变、精确现场见短交接。
 - 10/14 HK22:51新信息：学长确认score/metric两线各自生成数据、各自日更训练；不是同数据reward消融。Drive metric目录现有独立step30（ID 1w_vb2g8wAZV_NcLPTpRSZgIbi4Bzrkw5），score仍旧ID；同文件名不当同产物，未下载/验收新模型。精确源码+8项纯合成检查显示内部metric仍用official阈值映射、缺失地板可破坏组内仿射不变性；不是实际训练bug/效果证据。下一优先固定输入、同预算的新metric部署资格，对旧fast/medium同期强参照；内容/兼容及新矩阵预算未齐不提交，不重开18269。证据lineage_intake_20261014.safe.json、reward_contract_20261014.safe.json、ADVISOR Z；SSH本轮认证前断开，Git/公开Drive正常，无新GPU/训练/API。
 - 10/14 HK15:28:28确认18269闭合：32/32、32真实输入一致、39外部评分重算、16CPU配对、4池硬件/清理及独立统计通过；49092GPU秒=13.636666666666667GPUh≤15。原质量门false：去噪两反序重复best旧/新RMSE=0.013654153292274094/0.015045886425786793、0.01543541427703299/0.01844707231236221，两个median也更差；Aerial一正一负且近上限。停止扩大此step30部署配方，不补seed/改门；没有把历史积累算作权重收益。只否定此限定对照，不推所有policy训练无效；信用分配猜想仍未经因果验证。证据sandbox_scheduling/weight_confirmation_18269_closed，summarySHAd45a9678d64482d036e2f4bb3fcd4f6e0090907ca3de4d7e649e193831d4640b。用户让查Drive，已核对应资料仅有数据/转换设置，实际训练loss配置仍缺；不因此启动训练。

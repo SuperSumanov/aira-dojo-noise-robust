@@ -1,0 +1,311 @@
+{
+  "actual_mode_gate": true,
+  "assigned": 48,
+  "by_arm": {
+    "new_medium": {
+      "aerial-cactus-identification": {
+        "median": 0.9997367478605752,
+        "sample_sd": 0.00012076913392347723
+      },
+      "denoising-dirty-documents": {
+        "median": 0.02073896764302843,
+        "sample_sd": 0.0143515577273234
+      }
+    },
+    "old_fast": {
+      "aerial-cactus-identification": {
+        "median": 0.9997140306708787,
+        "sample_sd": 3.7902574268339605e-05
+      },
+      "denoising-dirty-documents": {
+        "median": 0.024865323091512875,
+        "sample_sd": 0.015770390639339174
+      }
+    },
+    "old_medium": {
+      "aerial-cactus-identification": {
+        "median": 0.9997634739661005,
+        "sample_sd": 8.766523453875189e-05
+      },
+      "denoising-dirty-documents": {
+        "median": 0.0182379610200969,
+        "sample_sd": 0.01371977969009087
+      }
+    }
+  },
+  "by_pool": [
+    {
+      "arm": "old_fast",
+      "best": 0.9998075720402175,
+      "block": 0,
+      "median": 0.9997233848078126,
+      "n": 4,
+      "repeat": 0,
+      "sample_sd": 4.453459961606949e-05,
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "arm": "old_fast",
+      "best": 0.009738903630219946,
+      "block": 0,
+      "median": 0.016690884345084568,
+      "n": 4,
+      "repeat": 0,
+      "sample_sd": 0.015931991971189614,
+      "task": "denoising-dirty-documents"
+    },
+    {
+      "arm": "old_medium",
+      "best": 0.9998182624824276,
+      "block": 1,
+      "median": 0.9997193758919838,
+      "n": 4,
+      "repeat": 0,
+      "sample_sd": 5.058581814151813e-05,
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "arm": "old_medium",
+      "best": 0.014217226114657332,
+      "block": 1,
+      "median": 0.02551695949847831,
+      "n": 4,
+      "repeat": 0,
+      "sample_sd": 0.013920592524600648,
+      "task": "denoising-dirty-documents"
+    },
+    {
+      "arm": "new_medium",
+      "best": 0.9999759465050271,
+      "block": 2,
+      "median": 0.9999425388731205,
+      "n": 4,
+      "repeat": 0,
+      "sample_sd": 0.00012089686105291559,
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "arm": "new_medium",
+      "best": 0.016851028985227796,
+      "block": 2,
+      "median": 0.03306218330682527,
+      "n": 4,
+      "repeat": 0,
+      "sample_sd": 0.015537896911547704,
+      "task": "denoising-dirty-documents"
+    },
+    {
+      "arm": "new_medium",
+      "best": 0.9997594650502718,
+      "block": 3,
+      "median": 0.9997140306708787,
+      "n": 4,
+      "repeat": 1,
+      "sample_sd": 2.2717189696541684e-05,
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "arm": "new_medium",
+      "best": 0.01356582535832205,
+      "block": 3,
+      "median": 0.01982575678176061,
+      "n": 4,
+      "repeat": 1,
+      "sample_sd": 0.01422203690233361,
+      "task": "denoising-dirty-documents"
+    },
+    {
+      "arm": "old_medium",
+      "best": 0.9999786191155797,
+      "block": 4,
+      "median": 0.9997835185452446,
+      "n": 4,
+      "repeat": 1,
+      "sample_sd": 0.00010529712490228068,
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "arm": "old_medium",
+      "best": 0.01314423284656948,
+      "block": 4,
+      "median": 0.0164530242133637,
+      "n": 4,
+      "repeat": 1,
+      "sample_sd": 0.015167878867168694,
+      "task": "denoising-dirty-documents"
+    },
+    {
+      "arm": "old_fast",
+      "best": 0.9997861911557971,
+      "block": 5,
+      "median": 0.9997140306708787,
+      "n": 4,
+      "repeat": 1,
+      "sample_sd": 3.608024245921326e-05,
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "arm": "old_fast",
+      "best": 0.013387899427844734,
+      "block": 5,
+      "median": 0.03876971042036606,
+      "n": 4,
+      "repeat": 1,
+      "sample_sd": 0.015207092571188616,
+      "task": "denoising-dirty-documents"
+    }
+  ],
+  "common_preview_preparation_wall_seconds": 60.32944286800921,
+  "complete": 48,
+  "contrasts": [
+    {
+      "method": "new_medium",
+      "method_best": 0.9999759465050271,
+      "oriented_delta": 0.00016837446480955087,
+      "reference": "old_fast",
+      "reference_best": 0.9998075720402175,
+      "repeat": 0,
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "method": "new_medium",
+      "method_best": 0.016851028985227796,
+      "oriented_delta": -0.00711212535500785,
+      "reference": "old_fast",
+      "reference_best": 0.009738903630219946,
+      "repeat": 0,
+      "task": "denoising-dirty-documents"
+    },
+    {
+      "method": "new_medium",
+      "method_best": 0.9999759465050271,
+      "oriented_delta": 0.00015768402259952463,
+      "reference": "old_medium",
+      "reference_best": 0.9998182624824276,
+      "repeat": 0,
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "method": "new_medium",
+      "method_best": 0.016851028985227796,
+      "oriented_delta": -0.002633802870570464,
+      "reference": "old_medium",
+      "reference_best": 0.014217226114657332,
+      "repeat": 0,
+      "task": "denoising-dirty-documents"
+    },
+    {
+      "method": "new_medium",
+      "method_best": 0.9997594650502718,
+      "oriented_delta": -2.6726105525343158e-05,
+      "reference": "old_fast",
+      "reference_best": 0.9997861911557971,
+      "repeat": 1,
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "method": "new_medium",
+      "method_best": 0.01356582535832205,
+      "oriented_delta": -0.00017792593047731564,
+      "reference": "old_fast",
+      "reference_best": 0.013387899427844734,
+      "repeat": 1,
+      "task": "denoising-dirty-documents"
+    },
+    {
+      "method": "new_medium",
+      "method_best": 0.9997594650502718,
+      "oriented_delta": -0.00021915406530792492,
+      "reference": "old_medium",
+      "reference_best": 0.9999786191155797,
+      "repeat": 1,
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "method": "new_medium",
+      "method_best": 0.01356582535832205,
+      "oriented_delta": -0.0004215925117525693,
+      "reference": "old_medium",
+      "reference_best": 0.01314423284656948,
+      "repeat": 1,
+      "task": "denoising-dirty-documents"
+    }
+  ],
+  "cpu_pairs_passed": 24,
+  "gpu_hours": 20.188333333333333,
+  "gpu_seconds": 72678,
+  "independent_pools_per_arm": 2,
+  "limitation": "Exploratory deployment only; two reverse-order pool repeats in one allocation/service, not48 independent trials. Reused development tasks/warm starts, aerial near ceiling. Not fixed-data reward ablation, daily-training causality, total-training-cost ROI or generalization.",
+  "no_automatic_expansion": true,
+  "plan_sha256": "e3baf5d2fa704cdd0c3fc458549aa21449fdbf3209bac87337b370e2a416e154",
+  "policies": [
+    {
+      "admitted": 68,
+      "all_released": true,
+      "arm": "old_fast",
+      "block": 0,
+      "completed_improvements": 20,
+      "completed_nonwarm_parent": 7,
+      "counterfactual_parent_difference": 7,
+      "feedback_waits": 0
+    },
+    {
+      "admitted": 56,
+      "all_released": true,
+      "arm": "old_medium",
+      "block": 1,
+      "completed_improvements": 18,
+      "completed_nonwarm_parent": 5,
+      "counterfactual_parent_difference": 7,
+      "feedback_waits": 0
+    },
+    {
+      "admitted": 43,
+      "all_released": true,
+      "arm": "new_medium",
+      "block": 2,
+      "completed_improvements": 14,
+      "completed_nonwarm_parent": 6,
+      "counterfactual_parent_difference": 8,
+      "feedback_waits": 0
+    },
+    {
+      "admitted": 44,
+      "all_released": true,
+      "arm": "new_medium",
+      "block": 3,
+      "completed_improvements": 13,
+      "completed_nonwarm_parent": 1,
+      "counterfactual_parent_difference": 8,
+      "feedback_waits": 0
+    },
+    {
+      "admitted": 55,
+      "all_released": true,
+      "arm": "old_medium",
+      "block": 4,
+      "completed_improvements": 18,
+      "completed_nonwarm_parent": 10,
+      "counterfactual_parent_difference": 7,
+      "feedback_waits": 0
+    },
+    {
+      "admitted": 85,
+      "all_released": true,
+      "arm": "old_fast",
+      "block": 5,
+      "completed_improvements": 16,
+      "completed_nonwarm_parent": 7,
+      "counterfactual_parent_difference": 8,
+      "feedback_waits": 0
+    }
+  ],
+  "predeclared_success_gate_met": false,
+  "quality_gate": false,
+  "readout_sha256": "bea121ae777dd88fc6defbad3d6f640b2ce18d6d26242ead61569e391424d1df",
+  "runtime_input_gate": true,
+  "scores_recomputed": 77,
+  "source_commit": "63623208e8918bf3b1351c595382d0108aecdb31",
+  "started": 48,
+  "structural_gate": true
+}

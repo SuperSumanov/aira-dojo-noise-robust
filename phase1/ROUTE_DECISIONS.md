@@ -1,10 +1,12 @@
 # 路线裁决表：先排除重复，再提出新机制
 
-更新：2026-10-14香港。当前状态见CURRENT_DIRECTION；本表是机制索引，不是运行授权。
+更新：2026-10-15香港。当前状态见CURRENT_DIRECTION；本表是机制索引，不是运行授权。
 压缩前全文：Git 96e129c8b67bf8e0918abd5f4e69fe4e5ecc3f13:phase1/ROUTE_DECISIONS.md；旧实验证据/近邻细节不删除。
 “停止当前配方”不等于“所有变体不可能”。读原始证据后才解释历史数字，不汇总异质批次为总体胜率。
 
 ## 本次必须纠正的重复推荐
+
+10/15 18412 metric-step30独立48条闭合：真实首输入48同配、77评分重算、6池结构及独立统计通过；去噪两反序重复的池best均不胜旧fast/旧medium，median也均差于旧medium，Aerial一优一退，原质量门false。停止扩大本metric部署配方，不以更多历史、改阈值/seed/换日更点救结论；score/metric不同训练数据仍不能解释为reward因果。只有部署无稳定增益的局部结论，不是所有学习无效；新机制必须有额外证据而非重命名，证据metric_deployment_18412_closed。
 
 10/14晚：学长确认score与metric各自采集训练；HK22:51 metric step30已新可见，未下载。新产物可另问固定历史下部署收益，但两线对比不是固定数据reward消融，同名step不证明同祖先/成本；旧score的18269结果不能转移到metric。8项合成源码检查限定了仿射不变的适用范围：缺失地板/绝对spread门/可选clip可破坏它；不是实际训练故障或新方法。先内容身份和新批预算，不自动试遍日更点；证据lineage_intake_20261014.safe.json、reward_contract_20261014.safe.json。
 

@@ -20,7 +20,8 @@ class MetricDeploymentTests(unittest.TestCase):
     def test_small_gain_fails(self):
         s=self.scores();s[0,'new_medium',TASKS[1]]=.0195;self.assertFalse(quality(s)[1])
     def test_schedule(self):
-        from metric_deployment_trial_20261015 import schedule,CAP
+        from metric_deployment_trial_20261015 import schedule,CAP,NODE,R
+        self.assertEqual(NODE,'gpu3');self.assertTrue(str(R).endswith('-v2'))
         rows=schedule();self.assertEqual(len(rows),48);self.assertEqual(CAP*6/3600,22.5)
         self.assertEqual([rows[b*8]['arm'] for b in range(6)],['old_fast','old_medium','new_medium','new_medium','old_medium','old_fast'])
         for r in rows:

@@ -1,0 +1,88 @@
+{
+  "status": "CPU_INTAKE_ONLY",
+  "utc": "2026-10-14T17:11:53.472152+00:00",
+  "file_id": "1w_vb2g8wAZV_NcLPTpRSZgIbi4Bzrkw5",
+  "declared_lineage": "metric",
+  "archive_sha256": "026f38a8426b1ab0563a1f5237d84774bc0889ef2e5407c4ba1744951cb7d152",
+  "archive_bytes": 1461409823,
+  "directory": "/research/d7/spc/yzyang4/weight-effort-adapter-metric-20261015-ke666d70",
+  "adapter_directory": "/research/d7/spc/yzyang4/weight-effort-adapter-metric-20261015-ke666d70/accepted_adapter",
+  "inventory": [
+    {
+      "name": "lora_adapter_vllm",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "name": "lora_adapter_vllm/adapter_model.safetensors",
+      "bytes": 1867799496,
+      "directory": false
+    },
+    {
+      "name": "lora_adapter_vllm/adapter_config.json",
+      "bytes": 1378,
+      "directory": false
+    }
+  ],
+  "config": {
+    "base_model_name_or_path": null,
+    "revision": null,
+    "peft_type": "LORA",
+    "task_type": "CAUSAL_LM",
+    "r": 128,
+    "lora_alpha": 256,
+    "lora_dropout": 0.0,
+    "target_modules": [
+      "down_proj",
+      "gate_proj",
+      "in_proj_a",
+      "in_proj_b",
+      "in_proj_qkv",
+      "in_proj_z",
+      "k_proj",
+      "o_proj",
+      "out_proj",
+      "q_proj",
+      "up_proj",
+      "v_proj"
+    ],
+    "modules_to_save": null,
+    "bias": "none",
+    "use_dora": false,
+    "use_rslora": false,
+    "inference_mode": false
+  },
+  "config_sha256": "3e3fd66a40c83e2d0c9826311b30191d76b2187d012ec0fa79dc50c03580b3ed",
+  "weights_sha256": "b30d1d19131bfc569e3424a8da6ed6dc901c413d3eb28afac4accddde4194853",
+  "tensors": 992,
+  "elements": 933822464,
+  "nonfinite_elements": 0,
+  "all_zero_tensors": 0,
+  "dtype_counts": {
+    "BF16": 992
+  },
+  "shapes": {
+    "[128, 5120]": 368,
+    "[48, 128]": 96,
+    "[10240, 128]": 48,
+    "[6144, 128]": 48,
+    "[128, 6144]": 64,
+    "[5120, 128]": 128,
+    "[128, 17408]": 64,
+    "[17408, 128]": 128,
+    "[1024, 128]": 32,
+    "[12288, 128]": 16
+  },
+  "tensor_names_first_six": [
+    "base_model.model.model.language_model.layers.0.linear_attn.in_proj_a.lora_A.weight",
+    "base_model.model.model.language_model.layers.0.linear_attn.in_proj_a.lora_B.weight",
+    "base_model.model.model.language_model.layers.0.linear_attn.in_proj_b.lora_A.weight",
+    "base_model.model.model.language_model.layers.0.linear_attn.in_proj_b.lora_B.weight",
+    "base_model.model.model.language_model.layers.0.linear_attn.in_proj_qkv.lora_A.weight",
+    "base_model.model.model.language_model.layers.0.linear_attn.in_proj_qkv.lora_B.weight"
+  ],
+  "elapsed_seconds": 246.58897390728816,
+  "gpu_jobs": 0,
+  "model_executions": 0,
+  "limitation": "One preselected shared adapter, no outcome-based checkpoint choice. CPU intake does not prove base revision, training lineage, runtime compatibility or quality."
+}

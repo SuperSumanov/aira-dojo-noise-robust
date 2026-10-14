@@ -1086,3 +1086,4 @@ phase1/sandbox_scheduling/lineage_intake_20261014.safe.json -text
 phase1/sandbox_scheduling/metric_deployment*_20261015.py -text
 phase1/sandbox_scheduling/test_metric_deployment_20261015.py -text
 phase1/sandbox_scheduling/verify_metric_deployment_20261015.cjs -text
+phase1/sandbox_scheduling/metric_deployment_20261015_intake/*.json -text

@@ -1,6 +1,6 @@
 # 当前短交接：恢复先读本文件，不从旧心跳恢复任务
 
-最后核验：2026-10-15香港01:05 SSH恢复且fetch无变；仅旧Held12535在队列不动。用户明确批准独立metric48条、2服务+4执行、≤3h45/22.5GPUh；旧fast/旧medium/metric-medium反序两池、相同起点历史，每重复须胜两参照且控制不退，不补跑/训练/API。01:11:53 metric CPU接入完成，992有限BF16/496组形状对应；目录weight-effort-adapter-metric-20261015-ke666d70，weightsSHA b30d1d19131bfc569e3424a8da6ed6dc901c413d3eb28afac4accddde4194853，configSHA3e3fd66a40c83e2d0c9826311b30191d76b2187d012ec0fa79dc50c03580b3ed。8设计测试/11独立读出测试通过；正在准备48真实输入CPU门，尚未提交GPU。新root scheduling-metric-deployment-20261015-v1，脚本/tmp/metric-intake-20261015-AW6OJC；不重下、不重开旧18269。
+最后核验：2026-10-15香港本窗口SSH正常、fetch无变；旧Held12535不动。用户批准独立metric48条、2服务+4执行、≤3h45/22.5GPUh；旧fast/旧medium/metric-medium反序两池，同起点历史，两重复均须胜两参照且控制不退，不补跑/训练/API。metric CPU接入992有限BF16/496组形状对应；目录weight-effort-adapter-metric-20261015-ke666d70，安全原件在sandbox_scheduling/metric_deployment_20261015_intake。v1 CPU门48/48、16配对通过，planSHA5ad731b5f0955132989b90eb28edff06b63e066f4a5a02679c00507b4e49c083，零GPU/模型调用，永不提交。gpu29仅4卡可用，gpu3已有兼容历史且7卡空闲：事前改统一节点及全部守卫，科学矩阵不变；新root scheduling-metric-deployment-20261015-v2、脚本/tmp/metric-gpu3-20261015-cAOdGK。8设计/11独立读出测试重过，v2尚待完整CPU门，不提交未过门版本；不重下模型或重开18269。
 恢复顺序：fetch → CURRENT_DIRECTION → ROUTE_DECISIONS → 本文件 → 必要原始证据。
 本次覆盖前的完整交接：Git 72167a42feccaec44f5793c3bc7d2f4e9132d581:phase1/CONTEXT_HANDOFF_CURRENT.md。
 

@@ -22,7 +22,8 @@ import weight_effort_policy_20261014 as policy
 from lifecycle_pilot import read,write,sha
 from fixed_public_preview_20261014 import load_text,install,digest,public_manifest
 
-R=DONOR.parent/'scheduling-metric-deployment-20261015-v1'
+R=DONOR.parent/'scheduling-metric-deployment-20261015-v2'
+NODE='gpu3'
 ADAPTER=DONOR.parent/'weight-effort-adapter-metric-20261015-ke666d70/accepted_adapter'
 FILE_ID='1w_vb2g8wAZV_NcLPTpRSZgIbi4Bzrkw5'
 NAME=Path(__file__).name
@@ -137,7 +138,10 @@ def prepare(commit):
         write(R/f'configs/{i}.json',cfg)
     driver=R/'image_live_2plus4_20261011.py'
     s=change(driver.read_text(),str(p['adapter']['directory']),str(ADAPTER))
+    s=change(s,"socket.gethostname().split('.')[0]=='gpu29'",f"socket.gethostname().split('.')[0]=='{NODE}'",n=2)
     driver.write_text(change(s,'dict(configs=32,paired_equal=24,no_kernel=True','dict(configs=48,paired_equal=32,no_kernel=True'))
+    identity=R/'forets_native_cuda_identity_20260911.py'
+    identity.write_text(change(identity.read_text(),"split('.')[0]!='gpu29'",f"split('.')[0]!='{NODE}'"))
     shared=R/'generation_joint_trial_20261012.py'
     s=change(shared.read_text(),'for block in range(4):','for block in range(6):')
     s=change(s,"'--time=02:30:00'","'--time=03:45:00'")
@@ -152,6 +156,7 @@ def prepare(commit):
     with (R/'.service.env').open('x') as f:f.write('PRIMARY_KEY_QWEN3_8_27B='+secrets.token_hex(32)+'\n')
     (R/'.service.env').chmod(0o600)
     sb=R/'run.sbatch';s=sb.read_text().replace(str(DONOR),str(R))
+    s=change(s,'#SBATCH --nodelist=gpu29',f'#SBATCH --nodelist={NODE}')
     s=change(s,'r14-weight-confirm','r14-metric-deploy')
     s=change(s,'weight_confirmation_trial_20261014.py controller',NAME+' controller')
     s=change(s,'#SBATCH --time=02:30:00','#SBATCH --time=03:45:00')
@@ -160,7 +165,8 @@ def prepare(commit):
         src=DONOR/'block-0/service-cache'/cache
         if src.is_dir():shutil.copytree(src,R/'block-0/service-cache'/cache,symlinks=True)
     previous_adapter=p['adapter']['directory']
-    p.update(source_commit=commit,source_parent_commit=p['source_commit'],source_donor_plan_sha256=DONOR_SHA,
+    p.update(source_commit=commit,source_parent_commit=p['source_commit'],source_donor_plan_sha256=DONOR_SHA,node=NODE,
+        staging_note='v1 is CPU-only, never submitted. Before outcomes, select known-compatible gpu3 to fit six3090 GPUs; every arm uses the same allocation. Scientific matrix unchanged.',
         schedule=schedule(),planned=48,native_trial_module=Path(__file__).stem,independent_pool_pairs=2,
         allocation_seconds=CAP,gpu_hours_cap=22.5,combined_gpu_seconds_cap=81000,new_window_gpu_seconds_cap=81000,
         prior_failures=[],run_seconds=RUN,slot_seconds=SLOT,
@@ -194,6 +200,9 @@ def prepare(commit):
 
 def preflight():
     p=base.c.trial.check();base.c.trial.cpu()
+    assert p['node']==NODE and f'#SBATCH --nodelist={NODE}' in (R/'run.sbatch').read_text()
+    assert (R/'image_live_2plus4_20261011.py').read_text().count(f"socket.gethostname().split('.')[0]=='{NODE}'")==2
+    assert f"split('.')[0]!='{NODE}'" in (R/'forets_native_cuda_identity_20260911.py').read_text()
     assert len(schedule())==48
     for row in schedule():
         ref=next(r for r in schedule() if r['seed']==row['seed'] and r['arm']=='old_medium')

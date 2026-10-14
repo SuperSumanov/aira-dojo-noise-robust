@@ -1,0 +1,18 @@
+{
+  "shape_compatible": true,
+  "pairs": 496,
+  "tensors": 992,
+  "kinds": {
+    "dense": 240,
+    "int4_packed": 256
+  },
+  "failures": [],
+  "config_sha256": "616c5137424e3997cbb1cd497aa0bf9883b3cfe9fd6715735a6e610a31106cfb",
+  "adapter_config_sha256": "3e3fd66a40c83e2d0c9826311b30191d76b2187d012ec0fa79dc50c03580b3ed",
+  "model_type": "qwen3_5",
+  "layers": 64,
+  "hidden": 5120,
+  "rank": 128,
+  "training_base_revision_known": false,
+  "limitation": "Shape compatibility alone is not exact training-base lineage or runtime/quality acceptance."
+}

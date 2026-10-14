@@ -1,0 +1,28 @@
+{
+  "donor_plan_sha256": "cba9bad500a106b8c44f18116c491a1744edb50c3744c7f7ef1f498e45cdbd4f",
+  "final_bundle_sha256": "d12d04af8684983be97f5ae6277731a65b505b5034244be34343daee02947006",
+  "first_bundle_sha256": "26b77353095994cd19b07595446d13cf72ba731fe9695d95028cc7840d285e61",
+  "frozen_source_files_checked": 327,
+  "frozen_source_unchanged": true,
+  "no_gpu": true,
+  "no_model_calls": true,
+  "no_scores_read": true,
+  "public": {
+    "aerial-cactus-identification": {
+      "public_files": 12761,
+      "public_manifest_sha256": "5de94f509746d92631351f2d81064244b2557561c7a845d53e227162591de17a",
+      "public_path": "/research/d7/spc/yzyang4/scheduling-image-live-2plus4-20261011-v1/dev-views/aerial-cactus-identification/public",
+      "text_sha256": "7346def13bd4b2d5997546dee236a012a1d2b4ba0fd81f7248c00a4140660a67"
+    },
+    "denoising-dirty-documents": {
+      "public_files": 198,
+      "public_manifest_sha256": "a89227a10221da3d2925fef17ed3820ed9c5786fcac3942c7bfd528de072c119",
+      "public_path": "/research/d7/spc/yzyang4/scheduling-image-live-2plus4-20261011-v1/dev-views/denoising-dirty-documents/public",
+      "text_sha256": "06a76370bbf2c166df672186eb7a82bf1b40060fd83d6630f52729d40630af24"
+    }
+  },
+  "public_preparation_wall_seconds": 60.32944286800921,
+  "public_text_and_manifests_equal": true,
+  "timing_note": "v1 field preparation_cpu_seconds actually used monotonic wall time; v2 correctly labels preparation_wall_seconds. Neither is GPU time.",
+  "verifier_sha256": "e5ba8f46c32161c14cf4d33e7ba772db18485eb08b53efa4ae24ec4092268d00"
+}

@@ -1,0 +1,18 @@
+{
+  "observed_utc": "2026-10-14T01:39:43Z",
+  "cpu_configs": 32,
+  "matched_prompt_groups": 8,
+  "native_hook": true,
+  "first_proposal_links": 32,
+  "frozen_files_unchanged": 327,
+  "independent_check_passed": true,
+  "method": "Independent Node recomputation from installed native matrix and original 18253 run endpoints; every index, task, arm, common-start delta, prompt/preview/start digest and local script hash checked.",
+  "unit_tests_passed": 6,
+  "new_gpu_jobs_submitted": 0,
+  "new_model_calls": 0,
+  "new_gpu_hours": 0,
+  "original_18253_quality_gate": false,
+  "original_18253_input_gate": false,
+  "new_model_gain_confirmed": false,
+  "new_32_run_15_gpu_hour_request": "awaiting explicit reply as of observed_utc; not submitted; previous batch budget not reusable"
+}

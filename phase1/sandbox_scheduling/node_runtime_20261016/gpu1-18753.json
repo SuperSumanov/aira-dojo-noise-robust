@@ -1,0 +1,76 @@
+{
+  "node": "gpu1",
+  "job": "18753",
+  "started_unix": 1792104917.6228242,
+  "scientific_runs": 0,
+  "model_loads": 0,
+  "task_data_reads": 0,
+  "system_installs": 0,
+  "source_commit": "44e85d9e3daebb72a5689351d5a4ddf44633d18d",
+  "allocation_gpu_cap": 1,
+  "allocation_seconds_cap": 180,
+  "code_sha256": "71bd2854e990435b1e02cff6e92cdf8c6253ef8714d4399c73a74e7a7d579c11",
+  "cuda_script_sha256": "9a3cf0df18b33bf390db53f8fd10fcef1ee49a92de1a7f9e9e8fcb3046d4a7b0",
+  "images": {
+    "task": {
+      "returncode": 0,
+      "elapsed_seconds": 15.598290647991234,
+      "image_path": "/research/d7/spc/yzyang4/aira-dojo/build/superimage/superimage.root.2026-07-macos-v1.sif",
+      "image_size": 19717783552,
+      "image_stat_unchanged": true,
+      "cuda": {
+        "passed": true,
+        "gpu_uuid": "GPU-35233dc3-93b7-32f3-ca7b-5f6ff1b6c2de",
+        "gpu_name": "NVIDIA GeForce RTX 3090",
+        "capability": [
+          8,
+          6
+        ],
+        "torch_version": "2.5.1+cu124",
+        "cuda_version": "12.4",
+        "seed": 216001,
+        "matrix_shape": [
+          128,
+          128
+        ],
+        "exact_result": 128
+      },
+      "stderr_tail": ""
+    },
+    "service": {
+      "returncode": 0,
+      "elapsed_seconds": 30.180057074991055,
+      "image_path": "/research/d7/spc/yzyang4/local-qwen27b-20260914-zcx1k1dy/vllm.sif",
+      "image_size": 7939788800,
+      "image_stat_unchanged": true,
+      "cuda": {
+        "passed": true,
+        "gpu_uuid": "GPU-35233dc3-93b7-32f3-ca7b-5f6ff1b6c2de",
+        "gpu_name": "NVIDIA GeForce RTX 3090",
+        "capability": [
+          8,
+          6
+        ],
+        "torch_version": "2.13.0+cu130",
+        "cuda_version": "13.0",
+        "seed": 216001,
+        "matrix_shape": [
+          128,
+          128
+        ],
+        "exact_result": 128
+      },
+      "stderr_tail": ""
+    }
+  },
+  "launcher_candidates": [
+    "/usr/bin/singularity"
+  ],
+  "launcher_version": "singularity-ce version 4.5.1-noble",
+  "launcher_version_rc": 0,
+  "host_gpu_uuids": [
+    "GPU-35233dc3-93b7-32f3-ca7b-5f6ff1b6c2de"
+  ],
+  "status": "both_original_images_cuda_passed",
+  "ended_unix": 1792104963.844218
+}

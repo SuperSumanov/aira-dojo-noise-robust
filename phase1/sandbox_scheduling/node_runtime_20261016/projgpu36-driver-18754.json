@@ -1,0 +1,28 @@
+{
+  "job": "18754",
+  "node": "projgpu36",
+  "model_calls": 0,
+  "task_executions": 0,
+  "code_sha256": "e4f0de935f9d61a6f2622f1dd49c1f6438f00bbab5db457921a5eeb0c7c9d6ab",
+  "allocation": {
+    "SLURM_JOB_GPUS": null,
+    "SLURM_STEP_GPUS": "0",
+    "CUDA_VISIBLE_DEVICES": "0"
+  },
+  "cuInit_returncode": 999,
+  "cuda_error_name": "CUDA_ERROR_UNKNOWN",
+  "cuda_error_text": "unknown error",
+  "cuDriverGetVersion_rc": 0,
+  "cuda_driver_api_version": 13030,
+  "loaded_libcuda_paths": [
+    "/usr/lib/x86_64-linux-gnu/libcuda.so.610.57.04"
+  ],
+  "kernel_driver_version": "NVRM version: NVIDIA UNIX x86_64 Kernel Module  610.57.04  Wed Jul 29 02:50:14 UTC 2026\nGCC version:  gcc version 11.4.0 (Ubuntu 11.4.0-1ubuntu1~22.04.3) \n",
+  "nvidia_smi_rc": 0,
+  "nvidia_smi_stdout": "NVIDIA GeForce RTX 4090, 610.57.04\n",
+  "nvidia_smi_stderr": "",
+  "container_exec_help_rc": 0,
+  "container_help_has_no_mount": false,
+  "container_help_has_containall": true,
+  "container_exec_help_stderr": ""
+}

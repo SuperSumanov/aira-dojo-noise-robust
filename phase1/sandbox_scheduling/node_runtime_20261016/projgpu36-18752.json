@@ -1,0 +1,24 @@
+{
+  "node": "projgpu36",
+  "job": "18752",
+  "started_unix": 1792104915.2864017,
+  "scientific_runs": 0,
+  "model_loads": 0,
+  "task_data_reads": 0,
+  "system_installs": 0,
+  "source_commit": "44e85d9e3daebb72a5689351d5a4ddf44633d18d",
+  "allocation_gpu_cap": 1,
+  "allocation_seconds_cap": 180,
+  "code_sha256": "71bd2854e990435b1e02cff6e92cdf8c6253ef8714d4399c73a74e7a7d579c11",
+  "cuda_script_sha256": "9a3cf0df18b33bf390db53f8fd10fcef1ee49a92de1a7f9e9e8fcb3046d4a7b0",
+  "images": {},
+  "launcher_candidates": [
+    "/usr/bin/singularity"
+  ],
+  "launcher_version": "singularity version 3.5.2+ds1",
+  "launcher_version_rc": 0,
+  "status": "failed_closed",
+  "error_type": "RuntimeError",
+  "error": "host_cuda_init_failed",
+  "ended_unix": 1792104915.5542204
+}

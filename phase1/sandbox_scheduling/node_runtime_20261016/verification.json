@@ -1,0 +1,26 @@
+{
+  "scope": "Independent node/runtime qualification requested after the closed six-hour window; no scientific search, model loading, task data, or score access.",
+  "root": "/research/d7/spc/yzyang4/node-runtime-20261016-JnNPsD",
+  "source_commit": "44e85d9e3daebb72a5689351d5a4ddf44633d18d",
+  "jobs": [
+    {"id": "18752", "node": "projgpu36", "state": "FAILED", "allocation_gpu_seconds": 4, "purpose": "Entry and original-image qualification; stopped before container execution on host CUDA init failure."},
+    {"id": "18753", "node": "gpu1", "state": "COMPLETED", "allocation_gpu_seconds": 47, "purpose": "Both original images passed real single-GPU arithmetic and UUID isolation checks."},
+    {"id": "18754", "node": "projgpu36", "state": "COMPLETED", "allocation_gpu_seconds": 3, "purpose": "Separate metadata-only diagnosis: CUDA_ERROR_UNKNOWN 999; kernel and loaded libcuda both 610.57.04; no-mount not listed in runtime help."}
+  ],
+  "primary_allocation_cap_gpu_seconds": 360,
+  "independent_followup_cap_gpu_seconds": 60,
+  "actual_allocation_gpu_seconds": 54,
+  "actual_gpu_hours": 0.015,
+  "previous_closed_window_gpu_seconds_separate": 89,
+  "transfer_sha256": {
+    "projgpu36-18752.json": "6414a3a87fff50d5c9f602059e990c8680be7e03fb4a45511de94360704114cd",
+    "gpu1-18753.json": "a3a8cdf93e44a4a405dd48b549a6d7e711778336d8c27c76c1405d2f0d89e073",
+    "projgpu36-driver-18754.json": "7e0df5d03e7ee671a276a287a84c837b9ed727291c79c11592d19ee275ff0e3e"
+  },
+  "last_resource_observation_utc": "2026-10-15T22:56:51Z",
+  "gpu1_total": 7,
+  "gpu1_other_job_allocated": 2,
+  "gpu1_other_job_id": "18661",
+  "gpu1_other_job_scheduled_end_hong_kong": "2026-10-16T08:17:33+08:00",
+  "qualification_boundary": "gpu1 single-device arithmetic is verified, not TP2 model serving, six-device isolation, vLLM kernels, or end-to-end search. Image size and mtime unchanged; no new full SIF hash calculation. Scheduled job end does not guarantee allocation. No system installation, Torch change, CPU fallback, or old batch retry. CUDA error cause on projgpu36 is not yet established."
+}

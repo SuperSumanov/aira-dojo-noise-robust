@@ -1,0 +1,74 @@
+{
+  "checked_date_hong_kong": "2026-10-15",
+  "experiment": "18468",
+  "frozen_source_commit": "2ec2903f746e5368025a26a75d1c20cf3ebb9c3c",
+  "purpose": "Related-work boundaries and interpretation constraints. Not a new protocol, result, authorization, or replacement of the frozen quality gate.",
+  "claim_under_test": "At identical generator, starting history, hardware pool and wall budget, does allowing a ready execution to use any free execution GPU improve the best externally validated returned solution in both reversed-order repetitions?",
+  "not_novel_by_itself": [
+    "Shared FIFO or removing fixed-device fragmentation",
+    "Resource or duration prediction from code/logs",
+    "Joint admission across model and tool resources",
+    "Budget-aware marginal-value scoring",
+    "Speculative tools on slack resources"
+  ],
+  "primary_sources": [
+    {
+      "name": "SchedMate",
+      "url": "https://arxiv.org/html/2510.03334",
+      "read_sections": "3 and 4",
+      "overlap": "Semantic workload retrieval, progress extraction, failure handling and scheduling integration.",
+      "boundary": "Simply adding code/log understanding to a scheduler is not our novelty."
+    },
+    {
+      "name": "MARS",
+      "url": "https://arxiv.org/html/2604.26963v1",
+      "implementation": "https://github.com/Afterglow231/MARS_preview",
+      "read_sections": "3, 4, 6.4 and 6.5; implementation README",
+      "overlap": "GPU inference/CPU tool dual-pressure admission, multilevel feedback priority and opportunistic cache management; full-stack quality-preserving speedups.",
+      "boundary": "The public preview is a relevant stronger-reference implementation, not installed or reproduced here. Its stack is not a drop-in change to our frozen task image."
+    },
+    {
+      "name": "PASTE: Act While Thinking",
+      "url": "https://arxiv.org/html/2603.18897v1",
+      "read_sections": "3 and 5",
+      "overlap": "Pattern-aware speculative tool execution, slack budgets, priority and promotion to authoritative work.",
+      "boundary": "No speculation or lookahead is introduced in the current approved experiment."
+    },
+    {
+      "name": "Budget-Aware Value Tree Search",
+      "url": "https://arxiv.org/html/2603.12634v1",
+      "read_sections": "Abstract, Introduction and 6",
+      "overlap": "Residual step values and remaining-budget-conditioned tree expansion.",
+      "boundary": "The paper states its evaluated tool has uniform discrete cost; this difference does not prove a novel solution for our heterogeneous tools. No critic route is reopened."
+    },
+    {
+      "name": "ZEBRA",
+      "url": "https://arxiv.org/html/2605.20485v1",
+      "read_sections": "Contribution summary, related work and D.16-D.18",
+      "overlap": "LLM-estimated phase utility curves with constrained budget allocation; comparison against fixed average shares and controller overhead accounting.",
+      "boundary": "A generic utility-per-budget allocator is not new. Its reported association between realized spending and quality is not by itself a causal guarantee of monotonic benefit in our search."
+    },
+    {
+      "name": "Inference-Time Budget Control for LLM Search Agents",
+      "url": "https://arxiv.org/html/2605.05701v1",
+      "read_sections": "Abstract and Introduction",
+      "overlap": "Task-level marginal-value-per-budget action control under token/tool caps.",
+      "boundary": "Only abstract/introduction reviewed; not a full reproduction or novelty exclusion for every detail."
+    },
+    {
+      "name": "PeakBench",
+      "url": "https://arxiv.org/html/2608.24509v1",
+      "read_sections": "Scheduling metrics and Resource-Aware Scheduling Context",
+      "overlap": "Separate logical planning from physical resource scheduling; provide measured tool resource profiles.",
+      "boundary": "A resource-aware agent benchmark alone is not a new contribution here; our present test remains a real quality experiment, not a benchmark launch."
+    }
+  ],
+  "interpretation": {
+    "if_gate_passes": "Evidence of a useful resource-fragmentation effect under this fixed development setup, not a novel algorithm or broad cross-task confirmation. Any method must next outperform shared FIFO and applicable stronger scheduling references at inclusive cost.",
+    "if_latency_improves_but_quality_gate_fails": "Report only the system-level effect; do not claim final-score gains, change endpoints, or append a semantic selector to rescue this batch.",
+    "if_infrastructure_fails": "Close this batch with the complete assigned denominator and actual allocation cost; no scientific conclusion about pooling and no automatic retry.",
+    "causal_limit": "Scheduling changes both returned feedback timing and subsequent generated trajectories. A quality contrast identifies their combined effect, not a causal mediation result for feedback count, validity, or queue delay separately.",
+    "replication_unit": "Two reversed-order pool comparisons within one shared-service allocation; the 32 trajectories are not 32 independent treatment replications.",
+    "scope": "Two reused development tasks and a common historical warm start. No new tasks, official test, agent training, paid API, or historical-gain attribution."
+  }
+}

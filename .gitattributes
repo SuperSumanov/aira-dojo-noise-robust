@@ -1090,3 +1090,11 @@ phase1/sandbox_scheduling/metric_deployment_20261015_intake/*.json -text
 phase1/sandbox_scheduling/metric_deployment_20261015_cpu/*.json -text
 phase1/sandbox_scheduling/metric_deployment_18412_closed/*.json -text
 phase1/sandbox_scheduling/metric_deployment_18412_closed/*.csv -text diff whitespace=cr-at-eol
+phase1/sandbox_scheduling/pooling*_20261015.py -text
+phase1/sandbox_scheduling/shared_pool_20261015.py -text
+phase1/sandbox_scheduling/test*pool*_20261015.py -text
+phase1/sandbox_scheduling/verify_pooling*_20261015.cjs -text
+phase1/sandbox_scheduling/pooling_research_boundary_20261015.json -text
+phase1/sandbox_scheduling/pooling_18468_closed/*.json -text
+phase1/sandbox_scheduling/pooling_18468_closed/*.csv -text diff whitespace=cr-at-eol
+phase1/sandbox_scheduling/compute_split_20261015_cpu/*.json -text

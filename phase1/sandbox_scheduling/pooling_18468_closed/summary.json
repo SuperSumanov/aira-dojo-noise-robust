@@ -1,0 +1,15 @@
+{
+  "assigned": 32,
+  "complete": 0,
+  "gpu_hours": 0.5816666666666667,
+  "gpu_seconds": 2094,
+  "incomplete": true,
+  "limitation": "Standard FIFO pooling is NOT novelty. Exploratory strong-baseline qualification on reused development tasks; two pool repeats share one service, not32 independent replicates. Warm starts and public preview are common sunk inputs. No training or history-transfer gain.",
+  "plan_sha256": "dfd73da4f1661ce1b74076e44c0e6064d93e39621e7cd717da0eaa73af340515",
+  "predeclared_success_gate_met": false,
+  "quality_gate": false,
+  "reader_sha256": "3adac787a6a6e14efbda5441ef4ad4e64f31fd9cc2d278116cba11b1ea88e4ec",
+  "scores_recomputed": 0,
+  "source_commit": "2ec2903f746e5368025a26a75d1c20cf3ebb9c3c",
+  "started": 0
+}

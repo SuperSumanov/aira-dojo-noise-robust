@@ -37,7 +37,8 @@ NODE='gpu3';NAME=Path(__file__).name
 ORDER=('fixed','shared','shared','fixed');RUN,SLOT,CAP=1020,1180,6000
 DONOR_SHA='e3baf5d2fa704cdd0c3fc458549aa21449fdbf3209bac87337b370e2a416e154'
 BUNDLE_SHA='d12d04af8684983be97f5ae6277731a65b505b5034244be34343daee02947006'
-NAMES=(NAME,'shared_pool_20261015.py','test_shared_pool_20261015.py','pooling_readout_20261015.py')
+NAMES=(NAME,'shared_pool_20261015.py','test_shared_pool_20261015.py','pooling_readout_20261015.py',
+       'test_pooling_qualification_20261015.py')
 
 
 def schedule():
@@ -153,9 +154,14 @@ def qualification(native):
     q=R/'dispatch-qualification';q.mkdir();work=q/'work';work.mkdir()
     s=pool.State('shared')
     for i in range(4):s.request(str(i),3)
+    # Hold all four logical leases before the sequential device checks. Releasing
+    # device0 first correctly makes FIFO select it again; requiring device1 in
+    # that situation was a qualification-harness bug (closed batch18468).
+    assigned=[s.admit(str(i)) for i in range(4)]
+    assert assigned==list(range(4))
     results=[]
     for i,uid in enumerate(native['gpu_uuids']):
-        device=s.admit(str(i));assert device==i
+        device=assigned[i]
         code=("import json,os,torch; from pathlib import Path; "
               "assert torch.cuda.is_available() and torch.cuda.device_count()==1; "
               "caps=dict(line.split(':',1) for line in Path('/proc/self/status').read_text().splitlines() if ':' in line); "
@@ -379,7 +385,8 @@ def preflight():
             assert op['llm']['client']['model_id']=='qwen3.8-27b'
             assert kw['reasoning_effort']==policy.effort('old_fast',role)
             assert kw['max_tokens']==(8192 if role=='analyze' else 32768)
-    subprocess.run([str(base.c.trial.PY),'-B','-m','unittest','test_shared_pool_20261015','test_fixed_public_preview_20261014','-v'],cwd=R,check=True)
+    subprocess.run([str(base.c.trial.PY),'-B','-m','unittest','test_shared_pool_20261015',
+                    'test_pooling_qualification_20261015','test_fixed_public_preview_20261014','-v'],cwd=R,check=True)
     write(R/'cpu.json',dict(plan_sha256=sha(R/'plan.json'),configs=32,exact_inputs=True,no_gpu=True))
     write(R/'preflight.json',dict(source_commit=p['source_commit'],plan_sha256=sha(R/'plan.json'),configs=32,
         exact_input_gate=True,gpu_hours_cap=10,no_gpu=True,no_model_calls=True))

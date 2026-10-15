@@ -1,0 +1,36 @@
+{
+  "assigned": 32,
+  "automatic_retry": false,
+  "closed_sha256": "a73be822cbc859596d05cd7a69cda194c1a06866a35085f006ee9cf344dc8e5f",
+  "complete": 0,
+  "elapsed_seconds": 349,
+  "end_hk": "2026-10-15T07:52:29",
+  "error": {
+    "frames": [
+      {
+        "file": "pooling_trial_20261015.py",
+        "function": "controller",
+        "line": 252
+      }
+    ],
+    "type": "RuntimeError"
+  },
+  "executor_log_redacted": "Traceback (most recent call last):\n  File \"/research/d7/spc/yzyang4/scheduling-pooling-20261015-v1/pooling_trial_20261015.py\", line 397, in <module>\n    elif a.mode=='executor':executor(a.block)\n                            ^^^^^^^^^^^^^^^^^\n  File \"/research/d7/spc/yzyang4/scheduling-pooling-20261015-v1/pooling_trial_20261015.py\", line 193, in executor\n    if block==0:qualification(native)\n                ^^^^^^^^^^^^^^^^^^^^^\n  File \"/research/d7/spc/yzyang4/scheduling-pooling-20261015-v1/pooling_trial_20261015.py\", line 158, in qualification\n    device=s.admit(str(i));assert device==i\n                                  ^^^^^^^^^\nAssertionError\nsrun: error: gpu3: task 0: Exited with exit code 1\n",
+  "executor_log_sha256": "5ca6ee9cf5b4e2e62dd116f2abdeadcb29c83ca288f4b247197e0d83527a2e43",
+  "gpu_hours": 0.5816666666666667,
+  "gpu_seconds": 2094,
+  "job": "18468",
+  "plan_sha256": "dfd73da4f1661ce1b74076e44c0e6064d93e39621e7cd717da0eaa73af340515",
+  "quality_claim": false,
+  "redaction_counts": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "service_cleanup_gpu_clean": true,
+  "source_commit": "2ec2903f746e5368025a26a75d1c20cf3ebb9c3c",
+  "start_hk": "2026-10-15T07:46:40",
+  "started": 0,
+  "state": "FAILED"
+}

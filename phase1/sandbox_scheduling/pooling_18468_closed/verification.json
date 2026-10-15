@@ -1,0 +1,32 @@
+{
+  "job": "18468",
+  "frozen_source_commit": "2ec2903f746e5368025a26a75d1c20cf3ebb9c3c",
+  "assigned": 32,
+  "started": 0,
+  "complete": 0,
+  "gpu_seconds": 2094,
+  "gpu_hours": 0.5816666666666667,
+  "scientific_status": "not_evaluated_due_to_pre_search_qualification_harness_failure",
+  "independent_node_denominator_and_cost_check": true,
+  "transfer_hashes_verified": {
+    "failure-18468.safe.json": "d6a8419d83cf78dbffd61ac35fed831896ac52384de16be7b203a930ff47c6c8",
+    "summary.json": "fb962dd3d5cfeea520906b6c96ba6b077b30593c83956afa5f3647f40410589e",
+    "runs.json": "2f3da5977726c74904b93282d8625e70640ca397a993dff704a2d4a7e61adb15",
+    "runs.csv": "6f0517f3704298a7ba24783be53fd0443ed5a2fb639bef4078e45eb6afc2f0ed"
+  },
+  "cause": "Qualification released device0 after its first check. FIFO correctly reused that lowest free device, but the next assertion incorrectly required device1. No search was started.",
+  "repair": "Reserve all four logical devices first, then check and release them sequentially. No change to the production eligibility rule or quality gate.",
+  "cpu_regression": {
+    "local_tests_passed": 19,
+    "remote_tests_passed": 19,
+    "exact_old_source_failure_reproduced": true,
+    "corrected_full_qualification_control_flow_passed": true,
+    "false_receipts_and_execution_failure_rejected": true,
+    "real_gpu_validation": false,
+    "remote_directory": "/tmp/pooling-qualification-cpu-20261015-lxVdI0",
+    "initial_local_test_attempt": "Four fixture tests encountered Windows sandbox temporary-directory ACL errors before reaching the qualification logic. Filesystem creation was then made explicitly inert, as already done for GPU/process boundaries."
+  },
+  "automatic_retry": false,
+  "new_batch_submitted": false,
+  "limitation": "No inference about pooling quality or speedup is possible from this failed batch. The CPU regression is not a CUDA, Jupyter or final-score test."
+}

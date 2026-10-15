@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-# Write DPO preference pairs for each split bucket.
-# Usage: bash to_dpo.sh OUT_ROOT [BUCKET]
+# Write GRPO JSONL and Parquet for each split bucket.
+# Usage: bash to_grpo.sh OUT_ROOT [BUCKET]
 set -euo pipefail
 
 OUT_ROOT=${1:?expected the output root}
@@ -21,7 +21,7 @@ for dataset in "${datasets[@]}"; do
     [[ -f $dataset/manifest.json && -f $dataset/groups.jsonl ]] || continue
     [[ -f $dataset/splits.jsonl ]] || { echo "missing splits: $dataset/splits.jsonl" >&2; exit 2; }
     found=1
-    echo "[to_dpo] $(basename "$dataset")"
-    python -m src.data.to_dpo --dataset "$dataset" --output-dir "$dataset"
+    echo "[to_grpo] $(basename "$dataset")"
+    python -m src.data.to_grpo --dataset "$dataset" --output-dir "$dataset" --use-metric-reward
 done
 (( found )) || { echo "no aggregated datasets found under $OUT_ROOT" >&2; exit 2; }

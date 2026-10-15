@@ -20,25 +20,34 @@ from pathlib import Path
 from typing import Any
 
 from . import groupdata
+
 from .journal import (
     CODE_OPERATORS,
-    DEFAULT_JOURNAL_GLOB,
     find_run_dir,
     iter_journal_paths,
-    iter_episodes,
     read_run_meta,
 )
-
 
 def build_batch(
     batch_dir: Path,
     output_dir: Path,
     batch_key: str | None = None,
-    journal_glob: str = DEFAULT_JOURNAL_GLOB,
     normalize_packages: bool = True,
     max_journals: int | None = None,
     verbose: bool = True,
+    use_big_journal: bool = False,
 ) -> dict[str, Any]:
+    if use_big_journal:
+        from .big_journal import (
+            DEFAULT_JOURNAL_GLOB,
+            iter_episodes
+        )
+    else:
+        from .journal import (
+            DEFAULT_JOURNAL_GLOB,
+            iter_episodes
+        )
+    journal_glob = DEFAULT_JOURNAL_GLOB
     """Group every journal below *batch_dir* and write a dataset directory."""
     batch_dir = Path(batch_dir).resolve()
     output_dir = Path(output_dir).resolve()
@@ -200,7 +209,6 @@ def main() -> None:
     parser.add_argument("--batch-dir", required=True, help="Directory holding the runs of one experiment set.")
     parser.add_argument("--output-dir", required=True, help="Where to write the batch dataset directory.")
     parser.add_argument("--batch-key", default=None, help="Stable name for this batch (default: directory name).")
-    parser.add_argument("--journal-glob", default=DEFAULT_JOURNAL_GLOB)
     parser.add_argument("--max-journals", type=int, default=None, help="Read at most N journals (smoke tests).")
     parser.add_argument(
         "--no-package-normalisation",
@@ -208,15 +216,16 @@ def main() -> None:
         action="store_false",
         help="Hash prompts exactly, without sorting the shuffled package list.",
     )
+    parser.add_argument("--use-big-journal", action="store_true", help="Use the JOURNAL.jsonl instead of journal.jsonl (default: false).")
     args = parser.parse_args()
 
     build_batch(
         batch_dir=Path(args.batch_dir),
         output_dir=Path(args.output_dir),
         batch_key=args.batch_key,
-        journal_glob=args.journal_glob,
         normalize_packages=args.normalize_packages,
         max_journals=args.max_journals,
+        use_big_journal=args.use_big_journal,
     )
 
 

@@ -428,12 +428,8 @@ GRPO 那边 `non_thinking` 丢掉 1,271 个"全都没跑通"的组、44 个单�
 
 1. **合并后的候选实际看到的搜索记忆不同。** `prompt_key` 忽略搜索记忆，
    但 `samples.jsonl` 和 SFT/GRPO 导出的 prompt 仍保留它。
-3. **`journal_for_unselected.jsonl` 没有收。** 那是 ForeTS 被 critic 淘汰、根本没执行的候选，
-   正好是"同一个 prompt 的多个回答"，而且一组候选的生成条件完全一致，对 GRPO 的价值可能
-   比 `journal.jsonl` 还高。但它们的 `score` 一律为空，需要单独的 reward 设计。
-   把 `--journal-glob` 改成 `**/journal_for_unselected.jsonl` 就能读进来。
-4. **batch 划分是目录规则。** 同一个任务在不同日期、不同目录跑的实验会被当成不同 batch，
+2. **batch 划分是目录规则。** 同一个任务在不同日期、不同目录跑的实验会被当成不同 batch，
    即使环境一样也不会合并。这是有意的保守做法；想合并就把 `BATCH_ROOT` 往上提一层，
    但那样一个 batch 里会出现多种环境（仍然靠 `env_signature` 隔离，只是会影响分桶判断）。
-5. **reward 是 episode 级的。** 一次 debug 让代码从跑不通变成跑得通，这个动作本身没有单独的
+3. **reward 是 episode 级的。** 一次 debug 让代码从跑不通变成跑得通，这个动作本身没有单独的
    reward，只有它所属 episode 的结局有；同一个 episode 里的每一步共享同一个 return。

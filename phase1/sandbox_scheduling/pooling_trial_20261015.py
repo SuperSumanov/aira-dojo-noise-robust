@@ -33,8 +33,8 @@ from fixed_public_preview_20261014 import load_text,install,digest,public_manife
 import shared_pool_20261015 as pool
 from deferred_alarm_transaction_20261012 import protect
 
-R=DONOR.parent/'scheduling-pooling-20261016-v2'
-NODE='projgpu12';NAME=Path(__file__).name
+R=DONOR.parent/'scheduling-pooling-20261016-v3'
+NODE='gpu1';NAME=Path(__file__).name
 ORDER=('fixed','shared','shared','fixed');RUN,SLOT,CAP=1020,1180,6000
 DONOR_SHA='e3baf5d2fa704cdd0c3fc458549aa21449fdbf3209bac87337b370e2a416e154'
 BUNDLE_SHA='d12d04af8684983be97f5ae6277731a65b505b5034244be34343daee02947006'
@@ -353,12 +353,12 @@ def prepare(commit):
         src=DONOR/'block-0/service-cache'/cache
         if src.is_dir():shutil.copytree(src,R/'block-0/service-cache'/cache,symlinks=True)
     p.update(source_commit=commit,source_parent_commit=p['source_commit'],source_donor_plan_sha256=DONOR_SHA,node=NODE,
-        staging_note='10/16 v1 is CPU-only and never submitted. gpu3 six devices are occupied by a72h job. Both arms move together to available unreserved RTX3090 projgpu12, with unchanged task/service images and all in-allocation CUDA/isolation checks. Host OS differs from previous batches, not between arms. No CPU fallback or image upgrade.',
+        staging_note='10/16 independent v3 queues on RTX3090 gpu1 as requested by user. Closed18673 failed before service exec on projgpu12; its root is unchanged. Job18753 verified original task/service images CUDA arithmetic on gpu1, not TP2/model/search. All original in-allocation checks remain. Both arms share the same node and images. No CPU fallback or image upgrade; resource availability is not assumed.',
         schedule=schedule(),planned=32,native_trial_module=Path(__file__).stem,independent_pool_pairs=2,
         allocation_seconds=CAP,gpu_hours_cap=10,combined_gpu_seconds_cap=36000,new_window_gpu_seconds_cap=36000,
         prior_failures=[],run_seconds=RUN,slot_seconds=SLOT,
-        approval='Explicit user approval2026-10-16HK for independent production-guard batch after18510:32 runs,2service+4execution,<=6000seconds including qualification/startup/failure/cleanup,<=10GPUh. Existing deadline transaction protection wired to execution queue only; no scientific/input/quality-gate change. No retry.',
-        independent_predecessor=dict(job='18510',root=str(DONOR.parent/'scheduling-pooling-20261015-v2'),gpu_seconds=15522,sealed=True,budget_reused=False),
+        approval='Explicit user direction2026-10-16HK to queue six GPUs on an original compatible node or gpu1 and resume same-budget comparison. Independent32 runs,2service+4execution,<=6000seconds including qualification/startup/failure/cleanup,<=10GPUh. Only root/node/administrative metadata differ from sealed18673; scientific inputs, seeds, strategies and quality gates unchanged. No retry or reuse of closed batches.',
+        independent_predecessor=dict(job='18673',root=str(DONOR.parent/'scheduling-pooling-20261016-v2'),gpu_seconds=78,sealed=True,budget_reused=False),
         primary='Task-best externally validated returned solution within each1020s trajectory deadline, aggregated over its four-run pool; common warm incumbent included. Run-level best/median/SD and native-selected endpoint separate. Fixed vs shared FIFO, same initial history/seeds/old-fast generator.',
         single_change='Fixed GPU eligibility vs any free execution GPU. Both use common4GPU Slurm step, exact single-device namespace, lease before startup through cleanup, fixed2physical CPU cores/run. No duration/score/identity prediction.',
         advance='All32complete; input/isolation/dispatch/cleanup/cost gates pass; shared denoising pool-best improves fixed by>=.001 in BOTH reverse repeats and aerial pool-best nondeclines in BOTH. Report medians/SD/all endpoints regardless. No interim quality or pooled rescue.',

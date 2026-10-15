@@ -5,12 +5,13 @@ import json
 from pathlib import Path
 
 OLD=Path('/research/d7/spc/yzyang4/scheduling-pooling-20261015-v2')
-NEW=OLD.with_name('scheduling-pooling-20261016-v1')
+NEW=OLD.with_name('scheduling-pooling-20261016-v2')
 def read(p):return json.loads(p.read_text())
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
 assert sha(OLD/'plan.json')=='c31091ff71f19a15ce6cdb12583f1d7a16cbc5f53a96b97d26b03782003bce64'
 old,new=read(OLD/'plan.json'),read(NEW/'plan.json')
-allowed={'source_commit','approval','files','independent_predecessor'}
+allowed={'source_commit','approval','files','independent_predecessor','node','staging_note'}
+assert old['node']=='gpu3' and new['node']=='projgpu12'
 assert set(old)==set(new)
 normalized=json.loads((NEW/'plan.json').read_text().replace(str(NEW),str(OLD)))
 assert {k:v for k,v in old.items() if k not in allowed}=={k:v for k,v in normalized.items() if k not in allowed}
@@ -36,10 +37,13 @@ hooks[1].body.pop(0)
 assert ast.dump(hooks[0])==ast.dump(hooks[1])
 for name in ('shared_pool_20261015.py','pooling_readout_20261015.py','deferred_alarm_transaction_20261012.py'):
     assert sha(OLD/name)==sha(NEW/name)
+for name in ('image_live_2plus4_20261011.py','forets_native_cuda_identity_20260911.py','run.sbatch'):
+    assert (OLD/name).read_text()==(NEW/name).read_text().replace(str(NEW),str(OLD)).replace('projgpu12','gpu3')
 gate=read(NEW/'production-guard.safe.json')
 assert gate['passed'] and len(gate['cases'])==10 and all(x['passed'] and not x['manual_guard'] for x in gate['cases'])
 assert gate['production_source_sha256']==sha(NEW/'pooling_trial_20261015.py')
 print(json.dumps(dict(passed=True,predecessor='18510',source_commit=new['source_commit'],
     plan_sha256=sha(NEW/'plan.json'),configs_equal=32,actual_cpu_inputs_equal=32,
     production_guard_cases=10,changed_functions=changed,dispatch_and_quality_gates_unchanged=True,
+    common_node='projgpu12',common_node_change_before_outcomes=True,
     old_batch_unchanged=True,gpu_calls=0,model_calls=0),sort_keys=True))

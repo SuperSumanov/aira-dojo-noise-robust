@@ -33,8 +33,8 @@ from fixed_public_preview_20261014 import load_text,install,digest,public_manife
 import shared_pool_20261015 as pool
 from deferred_alarm_transaction_20261012 import protect
 
-R=DONOR.parent/'scheduling-pooling-20261016-v1'
-NODE='gpu3';NAME=Path(__file__).name
+R=DONOR.parent/'scheduling-pooling-20261016-v2'
+NODE='projgpu12';NAME=Path(__file__).name
 ORDER=('fixed','shared','shared','fixed');RUN,SLOT,CAP=1020,1180,6000
 DONOR_SHA='e3baf5d2fa704cdd0c3fc458549aa21449fdbf3209bac87337b370e2a416e154'
 BUNDLE_SHA='d12d04af8684983be97f5ae6277731a65b505b5034244be34343daee02947006'
@@ -331,7 +331,10 @@ def prepare(commit):
         write(R/f'configs/{i}.json',cfg)
     driver=R/'image_live_2plus4_20261011.py'
     s=change(driver.read_text(),"TIME_LIMIT='30 minutes',TIME_LIMIT_SECS='1800'","TIME_LIMIT='17 minutes',TIME_LIMIT_SECS='1020'")
-    driver.write_text(change(s,"'timeout=1890'","'timeout=1110'"))
+    s=change(s,"'timeout=1890'","'timeout=1110'")
+    driver.write_text(change(s,"socket.gethostname().split('.')[0]=='gpu3'",f"socket.gethostname().split('.')[0]=='{NODE}'",n=2))
+    identity=R/'forets_native_cuda_identity_20260911.py'
+    identity.write_text(change(identity.read_text(),"split('.')[0]!='gpu3'",f"split('.')[0]!='{NODE}'"))
     cpu=R/'fixed_preview_native_cpu_20261014.py'
     s=change(cpu.read_text(),"TIME_LIMIT='30 minutes', TIME_LIMIT_SECS='1800'","TIME_LIMIT='17 minutes', TIME_LIMIT_SECS='1020'")
     cpu.write_text(s)
@@ -341,6 +344,7 @@ def prepare(commit):
     with (R/'.service.env').open('x') as f:f.write('PRIMARY_KEY_QWEN3_8_27B='+secrets.token_hex(32)+'\n')
     (R/'.service.env').chmod(0o600)
     sb=R/'run.sbatch';s=sb.read_text().replace(str(DONOR),str(R))
+    s=change(s,'#SBATCH --nodelist=gpu3',f'#SBATCH --nodelist={NODE}')
     s=change(s,'r14-metric-deploy','r14-pooling')
     s=change(s,'metric_deployment_trial_20261015.py controller',NAME+' controller')
     s=change(s,'#SBATCH --time=03:45:00','#SBATCH --time=01:40:00')
@@ -348,7 +352,8 @@ def prepare(commit):
     for cache in ('vllm','triton'):
         src=DONOR/'block-0/service-cache'/cache
         if src.is_dir():shutil.copytree(src,R/'block-0/service-cache'/cache,symlinks=True)
-    p.update(source_commit=commit,source_parent_commit=p['source_commit'],source_donor_plan_sha256=DONOR_SHA,
+    p.update(source_commit=commit,source_parent_commit=p['source_commit'],source_donor_plan_sha256=DONOR_SHA,node=NODE,
+        staging_note='10/16 v1 is CPU-only and never submitted. gpu3 six devices are occupied by a72h job. Both arms move together to available unreserved RTX3090 projgpu12, with unchanged task/service images and all in-allocation CUDA/isolation checks. Host OS differs from previous batches, not between arms. No CPU fallback or image upgrade.',
         schedule=schedule(),planned=32,native_trial_module=Path(__file__).stem,independent_pool_pairs=2,
         allocation_seconds=CAP,gpu_hours_cap=10,combined_gpu_seconds_cap=36000,new_window_gpu_seconds_cap=36000,
         prior_failures=[],run_seconds=RUN,slot_seconds=SLOT,
@@ -380,6 +385,9 @@ def prepare(commit):
 def preflight():
     p=base.c.trial.check()
     assert len(schedule())==32 and p['gpu_hours_cap']==10
+    assert p['node']==NODE and f'#SBATCH --nodelist={NODE}' in (R/'run.sbatch').read_text()
+    assert (R/'image_live_2plus4_20261011.py').read_text().count(f"socket.gethostname().split('.')[0]=='{NODE}'")==2
+    assert f"split('.')[0]!='{NODE}'" in (R/'forets_native_cuda_identity_20260911.py').read_text()
     for row in schedule():
         ref=next(r for r in schedule() if r['seed']==row['seed'] and r['pool_mode']=='fixed')
         a,b=(read(R/f"configs/{r['index']}.json") for r in (row,ref))

@@ -1106,3 +1106,5 @@ phase1/sandbox_scheduling/*_20261016.py -text
 phase1/sandbox_scheduling/*_20261016.sh -text
 phase1/sandbox_scheduling/*_20261016.cjs -text
 phase1/sandbox_scheduling/pooling_guard_20261016_cpu/*.json -text
+phase1/sandbox_scheduling/pooling_18673_closed/*.json -text
+phase1/sandbox_scheduling/pooling_18673_closed/*.csv -text diff whitespace=cr-at-eol

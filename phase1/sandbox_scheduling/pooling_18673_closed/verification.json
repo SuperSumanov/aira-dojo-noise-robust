@@ -1,0 +1,35 @@
+{
+  "job": "18673",
+  "independent_verifier": "verify_pooling_trial_20261015.cjs",
+  "independent_verification_passed": true,
+  "assigned": 32,
+  "started": 0,
+  "complete": 0,
+  "scores_recomputed": 0,
+  "quality_claim": false,
+  "automatic_retry": false,
+  "failure": "Service os.execve failed before loading the model: /usr/bin/singularity was not found on projgpu12.",
+  "service_cleanup_gpu_clean": true,
+  "slurm_allocation_gpu_seconds": 78,
+  "gpu_hours": 0.021666666666666667,
+  "transfer_sha256": {
+    "summary.json": "f9d07c1ec4caca5a61b13c6bf16b1b444edfbe4f0fa59f1ad8b949d6e0f0c491",
+    "runs.json": "45fe7fb977bd7d6300dc48aa5460903b17ef62b7be784655be083bb13107d4b2",
+    "runs.csv": "29fe712784f3171a0e0eace45fe8eebf4562f874d7b58152c0e01217b72e48c0",
+    "failure-18673.safe.json": "2493854e511681dfb2a7ecce07d5ca8bc2815968face04a16d4f677e90a85909"
+  },
+  "separate_metadata_probe": {
+    "authority": "User explicitly approved all experiment requests; independent metadata-only allocation <=3 GPU-minutes total.",
+    "root": "/research/d7/spc/yzyang4/container-entry-probe-20261016-v1",
+    "first_job": "18676",
+    "first_job_gpu_seconds": 2,
+    "first_job_failure": "Login-node /tmp script not visible to compute node; no diagnostic executed.",
+    "corrected_job": "18677",
+    "corrected_job_gpu_seconds": 2,
+    "result": "Neither singularity nor apptainer in PATH; no executable at the five exact common installation paths checked.",
+    "boundary": "This is not a full filesystem search and does not prove no installation exists anywhere. No model, task image, or CUDA computation was invoked.",
+    "slurm_extern_tail_seconds": {"18673": 2, "18676": 1, "18677": 1}
+  },
+  "window_allocation_gpu_seconds": 82,
+  "window_allocation_gpu_hours": 0.02277777777777778
+}

@@ -1,0 +1,28 @@
+{
+  "assigned": 32,
+  "automatic_retry": false,
+  "complete": 0,
+  "elapsed_seconds": 13,
+  "end_hk": "2026-10-16T01:23:44",
+  "gpu_hours": 0.021666666666666667,
+  "gpu_seconds": 78,
+  "job": "18673",
+  "plan_sha256": "221a8fc38cffab0c0a08c80c795a38ed98f7a4eb7db5c22c8ecb9e34a948b462",
+  "quality_claim": false,
+  "redaction_counts": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "service_cleanup": {
+    "gpu_clean": true,
+    "returncode": 1
+  },
+  "service_log_sha256": "ad045076d14eb6f9660a75ab2758a3eef424741c3dba0289f5d3a4801ca95f9e",
+  "service_trace_redacted": "Traceback (most recent call last):\n  File \"/research/d7/spc/yzyang4/scheduling-pooling-20261016-v2/pooling_trial_20261015.py\", line 417, in <module>\n    elif a.mode=='service':base.c.trial.service(0)\n                           ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/research/d7/spc/yzyang4/scheduling-pooling-20261016-v2/image_live_2plus4_20261011.py\", line 201, in service\n    os.execve(cmd[0],cmd,env)\nFileNotFoundError: [Errno 2] No such file or directory: '/usr/bin/singularity'\nsrun: error: projgpu12: task 0: Exited with exit code 1\n",
+  "source_commit": "aeb2a48a6d44ce5d0020e7a8e29545c2b5a03b3f",
+  "start_hk": "2026-10-16T01:23:31",
+  "started": 0,
+  "state": "FAILED"
+}

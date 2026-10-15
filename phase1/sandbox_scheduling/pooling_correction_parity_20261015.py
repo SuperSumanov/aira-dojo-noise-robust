@@ -17,8 +17,14 @@ assert set(new)-set(old)=={'independent_predecessor'}
 assert set(old)-set(new)==set()
 assert {k:v for k,v in old.items() if k not in allowed}=={k:v for k,v in normalized(NEW/'plan.json').items() if k not in allowed}
 assert old['schedule']==new['schedule'] and len(new['schedule'])==32
+assert (OLD/'image_scorer.py').read_text()==(NEW/'image_scorer.py').read_text().replace(str(NEW),str(OLD))
 for i in range(32):
-    assert read(OLD/f'configs/{i}.json')==normalized(NEW/f'configs/{i}.json')
+    a,b=read(OLD/f'configs/{i}.json'),normalized(NEW/f'configs/{i}.json')
+    # Scorer bytes change only because its absolute batch root changes.
+    assert a['task']['search_only_dev_scorer_sha256']==sha(OLD/'image_scorer.py')
+    assert b['task']['search_only_dev_scorer_sha256']==sha(NEW/'image_scorer.py')
+    b['task']['search_only_dev_scorer_sha256']=a['task']['search_only_dev_scorer_sha256']
+    assert a==b
 a,b=(read(p/'input-matrix/summary.safe.json') for p in (OLD,NEW))
 assert a['rows']==b['rows'] and a['paired_groups']==b['paired_groups']
 assert a['exact_input_gate'] and b['exact_input_gate']

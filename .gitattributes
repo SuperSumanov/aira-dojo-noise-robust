@@ -1097,4 +1097,6 @@ phase1/sandbox_scheduling/verify_pooling*_20261015.cjs -text
 phase1/sandbox_scheduling/pooling_research_boundary_20261015.json -text
 phase1/sandbox_scheduling/pooling_18468_closed/*.json -text
 phase1/sandbox_scheduling/pooling_18468_closed/*.csv -text diff whitespace=cr-at-eol
+phase1/sandbox_scheduling/pooling_corrected_20261015_cpu/*.json -text
+phase1/sandbox_scheduling/submit_pooling_corrected_20261015.sh -text
 phase1/sandbox_scheduling/compute_split_20261015_cpu/*.json -text

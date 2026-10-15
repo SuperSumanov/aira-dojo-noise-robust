@@ -32,7 +32,7 @@ from lifecycle_pilot import read,write,sha
 from fixed_public_preview_20261014 import load_text,install,digest,public_manifest
 import shared_pool_20261015 as pool
 
-R=DONOR.parent/'scheduling-pooling-20261015-v1'
+R=DONOR.parent/'scheduling-pooling-20261015-v2'
 NODE='gpu3';NAME=Path(__file__).name
 ORDER=('fixed','shared','shared','fixed');RUN,SLOT,CAP=1020,1180,6000
 DONOR_SHA='e3baf5d2fa704cdd0c3fc458549aa21449fdbf3209bac87337b370e2a416e154'
@@ -348,7 +348,8 @@ def prepare(commit):
         schedule=schedule(),planned=32,native_trial_module=Path(__file__).stem,independent_pool_pairs=2,
         allocation_seconds=CAP,gpu_hours_cap=10,combined_gpu_seconds_cap=36000,new_window_gpu_seconds_cap=36000,
         prior_failures=[],run_seconds=RUN,slot_seconds=SLOT,
-        approval='Explicit user approval2026-10-15HK:32 runs,2service+4execution,<=6000seconds including qualification/startup/failure/cleanup,<=10GPUh. No retry.',
+        approval='Explicit user approval2026-10-15HK for independent corrected batch after18468:32 runs,2service+4execution,<=6000seconds including qualification/startup/failure/cleanup,<=10GPUh. Qualification ordering fix only; no scientific/input/quality-gate change. No retry.',
+        independent_predecessor=dict(job='18468',root=str(DONOR.parent/'scheduling-pooling-20261015-v1'),gpu_seconds=2094,sealed=True,budget_reused=False),
         primary='Task-best externally validated returned solution within each1020s trajectory deadline, aggregated over its four-run pool; common warm incumbent included. Run-level best/median/SD and native-selected endpoint separate. Fixed vs shared FIFO, same initial history/seeds/old-fast generator.',
         single_change='Fixed GPU eligibility vs any free execution GPU. Both use common4GPU Slurm step, exact single-device namespace, lease before startup through cleanup, fixed2physical CPU cores/run. No duration/score/identity prediction.',
         advance='All32complete; input/isolation/dispatch/cleanup/cost gates pass; shared denoising pool-best improves fixed by>=.001 in BOTH reverse repeats and aerial pool-best nondeclines in BOTH. Report medians/SD/all endpoints regardless. No interim quality or pooled rescue.',

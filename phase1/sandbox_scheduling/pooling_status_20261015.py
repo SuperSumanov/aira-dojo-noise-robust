@@ -3,7 +3,7 @@ import datetime
 import json
 from pathlib import Path
 
-R=Path('/research/d7/spc/yzyang4/scheduling-pooling-20261015-v1')
+R=Path('/research/d7/spc/yzyang4/scheduling-pooling-20261015-v2')
 def read(p):return json.loads(p.read_text())
 out=dict(utc=datetime.datetime.now(datetime.timezone.utc).isoformat(),root=str(R),
     prepared=(R/'plan.json').exists(),preflight=(R/'preflight.json').exists(),

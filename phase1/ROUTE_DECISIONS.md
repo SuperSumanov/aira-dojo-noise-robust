@@ -6,7 +6,7 @@
 
 ## 本次必须纠正的重复推荐
 
-10/15切口仅“固定GPU归属等待→强共享FIFO参照能否改善同预算终分”，非新调度算法。10旧池262已知请求/5取消未知时长、24固定配对/0/5/15/30秒开销共280格独立回放；开销可抹去优势、等待改善不等于质量。18468在我方资格检查器释放/再分配顺序断言处闭合：0/32搜索、2094GPU秒，不是共享池科学负结果；本地修复19CPU测试通过但无真实再验，独立新批待明确批准。Scepsy https://arxiv.org/html/2604.15186v1、MARS https://arxiv.org/html/2604.26963v1、Libra https://arxiv.org/html/2606.03077v3、AI-RAN https://arxiv.org/html/2610.04578v1 已覆盖资源联动；PASTE/BAVT/ZEBRA/PeakBench新增边界见pooling_research_boundary_20261015.json。原质量门不改；若未过不加语义调度救结果、不恢复旧lookahead/critic；状态只认短交接。
+10/15切口仅“固定GPU归属等待→强共享FIFO参照能否改善同预算终分”，非新调度算法。10旧池262已知请求/5取消未知时长的280格回放不是质量证据。18468因我方资格器释放/再分配顺序错误闭合，0/32搜索、2094GPU秒；用户已批准独立修正v2，原32条/1020s/2+4卡≤6000s/10GPUh及原质量门不改，不自动补跑。19CPU回归覆盖旧错完整复现/新流程/失败拒绝，尚非GPU通过。近邻Scepsy/MARS/Libra/AI-RAN与PASTE/BAVT/ZEBRA/PeakBench界限见pooling_research_boundary_20261015.json；不靠语义调度救失败、不恢复lookahead/critic。现场见短交接。
 10/15 18412 metric-step30独立48条闭合：真实首输入48同配、77评分重算、6池结构及独立统计通过；去噪两反序重复的池best均不胜旧fast/旧medium，median也均差于旧medium，Aerial一优一退，原质量门false。停止扩大本metric部署配方，不以更多历史、改阈值/seed/换日更点救结论；score/metric不同训练数据仍不能解释为reward因果。只有部署无稳定增益的局部结论，不是所有学习无效；新机制必须有额外证据而非重命名，证据metric_deployment_18412_closed。
 
 10/14晚：学长确认score与metric各自采集训练；HK22:51 metric step30已新可见，未下载。新产物可另问固定历史下部署收益，但两线对比不是固定数据reward消融，同名step不证明同祖先/成本；旧score的18269结果不能转移到metric。8项合成源码检查限定了仿射不变的适用范围：缺失地板/绝对spread门/可选clip可破坏它；不是实际训练故障或新方法。先内容身份和新批预算，不自动试遍日更点；证据lineage_intake_20261014.safe.json、reward_contract_20261014.safe.json。

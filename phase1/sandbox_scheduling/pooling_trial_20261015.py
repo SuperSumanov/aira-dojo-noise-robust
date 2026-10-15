@@ -31,14 +31,15 @@ import weight_effort_policy_20261014 as policy
 from lifecycle_pilot import read,write,sha
 from fixed_public_preview_20261014 import load_text,install,digest,public_manifest
 import shared_pool_20261015 as pool
+from deferred_alarm_transaction_20261012 import protect
 
-R=DONOR.parent/'scheduling-pooling-20261015-v2'
+R=DONOR.parent/'scheduling-pooling-20261016-v1'
 NODE='gpu3';NAME=Path(__file__).name
 ORDER=('fixed','shared','shared','fixed');RUN,SLOT,CAP=1020,1180,6000
 DONOR_SHA='e3baf5d2fa704cdd0c3fc458549aa21449fdbf3209bac87337b370e2a416e154'
 BUNDLE_SHA='d12d04af8684983be97f5ae6277731a65b505b5034244be34343daee02947006'
 NAMES=(NAME,'shared_pool_20261015.py','test_shared_pool_20261015.py','pooling_readout_20261015.py',
-       'test_pooling_qualification_20261015.py')
+       'test_pooling_qualification_20261015.py','pooling_production_gate_20261016.py')
 
 
 def schedule():
@@ -59,6 +60,9 @@ def host():
 
 
 def install_hooks(row,ep,deadline):
+    # Every production worker installs this before any execution lease exists.
+    # Defer delivery only through commit/unlock; do not extend the run deadline.
+    pool.locked=protect(pool.locked)
     import live_runtime_hooks as hooks
     hooks.Lease=pool.Lease
     source=inspect.getsource(hooks.install)
@@ -348,8 +352,8 @@ def prepare(commit):
         schedule=schedule(),planned=32,native_trial_module=Path(__file__).stem,independent_pool_pairs=2,
         allocation_seconds=CAP,gpu_hours_cap=10,combined_gpu_seconds_cap=36000,new_window_gpu_seconds_cap=36000,
         prior_failures=[],run_seconds=RUN,slot_seconds=SLOT,
-        approval='Explicit user approval2026-10-15HK for independent corrected batch after18468:32 runs,2service+4execution,<=6000seconds including qualification/startup/failure/cleanup,<=10GPUh. Qualification ordering fix only; no scientific/input/quality-gate change. No retry.',
-        independent_predecessor=dict(job='18468',root=str(DONOR.parent/'scheduling-pooling-20261015-v1'),gpu_seconds=2094,sealed=True,budget_reused=False),
+        approval='Explicit user approval2026-10-16HK for independent production-guard batch after18510:32 runs,2service+4execution,<=6000seconds including qualification/startup/failure/cleanup,<=10GPUh. Existing deadline transaction protection wired to execution queue only; no scientific/input/quality-gate change. No retry.',
+        independent_predecessor=dict(job='18510',root=str(DONOR.parent/'scheduling-pooling-20261015-v2'),gpu_seconds=15522,sealed=True,budget_reused=False),
         primary='Task-best externally validated returned solution within each1020s trajectory deadline, aggregated over its four-run pool; common warm incumbent included. Run-level best/median/SD and native-selected endpoint separate. Fixed vs shared FIFO, same initial history/seeds/old-fast generator.',
         single_change='Fixed GPU eligibility vs any free execution GPU. Both use common4GPU Slurm step, exact single-device namespace, lease before startup through cleanup, fixed2physical CPU cores/run. No duration/score/identity prediction.',
         advance='All32complete; input/isolation/dispatch/cleanup/cost gates pass; shared denoising pool-best improves fixed by>=.001 in BOTH reverse repeats and aerial pool-best nondeclines in BOTH. Report medians/SD/all endpoints regardless. No interim quality or pooled rescue.',
@@ -388,6 +392,7 @@ def preflight():
             assert kw['max_tokens']==(8192 if role=='analyze' else 32768)
     subprocess.run([str(base.c.trial.PY),'-B','-m','unittest','test_shared_pool_20261015',
                     'test_pooling_qualification_20261015','test_fixed_public_preview_20261014','-v'],cwd=R,check=True)
+    subprocess.run([str(base.c.trial.PY),'-B',str(R/'pooling_production_gate_20261016.py'),str(R)],cwd=R,check=True)
     write(R/'cpu.json',dict(plan_sha256=sha(R/'plan.json'),configs=32,exact_inputs=True,no_gpu=True))
     write(R/'preflight.json',dict(source_commit=p['source_commit'],plan_sha256=sha(R/'plan.json'),configs=32,
         exact_input_gate=True,gpu_hours_cap=10,no_gpu=True,no_model_calls=True))

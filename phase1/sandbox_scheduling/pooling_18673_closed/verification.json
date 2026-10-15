@@ -28,8 +28,12 @@
     "corrected_job_gpu_seconds": 2,
     "result": "Neither singularity nor apptainer in PATH; no executable at the five exact common installation paths checked.",
     "boundary": "This is not a full filesystem search and does not prove no installation exists anywhere. No model, task image, or CUDA computation was invoked.",
-    "slurm_extern_tail_seconds": {"18673": 2, "18676": 1, "18677": 1}
+    "installation_metadata_job": "18679",
+    "installation_metadata_gpu_seconds": 7,
+    "installation_metadata_result": "whereis, package index and bounded depth-five /opt, /opt1, /usr/local lookup produced no launcher path. Not proof of absence at arbitrary paths or inaccessible directories.",
+    "total_metadata_gpu_seconds": 11,
+    "slurm_extern_tail_seconds": {"18673": 2, "18676": 1, "18677": 1, "18679": 2}
   },
-  "window_allocation_gpu_seconds": 82,
-  "window_allocation_gpu_hours": 0.02277777777777778
+  "window_allocation_gpu_seconds": 89,
+  "window_allocation_gpu_hours": 0.024722222222222222
 }

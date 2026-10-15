@@ -1,0 +1,727 @@
+{
+  "kind": "fixed_observed_gap_dependency_sensitivity",
+  "quality_claim": false,
+  "new_gpu_jobs": 0,
+  "script_sha256": "68ce69352f04324f57e8a6219c166b45d78bfb1c572a3095fa7b0a4cdb3a518f",
+  "sources": [
+    {
+      "file": "score-pooling-input.json",
+      "sha256": "48c991429fe02f712d522e0b48c331cebe832c2ca7fb32d6ef19dabf043574a6",
+      "pools": [
+        {
+          "block": 0,
+          "arm": "old_medium",
+          "known_requests": 24,
+          "unknown_cancelled": 0,
+          "observed_released_by_deadline": 23,
+          "median_nonexecution_gap": 352.3866800069809,
+          "baseline_max_end_deviation": 0.07777786254882812,
+          "scenarios": {
+            "fixed": {
+              "known_requests": 24,
+              "released_by_deadline": 23,
+              "wait_seconds": 577.6135613918304,
+              "task_counts": {
+                "0": 13,
+                "1": 10
+              }
+            },
+            "shared": {
+              "known_requests": 24,
+              "released_by_deadline": 23,
+              "wait_seconds": 0.0,
+              "task_counts": {
+                "0": 13,
+                "1": 10
+              }
+            },
+            "unlimited": {
+              "known_requests": 24,
+              "released_by_deadline": 23,
+              "wait_seconds": 0.0,
+              "task_counts": {
+                "0": 13,
+                "1": 10
+              }
+            }
+          },
+          "shared_overhead": [
+            {
+              "seconds": 5,
+              "known_requests": 24,
+              "released_by_deadline": 23,
+              "wait_seconds": 0.0,
+              "task_counts": {
+                "0": 13,
+                "1": 10
+              }
+            },
+            {
+              "seconds": 15,
+              "known_requests": 24,
+              "released_by_deadline": 23,
+              "wait_seconds": 4.683982849121094,
+              "task_counts": {
+                "0": 13,
+                "1": 10
+              }
+            },
+            {
+              "seconds": 30,
+              "known_requests": 24,
+              "released_by_deadline": 23,
+              "wait_seconds": 44.127551317214966,
+              "task_counts": {
+                "0": 13,
+                "1": 10
+              }
+            }
+          ]
+        },
+        {
+          "block": 1,
+          "arm": "new_medium",
+          "known_requests": 21,
+          "unknown_cancelled": 0,
+          "observed_released_by_deadline": 20,
+          "median_nonexecution_gap": 426.6389799118042,
+          "baseline_max_end_deviation": 0.11315512657165527,
+          "scenarios": {
+            "fixed": {
+              "known_requests": 21,
+              "released_by_deadline": 20,
+              "wait_seconds": 646.0065906047821,
+              "task_counts": {
+                "0": 11,
+                "1": 9
+              }
+            },
+            "shared": {
+              "known_requests": 21,
+              "released_by_deadline": 20,
+              "wait_seconds": 26.96867799758911,
+              "task_counts": {
+                "0": 11,
+                "1": 9
+              }
+            },
+            "unlimited": {
+              "known_requests": 21,
+              "released_by_deadline": 20,
+              "wait_seconds": 0.0,
+              "task_counts": {
+                "0": 11,
+                "1": 9
+              }
+            }
+          },
+          "shared_overhead": [
+            {
+              "seconds": 5,
+              "known_requests": 21,
+              "released_by_deadline": 20,
+              "wait_seconds": 31.96867799758911,
+              "task_counts": {
+                "0": 11,
+                "1": 9
+              }
+            },
+            {
+              "seconds": 15,
+              "known_requests": 21,
+              "released_by_deadline": 20,
+              "wait_seconds": 41.96867799758911,
+              "task_counts": {
+                "0": 11,
+                "1": 9
+              }
+            },
+            {
+              "seconds": 30,
+              "known_requests": 21,
+              "released_by_deadline": 19,
+              "wait_seconds": 56.96867799758911,
+              "task_counts": {
+                "0": 11,
+                "1": 8
+              }
+            }
+          ]
+        },
+        {
+          "block": 2,
+          "arm": "new_medium",
+          "known_requests": 21,
+          "unknown_cancelled": 0,
+          "observed_released_by_deadline": 18,
+          "median_nonexecution_gap": 415.23568630218506,
+          "baseline_max_end_deviation": 0.1217191219329834,
+          "scenarios": {
+            "fixed": {
+              "known_requests": 21,
+              "released_by_deadline": 18,
+              "wait_seconds": 521.6639647483826,
+              "task_counts": {
+                "0": 9,
+                "1": 9
+              }
+            },
+            "shared": {
+              "known_requests": 21,
+              "released_by_deadline": 18,
+              "wait_seconds": 0.0,
+              "task_counts": {
+                "0": 9,
+                "1": 9
+              }
+            },
+            "unlimited": {
+              "known_requests": 21,
+              "released_by_deadline": 18,
+              "wait_seconds": 0.0,
+              "task_counts": {
+                "0": 9,
+                "1": 9
+              }
+            }
+          },
+          "shared_overhead": [
+            {
+              "seconds": 5,
+              "known_requests": 21,
+              "released_by_deadline": 18,
+              "wait_seconds": 0.0,
+              "task_counts": {
+                "0": 9,
+                "1": 9
+              }
+            },
+            {
+              "seconds": 15,
+              "known_requests": 21,
+              "released_by_deadline": 18,
+              "wait_seconds": 0.0,
+              "task_counts": {
+                "0": 9,
+                "1": 9
+              }
+            },
+            {
+              "seconds": 30,
+              "known_requests": 21,
+              "released_by_deadline": 18,
+              "wait_seconds": 0.0,
+              "task_counts": {
+                "0": 9,
+                "1": 9
+              }
+            }
+          ]
+        },
+        {
+          "block": 3,
+          "arm": "old_medium",
+          "known_requests": 28,
+          "unknown_cancelled": 1,
+          "observed_released_by_deadline": 24,
+          "median_nonexecution_gap": 289.999764084816,
+          "baseline_max_end_deviation": 0.17921996116638184,
+          "scenarios": {
+            "fixed": {
+              "known_requests": 28,
+              "released_by_deadline": 24,
+              "wait_seconds": 678.4720373153687,
+              "task_counts": {
+                "0": 13,
+                "1": 11
+              }
+            },
+            "shared": {
+              "known_requests": 28,
+              "released_by_deadline": 26,
+              "wait_seconds": 357.1819610595703,
+              "task_counts": {
+                "0": 15,
+                "1": 11
+              }
+            },
+            "unlimited": {
+              "known_requests": 28,
+              "released_by_deadline": 28,
+              "wait_seconds": 0.0,
+              "task_counts": {
+                "0": 16,
+                "1": 12
+              }
+            }
+          },
+          "shared_overhead": [
+            {
+              "seconds": 5,
+              "known_requests": 28,
+              "released_by_deadline": 26,
+              "wait_seconds": 412.1819610595703,
+              "task_counts": {
+                "0": 15,
+                "1": 11
+              }
+            },
+            {
+              "seconds": 15,
+              "known_requests": 28,
+              "released_by_deadline": 26,
+              "wait_seconds": 484.7898232936859,
+              "task_counts": {
+                "0": 15,
+                "1": 11
+              }
+            },
+            {
+              "seconds": 30,
+              "known_requests": 28,
+              "released_by_deadline": 25,
+              "wait_seconds": 651.2975070476532,
+              "task_counts": {
+                "0": 14,
+                "1": 11
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "metric-pooling-input.json",
+      "sha256": "bfb4ce38514ebbae01c179d1db2158767e0f8eb3c655d0cfde7885d67cfe4fd0",
+      "pools": [
+        {
+          "block": 0,
+          "arm": "old_fast",
+          "known_requests": 32,
+          "unknown_cancelled": 1,
+          "observed_released_by_deadline": 30,
+          "median_nonexecution_gap": 139.21512472629547,
+          "baseline_max_end_deviation": 0.15940189361572266,
+          "scenarios": {
+            "fixed": {
+              "known_requests": 32,
+              "released_by_deadline": 30,
+              "wait_seconds": 3204.4393343925476,
+              "task_counts": {
+                "0": 14,
+                "1": 16
+              }
+            },
+            "shared": {
+              "known_requests": 32,
+              "released_by_deadline": 32,
+              "wait_seconds": 1130.8686289787292,
+              "task_counts": {
+                "0": 16,
+                "1": 16
+              }
+            },
+            "unlimited": {
+              "known_requests": 32,
+              "released_by_deadline": 32,
+              "wait_seconds": 0.0,
+              "task_counts": {
+                "0": 16,
+                "1": 16
+              }
+            }
+          },
+          "shared_overhead": [
+            {
+              "seconds": 5,
+              "known_requests": 32,
+              "released_by_deadline": 32,
+              "wait_seconds": 1191.6168098449707,
+              "task_counts": {
+                "0": 16,
+                "1": 16
+              }
+            },
+            {
+              "seconds": 15,
+              "known_requests": 32,
+              "released_by_deadline": 31,
+              "wait_seconds": 1319.5075373649597,
+              "task_counts": {
+                "0": 15,
+                "1": 16
+              }
+            },
+            {
+              "seconds": 30,
+              "known_requests": 32,
+              "released_by_deadline": 29,
+              "wait_seconds": 1700.3686289787292,
+              "task_counts": {
+                "0": 13,
+                "1": 16
+              }
+            }
+          ]
+        },
+        {
+          "block": 1,
+          "arm": "old_medium",
+          "known_requests": 28,
+          "unknown_cancelled": 1,
+          "observed_released_by_deadline": 25,
+          "median_nonexecution_gap": 204.0757678747177,
+          "baseline_max_end_deviation": 0.13689303398132324,
+          "scenarios": {
+            "fixed": {
+              "known_requests": 28,
+              "released_by_deadline": 25,
+              "wait_seconds": 1452.075318813324,
+              "task_counts": {
+                "0": 14,
+                "1": 11
+              }
+            },
+            "shared": {
+              "known_requests": 28,
+              "released_by_deadline": 26,
+              "wait_seconds": 583.1308145523071,
+              "task_counts": {
+                "0": 14,
+                "1": 12
+              }
+            },
+            "unlimited": {
+              "known_requests": 28,
+              "released_by_deadline": 27,
+              "wait_seconds": 0.0,
+              "task_counts": {
+                "0": 15,
+                "1": 12
+              }
+            }
+          },
+          "shared_overhead": [
+            {
+              "seconds": 5,
+              "known_requests": 28,
+              "released_by_deadline": 26,
+              "wait_seconds": 608.1308145523071,
+              "task_counts": {
+                "0": 14,
+                "1": 12
+              }
+            },
+            {
+              "seconds": 15,
+              "known_requests": 28,
+              "released_by_deadline": 26,
+              "wait_seconds": 659.742428779602,
+              "task_counts": {
+                "0": 14,
+                "1": 12
+              }
+            },
+            {
+              "seconds": 30,
+              "known_requests": 28,
+              "released_by_deadline": 25,
+              "wait_seconds": 757.2120668888092,
+              "task_counts": {
+                "0": 13,
+                "1": 12
+              }
+            }
+          ]
+        },
+        {
+          "block": 2,
+          "arm": "new_medium",
+          "known_requests": 20,
+          "unknown_cancelled": 0,
+          "observed_released_by_deadline": 18,
+          "median_nonexecution_gap": 497.4727144241333,
+          "baseline_max_end_deviation": 0.08030056953430176,
+          "scenarios": {
+            "fixed": {
+              "known_requests": 20,
+              "released_by_deadline": 18,
+              "wait_seconds": 428.21741485595703,
+              "task_counts": {
+                "0": 9,
+                "1": 9
+              }
+            },
+            "shared": {
+              "known_requests": 20,
+              "released_by_deadline": 19,
+              "wait_seconds": 7.10158896446228,
+              "task_counts": {
+                "0": 10,
+                "1": 9
+              }
+            },
+            "unlimited": {
+              "known_requests": 20,
+              "released_by_deadline": 19,
+              "wait_seconds": 0.0,
+              "task_counts": {
+                "0": 10,
+                "1": 9
+              }
+            }
+          },
+          "shared_overhead": [
+            {
+              "seconds": 5,
+              "known_requests": 20,
+              "released_by_deadline": 18,
+              "wait_seconds": 12.10158896446228,
+              "task_counts": {
+                "0": 10,
+                "1": 8
+              }
+            },
+            {
+              "seconds": 15,
+              "known_requests": 20,
+              "released_by_deadline": 17,
+              "wait_seconds": 22.10158896446228,
+              "task_counts": {
+                "0": 9,
+                "1": 8
+              }
+            },
+            {
+              "seconds": 30,
+              "known_requests": 20,
+              "released_by_deadline": 17,
+              "wait_seconds": 100.26469135284424,
+              "task_counts": {
+                "0": 9,
+                "1": 8
+              }
+            }
+          ]
+        },
+        {
+          "block": 3,
+          "arm": "new_medium",
+          "known_requests": 21,
+          "unknown_cancelled": 1,
+          "observed_released_by_deadline": 19,
+          "median_nonexecution_gap": 401.0830316543579,
+          "baseline_max_end_deviation": 0.14109349250793457,
+          "scenarios": {
+            "fixed": {
+              "known_requests": 21,
+              "released_by_deadline": 19,
+              "wait_seconds": 1063.1982147693634,
+              "task_counts": {
+                "0": 11,
+                "1": 8
+              }
+            },
+            "shared": {
+              "known_requests": 21,
+              "released_by_deadline": 19,
+              "wait_seconds": 204.1859483718872,
+              "task_counts": {
+                "0": 11,
+                "1": 8
+              }
+            },
+            "unlimited": {
+              "known_requests": 21,
+              "released_by_deadline": 19,
+              "wait_seconds": 0.0,
+              "task_counts": {
+                "0": 11,
+                "1": 8
+              }
+            }
+          },
+          "shared_overhead": [
+            {
+              "seconds": 5,
+              "known_requests": 21,
+              "released_by_deadline": 19,
+              "wait_seconds": 229.85062313079834,
+              "task_counts": {
+                "0": 11,
+                "1": 8
+              }
+            },
+            {
+              "seconds": 15,
+              "known_requests": 21,
+              "released_by_deadline": 19,
+              "wait_seconds": 260.8607974052429,
+              "task_counts": {
+                "0": 11,
+                "1": 8
+              }
+            },
+            {
+              "seconds": 30,
+              "known_requests": 21,
+              "released_by_deadline": 19,
+              "wait_seconds": 311.59041452407837,
+              "task_counts": {
+                "0": 11,
+                "1": 8
+              }
+            }
+          ]
+        },
+        {
+          "block": 4,
+          "arm": "old_medium",
+          "known_requests": 27,
+          "unknown_cancelled": 0,
+          "observed_released_by_deadline": 25,
+          "median_nonexecution_gap": 287.44273591041565,
+          "baseline_max_end_deviation": 0.1342606544494629,
+          "scenarios": {
+            "fixed": {
+              "known_requests": 27,
+              "released_by_deadline": 25,
+              "wait_seconds": 1089.5995161533356,
+              "task_counts": {
+                "0": 15,
+                "1": 10
+              }
+            },
+            "shared": {
+              "known_requests": 27,
+              "released_by_deadline": 27,
+              "wait_seconds": 333.16464042663574,
+              "task_counts": {
+                "0": 16,
+                "1": 11
+              }
+            },
+            "unlimited": {
+              "known_requests": 27,
+              "released_by_deadline": 27,
+              "wait_seconds": 0.0,
+              "task_counts": {
+                "0": 16,
+                "1": 11
+              }
+            }
+          },
+          "shared_overhead": [
+            {
+              "seconds": 5,
+              "known_requests": 27,
+              "released_by_deadline": 27,
+              "wait_seconds": 353.16464042663574,
+              "task_counts": {
+                "0": 16,
+                "1": 11
+              }
+            },
+            {
+              "seconds": 15,
+              "known_requests": 27,
+              "released_by_deadline": 25,
+              "wait_seconds": 448.7531077861786,
+              "task_counts": {
+                "0": 14,
+                "1": 11
+              }
+            },
+            {
+              "seconds": 30,
+              "known_requests": 27,
+              "released_by_deadline": 25,
+              "wait_seconds": 555.331933259964,
+              "task_counts": {
+                "0": 14,
+                "1": 11
+              }
+            }
+          ]
+        },
+        {
+          "block": 5,
+          "arm": "old_fast",
+          "known_requests": 40,
+          "unknown_cancelled": 1,
+          "observed_released_by_deadline": 38,
+          "median_nonexecution_gap": 172.90649676322937,
+          "baseline_max_end_deviation": 0.15533709526062012,
+          "scenarios": {
+            "fixed": {
+              "known_requests": 40,
+              "released_by_deadline": 38,
+              "wait_seconds": 1548.9493539333344,
+              "task_counts": {
+                "0": 19,
+                "1": 19
+              }
+            },
+            "shared": {
+              "known_requests": 40,
+              "released_by_deadline": 40,
+              "wait_seconds": 148.22292494773865,
+              "task_counts": {
+                "0": 21,
+                "1": 19
+              }
+            },
+            "unlimited": {
+              "known_requests": 40,
+              "released_by_deadline": 40,
+              "wait_seconds": 0.0,
+              "task_counts": {
+                "0": 21,
+                "1": 19
+              }
+            }
+          },
+          "shared_overhead": [
+            {
+              "seconds": 5,
+              "known_requests": 40,
+              "released_by_deadline": 40,
+              "wait_seconds": 216.56608271598816,
+              "task_counts": {
+                "0": 21,
+                "1": 19
+              }
+            },
+            {
+              "seconds": 15,
+              "known_requests": 40,
+              "released_by_deadline": 38,
+              "wait_seconds": 551.1540064811707,
+              "task_counts": {
+                "0": 19,
+                "1": 19
+              }
+            },
+            {
+              "seconds": 30,
+              "known_requests": 40,
+              "released_by_deadline": 37,
+              "wait_seconds": 585.3051619529724,
+              "task_counts": {
+                "0": 19,
+                "1": 18
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "Only known historical requests; cancelled durations unknown and never imputed.",
+    "Conditional model: fixed non-execution gaps include historical model queue/analysis delays. Changed service load and prompts are not simulated.",
+    "Unlimited execution is an optimistic envelope only conditional on the frozen jobs/gaps, not a real-world quality or throughput bound.",
+    "Release includes cleanup and may include interrupted execution. An on-time release is NOT valid feedback, a completed training run, or improvement.",
+    "No extra unobserved tail requests, scores, or candidates invented. This does not change the current GPU protocol or quality gate."
+  ]
+}

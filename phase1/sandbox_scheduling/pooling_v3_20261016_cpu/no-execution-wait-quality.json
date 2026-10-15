@@ -1,0 +1,1451 @@
+{
+  "kind": "fixed_history_no_execution_wait_quality_sensitivity",
+  "gain_source_sha256": "307e56d9bfd19c75018b03ae02e7a2476933290c096b2a9daa5b25e15b545d59",
+  "sources": [
+    {
+      "name": "score",
+      "timing_sha256": "48c991429fe02f712d522e0b48c331cebe832c2ca7fb32d6ef19dabf043574a6",
+      "plan_sha256": "316381bce41c9ceb9c34fb165e94996eeeb8c9968eff3cb4e63642fbfa549626"
+    },
+    {
+      "name": "metric",
+      "timing_sha256": "bfb4ce38514ebbae01c179d1db2158767e0f8eb3c655d0cfde7885d67cfe4fd0",
+      "plan_sha256": "e3baf5d2fa704cdd0c3fc458549aa21449fdbf3209bac87337b370e2a416e154"
+    }
+  ],
+  "tested_threshold_seconds": 1020,
+  "task_pool_cells": 20,
+  "rows": [
+    {
+      "source": "score",
+      "block": 0,
+      "task": "aerial-cactus-identification",
+      "arm": "old_medium",
+      "observed_at_1020": 0.9998636968618206,
+      "fixed_history_without_exec_wait_at_1020": 0.9998636968618206,
+      "oriented_change": 0,
+      "changed": false,
+      "newly_on_time_known_valid": 0,
+      "shifted_known_events": [
+        {
+          "index": 0,
+          "block": 0,
+          "task": "aerial-cactus-identification",
+          "arm": "old_medium",
+          "score": 0.9997461019975091,
+          "observed": 1234.750153042376,
+          "no_exec_wait": 1059.0155555978417,
+          "removed_wait": 175.7345974445343
+        },
+        {
+          "index": 2,
+          "block": 0,
+          "task": "aerial-cactus-identification",
+          "arm": "old_medium",
+          "score": 0.9998636968618206,
+          "observed": 900.6544596087188,
+          "no_exec_wait": 900.6266235243529,
+          "removed_wait": 0.027836084365844727
+        },
+        {
+          "index": 4,
+          "block": 0,
+          "task": "aerial-cactus-identification",
+          "arm": "old_medium",
+          "score": 0.9989309557789858,
+          "observed": 470.65813657362014,
+          "no_exec_wait": 470.6463100584224,
+          "removed_wait": 0.011826515197753906
+        },
+        {
+          "index": 4,
+          "block": 0,
+          "task": "aerial-cactus-identification",
+          "arm": "old_medium",
+          "score": 0.9996498880176179,
+          "observed": 1285.8048897609115,
+          "no_exec_wait": 1285.767313323915,
+          "removed_wait": 0.03757643699645996
+        },
+        {
+          "index": 6,
+          "block": 0,
+          "task": "aerial-cactus-identification",
+          "arm": "old_medium",
+          "score": 0.9995028944372284,
+          "observed": 992.4545770389959,
+          "no_exec_wait": 816.4434686405584,
+          "removed_wait": 176.0111083984375
+        }
+      ]
+    },
+    {
+      "source": "score",
+      "block": 0,
+      "task": "denoising-dirty-documents",
+      "arm": "old_medium",
+      "observed_at_1020": 0.015124705657558059,
+      "fixed_history_without_exec_wait_at_1020": 0.015124705657558059,
+      "oriented_change": 0,
+      "changed": false,
+      "newly_on_time_known_valid": 0,
+      "shifted_known_events": [
+        {
+          "index": 1,
+          "block": 0,
+          "task": "denoising-dirty-documents",
+          "arm": "old_medium",
+          "score": 0.09201684325600976,
+          "observed": 1099.0132825290784,
+          "no_exec_wait": 1098.9987299358472,
+          "removed_wait": 0.014552593231201172
+        },
+        {
+          "index": 3,
+          "block": 0,
+          "task": "denoising-dirty-documents",
+          "arm": "old_medium",
+          "score": 0.013654153292274094,
+          "observed": 1581.4540550056845,
+          "no_exec_wait": 1490.8965477291495,
+          "removed_wait": 90.55750727653503
+        },
+        {
+          "index": 5,
+          "block": 0,
+          "task": "denoising-dirty-documents",
+          "arm": "old_medium",
+          "score": 0.01986924983971806,
+          "observed": 699.7474090084434,
+          "no_exec_wait": 564.2163838371634,
+          "removed_wait": 135.5310251712799
+        },
+        {
+          "index": 7,
+          "block": 0,
+          "task": "denoising-dirty-documents",
+          "arm": "old_medium",
+          "score": 0.015124705657558059,
+          "observed": 745.1401033140719,
+          "no_exec_wait": 745.1293978430331,
+          "removed_wait": 0.01070547103881836
+        }
+      ]
+    },
+    {
+      "source": "score",
+      "block": 1,
+      "task": "aerial-cactus-identification",
+      "arm": "new_medium",
+      "observed_at_1020": 0.9999118038517664,
+      "fixed_history_without_exec_wait_at_1020": 0.9999118038517664,
+      "oriented_change": 0,
+      "changed": false,
+      "newly_on_time_known_valid": 0,
+      "shifted_known_events": [
+        {
+          "index": 8,
+          "block": 1,
+          "task": "aerial-cactus-identification",
+          "arm": "new_medium",
+          "score": 0.9996472154070652,
+          "observed": 730.0104789780453,
+          "no_exec_wait": 729.9973907517269,
+          "removed_wait": 0.013088226318359375
+        },
+        {
+          "index": 8,
+          "block": 1,
+          "task": "aerial-cactus-identification",
+          "arm": "new_medium",
+          "score": 0.9983349636257703,
+          "observed": 1251.5676526855677,
+          "no_exec_wait": 1233.2823109459132,
+          "removed_wait": 18.28534173965454
+        },
+        {
+          "index": 10,
+          "block": 1,
+          "task": "aerial-cactus-identification",
+          "arm": "new_medium",
+          "score": 0.998866813125725,
+          "observed": 738.5044323448092,
+          "no_exec_wait": 738.4959246162325,
+          "removed_wait": 0.008507728576660156
+        },
+        {
+          "index": 10,
+          "block": 1,
+          "task": "aerial-cactus-identification",
+          "arm": "new_medium",
+          "score": 0.9987278373769931,
+          "observed": 1539.7758293347433,
+          "no_exec_wait": 1539.7595725255087,
+          "removed_wait": 0.01625680923461914
+        },
+        {
+          "index": 12,
+          "block": 1,
+          "task": "aerial-cactus-identification",
+          "arm": "new_medium",
+          "score": 0.9999118038517664,
+          "observed": 528.3237115675583,
+          "no_exec_wait": 528.3125712210312,
+          "removed_wait": 0.01114034652709961
+        },
+        {
+          "index": 12,
+          "block": 1,
+          "task": "aerial-cactus-identification",
+          "arm": "new_medium",
+          "score": 0.9836489686395877,
+          "observed": 825.2653308808804,
+          "no_exec_wait": 825.2423911988735,
+          "removed_wait": 0.022939682006835938
+        },
+        {
+          "index": 14,
+          "block": 1,
+          "task": "aerial-cactus-identification",
+          "arm": "new_medium",
+          "score": 0.9995429835955164,
+          "observed": 489.3584731053561,
+          "no_exec_wait": 489.34207753650844,
+          "removed_wait": 0.01639556884765625
+        }
+      ]
+    },
+    {
+      "source": "score",
+      "block": 1,
+      "task": "denoising-dirty-documents",
+      "arm": "new_medium",
+      "observed_at_1020": 0.022005851620008593,
+      "fixed_history_without_exec_wait_at_1020": 0.022005851620008593,
+      "oriented_change": 0,
+      "changed": false,
+      "newly_on_time_known_valid": 0,
+      "shifted_known_events": [
+        {
+          "index": 9,
+          "block": 1,
+          "task": "denoising-dirty-documents",
+          "arm": "new_medium",
+          "score": 0.015045886425786793,
+          "observed": 1047.7268893262371,
+          "no_exec_wait": 1047.716172172688,
+          "removed_wait": 0.010717153549194336
+        },
+        {
+          "index": 15,
+          "block": 1,
+          "task": "denoising-dirty-documents",
+          "arm": "new_medium",
+          "score": 0.022005851620008593,
+          "observed": 738.2547883410007,
+          "no_exec_wait": 629.0853697676212,
+          "removed_wait": 109.16941857337952
+        },
+        {
+          "index": 15,
+          "block": 1,
+          "task": "denoising-dirty-documents",
+          "arm": "new_medium",
+          "score": 0.021815192412079406,
+          "observed": 1549.689498343505,
+          "no_exec_wait": 1440.509363331832,
+          "removed_wait": 109.18013501167297
+        }
+      ]
+    },
+    {
+      "source": "score",
+      "block": 2,
+      "task": "aerial-cactus-identification",
+      "arm": "new_medium",
+      "observed_at_1020": 0.9999759465050272,
+      "fixed_history_without_exec_wait_at_1020": 0.9999759465050272,
+      "oriented_change": 0,
+      "changed": false,
+      "newly_on_time_known_valid": 0,
+      "shifted_known_events": [
+        {
+          "index": 16,
+          "block": 2,
+          "task": "aerial-cactus-identification",
+          "arm": "new_medium",
+          "score": 0.9994521148367302,
+          "observed": 888.3449939498678,
+          "no_exec_wait": 745.9211529502645,
+          "removed_wait": 142.42384099960327
+        },
+        {
+          "index": 18,
+          "block": 2,
+          "task": "aerial-cactus-identification",
+          "arm": "new_medium",
+          "score": 0.9997648102713769,
+          "observed": 1185.0041916025802,
+          "no_exec_wait": 1184.9788248194382,
+          "removed_wait": 0.025366783142089844
+        },
+        {
+          "index": 20,
+          "block": 2,
+          "task": "aerial-cactus-identification",
+          "arm": "new_medium",
+          "score": 0.9999759465050272,
+          "observed": 487.91016512550414,
+          "no_exec_wait": 487.8981407228857,
+          "removed_wait": 0.012024402618408203
+        },
+        {
+          "index": 20,
+          "block": 2,
+          "task": "aerial-cactus-identification",
+          "arm": "new_medium",
+          "score": 0.9999732738944745,
+          "observed": 1043.1209521070123,
+          "no_exec_wait": 1043.0831317678094,
+          "removed_wait": 0.03782033920288086
+        },
+        {
+          "index": 22,
+          "block": 2,
+          "task": "aerial-cactus-identification",
+          "arm": "new_medium",
+          "score": 0.9997995542085598,
+          "observed": 965.2809438146651,
+          "no_exec_wait": 965.1680588163435,
+          "removed_wait": 0.1128849983215332
+        }
+      ]
+    },
+    {
+      "source": "score",
+      "block": 2,
+      "task": "denoising-dirty-documents",
+      "arm": "new_medium",
+      "observed_at_1020": 0.04551226514614451,
+      "fixed_history_without_exec_wait_at_1020": 0.02113815320430198,
+      "oriented_change": 0.024374111941842528,
+      "changed": true,
+      "newly_on_time_known_valid": 1,
+      "shifted_known_events": [
+        {
+          "index": 17,
+          "block": 2,
+          "task": "denoising-dirty-documents",
+          "arm": "new_medium",
+          "score": 0.0907229547786581,
+          "observed": 610.9545617932454,
+          "no_exec_wait": 610.926936709322,
+          "removed_wait": 0.027625083923339844
+        },
+        {
+          "index": 17,
+          "block": 2,
+          "task": "denoising-dirty-documents",
+          "arm": "new_medium",
+          "score": 0.01844707231236221,
+          "observed": 1333.4473252119496,
+          "no_exec_wait": 1333.4103007139638,
+          "removed_wait": 0.037024497985839844
+        },
+        {
+          "index": 21,
+          "block": 2,
+          "task": "denoising-dirty-documents",
+          "arm": "new_medium",
+          "score": 0.02113815320430198,
+          "observed": 1205.039633428678,
+          "no_exec_wait": 964.077312624082,
+          "removed_wait": 240.96232080459595
+        }
+      ]
+    },
+    {
+      "source": "score",
+      "block": 3,
+      "task": "aerial-cactus-identification",
+      "arm": "old_medium",
+      "observed_at_1020": 0.9997140306708787,
+      "fixed_history_without_exec_wait_at_1020": 0.9999839643366848,
+      "oriented_change": 0.0002699336658060769,
+      "changed": true,
+      "newly_on_time_known_valid": 1,
+      "shifted_known_events": [
+        {
+          "index": 24,
+          "block": 3,
+          "task": "aerial-cactus-identification",
+          "arm": "old_medium",
+          "score": 0.9978512211157614,
+          "observed": 866.0411165449768,
+          "no_exec_wait": 628.6120045874268,
+          "removed_wait": 237.42911195755005
+        },
+        {
+          "index": 26,
+          "block": 3,
+          "task": "aerial-cactus-identification",
+          "arm": "old_medium",
+          "score": 0.9996632510703806,
+          "observed": 594.1663133725524,
+          "no_exec_wait": 594.156823836267,
+          "removed_wait": 0.00948953628540039
+        },
+        {
+          "index": 26,
+          "block": 3,
+          "task": "aerial-cactus-identification",
+          "arm": "old_medium",
+          "score": 0.9997487746080617,
+          "observed": 1119.997699498199,
+          "no_exec_wait": 1021.2854731073603,
+          "removed_wait": 98.71222639083862
+        },
+        {
+          "index": 28,
+          "block": 3,
+          "task": "aerial-cactus-identification",
+          "arm": "old_medium",
+          "score": 0.9995269479322012,
+          "observed": 477.99980275239795,
+          "no_exec_wait": 477.9870158871636,
+          "removed_wait": 0.012786865234375
+        },
+        {
+          "index": 28,
+          "block": 3,
+          "task": "aerial-cactus-identification",
+          "arm": "old_medium",
+          "score": 0.9999839643366848,
+          "observed": 1156.1213811961934,
+          "no_exec_wait": 1003.818776759319,
+          "removed_wait": 152.3026044368744
+        },
+        {
+          "index": 30,
+          "block": 3,
+          "task": "aerial-cactus-identification",
+          "arm": "old_medium",
+          "score": 0.99962048930154,
+          "observed": 834.5903800893575,
+          "no_exec_wait": 791.7362688947469,
+          "removed_wait": 42.854111194610596
+        },
+        {
+          "index": 30,
+          "block": 3,
+          "task": "aerial-cactus-identification",
+          "arm": "old_medium",
+          "score": 0.9997541198291668,
+          "observed": 1486.9346214905381,
+          "no_exec_wait": 1444.057674087584,
+          "removed_wait": 42.8769474029541
+        }
+      ]
+    },
+    {
+      "source": "score",
+      "block": 3,
+      "task": "denoising-dirty-documents",
+      "arm": "old_medium",
+      "observed_at_1020": 0.01543541427703299,
+      "fixed_history_without_exec_wait_at_1020": 0.01543541427703299,
+      "oriented_change": 0,
+      "changed": false,
+      "newly_on_time_known_valid": 0,
+      "shifted_known_events": [
+        {
+          "index": 25,
+          "block": 3,
+          "task": "denoising-dirty-documents",
+          "arm": "old_medium",
+          "score": 0.02635986380679039,
+          "observed": 586.1677987966686,
+          "no_exec_wait": 586.1536627206951,
+          "removed_wait": 0.014136075973510742
+        },
+        {
+          "index": 27,
+          "block": 3,
+          "task": "denoising-dirty-documents",
+          "arm": "old_medium",
+          "score": 0.02501679128123991,
+          "observed": 857.660781997256,
+          "no_exec_wait": 846.288289683871,
+          "removed_wait": 11.37249231338501
+        },
+        {
+          "index": 27,
+          "block": 3,
+          "task": "denoising-dirty-documents",
+          "arm": "old_medium",
+          "score": 0.020401503960995323,
+          "observed": 1455.7125267069787,
+          "no_exec_wait": 1444.3291253130883,
+          "removed_wait": 11.38340139389038
+        },
+        {
+          "index": 29,
+          "block": 3,
+          "task": "denoising-dirty-documents",
+          "arm": "old_medium",
+          "score": 0.01597595292867099,
+          "observed": 811.871515545994,
+          "no_exec_wait": 811.8593120910227,
+          "removed_wait": 0.012203454971313477
+        },
+        {
+          "index": 31,
+          "block": 3,
+          "task": "denoising-dirty-documents",
+          "arm": "old_medium",
+          "score": 0.01543541427703299,
+          "observed": 969.84766427055,
+          "no_exec_wait": 911.055745754391,
+          "removed_wait": 58.79191851615906
+        }
+      ]
+    },
+    {
+      "source": "metric",
+      "block": 0,
+      "task": "aerial-cactus-identification",
+      "arm": "old_fast",
+      "observed_at_1020": 0.9997140306708787,
+      "fixed_history_without_exec_wait_at_1020": 0.9997140306708787,
+      "oriented_change": 0,
+      "changed": false,
+      "newly_on_time_known_valid": 1,
+      "shifted_known_events": [
+        {
+          "index": 0,
+          "block": 0,
+          "task": "aerial-cactus-identification",
+          "arm": "old_fast",
+          "score": 0.9985835164071561,
+          "observed": 938.9300788498949,
+          "no_exec_wait": 837.7678252316546,
+          "removed_wait": 101.16225361824036
+        },
+        {
+          "index": 2,
+          "block": 0,
+          "task": "aerial-cactus-identification",
+          "arm": "old_fast",
+          "score": 0.9995697097010418,
+          "observed": 535.4283874190878,
+          "no_exec_wait": 535.4112260497641,
+          "removed_wait": 0.01716136932373047
+        },
+        {
+          "index": 2,
+          "block": 0,
+          "task": "aerial-cactus-identification",
+          "arm": "old_fast",
+          "score": 0.9994253887312048,
+          "observed": 1113.965893248096,
+          "no_exec_wait": 951.0656151566654,
+          "removed_wait": 162.90027809143066
+        },
+        {
+          "index": 2,
+          "block": 0,
+          "task": "aerial-cactus-identification",
+          "arm": "old_fast",
+          "score": 0.9996124714698824,
+          "observed": 1569.1544032630045,
+          "no_exec_wait": 1406.2398880061228,
+          "removed_wait": 162.9145152568817
+        },
+        {
+          "index": 4,
+          "block": 0,
+          "task": "aerial-cactus-identification",
+          "arm": "old_fast",
+          "score": 0.9990004436533517,
+          "observed": 625.13738835603,
+          "no_exec_wait": 625.1093350723386,
+          "removed_wait": 0.02805328369140625
+        },
+        {
+          "index": 4,
+          "block": 0,
+          "task": "aerial-cactus-identification",
+          "arm": "old_fast",
+          "score": 0.9998075720402175,
+          "observed": 1050.8407357269898,
+          "no_exec_wait": 1050.799333625473,
+          "removed_wait": 0.04140210151672363
+        },
+        {
+          "index": 6,
+          "block": 0,
+          "task": "aerial-cactus-identification",
+          "arm": "old_fast",
+          "score": 0.9991100206860057,
+          "observed": 423.1879139558878,
+          "no_exec_wait": 423.163054527482,
+          "removed_wait": 0.02485942840576172
+        },
+        {
+          "index": 6,
+          "block": 0,
+          "task": "aerial-cactus-identification",
+          "arm": "old_fast",
+          "score": 0.9996124714698824,
+          "observed": 790.347778287949,
+          "no_exec_wait": 790.3075253639836,
+          "removed_wait": 0.0402529239654541
+        },
+        {
+          "index": 6,
+          "block": 0,
+          "task": "aerial-cactus-identification",
+          "arm": "old_fast",
+          "score": 0.9997327389447465,
+          "observed": 1288.706007909961,
+          "no_exec_wait": 1143.8447122098878,
+          "removed_wait": 144.86129570007324
+        }
+      ]
+    },
+    {
+      "source": "metric",
+      "block": 0,
+      "task": "denoising-dirty-documents",
+      "arm": "old_fast",
+      "observed_at_1020": 0.009738903630219946,
+      "fixed_history_without_exec_wait_at_1020": 0.009738903630219946,
+      "oriented_change": 0,
+      "changed": false,
+      "newly_on_time_known_valid": 2,
+      "shifted_known_events": [
+        {
+          "index": 1,
+          "block": 0,
+          "task": "denoising-dirty-documents",
+          "arm": "old_fast",
+          "score": 0.01567827820173099,
+          "observed": 667.0497610089369,
+          "no_exec_wait": 609.190764379222,
+          "removed_wait": 57.858996629714966
+        },
+        {
+          "index": 3,
+          "block": 0,
+          "task": "denoising-dirty-documents",
+          "arm": "old_fast",
+          "score": 0.009738903630219946,
+          "observed": 826.5071475771256,
+          "no_exec_wait": 572.139453437645,
+          "removed_wait": 254.3676941394806
+        },
+        {
+          "index": 5,
+          "block": 0,
+          "task": "denoising-dirty-documents",
+          "arm": "old_fast",
+          "score": 0.07786020341889002,
+          "observed": 1323.4350940329023,
+          "no_exec_wait": 790.1817726236768,
+          "removed_wait": 533.2533214092255
+        },
+        {
+          "index": 7,
+          "block": 0,
+          "task": "denoising-dirty-documents",
+          "arm": "old_fast",
+          "score": 0.017703490488438143,
+          "observed": 1026.0233499549795,
+          "no_exec_wait": 496.5746824287344,
+          "removed_wait": 529.4486675262451
+        }
+      ]
+    },
+    {
+      "source": "metric",
+      "block": 1,
+      "task": "aerial-cactus-identification",
+      "arm": "old_medium",
+      "observed_at_1020": 0.9997140306708787,
+      "fixed_history_without_exec_wait_at_1020": 0.9998182624824276,
+      "oriented_change": 0.00010423181154883832,
+      "changed": true,
+      "newly_on_time_known_valid": 1,
+      "shifted_known_events": [
+        {
+          "index": 8,
+          "block": 1,
+          "task": "aerial-cactus-identification",
+          "arm": "old_medium",
+          "score": 0.9996044536382248,
+          "observed": 723.6051771240309,
+          "no_exec_wait": 723.5822772579268,
+          "removed_wait": 0.022899866104125977
+        },
+        {
+          "index": 8,
+          "block": 1,
+          "task": "aerial-cactus-identification",
+          "arm": "old_medium",
+          "score": 0.9997247211130889,
+          "observed": 1153.869584635133,
+          "no_exec_wait": 1153.8373428138439,
+          "removed_wait": 0.0322418212890625
+        },
+        {
+          "index": 8,
+          "block": 1,
+          "task": "aerial-cactus-identification",
+          "arm": "old_medium",
+          "score": 0.9996899771759058,
+          "observed": 1609.318735826062,
+          "no_exec_wait": 1609.2722608924378,
+          "removed_wait": 0.04647493362426758
+        },
+        {
+          "index": 10,
+          "block": 1,
+          "task": "aerial-cactus-identification",
+          "arm": "old_medium",
+          "score": 0.9996097988593298,
+          "observed": 556.3894360039849,
+          "no_exec_wait": 556.3736348126549,
+          "removed_wait": 0.015801191329956055
+        },
+        {
+          "index": 10,
+          "block": 1,
+          "task": "aerial-cactus-identification",
+          "arm": "old_medium",
+          "score": 0.999665923680933,
+          "observed": 989.3730548021849,
+          "no_exec_wait": 989.3452654478606,
+          "removed_wait": 0.02778935432434082
+        },
+        {
+          "index": 10,
+          "block": 1,
+          "task": "aerial-cactus-identification",
+          "arm": "old_medium",
+          "score": 0.9985300641961055,
+          "observed": 1547.1508110761642,
+          "no_exec_wait": 1442.280444741249,
+          "removed_wait": 104.87036633491516
+        },
+        {
+          "index": 12,
+          "block": 1,
+          "task": "aerial-cactus-identification",
+          "arm": "old_medium",
+          "score": 0.9992396422978036,
+          "observed": 421.4887386690825,
+          "no_exec_wait": 421.4789780508727,
+          "removed_wait": 0.009760618209838867
+        },
+        {
+          "index": 12,
+          "block": 1,
+          "task": "aerial-cactus-identification",
+          "arm": "old_medium",
+          "score": 0.9996926497864584,
+          "observed": 1299.2637494481169,
+          "no_exec_wait": 1148.0084622777067,
+          "removed_wait": 151.25528717041016
+        },
+        {
+          "index": 14,
+          "block": 1,
+          "task": "aerial-cactus-identification",
+          "arm": "old_medium",
+          "score": 0.9996124714698823,
+          "observed": 743.9366208859719,
+          "no_exec_wait": 649.7548095532693,
+          "removed_wait": 94.18181133270264
+        },
+        {
+          "index": 14,
+          "block": 1,
+          "task": "aerial-cactus-identification",
+          "arm": "old_medium",
+          "score": 0.9998182624824276,
+          "observed": 1210.9822325948626,
+          "no_exec_wait": 1010.8307686094195,
+          "removed_wait": 200.15146398544312
+        },
+        {
+          "index": 14,
+          "block": 1,
+          "task": "aerial-cactus-identification",
+          "arm": "old_medium",
+          "score": 0.9997140306708787,
+          "observed": 1783.0029649930075,
+          "no_exec_wait": 1549.4451229767874,
+          "removed_wait": 233.5578420162201
+        }
+      ]
+    },
+    {
+      "source": "metric",
+      "block": 1,
+      "task": "denoising-dirty-documents",
+      "arm": "old_medium",
+      "observed_at_1020": 0.014217226114657332,
+      "fixed_history_without_exec_wait_at_1020": 0.014217226114657332,
+      "oriented_change": 0,
+      "changed": false,
+      "newly_on_time_known_valid": 1,
+      "shifted_known_events": [
+        {
+          "index": 9,
+          "block": 1,
+          "task": "denoising-dirty-documents",
+          "arm": "old_medium",
+          "score": 0.03154836524124719,
+          "observed": 1325.7582070110366,
+          "no_exec_wait": 1194.58492701035,
+          "removed_wait": 131.17328000068665
+        },
+        {
+          "index": 11,
+          "block": 1,
+          "task": "denoising-dirty-documents",
+          "arm": "old_medium",
+          "score": 0.09078237175475364,
+          "observed": 1266.2259682021104,
+          "no_exec_wait": 1016.6772321066819,
+          "removed_wait": 249.54873609542847
+        },
+        {
+          "index": 13,
+          "block": 1,
+          "task": "denoising-dirty-documents",
+          "arm": "old_medium",
+          "score": 0.01948555375570943,
+          "observed": 728.3848613831215,
+          "no_exec_wait": 522.3392345043831,
+          "removed_wait": 206.0456268787384
+        },
+        {
+          "index": 13,
+          "block": 1,
+          "task": "denoising-dirty-documents",
+          "arm": "old_medium",
+          "score": 0.025600775311795325,
+          "observed": 1737.0771116029937,
+          "no_exec_wait": 1281.4780052911956,
+          "removed_wait": 455.5991063117981
+        },
+        {
+          "index": 15,
+          "block": 1,
+          "task": "denoising-dirty-documents",
+          "arm": "old_medium",
+          "score": 0.014217226114657332,
+          "observed": 472.87350241001695,
+          "no_exec_wait": 472.85778275784105,
+          "removed_wait": 0.01571965217590332
+        },
+        {
+          "index": 15,
+          "block": 1,
+          "task": "denoising-dirty-documents",
+          "arm": "old_medium",
+          "score": 0.016884319885294326,
+          "observed": 1057.449794460088,
+          "no_exec_wait": 1027.1879319436848,
+          "removed_wait": 30.2618625164032
+        },
+        {
+          "index": 15,
+          "block": 1,
+          "task": "denoising-dirty-documents",
+          "arm": "old_medium",
+          "score": 0.30574285876195884,
+          "observed": 1523.4226980749518,
+          "no_exec_wait": 1493.1480823103338,
+          "removed_wait": 30.27461576461792
+        }
+      ]
+    },
+    {
+      "source": "metric",
+      "block": 2,
+      "task": "aerial-cactus-identification",
+      "arm": "new_medium",
+      "observed_at_1020": 0.9997407567764041,
+      "fixed_history_without_exec_wait_at_1020": 0.9997407567764041,
+      "oriented_change": 0,
+      "changed": false,
+      "newly_on_time_known_valid": 0,
+      "shifted_known_events": [
+        {
+          "index": 16,
+          "block": 2,
+          "task": "aerial-cactus-identification",
+          "arm": "new_medium",
+          "score": 0.9996445427965128,
+          "observed": 745.2975255579222,
+          "no_exec_wait": 745.2819954485167,
+          "removed_wait": 0.015530109405517578
+        },
+        {
+          "index": 16,
+          "block": 2,
+          "task": "aerial-cactus-identification",
+          "arm": "new_medium",
+          "score": 0.9999759465050271,
+          "observed": 1568.0319059879985,
+          "no_exec_wait": 1566.5171800644603,
+          "removed_wait": 1.514725923538208
+        },
+        {
+          "index": 18,
+          "block": 2,
+          "task": "aerial-cactus-identification",
+          "arm": "new_medium",
+          "score": 0.9999385299572917,
+          "observed": 1254.6196625099983,
+          "no_exec_wait": 1254.5993318425026,
+          "removed_wait": 0.02033066749572754
+        },
+        {
+          "index": 20,
+          "block": 2,
+          "task": "aerial-cactus-identification",
+          "arm": "new_medium",
+          "score": 0.9997407567764041,
+          "observed": 487.81670465902425,
+          "no_exec_wait": 487.80731668905355,
+          "removed_wait": 0.009387969970703125
+        },
+        {
+          "index": 20,
+          "block": 2,
+          "task": "aerial-cactus-identification",
+          "arm": "new_medium",
+          "score": 0.9999465477889493,
+          "observed": 1162.9792611929588,
+          "no_exec_wait": 1162.9545374247245,
+          "removed_wait": 0.02472376823425293
+        },
+        {
+          "index": 22,
+          "block": 2,
+          "task": "aerial-cactus-identification",
+          "arm": "new_medium",
+          "score": 0.9995830727538044,
+          "observed": 487.8908611552324,
+          "no_exec_wait": 487.8775376097765,
+          "removed_wait": 0.013323545455932617
+        },
+        {
+          "index": 22,
+          "block": 2,
+          "task": "aerial-cactus-identification",
+          "arm": "new_medium",
+          "score": 0.9926396305383173,
+          "observed": 1207.386391027132,
+          "no_exec_wait": 1207.3586708141956,
+          "removed_wait": 0.027720212936401367
+        }
+      ]
+    },
+    {
+      "source": "metric",
+      "block": 2,
+      "task": "denoising-dirty-documents",
+      "arm": "new_medium",
+      "observed_at_1020": 0.019059982312720675,
+      "fixed_history_without_exec_wait_at_1020": 0.019059982312720675,
+      "oriented_change": 0,
+      "changed": false,
+      "newly_on_time_known_valid": 0,
+      "shifted_known_events": [
+        {
+          "index": 19,
+          "block": 2,
+          "task": "denoising-dirty-documents",
+          "arm": "new_medium",
+          "score": 0.020612101467506028,
+          "observed": 1115.1492660259828,
+          "no_exec_wait": 1115.1383311962709,
+          "removed_wait": 0.010934829711914062
+        },
+        {
+          "index": 21,
+          "block": 2,
+          "task": "denoising-dirty-documents",
+          "arm": "new_medium",
+          "score": 0.019059982312720675,
+          "observed": 750.8694979141001,
+          "no_exec_wait": 611.1091739127878,
+          "removed_wait": 139.76032400131226
+        },
+        {
+          "index": 21,
+          "block": 2,
+          "task": "denoising-dirty-documents",
+          "arm": "new_medium",
+          "score": 0.016851028985227796,
+          "observed": 1656.6421544130426,
+          "no_exec_wait": 1516.8718673761468,
+          "removed_wait": 139.77028703689575
+        }
+      ]
+    },
+    {
+      "source": "metric",
+      "block": 3,
+      "task": "aerial-cactus-identification",
+      "arm": "new_medium",
+      "observed_at_1020": 0.9997140306708787,
+      "fixed_history_without_exec_wait_at_1020": 0.9997140306708787,
+      "oriented_change": 0,
+      "changed": false,
+      "newly_on_time_known_valid": 0,
+      "shifted_known_events": [
+        {
+          "index": 24,
+          "block": 3,
+          "task": "aerial-cactus-identification",
+          "arm": "new_medium",
+          "score": 0.999321156919656,
+          "observed": 892.8620150780771,
+          "no_exec_wait": 892.8341348862741,
+          "removed_wait": 0.027880191802978516
+        },
+        {
+          "index": 26,
+          "block": 3,
+          "task": "aerial-cactus-identification",
+          "arm": "new_medium",
+          "score": 0.9991260563493208,
+          "observed": 1235.4046780369245,
+          "no_exec_wait": 1051.3424875042401,
+          "removed_wait": 184.06219053268433
+        },
+        {
+          "index": 28,
+          "block": 3,
+          "task": "aerial-cactus-identification",
+          "arm": "new_medium",
+          "score": 0.9995510014271741,
+          "observed": 799.6522676129825,
+          "no_exec_wait": 524.404735960532,
+          "removed_wait": 275.24753165245056
+        },
+        {
+          "index": 28,
+          "block": 3,
+          "task": "aerial-cactus-identification",
+          "arm": "new_medium",
+          "score": 0.9990405328116397,
+          "observed": 1587.4183725439943,
+          "no_exec_wait": 1312.1398047530092,
+          "removed_wait": 275.2785677909851
+        },
+        {
+          "index": 30,
+          "block": 3,
+          "task": "aerial-cactus-identification",
+          "arm": "new_medium",
+          "score": 0.999706012839221,
+          "observed": 491.33074000291526,
+          "no_exec_wait": 491.3162019532174,
+          "removed_wait": 0.014538049697875977
+        },
+        {
+          "index": 30,
+          "block": 3,
+          "task": "aerial-cactus-identification",
+          "arm": "new_medium",
+          "score": 0.9997594650502718,
+          "observed": 1191.1366308019497,
+          "no_exec_wait": 1191.1114857480861,
+          "removed_wait": 0.02514505386352539
+        }
+      ]
+    },
+    {
+      "source": "metric",
+      "block": 3,
+      "task": "denoising-dirty-documents",
+      "arm": "new_medium",
+      "observed_at_1020": 0.01356582535832205,
+      "fixed_history_without_exec_wait_at_1020": 0.01356582535832205,
+      "oriented_change": 0,
+      "changed": false,
+      "newly_on_time_known_valid": 1,
+      "shifted_known_events": [
+        {
+          "index": 25,
+          "block": 3,
+          "task": "denoising-dirty-documents",
+          "arm": "new_medium",
+          "score": 0.02086583381855083,
+          "observed": 1209.4672587651294,
+          "no_exec_wait": 979.4327719944995,
+          "removed_wait": 230.03448677062988
+        },
+        {
+          "index": 27,
+          "block": 3,
+          "task": "denoising-dirty-documents",
+          "arm": "new_medium",
+          "score": 0.01878567974497039,
+          "observed": 834.5176437080372,
+          "no_exec_wait": 834.5061373889912,
+          "removed_wait": 0.011506319046020508
+        },
+        {
+          "index": 29,
+          "block": 3,
+          "task": "denoising-dirty-documents",
+          "arm": "new_medium",
+          "score": 0.21031336717236349,
+          "observed": 541.0177508830093,
+          "no_exec_wait": 541.0089808939956,
+          "removed_wait": 0.008769989013671875
+        },
+        {
+          "index": 31,
+          "block": 3,
+          "task": "denoising-dirty-documents",
+          "arm": "new_medium",
+          "score": 0.01356582535832205,
+          "observed": 760.7336781779304,
+          "no_exec_wait": 561.2178602972999,
+          "removed_wait": 199.5158178806305
+        },
+        {
+          "index": 31,
+          "block": 3,
+          "task": "denoising-dirty-documents",
+          "arm": "new_medium",
+          "score": 0.014958525545088372,
+          "observed": 1490.0160591749009,
+          "no_exec_wait": 1290.4903984216508,
+          "removed_wait": 199.52566075325012
+        }
+      ]
+    },
+    {
+      "source": "metric",
+      "block": 4,
+      "task": "aerial-cactus-identification",
+      "arm": "old_medium",
+      "observed_at_1020": 0.9999786191155797,
+      "fixed_history_without_exec_wait_at_1020": 0.9999786191155797,
+      "oriented_change": 0,
+      "changed": false,
+      "newly_on_time_known_valid": 0,
+      "shifted_known_events": [
+        {
+          "index": 32,
+          "block": 4,
+          "task": "aerial-cactus-identification",
+          "arm": "old_medium",
+          "score": 0.9999011134095561,
+          "observed": 460.5812763920985,
+          "no_exec_wait": 460.56767127430066,
+          "removed_wait": 0.013605117797851562
+        },
+        {
+          "index": 32,
+          "block": 4,
+          "task": "aerial-cactus-identification",
+          "arm": "old_medium",
+          "score": 0.9999786191155797,
+          "observed": 785.5961703290232,
+          "no_exec_wait": 778.442945860792,
+          "removed_wait": 7.153224468231201
+        },
+        {
+          "index": 32,
+          "block": 4,
+          "task": "aerial-cactus-identification",
+          "arm": "old_medium",
+          "score": 0.9999171490728713,
+          "observed": 1319.0010607200675,
+          "no_exec_wait": 1244.8589749294333,
+          "removed_wait": 74.14208579063416
+        },
+        {
+          "index": 34,
+          "block": 4,
+          "task": "aerial-cactus-identification",
+          "arm": "old_medium",
+          "score": 0.9997461019975091,
+          "observed": 596.4147165508475,
+          "no_exec_wait": 596.4010108204093,
+          "removed_wait": 0.013705730438232422
+        },
+        {
+          "index": 34,
+          "block": 4,
+          "task": "aerial-cactus-identification",
+          "arm": "old_medium",
+          "score": 0.9061218817316379,
+          "observed": 1483.4302075768355,
+          "no_exec_wait": 1289.8910525704268,
+          "removed_wait": 193.5391550064087
+        },
+        {
+          "index": 36,
+          "block": 4,
+          "task": "aerial-cactus-identification",
+          "arm": "old_medium",
+          "score": 0.9997808459346921,
+          "observed": 1050.8805656409822,
+          "no_exec_wait": 1050.8379523730837,
+          "removed_wait": 0.04261326789855957
+        },
+        {
+          "index": 36,
+          "block": 4,
+          "task": "aerial-cactus-identification",
+          "arm": "old_medium",
+          "score": 0.9881683530839253,
+          "observed": 1687.2908628680743,
+          "no_exec_wait": 1687.2352066733874,
+          "removed_wait": 0.05565619468688965
+        },
+        {
+          "index": 38,
+          "block": 4,
+          "task": "aerial-cactus-identification",
+          "arm": "old_medium",
+          "score": 0.9997861911557971,
+          "observed": 440.327653485816,
+          "no_exec_wait": 440.3147843661718,
+          "removed_wait": 0.012869119644165039
+        },
+        {
+          "index": 38,
+          "block": 4,
+          "task": "aerial-cactus-identification",
+          "arm": "old_medium",
+          "score": 0.9987385278192032,
+          "observed": 999.8353331838734,
+          "no_exec_wait": 999.8055978571065,
+          "removed_wait": 0.029735326766967773
+        },
+        {
+          "index": 38,
+          "block": 4,
+          "task": "aerial-cactus-identification",
+          "arm": "old_medium",
+          "score": 0.9996178166909875,
+          "observed": 1788.7259376498405,
+          "no_exec_wait": 1602.6672392340843,
+          "removed_wait": 186.05869841575623
+        }
+      ]
+    },
+    {
+      "source": "metric",
+      "block": 4,
+      "task": "denoising-dirty-documents",
+      "arm": "old_medium",
+      "observed_at_1020": 0.01314423284656948,
+      "fixed_history_without_exec_wait_at_1020": 0.01314423284656948,
+      "oriented_change": 0,
+      "changed": false,
+      "newly_on_time_known_valid": 0,
+      "shifted_known_events": [
+        {
+          "index": 35,
+          "block": 4,
+          "task": "denoising-dirty-documents",
+          "arm": "old_medium",
+          "score": 0.020961803865919528,
+          "observed": 856.4970910460688,
+          "no_exec_wait": 656.1542596728541,
+          "removed_wait": 200.34283137321472
+        },
+        {
+          "index": 35,
+          "block": 4,
+          "task": "denoising-dirty-documents",
+          "arm": "old_medium",
+          "score": 0.015915680142243024,
+          "observed": 1329.967583941063,
+          "no_exec_wait": 1129.6120665536728,
+          "removed_wait": 200.35551738739014
+        },
+        {
+          "index": 37,
+          "block": 4,
+          "task": "denoising-dirty-documents",
+          "arm": "old_medium",
+          "score": 0.01314423284656948,
+          "observed": 420.2017258089036,
+          "no_exec_wait": 398.59627327136695,
+          "removed_wait": 21.60545253753662
+        },
+        {
+          "index": 37,
+          "block": 4,
+          "task": "denoising-dirty-documents",
+          "arm": "old_medium",
+          "score": 0.069000381096859,
+          "observed": 1303.0137871210463,
+          "no_exec_wait": 1066.0390926306136,
+          "removed_wait": 236.97469449043274
+        },
+        {
+          "index": 39,
+          "block": 4,
+          "task": "denoising-dirty-documents",
+          "arm": "old_medium",
+          "score": 0.016990368284484372,
+          "observed": 676.8798935669474,
+          "no_exec_wait": 481.1851060646586,
+          "removed_wait": 195.69478750228882
+        },
+        {
+          "index": 39,
+          "block": 4,
+          "task": "denoising-dirty-documents",
+          "arm": "old_medium",
+          "score": 0.017110415522540882,
+          "observed": 1650.3710357539821,
+          "no_exec_wait": 1454.6509899490047,
+          "removed_wait": 195.72004580497742
+        }
+      ]
+    },
+    {
+      "source": "metric",
+      "block": 5,
+      "task": "aerial-cactus-identification",
+      "arm": "old_fast",
+      "observed_at_1020": 0.9997861911557971,
+      "fixed_history_without_exec_wait_at_1020": 0.9997861911557971,
+      "oriented_change": 0,
+      "changed": false,
+      "newly_on_time_known_valid": 0,
+      "shifted_known_events": [
+        {
+          "index": 40,
+          "block": 5,
+          "task": "aerial-cactus-identification",
+          "arm": "old_fast",
+          "score": 0.9997861911557971,
+          "observed": 658.9355627531186,
+          "no_exec_wait": 493.97690286580473,
+          "removed_wait": 164.95865988731384
+        },
+        {
+          "index": 42,
+          "block": 5,
+          "task": "aerial-cactus-identification",
+          "arm": "old_fast",
+          "score": 0.9968984354537824,
+          "observed": 933.2567010931671,
+          "no_exec_wait": 933.2341471724212,
+          "removed_wait": 0.02255392074584961
+        },
+        {
+          "index": 42,
+          "block": 5,
+          "task": "aerial-cactus-identification",
+          "arm": "old_fast",
+          "score": 0.5,
+          "observed": 1535.6126870592125,
+          "no_exec_wait": 1535.5527827222832,
+          "removed_wait": 0.05990433692932129
+        },
+        {
+          "index": 44,
+          "block": 5,
+          "task": "aerial-cactus-identification",
+          "arm": "old_fast",
+          "score": 0.9995950995012909,
+          "observed": 732.4260353720747,
+          "no_exec_wait": 732.4053835547529,
+          "removed_wait": 0.020651817321777344
+        },
+        {
+          "index": 46,
+          "block": 5,
+          "task": "aerial-cactus-identification",
+          "arm": "old_fast",
+          "score": 0.9991501098442936,
+          "observed": 889.3497508771252,
+          "no_exec_wait": 889.3096989400219,
+          "removed_wait": 0.040051937103271484
+        },
+        {
+          "index": 46,
+          "block": 5,
+          "task": "aerial-cactus-identification",
+          "arm": "old_fast",
+          "score": 0.9991260563493208,
+          "observed": 1314.9450149310287,
+          "no_exec_wait": 1199.4375748408493,
+          "removed_wait": 115.50744009017944
+        }
+      ]
+    },
+    {
+      "source": "metric",
+      "block": 5,
+      "task": "denoising-dirty-documents",
+      "arm": "old_fast",
+      "observed_at_1020": 0.04551226514614451,
+      "fixed_history_without_exec_wait_at_1020": 0.013387899427844734,
+      "oriented_change": 0.032124365718299776,
+      "changed": true,
+      "newly_on_time_known_valid": 1,
+      "shifted_known_events": [
+        {
+          "index": 41,
+          "block": 5,
+          "task": "denoising-dirty-documents",
+          "arm": "old_fast",
+          "score": 0.11969340241359985,
+          "observed": 381.86877147690393,
+          "no_exec_wait": 381.8568965627346,
+          "removed_wait": 0.011874914169311523
+        },
+        {
+          "index": 45,
+          "block": 5,
+          "task": "denoising-dirty-documents",
+          "arm": "old_fast",
+          "score": 0.032027155694587604,
+          "observed": 1618.9747941961978,
+          "no_exec_wait": 1419.2050667277072,
+          "removed_wait": 199.7697274684906
+        },
+        {
+          "index": 47,
+          "block": 5,
+          "task": "denoising-dirty-documents",
+          "arm": "old_fast",
+          "score": 0.013387899427844734,
+          "observed": 1186.2742397170514,
+          "no_exec_wait": 930.2487544398755,
+          "removed_wait": 256.0254852771759
+        }
+      ]
+    }
+  ],
+  "new_gpu_jobs": 0,
+  "new_model_calls": 0,
+  "quality_claim": false,
+  "limitations": [
+    "All observed generation, execution, scoring and nonqueue gaps fixed. Only admitted/cancelled execution waiting removed.",
+    "Uses already observed closed development scores. Not a deployable decision rule and never uses live outcomes.",
+    "Zero-wait scenario ignores finite hardware and prompt/history/load changes; not an attainable shared-FIFO forecast.",
+    "Cannot bound gains from unobserved tail candidates or changed search trajectories. Late/unknown cancelled scores never invented.",
+    "1020s prefixes were generated with1800s prompts; neither this nor unchanged cells negate the new real17-minute experiment.",
+    "No frozen primary gate, planned matrix, or budget is changed."
+  ]
+}

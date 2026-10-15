@@ -1,0 +1,8 @@
+{
+  "passed": true,
+  "task_pool_cells": 20,
+  "input_sha256": "09b04a2783b172307702977a312641512acf280a0c5a6f4cfc84d57ec9d95103",
+  "new_gpu_jobs": 0,
+  "independent_algorithm": "Boolean interval occupancy integration; reproduce every shifted known event and endpoint",
+  "boundary": "Conditional historical sensitivity only; no assertion about unobserved future quality or actual FIFO gains."
+}

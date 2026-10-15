@@ -1,0 +1,49 @@
+{
+  "job": "18510",
+  "state": "FAILED",
+  "source_commit": "b275812f48761ae2cadf507b749ae948e1f41ab0",
+  "plan_sha256": "c31091ff71f19a15ce6cdb12583f1d7a16cbc5f53a96b97d26b03782003bce64",
+  "assigned": 32,
+  "started": 16,
+  "complete": 15,
+  "failed_started": 1,
+  "not_started": 16,
+  "elapsed_seconds": 2587,
+  "gpu_seconds": 15522,
+  "gpu_hours": 4.3116666666666665,
+  "earlier_18468_gpu_seconds_separately_accounted": 2094,
+  "automatic_retry": false,
+  "quality_claim": false,
+  "frozen_reader_unchanged": true,
+  "development_score_receipts_recomputed": 14,
+  "independent_node_denominator_cost_matrix_csv_checks": true,
+  "all_started_worker_cleanup_receipts": 16,
+  "service_cleanup_gpu_clean": true,
+  "shared_pool_final_gpu_scan": "Not certified: executor audit raised before the pool-level final scan; do not substitute the service cleanup receipt.",
+  "root_cause": "The new execution queue was not connected to the existing Python-level deferred SIGALRM guard. Main-thread OS signal masking alone did not protect its state-file commit; an interrupted commit left a temporary file and a second FileExistsError during cancellation. Its event/state audit then failed.",
+  "evidence": [
+    "Worker9 stack: locked -> ExperimentDeadline.expire, then acquire cleanup -> locked -> FileExistsError.",
+    "Frozen pool-1 retains a 392-byte .state temporary file; it was not removed or repaired.",
+    "Existing feedback_effort_policy installs protect on live_admission.locked and parent.locked, not shared_pool.locked.",
+    "Pure CPU Linux regression using a real other-thread SIGALRM reproduces the orphan/secondary error without the guard and preserves committed state with the guard. Injection is immediately before atomic replacement, not proof of the precise historical bytecode timing."
+  ],
+  "cpu_tests": {
+    "total_passed": 24,
+    "elapsed_seconds": 0.246,
+    "guarded_acquisition_signal_subtests": 40,
+    "covers": ["unsafe acquire reproduction", "guarded acquire", "guarded release", "queued cancellation", "sealed source hash", "existing FIFO/readout/qualification regressions"],
+    "test_sha256": "296ff74b0d40195be21339779658913bfbf8bc16ab9537768fc78248a745ab4e",
+    "frozen_queue_sha256": "5b0ba152a80c39af7e0a8465a013203fcddb65c7937a5ff9e0a96661ff302512",
+    "existing_guard_sha256": "29956eb9c1d1c41e18d77bce3b30f74ca34849181ec9ecb9d560f99872cd4b67",
+    "candidate_guard_applied_only_in_test_fixture": true,
+    "new_production_batch_prepared_or_submitted": false,
+    "real_gpu_revalidation": false
+  },
+  "remote_local_sha256_verified": {
+    "failure-18510.safe.json": "d5284b9ed57daefdc33e8ff1518df6dace706d62e01bdd744f49f3b4e18c5223",
+    "summary.json": "ec9929aea9998c2c2911149855e8db01fbe5dbdabaf25960954197039615b75b",
+    "runs.json": "5bd53eab8bb4c62721f967556e8a59899584b12a989e60a52dbf5d8f7fff2c5e",
+    "runs.csv": "38e8a3015cb03585eac57a80c8b1ce79d74bb69b760f31243c7b43841f75d46e"
+  },
+  "next_boundary": "No reopening18510/18468, no unused-budget reuse, no change to quality endpoints. Before any independently authorized new GPU batch, connect the already-tested guard to the actual new execution-queue entry and test that production wiring, not only a manually guarded fixture."
+}

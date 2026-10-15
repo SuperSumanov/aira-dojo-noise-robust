@@ -1,0 +1,624 @@
+{
+  "assigned": 32,
+  "automatic_retry": false,
+  "complete": 15,
+  "dispatch_qualification_passed": true,
+  "elapsed_seconds": 2587,
+  "end_hk": "2026-10-15T13:39:00",
+  "error": {
+    "frames": [
+      {
+        "file": "pooling_trial_20261015.py",
+        "function": "controller",
+        "line": 267
+      }
+    ],
+    "type": "AssertionError"
+  },
+  "executors": [
+    {
+      "block": 0,
+      "trace": {
+        "errors": [],
+        "frames": [],
+        "redaction_counts": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "block": 1,
+      "trace": {
+        "errors": [
+          {
+            "known_markers": [],
+            "message_sha256": "4e188a105c9a58cb2d4657ec5d9aa0c100dc4b5f93f1cd7d21d9addb1ad5cc6d",
+            "type": "ValueError"
+          }
+        ],
+        "frames": [
+          {
+            "file": "pooling_trial_20261015.py",
+            "function": "<module>",
+            "line": 405
+          },
+          {
+            "file": "pooling_trial_20261015.py",
+            "function": "executor",
+            "line": 215
+          },
+          {
+            "file": "shared_pool_20261015.py",
+            "function": "audit",
+            "line": 160
+          }
+        ],
+        "redaction_counts": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "sha256": "a87061bd64ba59418d4ae8d69bc4b3d9842e46e35b68d947bb58cc92ae393f20"
+      }
+    }
+  ],
+  "failed_worker_diagnostics": [
+    {
+      "index": 9,
+      "worker": {
+        "errors": [
+          {
+            "known_markers": [],
+            "message_sha256": "a19d6bf03d0a17f583e002876687bab894ea0609efbd4235fe6d7c989a0569da",
+            "type": "FileExistsError"
+          }
+        ],
+        "frames": [
+          {
+            "file": "shared_pool_20261015.py",
+            "function": "acquire",
+            "line": 115
+          },
+          {
+            "file": "contextlib.py",
+            "function": "__exit__",
+            "line": 144
+          },
+          {
+            "file": "shared_pool_20261015.py",
+            "function": "locked",
+            "line": 89
+          },
+          {
+            "file": "experiment_deadline.py",
+            "function": "expire",
+            "line": 76
+          },
+          {
+            "file": "pooling_trial_20261015.py",
+            "function": "<module>",
+            "line": 406
+          },
+          {
+            "file": "pooling_trial_20261015.py",
+            "function": "worker",
+            "line": 148
+          },
+          {
+            "file": "image-live-native-worker",
+            "function": "worker",
+            "line": 72
+          },
+          {
+            "file": "feedback_parent_policy_20261012.py",
+            "function": "solve",
+            "line": 230
+          },
+          {
+            "file": "mcts.py",
+            "function": "__call__",
+            "line": 226
+          },
+          {
+            "file": "mcts.py",
+            "function": "step",
+            "line": 446
+          },
+          {
+            "file": "mcts.py",
+            "function": "_expand_leaf_and_backprop",
+            "line": 514
+          },
+          {
+            "file": "mcts.py",
+            "function": "debug_cycle",
+            "line": 537
+          },
+          {
+            "file": "image-live-native-worker",
+            "function": "stepped",
+            "line": 61
+          },
+          {
+            "file": "shared-execution-common-hooks",
+            "function": "step",
+            "line": 52
+          },
+          {
+            "file": "contextlib.py",
+            "function": "__enter__",
+            "line": 137
+          },
+          {
+            "file": "shared-execution-common-hooks",
+            "function": "operation",
+            "line": 35
+          },
+          {
+            "file": "shared_pool_20261015.py",
+            "function": "acquire",
+            "line": 123
+          },
+          {
+            "file": "contextlib.py",
+            "function": "__exit__",
+            "line": 144
+          },
+          {
+            "file": "shared_pool_20261015.py",
+            "function": "locked",
+            "line": 89
+          },
+          {
+            "file": "pathlib.py",
+            "function": "open",
+            "line": 1013
+          }
+        ],
+        "redaction_counts": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "sha256": "06a8c147f3a43c94804247bc7f717f9cad1caa18b2b476f112556da309c6fa9a"
+      }
+    }
+  ],
+  "gpu_hours": 4.3116666666666665,
+  "gpu_seconds": 15522,
+  "job": "18510",
+  "plan_sha256": "c31091ff71f19a15ce6cdb12583f1d7a16cbc5f53a96b97d26b03782003bce64",
+  "quality_claim": false,
+  "rows": [
+    {
+      "block": 0,
+      "cleanup_verified": true,
+      "finished_keys": [
+        "elapsed_seconds",
+        "external_valid_submissions",
+        "native_selected_code_sha256",
+        "native_selected_score",
+        "native_selected_valid",
+        "status",
+        "utc"
+      ],
+      "index": 0,
+      "returncode": 0,
+      "started": true,
+      "status": "budget_exhausted"
+    },
+    {
+      "block": 0,
+      "cleanup_verified": true,
+      "finished_keys": [
+        "elapsed_seconds",
+        "external_valid_submissions",
+        "native_selected_code_sha256",
+        "native_selected_score",
+        "native_selected_valid",
+        "status",
+        "utc"
+      ],
+      "index": 1,
+      "returncode": 0,
+      "started": true,
+      "status": "budget_exhausted"
+    },
+    {
+      "block": 0,
+      "cleanup_verified": true,
+      "finished_keys": [
+        "elapsed_seconds",
+        "external_valid_submissions",
+        "native_selected_code_sha256",
+        "native_selected_score",
+        "native_selected_valid",
+        "status",
+        "utc"
+      ],
+      "index": 2,
+      "returncode": 0,
+      "started": true,
+      "status": "budget_exhausted"
+    },
+    {
+      "block": 0,
+      "cleanup_verified": true,
+      "finished_keys": [
+        "elapsed_seconds",
+        "external_valid_submissions",
+        "native_selected_code_sha256",
+        "native_selected_score",
+        "native_selected_valid",
+        "status",
+        "utc"
+      ],
+      "index": 3,
+      "returncode": 0,
+      "started": true,
+      "status": "budget_exhausted"
+    },
+    {
+      "block": 0,
+      "cleanup_verified": true,
+      "finished_keys": [
+        "elapsed_seconds",
+        "external_valid_submissions",
+        "native_selected_code_sha256",
+        "native_selected_score",
+        "native_selected_valid",
+        "status",
+        "utc"
+      ],
+      "index": 4,
+      "returncode": 0,
+      "started": true,
+      "status": "budget_exhausted"
+    },
+    {
+      "block": 0,
+      "cleanup_verified": true,
+      "finished_keys": [
+        "elapsed_seconds",
+        "external_valid_submissions",
+        "native_selected_code_sha256",
+        "native_selected_score",
+        "native_selected_valid",
+        "status",
+        "utc"
+      ],
+      "index": 5,
+      "returncode": 0,
+      "started": true,
+      "status": "budget_exhausted"
+    },
+    {
+      "block": 0,
+      "cleanup_verified": true,
+      "finished_keys": [
+        "elapsed_seconds",
+        "external_valid_submissions",
+        "native_selected_code_sha256",
+        "native_selected_score",
+        "native_selected_valid",
+        "status",
+        "utc"
+      ],
+      "index": 6,
+      "returncode": 0,
+      "started": true,
+      "status": "budget_exhausted"
+    },
+    {
+      "block": 0,
+      "cleanup_verified": true,
+      "finished_keys": [
+        "elapsed_seconds",
+        "external_valid_submissions",
+        "native_selected_code_sha256",
+        "native_selected_score",
+        "native_selected_valid",
+        "status",
+        "utc"
+      ],
+      "index": 7,
+      "returncode": 0,
+      "started": true,
+      "status": "budget_exhausted"
+    },
+    {
+      "block": 1,
+      "cleanup_verified": true,
+      "finished_keys": [
+        "elapsed_seconds",
+        "external_valid_submissions",
+        "native_selected_code_sha256",
+        "native_selected_score",
+        "native_selected_valid",
+        "status",
+        "utc"
+      ],
+      "index": 8,
+      "returncode": 0,
+      "started": true,
+      "status": "budget_exhausted"
+    },
+    {
+      "block": 1,
+      "cleanup_verified": true,
+      "finished_keys": [
+        "elapsed_seconds",
+        "external_valid_submissions",
+        "native_selected_code_sha256",
+        "native_selected_score",
+        "native_selected_valid",
+        "status",
+        "utc"
+      ],
+      "index": 9,
+      "returncode": 1,
+      "started": true,
+      "status": "failed"
+    },
+    {
+      "block": 1,
+      "cleanup_verified": true,
+      "finished_keys": [
+        "elapsed_seconds",
+        "external_valid_submissions",
+        "native_selected_code_sha256",
+        "native_selected_score",
+        "native_selected_valid",
+        "status",
+        "utc"
+      ],
+      "index": 10,
+      "returncode": 0,
+      "started": true,
+      "status": "budget_exhausted"
+    },
+    {
+      "block": 1,
+      "cleanup_verified": true,
+      "finished_keys": [
+        "elapsed_seconds",
+        "external_valid_submissions",
+        "native_selected_code_sha256",
+        "native_selected_score",
+        "native_selected_valid",
+        "status",
+        "utc"
+      ],
+      "index": 11,
+      "returncode": 0,
+      "started": true,
+      "status": "budget_exhausted"
+    },
+    {
+      "block": 1,
+      "cleanup_verified": true,
+      "finished_keys": [
+        "elapsed_seconds",
+        "external_valid_submissions",
+        "native_selected_code_sha256",
+        "native_selected_score",
+        "native_selected_valid",
+        "status",
+        "utc"
+      ],
+      "index": 12,
+      "returncode": 0,
+      "started": true,
+      "status": "budget_exhausted"
+    },
+    {
+      "block": 1,
+      "cleanup_verified": true,
+      "finished_keys": [
+        "elapsed_seconds",
+        "external_valid_submissions",
+        "native_selected_code_sha256",
+        "native_selected_score",
+        "native_selected_valid",
+        "status",
+        "utc"
+      ],
+      "index": 13,
+      "returncode": 0,
+      "started": true,
+      "status": "budget_exhausted"
+    },
+    {
+      "block": 1,
+      "cleanup_verified": true,
+      "finished_keys": [
+        "elapsed_seconds",
+        "external_valid_submissions",
+        "native_selected_code_sha256",
+        "native_selected_score",
+        "native_selected_valid",
+        "status",
+        "utc"
+      ],
+      "index": 14,
+      "returncode": 0,
+      "started": true,
+      "status": "budget_exhausted"
+    },
+    {
+      "block": 1,
+      "cleanup_verified": true,
+      "finished_keys": [
+        "elapsed_seconds",
+        "external_valid_submissions",
+        "native_selected_code_sha256",
+        "native_selected_score",
+        "native_selected_valid",
+        "status",
+        "utc"
+      ],
+      "index": 15,
+      "returncode": 0,
+      "started": true,
+      "status": "budget_exhausted"
+    },
+    {
+      "block": 2,
+      "cleanup_verified": null,
+      "finished_keys": [],
+      "index": 16,
+      "returncode": null,
+      "started": false,
+      "status": null
+    },
+    {
+      "block": 2,
+      "cleanup_verified": null,
+      "finished_keys": [],
+      "index": 17,
+      "returncode": null,
+      "started": false,
+      "status": null
+    },
+    {
+      "block": 2,
+      "cleanup_verified": null,
+      "finished_keys": [],
+      "index": 18,
+      "returncode": null,
+      "started": false,
+      "status": null
+    },
+    {
+      "block": 2,
+      "cleanup_verified": null,
+      "finished_keys": [],
+      "index": 19,
+      "returncode": null,
+      "started": false,
+      "status": null
+    },
+    {
+      "block": 2,
+      "cleanup_verified": null,
+      "finished_keys": [],
+      "index": 20,
+      "returncode": null,
+      "started": false,
+      "status": null
+    },
+    {
+      "block": 2,
+      "cleanup_verified": null,
+      "finished_keys": [],
+      "index": 21,
+      "returncode": null,
+      "started": false,
+      "status": null
+    },
+    {
+      "block": 2,
+      "cleanup_verified": null,
+      "finished_keys": [],
+      "index": 22,
+      "returncode": null,
+      "started": false,
+      "status": null
+    },
+    {
+      "block": 2,
+      "cleanup_verified": null,
+      "finished_keys": [],
+      "index": 23,
+      "returncode": null,
+      "started": false,
+      "status": null
+    },
+    {
+      "block": 3,
+      "cleanup_verified": null,
+      "finished_keys": [],
+      "index": 24,
+      "returncode": null,
+      "started": false,
+      "status": null
+    },
+    {
+      "block": 3,
+      "cleanup_verified": null,
+      "finished_keys": [],
+      "index": 25,
+      "returncode": null,
+      "started": false,
+      "status": null
+    },
+    {
+      "block": 3,
+      "cleanup_verified": null,
+      "finished_keys": [],
+      "index": 26,
+      "returncode": null,
+      "started": false,
+      "status": null
+    },
+    {
+      "block": 3,
+      "cleanup_verified": null,
+      "finished_keys": [],
+      "index": 27,
+      "returncode": null,
+      "started": false,
+      "status": null
+    },
+    {
+      "block": 3,
+      "cleanup_verified": null,
+      "finished_keys": [],
+      "index": 28,
+      "returncode": null,
+      "started": false,
+      "status": null
+    },
+    {
+      "block": 3,
+      "cleanup_verified": null,
+      "finished_keys": [],
+      "index": 29,
+      "returncode": null,
+      "started": false,
+      "status": null
+    },
+    {
+      "block": 3,
+      "cleanup_verified": null,
+      "finished_keys": [],
+      "index": 30,
+      "returncode": null,
+      "started": false,
+      "status": null
+    },
+    {
+      "block": 3,
+      "cleanup_verified": null,
+      "finished_keys": [],
+      "index": 31,
+      "returncode": null,
+      "started": false,
+      "status": null
+    }
+  ],
+  "service_cleanup": {
+    "gpu_clean": true,
+    "returncode": 137
+  },
+  "source_commit": "b275812f48761ae2cadf507b749ae948e1f41ab0",
+  "start_hk": "2026-10-15T12:55:53",
+  "started": 16,
+  "state": "FAILED"
+}

@@ -1,0 +1,132 @@
+{
+  "passed": true,
+  "verified_endpoints": 80,
+  "verified_task_pool_cells": 20,
+  "input_sha256": "307e56d9bfd19c75018b03ae02e7a2476933290c096b2a9daa5b25e15b545d59",
+  "independent_recompute": "80 prior endpoints, all prefix curves/medians/sample SD, actual-wall-order record gains",
+  "boundary": "Source extraction and original external score recomputation are not rerun by JS. This is descriptive, not intervention or gain confirmation.",
+  "descriptive": [
+    {
+      "source": "score",
+      "assigned": 32,
+      "denoising": [
+        {
+          "block": 0,
+          "arm": "old_medium",
+          "valid": 4,
+          "records": 3,
+          "best_at_1020": 0.015124705657558059,
+          "best_at_1800": 0.013654153292274094,
+          "post_1020_gain": 0.0014705523652839645,
+          "first_material_gain_at": 702.3345030769706,
+          "last_record_at": 1584.0410489384085
+        },
+        {
+          "block": 1,
+          "arm": "new_medium",
+          "valid": 3,
+          "records": 2,
+          "best_at_1020": 0.022005851620008593,
+          "best_at_1800": 0.015045886425786793,
+          "post_1020_gain": 0.0069599651942218,
+          "first_material_gain_at": 745.3184661287814,
+          "last_record_at": 1050.0590471765026
+        },
+        {
+          "block": 2,
+          "arm": "new_medium",
+          "valid": 3,
+          "records": 2,
+          "best_at_1020": 0.04551226514614451,
+          "best_at_1800": 0.01844707231236221,
+          "post_1020_gain": 0.0270651928337823,
+          "first_material_gain_at": 1207.636209404096,
+          "last_record_at": 1336.0420250715688
+        },
+        {
+          "block": 3,
+          "arm": "old_medium",
+          "valid": 5,
+          "records": 3,
+          "best_at_1020": 0.01543541427703299,
+          "best_at_1800": 0.01543541427703299,
+          "post_1020_gain": 0,
+          "first_material_gain_at": 588.9521427545696,
+          "last_record_at": 972.6288234330714
+        }
+      ]
+    },
+    {
+      "source": "metric",
+      "assigned": 48,
+      "denoising": [
+        {
+          "block": 0,
+          "arm": "old_fast",
+          "valid": 4,
+          "records": 2,
+          "best_at_1020": 0.009738903630219946,
+          "best_at_1800": 0.009738903630219946,
+          "post_1020_gain": 0,
+          "first_material_gain_at": 669.6609320160933,
+          "last_record_at": 829.1166637209244
+        },
+        {
+          "block": 1,
+          "arm": "old_medium",
+          "valid": 7,
+          "records": 1,
+          "best_at_1020": 0.014217226114657332,
+          "best_at_1800": 0.014217226114657332,
+          "post_1020_gain": 0,
+          "first_material_gain_at": 475.66687718685716,
+          "last_record_at": 475.66687718685716
+        },
+        {
+          "block": 2,
+          "arm": "new_medium",
+          "valid": 3,
+          "records": 2,
+          "best_at_1020": 0.019059982312720675,
+          "best_at_1800": 0.016851028985227796,
+          "post_1020_gain": 0.0022089533274928796,
+          "first_material_gain_at": 753.9964350650553,
+          "last_record_at": 1659.7690915639978
+        },
+        {
+          "block": 3,
+          "arm": "new_medium",
+          "valid": 5,
+          "records": 1,
+          "best_at_1020": 0.01356582535832205,
+          "best_at_1800": 0.01356582535832205,
+          "post_1020_gain": 0,
+          "first_material_gain_at": 763.461732939817,
+          "last_record_at": 763.461732939817
+        },
+        {
+          "block": 4,
+          "arm": "old_medium",
+          "valid": 6,
+          "records": 1,
+          "best_at_1020": 0.01314423284656948,
+          "best_at_1800": 0.01314423284656948,
+          "post_1020_gain": 0,
+          "first_material_gain_at": 423.01199802570045,
+          "last_record_at": 423.01199802570045
+        },
+        {
+          "block": 5,
+          "arm": "old_fast",
+          "valid": 3,
+          "records": 1,
+          "best_at_1020": 0.04551226514614451,
+          "best_at_1800": 0.013387899427844734,
+          "post_1020_gain": 0.032124365718299776,
+          "first_material_gain_at": 1189.475729642436,
+          "last_record_at": 1189.475729642436
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,4446 @@
+{
+  "kind": "closed_observed_gain_timing",
+  "cuts": [
+    600,
+    1020,
+    1500,
+    1800
+  ],
+  "new_gpu_jobs": 0,
+  "new_model_calls": 0,
+  "source_sha256": "0141ba19891ad659ecf1fdc8f2b036cbd6313ec811eadbc6e84f180c097a4a22",
+  "sources": [
+    {
+      "name": "score",
+      "root_name": "scheduling-weight-confirmation-20261014-v1",
+      "plan_sha256": "316381bce41c9ceb9c34fb165e94996eeeb8c9968eff3cb4e63642fbfa549626",
+      "summary_sha256": "d45a9678d64482d036e2f4bb3fcd4f6e0090907ca3de4d7e649e193831d4640b",
+      "assigned": 32,
+      "all_primary_endpoints_reproduced": true,
+      "rows": [
+        {
+          "index": 0,
+          "block": 0,
+          "arm": "old_medium",
+          "task": "aerial-cactus-identification",
+          "sign": 1,
+          "initial": 0.9997140306708787,
+          "offset": 2.5858969688415527,
+          "returned": 4,
+          "late": 0,
+          "valid_events": [
+            {
+              "elapsed": 1234.750153042376,
+              "score": 0.9997461019975091
+            }
+          ],
+          "curve": [
+            {
+              "seconds": 600,
+              "score": 0.9997140306708787
+            },
+            {
+              "seconds": 1020,
+              "score": 0.9997140306708787
+            },
+            {
+              "seconds": 1500,
+              "score": 0.9997461019975091
+            },
+            {
+              "seconds": 1800,
+              "score": 0.9997461019975091
+            }
+          ]
+        },
+        {
+          "index": 1,
+          "block": 0,
+          "arm": "old_medium",
+          "task": "denoising-dirty-documents",
+          "sign": -1,
+          "initial": 0.04551226514614451,
+          "offset": 2.5856189727783203,
+          "returned": 2,
+          "late": 0,
+          "valid_events": [
+            {
+              "elapsed": 1099.0132825290784,
+              "score": 0.09201684325600976
+            }
+          ],
+          "curve": [
+            {
+              "seconds": 600,
+              "score": 0.04551226514614451
+            },
+            {
+              "seconds": 1020,
+              "score": 0.04551226514614451
+            },
+            {
+              "seconds": 1500,
+              "score": 0.04551226514614451
+            },
+            {
+              "seconds": 1800,
+              "score": 0.04551226514614451
+            }
+          ]
+        },
+        {
+          "index": 2,
+          "block": 0,
+          "arm": "old_medium",
+          "task": "aerial-cactus-identification",
+          "sign": 1,
+          "initial": 0.9997140306708787,
+          "offset": 2.5870180130004883,
+          "returned": 3,
+          "late": 0,
+          "valid_events": [
+            {
+              "elapsed": 900.6544596087188,
+              "score": 0.9998636968618206
+            }
+          ],
+          "curve": [
+            {
+              "seconds": 600,
+              "score": 0.9997140306708787
+            },
+            {
+              "seconds": 1020,
+              "score": 0.9998636968618206
+            },
+            {
+              "seconds": 1500,
+              "score": 0.9998636968618206
+            },
+            {
+              "seconds": 1800,
+              "score": 0.9998636968618206
+            }
+          ]
+        },
+        {
+          "index": 3,
+          "block": 0,
+          "arm": "old_medium",
+          "task": "denoising-dirty-documents",
+          "sign": -1,
+          "initial": 0.04551226514614451,
+          "offset": 2.586993932723999,
+          "returned": 3,
+          "late": 0,
+          "valid_events": [
+            {
+              "elapsed": 1581.4540550056845,
+              "score": 0.013654153292274094
+            }
+          ],
+          "curve": [
+            {
+              "seconds": 600,
+              "score": 0.04551226514614451
+            },
+            {
+              "seconds": 1020,
+              "score": 0.04551226514614451
+            },
+            {
+              "seconds": 1500,
+              "score": 0.04551226514614451
+            },
+            {
+              "seconds": 1800,
+              "score": 0.013654153292274094
+            }
+          ]
+        },
+        {
+          "index": 4,
+          "block": 0,
+          "arm": "old_medium",
+          "task": "aerial-cactus-identification",
+          "sign": 1,
+          "initial": 0.9997140306708787,
+          "offset": 2.586940050125122,
+          "returned": 3,
+          "late": 0,
+          "valid_events": [
+            {
+              "elapsed": 470.65813657362014,
+              "score": 0.9989309557789858
+            },
+            {
+              "elapsed": 1285.8048897609115,
+              "score": 0.9996498880176179
+            }
+          ],
+          "curve": [
+            {
+              "seconds": 600,
+              "score": 0.9997140306708787
+            },
+            {
+              "seconds": 1020,
+              "score": 0.9997140306708787
+            },
+            {
+              "seconds": 1500,
+              "score": 0.9997140306708787
+            },
+            {
+              "seconds": 1800,
+              "score": 0.9997140306708787
+            }
+          ]
+        },
+        {
+          "index": 5,
+          "block": 0,
+          "arm": "old_medium",
+          "task": "denoising-dirty-documents",
+          "sign": -1,
+          "initial": 0.04551226514614451,
+          "offset": 2.5870940685272217,
+          "returned": 2,
+          "late": 0,
+          "valid_events": [
+            {
+              "elapsed": 699.7474090084434,
+              "score": 0.01986924983971806
+            }
+          ],
+          "curve": [
+            {
+              "seconds": 600,
+              "score": 0.04551226514614451
+            },
+            {
+              "seconds": 1020,
+              "score": 0.01986924983971806
+            },
+            {
+              "seconds": 1500,
+              "score": 0.01986924983971806
+            },
+            {
+              "seconds": 1800,
+              "score": 0.01986924983971806
+            }
+          ]
+        },
+        {
+          "index": 6,
+          "block": 0,
+          "arm": "old_medium",
+          "task": "aerial-cactus-identification",
+          "sign": 1,
+          "initial": 0.9997140306708787,
+          "offset": 2.584954023361206,
+          "returned": 3,
+          "late": 0,
+          "valid_events": [
+            {
+              "elapsed": 992.4545770389959,
+              "score": 0.9995028944372284
+            }
+          ],
+          "curve": [
+            {
+              "seconds": 600,
+              "score": 0.9997140306708787
+            },
+            {
+              "seconds": 1020,
+              "score": 0.9997140306708787
+            },
+            {
+              "seconds": 1500,
+              "score": 0.9997140306708787
+            },
+            {
+              "seconds": 1800,
+              "score": 0.9997140306708787
+            }
+          ]
+        },
+        {
+          "index": 7,
+          "block": 0,
+          "arm": "old_medium",
+          "task": "denoising-dirty-documents",
+          "sign": -1,
+          "initial": 0.04551226514614451,
+          "offset": 2.584913969039917,
+          "returned": 3,
+          "late": 0,
+          "valid_events": [
+            {
+              "elapsed": 745.1401033140719,
+              "score": 0.015124705657558059
+            }
+          ],
+          "curve": [
+            {
+              "seconds": 600,
+              "score": 0.04551226514614451
+            },
+            {
+              "seconds": 1020,
+              "score": 0.015124705657558059
+            },
+            {
+              "seconds": 1500,
+              "score": 0.015124705657558059
+            },
+            {
+              "seconds": 1800,
+              "score": 0.015124705657558059
+            }
+          ]
+        },
+        {
+          "index": 8,
+          "block": 1,
+          "arm": "new_medium",
+          "task": "aerial-cactus-identification",
+          "sign": 1,
+          "initial": 0.9997140306708787,
+          "offset": 2.3301467895507812,
+          "returned": 3,
+          "late": 0,
+          "valid_events": [
+            {
+              "elapsed": 730.0104789780453,
+              "score": 0.9996472154070652
+            },
+            {
+              "elapsed": 1251.5676526855677,
+              "score": 0.9983349636257703
+            }
+          ],
+          "curve": [
+            {
+              "seconds": 600,
+              "score": 0.9997140306708787
+            },
+            {
+              "seconds": 1020,
+              "score": 0.9997140306708787
+            },
+            {
+              "seconds": 1500,
+              "score": 0.9997140306708787
+            },
+            {
+              "seconds": 1800,
+              "score": 0.9997140306708787
+            }
+          ]
+        },
+        {
+          "index": 9,
+          "block": 1,
+          "arm": "new_medium",
+          "task": "denoising-dirty-documents",
+          "sign": -1,
+          "initial": 0.04551226514614451,
+          "offset": 2.332157850265503,
+          "returned": 2,
+          "late": 0,
+          "valid_events": [
+            {
+              "elapsed": 1047.7268893262371,
+              "score": 0.015045886425786793
+            }
+          ],
+          "curve": [
+            {
+              "seconds": 600,
+              "score": 0.04551226514614451
+            },
+            {
+              "seconds": 1020,
+              "score": 0.04551226514614451
+            },
+            {
+              "seconds": 1500,
+              "score": 0.015045886425786793
+            },
+            {
+              "seconds": 1800,
+              "score": 0.015045886425786793
+            }
+          ]
+        },
+        {
+          "index": 10,
+          "block": 1,
+          "arm": "new_medium",
+          "task": "aerial-cactus-identification",
+          "sign": 1,
+          "initial": 0.9997140306708787,
+          "offset": 2.3337337970733643,
+          "returned": 2,
+          "late": 0,
+          "valid_events": [
+            {
+              "elapsed": 738.5044323448092,
+              "score": 0.998866813125725
+            },
+            {
+              "elapsed": 1539.7758293347433,
+              "score": 0.9987278373769931
+            }
+          ],
+          "curve": [
+            {
+              "seconds": 600,
+              "score": 0.9997140306708787
+            },
+            {
+              "seconds": 1020,
+              "score": 0.9997140306708787
+            },
+            {
+              "seconds": 1500,
+              "score": 0.9997140306708787
+            },
+            {
+              "seconds": 1800,
+              "score": 0.9997140306708787
+            }
+          ]
+        },
+        {
+          "index": 11,
+          "block": 1,
+          "arm": "new_medium",
+          "task": "denoising-dirty-documents",
+          "sign": -1,
+          "initial": 0.04551226514614451,
+          "offset": 2.334080934524536,
+          "returned": 2,
+          "late": 0,
+          "valid_events": [],
+          "curve": [
+            {
+              "seconds": 600,
+              "score": 0.04551226514614451
+            },
+            {
+              "seconds": 1020,
+              "score": 0.04551226514614451
+            },
+            {
+              "seconds": 1500,
+              "score": 0.04551226514614451
+            },
+            {
+              "seconds": 1800,
+              "score": 0.04551226514614451
+            }
+          ]
+        },
+        {
+          "index": 12,
+          "block": 1,
+          "arm": "new_medium",
+          "task": "aerial-cactus-identification",
+          "sign": 1,
+          "initial": 0.9997140306708787,
+          "offset": 2.3304378986358643,
+          "returned": 3,
+          "late": 0,
+          "valid_events": [
+            {
+              "elapsed": 528.3237115675583,
+              "score": 0.9999118038517664
+            },
+            {
+              "elapsed": 825.2653308808804,
+              "score": 0.9836489686395877
+            }
+          ],
+          "curve": [
+            {
+              "seconds": 600,
+              "score": 0.9999118038517664
+            },
+            {
+              "seconds": 1020,
+              "score": 0.9999118038517664
+            },
+            {
+              "seconds": 1500,
+              "score": 0.9999118038517664
+            },
+            {
+              "seconds": 1800,
+              "score": 0.9999118038517664
+            }
+          ]
+        },
+        {
+          "index": 13,
+          "block": 1,
+          "arm": "new_medium",
+          "task": "denoising-dirty-documents",
+          "sign": -1,
+          "initial": 0.04551226514614451,
+          "offset": 2.3305468559265137,
+          "returned": 3,
+          "late": 0,
+          "valid_events": [],
+          "curve": [
+            {
+              "seconds": 600,
+              "score": 0.04551226514614451
+            },
+            {
+              "seconds": 1020,
+              "score": 0.04551226514614451
+            },
+            {
+              "seconds": 1500,
+              "score": 0.04551226514614451
+            },
+            {
+              "seconds": 1800,
+              "score": 0.04551226514614451
+            }
+          ]
+        },
+        {
+          "index": 14,
+          "block": 1,
+          "arm": "new_medium",
+          "task": "aerial-cactus-identification",
+          "sign": 1,
+          "initial": 0.9997140306708787,
+          "offset": 7.066260814666748,
+          "returned": 3,
+          "late": 0,
+          "valid_events": [
+            {
+              "elapsed": 489.3584731053561,
+              "score": 0.9995429835955164
+            }
+          ],
+          "curve": [
+            {
+              "seconds": 600,
+              "score": 0.9997140306708787
+            },
+            {
+              "seconds": 1020,
+              "score": 0.9997140306708787
+            },
+            {
+              "seconds": 1500,
+              "score": 0.9997140306708787
+            },
+            {
+              "seconds": 1800,
+              "score": 0.9997140306708787
+            }
+          ]
+        },
+        {
+          "index": 15,
+          "block": 1,
+          "arm": "new_medium",
+          "task": "denoising-dirty-documents",
+          "sign": -1,
+          "initial": 0.04551226514614451,
+          "offset": 7.063677787780762,
+          "returned": 2,
+          "late": 0,
+          "valid_events": [
+            {
+              "elapsed": 738.2547883410007,
+              "score": 0.022005851620008593
+            },
+            {
+              "elapsed": 1549.689498343505,
+              "score": 0.021815192412079406
+            }
+          ],
+          "curve": [
+            {
+              "seconds": 600,
+              "score": 0.04551226514614451
+            },
+            {
+              "seconds": 1020,
+              "score": 0.022005851620008593
+            },
+            {
+              "seconds": 1500,
+              "score": 0.022005851620008593
+            },
+            {
+              "seconds": 1800,
+              "score": 0.021815192412079406
+            }
+          ]
+        },
+        {
+          "index": 16,
+          "block": 2,
+          "arm": "new_medium",
+          "task": "aerial-cactus-identification",
+          "sign": 1,
+          "initial": 0.9997140306708787,
+          "offset": 2.5941879749298096,
+          "returned": 2,
+          "late": 0,
+          "valid_events": [
+            {
+              "elapsed": 888.3449939498678,
+              "score": 0.9994521148367302
+            }
+          ],
+          "curve": [
+            {
+              "seconds": 600,
+              "score": 0.9997140306708787
+            },
+            {
+              "seconds": 1020,
+              "score": 0.9997140306708787
+            },
+            {
+              "seconds": 1500,
+              "score": 0.9997140306708787
+            },
+            {
+              "seconds": 1800,
+              "score": 0.9997140306708787
+            }
+          ]
+        },
+        {
+          "index": 17,
+          "block": 2,
+          "arm": "new_medium",
+          "task": "denoising-dirty-documents",
+          "sign": -1,
+          "initial": 0.04551226514614451,
+          "offset": 2.5946998596191406,
+          "returned": 2,
+          "late": 0,
+          "valid_events": [
+            {
+              "elapsed": 610.9545617932454,
+              "score": 0.0907229547786581
+            },
+            {
+              "elapsed": 1333.4473252119496,
+              "score": 0.01844707231236221
+            }
+          ],
+          "curve": [
+            {
+              "seconds": 600,
+              "score": 0.04551226514614451
+            },
+            {
+              "seconds": 1020,
+              "score": 0.04551226514614451
+            },
+            {
+              "seconds": 1500,
+              "score": 0.01844707231236221
+            },
+            {
+              "seconds": 1800,
+              "score": 0.01844707231236221
+            }
+          ]
+        },
+        {
+          "index": 18,
+          "block": 2,
+          "arm": "new_medium",
+          "task": "aerial-cactus-identification",
+          "sign": 1,
+          "initial": 0.9997140306708787,
+          "offset": 2.5940728187561035,
+          "returned": 2,
+          "late": 0,
+          "valid_events": [
+            {
+              "elapsed": 1185.0041916025802,
+              "score": 0.9997648102713769
+            }
+          ],
+          "curve": [
+            {
+              "seconds": 600,
+              "score": 0.9997140306708787
+            },
+            {
+              "seconds": 1020,
+              "score": 0.9997140306708787
+            },
+            {
+              "seconds": 1500,
+              "score": 0.9997648102713769
+            },
+            {
+              "seconds": 1800,
+              "score": 0.9997648102713769
+            }
+          ]
+        },
+        {
+          "index": 19,
+          "block": 2,
+          "arm": "new_medium",
+          "task": "denoising-dirty-documents",
+          "sign": -1,
+          "initial": 0.04551226514614451,
+          "offset": 2.594053030014038,
+          "returned": 2,
+          "late": 0,
+          "valid_events": [],
+          "curve": [
+            {
+              "seconds": 600,
+              "score": 0.04551226514614451
+            },
+            {
+              "seconds": 1020,
+              "score": 0.04551226514614451
+            },
+            {
+              "seconds": 1500,
+              "score": 0.04551226514614451
+            },
+            {
+              "seconds": 1800,
+              "score": 0.04551226514614451
+            }
+          ]
+        },
+        {
+          "index": 20,
+          "block": 2,
+          "arm": "new_medium",
+          "task": "aerial-cactus-identification",
+          "sign": 1,
+          "initial": 0.9997140306708787,
+          "offset": 2.5943360328674316,
+          "returned": 2,
+          "late": 0,
+          "valid_events": [
+            {
+              "elapsed": 487.91016512550414,
+              "score": 0.9999759465050272
+            },
+            {
+              "elapsed": 1043.1209521070123,
+              "score": 0.9999732738944745
+            }
+          ],
+          "curve": [
+            {
+              "seconds": 600,
+              "score": 0.9999759465050272
+            },
+            {
+              "seconds": 1020,
+              "score": 0.9999759465050272
+            },
+            {
+              "seconds": 1500,
+              "score": 0.9999759465050272
+            },
+            {
+              "seconds": 1800,
+              "score": 0.9999759465050272
+            }
+          ]
+        },
+        {
+          "index": 21,
+          "block": 2,
+          "arm": "new_medium",
+          "task": "denoising-dirty-documents",
+          "sign": -1,
+          "initial": 0.04551226514614451,
+          "offset": 2.596575975418091,
+          "returned": 3,
+          "late": 0,
+          "valid_events": [
+            {
+              "elapsed": 1205.039633428678,
+              "score": 0.02113815320430198
+            }
+          ],
+          "curve": [
+            {
+              "seconds": 600,
+              "score": 0.04551226514614451
+            },
+            {
+              "seconds": 1020,
+              "score": 0.04551226514614451
+            },
+            {
+              "seconds": 1500,
+              "score": 0.02113815320430198
+            },
+            {
+              "seconds": 1800,
+              "score": 0.02113815320430198
+            }
+          ]
+        },
+        {
+          "index": 22,
+          "block": 2,
+          "arm": "new_medium",
+          "task": "aerial-cactus-identification",
+          "sign": 1,
+          "initial": 0.9997140306708787,
+          "offset": 2.5961828231811523,
+          "returned": 3,
+          "late": 0,
+          "valid_events": [
+            {
+              "elapsed": 965.2809438146651,
+              "score": 0.9997995542085598
+            }
+          ],
+          "curve": [
+            {
+              "seconds": 600,
+              "score": 0.9997140306708787
+            },
+            {
+              "seconds": 1020,
+              "score": 0.9997995542085598
+            },
+            {
+              "seconds": 1500,
+              "score": 0.9997995542085598
+            },
+            {
+              "seconds": 1800,
+              "score": 0.9997995542085598
+            }
+          ]
+        },
+        {
+          "index": 23,
+          "block": 2,
+          "arm": "new_medium",
+          "task": "denoising-dirty-documents",
+          "sign": -1,
+          "initial": 0.04551226514614451,
+          "offset": 2.5940589904785156,
+          "returned": 2,
+          "late": 0,
+          "valid_events": [],
+          "curve": [
+            {
+              "seconds": 600,
+              "score": 0.04551226514614451
+            },
+            {
+              "seconds": 1020,
+              "score": 0.04551226514614451
+            },
+            {
+              "seconds": 1500,
+              "score": 0.04551226514614451
+            },
+            {
+              "seconds": 1800,
+              "score": 0.04551226514614451
+            }
+          ]
+        },
+        {
+          "index": 24,
+          "block": 3,
+          "arm": "old_medium",
+          "task": "aerial-cactus-identification",
+          "sign": 1,
+          "initial": 0.9997140306708787,
+          "offset": 2.7817180156707764,
+          "returned": 2,
+          "late": 0,
+          "valid_events": [
+            {
+              "elapsed": 866.0411165449768,
+              "score": 0.9978512211157614
+            }
+          ],
+          "curve": [
+            {
+              "seconds": 600,
+              "score": 0.9997140306708787
+            },
+            {
+              "seconds": 1020,
+              "score": 0.9997140306708787
+            },
+            {
+              "seconds": 1500,
+              "score": 0.9997140306708787
+            },
+            {
+              "seconds": 1800,
+              "score": 0.9997140306708787
+            }
+          ]
+        },
+        {
+          "index": 25,
+          "block": 3,
+          "arm": "old_medium",
+          "task": "denoising-dirty-documents",
+          "sign": -1,
+          "initial": 0.04551226514614451,
+          "offset": 2.784343957901001,
+          "returned": 3,
+          "late": 0,
+          "valid_events": [
+            {
+              "elapsed": 586.1677987966686,
+              "score": 0.02635986380679039
+            }
+          ],
+          "curve": [
+            {
+              "seconds": 600,
+              "score": 0.02635986380679039
+            },
+            {
+              "seconds": 1020,
+              "score": 0.02635986380679039
+            },
+            {
+              "seconds": 1500,
+              "score": 0.02635986380679039
+            },
+            {
+              "seconds": 1800,
+              "score": 0.02635986380679039
+            }
+          ]
+        },
+        {
+          "index": 26,
+          "block": 3,
+          "arm": "old_medium",
+          "task": "aerial-cactus-identification",
+          "sign": 1,
+          "initial": 0.9997140306708787,
+          "offset": 2.780395984649658,
+          "returned": 3,
+          "late": 0,
+          "valid_events": [
+            {
+              "elapsed": 594.1663133725524,
+              "score": 0.9996632510703806
+            },
+            {
+              "elapsed": 1119.997699498199,
+              "score": 0.9997487746080617
+            }
+          ],
+          "curve": [
+            {
+              "seconds": 600,
+              "score": 0.9997140306708787
+            },
+            {
+              "seconds": 1020,
+              "score": 0.9997140306708787
+            },
+            {
+              "seconds": 1500,
+              "score": 0.9997487746080617
+            },
+            {
+              "seconds": 1800,
+              "score": 0.9997487746080617
+            }
+          ]
+        },
+        {
+          "index": 27,
+          "block": 3,
+          "arm": "old_medium",
+          "task": "denoising-dirty-documents",
+          "sign": -1,
+          "initial": 0.04551226514614451,
+          "offset": 2.7806529998779297,
+          "returned": 2,
+          "late": 0,
+          "valid_events": [
+            {
+              "elapsed": 857.660781997256,
+              "score": 0.02501679128123991
+            },
+            {
+              "elapsed": 1455.7125267069787,
+              "score": 0.020401503960995323
+            }
+          ],
+          "curve": [
+            {
+              "seconds": 600,
+              "score": 0.04551226514614451
+            },
+            {
+              "seconds": 1020,
+              "score": 0.02501679128123991
+            },
+            {
+              "seconds": 1500,
+              "score": 0.020401503960995323
+            },
+            {
+              "seconds": 1800,
+              "score": 0.020401503960995323
+            }
+          ]
+        },
+        {
+          "index": 28,
+          "block": 3,
+          "arm": "old_medium",
+          "task": "aerial-cactus-identification",
+          "sign": 1,
+          "initial": 0.9997140306708787,
+          "offset": 2.7804880142211914,
+          "returned": 4,
+          "late": 0,
+          "valid_events": [
+            {
+              "elapsed": 477.99980275239795,
+              "score": 0.9995269479322012
+            },
+            {
+              "elapsed": 1156.1213811961934,
+              "score": 0.9999839643366848
+            }
+          ],
+          "curve": [
+            {
+              "seconds": 600,
+              "score": 0.9997140306708787
+            },
+            {
+              "seconds": 1020,
+              "score": 0.9997140306708787
+            },
+            {
+              "seconds": 1500,
+              "score": 0.9999839643366848
+            },
+            {
+              "seconds": 1800,
+              "score": 0.9999839643366848
+            }
+          ]
+        },
+        {
+          "index": 29,
+          "block": 3,
+          "arm": "old_medium",
+          "task": "denoising-dirty-documents",
+          "sign": -1,
+          "initial": 0.04551226514614451,
+          "offset": 2.7839369773864746,
+          "returned": 3,
+          "late": 0,
+          "valid_events": [
+            {
+              "elapsed": 811.871515545994,
+              "score": 0.01597595292867099
+            }
+          ],
+          "curve": [
+            {
+              "seconds": 600,
+              "score": 0.04551226514614451
+            },
+            {
+              "seconds": 1020,
+              "score": 0.01597595292867099
+            },
+            {
+              "seconds": 1500,
+              "score": 0.01597595292867099
+            },
+            {
+              "seconds": 1800,
+              "score": 0.01597595292867099
+            }
+          ]
+        },
+        {
+          "index": 30,
+          "block": 3,
+          "arm": "old_medium",
+          "task": "aerial-cactus-identification",
+          "sign": 1,
+          "initial": 0.9997140306708787,
+          "offset": 2.780433177947998,
+          "returned": 4,
+          "late": 0,
+          "valid_events": [
+            {
+              "elapsed": 834.5903800893575,
+              "score": 0.99962048930154
+            },
+            {
+              "elapsed": 1486.9346214905381,
+              "score": 0.9997541198291668
+            }
+          ],
+          "curve": [
+            {
+              "seconds": 600,
+              "score": 0.9997140306708787
+            },
+            {
+              "seconds": 1020,
+              "score": 0.9997140306708787
+            },
+            {
+              "seconds": 1500,
+              "score": 0.9997541198291668
+            },
+            {
+              "seconds": 1800,
+              "score": 0.9997541198291668
+            }
+          ]
+        },
+        {
+          "index": 31,
+          "block": 3,
+          "arm": "old_medium",
+          "task": "denoising-dirty-documents",
+          "sign": -1,
+          "initial": 0.04551226514614451,
+          "offset": 2.7811591625213623,
+          "returned": 3,
+          "late": 0,
+          "valid_events": [
+            {
+              "elapsed": 969.84766427055,
+              "score": 0.01543541427703299
+            }
+          ],
+          "curve": [
+            {
+              "seconds": 600,
+              "score": 0.04551226514614451
+            },
+            {
+              "seconds": 1020,
+              "score": 0.01543541427703299
+            },
+            {
+              "seconds": 1500,
+              "score": 0.01543541427703299
+            },
+            {
+              "seconds": 1800,
+              "score": 0.01543541427703299
+            }
+          ]
+        }
+      ],
+      "pools": [
+        {
+          "block": 0,
+          "arm": "old_medium",
+          "task": "aerial-cactus-identification",
+          "n": 4,
+          "initial": 0.9997140306708787,
+          "sign": 1,
+          "valid_returns": 5,
+          "pool_records": 1,
+          "records": [
+            {
+              "at": 903.2414776217192,
+              "gain": 0.00014966619094192168,
+              "score": 0.9998636968618206
+            }
+          ],
+          "above_initial": 2,
+          "last_record_at": 903.2414776217192,
+          "first_material_gain_at": null,
+          "prefix_curves": [
+            {
+              "seconds": 600,
+              "best": 0.9997140306708787,
+              "median": 0.9997140306708787,
+              "sample_sd": 0.0
+            },
+            {
+              "seconds": 1020,
+              "best": 0.9998636968618206,
+              "median": 0.9997140306708787,
+              "sample_sd": 7.483309547096084e-05
+            },
+            {
+              "seconds": 1500,
+              "best": 0.9998636968618206,
+              "median": 0.9997300663341939,
+              "sample_sd": 7.111354155986459e-05
+            },
+            {
+              "seconds": 1800,
+              "best": 0.9998636968618206,
+              "median": 0.9997300663341939,
+              "sample_sd": 7.111354155986459e-05
+            }
+          ],
+          "post_1020_gain": 0.0
+        },
+        {
+          "block": 0,
+          "arm": "old_medium",
+          "task": "denoising-dirty-documents",
+          "n": 4,
+          "initial": 0.04551226514614451,
+          "sign": -1,
+          "valid_returns": 4,
+          "pool_records": 3,
+          "records": [
+            {
+              "at": 702.3345030769706,
+              "gain": 0.02564301530642645,
+              "score": 0.01986924983971806
+            },
+            {
+              "at": 747.7250172831118,
+              "gain": 0.004744544182160002,
+              "score": 0.015124705657558059
+            },
+            {
+              "at": 1584.0410489384085,
+              "gain": 0.0014705523652839645,
+              "score": 0.013654153292274094
+            }
+          ],
+          "above_initial": 3,
+          "last_record_at": 1584.0410489384085,
+          "first_material_gain_at": 702.3345030769706,
+          "prefix_curves": [
+            {
+              "seconds": 600,
+              "best": 0.04551226514614451,
+              "median": 0.04551226514614451,
+              "sample_sd": 0.0
+            },
+            {
+              "seconds": 1020,
+              "best": 0.015124705657558059,
+              "median": 0.03269075749293129,
+              "sample_sd": 0.01629019825655004
+            },
+            {
+              "seconds": 1500,
+              "best": 0.015124705657558059,
+              "median": 0.03269075749293129,
+              "sample_sd": 0.01629019825655004
+            },
+            {
+              "seconds": 1800,
+              "best": 0.013654153292274094,
+              "median": 0.017496977748638058,
+              "sample_sd": 0.014886257492010543
+            }
+          ],
+          "post_1020_gain": 0.0014705523652839645
+        },
+        {
+          "block": 1,
+          "arm": "new_medium",
+          "task": "aerial-cactus-identification",
+          "n": 4,
+          "initial": 0.9997140306708787,
+          "sign": 1,
+          "valid_returns": 7,
+          "pool_records": 1,
+          "records": [
+            {
+              "at": 530.6541494661942,
+              "gain": 0.0001977731808876504,
+              "score": 0.9999118038517664
+            }
+          ],
+          "above_initial": 1,
+          "last_record_at": 530.6541494661942,
+          "first_material_gain_at": null,
+          "prefix_curves": [
+            {
+              "seconds": 600,
+              "best": 0.9999118038517664,
+              "median": 0.9997140306708787,
+              "sample_sd": 9.88865904438252e-05
+            },
+            {
+              "seconds": 1020,
+              "best": 0.9999118038517664,
+              "median": 0.9997140306708787,
+              "sample_sd": 9.88865904438252e-05
+            },
+            {
+              "seconds": 1500,
+              "best": 0.9999118038517664,
+              "median": 0.9997140306708787,
+              "sample_sd": 9.88865904438252e-05
+            },
+            {
+              "seconds": 1800,
+              "best": 0.9999118038517664,
+              "median": 0.9997140306708787,
+              "sample_sd": 9.88865904438252e-05
+            }
+          ],
+          "post_1020_gain": 0.0
+        },
+        {
+          "block": 1,
+          "arm": "new_medium",
+          "task": "denoising-dirty-documents",
+          "n": 4,
+          "initial": 0.04551226514614451,
+          "sign": -1,
+          "valid_returns": 3,
+          "pool_records": 2,
+          "records": [
+            {
+              "at": 745.3184661287814,
+              "gain": 0.023506413526135916,
+              "score": 0.022005851620008593
+            },
+            {
+              "at": 1050.0590471765026,
+              "gain": 0.0069599651942218,
+              "score": 0.015045886425786793
+            }
+          ],
+          "above_initial": 3,
+          "last_record_at": 1050.0590471765026,
+          "first_material_gain_at": 745.3184661287814,
+          "prefix_curves": [
+            {
+              "seconds": 600,
+              "best": 0.04551226514614451,
+              "median": 0.04551226514614451,
+              "sample_sd": 0.0
+            },
+            {
+              "seconds": 1020,
+              "best": 0.022005851620008593,
+              "median": 0.04551226514614451,
+              "sample_sd": 0.011753206763067958
+            },
+            {
+              "seconds": 1500,
+              "best": 0.015045886425786793,
+              "median": 0.03375905838307655,
+              "sample_sd": 0.015837572767243305
+            },
+            {
+              "seconds": 1800,
+              "best": 0.015045886425786793,
+              "median": 0.03366372877911196,
+              "sample_sd": 0.0158779891687826
+            }
+          ],
+          "post_1020_gain": 0.0069599651942218
+        },
+        {
+          "block": 2,
+          "arm": "new_medium",
+          "task": "aerial-cactus-identification",
+          "n": 4,
+          "initial": 0.9997140306708787,
+          "sign": 1,
+          "valid_returns": 5,
+          "pool_records": 1,
+          "records": [
+            {
+              "at": 490.50450115837157,
+              "gain": 0.00026191583414847397,
+              "score": 0.9999759465050272
+            }
+          ],
+          "above_initial": 4,
+          "last_record_at": 490.50450115837157,
+          "first_material_gain_at": null,
+          "prefix_curves": [
+            {
+              "seconds": 600,
+              "best": 0.9999759465050272,
+              "median": 0.9997140306708787,
+              "sample_sd": 0.00013095791707423698
+            },
+            {
+              "seconds": 1020,
+              "best": 0.9999759465050272,
+              "median": 0.9997567924397193,
+              "sample_sd": 0.00012347152222388398
+            },
+            {
+              "seconds": 1500,
+              "best": 0.9999759465050272,
+              "median": 0.9997821822399684,
+              "sample_sd": 0.00011379537193503064
+            },
+            {
+              "seconds": 1800,
+              "best": 0.9999759465050272,
+              "median": 0.9997821822399684,
+              "sample_sd": 0.00011379537193503064
+            }
+          ],
+          "post_1020_gain": 0.0
+        },
+        {
+          "block": 2,
+          "arm": "new_medium",
+          "task": "denoising-dirty-documents",
+          "n": 4,
+          "initial": 0.04551226514614451,
+          "sign": -1,
+          "valid_returns": 3,
+          "pool_records": 2,
+          "records": [
+            {
+              "at": 1207.636209404096,
+              "gain": 0.024374111941842528,
+              "score": 0.02113815320430198
+            },
+            {
+              "at": 1336.0420250715688,
+              "gain": 0.0026910808919397705,
+              "score": 0.01844707231236221
+            }
+          ],
+          "above_initial": 2,
+          "last_record_at": 1336.0420250715688,
+          "first_material_gain_at": 1207.636209404096,
+          "prefix_curves": [
+            {
+              "seconds": 600,
+              "best": 0.04551226514614451,
+              "median": 0.04551226514614451,
+              "sample_sd": 0.0
+            },
+            {
+              "seconds": 1020,
+              "best": 0.04551226514614451,
+              "median": 0.04551226514614451,
+              "sample_sd": 0.0
+            },
+            {
+              "seconds": 1500,
+              "best": 0.01844707231236221,
+              "median": 0.03332520917522325,
+              "sample_sd": 0.014889834083846004
+            },
+            {
+              "seconds": 1800,
+              "best": 0.01844707231236221,
+              "median": 0.03332520917522325,
+              "sample_sd": 0.014889834083846004
+            }
+          ],
+          "post_1020_gain": 0.0270651928337823
+        },
+        {
+          "block": 3,
+          "arm": "old_medium",
+          "task": "aerial-cactus-identification",
+          "n": 4,
+          "initial": 0.9997140306708787,
+          "sign": 1,
+          "valid_returns": 7,
+          "pool_records": 2,
+          "records": [
+            {
+              "at": 1122.7780954828486,
+              "gain": 3.4743937182946105e-05,
+              "score": 0.9997487746080617
+            },
+            {
+              "at": 1158.9018692104146,
+              "gain": 0.0002351897286231308,
+              "score": 0.9999839643366848
+            }
+          ],
+          "above_initial": 3,
+          "last_record_at": 1158.9018692104146,
+          "first_material_gain_at": null,
+          "prefix_curves": [
+            {
+              "seconds": 600,
+              "best": 0.9997140306708787,
+              "median": 0.9997140306708787,
+              "sample_sd": 0.0
+            },
+            {
+              "seconds": 1020,
+              "best": 0.9997140306708787,
+              "median": 0.9997140306708787,
+              "sample_sd": 0.0
+            },
+            {
+              "seconds": 1500,
+              "best": 0.9999839643366848,
+              "median": 0.9997514472186142,
+              "sample_sd": 0.0001237772674313908
+            },
+            {
+              "seconds": 1800,
+              "best": 0.9999839643366848,
+              "median": 0.9997514472186142,
+              "sample_sd": 0.0001237772674313908
+            }
+          ],
+          "post_1020_gain": 0.0002699336658060769
+        },
+        {
+          "block": 3,
+          "arm": "old_medium",
+          "task": "denoising-dirty-documents",
+          "n": 4,
+          "initial": 0.04551226514614451,
+          "sign": -1,
+          "valid_returns": 5,
+          "pool_records": 3,
+          "records": [
+            {
+              "at": 588.9521427545696,
+              "gain": 0.01915240133935412,
+              "score": 0.02635986380679039
+            },
+            {
+              "at": 814.6554525233805,
+              "gain": 0.0103839108781194,
+              "score": 0.01597595292867099
+            },
+            {
+              "at": 972.6288234330714,
+              "gain": 0.0005405386516379989,
+              "score": 0.01543541427703299
+            }
+          ],
+          "above_initial": 5,
+          "last_record_at": 972.6288234330714,
+          "first_material_gain_at": 588.9521427545696,
+          "prefix_curves": [
+            {
+              "seconds": 600,
+              "best": 0.02635986380679039,
+              "median": 0.04551226514614451,
+              "sample_sd": 0.00957620066967706
+            },
+            {
+              "seconds": 1020,
+              "best": 0.01543541427703299,
+              "median": 0.02049637210495545,
+              "sample_sd": 0.005793709030130386
+            },
+            {
+              "seconds": 1500,
+              "best": 0.01543541427703299,
+              "median": 0.018188728444833158,
+              "sample_sd": 0.005059734721535185
+            },
+            {
+              "seconds": 1800,
+              "best": 0.01543541427703299,
+              "median": 0.018188728444833158,
+              "sample_sd": 0.005059734721535185
+            }
+          ],
+          "post_1020_gain": -0.0
+        }
+      ],
+      "source_hashes": {
+        "episode-0/deadline.json": "26df1e11ce2d23c541b3328ef7bec72241ac2337aa1d260d1dabe9b6fb0fa575",
+        "block-0/budget-slot.json": "9f34d5023837b1cd28e73e84719d04d18784e18a61e484c190f47eb93b9daad5",
+        "episode-0/scored-0.json": "4cb39e973fec09c097aaf624efcb76b55d31511b6f8ae5941f4a7357e721c048",
+        "episode-0/candidate-0.json": "9cc44cafd916c88eaa32369a594c92172bfcb9f639350217cb5211f0f6013de7",
+        "episode-0/candidate-1.json": "000845472d737ce31a922fc2b28459b364ab5bbee98a28419bb4ea1dcff61995",
+        "episode-0/candidate-2.json": "6cab6503bf7e1f00bf27cec5dcd9706421a49b156173368d1f558abd173f7e3b",
+        "episode-0/candidate-3.json": "5caf0a554f7af5baf847a2010245d0b267cb086fda17f00f23702efec46dce03",
+        "episode-1/deadline.json": "8564692bf36a850aa2f7ec540ef5e72e74fcda7ea35e291aa106f47bc492d4b5",
+        "episode-1/scored-0.json": "d1c376e6ddd112e790c6c00587474e989a0b361ef300e4587d0280b52d6c62d3",
+        "episode-1/candidate-0.json": "4c259b6d621ebcc5cbf3da6406e7b4a8ac6799e69ec2099c8aab1f65cf08ad5d",
+        "episode-1/candidate-1.json": "c9c1cff59841bdd9f00cdd6287a9f9e0114d3d9cd60bbbabdca126061c95fd11",
+        "episode-2/deadline.json": "380d1afc743dd792ef17fe7ee8aa535299da0bd15543c95e75c91f70d70bcd8e",
+        "episode-2/scored-0.json": "d32a3bb40408b819380f614b8ab70e070d0da3fb51ceff73a803867b6fd8ab22",
+        "episode-2/candidate-0.json": "00247527ae654446e7a4f4b9cc8f0ad9ff1dbbb39cc4cae5080a5bc873e99ac5",
+        "episode-2/candidate-1.json": "d47752fdcef76e33ae176c3165fe33ee1d9d199d2ed6d4de492d4270af28e099",
+        "episode-2/candidate-2.json": "c6f654c35f88e5754f85380b17d69d74cd83a60e936ed38c8af93de3c3577f1d",
+        "episode-3/deadline.json": "c758046ea8eb3f1a598977f91a1868d13fef3b8f98695373f7d8915ed08daee2",
+        "episode-3/scored-0.json": "10d2a511f9a23b6fe1147fb2e34bc6c6aef0f7f2653b50dfd4f82eed325baf26",
+        "episode-3/candidate-0.json": "ec5c7201f8de41b622fe013435c3cdb33e1ad93e9e3881cfe81dd114a7f8d264",
+        "episode-3/candidate-1.json": "a70b09ac564aebe3d5e7c8e996fc7c8ea00cc773a41eddfb445e5965e488d7c5",
+        "episode-3/candidate-2.json": "e0b9681dea2937413bf6362a2ebea4d7c0b87acfb98f842d8095543f20baeb9f",
+        "episode-4/deadline.json": "39fde5f0675ad2dac59419fbb836d07f11110683b41cb0d6545524818846ad89",
+        "episode-4/scored-0.json": "566e63468c934d2c318a07a0c71d655bacf3fd6817aa5203609f7bb4dd4c6ade",
+        "episode-4/scored-1.json": "f9d5a40f8b6bcaaff3cc331034b6c195c5c007eeab4b5b281e0d476c98a2b930",
+        "episode-4/candidate-0.json": "41ffb5fde09b354830bffccd446fbc9b342000a3f3f3f6bf6f70a7f6e41786ae",
+        "episode-4/candidate-1.json": "59b72ba33a9bbb93be9e51cee2ebdc15b022b9086b0a867c584a80debb88d6a7",
+        "episode-4/candidate-2.json": "3f216572f10c5b4efa3bd5fca8860ad0b258373b95589d916d1e15faa0dde354",
+        "episode-5/deadline.json": "9efa32402c85f92c51535be55b18d3b05faab3dd61f7618ad52944a3b55d9f49",
+        "episode-5/scored-0.json": "fd8502e8c26c8dd19d05a4ec2f234f2fb4106bf9ce0ee3ed4b3994b540924aef",
+        "episode-5/candidate-0.json": "4cccb66473d1cf3911517f9a0745c2cc9ca2e4e313b8d9e259da7d399b489916",
+        "episode-5/candidate-1.json": "2389d9138eeae0e3821e5c56706eaea5679ffe4c11776b40deedc33f53c0949c",
+        "episode-6/deadline.json": "a386f0607cd3bb265a90df1b8041c125c441f33e89d05e4cedfedc1ba8cfedbf",
+        "episode-6/scored-0.json": "5335eb650e8b60be3de61024243eb097917cdf73046e27992c3e7ef1c8881a65",
+        "episode-6/candidate-0.json": "3ed376f27633b22ac2ed28afc81755ee39d77395c8ed4232a6674447dde7a627",
+        "episode-6/candidate-1.json": "801318850df24a2f03ba063717497c97378cea95433a3357bef03f0483dc6829",
+        "episode-6/candidate-2.json": "cd1244a16c362c790a65973427258ada6e5f28a8891e9c7e5c7f9a1aa85121ce",
+        "episode-7/deadline.json": "307f85cb7f85b6938ca635b05f7571cf3cd88b7fa93a82721057ff8b6363034f",
+        "episode-7/scored-0.json": "9ffb60cc2814c16261c9f548c787246f690d697ddc0d34bf633dc8ad02e336e7",
+        "episode-7/candidate-0.json": "a04ebbe62847a714c4d88096455ecfaeb1c99f7ecd72d20ddb2b8fde8deb2217",
+        "episode-7/candidate-1.json": "16e875ebb33e3ebbf3558ec7bf6a8cf64a575a46b6d1c0ec2d79d892ae659a0d",
+        "episode-7/candidate-2.json": "a373053e8ebbe38a43940494c6f9fbcd7942776f596a1bf497edc3ba73910bd2",
+        "episode-8/deadline.json": "c2a7f86a4ea9360659f415d110b82ec2c42d2f5f27fe93ee28d89d686ec6d8c2",
+        "block-1/budget-slot.json": "3e1a3c88e3ba9b48d7a72ba718be264a5704f9e23ac28ba264d09de96f4ffcbd",
+        "episode-8/scored-0.json": "5bc7e9721b1db45ec9025c6b23913e54b93c061cff4c0259007e5db121272b37",
+        "episode-8/scored-1.json": "299e13fa18cbe8e65cf9cd31a1055baac39af1b1e95f3452e60d61880d307e18",
+        "episode-8/candidate-0.json": "bdc80b720855f76457c479a709f58f6aabe214a89b531ed8c17550e866bf1f6e",
+        "episode-8/candidate-1.json": "7e26c1d39069776c5fb6839dc5756967fdaccfdfb2c25ea33cc6abfaf5770f7c",
+        "episode-8/candidate-2.json": "7547e3392b4872d27f02705426104b9c052c14b5ddcfe55597ce51a31e75410c",
+        "episode-9/deadline.json": "704ef075f958edd0c04ecdb21d90de82004453c5cf3bf9611b5cb85e4342aeb9",
+        "episode-9/scored-0.json": "f328ca75a8826502c3cbfc7f955090cf63058ed545f662f30086f181a7c0aa64",
+        "episode-9/candidate-0.json": "746cd4528e7afa50e3804adffd848b422e92e2e37f285fc5728e34ba5851750d",
+        "episode-9/candidate-1.json": "cde9adb69f50917f130171b77b2591849fd73fefad7a404c8690cc224ae185a3",
+        "episode-10/deadline.json": "9c081c2b1231435a1c9d3bdfb5685bb54592cf25700cc391dc904bf10550e044",
+        "episode-10/scored-0.json": "051df90f3f29fb51e06ca0afa789183d078443737a85ff95261655aa7ef2aad7",
+        "episode-10/scored-1.json": "c340b9ebac7e48c37ebaf9796df319774778d3825b9b94651857f0c95495cbe9",
+        "episode-10/candidate-0.json": "c3722f22d064af3e35d32f16416dd729a5de29aa581c496b14fc0cf9c6de4daf",
+        "episode-10/candidate-1.json": "adc8d57b946c0e14bf155cb300b0f92590701cb8c61105e3f18497f9e573fae1",
+        "episode-11/deadline.json": "fea1917a01a701e4f8387aa209df4dc29f45eb1e956da0965d12b345d508c558",
+        "episode-11/candidate-0.json": "dabc03294d15076ccd95a75e15f4976151b90def6499ceeda7af0a691e0fc071",
+        "episode-11/candidate-1.json": "d1267b8e5170bee3c72974678a0de009bf905d40754ef8bcf6e46d2e10edda23",
+        "episode-12/deadline.json": "6b3d39cd4c78e9cf8d0157261fbedde4f3575c9966db4b0bb3d2d56d4f897d30",
+        "episode-12/scored-0.json": "a38bb303c1b424f3a87338949062d857aba7d65d7c6af16a9ee3a150e1c8e96e",
+        "episode-12/scored-1.json": "34e55d567605c07a6c8a49fb9f8b266a1e7f0ac60f92cc3e6b97a5cb6c77decd",
+        "episode-12/candidate-0.json": "3fc9624d6cccc7f8617a0f635da6c362a70a50ea19be1743976bb674b97cfcd9",
+        "episode-12/candidate-1.json": "f10aef10a0e4a83f063a9eaf25af9f124775680d0dafc9063c4ca43458847e6d",
+        "episode-12/candidate-2.json": "5d1e490924d47de9dc7093fce10b995c02db4daf397c52e52b94105577d8acaf",
+        "episode-13/deadline.json": "549c4db8d9b889366ebb98c561a7e428a44858703887802612f170f8796ab19a",
+        "episode-13/candidate-0.json": "b5ddd9d1bdcb7834db9b03d412aea30368c668e0ee33162f14cbc6843a7e7bba",
+        "episode-13/candidate-1.json": "18c0633ecea0664fa5bef3ea02b2606ce5219a18a2138ff674a7d179589fc58a",
+        "episode-13/candidate-2.json": "86b496f1a0e6124f32f13542f36556a7f8516ea2c6d0dff8a22d6e6d2098693d",
+        "episode-14/deadline.json": "37056287ace721bfa38c871766fd2e59f8d1651bbac757c196940450ebaa85cc",
+        "episode-14/scored-0.json": "8b38fd61c67fe8ca071d6aa2677ae08c9eb39d4eb9d1f1dce17a6c3cb4fb18d0",
+        "episode-14/candidate-0.json": "781818d3af90dc43d0e6f7b8497e3056fd7213a9c702b743a9b6c2e71f73f996",
+        "episode-14/candidate-1.json": "fce0209925a7e8214b820ada009c06cb68acfca948b130dbd8a9af08dbfc2bf4",
+        "episode-14/candidate-2.json": "a5f5fc089ba8df5b58126e3cd321306267d8e1fcd17570596150dec4949ae570",
+        "episode-15/deadline.json": "78bd8d13b8e6e1f8d5f3f17de82d75bcd36e731e8d631c7af67f50baf65f94b3",
+        "episode-15/scored-0.json": "0dbad26cc9b95a184e42fb12549b52503908c6334e28c6b1f0416ef37a3fad0a",
+        "episode-15/scored-1.json": "4b1a9103ac1439fec8b63fc19971fd121c91f099f73132d8e02f62d6ee479735",
+        "episode-15/candidate-0.json": "1310a1ef4cf22b62e1347d66d6153aa9bf9e1b288c27e10101f33c3d0cede73d",
+        "episode-15/candidate-1.json": "c5fc12158984ce24564e93879e7c03da32cef495d1b7a4a939956bbe5652ecfc",
+        "episode-16/deadline.json": "c4e53dec2df86ac4c52eeb0f73cf9a5636db2d0292e2261405b50997bc7c01f1",
+        "block-2/budget-slot.json": "54362270e629bd064260a8f6a7da7d9e7729f2b125cdac510198ff31577abd2d",
+        "episode-16/scored-0.json": "851d82b01bacf93ca4a0bc8f2fff086f0f23fbde9978095aac9283ce07c4668b",
+        "episode-16/candidate-0.json": "d5a8af52b5f9c60df05b64a8073c8765d73e51b2400ec856bb5730af31d09209",
+        "episode-16/candidate-1.json": "5a231b31dffbc11e7fd8cc451846310e7f5cd60ec58b06e9bb37aadfb2d40146",
+        "episode-17/deadline.json": "97cc943d2d87e0d4385c7857dfb7650151878a14bd81311063f7ad3375089988",
+        "episode-17/scored-0.json": "381d9a2c6eaf86048387cb1d00ace1020b573788bcd52ee7791b1a7104ed522c",
+        "episode-17/scored-1.json": "ff9315b0fa48c93977cdf79cd0e9e74409a2def02593aa88df323a5bfae19991",
+        "episode-17/candidate-0.json": "296984be034ca072f3db0d293ee3845d2cc3c308c1057fea2254ff51e36b1888",
+        "episode-17/candidate-1.json": "c1466094a0e906c49c87a6ff0e5a4c904b44ce7618655851839e38de976c3a7b",
+        "episode-18/deadline.json": "a27b697ef786a16bb9172e0431ceaec41cc0bc0bcd22cae49a9d034289da0345",
+        "episode-18/scored-0.json": "1c231ec9ae6611cf7a8c1a6d750333d92b019d3845283f78037beb052ef47b17",
+        "episode-18/candidate-0.json": "abbc457ad2287fb3af94e26df913924dcaa6a736cac3690a3cf77e2bc785f1c8",
+        "episode-18/candidate-1.json": "5fc9ee9196e7c2b50909498c9229b1dd16d6f1c730e46b4ca85a251a0a07323d",
+        "episode-19/deadline.json": "20dbd8255d55804816d1853e1a96972978957c30f95ce18d136e3d6edbe71614",
+        "episode-19/candidate-0.json": "5450e17c19053bb6ce0f37a04681c6bb7742f1a8d72fdea0351d4259f51fa91a",
+        "episode-19/candidate-1.json": "cee230516d65e3ba158bc623f403455256252d8110a6e017581160ad6abefad4",
+        "episode-20/deadline.json": "93b561da10e2da92c0a23fe8e0d30d4f56352b12c2557af739a7e39f9d9bf5b8",
+        "episode-20/scored-0.json": "533c8fd91a446bb246d3043fc7a88b37fdfcdebbe291703cf2eada6a73196cad",
+        "episode-20/scored-1.json": "5a03cf04ba56908ff0fc0d20198506b02e0d12289825c844735c44980a893d3a",
+        "episode-20/candidate-0.json": "faae698af262ea2425e2574412b15ed051dab12ea443685f9bce2e2dc55bb322",
+        "episode-20/candidate-1.json": "0e3a28c6866fa3aaa7eda614bb5f7d0de5ebcacafbbd40c6dd997523eaddc792",
+        "episode-21/deadline.json": "4524806b93734749f20361bfeeb46a004922323218f9404f39a25d61f684087f",
+        "episode-21/scored-0.json": "f83dea66aae56493379bc0ccd400f374aa034b23fb4fa90fc79be0a6d7217113",
+        "episode-21/candidate-0.json": "ad1f5b308054996fc3025c7004828149c8badab554d1d0208c8723fc6256c54a",
+        "episode-21/candidate-1.json": "36997416510aae9c8373125001e6310ae99c0bf7717231c677cbfe075b3032b3",
+        "episode-21/candidate-2.json": "2b8552073bb8b6a78c7dde574cca0744f27b80c6d3b6d22d09fcc73f334fdf59",
+        "episode-22/deadline.json": "80951eb1a20477982745fe9dfff1709d0972eb058c345a1b5ed23129cc4d844c",
+        "episode-22/scored-0.json": "376b36b48d2502a3259715abbeae69c4b1a90c5d7e0e1f5ac4853a139d65a468",
+        "episode-22/candidate-0.json": "905b8fec2b5e06723d1ea4cf3010e2a486b1cc0c296d477049eaf049b9a103b9",
+        "episode-22/candidate-1.json": "2b1957f441ecde427b987546e656d9b26c33b0301c9aa4b4a585d5de5ca7876a",
+        "episode-22/candidate-2.json": "f5154313feab6bf13dcbea737d9e73eb8cf6e1dc43c13fa32122ab5dc4efa99c",
+        "episode-23/deadline.json": "993fe143d28dac1232613e26ab1b619cc1e6295b5f25c8f27f628d05f1e94576",
+        "episode-23/candidate-0.json": "54bcbb66ff74a40eae38c7d1c3d0933dfdafc0f0f67f7fecc7c7975586647a09",
+        "episode-23/candidate-1.json": "865239adeef4fec39623eebbf05a95e11ca04cc41ade0d7c429df452dcb4b893",
+        "episode-24/deadline.json": "8251b8c9275eb192a3042abfb69a22ade90e81ed90b77b80713db5bb2b5039ed",
+        "block-3/budget-slot.json": "9e9408e3df16e1f9bc1d7d6ad1b98843ed950bda02fb78206bda48951a53c521",
+        "episode-24/scored-0.json": "e91dbd96fd90deb46fc4fb949673857de74ffe34b4085c0831509c18de3c3774",
+        "episode-24/candidate-0.json": "20870f7ea6e60658942a3d289d816e1a590bd821208fffa32349d376dad3a2ea",
+        "episode-24/candidate-1.json": "698c7aa034c7b7ea251485fb0a2ef7c4bc468d65bbf90cb14f220147ce33f2d2",
+        "episode-25/deadline.json": "3e84eb83123b250213ceee2a6e296c24e5c28e62301dd3bc493b34e7a6303a27",
+        "episode-25/scored-0.json": "e2950e557bd0fe9bbad48d08639b60df33f29c050be4858ab4444bf99a29f833",
+        "episode-25/candidate-0.json": "d3aa5978ae47517cb299054776e65e102ae093065fc2fa24ede4062c3d1d2a3d",
+        "episode-25/candidate-1.json": "81ccf459950bcbbcd355badd33ab7b52d0ed6851f813ba9499768b6c36bffac0",
+        "episode-25/candidate-2.json": "6786a44b494a3d861e1d89d27f9b4dd84d08e292356f36d9f74b8c25784c3b8b",
+        "episode-26/deadline.json": "266fe5ee8f55cba6c9d6445b18c9961b796c38a91343e8a1062f603e366ca6f2",
+        "episode-26/scored-0.json": "3db9499c633de5cfccbcece9c1eff6829088427aec91f6744bcc88dd6b949bc1",
+        "episode-26/scored-1.json": "7f2aa8cdb14bd7641c537f3b4c7320da5aa7fdaf075d370c9cef41ef56dbd903",
+        "episode-26/candidate-0.json": "a358291893027a144a38cf8effe577fe4818bc91152a9039661569701d6ea5ab",
+        "episode-26/candidate-1.json": "6165ec8ff420abcb60fee2b000260cbc246d40a962a0b0dbe2fe4c82ac7df86e",
+        "episode-26/candidate-2.json": "e4280268c41a9ae0917ddefb790a4bf1cb07c0dd20a26f9013d871b09db0138a",
+        "episode-27/deadline.json": "b552a5e77b07555c8fc3668224739b2e69f54b401661b17352561e3a729bafa0",
+        "episode-27/scored-0.json": "58c0c9a21879c97c3bc06a9016908b1407986317a19fe0b4a5ebcaefa36eb0d7",
+        "episode-27/scored-1.json": "1c3f8015e9de6959cce18f964dc32b0a511f3e8aac4327585b020ab2f92846f7",
+        "episode-27/candidate-0.json": "ebedde02d2f042a07fa6ae6fa466600248d2b77fb78584ce66fac417068821fa",
+        "episode-27/candidate-1.json": "b8669c1e66435ea2ca1e14c4227eef9a61a8efdfd3c9c87690579a0d2fb37712",
+        "episode-28/deadline.json": "f729b8a142f996cd5919ec135a83932ad738a3792c8b6b608f96a1a5e2a40486",
+        "episode-28/scored-0.json": "9a214122031e8339bda48f614fae6e0762185af662a4b35d6dbd87be234366ed",
+        "episode-28/scored-1.json": "28e0de832431ef7308a11a192c0d1b50b3d3c9416279472f185ad6464c12f6cb",
+        "episode-28/candidate-0.json": "0001d5f86fa14ee3d478290ccf40026eadacb4ccd9b841e7f6b0d044282b5130",
+        "episode-28/candidate-1.json": "36f6608da9e047b522b48214710f469f3b360a71313c0ab61f224bd4eefa40d6",
+        "episode-28/candidate-2.json": "afcf14ea3f77024903464eb81f78496ac4e52144868219a1bd44065273355ba5",
+        "episode-28/candidate-3.json": "6b7a261bae80155d3cc09486c0facb3db7ed94432afc8c3088cef573fd266559",
+        "episode-29/deadline.json": "fac90a9a7c3abbd67b4997ab5d81c49f1f9b2f29e2725a7723d7fc22077248e5",
+        "episode-29/scored-0.json": "325d49586fda7d3ef1ceebba9af567c4d776a1ab01e49acbd65056af039a1fee",
+        "episode-29/candidate-0.json": "50dac39206f1881b5d40912a8dc153627db4a2a94a0663f9b6b0990ecebfa518",
+        "episode-29/candidate-1.json": "7e5323d71898146346879ea4a7149a96969b53277bf09271b39038278552b7ae",
+        "episode-29/candidate-2.json": "5afa2a1cbc3150310513a4790d3439731333b1ca7a6ec217846b54a49720bd3f",
+        "episode-30/deadline.json": "b3031d0ef030bf08e94a75de887693acbd491ef3f197cfd776a8b8f2ab03b00f",
+        "episode-30/scored-0.json": "b0a4645dba22c24447b389b227b7a1d7b7a62a837ab0e714325ed9d43884c592",
+        "episode-30/scored-1.json": "803f161a7d3b552ce86a3102762d2023832760873cf2890aba89d27aaa8da94e",
+        "episode-30/candidate-0.json": "ea3aa26f7ee4cdd2a6e1a61a2f2d23a75d0b8527d4151a99849441f341c67727",
+        "episode-30/candidate-1.json": "f6b61a052af0af36d0c5e9a3858053461a870898f656315c5091bb3bf21b1f5b",
+        "episode-30/candidate-2.json": "bda2555df992af872ab19ac2e5ddd7d1392658a9cfa6c1a9e11ee3c4407df405",
+        "episode-30/candidate-3.json": "fe28712e6367d5a5b7e197d6eeead3ba4e91803281bea953bd3f04656575985d",
+        "episode-31/deadline.json": "26d22116e0001d8683fa140cd3d56f3a1aa724b26a1f436c9453c40414c3f0a7",
+        "episode-31/scored-0.json": "8b98ad29b4d47bbbdd98b07605b7f89f0710d8e560fb2d03e3a28c8c3ac1cf12",
+        "episode-31/candidate-0.json": "67d799766ab963702a09b774a7dcfe2b091583beed4bf43c53fafb0cd0a8a530",
+        "episode-31/candidate-1.json": "85bf67923824c385276d86cf7f141ecc0539f80f128c653464b18952d6e828ba",
+        "episode-31/candidate-2.json": "840f4aacd4d7061d5e98ec411b1f21ef03fe7b6da53a6f4054b0ffdc3298f6bb"
+      }
+    },
+    {
+      "name": "metric",
+      "root_name": "scheduling-metric-deployment-20261015-v2",
+      "plan_sha256": "e3baf5d2fa704cdd0c3fc458549aa21449fdbf3209bac87337b370e2a416e154",
+      "summary_sha256": "c68e4c4caafb3b63ad22443c5e7e2f330a0f22a3ddd47887dc06b10820e366e9",
+      "assigned": 48,
+      "all_primary_endpoints_reproduced": true,
+      "rows": [
+        {
+          "index": 0,
+          "block": 0,
+          "arm": "old_fast",
+          "task": "aerial-cactus-identification",
+          "sign": 1,
+          "initial": 0.9997140306708787,
+          "offset": 2.610358238220215,
+          "returned": 3,
+          "late": 0,
+          "valid_events": [
+            {
+              "elapsed": 938.9300788498949,
+              "score": 0.9985835164071561
+            }
+          ],
+          "curve": [
+            {
+              "seconds": 600,
+              "score": 0.9997140306708787
+            },
+            {
+              "seconds": 1020,
+              "score": 0.9997140306708787
+            },
+            {
+              "seconds": 1500,
+              "score": 0.9997140306708787
+            },
+            {
+              "seconds": 1800,
+              "score": 0.9997140306708787
+            }
+          ]
+        },
+        {
+          "index": 1,
+          "block": 0,
+          "arm": "old_fast",
+          "task": "denoising-dirty-documents",
+          "sign": -1,
+          "initial": 0.04551226514614451,
+          "offset": 2.611171007156372,
+          "returned": 4,
+          "late": 0,
+          "valid_events": [
+            {
+              "elapsed": 667.0497610089369,
+              "score": 0.01567827820173099
+            }
+          ],
+          "curve": [
+            {
+              "seconds": 600,
+              "score": 0.04551226514614451
+            },
+            {
+              "seconds": 1020,
+              "score": 0.01567827820173099
+            },
+            {
+              "seconds": 1500,
+              "score": 0.01567827820173099
+            },
+            {
+              "seconds": 1800,
+              "score": 0.01567827820173099
+            }
+          ]
+        },
+        {
+          "index": 2,
+          "block": 0,
+          "arm": "old_fast",
+          "task": "aerial-cactus-identification",
+          "sign": 1,
+          "initial": 0.9997140306708787,
+          "offset": 2.6079890727996826,
+          "returned": 3,
+          "late": 0,
+          "valid_events": [
+            {
+              "elapsed": 535.4283874190878,
+              "score": 0.9995697097010418
+            },
+            {
+              "elapsed": 1113.965893248096,
+              "score": 0.9994253887312048
+            },
+            {
+              "elapsed": 1569.1544032630045,
+              "score": 0.9996124714698824
+            }
+          ],
+          "curve": [
+            {
+              "seconds": 600,
+              "score": 0.9997140306708787
+            },
+            {
+              "seconds": 1020,
+              "score": 0.9997140306708787
+            },
+            {
+              "seconds": 1500,
+              "score": 0.9997140306708787
+            },
+            {
+              "seconds": 1800,
+              "score": 0.9997140306708787
+            }
+          ]
+        },
+        {
+          "index": 3,
+          "block": 0,
+          "arm": "old_fast",
+          "task": "denoising-dirty-documents",
+          "sign": -1,
+          "initial": 0.04551226514614451,
+          "offset": 2.609516143798828,
+          "returned": 3,
+          "late": 0,
+          "valid_events": [
+            {
+              "elapsed": 826.5071475771256,
+              "score": 0.009738903630219946
+            }
+          ],
+          "curve": [
+            {
+              "seconds": 600,
+              "score": 0.04551226514614451
+            },
+            {
+              "seconds": 1020,
+              "score": 0.009738903630219946
+            },
+            {
+              "seconds": 1500,
+              "score": 0.009738903630219946
+            },
+            {
+              "seconds": 1800,
+              "score": 0.009738903630219946
+            }
+          ]
+        },
+        {
+          "index": 4,
+          "block": 0,
+          "arm": "old_fast",
+          "task": "aerial-cactus-identification",
+          "sign": 1,
+          "initial": 0.9997140306708787,
+          "offset": 2.6084861755371094,
+          "returned": 4,
+          "late": 0,
+          "valid_events": [
+            {
+              "elapsed": 625.13738835603,
+              "score": 0.9990004436533517
+            },
+            {
+              "elapsed": 1050.8407357269898,
+              "score": 0.9998075720402175
+            }
+          ],
+          "curve": [
+            {
+              "seconds": 600,
+              "score": 0.9997140306708787
+            },
+            {
+              "seconds": 1020,
+              "score": 0.9997140306708787
+            },
+            {
+              "seconds": 1500,
+              "score": 0.9998075720402175
+            },
+            {
+              "seconds": 1800,
+              "score": 0.9998075720402175
+            }
+          ]
+        },
+        {
+          "index": 5,
+          "block": 0,
+          "arm": "old_fast",
+          "task": "denoising-dirty-documents",
+          "sign": -1,
+          "initial": 0.04551226514614451,
+          "offset": 2.6083250045776367,
+          "returned": 5,
+          "late": 0,
+          "valid_events": [
+            {
+              "elapsed": 1323.4350940329023,
+              "score": 0.07786020341889002
+            }
+          ],
+          "curve": [
+            {
+              "seconds": 600,
+              "score": 0.04551226514614451
+            },
+            {
+              "seconds": 1020,
+              "score": 0.04551226514614451
+            },
+            {
+              "seconds": 1500,
+              "score": 0.04551226514614451
+            },
+            {
+              "seconds": 1800,
+              "score": 0.04551226514614451
+            }
+          ]
+        },
+        {
+          "index": 6,
+          "block": 0,
+          "arm": "old_fast",
+          "task": "aerial-cactus-identification",
+          "sign": 1,
+          "initial": 0.9997140306708787,
+          "offset": 2.60927414894104,
+          "returned": 4,
+          "late": 0,
+          "valid_events": [
+            {
+              "elapsed": 423.1879139558878,
+              "score": 0.9991100206860057
+            },
+            {
+              "elapsed": 790.347778287949,
+              "score": 0.9996124714698824
+            },
+            {
+              "elapsed": 1288.706007909961,
+              "score": 0.9997327389447465
+            }
+          ],
+          "curve": [
+            {
+              "seconds": 600,
+              "score": 0.9997140306708787
+            },
+            {
+              "seconds": 1020,
+              "score": 0.9997140306708787
+            },
+            {
+              "seconds": 1500,
+              "score": 0.9997327389447465
+            },
+            {
+              "seconds": 1800,
+              "score": 0.9997327389447465
+            }
+          ]
+        },
+        {
+          "index": 7,
+          "block": 0,
+          "arm": "old_fast",
+          "task": "denoising-dirty-documents",
+          "sign": -1,
+          "initial": 0.04551226514614451,
+          "offset": 2.611142158508301,
+          "returned": 4,
+          "late": 0,
+          "valid_events": [
+            {
+              "elapsed": 1026.0233499549795,
+              "score": 0.017703490488438143
+            }
+          ],
+          "curve": [
+            {
+              "seconds": 600,
+              "score": 0.04551226514614451
+            },
+            {
+              "seconds": 1020,
+              "score": 0.04551226514614451
+            },
+            {
+              "seconds": 1500,
+              "score": 0.017703490488438143
+            },
+            {
+              "seconds": 1800,
+              "score": 0.017703490488438143
+            }
+          ]
+        },
+        {
+          "index": 8,
+          "block": 1,
+          "arm": "old_medium",
+          "task": "aerial-cactus-identification",
+          "sign": 1,
+          "initial": 0.9997140306708787,
+          "offset": 2.793487787246704,
+          "returned": 4,
+          "late": 0,
+          "valid_events": [
+            {
+              "elapsed": 723.6051771240309,
+              "score": 0.9996044536382248
+            },
+            {
+              "elapsed": 1153.869584635133,
+              "score": 0.9997247211130889
+            },
+            {
+              "elapsed": 1609.318735826062,
+              "score": 0.9996899771759058
+            }
+          ],
+          "curve": [
+            {
+              "seconds": 600,
+              "score": 0.9997140306708787
+            },
+            {
+              "seconds": 1020,
+              "score": 0.9997140306708787
+            },
+            {
+              "seconds": 1500,
+              "score": 0.9997247211130889
+            },
+            {
+              "seconds": 1800,
+              "score": 0.9997247211130889
+            }
+          ]
+        },
+        {
+          "index": 9,
+          "block": 1,
+          "arm": "old_medium",
+          "task": "denoising-dirty-documents",
+          "sign": -1,
+          "initial": 0.04551226514614451,
+          "offset": 2.7937357425689697,
+          "returned": 3,
+          "late": 0,
+          "valid_events": [
+            {
+              "elapsed": 1325.7582070110366,
+              "score": 0.03154836524124719
+            }
+          ],
+          "curve": [
+            {
+              "seconds": 600,
+              "score": 0.04551226514614451
+            },
+            {
+              "seconds": 1020,
+              "score": 0.04551226514614451
+            },
+            {
+              "seconds": 1500,
+              "score": 0.03154836524124719
+            },
+            {
+              "seconds": 1800,
+              "score": 0.03154836524124719
+            }
+          ]
+        },
+        {
+          "index": 10,
+          "block": 1,
+          "arm": "old_medium",
+          "task": "aerial-cactus-identification",
+          "sign": 1,
+          "initial": 0.9997140306708787,
+          "offset": 2.794858932495117,
+          "returned": 3,
+          "late": 0,
+          "valid_events": [
+            {
+              "elapsed": 556.3894360039849,
+              "score": 0.9996097988593298
+            },
+            {
+              "elapsed": 989.3730548021849,
+              "score": 0.999665923680933
+            },
+            {
+              "elapsed": 1547.1508110761642,
+              "score": 0.9985300641961055
+            }
+          ],
+          "curve": [
+            {
+              "seconds": 600,
+              "score": 0.9997140306708787
+            },
+            {
+              "seconds": 1020,
+              "score": 0.9997140306708787
+            },
+            {
+              "seconds": 1500,
+              "score": 0.9997140306708787
+            },
+            {
+              "seconds": 1800,
+              "score": 0.9997140306708787
+            }
+          ]
+        },
+        {
+          "index": 11,
+          "block": 1,
+          "arm": "old_medium",
+          "task": "denoising-dirty-documents",
+          "sign": -1,
+          "initial": 0.04551226514614451,
+          "offset": 2.7935168743133545,
+          "returned": 2,
+          "late": 0,
+          "valid_events": [
+            {
+              "elapsed": 1266.2259682021104,
+              "score": 0.09078237175475364
+            }
+          ],
+          "curve": [
+            {
+              "seconds": 600,
+              "score": 0.04551226514614451
+            },
+            {
+              "seconds": 1020,
+              "score": 0.04551226514614451
+            },
+            {
+              "seconds": 1500,
+              "score": 0.04551226514614451
+            },
+            {
+              "seconds": 1800,
+              "score": 0.04551226514614451
+            }
+          ]
+        },
+        {
+          "index": 12,
+          "block": 1,
+          "arm": "old_medium",
+          "task": "aerial-cactus-identification",
+          "sign": 1,
+          "initial": 0.9997140306708787,
+          "offset": 2.793393850326538,
+          "returned": 3,
+          "late": 0,
+          "valid_events": [
+            {
+              "elapsed": 421.4887386690825,
+              "score": 0.9992396422978036
+            },
+            {
+              "elapsed": 1299.2637494481169,
+              "score": 0.9996926497864584
+            }
+          ],
+          "curve": [
+            {
+              "seconds": 600,
+              "score": 0.9997140306708787
+            },
+            {
+              "seconds": 1020,
+              "score": 0.9997140306708787
+            },
+            {
+              "seconds": 1500,
+              "score": 0.9997140306708787
+            },
+            {
+              "seconds": 1800,
+              "score": 0.9997140306708787
+            }
+          ]
+        },
+        {
+          "index": 13,
+          "block": 1,
+          "arm": "old_medium",
+          "task": "denoising-dirty-documents",
+          "sign": -1,
+          "initial": 0.04551226514614451,
+          "offset": 2.8105857372283936,
+          "returned": 3,
+          "late": 0,
+          "valid_events": [
+            {
+              "elapsed": 728.3848613831215,
+              "score": 0.01948555375570943
+            },
+            {
+              "elapsed": 1737.0771116029937,
+              "score": 0.025600775311795325
+            }
+          ],
+          "curve": [
+            {
+              "seconds": 600,
+              "score": 0.04551226514614451
+            },
+            {
+              "seconds": 1020,
+              "score": 0.01948555375570943
+            },
+            {
+              "seconds": 1500,
+              "score": 0.01948555375570943
+            },
+            {
+              "seconds": 1800,
+              "score": 0.01948555375570943
+            }
+          ]
+        },
+        {
+          "index": 14,
+          "block": 1,
+          "arm": "old_medium",
+          "task": "aerial-cactus-identification",
+          "sign": 1,
+          "initial": 0.9997140306708787,
+          "offset": 2.795461893081665,
+          "returned": 4,
+          "late": 0,
+          "valid_events": [
+            {
+              "elapsed": 743.9366208859719,
+              "score": 0.9996124714698823
+            },
+            {
+              "elapsed": 1210.9822325948626,
+              "score": 0.9998182624824276
+            },
+            {
+              "elapsed": 1783.0029649930075,
+              "score": 0.9997140306708787
+            }
+          ],
+          "curve": [
+            {
+              "seconds": 600,
+              "score": 0.9997140306708787
+            },
+            {
+              "seconds": 1020,
+              "score": 0.9997140306708787
+            },
+            {
+              "seconds": 1500,
+              "score": 0.9998182624824276
+            },
+            {
+              "seconds": 1800,
+              "score": 0.9998182624824276
+            }
+          ]
+        },
+        {
+          "index": 15,
+          "block": 1,
+          "arm": "old_medium",
+          "task": "denoising-dirty-documents",
+          "sign": -1,
+          "initial": 0.04551226514614451,
+          "offset": 2.79337477684021,
+          "returned": 3,
+          "late": 0,
+          "valid_events": [
+            {
+              "elapsed": 472.87350241001695,
+              "score": 0.014217226114657332
+            },
+            {
+              "elapsed": 1057.449794460088,
+              "score": 0.016884319885294326
+            },
+            {
+              "elapsed": 1523.4226980749518,
+              "score": 0.30574285876195884
+            }
+          ],
+          "curve": [
+            {
+              "seconds": 600,
+              "score": 0.014217226114657332
+            },
+            {
+              "seconds": 1020,
+              "score": 0.014217226114657332
+            },
+            {
+              "seconds": 1500,
+              "score": 0.014217226114657332
+            },
+            {
+              "seconds": 1800,
+              "score": 0.014217226114657332
+            }
+          ]
+        },
+        {
+          "index": 16,
+          "block": 2,
+          "arm": "new_medium",
+          "task": "aerial-cactus-identification",
+          "sign": 1,
+          "initial": 0.9997140306708787,
+          "offset": 3.1268069744110107,
+          "returned": 2,
+          "late": 0,
+          "valid_events": [
+            {
+              "elapsed": 745.2975255579222,
+              "score": 0.9996445427965128
+            },
+            {
+              "elapsed": 1568.0319059879985,
+              "score": 0.9999759465050271
+            }
+          ],
+          "curve": [
+            {
+              "seconds": 600,
+              "score": 0.9997140306708787
+            },
+            {
+              "seconds": 1020,
+              "score": 0.9997140306708787
+            },
+            {
+              "seconds": 1500,
+              "score": 0.9997140306708787
+            },
+            {
+              "seconds": 1800,
+              "score": 0.9999759465050271
+            }
+          ]
+        },
+        {
+          "index": 17,
+          "block": 2,
+          "arm": "new_medium",
+          "task": "denoising-dirty-documents",
+          "sign": -1,
+          "initial": 0.04551226514614451,
+          "offset": 3.1251580715179443,
+          "returned": 3,
+          "late": 0,
+          "valid_events": [],
+          "curve": [
+            {
+              "seconds": 600,
+              "score": 0.04551226514614451
+            },
+            {
+              "seconds": 1020,
+              "score": 0.04551226514614451
+            },
+            {
+              "seconds": 1500,
+              "score": 0.04551226514614451
+            },
+            {
+              "seconds": 1800,
+              "score": 0.04551226514614451
+            }
+          ]
+        },
+        {
+          "index": 18,
+          "block": 2,
+          "arm": "new_medium",
+          "task": "aerial-cactus-identification",
+          "sign": 1,
+          "initial": 0.9997140306708787,
+          "offset": 3.12491512298584,
+          "returned": 4,
+          "late": 0,
+          "valid_events": [
+            {
+              "elapsed": 1254.6196625099983,
+              "score": 0.9999385299572917
+            }
+          ],
+          "curve": [
+            {
+              "seconds": 600,
+              "score": 0.9997140306708787
+            },
+            {
+              "seconds": 1020,
+              "score": 0.9997140306708787
+            },
+            {
+              "seconds": 1500,
+              "score": 0.9999385299572917
+            },
+            {
+              "seconds": 1800,
+              "score": 0.9999385299572917
+            }
+          ]
+        },
+        {
+          "index": 19,
+          "block": 2,
+          "arm": "new_medium",
+          "task": "denoising-dirty-documents",
+          "sign": -1,
+          "initial": 0.04551226514614451,
+          "offset": 3.126819133758545,
+          "returned": 2,
+          "late": 0,
+          "valid_events": [
+            {
+              "elapsed": 1115.1492660259828,
+              "score": 0.020612101467506028
+            }
+          ],
+          "curve": [
+            {
+              "seconds": 600,
+              "score": 0.04551226514614451
+            },
+            {
+              "seconds": 1020,
+              "score": 0.04551226514614451
+            },
+            {
+              "seconds": 1500,
+              "score": 0.020612101467506028
+            },
+            {
+              "seconds": 1800,
+              "score": 0.020612101467506028
+            }
+          ]
+        },
+        {
+          "index": 20,
+          "block": 2,
+          "arm": "new_medium",
+          "task": "aerial-cactus-identification",
+          "sign": 1,
+          "initial": 0.9997140306708787,
+          "offset": 3.1267471313476562,
+          "returned": 2,
+          "late": 0,
+          "valid_events": [
+            {
+              "elapsed": 487.81670465902425,
+              "score": 0.9997407567764041
+            },
+            {
+              "elapsed": 1162.9792611929588,
+              "score": 0.9999465477889493
+            }
+          ],
+          "curve": [
+            {
+              "seconds": 600,
+              "score": 0.9997407567764041
+            },
+            {
+              "seconds": 1020,
+              "score": 0.9997407567764041
+            },
+            {
+              "seconds": 1500,
+              "score": 0.9999465477889493
+            },
+            {
+              "seconds": 1800,
+              "score": 0.9999465477889493
+            }
+          ]
+        },
+        {
+          "index": 21,
+          "block": 2,
+          "arm": "new_medium",
+          "task": "denoising-dirty-documents",
+          "sign": -1,
+          "initial": 0.04551226514614451,
+          "offset": 3.1269371509552,
+          "returned": 2,
+          "late": 0,
+          "valid_events": [
+            {
+              "elapsed": 750.8694979141001,
+              "score": 0.019059982312720675
+            },
+            {
+              "elapsed": 1656.6421544130426,
+              "score": 0.016851028985227796
+            }
+          ],
+          "curve": [
+            {
+              "seconds": 600,
+              "score": 0.04551226514614451
+            },
+            {
+              "seconds": 1020,
+              "score": 0.019059982312720675
+            },
+            {
+              "seconds": 1500,
+              "score": 0.019059982312720675
+            },
+            {
+              "seconds": 1800,
+              "score": 0.016851028985227796
+            }
+          ]
+        },
+        {
+          "index": 22,
+          "block": 2,
+          "arm": "new_medium",
+          "task": "aerial-cactus-identification",
+          "sign": 1,
+          "initial": 0.9997140306708787,
+          "offset": 3.1268410682678223,
+          "returned": 2,
+          "late": 0,
+          "valid_events": [
+            {
+              "elapsed": 487.8908611552324,
+              "score": 0.9995830727538044
+            },
+            {
+              "elapsed": 1207.386391027132,
+              "score": 0.9926396305383173
+            }
+          ],
+          "curve": [
+            {
+              "seconds": 600,
+              "score": 0.9997140306708787
+            },
+            {
+              "seconds": 1020,
+              "score": 0.9997140306708787
+            },
+            {
+              "seconds": 1500,
+              "score": 0.9997140306708787
+            },
+            {
+              "seconds": 1800,
+              "score": 0.9997140306708787
+            }
+          ]
+        },
+        {
+          "index": 23,
+          "block": 2,
+          "arm": "new_medium",
+          "task": "denoising-dirty-documents",
+          "sign": -1,
+          "initial": 0.04551226514614451,
+          "offset": 3.1516101360321045,
+          "returned": 2,
+          "late": 0,
+          "valid_events": [],
+          "curve": [
+            {
+              "seconds": 600,
+              "score": 0.04551226514614451
+            },
+            {
+              "seconds": 1020,
+              "score": 0.04551226514614451
+            },
+            {
+              "seconds": 1500,
+              "score": 0.04551226514614451
+            },
+            {
+              "seconds": 1800,
+              "score": 0.04551226514614451
+            }
+          ]
+        },
+        {
+          "index": 24,
+          "block": 3,
+          "arm": "new_medium",
+          "task": "aerial-cactus-identification",
+          "sign": 1,
+          "initial": 0.9997140306708787,
+          "offset": 2.727733612060547,
+          "returned": 3,
+          "late": 0,
+          "valid_events": [
+            {
+              "elapsed": 892.8620150780771,
+              "score": 0.999321156919656
+            }
+          ],
+          "curve": [
+            {
+              "seconds": 600,
+              "score": 0.9997140306708787
+            },
+            {
+              "seconds": 1020,
+              "score": 0.9997140306708787
+            },
+            {
+              "seconds": 1500,
+              "score": 0.9997140306708787
+            },
+            {
+              "seconds": 1800,
+              "score": 0.9997140306708787
+            }
+          ]
+        },
+        {
+          "index": 25,
+          "block": 3,
+          "arm": "new_medium",
+          "task": "denoising-dirty-documents",
+          "sign": -1,
+          "initial": 0.04551226514614451,
+          "offset": 2.729768753051758,
+          "returned": 2,
+          "late": 0,
+          "valid_events": [
+            {
+              "elapsed": 1209.4672587651294,
+              "score": 0.02086583381855083
+            }
+          ],
+          "curve": [
+            {
+              "seconds": 600,
+              "score": 0.04551226514614451
+            },
+            {
+              "seconds": 1020,
+              "score": 0.04551226514614451
+            },
+            {
+              "seconds": 1500,
+              "score": 0.02086583381855083
+            },
+            {
+              "seconds": 1800,
+              "score": 0.02086583381855083
+            }
+          ]
+        },
+        {
+          "index": 26,
+          "block": 3,
+          "arm": "new_medium",
+          "task": "aerial-cactus-identification",
+          "sign": 1,
+          "initial": 0.9997140306708787,
+          "offset": 2.729890823364258,
+          "returned": 3,
+          "late": 0,
+          "valid_events": [
+            {
+              "elapsed": 1235.4046780369245,
+              "score": 0.9991260563493208
+            }
+          ],
+          "curve": [
+            {
+              "seconds": 600,
+              "score": 0.9997140306708787
+            },
+            {
+              "seconds": 1020,
+              "score": 0.9997140306708787
+            },
+            {
+              "seconds": 1500,
+              "score": 0.9997140306708787
+            },
+            {
+              "seconds": 1800,
+              "score": 0.9997140306708787
+            }
+          ]
+        },
+        {
+          "index": 27,
+          "block": 3,
+          "arm": "new_medium",
+          "task": "denoising-dirty-documents",
+          "sign": -1,
+          "initial": 0.04551226514614451,
+          "offset": 2.7299516201019287,
+          "returned": 1,
+          "late": 0,
+          "valid_events": [
+            {
+              "elapsed": 834.5176437080372,
+              "score": 0.01878567974497039
+            }
+          ],
+          "curve": [
+            {
+              "seconds": 600,
+              "score": 0.04551226514614451
+            },
+            {
+              "seconds": 1020,
+              "score": 0.01878567974497039
+            },
+            {
+              "seconds": 1500,
+              "score": 0.01878567974497039
+            },
+            {
+              "seconds": 1800,
+              "score": 0.01878567974497039
+            }
+          ]
+        },
+        {
+          "index": 28,
+          "block": 3,
+          "arm": "new_medium",
+          "task": "aerial-cactus-identification",
+          "sign": 1,
+          "initial": 0.9997140306708787,
+          "offset": 2.728059768676758,
+          "returned": 3,
+          "late": 0,
+          "valid_events": [
+            {
+              "elapsed": 799.6522676129825,
+              "score": 0.9995510014271741
+            },
+            {
+              "elapsed": 1587.4183725439943,
+              "score": 0.9990405328116397
+            }
+          ],
+          "curve": [
+            {
+              "seconds": 600,
+              "score": 0.9997140306708787
+            },
+            {
+              "seconds": 1020,
+              "score": 0.9997140306708787
+            },
+            {
+              "seconds": 1500,
+              "score": 0.9997140306708787
+            },
+            {
+              "seconds": 1800,
+              "score": 0.9997140306708787
+            }
+          ]
+        },
+        {
+          "index": 29,
+          "block": 3,
+          "arm": "new_medium",
+          "task": "denoising-dirty-documents",
+          "sign": -1,
+          "initial": 0.04551226514614451,
+          "offset": 2.729923725128174,
+          "returned": 3,
+          "late": 0,
+          "valid_events": [
+            {
+              "elapsed": 541.0177508830093,
+              "score": 0.21031336717236349
+            }
+          ],
+          "curve": [
+            {
+              "seconds": 600,
+              "score": 0.04551226514614451
+            },
+            {
+              "seconds": 1020,
+              "score": 0.04551226514614451
+            },
+            {
+              "seconds": 1500,
+              "score": 0.04551226514614451
+            },
+            {
+              "seconds": 1800,
+              "score": 0.04551226514614451
+            }
+          ]
+        },
+        {
+          "index": 30,
+          "block": 3,
+          "arm": "new_medium",
+          "task": "aerial-cactus-identification",
+          "sign": 1,
+          "initial": 0.9997140306708787,
+          "offset": 2.7297966480255127,
+          "returned": 2,
+          "late": 0,
+          "valid_events": [
+            {
+              "elapsed": 491.33074000291526,
+              "score": 0.999706012839221
+            },
+            {
+              "elapsed": 1191.1366308019497,
+              "score": 0.9997594650502718
+            }
+          ],
+          "curve": [
+            {
+              "seconds": 600,
+              "score": 0.9997140306708787
+            },
+            {
+              "seconds": 1020,
+              "score": 0.9997140306708787
+            },
+            {
+              "seconds": 1500,
+              "score": 0.9997594650502718
+            },
+            {
+              "seconds": 1800,
+              "score": 0.9997594650502718
+            }
+          ]
+        },
+        {
+          "index": 31,
+          "block": 3,
+          "arm": "new_medium",
+          "task": "denoising-dirty-documents",
+          "sign": -1,
+          "initial": 0.04551226514614451,
+          "offset": 2.7280547618865967,
+          "returned": 2,
+          "late": 0,
+          "valid_events": [
+            {
+              "elapsed": 760.7336781779304,
+              "score": 0.01356582535832205
+            },
+            {
+              "elapsed": 1490.0160591749009,
+              "score": 0.014958525545088372
+            }
+          ],
+          "curve": [
+            {
+              "seconds": 600,
+              "score": 0.04551226514614451
+            },
+            {
+              "seconds": 1020,
+              "score": 0.01356582535832205
+            },
+            {
+              "seconds": 1500,
+              "score": 0.01356582535832205
+            },
+            {
+              "seconds": 1800,
+              "score": 0.01356582535832205
+            }
+          ]
+        },
+        {
+          "index": 32,
+          "block": 4,
+          "arm": "old_medium",
+          "task": "aerial-cactus-identification",
+          "sign": 1,
+          "initial": 0.9997140306708787,
+          "offset": 2.812115430831909,
+          "returned": 4,
+          "late": 0,
+          "valid_events": [
+            {
+              "elapsed": 460.5812763920985,
+              "score": 0.9999011134095561
+            },
+            {
+              "elapsed": 785.5961703290232,
+              "score": 0.9999786191155797
+            },
+            {
+              "elapsed": 1319.0010607200675,
+              "score": 0.9999171490728713
+            }
+          ],
+          "curve": [
+            {
+              "seconds": 600,
+              "score": 0.9999011134095561
+            },
+            {
+              "seconds": 1020,
+              "score": 0.9999786191155797
+            },
+            {
+              "seconds": 1500,
+              "score": 0.9999786191155797
+            },
+            {
+              "seconds": 1800,
+              "score": 0.9999786191155797
+            }
+          ]
+        },
+        {
+          "index": 33,
+          "block": 4,
+          "arm": "old_medium",
+          "task": "denoising-dirty-documents",
+          "sign": -1,
+          "initial": 0.04551226514614451,
+          "offset": 2.8259222507476807,
+          "returned": 3,
+          "late": 0,
+          "valid_events": [],
+          "curve": [
+            {
+              "seconds": 600,
+              "score": 0.04551226514614451
+            },
+            {
+              "seconds": 1020,
+              "score": 0.04551226514614451
+            },
+            {
+              "seconds": 1500,
+              "score": 0.04551226514614451
+            },
+            {
+              "seconds": 1800,
+              "score": 0.04551226514614451
+            }
+          ]
+        },
+        {
+          "index": 34,
+          "block": 4,
+          "arm": "old_medium",
+          "task": "aerial-cactus-identification",
+          "sign": 1,
+          "initial": 0.9997140306708787,
+          "offset": 2.810821294784546,
+          "returned": 3,
+          "late": 0,
+          "valid_events": [
+            {
+              "elapsed": 596.4147165508475,
+              "score": 0.9997461019975091
+            },
+            {
+              "elapsed": 1483.4302075768355,
+              "score": 0.9061218817316379
+            }
+          ],
+          "curve": [
+            {
+              "seconds": 600,
+              "score": 0.9997461019975091
+            },
+            {
+              "seconds": 1020,
+              "score": 0.9997461019975091
+            },
+            {
+              "seconds": 1500,
+              "score": 0.9997461019975091
+            },
+            {
+              "seconds": 1800,
+              "score": 0.9997461019975091
+            }
+          ]
+        },
+        {
+          "index": 35,
+          "block": 4,
+          "arm": "old_medium",
+          "task": "denoising-dirty-documents",
+          "sign": -1,
+          "initial": 0.04551226514614451,
+          "offset": 2.8106794357299805,
+          "returned": 2,
+          "late": 0,
+          "valid_events": [
+            {
+              "elapsed": 856.4970910460688,
+              "score": 0.020961803865919528
+            },
+            {
+              "elapsed": 1329.967583941063,
+              "score": 0.015915680142243024
+            }
+          ],
+          "curve": [
+            {
+              "seconds": 600,
+              "score": 0.04551226514614451
+            },
+            {
+              "seconds": 1020,
+              "score": 0.020961803865919528
+            },
+            {
+              "seconds": 1500,
+              "score": 0.015915680142243024
+            },
+            {
+              "seconds": 1800,
+              "score": 0.015915680142243024
+            }
+          ]
+        },
+        {
+          "index": 36,
+          "block": 4,
+          "arm": "old_medium",
+          "task": "aerial-cactus-identification",
+          "sign": 1,
+          "initial": 0.9997140306708787,
+          "offset": 2.810049295425415,
+          "returned": 4,
+          "late": 0,
+          "valid_events": [
+            {
+              "elapsed": 1050.8805656409822,
+              "score": 0.9997808459346921
+            },
+            {
+              "elapsed": 1687.2908628680743,
+              "score": 0.9881683530839253
+            }
+          ],
+          "curve": [
+            {
+              "seconds": 600,
+              "score": 0.9997140306708787
+            },
+            {
+              "seconds": 1020,
+              "score": 0.9997140306708787
+            },
+            {
+              "seconds": 1500,
+              "score": 0.9997808459346921
+            },
+            {
+              "seconds": 1800,
+              "score": 0.9997808459346921
+            }
+          ]
+        },
+        {
+          "index": 37,
+          "block": 4,
+          "arm": "old_medium",
+          "task": "denoising-dirty-documents",
+          "sign": -1,
+          "initial": 0.04551226514614451,
+          "offset": 2.810272216796875,
+          "returned": 2,
+          "late": 0,
+          "valid_events": [
+            {
+              "elapsed": 420.2017258089036,
+              "score": 0.01314423284656948
+            },
+            {
+              "elapsed": 1303.0137871210463,
+              "score": 0.069000381096859
+            }
+          ],
+          "curve": [
+            {
+              "seconds": 600,
+              "score": 0.01314423284656948
+            },
+            {
+              "seconds": 1020,
+              "score": 0.01314423284656948
+            },
+            {
+              "seconds": 1500,
+              "score": 0.01314423284656948
+            },
+            {
+              "seconds": 1800,
+              "score": 0.01314423284656948
+            }
+          ]
+        },
+        {
+          "index": 38,
+          "block": 4,
+          "arm": "old_medium",
+          "task": "aerial-cactus-identification",
+          "sign": 1,
+          "initial": 0.9997140306708787,
+          "offset": 2.812134265899658,
+          "returned": 4,
+          "late": 0,
+          "valid_events": [
+            {
+              "elapsed": 440.327653485816,
+              "score": 0.9997861911557971
+            },
+            {
+              "elapsed": 999.8353331838734,
+              "score": 0.9987385278192032
+            },
+            {
+              "elapsed": 1788.7259376498405,
+              "score": 0.9996178166909875
+            }
+          ],
+          "curve": [
+            {
+              "seconds": 600,
+              "score": 0.9997861911557971
+            },
+            {
+              "seconds": 1020,
+              "score": 0.9997861911557971
+            },
+            {
+              "seconds": 1500,
+              "score": 0.9997861911557971
+            },
+            {
+              "seconds": 1800,
+              "score": 0.9997861911557971
+            }
+          ]
+        },
+        {
+          "index": 39,
+          "block": 4,
+          "arm": "old_medium",
+          "task": "denoising-dirty-documents",
+          "sign": -1,
+          "initial": 0.04551226514614451,
+          "offset": 2.8121213912963867,
+          "returned": 3,
+          "late": 0,
+          "valid_events": [
+            {
+              "elapsed": 676.8798935669474,
+              "score": 0.016990368284484372
+            },
+            {
+              "elapsed": 1650.3710357539821,
+              "score": 0.017110415522540882
+            }
+          ],
+          "curve": [
+            {
+              "seconds": 600,
+              "score": 0.04551226514614451
+            },
+            {
+              "seconds": 1020,
+              "score": 0.016990368284484372
+            },
+            {
+              "seconds": 1500,
+              "score": 0.016990368284484372
+            },
+            {
+              "seconds": 1800,
+              "score": 0.016990368284484372
+            }
+          ]
+        },
+        {
+          "index": 40,
+          "block": 5,
+          "arm": "old_fast",
+          "task": "aerial-cactus-identification",
+          "sign": 1,
+          "initial": 0.9997140306708787,
+          "offset": 3.203711748123169,
+          "returned": 4,
+          "late": 0,
+          "valid_events": [
+            {
+              "elapsed": 658.9355627531186,
+              "score": 0.9997861911557971
+            }
+          ],
+          "curve": [
+            {
+              "seconds": 600,
+              "score": 0.9997140306708787
+            },
+            {
+              "seconds": 1020,
+              "score": 0.9997861911557971
+            },
+            {
+              "seconds": 1500,
+              "score": 0.9997861911557971
+            },
+            {
+              "seconds": 1800,
+              "score": 0.9997861911557971
+            }
+          ]
+        },
+        {
+          "index": 41,
+          "block": 5,
+          "arm": "old_fast",
+          "task": "denoising-dirty-documents",
+          "sign": -1,
+          "initial": 0.04551226514614451,
+          "offset": 3.201361894607544,
+          "returned": 5,
+          "late": 0,
+          "valid_events": [
+            {
+              "elapsed": 381.86877147690393,
+              "score": 0.11969340241359985
+            }
+          ],
+          "curve": [
+            {
+              "seconds": 600,
+              "score": 0.04551226514614451
+            },
+            {
+              "seconds": 1020,
+              "score": 0.04551226514614451
+            },
+            {
+              "seconds": 1500,
+              "score": 0.04551226514614451
+            },
+            {
+              "seconds": 1800,
+              "score": 0.04551226514614451
+            }
+          ]
+        },
+        {
+          "index": 42,
+          "block": 5,
+          "arm": "old_fast",
+          "task": "aerial-cactus-identification",
+          "sign": 1,
+          "initial": 0.9997140306708787,
+          "offset": 3.2033908367156982,
+          "returned": 6,
+          "late": 0,
+          "valid_events": [
+            {
+              "elapsed": 933.2567010931671,
+              "score": 0.9968984354537824
+            },
+            {
+              "elapsed": 1535.6126870592125,
+              "score": 0.5
+            }
+          ],
+          "curve": [
+            {
+              "seconds": 600,
+              "score": 0.9997140306708787
+            },
+            {
+              "seconds": 1020,
+              "score": 0.9997140306708787
+            },
+            {
+              "seconds": 1500,
+              "score": 0.9997140306708787
+            },
+            {
+              "seconds": 1800,
+              "score": 0.9997140306708787
+            }
+          ]
+        },
+        {
+          "index": 43,
+          "block": 5,
+          "arm": "old_fast",
+          "task": "denoising-dirty-documents",
+          "sign": -1,
+          "initial": 0.04551226514614451,
+          "offset": 3.203702926635742,
+          "returned": 4,
+          "late": 0,
+          "valid_events": [],
+          "curve": [
+            {
+              "seconds": 600,
+              "score": 0.04551226514614451
+            },
+            {
+              "seconds": 1020,
+              "score": 0.04551226514614451
+            },
+            {
+              "seconds": 1500,
+              "score": 0.04551226514614451
+            },
+            {
+              "seconds": 1800,
+              "score": 0.04551226514614451
+            }
+          ]
+        },
+        {
+          "index": 44,
+          "block": 5,
+          "arm": "old_fast",
+          "task": "aerial-cactus-identification",
+          "sign": 1,
+          "initial": 0.9997140306708787,
+          "offset": 3.201441764831543,
+          "returned": 4,
+          "late": 0,
+          "valid_events": [
+            {
+              "elapsed": 732.4260353720747,
+              "score": 0.9995950995012909
+            }
+          ],
+          "curve": [
+            {
+              "seconds": 600,
+              "score": 0.9997140306708787
+            },
+            {
+              "seconds": 1020,
+              "score": 0.9997140306708787
+            },
+            {
+              "seconds": 1500,
+              "score": 0.9997140306708787
+            },
+            {
+              "seconds": 1800,
+              "score": 0.9997140306708787
+            }
+          ]
+        },
+        {
+          "index": 45,
+          "block": 5,
+          "arm": "old_fast",
+          "task": "denoising-dirty-documents",
+          "sign": -1,
+          "initial": 0.04551226514614451,
+          "offset": 3.201385736465454,
+          "returned": 6,
+          "late": 0,
+          "valid_events": [
+            {
+              "elapsed": 1618.9747941961978,
+              "score": 0.032027155694587604
+            }
+          ],
+          "curve": [
+            {
+              "seconds": 600,
+              "score": 0.04551226514614451
+            },
+            {
+              "seconds": 1020,
+              "score": 0.04551226514614451
+            },
+            {
+              "seconds": 1500,
+              "score": 0.04551226514614451
+            },
+            {
+              "seconds": 1800,
+              "score": 0.032027155694587604
+            }
+          ]
+        },
+        {
+          "index": 46,
+          "block": 5,
+          "arm": "old_fast",
+          "task": "aerial-cactus-identification",
+          "sign": 1,
+          "initial": 0.9997140306708787,
+          "offset": 3.2014167308807373,
+          "returned": 5,
+          "late": 0,
+          "valid_events": [
+            {
+              "elapsed": 889.3497508771252,
+              "score": 0.9991501098442936
+            },
+            {
+              "elapsed": 1314.9450149310287,
+              "score": 0.9991260563493208
+            }
+          ],
+          "curve": [
+            {
+              "seconds": 600,
+              "score": 0.9997140306708787
+            },
+            {
+              "seconds": 1020,
+              "score": 0.9997140306708787
+            },
+            {
+              "seconds": 1500,
+              "score": 0.9997140306708787
+            },
+            {
+              "seconds": 1800,
+              "score": 0.9997140306708787
+            }
+          ]
+        },
+        {
+          "index": 47,
+          "block": 5,
+          "arm": "old_fast",
+          "task": "denoising-dirty-documents",
+          "sign": -1,
+          "initial": 0.04551226514614451,
+          "offset": 3.2014899253845215,
+          "returned": 5,
+          "late": 0,
+          "valid_events": [
+            {
+              "elapsed": 1186.2742397170514,
+              "score": 0.013387899427844734
+            }
+          ],
+          "curve": [
+            {
+              "seconds": 600,
+              "score": 0.04551226514614451
+            },
+            {
+              "seconds": 1020,
+              "score": 0.04551226514614451
+            },
+            {
+              "seconds": 1500,
+              "score": 0.013387899427844734
+            },
+            {
+              "seconds": 1800,
+              "score": 0.013387899427844734
+            }
+          ]
+        }
+      ],
+      "pools": [
+        {
+          "block": 0,
+          "arm": "old_fast",
+          "task": "aerial-cactus-identification",
+          "n": 4,
+          "initial": 0.9997140306708787,
+          "sign": 1,
+          "valid_returns": 9,
+          "pool_records": 1,
+          "records": [
+            {
+              "at": 1053.449221902527,
+              "gain": 9.354136933881207e-05,
+              "score": 0.9998075720402175
+            }
+          ],
+          "above_initial": 2,
+          "last_record_at": 1053.449221902527,
+          "first_material_gain_at": null,
+          "prefix_curves": [
+            {
+              "seconds": 600,
+              "best": 0.9997140306708787,
+              "median": 0.9997140306708787,
+              "sample_sd": 0.0
+            },
+            {
+              "seconds": 1020,
+              "best": 0.9997140306708787,
+              "median": 0.9997140306708787,
+              "sample_sd": 0.0
+            },
+            {
+              "seconds": 1500,
+              "best": 0.9998075720402175,
+              "median": 0.9997233848078126,
+              "sample_sd": 4.453459961606949e-05
+            },
+            {
+              "seconds": 1800,
+              "best": 0.9998075720402175,
+              "median": 0.9997233848078126,
+              "sample_sd": 4.453459961606949e-05
+            }
+          ],
+          "post_1020_gain": 9.354136933881207e-05
+        },
+        {
+          "block": 0,
+          "arm": "old_fast",
+          "task": "denoising-dirty-documents",
+          "n": 4,
+          "initial": 0.04551226514614451,
+          "sign": -1,
+          "valid_returns": 4,
+          "pool_records": 2,
+          "records": [
+            {
+              "at": 669.6609320160933,
+              "gain": 0.02983398694441352,
+              "score": 0.01567827820173099
+            },
+            {
+              "at": 829.1166637209244,
+              "gain": 0.005939374571511044,
+              "score": 0.009738903630219946
+            }
+          ],
+          "above_initial": 3,
+          "last_record_at": 829.1166637209244,
+          "first_material_gain_at": 669.6609320160933,
+          "prefix_curves": [
+            {
+              "seconds": 600,
+              "best": 0.04551226514614451,
+              "median": 0.04551226514614451,
+              "sample_sd": 0.0
+            },
+            {
+              "seconds": 1020,
+              "best": 0.009738903630219946,
+              "median": 0.03059527167393775,
+              "sample_sd": 0.019093795922143685
+            },
+            {
+              "seconds": 1500,
+              "best": 0.009738903630219946,
+              "median": 0.016690884345084568,
+              "sample_sd": 0.015931991971189614
+            },
+            {
+              "seconds": 1800,
+              "best": 0.009738903630219946,
+              "median": 0.016690884345084568,
+              "sample_sd": 0.015931991971189614
+            }
+          ],
+          "post_1020_gain": -0.0
+        },
+        {
+          "block": 1,
+          "arm": "old_medium",
+          "task": "aerial-cactus-identification",
+          "n": 4,
+          "initial": 0.9997140306708787,
+          "sign": 1,
+          "valid_returns": 11,
+          "pool_records": 2,
+          "records": [
+            {
+              "at": 1156.6630724223796,
+              "gain": 1.0690442210137263e-05,
+              "score": 0.9997247211130889
+            },
+            {
+              "at": 1213.7776944879442,
+              "gain": 9.354136933870105e-05,
+              "score": 0.9998182624824276
+            }
+          ],
+          "above_initial": 2,
+          "last_record_at": 1213.7776944879442,
+          "first_material_gain_at": null,
+          "prefix_curves": [
+            {
+              "seconds": 600,
+              "best": 0.9997140306708787,
+              "median": 0.9997140306708787,
+              "sample_sd": 0.0
+            },
+            {
+              "seconds": 1020,
+              "best": 0.9997140306708787,
+              "median": 0.9997140306708787,
+              "sample_sd": 0.0
+            },
+            {
+              "seconds": 1500,
+              "best": 0.9998182624824276,
+              "median": 0.9997193758919838,
+              "sample_sd": 5.058581814151813e-05
+            },
+            {
+              "seconds": 1800,
+              "best": 0.9998182624824276,
+              "median": 0.9997193758919838,
+              "sample_sd": 5.058581814151813e-05
+            }
+          ],
+          "post_1020_gain": 0.00010423181154883832
+        },
+        {
+          "block": 1,
+          "arm": "old_medium",
+          "task": "denoising-dirty-documents",
+          "n": 4,
+          "initial": 0.04551226514614451,
+          "sign": -1,
+          "valid_returns": 7,
+          "pool_records": 1,
+          "records": [
+            {
+              "at": 475.66687718685716,
+              "gain": 0.03129503903148718,
+              "score": 0.014217226114657332
+            }
+          ],
+          "above_initial": 5,
+          "last_record_at": 475.66687718685716,
+          "first_material_gain_at": 475.66687718685716,
+          "prefix_curves": [
+            {
+              "seconds": 600,
+              "best": 0.014217226114657332,
+              "median": 0.04551226514614451,
+              "sample_sd": 0.01564751951574359
+            },
+            {
+              "seconds": 1020,
+              "best": 0.014217226114657332,
+              "median": 0.03249890945092697,
+              "sample_sd": 0.016686555525582295
+            },
+            {
+              "seconds": 1500,
+              "best": 0.014217226114657332,
+              "median": 0.02551695949847831,
+              "sample_sd": 0.013920592524600648
+            },
+            {
+              "seconds": 1800,
+              "best": 0.014217226114657332,
+              "median": 0.02551695949847831,
+              "sample_sd": 0.013920592524600648
+            }
+          ],
+          "post_1020_gain": -0.0
+        },
+        {
+          "block": 2,
+          "arm": "new_medium",
+          "task": "aerial-cactus-identification",
+          "n": 4,
+          "initial": 0.9997140306708787,
+          "sign": 1,
+          "valid_returns": 7,
+          "pool_records": 3,
+          "records": [
+            {
+              "at": 490.9434517903719,
+              "gain": 2.6726105525343158e-05,
+              "score": 0.9997407567764041
+            },
+            {
+              "at": 1166.1060083243065,
+              "gain": 0.00020579101254525334,
+              "score": 0.9999465477889493
+            },
+            {
+              "at": 1571.1587129624095,
+              "gain": 2.939871607776645e-05,
+              "score": 0.9999759465050271
+            }
+          ],
+          "above_initial": 4,
+          "last_record_at": 1571.1587129624095,
+          "first_material_gain_at": null,
+          "prefix_curves": [
+            {
+              "seconds": 600,
+              "best": 0.9997407567764041,
+              "median": 0.9997140306708787,
+              "sample_sd": 1.3363052762671579e-05
+            },
+            {
+              "seconds": 1020,
+              "best": 0.9997407567764041,
+              "median": 0.9997140306708787,
+              "sample_sd": 1.3363052762671579e-05
+            },
+            {
+              "seconds": 1500,
+              "best": 0.9999465477889493,
+              "median": 0.9998262803140852,
+              "sample_sd": 0.00013196987194560977
+            },
+            {
+              "seconds": 1800,
+              "best": 0.9999759465050271,
+              "median": 0.9999425388731205,
+              "sample_sd": 0.00012089686105291559
+            }
+          ],
+          "post_1020_gain": 0.0002351897286230198
+        },
+        {
+          "block": 2,
+          "arm": "new_medium",
+          "task": "denoising-dirty-documents",
+          "n": 4,
+          "initial": 0.04551226514614451,
+          "sign": -1,
+          "valid_returns": 3,
+          "pool_records": 2,
+          "records": [
+            {
+              "at": 753.9964350650553,
+              "gain": 0.026452282833423834,
+              "score": 0.019059982312720675
+            },
+            {
+              "at": 1659.7690915639978,
+              "gain": 0.0022089533274928796,
+              "score": 0.016851028985227796
+            }
+          ],
+          "above_initial": 3,
+          "last_record_at": 1659.7690915639978,
+          "first_material_gain_at": 753.9964350650553,
+          "prefix_curves": [
+            {
+              "seconds": 600,
+              "best": 0.04551226514614451,
+              "median": 0.04551226514614451,
+              "sample_sd": 0.0
+            },
+            {
+              "seconds": 1020,
+              "best": 0.019059982312720675,
+              "median": 0.04551226514614451,
+              "sample_sd": 0.013226141416711917
+            },
+            {
+              "seconds": 1500,
+              "best": 0.019059982312720675,
+              "median": 0.03306218330682527,
+              "sample_sd": 0.014837710713234269
+            },
+            {
+              "seconds": 1800,
+              "best": 0.016851028985227796,
+              "median": 0.03306218330682527,
+              "sample_sd": 0.015537896911547704
+            }
+          ],
+          "post_1020_gain": 0.0022089533274928796
+        },
+        {
+          "block": 3,
+          "arm": "new_medium",
+          "task": "aerial-cactus-identification",
+          "n": 4,
+          "initial": 0.9997140306708787,
+          "sign": 1,
+          "valid_returns": 6,
+          "pool_records": 1,
+          "records": [
+            {
+              "at": 1193.8664274499752,
+              "gain": 4.543437939308337e-05,
+              "score": 0.9997594650502718
+            }
+          ],
+          "above_initial": 1,
+          "last_record_at": 1193.8664274499752,
+          "first_material_gain_at": null,
+          "prefix_curves": [
+            {
+              "seconds": 600,
+              "best": 0.9997140306708787,
+              "median": 0.9997140306708787,
+              "sample_sd": 0.0
+            },
+            {
+              "seconds": 1020,
+              "best": 0.9997140306708787,
+              "median": 0.9997140306708787,
+              "sample_sd": 0.0
+            },
+            {
+              "seconds": 1500,
+              "best": 0.9997594650502718,
+              "median": 0.9997140306708787,
+              "sample_sd": 2.2717189696541684e-05
+            },
+            {
+              "seconds": 1800,
+              "best": 0.9997594650502718,
+              "median": 0.9997140306708787,
+              "sample_sd": 2.2717189696541684e-05
+            }
+          ],
+          "post_1020_gain": 4.543437939308337e-05
+        },
+        {
+          "block": 3,
+          "arm": "new_medium",
+          "task": "denoising-dirty-documents",
+          "n": 4,
+          "initial": 0.04551226514614451,
+          "sign": -1,
+          "valid_returns": 5,
+          "pool_records": 1,
+          "records": [
+            {
+              "at": 763.461732939817,
+              "gain": 0.03194643978782246,
+              "score": 0.01356582535832205
+            }
+          ],
+          "above_initial": 4,
+          "last_record_at": 763.461732939817,
+          "first_material_gain_at": 763.461732939817,
+          "prefix_curves": [
+            {
+              "seconds": 600,
+              "best": 0.04551226514614451,
+              "median": 0.04551226514614451,
+              "sample_sd": 0.0
+            },
+            {
+              "seconds": 1020,
+              "best": 0.01356582535832205,
+              "median": 0.03214897244555745,
+              "sample_sd": 0.01707097352346045
+            },
+            {
+              "seconds": 1500,
+              "best": 0.01356582535832205,
+              "median": 0.01982575678176061,
+              "sample_sd": 0.01422203690233361
+            },
+            {
+              "seconds": 1800,
+              "best": 0.01356582535832205,
+              "median": 0.01982575678176061,
+              "sample_sd": 0.01422203690233361
+            }
+          ],
+          "post_1020_gain": -0.0
+        },
+        {
+          "block": 4,
+          "arm": "old_medium",
+          "task": "aerial-cactus-identification",
+          "n": 4,
+          "initial": 0.9997140306708787,
+          "sign": 1,
+          "valid_returns": 10,
+          "pool_records": 3,
+          "records": [
+            {
+              "at": 443.13978775171563,
+              "gain": 7.216048491842653e-05,
+              "score": 0.9997861911557971
+            },
+            {
+              "at": 463.3933918229304,
+              "gain": 0.00011492225375897558,
+              "score": 0.9999011134095561
+            },
+            {
+              "at": 788.4082857598551,
+              "gain": 7.750570602360618e-05,
+              "score": 0.9999786191155797
+            }
+          ],
+          "above_initial": 6,
+          "last_record_at": 788.4082857598551,
+          "first_material_gain_at": null,
+          "prefix_curves": [
+            {
+              "seconds": 600,
+              "best": 0.9999011134095561,
+              "median": 0.9997661465766532,
+              "sample_sd": 8.168968701363096e-05
+            },
+            {
+              "seconds": 1020,
+              "best": 0.9999786191155797,
+              "median": 0.9997661465766532,
+              "sample_sd": 0.00011865307313023252
+            },
+            {
+              "seconds": 1500,
+              "best": 0.9999786191155797,
+              "median": 0.9997835185452446,
+              "sample_sd": 0.00010529712490228068
+            },
+            {
+              "seconds": 1800,
+              "best": 0.9999786191155797,
+              "median": 0.9997835185452446,
+              "sample_sd": 0.00010529712490228068
+            }
+          ],
+          "post_1020_gain": 0.0
+        },
+        {
+          "block": 4,
+          "arm": "old_medium",
+          "task": "denoising-dirty-documents",
+          "n": 4,
+          "initial": 0.04551226514614451,
+          "sign": -1,
+          "valid_returns": 6,
+          "pool_records": 1,
+          "records": [
+            {
+              "at": 423.01199802570045,
+              "gain": 0.03236803229957503,
+              "score": 0.01314423284656948
+            }
+          ],
+          "above_initial": 5,
+          "last_record_at": 423.01199802570045,
+          "first_material_gain_at": 423.01199802570045,
+          "prefix_curves": [
+            {
+              "seconds": 600,
+              "best": 0.01314423284656948,
+              "median": 0.04551226514614451,
+              "sample_sd": 0.016184016149787515
+            },
+            {
+              "seconds": 1020,
+              "best": 0.01314423284656948,
+              "median": 0.018976086075201952,
+              "sample_sd": 0.014593356763816063
+            },
+            {
+              "seconds": 1500,
+              "best": 0.01314423284656948,
+              "median": 0.0164530242133637,
+              "sample_sd": 0.015167878867168694
+            },
+            {
+              "seconds": 1800,
+              "best": 0.01314423284656948,
+              "median": 0.0164530242133637,
+              "sample_sd": 0.015167878867168694
+            }
+          ],
+          "post_1020_gain": -0.0
+        },
+        {
+          "block": 5,
+          "arm": "old_fast",
+          "task": "aerial-cactus-identification",
+          "n": 4,
+          "initial": 0.9997140306708787,
+          "sign": 1,
+          "valid_returns": 6,
+          "pool_records": 1,
+          "records": [
+            {
+              "at": 662.1392745012417,
+              "gain": 7.216048491842653e-05,
+              "score": 0.9997861911557971
+            }
+          ],
+          "above_initial": 1,
+          "last_record_at": 662.1392745012417,
+          "first_material_gain_at": null,
+          "prefix_curves": [
+            {
+              "seconds": 600,
+              "best": 0.9997140306708787,
+              "median": 0.9997140306708787,
+              "sample_sd": 0.0
+            },
+            {
+              "seconds": 1020,
+              "best": 0.9997861911557971,
+              "median": 0.9997140306708787,
+              "sample_sd": 3.608024245921326e-05
+            },
+            {
+              "seconds": 1500,
+              "best": 0.9997861911557971,
+              "median": 0.9997140306708787,
+              "sample_sd": 3.608024245921326e-05
+            },
+            {
+              "seconds": 1800,
+              "best": 0.9997861911557971,
+              "median": 0.9997140306708787,
+              "sample_sd": 3.608024245921326e-05
+            }
+          ],
+          "post_1020_gain": 0.0
+        },
+        {
+          "block": 5,
+          "arm": "old_fast",
+          "task": "denoising-dirty-documents",
+          "n": 4,
+          "initial": 0.04551226514614451,
+          "sign": -1,
+          "valid_returns": 3,
+          "pool_records": 1,
+          "records": [
+            {
+              "at": 1189.475729642436,
+              "gain": 0.032124365718299776,
+              "score": 0.013387899427844734
+            }
+          ],
+          "above_initial": 2,
+          "last_record_at": 1189.475729642436,
+          "first_material_gain_at": 1189.475729642436,
+          "prefix_curves": [
+            {
+              "seconds": 600,
+              "best": 0.04551226514614451,
+              "median": 0.04551226514614451,
+              "sample_sd": 0.0
+            },
+            {
+              "seconds": 1020,
+              "best": 0.04551226514614451,
+              "median": 0.04551226514614451,
+              "sample_sd": 0.0
+            },
+            {
+              "seconds": 1500,
+              "best": 0.013387899427844734,
+              "median": 0.04551226514614451,
+              "sample_sd": 0.016062182859149888
+            },
+            {
+              "seconds": 1800,
+              "best": 0.013387899427844734,
+              "median": 0.03876971042036606,
+              "sample_sd": 0.015207092571188616
+            }
+          ],
+          "post_1020_gain": 0.032124365718299776
+        }
+      ],
+      "source_hashes": {
+        "episode-0/deadline.json": "6730132879ac35fbfc169c94ee188b82f3db2170e73a396062280e1bc3f63f98",
+        "block-0/budget-slot.json": "1e6705b9b9ea8ac9b65526fdafea9c73e8cc503abb93d43745afd127d31534c1",
+        "episode-0/scored-0.json": "16ddff37aedc5ae5b2276c3f18e37a4e9016c30587e269999bcbe274b2830dfc",
+        "episode-0/candidate-0.json": "66677563ed6a0ad87cb5940ba5cdbb843c1f51af73214dc21bc033b27fd224f7",
+        "episode-0/candidate-1.json": "cf99131b44ce00e4cd03bb9f446d0278e087aca021493e6f9f3e163c5172ba8c",
+        "episode-0/candidate-2.json": "9eab75368d3780e169f5eeeb7970286e1f61436d002cc8113c9c975ea1f937c2",
+        "episode-1/deadline.json": "b513f7020219090172f494d12d4afaa854c8a552625cf61c86aa33da25c4acb2",
+        "episode-1/scored-0.json": "925519d9a32049b2033149ab97bdb922f0c5043d9e4a874d47145c3a01586be8",
+        "episode-1/candidate-0.json": "00edd533e1ebb5782f9b9c6e0506a9a4d96fb5f1edb4dae388f6968352796bb4",
+        "episode-1/candidate-1.json": "1a4d8bfb0bd8a08267825f6cb4e5037d2c500f3aebdd43aed5958447376bac12",
+        "episode-1/candidate-2.json": "3b04b60135f79e95b6dec491407dbe9979c4bea2dcc5cdca441666908f128e36",
+        "episode-1/candidate-3.json": "ab5355aa740fda7f0c6d6d67b0ffb1d81d5e630281e6745bf0b6dc3602b57333",
+        "episode-2/deadline.json": "c1201a426cfee4f68b6003684fc0ed64d1c3256b215ed144decd365db5e2666f",
+        "episode-2/scored-0.json": "5e38800759efc952c3293dafad19d01fea4989235d73f3bb62a6ee0e4a3aab3f",
+        "episode-2/scored-1.json": "4f5ff1d313e55ff95f51b99149d14e0552bff81f29e71adce686c2112e08e8d4",
+        "episode-2/scored-2.json": "5b51224e2cc588a4d5dd74e43dfaa72e5144ae1dd75a746c48b686e7d2fe072a",
+        "episode-2/candidate-0.json": "b7b36820cba765ada975fcabef506b4effbfcc5fb88e4f558499ca3e54bc9247",
+        "episode-2/candidate-1.json": "45deae196fc316fae6b5d3ecf659d673f34135cc3ea19fe9ba9053bb122fcfec",
+        "episode-2/candidate-2.json": "2f58f74570db73b00128cb9b941164bb63213a989bf4df051f101a2dd10c1408",
+        "episode-3/deadline.json": "46f66187c0ab280278bb22c190daa1dc8102e15e0f638b23052f7064ba8729a9",
+        "episode-3/scored-0.json": "33d545b9418696b4c5f5c349077589381a916ed73b7e3dcff43e6a5f0068915d",
+        "episode-3/candidate-0.json": "25d91b4cc3f6805d98d23402bc5e81106de0e9deee9866cb43e64553c5fbf7e9",
+        "episode-3/candidate-1.json": "5a4d51c42828ec86bd4478c7596efaaf09165f456252e3d5ac5bf40371e20c15",
+        "episode-3/candidate-2.json": "802281eaa97515f81d6c0dda85b7f5249b8ded95448bb315b8827b22eccf6363",
+        "episode-4/deadline.json": "14c8325d0a194178604da63eb8d6e209f266bc2f75e4f82e5e46986df3315821",
+        "episode-4/scored-0.json": "1874b08237bde68f04583a59bdd4fcb7dc0f8979adf3f0154f771ed702ef2251",
+        "episode-4/scored-1.json": "6f18a0f1446f36db772e672a2ca56fe81719836faae89c4aeb367bfcf87a0ddd",
+        "episode-4/candidate-0.json": "d13f8dbfb5b2a04074c8a8cb7bf749dc0bd56971b077899244cc265086d4e5ae",
+        "episode-4/candidate-1.json": "a8221fbd92602b5b700dcac5caada1ddd925312ffb5fd8397c2e853a59187bcd",
+        "episode-4/candidate-2.json": "71950a9cf8b78c99e93f98b6db8403a9415cbb79eb0bda026f28bb697e34a8d5",
+        "episode-4/candidate-3.json": "347f40bed2a5aaa9161bd3409806d495f53bb9341fc422e745d5549c9f7c075e",
+        "episode-5/deadline.json": "689db17dc13146334c96cca862fc6dfce1fbc2f2fecc28808f4a18b468ee9e5f",
+        "episode-5/scored-0.json": "04695a1dbd41f42a59fa31b7d02ead56928e2e28137233b4818c014fea940fa3",
+        "episode-5/candidate-0.json": "481922d0970c7ab9ac1f2b2089d244f8c2942bf625e719b7483dce5490f62ace",
+        "episode-5/candidate-1.json": "d840065ff59f305d544f22961a8690ace17f86808f494e6f69a3f5d4e34c11be",
+        "episode-5/candidate-2.json": "49f49d3907c54672b6bc0d7f0d799cdbb396ebef5b8ee7b6eb9a6a21ae1c7c9d",
+        "episode-5/candidate-3.json": "7ad503df2631186dde4861099e3f9db8f33b8bb930f34f22fb13dcf1631b96e1",
+        "episode-5/candidate-4.json": "278a9e1021e2740624caacf243b2991bac2a02e83c8e6f7e77cca810255dc28b",
+        "episode-6/deadline.json": "beb96d65ba856e0eddeb0a8bed0eeab1a0cf1aeaf2995e129a1e3b860947fc0a",
+        "episode-6/scored-0.json": "d61b6f3472021117d900546c8d9ff15bd7abdc0f0eee29d972a6c44883daaba0",
+        "episode-6/scored-1.json": "469df296bbef84d0172e2a85f753549e53a7cc237f92896f8a842887ec9cb8fb",
+        "episode-6/scored-2.json": "4c11973d8f63abc2de90c6656254dbabab7778a3219a02728001b03cd50811a6",
+        "episode-6/candidate-0.json": "62d1787cc94a69352e59e17881f03cfddb951781004dc4deb6ab6bc8b0d6529f",
+        "episode-6/candidate-1.json": "582aa2992565b79849bef2f9b579be0d147cad14f3848f0f94506ac491914018",
+        "episode-6/candidate-2.json": "e8ff999590feefab67ee71b6789e1b174a46c449ddfb897e4d313b91a5712520",
+        "episode-6/candidate-3.json": "7d0ca48e84cb29b3f2b1b0acefd19cc63749ba5612f174c2e3f5c6f49e66e718",
+        "episode-7/deadline.json": "02f31e08866bbb54aa63d15b03496cbb5a9751368c0d06e3a5d36deb8cf61505",
+        "episode-7/scored-0.json": "2bd10743a05cbddc72c09d4575799ce5a156a3165364168055da001909bf92f8",
+        "episode-7/candidate-0.json": "c4fbfd7c669ce7c40117a232d689dc7fa200d63e3b2f7026dcbf4a73df74221a",
+        "episode-7/candidate-1.json": "5e94584d1f0d2a925185627369d937c8ebed4d021dbc69d37f0e7840e4606fa1",
+        "episode-7/candidate-2.json": "77ad01b43569ec0373736ee51911b8e3b890a3077c2f8d2b4e1c928fd7876a03",
+        "episode-7/candidate-3.json": "4a66516d4da0daf177d1bef1775b0dbb107d3ea7eb00dad1e2a4c395450257e8",
+        "episode-8/deadline.json": "a42413d4af365f4e236f5698d2724e22cb6115ecc94a521e080e653c1e25fba7",
+        "block-1/budget-slot.json": "d3b5b0899e12f6cc486d249a6a4e5a9c24782ebe71d6bf8c33a78a6c14c054d1",
+        "episode-8/scored-0.json": "178a1e8d2c29fa0f2e359bff2055b9b0f6802a44d42a8f3f80aa1c041b9a903e",
+        "episode-8/scored-1.json": "c06e055359e473d7e3bbf7e85c28db386ec75916c218ec3c00dc1850259c94c9",
+        "episode-8/scored-2.json": "4b6db3d7e314f27549c785df92766c6c7e9f70813dde753c1e38b64ac08c0b66",
+        "episode-8/candidate-0.json": "fee9505f10b721f1f4a4f9cc8bf6c45c070c2de4954734e03a8da0814d80b806",
+        "episode-8/candidate-1.json": "8a215da72d9f936bfc0cd33b246e193ec09132a5230383c4f9d90013f1789c5c",
+        "episode-8/candidate-2.json": "d8dcc56a5a65b064da486d3325a0108b54edc63b3d3a08818ab04a855bce17df",
+        "episode-8/candidate-3.json": "0b1843b3515f78f7fc58fa2b58d710f65159a97a41991ae051b3f962cbf6ee14",
+        "episode-9/deadline.json": "1dc25600ca0aba9183bbfec2a76c9343e7eeb803b60b0de1d06a3da0728e4951",
+        "episode-9/scored-0.json": "324e0a089cf212cf249965b321779149cce9a2070200d8db141082d7e5bbf419",
+        "episode-9/candidate-0.json": "fb40ee9a5ffc9a1177dc384e7c175928ef6dd0eb8921042ec0c79e6a79454bbe",
+        "episode-9/candidate-1.json": "5b942f05009a4a459075aec39a813b926019d28419fa2b76cc250cd5ab1c1f3c",
+        "episode-9/candidate-2.json": "7222d4fb0790683a2839b3809e7bc40722dc2c48c7da8b32f480edf28e9e8815",
+        "episode-10/deadline.json": "dc98ce996e531b02a65d579f8a063de9f30210ba32b5448eeed7e43ceb865948",
+        "episode-10/scored-0.json": "d3e554258d3ec508c95891de25570900dbc6c6e8377dab967c131461deb33fa4",
+        "episode-10/scored-1.json": "74c073c2edd4cd21c76073b36b14a063a42f209cefde332089f1d40662a043f8",
+        "episode-10/scored-2.json": "a99e0e23d2a678111e0bb75761dfecfc38379fdb8ffb067d9e9bd53c216dca68",
+        "episode-10/candidate-0.json": "77f352464e355307969f28ad068cf1b4f68fc3b353e9a64de173100a1edfd546",
+        "episode-10/candidate-1.json": "629330d2c6aedc5b7a7b8f662fde0649a2aa8e9a233c7c3d65f8b1aaf1b8a4de",
+        "episode-10/candidate-2.json": "c566c11171af6f3f870d190cc4a2fa768417dfc1de054122ad520984d9f4b4f9",
+        "episode-11/deadline.json": "a91153a87690d251e8d8a096d87cd04c48ce1bb36217cf7d9b086c6c4f71902e",
+        "episode-11/scored-0.json": "3721d938cd6824a36a6dbc71dc09a4253b0ef06119c3c0e9da4e937a6593f966",
+        "episode-11/candidate-0.json": "14d705278be7586b76105d6ea68ea17e38cfa10d189ec09dca538bf427d950f5",
+        "episode-11/candidate-1.json": "2fac4e90f807e5f5ca99122245d2e78368c33bb20a3a06071580fc814907839e",
+        "episode-12/deadline.json": "f682296c19dd00ad5352a967c6adda531b5414fb28b42eeef523a3e27bc8a2a6",
+        "episode-12/scored-0.json": "59940feb6f41a86006caae4b2772dc124b7e442749abf85dcceeed3c007b6df1",
+        "episode-12/scored-1.json": "22e5b2f8a10836572c81dcade860346e71a1d1d564c4d33bb168a00ed5799c90",
+        "episode-12/candidate-0.json": "642d547b18248a7e4e0ed48e7c1fff1682483717c78a6838a5a972421ff4c75b",
+        "episode-12/candidate-1.json": "0a584037f154a31111254272455e0c689dfb090ccabfdc813ae7e2efe6f79aee",
+        "episode-12/candidate-2.json": "af182fe4e22c86c68400f532291740a14a2de3ac327a1188d13b027b9fc24241",
+        "episode-13/deadline.json": "f9bea450ac9910e532bab12983ff508ef75eeda0646185a5d1d96a4c4fb42a92",
+        "episode-13/scored-0.json": "b1aa3c80b9ef7f742bf880450facb6f41dc4eeb8ecab62468ebf70e855f258f1",
+        "episode-13/scored-1.json": "b236ef9b1e4c2ab97c53cd1b3567b15dfc1c23daae045630c7aae2fdd43a4b1d",
+        "episode-13/candidate-0.json": "40e5bd628a073d169baf848478e5a323926df84a0e6f8ef3b6c112d6ec9ea87e",
+        "episode-13/candidate-1.json": "83d1b3733926f0597633669b49aa283af12f3727f4980bd953663117a6ea8432",
+        "episode-13/candidate-2.json": "0ca8218c25a8ac5aa0747202b416915bf9609d6c8c66d9922d2b8b1160f3bfef",
+        "episode-14/deadline.json": "dabac348eb1a4e03fb2984c1792cbaac3f72d0fbdef6cbc1e46d00aa52447e59",
+        "episode-14/scored-0.json": "0622835b9eab31cc80263a837c22ff800ec575fe01b8875275dff14dd9bb57d9",
+        "episode-14/scored-1.json": "0d3dc409e06698039eed546efa65497d8d05d3a6cefcdd929c845f201b3dd140",
+        "episode-14/scored-2.json": "ecb0ab271b5fef9e1f96add742932b9ada5d78d823c078a10f1a88a4647bce6b",
+        "episode-14/candidate-0.json": "736822c1afc1188bf2eb8d12f3756547c8ebc8c6c20d1de99ae79775652c2b12",
+        "episode-14/candidate-1.json": "f04770a1e8fccf09537bd3b697334b586853d1ce747053e3596c6760da7e1faa",
+        "episode-14/candidate-2.json": "54ec258fd00864e2ca83ef28a7ac7e2ced95cc125b02a31231d2d3b1872a2a83",
+        "episode-14/candidate-3.json": "e69c6b313f3496ee0598ef34601f02951fef51b7d96781d8482a72b0df727589",
+        "episode-15/deadline.json": "8e073519503606c498efe0f14872b5f925fb2e6a2763676f846539dd1b633045",
+        "episode-15/scored-0.json": "d69eb6c6f3f56bff80ef762d0b59eeeea802867c2f59ee950f9e6eb1c8fac288",
+        "episode-15/scored-1.json": "60216b99f0131ce5396effbeba609dda7e1ae34d47b2d4c486ed08a26a10b5f7",
+        "episode-15/scored-2.json": "deefeca122cc3bed49be27b5ff192a5548eb343e8d10e2d15199783fbaa27a1c",
+        "episode-15/candidate-0.json": "ccfa1bf3185dce96305f5590b46ba967220e5885f8c32e7f22851549f9353c1a",
+        "episode-15/candidate-1.json": "130e56f2d2155407a0d3dfe8ac24215e601e6f83f3879bc06ca0c26828dcfa06",
+        "episode-15/candidate-2.json": "9385885b59f752255cd131e355fe41922cf2b0727b25783631f1ec64a5a278f3",
+        "episode-16/deadline.json": "6d8a533b6f0403da319eda1f216e7f1582addcb83e8dcc46655bf58854e73031",
+        "block-2/budget-slot.json": "6c0f4d947d6eb91fdb48b6338bbea567d86dd8726ef0395b79ed3ff8bbfe27bb",
+        "episode-16/scored-0.json": "f75cad50dec74c3045d35a986c33dbcbefbede6bcada3a3714e33244c28f7f82",
+        "episode-16/scored-1.json": "0b5d18af71db249c25cd2c4642360499fd2040396ffed99cf93cae0e8e21c975",
+        "episode-16/candidate-0.json": "c842067c67f47cf39f658f6307cb00130d65ca228b5ceb3f5c5d99b4946b82ee",
+        "episode-16/candidate-1.json": "47d601af8d79a1fe6b3dfc32ba46e93bbcf9e2401cb7670203f2f11f4a43612d",
+        "episode-17/deadline.json": "e0ea3f846fc45870778ae50ee7262eed914e188dd640df7073b0c22d8c49fdef",
+        "episode-17/candidate-0.json": "66c8fb7fc38a0e15bba8cdf6d4df702f6dbc17c455782129e7db477ed611edb0",
+        "episode-17/candidate-1.json": "4766432d895c8e9959c4fabda2b85e96ed5eb6b465d24afbb498d46627ec6923",
+        "episode-17/candidate-2.json": "032a06b1b7e4a773fa3fb734f5424e71231f186b7211e23c4d26cf8492cf21ac",
+        "episode-18/deadline.json": "103a79596db348e20bdb21b3e81ad99cb498e75dc2681312a33fa683d9f405e4",
+        "episode-18/scored-0.json": "db6e97e937ab8bd1ee0c5cfac575053f2a2c7bc88d81e31a86eff28f187a244d",
+        "episode-18/candidate-0.json": "6fb8d1a87dcd5698d712666af125ccb9ccb4885cc672f0b67da56f3f1fc8be84",
+        "episode-18/candidate-1.json": "2aaa519bf67c4354a69a32edab4b963e3dd49a97e6fc5cb4fc5dd686bfee03ce",
+        "episode-18/candidate-2.json": "a32f6d563ad1915336289b46781a225d5a00311ab44be4601e64635bb0470737",
+        "episode-18/candidate-3.json": "43012d78fa0b8e72d9b8564adbe44fc721d15f4f2c08a0afd125671c03b0ea17",
+        "episode-19/deadline.json": "52db1850bae5cd00278354034a52512d3c975c22d1049f933e2ac04ece3eba9d",
+        "episode-19/scored-0.json": "96fb9c395cff2dfbe7d974a88f3ac0efc758f6670ce6225fcc4c73f3e1a65259",
+        "episode-19/candidate-0.json": "e027b2d6ab3afb1121cca3ddd3c8706986d115ab27d6e04a46b6d6a49d6ca94d",
+        "episode-19/candidate-1.json": "f64817eed8860c3af5d53b00d968b1c6b1dd8dc1c394a4785b2c6a1b9200ab66",
+        "episode-20/deadline.json": "b6cc57d483a4ce17cbb9690510f578eed05b7253376f0c9da51e04500095a371",
+        "episode-20/scored-0.json": "9e6e0053afc2506425103cc80f362ca0349581848c29c58625e80cc608b8fbb0",
+        "episode-20/scored-1.json": "02e90c62f3cc834d07f21fb1b828467633e66571abab686d84b22e8b170e1bbc",
+        "episode-20/candidate-0.json": "79b630a9a39d64175b836881a27e20df23a3bc560b8b7211d21f88feed4e092d",
+        "episode-20/candidate-1.json": "7a3223eff4774fab15a5a7d60691ae489733abe3a5feb21088b1608702ee201f",
+        "episode-21/deadline.json": "556662a2be295a4f4d15206eb69d73a507bd61953d8fbfb139855206fa38a651",
+        "episode-21/scored-0.json": "73c605b201ddd1236909b9f9b086310289f944544656899124cd60388a0a7f0b",
+        "episode-21/scored-1.json": "254bfa81fd535fb8dd65858e1d55601950681331a0f6193dcf3376d98eda9734",
+        "episode-21/candidate-0.json": "d895c7e4db2479b4bf2a35bc2a7fb0d8e089e4de95805281cdc24f683618162c",
+        "episode-21/candidate-1.json": "e6ea511fdb94bd6496186978b5f32c9418818cae446d14058be4c63f72670dd3",
+        "episode-22/deadline.json": "dc6831d2a45cfaa8d1c7a5cb301850f9f9cecfcfdb8c44b7e3b52c9f38ee1c39",
+        "episode-22/scored-0.json": "3463d5d30e59848e516dbf0cf7e6c0d00a815f502b71353fb6fffd77bb34d05d",
+        "episode-22/scored-1.json": "0fb670c012211c0fa818a5a5508dbe18ac3f36312fd581f92f7f3515df8c8dc6",
+        "episode-22/candidate-0.json": "a636ff7e2e80cbe77d52216d3dfa7831e3e38ab7cfa9a6ec9bed7d27efc2036f",
+        "episode-22/candidate-1.json": "7142a90f52b7d7d8a778abb29e28a9b9270b1c9ab8483ccb700edb4c0d11bf29",
+        "episode-23/deadline.json": "fc335721816f55d68757623c67d06adfddf7475bdefadb42aa9a9b1f4c961f33",
+        "episode-23/candidate-0.json": "951be16a238c64434e0aa31570d96b5ab7475c60de7beb12ad4669c2e4db7518",
+        "episode-23/candidate-1.json": "cb89a07b84a577281103551e4d9b824b923256ab9d43bce4b0335591eb480096",
+        "episode-24/deadline.json": "e66516645b0d8ad47069487c4fc10488ed974ad2a92a191461601989275b92c7",
+        "block-3/budget-slot.json": "5793f10b40f49ac03ffff9962cf969774f7b61499f279b0843d705aafac934a2",
+        "episode-24/scored-0.json": "33d15735190aa04aa12d17ca35699e973c285ef3526eac11c738d8d111c338f5",
+        "episode-24/candidate-0.json": "194d2538898cd0914c22ba8f24cecabdeaaf96890b613318b4da87f773592780",
+        "episode-24/candidate-1.json": "cca62563fdb010e6cad94321699acaf60118fac6e5e175332d7834ece1aae4a7",
+        "episode-24/candidate-2.json": "af567122f6f9bf0562f21d39b8086f094fe86ea7a0e1887f2f3afc533897ed51",
+        "episode-25/deadline.json": "6ecea038be98934ff79a4bc967642dc8c5db0e5b8429c747d569fb726838b5f6",
+        "episode-25/scored-0.json": "b399e276bd45239786601865a6a11df115cb074dfbc4d2d51a9a72a1afc9de41",
+        "episode-25/candidate-0.json": "a2da9c5266ba3a8c559cde851b4335a9c43fa38c2647e2b184a8e9a10da306b6",
+        "episode-25/candidate-1.json": "9029400b1263efa953417ec6738c404007c8b34ce344e0d070cddcd7549a3e90",
+        "episode-26/deadline.json": "88c6fb38d09e0fe00390441a633ce4faede9cfcf4cef39a6068cd910039aaf00",
+        "episode-26/scored-0.json": "328f5c5a270f85d7bee540fb0395820667776753c3a70ef4a81defc403f6c5b6",
+        "episode-26/candidate-0.json": "1e2cc1fdb0a018b8ff17e5e7c933991eefe9874efda4dd0fa01ecafdfca48366",
+        "episode-26/candidate-1.json": "5282b04c33ce30bfc3c3a9861e52f461896a1d7cfe9120d69d490f8a1a526b59",
+        "episode-26/candidate-2.json": "dc6bbcc398b638a45f44899fc9c865b3ebd964d84ff873c9c4094f1ae6c25c85",
+        "episode-27/deadline.json": "a0262d9b3ba272323d82371cb8bfc5c389ef0e50d526f875354b4b2b1177034d",
+        "episode-27/scored-0.json": "25623d332280a74826377adc901baac3564e707ca3e14c78dbd8c0abb32c9726",
+        "episode-27/candidate-0.json": "fa3a7ea6fdd6ff7e39dc83729d760c837d38e470b65016aa3fc01f0acbec3ae4",
+        "episode-28/deadline.json": "7d299cfbf8bef52ab4f474fc13389a571da509ed0308ca53d2cae5d05f0812c8",
+        "episode-28/scored-0.json": "f021dd974735341756727451ae1a5ead0d1e19ba779916ccba7debf97a4bc572",
+        "episode-28/scored-1.json": "046c29fd9060940dd9f3dbcc6ddd848d433851e2889341bf268d00f4cd721eae",
+        "episode-28/candidate-0.json": "0ed90fbac8a365de90da6d441984a11d089a4496569fe581b33719a1e1c64ee7",
+        "episode-28/candidate-1.json": "1e0ee3f63ed3d90f269067a5352cbb5bec5b7d187d3b971cc19fed6d69ab95f9",
+        "episode-28/candidate-2.json": "16d29df7a360bb3409400e2e6c75bb9111d4eebac560eaa004384b4f3b6577fb",
+        "episode-29/deadline.json": "89f48192205dcae88163fb54c2221c6333137282aeadea3ff317ba7b132c16a0",
+        "episode-29/scored-0.json": "e5a29d455cce58de9a5f6ac090e3a5448a58d6cca403d9a801b3186248548778",
+        "episode-29/candidate-0.json": "7a31f94e4176f44da99dfd6fd5242d720a0b4b4edfceeb546d92428989c06ea0",
+        "episode-29/candidate-1.json": "33076b41759f7fa409c343c6e8101bf73149a9e3d8f67381e0e8499a16974a42",
+        "episode-29/candidate-2.json": "01611c9f72c1364480b9ea9e811f625b60440b3c4302c0de178a15f7fd665f30",
+        "episode-30/deadline.json": "0b093e2141ce25c7b0010464a98a7b24242ffd8aee1bd7a1e9e4903733bd0323",
+        "episode-30/scored-0.json": "976e173a0911e45db8e21cc2d71452512d92c179870be01ff992f69ce9232a5e",
+        "episode-30/scored-1.json": "edb5601607537065b1bf823e3593bd23c50b2e54b88ac2f7643d9d1dcc2fb719",
+        "episode-30/candidate-0.json": "3b47c86ca5bdb6fd5f069b6e0ac694b742038bc49ec1d1951f49117d6e383f8c",
+        "episode-30/candidate-1.json": "7724524a1b088a58ffd23bb282be18b890d637f35534f0669d2eeddeaf2fac35",
+        "episode-31/deadline.json": "399397bcaaced695d72d16d08fbb23f63a84098d7bf4efe4f653942f28adb0a8",
+        "episode-31/scored-0.json": "caea6a357d72e1813491db139f6e69003c49ff6a1340714d6ec2056234a4ba24",
+        "episode-31/scored-1.json": "5b64aac9a72cda484bf6887ef913777a98878c6a2e6a760f22349cea25ebe8de",
+        "episode-31/candidate-0.json": "ff3422b6df36c14f97568a79e83eeda840e7c92ae8454d780e9a1942bf87d856",
+        "episode-31/candidate-1.json": "d877d6219da415795fb13ccf9250935019937faec8141aae6a4b2eee2e60feb4",
+        "episode-32/deadline.json": "386c969dc4dc6901ed78a10117837be76debd8506c5e70bd274700b80239e17b",
+        "block-4/budget-slot.json": "fb68fed04251cf40edb2c7b6c6a037945bacf8d14fd225d538b72f54b2745d80",
+        "episode-32/scored-0.json": "9dab557411619a7473b0a9ce993d5a50f5ea20ed14309afec89710db74c09d0f",
+        "episode-32/scored-1.json": "7744a567ff17536605930517ba8ce70c069cd0067caef9ca77f4677baec96008",
+        "episode-32/scored-2.json": "6f08dc04df314289136c1e1a8bd9b413ed9976ec7d76b83717d637b3bfeb76a3",
+        "episode-32/candidate-0.json": "e283e1e788a2f5c58e6c418b3635afd053aa6d21dbafde62bc069ec6f082facd",
+        "episode-32/candidate-1.json": "d654dd3a2157c250b9ba39c23f3d7b41ddf35601148efed90cf2ac4e7a44b50d",
+        "episode-32/candidate-2.json": "60e9b315b596afd9c42cb0f818f740c08dac43301fa8267b53c40a0c0c8eab18",
+        "episode-32/candidate-3.json": "bfe91f0fbfca104304361ac79b85b3712340b0bed787bef4c4547442e817136b",
+        "episode-33/deadline.json": "dd8ead27f99516592962e8a6947d8ec7b0908759c0488b3efde27e9d42e776da",
+        "episode-33/candidate-0.json": "95c06869fe1847d4db866707eb9c637efb327556e3c3c78f9e90eac39d474bba",
+        "episode-33/candidate-1.json": "de2bc175e9fb92e09c98f8af25f183ef5b096a8fe3160c8e1fdd2b4860aa61df",
+        "episode-33/candidate-2.json": "85bf603b2dc53bd7c05c09643b442d05b1b1a89c67a764f5ac7ff46a1c1de5f1",
+        "episode-34/deadline.json": "e8fff0ac9f945233d81cb9d781783057d0380edc19c31a6adeca2f0ab0ce0d98",
+        "episode-34/scored-0.json": "58ff6f6f3eb0d20604bbd8f3e365c7ecf0be81c51256d95380dcbd12ad3c9b45",
+        "episode-34/scored-1.json": "24498394cfa600653d04e5e44d6dae1250f08c1ef5da01d70641d6d3b20acc0f",
+        "episode-34/candidate-0.json": "de14e469b44b64bb41db0bdc939c680fd5fc331566a0b431bbe405f38ccccaa7",
+        "episode-34/candidate-1.json": "c937ff47824ecbc746e973b987eb8eba055891251eefd770f0ff8c9ec4c0480b",
+        "episode-34/candidate-2.json": "5e413c671a2eada4475376245895cbadd2eb6dbe31ca76e4999a38c784df6990",
+        "episode-35/deadline.json": "177a172bafeaa3d9c5cde6fa8a65242931e60ee85f459233013ff2621847aadc",
+        "episode-35/scored-0.json": "1147963c61c5ae67917c02910cb03d2e33a620228fb4db5bb953c00976500f41",
+        "episode-35/scored-1.json": "5072e022666ff1b1f460b33cfe46d1e9a256a222289ab8ff4917ef974ebf522a",
+        "episode-35/candidate-0.json": "b3721e00433cb3e929d6dcf149f663021272811188d1caab798bd0ee7ca11268",
+        "episode-35/candidate-1.json": "4571d29362126855b02861cdce08553e1a0e21666c97858d268b0a466cfca265",
+        "episode-36/deadline.json": "b9dc02cb37c3e034582e831d9582ebf9074994ad1a0a593cec344478c0ca69ef",
+        "episode-36/scored-0.json": "36971fc17beebee0dc78273755dc0d3e6a6472fb39a77fd3e2497c6bfc09ccc3",
+        "episode-36/scored-1.json": "d7f1e3b0060a90dc2e602409cd594e81fa06cc71b48cb3c049a9ab80446a5493",
+        "episode-36/candidate-0.json": "165dce9689d9c9873b07d2f7574fef06d2d16a7a40813467ca682448639337a4",
+        "episode-36/candidate-1.json": "2d20e13cd776a7e051030920ba830cbccca61d887e58d6bd0709cede31c3274d",
+        "episode-36/candidate-2.json": "544ed49aa937dbbb338379c47f8439bb0093b67e0daa2090002e812f333e112a",
+        "episode-36/candidate-3.json": "a6d0db7e6920c5ccba35b593dfbe0516a6e81820cf3231dc51fcdedd4e29b34f",
+        "episode-37/deadline.json": "e78f57a72e128046fee393275044220f9f630bdc1af09720e51c3582d8cce123",
+        "episode-37/scored-0.json": "4e71b183f1f637534b1d774d8dd7481eb7f201df4544f8da6c26910192911a4a",
+        "episode-37/scored-1.json": "2be947b81b04f28e77be33d1ff0a776317fbc12356ebdec7174bcda224e98095",
+        "episode-37/candidate-0.json": "3815b82489a4edfe40c44c0a33c3eebd22b5c2d1cfaa9f1dc1ed53ac942bb88c",
+        "episode-37/candidate-1.json": "4ca5dcdff81912a1c684ee8e7d5a3324944575134699ae62784dcc48b750e470",
+        "episode-38/deadline.json": "7a69c75abefc796df6ec0c972dd06b1aed27772c62471262a2f6526b4cf96aa1",
+        "episode-38/scored-0.json": "15d19e67d25e0a348e9b699341e54d2f5530e4fe137ab1b395a09345ea2b433b",
+        "episode-38/scored-1.json": "16e6157735e843fa1254ffd16fa6888d4072759501cbb70a7a183986aa5ff830",
+        "episode-38/scored-2.json": "5403a6ba8e56dd002d6f716762035d1e47f8418534a7da2e8c680828a0950bed",
+        "episode-38/candidate-0.json": "bf1d8e0dddf51338d984a907f6fb527212777d17344c6f90d0b29828a0ad82b0",
+        "episode-38/candidate-1.json": "a65b95b8f366c39bc3f8e6c6c05f6e4bb0a305c6f6cca9e5db504fe39e3fda5f",
+        "episode-38/candidate-2.json": "4e2ba9ac7816adaad83f07c891d6a2b1099e9a28c4c5125c3cf6236e4e53821a",
+        "episode-38/candidate-3.json": "b2ce98fd4c0e30d605930a12f5b7e1a994786da6f270d111ca8018b444c03277",
+        "episode-39/deadline.json": "9fc052c5e1a266392ad896976ee6a4dcf96efe88e5d34df05430307eaca77f0d",
+        "episode-39/scored-0.json": "2f17f4ecc9790ba398a0708a720a5f3b03aa113b493d0bb5f01430506dd1eb9e",
+        "episode-39/scored-1.json": "e4616ef536fa5a11e11084d10d9bafd4be19c614957d5026bc9701f401583dfa",
+        "episode-39/candidate-0.json": "da7bbcefe1918fd93136c1db20872e719b6028f69a327e901b5789ac0822a290",
+        "episode-39/candidate-1.json": "5004247913097d46dd4899c988f9ead95e54ac9205bd22d688dd0bbb1f78f00c",
+        "episode-39/candidate-2.json": "d4dd3691aeae320743cb47e6b23b4dc0a7121bb0c587355aca9804f765a29963",
+        "episode-40/deadline.json": "b22a003df5170856961028a36710cd7fa7e7d8f381b45e1af844d7919d8ad76c",
+        "block-5/budget-slot.json": "2b43e4ac815f24d2ef826eabf22efda37e9a15277351cec5135933ea2849eb7e",
+        "episode-40/scored-0.json": "b1ffe07923945e52a935e8d60a6e8237ba87f777416178cf25383ed0e015b51c",
+        "episode-40/candidate-0.json": "565b042b54950956cdc178a6cce34e32942ab26bd4fb687c757be92c937230ff",
+        "episode-40/candidate-1.json": "c01c09b261d1ce2edf9557b6321caa52e4be22446e84eea19c05dd79708e7443",
+        "episode-40/candidate-2.json": "22b9e656b16e052248a75d0d4807cf9a0434682d9d8de93ffa5ce73ec5a692c6",
+        "episode-40/candidate-3.json": "848124f354256c8b2badf997a28401e4fba2fe04348dc5bc716e44bd0a2b7fb3",
+        "episode-41/deadline.json": "4d2bcc9ffb649f24a706c176128f67da7418a321b8ff1113817978f8a3b2877a",
+        "episode-41/scored-0.json": "945db329c4abd08f5b1e801393447d502853a720b446a76fa2a5dd40da77cc5b",
+        "episode-41/candidate-0.json": "c3d323759554a518fe382b43e8327ff05691d892c14e8846b1797618458cc6cc",
+        "episode-41/candidate-1.json": "f615032b152529212e29f8ae7acc5e4750c25f7f97f20d1f08ce691fafc7a3f1",
+        "episode-41/candidate-2.json": "93503ebc020ff2aa968ee4c93885b6cec84270f68e694145d2b6816cc6147379",
+        "episode-41/candidate-3.json": "4cb33431330290262ec51040ece8c176084e594fcc3f1a4334ccdbb09390683f",
+        "episode-41/candidate-4.json": "1d756ac19787e04af2cc1a41889196a852cd1585664fa6b0aba5bc36d73e1f40",
+        "episode-42/deadline.json": "862ae72641527ff7e860e8ea66d3b7e6973ff08bd1695bdd5ee22485c95cf79d",
+        "episode-42/scored-0.json": "4da2fdf4f21f188558c5de6d14d57db22f457d7771fe361e081b749c59898f45",
+        "episode-42/scored-1.json": "7d91f343eea0b34f2dc4e0e0030006203bbad4c8d151d405e97e66c609087f25",
+        "episode-42/candidate-0.json": "930c1ee8c4a56f607c5f60b9a21c09210e022c0d6255c34ffcb4a7d0f747cab9",
+        "episode-42/candidate-1.json": "b3a8d5643b57ef895ab30b6b4a2dd18d86ac6a51a3f744c83a287decbf82afff",
+        "episode-42/candidate-2.json": "f2443c8599c6a24845f36f056ea0483ab1e13eb00279c3df97785e78bf296af3",
+        "episode-42/candidate-3.json": "bd81a3108aed7dcf766d8b361308c4d4c9f9e7791512e32b48552129cf60846c",
+        "episode-42/candidate-4.json": "61fe8502f855c0ba321b2568f5d0f1db54c86d9132c0753f7567e06289650696",
+        "episode-42/candidate-5.json": "d5fdd26685829d299b47ec0303c56f01fa466ea75b2ea4f94c372c3122b7f183",
+        "episode-43/deadline.json": "b7a860aecc3e6313d64051a3182d0c90eff25cecc84974472fb3c662b34997f8",
+        "episode-43/candidate-0.json": "433f20719c6b58ec35a4edff44efe98e22f1a04199baca03655d8b6be0d3a52d",
+        "episode-43/candidate-1.json": "416ab305cff6c8aaad4fff769ba9243961e72498f463532ebc28e52e58db88d3",
+        "episode-43/candidate-2.json": "2b68b451699ccaa974b44adf339e3cfc4395a31dcd56610ad6eb9b9ed1b7fff7",
+        "episode-43/candidate-3.json": "cb22987a8a6fe8c38dee2898a8d890839b860ebdc70dbb70b27fea2ce2f93aeb",
+        "episode-44/deadline.json": "e634d88ca26f41b81c70a9713adf3422283e8d50eafb0bfe2f7fd32a3167b179",
+        "episode-44/scored-0.json": "56bf6a84583981c1cfd039347646ff2ce21d6769e5f35288f83c34904b0d03e9",
+        "episode-44/candidate-0.json": "923f1d3a22809b98ae194a2e8b586befcdf7f3fc958b1e29959938ae3e5b579f",
+        "episode-44/candidate-1.json": "73264f8cd44106fff3af949870bfd086e38c0c5601ab7c40bc1039253962c24a",
+        "episode-44/candidate-2.json": "d0cbb3f2ccf8d6dfe6d816bc0d612bdae680e865cd13ad6862b0c6586c9ae5ac",
+        "episode-44/candidate-3.json": "c2337ccaccc24be8bfd1cdcbc260a9d72e20de797ad9e5b83e986ad4f0b06955",
+        "episode-45/deadline.json": "30df551b2a9ff58be54490c32cdc7066de28b318ed6623c05415662e63799f2f",
+        "episode-45/scored-0.json": "39ab712b5f28a69ee31ce681ba54fc544edd41074dc260b89aec5994c7702f47",
+        "episode-45/candidate-0.json": "424de144251f9cd6202cd167ca56eda899742379c5fc4838f0dd97a4e7de6d8e",
+        "episode-45/candidate-1.json": "a13fdd0c4145844d6d3a2832d63ad1ad7c05a63020e3835ff57312734f8695e5",
+        "episode-45/candidate-2.json": "85ba3b40bc525c477d7e3cf827566e6ce8dbd832888ba78996132e2101654324",
+        "episode-45/candidate-3.json": "1a09a16468c7db14cd76f4bd03f47b69e7e1dad78b1d4a00c243a68619bf4c46",
+        "episode-45/candidate-4.json": "4e1aad7770826a67d30112f1febdff9027ad91358c023fa247dd13e7ac6deba8",
+        "episode-45/candidate-5.json": "c98e083d8b96a4bbe24dadfaa5e7d958b390a29a5eb294cb2ff3259152d37cc5",
+        "episode-46/deadline.json": "e71d3dd1a341ca1d0f2efd0ab52f6abac7c6e5acdb15999cbbf71d0f34cc4e24",
+        "episode-46/scored-0.json": "0f66376ee46f31a39388d3ff01b786b38cbdd56957157b62634960190475df76",
+        "episode-46/scored-1.json": "67b9589ad00041e38420f2d1db5ba6aa119d67155974bb4e7ccc0e8a23265f6e",
+        "episode-46/candidate-0.json": "c7e3eea6a0cba842f79ae1d0650581dde4ec0781d1b7e17ea9cca60e5d99fcf3",
+        "episode-46/candidate-1.json": "79013e3399f801adc22957631910c95ca1aa49402b2e4cfdf6dd645cd8d3b9e1",
+        "episode-46/candidate-2.json": "be51faadef45a5b6860c2fb3c43fa763c7a681264c341caffd294ee14da2c5bc",
+        "episode-46/candidate-3.json": "1dd13f7f3b9ddcf3837a4705e45b040a0f582707b57587ce5136d906735447e0",
+        "episode-46/candidate-4.json": "54383a2b3576e83ea52e07a4fee59cad8ead3afbc7373ec47d2ca970e398a72d",
+        "episode-47/deadline.json": "4c2e1e3036f24955a5c808f43fb64b7e26ec6a2d0e13354f15c0d81fb1751b92",
+        "episode-47/scored-0.json": "426941c2bab0de00821a9be54e395583c8a868b5acb768ccafa8dd17066f6d69",
+        "episode-47/candidate-0.json": "ce6dbdac65c34da7b5d5275c8689d61b65009260b9e116fa2b28db1620cbea82",
+        "episode-47/candidate-1.json": "8519e9600a9a1cff0835365926731784fad3dba8e256b2449402514446c3feff",
+        "episode-47/candidate-2.json": "e52d9c8674f0e29480a0aa34c9b670f6d2d7af12fbe86ab11f9e512ecc9cbf40",
+        "episode-47/candidate-3.json": "d612d021517fa48c334a0aca6f2df432ec0913ef7c6735ac2444e0dc11ee3fae",
+        "episode-47/candidate-4.json": "3834319bf53a129c23f3761c30b81bae47c33de6d9fef7f39c6741af29ada738"
+      }
+    }
+  ],
+  "quality_or_speedup_claim": false,
+  "limitations": [
+    "Post-hoc summaries of reused development data, not a new intervention or confirmation.",
+    "Prefixes retain a30-minute prompt and historical shared-archive context; not predictions for a17-minute policy.",
+    "No shorter allocation cost inferred. Startup, reserved slots, failures and service costs stay in primary readouts.",
+    "Pool-record order is descriptive; this does not identify whether a candidate saw the previous record at generation.",
+    "Different training lineages/data and shared-service pools cannot be merged into a causal weight or overall win rate.",
+    "A new record is not necessarily practically important; raw gains and the pre-existing.001 denoising reference are shown.",
+    "No additional requests or unknown cancelled outcomes invented. Existing frozen protocol and quality gate are unchanged."
+  ]
+}

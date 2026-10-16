@@ -1,0 +1,17 @@
+{
+  "job": 18819,
+  "verified_at_utc": "2026-10-16T06:29:00Z",
+  "full_matrix": 16,
+  "independent_node_statistics_passed": true,
+  "independent_rescoring_by_node": false,
+  "remote_pristine_dev_rescores": 16,
+  "gpu_seconds_from_sacct": 3618,
+  "transfer_sha256": {
+    "runs.json": "bb6f0cdcb6b2eda333ca2ebbe51e77f62612ea7fcdaabbf6810d17272a51ea94",
+    "runs.csv": "50a749aae44936e22e3831130e22b3d2ce252171599b6a107688504ed3c45572",
+    "summary.json": "0f5ba4f180d2b82d0a0e343e140791e35447d138d615f417e99a83bf366ed0ba"
+  },
+  "predeclared_new_source_confirmation_gate_passed": true,
+  "strict_repeated_flip_task_indices": [1],
+  "boundary": "Descriptive small-sample mechanism result, not significance or E2E. Aerial has paired flips but its across-repeat intervals overlap; it does not pass the strict gate."
+}

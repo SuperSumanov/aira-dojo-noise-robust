@@ -1,13 +1,13 @@
 # 当前短交接：只记录现场与恢复操作
 
-最后核验：2026-10-16香港13:55；用户11:18批准六小时自主推进，窗口到17:18。
+最后核验：2026-10-16香港14:32；用户11:18批准六小时自主推进，窗口到17:18。
 限定新实验自行决策，不重复询问已批准事项；不能用无界重试、择seed或改门追正。
 
 ## 目录、Git与授权
 
 - checkout：C:/Research/New/my_project/MLEvolve/_codex_tmp/publication-feedback-20261001（detached HEAD有意）。
 - 旧完整三文档归档Git6c47086a603b4c7afcc25a3e80f9d5648c3bee63；方向只读CURRENT_DIRECTION，历史按需检索ROUTE_DECISIONS。
-- 13:26快进push并ls-remote核对phase1-value-critic=294bc7ce70b79a34da0787b022f40d729757a194；5提交/21blobs扫描0凭据/大二进制/private文件。
+- 14:11快进push并ls-remote核对phase1-value-critic=246e66a56151ebfb7b74b5808eeeec82b9de0d8c；2提交/4blobs扫描0凭据/大二进制/private文件。
 - dojo-reproduce=c394ca1756ab2e53d5cbb68802e2973c8ceebe8a，13:38fetch未变；未改学长分支。
 - 用户未跟踪报告、_codex_tmp、pooling_host_compat_20261016.sh及旧checkout dirty保留。
 - 本窗口不训练底座、不用付费API、不碰保护集/官方test/D_val/旧Held12535；GPU镜像不升级、不退CPU。
@@ -38,17 +38,19 @@
 - 两程序相对其原始父回执的优劣符号不变，未证明接受/拒绝翻转；原父未在负载下重跑。
 - v1准备误触8登录Jupyter已关、0候选/0GPU，保留不提交；v2修外部构造mock，不再重复该调试。
 
-## 18819：唯一本轮活动GPU，固定16次排序机制
+## 18819：已闭合，固定16次排序机制
 
-- 13:53最后观察RUNNING/gpu27，6/16 finished；不读中途质量。预计14:30附近闭合，硬截止14:55。
+- COMPLETED/0:0/gpu27，13:24:59–14:25:17，3618GPU秒；16/16完整有效，14:29一次冻结读出完成。
 - root=/research/d7/spc/yzyang4/clock-rank-20261016-v1；source=4c2b6fa514bec295a045c19dcf93faada77ed5c5。
 - planSHA4c22748699952da0b79bf862e1db5e785b7d2a9fb951bb26ee9c21be47ca3306；16执行，一3090≤5400秒/1.5GPUh。
 - 4源码按18770时间序：Aerial ep4/c0、ep6/c1，Denoise ep3/c0、ep5/c0；同任务两程序共置，原源码/输入/seed/300秒不变。
 - solo/co/co/solo，反序执行；8CPU测试/16原配置门通过；不按分差或翻转选择程序，不补跑或替换样本。
-- 闭合且sacct收账后才唯一运行clock_rank_readout_20261016.py root root/readout-20261016-v1 --gpu-seconds 实际秒数。
-- reader在colocation-source-20261016-RokSUP；本地verify_clock_rank_20261016.cjs核全16/排序/成本，之后核3传输SHA。
+- 唯一readout-20261016-v1已封存；16 pristine开发重评分、独立Node/3传输SHA通过，不再重跑读出。
+- summarySHA0f5ba4f180d2b82d0a0e343e140791e35447d138d615f417e99a83bf366ed0ba；本地clock_rank_18819_closed。
 - 报告两次各自翻转和跨重复区间严格翻转；4已知DEV程序/2池重复/2程序复用18812，不是独立E2E或泛化。
 - clock_parent_reference_20261016.safe.json只取旧18770真实父回执，3/4唯一识别；缺失不补造，非新成功门。
+- Denoise严格跨重复区间翻转；Aerial仅配对翻转，区间重叠。过333c5662事前新来源门，不是方法收益。
+- 当前无本轮活动GPU；准备clock_rank_confirm_20261016.py独立18807来源16次，1GPU≤90分钟/1.5GPUh，四源码不重合；4CPU测试通过，尚未提交。reader/执行逻辑复用原版，原门不改。
 
 ## 已闭合与操作经验
 

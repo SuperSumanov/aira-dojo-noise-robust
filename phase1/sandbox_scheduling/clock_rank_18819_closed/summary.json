@@ -1,0 +1,165 @@
+{
+  "boundary": "4 chronological known DEV programs (2 reused from18812),2 pool repeats. Strict interval-separated ranking reversal is descriptive, not significance or E2E/generalization. Host envelopes are not kernel overlap.",
+  "complete": 16,
+  "effects": [
+    {
+      "colocated_scores": [
+        0.9998262803140852,
+        0.9997674828819294
+      ],
+      "colocated_steps": [
+        1349,
+        1420
+      ],
+      "complete": true,
+      "oriented_mean_score_delta": 0.00031403173992294864,
+      "program": 0,
+      "solo_scores": [
+        0.9994066804573372,
+        0.9995590192588316
+      ],
+      "solo_steps": [
+        1491,
+        1491
+      ]
+    },
+    {
+      "colocated_scores": [
+        0.9998182624824276,
+        0.9997648102713769
+      ],
+      "colocated_steps": [
+        2343,
+        2343
+      ],
+      "complete": true,
+      "oriented_mean_score_delta": 0.00027527888691114555,
+      "program": 1,
+      "solo_scores": [
+        0.9994467696156252,
+        0.999585745364357
+      ],
+      "solo_steps": [
+        2627,
+        2556
+      ]
+    },
+    {
+      "colocated_scores": [
+        0.016128426298009726,
+        0.016140168539015152
+      ],
+      "colocated_steps": [
+        1044,
+        1044
+      ],
+      "complete": true,
+      "oriented_mean_score_delta": -0.00019944085473310585,
+      "program": 2,
+      "solo_scores": [
+        0.015938967977995117,
+        0.01593074514956355
+      ],
+      "solo_steps": [
+        1584,
+        1584
+      ]
+    },
+    {
+      "colocated_scores": [
+        0.01638884096404528,
+        0.016394578288779917
+      ],
+      "colocated_steps": [
+        708,
+        708
+      ],
+      "complete": true,
+      "oriented_mean_score_delta": -0.0013332246263073836,
+      "program": 3,
+      "solo_scores": [
+        0.0150603893354188,
+        0.015056580664791631
+      ],
+      "solo_steps": [
+        3636,
+        3636
+      ]
+    }
+  ],
+  "gpu_hours": 1.005,
+  "gpu_seconds": 3618,
+  "overlaps": [
+    {
+      "block": 1,
+      "host_training_envelope_overlap_seconds": 251.71792459487915,
+      "task_index": 0
+    },
+    {
+      "block": 1,
+      "host_training_envelope_overlap_seconds": 165.94434523582458,
+      "task_index": 1
+    },
+    {
+      "block": 2,
+      "host_training_envelope_overlap_seconds": 251.99120140075684,
+      "task_index": 0
+    },
+    {
+      "block": 2,
+      "host_training_envelope_overlap_seconds": 161.54952597618103,
+      "task_index": 1
+    }
+  ],
+  "plan_sha256": "4c22748699952da0b79bf862e1db5e785b7d2a9fb951bb26ee9c21be47ca3306",
+  "planned": 16,
+  "ranking": [
+    {
+      "block_oriented_first_minus_second": [
+        -4.008915828801474e-05,
+        8.017831657602947e-06,
+        2.6726105525343158e-06,
+        -2.6726105525343158e-05
+      ],
+      "colocated_same_order": true,
+      "complete": true,
+      "interval_separated_order": {
+        "colocated": 0,
+        "solo": 0
+      },
+      "solo_same_order": true,
+      "strict_repeated_flip": false,
+      "task_index": 0,
+      "within_repeat_flip": [
+        true,
+        true
+      ]
+    },
+    {
+      "block_oriented_first_minus_second": [
+        -0.0008785786425763165,
+        0.0002604146660355536,
+        0.00025440974976476474,
+        -0.0008741644847719172
+      ],
+      "colocated_same_order": true,
+      "complete": true,
+      "interval_separated_order": {
+        "colocated": 1,
+        "solo": -1
+      },
+      "solo_same_order": true,
+      "strict_repeated_flip": true,
+      "task_index": 1,
+      "within_repeat_flip": [
+        true,
+        true
+      ]
+    }
+  ],
+  "reader_sha256": "a5229313abcdd46ff28556164bf484cda0a747a985cf326a33b5af8c001bdfce",
+  "recomputed": 16,
+  "source_commit": "4c2b6fa514bec295a045c19dcf93faada77ed5c5",
+  "structure": true,
+  "valid": 16
+}

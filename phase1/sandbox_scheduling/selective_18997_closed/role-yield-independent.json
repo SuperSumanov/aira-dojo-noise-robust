@@ -1,0 +1,11 @@
+{
+  "verified_date_utc": "2026-10-16",
+  "implementation": "Independent PowerShell aggregation of frozen runs.json and effort.json",
+  "pass": true,
+  "rows": 8,
+  "assigned": 32,
+  "calls": 179,
+  "role_yield_sha256": "e3d4e4767bea1fdc96884e7fff26623971e777ef970491ea288325c197dd28ca",
+  "checked": ["assigned counts", "call counts", "four role counts", "timely valid counts", "reported completion-token sums", "request-duration sums"],
+  "limits": ["Aggregate recomputation only; no independent raw journal extraction or rescoring", "Descriptive post-closure analysis; not a changed success gate or causal mediation result"]
+}

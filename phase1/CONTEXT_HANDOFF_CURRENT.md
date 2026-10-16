@@ -1,7 +1,7 @@
 # 当前短交接：现场、证据与恢复动作
 
-最后核验：2026-10-17香港05:38队列回执。授权窗口02:49–08:49，用户批准同范围自主批次，持续在会话推进，无需重复请批。
-19004于05:37:27在gpu3六卡RUNNING，独立quota32、≤100min10GPUh，预计07:05完成；不读中途质量。18997已封存32完整/35外部DEV重评分、独立Node及12传输SHA通过，质量门false，30540GPU秒；旧18987733GPU秒另计。条件diverse仍禁止提交。本窗口不再开第三个GPU方案。
+最后核验：2026-10-17香港06:04:17结构回执；06:12 fetch两分支无新远端提交。授权窗口02:49–08:49，用户批准同范围自主批次，持续在会话推进，无需重复请批。
+19004于05:37:27在gpu3六卡RUNNING，已启动16/worker闭合8/池闭合1；独立quota32、≤100min10GPUh，预计07:05完成，不读中途质量。18997已封存32完整/35外部DEV重评分、独立Node及12传输SHA通过，质量门false，30540GPU秒；旧18987的733GPU秒另计。条件diverse仍禁止提交。本窗口不再开第三个GPU方案。
 
 ## checkout、Git与边界
 
@@ -53,6 +53,7 @@
 - 独立quota19004已在selective读出前冻结，source044cd889471417f357edfa6dcf8fdd2c7e262477（旧combined/new-window cap只界定本批，不是整个窗口总额）。root=scheduling-generation-quota-20261017-v1；CPU32输入/实际selector双模式门通过，planSHAf08b3052fcecf467f500b5b9aa6638087c602321ca3a81bf22ef8b65a55b41f9。submit/session94841成功结束，sacct确认RUNNING6GPU，不得重复submit。partitioned2+2 vs pooled4、同全局analyze优先/FIFO、执行均shared cap1；原终分门+两pooled池实际借用。闭合后唯一generation_quota_readout、独立verify_generation_quota_20261017.cjs、16传输SHA及实际sacct成本；不救selective、不做第三GPU批。
 - 公开0bb807ab新增只读quota角色时序分析，自测通过；只分解代码/分析/调试的排队、请求占用和取消，不是新成功门。安全文件待完整closure后使用；不把request秒求和当墙钟节省。
 - 18997首程序诊断SHA b87aa52b18e0e06b02e888bd988bca2c6b9ba4c7e454f3da9829119fad0fab3e：16对同首prompt/配置seed，raw/AST仅3对相同、去噪0/8。origin回执SHA87e64ec58d39e08628d0c2adf59e50b35428bc327877faec222c4d02fbe79856核32首程序均匹配原生journal、首日志成功Improve/adapter_attempts=1；排除执行包装哈希差异。独立计数/传输SHA通过，未独立重提取代码AST/journal，不能指认服务原因或把配对seed当同提案。原质量门不改。
+- 后续CPU真实原生调用链4配置/12模拟末端调用seed均正确，配对prompt/采样参数一致，4SHA独立核验；不是实际HTTP抓包或服务确定性证明。role-yield的8任务池/179调用独立聚合通过；去噪selective多的是Debug/Analyze，未转成更多Improve，事后描述不作因果。论文近邻§6–7/附录E已补读，不将普通多会话分预算包装创新。
 - 32条前必须完成真实输入矩阵、实际双模式CPU信号场景、common readiness及worker异常停止门；22本地CPU测试通过。若不胜不补seed；不自称新算法/胜SchedMate。六卡diverse包不得误submit。
 - 旧一次提醒已删除；本轮继续本会话到08:49，不建重复跟进/长报告。当前无外部权限或节点阻塞，不碰旧12535。
 

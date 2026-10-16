@@ -24,6 +24,7 @@
 - 18997封存后首程序哈希诊断：16对首轮prompt/配置seed相同、均有程序尝试，仅3对raw/AST相同（去噪0/8）；32首程序均匹配原生journal代码、首日志成功Improve且adapter_attempts=1，故不是执行包装代码造成哈希差异。独立计数/传输SHA通过，原代码AST和journal提取未独立重做。首尝试不保证首transport响应，原因未分解，不指认为vLLM错误或否决原随机策略实验；配对seed不等于同提案，不以单轨迹归因纯执行干扰。first-program-pairing/origin回执。
 - 10/17核vLLM官方Reproducibility/Batch Invariance：默认在线结果不保证可复现，专门不变性会影响性能，已测模型列表不能替代本项目27B量化镜像验收。仅支持保留服务非确定性这个备选解释，不证明18997差异由它造成；不临时改已冻结镜像/开关，更不把已知复现问题当新颖发现。https://docs.vllm.ai/en/stable/usage/reproducibility/ / https://docs.vllm.ai/en/stable/features/batch_invariance/
 - 18997额外无网络CPU调用链：两任务×两条件4配置/12模拟末端调用均传递正确seed，配对prompt/采样参数一致（temperature=.6、top_p=.95）；4传输SHA及独立配对通过。排除已检查配置的客户端丢seed，不是线上HTTP抓包或服务确定性证明；seed-transport回执，不修改19004。
+- 18997角色/终分联结：去噪selective两池Debug调用9/7，高于配对shared的7/5，而Improve为6/7对6/8；原终分门仍false。8任务池/179调用全分母及PowerShell独立聚合通过。只说明更多周转未转成更多Improve或稳定终分；Debug不等于无价值、Improve不等于新想法，角色计数不能证明因果。role-yield回执。
 - 10/17只读18807发现每任务2个生成许可留下10.47%–24.33%的有队列/总active<4状态；独立积分通过。vLLM408采样最大Running4、Waiting0、KV13.3%，不证明硬件空闲。后续只测同总4许可的跨任务借用，执行仍单许可；这是work-conserving强基线资格，不是17675旧资源打分重命名，更不是新算法/MARS复现。
 - 同批余时独立核算：≥300秒余时下每池仍有约96/118/123/168秒借用机会，主要为analysis/debug；不是全部截止尾巴，也不是额外完成数。证据quota-slack-20261017-v1.safe.json及quota-slack-independent.json，原质量门不改。
 - 10/17只读“评分→共享归档”线索：原生_analyze先于parent wrapper发布；18807的38有效结果37发布/1截止前未发布，只有1次真实Improve准入处于更好有效父程序尚未发布窗口。仅源码+既有时间诊断，未独立复现原始join、未生成新子程序，不据此开早发布GPU新线或称收益。feedback-publication-20261017-v1.safe.json；先完成已冻结selective/quota对照。
@@ -90,7 +91,7 @@
   https://arxiv.org/html/1810.11755v3 / https://proceedings.mlr.press/v97/alvi19a.html / https://arxiv.org/html/2605.08520v1
 - CoT-retry已有先快写、失败后推理；Ares/LASER/InfraMind已有按历史或负载分配推理预算。
   https://arxiv.org/html/2410.08105v1 / https://arxiv.org/html/2603.07915v1
-- When Agents Slow Down已有best-so-far/token及session分配（前次仅摘要/README，全文未核）。
+- When Agents Slow Down已有best-so-far/token及session分配；10/17核全文§6–7及附录E：拐点指导等额多会话，假设独立轨迹/共同Elo尺度，任务级拐点仍需测量。Polyomino正信号不能泛化到所有任务；MLS-Bench附录明确1/2/3会话统计不可区分。其前缀分析依赖agent不见总预算，我方显式墙钟预算轨迹不能照搬截断当反事实。不是我们的新方法，也不据此恢复旧停止/多保真线。
   https://arxiv.org/abs/2609.15309
 - TTT-Discover/AREX-2/Guidance-TTT覆盖本任务自举、轨迹训练、固定执行器学指导；我方不训练agent底座。
 - M-DESIGN/REHEARSE覆盖修改增益预测与检索；MLE-STAR/PatchFusion覆盖精修与编辑组合。

@@ -4,6 +4,27 @@
   "evidence_now": "18812:8executions confirm local work/quality reduction.18819:16executions show strict repeated Denoise rank reversal; posthoc log/step/source checks verify completed-fold counts3-to2 and5-to1 under sharing.18807:32search runs failed original final-quality gate.18845 closed with16wrappers but11valid outputs:4candidate timeouts and1kernel-readiness failure, plus1subsequent execution violating the declared infrastructure-stop rule. New-source rank confirmation did not pass. Not significance, fold-only causal mediation, general incidence or E2E benefit.",
   "sources": [
     {
+      "title": "Understanding GPU Resource Interference One Level Deeper",
+      "url": "https://anakli.inf.ethz.ch/papers/gpu_interference_socc25.pdf",
+      "scope_read": "Author-hosted PDF abstract and sections2-5, pages2-6; screenshot requested but tool returned no model-visible image, so no chart-value claim based on visual inspection",
+      "overlap": "Already characterizes resource-specific GPU interference and limitations of coarse utilization and compute/memory complementarity. Studies H100 and RTX3090. Pairing by task category or low utilization alone is not a new or guaranteed-safe rule.",
+      "difference_to_test": "Our local evidence is changed statistical work in self-timed generated programs, not a new kernel interference model. Historical host traces cannot identify which GPU subsystem caused the losses. Full paper kernel profiling may cost minutes to hours and is not silently free for300second jobs; no deployment or profiler is initiated."
+    },
+    {
+      "title": "Orion official implementation",
+      "url": "https://github.com/eth-easl/orion",
+      "scope_read": "README Introduction, Hardware Configuration and Example on2026-10-16; not a local reproduction or full code audit",
+      "overlap": "Priority-aware kernel scheduling already has public code and expects operation profiles. Current README lists RTX3090/H100 with CUDA12.6; paper artifact uses an older dedicated branch.",
+      "difference_to_test": "Do not claim no practical strong baseline exists. Do not silently upgrade the current task image to satisfy latest-main dependencies. Unknown integration compatibility and per-candidate profiling cost must be recorded, not used to label current cap2 results a comparison against Orion."
+    },
+    {
+      "title": "Concord: A GPU cluster scheduler with enhanced interference profiling and asymmetric job packing",
+      "url": "https://www.sciencedirect.com/science/article/pii/S0167739X2600230X",
+      "scope_read": "Publisher-indexed abstract and introduction; direct open403, full text not inspected",
+      "overlap": "Describes separate interference impact and sensitivity, placement and sharing incentives. Here asymmetric packing means mixing single/multi-GPU jobs, not our single-GPU pairing experiment.",
+      "difference_to_test": "A proposal to distinguish the job causing versus suffering interference is not by itself a new idea. Our fixed-program deadline/fold observation is a different local measurement, not evidence against Concord or a reproduced comparison."
+    },
+    {
       "title": "NVIDIA Multi-Process Service: Architecture",
       "url": "https://docs.nvidia.com/deploy/mps/architecture.html",
       "scope_read": "Official architecture documentation on cross-context time slicing and MPS concurrency",

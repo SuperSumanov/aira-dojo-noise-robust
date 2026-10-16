@@ -1,0 +1,918 @@
+{
+  "posthoc": true,
+  "analysis_sha256": "496f1ef8d9e9da239bcc9166263a6c4469d8722ea9d9042fa2ee965913a90ac5",
+  "plan_sha256": "36ce5852b26de2299755c19a8b9711a1f4161d68abd25a3de6cc7687cdde8560",
+  "groups": [
+    {
+      "task": "aerial-cactus-identification",
+      "valid_only": false,
+      "returns": 35,
+      "unique_raw_sources": 35,
+      "unique_ast_sources": 35,
+      "ast_sources_with_scope": {
+        "break:epoch_named": 35,
+        "break:fold_named": 3,
+        "break:other_for": 1
+      },
+      "ast_sources_without_detected_exit": 0
+    },
+    {
+      "task": "aerial-cactus-identification",
+      "valid_only": true,
+      "returns": 25,
+      "unique_raw_sources": 25,
+      "unique_ast_sources": 25,
+      "ast_sources_with_scope": {
+        "break:epoch_named": 25,
+        "break:fold_named": 3,
+        "break:other_for": 1
+      },
+      "ast_sources_without_detected_exit": 0
+    },
+    {
+      "task": "denoising-dirty-documents",
+      "valid_only": false,
+      "returns": 43,
+      "unique_raw_sources": 43,
+      "unique_ast_sources": 43,
+      "ast_sources_with_scope": {
+        "break:fold_named": 40,
+        "break:other_for": 2
+      },
+      "ast_sources_without_detected_exit": 3
+    },
+    {
+      "task": "denoising-dirty-documents",
+      "valid_only": true,
+      "returns": 13,
+      "unique_raw_sources": 13,
+      "unique_ast_sources": 13,
+      "ast_sources_with_scope": {
+        "break:fold_named": 12,
+        "break:other_for": 1
+      },
+      "ast_sources_without_detected_exit": 1
+    }
+  ],
+  "rows": [
+    {
+      "block": 0,
+      "task": "aerial-cactus-identification",
+      "source_sha256": "2f7307d16ce9b609441dc661eed8cca92bba6550b655c60fccc7f250795a42d6",
+      "valid": true,
+      "ast_sha256": "8a53907c83d0872392e89ecf63e15fbc59a9b4c72e3b9aaad37bf3499dc0289f",
+      "exit_scope_counts": {
+        "break:epoch_named": 1
+      },
+      "clock_tainted_names": 2
+    },
+    {
+      "block": 0,
+      "task": "aerial-cactus-identification",
+      "source_sha256": "b591d78e78e8010e7a01aa15763e23c9587f04688c2dd0c4c79f5e8f922a88fa",
+      "valid": true,
+      "ast_sha256": "e32166439b5f4931c76004eab6fcdb952d8a4ba106b97daeaa74c0605fd6b070",
+      "exit_scope_counts": {
+        "break:epoch_named": 1
+      },
+      "clock_tainted_names": 2
+    },
+    {
+      "block": 0,
+      "task": "denoising-dirty-documents",
+      "source_sha256": "e557b9c9140d4e8fdda320b4d0d4404321323ac350aa11fb3aa45bda9945ae43",
+      "valid": false,
+      "ast_sha256": "55b9c08f78a745b0e6fc597a5519065ad04a3cbc7f5111212947cb24368eaa64",
+      "exit_scope_counts": {
+        "break:fold_named": 1
+      },
+      "clock_tainted_names": 2
+    },
+    {
+      "block": 0,
+      "task": "denoising-dirty-documents",
+      "source_sha256": "068bfb4e6066fd6a668f000a0fa5bbe836a09ece0010c6d11fb7403b0cc16de2",
+      "valid": false,
+      "ast_sha256": "7b5429a347ebd26bc15e181a1d2052fa5fea41b3c9fd050aa18c2b51180a04dd",
+      "exit_scope_counts": {
+        "break:fold_named": 1
+      },
+      "clock_tainted_names": 2
+    },
+    {
+      "block": 0,
+      "task": "aerial-cactus-identification",
+      "source_sha256": "b86853225f80aafb21b3ecaae391a9b2b8789a7c6a06a71679084351b46f074f",
+      "valid": false,
+      "ast_sha256": "06aef6de3a36f268c98f42837b9ff9cf1618c76646a4e11bdd77b8203614babd",
+      "exit_scope_counts": {
+        "break:epoch_named": 1
+      },
+      "clock_tainted_names": 2
+    },
+    {
+      "block": 0,
+      "task": "aerial-cactus-identification",
+      "source_sha256": "8562bd25842da6f5ced27ccc62c34401cf91dd8c23a96549c7ff68f56e06aff5",
+      "valid": true,
+      "ast_sha256": "c507db8ab4c00dd3aff915d08e03acfefc34437b28c311aa197a67aa1dd904da",
+      "exit_scope_counts": {
+        "break:epoch_named": 1
+      },
+      "clock_tainted_names": 2
+    },
+    {
+      "block": 0,
+      "task": "denoising-dirty-documents",
+      "source_sha256": "91306e81b9451c90945253bb39f83de4d77836d2dfdf2aff65b938c1502fd1cb",
+      "valid": true,
+      "ast_sha256": "5bfaac185a24c990d984ea03669563f90bbe09c5bb3d1bc3924948519fc15f79",
+      "exit_scope_counts": {
+        "break:fold_named": 1
+      },
+      "clock_tainted_names": 3
+    },
+    {
+      "block": 0,
+      "task": "denoising-dirty-documents",
+      "source_sha256": "ed77463db008c863307ea9ac280beff7a89f1f8c92ae6afff28956a2f34ce0b4",
+      "valid": false,
+      "ast_sha256": "6cdbf384f347b4447d9ef7f9d8ffc492b5886b764d5958e2053bfa673b68d29e",
+      "exit_scope_counts": {
+        "break:fold_named": 1
+      },
+      "clock_tainted_names": 3
+    },
+    {
+      "block": 0,
+      "task": "aerial-cactus-identification",
+      "source_sha256": "45066fc380f189703b5b2700eb9f9f5d74b49f30a458bbda506ca3e6ae81a84b",
+      "valid": false,
+      "ast_sha256": "9d24cbbc5ffc3d998e28e07b79ef69a913a52ba33f2647d61a1da43cd5cfbf40",
+      "exit_scope_counts": {
+        "break:epoch_named": 1
+      },
+      "clock_tainted_names": 2
+    },
+    {
+      "block": 0,
+      "task": "aerial-cactus-identification",
+      "source_sha256": "9e316baf3e6658669c608a8e1092f599f366b795783806c28a49bb6fd3918520",
+      "valid": true,
+      "ast_sha256": "ea489de8a2887a94b3ca0cbe60000ad31bff372ba01c49c4bfc62e83a3b3df14",
+      "exit_scope_counts": {
+        "break:fold_named": 1,
+        "break:epoch_named": 1,
+        "break:other_for": 1
+      },
+      "clock_tainted_names": 2
+    },
+    {
+      "block": 0,
+      "task": "denoising-dirty-documents",
+      "source_sha256": "3cd6718989b21419d36f3f05aedf2c756b7fdb53cd50c6c693c391198f7cac64",
+      "valid": true,
+      "ast_sha256": "8e56df5a3ba9770b3391e590df32a84f28dc8390eef14cdebdd670d417b9efd3",
+      "exit_scope_counts": {
+        "break:fold_named": 1
+      },
+      "clock_tainted_names": 2
+    },
+    {
+      "block": 0,
+      "task": "denoising-dirty-documents",
+      "source_sha256": "f6d3c4219dd4772b2f22e74152298add442a44db52629516dd37c2896bb97078",
+      "valid": false,
+      "ast_sha256": "0582630dce76167d5d5291214197c36183a33fe377e37e921baa2be6255997cf",
+      "exit_scope_counts": {
+        "break:fold_named": 1
+      },
+      "clock_tainted_names": 2
+    },
+    {
+      "block": 0,
+      "task": "denoising-dirty-documents",
+      "source_sha256": "79a155dfc6c02117d2bd2d74a33317bf78d2b9200423da9501a237c8fc58ddd6",
+      "valid": false,
+      "ast_sha256": "fe3be8277e4006ce0350e0ec70707706e62d1f19243ee9fd930d5dd66265a8cd",
+      "exit_scope_counts": {
+        "break:fold_named": 1
+      },
+      "clock_tainted_names": 2
+    },
+    {
+      "block": 0,
+      "task": "aerial-cactus-identification",
+      "source_sha256": "b974b11a7e21adcd501b179ad1f1e4914fd91a2181882292b077677076f54f18",
+      "valid": false,
+      "ast_sha256": "4e732cb9739dc870ea398b30fa5b3443bcebd421a0302b239fc6b038dc1b5149",
+      "exit_scope_counts": {
+        "break:epoch_named": 1
+      },
+      "clock_tainted_names": 2
+    },
+    {
+      "block": 0,
+      "task": "aerial-cactus-identification",
+      "source_sha256": "d886b36911c15a770f5789410b4e33eb2d70183885e32c87c058af840898029c",
+      "valid": true,
+      "ast_sha256": "bfa5481c1070e9adad0b67d03fbcacd808a0f1363bb74e72b67bbf62288b9bd9",
+      "exit_scope_counts": {
+        "break:epoch_named": 1
+      },
+      "clock_tainted_names": 2
+    },
+    {
+      "block": 0,
+      "task": "denoising-dirty-documents",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "valid": false,
+      "ast_sha256": "3543b4693a36a1098850b8bc928887694ed59a6deb7d3dfd0339de01f55a77b6",
+      "exit_scope_counts": {},
+      "clock_tainted_names": 0
+    },
+    {
+      "block": 0,
+      "task": "denoising-dirty-documents",
+      "source_sha256": "f6599a4430606a6471d491a4e42d9089c2c8f53056c411a4fa1607590c4c2766",
+      "valid": false,
+      "ast_sha256": "36aad502904a6797cccf93d844b8c4ffa1dca0265e606f04b5430c1f53488b2d",
+      "exit_scope_counts": {
+        "break:fold_named": 1
+      },
+      "clock_tainted_names": 2
+    },
+    {
+      "block": 0,
+      "task": "denoising-dirty-documents",
+      "source_sha256": "8135fb8a3ac75396a6c4e58d9843994fd26b37dd07fef9d2282d725b2ac63ac7",
+      "valid": false,
+      "ast_sha256": "54d44dd515ecce23579980374c8e9184a58213cee13b85ba6832814b3aaf9851",
+      "exit_scope_counts": {
+        "break:fold_named": 1
+      },
+      "clock_tainted_names": 2
+    },
+    {
+      "block": 1,
+      "task": "aerial-cactus-identification",
+      "source_sha256": "40a3edca9a00ae916d61a46e2d973dc2683fdaf96614b9184790c0085296b355",
+      "valid": true,
+      "ast_sha256": "d86bb70f00789eadf89c6c0cd9fe6c7f31c8f27e2ca0174fbdeafe3eeec7a2ec",
+      "exit_scope_counts": {
+        "break:epoch_named": 1
+      },
+      "clock_tainted_names": 2
+    },
+    {
+      "block": 1,
+      "task": "aerial-cactus-identification",
+      "source_sha256": "33baa9d012aec7822110832eaa07a4005a6746f2bfd16e708e4de8211c8b4e1f",
+      "valid": false,
+      "ast_sha256": "3a27ee59c71a3a059fb99cb56dbf7d4d3190e9c2d2809507109dde064b08a526",
+      "exit_scope_counts": {
+        "break:epoch_named": 1
+      },
+      "clock_tainted_names": 2
+    },
+    {
+      "block": 1,
+      "task": "denoising-dirty-documents",
+      "source_sha256": "f41861484cc5f6185ed0b5c757a21a866e7fdd0defbc6a5cd086534bec40254b",
+      "valid": false,
+      "ast_sha256": "c35952d702a9bf306afcb348b12a28e07c235a07cbbbefc1d99f618efdc8c7d3",
+      "exit_scope_counts": {
+        "break:fold_named": 1
+      },
+      "clock_tainted_names": 3
+    },
+    {
+      "block": 1,
+      "task": "denoising-dirty-documents",
+      "source_sha256": "5bf8db9bfea8b649cb07ec353e588b81297bce258f222e03cfc28fd1460a0fc2",
+      "valid": false,
+      "ast_sha256": "629782abade07eefb2e62846f48c0cc201dfa2f356db4b51bc8508ee7bd86e4c",
+      "exit_scope_counts": {
+        "break:fold_named": 1
+      },
+      "clock_tainted_names": 3
+    },
+    {
+      "block": 1,
+      "task": "denoising-dirty-documents",
+      "source_sha256": "b7efe34220193585a93cdf5f0a71b7779f8ac24520232916ced6ade77e1e5ba8",
+      "valid": true,
+      "ast_sha256": "33d2075686cdc9766d6e6ad416abf08b5cd41d12a24641e60d0ae929ccec9ac8",
+      "exit_scope_counts": {
+        "break:fold_named": 1
+      },
+      "clock_tainted_names": 3
+    },
+    {
+      "block": 1,
+      "task": "aerial-cactus-identification",
+      "source_sha256": "7f0b03f882a1b987781642cb7f109321c5438c8053ac65c80e6664b943f0f3e5",
+      "valid": true,
+      "ast_sha256": "31ba9542c119469930bb1927256b10a211da95c9506c7ec32cbe204115320fa5",
+      "exit_scope_counts": {
+        "break:epoch_named": 1
+      },
+      "clock_tainted_names": 2
+    },
+    {
+      "block": 1,
+      "task": "aerial-cactus-identification",
+      "source_sha256": "8100a3156cf5fdd9fe306d1908fffe4a4951097147914eb9fda70a290a0ad889",
+      "valid": true,
+      "ast_sha256": "2e80db641c2d08b640aba5e42f88f4566f23f826a1529fb12208ca945a35c324",
+      "exit_scope_counts": {
+        "break:epoch_named": 1
+      },
+      "clock_tainted_names": 2
+    },
+    {
+      "block": 1,
+      "task": "denoising-dirty-documents",
+      "source_sha256": "99d99511529903a6fa75a56f02cd720034ec6284e44493386427872dcfee5694",
+      "valid": false,
+      "ast_sha256": "e695aba84e25d7a3adc6e3a7a6f3aee1c5c43429d8f42d3f119a7b400b7e3460",
+      "exit_scope_counts": {
+        "break:fold_named": 1
+      },
+      "clock_tainted_names": 2
+    },
+    {
+      "block": 1,
+      "task": "denoising-dirty-documents",
+      "source_sha256": "a7e7ad5d8cd26a16142edc087fbda695cd7256f663c1ed10da3e8f365d1c0e58",
+      "valid": false,
+      "ast_sha256": "7a6b882e6b1c1aa93e07cde7f607a3d6d97529bcfc440a15c26f9f0c068195c0",
+      "exit_scope_counts": {},
+      "clock_tainted_names": 2
+    },
+    {
+      "block": 1,
+      "task": "denoising-dirty-documents",
+      "source_sha256": "aa376832a33c51868c49f1753bfc631f578eb0da8e00322de3bcd7d3dc06b96c",
+      "valid": true,
+      "ast_sha256": "f0ae0496f6dbfea95d039ad6991b2b25c1e90c39c89dd5aadb6dc611e5ecacb8",
+      "exit_scope_counts": {},
+      "clock_tainted_names": 2
+    },
+    {
+      "block": 1,
+      "task": "aerial-cactus-identification",
+      "source_sha256": "9eeb909bb339846ee62271ee6065041bb42d3d129b7aeb9b5d95ce61de29b135",
+      "valid": false,
+      "ast_sha256": "ac515b929265b225abb162d179c001a45e73e6a596f3fcc2103501cd9a785e93",
+      "exit_scope_counts": {
+        "break:epoch_named": 1
+      },
+      "clock_tainted_names": 2
+    },
+    {
+      "block": 1,
+      "task": "aerial-cactus-identification",
+      "source_sha256": "f073f0074432dc5af5a031ebc0c0a2da9d102237930a52287a442ca95b1682dc",
+      "valid": true,
+      "ast_sha256": "d534be264f737ceaa89d879d3dec753dd42d99b81303f0dc729593a15e0e0c16",
+      "exit_scope_counts": {
+        "break:fold_named": 1,
+        "break:epoch_named": 1
+      },
+      "clock_tainted_names": 2
+    },
+    {
+      "block": 1,
+      "task": "denoising-dirty-documents",
+      "source_sha256": "3b2f65266933cae3570e17b91b5738feaaf6aba7342847c03b0b50cd5cabd205",
+      "valid": false,
+      "ast_sha256": "e7ae5b1155fc37bb1c4fb8321135e497e377d831fde1eea9cd00559295afd272",
+      "exit_scope_counts": {
+        "break:fold_named": 1
+      },
+      "clock_tainted_names": 3
+    },
+    {
+      "block": 1,
+      "task": "denoising-dirty-documents",
+      "source_sha256": "7b04acab8aee6d2cc386ce411d35834a31250ea190922cf38e8119f5fbf7b6b8",
+      "valid": false,
+      "ast_sha256": "5f2aa90c2ad1f6812c489a0bc623020ac0af952f3f48e2e8ba60791a3ca96207",
+      "exit_scope_counts": {
+        "break:fold_named": 1,
+        "break:other_for": 1
+      },
+      "clock_tainted_names": 3
+    },
+    {
+      "block": 1,
+      "task": "denoising-dirty-documents",
+      "source_sha256": "9c32858fbbe174b21df0e9003578de8686f949eff6e2f6feb060f7e0ab121f59",
+      "valid": true,
+      "ast_sha256": "3f97f69880691a5d396aa5a2c0fcda198c424dbb9b66e83c5b350ccc9c780c97",
+      "exit_scope_counts": {
+        "break:fold_named": 1,
+        "break:other_for": 1
+      },
+      "clock_tainted_names": 3
+    },
+    {
+      "block": 1,
+      "task": "denoising-dirty-documents",
+      "source_sha256": "df5d34323b354dff43bf66013bb9202aff87e02d89ef1bcbea6c448e42cf49c0",
+      "valid": false,
+      "ast_sha256": "ea54139228bc60218ce37c6eb90c4892ded10ed64e13fc0c051d3bda5c1e9e9a",
+      "exit_scope_counts": {
+        "break:fold_named": 1
+      },
+      "clock_tainted_names": 3
+    },
+    {
+      "block": 1,
+      "task": "aerial-cactus-identification",
+      "source_sha256": "336b024b03e6550ca400c806d44896548849998cd28a0481056c33934b6948e5",
+      "valid": true,
+      "ast_sha256": "bd8258dd498dc1df9da93085c9c1dda3a1123a1151e662cb85a31061846cf8a3",
+      "exit_scope_counts": {
+        "break:epoch_named": 1
+      },
+      "clock_tainted_names": 2
+    },
+    {
+      "block": 1,
+      "task": "aerial-cactus-identification",
+      "source_sha256": "58e8bc4ccb92ae7c16bb21e30fefaf43d30ef7e25f7b8cabc34e7ab45c6a1caa",
+      "valid": true,
+      "ast_sha256": "24e08c0801b3a9311c024de6c43c2ff39e1cd30c0ea4e39998f38f4bfcc28e1c",
+      "exit_scope_counts": {
+        "break:epoch_named": 2
+      },
+      "clock_tainted_names": 1
+    },
+    {
+      "block": 1,
+      "task": "aerial-cactus-identification",
+      "source_sha256": "f8c374e3fbee6cdfa7a3a54dc51b72d3ea2017d1c459b3e32f8864b1f7a349a4",
+      "valid": true,
+      "ast_sha256": "7598f48433be26feaac121a8067c532c04b7f9e2486f1cc963736ed2b100647d",
+      "exit_scope_counts": {
+        "break:fold_named": 1,
+        "break:epoch_named": 2
+      },
+      "clock_tainted_names": 2
+    },
+    {
+      "block": 1,
+      "task": "denoising-dirty-documents",
+      "source_sha256": "1040369e251a85c46d042e1b3089c982b2c22ccb99399e450fc8cef80e2e53ff",
+      "valid": false,
+      "ast_sha256": "8df458d6c04e95772ca5330244b724a06700b783f688cc89a08a6a38e60d6de7",
+      "exit_scope_counts": {
+        "break:fold_named": 1
+      },
+      "clock_tainted_names": 2
+    },
+    {
+      "block": 1,
+      "task": "denoising-dirty-documents",
+      "source_sha256": "460550017a528a8fdd5541abb0283ac31ad80d56c6b5b8dfdbc60792d2c81475",
+      "valid": false,
+      "ast_sha256": "684f638084c5bcf53f6d483bc0073eea57a9e1e869b753ea5fc150af3ed265b7",
+      "exit_scope_counts": {
+        "break:fold_named": 1
+      },
+      "clock_tainted_names": 2
+    },
+    {
+      "block": 1,
+      "task": "denoising-dirty-documents",
+      "source_sha256": "9d0f0c3894db8e0be79cc62cf8d2efe59735be8008e2017f0eabea048178fd79",
+      "valid": true,
+      "ast_sha256": "45bc35e0a8d8205b67b7189f47d9b008ef4b38b707903d6c362f0db90081a789",
+      "exit_scope_counts": {
+        "break:fold_named": 1
+      },
+      "clock_tainted_names": 2
+    },
+    {
+      "block": 2,
+      "task": "aerial-cactus-identification",
+      "source_sha256": "caf1b86f948b88cb143ac7484155124cbef254c36b653b941ec7d2168b148305",
+      "valid": true,
+      "ast_sha256": "bcb90c5aa26bd8baf09642b200702d455f48e762530e065f5381c09f7241c7cf",
+      "exit_scope_counts": {
+        "break:epoch_named": 2
+      },
+      "clock_tainted_names": 3
+    },
+    {
+      "block": 2,
+      "task": "aerial-cactus-identification",
+      "source_sha256": "7d38f141542ff66b55dc2d8b5970f50d901893a30c9cc1b2fb284ff1ae1136dc",
+      "valid": true,
+      "ast_sha256": "55b0a7ca3587420e4ba9b8121d5f67bc034ce6fb76077da128cc237840a3be9c",
+      "exit_scope_counts": {
+        "break:epoch_named": 2
+      },
+      "clock_tainted_names": 2
+    },
+    {
+      "block": 2,
+      "task": "denoising-dirty-documents",
+      "source_sha256": "969e410646e9f871eda03f640957f86b9496421c345a0809ba6342716db95692",
+      "valid": false,
+      "ast_sha256": "00760174d9468262e8ec9e711f4ae38bfdb92e3737e4850be24b13b26f164a0c",
+      "exit_scope_counts": {
+        "break:fold_named": 1
+      },
+      "clock_tainted_names": 3
+    },
+    {
+      "block": 2,
+      "task": "denoising-dirty-documents",
+      "source_sha256": "9b714ffefe263f5b77e30923143327256b34efce296fe45fa67fab7151273525",
+      "valid": false,
+      "ast_sha256": "40d400cdc372458d6bb0b91181099c80aa49e3da908f15b25bc429f6cdcb8b5c",
+      "exit_scope_counts": {
+        "break:fold_named": 1
+      },
+      "clock_tainted_names": 3
+    },
+    {
+      "block": 2,
+      "task": "aerial-cactus-identification",
+      "source_sha256": "c8e63b813fe6d05c64c38359e6f48ae856e18f9d3b4465dade4ed911dee362ac",
+      "valid": true,
+      "ast_sha256": "7e92609fa2167a23e78bcbe27a4b109705141a9bb791fec31627e7042b2a89cc",
+      "exit_scope_counts": {
+        "break:epoch_named": 1
+      },
+      "clock_tainted_names": 2
+    },
+    {
+      "block": 2,
+      "task": "aerial-cactus-identification",
+      "source_sha256": "2a02e1df3d7553c018d7de6690311f188411f4c4133e201123bf61a8e67a2840",
+      "valid": true,
+      "ast_sha256": "3d84aee6a466761c1ddd169700dac054e0dd68eedadd5c0e35a635d82f5dd469",
+      "exit_scope_counts": {
+        "break:epoch_named": 2
+      },
+      "clock_tainted_names": 2
+    },
+    {
+      "block": 2,
+      "task": "denoising-dirty-documents",
+      "source_sha256": "8548b20e420028f3ee179e5d4918cddce96cb52a68df53f786b3a79d80d2b2a7",
+      "valid": false,
+      "ast_sha256": "f7058d721f80c0957de8f6f6fb62b96f5ff551b68dffb84d43bd7000a912f1d5",
+      "exit_scope_counts": {
+        "break:fold_named": 1
+      },
+      "clock_tainted_names": 3
+    },
+    {
+      "block": 2,
+      "task": "denoising-dirty-documents",
+      "source_sha256": "374faefccb5f363649c1b44d96ffef45c583269b15ae855d39b25a8c3f1a2718",
+      "valid": false,
+      "ast_sha256": "7e3efd66bfce7050e90d2e93368efcba4e99fad6a559fca94041754a07fddd6c",
+      "exit_scope_counts": {
+        "break:fold_named": 1
+      },
+      "clock_tainted_names": 3
+    },
+    {
+      "block": 2,
+      "task": "denoising-dirty-documents",
+      "source_sha256": "9988c17c9fff75f0636f8ebf2b5b05e6d9f8eb0ed8d1f7eac70175a38a142d3c",
+      "valid": true,
+      "ast_sha256": "81a11771261e6480c9d5cc458f0f3ce4a4edde48ea5beacfdce41cd6f11d6705",
+      "exit_scope_counts": {
+        "break:fold_named": 1
+      },
+      "clock_tainted_names": 3
+    },
+    {
+      "block": 2,
+      "task": "denoising-dirty-documents",
+      "source_sha256": "d4ca37d143036fb639bdd1f4722e57cfe8fae0105402bc49d284147162fe3b0f",
+      "valid": false,
+      "ast_sha256": "3b957ea549a71402615c71e2015d1f5d919dbe6680b93ce50b367868255fece1",
+      "exit_scope_counts": {
+        "break:fold_named": 1
+      },
+      "clock_tainted_names": 3
+    },
+    {
+      "block": 2,
+      "task": "aerial-cactus-identification",
+      "source_sha256": "87b64d5600906f95ceb5d07608b0c820aec6e4f99775f8fe0ea46f7be63469dd",
+      "valid": true,
+      "ast_sha256": "bf16b0b6062511dcb670f57914523e68fee3a9d4e643f5a531a6f1dcd0488ae8",
+      "exit_scope_counts": {
+        "break:epoch_named": 1
+      },
+      "clock_tainted_names": 2
+    },
+    {
+      "block": 2,
+      "task": "aerial-cactus-identification",
+      "source_sha256": "64476bbd268bea37f5ed9d8fbdcc7b82cf009138778c6e50f9de52949f6f9ece",
+      "valid": true,
+      "ast_sha256": "4bb59fc42493c3e401bcd2897974f9a95c527318324febbf91a9a54ec9ae22b2",
+      "exit_scope_counts": {
+        "break:epoch_named": 1
+      },
+      "clock_tainted_names": 2
+    },
+    {
+      "block": 2,
+      "task": "aerial-cactus-identification",
+      "source_sha256": "2c5089db974acd137c774a02f1e57279cf6e442817383b87584f0796d613fe76",
+      "valid": false,
+      "ast_sha256": "c33959efb598c99ca8727243b13046430c3d1b626759bdd46fb2ae41c79c77ad",
+      "exit_scope_counts": {
+        "break:epoch_named": 1
+      },
+      "clock_tainted_names": 12
+    },
+    {
+      "block": 2,
+      "task": "denoising-dirty-documents",
+      "source_sha256": "eed5e6191a9b62be4c7bc278d2bcc8a5b6238b129742a7d4e3b905da87497779",
+      "valid": false,
+      "ast_sha256": "339fd485b61873ae8f80ea38123b0100579e8dfa31c095dd5e1743c1dd4b8b93",
+      "exit_scope_counts": {
+        "break:fold_named": 1
+      },
+      "clock_tainted_names": 3
+    },
+    {
+      "block": 2,
+      "task": "denoising-dirty-documents",
+      "source_sha256": "2699b95c0b7ebec17c0b323cf428f81a90639c1412ff98bac504766e312e1ef0",
+      "valid": true,
+      "ast_sha256": "f9c865dbcfae6e42bb7b5f547d4bddbb1c648d067801b97480b921add717a3f4",
+      "exit_scope_counts": {
+        "break:fold_named": 1
+      },
+      "clock_tainted_names": 3
+    },
+    {
+      "block": 2,
+      "task": "denoising-dirty-documents",
+      "source_sha256": "20fe0586b91fdeafb1b543c24b2ed6d3b1af76bed3f9235aea61a299b3edc139",
+      "valid": true,
+      "ast_sha256": "731a3dc1fafb39fa95febae460200a053be3569b2eacc7c01fa942f63e0c7e87",
+      "exit_scope_counts": {
+        "break:fold_named": 1
+      },
+      "clock_tainted_names": 3
+    },
+    {
+      "block": 2,
+      "task": "aerial-cactus-identification",
+      "source_sha256": "4535cfc5f9668aa37e15e94cb9487a589b3f1d2589b9f80b84492d1ed89e3edc",
+      "valid": true,
+      "ast_sha256": "b2cb2ac7a2bdebf510d1255238bcfab1bebc4a7473e045e60e56f600fb3e6f54",
+      "exit_scope_counts": {
+        "break:epoch_named": 1
+      },
+      "clock_tainted_names": 2
+    },
+    {
+      "block": 2,
+      "task": "aerial-cactus-identification",
+      "source_sha256": "cc8b858e85a3c337ab32bdaa75c1b29cdd242a42adf3f96532fe8415163ff519",
+      "valid": false,
+      "ast_sha256": "6768300ca85b4ba03bd6efd9e1a994016f342439fc2f355cb88dfe068f4b2f11",
+      "exit_scope_counts": {
+        "break:epoch_named": 1
+      },
+      "clock_tainted_names": 26
+    },
+    {
+      "block": 2,
+      "task": "denoising-dirty-documents",
+      "source_sha256": "e93b72f43623c1aa0adc52f91cbeaedec951f2d8e0aee50de534ca7dae3fc29a",
+      "valid": true,
+      "ast_sha256": "a91e8955535065138b2348eface028a12fd816e5af53f908249f41153817727a",
+      "exit_scope_counts": {
+        "break:fold_named": 1
+      },
+      "clock_tainted_names": 3
+    },
+    {
+      "block": 2,
+      "task": "denoising-dirty-documents",
+      "source_sha256": "ceb7fc1a0239fb567e07e0563f8294edef32e77a2abea3e43db6946b295b0659",
+      "valid": false,
+      "ast_sha256": "e1563e6d986f8a5f468e8c11741c73a44f1a23962abfc7b2fd7c2f49eabbce61",
+      "exit_scope_counts": {
+        "break:fold_named": 1
+      },
+      "clock_tainted_names": 3
+    },
+    {
+      "block": 3,
+      "task": "aerial-cactus-identification",
+      "source_sha256": "0a5e0a6ee2741ea10e18422fd3b8adecd5d70ef51992896141c09a1e60cea43b",
+      "valid": true,
+      "ast_sha256": "b52176a86c1bfcf3a4c90767d2b8c1057b09a6ac47f5021b8a9c55f738f9ebf9",
+      "exit_scope_counts": {
+        "break:epoch_named": 1
+      },
+      "clock_tainted_names": 2
+    },
+    {
+      "block": 3,
+      "task": "aerial-cactus-identification",
+      "source_sha256": "091ddb907995afef0dee894032b102778a8450d5da1eb95edce870aaff274d78",
+      "valid": false,
+      "ast_sha256": "54491ed906b4ef4378b5565020efc31f41361919c5b98afd0ed2dde0f9520a69",
+      "exit_scope_counts": {
+        "break:epoch_named": 1
+      },
+      "clock_tainted_names": 15
+    },
+    {
+      "block": 3,
+      "task": "denoising-dirty-documents",
+      "source_sha256": "528aceda177ae8487f68ef1c0b97e329183170c43a6488abef78d735ad46e8f2",
+      "valid": false,
+      "ast_sha256": "7bf49207d35b60f345379876342f9d3fbd3894f7dcc805347c8980072d9995f1",
+      "exit_scope_counts": {
+        "break:fold_named": 1
+      },
+      "clock_tainted_names": 3
+    },
+    {
+      "block": 3,
+      "task": "denoising-dirty-documents",
+      "source_sha256": "ff4a17bd84b2e3e816392b61a45ceec4525f90e286c829ff6a8702d44a37dd8e",
+      "valid": false,
+      "ast_sha256": "6dd60003d1cf742bb45ca4fe397e1e7f01d77db32737015bbbf0b719e6f510e6",
+      "exit_scope_counts": {
+        "break:fold_named": 1
+      },
+      "clock_tainted_names": 3
+    },
+    {
+      "block": 3,
+      "task": "aerial-cactus-identification",
+      "source_sha256": "4aced2f3347083f07015d79ffd9a5d46602150ae6a229b63efd2699a94c2ea10",
+      "valid": true,
+      "ast_sha256": "9fa7893050a79c0e2061d3932df31bc7e7c5fb755450ed70aaa0dcf6188605a9",
+      "exit_scope_counts": {
+        "break:epoch_named": 1
+      },
+      "clock_tainted_names": 2
+    },
+    {
+      "block": 3,
+      "task": "aerial-cactus-identification",
+      "source_sha256": "ecefe0dc83ce4f71b544b9c4d431b0c5ff3951a84e40dd6e2c835acb99e0bcfe",
+      "valid": false,
+      "ast_sha256": "12c2626d4baba9847f4856004e0c8a537055def5a77675722e00b1ee985b5f12",
+      "exit_scope_counts": {
+        "break:epoch_named": 1
+      },
+      "clock_tainted_names": 12
+    },
+    {
+      "block": 3,
+      "task": "denoising-dirty-documents",
+      "source_sha256": "e70112f72dac0fed1296131971e1a30fbc503f55afbb5b7b86a627de323ac02a",
+      "valid": true,
+      "ast_sha256": "8f1d3c1bd18c1aba09335e6ed6e5b604862170e4b0ea143639daaed62722adf4",
+      "exit_scope_counts": {
+        "break:fold_named": 1
+      },
+      "clock_tainted_names": 3
+    },
+    {
+      "block": 3,
+      "task": "denoising-dirty-documents",
+      "source_sha256": "823110399307bb4f8316ec123a9bf51a2dba69a5c1154dd774bb9ff7a98cc05a",
+      "valid": false,
+      "ast_sha256": "3f3457f3f9d360316eb13d7a5552fd637572aa9ba31f1d5601a4fa202edf92cc",
+      "exit_scope_counts": {
+        "break:fold_named": 1
+      },
+      "clock_tainted_names": 3
+    },
+    {
+      "block": 3,
+      "task": "aerial-cactus-identification",
+      "source_sha256": "7d7c7e3c09728bfab178ef5a6126bcf1e9c8e373bb0cb34b942bd0a1a5d0dc35",
+      "valid": true,
+      "ast_sha256": "3cbeee54c4444c902d3bf943dbdc650d1674ad3810e0466cfe2f2d973e8ba546",
+      "exit_scope_counts": {
+        "break:epoch_named": 1
+      },
+      "clock_tainted_names": 2
+    },
+    {
+      "block": 3,
+      "task": "aerial-cactus-identification",
+      "source_sha256": "422ec442b1058b70d71a0a763a7dc945fbd82eb8707d9b86e81248c2c796623e",
+      "valid": true,
+      "ast_sha256": "7bdb7fd76a1c5241118b11d1b50f8cbde6330c1406c773e02d54910f74d9e85b",
+      "exit_scope_counts": {
+        "break:epoch_named": 1
+      },
+      "clock_tainted_names": 2
+    },
+    {
+      "block": 3,
+      "task": "aerial-cactus-identification",
+      "source_sha256": "d7350e984b4a8f6200b683519e64846f0df37618fbb55ae1501324d85b535182",
+      "valid": false,
+      "ast_sha256": "c7551cc00a20a2144c551c45cc659d5500efa2cd3e7faff1e8e4f4fba913eacf",
+      "exit_scope_counts": {
+        "break:epoch_named": 1
+      },
+      "clock_tainted_names": 2
+    },
+    {
+      "block": 3,
+      "task": "denoising-dirty-documents",
+      "source_sha256": "1bb165f6b3c699f7c138f31687b826c5a3cab43aaad97ec0e2f70a06682107a5",
+      "valid": false,
+      "ast_sha256": "fe4c8f43d32e0f58479c5181e047989624af021eb520e1caf59eac924802036a",
+      "exit_scope_counts": {
+        "break:fold_named": 1
+      },
+      "clock_tainted_names": 3
+    },
+    {
+      "block": 3,
+      "task": "denoising-dirty-documents",
+      "source_sha256": "2f71314b4f66145abab907f57146d8f09d4bc85414e5049c58686d06dec88863",
+      "valid": true,
+      "ast_sha256": "e13f15580aeacb2ae57d3440c67d392f4d2b2bb10c9a3d1670efc9e29b585d4b",
+      "exit_scope_counts": {
+        "break:fold_named": 1
+      },
+      "clock_tainted_names": 3
+    },
+    {
+      "block": 3,
+      "task": "aerial-cactus-identification",
+      "source_sha256": "fd992e88383a1fc8170cabdad35964d9b134beff85d5b1b58d2ad2ed0ba2ac09",
+      "valid": true,
+      "ast_sha256": "9b0c65f6f62889b8772c75e2d00950197021cf40895216d161c9d4affbfeb3be",
+      "exit_scope_counts": {
+        "break:epoch_named": 1
+      },
+      "clock_tainted_names": 2
+    },
+    {
+      "block": 3,
+      "task": "aerial-cactus-identification",
+      "source_sha256": "1fc0dae1061db1eaf573a478082ccab5590965b2f151a1d0bbc88f81ec49e3b9",
+      "valid": true,
+      "ast_sha256": "52c772f041c76ef1cbe85b50923bc8580c231c1b0b85568fddb3a3089e4947ef",
+      "exit_scope_counts": {
+        "break:epoch_named": 1
+      },
+      "clock_tainted_names": 2
+    },
+    {
+      "block": 3,
+      "task": "denoising-dirty-documents",
+      "source_sha256": "f8be872e7c07296928b20e8ffc5d3e7809ad386b6390880e995c6548a3666a11",
+      "valid": true,
+      "ast_sha256": "e10012dd45b7ce2e69fc30463c688019abe74dc8a72dfe545a5dc7e3594c123c",
+      "exit_scope_counts": {
+        "break:fold_named": 1
+      },
+      "clock_tainted_names": 3
+    },
+    {
+      "block": 3,
+      "task": "denoising-dirty-documents",
+      "source_sha256": "4f8ea5fce572a32b97f83ffff1674a7faf28d1880e6475af88f6791f7c7edb5f",
+      "valid": false,
+      "ast_sha256": "567c7d8b8280eaa3e9c091761ae96a46a072dfbb21bd980ae20fac7c02af59d1",
+      "exit_scope_counts": {
+        "break:fold_named": 1
+      },
+      "clock_tainted_names": 3
+    },
+    {
+      "block": 3,
+      "task": "denoising-dirty-documents",
+      "source_sha256": "32477f4288c4c2d3c405558779f6fdbcc3c872e180255755cbcb5e436dce7eca",
+      "valid": false,
+      "ast_sha256": "c9f674073262ed1b8180f3381ec712e58588e9c6f02f8a9678e14d281c2657e7",
+      "exit_scope_counts": {
+        "break:fold_named": 1
+      },
+      "clock_tainted_names": 3
+    }
+  ],
+  "boundary": "Lexical labels, conservative name-level clock propagation, no interprocedural proof. Scope hints do not establish that a loop trains a model or that its branch executed. Same AST is only exact normalization, not family/lineage independence. Source counts are conditioned on closed observed returns; not corpus prevalence, E2E gains, new-source confirmation or a new scheduler. Missing static exits do not establish fixed work. No existing readout is modified."
+}

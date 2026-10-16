@@ -1,0 +1,18 @@
+{
+  "verified_at_utc": "2026-10-16T08:47:15Z",
+  "analysis_commit": "b6d54da55abded33a4db07e4af155f815058aa6a",
+  "analysis_sha256": "496f1ef8d9e9da239bcc9166263a6c4469d8722ea9d9042fa2ee965913a90ac5",
+  "transfer_sha256": "c0e4210829d824dcb3347efb40da044e7b81e6ff9d5923669035a7b320d3a785",
+  "all_observed_timely_returns": 78,
+  "valid_returns": 38,
+  "unique_raw_sources": 78,
+  "unique_ast_sources": 78,
+  "static_clock_exit_sources": 75,
+  "valid_static_clock_exit_sources": 37,
+  "aerial_epoch_named_exit_sources": {"all": 35, "denominator": 35, "valid": 25, "valid_denominator": 25},
+  "denoising_fold_named_exit_sources": {"all": 40, "denominator": 43, "valid": 12, "valid_denominator": 13},
+  "cpu_scope_tests": 8,
+  "independent_node_groups_and_denominators_passed": true,
+  "consistency_with_prior_clock_coverage_75_of78_and37_of38": true,
+  "boundary": "Lexical exit-scope hints only. Exact raw/AST uniqueness is not independent lineage or physical-run replication. Observed returns of two known DEV tasks, not a representative corpus sample. Counts do not show branch execution, lost folds, quality sensitivity or benefit for all sources. Runtime fold changes are verified only for18819's two known Denoise programs. No new GPU, training, scoring or policy replay."
+}

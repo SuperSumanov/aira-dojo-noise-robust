@@ -1,7 +1,7 @@
 """Plot metric progress aggregated over recursively discovered journals.
 
-Each ``journal.jsonl`` line is expected to contain a node object with
-``metric``, ``metric_info.score`` and ``creation_time`` fields.  Missing
+Each ``JOURNAL.jsonl`` line is expected to contain a node object under
+``data``, with ``metric``, ``metric_info/score`` and ``creation_time`` fields.  Missing
 fields are represented as ``None`` while parsing and are ignored by numeric
 aggregations.
 
@@ -88,16 +88,15 @@ def read_journal(path: str | Path) -> list[dict[str, Any]]:
     with Path(path).open(encoding="utf-8") as handle:
         for line in handle:
             try:
-                node = json.loads(line)
+                node = json.loads(line)["data"]
             except json.JSONDecodeError:
                 continue
-            info = node.get("metric_info") or {}
-            is_lower_better = info.get("is_lower_better")
+            is_lower_better = node.get("metric_info/is_lower_better")
             sign = -1 if (is_lower_better is not None and float(is_lower_better) > 0.5) else 1
             records.append(
                 {
                     "metric": sign * node["metric"] if node.get("metric") is not None else None,
-                    "score": sign * info["score"] if info.get("score") is not None else None,
+                    "score": sign * node["metric_info/score"] if node.get("metric_info/score") is not None else None,
                     "creation_time": node.get("creation_time"),
                 }
             )
@@ -105,11 +104,11 @@ def read_journal(path: str | Path) -> list[dict[str, Any]]:
 
 
 def find_journals(folder: str | Path) -> list[Path]:
-    """Return all lowercase ``journal.jsonl`` files below *folder*."""
+    """Return all uppercase ``JOURNAL.jsonl`` files below *folder*."""
     root = Path(folder)
     if not root.is_dir():
         raise NotADirectoryError(f"Not a directory: {root}")
-    return sorted(root.rglob("journal.jsonl"))
+    return sorted(root.rglob("JOURNAL.jsonl"))
 
 
 def _elapsed_seconds(value: datetime | float, start: datetime | float) -> float | None:

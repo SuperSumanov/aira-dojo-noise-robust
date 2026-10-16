@@ -25,6 +25,7 @@
 - 10/17核vLLM官方Reproducibility/Batch Invariance：默认在线结果不保证可复现，专门不变性会影响性能，已测模型列表不能替代本项目27B量化镜像验收。仅支持保留服务非确定性这个备选解释，不证明18997差异由它造成；不临时改已冻结镜像/开关，更不把已知复现问题当新颖发现。https://docs.vllm.ai/en/stable/usage/reproducibility/ / https://docs.vllm.ai/en/stable/features/batch_invariance/
 - 18997额外无网络CPU调用链：两任务×两条件4配置/12模拟末端调用均传递正确seed，配对prompt/采样参数一致（temperature=.6、top_p=.95）；4传输SHA及独立配对通过。排除已检查配置的客户端丢seed，不是线上HTTP抓包或服务确定性证明；seed-transport回执，不修改19004。
 - 18997角色/终分联结：去噪selective两池Debug调用9/7，高于配对shared的7/5，而Improve为6/7对6/8；原终分门仍false。8任务池/179调用全分母及PowerShell独立聚合通过。只说明更多周转未转成更多Improve或稳定终分；Debug不等于无价值、Improve不等于新想法，角色计数不能证明因果。role-yield回执。
+- 18997截止/选解排查：全76候选返回均及时，35外部评分产物中34匹配合法返回，另1未匹配产物比原池best低.0002458801708332681，不是晚到有效解；8任务池记录的native-selected最佳值均等于原pool-best。两传输SHA/独立聚合通过，未独立复做原始join或native选择溯源。没有观察到靠补计晚到好解/换最终选解器挽救该批的机会，不推断另一调度器的反事实。late-quality/score-receipt-coverage回执。
 - 10/17只读18807发现每任务2个生成许可留下10.47%–24.33%的有队列/总active<4状态；独立积分通过。vLLM408采样最大Running4、Waiting0、KV13.3%，不证明硬件空闲。后续只测同总4许可的跨任务借用，执行仍单许可；这是work-conserving强基线资格，不是17675旧资源打分重命名，更不是新算法/MARS复现。
 - 同批余时独立核算：≥300秒余时下每池仍有约96/118/123/168秒借用机会，主要为analysis/debug；不是全部截止尾巴，也不是额外完成数。证据quota-slack-20261017-v1.safe.json及quota-slack-independent.json，原质量门不改。
 - 10/17只读“评分→共享归档”线索：原生_analyze先于parent wrapper发布；18807的38有效结果37发布/1截止前未发布，只有1次真实Improve准入处于更好有效父程序尚未发布窗口。仅源码+既有时间诊断，未独立复现原始join、未生成新子程序，不据此开早发布GPU新线或称收益。feedback-publication-20261017-v1.safe.json；先完成已冻结selective/quota对照。

@@ -1,0 +1,17 @@
+{
+  "date_utc": "2026-10-16",
+  "implementation": "Independent PowerShell aggregation and SHA-256 comparison",
+  "assigned": 32,
+  "all_candidate_receipts": 76,
+  "late_returns": 0,
+  "scorer_artifacts": 35,
+  "eligible_matched_scoring_artifacts": 34,
+  "unmatched_scoring_artifacts": 1,
+  "unmatched_artifacts_better_than_pool_best": 0,
+  "recorded_native_best_equal_groups": 8,
+  "verified_transport_sha256": {
+    "late-quality-20261017.safe.json": "025ec08ad15e2e3e9016ff294a0c9c0998d67dca37ad19c1cc4a9fab8c45049b",
+    "score-receipt-coverage-20261017.safe.json": "7d3506b39d55a4a3e4ac86c15c071422c77739246b1fcfa382fb870dbeddfb0b"
+  },
+  "limits": ["Independent aggregate checks, not independent extraction from remote raw candidates or score receipts", "The unmatched artifact is not a late valid return; its completion timing is not established", "Recorded native-selected values are not a new independent selection-provenance audit", "No altered primary quality gate or scheduler counterfactual"]
+}

@@ -1,0 +1,1653 @@
+{
+  "plan_sha256": "36ce5852b26de2299755c19a8b9711a1f4161d68abd25a3de6cc7687cdde8560",
+  "reader_sha256": "8ae561194a441789ff3de1b60507caa53a5883511d4698e39ace65c8e8d8451d",
+  "pools": [
+    {
+      "block": 0,
+      "events_sha256": "d5a40f5bd563b6e05c96b5395414e154bccdb3d25d05718495b0ac6bbb30f4f5",
+      "reserved_seconds": 1180.0001633167267,
+      "waiting_seconds": 1250.2905645370483,
+      "borrowable_wall_seconds": 236.49948596954346,
+      "borrowable_permit_seconds": 237.26880931854248,
+      "states": [
+        {
+          "active": [
+            0,
+            0
+          ],
+          "waiting": [
+            0,
+            0
+          ],
+          "seconds": 176.91929936408997
+        },
+        {
+          "active": [
+            0,
+            0
+          ],
+          "waiting": [
+            1,
+            0
+          ],
+          "seconds": 0.02704620361328125
+        },
+        {
+          "active": [
+            0,
+            1
+          ],
+          "waiting": [
+            0,
+            0
+          ],
+          "seconds": 107.63676929473877
+        },
+        {
+          "active": [
+            0,
+            1
+          ],
+          "waiting": [
+            0,
+            1
+          ],
+          "seconds": 0.03335928916931152
+        },
+        {
+          "active": [
+            0,
+            1
+          ],
+          "waiting": [
+            0,
+            2
+          ],
+          "seconds": 0.02568197250366211
+        },
+        {
+          "active": [
+            0,
+            2
+          ],
+          "waiting": [
+            0,
+            0
+          ],
+          "seconds": 25.14564061164856
+        },
+        {
+          "active": [
+            0,
+            2
+          ],
+          "waiting": [
+            0,
+            1
+          ],
+          "seconds": 20.883021354675293
+        },
+        {
+          "active": [
+            0,
+            2
+          ],
+          "waiting": [
+            0,
+            2
+          ],
+          "seconds": 0.7693233489990234
+        },
+        {
+          "active": [
+            0,
+            2
+          ],
+          "waiting": [
+            1,
+            1
+          ],
+          "seconds": 0.0651998519897461
+        },
+        {
+          "active": [
+            1,
+            0
+          ],
+          "waiting": [
+            0,
+            0
+          ],
+          "seconds": 22.965898275375366
+        },
+        {
+          "active": [
+            1,
+            0
+          ],
+          "waiting": [
+            1,
+            0
+          ],
+          "seconds": 0.020275115966796875
+        },
+        {
+          "active": [
+            1,
+            0
+          ],
+          "waiting": [
+            1,
+            1
+          ],
+          "seconds": 0.011727094650268555
+        },
+        {
+          "active": [
+            1,
+            1
+          ],
+          "waiting": [
+            0,
+            0
+          ],
+          "seconds": 5.967536211013794
+        },
+        {
+          "active": [
+            1,
+            1
+          ],
+          "waiting": [
+            0,
+            1
+          ],
+          "seconds": 0.08577418327331543
+        },
+        {
+          "active": [
+            1,
+            1
+          ],
+          "waiting": [
+            0,
+            2
+          ],
+          "seconds": 0.0717170238494873
+        },
+        {
+          "active": [
+            1,
+            1
+          ],
+          "waiting": [
+            1,
+            0
+          ],
+          "seconds": 0.02334141731262207
+        },
+        {
+          "active": [
+            1,
+            2
+          ],
+          "waiting": [
+            0,
+            0
+          ],
+          "seconds": 48.972002267837524
+        },
+        {
+          "active": [
+            1,
+            2
+          ],
+          "waiting": [
+            0,
+            1
+          ],
+          "seconds": 82.6420669555664
+        },
+        {
+          "active": [
+            1,
+            2
+          ],
+          "waiting": [
+            0,
+            2
+          ],
+          "seconds": 131.95716428756714
+        },
+        {
+          "active": [
+            1,
+            2
+          ],
+          "waiting": [
+            1,
+            0
+          ],
+          "seconds": 0.022495269775390625
+        },
+        {
+          "active": [
+            1,
+            2
+          ],
+          "waiting": [
+            1,
+            1
+          ],
+          "seconds": 0.08284330368041992
+        },
+        {
+          "active": [
+            1,
+            2
+          ],
+          "waiting": [
+            2,
+            1
+          ],
+          "seconds": 0.08320975303649902
+        },
+        {
+          "active": [
+            2,
+            0
+          ],
+          "waiting": [
+            0,
+            0
+          ],
+          "seconds": 6.026409864425659
+        },
+        {
+          "active": [
+            2,
+            0
+          ],
+          "waiting": [
+            0,
+            1
+          ],
+          "seconds": 0.028923749923706055
+        },
+        {
+          "active": [
+            2,
+            1
+          ],
+          "waiting": [
+            0,
+            0
+          ],
+          "seconds": 29.03611731529236
+        },
+        {
+          "active": [
+            2,
+            1
+          ],
+          "waiting": [
+            0,
+            1
+          ],
+          "seconds": 0.1657564640045166
+        },
+        {
+          "active": [
+            2,
+            1
+          ],
+          "waiting": [
+            0,
+            2
+          ],
+          "seconds": 0.13178205490112305
+        },
+        {
+          "active": [
+            2,
+            1
+          ],
+          "waiting": [
+            0,
+            3
+          ],
+          "seconds": 0.038728952407836914
+        },
+        {
+          "active": [
+            2,
+            1
+          ],
+          "waiting": [
+            2,
+            2
+          ],
+          "seconds": 0.016657114028930664
+        },
+        {
+          "active": [
+            2,
+            2
+          ],
+          "waiting": [
+            0,
+            0
+          ],
+          "seconds": 192.05192875862122
+        },
+        {
+          "active": [
+            2,
+            2
+          ],
+          "waiting": [
+            0,
+            1
+          ],
+          "seconds": 54.193962812423706
+        },
+        {
+          "active": [
+            2,
+            2
+          ],
+          "waiting": [
+            0,
+            2
+          ],
+          "seconds": 66.22252917289734
+        },
+        {
+          "active": [
+            2,
+            2
+          ],
+          "waiting": [
+            1,
+            0
+          ],
+          "seconds": 11.804046154022217
+        },
+        {
+          "active": [
+            2,
+            2
+          ],
+          "waiting": [
+            1,
+            1
+          ],
+          "seconds": 15.98798418045044
+        },
+        {
+          "active": [
+            2,
+            2
+          ],
+          "waiting": [
+            2,
+            1
+          ],
+          "seconds": 70.25963068008423
+        },
+        {
+          "active": [
+            2,
+            2
+          ],
+          "waiting": [
+            2,
+            2
+          ],
+          "seconds": 109.62431359291077
+        }
+      ]
+    },
+    {
+      "block": 1,
+      "events_sha256": "87d9c104456134525b8fc726b1e83532b50950553804587ce7b57f35d02a4268",
+      "reserved_seconds": 1180.0001780986786,
+      "waiting_seconds": 1137.4214453697205,
+      "borrowable_wall_seconds": 213.70619225502014,
+      "borrowable_permit_seconds": 213.79145216941833,
+      "states": [
+        {
+          "active": [
+            0,
+            0
+          ],
+          "waiting": [
+            0,
+            0
+          ],
+          "seconds": 175.38098621368408
+        },
+        {
+          "active": [
+            0,
+            0
+          ],
+          "waiting": [
+            0,
+            1
+          ],
+          "seconds": 0.049292802810668945
+        },
+        {
+          "active": [
+            0,
+            0
+          ],
+          "waiting": [
+            0,
+            2
+          ],
+          "seconds": 0.009759902954101562
+        },
+        {
+          "active": [
+            0,
+            1
+          ],
+          "waiting": [
+            0,
+            0
+          ],
+          "seconds": 0.029500484466552734
+        },
+        {
+          "active": [
+            0,
+            1
+          ],
+          "waiting": [
+            0,
+            2
+          ],
+          "seconds": 0.008598089218139648
+        },
+        {
+          "active": [
+            0,
+            1
+          ],
+          "waiting": [
+            1,
+            0
+          ],
+          "seconds": 0.009568929672241211
+        },
+        {
+          "active": [
+            0,
+            2
+          ],
+          "waiting": [
+            0,
+            2
+          ],
+          "seconds": 0.08525991439819336
+        },
+        {
+          "active": [
+            1,
+            1
+          ],
+          "waiting": [
+            0,
+            0
+          ],
+          "seconds": 55.15229535102844
+        },
+        {
+          "active": [
+            1,
+            1
+          ],
+          "waiting": [
+            0,
+            1
+          ],
+          "seconds": 0.06894588470458984
+        },
+        {
+          "active": [
+            1,
+            1
+          ],
+          "waiting": [
+            1,
+            0
+          ],
+          "seconds": 0.09082841873168945
+        },
+        {
+          "active": [
+            1,
+            2
+          ],
+          "waiting": [
+            0,
+            0
+          ],
+          "seconds": 106.49388408660889
+        },
+        {
+          "active": [
+            1,
+            2
+          ],
+          "waiting": [
+            0,
+            1
+          ],
+          "seconds": 129.9175775051117
+        },
+        {
+          "active": [
+            1,
+            2
+          ],
+          "waiting": [
+            0,
+            2
+          ],
+          "seconds": 5.662396669387817
+        },
+        {
+          "active": [
+            1,
+            2
+          ],
+          "waiting": [
+            1,
+            0
+          ],
+          "seconds": 0.12906575202941895
+        },
+        {
+          "active": [
+            1,
+            2
+          ],
+          "waiting": [
+            1,
+            1
+          ],
+          "seconds": 0.13829755783081055
+        },
+        {
+          "active": [
+            1,
+            2
+          ],
+          "waiting": [
+            1,
+            2
+          ],
+          "seconds": 0.024478673934936523
+        },
+        {
+          "active": [
+            1,
+            2
+          ],
+          "waiting": [
+            2,
+            0
+          ],
+          "seconds": 0.04832720756530762
+        },
+        {
+          "active": [
+            1,
+            2
+          ],
+          "waiting": [
+            2,
+            1
+          ],
+          "seconds": 0.05056595802307129
+        },
+        {
+          "active": [
+            2,
+            0
+          ],
+          "waiting": [
+            0,
+            0
+          ],
+          "seconds": 7.270176410675049
+        },
+        {
+          "active": [
+            2,
+            0
+          ],
+          "waiting": [
+            0,
+            1
+          ],
+          "seconds": 0.03394269943237305
+        },
+        {
+          "active": [
+            2,
+            0
+          ],
+          "waiting": [
+            1,
+            0
+          ],
+          "seconds": 6.881981372833252
+        },
+        {
+          "active": [
+            2,
+            0
+          ],
+          "waiting": [
+            1,
+            1
+          ],
+          "seconds": 0.010985374450683594
+        },
+        {
+          "active": [
+            2,
+            1
+          ],
+          "waiting": [
+            0,
+            0
+          ],
+          "seconds": 83.61364603042603
+        },
+        {
+          "active": [
+            2,
+            1
+          ],
+          "waiting": [
+            0,
+            1
+          ],
+          "seconds": 0.24503040313720703
+        },
+        {
+          "active": [
+            2,
+            1
+          ],
+          "waiting": [
+            0,
+            2
+          ],
+          "seconds": 0.008345842361450195
+        },
+        {
+          "active": [
+            2,
+            1
+          ],
+          "waiting": [
+            1,
+            0
+          ],
+          "seconds": 65.06209063529968
+        },
+        {
+          "active": [
+            2,
+            1
+          ],
+          "waiting": [
+            1,
+            1
+          ],
+          "seconds": 0.023432254791259766
+        },
+        {
+          "active": [
+            2,
+            1
+          ],
+          "waiting": [
+            1,
+            2
+          ],
+          "seconds": 0.007521867752075195
+        },
+        {
+          "active": [
+            2,
+            1
+          ],
+          "waiting": [
+            2,
+            0
+          ],
+          "seconds": 5.776238203048706
+        },
+        {
+          "active": [
+            2,
+            1
+          ],
+          "waiting": [
+            2,
+            1
+          ],
+          "seconds": 0.055426836013793945
+        },
+        {
+          "active": [
+            2,
+            1
+          ],
+          "waiting": [
+            2,
+            2
+          ],
+          "seconds": 0.009939432144165039
+        },
+        {
+          "active": [
+            2,
+            2
+          ],
+          "waiting": [
+            0,
+            0
+          ],
+          "seconds": 141.52415657043457
+        },
+        {
+          "active": [
+            2,
+            2
+          ],
+          "waiting": [
+            0,
+            1
+          ],
+          "seconds": 78.28996753692627
+        },
+        {
+          "active": [
+            2,
+            2
+          ],
+          "waiting": [
+            0,
+            2
+          ],
+          "seconds": 78.80482363700867
+        },
+        {
+          "active": [
+            2,
+            2
+          ],
+          "waiting": [
+            1,
+            0
+          ],
+          "seconds": 52.565471172332764
+        },
+        {
+          "active": [
+            2,
+            2
+          ],
+          "waiting": [
+            1,
+            1
+          ],
+          "seconds": 17.181498527526855
+        },
+        {
+          "active": [
+            2,
+            2
+          ],
+          "waiting": [
+            1,
+            2
+          ],
+          "seconds": 44.12964105606079
+        },
+        {
+          "active": [
+            2,
+            2
+          ],
+          "waiting": [
+            2,
+            0
+          ],
+          "seconds": 17.909064054489136
+        },
+        {
+          "active": [
+            2,
+            2
+          ],
+          "waiting": [
+            2,
+            1
+          ],
+          "seconds": 9.087708234786987
+        },
+        {
+          "active": [
+            2,
+            2
+          ],
+          "waiting": [
+            2,
+            2
+          ],
+          "seconds": 98.15946054458618
+        }
+      ]
+    },
+    {
+      "block": 2,
+      "events_sha256": "cab98c4462e0863b021adcdec7da3f5ed2603bbd54d96ac1f137baef12b9061a",
+      "reserved_seconds": 1180.0001709461212,
+      "waiting_seconds": 875.9931066036224,
+      "borrowable_wall_seconds": 123.55895018577576,
+      "borrowable_permit_seconds": 123.55895018577576,
+      "states": [
+        {
+          "active": [
+            0,
+            0
+          ],
+          "waiting": [
+            0,
+            0
+          ],
+          "seconds": 184.74012398719788
+        },
+        {
+          "active": [
+            0,
+            0
+          ],
+          "waiting": [
+            0,
+            1
+          ],
+          "seconds": 0.03408074378967285
+        },
+        {
+          "active": [
+            0,
+            0
+          ],
+          "waiting": [
+            1,
+            1
+          ],
+          "seconds": 0.007387876510620117
+        },
+        {
+          "active": [
+            0,
+            1
+          ],
+          "waiting": [
+            0,
+            0
+          ],
+          "seconds": 56.87978672981262
+        },
+        {
+          "active": [
+            0,
+            1
+          ],
+          "waiting": [
+            0,
+            1
+          ],
+          "seconds": 0.10372686386108398
+        },
+        {
+          "active": [
+            0,
+            1
+          ],
+          "waiting": [
+            1,
+            0
+          ],
+          "seconds": 0.038004159927368164
+        },
+        {
+          "active": [
+            0,
+            2
+          ],
+          "waiting": [
+            0,
+            0
+          ],
+          "seconds": 58.35251188278198
+        },
+        {
+          "active": [
+            0,
+            2
+          ],
+          "waiting": [
+            0,
+            1
+          ],
+          "seconds": 68.73813056945801
+        },
+        {
+          "active": [
+            0,
+            2
+          ],
+          "waiting": [
+            1,
+            0
+          ],
+          "seconds": 0.051839351654052734
+        },
+        {
+          "active": [
+            0,
+            2
+          ],
+          "waiting": [
+            1,
+            1
+          ],
+          "seconds": 0.02857494354248047
+        },
+        {
+          "active": [
+            1,
+            0
+          ],
+          "waiting": [
+            0,
+            0
+          ],
+          "seconds": 2.2663164138793945
+        },
+        {
+          "active": [
+            1,
+            0
+          ],
+          "waiting": [
+            0,
+            1
+          ],
+          "seconds": 0.016383886337280273
+        },
+        {
+          "active": [
+            1,
+            1
+          ],
+          "waiting": [
+            0,
+            0
+          ],
+          "seconds": 84.36241841316223
+        },
+        {
+          "active": [
+            1,
+            1
+          ],
+          "waiting": [
+            0,
+            1
+          ],
+          "seconds": 0.1526966094970703
+        },
+        {
+          "active": [
+            1,
+            1
+          ],
+          "waiting": [
+            1,
+            0
+          ],
+          "seconds": 0.04827690124511719
+        },
+        {
+          "active": [
+            1,
+            2
+          ],
+          "waiting": [
+            0,
+            0
+          ],
+          "seconds": 158.6952257156372
+        },
+        {
+          "active": [
+            1,
+            2
+          ],
+          "waiting": [
+            0,
+            1
+          ],
+          "seconds": 54.46912121772766
+        },
+        {
+          "active": [
+            1,
+            2
+          ],
+          "waiting": [
+            1,
+            0
+          ],
+          "seconds": 0.07440543174743652
+        },
+        {
+          "active": [
+            1,
+            2
+          ],
+          "waiting": [
+            1,
+            1
+          ],
+          "seconds": 0.06111955642700195
+        },
+        {
+          "active": [
+            1,
+            2
+          ],
+          "waiting": [
+            2,
+            1
+          ],
+          "seconds": 0.011263370513916016
+        },
+        {
+          "active": [
+            1,
+            2
+          ],
+          "waiting": [
+            2,
+            2
+          ],
+          "seconds": 0.015994548797607422
+        },
+        {
+          "active": [
+            2,
+            0
+          ],
+          "waiting": [
+            0,
+            0
+          ],
+          "seconds": 0.05122041702270508
+        },
+        {
+          "active": [
+            2,
+            1
+          ],
+          "waiting": [
+            0,
+            0
+          ],
+          "seconds": 77.82164883613586
+        },
+        {
+          "active": [
+            2,
+            1
+          ],
+          "waiting": [
+            0,
+            1
+          ],
+          "seconds": 0.051807403564453125
+        },
+        {
+          "active": [
+            2,
+            1
+          ],
+          "waiting": [
+            1,
+            0
+          ],
+          "seconds": 0.04839587211608887
+        },
+        {
+          "active": [
+            2,
+            1
+          ],
+          "waiting": [
+            1,
+            1
+          ],
+          "seconds": 0.09622550010681152
+        },
+        {
+          "active": [
+            2,
+            1
+          ],
+          "waiting": [
+            1,
+            2
+          ],
+          "seconds": 0.09012460708618164
+        },
+        {
+          "active": [
+            2,
+            2
+          ],
+          "waiting": [
+            0,
+            0
+          ],
+          "seconds": 108.94631481170654
+        },
+        {
+          "active": [
+            2,
+            2
+          ],
+          "waiting": [
+            0,
+            1
+          ],
+          "seconds": 117.4698839187622
+        },
+        {
+          "active": [
+            2,
+            2
+          ],
+          "waiting": [
+            1,
+            0
+          ],
+          "seconds": 31.68520998954773
+        },
+        {
+          "active": [
+            2,
+            2
+          ],
+          "waiting": [
+            1,
+            1
+          ],
+          "seconds": 30.820092916488647
+        },
+        {
+          "active": [
+            2,
+            2
+          ],
+          "waiting": [
+            1,
+            2
+          ],
+          "seconds": 5.1712119579315186
+        },
+        {
+          "active": [
+            2,
+            2
+          ],
+          "waiting": [
+            2,
+            1
+          ],
+          "seconds": 29.300018072128296
+        },
+        {
+          "active": [
+            2,
+            2
+          ],
+          "waiting": [
+            2,
+            2
+          ],
+          "seconds": 109.30062747001648
+        }
+      ]
+    },
+    {
+      "block": 3,
+      "events_sha256": "2cad41fcff455ad6d4828cf8c54ba89959345df003710cb4af21e20e0f99f90b",
+      "reserved_seconds": 1180.0001652240753,
+      "waiting_seconds": 930.0023951530457,
+      "borrowable_wall_seconds": 287.04794216156006,
+      "borrowable_permit_seconds": 294.52422285079956,
+      "states": [
+        {
+          "active": [
+            0,
+            0
+          ],
+          "waiting": [
+            0,
+            0
+          ],
+          "seconds": 175.29669570922852
+        },
+        {
+          "active": [
+            0,
+            0
+          ],
+          "waiting": [
+            1,
+            0
+          ],
+          "seconds": 0.022858619689941406
+        },
+        {
+          "active": [
+            0,
+            0
+          ],
+          "waiting": [
+            1,
+            1
+          ],
+          "seconds": 0.026143789291381836
+        },
+        {
+          "active": [
+            0,
+            1
+          ],
+          "waiting": [
+            0,
+            0
+          ],
+          "seconds": 31.506372690200806
+        },
+        {
+          "active": [
+            0,
+            1
+          ],
+          "waiting": [
+            0,
+            1
+          ],
+          "seconds": 0.08685421943664551
+        },
+        {
+          "active": [
+            0,
+            1
+          ],
+          "waiting": [
+            0,
+            2
+          ],
+          "seconds": 0.06417250633239746
+        },
+        {
+          "active": [
+            0,
+            2
+          ],
+          "waiting": [
+            0,
+            0
+          ],
+          "seconds": 18.33257818222046
+        },
+        {
+          "active": [
+            0,
+            2
+          ],
+          "waiting": [
+            0,
+            1
+          ],
+          "seconds": 58.36272621154785
+        },
+        {
+          "active": [
+            0,
+            2
+          ],
+          "waiting": [
+            0,
+            2
+          ],
+          "seconds": 7.476280689239502
+        },
+        {
+          "active": [
+            0,
+            2
+          ],
+          "waiting": [
+            1,
+            1
+          ],
+          "seconds": 0.09349966049194336
+        },
+        {
+          "active": [
+            1,
+            0
+          ],
+          "waiting": [
+            0,
+            0
+          ],
+          "seconds": 18.804381608963013
+        },
+        {
+          "active": [
+            1,
+            0
+          ],
+          "waiting": [
+            0,
+            1
+          ],
+          "seconds": 0.008309602737426758
+        },
+        {
+          "active": [
+            1,
+            0
+          ],
+          "waiting": [
+            1,
+            0
+          ],
+          "seconds": 0.03195762634277344
+        },
+        {
+          "active": [
+            1,
+            1
+          ],
+          "waiting": [
+            0,
+            0
+          ],
+          "seconds": 71.36572003364563
+        },
+        {
+          "active": [
+            1,
+            1
+          ],
+          "waiting": [
+            0,
+            1
+          ],
+          "seconds": 0.3226664066314697
+        },
+        {
+          "active": [
+            1,
+            1
+          ],
+          "waiting": [
+            1,
+            0
+          ],
+          "seconds": 0.028902769088745117
+        },
+        {
+          "active": [
+            1,
+            2
+          ],
+          "waiting": [
+            0,
+            0
+          ],
+          "seconds": 171.8735191822052
+        },
+        {
+          "active": [
+            1,
+            2
+          ],
+          "waiting": [
+            0,
+            1
+          ],
+          "seconds": 157.5025818347931
+        },
+        {
+          "active": [
+            1,
+            2
+          ],
+          "waiting": [
+            1,
+            0
+          ],
+          "seconds": 0.1404399871826172
+        },
+        {
+          "active": [
+            1,
+            2
+          ],
+          "waiting": [
+            1,
+            1
+          ],
+          "seconds": 0.11157989501953125
+        },
+        {
+          "active": [
+            1,
+            2
+          ],
+          "waiting": [
+            2,
+            1
+          ],
+          "seconds": 0.07727670669555664
+        },
+        {
+          "active": [
+            2,
+            0
+          ],
+          "waiting": [
+            0,
+            0
+          ],
+          "seconds": 19.95003390312195
+        },
+        {
+          "active": [
+            2,
+            0
+          ],
+          "waiting": [
+            0,
+            1
+          ],
+          "seconds": 0.02054905891418457
+        },
+        {
+          "active": [
+            2,
+            0
+          ],
+          "waiting": [
+            1,
+            0
+          ],
+          "seconds": 41.92512011528015
+        },
+        {
+          "active": [
+            2,
+            1
+          ],
+          "waiting": [
+            0,
+            0
+          ],
+          "seconds": 50.286510705947876
+        },
+        {
+          "active": [
+            2,
+            1
+          ],
+          "waiting": [
+            1,
+            0
+          ],
+          "seconds": 21.41937017440796
+        },
+        {
+          "active": [
+            2,
+            1
+          ],
+          "waiting": [
+            1,
+            1
+          ],
+          "seconds": 0.05365490913391113
+        },
+        {
+          "active": [
+            2,
+            1
+          ],
+          "waiting": [
+            2,
+            2
+          ],
+          "seconds": 0.025851964950561523
+        },
+        {
+          "active": [
+            2,
+            2
+          ],
+          "waiting": [
+            0,
+            0
+          ],
+          "seconds": 51.96043586730957
+        },
+        {
+          "active": [
+            2,
+            2
+          ],
+          "waiting": [
+            0,
+            1
+          ],
+          "seconds": 64.64788436889648
+        },
+        {
+          "active": [
+            2,
+            2
+          ],
+          "waiting": [
+            0,
+            2
+          ],
+          "seconds": 0.025536060333251953
+        },
+        {
+          "active": [
+            2,
+            2
+          ],
+          "waiting": [
+            1,
+            0
+          ],
+          "seconds": 78.31224036216736
+        },
+        {
+          "active": [
+            2,
+            2
+          ],
+          "waiting": [
+            1,
+            1
+          ],
+          "seconds": 30.39948868751526
+        },
+        {
+          "active": [
+            2,
+            2
+          ],
+          "waiting": [
+            1,
+            2
+          ],
+          "seconds": 0.021776676177978516
+        },
+        {
+          "active": [
+            2,
+            2
+          ],
+          "waiting": [
+            2,
+            1
+          ],
+          "seconds": 7.396124362945557
+        },
+        {
+          "active": [
+            2,
+            2
+          ],
+          "waiting": [
+            2,
+            2
+          ],
+          "seconds": 102.02007007598877
+        }
+      ]
+    }
+  ],
+  "boundary": "Observed resource states only; borrowable means a queued task held its2permits while fewer than4total were active. Not saved time, server capacity, causal quality gain or a changed experiment. No code/labels/predictions/model/GPU calls. Binned states omit candidate identities and order."
+}

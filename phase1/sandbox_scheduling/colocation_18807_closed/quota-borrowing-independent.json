@@ -1,0 +1,47 @@
+{
+  "passed": true,
+  "source_sha256": "77952b1eb54995f4aa19e8e81ef0278e6b60a760f60bb167b8a1506145bee096",
+  "pools": [
+    {
+      "block": 0,
+      "borrowable_wall_seconds": 236.49948596954346,
+      "fraction": 0.20042326545514558,
+      "borrowable_permit_seconds": 237.26880931854248,
+      "task_wall_seconds": {
+        "aerial": 0.016657114028930664,
+        "denoise": 236.48282885551453
+      }
+    },
+    {
+      "block": 1,
+      "borrowable_wall_seconds": 213.70619225502014,
+      "fraction": 0.18110691525433717,
+      "borrowable_permit_seconds": 213.79145216941833,
+      "task_wall_seconds": {
+        "aerial": 77.82761597633362,
+        "denoise": 135.87857627868652
+      }
+    },
+    {
+      "block": 2,
+      "borrowable_wall_seconds": 123.55895018577576,
+      "fraction": 0.10471095956427404,
+      "borrowable_permit_seconds": 123.55895018577576,
+      "task_wall_seconds": {
+        "aerial": 0.23474597930908203,
+        "denoise": 123.32420420646667
+      }
+    },
+    {
+      "block": 3,
+      "borrowable_wall_seconds": 287.04794216156006,
+      "fraction": 0.24326093387203152,
+      "borrowable_permit_seconds": 294.52422285079956,
+      "task_wall_seconds": {
+        "aerial": 63.42399716377258,
+        "denoise": 223.62394499778748
+      }
+    }
+  ],
+  "boundary": "Independent integration of binned observed state durations, not independent event parsing, causal saved time or quality."
+}

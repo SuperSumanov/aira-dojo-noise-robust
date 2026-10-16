@@ -1,0 +1,245 @@
+{
+  "plan_sha256": "36ce5852b26de2299755c19a8b9711a1f4161d68abd25a3de6cc7687cdde8560",
+  "primary_summary_sha256": "c8c2f71009a39e9932ec59e388f9b052ce190730179119aed5d73e4fa38576a4",
+  "log_sha256": "e3d530d3a745061e1dc491ded459f3a59292cbefd1869a97cab5b5eae5ae97f5",
+  "log_bytes": 141065,
+  "reader_sha256": "5a68ecc48ca659c0de2caa04dc5f9f011b4510bb7084e85c595b9c3ad7c9c0de",
+  "credential_matches_redacted": 0,
+  "overall": {
+    "samples": 408,
+    "prompt_tokens_per_second": {
+      "count": 408,
+      "min": 0.0,
+      "median": 0.0,
+      "max": 1706.5
+    },
+    "generation_tokens_per_second": {
+      "count": 408,
+      "min": 0.0,
+      "median": 115.65,
+      "max": 162.4
+    },
+    "running_requests": {
+      "count": 408,
+      "min": 0.0,
+      "median": 3.0,
+      "max": 4.0
+    },
+    "waiting_requests": {
+      "count": 408,
+      "min": 0.0,
+      "median": 0.0,
+      "max": 0.0
+    },
+    "kv_cache_percent": {
+      "count": 408,
+      "min": 0.0,
+      "median": 9.1,
+      "max": 13.3
+    },
+    "prefix_hit_percent": {
+      "count": 408,
+      "min": 0.0,
+      "median": 0.0,
+      "max": 0.0
+    }
+  },
+  "by_running_requests": {
+    "0": {
+      "samples": 11,
+      "prompt_tokens_per_second": {
+        "count": 11,
+        "min": 0.0,
+        "median": 0.0,
+        "max": 0.0
+      },
+      "generation_tokens_per_second": {
+        "count": 11,
+        "min": 0.0,
+        "median": 7.9,
+        "max": 64.3
+      },
+      "running_requests": {
+        "count": 11,
+        "min": 0.0,
+        "median": 0.0,
+        "max": 0.0
+      },
+      "waiting_requests": {
+        "count": 11,
+        "min": 0.0,
+        "median": 0.0,
+        "max": 0.0
+      },
+      "kv_cache_percent": {
+        "count": 11,
+        "min": 0.0,
+        "median": 0.0,
+        "max": 0.0
+      },
+      "prefix_hit_percent": {
+        "count": 11,
+        "min": 0.0,
+        "median": 0.0,
+        "max": 0.0
+      }
+    },
+    "1": {
+      "samples": 27,
+      "prompt_tokens_per_second": {
+        "count": 27,
+        "min": 0.0,
+        "median": 0.0,
+        "max": 983.3
+      },
+      "generation_tokens_per_second": {
+        "count": 27,
+        "min": 20.7,
+        "median": 48.8,
+        "max": 110.9
+      },
+      "running_requests": {
+        "count": 27,
+        "min": 1.0,
+        "median": 1.0,
+        "max": 1.0
+      },
+      "waiting_requests": {
+        "count": 27,
+        "min": 0.0,
+        "median": 0.0,
+        "max": 0.0
+      },
+      "kv_cache_percent": {
+        "count": 27,
+        "min": 2.3,
+        "median": 2.9,
+        "max": 3.6
+      },
+      "prefix_hit_percent": {
+        "count": 27,
+        "min": 0.0,
+        "median": 0.0,
+        "max": 0.0
+      }
+    },
+    "2": {
+      "samples": 58,
+      "prompt_tokens_per_second": {
+        "count": 58,
+        "min": 0.0,
+        "median": 0.0,
+        "max": 1432.3
+      },
+      "generation_tokens_per_second": {
+        "count": 58,
+        "min": 14.5,
+        "median": 83.8,
+        "max": 130.0
+      },
+      "running_requests": {
+        "count": 58,
+        "min": 2.0,
+        "median": 2.0,
+        "max": 2.0
+      },
+      "waiting_requests": {
+        "count": 58,
+        "min": 0.0,
+        "median": 0.0,
+        "max": 0.0
+      },
+      "kv_cache_percent": {
+        "count": 58,
+        "min": 4.5,
+        "median": 5.8,
+        "max": 6.8
+      },
+      "prefix_hit_percent": {
+        "count": 58,
+        "min": 0.0,
+        "median": 0.0,
+        "max": 0.0
+      }
+    },
+    "3": {
+      "samples": 142,
+      "prompt_tokens_per_second": {
+        "count": 142,
+        "min": 0.0,
+        "median": 0.0,
+        "max": 1332.5
+      },
+      "generation_tokens_per_second": {
+        "count": 142,
+        "min": 28.2,
+        "median": 120.3,
+        "max": 156.8
+      },
+      "running_requests": {
+        "count": 142,
+        "min": 3.0,
+        "median": 3.0,
+        "max": 3.0
+      },
+      "waiting_requests": {
+        "count": 142,
+        "min": 0.0,
+        "median": 0.0,
+        "max": 0.0
+      },
+      "kv_cache_percent": {
+        "count": 142,
+        "min": 6.5,
+        "median": 8.8,
+        "max": 10.4
+      },
+      "prefix_hit_percent": {
+        "count": 142,
+        "min": 0.0,
+        "median": 0.0,
+        "max": 0.0
+      }
+    },
+    "4": {
+      "samples": 170,
+      "prompt_tokens_per_second": {
+        "count": 170,
+        "min": 0.0,
+        "median": 0.0,
+        "max": 1706.5
+      },
+      "generation_tokens_per_second": {
+        "count": 170,
+        "min": 0.9,
+        "median": 158.0,
+        "max": 162.4
+      },
+      "running_requests": {
+        "count": 170,
+        "min": 4.0,
+        "median": 4.0,
+        "max": 4.0
+      },
+      "waiting_requests": {
+        "count": 170,
+        "min": 0.0,
+        "median": 0.0,
+        "max": 0.0
+      },
+      "kv_cache_percent": {
+        "count": 170,
+        "min": 8.1,
+        "median": 11.4,
+        "max": 13.3
+      },
+      "prefix_hit_percent": {
+        "count": 170,
+        "min": 0.0,
+        "median": 0.0,
+        "max": 0.0
+      }
+    }
+  },
+  "boundary": "Closed-batch vLLM telemetry samples, not integrated GPU utilization or a concurrency intervention. Running/Waiting are server-side and distinct from application permits. No candidate text, labels, predictions, keys or raw logs exported. No new GPU/model/scorer calls, no altered experiment gate."
+}

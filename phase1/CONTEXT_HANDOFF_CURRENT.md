@@ -1,6 +1,6 @@
 # 当前短交接：现场、证据与恢复动作
 
-最后核验：2026-10-17香港03:30。新授权窗口02:49–08:49，用户批准同范围自主批次，持续在会话推进，无需重复请批。
+最后核验：2026-10-17香港03:47。新授权窗口02:49–08:49，用户批准同范围自主批次，持续在会话推进，无需重复请批。
 18987于03:15:21 FAILED封存：733GPU秒，4wrapper/3有效/3重评分，首组资格门阻止其余12次。无本轮GPU活动；条件六卡禁止提交，不能改门救结论。
 
 ## checkout、Git与边界
@@ -46,7 +46,9 @@
 ## 收尾与下一次恢复
 
 - 18987不可再readout/submit/改时限；条件六卡父门false，不提交。诊断仅解释失败，不拿第一组或完整个例救配对收益。
-- 独立selective32条源码8384f405d58ee8e5173b8039fba4fa5b3b14bab7已公开；root=scheduling-selective-20261017-v1，gpu3六卡≤100min/10GPUh；只让Aerial+Aerial共置、去噪独占，vs sharedFIFO，原质量门/完整搜索分母。03:29启动CPU准备，session72576，未提交GPU。
+- 独立selective32条源码8384f405d58ee8e5173b8039fba4fa5b3b14bab7已公开；root=scheduling-selective-20261017-v1，gpu3六卡≤100min/10GPUh。CPU32输入/10信号通过，planSHA1783555a7c680021b2a1bae874798f1042c0bfe79d0b11af70fa7f2a75d26e32；submit session57776仍在哈希预检，远端PID1362503读取持续增加，尚无job号。不要重复submit。
+- 新只读证据：18807四池固定2/task生成许可有123.56–287.05s可借用状态；独立积分回执quota-borrowing-independent.json。408vLLM采样Waiting全0、Running≤4、KV≤13.3%；不是空闲算力或可节省时长。两安全传输SHA已核，原日志未导出。
+- 本地新generation_quota_*原型拟独立32条检验partitioned2+2 vs pooled4，双方同全局analyze优先/FIFO仲裁、执行均shared cap1、其余同预算。8CPU测试通过；尚未远端准备/提交，不与selective混合，不称新算法。只有当前批闭合且窗口够时才考虑提交；不在测量期间做大量远端IO准备。
 - 32条前必须完成真实输入矩阵、实际双模式CPU信号场景、common readiness及worker异常停止门；22本地CPU测试通过。若不胜不补seed；不自称新算法/胜SchedMate。六卡diverse包不得误submit。
 - 旧一次提醒已删除；本轮继续本会话到08:49，不建重复跟进/长报告。当前无外部权限或节点阻塞，不碰旧12535。
 

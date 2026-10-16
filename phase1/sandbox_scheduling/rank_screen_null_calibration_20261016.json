@@ -1,0 +1,11 @@
+{
+  "purpose": "Pre-outcome calibration of the descriptive strict ranking flip screen, NOT actual-data inference or an altered gate",
+  "observed_rank_outcomes_read": false,
+  "assumption": "Artificial continuous IID exchangeable scores: two programs each measured twice in each of two independent resource conditions; no program or resource effect",
+  "enumerated_per_condition_assignments": 6,
+  "independent_condition_assignment_pairs": 36,
+  "strict_opposite_separation_pairs": 2,
+  "single_task_probability": 0.05555555555555555,
+  "two_independent_tasks_at_least_one_probability": 0.10802469135802473,
+  "boundary": "Real program scores are neither IID nor generally equal in expectation; ABBA conditions were not randomized. These are not real p-values or estimated real false-positive rates. Strict repeated flip remains descriptive and needs a separately selected-program confirmation plus eventual equal-cost search benefit. No success threshold changed."
+}

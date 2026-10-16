@@ -1,0 +1,80 @@
+{
+  "boundary": "4 new chronological DEV programs from18807,2 pool repeats. Confirmation requires denoising task strict interval flip, because only that task passed18819. Not significance, E2E or task generalization.",
+  "complete": 16,
+  "effects": [
+    {
+      "colocated_scores": [
+        0.9995282842374774,
+        0.9994120256784422
+      ],
+      "colocated_steps": [
+        2698,
+        2698
+      ],
+      "complete": true,
+      "oriented_mean_score_delta": -0.00018106936493422765,
+      "program": 0,
+      "solo_scores": [
+        0.9997073491444972,
+        0.999595099501291
+      ],
+      "solo_steps": [
+        2982,
+        3124
+      ]
+    },
+    {
+      "complete": false,
+      "program": 1
+    },
+    {
+      "complete": false,
+      "program": 2
+    },
+    {
+      "complete": false,
+      "program": 3
+    }
+  ],
+  "gpu_hours": 0.9091666666666667,
+  "gpu_seconds": 3273,
+  "overlaps": [
+    {
+      "block": 1,
+      "host_training_envelope_overlap_seconds": 238.84671187400818,
+      "task_index": 0
+    },
+    {
+      "block": 1,
+      "host_training_envelope_overlap_seconds": null,
+      "task_index": 1
+    },
+    {
+      "block": 2,
+      "host_training_envelope_overlap_seconds": 239.01175045967102,
+      "task_index": 0
+    },
+    {
+      "block": 2,
+      "host_training_envelope_overlap_seconds": null,
+      "task_index": 1
+    }
+  ],
+  "plan_sha256": "d9834749a7d1add6ba10168372ea2c947adaa5f00273fb8719491591a2d0d146",
+  "planned": 16,
+  "ranking": [
+    {
+      "complete": false,
+      "task_index": 0
+    },
+    {
+      "complete": false,
+      "task_index": 1
+    }
+  ],
+  "reader_sha256": "89040d72a776486aa02ac6ddd176f025998e9ac2ccd9e136527588af767fd70e",
+  "recomputed": 11,
+  "source_commit": "30af07a15f33d3f444028108566ae18554e5b819",
+  "structure": true,
+  "valid": 11
+}

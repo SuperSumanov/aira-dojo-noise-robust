@@ -1,8 +1,15 @@
 {
   "date": "2026-10-16",
   "question": "Can successful self-timed MLE programs finish sooner under sharing while yielding less useful output, and can admission improve final search quality under equal resources?",
-  "evidence_now": "18812:8executions confirm local work/quality reduction.18819:16executions show strict repeated Denoise rank reversal; posthoc log/step/source checks verify completed-fold counts3-to2 and5-to1 under sharing.18807:32search runs failed original final-quality gate. Not significance, fold-only causal mediation, general incidence or E2E benefit; independent18845 confirmation pending as of Oct16HK15:06.",
+  "evidence_now": "18812:8executions confirm local work/quality reduction.18819:16executions show strict repeated Denoise rank reversal; posthoc log/step/source checks verify completed-fold counts3-to2 and5-to1 under sharing.18807:32search runs failed original final-quality gate.18845 closed with16wrappers but11valid outputs:4candidate timeouts and1kernel-readiness failure, plus1subsequent execution violating the declared infrastructure-stop rule. New-source rank confirmation did not pass. Not significance, fold-only causal mediation, general incidence or E2E benefit.",
   "sources": [
+    {
+      "title": "NVIDIA Multi-Process Service: Architecture",
+      "url": "https://docs.nvidia.com/deploy/mps/architecture.html",
+      "scope_read": "Official architecture documentation on cross-context time slicing and MPS concurrency",
+      "overlap": "Multiple CUDA processes sharing a device do not by themselves establish overlapping GPU kernels. MPS is an existing execution-backend alternative, not a new scheduler.",
+      "difference_to_test": "18807/18819 establish container/host-training overlap only. They neither measure kernel overlap nor verify MPS state; do not attribute all slowdown to CUDA context switching or generalize the cap2 result to all sharing backends. Do not change the active18845 backend or install system software. A future backend comparison requires exact-node support and owned-allocation isolation first."
+    },
     {
       "title": "Adaptive and Efficient GPU Sharing for High-Accuracy Hyperparameter Tuning (DISC)",
       "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5030511",
@@ -88,5 +95,5 @@
       "difference_to_test": "Would require a practical mechanism exploiting nonstationary generated-program behavior beyond classical resource/time allocation; current results do not establish this."
     }
   ],
-  "decision": "18807 did not pass, so no extra search seeds to rescue that recipe.18819 triggered a frozen new-source confirmation,18845 pending. Large measured slowdown may already be detectable by SchedMate-style progress protection; do not claim it is insufficient from our host timing. No new method is established. Do not restore multifidelity, timer rewriting or base training."
+  "decision": "18807 and18845 did not pass; no extra search seeds, replacement programs or repeated repairs to rescue either recipe.18819 remains a local completed-fold/ranking mechanism observation, not independently confirmed across new sources. Large measured slowdown may already be detectable by SchedMate-style progress protection; do not claim it is insufficient from our host timing. No new method is established. Do not restore multifidelity, timer rewriting or base training."
 }

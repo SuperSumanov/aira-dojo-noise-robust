@@ -1,14 +1,14 @@
 # 当前短交接：只记录现场与恢复操作
 
-最后核验：2026-10-16香港14:51；用户11:18批准六小时自主推进，窗口到17:18。
+最后核验：2026-10-16香港15:56；用户11:18批准六小时自主推进，窗口到17:18。
 限定新实验自行决策，不重复询问已批准事项；不能用无界重试、择seed或改门追正。
 
 ## 目录、Git与授权
 
 - checkout：C:/Research/New/my_project/MLEvolve/_codex_tmp/publication-feedback-20261001（detached HEAD有意）。
 - 旧完整三文档归档Git6c47086a603b4c7afcc25a3e80f9d5648c3bee63；方向只读CURRENT_DIRECTION，历史按需检索ROUTE_DECISIONS。
-- 14:46快进push并ls-remote核对phase1-value-critic=30af07a15f33d3f444028108566ae18554e5b819；1提交/7blobs扫描0凭据/大二进制/private文件。
-- dojo-reproduce=c394ca1756ab2e53d5cbb68802e2973c8ceebe8a，13:38fetch未变；未改学长分支。
+- 15:22快进push/15:55fetch核对phase1-value-critic=7600573a1bf39784e9fe5adb8109209270de7647；1提交/5blobs扫描0凭据/大二进制/private文件。当前有18845闭合补充未提交。
+- dojo-reproduce=c394ca1756ab2e53d5cbb68802e2973c8ceebe8a，15:55fetch未变；未改学长分支。
 - 用户未跟踪报告、_codex_tmp、pooling_host_compat_20261016.sh及旧checkout dirty保留。
 - 本窗口不训练底座、不用付费API、不碰保护集/官方test/D_val/旧Held12535；GPU镜像不升级、不退CPU。
 
@@ -52,9 +52,11 @@
 - Denoise严格跨重复区间翻转；Aerial仅配对翻转，区间重叠。过333c5662事前新来源门，不是方法收益。
 - 新来源v1/18844 FAILED封存：14:38:30–14:38:41/gpu27，11GPU秒，首容器导入旧pooling模块失败，0候选/评分、清理true；不是方法反证。
 - 15:06封存18819事后机制补强：去噪实际完成折数两次均3→2、5→1，12轮×每折batches等于全部梯度steps；源码平均完成模型。fold-mechanism回执SHA80ed9a56f1127270432a370c3c99de7894f38547c95cf97dadb76cde48b04028；不是折数单因子干预/E2E。
-- 18845是唯一活动GPU：14:48:31起RUNNING/gpu27，14:51已过首容器GPU隔离。root=clock-rank-confirmation-20261016-v2，source=30af07a15f33d3f444028108566ae18554e5b819，planSHAd9834749a7d1add6ba10168372ea2c947adaa5f00273fb8719491591a2d0d146。
-- v2只从新donor导入AST相同namespace，原4程序/seed/时限不变；6CPU测试/16配置/实际shim导入门通过。16次、1GPU≤90分钟，预计15:50附近、硬16:18；不再自动修正或补样本。
-- 闭合+sacct后只运行一次clock_rank_confirm_readout_20261016.py root root/readout-20261016-v1 --gpu-seconds 实际秒数；readerSHA89040d72a776486aa02ac6ddd176f025998e9ac2ccd9e136527588af767fd70e。沿用verify_clock_rank_20261016.cjs及3传输SHA；确认要求Denoise再次严格翻转。
+- 18845 COMPLETED/0:0/gpu27，14:48:31–15:43:04，3273GPU秒；现在本轮无活动GPU。root=clock-rank-confirmation-20261016-v2，source=30af07a15f33d3f444028108566ae18554e5b819，planSHAd9834749a7d1add6ba10168372ea2c947adaa5f00273fb8719491591a2d0d146。
+- 16wrapper闭合、11有效/11pristine重评分，独立Node及3传输SHA通过；确认门false，不能计算完整排序。唯一readout-20261016-v1已封存，readerSHA89040d72a776486aa02ac6ddd176f025998e9ac2ccd9e136527588af767fd70e；禁止再次读出/修正/补样本。
+- 4去噪共置执行超时均报告CV已完成，2次另有inference开始声明；不能由缺终端训练回执推零GPU工作。index13内核未就绪属设施错误，被包装成普通超时，未触发声明的设施停止门，之后执行index12；补充审计保留此偏离，不能用后续个例确认效果。
+- failure-audit回执SHAd674c63e34f01d7a26b6f70a088a392e3a38fbe13b405fcbf600d49bee0dbea4；7解析测试/独立Node分类/传输SHA通过；原summary不覆盖。源closed_rank_failure_audit_20261016.py。
+- 本窗口5作业全allocation合计39138GPU秒=10.871666666666666GPUh，已打印独立求和；见window_20261016_allocation_receipt.json，18770在窗口前结束不混入。
 
 ## 已闭合与操作经验
 

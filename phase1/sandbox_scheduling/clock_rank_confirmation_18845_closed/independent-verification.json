@@ -1,0 +1,29 @@
+{
+  "job": 18845,
+  "verified_at_utc": "2026-10-16T07:55:00Z",
+  "full_matrix": 16,
+  "wrappers_closed": 16,
+  "valid_outputs": 11,
+  "remote_pristine_dev_rescores": 11,
+  "independent_node_statistics_passed": true,
+  "independent_rescoring_by_node": false,
+  "gpu_seconds_from_sacct": 3273,
+  "transfer_sha256": {
+    "runs.json": "53c6d9a450ae793370152602c9943c9a491b4e3d4bad6a8bc462e122173930c0",
+    "runs.csv": "8b2b5a33705923f9dca2d0900fc01c9642595f1e443ff93d0f3caa09754f8c8f",
+    "summary.json": "d1fb386fb38c73b9a4a53bf179297fa0e36aa8a798356a13eff294b78597efde",
+    "failure-audit-20261016.safe.json": "d674c63e34f01d7a26b6f70a088a392e3a38fbe13b405fcbf600d49bee0dbea4"
+  },
+  "failure_classes": {
+    "candidate_execution_timeout": 4,
+    "infrastructure_kernel_not_ready": 1
+  },
+  "confirmation_gate_passed": false,
+  "protocol_deviation": {
+    "infrastructure_failure_index": 13,
+    "subsequently_executed_indices": [12],
+    "cause": "Kernel-not-ready was returned as an ordinary timed_out ExecutionOutput with error=null. The controller checked wrapper returncode/cleanup and only the first solo block's validity, so the declared infrastructure-stop rule did not fire.",
+    "handling": "Retain all rows and full costs. No confirmation from the post-deviation row or the descriptive complete-case program0 contrast. No rerun, replacement or in-place correction. A future independent execution path must distinguish readiness failure from candidate timeout."
+  },
+  "boundary": "Complete=16 and structure=true in the frozen summary mean wrapper closure/isolation, not 16 successful candidates or satisfaction of every semantic stop rule. Four Denoise timeouts occurred before the infrastructure failure, each after reporting CV finished; two also explicitly announced inference. No ranking can be computed for the missing outputs, and no scores are imputed. This is not a confirmed rank reversal, E2E gain, or evidence that reversal is absent."
+}

@@ -1,0 +1,53 @@
+{
+  "actual_native_mcts": true,
+  "actual_native_transport": true,
+  "all_three_transport_seeds_matched": true,
+  "arm": "old_fast",
+  "bad_prompt_transport_calls": 0,
+  "bundle_sha256": "d12d04af8684983be97f5ae6277731a65b505b5034244be34343daee02947006",
+  "diagnostic_source_sha256": "068a248494786594d2392952d519d78cd9f11f8b88c9b7266cb2b4836ce04d38",
+  "first_prompt_sha256": "cf98ec70c5c9bb7445dfd74fe75caca60ddb285dd3204931724493eee8c9916e",
+  "gpu_calls": 0,
+  "helper_source_sha256": "e03896da8c951c1b8b0e651c9b5d8617527008de1c3bab6cffdf72631f5065bb",
+  "http_calls": 0,
+  "index": 0,
+  "installed_native_hook": true,
+  "limitation": "CPU transport replaced by a fake response; this does not validate a live model or physical sandbox.",
+  "model_calls": 0,
+  "native_client_sha256": "78abcc45102773705bb31b33900fbef34dc4650a11cda48058c04c839bcc9717",
+  "parent_fixture_sha256": "12dd574c08608fe249d1163621297ddb72d82e6c2887fc03f18431e61a88fdaa",
+  "parent_plan_sha256": "1783555a7c680021b2a1bae874798f1042c0bfe79d0b11af70fa7f2a75d26e32",
+  "preview_sha256": "7346def13bd4b2d5997546dee236a012a1d2b4ba0fd81f7248c00a4140660a67",
+  "seed": 217701,
+  "task": "aerial-cactus-identification",
+  "transport_parameters": [
+    {
+      "max_tokens": 32768,
+      "model": "openai/qwen3.8-27b",
+      "reasoning_effort": "none",
+      "seed": 217701,
+      "temperature": 0.6,
+      "top_k": null,
+      "top_p": 0.95
+    },
+    {
+      "max_tokens": 32768,
+      "model": "openai/qwen3.8-27b",
+      "reasoning_effort": "none",
+      "seed": 217701,
+      "temperature": 0.6,
+      "top_k": null,
+      "top_p": 0.95
+    },
+    {
+      "max_tokens": 32768,
+      "model": "openai/qwen3.8-27b",
+      "reasoning_effort": "none",
+      "seed": 217701,
+      "temperature": 0.6,
+      "top_k": null,
+      "top_p": 0.95
+    }
+  ],
+  "warm_sha256": "a91ec6f1b5b330b3791dc2ed9b33a0b2cf44cd33df06fed92ad3473ae5b599d6"
+}

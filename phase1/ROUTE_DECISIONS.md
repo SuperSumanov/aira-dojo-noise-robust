@@ -23,6 +23,7 @@
 - 18997该配方32完整/35重评分、独立复核和12传输SHA通过；去噪两次best更差，Aerial两次略高，原质量门false。实际共置3/4次且保护延迟各7次，不能说策略没执行；停止，不补seed/延时，不推断所有自适应保护普遍无效。selective_18997_closed。
 - 18997封存后首程序哈希诊断：16对首轮prompt/配置seed相同、均有程序尝试，仅3对raw/AST相同（去噪0/8）；32首程序均匹配原生journal代码、首日志成功Improve且adapter_attempts=1，故不是执行包装代码造成哈希差异。独立计数/传输SHA通过，原代码AST和journal提取未独立重做。首尝试不保证首transport响应，原因未分解，不指认为vLLM错误或否决原随机策略实验；配对seed不等于同提案，不以单轨迹归因纯执行干扰。first-program-pairing/origin回执。
 - 10/17核vLLM官方Reproducibility/Batch Invariance：默认在线结果不保证可复现，专门不变性会影响性能，已测模型列表不能替代本项目27B量化镜像验收。仅支持保留服务非确定性这个备选解释，不证明18997差异由它造成；不临时改已冻结镜像/开关，更不把已知复现问题当新颖发现。https://docs.vllm.ai/en/stable/usage/reproducibility/ / https://docs.vllm.ai/en/stable/features/batch_invariance/
+- 18997额外无网络CPU调用链：两任务×两条件4配置/12模拟末端调用均传递正确seed，配对prompt/采样参数一致（temperature=.6、top_p=.95）；4传输SHA及独立配对通过。排除已检查配置的客户端丢seed，不是线上HTTP抓包或服务确定性证明；seed-transport回执，不修改19004。
 - 10/17只读18807发现每任务2个生成许可留下10.47%–24.33%的有队列/总active<4状态；独立积分通过。vLLM408采样最大Running4、Waiting0、KV13.3%，不证明硬件空闲。后续只测同总4许可的跨任务借用，执行仍单许可；这是work-conserving强基线资格，不是17675旧资源打分重命名，更不是新算法/MARS复现。
 - 同批余时独立核算：≥300秒余时下每池仍有约96/118/123/168秒借用机会，主要为analysis/debug；不是全部截止尾巴，也不是额外完成数。证据quota-slack-20261017-v1.safe.json及quota-slack-independent.json，原质量门不改。
 - 10/17只读“评分→共享归档”线索：原生_analyze先于parent wrapper发布；18807的38有效结果37发布/1截止前未发布，只有1次真实Improve准入处于更好有效父程序尚未发布窗口。仅源码+既有时间诊断，未独立复现原始join、未生成新子程序，不据此开早发布GPU新线或称收益。feedback-publication-20261017-v1.safe.json；先完成已冻结selective/quota对照。
@@ -73,6 +74,7 @@
 
 - SchedMate已有源码/历史/日志语义、部分免profile、干扰撤销及故障恢复；新调度必须比较合理廉价/语义参照。
   https://arxiv.org/html/2510.03334
+- Agentic CPU-GPU Scheduling已有运行监测/换位复测来纠正静态资源先验（10/17读§2–4.4）：四工具DAG、CPU/GPU/排队放置、13构造场景，目标为时延；不等同动态生成MLE程序的终分确认。已有邻居，不能把“LLM+运行反馈调度”称首创，也不据此启用CPU回退。https://arxiv.org/html/2607.22242
 - SpecBox已有流式意图预热、跨步预取、缓存与传输解耦（10/17核§2–3/5.1–5.2）；Latency-Aware Orchestration已有图依赖预测、共同仲裁、模型生命周期/放置（核§3.3–3.5）。阶段重叠/联合调度本身不是空白；不推断它们已解决本项目终分问题，也未复现。
   https://arxiv.org/html/2607.23933 / https://arxiv.org/html/2609.03335
 - HyperSched已优化固定资源/截止时间下最终最好精度，假设中间训练进度、可checkpoint/恢复及共同扩展规律；不能把“质量而非吞吐”称新颖。18812只检验黑盒程序墙钟自停时，负载是否改变同源码反馈；此差别尚非方法贡献。

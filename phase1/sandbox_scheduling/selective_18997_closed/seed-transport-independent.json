@@ -1,0 +1,23 @@
+{
+  "schema": 1,
+  "checked_date_utc": "2026-10-16",
+  "independent_aggregate_engine": "PowerShell JSON, SHA256 and pairwise parameter equality",
+  "configurations": 4,
+  "mocked_native_transport_calls": 12,
+  "paired_prompt_and_parameters_equal": 2,
+  "all_forwarded_seeds_match_config": true,
+  "http_calls": 0,
+  "gpu_calls": 0,
+  "hashes": {
+    "seed-transport-0.json": "ce4242eb85b64093e44f31a12b80ddef828d0854bedfef4c38fb6284aef63b9a",
+    "seed-transport-1.json": "271cfa2fc0bcd632ce357651bc4f6ce8bc15e2958aac6a3d4e574e9a06796bd5",
+    "seed-transport-8.json": "1ec55ab9a458cd4c5bac567b4bd44c0ef9e7abcbaf04fcc0b4415ed7bf2665ab",
+    "seed-transport-9.json": "20eecf322451b2cebccf34d0793d4afb2e50493d3100a6ab2a83e1a80cb00491"
+  },
+  "limitations": [
+    "Four frozen configurations and twelve mocked native calls, not twelve live model generations.",
+    "CPU transport inspection is not captured live HTTP payloads or proof of server determinism.",
+    "This aggregate check does not independently execute the native adapter.",
+    "No live19004 inputs, results, code or gates were changed."
+  ]
+}

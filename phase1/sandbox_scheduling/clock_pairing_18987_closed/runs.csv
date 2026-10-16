@@ -1,0 +1,17 @@
+block,index,mode,program,repeat,task,seed,source_commit,executed_code_sha256,started,complete,valid,elapsed_seconds,exec_seconds,steps,cuda_gradient_steps,score,prediction_sha256
+0,0,within,0,0,aerial-cactus-identification,215505,a349aa7a2c7a70d298a6703c3faced4bc5d0a685,3cec18c5b03f2520719817abee5954232cf8d838c2f64edcb5c89b56ffe8bed1,True,True,True,297.5916094109416,279.15214109793305,1278,1278,0.9992329607714223,4d15d8608efd99d6bd08d277af4746dde804649afbe3b8ec84e3869c0ca27c3c
+0,1,within,1,0,aerial-cactus-identification,215507,a349aa7a2c7a70d298a6703c3faced4bc5d0a685,6ab15e0e4d76f33cdd7cc23dea9256f396b7885fcf4195187cc9d277520c9e06,True,True,True,297.50313235260546,285.39263443183154,2272,2272,0.9996712689020382,8a1681f3f0a96fe32de922bb249037182fd82c69b9ad08a7a99354d9ba5b0403
+0,2,within,2,0,denoising-dirty-documents,215504,a349aa7a2c7a70d298a6703c3faced4bc5d0a685,affc379973135f9268707e57de5bca271aa1d8e170594b4c868d295e44ff9c08,True,True,False,307.4554736595601,301.4508007057011,,,,
+0,3,within,3,0,denoising-dirty-documents,215506,a349aa7a2c7a70d298a6703c3faced4bc5d0a685,f1a40b5325f0cb3359f4df2661870086301f718917c5a656ec19a27f6ade6920,True,True,True,320.1476687192917,296.8460168708116,708,708,0.016393599059092538,ed24d93ecd9da479a689aa96e06f177b43b4d88d0cf2aecc4d6cede2f87578b4
+1,4,cross,0,0,aerial-cactus-identification,215505,a349aa7a2c7a70d298a6703c3faced4bc5d0a685,,False,False,False,,,,,,
+1,5,cross,1,0,aerial-cactus-identification,215507,a349aa7a2c7a70d298a6703c3faced4bc5d0a685,,False,False,False,,,,,,
+1,6,cross,2,0,denoising-dirty-documents,215504,a349aa7a2c7a70d298a6703c3faced4bc5d0a685,,False,False,False,,,,,,
+1,7,cross,3,0,denoising-dirty-documents,215506,a349aa7a2c7a70d298a6703c3faced4bc5d0a685,,False,False,False,,,,,,
+2,8,cross,0,1,aerial-cactus-identification,215505,a349aa7a2c7a70d298a6703c3faced4bc5d0a685,,False,False,False,,,,,,
+2,9,cross,1,1,aerial-cactus-identification,215507,a349aa7a2c7a70d298a6703c3faced4bc5d0a685,,False,False,False,,,,,,
+2,10,cross,2,1,denoising-dirty-documents,215504,a349aa7a2c7a70d298a6703c3faced4bc5d0a685,,False,False,False,,,,,,
+2,11,cross,3,1,denoising-dirty-documents,215506,a349aa7a2c7a70d298a6703c3faced4bc5d0a685,,False,False,False,,,,,,
+3,12,within,0,1,aerial-cactus-identification,215505,a349aa7a2c7a70d298a6703c3faced4bc5d0a685,,False,False,False,,,,,,
+3,13,within,1,1,aerial-cactus-identification,215507,a349aa7a2c7a70d298a6703c3faced4bc5d0a685,,False,False,False,,,,,,
+3,14,within,2,1,denoising-dirty-documents,215504,a349aa7a2c7a70d298a6703c3faced4bc5d0a685,,False,False,False,,,,,,
+3,15,within,3,1,denoising-dirty-documents,215506,a349aa7a2c7a70d298a6703c3faced4bc5d0a685,,False,False,False,,,,,,

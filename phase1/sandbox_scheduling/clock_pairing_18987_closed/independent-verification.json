@@ -1,0 +1,19 @@
+{
+  "passed": true,
+  "verifier": "verify_clock_pairing_20261017.cjs",
+  "boundary": "Independent arithmetic/full denominator and transferred bytes, not independent pristine scorer implementation.",
+  "planned": 16,
+  "complete": 4,
+  "valid": 3,
+  "quality_gate": false,
+  "summary_sha256": "05afb45ee116a41fff342a997b9b52d9d29b4fc9f8b420fb3f5ac1325fbdd57d",
+  "plan_sha256": "a2f2ea693c0d2a194ac194a3023e81645eeb55b94263733dd12e943515d6ed22",
+  "transfer_sha256": {
+    "runs.csv": "75cd4462b8344cd3067bb4778c54ae0ceaa80aa4e139b91aa8a558fe64faf275",
+    "runs.json": "17cc87a86faa3c4a6ff555cf630e6c0a6495c231e9e102f20ad7487ab0bf309e",
+    "summary.json": "05afb45ee116a41fff342a997b9b52d9d29b4fc9f8b420fb3f5ac1325fbdd57d"
+  },
+  "allocation": {"job": "18987", "node": "gpu27", "state": "FAILED", "exit_code": "1:0", "start_hk": "2026-10-17T03:03:08", "end_hk": "2026-10-17T03:15:21", "gpu_seconds": 733},
+  "failure": {"index": 2, "native_exit_code": 1, "timed_out": true, "exec_seconds": 301.4508007057011, "elapsed_seconds": 307.4554736595601, "worker_exception": null, "cleanup_verified": true, "log_sha256": "9994558ea8248bb9bf14481d86e002c654f1940742e2bd842d512bb922cc49c0", "observed": "Ready at03:08:27; logged Test inference time6.0s, then code output timeout at03:13:28. No valid artifact. Materialization bottleneck is a hypothesis, not yet established."},
+  "decision": "Closed. No comparisons completed. Do not restart, replace program, extend timeout or submit conditional six-card diverse batch. Further work must address an independent question, not rescue this gate."
+}

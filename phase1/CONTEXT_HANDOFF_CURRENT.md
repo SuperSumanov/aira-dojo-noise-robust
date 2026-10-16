@@ -1,7 +1,7 @@
 # 当前短交接：现场、证据与恢复动作
 
-最后核验：2026-10-17香港03:05。新授权窗口02:49–08:49，用户批准同范围自主批次，持续在会话推进，无需重复请批。
-18987已于03:03:08在gpu27 RUNNING，最晚03:55:08结束；16次固定程序搭档干预，尚未读取中途质量。六卡三臂仅CPU准备，未提交。
+最后核验：2026-10-17香港03:30。新授权窗口02:49–08:49，用户批准同范围自主批次，持续在会话推进，无需重复请批。
+18987于03:15:21 FAILED封存：733GPU秒，4wrapper/3有效/3重评分，首组资格门阻止其余12次。无本轮GPU活动；条件六卡禁止提交，不能改门救结论。
 
 ## checkout、Git与边界
 
@@ -9,7 +9,8 @@
 - 上窗口最终公开2cf2883917d5fc67b97b62894006a1bec7f8bb66；本轮配对源a349aa7a2c7a70d298a6703c3faced4bc5d0a685、条件六卡源f24715fb1f74ceca7a700266b2b1755509814468均已安全扫描。
 - dojo-reproduce新e4d478350e704e8c5927eba566b2847aaa6dcbab；两新文档先远端扫描/脱敏后读。95journals/5任务结论是学长报告，非我方复现；selected改善不等于best-found提高，存在跨天硬件/负载差异。记录senior_update_20261017.safe.json；未改学长分支。
 - 18987root=/research/d7/spc/yzyang4/clock-pairing-20261017-v2，planSHA a2f2ea693c0d2a194ac194a3023e81645eeb55b94263733dd12e943515d6ed22；1卡52分钟≤3120GPU秒。v1仅CPU二次导入失败0GPU/0候选，不覆盖原包；修复后12CPU测试及实际shim通过。
-- 条件六卡root=scheduling-diverse-20261017-v1；48条/三臂/ABC-CBA，gpu3旧兼容节点，2服务+4执行≤8400秒/14GPUh。配对全16有效、原质量门及summary绑定独立验证通过后才submit/service。只调device tie-break，FIFO次序/空卡优先/原输入/CPU/预算不变。
+- 条件六卡root最新scheduling-diverse-20261017-v3，source660d58c65b52a0c71e3cc27634e784c4da4ed287；v1测试替身注入失败，v2修测试；v3提交前补原有worker异常停止契约。全为CPU准备/0GPU，48输入及15信号场景准备仍在收尾；父门false，绝不submit。
+- 18987唯一readout-20261017-v1已闭合，本地clock_pairing_18987_closed保留全16分母及Node独立核算/3传输SHA。summarySHA05afb45ee116a41fff342a997b9b52d9d29b4fc9f8b420fb3f5ac1325fbdd57d；program2原300秒输出超时，exec301.4508007057011；已记录Ready和inference6s，但尚不知是否输出序列化瓶颈。无配对质量结论。
 - 用户未跟踪报告、_codex_tmp、pooling_host_compat_20261016.sh及旧checkout dirty保留。
 - 不用付费API/底座训练，不碰first960/Target300/522/D_val/官方test/16560或旧Held12535；原任务镜像不改。
 
@@ -44,8 +45,9 @@
 
 ## 收尾与下一次恢复
 
-- 18987闭合后唯一readout-20261017-v1，原reader；verify_clock_pairing_20261017.cjs独立全分母/统计/传输SHA核验，再记录GPU全allocation成本。不得中途看分数换匹配。
-- 三臂CPU输入矩阵/实际生产信号与readiness门待完成；科学门固定：diverse须两次分别胜shared及普通cap2去噪best≥.001，Aerial不退，实际改变设备选择；不通过父门则不提交六卡，不换门救结论。
+- 18987不可再readout/submit/改时限；条件六卡父门false，不提交。诊断仅解释失败，不拿第一组或完整个例救配对收益。
+- 已读安全原日志：program2第一折153.6s、第二折133.2s、CV结束287.6s、推理6s后超时，不能只归因序列化。独立selective32条已冻结源码，root=scheduling-selective-20261017-v1，gpu3六卡≤100min/10GPUh；只让Aerial+Aerial共置、去噪独占，vs sharedFIFO，原质量门/完整搜索分母。当前未准备/提交。
+- 32条前必须完成真实输入矩阵、实际双模式CPU信号场景、common readiness及worker异常停止门；22本地CPU测试通过。若不胜不补seed；不自称新算法/胜SchedMate。六卡diverse包不得误submit。
 - 旧一次提醒已删除；本轮继续本会话到08:49，不建重复跟进/长报告。当前无外部权限或节点阻塞，不碰旧12535。
 
 ## 连接与操作

@@ -1,0 +1,177 @@
+{
+  "boundary": "Known18819program cohort; same multiset, inputs, seeds,300s caps, CPU bindings and1460s reserved per matching condition. ABBA two repeats, not independent task generalization, closed-loop search gain, SchedMate comparison or new-method novelty.",
+  "complete": 4,
+  "contrasts": [
+    {
+      "complete": false,
+      "oriented_best_delta": null,
+      "oriented_median_delta": null,
+      "repeat": 0,
+      "task_index": 0
+    },
+    {
+      "complete": false,
+      "oriented_best_delta": null,
+      "oriented_median_delta": null,
+      "repeat": 0,
+      "task_index": 1
+    },
+    {
+      "complete": false,
+      "oriented_best_delta": null,
+      "oriented_median_delta": null,
+      "repeat": 1,
+      "task_index": 0
+    },
+    {
+      "complete": false,
+      "oriented_best_delta": null,
+      "oriented_median_delta": null,
+      "repeat": 1,
+      "task_index": 1
+    }
+  ],
+  "gpu_hours": 0.2036111111111111,
+  "gpu_seconds": 733,
+  "overlaps": [
+    {
+      "block": 0,
+      "host_training_envelope_overlap_seconds": 235.23969268798828,
+      "indices": [
+        0,
+        1
+      ]
+    },
+    {
+      "block": 0,
+      "host_training_envelope_overlap_seconds": null,
+      "indices": [
+        2,
+        3
+      ]
+    },
+    {
+      "block": 1,
+      "host_training_envelope_overlap_seconds": null,
+      "indices": [
+        4,
+        7
+      ]
+    },
+    {
+      "block": 1,
+      "host_training_envelope_overlap_seconds": null,
+      "indices": [
+        6,
+        5
+      ]
+    },
+    {
+      "block": 2,
+      "host_training_envelope_overlap_seconds": null,
+      "indices": [
+        9,
+        10
+      ]
+    },
+    {
+      "block": 2,
+      "host_training_envelope_overlap_seconds": null,
+      "indices": [
+        11,
+        8
+      ]
+    },
+    {
+      "block": 3,
+      "host_training_envelope_overlap_seconds": null,
+      "indices": [
+        15,
+        14
+      ]
+    },
+    {
+      "block": 3,
+      "host_training_envelope_overlap_seconds": null,
+      "indices": [
+        13,
+        12
+      ]
+    }
+  ],
+  "plan_sha256": "a2f2ea693c0d2a194ac194a3023e81645eeb55b94263733dd12e943515d6ed22",
+  "planned": 16,
+  "predeclared_gate_met": false,
+  "reader_sha256": "07246351091c619c91b3cdb71eda36698e02e112194a5d3b518d903048007a92",
+  "recomputed": 3,
+  "reserved_seconds_per_condition": 1460,
+  "source_commit": "a349aa7a2c7a70d298a6703c3faced4bc5d0a685",
+  "structure": false,
+  "task_blocks": [
+    {
+      "best": 0.9996712689020382,
+      "block": 0,
+      "complete": true,
+      "median": 0.9994521148367302,
+      "sample_sd": 0.0003099306514076664,
+      "task_index": 0
+    },
+    {
+      "best": null,
+      "block": 0,
+      "complete": false,
+      "median": null,
+      "sample_sd": null,
+      "task_index": 1
+    },
+    {
+      "best": null,
+      "block": 1,
+      "complete": false,
+      "median": null,
+      "sample_sd": null,
+      "task_index": 0
+    },
+    {
+      "best": null,
+      "block": 1,
+      "complete": false,
+      "median": null,
+      "sample_sd": null,
+      "task_index": 1
+    },
+    {
+      "best": null,
+      "block": 2,
+      "complete": false,
+      "median": null,
+      "sample_sd": null,
+      "task_index": 0
+    },
+    {
+      "best": null,
+      "block": 2,
+      "complete": false,
+      "median": null,
+      "sample_sd": null,
+      "task_index": 1
+    },
+    {
+      "best": null,
+      "block": 3,
+      "complete": false,
+      "median": null,
+      "sample_sd": null,
+      "task_index": 0
+    },
+    {
+      "best": null,
+      "block": 3,
+      "complete": false,
+      "median": null,
+      "sample_sd": null,
+      "task_index": 1
+    }
+  ],
+  "valid": 3
+}

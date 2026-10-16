@@ -104,9 +104,9 @@
     {
       "title": "Scheduling Real-time Deep Learning Services as Imprecise Computations",
       "url": "https://arxiv.org/abs/2011.01112",
-      "scope_read": "Primary arXiv abstract only",
+      "scope_read": "arXiv HTML abstract and sectionsI,II-A throughII-E,III introduction; not full evaluation",
       "overlap": "Mandatory/optional computation and data-dependent utility scheduling already maximize average output accuracy under deadlines. Quality-aware admission or skipped useful work cannot be claimed as new in general.",
-      "difference_to_test": "A generated black-box training program has no supplied mandatory/optional utility interface. An implementable beneficial decision mechanism remains to be demonstrated."
+      "difference_to_test": "The paper assumes a single non-sharing GPU and explicit non-preemptible stages, timing bounds and intermediate confidence, using DP/EDF and a greedy depth update. Our generated black-box training programs expose neither that stage-control API nor a validated intermediate utility curve; adding phase awareness alone is not new. An implementable beneficial decision remains to be demonstrated, without restoring multifidelity or rewriting program clocks."
     },
     {
       "title": "Scheduling Contract Algorithms on Multiple Processors",
@@ -116,5 +116,5 @@
       "difference_to_test": "Would require a practical mechanism exploiting nonstationary generated-program behavior beyond classical resource/time allocation; current results do not establish this."
     }
   ],
-  "decision": "18807 and18845 did not pass; no extra search seeds, replacement programs or repeated repairs to rescue either recipe.18819 remains a local completed-fold/ranking mechanism observation, not independently confirmed across new sources. Large measured slowdown may already be detectable by SchedMate-style progress protection; do not claim it is insufficient from our host timing. No new method is established. Do not restore multifidelity, timer rewriting or base training."
+  "decision": "18807 and18845 did not pass; no extra search seeds, replacement programs or repeated repairs to rescue either recipe.18819 remains a local completed-fold/ranking mechanism observation, not independently confirmed across new sources. Large measured slowdown may already be detectable by SchedMate-style progress protection; do not claim it is insufficient from our host timing. Actual scores under shared deployment are not wrong labels. Aerial improves with less observed work in18819, so preserving steps/folds is not an automatic quality objective.18859 did not start; fixed-program partner intervention remains unanswered. No new method is established. Do not restore multifidelity, timer rewriting or base training."
 }

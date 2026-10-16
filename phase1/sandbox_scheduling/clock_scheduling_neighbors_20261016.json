@@ -1,0 +1,50 @@
+{
+  "date": "2026-10-16",
+  "question": "Can successful self-timed MLE programs finish sooner under sharing while yielding less useful output, and can admission improve final search quality under equal resources?",
+  "evidence_now": "18812:2chronological programs,8executions,work/quality reduction under co-location; candidate-time ratios0.9909931255242036/0.7988482912036062. Not allocation speedup, significance, causal mediation or E2E benefit.",
+  "sources": [
+    {
+      "title": "Semantic-Aware Scheduling for GPU Clusters with Large Language Models (SchedMate)",
+      "url": "https://arxiv.org/html/2510.03334",
+      "scope_read": "Methods and interference response",
+      "overlap": "Uses source/history/log semantics and training-throughput interference monitoring. Reading code or avoiding slowdown is not our novelty.",
+      "comparison_needed": "A faithful cheap interference-aware/semantic baseline, not just fixed GPU assignment; no claim of beating SchedMate from current data."
+    },
+    {
+      "title": "HyperSched: Dynamic Resource Reallocation for Model Development on a Deadline",
+      "url": "https://arxiv.org/html/2001.02338",
+      "scope_read": "Sections3.1.1 and4",
+      "overlap": "Already optimizes best trained model by a fixed deadline and resource budget. Assumes intermediate progress, checkpoint/restore and common scaling properties; do not claim quality-aware resource allocation as new.",
+      "difference_to_test": "Opaque generated programs adapt their own work to wall clocks; no scheduler-controlled epoch interface. This distinction alone is not a new algorithm."
+    },
+    {
+      "title": "Prediction-based GPU sharing for distributed training (TensorShare)",
+      "url": "https://ss.korea.ac.kr/papers/Prediction-based-GPU-Sharing-for-Distributed-Training.pdf",
+      "scope_read": "Primary author-hosted indexed abstract/introduction and footnote only, not full paper",
+      "overlap": "Predicts sharing-induced completion-time increase and constrains its ratio; footnote includes customized stopping conditions.",
+      "difference_to_test": "Our successful self-timed outputs show candidate duration can decrease along with quality. This warns against treating runtime-ratio compliance as quality preservation, not a reproduction or refutation of TensorShare."
+    },
+    {
+      "title": "DeepSeek Elastic Compute (DSec)",
+      "url": "https://arxiv.org/html/2609.22978v1",
+      "scope_read": "Sections4.3,5.2,7,8.5",
+      "overlap": "Overcommit and isolation of latency-sensitive agent sandboxes already exist, including CPU interference protection and separated CPU/GPU function execution.",
+      "difference_to_test": "Not a new sandbox-isolation system; our current measurement concerns completed MLE predictions and their learned work, not only latency SLOs."
+    },
+    {
+      "title": "AgBench: Agentic AI Benchmarks for Personal AI Devices",
+      "url": "https://arxiv.org/html/2609.38652v1",
+      "scope_read": "Sections3.6,4.1,4.2,5",
+      "overlap": "Already reports concurrency versus success/goodput tradeoffs, including local model context errors and timeout effects.",
+      "difference_to_test": "Our fixed-code replay removes model generation and gives valid predictions in every case; quality can change without an execution-error flag. Not claiming concurrency harming success is new."
+    },
+    {
+      "title": "Scheduling Contract Algorithms on Multiple Processors",
+      "url": "https://all.cs.umass.edu/pubs/2002/bernstein_pzf_AAAI02.pdf",
+      "scope_read": "Primary indexed abstract/introduction only",
+      "overlap": "Anytime/contract algorithms and time-quality scheduling are longstanding ideas. Self-timed output-quality tradeoffs are not generally new.",
+      "difference_to_test": "Would require a practical mechanism exploiting nonstationary generated-program behavior beyond classical resource/time allocation; current results do not establish this."
+    }
+  ],
+  "decision": "Finish18807 final-score comparison and18819 chronological rank test first. Do not equate novel phrasing, a faster completion counter or local mechanism evidence with a publishable method. Do not restore multifidelity, timer rewriting or base training."
+}

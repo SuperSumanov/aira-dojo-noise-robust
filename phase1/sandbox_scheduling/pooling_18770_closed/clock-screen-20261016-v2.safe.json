@@ -1,0 +1,138 @@
+{
+  "root": "/research/d7/spc/yzyang4/scheduling-pooling-20261016-v3",
+  "plan_sha256": "a7cc9780c927cdeac3fc1effb214643a387353122e1fa542d3a40116b248d477",
+  "source_sha256": "2a062db38def841afd8fdebff67bd561450de541a57874bfc084ed704d54c8f0",
+  "pools": [
+    {
+      "block": 0,
+      "task": "aerial-cactus-identification",
+      "counts": {
+        "timely_returns": 10,
+        "valid_returns": 4,
+        "matched_code": 9,
+        "credential_shape_hit": 0,
+        "parsed": 9,
+        "clock_calls": 38,
+        "clock_exit_guards": 7,
+        "valid_matched_returns": 4,
+        "programs_with_clock_exit_guard": 7,
+        "unmatched_code": 1,
+        "valid_with_clock_exit_guard": 3
+      }
+    },
+    {
+      "block": 0,
+      "task": "denoising-dirty-documents",
+      "counts": {
+        "timely_returns": 8,
+        "valid_returns": 4,
+        "matched_code": 7,
+        "credential_shape_hit": 0,
+        "parsed": 7,
+        "clock_calls": 67,
+        "clock_exit_guards": 11,
+        "programs_with_clock_exit_guard": 7,
+        "unmatched_code": 1,
+        "valid_matched_returns": 3,
+        "valid_with_clock_exit_guard": 3
+      }
+    },
+    {
+      "block": 1,
+      "task": "aerial-cactus-identification",
+      "counts": {
+        "timely_returns": 8,
+        "valid_returns": 5,
+        "matched_code": 8,
+        "credential_shape_hit": 0,
+        "parsed": 8,
+        "clock_calls": 43,
+        "clock_exit_guards": 10,
+        "programs_with_clock_exit_guard": 8,
+        "valid_matched_returns": 5,
+        "valid_with_clock_exit_guard": 5
+      }
+    },
+    {
+      "block": 1,
+      "task": "denoising-dirty-documents",
+      "counts": {
+        "timely_returns": 9,
+        "valid_returns": 2,
+        "matched_code": 9,
+        "credential_shape_hit": 0,
+        "parsed": 9,
+        "clock_calls": 84,
+        "clock_exit_guards": 12,
+        "programs_with_clock_exit_guard": 9,
+        "valid_matched_returns": 2,
+        "valid_with_clock_exit_guard": 2
+      }
+    },
+    {
+      "block": 2,
+      "task": "aerial-cactus-identification",
+      "counts": {
+        "timely_returns": 12,
+        "valid_returns": 3,
+        "matched_code": 12,
+        "credential_shape_hit": 0,
+        "parsed": 12,
+        "clock_calls": 64,
+        "clock_exit_guards": 12,
+        "programs_with_clock_exit_guard": 12,
+        "valid_matched_returns": 3,
+        "valid_with_clock_exit_guard": 3
+      }
+    },
+    {
+      "block": 2,
+      "task": "denoising-dirty-documents",
+      "counts": {
+        "timely_returns": 11,
+        "valid_returns": 3,
+        "matched_code": 11,
+        "credential_shape_hit": 0,
+        "parsed": 11,
+        "clock_calls": 97,
+        "clock_exit_guards": 10,
+        "programs_with_clock_exit_guard": 10,
+        "valid_matched_returns": 3,
+        "valid_with_clock_exit_guard": 2
+      }
+    },
+    {
+      "block": 3,
+      "task": "aerial-cactus-identification",
+      "counts": {
+        "timely_returns": 9,
+        "valid_returns": 6,
+        "matched_code": 9,
+        "credential_shape_hit": 0,
+        "parsed": 9,
+        "clock_calls": 45,
+        "clock_exit_guards": 9,
+        "programs_with_clock_exit_guard": 9,
+        "valid_matched_returns": 6,
+        "valid_with_clock_exit_guard": 6
+      }
+    },
+    {
+      "block": 3,
+      "task": "denoising-dirty-documents",
+      "counts": {
+        "timely_returns": 8,
+        "valid_returns": 2,
+        "matched_code": 8,
+        "credential_shape_hit": 0,
+        "parsed": 8,
+        "clock_calls": 72,
+        "clock_exit_guards": 8,
+        "programs_with_clock_exit_guard": 8,
+        "valid_matched_returns": 2,
+        "valid_with_clock_exit_guard": 2
+      }
+    }
+  ],
+  "boundary": "Static conservative clock-dependent exit screen; no runtime causality, library internals, new GPU/API/scoring, raw code or secret values."
+}

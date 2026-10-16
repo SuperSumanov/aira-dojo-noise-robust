@@ -1,0 +1,19 @@
+{
+  "job": 18859,
+  "state": "FAILED",
+  "exit_code": "2:0",
+  "node": "gpu27",
+  "start_hk": "2026-10-16T16:26:34",
+  "end_hk": "2026-10-16T16:26:35",
+  "gpu_seconds": 1,
+  "candidate_workers_started": 0,
+  "candidate_scores": 0,
+  "source_commit": "50d8c9205d23294151d05575613980e988f78c1a",
+  "plan_sha256": "2312d9665f92c8ee8cbc2b5c9fa7849bd156ea6069ac74b1b923349aafd7bf3a",
+  "root": "/research/d7/spc/yzyang4/clock-pairing-20261016-v1",
+  "window_refusal": {"no_workers_started": true, "remaining_seconds": 3084.282077074051},
+  "required_remaining_seconds": 3300,
+  "preflight": {"cpu_tests": 8, "real_config_roundtrips": 16, "prepared_shim_imports_passed": true, "native_class_readiness_failure_hook_passed": true, "external_binary_executed_by_entry_test": false},
+  "cause": "Submission was requested before the frozen cutoff, but full19.7GBimage hashing completed later. The allocation entry correctly refused before worker creation because less than55minutes remained. A scoped pre-submit termination helper saw submit-intent and sent no signal.",
+  "disposition": "Sealed as not-started, not a negative pairing result. No resubmit or automatic repair. The same known-program pairing question remains unanswered; future windows need fresh bounded authority and a new root, not extension of this batch. Do not claim runtime verification of the readiness hook from the CPU entry test."
+}

@@ -1,0 +1,696 @@
+{
+  "posthoc": true,
+  "analysis_sha256": "a8d1d5866a3103cf218f52c9547eb28b92e7bd4105b88d36ffeee99d2f62f1aa",
+  "plan_sha256": "36ce5852b26de2299755c19a8b9711a1f4161d68abd25a3de6cc7687cdde8560",
+  "parent_analysis_sha256": "1c1e49c4622b8a6883d5ae9b1716b06a9a6c90703b595c1cf17f9d78e4f7a1ce",
+  "admissions": [
+    {
+      "block": 1,
+      "admission_ordinal": 0,
+      "incumbent": {
+        "kind": "candidate",
+        "ready_observations": [
+          true,
+          true,
+          true
+        ],
+        "cell_returns": [
+          {
+            "exit_code": 0,
+            "timed_out": false
+          }
+        ],
+        "terminal_cuda_trace_available": true,
+        "event_sha256": "58b63ad335cae272252e8ee056440ed018e281848f99f5cd1f8f73d0766dbd1e"
+      },
+      "newcomer": {
+        "kind": "candidate",
+        "ready_observations": [
+          true,
+          true,
+          true
+        ],
+        "cell_returns": [
+          {
+            "exit_code": 0,
+            "timed_out": false
+          }
+        ],
+        "terminal_cuda_trace_available": true,
+        "event_sha256": "1abff7815771a5c7705e7d9962c66ebd8884c94f541482ea9e21b33a3196dc4d"
+      }
+    },
+    {
+      "block": 1,
+      "admission_ordinal": 1,
+      "incumbent": {
+        "kind": "candidate",
+        "ready_observations": [
+          true,
+          true,
+          true
+        ],
+        "cell_returns": [
+          {
+            "exit_code": 0,
+            "timed_out": false
+          }
+        ],
+        "terminal_cuda_trace_available": true,
+        "event_sha256": "c68afcee223659ccedd067a1bfbe9377bb4ceec2d9c1898eeb1fba054c6bae1c"
+      },
+      "newcomer": {
+        "kind": "candidate",
+        "ready_observations": [
+          true
+        ],
+        "cell_returns": [
+          {
+            "exit_code": 1,
+            "timed_out": true
+          }
+        ],
+        "terminal_cuda_trace_available": false,
+        "event_sha256": "e18f6e39d7f18832409289a52190ccbd215f417c4d8f01ae14f2a5c039e9f470"
+      }
+    },
+    {
+      "block": 1,
+      "admission_ordinal": 2,
+      "incumbent": {
+        "kind": "candidate",
+        "ready_observations": [
+          true
+        ],
+        "cell_returns": [
+          {
+            "exit_code": 1,
+            "timed_out": true
+          }
+        ],
+        "terminal_cuda_trace_available": false,
+        "event_sha256": "e18f6e39d7f18832409289a52190ccbd215f417c4d8f01ae14f2a5c039e9f470"
+      },
+      "newcomer": {
+        "kind": "candidate",
+        "ready_observations": [
+          true,
+          true,
+          true
+        ],
+        "cell_returns": [
+          {
+            "exit_code": 0,
+            "timed_out": false
+          }
+        ],
+        "terminal_cuda_trace_available": true,
+        "event_sha256": "f769c81b9e07eeda646a01b36937e01e3888a99597a8aae0c97d6fdef036c308"
+      }
+    },
+    {
+      "block": 1,
+      "admission_ordinal": 3,
+      "incumbent": {
+        "kind": "candidate",
+        "ready_observations": [
+          true,
+          true,
+          true
+        ],
+        "cell_returns": [
+          {
+            "exit_code": 0,
+            "timed_out": false
+          }
+        ],
+        "terminal_cuda_trace_available": true,
+        "event_sha256": "c68afcee223659ccedd067a1bfbe9377bb4ceec2d9c1898eeb1fba054c6bae1c"
+      },
+      "newcomer": {
+        "kind": "candidate",
+        "ready_observations": [
+          true
+        ],
+        "cell_returns": [
+          {
+            "exit_code": 1,
+            "timed_out": false
+          }
+        ],
+        "terminal_cuda_trace_available": false,
+        "event_sha256": "d289fdcc0e5347cc26b518f49deb0d6b57c5ddcaba801b4a92fb85be5cf5fd8f"
+      }
+    },
+    {
+      "block": 1,
+      "admission_ordinal": 4,
+      "incumbent": {
+        "kind": "candidate",
+        "ready_observations": [
+          true
+        ],
+        "cell_returns": [
+          {
+            "exit_code": 1,
+            "timed_out": false
+          }
+        ],
+        "terminal_cuda_trace_available": false,
+        "event_sha256": "d289fdcc0e5347cc26b518f49deb0d6b57c5ddcaba801b4a92fb85be5cf5fd8f"
+      },
+      "newcomer": {
+        "kind": "candidate",
+        "ready_observations": [
+          true
+        ],
+        "cell_returns": [
+          {
+            "exit_code": 1,
+            "timed_out": true
+          }
+        ],
+        "terminal_cuda_trace_available": false,
+        "event_sha256": "58b63ad335cae272252e8ee056440ed018e281848f99f5cd1f8f73d0766dbd1e"
+      }
+    },
+    {
+      "block": 1,
+      "admission_ordinal": 5,
+      "incumbent": {
+        "kind": "candidate",
+        "ready_observations": [
+          true
+        ],
+        "cell_returns": [
+          {
+            "exit_code": 1,
+            "timed_out": true
+          }
+        ],
+        "terminal_cuda_trace_available": false,
+        "event_sha256": "58b63ad335cae272252e8ee056440ed018e281848f99f5cd1f8f73d0766dbd1e"
+      },
+      "newcomer": {
+        "kind": "candidate",
+        "ready_observations": [
+          true,
+          true,
+          true
+        ],
+        "cell_returns": [
+          {
+            "exit_code": 0,
+            "timed_out": false
+          }
+        ],
+        "terminal_cuda_trace_available": true,
+        "event_sha256": "1abff7815771a5c7705e7d9962c66ebd8884c94f541482ea9e21b33a3196dc4d"
+      }
+    },
+    {
+      "block": 1,
+      "admission_ordinal": 6,
+      "incumbent": {
+        "kind": "candidate",
+        "ready_observations": [
+          true
+        ],
+        "cell_returns": [
+          {
+            "exit_code": 1,
+            "timed_out": true
+          }
+        ],
+        "terminal_cuda_trace_available": false,
+        "event_sha256": "58b63ad335cae272252e8ee056440ed018e281848f99f5cd1f8f73d0766dbd1e"
+      },
+      "newcomer": {
+        "kind": "candidate",
+        "ready_observations": [
+          true,
+          true,
+          true
+        ],
+        "cell_returns": [
+          {
+            "exit_code": 0,
+            "timed_out": false
+          }
+        ],
+        "terminal_cuda_trace_available": true,
+        "event_sha256": "d289fdcc0e5347cc26b518f49deb0d6b57c5ddcaba801b4a92fb85be5cf5fd8f"
+      }
+    },
+    {
+      "block": 1,
+      "admission_ordinal": 7,
+      "incumbent": {
+        "kind": "candidate",
+        "ready_observations": [
+          true,
+          true,
+          true
+        ],
+        "cell_returns": [
+          {
+            "exit_code": 0,
+            "timed_out": false
+          }
+        ],
+        "terminal_cuda_trace_available": true,
+        "event_sha256": "e18f6e39d7f18832409289a52190ccbd215f417c4d8f01ae14f2a5c039e9f470"
+      },
+      "newcomer": {
+        "kind": "candidate",
+        "ready_observations": [
+          true,
+          true,
+          true
+        ],
+        "cell_returns": [
+          {
+            "exit_code": 0,
+            "timed_out": false
+          }
+        ],
+        "terminal_cuda_trace_available": false,
+        "event_sha256": "c68afcee223659ccedd067a1bfbe9377bb4ceec2d9c1898eeb1fba054c6bae1c"
+      }
+    },
+    {
+      "block": 2,
+      "admission_ordinal": 0,
+      "incumbent": {
+        "kind": "candidate",
+        "ready_observations": [
+          true,
+          true,
+          true
+        ],
+        "cell_returns": [
+          {
+            "exit_code": 0,
+            "timed_out": false
+          }
+        ],
+        "terminal_cuda_trace_available": true,
+        "event_sha256": "c6ce8db5b5e6c83758b361f376d35067b1b0b26fddc549ef165be02db85fb7f5"
+      },
+      "newcomer": {
+        "kind": "candidate",
+        "ready_observations": [
+          true
+        ],
+        "cell_returns": [
+          {
+            "exit_code": 1,
+            "timed_out": false
+          }
+        ],
+        "terminal_cuda_trace_available": false,
+        "event_sha256": "2d183556a62d1bba06f5880dfda8109661fae7da12d66f34d4cb120c248b348a"
+      }
+    },
+    {
+      "block": 2,
+      "admission_ordinal": 1,
+      "incumbent": {
+        "kind": "candidate",
+        "ready_observations": [
+          true,
+          true,
+          true
+        ],
+        "cell_returns": [
+          {
+            "exit_code": 0,
+            "timed_out": false
+          }
+        ],
+        "terminal_cuda_trace_available": true,
+        "event_sha256": "c6ce8db5b5e6c83758b361f376d35067b1b0b26fddc549ef165be02db85fb7f5"
+      },
+      "newcomer": {
+        "kind": "candidate",
+        "ready_observations": [
+          true,
+          true,
+          true
+        ],
+        "cell_returns": [
+          {
+            "exit_code": 0,
+            "timed_out": false
+          }
+        ],
+        "terminal_cuda_trace_available": true,
+        "event_sha256": "52a090b02157adcd5cd1f9e88c5289f8a3b60854dac941008b82bb41297df68e"
+      }
+    },
+    {
+      "block": 2,
+      "admission_ordinal": 2,
+      "incumbent": {
+        "kind": "candidate",
+        "ready_observations": [
+          true,
+          true,
+          true
+        ],
+        "cell_returns": [
+          {
+            "exit_code": 0,
+            "timed_out": false
+          }
+        ],
+        "terminal_cuda_trace_available": true,
+        "event_sha256": "a364bac5bc22eadef979443b4db148a8a61a191251ba11574e086fd059e0c34d"
+      },
+      "newcomer": {
+        "kind": "candidate",
+        "ready_observations": [
+          true
+        ],
+        "cell_returns": [
+          {
+            "exit_code": 1,
+            "timed_out": false
+          }
+        ],
+        "terminal_cuda_trace_available": false,
+        "event_sha256": "6eb14a7ad2e6480c110bb0ef0fa4f1b5c70b90f847926c79f6de1cd315039099"
+      }
+    },
+    {
+      "block": 2,
+      "admission_ordinal": 3,
+      "incumbent": {
+        "kind": "candidate",
+        "ready_observations": [
+          true,
+          true,
+          true
+        ],
+        "cell_returns": [
+          {
+            "exit_code": 0,
+            "timed_out": false
+          }
+        ],
+        "terminal_cuda_trace_available": true,
+        "event_sha256": "a364bac5bc22eadef979443b4db148a8a61a191251ba11574e086fd059e0c34d"
+      },
+      "newcomer": {
+        "kind": "candidate",
+        "ready_observations": [
+          true
+        ],
+        "cell_returns": [
+          {
+            "exit_code": 1,
+            "timed_out": false
+          }
+        ],
+        "terminal_cuda_trace_available": false,
+        "event_sha256": "2d183556a62d1bba06f5880dfda8109661fae7da12d66f34d4cb120c248b348a"
+      }
+    },
+    {
+      "block": 2,
+      "admission_ordinal": 4,
+      "incumbent": {
+        "kind": "candidate",
+        "ready_observations": [
+          true,
+          true,
+          true
+        ],
+        "cell_returns": [
+          {
+            "exit_code": 0,
+            "timed_out": false
+          }
+        ],
+        "terminal_cuda_trace_available": true,
+        "event_sha256": "52a090b02157adcd5cd1f9e88c5289f8a3b60854dac941008b82bb41297df68e"
+      },
+      "newcomer": {
+        "kind": "candidate",
+        "ready_observations": [
+          true
+        ],
+        "cell_returns": [
+          {
+            "exit_code": 1,
+            "timed_out": false
+          }
+        ],
+        "terminal_cuda_trace_available": false,
+        "event_sha256": "6eb14a7ad2e6480c110bb0ef0fa4f1b5c70b90f847926c79f6de1cd315039099"
+      }
+    },
+    {
+      "block": 2,
+      "admission_ordinal": 5,
+      "incumbent": {
+        "kind": "candidate",
+        "ready_observations": [
+          true,
+          true,
+          true
+        ],
+        "cell_returns": [
+          {
+            "exit_code": 0,
+            "timed_out": false
+          }
+        ],
+        "terminal_cuda_trace_available": true,
+        "event_sha256": "dda4d41f5e8804faa31473293b5a013cb6e110bbffae13233f15deed9a134285"
+      },
+      "newcomer": {
+        "kind": "candidate",
+        "ready_observations": [
+          true
+        ],
+        "cell_returns": [
+          {
+            "exit_code": 1,
+            "timed_out": true
+          }
+        ],
+        "terminal_cuda_trace_available": false,
+        "event_sha256": "c6ce8db5b5e6c83758b361f376d35067b1b0b26fddc549ef165be02db85fb7f5"
+      }
+    },
+    {
+      "block": 2,
+      "admission_ordinal": 6,
+      "incumbent": {
+        "kind": "candidate",
+        "ready_observations": [
+          true
+        ],
+        "cell_returns": [
+          {
+            "exit_code": 1,
+            "timed_out": false
+          }
+        ],
+        "terminal_cuda_trace_available": false,
+        "event_sha256": "6eb14a7ad2e6480c110bb0ef0fa4f1b5c70b90f847926c79f6de1cd315039099"
+      },
+      "newcomer": {
+        "kind": "candidate",
+        "ready_observations": [
+          true,
+          true,
+          true
+        ],
+        "cell_returns": [
+          {
+            "exit_code": 0,
+            "timed_out": false
+          }
+        ],
+        "terminal_cuda_trace_available": true,
+        "event_sha256": "c7504fd3089231596e1adffa025385bbea4b66e60578e4c5cc889ddf0b9cef04"
+      }
+    },
+    {
+      "block": 2,
+      "admission_ordinal": 7,
+      "incumbent": {
+        "kind": "candidate",
+        "ready_observations": [
+          true
+        ],
+        "cell_returns": [
+          {
+            "exit_code": 1,
+            "timed_out": true
+          }
+        ],
+        "terminal_cuda_trace_available": false,
+        "event_sha256": "a364bac5bc22eadef979443b4db148a8a61a191251ba11574e086fd059e0c34d"
+      },
+      "newcomer": {
+        "kind": "candidate",
+        "ready_observations": [
+          true,
+          true,
+          true
+        ],
+        "cell_returns": [
+          {
+            "exit_code": 0,
+            "timed_out": false
+          }
+        ],
+        "terminal_cuda_trace_available": true,
+        "event_sha256": "52a090b02157adcd5cd1f9e88c5289f8a3b60854dac941008b82bb41297df68e"
+      }
+    },
+    {
+      "block": 2,
+      "admission_ordinal": 8,
+      "incumbent": {
+        "kind": "candidate",
+        "ready_observations": [
+          true,
+          true,
+          true
+        ],
+        "cell_returns": [
+          {
+            "exit_code": 0,
+            "timed_out": false
+          }
+        ],
+        "terminal_cuda_trace_available": true,
+        "event_sha256": "2d183556a62d1bba06f5880dfda8109661fae7da12d66f34d4cb120c248b348a"
+      },
+      "newcomer": {
+        "kind": "candidate",
+        "ready_observations": [
+          true,
+          true,
+          true
+        ],
+        "cell_returns": [
+          {
+            "exit_code": 0,
+            "timed_out": false
+          }
+        ],
+        "terminal_cuda_trace_available": true,
+        "event_sha256": "249e5b49ea3991fa3591eb18fb12ea57bb1a53f66b715ac39fd328b11107d7be"
+      }
+    },
+    {
+      "block": 2,
+      "admission_ordinal": 9,
+      "incumbent": {
+        "kind": "candidate",
+        "ready_observations": [
+          true,
+          true,
+          true
+        ],
+        "cell_returns": [
+          {
+            "exit_code": 0,
+            "timed_out": false
+          }
+        ],
+        "terminal_cuda_trace_available": true,
+        "event_sha256": "c7504fd3089231596e1adffa025385bbea4b66e60578e4c5cc889ddf0b9cef04"
+      },
+      "newcomer": {
+        "kind": "candidate",
+        "ready_observations": [
+          true
+        ],
+        "cell_returns": [
+          {
+            "exit_code": 1,
+            "timed_out": false
+          }
+        ],
+        "terminal_cuda_trace_available": false,
+        "event_sha256": "2d183556a62d1bba06f5880dfda8109661fae7da12d66f34d4cb120c248b348a"
+      }
+    },
+    {
+      "block": 2,
+      "admission_ordinal": 10,
+      "incumbent": {
+        "kind": "candidate",
+        "ready_observations": [
+          true
+        ],
+        "cell_returns": [
+          {
+            "exit_code": 1,
+            "timed_out": true
+          }
+        ],
+        "terminal_cuda_trace_available": false,
+        "event_sha256": "c6ce8db5b5e6c83758b361f376d35067b1b0b26fddc549ef165be02db85fb7f5"
+      },
+      "newcomer": {
+        "kind": "candidate",
+        "ready_observations": [
+          true
+        ],
+        "cell_returns": [],
+        "terminal_cuda_trace_available": false,
+        "event_sha256": "6eb14a7ad2e6480c110bb0ef0fa4f1b5c70b90f847926c79f6de1cd315039099"
+      }
+    },
+    {
+      "block": 2,
+      "admission_ordinal": 11,
+      "incumbent": {
+        "kind": "candidate",
+        "ready_observations": [
+          true,
+          true,
+          true
+        ],
+        "cell_returns": [
+          {
+            "exit_code": 0,
+            "timed_out": false
+          }
+        ],
+        "terminal_cuda_trace_available": true,
+        "event_sha256": "c7504fd3089231596e1adffa025385bbea4b66e60578e4c5cc889ddf0b9cef04"
+      },
+      "newcomer": {
+        "kind": "candidate",
+        "ready_observations": [
+          true
+        ],
+        "cell_returns": [
+          {
+            "exit_code": 1,
+            "timed_out": false
+          }
+        ],
+        "terminal_cuda_trace_available": false,
+        "event_sha256": "dda4d41f5e8804faa31473293b5a013cb6e110bbffae13233f15deed9a134285"
+      }
+    }
+  ],
+  "admission_kind_counts": {
+    "candidate+candidate": 20
+  },
+  "missing_side_occurrence_counts": {
+    "candidate_timeout_return": 8,
+    "candidate_error_return": 9,
+    "candidate_unresolved_from_event_receipts": 2
+  },
+  "boundary": "A lease may occur in more than one admission: side occurrences are not distinct jobs. Terminal traces exist only for scored returns with recorded CUDA optimizer calls. Preview/timeout/error event categories do not prove absence of GPU work. No candidate source, output, score or prediction read; not online baseline effectiveness or causality."
+}

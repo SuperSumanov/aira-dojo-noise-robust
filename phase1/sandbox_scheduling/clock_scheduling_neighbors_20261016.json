@@ -8,7 +8,7 @@
       "url": "https://docs.nvidia.com/deploy/mps/architecture.html",
       "scope_read": "Official architecture documentation on cross-context time slicing and MPS concurrency",
       "overlap": "Multiple CUDA processes sharing a device do not by themselves establish overlapping GPU kernels. MPS is an existing execution-backend alternative, not a new scheduler.",
-      "difference_to_test": "18807/18819 establish container/host-training overlap only. They neither measure kernel overlap nor verify MPS state; do not attribute all slowdown to CUDA context switching or generalize the cap2 result to all sharing backends. Do not change the active18845 backend or install system software. A future backend comparison requires exact-node support and owned-allocation isolation first."
+      "difference_to_test": "18807/18819 establish container/host-training overlap only. They neither measure kernel overlap nor verify MPS state; do not attribute all slowdown to CUDA context switching or generalize the cap2 result to all sharing backends.18845 is closed; no backend change or system installation is authorized by this analysis. A future backend comparison requires exact-node support and owned-allocation isolation first."
     },
     {
       "title": "Adaptive and Efficient GPU Sharing for High-Accuracy Hyperparameter Tuning (DISC)",
@@ -34,9 +34,9 @@
     {
       "title": "Semantic-Aware Scheduling for GPU Clusters with Large Language Models (SchedMate)",
       "url": "https://arxiv.org/html/2510.03334",
-      "scope_read": "Methods and interference response",
+      "scope_read": "Sections3.1-3.3,4.1,5.3-5.5; recheckedOct16 partial-information fallback and skipped eviction when tracking unavailable",
       "overlap": "Uses source/history/log semantics and training-throughput interference monitoring. Reading code or avoiding slowdown is not our novelty.",
-      "comparison_needed": "A faithful cheap interference-aware/semantic baseline, not just fixed GPU assignment; no claim of beating SchedMate from current data."
+      "comparison_needed": "A faithful cheap interference-aware/semantic baseline, not just fixed GPU assignment; no claim of beating SchedMate from current data. The paper already treats short jobs and missing progress, with fallback and skipped eviction; our survivor-conditioned terminal-trace gaps are neither a new missing-observation concept nor evidence that SchedMate fails."
     },
     {
       "title": "HyperSched: Dynamic Resource Reallocation for Model Development on a Deadline",
@@ -64,7 +64,7 @@
       "url": "https://arxiv.org/html/2609.38652v1",
       "scope_read": "Sections3.6,4.1,4.2,5",
       "overlap": "Already reports concurrency versus success/goodput tradeoffs, including local model context errors and timeout effects.",
-      "difference_to_test": "Our fixed-code replay removes model generation and gives valid predictions in every case; quality can change without an execution-error flag. Not claiming concurrency harming success is new."
+      "difference_to_test": "The18812/18819 fixed-code replays remove model generation and give valid predictions in every case; quality can change without an execution-error flag. This does not describe18845, which has only11valid outputs. Not claiming concurrency harming success is new."
     },
     {
       "title": "Winning by Peeking: Unenforced Budgets and Test-Set Selection Inflate Short-Budget AutoML Comparisons",

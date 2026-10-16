@@ -1,0 +1,17 @@
+{
+  "verified_at_utc": "2026-10-16T08:30:00Z",
+  "all_actual_colocation_admissions": 20,
+  "candidate_candidate_admissions": 20,
+  "both_terminal_cuda_traces_available": 3,
+  "one_or_both_terminal_cuda_traces_missing": 17,
+  "sufficient_before_after_windows32": 0,
+  "sufficient_before_after_windows128": 0,
+  "missing_side_occurrences": {"candidate_timeout_return": 8, "candidate_error_return": 9, "candidate_unresolved_from_event_receipts": 2},
+  "independent_node_denominator_and_classification_checks_passed": true,
+  "python_window_tests": 4,
+  "transfer_sha256": {
+    "online-observability-20261016.safe.json": "1c1e49c4622b8a6883d5ae9b1716b06a9a6c90703b595c1cf17f9d78e4f7a1ce",
+    "admission-kinds-20261016.safe.json": "e657c914427747a22ec833b724c97ddc708a1a0572bc31e96fd8f3aa364cb82e"
+  },
+  "boundary": "No scores read, no policy replay or eviction. A lease may appear on multiple sides;19missing side occurrences are not19distinct jobs. Terminal observation is survival-conditioned. These frozen traces cannot establish online throughput-guard effectiveness or failure. The descriptive32-step newcomer warmup and32/128incumbent windows are not a faithful SchedMate implementation; SchedMate explicitly has partial-information fallback."
+}

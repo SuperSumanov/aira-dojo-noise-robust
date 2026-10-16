@@ -1,17 +1,18 @@
 {
   "window_start_hk": "2026-10-16T11:18:00+08:00",
   "window_end_hk": "2026-10-16T17:18:00+08:00",
-  "observed_at_utc": "2026-10-16T07:55:00Z",
-  "source": "sacct -X for these five exact job IDs; all allocation time, including startup/failure/cleanup",
+  "observed_at_utc": "2026-10-16T08:27:00Z",
+  "source": "sacct -X for these six exact job IDs; all allocation time, including startup/failure/cleanup",
   "jobs": [
     {"job": 18807, "state": "COMPLETED", "elapsed_seconds": 5069, "gpus": 6, "node": "gpu1"},
     {"job": 18812, "state": "COMPLETED", "elapsed_seconds": 1822, "gpus": 1, "node": "gpu27"},
     {"job": 18819, "state": "COMPLETED", "elapsed_seconds": 3618, "gpus": 1, "node": "gpu27"},
     {"job": 18844, "state": "FAILED", "elapsed_seconds": 11, "gpus": 1, "node": "gpu27"},
-    {"job": 18845, "state": "COMPLETED", "elapsed_seconds": 3273, "gpus": 1, "node": "gpu27"}
+    {"job": 18845, "state": "COMPLETED", "elapsed_seconds": 3273, "gpus": 1, "node": "gpu27"},
+    {"job": 18859, "state": "FAILED", "elapsed_seconds": 1, "gpus": 1, "node": "gpu27"}
   ],
-  "gpu_seconds": 39138,
-  "gpu_hours": 10.871666666666666,
+  "gpu_seconds": 39139,
+  "gpu_hours": 10.871944444444445,
   "no_active_window_gpu_jobs": true,
   "paid_api_calls": 0,
   "base_model_training": false,

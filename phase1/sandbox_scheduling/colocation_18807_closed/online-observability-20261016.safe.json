@@ -1,0 +1,220 @@
+{
+  "posthoc": true,
+  "analysis_sha256": "a382c8012a003ed76295108630a2056438928e660defbcf248dac202ed8d0bd8",
+  "plan_sha256": "36ce5852b26de2299755c19a8b9711a1f4161d68abd25a3de6cc7687cdde8560",
+  "counts": [
+    {
+      "block": 1,
+      "leases": 24,
+      "colocation_admissions": 8,
+      "saved_trace_files": 11,
+      "saved_traces_with_zero_cuda_steps": 1,
+      "nonempty_cuda_traces": 10,
+      "event_sha256": "22e116965b5554b33057611060c3f1137a8aadfcf13eef9c3d5990af5c532080"
+    },
+    {
+      "block": 2,
+      "leases": 23,
+      "colocation_admissions": 12,
+      "saved_trace_files": 11,
+      "saved_traces_with_zero_cuda_steps": 0,
+      "nonempty_cuda_traces": 11,
+      "event_sha256": "31cdc13979a4a82afb5597097d6ef6d9152b58cbf19f83fe585de2c899c7ecbe"
+    }
+  ],
+  "admissions": [
+    {
+      "block": 1,
+      "admission_ordinal": 0,
+      "incumbent_cuda_trace_available": true,
+      "newcomer_cuda_trace_available": true,
+      "windows": [
+        {
+          "window": 32,
+          "incumbent_pre_steps_available": 3,
+          "incumbent_post_steps_available": 1822,
+          "newcomer_warmup_steps": 32,
+          "sufficient": false
+        },
+        {
+          "window": 128,
+          "incumbent_pre_steps_available": 3,
+          "incumbent_post_steps_available": 1822,
+          "newcomer_warmup_steps": 32,
+          "sufficient": false
+        }
+      ],
+      "incumbent_trace_sha256": "d245f815fb9516474711c340ff3a5807e0a6a74d9c6075708762132ef662f556",
+      "newcomer_trace_sha256": "37af4011a7126de4cd5601e8f07806834e699add183d975002b643865f8a3ddb"
+    },
+    {
+      "block": 1,
+      "admission_ordinal": 1,
+      "incumbent_cuda_trace_available": true,
+      "newcomer_cuda_trace_available": false,
+      "windows": []
+    },
+    {
+      "block": 1,
+      "admission_ordinal": 2,
+      "incumbent_cuda_trace_available": false,
+      "newcomer_cuda_trace_available": true,
+      "windows": []
+    },
+    {
+      "block": 1,
+      "admission_ordinal": 3,
+      "incumbent_cuda_trace_available": true,
+      "newcomer_cuda_trace_available": false,
+      "windows": []
+    },
+    {
+      "block": 1,
+      "admission_ordinal": 4,
+      "incumbent_cuda_trace_available": false,
+      "newcomer_cuda_trace_available": false,
+      "windows": []
+    },
+    {
+      "block": 1,
+      "admission_ordinal": 5,
+      "incumbent_cuda_trace_available": false,
+      "newcomer_cuda_trace_available": true,
+      "windows": []
+    },
+    {
+      "block": 1,
+      "admission_ordinal": 6,
+      "incumbent_cuda_trace_available": false,
+      "newcomer_cuda_trace_available": true,
+      "windows": []
+    },
+    {
+      "block": 1,
+      "admission_ordinal": 7,
+      "incumbent_cuda_trace_available": true,
+      "newcomer_cuda_trace_available": false,
+      "windows": []
+    },
+    {
+      "block": 2,
+      "admission_ordinal": 0,
+      "incumbent_cuda_trace_available": true,
+      "newcomer_cuda_trace_available": false,
+      "windows": []
+    },
+    {
+      "block": 2,
+      "admission_ordinal": 1,
+      "incumbent_cuda_trace_available": true,
+      "newcomer_cuda_trace_available": true,
+      "windows": [
+        {
+          "window": 32,
+          "incumbent_pre_steps_available": 9,
+          "incumbent_post_steps_available": 876,
+          "newcomer_warmup_steps": 32,
+          "sufficient": false
+        },
+        {
+          "window": 128,
+          "incumbent_pre_steps_available": 9,
+          "incumbent_post_steps_available": 876,
+          "newcomer_warmup_steps": 32,
+          "sufficient": false
+        }
+      ],
+      "incumbent_trace_sha256": "1a3ae6bfe833a1125f2f6b3197e1816d4407f2e435b8fc69993fcc0c9edb5c8f",
+      "newcomer_trace_sha256": "eb4767fd8c29d845cbc91f0fb3e6d61ec3a5f99f3084a79c403b4f2771a41e99"
+    },
+    {
+      "block": 2,
+      "admission_ordinal": 2,
+      "incumbent_cuda_trace_available": true,
+      "newcomer_cuda_trace_available": false,
+      "windows": []
+    },
+    {
+      "block": 2,
+      "admission_ordinal": 3,
+      "incumbent_cuda_trace_available": true,
+      "newcomer_cuda_trace_available": false,
+      "windows": []
+    },
+    {
+      "block": 2,
+      "admission_ordinal": 4,
+      "incumbent_cuda_trace_available": true,
+      "newcomer_cuda_trace_available": false,
+      "windows": []
+    },
+    {
+      "block": 2,
+      "admission_ordinal": 5,
+      "incumbent_cuda_trace_available": true,
+      "newcomer_cuda_trace_available": false,
+      "windows": []
+    },
+    {
+      "block": 2,
+      "admission_ordinal": 6,
+      "incumbent_cuda_trace_available": false,
+      "newcomer_cuda_trace_available": true,
+      "windows": []
+    },
+    {
+      "block": 2,
+      "admission_ordinal": 7,
+      "incumbent_cuda_trace_available": false,
+      "newcomer_cuda_trace_available": true,
+      "windows": []
+    },
+    {
+      "block": 2,
+      "admission_ordinal": 8,
+      "incumbent_cuda_trace_available": true,
+      "newcomer_cuda_trace_available": true,
+      "windows": [
+        {
+          "window": 32,
+          "incumbent_pre_steps_available": 2568,
+          "incumbent_post_steps_available": 0,
+          "newcomer_warmup_steps": 32,
+          "sufficient": false
+        },
+        {
+          "window": 128,
+          "incumbent_pre_steps_available": 2568,
+          "incumbent_post_steps_available": 0,
+          "newcomer_warmup_steps": 32,
+          "sufficient": false
+        }
+      ],
+      "incumbent_trace_sha256": "7c304295768d772f291ed7067d407bf4ba1fc5cc561978358ffa4792462cdb32",
+      "newcomer_trace_sha256": "abe8db09b8e1c0646fc320aec39c6075290318e247e2b7d76e56908cc493e7c9"
+    },
+    {
+      "block": 2,
+      "admission_ordinal": 9,
+      "incumbent_cuda_trace_available": true,
+      "newcomer_cuda_trace_available": false,
+      "windows": []
+    },
+    {
+      "block": 2,
+      "admission_ordinal": 10,
+      "incumbent_cuda_trace_available": false,
+      "newcomer_cuda_trace_available": false,
+      "windows": []
+    },
+    {
+      "block": 2,
+      "admission_ordinal": 11,
+      "incumbent_cuda_trace_available": true,
+      "newcomer_cuda_trace_available": false,
+      "windows": []
+    }
+  ],
+  "scope": "All20actual co-admissions in the two closed treatment pools, never selected by scores.",
+  "boundary": "Completed-return traces are survivor-conditioned, not an online exported API. Before/after host optimizer-call envelopes may span changing program phases; they are not kernel throughput. Fixed32newcomer warmup and32/128incumbent windows are descriptive, not an exact SchedMate implementation. No eviction occurs; detecting a signal does not establish decision correctness, final quality or equal-cost benefit. Missing traces do not prove no GPU computation."
+}

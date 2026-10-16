@@ -2,7 +2,7 @@ import unittest
 from clock_contention_readout_20261016 import effects
 class Readout(unittest.TestCase):
     def fixture(self):
-        return [dict(program=p,mode=m,valid=True,steps=100 if m=='solo' else 70,
+        return [dict(program=p,mode=m,complete=True,valid=True,steps=100 if m=='solo' else 70,
                      score=(.9 if m=='solo' else .8) if p==0 else (.02 if m=='solo' else .03))
                 for p in (0,1) for m in ('solo','colocated') for _ in range(2)]
     def test_direction(self):
@@ -15,4 +15,7 @@ class Readout(unittest.TestCase):
     def test_repeat_noise_prevents_separation(self):
         r=self.fixture();r[0]['score']=.1;r[0]['steps']=10
         q=effects(r)[0];self.assertFalse(q['all_colocated_scores_worse']);self.assertFalse(q['all_colocated_steps_lower'])
+    def test_cleanup_failure_excludes_contrast(self):
+        r=self.fixture();r[0]['complete']=False
+        self.assertFalse(effects(r)[0]['complete'])
 if __name__=='__main__':unittest.main()

@@ -16,7 +16,7 @@ def effects(rows):
     out=[]
     for program in range(2):
         r=[x for x in rows if x['program']==program]
-        if len(r)!=4 or not all(x.get('valid') and x.get('score') is not None and x.get('steps') is not None for x in r):
+        if len(r)!=4 or not all(x.get('complete') and x.get('valid') and x.get('score') is not None and x.get('steps') is not None for x in r):
             out.append(dict(program=program,complete=False));continue
         a=[x for x in r if x['mode']=='solo'];b=[x for x in r if x['mode']=='colocated']
         assert len(a)==len(b)==2

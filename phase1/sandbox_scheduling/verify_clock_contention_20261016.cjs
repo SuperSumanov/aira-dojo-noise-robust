@@ -4,7 +4,7 @@ const near=(a,b)=>assert.ok(Number.isFinite(a)&&Number.isFinite(b)&&Math.abs(a-b
 const median2=v=>(v[0]+v[1])/2;
 function effect(rows,p){
  const r=rows.filter(x=>x.program===p);
- if(r.length!==4||r.some(x=>!x.valid||x.score==null||x.steps==null))return {program:p,complete:false};
+ if(r.length!==4||r.some(x=>!x.complete||!x.valid||x.score==null||x.steps==null))return {program:p,complete:false};
  const a=r.filter(x=>x.mode==='solo'),b=r.filter(x=>x.mode==='colocated');
  assert.equal(a.length,2);assert.equal(b.length,2);
  const av=a.map(x=>x.score*(p===0?1:-1)),bv=b.map(x=>x.score*(p===0?1:-1));
@@ -16,7 +16,7 @@ function effect(rows,p){
    colocated_score_repeat_span:Math.max(...bv)-Math.min(...bv)};
 }
 const fixture=Array.from({length:8},(_,i)=>({program:i%2,mode:['solo','colocated','colocated','solo'][Math.floor(i/2)],
- valid:true,steps:[100,70,70,100][Math.floor(i/2)],score:i%2?[.02,.03,.03,.02][Math.floor(i/2)]:[.9,.8,.8,.9][Math.floor(i/2)]}));
+ complete:true,valid:true,steps:[100,70,70,100][Math.floor(i/2)],score:i%2?[.02,.03,.03,.02][Math.floor(i/2)]:[.9,.8,.8,.9][Math.floor(i/2)]}));
 assert.ok(effect(fixture,0).all_colocated_scores_worse);assert.ok(effect(fixture,1).all_colocated_scores_worse);
 fixture[0].valid=false;assert.equal(effect(fixture,0).complete,false);
 if(process.argv[2]){

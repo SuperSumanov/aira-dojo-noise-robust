@@ -1,18 +1,19 @@
 # 当前短交接：现场、证据与恢复动作
 
-最后核验：2026-10-16香港17:17（GPU最后17:12，sacct六作业全部闭合；squeue只有旧12535，未操作）。用户授权窗口11:18–17:18，正在收尾，无需重复请批。
-当前没有本窗口活动GPU；不再开启赶不及完整读出的GPU批次，不把准备/排队写成执行。
+最后核验：2026-10-17香港03:05。新授权窗口02:49–08:49，用户批准同范围自主批次，持续在会话推进，无需重复请批。
+18987已于03:03:08在gpu27 RUNNING，最晚03:55:08结束；16次固定程序搭档干预，尚未读取中途质量。六卡三臂仅CPU准备，未提交。
 
 ## checkout、Git与边界
 
 - checkout=C:/Research/New/my_project/MLEvolve/_codex_tmp/publication-feedback-20261001（detached HEAD有意）。
-- 实验源码/全部安全汇总已快进push：6d400e2866614dd3317d03a895267ffee9c2054e（fetch核验）；8blobs/77453bytes扫描0凭据/大二进制/private。18859配对源/门在50d8c920冻结。
-- dojo-reproduce=c394ca1756ab2e53d5cbb68802e2973c8ceebe8a，17:14远端核验未变；未改学长分支。
-- 静态作用域脚本在b6d54da55abded33a4db07e4af155f815058aa6a事前冻结，结果已在6d400e28公开；20次准入/18859回执/成本已在a61abeec公开。最后解释边界与短交接已在2569aa73af4f58d99ad745d17464dda9408a76d8快进发布并ls-remote核验，3blobs/26649bytes安全扫描零命中。
+- 上窗口最终公开2cf2883917d5fc67b97b62894006a1bec7f8bb66；本轮配对源a349aa7a2c7a70d298a6703c3faced4bc5d0a685、条件六卡源f24715fb1f74ceca7a700266b2b1755509814468均已安全扫描。
+- dojo-reproduce新e4d478350e704e8c5927eba566b2847aaa6dcbab；两新文档先远端扫描/脱敏后读。95journals/5任务结论是学长报告，非我方复现；selected改善不等于best-found提高，存在跨天硬件/负载差异。记录senior_update_20261017.safe.json；未改学长分支。
+- 18987root=/research/d7/spc/yzyang4/clock-pairing-20261017-v2，planSHA a2f2ea693c0d2a194ac194a3023e81645eeb55b94263733dd12e943515d6ed22；1卡52分钟≤3120GPU秒。v1仅CPU二次导入失败0GPU/0候选，不覆盖原包；修复后12CPU测试及实际shim通过。
+- 条件六卡root=scheduling-diverse-20261017-v1；48条/三臂/ABC-CBA，gpu3旧兼容节点，2服务+4执行≤8400秒/14GPUh。配对全16有效、原质量门及summary绑定独立验证通过后才submit/service。只调device tie-break，FIFO次序/空卡优先/原输入/CPU/预算不变。
 - 用户未跟踪报告、_codex_tmp、pooling_host_compat_20261016.sh及旧checkout dirty保留。
 - 不用付费API/底座训练，不碰first960/Target300/522/D_val/官方test/16560或旧Held12535；原任务镜像不改。
 
-## 本窗口实验状态（所有金额/时长以完整allocation为准）
+## 上窗口已封存状态（10/16；不混入新窗口成本）
 
 | job | root（前缀/research/d7/spc/yzyang4/） | 状态/有效数 | GPU秒 |
 |---|---|---|---|
@@ -43,15 +44,15 @@
 
 ## 收尾与下一次恢复
 
-- 本窗口不再提交GPU；作用域摘要已发布，不扩大为论文阳性或新策略收益。当前没有需要用户解决的访问/算力阻塞。
-- 下一次先核最新裁决；配对干预仍未执行，若继续须独立新root/矩阵/成本，预检耗时后再核启动余量。不得重开18859、修补18845分母或换匹配追正。
-- 六小时一次提醒automation已在17:17删除，工具回执deleteStatus=deleted；不建重复跟进或长报告。17:18用户简报仅陈述本窗口实际证据与尚未确认收益。
+- 18987闭合后唯一readout-20261017-v1，原reader；verify_clock_pairing_20261017.cjs独立全分母/统计/传输SHA核验，再记录GPU全allocation成本。不得中途看分数换匹配。
+- 三臂CPU输入矩阵/实际生产信号与readiness门待完成；科学门固定：diverse须两次分别胜shared及普通cap2去噪best≥.001，Aerial不退，实际改变设备选择；不通过父门则不提交六卡，不换门救结论。
+- 旧一次提醒已删除；本轮继续本会话到08:49，不建重复跟进/长报告。当前无外部权限或节点阻塞，不碰旧12535。
 
 ## 连接与操作
 
 - SSH=137.189.88.148，HostKeyAlias=linux5.cse.cuhk.edu.hk，StrictHostKeyChecking=yes；DNS失败不重投。
 - PY=/research/d7/spc/yzyang4/venvs/aira/bin/python；SLURM_CONF=/opt1/slurm/gpu-slurm.conf。
-- staging=/research/d7/spc/yzyang4/colocation-source-20261016-RokSUP；未知长命令用脚本+SCP，原始日志先远端凭据扫描/脱敏。
+- staging=/research/d7/spc/yzyang4/pairing-source-20261017-GWteBV；未知长命令用脚本+SCP，SCP返回session须等完成再运行；原始日志先远端凭据扫描/脱敏。
 - 本地Python=C:/Users/yanze/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe；文件编辑apply_patch。
 - 复杂门运行前CPU测试，真实配置构造mock外部server；不能初始化登录节点Jupyter/GPU。长hash/预检后、sbatch前还须重核启动余量。
 - 短记忆前版完整保存Git50d8c920；历史机制见ROUTE_DECISIONS，勿重复全读或重复旧验收。

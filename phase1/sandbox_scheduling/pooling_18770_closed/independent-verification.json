@@ -1,0 +1,77 @@
+{
+  "passed": true,
+  "assigned": 32,
+  "quality_gate": false,
+  "predeclared_success_gate_met": false,
+  "gpu_hours": 8.438333333333333,
+  "contrasts": [
+    {
+      "repeat": 0,
+      "task": "aerial-cactus-identification",
+      "fixed_best": 0.9997380841658515,
+      "shared_best": 0.9999224942939764,
+      "oriented_delta": 0.0001844101281248678,
+      "median_delta": -0.00001202674748634891
+    },
+    {
+      "repeat": 0,
+      "task": "denoising-dirty-documents",
+      "fixed_best": 0.014672638553735228,
+      "shared_best": 0.015065587448419392,
+      "oriented_delta": -0.00039294889468416416,
+      "median_delta": -0.015219533271183881
+    },
+    {
+      "repeat": 1,
+      "task": "aerial-cactus-identification",
+      "fixed_best": 0.9998690420829257,
+      "shared_best": 0.999770155492482,
+      "oriented_delta": -0.00009888659044365866,
+      "median_delta": 0
+    },
+    {
+      "repeat": 1,
+      "task": "denoising-dirty-documents",
+      "fixed_best": 0.0191865423765659,
+      "shared_best": 0.015308295476915064,
+      "oriented_delta": 0.0038782468996508366,
+      "median_delta": 0.028576853557217414
+    }
+  ],
+  "queues": [
+    {
+      "admissions": 20,
+      "migrations": 0,
+      "wait_total": 1651.165599822998,
+      "wait_median": 18.133469939231873
+    },
+    {
+      "admissions": 21,
+      "migrations": 14,
+      "wait_total": 1151.2381784915924,
+      "wait_median": 0.012281656265258789
+    },
+    {
+      "admissions": 27,
+      "migrations": 17,
+      "wait_total": 304.3968322277069,
+      "wait_median": 0.012118816375732422
+    },
+    {
+      "admissions": 21,
+      "migrations": 0,
+      "wait_total": 1532.2797906398773,
+      "wait_median": 0.020541667938232422
+    }
+  ],
+  "hashes": {
+    "runs.json": "ce3a3677fb0f27094486945acf89e89d2f1919bba810227df6951257c01e8d59",
+    "summary.json": "bef23ec17e2fd3e561a690e2aa7328c3df592cb315070fbc293d69c4ce84def5",
+    "queue-0.json": "848fcb022cf7384ea58749bb9c6356e86bb0bab73ea1de581eebbc3c514ee964",
+    "queue-1.json": "ac36d6a97db8e4d483f84e4e17d56bdcd284b14c79f924e35bd5ff57ecb77490",
+    "queue-2.json": "989c11e4b1bad201f7e0498ed175d55e6081952c08d35fb129141a06e24b203f",
+    "queue-3.json": "10e6bebcabf824a2bed5915a97bba681c0d68a4655782cd5774493593e2de177",
+    "input-checks.json": "b2d35d34771363e071c71001bcd73302a3bc410805bbfd84f4e6bafc146eb2d9",
+    "identity.json": "b5451a9177092a805472a2f8aa7eca89c579fc471b020603bdd2ba501a534041"
+  }
+}

@@ -1,0 +1,168 @@
+{
+  "actual_mode_gate": true,
+  "assigned": 32,
+  "by_pool": [
+    {
+      "best": 0.9997380841658515,
+      "block": 0,
+      "median": 0.9997260574183651,
+      "n": 4,
+      "pool_mode": "fixed",
+      "repeat": 0,
+      "sample_sd": 1.3887291797502494e-05,
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "best": 0.014672638553735228,
+      "block": 0,
+      "median": 0.015499707973736336,
+      "n": 4,
+      "pool_mode": "fixed",
+      "repeat": 0,
+      "sample_sd": 0.006754126632198493,
+      "task": "denoising-dirty-documents"
+    },
+    {
+      "best": 0.9999224942939764,
+      "block": 1,
+      "median": 0.9997140306708787,
+      "n": 4,
+      "pool_mode": "shared",
+      "repeat": 0,
+      "sample_sd": 0.00010423181154883832,
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "best": 0.015065587448419392,
+      "block": 1,
+      "median": 0.030719241244920217,
+      "n": 4,
+      "pool_mode": "shared",
+      "repeat": 0,
+      "sample_sd": 0.017333516421979736,
+      "task": "denoising-dirty-documents"
+    },
+    {
+      "best": 0.999770155492482,
+      "block": 2,
+      "median": 0.9997140306708787,
+      "n": 4,
+      "pool_mode": "shared",
+      "repeat": 1,
+      "sample_sd": 2.8062410801665827e-05,
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "best": 0.015308295476915064,
+      "block": 2,
+      "median": 0.016935411588927095,
+      "n": 4,
+      "pool_mode": "shared",
+      "repeat": 1,
+      "sample_sd": 0.014587092390389682,
+      "task": "denoising-dirty-documents"
+    },
+    {
+      "best": 0.9998690420829257,
+      "block": 3,
+      "median": 0.9997140306708787,
+      "n": 4,
+      "pool_mode": "fixed",
+      "repeat": 1,
+      "sample_sd": 7.750570602349516e-05,
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "best": 0.0191865423765659,
+      "block": 3,
+      "median": 0.04551226514614451,
+      "n": 4,
+      "pool_mode": "fixed",
+      "repeat": 1,
+      "sample_sd": 0.013162861384789304,
+      "task": "denoising-dirty-documents"
+    }
+  ],
+  "complete": 32,
+  "contrasts": [
+    {
+      "fixed_best": 0.9997380841658515,
+      "median_delta": -1.202674748634891e-05,
+      "oriented_delta": 0.0001844101281248678,
+      "repeat": 0,
+      "shared_best": 0.9999224942939764,
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "fixed_best": 0.014672638553735228,
+      "median_delta": -0.015219533271183881,
+      "oriented_delta": -0.00039294889468416416,
+      "repeat": 0,
+      "shared_best": 0.015065587448419392,
+      "task": "denoising-dirty-documents"
+    },
+    {
+      "fixed_best": 0.9998690420829257,
+      "median_delta": 0.0,
+      "oriented_delta": -9.888659044365866e-05,
+      "repeat": 1,
+      "shared_best": 0.999770155492482,
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "fixed_best": 0.0191865423765659,
+      "median_delta": 0.028576853557217414,
+      "oriented_delta": 0.0038782468996508366,
+      "repeat": 1,
+      "shared_best": 0.015308295476915064,
+      "task": "denoising-dirty-documents"
+    }
+  ],
+  "dispatch_changed": true,
+  "gpu_hours": 8.438333333333333,
+  "gpu_seconds": 30378,
+  "limitation": "Standard FIFO pooling is NOT novelty. Exploratory strong-baseline qualification on reused development tasks; two pool repeats share one service, not32 independent replicates. Warm starts and public preview are common sunk inputs. No training or history-transfer gain.",
+  "plan_sha256": "a7cc9780c927cdeac3fc1effb214643a387353122e1fa542d3a40116b248d477",
+  "predeclared_success_gate_met": false,
+  "quality_gate": false,
+  "queues": [
+    {
+      "admissions": 20,
+      "block": 0,
+      "migrations": 0,
+      "pool_mode": "fixed",
+      "wait_median": 18.133469939231873,
+      "wait_total": 1651.165599822998
+    },
+    {
+      "admissions": 21,
+      "block": 1,
+      "migrations": 14,
+      "pool_mode": "shared",
+      "wait_median": 0.012281656265258789,
+      "wait_total": 1151.2381784915924
+    },
+    {
+      "admissions": 27,
+      "block": 2,
+      "migrations": 17,
+      "pool_mode": "shared",
+      "wait_median": 0.012118816375732422,
+      "wait_total": 304.3968322277069
+    },
+    {
+      "admissions": 21,
+      "block": 3,
+      "migrations": 0,
+      "pool_mode": "fixed",
+      "wait_median": 0.020541667938232422,
+      "wait_total": 1532.2797906398773
+    }
+  ],
+  "reader_sha256": "3adac787a6a6e14efbda5441ef4ad4e64f31fd9cc2d278116cba11b1ea88e4ec",
+  "runtime_input_gate": true,
+  "scores_recomputed": 29,
+  "source_commit": "6c58f3b130534d8f4e1a0628f2ef5ce18b0c0356",
+  "started": 32,
+  "structural_gate": true
+}

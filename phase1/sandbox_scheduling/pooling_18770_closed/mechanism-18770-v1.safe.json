@@ -1,0 +1,1926 @@
+{
+  "plan_sha256": "a7cc9780c927cdeac3fc1effb214643a387353122e1fa542d3a40116b248d477",
+  "primary_summary_sha256": "bef23ec17e2fd3e561a690e2aa7328c3df592cb315070fbc293d69c4ce84def5",
+  "source_sha256": "d2428f5729b89c82976c5dc0aa055888b739a71788e10ac6529dc1bffd9c4da5",
+  "new_gpu_jobs": 0,
+  "new_scores": 0,
+  "pools": [
+    {
+      "block": 0,
+      "mode": "fixed",
+      "duration": 1180.0001442432404,
+      "gpu_telemetry": [
+        {
+          "covered_seconds": 1024.1319196224213,
+          "coverage": 0.8679083003665388,
+          "utilization_pct": 15.952631826822476,
+          "nonzero_fraction": 0.5474934077065179,
+          "max_gap": 2.659358501434326,
+          "samples": 417
+        },
+        {
+          "covered_seconds": 1024.114016532898,
+          "coverage": 0.8678931282586279,
+          "utilization_pct": 28.30468828672718,
+          "nonzero_fraction": 0.40119564445198286,
+          "max_gap": 2.6537914276123047,
+          "samples": 417
+        },
+        {
+          "covered_seconds": 1024.0923521518707,
+          "coverage": 0.8678747686159338,
+          "utilization_pct": 24.454079139298564,
+          "nonzero_fraction": 0.5577995482998824,
+          "max_gap": 2.66227388381958,
+          "samples": 417
+        },
+        {
+          "covered_seconds": 1024.080552816391,
+          "coverage": 0.8678647691803089,
+          "utilization_pct": 28.831706481555713,
+          "nonzero_fraction": 0.5932084870992516,
+          "max_gap": 2.6625828742980957,
+          "samples": 417
+        }
+      ],
+      "lease_held_gpu_seconds": 2792.79443860054,
+      "lease_full_seconds": 403.86466932296753,
+      "all_queue_wait_seconds": 1651.165599822998,
+      "lease_held_fraction": 0.591693664662986,
+      "leases": [
+        {
+          "index": 6,
+          "seq": 0,
+          "device": 3,
+          "queued_at": 139.54965901374817,
+          "admitted_at": 139.5593283176422,
+          "released_at": 184.24212527275085,
+          "wait": 0.009669303894042969,
+          "hold": 44.68279695510864
+        },
+        {
+          "index": 0,
+          "seq": 0,
+          "device": 0,
+          "queued_at": 245.43996167182922,
+          "admitted_at": 245.44748950004578,
+          "released_at": 367.8786795139313,
+          "wait": 0.007527828216552734,
+          "hold": 122.4311900138855
+        },
+        {
+          "index": 1,
+          "seq": 0,
+          "device": 0,
+          "queued_at": 261.39696526527405,
+          "admitted_at": 367.9022150039673,
+          "released_at": 379.8588035106659,
+          "wait": 106.50524973869324,
+          "hold": 11.956588506698608
+        },
+        {
+          "index": 2,
+          "seq": 0,
+          "device": 1,
+          "queued_at": 232.37976717948914,
+          "admitted_at": 232.3976287841797,
+          "released_at": 382.1253025531769,
+          "wait": 0.017861604690551758,
+          "hold": 149.7276737689972
+        },
+        {
+          "index": 4,
+          "seq": 0,
+          "device": 2,
+          "queued_at": 134.0352942943573,
+          "admitted_at": 134.04719853401184,
+          "released_at": 437.42262077331543,
+          "wait": 0.011904239654541016,
+          "hold": 303.3754222393036
+        },
+        {
+          "index": 7,
+          "seq": 0,
+          "device": 3,
+          "queued_at": 159.35516834259033,
+          "admitted_at": 184.25131392478943,
+          "released_at": 497.4645094871521,
+          "wait": 24.896145582199097,
+          "hold": 313.21319556236267
+        },
+        {
+          "index": 3,
+          "seq": 0,
+          "device": 1,
+          "queued_at": 273.09735226631165,
+          "admitted_at": 382.1354420185089,
+          "released_at": 705.3372552394867,
+          "wait": 109.03808975219727,
+          "hold": 323.2018132209778
+        },
+        {
+          "index": 5,
+          "seq": 0,
+          "device": 2,
+          "queued_at": 151.90595030784607,
+          "admitted_at": 437.4376199245453,
+          "released_at": 717.0541694164276,
+          "wait": 285.5316696166992,
+          "hold": 279.6165494918823
+        },
+        {
+          "index": 4,
+          "seq": 1,
+          "device": 2,
+          "queued_at": 561.1362764835358,
+          "admitted_at": 717.0611128807068,
+          "released_at": 728.692892074585,
+          "wait": 155.92483639717102,
+          "hold": 11.631779193878174
+        },
+        {
+          "index": 0,
+          "seq": 1,
+          "device": 0,
+          "queued_at": 473.6240916252136,
+          "admitted_at": 473.6450455188751,
+          "released_at": 730.9933595657349,
+          "wait": 0.020953893661499023,
+          "hold": 257.34831404685974
+        },
+        {
+          "index": 2,
+          "seq": 1,
+          "device": 1,
+          "queued_at": 493.48203706741333,
+          "admitted_at": 705.3469564914703,
+          "released_at": 737.9340224266052,
+          "wait": 211.864919424057,
+          "hold": 32.58706593513489
+        },
+        {
+          "index": 6,
+          "seq": 1,
+          "device": 3,
+          "queued_at": 317.51074171066284,
+          "admitted_at": 497.4727439880371,
+          "released_at": 782.8936932086945,
+          "wait": 179.96200227737427,
+          "hold": 285.42094922065735
+        },
+        {
+          "index": 4,
+          "seq": 2,
+          "device": 2,
+          "queued_at": 815.6717054843903,
+          "admitted_at": 815.6802651882172,
+          "released_at": 858.3721408843994,
+          "wait": 0.008559703826904297,
+          "hold": 42.69187569618225
+        },
+        {
+          "index": 3,
+          "seq": 1,
+          "device": 1,
+          "queued_at": 847.5122268199921,
+          "admitted_at": 847.5206696987152,
+          "released_at": 862.0011398792267,
+          "wait": 0.008442878723144531,
+          "hold": 14.480470180511475
+        },
+        {
+          "index": 7,
+          "seq": 1,
+          "device": 3,
+          "queued_at": 591.1105432510376,
+          "admitted_at": 782.9147918224335,
+          "released_at": 884.4583241939545,
+          "wait": 191.80424857139587,
+          "hold": 101.543532371521
+        },
+        {
+          "index": 2,
+          "seq": 2,
+          "device": 1,
+          "queued_at": 930.3717560768127,
+          "admitted_at": 930.3841178417206,
+          "released_at": 958.0164880752563,
+          "wait": 0.012361764907836914,
+          "hold": 27.632370233535767
+        },
+        {
+          "index": 3,
+          "seq": 2,
+          "device": 1,
+          "queued_at": 992.2306141853333,
+          "admitted_at": 992.2494237422943,
+          "released_at": 1006.4634695053101,
+          "wait": 0.01880955696105957,
+          "hold": 14.214045763015747
+        },
+        {
+          "index": 1,
+          "seq": 1,
+          "device": 0,
+          "queued_at": 521.2017221450806,
+          "admitted_at": 731.011296749115,
+          "released_at": 1014.5941734313965,
+          "wait": 209.80957460403442,
+          "hold": 283.5828766822815
+        },
+        {
+          "index": 0,
+          "seq": 2,
+          "device": 0,
+          "queued_at": 850.2799491882324,
+          "admitted_at": 1014.6219279766083,
+          "released_at": 1022.8130769729614,
+          "wait": 164.34197878837585,
+          "hold": 8.19114899635315
+        },
+        {
+          "index": 5,
+          "seq": 1,
+          "device": 2,
+          "queued_at": 847.0278933048248,
+          "admitted_at": 858.3986876010895,
+          "released_at": 1023.6634681224823,
+          "wait": 11.370794296264648,
+          "hold": 165.26478052139282
+        }
+      ],
+      "cancelled": [],
+      "tasks": [
+        {
+          "task": "aerial-cactus-identification",
+          "rows": [
+            {
+              "index": 0,
+              "candidate_returns": 2,
+              "valid_returns": 1,
+              "code_calls": 3,
+              "returned_code_calls": 3,
+              "failed_code_calls": 0,
+              "code_seconds": 303.183468267991,
+              "analyze_seconds": 17.163048198999604,
+              "execution_wait": 164.3704605102539,
+              "execution_hold": 387.9706530570984,
+              "score": 0.9997140306708787
+            },
+            {
+              "index": 2,
+              "candidate_returns": 3,
+              "valid_returns": 0,
+              "code_calls": 3,
+              "returned_code_calls": 3,
+              "failed_code_calls": 0,
+              "code_seconds": 306.50595333601814,
+              "analyze_seconds": 12.764085527014686,
+              "execution_wait": 211.8951427936554,
+              "execution_hold": 209.94710993766785,
+              "score": 0.9997140306708787
+            },
+            {
+              "index": 4,
+              "candidate_returns": 3,
+              "valid_returns": 2,
+              "code_calls": 4,
+              "returned_code_calls": 3,
+              "failed_code_calls": 1,
+              "code_seconds": 342.22190536296694,
+              "analyze_seconds": 17.722777337010484,
+              "execution_wait": 155.94530034065247,
+              "execution_hold": 357.699077129364,
+              "score": 0.9997380841658515
+            },
+            {
+              "index": 6,
+              "candidate_returns": 2,
+              "valid_returns": 1,
+              "code_calls": 3,
+              "returned_code_calls": 2,
+              "failed_code_calls": 1,
+              "code_seconds": 349.72943422198296,
+              "analyze_seconds": 14.369164799980354,
+              "execution_wait": 179.9716715812683,
+              "execution_hold": 330.103746175766,
+              "score": 0.9997380841658515
+            }
+          ],
+          "valid_events": [
+            {
+              "index": 0,
+              "at": 731.0029563146527,
+              "score": 0.5
+            },
+            {
+              "index": 4,
+              "at": 437.4364808734972,
+              "score": 0.9997380841658515
+            },
+            {
+              "index": 4,
+              "at": 858.3808874374954,
+              "score": 0.5
+            },
+            {
+              "index": 6,
+              "at": 782.9082267929043,
+              "score": 0.9997380841658515
+            }
+          ],
+          "records": [
+            {
+              "index": 4,
+              "at": 437.4364808734972,
+              "score": 0.9997380841658515
+            }
+          ]
+        },
+        {
+          "task": "denoising-dirty-documents",
+          "rows": [
+            {
+              "index": 1,
+              "candidate_returns": 2,
+              "valid_returns": 1,
+              "code_calls": 2,
+              "returned_code_calls": 2,
+              "failed_code_calls": 0,
+              "code_seconds": 232.62995099800173,
+              "analyze_seconds": 14.41283726200345,
+              "execution_wait": 316.31482434272766,
+              "execution_hold": 295.5394651889801,
+              "score": 0.014672638553735228
+            },
+            {
+              "index": 3,
+              "candidate_returns": 3,
+              "valid_returns": 1,
+              "code_calls": 4,
+              "returned_code_calls": 3,
+              "failed_code_calls": 1,
+              "code_seconds": 371.3678618169797,
+              "analyze_seconds": 24.09005763300229,
+              "execution_wait": 109.06534218788147,
+              "execution_hold": 351.896329164505,
+              "score": 0.01592905415462499
+            },
+            {
+              "index": 5,
+              "candidate_returns": 1,
+              "valid_returns": 1,
+              "code_calls": 2,
+              "returned_code_calls": 2,
+              "failed_code_calls": 0,
+              "code_seconds": 235.54465558196534,
+              "analyze_seconds": 6.530421774979914,
+              "execution_wait": 296.90246391296387,
+              "execution_hold": 444.88133001327515,
+              "score": 0.015070361792847682
+            },
+            {
+              "index": 7,
+              "candidate_returns": 2,
+              "valid_returns": 1,
+              "code_calls": 3,
+              "returned_code_calls": 3,
+              "failed_code_calls": 0,
+              "code_seconds": 336.97159238602035,
+              "analyze_seconds": 11.997971004020656,
+              "execution_wait": 216.70039415359497,
+              "execution_hold": 414.75672793388367,
+              "score": 0.02869150861323785
+            }
+          ],
+          "valid_events": [
+            {
+              "index": 1,
+              "at": 1014.6037005268445,
+              "score": 0.014672638553735228
+            },
+            {
+              "index": 3,
+              "at": 705.346821176674,
+              "score": 0.01592905415462499
+            },
+            {
+              "index": 5,
+              "at": 717.0612189309031,
+              "score": 0.015070361792847682
+            },
+            {
+              "index": 7,
+              "at": 884.4684916925326,
+              "score": 0.02869150861323785
+            }
+          ],
+          "records": [
+            {
+              "index": 3,
+              "at": 705.346821176674,
+              "score": 0.01592905415462499
+            },
+            {
+              "index": 5,
+              "at": 717.0612189309031,
+              "score": 0.015070361792847682
+            },
+            {
+              "index": 1,
+              "at": 1014.6037005268445,
+              "score": 0.014672638553735228
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "block": 1,
+      "mode": "shared",
+      "duration": 1180.0001990795135,
+      "gpu_telemetry": [
+        {
+          "covered_seconds": 1023.5128135681152,
+          "coverage": 0.8673835939744163,
+          "utilization_pct": 15.727331977799091,
+          "nonzero_fraction": 0.46224227071598156,
+          "max_gap": 2.5988810062408447,
+          "samples": 418
+        },
+        {
+          "covered_seconds": 1023.4920589923859,
+          "coverage": 0.8673660053538843,
+          "utilization_pct": 15.520768175191654,
+          "nonzero_fraction": 0.595125346013704,
+          "max_gap": 2.598742961883545,
+          "samples": 418
+        },
+        {
+          "covered_seconds": 1023.4746263027191,
+          "coverage": 0.8673512318905574,
+          "utilization_pct": 30.01904699288202,
+          "nonzero_fraction": 0.5953956148780059,
+          "max_gap": 2.6017937660217285,
+          "samples": 418
+        },
+        {
+          "covered_seconds": 1023.4561643600464,
+          "coverage": 0.8673355861790676,
+          "utilization_pct": 17.63334783050268,
+          "nonzero_fraction": 0.5640851105344832,
+          "max_gap": 2.5969061851501465,
+          "samples": 418
+        }
+      ],
+      "lease_held_gpu_seconds": 2923.2977197170258,
+      "lease_full_seconds": 609.9532632827759,
+      "all_queue_wait_seconds": 1151.2381784915924,
+      "lease_held_fraction": 0.6193426327379885,
+      "leases": [
+        {
+          "index": 14,
+          "seq": 0,
+          "device": 0,
+          "queued_at": 111.52158999443054,
+          "admitted_at": 111.53304815292358,
+          "released_at": 403.57125544548035,
+          "wait": 0.011458158493041992,
+          "hold": 292.03820729255676
+        },
+        {
+          "index": 13,
+          "seq": 0,
+          "device": 2,
+          "queued_at": 131.25119709968567,
+          "admitted_at": 131.26101517677307,
+          "released_at": 409.1358895301819,
+          "wait": 0.009818077087402344,
+          "hold": 277.8748743534088
+        },
+        {
+          "index": 12,
+          "seq": 0,
+          "device": 1,
+          "queued_at": 130.98003268241882,
+          "admitted_at": 130.98791933059692,
+          "released_at": 414.9692726135254,
+          "wait": 0.007886648178100586,
+          "hold": 283.98135328292847
+        },
+        {
+          "index": 11,
+          "seq": 0,
+          "device": 1,
+          "queued_at": 239.2698245048523,
+          "admitted_at": 414.98738527297974,
+          "released_at": 426.389310836792,
+          "wait": 175.71756076812744,
+          "hold": 11.401925563812256
+        },
+        {
+          "index": 8,
+          "seq": 0,
+          "device": 2,
+          "queued_at": 218.77949452400208,
+          "admitted_at": 409.1547074317932,
+          "released_at": 438.18318223953247,
+          "wait": 190.37521290779114,
+          "hold": 29.028474807739258
+        },
+        {
+          "index": 9,
+          "seq": 0,
+          "device": 1,
+          "queued_at": 239.5654628276825,
+          "admitted_at": 426.4110918045044,
+          "released_at": 439.1737656593323,
+          "wait": 186.8456289768219,
+          "hold": 12.76267385482788
+        },
+        {
+          "index": 10,
+          "seq": 0,
+          "device": 0,
+          "queued_at": 196.84723162651062,
+          "admitted_at": 403.5831038951874,
+          "released_at": 444.85666012763977,
+          "wait": 206.73587226867676,
+          "hold": 41.27355623245239
+        },
+        {
+          "index": 15,
+          "seq": 0,
+          "device": 3,
+          "queued_at": 145.22638750076294,
+          "admitted_at": 145.2335171699524,
+          "released_at": 451.5120861530304,
+          "wait": 0.007129669189453125,
+          "hold": 306.278568983078
+        },
+        {
+          "index": 13,
+          "seq": 1,
+          "device": 1,
+          "queued_at": 560.5250310897827,
+          "admitted_at": 560.5390491485596,
+          "released_at": 572.9560010433197,
+          "wait": 0.014018058776855469,
+          "hold": 12.416951894760132
+        },
+        {
+          "index": 11,
+          "seq": 1,
+          "device": 1,
+          "queued_at": 601.7449111938477,
+          "admitted_at": 601.7571928501129,
+          "released_at": 614.6603312492371,
+          "wait": 0.012281656265258789,
+          "hold": 12.903138399124146
+        },
+        {
+          "index": 14,
+          "seq": 1,
+          "device": 0,
+          "queued_at": 519.9295160770416,
+          "admitted_at": 519.9414305686951,
+          "released_at": 681.4359838962555,
+          "wait": 0.011914491653442383,
+          "hold": 161.49455332756042
+        },
+        {
+          "index": 12,
+          "seq": 1,
+          "device": 2,
+          "queued_at": 569.1078364849091,
+          "admitted_at": 569.1179623603821,
+          "released_at": 844.2374353408813,
+          "wait": 0.010125875473022461,
+          "hold": 275.11947298049927
+        },
+        {
+          "index": 15,
+          "seq": 1,
+          "device": 2,
+          "queued_at": 726.1646494865417,
+          "admitted_at": 844.2473683357239,
+          "released_at": 857.3971538543701,
+          "wait": 118.08271884918213,
+          "hold": 13.14978551864624
+        },
+        {
+          "index": 8,
+          "seq": 1,
+          "device": 1,
+          "queued_at": 632.6725251674652,
+          "admitted_at": 632.6832466125488,
+          "released_at": 908.3030924797058,
+          "wait": 0.010721445083618164,
+          "hold": 275.619845867157
+        },
+        {
+          "index": 9,
+          "seq": 1,
+          "device": 0,
+          "queued_at": 670.30171251297,
+          "admitted_at": 681.454256772995,
+          "released_at": 926.3904371261597,
+          "wait": 11.152544260025024,
+          "hold": 244.93618035316467
+        },
+        {
+          "index": 10,
+          "seq": 1,
+          "device": 3,
+          "queued_at": 648.6637809276581,
+          "admitted_at": 648.6718974113464,
+          "released_at": 932.0014021396637,
+          "wait": 0.008116483688354492,
+          "hold": 283.32950472831726
+        },
+        {
+          "index": 11,
+          "seq": 2,
+          "device": 0,
+          "queued_at": 842.1339313983917,
+          "admitted_at": 926.4140858650208,
+          "released_at": 940.8563606739044,
+          "wait": 84.28015446662903,
+          "hold": 14.442274808883667
+        },
+        {
+          "index": 15,
+          "seq": 2,
+          "device": 3,
+          "queued_at": 992.2393107414246,
+          "admitted_at": 992.2471287250519,
+          "released_at": 1026.084100484848,
+          "wait": 0.007817983627319336,
+          "hold": 33.83697175979614
+        },
+        {
+          "index": 13,
+          "seq": 2,
+          "device": 1,
+          "queued_at": 800.1466948986053,
+          "admitted_at": 908.3288109302521,
+          "released_at": 1026.1033725738525,
+          "wait": 108.18211603164673,
+          "hold": 117.77456164360046
+        },
+        {
+          "index": 14,
+          "seq": 2,
+          "device": 2,
+          "queued_at": 787.6670899391174,
+          "admitted_at": 857.4118990898132,
+          "released_at": 1026.326519727707,
+          "wait": 69.7448091506958,
+          "hold": 168.91462063789368
+        },
+        {
+          "index": 12,
+          "seq": 2,
+          "device": 0,
+          "queued_at": 971.6112816333771,
+          "admitted_at": 971.6215538978577,
+          "released_at": 1026.3417773246765,
+          "wait": 0.01027226448059082,
+          "hold": 54.72022342681885
+        }
+      ],
+      "cancelled": [],
+      "tasks": [
+        {
+          "task": "aerial-cactus-identification",
+          "rows": [
+            {
+              "index": 8,
+              "candidate_returns": 2,
+              "valid_returns": 1,
+              "code_calls": 3,
+              "returned_code_calls": 3,
+              "failed_code_calls": 0,
+              "code_seconds": 295.4463830520399,
+              "analyze_seconds": 12.052887424972141,
+              "execution_wait": 190.38593435287476,
+              "execution_hold": 304.64832067489624,
+              "score": 0.9997140306708787
+            },
+            {
+              "index": 10,
+              "candidate_returns": 2,
+              "valid_returns": 1,
+              "code_calls": 3,
+              "returned_code_calls": 2,
+              "failed_code_calls": 1,
+              "code_seconds": 210.99914951401297,
+              "analyze_seconds": 10.664261787023861,
+              "execution_wait": 206.7439887523651,
+              "execution_hold": 324.60306096076965,
+              "score": 0.9997140306708787
+            },
+            {
+              "index": 12,
+              "candidate_returns": 2,
+              "valid_returns": 2,
+              "code_calls": 3,
+              "returned_code_calls": 3,
+              "failed_code_calls": 0,
+              "code_seconds": 366.96431787198526,
+              "analyze_seconds": 20.97117924800841,
+              "execution_wait": 0.028284788131713867,
+              "execution_hold": 613.8210496902466,
+              "score": 0.9999224942939764
+            },
+            {
+              "index": 14,
+              "candidate_returns": 2,
+              "valid_returns": 1,
+              "code_calls": 3,
+              "returned_code_calls": 3,
+              "failed_code_calls": 0,
+              "code_seconds": 294.09116508596344,
+              "analyze_seconds": 17.222727001004387,
+              "execution_wait": 69.76818180084229,
+              "execution_hold": 622.4473812580109,
+              "score": 0.9997140306708787
+            }
+          ],
+          "valid_events": [
+            {
+              "index": 8,
+              "at": 908.3125529729587,
+              "score": 0.9995750549221469
+            },
+            {
+              "index": 10,
+              "at": 932.0126667002623,
+              "score": 0.9988694857362775
+            },
+            {
+              "index": 12,
+              "at": 414.980596638954,
+              "score": 0.9999224942939764
+            },
+            {
+              "index": 12,
+              "at": 844.2471787209506,
+              "score": 0.9997380841658515
+            },
+            {
+              "index": 14,
+              "at": 403.58265992830275,
+              "score": 0.9994440970050724
+            }
+          ],
+          "records": [
+            {
+              "index": 12,
+              "at": 414.980596638954,
+              "score": 0.9999224942939764
+            }
+          ]
+        },
+        {
+          "task": "denoising-dirty-documents",
+          "rows": [
+            {
+              "index": 9,
+              "candidate_returns": 2,
+              "valid_returns": 1,
+              "code_calls": 3,
+              "returned_code_calls": 2,
+              "failed_code_calls": 1,
+              "code_seconds": 293.29163069900824,
+              "analyze_seconds": 13.168442797003081,
+              "execution_wait": 197.99817323684692,
+              "execution_hold": 257.69885420799255,
+              "score": 0.015926217343695922
+            },
+            {
+              "index": 11,
+              "candidate_returns": 3,
+              "valid_returns": 0,
+              "code_calls": 4,
+              "returned_code_calls": 3,
+              "failed_code_calls": 1,
+              "code_seconds": 375.13587251098943,
+              "analyze_seconds": 46.38332763899234,
+              "execution_wait": 260.00999689102173,
+              "execution_hold": 38.74733877182007,
+              "score": 0.04551226514614451
+            },
+            {
+              "index": 13,
+              "candidate_returns": 2,
+              "valid_returns": 1,
+              "code_calls": 3,
+              "returned_code_calls": 3,
+              "failed_code_calls": 0,
+              "code_seconds": 365.40015386702726,
+              "analyze_seconds": 18.65558725100709,
+              "execution_wait": 108.20595216751099,
+              "execution_hold": 408.0663878917694,
+              "score": 0.015065587448419392
+            },
+            {
+              "index": 15,
+              "candidate_returns": 2,
+              "valid_returns": 0,
+              "code_calls": 3,
+              "returned_code_calls": 3,
+              "failed_code_calls": 0,
+              "code_seconds": 365.28869596496224,
+              "analyze_seconds": 15.349532523017842,
+              "execution_wait": 118.0976665019989,
+              "execution_hold": 353.2653262615204,
+              "score": 0.04551226514614451
+            }
+          ],
+          "valid_events": [
+            {
+              "index": 9,
+              "at": 926.3984464814712,
+              "score": 0.015926217343695922
+            },
+            {
+              "index": 13,
+              "at": 409.14724207966356,
+              "score": 0.015065587448419392
+            }
+          ],
+          "records": [
+            {
+              "index": 13,
+              "at": 409.14724207966356,
+              "score": 0.015065587448419392
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "block": 2,
+      "mode": "shared",
+      "duration": 1180.0001764297485,
+      "gpu_telemetry": [
+        {
+          "covered_seconds": 1023.2113182544708,
+          "coverage": 0.8671281061587094,
+          "utilization_pct": 7.30854002746362,
+          "nonzero_fraction": 0.440781598152598,
+          "max_gap": 2.8162014484405518,
+          "samples": 416
+        },
+        {
+          "covered_seconds": 1023.1942629814148,
+          "coverage": 0.8671136525396366,
+          "utilization_pct": 8.999012759331203,
+          "nonzero_fraction": 0.3413794860293421,
+          "max_gap": 2.814826726913452,
+          "samples": 416
+        },
+        {
+          "covered_seconds": 1023.2353293895721,
+          "coverage": 0.8671484545752444,
+          "utilization_pct": 21.315800253962706,
+          "nonzero_fraction": 0.5166487958127417,
+          "max_gap": 2.8150672912597656,
+          "samples": 416
+        },
+        {
+          "covered_seconds": 1023.2598991394043,
+          "coverage": 0.8671692763940229,
+          "utilization_pct": 18.809892807326197,
+          "nonzero_fraction": 0.3726556174338057,
+          "max_gap": 2.7453200817108154,
+          "samples": 416
+        }
+      ],
+      "lease_held_gpu_seconds": 2588.619880437851,
+      "lease_full_seconds": 360.16684556007385,
+      "all_queue_wait_seconds": 387.3363416194916,
+      "lease_held_fraction": 0.5484363333465918,
+      "leases": [
+        {
+          "index": 21,
+          "seq": 0,
+          "device": 3,
+          "queued_at": 153.5420024394989,
+          "admitted_at": 153.55398893356323,
+          "released_at": 164.7659397125244,
+          "wait": 0.011986494064331055,
+          "hold": 11.211950778961182
+        },
+        {
+          "index": 22,
+          "seq": 0,
+          "device": 1,
+          "queued_at": 129.01173043251038,
+          "admitted_at": 129.0211317539215,
+          "released_at": 165.6345500946045,
+          "wait": 0.009401321411132812,
+          "hold": 36.61341834068298
+        },
+        {
+          "index": 16,
+          "seq": 0,
+          "device": 1,
+          "queued_at": 189.05498933792114,
+          "admitted_at": 189.0671820640564,
+          "released_at": 225.6684126853943,
+          "wait": 0.012192726135253906,
+          "hold": 36.60123062133789
+        },
+        {
+          "index": 17,
+          "seq": 0,
+          "device": 3,
+          "queued_at": 250.54323554039001,
+          "admitted_at": 250.552175283432,
+          "released_at": 262.0720920562744,
+          "wait": 0.008939743041992188,
+          "hold": 11.519916772842407
+        },
+        {
+          "index": 23,
+          "seq": 0,
+          "device": 2,
+          "queued_at": 129.8786060810089,
+          "admitted_at": 129.8883092403412,
+          "released_at": 396.9122703075409,
+          "wait": 0.00970315933227539,
+          "hold": 267.0239610671997
+        },
+        {
+          "index": 20,
+          "seq": 0,
+          "device": 0,
+          "queued_at": 106.91191959381104,
+          "admitted_at": 106.92261934280396,
+          "released_at": 400.9584219455719,
+          "wait": 0.010699748992919922,
+          "hold": 294.03580260276794
+        },
+        {
+          "index": 16,
+          "seq": 1,
+          "device": 0,
+          "queued_at": 320.2864143848419,
+          "admitted_at": 400.98619556427,
+          "released_at": 430.2399935722351,
+          "wait": 80.6997811794281,
+          "hold": 29.253798007965088
+        },
+        {
+          "index": 22,
+          "seq": 1,
+          "device": 2,
+          "queued_at": 309.5387647151947,
+          "admitted_at": 396.9234495162964,
+          "released_at": 433.25946068763733,
+          "wait": 87.38468480110168,
+          "hold": 36.33601117134094
+        },
+        {
+          "index": 17,
+          "seq": 1,
+          "device": 0,
+          "queued_at": 370.1801903247833,
+          "admitted_at": 430.24868535995483,
+          "released_at": 472.0048940181732,
+          "wait": 60.06849503517151,
+          "hold": 41.756208658218384
+        },
+        {
+          "index": 18,
+          "seq": 0,
+          "device": 1,
+          "queued_at": 227.52363181114197,
+          "admitted_at": 227.53746724128723,
+          "released_at": 511.03550601005554,
+          "wait": 0.013835430145263672,
+          "hold": 283.4980387687683
+        },
+        {
+          "index": 19,
+          "seq": 0,
+          "device": 3,
+          "queued_at": 267.22516202926636,
+          "admitted_at": 267.24001836776733,
+          "released_at": 558.5966551303864,
+          "wait": 0.014856338500976562,
+          "hold": 291.356636762619
+        },
+        {
+          "index": 16,
+          "seq": 2,
+          "device": 1,
+          "queued_at": 539.7822089195251,
+          "admitted_at": 539.7925541400909,
+          "released_at": 573.7603242397308,
+          "wait": 0.010345220565795898,
+          "hold": 33.96777009963989
+        },
+        {
+          "index": 20,
+          "seq": 1,
+          "device": 0,
+          "queued_at": 519.5268173217773,
+          "admitted_at": 519.5407667160034,
+          "released_at": 587.9542262554169,
+          "wait": 0.013949394226074219,
+          "hold": 68.41345953941345
+        },
+        {
+          "index": 23,
+          "seq": 1,
+          "device": 3,
+          "queued_at": 626.2011160850525,
+          "admitted_at": 626.2132349014282,
+          "released_at": 638.1138515472412,
+          "wait": 0.012118816375732422,
+          "hold": 11.900616645812988
+        },
+        {
+          "index": 17,
+          "seq": 2,
+          "device": 0,
+          "queued_at": 599.2371461391449,
+          "admitted_at": 599.2473165988922,
+          "released_at": 641.6333553791046,
+          "wait": 0.010170459747314453,
+          "hold": 42.3860387802124
+        },
+        {
+          "index": 18,
+          "seq": 1,
+          "device": 1,
+          "queued_at": 616.6851859092712,
+          "admitted_at": 616.6998257637024,
+          "released_at": 652.2259194850922,
+          "wait": 0.014639854431152344,
+          "hold": 35.52609372138977
+        },
+        {
+          "index": 22,
+          "seq": 2,
+          "device": 3,
+          "queued_at": 637.1424834728241,
+          "admitted_at": 638.1367614269257,
+          "released_at": 679.2467978000641,
+          "wait": 0.9942779541015625,
+          "hold": 41.11003637313843
+        },
+        {
+          "index": 21,
+          "seq": 1,
+          "device": 2,
+          "queued_at": 380.49310636520386,
+          "admitted_at": 433.2828381061554,
+          "released_at": 717.5927319526672,
+          "wait": 52.78973174095154,
+          "hold": 284.30989384651184
+        },
+        {
+          "index": 19,
+          "seq": 1,
+          "device": 0,
+          "queued_at": 717.0397429466248,
+          "admitted_at": 717.0483601093292,
+          "released_at": 728.7962834835052,
+          "wait": 0.008617162704467773,
+          "hold": 11.747923374176025
+        },
+        {
+          "index": 16,
+          "seq": 3,
+          "device": 0,
+          "queued_at": 748.3872759342194,
+          "admitted_at": 748.3988363742828,
+          "released_at": 784.7705776691437,
+          "wait": 0.011560440063476562,
+          "hold": 36.37174129486084
+        },
+        {
+          "index": 23,
+          "seq": 2,
+          "device": 1,
+          "queued_at": 774.7435736656189,
+          "admitted_at": 774.7568545341492,
+          "released_at": 787.1102373600006,
+          "wait": 0.013280868530273438,
+          "hold": 12.35338282585144
+        },
+        {
+          "index": 17,
+          "seq": 3,
+          "device": 2,
+          "queued_at": 859.6293232440948,
+          "admitted_at": 859.6390681266785,
+          "released_at": 901.350492477417,
+          "wait": 0.009744882583618164,
+          "hold": 41.711424350738525
+        },
+        {
+          "index": 16,
+          "seq": 4,
+          "device": 2,
+          "queued_at": 933.4730715751648,
+          "admitted_at": 933.4864482879639,
+          "released_at": 966.4109699726105,
+          "wait": 0.013376712799072266,
+          "hold": 32.924521684646606
+        },
+        {
+          "index": 21,
+          "seq": 2,
+          "device": 3,
+          "queued_at": 895.8482744693756,
+          "admitted_at": 895.8595285415649,
+          "released_at": 1026.5547890663147,
+          "wait": 0.011254072189331055,
+          "hold": 130.69526052474976
+        },
+        {
+          "index": 22,
+          "seq": 3,
+          "device": 2,
+          "queued_at": 944.2121231555939,
+          "admitted_at": 966.4304618835449,
+          "released_at": 1026.9763782024384,
+          "wait": 22.21833872795105,
+          "hold": 60.54591631889343
+        },
+        {
+          "index": 18,
+          "seq": 2,
+          "device": 1,
+          "queued_at": 851.475368976593,
+          "admitted_at": 851.4867062568665,
+          "released_at": 1027.0132503509521,
+          "wait": 0.0113372802734375,
+          "hold": 175.5265440940857
+        },
+        {
+          "index": 20,
+          "seq": 2,
+          "device": 0,
+          "queued_at": 797.4084978103638,
+          "admitted_at": 797.4180104732513,
+          "released_at": 1027.3402938842773,
+          "wait": 0.009512662887573242,
+          "hold": 229.922283411026
+        }
+      ],
+      "cancelled": [
+        {
+          "index": 23,
+          "wait": 17.880229949951172
+        },
+        {
+          "index": 19,
+          "wait": 65.0592794418335
+        }
+      ],
+      "tasks": [
+        {
+          "task": "aerial-cactus-identification",
+          "rows": [
+            {
+              "index": 16,
+              "candidate_returns": 5,
+              "valid_returns": 0,
+              "code_calls": 6,
+              "returned_code_calls": 5,
+              "failed_code_calls": 1,
+              "code_seconds": 475.8507415059721,
+              "analyze_seconds": 92.15119295200566,
+              "execution_wait": 80.7472562789917,
+              "execution_hold": 169.11906170845032,
+              "score": 0.9997140306708787
+            },
+            {
+              "index": 18,
+              "candidate_returns": 2,
+              "valid_returns": 1,
+              "code_calls": 3,
+              "returned_code_calls": 3,
+              "failed_code_calls": 0,
+              "code_seconds": 266.10041345798527,
+              "analyze_seconds": 12.639113186014583,
+              "execution_wait": 0.039812564849853516,
+              "execution_hold": 494.5506765842438,
+              "score": 0.9997140306708787
+            },
+            {
+              "index": 20,
+              "candidate_returns": 2,
+              "valid_returns": 2,
+              "code_calls": 3,
+              "returned_code_calls": 3,
+              "failed_code_calls": 0,
+              "code_seconds": 336.6736848879955,
+              "analyze_seconds": 24.489506444951985,
+              "execution_wait": 0.03416180610656738,
+              "execution_hold": 592.3715455532074,
+              "score": 0.999770155492482
+            },
+            {
+              "index": 22,
+              "candidate_returns": 3,
+              "valid_returns": 0,
+              "code_calls": 4,
+              "returned_code_calls": 4,
+              "failed_code_calls": 0,
+              "code_seconds": 445.6177388310025,
+              "analyze_seconds": 21.731404936988838,
+              "execution_wait": 110.60670280456543,
+              "execution_hold": 174.6053822040558,
+              "score": 0.9997140306708787
+            }
+          ],
+          "valid_events": [
+            {
+              "index": 18,
+              "at": 511.0479360053141,
+              "score": 0.9996659236809331
+            },
+            {
+              "index": 20,
+              "at": 400.96938565798337,
+              "score": 0.999770155492482
+            },
+            {
+              "index": 20,
+              "at": 587.9647907329781,
+              "score": 0.545690950006147
+            }
+          ],
+          "records": [
+            {
+              "index": 20,
+              "at": 400.96938565798337,
+              "score": 0.999770155492482
+            }
+          ]
+        },
+        {
+          "task": "denoising-dirty-documents",
+          "rows": [
+            {
+              "index": 17,
+              "candidate_returns": 4,
+              "valid_returns": 0,
+              "code_calls": 5,
+              "returned_code_calls": 4,
+              "failed_code_calls": 1,
+              "code_seconds": 526.3812408030208,
+              "analyze_seconds": 43.5889854200359,
+              "execution_wait": 60.097350120544434,
+              "execution_hold": 137.37358856201172,
+              "score": 0.04551226514614451
+            },
+            {
+              "index": 19,
+              "candidate_returns": 2,
+              "valid_returns": 1,
+              "code_calls": 3,
+              "returned_code_calls": 3,
+              "failed_code_calls": 0,
+              "code_seconds": 321.5318913810479,
+              "analyze_seconds": 13.253474867000477,
+              "execution_wait": 65.08275294303894,
+              "execution_hold": 303.10456013679504,
+              "score": 0.015308295476915064
+            },
+            {
+              "index": 21,
+              "candidate_returns": 2,
+              "valid_returns": 1,
+              "code_calls": 3,
+              "returned_code_calls": 3,
+              "failed_code_calls": 0,
+              "code_seconds": 350.32664395699976,
+              "analyze_seconds": 12.419711785012623,
+              "execution_wait": 52.8129723072052,
+              "execution_hold": 426.2171051502228,
+              "score": 0.01750013020737846
+            },
+            {
+              "index": 23,
+              "candidate_returns": 3,
+              "valid_returns": 1,
+              "code_calls": 4,
+              "returned_code_calls": 4,
+              "failed_code_calls": 0,
+              "code_seconds": 542.1693692079862,
+              "analyze_seconds": 26.582712547999108,
+              "execution_wait": 17.915332794189453,
+              "execution_hold": 291.27796053886414,
+              "score": 0.01637069297047573
+            }
+          ],
+          "valid_events": [
+            {
+              "index": 19,
+              "at": 558.6040830395068,
+              "score": 0.015308295476915064
+            },
+            {
+              "index": 21,
+              "at": 717.6024428977689,
+              "score": 0.01750013020737846
+            },
+            {
+              "index": 23,
+              "at": 396.92400319094304,
+              "score": 0.01637069297047573
+            }
+          ],
+          "records": [
+            {
+              "index": 23,
+              "at": 396.92400319094304,
+              "score": 0.01637069297047573
+            },
+            {
+              "index": 19,
+              "at": 558.6040830395068,
+              "score": 0.015308295476915064
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "block": 3,
+      "mode": "fixed",
+      "duration": 1180.000185251236,
+      "gpu_telemetry": [
+        {
+          "covered_seconds": 1023.0740263462067,
+          "coverage": 0.8670117506196681,
+          "utilization_pct": 14.293641243657735,
+          "nonzero_fraction": 0.46935692696676296,
+          "max_gap": 2.557471513748169,
+          "samples": 418
+        },
+        {
+          "covered_seconds": 1023.0397613048553,
+          "coverage": 0.86698271245359,
+          "utilization_pct": 9.33743646449786,
+          "nonzero_fraction": 0.4360094439293577,
+          "max_gap": 2.55482816696167,
+          "samples": 418
+        },
+        {
+          "covered_seconds": 1023.095160484314,
+          "coverage": 0.8670296609033878,
+          "utilization_pct": 34.39923796261126,
+          "nonzero_fraction": 0.7226749068525595,
+          "max_gap": 2.5547935962677,
+          "samples": 418
+        },
+        {
+          "covered_seconds": 1023.1042199134827,
+          "coverage": 0.8670373383845289,
+          "utilization_pct": 10.029645439953592,
+          "nonzero_fraction": 0.5618860727976256,
+          "max_gap": 2.5558266639709473,
+          "samples": 418
+        }
+      ],
+      "lease_held_gpu_seconds": 2982.5343012809753,
+      "lease_full_seconds": 426.09467792510986,
+      "all_queue_wait_seconds": 1726.1083223819733,
+      "lease_held_fraction": 0.6318927612384142,
+      "leases": [
+        {
+          "index": 28,
+          "seq": 0,
+          "device": 2,
+          "queued_at": 114.05551147460938,
+          "admitted_at": 114.07098436355591,
+          "released_at": 126.44759821891785,
+          "wait": 0.015472888946533203,
+          "hold": 12.376613855361938
+        },
+        {
+          "index": 29,
+          "seq": 0,
+          "device": 2,
+          "queued_at": 140.72208404541016,
+          "admitted_at": 140.73370671272278,
+          "released_at": 379.5037384033203,
+          "wait": 0.01162266731262207,
+          "hold": 238.77003169059753
+        },
+        {
+          "index": 30,
+          "seq": 0,
+          "device": 3,
+          "queued_at": 121.57507157325745,
+          "admitted_at": 121.58889293670654,
+          "released_at": 407.98893332481384,
+          "wait": 0.01382136344909668,
+          "hold": 286.4000403881073
+        },
+        {
+          "index": 31,
+          "seq": 0,
+          "device": 3,
+          "queued_at": 149.88666152954102,
+          "admitted_at": 408.00231647491455,
+          "released_at": 417.29874205589294,
+          "wait": 258.11565494537354,
+          "hold": 9.296425580978394
+        },
+        {
+          "index": 26,
+          "seq": 0,
+          "device": 1,
+          "queued_at": 225.0010371208191,
+          "admitted_at": 225.0091414451599,
+          "released_at": 491.41386461257935,
+          "wait": 0.008104324340820312,
+          "hold": 266.40472316741943
+        },
+        {
+          "index": 27,
+          "seq": 0,
+          "device": 1,
+          "queued_at": 246.69580006599426,
+          "admitted_at": 491.4334638118744,
+          "released_at": 505.1578929424286,
+          "wait": 244.73766374588013,
+          "hold": 13.7244291305542
+        },
+        {
+          "index": 24,
+          "seq": 0,
+          "device": 0,
+          "queued_at": 225.11384844779968,
+          "admitted_at": 225.12579870224,
+          "released_at": 513.2409455776215,
+          "wait": 0.011950254440307617,
+          "hold": 288.11514687538147
+        },
+        {
+          "index": 25,
+          "seq": 0,
+          "device": 0,
+          "queued_at": 256.00351095199585,
+          "admitted_at": 513.2627131938934,
+          "released_at": 609.6206977367401,
+          "wait": 257.2592022418976,
+          "hold": 96.35798454284668
+        },
+        {
+          "index": 26,
+          "seq": 1,
+          "device": 1,
+          "queued_at": 586.9249444007874,
+          "admitted_at": 586.9454860687256,
+          "released_at": 621.855462551117,
+          "wait": 0.020541667938232422,
+          "hold": 34.90997648239136
+        },
+        {
+          "index": 24,
+          "seq": 1,
+          "device": 0,
+          "queued_at": 615.597710609436,
+          "admitted_at": 615.6266093254089,
+          "released_at": 647.0120024681091,
+          "wait": 0.02889871597290039,
+          "hold": 31.385393142700195
+        },
+        {
+          "index": 28,
+          "seq": 1,
+          "device": 2,
+          "queued_at": 298.9714572429657,
+          "admitted_at": 379.52549719810486,
+          "released_at": 656.2705278396606,
+          "wait": 80.55403995513916,
+          "hold": 276.7450306415558
+        },
+        {
+          "index": 27,
+          "seq": 1,
+          "device": 1,
+          "queued_at": 665.5349533557892,
+          "admitted_at": 665.5525162220001,
+          "released_at": 679.4859993457794,
+          "wait": 0.0175628662109375,
+          "hold": 13.933483123779297
+        },
+        {
+          "index": 25,
+          "seq": 1,
+          "device": 0,
+          "queued_at": 736.879652261734,
+          "admitted_at": 736.8872411251068,
+          "released_at": 788.1874423027039,
+          "wait": 0.007588863372802734,
+          "hold": 51.300201177597046
+        },
+        {
+          "index": 30,
+          "seq": 1,
+          "device": 3,
+          "queued_at": 504.32401847839355,
+          "admitted_at": 504.33348202705383,
+          "released_at": 791.8297452926636,
+          "wait": 0.00946354866027832,
+          "hold": 287.49626326560974
+        },
+        {
+          "index": 31,
+          "seq": 1,
+          "device": 3,
+          "queued_at": 556.1729216575623,
+          "admitted_at": 791.8555128574371,
+          "released_at": 804.4876198768616,
+          "wait": 235.68259119987488,
+          "hold": 12.632107019424438
+        },
+        {
+          "index": 29,
+          "seq": 1,
+          "device": 2,
+          "queued_at": 511.8194806575775,
+          "admitted_at": 656.2971317768097,
+          "released_at": 930.3701250553131,
+          "wait": 144.47765111923218,
+          "hold": 274.0729932785034
+        },
+        {
+          "index": 26,
+          "seq": 2,
+          "device": 1,
+          "queued_at": 710.696722984314,
+          "admitted_at": 710.711667060852,
+          "released_at": 988.5094192028046,
+          "wait": 0.014944076538085938,
+          "hold": 277.7977521419525
+        },
+        {
+          "index": 27,
+          "seq": 2,
+          "device": 1,
+          "queued_at": 820.1008288860321,
+          "admitted_at": 988.5352911949158,
+          "released_at": 1026.4968883991241,
+          "wait": 168.43446230888367,
+          "hold": 37.961597204208374
+        },
+        {
+          "index": 30,
+          "seq": 2,
+          "device": 3,
+          "queued_at": 889.7508137226105,
+          "admitted_at": 889.7708353996277,
+          "released_at": 1026.945620059967,
+          "wait": 0.020021677017211914,
+          "hold": 137.17478466033936
+        },
+        {
+          "index": 28,
+          "seq": 2,
+          "device": 2,
+          "queued_at": 817.9032139778137,
+          "admitted_at": 930.3876659870148,
+          "released_at": 1026.995551109314,
+          "wait": 112.48445200920105,
+          "hold": 96.6078851222992
+        },
+        {
+          "index": 24,
+          "seq": 2,
+          "device": 0,
+          "queued_at": 757.8622126579285,
+          "admitted_at": 788.2162928581238,
+          "released_at": 1027.2877316474915,
+          "wait": 30.354080200195312,
+          "hold": 239.07143878936768
+        }
+      ],
+      "cancelled": [
+        {
+          "index": 25,
+          "wait": 118.95561480522156
+        },
+        {
+          "index": 31,
+          "wait": 74.87291693687439
+        }
+      ],
+      "tasks": [
+        {
+          "task": "aerial-cactus-identification",
+          "rows": [
+            {
+              "index": 24,
+              "candidate_returns": 2,
+              "valid_returns": 1,
+              "code_calls": 3,
+              "returned_code_calls": 3,
+              "failed_code_calls": 0,
+              "code_seconds": 299.2160420839791,
+              "analyze_seconds": 13.354396575014107,
+              "execution_wait": 30.39492917060852,
+              "execution_hold": 558.5719788074493,
+              "score": 0.9997140306708787
+            },
+            {
+              "index": 26,
+              "candidate_returns": 3,
+              "valid_returns": 2,
+              "code_calls": 4,
+              "returned_code_calls": 3,
+              "failed_code_calls": 1,
+              "code_seconds": 307.8944986310089,
+              "analyze_seconds": 19.712078240001574,
+              "execution_wait": 0.04359006881713867,
+              "execution_hold": 579.1124517917633,
+              "score": 0.9998690420829257
+            },
+            {
+              "index": 28,
+              "candidate_returns": 2,
+              "valid_returns": 1,
+              "code_calls": 3,
+              "returned_code_calls": 3,
+              "failed_code_calls": 0,
+              "code_seconds": 257.37494174795575,
+              "analyze_seconds": 13.461045422998723,
+              "execution_wait": 193.05396485328674,
+              "execution_hold": 385.7295296192169,
+              "score": 0.9997140306708787
+            },
+            {
+              "index": 30,
+              "candidate_returns": 2,
+              "valid_returns": 2,
+              "code_calls": 3,
+              "returned_code_calls": 3,
+              "failed_code_calls": 0,
+              "code_seconds": 271.5333830770105,
+              "analyze_seconds": 19.434581243025605,
+              "execution_wait": 0.043306589126586914,
+              "execution_hold": 711.0710883140564,
+              "score": 0.9997140306708787
+            }
+          ],
+          "valid_events": [
+            {
+              "index": 24,
+              "at": 513.2493448057794,
+              "score": 0.9977697064939091
+            },
+            {
+              "index": 26,
+              "at": 491.4241645500588,
+              "score": 0.9995536740377265
+            },
+            {
+              "index": 26,
+              "at": 988.5204176680418,
+              "score": 0.9998690420829257
+            },
+            {
+              "index": 28,
+              "at": 656.280748247169,
+              "score": 0.9995697097010418
+            },
+            {
+              "index": 30,
+              "at": 407.99868439970305,
+              "score": 0.9996365249648551
+            },
+            {
+              "index": 30,
+              "at": 791.8393418717023,
+              "score": 0.9910561087859401
+            }
+          ],
+          "records": [
+            {
+              "index": 26,
+              "at": 988.5204176680418,
+              "score": 0.9998690420829257
+            }
+          ]
+        },
+        {
+          "task": "denoising-dirty-documents",
+          "rows": [
+            {
+              "index": 25,
+              "candidate_returns": 2,
+              "valid_returns": 0,
+              "code_calls": 3,
+              "returned_code_calls": 3,
+              "failed_code_calls": 0,
+              "code_seconds": 325.69667906098766,
+              "analyze_seconds": 20.927475343982223,
+              "execution_wait": 376.22240591049194,
+              "execution_hold": 147.65818572044373,
+              "score": 0.04551226514614451
+            },
+            {
+              "index": 27,
+              "candidate_returns": 2,
+              "valid_returns": 0,
+              "code_calls": 3,
+              "returned_code_calls": 3,
+              "failed_code_calls": 0,
+              "code_seconds": 351.8810103680007,
+              "analyze_seconds": 43.609108533972176,
+              "execution_wait": 413.18968892097473,
+              "execution_hold": 65.61950945854187,
+              "score": 0.04551226514614451
+            },
+            {
+              "index": 29,
+              "candidate_returns": 2,
+              "valid_returns": 2,
+              "code_calls": 3,
+              "returned_code_calls": 2,
+              "failed_code_calls": 1,
+              "code_seconds": 330.0124355349981,
+              "analyze_seconds": 12.298211117013125,
+              "execution_wait": 144.4892737865448,
+              "execution_hold": 512.843024969101,
+              "score": 0.0191865423765659
+            },
+            {
+              "index": 31,
+              "candidate_returns": 2,
+              "valid_returns": 0,
+              "code_calls": 3,
+              "returned_code_calls": 3,
+              "failed_code_calls": 0,
+              "code_seconds": 375.9860245520249,
+              "analyze_seconds": 15.596633100009058,
+              "execution_wait": 568.6711630821228,
+              "execution_hold": 21.928532600402832,
+              "score": 0.04551226514614451
+            }
+          ],
+          "valid_events": [
+            {
+              "index": 29,
+              "at": 379.51610810120474,
+              "score": 0.019832185720105887
+            },
+            {
+              "index": 29,
+              "at": 930.3791758212028,
+              "score": 0.0191865423765659
+            }
+          ],
+          "records": [
+            {
+              "index": 29,
+              "at": 379.51610810120474,
+              "score": 0.019832185720105887
+            },
+            {
+              "index": 29,
+              "at": 930.3791758212028,
+              "score": 0.0191865423765659
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "hashes": {
+    "block-0/budget-slot.json": "979744cce613add8294fde45f758a6b525431268af791752c0c438a7571a0c9e",
+    "block-0/execution-telemetry.json": "cb405c0a9805c20dc1809bf967ca467c63bc81dcded072975758d4037d939cd9",
+    "episode-0/deadline.json": "e05e4072c3e09f1fd8989f5870aa1c865a07d3d88b140ecfd2d1d95ae25ef9dd",
+    "episode-0/candidate-0.json": "406d584939c1aa69ec13414fb165dbb2d17c13d8f9e1c1abd913c3cbb0b8601e",
+    "episode-0/candidate-1.json": "1aec1bdf20814bd0c6910ad90b6c042357d8f952d6892ad76579c55219050376",
+    "episode-2/deadline.json": "c3a4b9cf74832b9e3dd60229e34f23d803de7692fb9d4ff77226b90e559ba82c",
+    "episode-2/candidate-0.json": "fef979c0748ddbee8d424144b09a1413718abdb682b9a7b3539c51050c8ac283",
+    "episode-2/candidate-1.json": "2ed036f49d53128125306823a1279ecd57c6aa977d01e4ab942ff78c0513c4ce",
+    "episode-2/candidate-2.json": "f74f5985809a18a9ddbb6f067b58d4b41fe8007048f3a98aa257f4e12650215f",
+    "episode-4/deadline.json": "882ae974a2eecba1bc6b410d9dd169920cda140021eed8b654cdb1f8e97002ae",
+    "episode-4/candidate-0.json": "1229d24c1da41106f7101a1814abec311013588afbb9aa9a577278e40a6b88b8",
+    "episode-4/candidate-1.json": "c6065d640fa773ffb1f00c4f83cb41baf30bd5f650e3d99555467f34f7b6ff0b",
+    "episode-4/candidate-2.json": "8597bc27b165ea00c8ce3b470359d20cd6063c1ea72a1eab9a95c5daddca2e12",
+    "episode-6/deadline.json": "b7ecd7da9e79cfc33907777fee7e1853194261384fb01325ed9d81843b7abeb3",
+    "episode-6/candidate-0.json": "c3a61b1060358bad7db4e19d2b434776ff43c17a8fac7ae7c5525539d2e34f75",
+    "episode-6/candidate-1.json": "3346ec16f29fa88dfb19ec13e7a97e3fb4b16c6ddae44fe7b430cee8fe9c1287",
+    "episode-1/deadline.json": "e2f9ab392d55fdda75efdca1b1926acd8799a2ff47ae49a339930ca83d758d44",
+    "episode-1/candidate-0.json": "c4c8f9537efdd03790fffcb92f250c0b298c6e2225981a047d122a63293536cf",
+    "episode-1/candidate-1.json": "49fae45913ba744fb8f8c4e7bfb23f0ae83442cfc65494b6122b60fab0fc90ce",
+    "episode-3/deadline.json": "5553b4012f1cf08a56c0c90be4baf3eee13b446f68e28f4dee7e6524aa49b9cb",
+    "episode-3/candidate-0.json": "4b238adba4827f5c9f88bbad1d3a8f3a68176dce6ea50f611e4afc792025fa26",
+    "episode-3/candidate-1.json": "e224e94918e6bf745e08a8f358d91e6162df3503016664dc5c94771ad130766b",
+    "episode-3/candidate-2.json": "8385795eb99dee81733e6573226d1940adf1fdd965c97e1bb2e9fd8b4c6dd5c9",
+    "episode-5/deadline.json": "f1af0b3aff3a3aa2cb44b542eafec6a88f57e4b6b7f993ba455d7c7499544f2c",
+    "episode-5/candidate-0.json": "929ddfa08efa82b15bd2688874e5ffa4f67f47dcb71db61b57955da203179d6a",
+    "episode-7/deadline.json": "8d403e7a9340cbd12c121d5da446e83051d5345a2223f4542c118b688592a925",
+    "episode-7/candidate-0.json": "47ec8a083bb534ad90ca9dca5ff8fdfaeb656ad475c7a9b73f2f46945168b2a2",
+    "episode-7/candidate-1.json": "5779d7adbb7e2e0ec814b68d53c807f7e03731fd26254cbeb812c712fc3a4804",
+    "block-1/budget-slot.json": "bb8b54f5d8323a5098258f5e85be2ff92d73e411b35c87e165ef5de54557a8d1",
+    "block-1/execution-telemetry.json": "b87cba3c2daf40c69e2f5400b9aa7936856f8911fddccefa7806279f22f5ef35",
+    "episode-8/deadline.json": "99d4ff8943d1bd94dd7ba7175f05638b06df20d3f900e58512832dcfef29df58",
+    "episode-8/candidate-0.json": "effb9bd7e900ab6247bb4aca289dd30c13ea00ff0e098859a1dc28745b63afff",
+    "episode-8/candidate-1.json": "bbe6e7eeae8b12e9c3ca279b013f9975f5cf4bccbd210fd090a3da2bf0491a06",
+    "episode-10/deadline.json": "8359181d335cf570e7e661bde85e1ad69c8b043916875844814b1a3f0d9a7b76",
+    "episode-10/candidate-0.json": "9a197d4118b949dd019f26c628befaf2cf882cfab949a0589c6844a7f5fc29ac",
+    "episode-10/candidate-1.json": "fc268bf564f4b9f219be86b3132af121b11854ecfa4f31bd1b9de9e615a6a543",
+    "episode-12/deadline.json": "966af15c96f2ea80ef8367c19bb8bfd47efb9eaa8f570e5c7911dc14ea4d3d62",
+    "episode-12/candidate-0.json": "aa438b73c4102234d43038f0bfea2015d1bfaf37aea9cdc8df0ad1bce0164d95",
+    "episode-12/candidate-1.json": "a2c9aeb0cd7a679abae82163ed02e07ec7f39d73aab8a8b351c4653ebac37694",
+    "episode-14/deadline.json": "f33f6e5470c13bee60b77e13b33c69340a87c6c1fc05193ab95051971567f2d0",
+    "episode-14/candidate-0.json": "73066b0ef08f60a67bbf46d90df0a7e114f91708ad49602e5eedfdce4903d8b4",
+    "episode-14/candidate-1.json": "1dddb76bba3349ea7ff125ff198d1e08f6d82eddbcab0f47513f79ea18be0c5e",
+    "episode-9/deadline.json": "ee97a531c975b29107e522d21d43e58b4620a8a7f8bf7a66adda8b06fb86fd0d",
+    "episode-9/candidate-0.json": "1ba010825f876adeb9cc30aba267bfe3d8eabb6701ac27442f947cc2f7c80ac7",
+    "episode-9/candidate-1.json": "9c1a5dd3c6d690840d3487d2b1feb7634595f6e5a14da33539b6155eb67661d4",
+    "episode-11/deadline.json": "97a3dadccc57e89e9d361488a01929a039b577619c85181bc8d6e90e3c404f86",
+    "episode-11/candidate-0.json": "70783c5099a2629ee922209a3e20f87538b8dea5ec57c29beaab2ad7ff529140",
+    "episode-11/candidate-1.json": "0394beb392939465c4ddb010ac8ef3954c631ce3f415912c73459d930bfc2e15",
+    "episode-11/candidate-2.json": "37bef94bdd6a626b2dd4bf842886449aa01333fb3ad52a0d46c25b71d395810d",
+    "episode-13/deadline.json": "f5d3320287a1fe21ae004e301833c9b528ffe030c584a4e7850ec6b75d660833",
+    "episode-13/candidate-0.json": "cc4712cb830e1688b83cd67491575199cd501ba790d2211f99c962d43762cb6f",
+    "episode-13/candidate-1.json": "d0a4556713bdc6f70c1888249b75720d874a664ffa666f272dd1c3d1668c9107",
+    "episode-15/deadline.json": "353a3a31513f2bf3ccec32a10f33d3062c81e998f04d2d87116d39137fd91a20",
+    "episode-15/candidate-0.json": "eb28a63242771d57b52003b843932c446d0a3c38eafc19fec1f47fdd5da59694",
+    "episode-15/candidate-1.json": "d068c089353063a2f180c2d28a54786ea9c06c419c11211c974912e0eada801d",
+    "block-2/budget-slot.json": "eda737e7332c63a45903a91f49aa606e1ae7514b1af2b7daa0a7f157150441f0",
+    "block-2/execution-telemetry.json": "9fd86e02f8cc9569178d96cf990090d9cc01d7f407cf91c3922d208057835bd2",
+    "episode-16/deadline.json": "4994d34735e476568075c0609e1e54716d0bc0511cb4383277ebef85ae3cd059",
+    "episode-16/candidate-0.json": "7d0eebe82f68c238d661f07cbbefd0d1dd7a938067e79b120e218dbd5726dd1f",
+    "episode-16/candidate-1.json": "324d48239b32a1cbef3a18c8b08ed8da4cba5a7a2b9abce31dfa24119f1fbdae",
+    "episode-16/candidate-2.json": "1b2429676da1cfd056ad263e42809e32bad840d7c1659ab621affc13c0ee29c5",
+    "episode-16/candidate-3.json": "1c8c96285649e55ca8e9921892b185437c047aa3fc3c3c4879f8fc236657549d",
+    "episode-16/candidate-4.json": "025a2663e9b58b65780ea0e382793a0364c13f1f2442ecd889c53371f073b485",
+    "episode-18/deadline.json": "7b1b8bfff9c3ce48de0cbace1065b8095f910dc2590c431b480454f2fb9f28b7",
+    "episode-18/candidate-0.json": "3407a876bac79d6f6a4d12ac969f30e9587930e47b7f6cde1d52722586838923",
+    "episode-18/candidate-1.json": "9d85028cb59a544f9f0d31bea8d192d3d8900b6ca8733ea92b3bd7baacb1a968",
+    "episode-20/deadline.json": "a7777a27df676c48b626f21f2220c9ca165d442a92ddc3c58bf3b6e43f70f2ac",
+    "episode-20/candidate-0.json": "72e3955d28cebffb527e06b33639a58482df00b2b1af14000e71a1cac0a6540b",
+    "episode-20/candidate-1.json": "5b0d89c0d1e8c307f33e7f0355c5c5cc96fc09e8662f83e707e25413d99bdb07",
+    "episode-22/deadline.json": "79d2fc66f7e10c7f880be212f0a0c23cf16fbfc323b5b719d9e14fb3ad90de9a",
+    "episode-22/candidate-0.json": "e81ac9402d70e2724024dd6752e7122a7ad2e4acba8f72736448e6b9a2a95e3e",
+    "episode-22/candidate-1.json": "7dbe853079eae09902ec704828b0cb543197520120fcf086436ad064d1f42536",
+    "episode-22/candidate-2.json": "4b9965df22373c4856afb09a9bd36939b50336402e8e7b6a8a8269181f0d2a2b",
+    "episode-17/deadline.json": "5cff6c2668dc2fec0ecaa3ce2b92f1c1e2ee22bd1addfeeea8c2dd00fde057c7",
+    "episode-17/candidate-0.json": "c0d90a5d8426b1663df16e80bad619620d11bec4913189683f7ea2d08dd309e3",
+    "episode-17/candidate-1.json": "ab3a050ef31de3c4d06a6ae39dea9186753460e067549463f9b3d26f3482bbf0",
+    "episode-17/candidate-2.json": "8de5947a8d758db794fe816995aa4ed135b64e0361deb3c5e0a4ba0cf0df9a8a",
+    "episode-17/candidate-3.json": "66b61c19e5b6b11cef315e45704cb3bb68f12f3d4d29a5dec1e32be48769fd31",
+    "episode-19/deadline.json": "bf15798748a9dcfec01ca4a19242c79b15954286a1c91c5f72828a81029356eb",
+    "episode-19/candidate-0.json": "fa7d9f4d5bbd775526fe11b820df4b5b6683ac6f6ac30fee37e80d76e06eaafa",
+    "episode-19/candidate-1.json": "31158102ab14cd63597348542203b631274523c4ab56d8957ee6f9d2ba4544d0",
+    "episode-21/deadline.json": "e508da4278f5988276c263952fce3f7aa28e4b1d1895c00b84dc23a7101f8e12",
+    "episode-21/candidate-0.json": "56bd848d1931c5784b230889905ed8dcadd55fbcf0bd8ce1833795304c20cc82",
+    "episode-21/candidate-1.json": "b36d633298be3906f12b7391325850ce5c8ac98c2fca8000e199e01cff4dbfe8",
+    "episode-23/deadline.json": "23e306f343fb7f3a724db9c6589782f29c78c4e65e565b566d93cf218eecd500",
+    "episode-23/candidate-0.json": "0fdf2c2152830469018237abc28a1f1df0828bb4bd837133f6c95abe9131f4cb",
+    "episode-23/candidate-1.json": "a52ae7dfb6234ff94f1d9f4ff0099925a11f2d9ac9b7705ede5ea558c736973c",
+    "episode-23/candidate-2.json": "3c41e316ddb53171f10e4190fd80c14a4ad4afcaf45d83f9424fb09c36961754",
+    "block-3/budget-slot.json": "0cc3119e582bfeffbe5e54762d009b9cbc352519c2124fb5a6d7d6d6d0c7b732",
+    "block-3/execution-telemetry.json": "224ca792fc3ccd74e0427a825047295822c65ffb45abc2bacaa4438704a4285b",
+    "episode-24/deadline.json": "9696a33fa994195f9030cb7e10f69eb2970f72ee34e72890883a46f3dce4505e",
+    "episode-24/candidate-0.json": "da8b4da0f84d12d4f4b759b4dd3f824b6880eb84fc3a7b62f9158e39c87b2b08",
+    "episode-24/candidate-1.json": "b37819f88dd1210ed8fb606f28828617eb992e4626983693d8d8ea9c18c2ffaf",
+    "episode-26/deadline.json": "79cfb3de944bf0123239f7cc7d9011c2a78a531efb0b7ce52c06b5b3e854cfcf",
+    "episode-26/candidate-0.json": "ac6eb02d1f152690213c00af4f124ac8ccf053e6d3a16dcf69398ea7e0b3de0f",
+    "episode-26/candidate-1.json": "ce2638f756970c1b56efcd0430f0137ca31066b1c00fd24d8e17c1f71c8db51a",
+    "episode-26/candidate-2.json": "85d6e3c546be8e9fa745d33a3becbffb2522a1ba7430ef34ee975a106f3706e1",
+    "episode-28/deadline.json": "4119d94c6ba9dd7a011cafe6c20d04454537f9537afb236da94c809c0a93e6c9",
+    "episode-28/candidate-0.json": "62aaf4c168b2eb253a28a33e14a019aa7c4a0c8b47e42eff225da37757b5d584",
+    "episode-28/candidate-1.json": "0060a2a69c45588ab4fb4e9d460f6394cf15a7f00e9ec8d09a6379fced0f5e72",
+    "episode-30/deadline.json": "a9bde3d5d8d6549d3ffce2f5abd440a105d818df7c3b04347a71fcff24b43feb",
+    "episode-30/candidate-0.json": "65b894d4398b335957e996dd6a96e14d349c43327fbb41ecd6f76836a6785860",
+    "episode-30/candidate-1.json": "a835ac46e6cbcda1bbf994fac0e5c303784e083c7a122da78e53ac8647e1c0d5",
+    "episode-25/deadline.json": "87474bd5275c9da42487f3cbe512c66a6fe21879fec1fb507afab7666e84e9a5",
+    "episode-25/candidate-0.json": "2eadc67689ae15e193db3a01ab886a4a963b7e897bb59e5e50d11e5b49665644",
+    "episode-25/candidate-1.json": "b27cd9798b776dacf2b7a5091cb3f0386c6626c14d0ca573d36e73766fd3ce95",
+    "episode-27/deadline.json": "78001235fc262fa7a6f75301b6ab8a61bc7eb14c4961b6f4e9230f0256fdc350",
+    "episode-27/candidate-0.json": "751f92fe23b58d1c9ad44667c79e50b37fa84a1e58b6d76464e987b9dd5e986d",
+    "episode-27/candidate-1.json": "4f57c4b03498d64089f97e8243a7cc6dc34ac2007588733f9313ae88b5442ee6",
+    "episode-29/deadline.json": "8ea0734c15d5cdc0daecc41b9143d8edd7b0a9dfbd0a331e9c58f5adaeb390b8",
+    "episode-29/candidate-0.json": "029b3afaee561ea2fc0318c4be0466768f47e3be38308523902eab9c7dd61542",
+    "episode-29/candidate-1.json": "698bd979953d3006e5e50b5310d2228e99681ce95f185f2fb9d3d18f78c1f0bf",
+    "episode-31/deadline.json": "e05966b70dcb5a6f1ea4f1273e6814a6cf7478ecca6e5812363087c9154c104e",
+    "episode-31/candidate-0.json": "e0058f310d2d98e5924408b690bd53425ae8682a4313a95f6356a82b055e63e4",
+    "episode-31/candidate-1.json": "70e7056326c985b47facb3fa1d046d6425faa5c33046df6d5509233c935baeaa"
+  },
+  "limits": [
+    "Post-hoc observed histories; no changed-arrival counterfactual or causal mediation.",
+    "Sampled GPU utilization is not kernel duration; lease includes startup and cleanup.",
+    "Reused two development tasks and shared service; not independent runs or broad generalization.",
+    "Fewer record improvements does not prove non-record candidates wasted.",
+    "No primary gate or experiment original modified."
+  ]
+}

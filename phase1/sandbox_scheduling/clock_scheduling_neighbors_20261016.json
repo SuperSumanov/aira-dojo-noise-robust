@@ -1,8 +1,29 @@
 {
   "date": "2026-10-16",
   "question": "Can successful self-timed MLE programs finish sooner under sharing while yielding less useful output, and can admission improve final search quality under equal resources?",
-  "evidence_now": "18812:2chronological programs,8executions,work/quality reduction under co-location; candidate-time ratios0.9909931255242036/0.7988482912036062. Not allocation speedup, significance, causal mediation or E2E benefit.",
+  "evidence_now": "18812:8executions confirm local work/quality reduction.18819:16executions show strict repeated Denoise rank reversal; posthoc log/step/source checks verify completed-fold counts3-to2 and5-to1 under sharing.18807:32search runs failed original final-quality gate. Not significance, fold-only causal mediation, general incidence or E2E benefit; independent18845 confirmation pending as of Oct16HK15:06.",
   "sources": [
+    {
+      "title": "Adaptive and Efficient GPU Sharing for High-Accuracy Hyperparameter Tuning (DISC)",
+      "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5030511",
+      "scope_read": "Author primary SSRN abstract, retrieved through search; full paper not read",
+      "overlap": "Already adapts GPU time slices using observed accuracy trends, with temporal/spatial memory sharing. Quality-aware GPU allocation is not a new objective.",
+      "difference_to_test": "Our generated black-box programs supply neither a scheduler-controlled progress/quality interface nor fixed work. This alone does not establish a new method."
+    },
+    {
+      "title": "How Much of a Harness Does a Strong Agent Need for Autonomous ML Engineering? (Malena)",
+      "url": "https://arxiv.org/html/2609.40303v1",
+      "scope_read": "Abstract, introduction,4.4 and AppendixD.3 ScienceFlow; not full paper",
+      "overlap": "Directly studies MLE concurrency and resource-admission alternatives. Main claims depend on backbone strength; ScienceFlow worker/admission point differences were not statistically resolved. Do not claim MLE resource-admission quality effects as an unstudied problem.",
+      "difference_to_test": "Our fixed-program restart pairs isolate resource-conditioned output changes in a local low-cost regime. They do not refute the harness comparison, reproduce ScienceFlow or establish broad gains."
+    },
+    {
+      "title": "IdleSpec: Exploiting Idle Time via Speculative Planning for LLM Agents",
+      "url": "https://arxiv.org/html/2605.22154v1",
+      "scope_read": "Abstract,3.1,MLE results,AppendixA.1/A.3-A.6; not full paper",
+      "overlap": "Speculative planning during tool waits is already proposed. Authors acknowledge additional model computation; MLE evaluation uses one seed.",
+      "difference_to_test": "Using idle time or equal elapsed time alone is not our novelty or equal total compute. No speculative-planning branch is opened."
+    },
     {
       "title": "Semantic-Aware Scheduling for GPU Clusters with Large Language Models (SchedMate)",
       "url": "https://arxiv.org/html/2510.03334",
@@ -67,5 +88,5 @@
       "difference_to_test": "Would require a practical mechanism exploiting nonstationary generated-program behavior beyond classical resource/time allocation; current results do not establish this."
     }
   ],
-  "decision": "Finish18807 final-score comparison and18819 chronological rank test first. Do not equate novel phrasing, a faster completion counter or local mechanism evidence with a publishable method. Do not restore multifidelity, timer rewriting or base training."
+  "decision": "18807 did not pass, so no extra search seeds to rescue that recipe.18819 triggered a frozen new-source confirmation,18845 pending. Large measured slowdown may already be detectable by SchedMate-style progress protection; do not claim it is insufficient from our host timing. No new method is established. Do not restore multifidelity, timer rewriting or base training."
 }

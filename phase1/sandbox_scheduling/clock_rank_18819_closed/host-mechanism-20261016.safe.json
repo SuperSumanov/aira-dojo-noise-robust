@@ -1,0 +1,356 @@
+{
+  "posthoc": true,
+  "source_sha256": "cccb8025daa95d6ed78c809c7fab35e0d4110dc788d7b7252677b313428622a3",
+  "plan_sha256": "4c22748699952da0b79bf862e1db5e785b7d2a9fb951bb26ee9c21be47ca3306",
+  "rows": [
+    {
+      "index": 0,
+      "program": 0,
+      "block": 0,
+      "mode": "solo",
+      "steps": 1491,
+      "host_envelope_seconds": 245.0091712474823,
+      "steps_per_host_envelope_second": 6.085486483662891,
+      "between_host_calls_median": 0.16041195392608643,
+      "between_host_calls_max": 0.7977550029754639,
+      "host_gaps_over_one_second": 0,
+      "optimizer_names": [
+        "AdamW"
+      ],
+      "gradient_parameter_counts": [
+        41,
+        52
+      ]
+    },
+    {
+      "index": 1,
+      "program": 1,
+      "block": 0,
+      "mode": "solo",
+      "steps": 2627,
+      "host_envelope_seconds": 252.74119973182678,
+      "steps_per_host_envelope_second": 10.394031534183588,
+      "between_host_calls_median": 0.09034585952758789,
+      "between_host_calls_max": 1.2359397411346436,
+      "host_gaps_over_one_second": 1,
+      "optimizer_names": [
+        "AdamW"
+      ],
+      "gradient_parameter_counts": [
+        62
+      ]
+    },
+    {
+      "index": 2,
+      "program": 2,
+      "block": 0,
+      "mode": "solo",
+      "steps": 1584,
+      "host_envelope_seconds": 274.1059498786926,
+      "steps_per_host_envelope_second": 5.778787365619059,
+      "between_host_calls_median": 0.1665024757385254,
+      "between_host_calls_max": 2.7297780513763428,
+      "host_gaps_over_one_second": 4,
+      "optimizer_names": [
+        "AdamW"
+      ],
+      "gradient_parameter_counts": [
+        64
+      ]
+    },
+    {
+      "index": 3,
+      "program": 3,
+      "block": 0,
+      "mode": "solo",
+      "steps": 3636,
+      "host_envelope_seconds": 216.00372123718262,
+      "steps_per_host_envelope_second": 16.833043334505774,
+      "between_host_calls_median": 0.0484466552734375,
+      "between_host_calls_max": 6.6561198234558105,
+      "host_gaps_over_one_second": 4,
+      "optimizer_names": [
+        "AdamW"
+      ],
+      "gradient_parameter_counts": [
+        100
+      ]
+    },
+    {
+      "index": 4,
+      "program": 0,
+      "block": 1,
+      "mode": "colocated",
+      "steps": 1349,
+      "host_envelope_seconds": 251.73545622825623,
+      "steps_per_host_envelope_second": 5.358800147631252,
+      "between_host_calls_median": 0.17596149444580078,
+      "between_host_calls_max": 1.0214848518371582,
+      "host_gaps_over_one_second": 1,
+      "optimizer_names": [
+        "AdamW"
+      ],
+      "gradient_parameter_counts": [
+        41,
+        52
+      ]
+    },
+    {
+      "index": 5,
+      "program": 1,
+      "block": 1,
+      "mode": "colocated",
+      "steps": 2343,
+      "host_envelope_seconds": 253.74169611930847,
+      "steps_per_host_envelope_second": 9.233799709836926,
+      "between_host_calls_median": 0.09202265739440918,
+      "between_host_calls_max": 1.5067543983459473,
+      "host_gaps_over_one_second": 1,
+      "optimizer_names": [
+        "AdamW"
+      ],
+      "gradient_parameter_counts": [
+        62
+      ]
+    },
+    {
+      "index": 6,
+      "program": 2,
+      "block": 1,
+      "mode": "colocated",
+      "steps": 1044,
+      "host_envelope_seconds": 265.17863035202026,
+      "steps_per_host_envelope_second": 3.936968822163789,
+      "between_host_calls_median": 0.23549628257751465,
+      "between_host_calls_max": 16.669525384902954,
+      "host_gaps_over_one_second": 3,
+      "optimizer_names": [
+        "AdamW"
+      ],
+      "gradient_parameter_counts": [
+        64
+      ]
+    },
+    {
+      "index": 7,
+      "program": 3,
+      "block": 1,
+      "mode": "colocated",
+      "steps": 708,
+      "host_envelope_seconds": 166.18357682228088,
+      "steps_per_host_envelope_second": 4.260348787396395,
+      "between_host_calls_median": 0.2523939609527588,
+      "between_host_calls_max": 3.628903388977051,
+      "host_gaps_over_one_second": 1,
+      "optimizer_names": [
+        "AdamW"
+      ],
+      "gradient_parameter_counts": [
+        100
+      ]
+    },
+    {
+      "index": 8,
+      "program": 0,
+      "block": 2,
+      "mode": "colocated",
+      "steps": 1420,
+      "host_envelope_seconds": 259.6002550125122,
+      "steps_per_host_envelope_second": 5.469948401751604,
+      "between_host_calls_median": 0.17079448699951172,
+      "between_host_calls_max": 1.032881259918213,
+      "host_gaps_over_one_second": 1,
+      "optimizer_names": [
+        "AdamW"
+      ],
+      "gradient_parameter_counts": [
+        41,
+        52
+      ]
+    },
+    {
+      "index": 9,
+      "program": 1,
+      "block": 2,
+      "mode": "colocated",
+      "steps": 2343,
+      "host_envelope_seconds": 251.99120140075684,
+      "steps_per_host_envelope_second": 9.297943686032854,
+      "between_host_calls_median": 0.09205019474029541,
+      "between_host_calls_max": 1.3895695209503174,
+      "host_gaps_over_one_second": 1,
+      "optimizer_names": [
+        "AdamW"
+      ],
+      "gradient_parameter_counts": [
+        62
+      ]
+    },
+    {
+      "index": 10,
+      "program": 2,
+      "block": 2,
+      "mode": "colocated",
+      "steps": 1044,
+      "host_envelope_seconds": 262.3270933628082,
+      "steps_per_host_envelope_second": 3.979764295852235,
+      "between_host_calls_median": 0.23207879066467285,
+      "between_host_calls_max": 17.62344741821289,
+      "host_gaps_over_one_second": 3,
+      "optimizer_names": [
+        "AdamW"
+      ],
+      "gradient_parameter_counts": [
+        64
+      ]
+    },
+    {
+      "index": 11,
+      "program": 3,
+      "block": 2,
+      "mode": "colocated",
+      "steps": 708,
+      "host_envelope_seconds": 161.9309356212616,
+      "steps_per_host_envelope_second": 4.372234355861027,
+      "between_host_calls_median": 0.24715638160705566,
+      "between_host_calls_max": 3.6633927822113037,
+      "host_gaps_over_one_second": 1,
+      "optimizer_names": [
+        "AdamW"
+      ],
+      "gradient_parameter_counts": [
+        100
+      ]
+    },
+    {
+      "index": 12,
+      "program": 0,
+      "block": 3,
+      "mode": "solo",
+      "steps": 1491,
+      "host_envelope_seconds": 245.50195693969727,
+      "steps_per_host_envelope_second": 6.073271344090487,
+      "between_host_calls_median": 0.15975594520568848,
+      "between_host_calls_max": 0.7730927467346191,
+      "host_gaps_over_one_second": 0,
+      "optimizer_names": [
+        "AdamW"
+      ],
+      "gradient_parameter_counts": [
+        41,
+        52
+      ]
+    },
+    {
+      "index": 13,
+      "program": 1,
+      "block": 3,
+      "mode": "solo",
+      "steps": 2556,
+      "host_envelope_seconds": 247.47415804862976,
+      "steps_per_host_envelope_second": 10.32835113029351,
+      "between_host_calls_median": 0.09075570106506348,
+      "between_host_calls_max": 1.2294902801513672,
+      "host_gaps_over_one_second": 1,
+      "optimizer_names": [
+        "AdamW"
+      ],
+      "gradient_parameter_counts": [
+        62
+      ]
+    },
+    {
+      "index": 14,
+      "program": 2,
+      "block": 3,
+      "mode": "solo",
+      "steps": 1584,
+      "host_envelope_seconds": 274.0587272644043,
+      "steps_per_host_envelope_second": 5.779783099086644,
+      "between_host_calls_median": 0.16651701927185059,
+      "between_host_calls_max": 2.776230812072754,
+      "host_gaps_over_one_second": 4,
+      "optimizer_names": [
+        "AdamW"
+      ],
+      "gradient_parameter_counts": [
+        64
+      ]
+    },
+    {
+      "index": 15,
+      "program": 3,
+      "block": 3,
+      "mode": "solo",
+      "steps": 3636,
+      "host_envelope_seconds": 215.5280466079712,
+      "steps_per_host_envelope_second": 16.870194191541124,
+      "between_host_calls_median": 0.04834413528442383,
+      "between_host_calls_max": 6.666314601898193,
+      "host_gaps_over_one_second": 4,
+      "optimizer_names": [
+        "AdamW"
+      ],
+      "gradient_parameter_counts": [
+        100
+      ]
+    }
+  ],
+  "static_guard_scopes": [
+    {
+      "program": 0,
+      "guards": [
+        {
+          "enclosing_loop_kinds": [
+            "epoch"
+          ],
+          "numeric_literals": [
+            265
+          ]
+        }
+      ]
+    },
+    {
+      "program": 1,
+      "guards": [
+        {
+          "enclosing_loop_kinds": [
+            "epoch"
+          ],
+          "numeric_literals": [
+            270
+          ]
+        }
+      ]
+    },
+    {
+      "program": 2,
+      "guards": [
+        {
+          "enclosing_loop_kinds": [
+            "fold"
+          ],
+          "numeric_literals": [
+            0,
+            0.72
+          ]
+        }
+      ]
+    },
+    {
+      "program": 3,
+      "guards": [
+        {
+          "enclosing_loop_kinds": [
+            "fold"
+          ],
+          "numeric_literals": [
+            0,
+            0.72
+          ]
+        }
+      ]
+    }
+  ],
+  "boundary": "Host call spacing includes data loading, forward/backward, validation and synchronization; it is NOT kernel throughput. Static loop-name heuristic is not a runtime branch/epoch/fold trace. No inference about SchedMate evictions from these averages."
+}

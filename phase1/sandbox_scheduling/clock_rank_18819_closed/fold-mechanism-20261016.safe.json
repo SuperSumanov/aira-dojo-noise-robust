@@ -1,0 +1,186 @@
+{
+  "posthoc": true,
+  "plan_sha256": "4c22748699952da0b79bf862e1db5e785b7d2a9fb951bb26ee9c21be47ca3306",
+  "analysis_sha256": "b90c499b5958ff1292a59e83a39f2128832e6f211972cf680d8e66258f832d73",
+  "contracts": {
+    "2": {
+      "epochs_per_completed_fold": 12,
+      "max_folds": 5,
+      "batch_size": 128,
+      "fold_admission_deadline_seconds": 201.6,
+      "deadline_checked_before_new_fold": true,
+      "no_inner_epoch_break_or_return": true,
+      "completed_models_appended": true,
+      "predictions_average_completed_fold_models": true,
+      "boundary": "Exact static syntax checks plus runtime completion receipts, not an arbitrary-program proof."
+    },
+    "3": {
+      "epochs_per_completed_fold": 12,
+      "max_folds": 5,
+      "batch_size": 32,
+      "fold_admission_deadline_seconds": 201.6,
+      "deadline_checked_before_new_fold": true,
+      "no_inner_epoch_break_or_return": true,
+      "completed_models_appended": true,
+      "predictions_average_completed_fold_models": true,
+      "boundary": "Exact static syntax checks plus runtime completion receipts, not an arbitrary-program proof."
+    }
+  },
+  "rows": [
+    {
+      "index": 2,
+      "program": 2,
+      "mode": "solo",
+      "block": 0,
+      "source_sha256": "1e708096c31384025726c3a7c890dc104f02ae2faa58456e2e09d5518e6e76e9",
+      "log_sha256": "1a19c4bb4643cfb22fa27cc0ecf18d20afa8e4c0b7cc054f5eaa7c861be72922",
+      "completed_folds": 3,
+      "batches_per_epoch": [
+        44,
+        43,
+        45
+      ],
+      "time_guard_skipped_fold": [
+        4
+      ],
+      "expected_optimizer_steps": 1584,
+      "observed_optimizer_steps": 1584,
+      "completion_and_steps_match": true
+    },
+    {
+      "index": 3,
+      "program": 3,
+      "mode": "solo",
+      "block": 0,
+      "source_sha256": "d5b8a8df566db9f8f50fe5e4b5c5c557970c4b87aa0fffbe828514b11a4635b4",
+      "log_sha256": "8cca69a165fcbb892398b321b50bafe90ba8d96c7053992b0e35cab0aa7ab3ed",
+      "completed_folds": 5,
+      "batches_per_epoch": [
+        59,
+        58,
+        60,
+        64,
+        62
+      ],
+      "time_guard_skipped_fold": [],
+      "expected_optimizer_steps": 3636,
+      "observed_optimizer_steps": 3636,
+      "completion_and_steps_match": true
+    },
+    {
+      "index": 6,
+      "program": 2,
+      "mode": "colocated",
+      "block": 1,
+      "source_sha256": "1e708096c31384025726c3a7c890dc104f02ae2faa58456e2e09d5518e6e76e9",
+      "log_sha256": "3848324dcbf5b2fe2944cb6410514230d7d67ed921b855736b2052f979f493ae",
+      "completed_folds": 2,
+      "batches_per_epoch": [
+        44,
+        43
+      ],
+      "time_guard_skipped_fold": [
+        3
+      ],
+      "expected_optimizer_steps": 1044,
+      "observed_optimizer_steps": 1044,
+      "completion_and_steps_match": true
+    },
+    {
+      "index": 7,
+      "program": 3,
+      "mode": "colocated",
+      "block": 1,
+      "source_sha256": "d5b8a8df566db9f8f50fe5e4b5c5c557970c4b87aa0fffbe828514b11a4635b4",
+      "log_sha256": "0f8807717652b656fd6449cc764730c56c9d3f73b782337cb4e83142c5b0c0e9",
+      "completed_folds": 1,
+      "batches_per_epoch": [
+        59
+      ],
+      "time_guard_skipped_fold": [
+        2
+      ],
+      "expected_optimizer_steps": 708,
+      "observed_optimizer_steps": 708,
+      "completion_and_steps_match": true
+    },
+    {
+      "index": 10,
+      "program": 2,
+      "mode": "colocated",
+      "block": 2,
+      "source_sha256": "1e708096c31384025726c3a7c890dc104f02ae2faa58456e2e09d5518e6e76e9",
+      "log_sha256": "601c6114d6a6b3cee66dfd9ffdf64a62218b900a816e36d55f6f1e7a5b2ee0bc",
+      "completed_folds": 2,
+      "batches_per_epoch": [
+        44,
+        43
+      ],
+      "time_guard_skipped_fold": [
+        3
+      ],
+      "expected_optimizer_steps": 1044,
+      "observed_optimizer_steps": 1044,
+      "completion_and_steps_match": true
+    },
+    {
+      "index": 11,
+      "program": 3,
+      "mode": "colocated",
+      "block": 2,
+      "source_sha256": "d5b8a8df566db9f8f50fe5e4b5c5c557970c4b87aa0fffbe828514b11a4635b4",
+      "log_sha256": "207ab733858a38bf8a5dd406a4459a7121e330f468d840eff2bc2236155234d0",
+      "completed_folds": 1,
+      "batches_per_epoch": [
+        59
+      ],
+      "time_guard_skipped_fold": [
+        2
+      ],
+      "expected_optimizer_steps": 708,
+      "observed_optimizer_steps": 708,
+      "completion_and_steps_match": true
+    },
+    {
+      "index": 14,
+      "program": 2,
+      "mode": "solo",
+      "block": 3,
+      "source_sha256": "1e708096c31384025726c3a7c890dc104f02ae2faa58456e2e09d5518e6e76e9",
+      "log_sha256": "f778cd537976088c87aceedcc36a413350e15ca1674378025c2eebe7c02275ef",
+      "completed_folds": 3,
+      "batches_per_epoch": [
+        44,
+        43,
+        45
+      ],
+      "time_guard_skipped_fold": [
+        4
+      ],
+      "expected_optimizer_steps": 1584,
+      "observed_optimizer_steps": 1584,
+      "completion_and_steps_match": true
+    },
+    {
+      "index": 15,
+      "program": 3,
+      "mode": "solo",
+      "block": 3,
+      "source_sha256": "d5b8a8df566db9f8f50fe5e4b5c5c557970c4b87aa0fffbe828514b11a4635b4",
+      "log_sha256": "9851b79610f9e66dc29b35a465152a273d44bed6d01102e44c268008035f721d",
+      "completed_folds": 5,
+      "batches_per_epoch": [
+        59,
+        58,
+        60,
+        64,
+        62
+      ],
+      "time_guard_skipped_fold": [],
+      "expected_optimizer_steps": 3636,
+      "observed_optimizer_steps": 3636,
+      "completion_and_steps_match": true
+    }
+  ],
+  "conclusion": "For these two closed DEV programs sharing changes completed fold count and hence ensemble membership. Both restarts agree. Not a fold-only causal intervention, a general incidence estimate, an E2E gain or a new scheduling algorithm."
+}

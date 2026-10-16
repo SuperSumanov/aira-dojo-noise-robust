@@ -1,13 +1,13 @@
 # 当前短交接：只记录现场与恢复操作
 
-最后核验：2026-10-16香港14:32；用户11:18批准六小时自主推进，窗口到17:18。
+最后核验：2026-10-16香港14:51；用户11:18批准六小时自主推进，窗口到17:18。
 限定新实验自行决策，不重复询问已批准事项；不能用无界重试、择seed或改门追正。
 
 ## 目录、Git与授权
 
 - checkout：C:/Research/New/my_project/MLEvolve/_codex_tmp/publication-feedback-20261001（detached HEAD有意）。
 - 旧完整三文档归档Git6c47086a603b4c7afcc25a3e80f9d5648c3bee63；方向只读CURRENT_DIRECTION，历史按需检索ROUTE_DECISIONS。
-- 14:11快进push并ls-remote核对phase1-value-critic=246e66a56151ebfb7b74b5808eeeec82b9de0d8c；2提交/4blobs扫描0凭据/大二进制/private文件。
+- 14:46快进push并ls-remote核对phase1-value-critic=30af07a15f33d3f444028108566ae18554e5b819；1提交/7blobs扫描0凭据/大二进制/private文件。
 - dojo-reproduce=c394ca1756ab2e53d5cbb68802e2973c8ceebe8a，13:38fetch未变；未改学长分支。
 - 用户未跟踪报告、_codex_tmp、pooling_host_compat_20261016.sh及旧checkout dirty保留。
 - 本窗口不训练底座、不用付费API、不碰保护集/官方test/D_val/旧Held12535；GPU镜像不升级、不退CPU。
@@ -51,7 +51,10 @@
 - clock_parent_reference_20261016.safe.json只取旧18770真实父回执，3/4唯一识别；缺失不补造，非新成功门。
 - Denoise严格跨重复区间翻转；Aerial仅配对翻转，区间重叠。过333c5662事前新来源门，不是方法收益。
 - 新来源v1/18844 FAILED封存：14:38:30–14:38:41/gpu27，11GPU秒，首容器导入旧pooling模块失败，0候选/评分、清理true；不是方法反证。
-- 当前无活动GPU；限定一次独立v2修正，只从新donor导入AST相同的namespace函数，原4程序/seed/时限不变、仍16次/≤1.5GPUh；实际准备shim的CPU导入门过后提交，不再自动补跑。
+- 15:06封存18819事后机制补强：去噪实际完成折数两次均3→2、5→1，12轮×每折batches等于全部梯度steps；源码平均完成模型。fold-mechanism回执SHA80ed9a56f1127270432a370c3c99de7894f38547c95cf97dadb76cde48b04028；不是折数单因子干预/E2E。
+- 18845是唯一活动GPU：14:48:31起RUNNING/gpu27，14:51已过首容器GPU隔离。root=clock-rank-confirmation-20261016-v2，source=30af07a15f33d3f444028108566ae18554e5b819，planSHAd9834749a7d1add6ba10168372ea2c947adaa5f00273fb8719491591a2d0d146。
+- v2只从新donor导入AST相同namespace，原4程序/seed/时限不变；6CPU测试/16配置/实际shim导入门通过。16次、1GPU≤90分钟，预计15:50附近、硬16:18；不再自动修正或补样本。
+- 闭合+sacct后只运行一次clock_rank_confirm_readout_20261016.py root root/readout-20261016-v1 --gpu-seconds 实际秒数；readerSHA89040d72a776486aa02ac6ddd176f025998e9ac2ccd9e136527588af767fd70e。沿用verify_clock_rank_20261016.cjs及3传输SHA；确认要求Denoise再次严格翻转。
 
 ## 已闭合与操作经验
 

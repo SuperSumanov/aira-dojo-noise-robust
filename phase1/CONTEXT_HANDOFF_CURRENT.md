@@ -9,8 +9,8 @@
 - 上窗口最终公开2cf2883917d5fc67b97b62894006a1bec7f8bb66；本轮配对源a349aa7a2c7a70d298a6703c3faced4bc5d0a685、条件六卡源f24715fb1f74ceca7a700266b2b1755509814468均已安全扫描。
 - dojo-reproduce新e4d478350e704e8c5927eba566b2847aaa6dcbab；两新文档先远端扫描/脱敏后读。95journals/5任务结论是学长报告，非我方复现；selected改善不等于best-found提高，存在跨天硬件/负载差异。记录senior_update_20261017.safe.json；未改学长分支。
 - 18987root=/research/d7/spc/yzyang4/clock-pairing-20261017-v2，planSHA a2f2ea693c0d2a194ac194a3023e81645eeb55b94263733dd12e943515d6ed22；1卡52分钟≤3120GPU秒。v1仅CPU二次导入失败0GPU/0候选，不覆盖原包；修复后12CPU测试及实际shim通过。
-- 条件六卡root最新scheduling-diverse-20261017-v3，source660d58c65b52a0c71e3cc27634e784c4da4ed287；v1测试替身注入失败，v2修测试；v3提交前补原有worker异常停止契约。全为CPU准备/0GPU，48输入及15信号场景准备仍在收尾；父门false，绝不submit。
-- 18987唯一readout-20261017-v1已闭合，本地clock_pairing_18987_closed保留全16分母及Node独立核算/3传输SHA。summarySHA05afb45ee116a41fff342a997b9b52d9d29b4fc9f8b420fb3f5ac1325fbdd57d；program2原300秒输出超时，exec301.4508007057011；已记录Ready和inference6s，但尚不知是否输出序列化瓶颈。无配对质量结论。
+- 条件六卡root最新scheduling-diverse-20261017-v3，source660d58c65b52a0c71e3cc27634e784c4da4ed287；v1测试替身注入失败，v2修测试；v3提交前补原有worker异常停止契约。48输入/15信号场景CPU通过，planSHA5cb896640d9dd0a3aa7af5f43f02e78fb2157c1bcd26a2d6864803582ee2739c；0GPU，父门false，绝不submit。
+- 18987唯一readout-20261017-v1已闭合，本地clock_pairing_18987_closed保留全16分母及Node独立核算/3传输SHA。summarySHA05afb45ee116a41fff342a997b9b52d9d29b4fc9f8b420fb3f5ac1325fbdd57d；program2原300秒超时，exec301.4508007057011；两折153.6s/133.2s、CV287.6s、inference6s，不能只归因序列化。无配对质量结论。
 - 用户未跟踪报告、_codex_tmp、pooling_host_compat_20261016.sh及旧checkout dirty保留。
 - 不用付费API/底座训练，不碰first960/Target300/522/D_val/官方test/16560或旧Held12535；原任务镜像不改。
 
@@ -46,7 +46,7 @@
 ## 收尾与下一次恢复
 
 - 18987不可再readout/submit/改时限；条件六卡父门false，不提交。诊断仅解释失败，不拿第一组或完整个例救配对收益。
-- 已读安全原日志：program2第一折153.6s、第二折133.2s、CV结束287.6s、推理6s后超时，不能只归因序列化。独立selective32条已冻结源码，root=scheduling-selective-20261017-v1，gpu3六卡≤100min/10GPUh；只让Aerial+Aerial共置、去噪独占，vs sharedFIFO，原质量门/完整搜索分母。当前未准备/提交。
+- 独立selective32条源码8384f405d58ee8e5173b8039fba4fa5b3b14bab7已公开；root=scheduling-selective-20261017-v1，gpu3六卡≤100min/10GPUh；只让Aerial+Aerial共置、去噪独占，vs sharedFIFO，原质量门/完整搜索分母。03:29启动CPU准备，session72576，未提交GPU。
 - 32条前必须完成真实输入矩阵、实际双模式CPU信号场景、common readiness及worker异常停止门；22本地CPU测试通过。若不胜不补seed；不自称新算法/胜SchedMate。六卡diverse包不得误submit。
 - 旧一次提醒已删除；本轮继续本会话到08:49，不建重复跟进/长报告。当前无外部权限或节点阻塞，不碰旧12535。
 

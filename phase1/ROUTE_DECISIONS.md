@@ -22,6 +22,7 @@
 - 独立selectiveFIFO改变“可否共置”而非伙伴tie-break：仅Aerial同类可共置、去噪独占，保持FIFO/CPU/生成器/预算。32真实搜索、2反序比较、原终分门；任务先验简单参照，不称创新，不是新来源确认，更未比SchedMate。候选失败不删分母。
 - 10/17只读18807发现每任务2个生成许可留下10.47%–24.33%的有队列/总active<4状态；独立积分通过。vLLM408采样最大Running4、Waiting0、KV13.3%，不证明硬件空闲。后续只测同总4许可的跨任务借用，执行仍单许可；这是work-conserving强基线资格，不是17675旧资源打分重命名，更不是新算法/MARS复现。
 - 同批余时独立核算：≥300秒余时下每池仍有约96/118/123/168秒借用机会，主要为analysis/debug；不是全部截止尾巴，也不是额外完成数。证据quota-slack-20261017-v1.safe.json及quota-slack-independent.json，原质量门不改。
+- 10/17只读“评分→共享归档”线索：原生_analyze先于parent wrapper发布；18807的38有效结果37发布/1截止前未发布，只有1次真实Improve准入处于更好有效父程序尚未发布窗口。仅源码+既有时间诊断，未独立复现原始join、未生成新子程序，不据此开早发布GPU新线或称收益。feedback-publication-20261017-v1.safe.json；先完成已冻结selective/quota对照。
 
 ## R14已试机制及禁止偷换
 

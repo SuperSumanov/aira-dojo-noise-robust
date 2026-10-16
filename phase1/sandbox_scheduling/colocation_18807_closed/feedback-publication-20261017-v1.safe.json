@@ -1,0 +1,326 @@
+{
+  "plan_sha256": "36ce5852b26de2299755c19a8b9711a1f4161d68abd25a3de6cc7687cdde8560",
+  "summary_sha256": "c8c2f71009a39e9932ec59e388f9b052ce190730179119aed5d73e4fa38576a4",
+  "reader_sha256": "a80f12728548679ac4c2d3f6bbc5ba6be6ed223ff0da62dede0e49a98f6e8395",
+  "source_hashes": {
+    "source/src/dojo/solvers/mcts/mcts.py": "6a5ddbd6c4cc3ded515ee565444302c2380d10fc62092fbefc05f263dd6d216f",
+    "feedback_parent_policy_20261012.py": "ab5ffd2983dba6b13bdadfd17dbe4242d45a565f365ef553793bb46d85ce1cca",
+    "generation-0/events.jsonl": "d5a40f5bd563b6e05c96b5395414e154bccdb3d25d05718495b0ac6bbb30f4f5",
+    "episode-0/deadline.json": "e8818f312518aea803a027581d83719c5dbdfd120235210d5d429f453ca027b7",
+    "episode-0/candidate-0.json": "9083e58596d610382be7d3393b42f86c4bdcd2f5297e1a8f6ce20ecf81de819c",
+    "episode-0/candidate-1.json": "53cfab3e38fdf68d6b4a36539e526f21e40d698041a23e348f1046ec82c60824",
+    "episode-1/deadline.json": "1707b77d2d0848020310933e06206e232fd72c04ae350f48cf059bc8b803eeac",
+    "episode-1/candidate-0.json": "f368db0913a3480b4cddff012cfc9f8f09146353fe1c0f2e922a3f07fd9e7d47",
+    "episode-1/candidate-1.json": "c96861a11de7ac8e826f827aae2e3c1d7b0c82f63b0aa08bebd2bc84dbb7f73d",
+    "episode-2/deadline.json": "e8e511a37d67e60d2afbd87f5019cdf5bab29912bbecaa2622f401a4e2db3f9c",
+    "episode-2/candidate-0.json": "7a58ed53589d71d57ebef3a522063caf4b5d02073190ca7370b87a719378046e",
+    "episode-2/candidate-1.json": "eea186db783fde1aae8999fe9bf752f447f14f3ea3575afaa6fcb3aefdc831d7",
+    "episode-3/deadline.json": "aa51eabe25001e313485ce95d8b2467c40e502dce1012963e62904e92f1e5fb3",
+    "episode-3/candidate-0.json": "255aeb224a63ec2df95ff73b549d54d660e1598c273ffc00dfdb1ea65f6f3d81",
+    "episode-3/candidate-1.json": "4752d7ee793f4143cbf04faf7a6dee4e1297c32d6499f96bdf92bc5bd23582c9",
+    "episode-4/deadline.json": "f96ae99f8939ef5b8fb2ab91c32b18ede3bb6fe391ba510211352d6763604868",
+    "episode-4/candidate-0.json": "e86216b6b6f5a24bfb8b4025cc8a2ed5922671e120914a6e21e1c98e747662af",
+    "episode-4/candidate-1.json": "5852093a59249649aa7f78c850a101c686f38512cb777a95609b1ced0ed6fda3",
+    "episode-5/deadline.json": "a2dd5b182ec84cf45ace54ae8ea34733dc0d0ba62cbdd44a3beebd13f592932a",
+    "episode-5/candidate-0.json": "9d4a4e22c06d67c58596456fd6839bb98b7ca6ce8f29d9617b5826d324f67b4b",
+    "episode-5/candidate-1.json": "b833b28bffdb6d83d975a2fd6351994adcb437a519acb32e8db7cd881284afc3",
+    "episode-5/candidate-2.json": "1761ce52989d1473c2724bcd256e32beb08f4ad4fdd64a14f77f4798367ca079",
+    "episode-6/deadline.json": "29f3e54cf4e0cd71f6c3c142d6e53b086632025a49c41a3688d4da8fbb73b9c6",
+    "episode-6/candidate-0.json": "fe93a9cea6029d4247d63242db5765235647e4fa441107b86d548126c5844fff",
+    "episode-6/candidate-1.json": "1a3053d38297d66571fb091fcc7964110fc2ebef10235718cfad4de7f57d6623",
+    "episode-7/deadline.json": "58b4ad57fcc666c4d793bbb2b92ee9db4033adc32e7fd88d488001037c18efc0",
+    "episode-7/candidate-0.json": "f8a388996035cccb3ac617d51c8686ffc221efeb4c619c0295a858ccb07546ec",
+    "episode-7/candidate-1.json": "975e63ae79a434d950c8e67d5d1f54458c2acec0db824b637d3e9b91f96bb9b0",
+    "episode-7/candidate-2.json": "4434cd1540aeb445b681fb0fa885ef695977ebfbb2bde278034315c3f9dbe639",
+    "generation-1/events.jsonl": "87d9c104456134525b8fc726b1e83532b50950553804587ce7b57f35d02a4268",
+    "episode-8/deadline.json": "7a88fb7a4be0549493f0c4191885561e4a46279f206d95767f160ac8bafa35f2",
+    "episode-8/candidate-0.json": "f3e6a375265ff3b74d11e55e29b8d7259eb7df2b34afea38b2ba4b7b294431ed",
+    "episode-8/candidate-1.json": "97014016a3b214b7964c30468b756e9cad2c8b3b02446782b3b1b564e569a673",
+    "episode-9/deadline.json": "24b4d310a88b03439a02ab6338761a4adaabd9de4bf9e96871d2c4999ae2a99b",
+    "episode-9/candidate-0.json": "134f73c07938ab2bb4512e11b4c2b3ac8cd030bf57e88463789690ec023c0043",
+    "episode-9/candidate-1.json": "f3e2be451c892924ca919be8e17c215a957c1965c232df0f4c7874f228384a65",
+    "episode-9/candidate-2.json": "46f152dbbe561d1b28aaf07e9109140e4b0a2e6b597910b799078316973bca6b",
+    "episode-10/deadline.json": "14f489e0fa81da223d913812ab212c638ac93509ea5742bb3417d995423f8389",
+    "episode-10/candidate-0.json": "74138e507c0318178f860cd210f20fe452eb20148f96ebb83e22cbdf55f2ea18",
+    "episode-10/candidate-1.json": "122ebee2cafe0f6d82ba6c6da2eb58d7daf397deb82f20deca85bb80610afc89",
+    "episode-11/deadline.json": "f7df62efe1148f2f9ad79515018d4b4eea997bec4f053931c36c6546366d33a7",
+    "episode-11/candidate-0.json": "1ac914567aaa16994dc532d0c43a5f62fbf2fe24e70f62d2e7825a04df1e06ea",
+    "episode-11/candidate-1.json": "db8cf2907102cc8ca40849eef3c63e53f661d63be4f2610abcd24bbd04fbcc14",
+    "episode-11/candidate-2.json": "db2b3b4867e4b259a47821c923ea462f74400f8e0d5dd57cde5ff88decb729ac",
+    "episode-12/deadline.json": "7142444cfbd06046f9964aae33c3e8d6d6dfc50433db53dbcc7b51efa518b990",
+    "episode-12/candidate-0.json": "bac2a77c0b61499e76cbd42306bad44585aa4eedb99cf6a74552d332fd874009",
+    "episode-12/candidate-1.json": "92631456d8987ade605615070be0a403d0fec2529b44c24720495bd69fd6f520",
+    "episode-13/deadline.json": "74ff1776e515344118e5d9ad5e67542cab339d31edcdaa0789946d94ed84ea4d",
+    "episode-13/candidate-0.json": "8076e0589296a7b2d38489a2c22e80ebb67fb0475ea0a4f06eb2972d38958595",
+    "episode-13/candidate-1.json": "031f246728ff5e2ffc85422c86cdb4adba205a915431d4d4b4f74cb046ec6b41",
+    "episode-13/candidate-2.json": "e28109bfcc90cd4d78516be656f3499c812ddcd2ef06f4e430513e5e3bd46a18",
+    "episode-13/candidate-3.json": "159b452ef8d169dfd72ef9392e799d389b6d88ca8599ecdcd0181275965cd105",
+    "episode-14/deadline.json": "4b51eeb27440a82f0fc31d3ccd3eb0252aa7922fac2354373ddead9c031ca722",
+    "episode-14/candidate-0.json": "47a33bb637861a5c9b322a35284e9963ec9ea7a8ed16ee6db5bb594c2ec8ac53",
+    "episode-14/candidate-1.json": "cb395318e2da7d5fc498eb760e4177b643a04be1344c5ef3987b83a5e95e41d1",
+    "episode-14/candidate-2.json": "307de7bb6d5611cb0983099bad6a4cb928ea06c72b99027a53c1203c666ce9db",
+    "episode-15/deadline.json": "9f1f0b302cf48642f2f4937eb44a7f76cd43088028f07387c6e566579da279ce",
+    "episode-15/candidate-0.json": "af6ffd771377a8a80f5ece03019c4248f33f937641c623342c9ffe5669a4b866",
+    "episode-15/candidate-1.json": "f1f4d5cee94f069d077f8a8d40a161d82feb0a6d0dfe67f95bca65f1f109c7f5",
+    "episode-15/candidate-2.json": "1e3dfb6a96309d55d287071dec827c45200969cd22fd8cc9044879bf24241067",
+    "generation-2/events.jsonl": "cab98c4462e0863b021adcdec7da3f5ed2603bbd54d96ac1f137baef12b9061a",
+    "episode-16/deadline.json": "f4605dfa6c93f394278f1c20222b657d95f33b824f4856dcd2eb6c713f693a76",
+    "episode-16/candidate-0.json": "1ee25f7a9e617c3dbab92c0f5eb46796b5eab6e42e86c6f7921e8967647bac7e",
+    "episode-16/candidate-1.json": "6c03eb9658c57682f8c326bd130c002dc48edfb1c0640725a66da652193d3a49",
+    "episode-17/deadline.json": "374ab6f39ff7ed6f8bcc05877b1d0023ae6a4e1d82222ad831684779d748ddd0",
+    "episode-17/candidate-0.json": "bc267562eb97278fb3c4f0394fa59af3e706d1aca59cb191cd6f04bd3515f143",
+    "episode-17/candidate-1.json": "6d5502089d63ff067ef213e6026048252e34283d7ed4bb69447be52a120e1a64",
+    "episode-18/deadline.json": "3db1f534a4dd7280577b946f13fc15ebfd1b2dd95f0530f3aeb901ed099bd4ad",
+    "episode-18/candidate-0.json": "ad3b6b5db8086e302bf66aa9508456f0e312179003ef8f1099e9d3ede3175254",
+    "episode-18/candidate-1.json": "05a0b63ae6cd8857ac2d5c93a5b5a9c6db548c3a4a931d00cdfee9322faabffd",
+    "episode-19/deadline.json": "763b0b354439ab7a409fdc4ed1d6535e4f8bada6f2cae274ab1e5b0ab49efbd1",
+    "episode-19/candidate-0.json": "115f0f5f50e59904695e1f90a9b949cf308cef49513a95f0df7d7a230007d1ed",
+    "episode-19/candidate-1.json": "ad84a972b30367a9f8a55b7bbb2c793dc71da6be4121122c782a204442703999",
+    "episode-19/candidate-2.json": "b6be7d79a066ab0970d831c25d2da909c42df4df1c3942d274661fde240b8724",
+    "episode-19/candidate-3.json": "3712d440a61c9c4e4c4e7baf7012b423a40422564dc938d33b5cb027540b4b99",
+    "episode-20/deadline.json": "2935cbb6e46a469a8af66373a5c3236633d3ba6fa03df4dc4cfc56bcd14c5b3d",
+    "episode-20/candidate-0.json": "cbec5326c418fd56dc2a39bf97e066f32dd4967c3a6f4e29b701ca30fd37faab",
+    "episode-20/candidate-1.json": "d92f737c6af9c66b03e54e4582ef8f49433fea8f3d5827083c7257065386137e",
+    "episode-20/candidate-2.json": "5aa2688a4052cd2d8fa3a580245158da1dcb6371630176f7b9bad38c73627a03",
+    "episode-21/deadline.json": "e2a11fd60721eb663d125978623146492efd4e42f57dea3790654c7d0e47f505",
+    "episode-21/candidate-0.json": "5de1fff532e408e2692bbc1111e8096cb1489524aab43f628ddbca402079b8bc",
+    "episode-21/candidate-1.json": "7e7058aa5e03a6311afffb85430c24d8e6b6b9cd1bb67f77be830197c5bd2013",
+    "episode-21/candidate-2.json": "7c2cb49e70cc37b6c68374faf695fedcb5b23360fd8e0cc7d756febe7557dfa9",
+    "episode-22/deadline.json": "8bc6254043535a9f1bb3351273844c2618d65e644a42d235cbf0766532c371bc",
+    "episode-22/candidate-0.json": "9f1dc9f884e2c55263b8b7c49fcb294649c8ed12dfea69a52b2bef973be08569",
+    "episode-22/candidate-1.json": "601416f5ab0f5fd4a70826441e39a1c67bf2ed9502710b932c3be39a9e85e1d2",
+    "episode-23/deadline.json": "c8e877c44222c74a1e8f733d0957830272dd6a3a300c97f3ae125bb7790bd1de",
+    "episode-23/candidate-0.json": "f925d1a763995902644c52577af7c203036f0f3f700938ae9e9012d5a2896dca",
+    "episode-23/candidate-1.json": "33c5b6ebb9db2cbb611dd5a6959877e2925d9e7feb62ef2c0cf3d06fc0bacc49",
+    "generation-3/events.jsonl": "2cad41fcff455ad6d4828cf8c54ba89959345df003710cb4af21e20e0f99f90b",
+    "episode-24/deadline.json": "0bdae0e0bbc1d2df441c35f57472748a8284700c68173060117afd226006eb1c",
+    "episode-24/candidate-0.json": "56e9a7e48bb229c794dd3f3d23e58f12e1d3a81ec0385b2890bc1345e0a76224",
+    "episode-24/candidate-1.json": "eb3fd69127fd6d1600e8f6732b993cda58dd45513c90738ce7fbc82c76e966b4",
+    "episode-25/deadline.json": "c259e71f7a545aeb82422dba91c80cdf0b8ec6f5cb7c8f080d99d39c5584dcc6",
+    "episode-25/candidate-0.json": "1882f2e02b72a60aa40d93e9608a2e1bce84e34d3cdd2e2932c5f7c18490d25e",
+    "episode-25/candidate-1.json": "56d5b52ee0d0c68648e0df5c4379c1369a10e705e9f654a503ec86649d90eab6",
+    "episode-26/deadline.json": "f94bd381651a7f41b52bea13ae71efcd7af028e5b6c879a898083cc817af6654",
+    "episode-26/candidate-0.json": "36cddea0189a8db6a0ff3078be836358c5b0b8cf49b560ea2f36c49d262edca6",
+    "episode-26/candidate-1.json": "4cd2afa50d60f727aaacd3f584304f736e58a21860fb303da68c1e7e3e625c76",
+    "episode-27/deadline.json": "84d030b636a55033f124bc75541f67b0b2244548b2cb726c9f4cac5b73a389f5",
+    "episode-27/candidate-0.json": "876f96d5098e078a6f145d2f233e5763c49287e075d141c489e3df7220f41c41",
+    "episode-27/candidate-1.json": "a18e2d67dae7889666e62d89ed3527bc0b03e559b92da29734540dce90ea7148",
+    "episode-28/deadline.json": "37bd6703d2277f71437508bd936933f45c3ff7f16ebef79246ef13ebddfabd00",
+    "episode-28/candidate-0.json": "be8519e510a52a4670c4277032c6f01d99b7aa30f472db81802a3a4af85df87d",
+    "episode-28/candidate-1.json": "af4eaf58341f5842fb455da5fe0cd0a2ece63da7ca7b6b17890fe300e55bcaf3",
+    "episode-28/candidate-2.json": "80f05ac7e1a4c8343abc13ee3ce340779e3cc1f5c0b433c80ed8641b294c776b",
+    "episode-29/deadline.json": "79dae7eacd11a8475b2c7164e671642cdc099d0f9535df70e6576e082d23ed20",
+    "episode-29/candidate-0.json": "b7894afa19a0e2086e74efcc221181aa0f028dd4acb70d83c63da027969cc7eb",
+    "episode-29/candidate-1.json": "005d649020f4d703a999e04fedc4a1d2900c19ef6702f4d5fbd6fb8b7b021bfe",
+    "episode-30/deadline.json": "18beb69246eb77554eae3649d73ae909c1dcaf5b3a8b38a35fc6e6433caefc56",
+    "episode-30/candidate-0.json": "3432fa45bbc09002b7610aa83cf85dff14c459c560c63ea54a50f9e99caf8498",
+    "episode-30/candidate-1.json": "52e7c03bfaf6097cfd3983cc15016bff53386f4aafa44b36be29ea64a9de8bd1",
+    "episode-31/deadline.json": "2f6cc03d6b75acebe082a21bb7c8608444bcc90eedf15eb294e040ffda542fda",
+    "episode-31/candidate-0.json": "ffa5f0c25e79ccd474de3bd5ef87e1dbb53192f64987a778739b8c9f7d311005",
+    "episode-31/candidate-1.json": "7229b1a2f9daa49ae4dfab4356d03f2a75b2d588124ab2abd7c0fb63fff983f7",
+    "episode-31/candidate-2.json": "9a378f9da57278d7837d65eda45b693bc6ba31311cf68998c08b4f6d77e471aa"
+  },
+  "pools": [
+    {
+      "block": 0,
+      "by_task": [
+        {
+          "task": "aerial-cactus-identification",
+          "valid": 5,
+          "published": 5,
+          "not_published_before_run_deadline": 0,
+          "observed_delay_seconds": {
+            "n": 5,
+            "median": 7.849311590194702,
+            "sample_sd": 5.393684384593398,
+            "min": 5.397892236709595,
+            "max": 19.14889121055603
+          },
+          "admissions_during_unpublished_valid_window": 0,
+          "admissions_with_a_better_unpublished_valid_parent": 0,
+          "potential_parent_score_gain": {
+            "n": 0,
+            "median": null,
+            "sample_sd": null,
+            "min": null,
+            "max": null
+          }
+        },
+        {
+          "task": "denoising-dirty-documents",
+          "valid": 2,
+          "published": 2,
+          "not_published_before_run_deadline": 0,
+          "observed_delay_seconds": {
+            "n": 2,
+            "median": 6.266408085823059,
+            "sample_sd": 0.17488935942031905,
+            "min": 6.14274263381958,
+            "max": 6.390073537826538
+          },
+          "admissions_during_unpublished_valid_window": 0,
+          "admissions_with_a_better_unpublished_valid_parent": 0,
+          "potential_parent_score_gain": {
+            "n": 0,
+            "median": null,
+            "sample_sd": null,
+            "min": null,
+            "max": null
+          }
+        }
+      ]
+    },
+    {
+      "block": 1,
+      "by_task": [
+        {
+          "task": "aerial-cactus-identification",
+          "valid": 7,
+          "published": 7,
+          "not_published_before_run_deadline": 0,
+          "observed_delay_seconds": {
+            "n": 7,
+            "median": 17.8141188621521,
+            "sample_sd": 18.253923524155095,
+            "min": 7.272671699523926,
+            "max": 51.92026948928833
+          },
+          "admissions_during_unpublished_valid_window": 0,
+          "admissions_with_a_better_unpublished_valid_parent": 0,
+          "potential_parent_score_gain": {
+            "n": 0,
+            "median": null,
+            "sample_sd": null,
+            "min": null,
+            "max": null
+          }
+        },
+        {
+          "task": "denoising-dirty-documents",
+          "valid": 4,
+          "published": 3,
+          "not_published_before_run_deadline": 1,
+          "observed_delay_seconds": {
+            "n": 3,
+            "median": 23.240070104599,
+            "sample_sd": 28.527352905898038,
+            "min": 11.901572465896606,
+            "max": 65.9961085319519
+          },
+          "admissions_during_unpublished_valid_window": 1,
+          "admissions_with_a_better_unpublished_valid_parent": 1,
+          "potential_parent_score_gain": {
+            "n": 1,
+            "median": 0.006297574473677896,
+            "sample_sd": null,
+            "min": 0.006297574473677896,
+            "max": 0.006297574473677896
+          }
+        }
+      ]
+    },
+    {
+      "block": 2,
+      "by_task": [
+        {
+          "task": "aerial-cactus-identification",
+          "valid": 7,
+          "published": 7,
+          "not_published_before_run_deadline": 0,
+          "observed_delay_seconds": {
+            "n": 7,
+            "median": 8.460270404815674,
+            "sample_sd": 20.249573194996607,
+            "min": 7.13371729850769,
+            "max": 51.75747108459473
+          },
+          "admissions_during_unpublished_valid_window": 0,
+          "admissions_with_a_better_unpublished_valid_parent": 0,
+          "potential_parent_score_gain": {
+            "n": 0,
+            "median": null,
+            "sample_sd": null,
+            "min": null,
+            "max": null
+          }
+        },
+        {
+          "task": "denoising-dirty-documents",
+          "valid": 4,
+          "published": 4,
+          "not_published_before_run_deadline": 0,
+          "observed_delay_seconds": {
+            "n": 4,
+            "median": 13.034144401550293,
+            "sample_sd": 27.289161477029264,
+            "min": 6.539313554763794,
+            "max": 64.94331097602844
+          },
+          "admissions_during_unpublished_valid_window": 0,
+          "admissions_with_a_better_unpublished_valid_parent": 0,
+          "potential_parent_score_gain": {
+            "n": 0,
+            "median": null,
+            "sample_sd": null,
+            "min": null,
+            "max": null
+          }
+        }
+      ]
+    },
+    {
+      "block": 3,
+      "by_task": [
+        {
+          "task": "aerial-cactus-identification",
+          "valid": 6,
+          "published": 6,
+          "not_published_before_run_deadline": 0,
+          "observed_delay_seconds": {
+            "n": 6,
+            "median": 6.597205281257629,
+            "sample_sd": 1.6891864661616265,
+            "min": 5.86516809463501,
+            "max": 10.083688974380493
+          },
+          "admissions_during_unpublished_valid_window": 0,
+          "admissions_with_a_better_unpublished_valid_parent": 0,
+          "potential_parent_score_gain": {
+            "n": 0,
+            "median": null,
+            "sample_sd": null,
+            "min": null,
+            "max": null
+          }
+        },
+        {
+          "task": "denoising-dirty-documents",
+          "valid": 3,
+          "published": 3,
+          "not_published_before_run_deadline": 0,
+          "observed_delay_seconds": {
+            "n": 3,
+            "median": 6.245213270187378,
+            "sample_sd": 6.743534400001821,
+            "min": 6.125077486038208,
+            "max": 17.864826202392578
+          },
+          "admissions_during_unpublished_valid_window": 0,
+          "admissions_with_a_better_unpublished_valid_parent": 0,
+          "potential_parent_score_gain": {
+            "n": 0,
+            "median": null,
+            "sample_sd": null,
+            "min": null,
+            "max": null
+          }
+        }
+      ]
+    }
+  ],
+  "source_order": {
+    "native_analyze_before_parent_wrapper_archive_update": true,
+    "native_parse_analyze_line": 586
+  },
+  "boundary": "Closed descriptive observations only; exact code-hash join and all valid candidate denominator. Publication delay includes waiting, analysis and overhead, not all LLM compute. Unpublished candidates are censored at run deadline. Potential parent changes are not generated children, saved time or causal final-quality gain. No new policy, model, GPU or scorer call; no primary gate changed."
+}

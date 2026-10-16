@@ -1,0 +1,372 @@
+{
+  "batch": "selective",
+  "implementation_sha256": "219b9c4b9d24fbcd7bd01a5819cb5ec059343524537d2bdf4a3149d6b93a1bed",
+  "limits": [
+    "Independent metric computation, not independent source-data creation.",
+    "Includes all stored scoring artifacts, not an eligibility or late-result rule.",
+    "No official test, reserved split, model call, GPU, training, or original artifact modification."
+  ],
+  "maximum_absolute_difference": 1.1102230246251565e-16,
+  "passed": true,
+  "plan_sha256": "1783555a7c680021b2a1bae874798f1042c0bfe79d0b11af70fa7f2a75d26e32",
+  "records": [
+    {
+      "absolute_difference": 0,
+      "index": 0,
+      "metric": "auc",
+      "receipt": "scored-0.json",
+      "receipt_sha256": "5eb349bac4cad804e789f5f41c80e54f1030050f2ffe0f29dd0f17ef76017ac8",
+      "rows": 1417,
+      "submission_sha256": "5e3a567fb46270be2de79ee3e3f6b6e6960669ca054ebd0bace4d1cda9e9d3bc",
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "absolute_difference": 0,
+      "index": 1,
+      "metric": "rmse",
+      "receipt": "scored-0.json",
+      "receipt_sha256": "c2649b4a90c3dce7ca99863ce432f55b7f6c2f324a64451c1608e05b34baf557",
+      "rows": 2144880,
+      "submission_sha256": "56074d570406d9f1052d360e2d44938ac39f9e16f583bb7aa4ffc749181c795c",
+      "task": "denoising-dirty-documents"
+    },
+    {
+      "absolute_difference": 0,
+      "index": 2,
+      "metric": "auc",
+      "receipt": "scored-0.json",
+      "receipt_sha256": "04ebc757d41277bb516d443b4be813404ba4ca50c5c427b7581147eaeec18879",
+      "rows": 1417,
+      "submission_sha256": "8bc4f43f8bf2cda3bb523ac9f39ecaf246c51d7b807d60dd1b1508131e719579",
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "absolute_difference": 1.1102230246251565e-16,
+      "index": 2,
+      "metric": "auc",
+      "receipt": "scored-1.json",
+      "receipt_sha256": "eaf78212b9c97cb0b2ffae932b5feb9c32438d00e5f740b7148d12cd05992e70",
+      "rows": 1417,
+      "submission_sha256": "a11eae15249720a05142f6f2510cb18268803b399c13ec9ab83a3364198c146b",
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "absolute_difference": 3.469446951953614e-18,
+      "index": 3,
+      "metric": "rmse",
+      "receipt": "scored-0.json",
+      "receipt_sha256": "a196a9cbddc881fe59dc31f00679f9d69bd4273e2aa10bedb8bcc347a83bc19e",
+      "rows": 2144880,
+      "submission_sha256": "8a7caf75198873cf2947295e068740bbed78303fce8505779c6eff9806512395",
+      "task": "denoising-dirty-documents"
+    },
+    {
+      "absolute_difference": 0,
+      "index": 4,
+      "metric": "auc",
+      "receipt": "scored-0.json",
+      "receipt_sha256": "b2e63904eabdd01d3fdd83153e2e7b00a5ec67dcc9933f329686a3229cfef88e",
+      "rows": 1417,
+      "submission_sha256": "2063bb9585f26d6b54f5cb20bbcbb6b293bf342f4d8e02d5204e31dc9763b266",
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "absolute_difference": 0,
+      "index": 4,
+      "metric": "auc",
+      "receipt": "scored-1.json",
+      "receipt_sha256": "bb79f73440b67ff3b97dcc73c6539c509b9e3bde2e171577ffa2a1752b29e9e8",
+      "rows": 1417,
+      "submission_sha256": "678bd574193a9264dc99ba2417b11c31e013154755f8c90307179f30c91762ac",
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "absolute_difference": 0,
+      "index": 4,
+      "metric": "auc",
+      "receipt": "scored-2.json",
+      "receipt_sha256": "b059c6200ae9334ae816076c16990ade6d9503fe3a377cc03cdb0345c65fd418",
+      "rows": 1417,
+      "submission_sha256": "23549efc683b0ffa7048186f21a46662f3cfb2d8d4d9d1e71210f33bf58fd778",
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "absolute_difference": 1.1102230246251565e-16,
+      "index": 6,
+      "metric": "auc",
+      "receipt": "scored-0.json",
+      "receipt_sha256": "061dfbfa2c042609b96490a9574eb3c470ce0333fb70783610228824dd9a5524",
+      "rows": 1417,
+      "submission_sha256": "3e6bd8694f1355a72f2e803041d323c0f2366121928eaa0f7faae947af8ad943",
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "absolute_difference": 0,
+      "index": 8,
+      "metric": "auc",
+      "receipt": "scored-0.json",
+      "receipt_sha256": "d86da09aadb0af41b6962d083e1f39c7405bf5e423e02920c337b574d713ed8f",
+      "rows": 1417,
+      "submission_sha256": "fafb4e7eee7955ea46053c5f8c56b92361fd1fc685f32fbd76cccbf3dc9d8c10",
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "absolute_difference": 1.1102230246251565e-16,
+      "index": 8,
+      "metric": "auc",
+      "receipt": "scored-1.json",
+      "receipt_sha256": "afb79a657c9e66cf4189514ae3683c85bb450efc11af11473b03c9e37b631156",
+      "rows": 1417,
+      "submission_sha256": "5aae1f0ccef8100a46be677403fb799a8b17f384c8c6b3874084732957df28f6",
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "absolute_difference": 2.7755575615628914e-17,
+      "index": 9,
+      "metric": "rmse",
+      "receipt": "scored-0.json",
+      "receipt_sha256": "ee35fb519ec2f34680d02d24a4dfc6df0360ba47d87f665f8b0da9dd0eb5db38",
+      "rows": 2144880,
+      "submission_sha256": "a88f5380c47848619373c5191dd26429f3b98e78bb98cb3763a66c8df7656e56",
+      "task": "denoising-dirty-documents"
+    },
+    {
+      "absolute_difference": 1.1102230246251565e-16,
+      "index": 10,
+      "metric": "auc",
+      "receipt": "scored-0.json",
+      "receipt_sha256": "29d3228bc04723d658b800f474f50110a3af2dcc74c116b72e034dc57b7ad42d",
+      "rows": 1417,
+      "submission_sha256": "4580711ebda94a478e5e144a2cdab86da5c1b1111c361c1d7853d9ed78816106",
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "absolute_difference": 0,
+      "index": 10,
+      "metric": "auc",
+      "receipt": "scored-1.json",
+      "receipt_sha256": "3913cde89177ec18aa070855344a3c472b1fd11bbb18bea02c9ada0aaee2f00c",
+      "rows": 1417,
+      "submission_sha256": "ad50fed3a2bf20df0dafc2580c4118f7cb9c2b8c52d56f8658f2d89cd147aaca",
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "absolute_difference": 5.551115123125783e-17,
+      "index": 11,
+      "metric": "rmse",
+      "receipt": "scored-0.json",
+      "receipt_sha256": "89d7d59f71d30b31b706a80ea7bc2d32af3bda2c5347b0cfea8bd47453a0eead",
+      "rows": 2144880,
+      "submission_sha256": "0bffaeb0c4afe56b1725298e135bd3484031c06ff734b2b65e0f399a8772971e",
+      "task": "denoising-dirty-documents"
+    },
+    {
+      "absolute_difference": 0,
+      "index": 12,
+      "metric": "auc",
+      "receipt": "scored-0.json",
+      "receipt_sha256": "27ecd0fe9065fb72b96b6c9fac1acc87880d0ddda3c78f93ff7d1d61419acdf1",
+      "rows": 1417,
+      "submission_sha256": "d249206608d294544e6b0236b24b578e5ca15de3dc5072015abd585344d52ade",
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "absolute_difference": 0,
+      "index": 12,
+      "metric": "auc",
+      "receipt": "scored-1.json",
+      "receipt_sha256": "563e79b026ece5dc5f75cb3aca21667a32b7897f1492ba89000b8de5bbcd011f",
+      "rows": 1417,
+      "submission_sha256": "93342ca9dd6f34baf32f558aa5da96a75d22b556aed91b55b2db521f660578f8",
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "absolute_difference": 0,
+      "index": 14,
+      "metric": "auc",
+      "receipt": "scored-0.json",
+      "receipt_sha256": "e6fa95937b9f5e200fe5e1bce8846133c8e6ecf785e485c96d573325fa88df88",
+      "rows": 1417,
+      "submission_sha256": "780b7a0d2f5f69a431a0452a1dd157c3c542439d2f5643ee95038ec8c94e4001",
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "absolute_difference": 0,
+      "index": 16,
+      "metric": "auc",
+      "receipt": "scored-0.json",
+      "receipt_sha256": "afec440527d8e5be0efb2f57988f10452f0de9b6bdb205bf44afd781bdb765d4",
+      "rows": 1417,
+      "submission_sha256": "961a435a24a9cfd2c691ba605ef02281c320cdc18e3a9d1cf0722d04181f1545",
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "absolute_difference": 1.1102230246251565e-16,
+      "index": 16,
+      "metric": "auc",
+      "receipt": "scored-1.json",
+      "receipt_sha256": "86e8633d3247a4ad6c2daf8052d62637edb1e0811fa547ca8ed45eee101ea389",
+      "rows": 1417,
+      "submission_sha256": "6fb48ceceb44e7561ced5e6a68758828fa33541f3582daf0626faa22ce86ecad",
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "absolute_difference": 0,
+      "index": 18,
+      "metric": "auc",
+      "receipt": "scored-0.json",
+      "receipt_sha256": "0e1dae29aab3f2240376ed4e92a2d7ba3c9ad97d3118a596cd7cce717cf3bf6e",
+      "rows": 1417,
+      "submission_sha256": "489e72f194339c8dd4fa145e0d2e823f4d94c284d85330a255acb6db21ca8959",
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "absolute_difference": 0,
+      "index": 18,
+      "metric": "auc",
+      "receipt": "scored-1.json",
+      "receipt_sha256": "f6d2e51c0b447818f09140732280a6e989ed3850093609d8b39de96c9146e7cc",
+      "rows": 1417,
+      "submission_sha256": "176fd4bb9d33296d36caee1e97e6108af483da9acb578adc08843adfc3dc344d",
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "absolute_difference": 3.469446951953614e-18,
+      "index": 19,
+      "metric": "rmse",
+      "receipt": "scored-0.json",
+      "receipt_sha256": "db88340d002d0cd52145b77cf3346953e75384d0bc47dda7456953dc8c0ed985",
+      "rows": 2144880,
+      "submission_sha256": "fd103be94a4ca15a28c6f1020626ec6b68224e6be4def6761d3bced6f00747ae",
+      "task": "denoising-dirty-documents"
+    },
+    {
+      "absolute_difference": 6.938893903907228e-18,
+      "index": 21,
+      "metric": "rmse",
+      "receipt": "scored-0.json",
+      "receipt_sha256": "26a355fdb0298dbea21a9343d243f873b1788283e9b13ccb0c5dfc2b93f982a2",
+      "rows": 2144880,
+      "submission_sha256": "549b77b906cd6793881aeea3fdd9fb67aadaed9d142fb188e6abd7579718ec01",
+      "task": "denoising-dirty-documents"
+    },
+    {
+      "absolute_difference": 1.1102230246251565e-16,
+      "index": 22,
+      "metric": "auc",
+      "receipt": "scored-0.json",
+      "receipt_sha256": "0edcd46776b7a7b97224255337f310409b13effe2c50adfee94e874099bf7749",
+      "rows": 1417,
+      "submission_sha256": "246be9c76d85e80ea8d16290d7e4ea3d4d81078569226beaef27cad4d8166480",
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "absolute_difference": 0,
+      "index": 22,
+      "metric": "auc",
+      "receipt": "scored-1.json",
+      "receipt_sha256": "3d4de5ab5da655e8d617d562e3d0f75e1c0aaeb61b438664511237b4e6362771",
+      "rows": 1417,
+      "submission_sha256": "22d6bb2b408a20dd7446e6af7ea9d5167c4601b7c6a9383bec8f123d6edf9cbd",
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "absolute_difference": 1.3877787807814457e-17,
+      "index": 23,
+      "metric": "rmse",
+      "receipt": "scored-0.json",
+      "receipt_sha256": "16617818a0561c8617fcf2b837dc170808d8f010fe42c8db0539972e10005c33",
+      "rows": 2144880,
+      "submission_sha256": "b7e0352d9dde28e9d786cc143bfd6f6d1edfaf75ea9084a59bfe71b1de3bac78",
+      "task": "denoising-dirty-documents"
+    },
+    {
+      "absolute_difference": 0,
+      "index": 24,
+      "metric": "auc",
+      "receipt": "scored-0.json",
+      "receipt_sha256": "df632f57a24f2e784029dc3664f25d239617fcd72727920e4682f090fca2cdd1",
+      "rows": 1417,
+      "submission_sha256": "0519eb0f76dc7db41bec3ea0b500646a946d604b6e5fea8e2691a33dc109afe6",
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "absolute_difference": 3.469446951953614e-18,
+      "index": 25,
+      "metric": "rmse",
+      "receipt": "scored-0.json",
+      "receipt_sha256": "259c3c5190ecfd66bfddafb5ce8da30e3b281ef3742e38a4d171d84b348e6f83",
+      "rows": 2144880,
+      "submission_sha256": "106c317efa2087bd89fcae380dcade3108463fcd12043672f168a4fbba33ccc4",
+      "task": "denoising-dirty-documents"
+    },
+    {
+      "absolute_difference": 0,
+      "index": 26,
+      "metric": "auc",
+      "receipt": "scored-0.json",
+      "receipt_sha256": "e4fb85deb10026412851b0efc308afef59b5481f9fcc3dd0c1ff60455e697df9",
+      "rows": 1417,
+      "submission_sha256": "97f3e771082b8cac3b1623c2265c4f24404f65838b5d81dd3a31caedc0189677",
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "absolute_difference": 3.469446951953614e-18,
+      "index": 27,
+      "metric": "rmse",
+      "receipt": "scored-0.json",
+      "receipt_sha256": "7af32a9c3af0074fa37cdf8a4277738deebff9b5dd91c9ee9a572a9e63447794",
+      "rows": 2144880,
+      "submission_sha256": "22cef367aabab3ce3eb836403b05150a5a031fc85eb37b078811302b10b3c158",
+      "task": "denoising-dirty-documents"
+    },
+    {
+      "absolute_difference": 0,
+      "index": 28,
+      "metric": "auc",
+      "receipt": "scored-0.json",
+      "receipt_sha256": "f42c692d58cce3604f3fcb1f25c070322b9f3dbd89b76bdf2a34eeb6e130a254",
+      "rows": 1417,
+      "submission_sha256": "3a3b6837f46dfac31b2db75f5469aed21a21208fe258e90079ab927287791b64",
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "absolute_difference": 0,
+      "index": 29,
+      "metric": "rmse",
+      "receipt": "scored-0.json",
+      "receipt_sha256": "76757c4c877d45f556bd9c0bf763be8ac34675fc117548b916ee2dd22ca67e08",
+      "rows": 2144880,
+      "submission_sha256": "e013f34793822e40984cefc7259c1cac8eecd1840885612d9601fbcabff7de29",
+      "task": "denoising-dirty-documents"
+    },
+    {
+      "absolute_difference": 0,
+      "index": 30,
+      "metric": "auc",
+      "receipt": "scored-0.json",
+      "receipt_sha256": "775f9fb952c3666eefe4b372c88dc15470de5e7be9ede1d31040b4df9e318d4e",
+      "rows": 1417,
+      "submission_sha256": "0dd548e8a3b4f3322c41d878d832afb06cf9be39c74b9eda5c6f5c9baaaeb41c",
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "absolute_difference": 1.3877787807814457e-17,
+      "index": 31,
+      "metric": "rmse",
+      "receipt": "scored-0.json",
+      "receipt_sha256": "dfad55e56ed24fdd844f6cd494cbcf261e61033c889614d0af13134fab2113cd",
+      "rows": 2144880,
+      "submission_sha256": "3c77f3ce4ff452efc4c191bc305b94bc3dbf56098a7dcb0be150d8e1e0673f73",
+      "task": "denoising-dirty-documents"
+    }
+  ],
+  "schema": 1,
+  "source_commit": "8384f405d58ee8e5173b8039fba4fa5b3b14bab7",
+  "summary_sha256": "0bd972126ab1bb9427ea93e446be3d3e245955c8bd5aa7e08778b7afa05c3514",
+  "verified_receipts": 35,
+  "view_manifest_sha256": {
+    "aerial-cactus-identification": "0165545cba5e2b9b7c2c1e24f3552de9a6c35d216faf6c931f34adaba49079bc",
+    "denoising-dirty-documents": "31698d35766aa5fc99ec2b56ee00cbcf21e994eeaf0ab59aaa1e9962a59c2acb"
+  }
+}

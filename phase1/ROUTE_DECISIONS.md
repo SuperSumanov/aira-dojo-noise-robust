@@ -1,6 +1,6 @@
 # 路线与机制索引：先查旧证据，再提新方向
 
-更新：2026-10-16香港。当前方向/授权只读CURRENT_DIRECTION，现场只读CONTEXT_HANDOFF_CURRENT。
+更新：2026-10-17香港。当前方向/授权只读CURRENT_DIRECTION，现场只读CONTEXT_HANDOFF_CURRENT。
 压缩前完整版本：Git 6c47086a603b4c7afcc25a3e80f9d5648c3bee63:phase1/ROUTE_DECISIONS.md。
 旧长文、原批次和门均保留；按关键词检索该Git版本或历史文件，不每次整篇载入。
 “停止一个配方”不是“所有变体无效”；工程失败、局部阳性、方法确认分开。
@@ -21,14 +21,17 @@
 - 10/17：18987在首组因去噪program2原300秒超时，4wrapper/3有效，733GPU秒，配对未获比较；冻结diverse后续不启动。日志显示第二整折结束已287.6秒，不能说只因落盘慢。
 - 独立selectiveFIFO改变“可否共置”而非伙伴tie-break：仅Aerial同类可共置、去噪独占，保持FIFO/CPU/生成器/预算。32真实搜索、2反序比较、原终分门；任务先验简单参照，不称创新，不是新来源确认，更未比SchedMate。候选失败不删分母。
 - 18997该配方32完整/35重评分、独立复核和12传输SHA通过；去噪两次best更差，Aerial两次略高，原质量门false。实际共置3/4次且保护延迟各7次，不能说策略没执行；停止，不补seed/延时，不推断所有自适应保护普遍无效。selective_18997_closed。
+- 18997补独立AUC（Mann-Whitney）/RMSE（逐像素ID）实现：35/35评分一致，maxerror1.1102230246251565e-16；不用生产scorer/pandas/sklearn。仅指标独立，不是源数据构建/最终选解溯源独立；independent-metrics-20261017.json。
+- 19004 quota32闭合但干预绕过：实际worker仍旧每任务2FIFO，4池借用0；名义pooled全局顺序违例12/7，旧每任务规则违例0。冻结读出失败，独立13SHA/事件重放确认；不算方法负结果或正式A/A研究。上层hook与真实host绑定不一致，原CPU门测错层；CPU修复2反例/10场景通过，不是线上效果。generation_quota_19004_closed。
 - 18997封存后首程序哈希诊断：16对首轮prompt/配置seed相同、均有程序尝试，仅3对raw/AST相同（去噪0/8）；32首程序均匹配原生journal代码、首日志成功Improve且adapter_attempts=1，故不是执行包装代码造成哈希差异。独立计数/传输SHA通过，原代码AST和journal提取未独立重做。首尝试不保证首transport响应，原因未分解，不指认为vLLM错误或否决原随机策略实验；配对seed不等于同提案，不以单轨迹归因纯执行干扰。first-program-pairing/origin回执。
 - 10/17核vLLM官方Reproducibility/Batch Invariance：默认在线结果不保证可复现，专门不变性会影响性能，已测模型列表不能替代本项目27B量化镜像验收。仅支持保留服务非确定性这个备选解释，不证明18997差异由它造成；不临时改已冻结镜像/开关，更不把已知复现问题当新颖发现。https://docs.vllm.ai/en/stable/usage/reproducibility/ / https://docs.vllm.ai/en/stable/features/batch_invariance/
 - 18997额外无网络CPU调用链：两任务×两条件4配置/12模拟末端调用均传递正确seed，配对prompt/采样参数一致（temperature=.6、top_p=.95）；4传输SHA及独立配对通过。排除已检查配置的客户端丢seed，不是线上HTTP抓包或服务确定性证明；seed-transport回执，不修改19004。
 - 18997角色/终分联结：去噪selective两池Debug调用9/7，高于配对shared的7/5，而Improve为6/7对6/8；原终分门仍false。8任务池/179调用全分母及PowerShell独立聚合通过。只说明更多周转未转成更多Improve或稳定终分；Debug不等于无价值、Improve不等于新想法，角色计数不能证明因果。role-yield回执。
+- 18997实际谱系补查：76返回/34有效，2谱系未解；新父程序后代12返回/3有效，Debug贡献12有效。8任务池中4池在首提案之后仍获更好解；去噪一个池靠Debug从warm .04551226514614451到.015583024642243782，不能把Debug全当浪费或推断无需迭代。仅Aerial一池最好解来自新父程序Improve。独立聚合/时间记录/原终点/SHA通过，原始journal/代码关联未独立重做；首提案子集不是重启/无反馈反事实，不据此宣称新策略收益。adaptation-lineage回执。
 - 18997截止/选解排查：全76候选返回均及时，35外部评分产物中34匹配合法返回，另1未匹配产物比原池best低.0002458801708332681，不是晚到有效解；8任务池记录的native-selected最佳值均等于原pool-best。两传输SHA/独立聚合通过，未独立复做原始join或native选择溯源。没有观察到靠补计晚到好解/换最终选解器挽救该批的机会，不推断另一调度器的反事实。late-quality/score-receipt-coverage回执。
 - 10/17只读18807发现每任务2个生成许可留下10.47%–24.33%的有队列/总active<4状态；独立积分通过。vLLM408采样最大Running4、Waiting0、KV13.3%，不证明硬件空闲。后续只测同总4许可的跨任务借用，执行仍单许可；这是work-conserving强基线资格，不是17675旧资源打分重命名，更不是新算法/MARS复现。
 - 同批余时独立核算：≥300秒余时下每池仍有约96/118/123/168秒借用机会，主要为analysis/debug；不是全部截止尾巴，也不是额外完成数。证据quota-slack-20261017-v1.safe.json及quota-slack-independent.json，原质量门不改。
-- 10/17只读“评分→共享归档”线索：原生_analyze先于parent wrapper发布；18807的38有效结果37发布/1截止前未发布，只有1次真实Improve准入处于更好有效父程序尚未发布窗口。仅源码+既有时间诊断，未独立复现原始join、未生成新子程序，不据此开早发布GPU新线或称收益。feedback-publication-20261017-v1.safe.json；先完成已冻结selective/quota对照。
+- 10/17只读“评分→共享归档”线索：原生_analyze先于parent wrapper发布；18807的38有效结果37发布/1截止前未发布，只有1次真实Improve准入处于更好有效父程序尚未发布窗口。仅源码+既有时间诊断，未独立复现原始join、未生成新子程序，不据此开早发布GPU新线或称收益。feedback-publication-20261017-v1.safe.json；本窗口两32条已闭合，不开第三GPU方案。
 
 ## R14已试机制及禁止偷换
 
@@ -94,6 +97,7 @@
   https://arxiv.org/html/2410.08105v1 / https://arxiv.org/html/2603.07915v1
 - When Agents Slow Down已有best-so-far/token及session分配；10/17核全文§6–7及附录E：拐点指导等额多会话，假设独立轨迹/共同Elo尺度，任务级拐点仍需测量。Polyomino正信号不能泛化到所有任务；MLS-Bench附录明确1/2/3会话统计不可区分。其前缀分析依赖agent不见总预算，我方显式墙钟预算轨迹不能照搬截断当反事实。不是我们的新方法，也不据此恢复旧停止/多保真线。
   https://arxiv.org/abs/2609.15309
+- On the Clock（10/7提交，10/17读§1–5及MLE动作时长附录）已有剩余时间/生成开销提示与clamp/refuse；守时改善不保证MLE终分。使用OpenCode及不同任务/模型，表2质量条件于有效且及时子集，不与我方全分母warm fallback直接比较；不能把“提醒剩余预算”或“吞吐≠质量”当创新，不引入其RL。https://arxiv.org/html/2610.10833v1
 - TTT-Discover/AREX-2/Guidance-TTT覆盖本任务自举、轨迹训练、固定执行器学指导；我方不训练agent底座。
 - M-DESIGN/REHEARSE覆盖修改增益预测与检索；MLE-STAR/PatchFusion覆盖精修与编辑组合。
 - Centaur/LLaMEA-HPO/TIDE/HT-AA覆盖结构×数值优化分工/迁移；四格编辑相互作用不是新方法（GEVO）。

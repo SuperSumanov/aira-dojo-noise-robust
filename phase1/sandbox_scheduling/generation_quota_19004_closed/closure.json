@@ -1,0 +1,28 @@
+{
+  "assigned": 32,
+  "complete": 32,
+  "elapsed_seconds": 5096,
+  "failure": "generation_audit: actual admitted key differs from globally highest-priority eligible request",
+  "gpu_seconds": 30576,
+  "gpus": 6,
+  "job": "19004",
+  "limits": [
+    "No pass is imputed for an unexecuted treatment.",
+    "This is a post-failure structural diagnosis, not a replacement readout."
+  ],
+  "node": "gpu3",
+  "original_readout_failed": true,
+  "original_readout_preserved_sha256": {
+    "effort.json": "db1e3f91d37290fcb0ee8ff253a94f4ac4598bac32fcb69e03cb5393533b81ae",
+    "generation-0.json": "20134ce0ee5a8e48fd35bbe93449c4cb3b47785a93b25bacd0cf2335d5506689",
+    "input-checks.json": "fb4f2f4b6be9bc10342894081b2c1e431286a926b1c8a08cb048b092d5667c07",
+    "queue-0.json": "4b17e0597fa226077657df9ce3958500815c34a8e04f80b27a3b1677b7d007b2",
+    "queue-1.json": "69536d8fcaed0e5de9d82ab308268016243f7cefd98083cdd14ac909db101114",
+    "runs.csv": "c9db9d72488cc1da60adbefe0934a5dac6c1fae1560f6a6953e4b52b93061556",
+    "runs.json": "9e32b92060bfb872c9db8458b166646d58992496a53900999b7dc4fb4d34dba8"
+  },
+  "original_success_gate_met": false,
+  "plan_sha256": "f08b3052fcecf467f500b5b9aa6638087c602321ca3a81bf22ef8b65a55b41f9",
+  "quality_comparison_valid": false,
+  "source_commit": "044cd889471417f357edfa6dcf8fdd2c7e262477"
+}

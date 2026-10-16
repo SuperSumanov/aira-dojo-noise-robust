@@ -1,0 +1,800 @@
+[
+  {
+    "event": "queued",
+    "request": {
+      "key": "5:0",
+      "requested": 1792187041.1374538,
+      "role": "improve",
+      "run": 5,
+      "task": "denoising-dirty-documents"
+    },
+    "time": 1792187041.1410244
+  },
+  {
+    "event": "admitted",
+    "key": "5:0",
+    "time": 1792187041.1567042
+  },
+  {
+    "event": "queued",
+    "request": {
+      "key": "4:0",
+      "requested": 1792187041.1998491,
+      "role": "improve",
+      "run": 4,
+      "task": "aerial-cactus-identification"
+    },
+    "time": 1792187041.2037196
+  },
+  {
+    "event": "admitted",
+    "key": "4:0",
+    "time": 1792187041.2130651
+  },
+  {
+    "event": "queued",
+    "request": {
+      "key": "7:0",
+      "requested": 1792187041.240736,
+      "role": "improve",
+      "run": 7,
+      "task": "denoising-dirty-documents"
+    },
+    "time": 1792187041.2446837
+  },
+  {
+    "event": "admitted",
+    "key": "7:0",
+    "time": 1792187041.2575617
+  },
+  {
+    "event": "queued",
+    "request": {
+      "key": "6:0",
+      "requested": 1792187041.3705823,
+      "role": "improve",
+      "run": 6,
+      "task": "aerial-cactus-identification"
+    },
+    "time": 1792187041.3746886
+  },
+  {
+    "event": "admitted",
+    "key": "6:0",
+    "time": 1792187041.3896322
+  },
+  {
+    "event": "queued",
+    "request": {
+      "key": "2:0",
+      "requested": 1792187041.4697986,
+      "role": "improve",
+      "run": 2,
+      "task": "aerial-cactus-identification"
+    },
+    "time": 1792187041.4719672
+  },
+  {
+    "event": "queued",
+    "request": {
+      "key": "0:0",
+      "requested": 1792187041.470504,
+      "role": "improve",
+      "run": 0,
+      "task": "aerial-cactus-identification"
+    },
+    "time": 1792187041.479782
+  },
+  {
+    "event": "queued",
+    "request": {
+      "key": "1:0",
+      "requested": 1792187041.4719265,
+      "role": "improve",
+      "run": 1,
+      "task": "denoising-dirty-documents"
+    },
+    "time": 1792187041.4923396
+  },
+  {
+    "event": "queued",
+    "request": {
+      "key": "3:0",
+      "requested": 1792187041.4871016,
+      "role": "improve",
+      "run": 3,
+      "task": "denoising-dirty-documents"
+    },
+    "time": 1792187041.5123487
+  },
+  {
+    "event": "released",
+    "key": "4:0",
+    "time": 1792187134.0675426
+  },
+  {
+    "event": "admitted",
+    "key": "2:0",
+    "time": 1792187134.1215081
+  },
+  {
+    "event": "released",
+    "key": "7:0",
+    "time": 1792187155.115049
+  },
+  {
+    "event": "admitted",
+    "key": "1:0",
+    "time": 1792187155.132964
+  },
+  {
+    "event": "released",
+    "key": "5:0",
+    "time": 1792187161.585874
+  },
+  {
+    "event": "admitted",
+    "key": "3:0",
+    "time": 1792187161.5940506
+  },
+  {
+    "event": "released",
+    "key": "6:0",
+    "time": 1792187161.92109
+  },
+  {
+    "event": "admitted",
+    "key": "0:0",
+    "time": 1792187161.9605389
+  },
+  {
+    "event": "released",
+    "key": "2:0",
+    "time": 1792187234.3302596
+  },
+  {
+    "event": "released",
+    "key": "1:0",
+    "time": 1792187261.2585022
+  },
+  {
+    "event": "released",
+    "key": "0:0",
+    "time": 1792187270.1447966
+  },
+  {
+    "event": "released",
+    "key": "3:0",
+    "time": 1792187287.1525626
+  },
+  {
+    "event": "queued",
+    "request": {
+      "key": "5:1",
+      "requested": 1792187410.9314647,
+      "role": "analyze",
+      "run": 5,
+      "task": "denoising-dirty-documents"
+    },
+    "time": 1792187410.9346867
+  },
+  {
+    "event": "admitted",
+    "key": "5:1",
+    "time": 1792187410.9446535
+  },
+  {
+    "event": "released",
+    "key": "5:1",
+    "time": 1792187417.0678737
+  },
+  {
+    "event": "queued",
+    "request": {
+      "key": "5:2",
+      "requested": 1792187417.099814,
+      "role": "improve",
+      "run": 5,
+      "task": "denoising-dirty-documents"
+    },
+    "time": 1792187417.1023166
+  },
+  {
+    "event": "admitted",
+    "key": "5:2",
+    "time": 1792187417.1106777
+  },
+  {
+    "event": "queued",
+    "request": {
+      "key": "4:1",
+      "requested": 1792187426.9917033,
+      "role": "analyze",
+      "run": 4,
+      "task": "aerial-cactus-identification"
+    },
+    "time": 1792187426.994875
+  },
+  {
+    "event": "admitted",
+    "key": "4:1",
+    "time": 1792187427.0042527
+  },
+  {
+    "event": "queued",
+    "request": {
+      "key": "6:1",
+      "requested": 1792187429.986252,
+      "role": "analyze",
+      "run": 6,
+      "task": "aerial-cactus-identification"
+    },
+    "time": 1792187429.9894373
+  },
+  {
+    "event": "admitted",
+    "key": "6:1",
+    "time": 1792187429.9986205
+  },
+  {
+    "event": "released",
+    "key": "4:1",
+    "time": 1792187435.2857382
+  },
+  {
+    "event": "queued",
+    "request": {
+      "key": "4:2",
+      "requested": 1792187435.308653,
+      "role": "improve",
+      "run": 4,
+      "task": "aerial-cactus-identification"
+    },
+    "time": 1792187435.310814
+  },
+  {
+    "event": "admitted",
+    "key": "4:2",
+    "time": 1792187435.3179598
+  },
+  {
+    "event": "released",
+    "key": "6:1",
+    "time": 1792187439.260182
+  },
+  {
+    "event": "queued",
+    "request": {
+      "key": "6:2",
+      "requested": 1792187439.2906253,
+      "role": "improve",
+      "run": 6,
+      "task": "aerial-cactus-identification"
+    },
+    "time": 1792187439.2934177
+  },
+  {
+    "event": "admitted",
+    "key": "6:2",
+    "time": 1792187439.3044448
+  },
+  {
+    "event": "queued",
+    "request": {
+      "key": "7:1",
+      "requested": 1792187444.2867193,
+      "role": "analyze",
+      "run": 7,
+      "task": "denoising-dirty-documents"
+    },
+    "time": 1792187444.2901547
+  },
+  {
+    "event": "admitted",
+    "key": "7:1",
+    "time": 1792187444.2996345
+  },
+  {
+    "event": "released",
+    "key": "7:1",
+    "time": 1792187450.749386
+  },
+  {
+    "event": "queued",
+    "request": {
+      "key": "7:2",
+      "requested": 1792187450.780942,
+      "role": "improve",
+      "run": 7,
+      "task": "denoising-dirty-documents"
+    },
+    "time": 1792187450.7839446
+  },
+  {
+    "event": "admitted",
+    "key": "7:2",
+    "time": 1792187450.7950625
+  },
+  {
+    "event": "queued",
+    "request": {
+      "key": "3:1",
+      "requested": 1792187456.9469802,
+      "role": "analyze",
+      "run": 3,
+      "task": "denoising-dirty-documents"
+    },
+    "time": 1792187456.9528387
+  },
+  {
+    "event": "released",
+    "key": "7:2",
+    "time": 1792187525.286938
+  },
+  {
+    "event": "admitted",
+    "key": "3:1",
+    "time": 1792187525.3037775
+  },
+  {
+    "event": "released",
+    "key": "4:2",
+    "time": 1792187532.7984037
+  },
+  {
+    "event": "released",
+    "key": "5:2",
+    "time": 1792187533.988673
+  },
+  {
+    "event": "released",
+    "key": "3:1",
+    "time": 1792187534.6176727
+  },
+  {
+    "event": "queued",
+    "request": {
+      "key": "3:2",
+      "requested": 1792187534.6494231,
+      "role": "debug",
+      "run": 3,
+      "task": "denoising-dirty-documents"
+    },
+    "time": 1792187534.6516383
+  },
+  {
+    "event": "admitted",
+    "key": "3:2",
+    "time": 1792187534.661308
+  },
+  {
+    "event": "queued",
+    "request": {
+      "key": "7:3",
+      "requested": 1792187535.911783,
+      "role": "analyze",
+      "run": 7,
+      "task": "denoising-dirty-documents"
+    },
+    "time": 1792187535.915114
+  },
+  {
+    "event": "admitted",
+    "key": "7:3",
+    "time": 1792187535.925484
+  },
+  {
+    "event": "released",
+    "key": "7:3",
+    "time": 1792187543.604566
+  },
+  {
+    "event": "queued",
+    "request": {
+      "key": "7:4",
+      "requested": 1792187543.6338608,
+      "role": "debug",
+      "run": 7,
+      "task": "denoising-dirty-documents"
+    },
+    "time": 1792187543.6372797
+  },
+  {
+    "event": "admitted",
+    "key": "7:4",
+    "time": 1792187543.6469753
+  },
+  {
+    "event": "released",
+    "key": "6:2",
+    "time": 1792187552.574611
+  },
+  {
+    "event": "released",
+    "key": "7:4",
+    "time": 1792187618.2130816
+  },
+  {
+    "event": "released",
+    "key": "3:2",
+    "time": 1792187644.7741957
+  },
+  {
+    "event": "queued",
+    "request": {
+      "key": "2:1",
+      "requested": 1792187692.7302697,
+      "role": "analyze",
+      "run": 2,
+      "task": "aerial-cactus-identification"
+    },
+    "time": 1792187692.7337198
+  },
+  {
+    "event": "admitted",
+    "key": "2:1",
+    "time": 1792187692.7441735
+  },
+  {
+    "event": "released",
+    "key": "2:1",
+    "time": 1792187697.5273008
+  },
+  {
+    "event": "queued",
+    "request": {
+      "key": "2:2",
+      "requested": 1792187697.560374,
+      "role": "improve",
+      "run": 2,
+      "task": "aerial-cactus-identification"
+    },
+    "time": 1792187697.5638916
+  },
+  {
+    "event": "admitted",
+    "key": "2:2",
+    "time": 1792187697.5752053
+  },
+  {
+    "event": "queued",
+    "request": {
+      "key": "5:3",
+      "requested": 1792187706.7739,
+      "role": "analyze",
+      "run": 5,
+      "task": "denoising-dirty-documents"
+    },
+    "time": 1792187706.7787616
+  },
+  {
+    "event": "admitted",
+    "key": "5:3",
+    "time": 1792187706.7967901
+  },
+  {
+    "event": "queued",
+    "request": {
+      "key": "0:1",
+      "requested": 1792187717.9288533,
+      "role": "analyze",
+      "run": 0,
+      "task": "aerial-cactus-identification"
+    },
+    "time": 1792187717.931136
+  },
+  {
+    "event": "admitted",
+    "key": "0:1",
+    "time": 1792187717.9402502
+  },
+  {
+    "event": "released",
+    "key": "0:1",
+    "time": 1792187725.088125
+  },
+  {
+    "event": "queued",
+    "request": {
+      "key": "0:2",
+      "requested": 1792187725.1120377,
+      "role": "improve",
+      "run": 0,
+      "task": "aerial-cactus-identification"
+    },
+    "time": 1792187725.1144912
+  },
+  {
+    "event": "admitted",
+    "key": "0:2",
+    "time": 1792187725.1228788
+  },
+  {
+    "event": "queued",
+    "request": {
+      "key": "1:1",
+      "requested": 1792187726.6997788,
+      "role": "analyze",
+      "run": 1,
+      "task": "denoising-dirty-documents"
+    },
+    "time": 1792187726.70247
+  },
+  {
+    "event": "admitted",
+    "key": "1:1",
+    "time": 1792187726.7117667
+  },
+  {
+    "event": "queued",
+    "request": {
+      "key": "7:5",
+      "requested": 1792187728.8693628,
+      "role": "analyze",
+      "run": 7,
+      "task": "denoising-dirty-documents"
+    },
+    "time": 1792187728.8739817
+  },
+  {
+    "event": "released",
+    "key": "5:3",
+    "time": 1792187732.818335
+  },
+  {
+    "event": "admitted",
+    "key": "7:5",
+    "time": 1792187732.8398182
+  },
+  {
+    "event": "queued",
+    "request": {
+      "key": "5:4",
+      "requested": 1792187732.860524,
+      "role": "debug",
+      "run": 5,
+      "task": "denoising-dirty-documents"
+    },
+    "time": 1792187732.8640563
+  },
+  {
+    "event": "released",
+    "key": "1:1",
+    "time": 1792187736.3498766
+  },
+  {
+    "event": "admitted",
+    "key": "5:4",
+    "time": 1792187736.376828
+  },
+  {
+    "event": "queued",
+    "request": {
+      "key": "1:2",
+      "requested": 1792187736.3765094,
+      "role": "debug",
+      "run": 1,
+      "task": "denoising-dirty-documents"
+    },
+    "time": 1792187736.3873308
+  },
+  {
+    "event": "queued",
+    "request": {
+      "key": "3:3",
+      "requested": 1792187738.1183255,
+      "role": "analyze",
+      "run": 3,
+      "task": "denoising-dirty-documents"
+    },
+    "time": 1792187738.1224651
+  },
+  {
+    "event": "released",
+    "key": "7:5",
+    "time": 1792187743.3713346
+  },
+  {
+    "event": "admitted",
+    "key": "3:3",
+    "time": 1792187743.4124475
+  },
+  {
+    "event": "queued",
+    "request": {
+      "key": "7:6",
+      "requested": 1792187743.4150658,
+      "role": "debug",
+      "run": 7,
+      "task": "denoising-dirty-documents"
+    },
+    "time": 1792187743.4264972
+  },
+  {
+    "event": "released",
+    "key": "3:3",
+    "time": 1792187777.4804251
+  },
+  {
+    "event": "admitted",
+    "key": "1:2",
+    "time": 1792187777.517
+  },
+  {
+    "event": "queued",
+    "request": {
+      "key": "3:4",
+      "requested": 1792187777.5122826,
+      "role": "debug",
+      "run": 3,
+      "task": "denoising-dirty-documents"
+    },
+    "time": 1792187777.5296557
+  },
+  {
+    "event": "released",
+    "key": "2:2",
+    "time": 1792187820.2720108
+  },
+  {
+    "event": "queued",
+    "request": {
+      "key": "4:3",
+      "requested": 1792187828.0449562,
+      "role": "analyze",
+      "run": 4,
+      "task": "aerial-cactus-identification"
+    },
+    "time": 1792187828.048587
+  },
+  {
+    "event": "admitted",
+    "key": "4:3",
+    "time": 1792187828.0608835
+  },
+  {
+    "event": "released",
+    "key": "0:2",
+    "time": 1792187829.2839468
+  },
+  {
+    "event": "released",
+    "key": "4:3",
+    "time": 1792187834.095762
+  },
+  {
+    "event": "queued",
+    "request": {
+      "key": "4:4",
+      "requested": 1792187834.128562,
+      "role": "improve",
+      "run": 4,
+      "task": "aerial-cactus-identification"
+    },
+    "time": 1792187834.1318386
+  },
+  {
+    "event": "admitted",
+    "key": "4:4",
+    "time": 1792187834.1490273
+  },
+  {
+    "event": "released",
+    "key": "5:4",
+    "time": 1792187848.3039947
+  },
+  {
+    "event": "admitted",
+    "key": "7:6",
+    "time": 1792187848.3568006
+  },
+  {
+    "event": "queued",
+    "request": {
+      "key": "5:5",
+      "requested": 1792187861.489602,
+      "role": "analyze",
+      "run": 5,
+      "task": "denoising-dirty-documents"
+    },
+    "time": 1792187861.4950104
+  },
+  {
+    "event": "released",
+    "key": "1:2",
+    "time": 1792187888.1242018
+  },
+  {
+    "event": "admitted",
+    "key": "5:5",
+    "time": 1792187888.1481125
+  },
+  {
+    "event": "released",
+    "key": "5:5",
+    "time": 1792187904.2780187
+  },
+  {
+    "event": "queued",
+    "request": {
+      "key": "5:6",
+      "requested": 1792187904.3140914,
+      "role": "debug",
+      "run": 5,
+      "task": "denoising-dirty-documents"
+    },
+    "time": 1792187904.3179102
+  },
+  {
+    "event": "admitted",
+    "key": "3:4",
+    "time": 1792187904.3398867
+  },
+  {
+    "event": "released",
+    "key": "4:4",
+    "time": 1792187929.4022768
+  },
+  {
+    "event": "released",
+    "key": "7:6",
+    "time": 1792187936.5886273
+  },
+  {
+    "event": "admitted",
+    "key": "5:6",
+    "time": 1792187936.611116
+  },
+  {
+    "event": "queued",
+    "request": {
+      "key": "6:3",
+      "requested": 1792187991.849822,
+      "role": "analyze",
+      "run": 6,
+      "task": "aerial-cactus-identification"
+    },
+    "time": 1792187991.8561845
+  },
+  {
+    "event": "admitted",
+    "key": "6:3",
+    "time": 1792187991.8721864
+  },
+  {
+    "event": "released",
+    "key": "6:3",
+    "time": 1792187998.2706742
+  },
+  {
+    "event": "queued",
+    "request": {
+      "key": "6:4",
+      "requested": 1792187998.3055108,
+      "role": "improve",
+      "run": 6,
+      "task": "aerial-cactus-identification"
+    },
+    "time": 1792187998.3080318
+  },
+  {
+    "event": "admitted",
+    "key": "6:4",
+    "time": 1792187998.3184392
+  },
+  {
+    "event": "released",
+    "key": "3:4",
+    "time": 1792188034.314734
+  },
+  {
+    "event": "released",
+    "key": "6:4",
+    "time": 1792188039.3172436
+  },
+  {
+    "event": "released",
+    "key": "5:6",
+    "time": 1792188039.3422616
+  }
+]

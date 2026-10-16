@@ -9,7 +9,8 @@ def configure():
     needle='            trial.install_hooks(row,ep,deadline)'
     replacement='''            import live_runtime_hooks as hooks
             with patch.object(hooks,'wait_for_ready',lambda *a,**kw:False):
-                trial.install_hooks(row,ep,deadline)
+                actual=trial.runtime_hook_guard()
+                actual.install_hooks(row,ep,deadline)
             import feedback_parent_policy_20261012 as parent
             assert parent.select_request.quota_mode==row['quota_mode']
             fixture_state=dict(active=[dict(task='fixture'),dict(task='fixture')],
@@ -36,7 +37,7 @@ def main():
                 raise RuntimeError(f'production gate failed index={index},case={case}')
             row=json.loads(cp.stdout.splitlines()[-1]);assert row['passed'];rows.append(row)
     result=dict(passed=True,cases=rows,production_source_sha256=hashlib.sha256((a.root/'generation_quota_trial_20261017.py').read_bytes()).hexdigest(),
-        interpretation='CPU actual hook installation/readiness/transaction tests only. No CUDA or search benefit.')
+        interpretation='CPU native-host dispatch/readiness/transaction tests only. Direct facade calls are insufficient; sealed19004 is not rerun or reclassified. No CUDA or search benefit.')
     with (a.root/'production-guard.safe.json').open('x') as f:json.dump(result,f,indent=2,sort_keys=True)
     print(json.dumps(dict(passed=True,production_cases=len(rows),gpu_calls=0,model_calls=0)))
 

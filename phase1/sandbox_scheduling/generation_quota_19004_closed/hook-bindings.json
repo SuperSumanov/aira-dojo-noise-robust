@@ -1,0 +1,51 @@
+{
+  "advertised": {
+    "code_names": [
+      "quota",
+      "install"
+    ],
+    "module": "generation_quota_trial_20261017",
+    "qualname": "configure.<locals>.hooks",
+    "source_file": "generation_quota_trial_20261017.py",
+    "source_line": 65,
+    "source_sha256": "fad7a634c650b224d14e404a6c5a2ac413891c8224343a744ef28e327790cdec"
+  },
+  "deep_dispatch": {
+    "code_names": [
+      "dojo.core.interpreters.jupyter.jupyter_client",
+      "JupyterKernelClient",
+      "clock_pairing_20261016",
+      "require_ready",
+      "getattr",
+      "wait_for_ready",
+      "_selective_original"
+    ],
+    "module": "selective_trial_20261017",
+    "qualname": "configure.<locals>.install",
+    "source_file": "selective_trial_20261017.py",
+    "source_line": 84,
+    "source_sha256": "63177fafb18e715f479585ea668aeaddb4e59c33271b7fec5c76ddf30540f165"
+  },
+  "gpu_calls": 0,
+  "model_calls": 0,
+  "no_setup_or_worker_called": true,
+  "runtime": {
+    "code_names": [
+      "dojo.core.interpreters.jupyter.jupyter_client",
+      "JupyterKernelClient",
+      "clock_pairing_20261016",
+      "require_ready",
+      "getattr",
+      "wait_for_ready",
+      "_selective_original"
+    ],
+    "module": "selective_trial_20261017",
+    "qualname": "configure.<locals>.install",
+    "source_file": "selective_trial_20261017.py",
+    "source_line": 84,
+    "source_sha256": "63177fafb18e715f479585ea668aeaddb4e59c33271b7fec5c76ddf30540f165"
+  },
+  "runtime_is_advertised": false,
+  "runtime_is_deep_dispatch": true,
+  "worker_resolves_runtime_binding": true
+}

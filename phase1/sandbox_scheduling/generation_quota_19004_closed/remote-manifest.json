@@ -1,0 +1,121 @@
+{
+  "directory": "/research/d7/spc/yzyang4/scheduling-generation-quota-20261017-v1/failure-audit-20261017-v1",
+  "files": {
+    "closure.json": {
+      "bytes": 1321,
+      "credential_shape_hits": 0,
+      "sha256": "ce69cc04504d7160c2d85024ad34b519047e09aeb5934f779c14b2432dbcd43b"
+    },
+    "effort.json": {
+      "bytes": 88202,
+      "credential_shape_hits": 0,
+      "sha256": "db1e3f91d37290fcb0ee8ff253a94f4ac4598bac32fcb69e03cb5393533b81ae"
+    },
+    "generation-0.json": {
+      "bytes": 15000,
+      "credential_shape_hits": 0,
+      "sha256": "20134ce0ee5a8e48fd35bbe93449c4cb3b47785a93b25bacd0cf2335d5506689"
+    },
+    "generation-1.json": {
+      "bytes": 18284,
+      "credential_shape_hits": 0,
+      "sha256": "775d7d3f23b47f12194a194a0b143255fb0fbd839683a77c21a416bb7de5a5b6"
+    },
+    "generation-2.json": {
+      "bytes": 16768,
+      "credential_shape_hits": 0,
+      "sha256": "f8f7ab31387e687b099cbcb8e447dbb2c92429600f5372366c8045f6452a7114"
+    },
+    "generation-3.json": {
+      "bytes": 16276,
+      "credential_shape_hits": 0,
+      "sha256": "339d5ac4502af88be1cd686429ba49839f2efc8c488f05b31010a8fab680ba31"
+    },
+    "hook-bindings.json": {
+      "bytes": 1546,
+      "credential_shape_hits": 0,
+      "sha256": "e5bfce70161aa611c3894a719c09b738f448d0768c809301a55e82347a66b571"
+    },
+    "input-checks.json": {
+      "bytes": 7256,
+      "credential_shape_hits": 0,
+      "sha256": "fb4f2f4b6be9bc10342894081b2c1e431286a926b1c8a08cb048b092d5667c07"
+    },
+    "queue-0.json": {
+      "bytes": 9111,
+      "credential_shape_hits": 0,
+      "sha256": "4b17e0597fa226077657df9ce3958500815c34a8e04f80b27a3b1677b7d007b2"
+    },
+    "queue-1.json": {
+      "bytes": 10344,
+      "credential_shape_hits": 0,
+      "sha256": "69536d8fcaed0e5de9d82ab308268016243f7cefd98083cdd14ac909db101114"
+    },
+    "queue-2.json": {
+      "bytes": 9453,
+      "credential_shape_hits": 0,
+      "sha256": "59efa9ac1c91d6f5087f6b9d1af3a7f412963f15037c5541c6e5b13ac6e6d2d3"
+    },
+    "queue-3.json": {
+      "bytes": 8558,
+      "credential_shape_hits": 0,
+      "sha256": "8470e941d5bf94f4cc2e4bbf13dce0ae10a79f7dff18d8f4974626fbc8124f6f"
+    },
+    "runs.json": {
+      "bytes": 18767,
+      "credential_shape_hits": 0,
+      "sha256": "9e32b92060bfb872c9db8458b166646d58992496a53900999b7dc4fb4d34dba8"
+    }
+  },
+  "hook_bindings": {
+    "advertised": {
+      "code_names": [
+        "quota",
+        "install"
+      ],
+      "module": "generation_quota_trial_20261017",
+      "qualname": "configure.<locals>.hooks",
+      "source_file": "generation_quota_trial_20261017.py",
+      "source_line": 65,
+      "source_sha256": "fad7a634c650b224d14e404a6c5a2ac413891c8224343a744ef28e327790cdec"
+    },
+    "deep_dispatch": {
+      "code_names": [
+        "dojo.core.interpreters.jupyter.jupyter_client",
+        "JupyterKernelClient",
+        "clock_pairing_20261016",
+        "require_ready",
+        "getattr",
+        "wait_for_ready",
+        "_selective_original"
+      ],
+      "module": "selective_trial_20261017",
+      "qualname": "configure.<locals>.install",
+      "source_file": "selective_trial_20261017.py",
+      "source_line": 84,
+      "source_sha256": "63177fafb18e715f479585ea668aeaddb4e59c33271b7fec5c76ddf30540f165"
+    },
+    "gpu_calls": 0,
+    "model_calls": 0,
+    "no_setup_or_worker_called": true,
+    "runtime": {
+      "code_names": [
+        "dojo.core.interpreters.jupyter.jupyter_client",
+        "JupyterKernelClient",
+        "clock_pairing_20261016",
+        "require_ready",
+        "getattr",
+        "wait_for_ready",
+        "_selective_original"
+      ],
+      "module": "selective_trial_20261017",
+      "qualname": "configure.<locals>.install",
+      "source_file": "selective_trial_20261017.py",
+      "source_line": 84,
+      "source_sha256": "63177fafb18e715f479585ea668aeaddb4e59c33271b7fec5c76ddf30540f165"
+    },
+    "runtime_is_advertised": false,
+    "runtime_is_deep_dispatch": true,
+    "worker_resolves_runtime_binding": true
+  }
+}

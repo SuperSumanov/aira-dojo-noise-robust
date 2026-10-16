@@ -1,0 +1,318 @@
+{
+  "frozen_bypass_reproductions": 2,
+  "gpu_calls": 0,
+  "limitations": [
+    "CPU dispatch/selector/signal regression only; no live treatment validation.",
+    "Sealed19004 remains invalid for quota comparison and is never reopened."
+  ],
+  "model_calls": 0,
+  "old_plan_sha256": "f08b3052fcecf467f500b5b9aa6638087c602321ca3a81bf22ef8b65a55b41f9",
+  "passed": true,
+  "reader_sha256": "62c807b146899893a687c6f9c95e405370d334cb8f7891e9a4d66d5f7033ed72",
+  "repaired_cases": 10,
+  "repaired_entry_sha256": "ec1b52590b7bda69cc6d651f53a3d9588e84a14cdae3764d0eb2d34eb31df2b6",
+  "rows": [
+    {
+      "case": "success",
+      "expected_bypass_detected": true,
+      "gpu_calls": 0,
+      "index": 0,
+      "model_calls": 0,
+      "variant": "frozen"
+    },
+    {
+      "case": "success",
+      "expected_bypass_detected": true,
+      "gpu_calls": 0,
+      "index": 8,
+      "model_calls": 0,
+      "variant": "frozen"
+    },
+    {
+      "actual_host_hook": true,
+      "case": "success",
+      "deadline_propagated": false,
+      "events": [
+        "queued",
+        "admitted",
+        "released"
+      ],
+      "gpu_calls": 0,
+      "guard_negative_control": true,
+      "independent_queue_check": {
+        "admissions": 1,
+        "co_admissions": 0,
+        "migrations": 0,
+        "peak_device_leases": 1,
+        "wait_median": 0.0008873939514160156,
+        "wait_total": 0.0008873939514160156
+      },
+      "index": 0,
+      "kernel_calls": 0,
+      "manual_guard": false,
+      "mode": "shared",
+      "model_calls": 0,
+      "passed": true,
+      "production_install": true,
+      "signal_injections": 0,
+      "variant": "repaired"
+    },
+    {
+      "actual_host_hook": true,
+      "case": "queue",
+      "deadline_propagated": true,
+      "events": [
+        "queued",
+        "queue_cancelled"
+      ],
+      "gpu_calls": 0,
+      "guard_negative_control": true,
+      "independent_queue_check": {
+        "admissions": 0,
+        "co_admissions": 0,
+        "migrations": 0,
+        "peak_device_leases": 0,
+        "wait_median": null,
+        "wait_total": 0
+      },
+      "index": 0,
+      "kernel_calls": 0,
+      "manual_guard": false,
+      "mode": "shared",
+      "model_calls": 0,
+      "passed": true,
+      "production_install": true,
+      "signal_injections": 1,
+      "variant": "repaired"
+    },
+    {
+      "actual_host_hook": true,
+      "case": "admit",
+      "deadline_propagated": true,
+      "events": [
+        "queued",
+        "admitted",
+        "released"
+      ],
+      "gpu_calls": 0,
+      "guard_negative_control": true,
+      "independent_queue_check": {
+        "admissions": 1,
+        "co_admissions": 0,
+        "migrations": 0,
+        "peak_device_leases": 1,
+        "wait_median": 0.005356550216674805,
+        "wait_total": 0.005356550216674805
+      },
+      "index": 0,
+      "kernel_calls": 0,
+      "manual_guard": false,
+      "mode": "shared",
+      "model_calls": 0,
+      "passed": true,
+      "production_install": true,
+      "signal_injections": 1,
+      "variant": "repaired"
+    },
+    {
+      "actual_host_hook": true,
+      "case": "cancel",
+      "deadline_propagated": true,
+      "events": [
+        "queued",
+        "queue_cancelled"
+      ],
+      "gpu_calls": 0,
+      "guard_negative_control": true,
+      "independent_queue_check": {
+        "admissions": 0,
+        "co_admissions": 0,
+        "migrations": 0,
+        "peak_device_leases": 0,
+        "wait_median": null,
+        "wait_total": 0
+      },
+      "index": 0,
+      "kernel_calls": 0,
+      "manual_guard": false,
+      "mode": "shared",
+      "model_calls": 0,
+      "passed": true,
+      "production_install": true,
+      "signal_injections": 1,
+      "variant": "repaired"
+    },
+    {
+      "actual_host_hook": true,
+      "case": "release",
+      "deadline_propagated": true,
+      "events": [
+        "queued",
+        "admitted",
+        "released"
+      ],
+      "gpu_calls": 0,
+      "guard_negative_control": true,
+      "independent_queue_check": {
+        "admissions": 1,
+        "co_admissions": 0,
+        "migrations": 0,
+        "peak_device_leases": 1,
+        "wait_median": 0.007714748382568359,
+        "wait_total": 0.007714748382568359
+      },
+      "index": 0,
+      "kernel_calls": 0,
+      "manual_guard": false,
+      "mode": "shared",
+      "model_calls": 0,
+      "passed": true,
+      "production_install": true,
+      "signal_injections": 1,
+      "variant": "repaired"
+    },
+    {
+      "actual_host_hook": true,
+      "case": "success",
+      "deadline_propagated": false,
+      "events": [
+        "queued",
+        "admitted",
+        "released"
+      ],
+      "gpu_calls": 0,
+      "guard_negative_control": true,
+      "independent_queue_check": {
+        "admissions": 1,
+        "co_admissions": 0,
+        "migrations": 0,
+        "peak_device_leases": 1,
+        "wait_median": 0.002670764923095703,
+        "wait_total": 0.002670764923095703
+      },
+      "index": 8,
+      "kernel_calls": 0,
+      "manual_guard": false,
+      "mode": "shared",
+      "model_calls": 0,
+      "passed": true,
+      "production_install": true,
+      "signal_injections": 0,
+      "variant": "repaired"
+    },
+    {
+      "actual_host_hook": true,
+      "case": "queue",
+      "deadline_propagated": true,
+      "events": [
+        "queued",
+        "queue_cancelled"
+      ],
+      "gpu_calls": 0,
+      "guard_negative_control": true,
+      "independent_queue_check": {
+        "admissions": 0,
+        "co_admissions": 0,
+        "migrations": 0,
+        "peak_device_leases": 0,
+        "wait_median": null,
+        "wait_total": 0
+      },
+      "index": 8,
+      "kernel_calls": 0,
+      "manual_guard": false,
+      "mode": "shared",
+      "model_calls": 0,
+      "passed": true,
+      "production_install": true,
+      "signal_injections": 1,
+      "variant": "repaired"
+    },
+    {
+      "actual_host_hook": true,
+      "case": "admit",
+      "deadline_propagated": true,
+      "events": [
+        "queued",
+        "admitted",
+        "released"
+      ],
+      "gpu_calls": 0,
+      "guard_negative_control": true,
+      "independent_queue_check": {
+        "admissions": 1,
+        "co_admissions": 0,
+        "migrations": 0,
+        "peak_device_leases": 1,
+        "wait_median": 0.0006377696990966797,
+        "wait_total": 0.0006377696990966797
+      },
+      "index": 8,
+      "kernel_calls": 0,
+      "manual_guard": false,
+      "mode": "shared",
+      "model_calls": 0,
+      "passed": true,
+      "production_install": true,
+      "signal_injections": 1,
+      "variant": "repaired"
+    },
+    {
+      "actual_host_hook": true,
+      "case": "cancel",
+      "deadline_propagated": true,
+      "events": [
+        "queued",
+        "queue_cancelled"
+      ],
+      "gpu_calls": 0,
+      "guard_negative_control": true,
+      "independent_queue_check": {
+        "admissions": 0,
+        "co_admissions": 0,
+        "migrations": 0,
+        "peak_device_leases": 0,
+        "wait_median": null,
+        "wait_total": 0
+      },
+      "index": 8,
+      "kernel_calls": 0,
+      "manual_guard": false,
+      "mode": "shared",
+      "model_calls": 0,
+      "passed": true,
+      "production_install": true,
+      "signal_injections": 1,
+      "variant": "repaired"
+    },
+    {
+      "actual_host_hook": true,
+      "case": "release",
+      "deadline_propagated": true,
+      "events": [
+        "queued",
+        "admitted",
+        "released"
+      ],
+      "gpu_calls": 0,
+      "guard_negative_control": true,
+      "independent_queue_check": {
+        "admissions": 1,
+        "co_admissions": 0,
+        "migrations": 0,
+        "peak_device_leases": 1,
+        "wait_median": 0.010620594024658203,
+        "wait_total": 0.010620594024658203
+      },
+      "index": 8,
+      "kernel_calls": 0,
+      "manual_guard": false,
+      "mode": "shared",
+      "model_calls": 0,
+      "passed": true,
+      "production_install": true,
+      "signal_injections": 1,
+      "variant": "repaired"
+    }
+  ]
+}

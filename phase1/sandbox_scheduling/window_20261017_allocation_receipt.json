@@ -1,0 +1,37 @@
+{
+  "window_start_hkt": "2026-10-17T02:49:00+08:00",
+  "window_end_hkt": "2026-10-17T08:49:00+08:00",
+  "last_observed_hkt": "2026-10-17T07:02:23+08:00",
+  "all_gpu_work_closed": true,
+  "source": "sacct allocation ElapsedRaw times allocated GPUs; includes preparation,service,failures,idle,cleanup",
+  "jobs": [
+    {
+      "job": 18987,
+      "gpus": 1,
+      "elapsed_seconds": 733,
+      "gpu_seconds": 733,
+      "status": "FAILED;4of16wrapper/3valid;original_gate_false"
+    },
+    {
+      "job": 18997,
+      "gpus": 6,
+      "elapsed_seconds": 5090,
+      "gpu_seconds": 30540,
+      "status": "CLOSED;32of32;quality_gate_false"
+    },
+    {
+      "job": 19004,
+      "gpus": 6,
+      "elapsed_seconds": 5096,
+      "gpu_seconds": 30576,
+      "status": "CLOSED;32of32;frozen_readout_failed;treatment_invalid"
+    }
+  ],
+  "total_gpu_seconds": 61849,
+  "limitations": [
+    "Not useful-work cost or savings.",
+    "Previous Oct16 window39139GPUseconds excluded.",
+    "No further GPU batch in this window."
+  ],
+  "total_gpu_hours": 17.18027777777778
+}

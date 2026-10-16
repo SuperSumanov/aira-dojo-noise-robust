@@ -1,0 +1,103 @@
+{
+  "passed": true,
+  "hashes": {
+    "adaptation-lineage-20261017.safe.json": "6ec665d244a8cd54820542b175526975d2a13ed24a0185ddd56a7d8dd2d19698",
+    "runs.json": "002cc948082e9907561002061f5d57373a9fe8f7300e18e69eab4aab7908637a",
+    "summary.json": "0bd972126ab1bb9427ea93e446be3d3e245955c8bd5aa7e08778b7afa05c3514"
+  },
+  "assigned": 32,
+  "returned": 76,
+  "valid": 34,
+  "unresolved": 2,
+  "new_parent_descendant_returns": 12,
+  "new_parent_descendant_valid": 3,
+  "debug_valid": 12,
+  "task_pools": 8,
+  "task_pools_gain_after_first_attempts": 4,
+  "results": [
+    {
+      "block": 0,
+      "task": "aerial-cactus-identification",
+      "valid": 6,
+      "record_events": 1,
+      "gain_after_first_attempts": 0,
+      "winning_categories": [
+        "improve_from_warm"
+      ]
+    },
+    {
+      "block": 0,
+      "task": "denoising-dirty-documents",
+      "valid": 2,
+      "record_events": 1,
+      "gain_after_first_attempts": 0,
+      "winning_categories": [
+        "improve_from_warm"
+      ]
+    },
+    {
+      "block": 1,
+      "task": "aerial-cactus-identification",
+      "valid": 7,
+      "record_events": 2,
+      "gain_after_first_attempts": 0.0002325171180705965,
+      "winning_categories": [
+        "improve_from_new"
+      ]
+    },
+    {
+      "block": 1,
+      "task": "denoising-dirty-documents",
+      "valid": 2,
+      "record_events": 0,
+      "gain_after_first_attempts": 0,
+      "winning_categories": [
+        "warm"
+      ]
+    },
+    {
+      "block": 2,
+      "task": "aerial-cactus-identification",
+      "valid": 6,
+      "record_events": 2,
+      "gain_after_first_attempts": 0.0001683744648096619,
+      "winning_categories": [
+        "improve_from_warm"
+      ]
+    },
+    {
+      "block": 2,
+      "task": "denoising-dirty-documents",
+      "valid": 3,
+      "record_events": 2,
+      "gain_after_first_attempts": 0.02992924050390073,
+      "winning_categories": [
+        "debug_from_warm"
+      ]
+    },
+    {
+      "block": 3,
+      "task": "aerial-cactus-identification",
+      "valid": 4,
+      "record_events": 1,
+      "gain_after_first_attempts": 0.00003207132663041179,
+      "winning_categories": [
+        "debug_from_warm"
+      ]
+    },
+    {
+      "block": 3,
+      "task": "denoising-dirty-documents",
+      "valid": 4,
+      "record_events": 1,
+      "gain_after_first_attempts": 0,
+      "winning_categories": [
+        "improve_from_warm"
+      ]
+    }
+  ],
+  "limitations": [
+    "Independent counts/chronological records/endpoints and transferSHA; not independent raw journal linkage.",
+    "Observed first-attempt subset is not a new no-feedback strategy. No causal allocation gain or independent task generalization."
+  ]
+}

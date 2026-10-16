@@ -35,6 +35,7 @@ def scientific_metadata():
 
 def preflight():
     p=common.original.base.c.trial.check()
+    runtime_hook_guard()
     assert p['planned']==32 and p['allocation_seconds']==6000 and p['node']=='gpu3'
     assert 'require_completed_workers' in common.original.executor.__code__.co_names
     for row in schedule():
@@ -66,10 +67,23 @@ def configure():
         ready_install(row,ep,deadline)
         quota.install(row['quota_mode'])
     common.original.install_hooks=hooks;common.original.base.install_hooks=hooks
+    # Real workers resolve this deeper image-trial binding. Sealed19004 only
+    # changed the facades, so its direct-install CPU tests missed the bypass.
+    common.original.base.c.trial.install_hooks=hooks
 
 configure()
 task_runtime=common.task_runtime;host=common.host
 def install_hooks(row,ep,deadline):return common.original.install_hooks(row,ep,deadline)
+
+def runtime_hook_guard():
+    entry=host();expected=common.original.install_hooks
+    assert entry.install_hooks is expected,'native host bypasses quota hook'
+    assert entry.worker.__globals__['install_hooks'] is expected,'worker resolves another hook'
+    return entry
+
+def worker(index):
+    runtime_hook_guard()
+    return common.original.worker(index)
 if __name__=='__main__':
     os.umask(0o077);os.environ.update(PYTHON_DOTENV_DISABLED='1',PYTHONDONTWRITEBYTECODE='1')
     p=argparse.ArgumentParser();p.add_argument('mode',choices=('prepare','preflight','submit','controller','service','executor','worker'))
@@ -80,4 +94,4 @@ if __name__=='__main__':
     elif a.mode=='controller':common.controller()
     elif a.mode=='service':common.original.base.c.trial.service(0)
     elif a.mode=='executor':common.original.executor(a.block)
-    elif a.mode=='worker':common.original.worker(a.index)
+    elif a.mode=='worker':worker(a.index)

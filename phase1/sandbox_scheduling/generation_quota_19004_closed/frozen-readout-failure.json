@@ -1,0 +1,12 @@
+{
+  "job": "19004",
+  "readout": "readout-20261017-v1",
+  "exit_code": 1,
+  "error_type": "AssertionError",
+  "location": "generation_quota_policy_20261017.py:46 metadata_audit",
+  "failed_condition": "chosen['key'] == key",
+  "original_partial_readout_preserved": true,
+  "experiment_resubmitted": false,
+  "quality_gate_relaxed": false,
+  "interpretation": "Search workers completed; the predeclared global dispatch audit failed. Not a valid quota-treatment quality comparison."
+}

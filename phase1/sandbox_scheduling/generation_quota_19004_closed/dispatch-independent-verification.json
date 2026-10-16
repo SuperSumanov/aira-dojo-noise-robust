@@ -1,0 +1,122 @@
+{
+  "passed": true,
+  "assigned": 32,
+  "complete": 32,
+  "transport_hashes_verified": 13,
+  "planned_intervention_verified": false,
+  "original_success_gate_met": false,
+  "quality_comparison_valid": false,
+  "actual_legacy_per_task_order_all_pools": true,
+  "actual_borrowing": 0,
+  "rows": [
+    {
+      "block": 0,
+      "declared_mode": "partitioned",
+      "requests": 38,
+      "admissions": 38,
+      "borrowed_admissions": 0,
+      "peak_active": 4,
+      "declared_global_order_violations": 0,
+      "legacy_per_task_order_violations": 0,
+      "examples": []
+    },
+    {
+      "block": 1,
+      "declared_mode": "pooled",
+      "requests": 46,
+      "admissions": 46,
+      "borrowed_admissions": 0,
+      "peak_active": 4,
+      "declared_global_order_violations": 12,
+      "legacy_per_task_order_violations": 0,
+      "examples": [
+        {
+          "event_index": 13,
+          "actual_key": "10:0",
+          "expected_key": "9:0",
+          "actual_role": "improve",
+          "expected_role": "improve",
+          "active": 3
+        },
+        {
+          "event_index": 15,
+          "actual_key": "8:0",
+          "expected_key": "9:0",
+          "actual_role": "improve",
+          "expected_role": "improve",
+          "active": 3
+        },
+        {
+          "event_index": 49,
+          "actual_key": "12:1",
+          "expected_key": "15:1",
+          "actual_role": "analyze",
+          "expected_role": "analyze",
+          "active": 2
+        }
+      ]
+    },
+    {
+      "block": 2,
+      "declared_mode": "pooled",
+      "requests": 42,
+      "admissions": 42,
+      "borrowed_admissions": 0,
+      "peak_active": 4,
+      "declared_global_order_violations": 7,
+      "legacy_per_task_order_violations": 0,
+      "examples": [
+        {
+          "event_index": 8,
+          "actual_key": "16:0",
+          "expected_key": "23:0",
+          "actual_role": "improve",
+          "expected_role": "improve",
+          "active": 3
+        },
+        {
+          "event_index": 13,
+          "actual_key": "18:0",
+          "expected_key": "23:0",
+          "actual_role": "improve",
+          "expected_role": "improve",
+          "active": 3
+        },
+        {
+          "event_index": 18,
+          "actual_key": "20:0",
+          "expected_key": "17:1",
+          "actual_role": "improve",
+          "expected_role": "analyze",
+          "active": 3
+        }
+      ]
+    },
+    {
+      "block": 3,
+      "declared_mode": "partitioned",
+      "requests": 41,
+      "admissions": 40,
+      "borrowed_admissions": 0,
+      "peak_active": 4,
+      "declared_global_order_violations": 0,
+      "legacy_per_task_order_violations": 0,
+      "examples": []
+    }
+  ],
+  "hashes": {
+    "remote-manifest.json": "2829c1c25737b7ac727c9dab79d558d319cc56fa55157f2313c5e7b31e0eca63",
+    "closure.json": "ce69cc04504d7160c2d85024ad34b519047e09aeb5934f779c14b2432dbcd43b",
+    "hook-bindings.json": "e5bfce70161aa611c3894a719c09b738f448d0768c809301a55e82347a66b571",
+    "runs.json": "9e32b92060bfb872c9db8458b166646d58992496a53900999b7dc4fb4d34dba8",
+    "generation-0.json": "20134ce0ee5a8e48fd35bbe93449c4cb3b47785a93b25bacd0cf2335d5506689",
+    "generation-1.json": "775d7d3f23b47f12194a194a0b143255fb0fbd839683a77c21a416bb7de5a5b6",
+    "generation-2.json": "f8f7ab31387e687b099cbcb8e447dbb2c92429600f5372366c8045f6452a7114",
+    "generation-3.json": "339d5ac4502af88be1cd686429ba49839f2efc8c488f05b31010a8fab680ba31"
+  },
+  "limits": [
+    "Post-failure structure verification, not a replacement frozen quality readout.",
+    "The hook binding is an independent frozen-entry CPU observation, not historical instrumentation.",
+    "Original failed readout and all32 assignments/cost remain preserved."
+  ]
+}

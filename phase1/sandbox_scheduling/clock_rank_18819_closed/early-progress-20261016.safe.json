@@ -1,0 +1,222 @@
+{
+  "posthoc": true,
+  "plan_sha256": "4c22748699952da0b79bf862e1db5e785b7d2a9fb951bb26ee9c21be47ca3306",
+  "analysis_sha256": "a74e74ec986e99032bbc67f2ab88903daebced0f145434e00bf86bd150e6f4cc",
+  "rows": [
+    {
+      "index": 2,
+      "program": 2,
+      "mode": "solo",
+      "block": 0,
+      "window": 32,
+      "host_calls_per_second": 5.910889736963597,
+      "trace_sha256": "f8cb2f2b193552505156dbc1f37af52397b1bcde52327f8f4f8afdb6f92d2a2b"
+    },
+    {
+      "index": 2,
+      "program": 2,
+      "mode": "solo",
+      "block": 0,
+      "window": 128,
+      "host_calls_per_second": 5.628687088085087,
+      "trace_sha256": "f8cb2f2b193552505156dbc1f37af52397b1bcde52327f8f4f8afdb6f92d2a2b"
+    },
+    {
+      "index": 3,
+      "program": 3,
+      "mode": "solo",
+      "block": 0,
+      "window": 32,
+      "host_calls_per_second": 20.140213794194203,
+      "trace_sha256": "7453753e9358c9e5c90101297af47900f7b834ae436d2d3e04a2848c359049aa"
+    },
+    {
+      "index": 3,
+      "program": 3,
+      "mode": "solo",
+      "block": 0,
+      "window": 128,
+      "host_calls_per_second": 18.29456991562301,
+      "trace_sha256": "7453753e9358c9e5c90101297af47900f7b834ae436d2d3e04a2848c359049aa"
+    },
+    {
+      "index": 6,
+      "program": 2,
+      "mode": "colocated",
+      "block": 1,
+      "window": 32,
+      "host_calls_per_second": 4.14627407934908,
+      "trace_sha256": "b27caadebed69e86c8401a2f32cc0dde6329edfb653848966cc6730878af3eec"
+    },
+    {
+      "index": 6,
+      "program": 2,
+      "mode": "colocated",
+      "block": 1,
+      "window": 128,
+      "host_calls_per_second": 3.89280949341849,
+      "trace_sha256": "b27caadebed69e86c8401a2f32cc0dde6329edfb653848966cc6730878af3eec"
+    },
+    {
+      "index": 7,
+      "program": 3,
+      "mode": "colocated",
+      "block": 1,
+      "window": 32,
+      "host_calls_per_second": 4.400442018801701,
+      "trace_sha256": "b16f3fed9234e295e03e55faa3189e5c53234f7136723df47768e30caa264caf"
+    },
+    {
+      "index": 7,
+      "program": 3,
+      "mode": "colocated",
+      "block": 1,
+      "window": 128,
+      "host_calls_per_second": 3.6607010779893017,
+      "trace_sha256": "b16f3fed9234e295e03e55faa3189e5c53234f7136723df47768e30caa264caf"
+    },
+    {
+      "index": 10,
+      "program": 2,
+      "mode": "colocated",
+      "block": 2,
+      "window": 32,
+      "host_calls_per_second": 4.222789353432247,
+      "trace_sha256": "55affd9b78e21a1a23559425c325f486496329bf212f00da9fd85e3831e468f4"
+    },
+    {
+      "index": 10,
+      "program": 2,
+      "mode": "colocated",
+      "block": 2,
+      "window": 128,
+      "host_calls_per_second": 3.946179515662213,
+      "trace_sha256": "55affd9b78e21a1a23559425c325f486496329bf212f00da9fd85e3831e468f4"
+    },
+    {
+      "index": 11,
+      "program": 3,
+      "mode": "colocated",
+      "block": 2,
+      "window": 32,
+      "host_calls_per_second": 4.312898464643853,
+      "trace_sha256": "0490c774199c984e4b1c090cd4b16761615a2aaf2efa997bed69cd264bacc3ec"
+    },
+    {
+      "index": 11,
+      "program": 3,
+      "mode": "colocated",
+      "block": 2,
+      "window": 128,
+      "host_calls_per_second": 3.711565445592492,
+      "trace_sha256": "0490c774199c984e4b1c090cd4b16761615a2aaf2efa997bed69cd264bacc3ec"
+    },
+    {
+      "index": 14,
+      "program": 2,
+      "mode": "solo",
+      "block": 3,
+      "window": 32,
+      "host_calls_per_second": 5.95486533200356,
+      "trace_sha256": "1066577f5a9cd210aed0431076915c2ee28e75c53d916812a6d36ce4630df957"
+    },
+    {
+      "index": 14,
+      "program": 2,
+      "mode": "solo",
+      "block": 3,
+      "window": 128,
+      "host_calls_per_second": 5.647650889654723,
+      "trace_sha256": "1066577f5a9cd210aed0431076915c2ee28e75c53d916812a6d36ce4630df957"
+    },
+    {
+      "index": 15,
+      "program": 3,
+      "mode": "solo",
+      "block": 3,
+      "window": 32,
+      "host_calls_per_second": 19.811079809212913,
+      "trace_sha256": "886d2002e1eb48b749d4634f98c5fa971b9a15ce83a14ef5a190b61c55f36b4b"
+    },
+    {
+      "index": 15,
+      "program": 3,
+      "mode": "solo",
+      "block": 3,
+      "window": 128,
+      "host_calls_per_second": 18.159631573236293,
+      "trace_sha256": "886d2002e1eb48b749d4634f98c5fa971b9a15ce83a14ef5a190b61c55f36b4b"
+    }
+  ],
+  "ranges": [
+    {
+      "program": 2,
+      "window": 32,
+      "solo_rates": [
+        5.910889736963597,
+        5.95486533200356
+      ],
+      "colocated_rates": [
+        4.14627407934908,
+        4.222789353432247
+      ],
+      "all_cross_restart_co_to_solo_ratio_range": [
+        0.6962834334918595,
+        0.7144084124975538
+      ],
+      "all_cross_restart_host_rate_drop_exceeds_35_percent": false
+    },
+    {
+      "program": 2,
+      "window": 128,
+      "solo_rates": [
+        5.628687088085087,
+        5.647650889654723
+      ],
+      "colocated_rates": [
+        3.89280949341849,
+        3.946179515662213
+      ],
+      "all_cross_restart_co_to_solo_ratio_range": [
+        0.689279413596417,
+        0.7010834771781081
+      ],
+      "all_cross_restart_host_rate_drop_exceeds_35_percent": false
+    },
+    {
+      "program": 3,
+      "window": 32,
+      "solo_rates": [
+        20.140213794194203,
+        19.811079809212913
+      ],
+      "colocated_rates": [
+        4.400442018801701,
+        4.312898464643853
+      ],
+      "all_cross_restart_co_to_solo_ratio_range": [
+        0.21414362869807904,
+        0.2221202509494372
+      ],
+      "all_cross_restart_host_rate_drop_exceeds_35_percent": true
+    },
+    {
+      "program": 3,
+      "window": 128,
+      "solo_rates": [
+        18.29456991562301,
+        18.159631573236293
+      ],
+      "colocated_rates": [
+        3.6607010779893017,
+        3.711565445592492
+      ],
+      "all_cross_restart_co_to_solo_ratio_range": [
+        0.2000976844425937,
+        0.204385503671925
+      ],
+      "all_cross_restart_host_rate_drop_exceeds_35_percent": true
+    }
+  ],
+  "boundary": "First-N host-call envelopes are not CUDA kernel throughput, SchedMate runtime progress extraction, its before/after-packing profile, or eviction replay. Separate solo profiles cost extra. Threshold comparison is descriptive only; no proof of baseline success/failure or E2E benefit."
+}

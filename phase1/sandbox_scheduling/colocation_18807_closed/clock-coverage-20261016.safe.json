@@ -1,0 +1,56 @@
+{
+  "posthoc": true,
+  "plan_sha256": "36ce5852b26de2299755c19a8b9711a1f4161d68abd25a3de6cc7687cdde8560",
+  "analysis_sha256": "0001bd50aa8160b1124c9b56c47a0323102418ff2bd4925a399041f2ee2b3d1d",
+  "pools": [
+    {
+      "block": 0,
+      "counts": {
+        "timely_returns": 18,
+        "parsed": 18,
+        "clock_exit_observed": 17,
+        "valid_returns": 7,
+        "valid_with_clock_exit": 7
+      },
+      "unique_sources": 18,
+      "unique_parsed_without_observed_exit": 1
+    },
+    {
+      "block": 1,
+      "counts": {
+        "timely_returns": 22,
+        "parsed": 22,
+        "clock_exit_observed": 20,
+        "valid_returns": 11,
+        "valid_with_clock_exit": 10
+      },
+      "unique_sources": 22,
+      "unique_parsed_without_observed_exit": 2
+    },
+    {
+      "block": 2,
+      "counts": {
+        "timely_returns": 20,
+        "parsed": 20,
+        "clock_exit_observed": 20,
+        "valid_returns": 11,
+        "valid_with_clock_exit": 11
+      },
+      "unique_sources": 20,
+      "unique_parsed_without_observed_exit": 0
+    },
+    {
+      "block": 3,
+      "counts": {
+        "timely_returns": 18,
+        "parsed": 18,
+        "clock_exit_observed": 18,
+        "valid_returns": 9,
+        "valid_with_clock_exit": 9
+      },
+      "unique_sources": 18,
+      "unique_parsed_without_observed_exit": 0
+    }
+  ],
+  "boundary": "Only observed timely returns of two known DEV tasks, conditioned on original trajectories; not all submitted jobs, independent-source incidence, an online policy replay or final-score prediction. A missing static guard does not prove safe sharing; library/internal and dynamic limits may be missed. Counts cannot reconstruct changed timing/history."
+}

@@ -1,0 +1,180 @@
+{
+  "actual_mode_gate": true,
+  "assigned": 32,
+  "by_pool": [
+    {
+      "best": 0.9998530064196105,
+      "block": 0,
+      "median": 0.9997140306708787,
+      "n": 4,
+      "pool_mode": "shared",
+      "repeat": 0,
+      "sample_sd": 6.948787436589221e-05,
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "best": 0.017274050780114816,
+      "block": 0,
+      "median": 0.03405786496535865,
+      "n": 4,
+      "pool_mode": "shared",
+      "repeat": 0,
+      "sample_sd": 0.01492431579338257,
+      "task": "denoising-dirty-documents"
+    },
+    {
+      "best": 0.9999812917261323,
+      "block": 1,
+      "median": 0.9997314026394701,
+      "n": 4,
+      "pool_mode": "selective",
+      "repeat": 0,
+      "sample_sd": 0.00012888477924367014,
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "best": 0.04551226514614451,
+      "block": 1,
+      "median": 0.04551226514614451,
+      "n": 4,
+      "pool_mode": "selective",
+      "repeat": 0,
+      "sample_sd": 0.0,
+      "task": "denoising-dirty-documents"
+    },
+    {
+      "best": 0.9998824051356884,
+      "block": 2,
+      "median": 0.999755456134443,
+      "n": 4,
+      "pool_mode": "selective",
+      "repeat": 1,
+      "sample_sd": 7.484900217652278e-05,
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "best": 0.015583024642243782,
+      "block": 2,
+      "median": 0.03228692302624261,
+      "n": 4,
+      "pool_mode": "selective",
+      "repeat": 1,
+      "sample_sd": 0.016337320826537938,
+      "task": "denoising-dirty-documents"
+    },
+    {
+      "best": 0.9997461019975091,
+      "block": 3,
+      "median": 0.9997140306708787,
+      "n": 4,
+      "pool_mode": "shared",
+      "repeat": 1,
+      "sample_sd": 1.6035663315205895e-05,
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "best": 0.013719351425494153,
+      "block": 3,
+      "median": 0.021500505376730105,
+      "n": 4,
+      "pool_mode": "shared",
+      "repeat": 1,
+      "sample_sd": 0.014851334150310279,
+      "task": "denoising-dirty-documents"
+    }
+  ],
+  "complete": 32,
+  "contrasts": [
+    {
+      "baseline_best": 0.9998530064196105,
+      "median_delta": 1.737196859141754e-05,
+      "oriented_delta": 0.00012828530652175818,
+      "repeat": 0,
+      "selective_best": 0.9999812917261323,
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "baseline_best": 0.017274050780114816,
+      "median_delta": -0.011454400180785862,
+      "oriented_delta": -0.028238214366029694,
+      "repeat": 0,
+      "selective_best": 0.04551226514614451,
+      "task": "denoising-dirty-documents"
+    },
+    {
+      "baseline_best": 0.9997461019975091,
+      "median_delta": 4.1425463564337406e-05,
+      "oriented_delta": 0.0001363031381792501,
+      "repeat": 1,
+      "selective_best": 0.9998824051356884,
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "baseline_best": 0.013719351425494153,
+      "median_delta": -0.010786417649512502,
+      "oriented_delta": -0.0018636732167496284,
+      "repeat": 1,
+      "selective_best": 0.015583024642243782,
+      "task": "denoising-dirty-documents"
+    }
+  ],
+  "dispatch_changed": true,
+  "gpu_hours": 8.483333333333333,
+  "gpu_seconds": 30540,
+  "limitation": "A task-specific simple baseline informed by known-program observations, NOT a semantic classifier/general algorithm. Only two previously studiedDEV tasks; two reverse comparisons share a service, not32independent treatments. No contemporaneous ordinarycap2/SchedMate control, so no claim of beating either. Failed candidates remain within valid completed search trajectories; infrastructure failures halt later pools.",
+  "plan_sha256": "1783555a7c680021b2a1bae874798f1042c0bfe79d0b11af70fa7f2a75d26e32",
+  "predeclared_success_gate_met": false,
+  "quality_gate": false,
+  "queues": [
+    {
+      "admissions": 20,
+      "block": 0,
+      "co_admissions": 0,
+      "migrations": 14,
+      "peak_device_leases": 1,
+      "pool_mode": "shared",
+      "protected_deferrals": 0,
+      "wait_median": 54.108383893966675,
+      "wait_total": 1257.2923798561096
+    },
+    {
+      "admissions": 24,
+      "block": 1,
+      "co_admissions": 3,
+      "migrations": 20,
+      "peak_device_leases": 2,
+      "pool_mode": "selective",
+      "protected_deferrals": 7,
+      "wait_median": 0.012451529502868652,
+      "wait_total": 566.297527551651
+    },
+    {
+      "admissions": 24,
+      "block": 2,
+      "co_admissions": 4,
+      "migrations": 18,
+      "peak_device_leases": 2,
+      "pool_mode": "selective",
+      "protected_deferrals": 7,
+      "wait_median": 0.010930776596069336,
+      "wait_total": 671.9315526485443
+    },
+    {
+      "admissions": 23,
+      "block": 3,
+      "co_admissions": 0,
+      "migrations": 17,
+      "peak_device_leases": 1,
+      "pool_mode": "shared",
+      "protected_deferrals": 0,
+      "wait_median": 0.012418508529663086,
+      "wait_total": 742.0010130405426
+    }
+  ],
+  "reader_sha256": "d2ff78abe4a23f72b374bd480a9f4692fddcf97683e9de88a18e06728355c060",
+  "runtime_input_gate": true,
+  "scores_recomputed": 35,
+  "source_commit": "8384f405d58ee8e5173b8039fba4fa5b3b14bab7",
+  "started": 32,
+  "structural_gate": true
+}

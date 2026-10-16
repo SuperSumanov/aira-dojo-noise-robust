@@ -1,0 +1,123 @@
+{
+  "job": "18997",
+  "observed_utc": "2026-10-16T21:24:00Z",
+  "passed": true,
+  "assigned": 32,
+  "quality_gate": false,
+  "predeclared_success_gate_met": false,
+  "summary_sha256": "0bd972126ab1bb9427ea93e446be3d3e245955c8bd5aa7e08778b7afa05c3514",
+  "plan_sha256": "1783555a7c680021b2a1bae874798f1042c0bfe79d0b11af70fa7f2a75d26e32",
+  "gpu_hours": 8.483333333333333,
+  "contrasts": [
+    {
+      "repeat": 0,
+      "task": "aerial-cactus-identification",
+      "baseline_best": 0.9998530064196105,
+      "selective_best": 0.9999812917261323,
+      "oriented_delta": 0.00012828530652175818,
+      "median_delta": 0.00001737196859141754
+    },
+    {
+      "repeat": 0,
+      "task": "denoising-dirty-documents",
+      "baseline_best": 0.017274050780114816,
+      "selective_best": 0.04551226514614451,
+      "oriented_delta": -0.028238214366029694,
+      "median_delta": -0.011454400180785862
+    },
+    {
+      "repeat": 1,
+      "task": "aerial-cactus-identification",
+      "baseline_best": 0.9997461019975091,
+      "selective_best": 0.9998824051356884,
+      "oriented_delta": 0.0001363031381792501,
+      "median_delta": 0.000041425463564337406
+    },
+    {
+      "repeat": 1,
+      "task": "denoising-dirty-documents",
+      "baseline_best": 0.013719351425494153,
+      "selective_best": 0.015583024642243782,
+      "oriented_delta": -0.0018636732167496284,
+      "median_delta": -0.010786417649512502
+    }
+  ],
+  "queues": [
+    {
+      "admissions": 20,
+      "migrations": 14,
+      "co_admissions": 0,
+      "peak_device_leases": 1,
+      "protected_deferrals": 0,
+      "wait_total": 1257.2923798561096,
+      "wait_median": 54.108383893966675
+    },
+    {
+      "admissions": 24,
+      "migrations": 20,
+      "co_admissions": 3,
+      "peak_device_leases": 2,
+      "protected_deferrals": 7,
+      "wait_total": 566.297527551651,
+      "wait_median": 0.012451529502868652
+    },
+    {
+      "admissions": 24,
+      "migrations": 18,
+      "co_admissions": 4,
+      "peak_device_leases": 2,
+      "protected_deferrals": 7,
+      "wait_total": 671.9315526485443,
+      "wait_median": 0.010930776596069336
+    },
+    {
+      "admissions": 23,
+      "migrations": 17,
+      "co_admissions": 0,
+      "peak_device_leases": 1,
+      "protected_deferrals": 0,
+      "wait_total": 742.0010130405426,
+      "wait_median": 0.012418508529663086
+    }
+  ],
+  "hashes": {
+    "runs.json": "002cc948082e9907561002061f5d57373a9fe8f7300e18e69eab4aab7908637a",
+    "summary.json": "0bd972126ab1bb9427ea93e446be3d3e245955c8bd5aa7e08778b7afa05c3514",
+    "queue-0.json": "b3d51a4fc756cfe7c71e53677ed658c9f58737cd5f818883891fb734de0c1e96",
+    "queue-1.json": "3748b0f8ce715cb3b2c835ebbc69bedae5d197b1e7ae6da8e651fb9f46e52d60",
+    "queue-2.json": "4792a6f7d35b0fc573311534f13d1d9c46bacf1857339b7bdebc4bfd4b1d11ab",
+    "queue-3.json": "d7bcb4857aca0c6bac0c63e4add24742f94bdcfd60375c59cb2cfd9da0ae3c8b",
+    "input-checks.json": "b71639baf1fae9036e147e67a71d6b99af41834236c49cdc60b787932d629a41",
+    "identity.json": "cc1290cc3918670ffbc68b2deda83c8557f1004d4d0eaa2095c886c30e4a6e1d",
+    "coexistence.json": "b4a8da947b34299dc8253bee46a6159ddb742cbef5df247f7f0523c08b311540"
+  },
+  "complete": 32,
+  "remote_pristine_dev_rescores": 35,
+  "node_independent_rescoring": false,
+  "transfer_hashes_equal": {
+    "bindings.json": "108b19e450bddbc19834313b4e0d8cadb91112c159911b09a9892cfbd71fa952",
+    "coexistence.json": "b4a8da947b34299dc8253bee46a6159ddb742cbef5df247f7f0523c08b311540",
+    "effort.json": "ce846800a128cad7b2830dc0f75b873e2048935e3c31c8177bd2f0d5b2d4d471",
+    "identity.json": "cc1290cc3918670ffbc68b2deda83c8557f1004d4d0eaa2095c886c30e4a6e1d",
+    "input-checks.json": "b71639baf1fae9036e147e67a71d6b99af41834236c49cdc60b787932d629a41",
+    "queue-0.json": "b3d51a4fc756cfe7c71e53677ed658c9f58737cd5f818883891fb734de0c1e96",
+    "queue-1.json": "3748b0f8ce715cb3b2c835ebbc69bedae5d197b1e7ae6da8e651fb9f46e52d60",
+    "queue-2.json": "4792a6f7d35b0fc573311534f13d1d9c46bacf1857339b7bdebc4bfd4b1d11ab",
+    "queue-3.json": "d7bcb4857aca0c6bac0c63e4add24742f94bdcfd60375c59cb2cfd9da0ae3c8b",
+    "runs.csv": "6de231220a359ba247aab1fdfd2f0db3a9dcafca4edd3e2157cfc3ddbab77976",
+    "runs.json": "002cc948082e9907561002061f5d57373a9fe8f7300e18e69eab4aab7908637a",
+    "summary.json": "0bd972126ab1bb9427ea93e446be3d3e245955c8bd5aa7e08778b7afa05c3514"
+  },
+  "allocation": {
+    "state": "COMPLETED",
+    "exit_code": "0:0",
+    "node": "gpu3",
+    "start_hk": "2026-10-17T03:52:48+08:00",
+    "end_hk": "2026-10-17T05:17:38+08:00",
+    "elapsed_seconds": 5090,
+    "gpus": 6,
+    "gpu_seconds": 30540
+  },
+  "decision": "Stop this task-prior selective-sharing recipe; no retry, time extension or seed replacement. Pre-frozen generation-quota experiment is independent, not a rescue.",
+  "limitation": "Two reused DEV tasks; two reverse comparisons share one service. Node verifies statistics/queue/inputs/identity, not an independent score engine."
+}

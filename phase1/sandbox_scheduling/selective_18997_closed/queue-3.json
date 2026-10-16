@@ -1,0 +1,623 @@
+[
+  {
+    "active": 0,
+    "device": null,
+    "event": "queued",
+    "home": 3,
+    "key": "30:0",
+    "queued": 1,
+    "time": 1792184387.9618146
+  },
+  {
+    "active": 1,
+    "device": 0,
+    "event": "admitted",
+    "home": 3,
+    "key": "30:0",
+    "queued": 0,
+    "time": 1792184387.9734683
+  },
+  {
+    "active": 1,
+    "device": null,
+    "event": "queued",
+    "home": 2,
+    "key": "28:0",
+    "queued": 1,
+    "time": 1792184410.1358325
+  },
+  {
+    "active": 2,
+    "device": 1,
+    "event": "admitted",
+    "home": 2,
+    "key": "28:0",
+    "queued": 0,
+    "time": 1792184410.1464972
+  },
+  {
+    "active": 2,
+    "device": null,
+    "event": "queued",
+    "home": 3,
+    "key": "31:0",
+    "queued": 1,
+    "time": 1792184417.0667093
+  },
+  {
+    "active": 3,
+    "device": 2,
+    "event": "admitted",
+    "home": 3,
+    "key": "31:0",
+    "queued": 0,
+    "time": 1792184417.07437
+  },
+  {
+    "active": 2,
+    "device": 2,
+    "event": "released",
+    "home": 3,
+    "key": "31:0",
+    "queued": 0,
+    "time": 1792184430.9587123
+  },
+  {
+    "active": 2,
+    "device": null,
+    "event": "queued",
+    "home": 2,
+    "key": "29:0",
+    "queued": 1,
+    "time": 1792184440.8205934
+  },
+  {
+    "active": 3,
+    "device": 2,
+    "event": "admitted",
+    "home": 2,
+    "key": "29:0",
+    "queued": 0,
+    "time": 1792184440.8342175
+  },
+  {
+    "active": 3,
+    "device": null,
+    "event": "queued",
+    "home": 1,
+    "key": "26:0",
+    "queued": 1,
+    "time": 1792184482.3864088
+  },
+  {
+    "active": 4,
+    "device": 3,
+    "event": "admitted",
+    "home": 1,
+    "key": "26:0",
+    "queued": 0,
+    "time": 1792184482.3988273
+  },
+  {
+    "active": 4,
+    "device": null,
+    "event": "queued",
+    "home": 0,
+    "key": "24:0",
+    "queued": 1,
+    "time": 1792184517.8854084
+  },
+  {
+    "active": 3,
+    "device": 3,
+    "event": "released",
+    "home": 1,
+    "key": "26:0",
+    "queued": 1,
+    "time": 1792184524.0896678
+  },
+  {
+    "active": 4,
+    "device": 3,
+    "event": "admitted",
+    "home": 0,
+    "key": "24:0",
+    "queued": 0,
+    "time": 1792184524.0995226
+  },
+  {
+    "active": 4,
+    "device": null,
+    "event": "queued",
+    "home": 0,
+    "key": "25:0",
+    "queued": 1,
+    "time": 1792184525.1748679
+  },
+  {
+    "active": 4,
+    "device": null,
+    "event": "queued",
+    "home": 1,
+    "key": "27:0",
+    "queued": 2,
+    "time": 1792184564.9571037
+  },
+  {
+    "active": 3,
+    "device": 3,
+    "event": "released",
+    "home": 0,
+    "key": "24:0",
+    "queued": 2,
+    "time": 1792184566.8668969
+  },
+  {
+    "active": 4,
+    "device": 3,
+    "event": "admitted",
+    "home": 0,
+    "key": "25:0",
+    "queued": 1,
+    "time": 1792184566.8815124
+  },
+  {
+    "active": 3,
+    "device": 3,
+    "event": "released",
+    "home": 0,
+    "key": "25:0",
+    "queued": 1,
+    "time": 1792184578.2414978
+  },
+  {
+    "active": 4,
+    "device": 3,
+    "event": "admitted",
+    "home": 1,
+    "key": "27:0",
+    "queued": 0,
+    "time": 1792184578.2688231
+  },
+  {
+    "active": 3,
+    "device": 3,
+    "event": "released",
+    "home": 1,
+    "key": "27:0",
+    "queued": 0,
+    "time": 1792184589.9202695
+  },
+  {
+    "active": 3,
+    "device": null,
+    "event": "queued",
+    "home": 1,
+    "key": "26:1",
+    "queued": 1,
+    "time": 1792184628.8955102
+  },
+  {
+    "active": 4,
+    "device": 3,
+    "event": "admitted",
+    "home": 1,
+    "key": "26:1",
+    "queued": 0,
+    "time": 1792184628.9077272
+  },
+  {
+    "active": 3,
+    "device": 1,
+    "event": "released",
+    "home": 2,
+    "key": "28:0",
+    "queued": 0,
+    "time": 1792184670.3685217
+  },
+  {
+    "active": 2,
+    "device": 0,
+    "event": "released",
+    "home": 3,
+    "key": "30:0",
+    "queued": 0,
+    "time": 1792184675.8311243
+  },
+  {
+    "active": 2,
+    "device": null,
+    "event": "queued",
+    "home": 0,
+    "key": "24:1",
+    "queued": 1,
+    "time": 1792184678.0726635
+  },
+  {
+    "active": 3,
+    "device": 0,
+    "event": "admitted",
+    "home": 0,
+    "key": "24:1",
+    "queued": 0,
+    "time": 1792184678.082394
+  },
+  {
+    "active": 3,
+    "device": null,
+    "event": "queued",
+    "home": 0,
+    "key": "25:1",
+    "queued": 1,
+    "time": 1792184696.3492897
+  },
+  {
+    "active": 4,
+    "device": 1,
+    "event": "admitted",
+    "home": 0,
+    "key": "25:1",
+    "queued": 0,
+    "time": 1792184696.3569462
+  },
+  {
+    "active": 3,
+    "device": 2,
+    "event": "released",
+    "home": 2,
+    "key": "29:0",
+    "queued": 0,
+    "time": 1792184710.7491632
+  },
+  {
+    "active": 3,
+    "device": null,
+    "event": "queued",
+    "home": 3,
+    "key": "31:1",
+    "queued": 1,
+    "time": 1792184726.870897
+  },
+  {
+    "active": 4,
+    "device": 2,
+    "event": "admitted",
+    "home": 3,
+    "key": "31:1",
+    "queued": 0,
+    "time": 1792184726.8823106
+  },
+  {
+    "active": 4,
+    "device": null,
+    "event": "queued",
+    "home": 3,
+    "key": "30:1",
+    "queued": 1,
+    "time": 1792184799.1583707
+  },
+  {
+    "active": 4,
+    "device": null,
+    "event": "queued",
+    "home": 2,
+    "key": "28:1",
+    "queued": 2,
+    "time": 1792184805.5015981
+  },
+  {
+    "active": 4,
+    "device": null,
+    "event": "queued",
+    "home": 1,
+    "key": "27:1",
+    "queued": 3,
+    "time": 1792184808.5619133
+  },
+  {
+    "active": 4,
+    "device": null,
+    "event": "queued",
+    "home": 2,
+    "key": "29:1",
+    "queued": 4,
+    "time": 1792184839.2427795
+  },
+  {
+    "active": 3,
+    "device": 3,
+    "event": "released",
+    "home": 1,
+    "key": "26:1",
+    "queued": 4,
+    "time": 1792184911.8498516
+  },
+  {
+    "active": 4,
+    "device": 3,
+    "event": "admitted",
+    "home": 3,
+    "key": "30:1",
+    "queued": 3,
+    "time": 1792184911.890586
+  },
+  {
+    "active": 3,
+    "device": 0,
+    "event": "released",
+    "home": 0,
+    "key": "24:1",
+    "queued": 3,
+    "time": 1792184943.448374
+  },
+  {
+    "active": 4,
+    "device": 0,
+    "event": "admitted",
+    "home": 2,
+    "key": "28:1",
+    "queued": 2,
+    "time": 1792184943.4695382
+  },
+  {
+    "active": 3,
+    "device": 1,
+    "event": "released",
+    "home": 0,
+    "key": "25:1",
+    "queued": 2,
+    "time": 1792184964.1149058
+  },
+  {
+    "active": 4,
+    "device": 1,
+    "event": "admitted",
+    "home": 1,
+    "key": "27:1",
+    "queued": 1,
+    "time": 1792184964.1215158
+  },
+  {
+    "active": 4,
+    "device": null,
+    "event": "queued",
+    "home": 1,
+    "key": "26:2",
+    "queued": 2,
+    "time": 1792185005.0825162
+  },
+  {
+    "active": 3,
+    "device": 2,
+    "event": "released",
+    "home": 3,
+    "key": "31:1",
+    "queued": 2,
+    "time": 1792185047.9294424
+  },
+  {
+    "active": 4,
+    "device": 2,
+    "event": "admitted",
+    "home": 2,
+    "key": "29:1",
+    "queued": 1,
+    "time": 1792185047.9462743
+  },
+  {
+    "active": 3,
+    "device": 2,
+    "event": "released",
+    "home": 2,
+    "key": "29:1",
+    "queued": 1,
+    "time": 1792185059.7919776
+  },
+  {
+    "active": 4,
+    "device": 2,
+    "event": "admitted",
+    "home": 1,
+    "key": "26:2",
+    "queued": 0,
+    "time": 1792185059.811283
+  },
+  {
+    "active": 3,
+    "device": 1,
+    "event": "released",
+    "home": 1,
+    "key": "27:1",
+    "queued": 0,
+    "time": 1792185080.5338273
+  },
+  {
+    "active": 3,
+    "device": null,
+    "event": "queued",
+    "home": 0,
+    "key": "25:2",
+    "queued": 1,
+    "time": 1792185084.932642
+  },
+  {
+    "active": 4,
+    "device": 1,
+    "event": "admitted",
+    "home": 0,
+    "key": "25:2",
+    "queued": 0,
+    "time": 1792185084.9435139
+  },
+  {
+    "active": 4,
+    "device": null,
+    "event": "queued",
+    "home": 0,
+    "key": "24:2",
+    "queued": 1,
+    "time": 1792185087.1176152
+  },
+  {
+    "active": 3,
+    "device": 1,
+    "event": "released",
+    "home": 0,
+    "key": "25:2",
+    "queued": 1,
+    "time": 1792185098.012262
+  },
+  {
+    "active": 4,
+    "device": 1,
+    "event": "admitted",
+    "home": 0,
+    "key": "24:2",
+    "queued": 0,
+    "time": 1792185098.039358
+  },
+  {
+    "active": 3,
+    "device": 0,
+    "event": "released",
+    "home": 2,
+    "key": "28:1",
+    "queued": 0,
+    "time": 1792185105.4931018
+  },
+  {
+    "active": 2,
+    "device": 1,
+    "event": "released",
+    "home": 0,
+    "key": "24:2",
+    "queued": 0,
+    "time": 1792185124.7918835
+  },
+  {
+    "active": 1,
+    "device": 3,
+    "event": "released",
+    "home": 3,
+    "key": "30:1",
+    "queued": 0,
+    "time": 1792185173.8833857
+  },
+  {
+    "active": 1,
+    "device": null,
+    "event": "queued",
+    "home": 3,
+    "key": "31:2",
+    "queued": 1,
+    "time": 1792185188.5368483
+  },
+  {
+    "active": 2,
+    "device": 0,
+    "event": "admitted",
+    "home": 3,
+    "key": "31:2",
+    "queued": 0,
+    "time": 1792185188.550313
+  },
+  {
+    "active": 1,
+    "device": 0,
+    "event": "released",
+    "home": 3,
+    "key": "31:2",
+    "queued": 0,
+    "time": 1792185200.7065024
+  },
+  {
+    "active": 1,
+    "device": null,
+    "event": "queued",
+    "home": 2,
+    "key": "28:2",
+    "queued": 1,
+    "time": 1792185204.4485881
+  },
+  {
+    "active": 2,
+    "device": 0,
+    "event": "admitted",
+    "home": 2,
+    "key": "28:2",
+    "queued": 0,
+    "time": 1792185204.458375
+  },
+  {
+    "active": 1,
+    "device": 0,
+    "event": "released",
+    "home": 2,
+    "key": "28:2",
+    "queued": 0,
+    "time": 1792185246.3079453
+  },
+  {
+    "active": 1,
+    "device": null,
+    "event": "queued",
+    "home": 2,
+    "key": "29:2",
+    "queued": 1,
+    "time": 1792185246.8535984
+  },
+  {
+    "active": 2,
+    "device": 0,
+    "event": "admitted",
+    "home": 2,
+    "key": "29:2",
+    "queued": 0,
+    "time": 1792185246.8656135
+  },
+  {
+    "active": 1,
+    "device": 0,
+    "event": "released",
+    "home": 2,
+    "key": "29:2",
+    "queued": 0,
+    "time": 1792185259.3134189
+  },
+  {
+    "active": 1,
+    "device": null,
+    "event": "queued",
+    "home": 0,
+    "key": "24:3",
+    "queued": 1,
+    "time": 1792185272.4887547
+  },
+  {
+    "active": 2,
+    "device": 0,
+    "event": "admitted",
+    "home": 0,
+    "key": "24:3",
+    "queued": 0,
+    "time": 1792185272.5003498
+  },
+  {
+    "active": 1,
+    "device": 2,
+    "event": "released",
+    "home": 1,
+    "key": "26:2",
+    "queued": 0,
+    "time": 1792185300.5285168
+  },
+  {
+    "active": 0,
+    "device": 0,
+    "event": "released",
+    "home": 0,
+    "key": "24:3",
+    "queued": 0,
+    "time": 1792185306.4743984
+  }
+]

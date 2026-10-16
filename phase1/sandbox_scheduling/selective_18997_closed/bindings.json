@@ -1,0 +1,548 @@
+[
+  {
+    "device": 3,
+    "gpu_uuid": "GPU-4a058615-2fd0-56bd-6bda-22caa96b58d0",
+    "index": 0,
+    "key": "0:0"
+  },
+  {
+    "device": 1,
+    "gpu_uuid": "GPU-89807a87-f29f-c724-0483-82d4131474a6",
+    "index": 0,
+    "key": "0:1"
+  },
+  {
+    "device": 0,
+    "gpu_uuid": "GPU-43b9e099-38f8-f1ae-9008-ca93e584f8ee",
+    "index": 1,
+    "key": "1:0"
+  },
+  {
+    "device": 3,
+    "gpu_uuid": "GPU-4a058615-2fd0-56bd-6bda-22caa96b58d0",
+    "index": 1,
+    "key": "1:1"
+  },
+  {
+    "device": 2,
+    "gpu_uuid": "GPU-933b7bac-bb2e-5adc-ef66-33cf94640c41",
+    "index": 2,
+    "key": "2:0"
+  },
+  {
+    "device": 0,
+    "gpu_uuid": "GPU-43b9e099-38f8-f1ae-9008-ca93e584f8ee",
+    "index": 2,
+    "key": "2:1"
+  },
+  {
+    "device": 1,
+    "gpu_uuid": "GPU-89807a87-f29f-c724-0483-82d4131474a6",
+    "index": 3,
+    "key": "3:0"
+  },
+  {
+    "device": 1,
+    "gpu_uuid": "GPU-89807a87-f29f-c724-0483-82d4131474a6",
+    "index": 3,
+    "key": "3:1"
+  },
+  {
+    "device": 0,
+    "gpu_uuid": "GPU-43b9e099-38f8-f1ae-9008-ca93e584f8ee",
+    "index": 3,
+    "key": "3:2"
+  },
+  {
+    "device": 0,
+    "gpu_uuid": "GPU-43b9e099-38f8-f1ae-9008-ca93e584f8ee",
+    "index": 4,
+    "key": "4:0"
+  },
+  {
+    "device": 1,
+    "gpu_uuid": "GPU-89807a87-f29f-c724-0483-82d4131474a6",
+    "index": 4,
+    "key": "4:1"
+  },
+  {
+    "device": 2,
+    "gpu_uuid": "GPU-933b7bac-bb2e-5adc-ef66-33cf94640c41",
+    "index": 4,
+    "key": "4:2"
+  },
+  {
+    "device": 3,
+    "gpu_uuid": "GPU-4a058615-2fd0-56bd-6bda-22caa96b58d0",
+    "index": 5,
+    "key": "5:0"
+  },
+  {
+    "device": 2,
+    "gpu_uuid": "GPU-933b7bac-bb2e-5adc-ef66-33cf94640c41",
+    "index": 5,
+    "key": "5:1"
+  },
+  {
+    "device": 1,
+    "gpu_uuid": "GPU-89807a87-f29f-c724-0483-82d4131474a6",
+    "index": 6,
+    "key": "6:0"
+  },
+  {
+    "device": 0,
+    "gpu_uuid": "GPU-43b9e099-38f8-f1ae-9008-ca93e584f8ee",
+    "index": 6,
+    "key": "6:1"
+  },
+  {
+    "device": 3,
+    "gpu_uuid": "GPU-4a058615-2fd0-56bd-6bda-22caa96b58d0",
+    "index": 6,
+    "key": "6:2"
+  },
+  {
+    "device": 2,
+    "gpu_uuid": "GPU-933b7bac-bb2e-5adc-ef66-33cf94640c41",
+    "index": 7,
+    "key": "7:0"
+  },
+  {
+    "device": 1,
+    "gpu_uuid": "GPU-89807a87-f29f-c724-0483-82d4131474a6",
+    "index": 7,
+    "key": "7:1"
+  },
+  {
+    "device": 2,
+    "gpu_uuid": "GPU-933b7bac-bb2e-5adc-ef66-33cf94640c41",
+    "index": 7,
+    "key": "7:2"
+  },
+  {
+    "device": 3,
+    "gpu_uuid": "GPU-4a058615-2fd0-56bd-6bda-22caa96b58d0",
+    "index": 8,
+    "key": "8:0"
+  },
+  {
+    "device": 0,
+    "gpu_uuid": "GPU-43b9e099-38f8-f1ae-9008-ca93e584f8ee",
+    "index": 8,
+    "key": "8:1"
+  },
+  {
+    "device": 0,
+    "gpu_uuid": "GPU-43b9e099-38f8-f1ae-9008-ca93e584f8ee",
+    "index": 9,
+    "key": "9:0"
+  },
+  {
+    "device": 1,
+    "gpu_uuid": "GPU-89807a87-f29f-c724-0483-82d4131474a6",
+    "index": 9,
+    "key": "9:1"
+  },
+  {
+    "device": 2,
+    "gpu_uuid": "GPU-933b7bac-bb2e-5adc-ef66-33cf94640c41",
+    "index": 9,
+    "key": "9:2"
+  },
+  {
+    "device": 2,
+    "gpu_uuid": "GPU-933b7bac-bb2e-5adc-ef66-33cf94640c41",
+    "index": 10,
+    "key": "10:0"
+  },
+  {
+    "device": 3,
+    "gpu_uuid": "GPU-4a058615-2fd0-56bd-6bda-22caa96b58d0",
+    "index": 10,
+    "key": "10:1"
+  },
+  {
+    "device": 1,
+    "gpu_uuid": "GPU-89807a87-f29f-c724-0483-82d4131474a6",
+    "index": 11,
+    "key": "11:0"
+  },
+  {
+    "device": 2,
+    "gpu_uuid": "GPU-933b7bac-bb2e-5adc-ef66-33cf94640c41",
+    "index": 11,
+    "key": "11:1"
+  },
+  {
+    "device": 3,
+    "gpu_uuid": "GPU-4a058615-2fd0-56bd-6bda-22caa96b58d0",
+    "index": 11,
+    "key": "11:2"
+  },
+  {
+    "device": 1,
+    "gpu_uuid": "GPU-89807a87-f29f-c724-0483-82d4131474a6",
+    "index": 12,
+    "key": "12:0"
+  },
+  {
+    "device": 3,
+    "gpu_uuid": "GPU-4a058615-2fd0-56bd-6bda-22caa96b58d0",
+    "index": 12,
+    "key": "12:1"
+  },
+  {
+    "device": 0,
+    "gpu_uuid": "GPU-43b9e099-38f8-f1ae-9008-ca93e584f8ee",
+    "index": 12,
+    "key": "12:2"
+  },
+  {
+    "device": 3,
+    "gpu_uuid": "GPU-4a058615-2fd0-56bd-6bda-22caa96b58d0",
+    "index": 13,
+    "key": "13:0"
+  },
+  {
+    "device": 1,
+    "gpu_uuid": "GPU-89807a87-f29f-c724-0483-82d4131474a6",
+    "index": 13,
+    "key": "13:1"
+  },
+  {
+    "device": 2,
+    "gpu_uuid": "GPU-933b7bac-bb2e-5adc-ef66-33cf94640c41",
+    "index": 13,
+    "key": "13:2"
+  },
+  {
+    "device": 0,
+    "gpu_uuid": "GPU-43b9e099-38f8-f1ae-9008-ca93e584f8ee",
+    "index": 14,
+    "key": "14:0"
+  },
+  {
+    "device": 2,
+    "gpu_uuid": "GPU-933b7bac-bb2e-5adc-ef66-33cf94640c41",
+    "index": 14,
+    "key": "14:1"
+  },
+  {
+    "device": 0,
+    "gpu_uuid": "GPU-43b9e099-38f8-f1ae-9008-ca93e584f8ee",
+    "index": 14,
+    "key": "14:2"
+  },
+  {
+    "device": 2,
+    "gpu_uuid": "GPU-933b7bac-bb2e-5adc-ef66-33cf94640c41",
+    "index": 14,
+    "key": "14:3"
+  },
+  {
+    "device": 2,
+    "gpu_uuid": "GPU-933b7bac-bb2e-5adc-ef66-33cf94640c41",
+    "index": 15,
+    "key": "15:0"
+  },
+  {
+    "device": 1,
+    "gpu_uuid": "GPU-89807a87-f29f-c724-0483-82d4131474a6",
+    "index": 15,
+    "key": "15:1"
+  },
+  {
+    "device": 2,
+    "gpu_uuid": "GPU-933b7bac-bb2e-5adc-ef66-33cf94640c41",
+    "index": 15,
+    "key": "15:2"
+  },
+  {
+    "device": 1,
+    "gpu_uuid": "GPU-89807a87-f29f-c724-0483-82d4131474a6",
+    "index": 15,
+    "key": "15:3"
+  },
+  {
+    "device": 3,
+    "gpu_uuid": "GPU-4a058615-2fd0-56bd-6bda-22caa96b58d0",
+    "index": 16,
+    "key": "16:0"
+  },
+  {
+    "device": 1,
+    "gpu_uuid": "GPU-89807a87-f29f-c724-0483-82d4131474a6",
+    "index": 16,
+    "key": "16:1"
+  },
+  {
+    "device": 3,
+    "gpu_uuid": "GPU-4a058615-2fd0-56bd-6bda-22caa96b58d0",
+    "index": 16,
+    "key": "16:2"
+  },
+  {
+    "device": 2,
+    "gpu_uuid": "GPU-933b7bac-bb2e-5adc-ef66-33cf94640c41",
+    "index": 17,
+    "key": "17:0"
+  },
+  {
+    "device": 2,
+    "gpu_uuid": "GPU-933b7bac-bb2e-5adc-ef66-33cf94640c41",
+    "index": 17,
+    "key": "17:1"
+  },
+  {
+    "device": 1,
+    "gpu_uuid": "GPU-89807a87-f29f-c724-0483-82d4131474a6",
+    "index": 18,
+    "key": "18:0"
+  },
+  {
+    "device": 0,
+    "gpu_uuid": "GPU-43b9e099-38f8-f1ae-9008-ca93e584f8ee",
+    "index": 18,
+    "key": "18:1"
+  },
+  {
+    "device": 0,
+    "gpu_uuid": "GPU-43b9e099-38f8-f1ae-9008-ca93e584f8ee",
+    "index": 18,
+    "key": "18:2"
+  },
+  {
+    "device": 0,
+    "gpu_uuid": "GPU-43b9e099-38f8-f1ae-9008-ca93e584f8ee",
+    "index": 19,
+    "key": "19:0"
+  },
+  {
+    "device": 3,
+    "gpu_uuid": "GPU-4a058615-2fd0-56bd-6bda-22caa96b58d0",
+    "index": 19,
+    "key": "19:1"
+  },
+  {
+    "device": 1,
+    "gpu_uuid": "GPU-89807a87-f29f-c724-0483-82d4131474a6",
+    "index": 19,
+    "key": "19:2"
+  },
+  {
+    "device": 2,
+    "gpu_uuid": "GPU-933b7bac-bb2e-5adc-ef66-33cf94640c41",
+    "index": 20,
+    "key": "20:0"
+  },
+  {
+    "device": 0,
+    "gpu_uuid": "GPU-43b9e099-38f8-f1ae-9008-ca93e584f8ee",
+    "index": 20,
+    "key": "20:1"
+  },
+  {
+    "device": 0,
+    "gpu_uuid": "GPU-43b9e099-38f8-f1ae-9008-ca93e584f8ee",
+    "index": 20,
+    "key": "20:2"
+  },
+  {
+    "device": 1,
+    "gpu_uuid": "GPU-89807a87-f29f-c724-0483-82d4131474a6",
+    "index": 21,
+    "key": "21:0"
+  },
+  {
+    "device": 2,
+    "gpu_uuid": "GPU-933b7bac-bb2e-5adc-ef66-33cf94640c41",
+    "index": 21,
+    "key": "21:1"
+  },
+  {
+    "device": 3,
+    "gpu_uuid": "GPU-4a058615-2fd0-56bd-6bda-22caa96b58d0",
+    "index": 21,
+    "key": "21:2"
+  },
+  {
+    "device": 0,
+    "gpu_uuid": "GPU-43b9e099-38f8-f1ae-9008-ca93e584f8ee",
+    "index": 22,
+    "key": "22:0"
+  },
+  {
+    "device": 1,
+    "gpu_uuid": "GPU-89807a87-f29f-c724-0483-82d4131474a6",
+    "index": 22,
+    "key": "22:1"
+  },
+  {
+    "device": 3,
+    "gpu_uuid": "GPU-4a058615-2fd0-56bd-6bda-22caa96b58d0",
+    "index": 22,
+    "key": "22:2"
+  },
+  {
+    "device": 1,
+    "gpu_uuid": "GPU-89807a87-f29f-c724-0483-82d4131474a6",
+    "index": 23,
+    "key": "23:0"
+  },
+  {
+    "device": 0,
+    "gpu_uuid": "GPU-43b9e099-38f8-f1ae-9008-ca93e584f8ee",
+    "index": 23,
+    "key": "23:1"
+  },
+  {
+    "device": 3,
+    "gpu_uuid": "GPU-4a058615-2fd0-56bd-6bda-22caa96b58d0",
+    "index": 23,
+    "key": "23:2"
+  },
+  {
+    "device": 2,
+    "gpu_uuid": "GPU-933b7bac-bb2e-5adc-ef66-33cf94640c41",
+    "index": 23,
+    "key": "23:3"
+  },
+  {
+    "device": 3,
+    "gpu_uuid": "GPU-4a058615-2fd0-56bd-6bda-22caa96b58d0",
+    "index": 24,
+    "key": "24:0"
+  },
+  {
+    "device": 0,
+    "gpu_uuid": "GPU-43b9e099-38f8-f1ae-9008-ca93e584f8ee",
+    "index": 24,
+    "key": "24:1"
+  },
+  {
+    "device": 1,
+    "gpu_uuid": "GPU-89807a87-f29f-c724-0483-82d4131474a6",
+    "index": 24,
+    "key": "24:2"
+  },
+  {
+    "device": 0,
+    "gpu_uuid": "GPU-43b9e099-38f8-f1ae-9008-ca93e584f8ee",
+    "index": 24,
+    "key": "24:3"
+  },
+  {
+    "device": 3,
+    "gpu_uuid": "GPU-4a058615-2fd0-56bd-6bda-22caa96b58d0",
+    "index": 25,
+    "key": "25:0"
+  },
+  {
+    "device": 1,
+    "gpu_uuid": "GPU-89807a87-f29f-c724-0483-82d4131474a6",
+    "index": 25,
+    "key": "25:1"
+  },
+  {
+    "device": 1,
+    "gpu_uuid": "GPU-89807a87-f29f-c724-0483-82d4131474a6",
+    "index": 25,
+    "key": "25:2"
+  },
+  {
+    "device": 3,
+    "gpu_uuid": "GPU-4a058615-2fd0-56bd-6bda-22caa96b58d0",
+    "index": 26,
+    "key": "26:0"
+  },
+  {
+    "device": 3,
+    "gpu_uuid": "GPU-4a058615-2fd0-56bd-6bda-22caa96b58d0",
+    "index": 26,
+    "key": "26:1"
+  },
+  {
+    "device": 2,
+    "gpu_uuid": "GPU-933b7bac-bb2e-5adc-ef66-33cf94640c41",
+    "index": 26,
+    "key": "26:2"
+  },
+  {
+    "device": 3,
+    "gpu_uuid": "GPU-4a058615-2fd0-56bd-6bda-22caa96b58d0",
+    "index": 27,
+    "key": "27:0"
+  },
+  {
+    "device": 1,
+    "gpu_uuid": "GPU-89807a87-f29f-c724-0483-82d4131474a6",
+    "index": 27,
+    "key": "27:1"
+  },
+  {
+    "device": 1,
+    "gpu_uuid": "GPU-89807a87-f29f-c724-0483-82d4131474a6",
+    "index": 28,
+    "key": "28:0"
+  },
+  {
+    "device": 0,
+    "gpu_uuid": "GPU-43b9e099-38f8-f1ae-9008-ca93e584f8ee",
+    "index": 28,
+    "key": "28:1"
+  },
+  {
+    "device": 0,
+    "gpu_uuid": "GPU-43b9e099-38f8-f1ae-9008-ca93e584f8ee",
+    "index": 28,
+    "key": "28:2"
+  },
+  {
+    "device": 2,
+    "gpu_uuid": "GPU-933b7bac-bb2e-5adc-ef66-33cf94640c41",
+    "index": 29,
+    "key": "29:0"
+  },
+  {
+    "device": 2,
+    "gpu_uuid": "GPU-933b7bac-bb2e-5adc-ef66-33cf94640c41",
+    "index": 29,
+    "key": "29:1"
+  },
+  {
+    "device": 0,
+    "gpu_uuid": "GPU-43b9e099-38f8-f1ae-9008-ca93e584f8ee",
+    "index": 29,
+    "key": "29:2"
+  },
+  {
+    "device": 0,
+    "gpu_uuid": "GPU-43b9e099-38f8-f1ae-9008-ca93e584f8ee",
+    "index": 30,
+    "key": "30:0"
+  },
+  {
+    "device": 3,
+    "gpu_uuid": "GPU-4a058615-2fd0-56bd-6bda-22caa96b58d0",
+    "index": 30,
+    "key": "30:1"
+  },
+  {
+    "device": 2,
+    "gpu_uuid": "GPU-933b7bac-bb2e-5adc-ef66-33cf94640c41",
+    "index": 31,
+    "key": "31:0"
+  },
+  {
+    "device": 2,
+    "gpu_uuid": "GPU-933b7bac-bb2e-5adc-ef66-33cf94640c41",
+    "index": 31,
+    "key": "31:1"
+  },
+  {
+    "device": 0,
+    "gpu_uuid": "GPU-43b9e099-38f8-f1ae-9008-ca93e584f8ee",
+    "index": 31,
+    "key": "31:2"
+  }
+]

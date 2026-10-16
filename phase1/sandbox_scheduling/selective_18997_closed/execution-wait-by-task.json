@@ -1,0 +1,109 @@
+{
+  "schema": 1,
+  "summary_sha256": "0bd972126ab1bb9427ea93e446be3d3e245955c8bd5aa7e08778b7afa05c3514",
+  "hashes": {
+    "queue-0.json": "b3d51a4fc756cfe7c71e53677ed658c9f58737cd5f818883891fb734de0c1e96",
+    "queue-1.json": "3748b0f8ce715cb3b2c835ebbc69bedae5d197b1e7ae6da8e651fb9f46e52d60",
+    "queue-2.json": "4792a6f7d35b0fc573311534f13d1d9c46bacf1857339b7bdebc4bfd4b1d11ab",
+    "queue-3.json": "d7bcb4857aca0c6bac0c63e4add24742f94bdcfd60375c59cb2cfd9da0ae3c8b"
+  },
+  "rows": [
+    {
+      "block": 0,
+      "mode": "shared",
+      "task": "aerial-cactus-identification",
+      "queued": 10,
+      "admitted": 10,
+      "cancelled": 0,
+      "cancelled_wait_seconds": 0,
+      "admitted_wait_seconds": 475.80058431625366,
+      "wait_median": 20.30807673931122,
+      "wait_max": 172.41637992858887
+    },
+    {
+      "block": 0,
+      "mode": "shared",
+      "task": "denoising-dirty-documents",
+      "queued": 11,
+      "admitted": 10,
+      "cancelled": 1,
+      "cancelled_wait_seconds": 80.54963994026184,
+      "admitted_wait_seconds": 781.491795539856,
+      "wait_median": 99.98433899879456,
+      "wait_max": 165.4331967830658
+    },
+    {
+      "block": 1,
+      "mode": "selective",
+      "task": "aerial-cactus-identification",
+      "queued": 11,
+      "admitted": 11,
+      "cancelled": 0,
+      "cancelled_wait_seconds": 0,
+      "admitted_wait_seconds": 0.1270160675048828,
+      "wait_median": 0.011996269226074219,
+      "wait_max": 0.014703989028930664
+    },
+    {
+      "block": 1,
+      "mode": "selective",
+      "task": "denoising-dirty-documents",
+      "queued": 13,
+      "admitted": 13,
+      "cancelled": 0,
+      "cancelled_wait_seconds": 0,
+      "admitted_wait_seconds": 566.1705114841461,
+      "wait_median": 8.75883960723877,
+      "wait_max": 152.0575189590454
+    },
+    {
+      "block": 2,
+      "mode": "selective",
+      "task": "aerial-cactus-identification",
+      "queued": 12,
+      "admitted": 12,
+      "cancelled": 0,
+      "cancelled_wait_seconds": 0,
+      "admitted_wait_seconds": 0.11638903617858887,
+      "wait_median": 0.00928187370300293,
+      "wait_max": 0.011420249938964844
+    },
+    {
+      "block": 2,
+      "mode": "selective",
+      "task": "denoising-dirty-documents",
+      "queued": 12,
+      "admitted": 12,
+      "cancelled": 0,
+      "cancelled_wait_seconds": 0,
+      "admitted_wait_seconds": 671.8151636123657,
+      "wait_median": 40.43965280056,
+      "wait_max": 147.6779887676239
+    },
+    {
+      "block": 3,
+      "mode": "shared",
+      "task": "aerial-cactus-identification",
+      "queued": 12,
+      "admitted": 12,
+      "cancelled": 0,
+      "cancelled_wait_seconds": 0,
+      "admitted_wait_seconds": 322.6428451538086,
+      "wait_median": 0.012317776679992676,
+      "wait_max": 137.9679400920868
+    },
+    {
+      "block": 3,
+      "mode": "shared",
+      "task": "denoising-dirty-documents",
+      "queued": 11,
+      "admitted": 11,
+      "cancelled": 0,
+      "cancelled_wait_seconds": 0,
+      "admitted_wait_seconds": 419.358167886734,
+      "wait_median": 0.013464689254760742,
+      "wait_max": 208.7034947872162
+    }
+  ],
+  "limitation": "Descriptive after closure, not a new quality gate or causal latency mediation. Sum includes concurrent requests, not wall time or GPU savings."
+}

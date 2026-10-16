@@ -1,0 +1,8 @@
+{
+  "pairs": 16,
+  "same_code": 3,
+  "same_ast": 3,
+  "physical_sha256": "b87aa52b18e0e06b02e888bd988bca2c6b9ba4c7e454f3da9829119fad0fab3e",
+  "independent_pair_recompute": true,
+  "raw_code_ast_recompute": false
+}

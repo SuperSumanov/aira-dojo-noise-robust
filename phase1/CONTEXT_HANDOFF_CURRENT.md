@@ -1,7 +1,7 @@
 # 当前短交接：现场、证据与恢复动作
 
 最后核验：2026-10-17香港05:24封存回执。授权窗口02:49–08:49，用户批准同范围自主批次，持续在会话推进，无需重复请批。
-18997于05:17:38在gpu3六卡COMPLETED；32完整/35外部DEV重评分、独立Node及12传输SHA通过，质量门false：去噪两次更差，Aerial两次略高。30540GPU秒；旧18987733GPU秒另计。无活动GPU，独立quota32正在CPU准备，尚未提交。条件diverse仍禁止提交。
+18997于05:17:38在gpu3六卡COMPLETED；32完整/35外部DEV重评分、独立Node及12传输SHA通过，质量门false：去噪两次更差，Aerial两次略高。30540GPU秒；旧18987733GPU秒另计。独立quota32的CPU准备已通过，05:27开始submit/session94841校验模型镜像，尚无job号，绝不重复提交。条件diverse仍禁止提交。
 
 ## checkout、Git与边界
 
@@ -50,8 +50,9 @@
 - 新只读证据：18807四池固定2/task生成许可有123.56–287.05s可借用状态；独立积分回执quota-borrowing-independent.json。408vLLM采样Waiting全0、Running≤4、KV≤13.3%；不是空闲算力或可节省时长。两安全传输SHA已核，原日志未导出。
 - 余时核算已公开098a4b44：≥300秒余时每池仍有95.71323990821838/117.8350818157196/123.41448783874512/167.92554330825806秒机会，主要analysis/debug等待。quota-slack原件SHA d9c4bfb490baf1a6924262ee72939c07d163e6eb79ba2b0173d6fef710de5181；4CPU测试、独立Node积分/传输SHA通过，不是额外完成数或收益。
 - 旧18807发布延迟诊断SHA c8ce2d7ede1241d9ff09c366af76f55886f949dba292e4e78b26e8e16c35e827已传输核验：38有效/37发布/1截止前未发布，仅1次真实Improve可能切换至更好尚未发布父程序。原始join尚未独立复验，不能升级方法信号；不为此开第三GPU方案。文件feedback-publication-20261017-v1.safe.json。
-- 独立quota32已在selective读出前冻结，prepare source044cd889471417f357edfa6dcf8fdd2c7e262477（source中旧combined/new-window cap字段只界定本批，不是整个用户窗口总额）。root=scheduling-generation-quota-20261017-v1；05:18启动CPU prepare/session51261，尚未submit。partitioned2+2 vs pooled4、同全局analyze优先/FIFO、执行均shared cap1，≤100min10GPUh。须等真实32输入/双模式信号门，固定原终分门和两个pooled池实际借用；提交前后须剩≥110min，不救selective、不做第三GPU批。
+- 独立quota32已在selective读出前冻结，source044cd889471417f357edfa6dcf8fdd2c7e262477（旧combined/new-window cap只界定本批，不是整个窗口总额）。root=scheduling-generation-quota-20261017-v1；CPU32输入/实际selector双模式门通过，planSHAf08b3052fcecf467f500b5b9aa6638087c602321ca3a81bf22ef8b65a55b41f9。submit/session94841在hash，无job前不是开跑。partitioned2+2 vs pooled4、同全局analyze优先/FIFO、执行均shared cap1，≤100min10GPUh；原终分门+两pooled池实际借用，提交/获卡须剩≥110min，不救selective、不做第三GPU批。
 - 公开0bb807ab新增只读quota角色时序分析，自测通过；只分解代码/分析/调试的排队、请求占用和取消，不是新成功门。安全文件待完整closure后使用；不把request秒求和当墙钟节省。
+- 18997首程序诊断SHA b87aa52b18e0e06b02e888bd988bca2c6b9ba4c7e454f3da9829119fad0fab3e：16对同首prompt/配置seed，首尝试raw/AST仅3对相同、去噪0/8。独立配对计数/传输SHA通过，未独立重提取代码AST，不能指认服务原因，也不能把配对seed当同提案。原质量门不改；同目录first-program-pairing回执。
 - 32条前必须完成真实输入矩阵、实际双模式CPU信号场景、common readiness及worker异常停止门；22本地CPU测试通过。若不胜不补seed；不自称新算法/胜SchedMate。六卡diverse包不得误submit。
 - 旧一次提醒已删除；本轮继续本会话到08:49，不建重复跟进/长报告。当前无外部权限或节点阻塞，不碰旧12535。
 

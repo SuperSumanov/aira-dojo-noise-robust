@@ -1,0 +1,1650 @@
+{
+  "plan_sha256": "36ce5852b26de2299755c19a8b9711a1f4161d68abd25a3de6cc7687cdde8560",
+  "reader_sha256": "d686f751fd4c205059a191d461d671c6996ac5857b2ec676a13c32fd4845e786",
+  "source_hashes": {
+    "block-0/budget-slot.json": "da929630a414f2c75ae6cbbcbf8f7da348f6139d4de21b63e12116084afd58c3",
+    "episode-0/deadline.json": "e8818f312518aea803a027581d83719c5dbdfd120235210d5d429f453ca027b7",
+    "episode-1/deadline.json": "1707b77d2d0848020310933e06206e232fd72c04ae350f48cf059bc8b803eeac",
+    "episode-2/deadline.json": "e8e511a37d67e60d2afbd87f5019cdf5bab29912bbecaa2622f401a4e2db3f9c",
+    "episode-3/deadline.json": "aa51eabe25001e313485ce95d8b2467c40e502dce1012963e62904e92f1e5fb3",
+    "episode-4/deadline.json": "f96ae99f8939ef5b8fb2ab91c32b18ede3bb6fe391ba510211352d6763604868",
+    "episode-5/deadline.json": "a2dd5b182ec84cf45ace54ae8ea34733dc0d0ba62cbdd44a3beebd13f592932a",
+    "episode-6/deadline.json": "29f3e54cf4e0cd71f6c3c142d6e53b086632025a49c41a3688d4da8fbb73b9c6",
+    "episode-7/deadline.json": "58b4ad57fcc666c4d793bbb2b92ee9db4033adc32e7fd88d488001037c18efc0",
+    "generation-0/events.jsonl": "d5a40f5bd563b6e05c96b5395414e154bccdb3d25d05718495b0ac6bbb30f4f5",
+    "block-1/budget-slot.json": "1c5bbfe7870a43ddaf0fce1aed6ed9cf225371ca7c33ede98c2fab6f0531bb98",
+    "episode-8/deadline.json": "7a88fb7a4be0549493f0c4191885561e4a46279f206d95767f160ac8bafa35f2",
+    "episode-9/deadline.json": "24b4d310a88b03439a02ab6338761a4adaabd9de4bf9e96871d2c4999ae2a99b",
+    "episode-10/deadline.json": "14f489e0fa81da223d913812ab212c638ac93509ea5742bb3417d995423f8389",
+    "episode-11/deadline.json": "f7df62efe1148f2f9ad79515018d4b4eea997bec4f053931c36c6546366d33a7",
+    "episode-12/deadline.json": "7142444cfbd06046f9964aae33c3e8d6d6dfc50433db53dbcc7b51efa518b990",
+    "episode-13/deadline.json": "74ff1776e515344118e5d9ad5e67542cab339d31edcdaa0789946d94ed84ea4d",
+    "episode-14/deadline.json": "4b51eeb27440a82f0fc31d3ccd3eb0252aa7922fac2354373ddead9c031ca722",
+    "episode-15/deadline.json": "9f1f0b302cf48642f2f4937eb44a7f76cd43088028f07387c6e566579da279ce",
+    "generation-1/events.jsonl": "87d9c104456134525b8fc726b1e83532b50950553804587ce7b57f35d02a4268",
+    "block-2/budget-slot.json": "4078aac73d282b505160211887b14b8993a8221edbe66959d2b0cd87b02bf7a5",
+    "episode-16/deadline.json": "f4605dfa6c93f394278f1c20222b657d95f33b824f4856dcd2eb6c713f693a76",
+    "episode-17/deadline.json": "374ab6f39ff7ed6f8bcc05877b1d0023ae6a4e1d82222ad831684779d748ddd0",
+    "episode-18/deadline.json": "3db1f534a4dd7280577b946f13fc15ebfd1b2dd95f0530f3aeb901ed099bd4ad",
+    "episode-19/deadline.json": "763b0b354439ab7a409fdc4ed1d6535e4f8bada6f2cae274ab1e5b0ab49efbd1",
+    "episode-20/deadline.json": "2935cbb6e46a469a8af66373a5c3236633d3ba6fa03df4dc4cfc56bcd14c5b3d",
+    "episode-21/deadline.json": "e2a11fd60721eb663d125978623146492efd4e42f57dea3790654c7d0e47f505",
+    "episode-22/deadline.json": "8bc6254043535a9f1bb3351273844c2618d65e644a42d235cbf0766532c371bc",
+    "episode-23/deadline.json": "c8e877c44222c74a1e8f733d0957830272dd6a3a300c97f3ae125bb7790bd1de",
+    "generation-2/events.jsonl": "cab98c4462e0863b021adcdec7da3f5ed2603bbd54d96ac1f137baef12b9061a",
+    "block-3/budget-slot.json": "1d2b60430873d27a5f730c32e9f50a44899f7c46e943c6380bee9819274c2f3d",
+    "episode-24/deadline.json": "0bdae0e0bbc1d2df441c35f57472748a8284700c68173060117afd226006eb1c",
+    "episode-25/deadline.json": "c259e71f7a545aeb82422dba91c80cdf0b8ec6f5cb7c8f080d99d39c5584dcc6",
+    "episode-26/deadline.json": "f94bd381651a7f41b52bea13ae71efcd7af028e5b6c879a898083cc817af6654",
+    "episode-27/deadline.json": "84d030b636a55033f124bc75541f67b0b2244548b2cb726c9f4cac5b73a389f5",
+    "episode-28/deadline.json": "37bd6703d2277f71437508bd936933f45c3ff7f16ebef79246ef13ebddfabd00",
+    "episode-29/deadline.json": "79dae7eacd11a8475b2c7164e671642cdc099d0f9535df70e6576e082d23ed20",
+    "episode-30/deadline.json": "18beb69246eb77554eae3649d73ae909c1dcaf5b3a8b38a35fc6e6433caefc56",
+    "episode-31/deadline.json": "2f6cc03d6b75acebe082a21bb7c8608444bcc90eedf15eb294e040ffda542fda",
+    "generation-3/events.jsonl": "2cad41fcff455ad6d4828cf8c54ba89959345df003710cb4af21e20e0f99f90b"
+  },
+  "pools": [
+    {
+      "block": 0,
+      "observed_borrowable_wall_seconds": 236.49948596954346,
+      "by_slack": [
+        {
+          "minimum_remaining_seconds": 0,
+          "wall": 236.49948596954346,
+          "permits": 237.26880931854248,
+          "requests": 369.24263072013855,
+          "request_seconds_by_role": {
+            "draft": 0,
+            "improve": 0.1148233413696289,
+            "debug": 274.8390347957611,
+            "analyze": 94.28877258300781
+          }
+        },
+        {
+          "minimum_remaining_seconds": 60,
+          "wall": 236.49948596954346,
+          "permits": 237.26880931854248,
+          "requests": 369.24263072013855,
+          "request_seconds_by_role": {
+            "draft": 0,
+            "improve": 0.1148233413696289,
+            "debug": 274.8390347957611,
+            "analyze": 94.28877258300781
+          }
+        },
+        {
+          "minimum_remaining_seconds": 300,
+          "wall": 95.71323990821838,
+          "permits": 95.71323990821838,
+          "requests": 164.27018666267395,
+          "request_seconds_by_role": {
+            "draft": 0,
+            "improve": 0.1148233413696289,
+            "debug": 134.05278873443604,
+            "analyze": 30.102574586868286
+          }
+        },
+        {
+          "minimum_remaining_seconds": 600,
+          "wall": 0.9352102279663086,
+          "permits": 0.9352102279663086,
+          "requests": 0.9518673419952393,
+          "request_seconds_by_role": {
+            "draft": 0,
+            "improve": 0.1148233413696289,
+            "debug": 0,
+            "analyze": 0.8370440006256104
+          }
+        }
+      ],
+      "segments": [
+        {
+          "seconds": 0.016657114028930664,
+          "spare": 1,
+          "blocked": [
+            {
+              "task": 0,
+              "role": "improve",
+              "slack_at_start": 893.6259512901306
+            },
+            {
+              "task": 0,
+              "role": "improve",
+              "slack_at_start": 893.684011220932
+            }
+          ]
+        },
+        {
+          "seconds": 0.05184578895568848,
+          "spare": 1,
+          "blocked": [
+            {
+              "task": 1,
+              "role": "improve",
+              "slack_at_start": 881.705573797226
+            }
+          ]
+        },
+        {
+          "seconds": 0.0296633243560791,
+          "spare": 1,
+          "blocked": [
+            {
+              "task": 1,
+              "role": "improve",
+              "slack_at_start": 874.6642928123474
+            }
+          ]
+        },
+        {
+          "seconds": 0.03136396408081055,
+          "spare": 1,
+          "blocked": [
+            {
+              "task": 1,
+              "role": "analyze",
+              "slack_at_start": 782.1549317836761
+            }
+          ]
+        },
+        {
+          "seconds": 0.01179051399230957,
+          "spare": 1,
+          "blocked": [
+            {
+              "task": 1,
+              "role": "analyze",
+              "slack_at_start": 775.7842133045197
+            }
+          ]
+        },
+        {
+          "seconds": 0.0397648811340332,
+          "spare": 1,
+          "blocked": [
+            {
+              "task": 1,
+              "role": "analyze",
+              "slack_at_start": 772.7175574302673
+            }
+          ]
+        },
+        {
+          "seconds": 0.01821136474609375,
+          "spare": 1,
+          "blocked": [
+            {
+              "task": 1,
+              "role": "analyze",
+              "slack_at_start": 772.6777925491333
+            }
+          ]
+        },
+        {
+          "seconds": 0.03227353096008301,
+          "spare": 1,
+          "blocked": [
+            {
+              "task": 1,
+              "role": "analyze",
+              "slack_at_start": 765.4889752864838
+            }
+          ]
+        },
+        {
+          "seconds": 0.014351606369018555,
+          "spare": 1,
+          "blocked": [
+            {
+              "task": 1,
+              "role": "analyze",
+              "slack_at_start": 765.4567017555237
+            }
+          ]
+        },
+        {
+          "seconds": 0.6892881393432617,
+          "spare": 2,
+          "blocked": [
+            {
+              "task": 1,
+              "role": "analyze",
+              "slack_at_start": 630.2808549404144
+            }
+          ]
+        },
+        {
+          "seconds": 0.033467769622802734,
+          "spare": 1,
+          "blocked": [
+            {
+              "task": 1,
+              "role": "analyze",
+              "slack_at_start": 467.938738822937
+            }
+          ]
+        },
+        {
+          "seconds": 0.008826494216918945,
+          "spare": 1,
+          "blocked": [
+            {
+              "task": 1,
+              "role": "analyze",
+              "slack_at_start": 467.9052710533142
+            }
+          ]
+        },
+        {
+          "seconds": 39.31705331802368,
+          "spare": 1,
+          "blocked": [
+            {
+              "task": 1,
+              "role": "debug",
+              "slack_at_start": 394.8440601825714
+            },
+            {
+              "task": 1,
+              "role": "debug",
+              "slack_at_start": 394.78375816345215
+            }
+          ]
+        },
+        {
+          "seconds": 0.011760234832763672,
+          "spare": 1,
+          "blocked": [
+            {
+              "task": 1,
+              "role": "debug",
+              "slack_at_start": 355.4128484725952
+            }
+          ]
+        },
+        {
+          "seconds": 8.906966209411621,
+          "spare": 2,
+          "blocked": [
+            {
+              "task": 1,
+              "role": "debug",
+              "slack_at_start": 355.40108823776245
+            }
+          ]
+        },
+        {
+          "seconds": 0.01272130012512207,
+          "spare": 2,
+          "blocked": [
+            {
+              "task": 1,
+              "role": "debug",
+              "slack_at_start": 346.49412202835083
+            }
+          ]
+        },
+        {
+          "seconds": 8.437698125839233,
+          "spare": 1,
+          "blocked": [
+            {
+              "task": 1,
+              "role": "debug",
+              "slack_at_start": 346.4814007282257
+            }
+          ]
+        },
+        {
+          "seconds": 0.026106595993041992,
+          "spare": 2,
+          "blocked": [
+            {
+              "task": 1,
+              "role": "debug",
+              "slack_at_start": 338.0437026023865
+            }
+          ]
+        },
+        {
+          "seconds": 0.016959190368652344,
+          "spare": 2,
+          "blocked": [
+            {
+              "task": 1,
+              "role": "debug",
+              "slack_at_start": 338.01759600639343
+            }
+          ]
+        },
+        {
+          "seconds": 1.0949254035949707,
+          "spare": 1,
+          "blocked": [
+            {
+              "task": 1,
+              "role": "debug",
+              "slack_at_start": 338.0006368160248
+            }
+          ]
+        },
+        {
+          "seconds": 29.223236322402954,
+          "spare": 1,
+          "blocked": [
+            {
+              "task": 1,
+              "role": "debug",
+              "slack_at_start": 336.9057114124298
+            },
+            {
+              "task": 1,
+              "role": "analyze",
+              "slack_at_start": 336.96149039268494
+            }
+          ]
+        },
+        {
+          "seconds": 5.213964939117432,
+          "spare": 1,
+          "blocked": [
+            {
+              "task": 1,
+              "role": "debug",
+              "slack_at_start": 307.6741042137146
+            }
+          ]
+        },
+        {
+          "seconds": 8.275707721710205,
+          "spare": 1,
+          "blocked": [
+            {
+              "task": 1,
+              "role": "debug",
+              "slack_at_start": 302.4743437767029
+            }
+          ]
+        },
+        {
+          "seconds": 63.4168746471405,
+          "spare": 1,
+          "blocked": [
+            {
+              "task": 1,
+              "role": "debug",
+              "slack_at_start": 294.1986360549927
+            },
+            {
+              "task": 1,
+              "role": "analyze",
+              "slack_at_start": 294.0948860645294
+            }
+          ]
+        },
+        {
+          "seconds": 0.7693233489990234,
+          "spare": 2,
+          "blocked": [
+            {
+              "task": 1,
+              "role": "debug",
+              "slack_at_start": 230.78176140785217
+            },
+            {
+              "task": 1,
+              "role": "analyze",
+              "slack_at_start": 230.67801141738892
+            }
+          ]
+        },
+        {
+          "seconds": 8.733511209487915,
+          "spare": 2,
+          "blocked": [
+            {
+              "task": 1,
+              "role": "debug",
+              "slack_at_start": 229.9867560863495
+            }
+          ]
+        },
+        {
+          "seconds": 2.445648431777954,
+          "spare": 2,
+          "blocked": [
+            {
+              "task": 1,
+              "role": "debug",
+              "slack_at_start": 221.1058714389801
+            }
+          ]
+        },
+        {
+          "seconds": 0.012678384780883789,
+          "spare": 2,
+          "blocked": [
+            {
+              "task": 1,
+              "role": "debug",
+              "slack_at_start": 218.66022300720215
+            }
+          ]
+        },
+        {
+          "seconds": 7.735266447067261,
+          "spare": 1,
+          "blocked": [
+            {
+              "task": 1,
+              "role": "debug",
+              "slack_at_start": 218.64754462242126
+            }
+          ]
+        },
+        {
+          "seconds": 0.08150076866149902,
+          "spare": 2,
+          "blocked": [
+            {
+              "task": 1,
+              "role": "debug",
+              "slack_at_start": 210.912278175354
+            }
+          ]
+        },
+        {
+          "seconds": 0.02284097671508789,
+          "spare": 2,
+          "blocked": [
+            {
+              "task": 1,
+              "role": "debug",
+              "slack_at_start": 210.8307774066925
+            }
+          ]
+        },
+        {
+          "seconds": 51.76723790168762,
+          "spare": 1,
+          "blocked": [
+            {
+              "task": 1,
+              "role": "debug",
+              "slack_at_start": 210.80793642997742
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "block": 1,
+      "observed_borrowable_wall_seconds": 213.70619225502014,
+      "by_slack": [
+        {
+          "minimum_remaining_seconds": 0,
+          "wall": 213.6993851661682,
+          "permits": 213.77251291275024,
+          "requests": 225.30099272727966,
+          "request_seconds_by_role": {
+            "draft": 0,
+            "improve": 0.10871648788452148,
+            "debug": 0,
+            "analyze": 225.19227623939514
+          }
+        },
+        {
+          "minimum_remaining_seconds": 60,
+          "wall": 207.9340569972992,
+          "permits": 207.9340569972992,
+          "requests": 213.77566146850586,
+          "request_seconds_by_role": {
+            "draft": 0,
+            "improve": 0.10871648788452148,
+            "debug": 0,
+            "analyze": 213.66694498062134
+          }
+        },
+        {
+          "minimum_remaining_seconds": 300,
+          "wall": 117.8350818157196,
+          "permits": 117.8350818157196,
+          "requests": 123.67668628692627,
+          "request_seconds_by_role": {
+            "draft": 0,
+            "improve": 0.10871648788452148,
+            "debug": 0,
+            "analyze": 123.56796979904175
+          }
+        },
+        {
+          "minimum_remaining_seconds": 600,
+          "wall": 75.11308693885803,
+          "permits": 75.11308693885803,
+          "requests": 75.1674451828003,
+          "request_seconds_by_role": {
+            "draft": 0,
+            "improve": 0.10871648788452148,
+            "debug": 0,
+            "analyze": 75.05872869491577
+          }
+        }
+      ],
+      "segments": [
+        {
+          "seconds": 0.009939432144165039,
+          "spare": 1,
+          "blocked": [
+            {
+              "task": 0,
+              "role": "improve",
+              "slack_at_start": 905.8955054283142
+            },
+            {
+              "task": 0,
+              "role": "improve",
+              "slack_at_start": 905.9792132377625
+            }
+          ]
+        },
+        {
+          "seconds": 0.0444188117980957,
+          "spare": 1,
+          "blocked": [
+            {
+              "task": 0,
+              "role": "improve",
+              "slack_at_start": 900.1839725971222
+            },
+            {
+              "task": 0,
+              "role": "improve",
+              "slack_at_start": 900.2676804065704
+            }
+          ]
+        },
+        {
+          "seconds": 0.05056595802307129,
+          "spare": 1,
+          "blocked": [
+            {
+              "task": 1,
+              "role": "analyze",
+              "slack_at_start": 883.7281353473663
+            }
+          ]
+        },
+        {
+          "seconds": 0.029198884963989258,
+          "spare": 1,
+          "blocked": [
+            {
+              "task": 1,
+              "role": "analyze",
+              "slack_at_start": 872.0997714996338
+            }
+          ]
+        },
+        {
+          "seconds": 0.007521867752075195,
+          "spare": 1,
+          "blocked": [
+            {
+              "task": 0,
+              "role": "analyze",
+              "slack_at_start": 794.6079711914062
+            }
+          ]
+        },
+        {
+          "seconds": 0.03837776184082031,
+          "spare": 1,
+          "blocked": [
+            {
+              "task": 1,
+              "role": "analyze",
+              "slack_at_start": 794.7516934871674
+            }
+          ]
+        },
+        {
+          "seconds": 74.93306422233582,
+          "spare": 1,
+          "blocked": [
+            {
+              "task": 1,
+              "role": "analyze",
+              "slack_at_start": 760.1310062408447
+            }
+          ]
+        },
+        {
+          "seconds": 29.774155855178833,
+          "spare": 1,
+          "blocked": [
+            {
+              "task": 0,
+              "role": "analyze",
+              "slack_at_start": 509.60209918022156
+            }
+          ]
+        },
+        {
+          "seconds": 5.776238203048706,
+          "spare": 1,
+          "blocked": [
+            {
+              "task": 0,
+              "role": "analyze",
+              "slack_at_start": 479.8279433250427
+            },
+            {
+              "task": 0,
+              "role": "analyze",
+              "slack_at_start": 479.91165113449097
+            }
+          ]
+        },
+        {
+          "seconds": 0.011008024215698242,
+          "spare": 1,
+          "blocked": [
+            {
+              "task": 0,
+              "role": "analyze",
+              "slack_at_start": 474.051705121994
+            },
+            {
+              "task": 0,
+              "role": "analyze",
+              "slack_at_start": 474.13541293144226
+            }
+          ]
+        },
+        {
+          "seconds": 0.04329323768615723,
+          "spare": 1,
+          "blocked": [
+            {
+              "task": 0,
+              "role": "analyze",
+              "slack_at_start": 465.82334303855896
+            }
+          ]
+        },
+        {
+          "seconds": 0.010959863662719727,
+          "spare": 1,
+          "blocked": [
+            {
+              "task": 0,
+              "role": "analyze",
+              "slack_at_start": 465.7800498008728
+            }
+          ]
+        },
+        {
+          "seconds": 6.881981372833252,
+          "spare": 2,
+          "blocked": [
+            {
+              "task": 0,
+              "role": "analyze",
+              "slack_at_start": 357.3131332397461
+            }
+          ]
+        },
+        {
+          "seconds": 0.010985374450683594,
+          "spare": 2,
+          "blocked": [
+            {
+              "task": 0,
+              "role": "analyze",
+              "slack_at_start": 350.43115186691284
+            }
+          ]
+        },
+        {
+          "seconds": 0.21337294578552246,
+          "spare": 1,
+          "blocked": [
+            {
+              "task": 0,
+              "role": "analyze",
+              "slack_at_start": 350.42016649246216
+            }
+          ]
+        },
+        {
+          "seconds": 54.98451328277588,
+          "spare": 1,
+          "blocked": [
+            {
+              "task": 1,
+              "role": "analyze",
+              "slack_at_start": 289.17820262908936
+            }
+          ]
+        },
+        {
+          "seconds": 0.014376163482666016,
+          "spare": 1,
+          "blocked": [
+            {
+              "task": 1,
+              "role": "analyze",
+              "slack_at_start": 234.19368934631348
+            }
+          ]
+        },
+        {
+          "seconds": 35.03126859664917,
+          "spare": 1,
+          "blocked": [
+            {
+              "task": 0,
+              "role": "analyze",
+              "slack_at_start": 156.036794424057
+            }
+          ]
+        },
+        {
+          "seconds": 0.012472391128540039,
+          "spare": 1,
+          "blocked": [
+            {
+              "task": 0,
+              "role": "analyze",
+              "slack_at_start": 121.00552582740784
+            }
+          ]
+        },
+        {
+          "seconds": 0.05634474754333496,
+          "spare": 1,
+          "blocked": [
+            {
+              "task": 1,
+              "role": "analyze",
+              "slack_at_start": 113.47082924842834
+            }
+          ]
+        },
+        {
+          "seconds": 5.484794855117798,
+          "spare": 1,
+          "blocked": [
+            {
+              "task": 1,
+              "role": "analyze",
+              "slack_at_start": 46.98817253112793
+            },
+            {
+              "task": 1,
+              "role": "analyze",
+              "slack_at_start": 46.982847452163696
+            }
+          ]
+        },
+        {
+          "seconds": 0.015490293502807617,
+          "spare": 1,
+          "blocked": [
+            {
+              "task": 1,
+              "role": "analyze",
+              "slack_at_start": 41.50337767601013
+            },
+            {
+              "task": 1,
+              "role": "analyze",
+              "slack_at_start": 41.4980525970459
+            }
+          ]
+        },
+        {
+          "seconds": 0.0816640853881836,
+          "spare": 1,
+          "blocked": [
+            {
+              "task": 1,
+              "role": "analyze",
+              "slack_at_start": 34.805384397506714
+            },
+            {
+              "task": 1,
+              "role": "analyze",
+              "slack_at_start": 34.80005931854248
+            }
+          ]
+        },
+        {
+          "seconds": 0.008988380432128906,
+          "spare": 1,
+          "blocked": [
+            {
+              "task": 1,
+              "role": "analyze",
+              "slack_at_start": 34.72372031211853
+            },
+            {
+              "task": 1,
+              "role": "analyze",
+              "slack_at_start": 34.7183952331543
+            }
+          ]
+        },
+        {
+          "seconds": 0.09593772888183594,
+          "spare": 1,
+          "blocked": [
+            {
+              "task": 1,
+              "role": "analyze",
+              "slack_at_start": 0.17439055442810059
+            },
+            {
+              "task": 1,
+              "role": "analyze",
+              "slack_at_start": 0.1690654754638672
+            }
+          ]
+        },
+        {
+          "seconds": 0.08525991439819336,
+          "spare": 2,
+          "blocked": [
+            {
+              "task": 1,
+              "role": "analyze",
+              "slack_at_start": 0.07845282554626465
+            },
+            {
+              "task": 1,
+              "role": "analyze",
+              "slack_at_start": 0.07312774658203125
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "block": 2,
+      "observed_borrowable_wall_seconds": 123.55895018577576,
+      "by_slack": [
+        {
+          "minimum_remaining_seconds": 0,
+          "wall": 123.55895018577576,
+          "permits": 123.55895018577576,
+          "requests": 123.57494473457336,
+          "request_seconds_by_role": {
+            "draft": 0,
+            "improve": 0.2667350769042969,
+            "debug": 9.184827327728271,
+            "analyze": 114.1233823299408
+          }
+        },
+        {
+          "minimum_remaining_seconds": 60,
+          "wall": 123.41448783874512,
+          "permits": 123.41448783874512,
+          "requests": 123.43048238754272,
+          "request_seconds_by_role": {
+            "draft": 0,
+            "improve": 0.16992831230163574,
+            "debug": 9.184827327728271,
+            "analyze": 114.07572674751282
+          }
+        },
+        {
+          "minimum_remaining_seconds": 300,
+          "wall": 123.41448783874512,
+          "permits": 123.41448783874512,
+          "requests": 123.43048238754272,
+          "request_seconds_by_role": {
+            "draft": 0,
+            "improve": 0.16992831230163574,
+            "debug": 9.184827327728271,
+            "analyze": 114.07572674751282
+          }
+        },
+        {
+          "minimum_remaining_seconds": 600,
+          "wall": 99.70580101013184,
+          "permits": 99.70580101013184,
+          "requests": 99.72179555892944,
+          "request_seconds_by_role": {
+            "draft": 0,
+            "improve": 0.16992831230163574,
+            "debug": 9.184827327728271,
+            "analyze": 90.36703991889954
+          }
+        }
+      ],
+      "segments": [
+        {
+          "seconds": 0.016102075576782227,
+          "spare": 1,
+          "blocked": [
+            {
+              "task": 0,
+              "role": "improve",
+              "slack_at_start": 1004.4633967876434
+            }
+          ]
+        },
+        {
+          "seconds": 0.008678436279296875,
+          "spare": 1,
+          "blocked": [
+            {
+              "task": 0,
+              "role": "improve",
+              "slack_at_start": 1004.4472947120667
+            }
+          ]
+        },
+        {
+          "seconds": 0.010422229766845703,
+          "spare": 1,
+          "blocked": [
+            {
+              "task": 0,
+              "role": "improve",
+              "slack_at_start": 1004.4386162757874
+            }
+          ]
+        },
+        {
+          "seconds": 0.015994548797607422,
+          "spare": 1,
+          "blocked": [
+            {
+              "task": 1,
+              "role": "improve",
+              "slack_at_start": 895.2029612064362
+            },
+            {
+              "task": 1,
+              "role": "improve",
+              "slack_at_start": 895.037159204483
+            }
+          ]
+        },
+        {
+          "seconds": 0.02729654312133789,
+          "spare": 1,
+          "blocked": [
+            {
+              "task": 0,
+              "role": "improve",
+              "slack_at_start": 894.5854868888855
+            }
+          ]
+        },
+        {
+          "seconds": 0.05240583419799805,
+          "spare": 1,
+          "blocked": [
+            {
+              "task": 0,
+              "role": "improve",
+              "slack_at_start": 878.2699325084686
+            }
+          ]
+        },
+        {
+          "seconds": 0.023034095764160156,
+          "spare": 1,
+          "blocked": [
+            {
+              "task": 0,
+              "role": "improve",
+              "slack_at_start": 872.0393812656403
+            }
+          ]
+        },
+        {
+          "seconds": 0.024727344512939453,
+          "spare": 1,
+          "blocked": [
+            {
+              "task": 1,
+              "role": "debug",
+              "slack_at_start": 871.5415945053101
+            }
+          ]
+        },
+        {
+          "seconds": 9.160099983215332,
+          "spare": 1,
+          "blocked": [
+            {
+              "task": 1,
+              "role": "debug",
+              "slack_at_start": 788.2875709533691
+            }
+          ]
+        },
+        {
+          "seconds": 0.8860933780670166,
+          "spare": 1,
+          "blocked": [
+            {
+              "task": 1,
+              "role": "analyze",
+              "slack_at_start": 769.6395919322968
+            }
+          ]
+        },
+        {
+          "seconds": 7.953944444656372,
+          "spare": 2,
+          "blocked": [
+            {
+              "task": 1,
+              "role": "analyze",
+              "slack_at_start": 768.7534985542297
+            }
+          ]
+        },
+        {
+          "seconds": 60.744505405426025,
+          "spare": 2,
+          "blocked": [
+            {
+              "task": 1,
+              "role": "analyze",
+              "slack_at_start": 747.0569958686829
+            }
+          ]
+        },
+        {
+          "seconds": 0.01648569107055664,
+          "spare": 2,
+          "blocked": [
+            {
+              "task": 1,
+              "role": "analyze",
+              "slack_at_start": 686.3124904632568
+            }
+          ]
+        },
+        {
+          "seconds": 7.104618787765503,
+          "spare": 1,
+          "blocked": [
+            {
+              "task": 1,
+              "role": "analyze",
+              "slack_at_start": 686.2960047721863
+            }
+          ]
+        },
+        {
+          "seconds": 0.03968071937561035,
+          "spare": 2,
+          "blocked": [
+            {
+              "task": 1,
+              "role": "analyze",
+              "slack_at_start": 679.1913859844208
+            }
+          ]
+        },
+        {
+          "seconds": 0.012089252471923828,
+          "spare": 2,
+          "blocked": [
+            {
+              "task": 1,
+              "role": "analyze",
+              "slack_at_start": 679.1517052650452
+            }
+          ]
+        },
+        {
+          "seconds": 13.609622240066528,
+          "spare": 1,
+          "blocked": [
+            {
+              "task": 1,
+              "role": "analyze",
+              "slack_at_start": 679.1396160125732
+            }
+          ]
+        },
+        {
+          "seconds": 23.70868682861328,
+          "spare": 1,
+          "blocked": [
+            {
+              "task": 1,
+              "role": "analyze",
+              "slack_at_start": 541.034096956253
+            }
+          ]
+        },
+        {
+          "seconds": 0.011263370513916016,
+          "spare": 1,
+          "blocked": [
+            {
+              "task": 1,
+              "role": "analyze",
+              "slack_at_start": 30.13536834716797
+            }
+          ]
+        },
+        {
+          "seconds": 0.0363922119140625,
+          "spare": 1,
+          "blocked": [
+            {
+              "task": 1,
+              "role": "analyze",
+              "slack_at_start": 21.887059926986694
+            }
+          ]
+        },
+        {
+          "seconds": 0.054357051849365234,
+          "spare": 1,
+          "blocked": [
+            {
+              "task": 0,
+              "role": "improve",
+              "slack_at_start": 21.387064218521118
+            }
+          ]
+        },
+        {
+          "seconds": 0.03229379653930664,
+          "spare": 1,
+          "blocked": [
+            {
+              "task": 0,
+              "role": "improve",
+              "slack_at_start": 12.897346258163452
+            }
+          ]
+        },
+        {
+          "seconds": 0.010155916213989258,
+          "spare": 1,
+          "blocked": [
+            {
+              "task": 0,
+              "role": "improve",
+              "slack_at_start": 12.865052461624146
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "block": 3,
+      "observed_borrowable_wall_seconds": 287.04794216156006,
+      "by_slack": [
+        {
+          "minimum_remaining_seconds": 0,
+          "wall": 287.04794216156006,
+          "permits": 294.52422285079956,
+          "requests": 294.5500748157501,
+          "request_seconds_by_role": {
+            "draft": 0,
+            "improve": 0.15766692161560059,
+            "debug": 28.510520935058594,
+            "analyze": 265.8818869590759
+          }
+        },
+        {
+          "minimum_remaining_seconds": 60,
+          "wall": 235.38811612129211,
+          "permits": 242.86439681053162,
+          "requests": 242.89024877548218,
+          "request_seconds_by_role": {
+            "draft": 0,
+            "improve": 0.15766692161560059,
+            "debug": 28.510520935058594,
+            "analyze": 214.22206091880798
+          }
+        },
+        {
+          "minimum_remaining_seconds": 300,
+          "wall": 167.92554330825806,
+          "permits": 167.92554330825806,
+          "requests": 167.95139527320862,
+          "request_seconds_by_role": {
+            "draft": 0,
+            "improve": 0.12691569328308105,
+            "debug": 0,
+            "analyze": 167.82447957992554
+          }
+        },
+        {
+          "minimum_remaining_seconds": 600,
+          "wall": 59.090553998947144,
+          "permits": 59.090553998947144,
+          "requests": 59.116405963897705,
+          "request_seconds_by_role": {
+            "draft": 0,
+            "improve": 0.12691569328308105,
+            "debug": 0,
+            "analyze": 58.989490270614624
+          }
+        }
+      ],
+      "segments": [
+        {
+          "seconds": 0.025851964950561523,
+          "spare": 1,
+          "blocked": [
+            {
+              "task": 0,
+              "role": "improve",
+              "slack_at_start": 902.3352234363556
+            },
+            {
+              "task": 0,
+              "role": "improve",
+              "slack_at_start": 902.2454962730408
+            }
+          ]
+        },
+        {
+          "seconds": 0.052308082580566406,
+          "spare": 1,
+          "blocked": [
+            {
+              "task": 1,
+              "role": "improve",
+              "slack_at_start": 894.9523859024048
+            }
+          ]
+        },
+        {
+          "seconds": 0.0229036808013916,
+          "spare": 1,
+          "blocked": [
+            {
+              "task": 0,
+              "role": "improve",
+              "slack_at_start": 881.0521790981293
+            }
+          ]
+        },
+        {
+          "seconds": 15.83303427696228,
+          "spare": 1,
+          "blocked": [
+            {
+              "task": 1,
+              "role": "analyze",
+              "slack_at_start": 808.7111945152283
+            }
+          ]
+        },
+        {
+          "seconds": 14.56432819366455,
+          "spare": 2,
+          "blocked": [
+            {
+              "task": 1,
+              "role": "analyze",
+              "slack_at_start": 710.3641300201416
+            }
+          ]
+        },
+        {
+          "seconds": 0.009300470352172852,
+          "spare": 2,
+          "blocked": [
+            {
+              "task": 1,
+              "role": "analyze",
+              "slack_at_start": 695.799801826477
+            }
+          ]
+        },
+        {
+          "seconds": 6.680991172790527,
+          "spare": 1,
+          "blocked": [
+            {
+              "task": 1,
+              "role": "analyze",
+              "slack_at_start": 695.7905013561249
+            }
+          ]
+        },
+        {
+          "seconds": 0.028560161590576172,
+          "spare": 2,
+          "blocked": [
+            {
+              "task": 1,
+              "role": "analyze",
+              "slack_at_start": 689.1095101833344
+            }
+          ]
+        },
+        {
+          "seconds": 0.01646900177001953,
+          "spare": 2,
+          "blocked": [
+            {
+              "task": 1,
+              "role": "analyze",
+              "slack_at_start": 689.0809500217438
+            }
+          ]
+        },
+        {
+          "seconds": 21.856806993484497,
+          "spare": 1,
+          "blocked": [
+            {
+              "task": 1,
+              "role": "analyze",
+              "slack_at_start": 689.0644810199738
+            }
+          ]
+        },
+        {
+          "seconds": 75.08972024917603,
+          "spare": 1,
+          "blocked": [
+            {
+              "task": 1,
+              "role": "analyze",
+              "slack_at_start": 482.4358251094818
+            }
+          ]
+        },
+        {
+          "seconds": 3.123720645904541,
+          "spare": 2,
+          "blocked": [
+            {
+              "task": 1,
+              "role": "analyze",
+              "slack_at_start": 407.3461048603058
+            }
+          ]
+        },
+        {
+          "seconds": 0.009387969970703125,
+          "spare": 2,
+          "blocked": [
+            {
+              "task": 1,
+              "role": "analyze",
+              "slack_at_start": 404.22238421440125
+            }
+          ]
+        },
+        {
+          "seconds": 8.959297895431519,
+          "spare": 1,
+          "blocked": [
+            {
+              "task": 1,
+              "role": "analyze",
+              "slack_at_start": 404.21299624443054
+            }
+          ]
+        },
+        {
+          "seconds": 0.061629533767700195,
+          "spare": 2,
+          "blocked": [
+            {
+              "task": 1,
+              "role": "analyze",
+              "slack_at_start": 395.253698348999
+            }
+          ]
+        },
+        {
+          "seconds": 0.027756929397583008,
+          "spare": 2,
+          "blocked": [
+            {
+              "task": 1,
+              "role": "analyze",
+              "slack_at_start": 395.1920688152313
+            }
+          ]
+        },
+        {
+          "seconds": 10.605239152908325,
+          "spare": 1,
+          "blocked": [
+            {
+              "task": 1,
+              "role": "analyze",
+              "slack_at_start": 395.16431188583374
+            }
+          ]
+        },
+        {
+          "seconds": 10.958236932754517,
+          "spare": 1,
+          "blocked": [
+            {
+              "task": 1,
+              "role": "analyze",
+              "slack_at_start": 367.759245634079
+            }
+          ]
+        },
+        {
+          "seconds": 14.069544076919556,
+          "spare": 2,
+          "blocked": [
+            {
+              "task": 1,
+              "role": "analyze",
+              "slack_at_start": 277.8443319797516
+            }
+          ]
+        },
+        {
+          "seconds": 7.476280689239502,
+          "spare": 2,
+          "blocked": [
+            {
+              "task": 1,
+              "role": "analyze",
+              "slack_at_start": 263.77478790283203
+            },
+            {
+              "task": 1,
+              "role": "analyze",
+              "slack_at_start": 263.7865388393402
+            }
+          ]
+        },
+        {
+          "seconds": 5.690811634063721,
+          "spare": 2,
+          "blocked": [
+            {
+              "task": 1,
+              "role": "analyze",
+              "slack_at_start": 256.2543132305145
+            }
+          ]
+        },
+        {
+          "seconds": 10.322684526443481,
+          "spare": 2,
+          "blocked": [
+            {
+              "task": 1,
+              "role": "debug",
+              "slack_at_start": 250.5110001564026
+            }
+          ]
+        },
+        {
+          "seconds": 10.446991682052612,
+          "spare": 2,
+          "blocked": [
+            {
+              "task": 1,
+              "role": "debug",
+              "slack_at_start": 240.1653537750244
+            }
+          ]
+        },
+        {
+          "seconds": 0.018399715423583984,
+          "spare": 2,
+          "blocked": [
+            {
+              "task": 1,
+              "role": "debug",
+              "slack_at_start": 229.7183620929718
+            }
+          ]
+        },
+        {
+          "seconds": 6.41299033164978,
+          "spare": 1,
+          "blocked": [
+            {
+              "task": 1,
+              "role": "debug",
+              "slack_at_start": 229.69996237754822
+            }
+          ]
+        },
+        {
+          "seconds": 0.05445575714111328,
+          "spare": 2,
+          "blocked": [
+            {
+              "task": 1,
+              "role": "debug",
+              "slack_at_start": 223.28697204589844
+            }
+          ]
+        },
+        {
+          "seconds": 0.01218557357788086,
+          "spare": 2,
+          "blocked": [
+            {
+              "task": 1,
+              "role": "debug",
+              "slack_at_start": 223.23251628875732
+            }
+          ]
+        },
+        {
+          "seconds": 1.1062648296356201,
+          "spare": 1,
+          "blocked": [
+            {
+              "task": 1,
+              "role": "debug",
+              "slack_at_start": 223.22033071517944
+            }
+          ]
+        },
+        {
+          "seconds": 0.016532182693481445,
+          "spare": 1,
+          "blocked": [
+            {
+              "task": 1,
+              "role": "debug",
+              "slack_at_start": 222.11406588554382
+            }
+          ]
+        },
+        {
+          "seconds": 0.04393124580383301,
+          "spare": 1,
+          "blocked": [
+            {
+              "task": 1,
+              "role": "debug",
+              "slack_at_start": 214.51653027534485
+            }
+          ]
+        },
+        {
+          "seconds": 0.012538433074951172,
+          "spare": 1,
+          "blocked": [
+            {
+              "task": 1,
+              "role": "debug",
+              "slack_at_start": 214.47259902954102
+            }
+          ]
+        },
+        {
+          "seconds": 0.0511164665222168,
+          "spare": 1,
+          "blocked": [
+            {
+              "task": 1,
+              "role": "debug",
+              "slack_at_start": 207.9319097995758
+            }
+          ]
+        },
+        {
+          "seconds": 0.012430191040039062,
+          "spare": 1,
+          "blocked": [
+            {
+              "task": 1,
+              "role": "debug",
+              "slack_at_start": 207.8807933330536
+            }
+          ]
+        },
+        {
+          "seconds": 0.03075122833251953,
+          "spare": 1,
+          "blocked": [
+            {
+              "task": 0,
+              "role": "improve",
+              "slack_at_start": 201.18669247627258
+            }
+          ]
+        },
+        {
+          "seconds": 21.41937017440796,
+          "spare": 1,
+          "blocked": [
+            {
+              "task": 0,
+              "role": "analyze",
+              "slack_at_start": 71.68466424942017
+            }
+          ]
+        },
+        {
+          "seconds": 41.92512011528015,
+          "spare": 2,
+          "blocked": [
+            {
+              "task": 0,
+              "role": "analyze",
+              "slack_at_start": 50.26529407501221
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "boundary": "Closed observed queue metadata only. Remaining time is not time needed, useful progress, saved GPU cost or a counterfactual completion. Horizons0/60/300/600 are descriptive; no threshold chosen or primary gate changed. Role request-seconds may exceed wall seconds. No candidate, score, prediction or raw log export."
+}

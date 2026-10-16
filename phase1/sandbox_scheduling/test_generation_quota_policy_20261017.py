@@ -1,5 +1,6 @@
-import unittest
-from generation_quota_policy_20261017 import choice,eligible_requests,metadata_audit
+import sys,types,unittest
+from unittest.mock import patch
+from generation_quota_policy_20261017 import choice,eligible_requests,metadata_audit,install
 
 def r(key,task='a',role='improve',requested=0,run=0):
     return dict(key=key,task=task,role=role,requested=requested,run=run)
@@ -17,6 +18,16 @@ class QuotaTests(unittest.TestCase):
     def test_global_capacity(self):
         s=dict(active=[r(str(i)) for i in range(4)],waiting=[r('x',task='b')])
         for mode in ('partitioned','pooled'):self.assertEqual(eligible_requests(s,mode),[])
+    def test_global_winner_uses_its_own_task_parent(self):
+        calls=[];module=types.SimpleNamespace(parent_choice=lambda s,t,a:(calls.append((t,a)) or 'parent-'+t))
+        s=dict(active=[],waiting=[r('winner',task='b'),r('caller',task='a',requested=1)])
+        with patch.dict(sys.modules,feedback_parent_policy_20261012=module):
+            install('pooled')
+            self.assertEqual(module.select_request(s,'a','greedy'),('winner','parent-b'))
+        self.assertEqual(calls,[('b','greedy')])
+    def test_invalid_mode_fails_closed(self):
+        with self.assertRaises(ValueError):install('other')
+        with self.assertRaises(ValueError):choice(dict(active=[],waiting=[]),'other')
     def test_partitioned_selects_eligible_other_task(self):
         s=dict(active=[r('a'),r('b')],waiting=[r('c'),r('d',task='b',requested=1)])
         self.assertEqual(choice(s,'partitioned')['key'],'d');self.assertEqual(choice(s,'pooled')['key'],'c')

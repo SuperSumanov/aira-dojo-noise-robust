@@ -21,6 +21,7 @@
 - 10/17：18987在首组因去噪program2原300秒超时，4wrapper/3有效，733GPU秒，配对未获比较；冻结diverse后续不启动。日志显示第二整折结束已287.6秒，不能说只因落盘慢。
 - 独立selectiveFIFO改变“可否共置”而非伙伴tie-break：仅Aerial同类可共置、去噪独占，保持FIFO/CPU/生成器/预算。32真实搜索、2反序比较、原终分门；任务先验简单参照，不称创新，不是新来源确认，更未比SchedMate。候选失败不删分母。
 - 10/17只读18807发现每任务2个生成许可留下10.47%–24.33%的有队列/总active<4状态；独立积分通过。vLLM408采样最大Running4、Waiting0、KV13.3%，不证明硬件空闲。后续只测同总4许可的跨任务借用，执行仍单许可；这是work-conserving强基线资格，不是17675旧资源打分重命名，更不是新算法/MARS复现。
+- 同批余时独立核算：≥300秒余时下每池仍有约96/118/123/168秒借用机会，主要为analysis/debug；不是全部截止尾巴，也不是额外完成数。证据quota-slack-20261017-v1.safe.json及quota-slack-independent.json，原质量门不改。
 
 ## R14已试机制及禁止偷换
 
@@ -68,6 +69,8 @@
 
 - SchedMate已有源码/历史/日志语义、部分免profile、干扰撤销及故障恢复；新调度必须比较合理廉价/语义参照。
   https://arxiv.org/html/2510.03334
+- SpecBox已有流式意图预热、跨步预取、缓存与传输解耦（10/17核§2–3/5.1–5.2）；Latency-Aware Orchestration已有图依赖预测、共同仲裁、模型生命周期/放置（核§3.3–3.5）。阶段重叠/联合调度本身不是空白；不推断它们已解决本项目终分问题，也未复现。
+  https://arxiv.org/html/2607.23933 / https://arxiv.org/html/2609.03335
 - HyperSched已优化固定资源/截止时间下最终最好精度，假设中间训练进度、可checkpoint/恢复及共同扩展规律；不能把“质量而非吞吐”称新颖。18812只检验黑盒程序墙钟自停时，负载是否改变同源码反馈；此差别尚非方法贡献。
   https://arxiv.org/html/2001.02338 （2026-10-16核§3.1.1、§4；不恢复ASHA/多保真旧线）
 - Winning by Peeking已有机器争用改变AutoML比较/有限墙钟内trial数；Mosaic已有kernel干扰准入；RTCSA2020已有mandatory/optional质量调度。不能把“争用改变排序”或“质量感知”本身称首创；原文阅读范围见clock_scheduling_neighbors_20261016.json。

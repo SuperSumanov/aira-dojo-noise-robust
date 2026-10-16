@@ -1,0 +1,222 @@
+{
+  "passed": true,
+  "sha256": "d9c4bfb490baf1a6924262ee72939c07d163e6eb79ba2b0173d6fef710de5181",
+  "pools": [
+    {
+      "block": 0,
+      "observed_borrowable_wall_seconds": 236.49948596954346,
+      "by_slack": [
+        {
+          "minimum_remaining_seconds": 0,
+          "wall": 236.49948596954346,
+          "permits": 237.26880931854248,
+          "requests": 369.24263072013855,
+          "request_seconds_by_role": {
+            "draft": 0,
+            "improve": 0.1148233413696289,
+            "debug": 274.8390347957611,
+            "analyze": 94.28877258300781
+          }
+        },
+        {
+          "minimum_remaining_seconds": 60,
+          "wall": 236.49948596954346,
+          "permits": 237.26880931854248,
+          "requests": 369.24263072013855,
+          "request_seconds_by_role": {
+            "draft": 0,
+            "improve": 0.1148233413696289,
+            "debug": 274.8390347957611,
+            "analyze": 94.28877258300781
+          }
+        },
+        {
+          "minimum_remaining_seconds": 300,
+          "wall": 95.71323990821838,
+          "permits": 95.71323990821838,
+          "requests": 164.27018666267395,
+          "request_seconds_by_role": {
+            "draft": 0,
+            "improve": 0.1148233413696289,
+            "debug": 134.05278873443604,
+            "analyze": 30.102574586868286
+          }
+        },
+        {
+          "minimum_remaining_seconds": 600,
+          "wall": 0.9352102279663086,
+          "permits": 0.9352102279663086,
+          "requests": 0.9518673419952393,
+          "request_seconds_by_role": {
+            "draft": 0,
+            "improve": 0.1148233413696289,
+            "debug": 0,
+            "analyze": 0.8370440006256104
+          }
+        }
+      ]
+    },
+    {
+      "block": 1,
+      "observed_borrowable_wall_seconds": 213.70619225502014,
+      "by_slack": [
+        {
+          "minimum_remaining_seconds": 0,
+          "wall": 213.6993851661682,
+          "permits": 213.77251291275024,
+          "requests": 225.30099272727966,
+          "request_seconds_by_role": {
+            "draft": 0,
+            "improve": 0.10871648788452148,
+            "debug": 0,
+            "analyze": 225.19227623939514
+          }
+        },
+        {
+          "minimum_remaining_seconds": 60,
+          "wall": 207.9340569972992,
+          "permits": 207.9340569972992,
+          "requests": 213.77566146850586,
+          "request_seconds_by_role": {
+            "draft": 0,
+            "improve": 0.10871648788452148,
+            "debug": 0,
+            "analyze": 213.66694498062134
+          }
+        },
+        {
+          "minimum_remaining_seconds": 300,
+          "wall": 117.8350818157196,
+          "permits": 117.8350818157196,
+          "requests": 123.67668628692627,
+          "request_seconds_by_role": {
+            "draft": 0,
+            "improve": 0.10871648788452148,
+            "debug": 0,
+            "analyze": 123.56796979904175
+          }
+        },
+        {
+          "minimum_remaining_seconds": 600,
+          "wall": 75.11308693885803,
+          "permits": 75.11308693885803,
+          "requests": 75.1674451828003,
+          "request_seconds_by_role": {
+            "draft": 0,
+            "improve": 0.10871648788452148,
+            "debug": 0,
+            "analyze": 75.05872869491577
+          }
+        }
+      ]
+    },
+    {
+      "block": 2,
+      "observed_borrowable_wall_seconds": 123.55895018577576,
+      "by_slack": [
+        {
+          "minimum_remaining_seconds": 0,
+          "wall": 123.55895018577576,
+          "permits": 123.55895018577576,
+          "requests": 123.57494473457336,
+          "request_seconds_by_role": {
+            "draft": 0,
+            "improve": 0.2667350769042969,
+            "debug": 9.184827327728271,
+            "analyze": 114.1233823299408
+          }
+        },
+        {
+          "minimum_remaining_seconds": 60,
+          "wall": 123.41448783874512,
+          "permits": 123.41448783874512,
+          "requests": 123.43048238754272,
+          "request_seconds_by_role": {
+            "draft": 0,
+            "improve": 0.16992831230163574,
+            "debug": 9.184827327728271,
+            "analyze": 114.07572674751282
+          }
+        },
+        {
+          "minimum_remaining_seconds": 300,
+          "wall": 123.41448783874512,
+          "permits": 123.41448783874512,
+          "requests": 123.43048238754272,
+          "request_seconds_by_role": {
+            "draft": 0,
+            "improve": 0.16992831230163574,
+            "debug": 9.184827327728271,
+            "analyze": 114.07572674751282
+          }
+        },
+        {
+          "minimum_remaining_seconds": 600,
+          "wall": 99.70580101013184,
+          "permits": 99.70580101013184,
+          "requests": 99.72179555892944,
+          "request_seconds_by_role": {
+            "draft": 0,
+            "improve": 0.16992831230163574,
+            "debug": 9.184827327728271,
+            "analyze": 90.36703991889954
+          }
+        }
+      ]
+    },
+    {
+      "block": 3,
+      "observed_borrowable_wall_seconds": 287.04794216156006,
+      "by_slack": [
+        {
+          "minimum_remaining_seconds": 0,
+          "wall": 287.04794216156006,
+          "permits": 294.52422285079956,
+          "requests": 294.5500748157501,
+          "request_seconds_by_role": {
+            "draft": 0,
+            "improve": 0.15766692161560059,
+            "debug": 28.510520935058594,
+            "analyze": 265.8818869590759
+          }
+        },
+        {
+          "minimum_remaining_seconds": 60,
+          "wall": 235.38811612129211,
+          "permits": 242.86439681053162,
+          "requests": 242.89024877548218,
+          "request_seconds_by_role": {
+            "draft": 0,
+            "improve": 0.15766692161560059,
+            "debug": 28.510520935058594,
+            "analyze": 214.22206091880798
+          }
+        },
+        {
+          "minimum_remaining_seconds": 300,
+          "wall": 167.92554330825806,
+          "permits": 167.92554330825806,
+          "requests": 167.95139527320862,
+          "request_seconds_by_role": {
+            "draft": 0,
+            "improve": 0.12691569328308105,
+            "debug": 0,
+            "analyze": 167.82447957992554
+          }
+        },
+        {
+          "minimum_remaining_seconds": 600,
+          "wall": 59.090553998947144,
+          "permits": 59.090553998947144,
+          "requests": 59.116405963897705,
+          "request_seconds_by_role": {
+            "draft": 0,
+            "improve": 0.12691569328308105,
+            "debug": 0,
+            "analyze": 58.989490270614624
+          }
+        }
+      ]
+    }
+  ]
+}

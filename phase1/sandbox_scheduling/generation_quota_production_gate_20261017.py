@@ -12,6 +12,10 @@ def configure():
                 trial.install_hooks(row,ep,deadline)
             import feedback_parent_policy_20261012 as parent
             assert parent.select_request.quota_mode==row['quota_mode']
+            fixture_state=dict(active=[dict(task='fixture'),dict(task='fixture')],
+                waiting=[dict(key='third',task='fixture',role='analyze',requested=0,run=0)])
+            selected,_=parent.select_request(fixture_state,'fixture','greedy')
+            assert selected==('third' if row['quota_mode']=='pooled' else None)
             from clock_pairing_20261016 import InfrastructureReadinessError
             try:JupyterKernelClient.wait_for_ready(None)
             except InfrastructureReadinessError:pass

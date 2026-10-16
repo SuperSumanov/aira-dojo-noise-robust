@@ -1,7 +1,7 @@
 # 当前短交接：现场、证据与恢复动作
 
-最后核验：2026-10-17香港03:53。新授权窗口02:49–08:49，用户批准同范围自主批次，持续在会话推进，无需重复请批。
-18997于03:52:48在gpu3六卡RUNNING，处于启动阶段，尚未确认搜索开始；≤100min/10GPUh，预计05:20闭合。旧18987 FAILED封存733GPU秒，不补跑；条件diverse六卡仍禁止提交。
+最后核验：2026-10-17香港04:04。新授权窗口02:49–08:49，用户批准同范围自主批次，持续在会话推进，无需重复请批。
+18997于03:52:48在gpu3六卡RUNNING；服务/隔离通过、首池8条真实搜索已启动，尚无worker闭合；≤100min/10GPUh，预计05:20闭合。旧18987 FAILED封存733GPU秒，不补跑；条件diverse六卡仍禁止提交。
 
 ## checkout、Git与边界
 
@@ -48,7 +48,7 @@
 - 18987不可再readout/submit/改时限；条件六卡父门false，不提交。诊断仅解释失败，不拿第一组或完整个例救配对收益。
 - 独立selective32条源码8384f405d58ee8e5173b8039fba4fa5b3b14bab7已公开；root=scheduling-selective-20261017-v1，gpu3六卡≤100min/10GPUh。CPU32输入/10信号通过，planSHA1783555a7c680021b2a1bae874798f1042c0bfe79d0b11af70fa7f2a75d26e32；submit成功job18997，session57776已结束。03:53 sacct确认RUNNING/6GPU。禁止重复submit，中途不读质量选配置。
 - 新只读证据：18807四池固定2/task生成许可有123.56–287.05s可借用状态；独立积分回执quota-borrowing-independent.json。408vLLM采样Waiting全0、Running≤4、KV≤13.3%；不是空闲算力或可节省时长。两安全传输SHA已核，原日志未导出。
-- 本地新generation_quota_*原型拟独立32条检验partitioned2+2 vs pooled4，双方同全局analyze优先/FIFO仲裁、执行均shared cap1、其余同预算。8CPU测试通过；尚未远端准备/提交，不与selective混合，不称新算法。只有当前批闭合且窗口够时才考虑提交；不在测量期间做大量远端IO准备。
+- 本地generation_quota_*原型已公开85ea33d8，独立Node验证器edc30e55；拟独立32条检验partitioned2+2 vs pooled4，双方同全局analyze优先/FIFO仲裁、执行均shared cap1、其余同预算。8CPU测试通过；实际selector的双模式调用测试已补，尚未远端prepare/submit。root=scheduling-generation-quota-20261017-v1，≤100min/10GPUh；只有18997闭合且窗口足够才提交，不在当前测量中做大量IO，不称新算法。
 - 32条前必须完成真实输入矩阵、实际双模式CPU信号场景、common readiness及worker异常停止门；22本地CPU测试通过。若不胜不补seed；不自称新算法/胜SchedMate。六卡diverse包不得误submit。
 - 旧一次提醒已删除；本轮继续本会话到08:49，不建重复跟进/长报告。当前无外部权限或节点阻塞，不碰旧12535。
 

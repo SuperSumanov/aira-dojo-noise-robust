@@ -1,0 +1,21 @@
+{
+  "job": "18812",
+  "observed_utc": "2026-10-16T05:12:00Z",
+  "passed": true,
+  "complete": 8,
+  "valid": 8,
+  "gpu_seconds": 1822,
+  "remote_pristine_dev_rescores": 8,
+  "node_independent_aggregate_checks": true,
+  "node_independent_rescoring": false,
+  "conditional_expansion_protocol_commit": "6f6bab3e54ecf806158a510147c957c1751cfdac",
+  "conditional_expansion_passed": true,
+  "significance_test": false,
+  "transfer_hashes_equal": {
+    "summary.json": "b1b7053e5372b33770fa360a94aad393b911dfa9d96803ab9a5e0a0da32b5d40",
+    "runs.json": "9d9feacfd93121115f84e0077480c233cc1763285e290dc92963009ca96cfb91",
+    "runs.csv": "d0ff738570bfd05013e44e846a5947cd3fb55e3c208abbc66f4e69b128a53769",
+    "prediction-differences.json": "c528f45ef4766c21a7f404efef3f918f11c2d52696bae443b8086a0015d490e9"
+  },
+  "boundary": "Two selected known DEV programs, two pool repeats; repeat-span gate is exploratory and not a significance test. Host training envelope overlap is not kernel overlap. No search-benefit or generalization claim."
+}

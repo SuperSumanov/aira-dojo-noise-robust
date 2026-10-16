@@ -1,0 +1,79 @@
+{
+  "boundary": "Two chronologically selected previously valid clock-guard programs, same training seed. Only2 pool repeats, known DEV data; no E2E/generalization or CUDA-kernel-overlap claim. All8 retained; invalid outputs are not zero-valued scores.",
+  "complete": 8,
+  "effects": [
+    {
+      "all_colocated_scores_better": false,
+      "all_colocated_scores_worse": true,
+      "all_colocated_steps_lower": true,
+      "colocated_score_repeat_span": 0.00018708273867751313,
+      "colocated_scores": [
+        0.9990512232538499,
+        0.9992383059925274
+      ],
+      "colocated_steps": [
+        994,
+        994
+      ],
+      "complete": true,
+      "median_step_delta": -497.0,
+      "oriented_mean_score_delta": -0.00032338587685687425,
+      "program": 0,
+      "solo_score_repeat_span": 0.0,
+      "solo_scores": [
+        0.9994681505000454,
+        0.9994681505000454
+      ],
+      "solo_steps": [
+        1491,
+        1491
+      ]
+    },
+    {
+      "all_colocated_scores_better": false,
+      "all_colocated_scores_worse": true,
+      "all_colocated_steps_lower": true,
+      "colocated_score_repeat_span": 3.839022968514516e-07,
+      "colocated_scores": [
+        0.016140707628621097,
+        0.01614109153091795
+      ],
+      "colocated_steps": [
+        1044,
+        1044
+      ],
+      "complete": true,
+      "median_step_delta": -540.0,
+      "oriented_mean_score_delta": -0.00020111421947950625,
+      "program": 1,
+      "solo_score_repeat_span": 4.894172584396506e-06,
+      "solo_scores": [
+        0.01593733827399782,
+        0.015942232446582216
+      ],
+      "solo_steps": [
+        1584,
+        1584
+      ]
+    }
+  ],
+  "gpu_hours": 0.5061111111111111,
+  "gpu_seconds": 1822,
+  "overlaps": [
+    {
+      "block": 1,
+      "host_training_envelope_overlap_seconds": 195.55984950065613
+    },
+    {
+      "block": 2,
+      "host_training_envelope_overlap_seconds": 192.97578120231628
+    }
+  ],
+  "plan_sha256": "6e19c7f715597f30d784982943618b73aeba69db4b9fc1bc446ea0a307cc0e17",
+  "planned": 8,
+  "reader_sha256": "e2ae1e6ca3b1c8995e4087fbe108bf72df26151765eaaf4aa4864cba1c58274f",
+  "recomputed": 8,
+  "source_commit": "f0c616b375f71908f9286951cca80f6446659c6c",
+  "structure": true,
+  "valid": 8
+}

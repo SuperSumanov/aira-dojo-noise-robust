@@ -2,6 +2,17 @@
 const fs=require('fs'),assert=require('assert/strict'),crypto=require('crypto');
 const near=(a,b)=>assert.ok(Number.isFinite(a)&&Number.isFinite(b)&&Math.abs(a-b)<1e-12);
 const median2=v=>(v[0]+v[1])/2;
+// Frozen in CURRENT_DIRECTION at 6f6bab3e, before any18812 outcome read.
+// This is an exploratory expansion gate, NOT a significance test.
+function expansionGate(s){
+ const structural=s.structure===true&&s.complete===8&&s.valid===8&&s.recomputed===8;
+ const overlap=s.overlaps.length===2&&s.overlaps.every(x=>x.host_training_envelope_overlap_seconds>0);
+ const programs=s.effects.map(x=>({program:x.program,
+  passed:!!(x.complete&&Math.max(...x.colocated_steps)<=.9*Math.min(...x.solo_steps)
+   &&-x.oriented_mean_score_delta>Math.max(x.solo_score_repeat_span,x.colocated_score_repeat_span))}));
+ return {protocol_commit:'6f6bab3e54ecf806158a510147c957c1751cfdac',structural,overlap,programs,
+  passed:structural&&overlap&&programs.some(x=>x.passed),significance_test:false};
+}
 function effect(rows,p){
  const r=rows.filter(x=>x.program===p);
  if(r.length!==4||r.some(x=>!x.complete||!x.valid||x.score==null||x.steps==null))return {program:p,complete:false};
@@ -18,6 +29,14 @@ function effect(rows,p){
 const fixture=Array.from({length:8},(_,i)=>({program:i%2,mode:['solo','colocated','colocated','solo'][Math.floor(i/2)],
  complete:true,valid:true,steps:[100,70,70,100][Math.floor(i/2)],score:i%2?[.02,.03,.03,.02][Math.floor(i/2)]:[.9,.8,.8,.9][Math.floor(i/2)]}));
 assert.ok(effect(fixture,0).all_colocated_scores_worse);assert.ok(effect(fixture,1).all_colocated_scores_worse);
+const gateFixture={structure:true,complete:8,valid:8,recomputed:8,
+ overlaps:[{host_training_envelope_overlap_seconds:10},{host_training_envelope_overlap_seconds:10}],
+ effects:[effect(fixture,0),effect(fixture,1)]};
+assert.equal(expansionGate(gateFixture).passed,true);
+assert.equal(expansionGate({...gateFixture,complete:7}).passed,false);
+assert.equal(expansionGate({...gateFixture,overlaps:[]}).passed,false);
+assert.equal(expansionGate({...gateFixture,effects:gateFixture.effects.map(x=>({...x,colocated_steps:[91,91]}))}).passed,false);
+assert.equal(expansionGate({...gateFixture,effects:gateFixture.effects.map(x=>({...x,solo_score_repeat_span:1}))}).passed,false);
 fixture[0].valid=false;assert.equal(effect(fixture,0).complete,false);
 if(process.argv[2]){
  const dir=process.argv[2],hashes={};
@@ -38,5 +57,6 @@ if(process.argv[2]){
  for(const d of diffs){assert.equal(d.program,d.a%2);assert.equal(d.a%2,d.b%2);
    assert.equal(d.same_mode,rows[d.a].mode===rows[d.b].mode);assert.ok(d.mean_abs_diff>=0&&d.max_abs_diff>=d.mean_abs_diff);
    if(d.same_bytes){near(d.max_abs_diff,0);near(d.mean_abs_diff,0);}}
- console.log(JSON.stringify({passed:true,rows:8,complete:s.complete,independent_rescoring:false,hashes}));
+ console.log(JSON.stringify({passed:true,rows:8,complete:s.complete,independent_rescoring:false,hashes,
+  conditional_expansion:expansionGate(s)}));
 }else console.log(JSON.stringify({self_tests:true}));

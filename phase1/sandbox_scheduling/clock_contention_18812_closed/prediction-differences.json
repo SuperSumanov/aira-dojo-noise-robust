@@ -1,0 +1,110 @@
+[
+  {
+    "a": 0,
+    "b": 2,
+    "max_abs_diff": 0.13734274000000002,
+    "mean_abs_diff": 0.049174379435426956,
+    "program": 0,
+    "same_bytes": false,
+    "same_mode": false
+  },
+  {
+    "a": 0,
+    "b": 4,
+    "max_abs_diff": 0.15311975999999994,
+    "mean_abs_diff": 0.05035921747353564,
+    "program": 0,
+    "same_bytes": false,
+    "same_mode": false
+  },
+  {
+    "a": 0,
+    "b": 6,
+    "max_abs_diff": 0.04871112,
+    "mean_abs_diff": 0.0005617109597741709,
+    "program": 0,
+    "same_bytes": false,
+    "same_mode": true
+  },
+  {
+    "a": 2,
+    "b": 4,
+    "max_abs_diff": 0.14125791999999998,
+    "mean_abs_diff": 0.0069472001129146106,
+    "program": 0,
+    "same_bytes": false,
+    "same_mode": true
+  },
+  {
+    "a": 2,
+    "b": 6,
+    "max_abs_diff": 0.13716280000000003,
+    "mean_abs_diff": 0.049064000007057164,
+    "program": 0,
+    "same_bytes": false,
+    "same_mode": false
+  },
+  {
+    "a": 4,
+    "b": 6,
+    "max_abs_diff": 0.15285446000000003,
+    "mean_abs_diff": 0.0503910147706422,
+    "program": 0,
+    "same_bytes": false,
+    "same_mode": false
+  },
+  {
+    "a": 1,
+    "b": 3,
+    "max_abs_diff": 0.22358769999999994,
+    "mean_abs_diff": 0.001251827996888264,
+    "program": 1,
+    "same_bytes": false,
+    "same_mode": false
+  },
+  {
+    "a": 1,
+    "b": 5,
+    "max_abs_diff": 0.18691457000000006,
+    "mean_abs_diff": 0.0012392243057841464,
+    "program": 1,
+    "same_bytes": false,
+    "same_mode": false
+  },
+  {
+    "a": 1,
+    "b": 7,
+    "max_abs_diff": 0.03293335000000008,
+    "mean_abs_diff": 0.00018458779672121512,
+    "program": 1,
+    "same_bytes": false,
+    "same_mode": true
+  },
+  {
+    "a": 3,
+    "b": 5,
+    "max_abs_diff": 0.05797059999999998,
+    "mean_abs_diff": 0.00022025842954561563,
+    "program": 1,
+    "same_bytes": false,
+    "same_mode": true
+  },
+  {
+    "a": 3,
+    "b": 7,
+    "max_abs_diff": 0.20246896999999997,
+    "mean_abs_diff": 0.001255413466885187,
+    "program": 1,
+    "same_bytes": false,
+    "same_mode": false
+  },
+  {
+    "a": 5,
+    "b": 7,
+    "max_abs_diff": 0.19441987,
+    "mean_abs_diff": 0.0012524912521431968,
+    "program": 1,
+    "same_bytes": false,
+    "same_mode": false
+  }
+]

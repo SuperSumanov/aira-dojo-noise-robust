@@ -1,6 +1,6 @@
 # 当前短交接：只记录现场与恢复操作
 
-最后核验：2026-10-16香港12:38；下次先核现场，不照旧预计时间行动。
+最后核验：2026-10-16香港13:12；下次先核现场，不照旧预计时间行动。
 用户11:18批准六小时自主推进，窗口到香港17:18；限定新实验自行决策，不重复询问已批准事项。
 
 ## 活跃目录与来源
@@ -29,7 +29,7 @@
 - frozen reader在远端重算允许开发评分，Node只独立统计/结构，不说Node也独立重评分。
 - 原队列预计10:50开跑已经过期；当前没有本批GPU占用。容器入口本轮已解决，不再因projgpu12旧失败阻塞。
 
-## 新独立共置批18807：已分配gpu1，服务启动中
+## 新独立共置批18807：正在gpu1执行
 
 - root=/research/d7/spc/yzyang4/scheduling-colocation-20261016-v1；入口colocation_trial_20261016.py。
 - 32条：两原开发任务×4配对seed×共享单许可/每卡双许可×两反序比较；顺序shared/colocated/colocated/shared。
@@ -37,14 +37,16 @@
 - 17分钟/run、1180秒/pool、候选300秒、旧fast/公共预览/warm历史/固定CPU不变；完整32/两次去噪≥.001/Aerial不退/实际共置。
 - source=c9251b7593edb4546cb371150f5067a922edd041；planSHA=36ce5852b26de2299755c19a8b9711a1f4161d68abd25a3de6cc7687cdde8560。
 - 16项新CPU/Node自测、32真实输入/16配对、10生产信号场景均通过；哈希核验完成后提交18807。
-- 12:29现场RUNNING/gpu1，服务ready、dispatch/coexistence门过、8搜索启动；不读中途质量。≤100分钟allocation，预计14:04附近闭合。
+- 13:08现场RUNNING/gpu1，服务ready、dispatch/coexistence门过、16搜索已完成；不读中途质量。≤100分钟allocation，预计14:04前闭合。
 - 状态助手=/research/d7/spc/yzyang4/colocation-source-20261016-RokSUP/colocation_status_20261016.py；未闭合不读中途质量。
 - 新证据：pooling_18770_closed/mechanism-18770-v2.safe.json，SHA059a845e6e193c3e4955e1517d472c7b9a210fca42c64dc691925a3a85f5c769。
 - 该记录只复用闭合开发评分，0新GPU/评分；采样利用率14%–24%、许可持有55%–63%不是共置收益或因果中介。
 - closed_clock_screen_v2：75及时返回、73源码匹配、70有墙钟退出guard；29有效中28匹配/26有guard，静态不是因果。
 - 独立小机制批root=/research/d7/spc/yzyang4/clock-contention-20261016-v2，solo/co/co/solo共8次，gpu27一卡≤45分钟/.75GPUh。
-- source=f0c616b375f71908f9286951cca80f6446659c6c，planSHA6e19c7f715597f30d784982943618b73aeba69db4b9fc1bc446ea0a307cc0e17；18812已RUNNING/gpu27，整批≤45分钟。
-- 机制读出与独立Node已在b77239e2冻结；全8分母、真实步数/输出差异/开发分/独占重复波动，不能称E2E。
+- source=f0c616b375f71908f9286951cca80f6446659c6c，planSHA6e19c7f715597f30d784982943618b73aeba69db4b9fc1bc446ea0a307cc0e17；18812已COMPLETED/0:0，gpu27/1822GPU秒。
+- 13:12机制8/8完整有效/8重评分、Node独立统计和4传输SHA通过；summarySHAb1b7053e5372b33770fa360a94aad393b911dfa9d96803ab9a5e0a0da32b5d40。readout-20261016-v1已唯一读取，不再重跑。
+- 两程序独占/共置step1491/994、1584/1044；有向均分差−0.00032338587685687425/−0.00020111421947950625，超过各臂restart span；过6f6bab3e事前门，不是E2E或显著性。
+- 条件16执行排序批准备中：clock_rank_20261016.py，root=/research/d7/spc/yzyang4/clock-rank-20261016-v1；1卡≤90分钟/1.5GPUh，不再请批；尚未提交。
 - 两程序按时间序有效+CUDA+clock而非分数：18770 ep4/c0(Aerial)/ep3/c0(Denoise)，原源码/可执行hash/seed全一致。
 - v1准备时误触factory构造启动并关闭8登录节点Jupyter，0候选/0GPU；保留v1不提交。v2 CPU预检mock唯一外部server构造，生产不mock。
 

@@ -1,0 +1,109 @@
+{
+  "input_runs_sha256": "bb6f0cdcb6b2eda333ca2ebbe51e77f62612ea7fcdaabbf6810d17272a51ea94",
+  "posthoc": true,
+  "tasks": [
+    {
+      "task_index": 0,
+      "task": "aerial-cactus-identification",
+      "pairs": [
+        {
+          "repeat": 0,
+          "solo_winner_program": 1,
+          "colocated_winner_program": 0,
+          "retrospective_regret_if_solo_is_deployment": 0.00004008915828801474,
+          "selected_programs_are_source_fixed": true,
+          "effects": [
+            {
+              "program": 0,
+              "step_loss_fraction": 0.09523809523809523,
+              "oriented_score_change": 0.0004195998567479986,
+              "less_work_and_better_observed_score": true
+            },
+            {
+              "program": 1,
+              "step_loss_fraction": 0.10810810810810811,
+              "oriented_score_change": 0.0003714928668023809,
+              "less_work_and_better_observed_score": true
+            }
+          ]
+        },
+        {
+          "repeat": 1,
+          "solo_winner_program": 1,
+          "colocated_winner_program": 0,
+          "retrospective_regret_if_solo_is_deployment": 0.000026726105525343158,
+          "selected_programs_are_source_fixed": true,
+          "effects": [
+            {
+              "program": 0,
+              "step_loss_fraction": 0.047619047619047616,
+              "oriented_score_change": 0.00020846362309778765,
+              "less_work_and_better_observed_score": true
+            },
+            {
+              "program": 1,
+              "step_loss_fraction": 0.08333333333333333,
+              "oriented_score_change": 0.00017906490701991018,
+              "less_work_and_better_observed_score": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "task_index": 1,
+      "task": "denoising-dirty-documents",
+      "pairs": [
+        {
+          "repeat": 0,
+          "solo_winner_program": 3,
+          "colocated_winner_program": 2,
+          "retrospective_regret_if_solo_is_deployment": 0.0008785786425763165,
+          "selected_programs_are_source_fixed": true,
+          "effects": [
+            {
+              "program": 2,
+              "step_loss_fraction": 0.3409090909090909,
+              "oriented_score_change": -0.00018945832001460855,
+              "less_work_and_better_observed_score": false
+            },
+            {
+              "program": 3,
+              "step_loss_fraction": 0.8052805280528053,
+              "oriented_score_change": -0.0013284516286264786,
+              "less_work_and_better_observed_score": false
+            }
+          ]
+        },
+        {
+          "repeat": 1,
+          "solo_winner_program": 3,
+          "colocated_winner_program": 2,
+          "retrospective_regret_if_solo_is_deployment": 0.0008741644847719172,
+          "selected_programs_are_source_fixed": true,
+          "effects": [
+            {
+              "program": 2,
+              "step_loss_fraction": 0.3409090909090909,
+              "oriented_score_change": -0.00020942338945160316,
+              "less_work_and_better_observed_score": false
+            },
+            {
+              "program": 3,
+              "step_loss_fraction": 0.8052805280528053,
+              "oriented_score_change": -0.0013379976239882851,
+              "less_work_and_better_observed_score": false
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "boundaries": [
+    "Regret is retrospective and assumes exclusive execution is the deployment target; that target is not established by this experiment.",
+    "Colocated winner is correct for the observed colocated outputs. Lower scores are not automatically mislabeled or an unfair evaluation.",
+    "Equal program caps and identical source/input are not equal paired-block cost: solo runs sequentially and co runs simultaneously.",
+    "These source-fixed replay differences neither predict a new adaptive search trajectory nor show net gains after re-evaluation costs.",
+    "Less work with a better score does not identify early stopping or regularization as its cause; no branch trace or randomized work intervention was recorded."
+  ]
+}

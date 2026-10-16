@@ -25,5 +25,20 @@ class Confirmation(unittest.TestCase):
         import clock_rank_readout_20261016 as old
         import clock_rank_confirm_readout_20261016 as new
         self.assertIs(new.ranking,old.ranking)
+    def test_namespace_source_is_identical(self):
+        import ast
+        from pathlib import Path
+        folder=Path(__file__).parent
+        get=lambda name:next(n for n in ast.parse((folder/name).read_text()).body if isinstance(n,ast.FunctionDef) and n.name=='namespace_command')
+        self.assertEqual(ast.dump(get('pooling_trial_20261015.py'),include_attributes=False),
+            ast.dump(get('colocation_trial_20261016.py'),include_attributes=False))
+    def test_real_runtime_import_path(self):
+        import ast
+        from pathlib import Path
+        tree=ast.parse(Path(c.__file__).read_text())
+        fn=next(n for n in tree.body if isinstance(n,ast.FunctionDef) and n.name=='task_runtime')
+        names=[n.module for n in ast.walk(fn) if isinstance(n,ast.ImportFrom)]
+        self.assertIn('colocation_trial_20261016',names)
+        self.assertNotIn('pooling_trial_20261015',names)
 
 if __name__=='__main__':unittest.main()

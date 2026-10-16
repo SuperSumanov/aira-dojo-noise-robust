@@ -1,0 +1,21 @@
+{
+  "job": 18844,
+  "state": "FAILED",
+  "exit_code": "1:0",
+  "node": "gpu27",
+  "start_hk": "2026-10-16T14:38:30",
+  "end_hk": "2026-10-16T14:38:41",
+  "gpu_seconds": 11,
+  "planned": 16,
+  "worker_started": 1,
+  "candidate_execution_started": 0,
+  "scores": 0,
+  "cleanup_verified": true,
+  "source_commit": "eaa00db52f8426a926d109365198baa9de78ba2c",
+  "plan_sha256": "7ba784e11e2f9a821286308294cfd7acfe011ea11fa1acadc91153b13ed8c30b",
+  "root": "/research/d7/spc/yzyang4/clock-rank-confirmation-20261016-v1",
+  "error": "The inherited task shim imported pooling_trial_20261015, which is absent from the new18807 donor. ModuleNotFoundError before container initialization.",
+  "worker_log_sha256": "7d09ff4c451a547e93b03cf9525d8904b93aa84e3a2f2989f5c65d3444f49421",
+  "remote_redaction_counts": [0, 0, 0, 0],
+  "disposition": "Sealed, no old-root re-run/readout. Independentv2 may repair the helper import only, require AST parity and actual prepared shim CPU entry test; same programs/seeds/caps. At most one bounded repair batch, not a method result."
+}

@@ -1,0 +1,395 @@
+{
+  "parent_sha256": "b87aa52b18e0e06b02e888bd988bca2c6b9ba4c7e454f3da9829119fad0fab3e",
+  "reader_sha256": "34e01210433a205deed596af491f5830d57f7003339bb17eab6b06278d7c461c",
+  "assigned": 32,
+  "rows": [
+    {
+      "index": 0,
+      "task": "aerial-cactus-identification",
+      "journal_sha256": "d6c498d5e91ca9c005d28ed9f781173532b065eb18875b9123f8aae4b4ecca77",
+      "native_code_matches": 1,
+      "roles": [
+        "improve"
+      ],
+      "first_logged_code_role": "improve",
+      "first_logged_code_success": true,
+      "first_logged_code_adapter_attempts": 1
+    },
+    {
+      "index": 1,
+      "task": "denoising-dirty-documents",
+      "journal_sha256": "0237afcec47dcf4c3292df3c8fd32fea3efcd1654aede19f27c06237bd5375d5",
+      "native_code_matches": 1,
+      "roles": [
+        "improve"
+      ],
+      "first_logged_code_role": "improve",
+      "first_logged_code_success": true,
+      "first_logged_code_adapter_attempts": 1
+    },
+    {
+      "index": 2,
+      "task": "aerial-cactus-identification",
+      "journal_sha256": "5959a4668c99f8a11544100bb8c7652649e22ab6d5c7cdafcbf4ab24f3296af8",
+      "native_code_matches": 1,
+      "roles": [
+        "improve"
+      ],
+      "first_logged_code_role": "improve",
+      "first_logged_code_success": true,
+      "first_logged_code_adapter_attempts": 1
+    },
+    {
+      "index": 3,
+      "task": "denoising-dirty-documents",
+      "journal_sha256": "ed9a094fbd0e6f1d4571e31cc48ff04aad41c44475d4d3e481def08d18f27322",
+      "native_code_matches": 1,
+      "roles": [
+        "improve"
+      ],
+      "first_logged_code_role": "improve",
+      "first_logged_code_success": true,
+      "first_logged_code_adapter_attempts": 1
+    },
+    {
+      "index": 4,
+      "task": "aerial-cactus-identification",
+      "journal_sha256": "49300dad28be0908ce161effef6953230dcb7f980f272dab4a3fd070520977e6",
+      "native_code_matches": 1,
+      "roles": [
+        "improve"
+      ],
+      "first_logged_code_role": "improve",
+      "first_logged_code_success": true,
+      "first_logged_code_adapter_attempts": 1
+    },
+    {
+      "index": 5,
+      "task": "denoising-dirty-documents",
+      "journal_sha256": "a57e376cfe277d5f0410fb6807ca4080504887217c06fe86a545fd6a27007976",
+      "native_code_matches": 1,
+      "roles": [
+        "improve"
+      ],
+      "first_logged_code_role": "improve",
+      "first_logged_code_success": true,
+      "first_logged_code_adapter_attempts": 1
+    },
+    {
+      "index": 6,
+      "task": "aerial-cactus-identification",
+      "journal_sha256": "c5dac48be3710a8fb4cf6fbcf34fc8f7dcbe5d52992ff73cbf0de1ea233211ef",
+      "native_code_matches": 1,
+      "roles": [
+        "improve"
+      ],
+      "first_logged_code_role": "improve",
+      "first_logged_code_success": true,
+      "first_logged_code_adapter_attempts": 1
+    },
+    {
+      "index": 7,
+      "task": "denoising-dirty-documents",
+      "journal_sha256": "8c6c9f6cc5e03a16f8aabdc58d6b18033930f3249ffa97385b97f401d039e516",
+      "native_code_matches": 1,
+      "roles": [
+        "improve"
+      ],
+      "first_logged_code_role": "improve",
+      "first_logged_code_success": true,
+      "first_logged_code_adapter_attempts": 1
+    },
+    {
+      "index": 8,
+      "task": "aerial-cactus-identification",
+      "journal_sha256": "7a5e3eb6935f7fa14a117775a424350cec7367101559eb12aaef03bf2cdedc4f",
+      "native_code_matches": 1,
+      "roles": [
+        "improve"
+      ],
+      "first_logged_code_role": "improve",
+      "first_logged_code_success": true,
+      "first_logged_code_adapter_attempts": 1
+    },
+    {
+      "index": 9,
+      "task": "denoising-dirty-documents",
+      "journal_sha256": "283aaf3e1b9fe4f40c2869fc957cdd50b35d3e445482cef5435cd887915d3e3b",
+      "native_code_matches": 1,
+      "roles": [
+        "improve"
+      ],
+      "first_logged_code_role": "improve",
+      "first_logged_code_success": true,
+      "first_logged_code_adapter_attempts": 1
+    },
+    {
+      "index": 10,
+      "task": "aerial-cactus-identification",
+      "journal_sha256": "b0cd3f3f91a30cfeed8fa88c42bfae13c297bcd30ff4917e665774fcd6654de3",
+      "native_code_matches": 1,
+      "roles": [
+        "improve"
+      ],
+      "first_logged_code_role": "improve",
+      "first_logged_code_success": true,
+      "first_logged_code_adapter_attempts": 1
+    },
+    {
+      "index": 11,
+      "task": "denoising-dirty-documents",
+      "journal_sha256": "b1f747b5e92a9341a6cb665a0eee3a509c6708eafb79c309f3c806fdf1a589d8",
+      "native_code_matches": 1,
+      "roles": [
+        "improve"
+      ],
+      "first_logged_code_role": "improve",
+      "first_logged_code_success": true,
+      "first_logged_code_adapter_attempts": 1
+    },
+    {
+      "index": 12,
+      "task": "aerial-cactus-identification",
+      "journal_sha256": "8a975d58f86aa59db00f90cfa1da5fe6fcea154c53ee15bacb82f2aaae8891a2",
+      "native_code_matches": 1,
+      "roles": [
+        "improve"
+      ],
+      "first_logged_code_role": "improve",
+      "first_logged_code_success": true,
+      "first_logged_code_adapter_attempts": 1
+    },
+    {
+      "index": 13,
+      "task": "denoising-dirty-documents",
+      "journal_sha256": "931a10bc28ac5e675357e1c8991a12873132f3e174f7ab114f62d76224dcd4b3",
+      "native_code_matches": 1,
+      "roles": [
+        "improve"
+      ],
+      "first_logged_code_role": "improve",
+      "first_logged_code_success": true,
+      "first_logged_code_adapter_attempts": 1
+    },
+    {
+      "index": 14,
+      "task": "aerial-cactus-identification",
+      "journal_sha256": "db391a8bffd6960acff44c85bdc78dc3ed0bc19df73f11661c31c969a139fb8e",
+      "native_code_matches": 1,
+      "roles": [
+        "improve"
+      ],
+      "first_logged_code_role": "improve",
+      "first_logged_code_success": true,
+      "first_logged_code_adapter_attempts": 1
+    },
+    {
+      "index": 15,
+      "task": "denoising-dirty-documents",
+      "journal_sha256": "b2aa5f7544f5388f6f8b9d3b7a8f45d637ba140fcb0c4eaf22f00e31ea4faae2",
+      "native_code_matches": 1,
+      "roles": [
+        "improve"
+      ],
+      "first_logged_code_role": "improve",
+      "first_logged_code_success": true,
+      "first_logged_code_adapter_attempts": 1
+    },
+    {
+      "index": 16,
+      "task": "aerial-cactus-identification",
+      "journal_sha256": "f33f9ca5c1a1af8144cf3a4070617372ea8f2c6d63258f0c99be3f98db803e1a",
+      "native_code_matches": 1,
+      "roles": [
+        "improve"
+      ],
+      "first_logged_code_role": "improve",
+      "first_logged_code_success": true,
+      "first_logged_code_adapter_attempts": 1
+    },
+    {
+      "index": 17,
+      "task": "denoising-dirty-documents",
+      "journal_sha256": "b6751a3e048910853ffecdeb35b9b28a0a1c65ddbe9c8294736b8a293158e7b7",
+      "native_code_matches": 1,
+      "roles": [
+        "improve"
+      ],
+      "first_logged_code_role": "improve",
+      "first_logged_code_success": true,
+      "first_logged_code_adapter_attempts": 1
+    },
+    {
+      "index": 18,
+      "task": "aerial-cactus-identification",
+      "journal_sha256": "132917b114c64736d5fbeb2fe7dc7ff5f5f6fc08ec196b597f7f645599bf569d",
+      "native_code_matches": 1,
+      "roles": [
+        "improve"
+      ],
+      "first_logged_code_role": "improve",
+      "first_logged_code_success": true,
+      "first_logged_code_adapter_attempts": 1
+    },
+    {
+      "index": 19,
+      "task": "denoising-dirty-documents",
+      "journal_sha256": "4b91af733335ca1ceb8eccdcefe22ad0793eca14da975facc72ead028664ce3a",
+      "native_code_matches": 1,
+      "roles": [
+        "improve"
+      ],
+      "first_logged_code_role": "improve",
+      "first_logged_code_success": true,
+      "first_logged_code_adapter_attempts": 1
+    },
+    {
+      "index": 20,
+      "task": "aerial-cactus-identification",
+      "journal_sha256": "b4b6434bc10cdd26958924d210266c3c3aa274c224710b7be21e6a7ebfe1d3c0",
+      "native_code_matches": 1,
+      "roles": [
+        "improve"
+      ],
+      "first_logged_code_role": "improve",
+      "first_logged_code_success": true,
+      "first_logged_code_adapter_attempts": 1
+    },
+    {
+      "index": 21,
+      "task": "denoising-dirty-documents",
+      "journal_sha256": "11488bcded586efd799292de204c4c2e747f1be51026e5fc5437d293db203564",
+      "native_code_matches": 1,
+      "roles": [
+        "improve"
+      ],
+      "first_logged_code_role": "improve",
+      "first_logged_code_success": true,
+      "first_logged_code_adapter_attempts": 1
+    },
+    {
+      "index": 22,
+      "task": "aerial-cactus-identification",
+      "journal_sha256": "4e8c503f50de3aa0cbb58239a5874530ff6035d7353b60206b631f68172562b1",
+      "native_code_matches": 1,
+      "roles": [
+        "improve"
+      ],
+      "first_logged_code_role": "improve",
+      "first_logged_code_success": true,
+      "first_logged_code_adapter_attempts": 1
+    },
+    {
+      "index": 23,
+      "task": "denoising-dirty-documents",
+      "journal_sha256": "406834975146debfd05e158e9cd497b50408a08a279fffc75053f1f271a5cda4",
+      "native_code_matches": 1,
+      "roles": [
+        "improve"
+      ],
+      "first_logged_code_role": "improve",
+      "first_logged_code_success": true,
+      "first_logged_code_adapter_attempts": 1
+    },
+    {
+      "index": 24,
+      "task": "aerial-cactus-identification",
+      "journal_sha256": "40a7f9b6cb72abd9593b8c6acc78d682bbba2274f2b698002df52fd03d264f31",
+      "native_code_matches": 1,
+      "roles": [
+        "improve"
+      ],
+      "first_logged_code_role": "improve",
+      "first_logged_code_success": true,
+      "first_logged_code_adapter_attempts": 1
+    },
+    {
+      "index": 25,
+      "task": "denoising-dirty-documents",
+      "journal_sha256": "b98ed68ad487b552c4464f9b5489036ccf82b631fd680fbb58853063c4b7b968",
+      "native_code_matches": 1,
+      "roles": [
+        "improve"
+      ],
+      "first_logged_code_role": "improve",
+      "first_logged_code_success": true,
+      "first_logged_code_adapter_attempts": 1
+    },
+    {
+      "index": 26,
+      "task": "aerial-cactus-identification",
+      "journal_sha256": "c0dd70a306a831e58132ad4c44f022cb892e5b64d5815ab2fc879ef205bce253",
+      "native_code_matches": 1,
+      "roles": [
+        "improve"
+      ],
+      "first_logged_code_role": "improve",
+      "first_logged_code_success": true,
+      "first_logged_code_adapter_attempts": 1
+    },
+    {
+      "index": 27,
+      "task": "denoising-dirty-documents",
+      "journal_sha256": "0dea9e81293bc93395dc0a6b9814c81637d27d4f2ac96cd359ca46a717c2149e",
+      "native_code_matches": 1,
+      "roles": [
+        "improve"
+      ],
+      "first_logged_code_role": "improve",
+      "first_logged_code_success": true,
+      "first_logged_code_adapter_attempts": 1
+    },
+    {
+      "index": 28,
+      "task": "aerial-cactus-identification",
+      "journal_sha256": "b1895999d9b89f7ea8acac76dbe73315ae44afc458595b6bbbeda9b9d45c1b49",
+      "native_code_matches": 1,
+      "roles": [
+        "improve"
+      ],
+      "first_logged_code_role": "improve",
+      "first_logged_code_success": true,
+      "first_logged_code_adapter_attempts": 1
+    },
+    {
+      "index": 29,
+      "task": "denoising-dirty-documents",
+      "journal_sha256": "e82724064ef417eda80ce9b2b76859cb456f92b53d7d832f54f0f0ccdb398d9f",
+      "native_code_matches": 1,
+      "roles": [
+        "improve"
+      ],
+      "first_logged_code_role": "improve",
+      "first_logged_code_success": true,
+      "first_logged_code_adapter_attempts": 1
+    },
+    {
+      "index": 30,
+      "task": "aerial-cactus-identification",
+      "journal_sha256": "e2fe7990439ab6183a583ab21b028ad665d90fb41867554aa156d989765c2c33",
+      "native_code_matches": 1,
+      "roles": [
+        "improve"
+      ],
+      "first_logged_code_role": "improve",
+      "first_logged_code_success": true,
+      "first_logged_code_adapter_attempts": 1
+    },
+    {
+      "index": 31,
+      "task": "denoising-dirty-documents",
+      "journal_sha256": "1e1ad04315a631ef84a8ff0af9fa48bed2ba695d80012f9fd922ced182544ffe",
+      "native_code_matches": 1,
+      "roles": [
+        "improve"
+      ],
+      "first_logged_code_role": "improve",
+      "first_logged_code_success": true,
+      "first_logged_code_adapter_attempts": 1
+    }
+  ],
+  "native_code_matched": 32,
+  "native_improve_only": 32,
+  "first_logged_code_successful_improve": 32,
+  "boundary": "Native-code hash association, not independent extraction of model transport responses or attribution to dynamic batching. Native journal membership excludes an execution-only wrapper as the matched code source. First logged successful call is not proof of server-side determinism or exact request handling."
+}

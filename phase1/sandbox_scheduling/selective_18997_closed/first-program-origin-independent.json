@@ -1,0 +1,14 @@
+{
+  "schema": 1,
+  "checked_date_utc": "2026-10-16",
+  "artifact_sha256": "87e64ec58d39e08628d0c2adf59e50b35428bc327877faec222c4d02fbe79856",
+  "remote_local_hash_equal": true,
+  "independent_aggregate_engine": "PowerShell ConvertFrom-Json, Group-Object, Get-FileHash",
+  "rows": 32,
+  "unique_indices": 32,
+  "native_code_matched": 32,
+  "native_improve_only": 32,
+  "first_logged_code_successful_improve": 32,
+  "first_logged_adapter_attempts_one": 32,
+  "boundary": "Independent aggregate and transfer verification, not independent native journal extraction. All attempted first programs match native journal code; execution-only wrapper instrumentation does not explain their hash differences. Adapter attempt count does not prove server determinism or inspect transport payloads. No original quality gate or live experiment changed."
+}

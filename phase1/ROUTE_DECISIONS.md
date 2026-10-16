@@ -21,7 +21,7 @@
 - 10/17：18987在首组因去噪program2原300秒超时，4wrapper/3有效，733GPU秒，配对未获比较；冻结diverse后续不启动。日志显示第二整折结束已287.6秒，不能说只因落盘慢。
 - 独立selectiveFIFO改变“可否共置”而非伙伴tie-break：仅Aerial同类可共置、去噪独占，保持FIFO/CPU/生成器/预算。32真实搜索、2反序比较、原终分门；任务先验简单参照，不称创新，不是新来源确认，更未比SchedMate。候选失败不删分母。
 - 18997该配方32完整/35重评分、独立复核和12传输SHA通过；去噪两次best更差，Aerial两次略高，原质量门false。实际共置3/4次且保护延迟各7次，不能说策略没执行；停止，不补seed/延时，不推断所有自适应保护普遍无效。selective_18997_closed。
-- 18997封存后首程序哈希诊断：16对首轮prompt/配置seed相同、均有程序尝试，仅3对raw/AST相同（去噪0/8）；独立配对计数与传输SHA通过，原代码AST未独立重提取。首尝试不保证首transport响应，原因未分解，不指认为vLLM错误或否决原随机策略实验；配对seed不等于同提案，不以单轨迹归因纯执行干扰。first-program-pairing回执。
+- 18997封存后首程序哈希诊断：16对首轮prompt/配置seed相同、均有程序尝试，仅3对raw/AST相同（去噪0/8）；32首程序均匹配原生journal代码、首日志成功Improve且adapter_attempts=1，故不是执行包装代码造成哈希差异。独立计数/传输SHA通过，原代码AST和journal提取未独立重做。首尝试不保证首transport响应，原因未分解，不指认为vLLM错误或否决原随机策略实验；配对seed不等于同提案，不以单轨迹归因纯执行干扰。first-program-pairing/origin回执。
 - 10/17核vLLM官方Reproducibility/Batch Invariance：默认在线结果不保证可复现，专门不变性会影响性能，已测模型列表不能替代本项目27B量化镜像验收。仅支持保留服务非确定性这个备选解释，不证明18997差异由它造成；不临时改已冻结镜像/开关，更不把已知复现问题当新颖发现。https://docs.vllm.ai/en/stable/usage/reproducibility/ / https://docs.vllm.ai/en/stable/features/batch_invariance/
 - 10/17只读18807发现每任务2个生成许可留下10.47%–24.33%的有队列/总active<4状态；独立积分通过。vLLM408采样最大Running4、Waiting0、KV13.3%，不证明硬件空闲。后续只测同总4许可的跨任务借用，执行仍单许可；这是work-conserving强基线资格，不是17675旧资源打分重命名，更不是新算法/MARS复现。
 - 同批余时独立核算：≥300秒余时下每池仍有约96/118/123/168秒借用机会，主要为analysis/debug；不是全部截止尾巴，也不是额外完成数。证据quota-slack-20261017-v1.safe.json及quota-slack-independent.json，原质量门不改。

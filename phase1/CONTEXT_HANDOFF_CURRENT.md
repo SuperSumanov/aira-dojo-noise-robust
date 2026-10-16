@@ -1,6 +1,6 @@
 # 当前短交接：只记录现场与恢复操作
 
-最后核验：2026-10-16香港13:12；下次先核现场，不照旧预计时间行动。
+最后核验：2026-10-16香港13:26；下次先核现场，不照旧预计时间行动。
 用户11:18批准六小时自主推进，窗口到香港17:18；限定新实验自行决策，不重复询问已批准事项。
 
 ## 活跃目录与来源
@@ -37,7 +37,7 @@
 - 17分钟/run、1180秒/pool、候选300秒、旧fast/公共预览/warm历史/固定CPU不变；完整32/两次去噪≥.001/Aerial不退/实际共置。
 - source=c9251b7593edb4546cb371150f5067a922edd041；planSHA=36ce5852b26de2299755c19a8b9711a1f4161d68abd25a3de6cc7687cdde8560。
 - 16项新CPU/Node自测、32真实输入/16配对、10生产信号场景均通过；哈希核验完成后提交18807。
-- 13:08现场RUNNING/gpu1，服务ready、dispatch/coexistence门过、16搜索已完成；不读中途质量。≤100分钟allocation，预计14:04前闭合。
+- 13:20现场RUNNING/gpu1，服务ready、dispatch/coexistence门过、24启动/16完成、24真实首输入通过；不读中途质量。≤100分钟allocation，预计14:04前闭合。
 - 状态助手=/research/d7/spc/yzyang4/colocation-source-20261016-RokSUP/colocation_status_20261016.py；未闭合不读中途质量。
 - 新证据：pooling_18770_closed/mechanism-18770-v2.safe.json，SHA059a845e6e193c3e4955e1517d472c7b9a210fca42c64dc691925a3a85f5c769。
 - 该记录只复用闭合开发评分，0新GPU/评分；采样利用率14%–24%、许可持有55%–63%不是共置收益或因果中介。
@@ -46,7 +46,10 @@
 - source=f0c616b375f71908f9286951cca80f6446659c6c，planSHA6e19c7f715597f30d784982943618b73aeba69db4b9fc1bc446ea0a307cc0e17；18812已COMPLETED/0:0，gpu27/1822GPU秒。
 - 13:12机制8/8完整有效/8重评分、Node独立统计和4传输SHA通过；summarySHAb1b7053e5372b33770fa360a94aad393b911dfa9d96803ab9a5e0a0da32b5d40。readout-20261016-v1已唯一读取，不再重跑。
 - 两程序独占/共置step1491/994、1584/1044；有向均分差−0.00032338587685687425/−0.00020111421947950625，超过各臂restart span；过6f6bab3e事前门，不是E2E或显著性。
-- 条件16执行排序批准备中：clock_rank_20261016.py，root=/research/d7/spc/yzyang4/clock-rank-20261016-v1；1卡≤90分钟/1.5GPUh，不再请批；尚未提交。
+- 条件排序18819已RUNNING/gpu27（13:26观察）：clock_rank_20261016.py，root=/research/d7/spc/yzyang4/clock-rank-20261016-v1；16执行，1卡≤90分钟/1.5GPUh，不再请批。
+- 18819source=4c2b6fa514bec295a045c19dcf93faada77ed5c5；planSHA4c22748699952da0b79bf862e1db5e785b7d2a9fb951bb26ee9c21be47ca3306；8CPU测试及16原环境配置门通过。
+- 四源码按18770时间序为Aerial ep4/c0、ep6/c1，Denoise ep3/c0、ep5/c0；不看分差选样本。solo/co/co/solo，同任务共置，执行文本/seed/300秒不改。
+- 18819闭合后clock_rank_readout_20261016.py唯一读出、verify_clock_rank_20261016.cjs独立统计；必须报告全16，不补跑/择翻转样本。预期14:30附近闭合，硬截止14:56。
 - 两程序按时间序有效+CUDA+clock而非分数：18770 ep4/c0(Aerial)/ep3/c0(Denoise)，原源码/可执行hash/seed全一致。
 - v1准备时误触factory构造启动并关闭8登录节点Jupyter，0候选/0GPU；保留v1不提交。v2 CPU预检mock唯一外部server构造，生产不mock。
 

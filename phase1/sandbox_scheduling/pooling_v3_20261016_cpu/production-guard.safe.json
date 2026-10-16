@@ -1,0 +1,243 @@
+{
+  "cases": [
+    {
+      "case": "success",
+      "deadline_propagated": false,
+      "events": [
+        "queued",
+        "admitted",
+        "released"
+      ],
+      "gpu_calls": 0,
+      "independent_queue_check": {
+        "admissions": 1,
+        "migrations": 0,
+        "wait_median": 0.004053592681884766,
+        "wait_total": 0.004053592681884766
+      },
+      "index": 0,
+      "kernel_calls": 0,
+      "manual_guard": false,
+      "mode": "fixed",
+      "model_calls": 0,
+      "passed": true,
+      "production_install": true,
+      "signal_injections": 0
+    },
+    {
+      "case": "queue",
+      "deadline_propagated": true,
+      "events": [
+        "queued",
+        "queue_cancelled"
+      ],
+      "gpu_calls": 0,
+      "independent_queue_check": {
+        "admissions": 0,
+        "migrations": 0,
+        "wait_median": null,
+        "wait_total": 0
+      },
+      "index": 0,
+      "kernel_calls": 0,
+      "manual_guard": false,
+      "mode": "fixed",
+      "model_calls": 0,
+      "passed": true,
+      "production_install": true,
+      "signal_injections": 1
+    },
+    {
+      "case": "admit",
+      "deadline_propagated": true,
+      "events": [
+        "queued",
+        "admitted",
+        "released"
+      ],
+      "gpu_calls": 0,
+      "independent_queue_check": {
+        "admissions": 1,
+        "migrations": 0,
+        "wait_median": 0.011301755905151367,
+        "wait_total": 0.011301755905151367
+      },
+      "index": 0,
+      "kernel_calls": 0,
+      "manual_guard": false,
+      "mode": "fixed",
+      "model_calls": 0,
+      "passed": true,
+      "production_install": true,
+      "signal_injections": 1
+    },
+    {
+      "case": "cancel",
+      "deadline_propagated": true,
+      "events": [
+        "queued",
+        "queue_cancelled"
+      ],
+      "gpu_calls": 0,
+      "independent_queue_check": {
+        "admissions": 0,
+        "migrations": 0,
+        "wait_median": null,
+        "wait_total": 0
+      },
+      "index": 0,
+      "kernel_calls": 0,
+      "manual_guard": false,
+      "mode": "fixed",
+      "model_calls": 0,
+      "passed": true,
+      "production_install": true,
+      "signal_injections": 1
+    },
+    {
+      "case": "release",
+      "deadline_propagated": true,
+      "events": [
+        "queued",
+        "admitted",
+        "released"
+      ],
+      "gpu_calls": 0,
+      "independent_queue_check": {
+        "admissions": 1,
+        "migrations": 0,
+        "wait_median": 0.006241559982299805,
+        "wait_total": 0.006241559982299805
+      },
+      "index": 0,
+      "kernel_calls": 0,
+      "manual_guard": false,
+      "mode": "fixed",
+      "model_calls": 0,
+      "passed": true,
+      "production_install": true,
+      "signal_injections": 1
+    },
+    {
+      "case": "success",
+      "deadline_propagated": false,
+      "events": [
+        "queued",
+        "admitted",
+        "released"
+      ],
+      "gpu_calls": 0,
+      "independent_queue_check": {
+        "admissions": 1,
+        "migrations": 0,
+        "wait_median": 0.013404369354248047,
+        "wait_total": 0.013404369354248047
+      },
+      "index": 8,
+      "kernel_calls": 0,
+      "manual_guard": false,
+      "mode": "shared",
+      "model_calls": 0,
+      "passed": true,
+      "production_install": true,
+      "signal_injections": 0
+    },
+    {
+      "case": "queue",
+      "deadline_propagated": true,
+      "events": [
+        "queued",
+        "queue_cancelled"
+      ],
+      "gpu_calls": 0,
+      "independent_queue_check": {
+        "admissions": 0,
+        "migrations": 0,
+        "wait_median": null,
+        "wait_total": 0
+      },
+      "index": 8,
+      "kernel_calls": 0,
+      "manual_guard": false,
+      "mode": "shared",
+      "model_calls": 0,
+      "passed": true,
+      "production_install": true,
+      "signal_injections": 1
+    },
+    {
+      "case": "admit",
+      "deadline_propagated": true,
+      "events": [
+        "queued",
+        "admitted",
+        "released"
+      ],
+      "gpu_calls": 0,
+      "independent_queue_check": {
+        "admissions": 1,
+        "migrations": 0,
+        "wait_median": 0.05170392990112305,
+        "wait_total": 0.05170392990112305
+      },
+      "index": 8,
+      "kernel_calls": 0,
+      "manual_guard": false,
+      "mode": "shared",
+      "model_calls": 0,
+      "passed": true,
+      "production_install": true,
+      "signal_injections": 1
+    },
+    {
+      "case": "cancel",
+      "deadline_propagated": true,
+      "events": [
+        "queued",
+        "queue_cancelled"
+      ],
+      "gpu_calls": 0,
+      "independent_queue_check": {
+        "admissions": 0,
+        "migrations": 0,
+        "wait_median": null,
+        "wait_total": 0
+      },
+      "index": 8,
+      "kernel_calls": 0,
+      "manual_guard": false,
+      "mode": "shared",
+      "model_calls": 0,
+      "passed": true,
+      "production_install": true,
+      "signal_injections": 1
+    },
+    {
+      "case": "release",
+      "deadline_propagated": true,
+      "events": [
+        "queued",
+        "admitted",
+        "released"
+      ],
+      "gpu_calls": 0,
+      "independent_queue_check": {
+        "admissions": 1,
+        "migrations": 0,
+        "wait_median": 0.0032699108123779297,
+        "wait_total": 0.0032699108123779297
+      },
+      "index": 8,
+      "kernel_calls": 0,
+      "manual_guard": false,
+      "mode": "shared",
+      "model_calls": 0,
+      "passed": true,
+      "production_install": true,
+      "signal_injections": 1
+    }
+  ],
+  "interpretation": "CPU production wiring and transaction integrity only, not CUDA, speedup or search benefit.",
+  "passed": true,
+  "production_source_sha256": "9181d3bc93157afcf384c717613ef56518713d95311ff1e6670231c5968b5c9b"
+}

@@ -1,0 +1,9 @@
+{
+  "configs": 32,
+  "exact_input_gate": true,
+  "gpu_hours_cap": 10,
+  "no_gpu": true,
+  "no_model_calls": true,
+  "plan_sha256": "a7cc9780c927cdeac3fc1effb214643a387353122e1fa542d3a40116b248d477",
+  "source_commit": "6c58f3b130534d8f4e1a0628f2ef5ce18b0c0356"
+}

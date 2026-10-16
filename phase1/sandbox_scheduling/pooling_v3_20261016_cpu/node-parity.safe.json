@@ -1,0 +1,15 @@
+{
+  "actual_cpu_inputs_equal": 32,
+  "changed_functions": ["prepare"],
+  "common_node": "gpu1",
+  "configs_equal": 32,
+  "dispatch_and_quality_gates_unchanged": true,
+  "gpu_calls": 0,
+  "model_calls": 0,
+  "old_batch_unchanged": true,
+  "passed": true,
+  "plan_sha256": "a7cc9780c927cdeac3fc1effb214643a387353122e1fa542d3a40116b248d477",
+  "predecessor": "18673",
+  "production_guard_cases": 10,
+  "source_commit": "6c58f3b130534d8f4e1a0628f2ef5ce18b0c0356"
+}

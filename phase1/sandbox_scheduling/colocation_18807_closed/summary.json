@@ -1,0 +1,176 @@
+{
+  "actual_mode_gate": true,
+  "assigned": 32,
+  "by_pool": [
+    {
+      "best": 0.9998770599145834,
+      "block": 0,
+      "median": 0.9997300663341939,
+      "n": 4,
+      "pool_mode": "shared",
+      "repeat": 0,
+      "sample_sd": 7.765531996905841e-05,
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "best": 0.019528777605669127,
+      "block": 0,
+      "median": 0.033890483021423425,
+      "n": 4,
+      "pool_mode": "shared",
+      "repeat": 0,
+      "sample_sd": 0.014254581097576775,
+      "task": "denoising-dirty-documents"
+    },
+    {
+      "best": 0.9999011134095561,
+      "block": 1,
+      "median": 0.9997420930816803,
+      "n": 4,
+      "pool_mode": "colocated",
+      "repeat": 0,
+      "sample_sd": 8.606124141202092e-05,
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "best": 0.01721597106831217,
+      "block": 1,
+      "median": 0.034512905344067285,
+      "n": 4,
+      "pool_mode": "colocated",
+      "repeat": 0,
+      "sample_sd": 0.014744793685044328,
+      "task": "denoising-dirty-documents"
+    },
+    {
+      "best": 0.999815589871875,
+      "block": 2,
+      "median": 0.99972071219726,
+      "n": 4,
+      "pool_mode": "colocated",
+      "repeat": 1,
+      "sample_sd": 4.895937562198898e-05,
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "best": 0.021328319563241365,
+      "block": 2,
+      "median": 0.04551226514614451,
+      "n": 4,
+      "pool_mode": "colocated",
+      "repeat": 1,
+      "sample_sd": 0.012091972791451572,
+      "task": "denoising-dirty-documents"
+    },
+    {
+      "best": 0.9998316255351903,
+      "block": 3,
+      "median": 0.9997875274610735,
+      "n": 4,
+      "pool_mode": "shared",
+      "repeat": 1,
+      "sample_sd": 4.992252421007597e-05,
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "best": 0.016427367057629972,
+      "block": 3,
+      "median": 0.024667253757132444,
+      "n": 4,
+      "pool_mode": "shared",
+      "repeat": 1,
+      "sample_sd": 0.012427510683766787,
+      "task": "denoising-dirty-documents"
+    }
+  ],
+  "complete": 32,
+  "contrasts": [
+    {
+      "baseline_best": 0.9998770599145834,
+      "colocated_best": 0.9999011134095561,
+      "median_delta": 1.202674748634891e-05,
+      "oriented_delta": 2.405349497269782e-05,
+      "repeat": 0,
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "baseline_best": 0.019528777605669127,
+      "colocated_best": 0.01721597106831217,
+      "median_delta": -0.0006224223226438605,
+      "oriented_delta": 0.002312806537356958,
+      "repeat": 0,
+      "task": "denoising-dirty-documents"
+    },
+    {
+      "baseline_best": 0.9998316255351903,
+      "colocated_best": 0.999815589871875,
+      "median_delta": -6.681526381346892e-05,
+      "oriented_delta": -1.6035663315316917e-05,
+      "repeat": 1,
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "baseline_best": 0.016427367057629972,
+      "colocated_best": 0.021328319563241365,
+      "median_delta": -0.020845011389012066,
+      "oriented_delta": -0.004900952505611393,
+      "repeat": 1,
+      "task": "denoising-dirty-documents"
+    }
+  ],
+  "dispatch_changed": true,
+  "gpu_hours": 8.448333333333334,
+  "gpu_seconds": 30414,
+  "limitation": "Bounded GPU colocation is a known systems baseline, NOT novelty or a SchedMate reproduction. Reused two development tasks; two comparisons share one service, not32 independent replicates. Startup/CPU phases overlap too; low sampled utilization is not kernel headroom proof. Unknown future memory peaks can cause candidate failure, counted not removed. No training/history-transfer gain.",
+  "plan_sha256": "36ce5852b26de2299755c19a8b9711a1f4161d68abd25a3de6cc7687cdde8560",
+  "predeclared_success_gate_met": false,
+  "quality_gate": false,
+  "queues": [
+    {
+      "admissions": 22,
+      "block": 0,
+      "co_admissions": 0,
+      "migrations": 18,
+      "peak_device_leases": 1,
+      "pool_mode": "shared",
+      "wait_median": 0.012470602989196777,
+      "wait_total": 554.1673314571381
+    },
+    {
+      "admissions": 24,
+      "block": 1,
+      "co_admissions": 8,
+      "migrations": 18,
+      "peak_device_leases": 2,
+      "pool_mode": "colocated",
+      "wait_median": 0.010093331336975098,
+      "wait_total": 0.2555522918701172
+    },
+    {
+      "admissions": 23,
+      "block": 2,
+      "co_admissions": 12,
+      "migrations": 18,
+      "peak_device_leases": 2,
+      "pool_mode": "colocated",
+      "wait_median": 0.011066675186157227,
+      "wait_total": 0.27567625045776367
+    },
+    {
+      "admissions": 22,
+      "block": 3,
+      "co_admissions": 0,
+      "migrations": 15,
+      "peak_device_leases": 1,
+      "pool_mode": "shared",
+      "wait_median": 19.81932234764099,
+      "wait_total": 628.8655285835266
+    }
+  ],
+  "reader_sha256": "5744414b9cea8c443e9db4cef421ddb57402a1138f197871ec344abdff174cea",
+  "runtime_input_gate": true,
+  "scores_recomputed": 38,
+  "source_commit": "c9251b7593edb4546cb371150f5067a922edd041",
+  "started": 32,
+  "structural_gate": true
+}

@@ -1,6 +1,7 @@
 {
   "primary_summary_sha256": "b1b7053e5372b33770fa360a94aad393b911dfa9d96803ab9a5e0a0da32b5d40",
   "posthoc_mechanism_inspection": true,
+  "original_parent_comparison": {"original_parent_scores": [0.9997140306708787, 0.04551226514614451], "program0_all_four_below_original_parent": true, "program1_all_four_above_original_parent": true, "accept_reject_sign_changed": false, "boundary": "Secondary comparison to the actual original parent receipt, not a parent rerun under each load. No decision reversal demonstrated by these two programs."},
   "colocated_over_solo_mean_candidate_exec_seconds": [0.9909931255242036, 0.7988482912036062],
   "colocated_over_solo_mean_worker_elapsed_seconds": [0.9856908192481724, 0.8117372976486749],
   "runtime_ratio_scope": "Mean of each program's two repeats per arm; not total allocation JCT or equal-quality speedup.",

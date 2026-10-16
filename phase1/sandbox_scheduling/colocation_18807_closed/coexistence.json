@@ -1,0 +1,28 @@
+{
+  "cleanup_verified": true,
+  "containers": 2,
+  "elapsed_seconds": 6.307950860005803,
+  "gpu_uuid": "GPU-3967cc0c-322f-aa05-fdfb-8c8f4291e18e",
+  "passed": true,
+  "rows": [
+    {
+      "both_done": true,
+      "both_ready": true,
+      "devices": 1,
+      "held_bytes": 134217728,
+      "passed": true,
+      "result": 16777216.0,
+      "slot": 0
+    },
+    {
+      "both_done": true,
+      "both_ready": true,
+      "devices": 1,
+      "held_bytes": 134217728,
+      "passed": true,
+      "result": 16777216.0,
+      "slot": 1
+    }
+  ],
+  "scope": "Two synthetic128MiB allocations coexist in original task containers; not arbitrary-code memory safety or speedup."
+}

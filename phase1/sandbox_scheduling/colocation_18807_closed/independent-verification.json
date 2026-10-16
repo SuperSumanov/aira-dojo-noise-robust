@@ -1,0 +1,39 @@
+{
+  "job": "18807",
+  "observed_utc": "2026-10-16T05:54:00Z",
+  "passed": true,
+  "assigned": 32,
+  "complete": 32,
+  "remote_pristine_dev_rescores": 38,
+  "node_independent_statistics_queue_inputs_identity": true,
+  "node_independent_rescoring": false,
+  "quality_gate": false,
+  "conditional_new_seed_confirmation_cancelled": true,
+  "conditional_protocol_commit": "d0a49df0bdf89602f824c1219d9407b38a630e03",
+  "allocation": {
+    "state": "COMPLETED",
+    "exit_code": "0:0",
+    "node": "gpu1",
+    "start_hk": "2026-10-16T12:23:23+08:00",
+    "end_hk": "2026-10-16T13:47:52+08:00",
+    "elapsed_seconds": 5069,
+    "gpus": 6,
+    "gpu_seconds": 30414,
+    "gpu_hours": 8.448333333333334
+  },
+  "transfer_hashes_equal": {
+    "bindings.json": "568a697977078a1eb29b4149e60a46b9e8a93f2c3d4514de1ebc67ecc22b3885",
+    "coexistence.json": "7a4f576366beab6f51cf6d2d52ed30b317d3bcaeb8c1c6ff13e6721aa150306c",
+    "effort.json": "ae57816b4bc5b33788830b5a85064b940c68c24fd0924ebabfd9a02f9fd3122b",
+    "identity.json": "b5451a9177092a805472a2f8aa7eca89c579fc471b020603bdd2ba501a534041",
+    "input-checks.json": "f043cda8af1a2b91a289e19172c46ba40159ac91b33f78b19c570297e4d63471",
+    "queue-0.json": "2fdea5a7f5ce52c6082664c4f16a56b09f2d1853a8005c661771bd03a5377700",
+    "queue-1.json": "7af090faa39d93415151cfa6c00f82f2bad1db3b20d60324f1e0d7695ca8b1e9",
+    "queue-2.json": "cb8a3c699b0440ebbdaf789cc6a15f638d0a5ac06b23dd50152387461a34f396",
+    "queue-3.json": "8efb480a1909bf87e16d74d9d902149facb40b97eb69092d8b3589858bc7dccc",
+    "runs.csv": "ffb03265b14258e6381fab681c87a526667a5d681fb1e6358eedc91dd3b3fcbc",
+    "runs.json": "69da8a7954fc94a7888e14332079ee31f237e4ca3de5a3cb956151a42582aebf",
+    "summary.json": "c8c2f71009a39e9932ec59e388f9b052ce190730179119aed5d73e4fa38576a4"
+  },
+  "boundary": "Two reverse pool comparisons share one service. No new method, stable final-score gain, or protected-test/generalization claim. No further seeds to rescue failed gate."
+}

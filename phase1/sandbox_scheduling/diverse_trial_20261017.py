@@ -15,8 +15,9 @@ import time
 from datetime import datetime,timezone
 import colocation_trial_20261016 as original
 import diverse_pool_20261017 as diverse
+from pool_stop_contract_20261017 import require_completed_workers
 
-R=Path('/research/d7/spc/yzyang4/scheduling-diverse-20261017-v2')
+R=Path('/research/d7/spc/yzyang4/scheduling-diverse-20261017-v3')
 NODE='gpu3'
 NAME=Path(__file__).name
 ORDER=('shared','colocated','diverse','diverse','colocated','shared')
@@ -25,7 +26,7 @@ WINDOW_END=int(datetime(2026,10,17,0,49,tzinfo=timezone.utc).timestamp())
 PARENT=R.parent/'clock-pairing-20261017-v2'
 PARENT_PIN='a2f2ea693c0d2a194ac194a3023e81645eeb55b94263733dd12e943515d6ed22'
 ORIGINALS=getattr(original,'_diverse_originals',
-    {n:getattr(original,n) for n in ('prepare','controller','task_runtime')})
+    {n:getattr(original,n) for n in ('prepare','controller','task_runtime','executor')})
 original._diverse_originals=ORIGINALS
 read,write,sha=original.read,original.write,original.sha
 
@@ -61,7 +62,7 @@ def scientific_metadata():
         new_window_gpu_seconds_cap=50400,run_seconds=1020,slot_seconds=1180,
         qualifying_parent=dict(root=str(PARENT),plan_sha256=PARENT_PIN,
             requirement='Parent full16/quality/structure gate AND independent summary-bound verifier before submit and service start'),prior_failures=[],
-        staging_note='Independent Oct17 batch, only after fixed-program pairing gate. v1 CPU preparation stopped before GPU submission: fixture patched a method overwritten by production install. v2 only fixes the test helper injection; production policy/input/gates unchanged. Original image/backbone/start/history retained; known development tasks.',
+        staging_note='Independent Oct17 batch, only after fixed-program pairing gate. v1 CPU preparation failed because fixture patched overwritten method. v2 fixes fixture only; before any GPU submit, review found executor checked cleanup but not abnormal worker closure before next pool. v3 enforces the already-declared infrastructure stop rule for all modes, without changing successful execution, policy/input/quality gates. No predecessor submitted or budget reused.',
         approval='User Oct17HK02:49 approves bounded autonomous six-hour work.48trajectories,2tasks*4paired seeds*3modes*2reverse comparisons;2service+4execution3090;<=8400s/14GPUh including failures/startup/qualification/cleanup. No API, training or automatic retry.',
         primary='Best pristineDEV returned solution per trajectory within1020s including common incumbent; four-run task-pool best primary, trajectory medians/SD and native-selected endpoint reported separately.',
         single_change='Execution device assignment policy: sharedFIFO cap1 / least-occupiedFIFO cap2 / cap2 task-diverse tie-break. All retain FIFO request order, empty-GPU-first admission, fixed per-program CPU partition and deadlines. Diverse chooses opposite-task incumbent only among equally occupied devices, never waits for a partner.',
@@ -74,6 +75,7 @@ def scientific_metadata():
 
 def preflight():
     p=original.base.c.trial.check()
+    assert 'require_completed_workers' in original.executor.__code__.co_names
     assert p['planned']==48 and p['gpu_hours_cap']==14 and p['allocation_seconds']==CAP
     assert p['node']==NODE and f'#SBATCH --nodelist={NODE}' in (R/'run.sbatch').read_text()
     for row in schedule():
@@ -89,7 +91,7 @@ def preflight():
     matrix=read(R/'input-matrix/summary.safe.json')
     assert matrix['assigned']==matrix['passed']==48 and matrix['exact_input_gate']
     subprocess.run([str(original.base.c.trial.PY),'-B','-m','unittest',
-        'test_diverse_pool_20261017','test_diverse_readout_20261017','test_fixed_public_preview_20261014'],cwd=R,check=True)
+        'test_diverse_pool_20261017','test_diverse_readout_20261017','test_pool_stop_contract_20261017','test_fixed_public_preview_20261014'],cwd=R,check=True)
     subprocess.run([str(original.base.c.trial.PY),'-B',str(R/'diverse_production_gate_20261017.py'),str(R)],cwd=R,check=True)
     write(R/'cpu.json',dict(plan_sha256=sha(R/'plan.json'),configs=48,exact_inputs=True,no_gpu=True))
     write(R/'preflight.json',dict(source_commit=p['source_commit'],plan_sha256=sha(R/'plan.json'),configs=48,
@@ -101,13 +103,15 @@ def configure():
     original.R=R;original.NODE=NODE;original.NAME=NAME;original.ORDER=ORDER;original.CAP=CAP
     original.schedule=schedule;original.preflight=preflight
     original.scientific_metadata=scientific_metadata
+    original.require_completed_workers=require_completed_workers
     original.__file__=__file__
     original.NAMES=('colocation_trial_20261016.py','colocation_pool_20261016.py','colocation_production_gate_20261016.py',
         'colocation_readout_20261016.py','colocation_coexistence_20261016.py',
         NAME,'diverse_pool_20261017.py','diverse_readout_20261017.py',
         'diverse_production_gate_20261017.py','test_diverse_pool_20261017.py',
         'test_diverse_readout_20261017.py','clock_pairing_20261016.py',
-        'clock_rank_20261016.py','clock_contention_20261016.py')
+        'clock_rank_20261016.py','clock_contention_20261016.py',
+        'pool_stop_contract_20261017.py','test_pool_stop_contract_20261017.py')
     original.pool.State=diverse.State
     transform('prepare',[
         ('for b in range(4):','for b in range(6):',1),
@@ -122,6 +126,9 @@ def configure():
         ('dict(planned=32,','dict(planned=48,',1)])
     transform('task_runtime',[
         ('episode-(?:[0-9]|[12][0-9]|3[01])','episode-(?:[0-9]|[123][0-9]|4[0-7])',1)])
+    transform('executor',[
+        ("    for row in rows:\n        ep=R/f\"episode-{row['index']}\"",
+         "    require_completed_workers(R,rows,results)\n    for row in rows:\n        ep=R/f\"episode-{row['index']}\"",1)])
     original.configure()
     # Propagate infrastructure readiness failure; same behavior in all arms.
     old_install=getattr(original,'_diverse_old_install',original.install_hooks)

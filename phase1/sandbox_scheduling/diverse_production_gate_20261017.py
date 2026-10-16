@@ -16,8 +16,11 @@ def configure():
         ('from colocation_readout_20261016 import verify_queue','from diverse_pool_20261017 import independent_audit as verify_queue')):
         assert source.count(old)==1;source=source.replace(old,new)
     needle='            trial.install_hooks(row,ep,deadline)'
-    replacement='''            JupyterKernelClient.wait_for_ready=lambda self,*a,**kw:False
-            trial.install_hooks(row,ep,deadline)
+    replacement='''            import live_runtime_hooks as hooks
+            # install replaces Client.wait_for_ready and snapshots helper globals;
+            # inject at its real helper boundary, not the overwritten method.
+            with patch.object(hooks,'wait_for_ready',lambda *a,**kw:False):
+                trial.install_hooks(row,ep,deadline)
             from clock_pairing_20261016 import InfrastructureReadinessError
             try:JupyterKernelClient.wait_for_ready(None)
             except InfrastructureReadinessError:pass

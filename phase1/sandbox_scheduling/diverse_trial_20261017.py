@@ -16,7 +16,7 @@ from datetime import datetime,timezone
 import colocation_trial_20261016 as original
 import diverse_pool_20261017 as diverse
 
-R=Path('/research/d7/spc/yzyang4/scheduling-diverse-20261017-v1')
+R=Path('/research/d7/spc/yzyang4/scheduling-diverse-20261017-v2')
 NODE='gpu3'
 NAME=Path(__file__).name
 ORDER=('shared','colocated','diverse','diverse','colocated','shared')
@@ -61,7 +61,7 @@ def scientific_metadata():
         new_window_gpu_seconds_cap=50400,run_seconds=1020,slot_seconds=1180,
         qualifying_parent=dict(root=str(PARENT),plan_sha256=PARENT_PIN,
             requirement='Parent full16/quality/structure gate AND independent summary-bound verifier before submit and service start'),prior_failures=[],
-        staging_note='Independent Oct17 batch, only after fixed-program pairing gate. No old batch resumed. Original image/backbone/start/history retained; known development tasks.',
+        staging_note='Independent Oct17 batch, only after fixed-program pairing gate. v1 CPU preparation stopped before GPU submission: fixture patched a method overwritten by production install. v2 only fixes the test helper injection; production policy/input/gates unchanged. Original image/backbone/start/history retained; known development tasks.',
         approval='User Oct17HK02:49 approves bounded autonomous six-hour work.48trajectories,2tasks*4paired seeds*3modes*2reverse comparisons;2service+4execution3090;<=8400s/14GPUh including failures/startup/qualification/cleanup. No API, training or automatic retry.',
         primary='Best pristineDEV returned solution per trajectory within1020s including common incumbent; four-run task-pool best primary, trajectory medians/SD and native-selected endpoint reported separately.',
         single_change='Execution device assignment policy: sharedFIFO cap1 / least-occupiedFIFO cap2 / cap2 task-diverse tie-break. All retain FIFO request order, empty-GPU-first admission, fixed per-program CPU partition and deadlines. Diverse chooses opposite-task incumbent only among equally occupied devices, never waits for a partner.',

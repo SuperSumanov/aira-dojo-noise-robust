@@ -1,0 +1,16 @@
+{
+  "observed_date_hk": "2026-10-17",
+  "senior_commit": "e4d478350e704e8c5927eba566b2847aaa6dcbab",
+  "remote_credential_first_scan": {
+    "OTHER_BUGS.md": {"sha256":"63aaf63f960521e5a797a6fe8402776788cbda83830f3d42e02f22938768e4ba","credential_shape_hits":0,"sensitive_assignment_lines":0},
+    "ONLINE_27B_E2E_RESULT.md": {"sha256":"fbafac122ccf47bb9aa750adf0112a2e5983655fcdf7276fcf0f6767b27d6b6b","credential_shape_hits":0,"sensitive_assignment_lines":1,"assignment_line_redacted_remotely":true}
+  },
+  "facts_from_senior_report_not_our_reproduction": [
+    "95journals across5tasks and historical/score/metric rolling policies. Coverage differs; same-seed intersections do not remove cross-day hardware and serving-load changes.",
+    "Some selected-endpoint improvements coexist with lower best-found score; selection loss and search quality must be separated.",
+    "Examples separate submission-encoding bug, validation-target truncation and analyzer score fabrication after truncated logs. No general reward-hacking conclusion.",
+    "Training report describes episode-terminal reward copied to calls and token-mean weighting; actual long-chain contribution depends on tokens/config. We do not train/update the agent.",
+    "Operational suggestion limits BLAS/PyTorch/tokenizer/build threads; reported workaround, not a complete causal process-limit diagnosis. Do not silently change frozen experiment environments."
+  ],
+  "decision": "Keep current resource-conditioned program/output question. Do not re-open base training, analyzer route or critic solely from this update. Six-card conditional trial retains current fixed input/hardware/effort and external DEV scoring; stage-specific thread or metric changes require separate designs, not mixed into this comparison. No raw credentials/logs or official labels imported."
+}

@@ -1,0 +1,23 @@
+{
+  "observed_hkt": "2026-10-16T08:18:44+08:00",
+  "job": "18770",
+  "state": "PENDING",
+  "reason": "Resources",
+  "requested_node": "gpu1",
+  "requested_gpus": 6,
+  "cpu_request": 24,
+  "time_limit_seconds": 6000,
+  "gpu_hours_cap": 10,
+  "submitted_hkt": "2026-10-16T08:18:27+08:00",
+  "estimated_start_hkt": "2026-10-16T10:50:37+08:00",
+  "estimated_end_hkt": "2026-10-16T12:30:37+08:00",
+  "estimate_is_guarantee": false,
+  "source_commit": "6c58f3b130534d8f4e1a0628f2ef5ce18b0c0356",
+  "plan_sha256": "a7cc9780c927cdeac3fc1effb214643a387353122e1fa542d3a40116b248d477",
+  "launch_sha256": "aad4ba9653ab7cf3d74651a076b8ac861ce800afbea099a2ba9b9aaed40d0ceb",
+  "requeue": false,
+  "restarts": 0,
+  "searches_started": 0,
+  "scores_observed": 0,
+  "no_automatic_retry": true
+}

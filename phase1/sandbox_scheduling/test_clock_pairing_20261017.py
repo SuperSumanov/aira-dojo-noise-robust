@@ -1,4 +1,5 @@
 import unittest
+import importlib.util
 from unittest.mock import patch
 import clock_pairing_20261017 as current
 
@@ -14,6 +15,13 @@ class WindowTests(unittest.TestCase):
     def test_fresh_guard(self):
         current.guard_after_hash(current.WINDOW_END-3300)
         with self.assertRaises(RuntimeError):current.guard_after_hash(current.WINDOW_END-3299)
+    def test_second_import_after_configure(self):
+        current.configure()
+        spec=importlib.util.spec_from_file_location('second_pairing_import',current.__file__)
+        second=importlib.util.module_from_spec(spec);spec.loader.exec_module(second)
+        second.configure()
+        self.assertIs(second.ORIGINAL_PREPARE,current.ORIGINAL_PREPARE)
+        self.assertEqual(second.frozen.schedule(),current.frozen.schedule())
     def test_guard_after_hash_before_intent(self):
         current.configure();events=[];b=current.frozen.base
         with patch.object(b,'check',return_value=dict(task_image='/not-real',task_image_sha256='x')), \

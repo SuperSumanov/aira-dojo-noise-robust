@@ -13,10 +13,11 @@ import time
 from datetime import datetime, timezone
 import clock_pairing_20261016 as frozen
 
-ROOT=Path('/research/d7/spc/yzyang4/clock-pairing-20261017-v1')
+ROOT=Path('/research/d7/spc/yzyang4/clock-pairing-20261017-v2')
 WINDOW_END=int(datetime(2026,10,17,0,49,tzinfo=timezone.utc).timestamp())
 NAME=Path(__file__).name
-ORIGINAL_PREPARE=frozen.prepare
+ORIGINAL_PREPARE=getattr(frozen,'_oct17_original_prepare',frozen.prepare)
+frozen._oct17_original_prepare=ORIGINAL_PREPARE
 
 
 def guard_after_hash(now):

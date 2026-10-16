@@ -57,6 +57,7 @@
   https://arxiv.org/html/2510.03334
 - HyperSched已优化固定资源/截止时间下最终最好精度，假设中间训练进度、可checkpoint/恢复及共同扩展规律；不能把“质量而非吞吐”称新颖。18812只检验黑盒程序墙钟自停时，负载是否改变同源码反馈；此差别尚非方法贡献。
   https://arxiv.org/html/2001.02338 （2026-10-16核§3.1.1、§4；不恢复ASHA/多保真旧线）
+- Winning by Peeking已有机器争用改变AutoML比较/有限墙钟内trial数；Mosaic已有kernel干扰准入；RTCSA2020已有mandatory/optional质量调度。不能把“争用改变排序”或“质量感知”本身称首创；原文阅读范围见clock_scheduling_neighbors_20261016.json。
 - MARS已有session准入、续轮优先、timeout/任务完成分析；我方执行许可不同不构成创新。
   https://arxiv.org/html/2604.26963v1
 - Scepsy/PASTE/BAVT/ZEBRA/PeakBench等限制资源分配/端到端服务宽主张；详见pooling_research_boundary_20261015.json。

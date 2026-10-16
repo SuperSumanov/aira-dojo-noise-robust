@@ -1,0 +1,59 @@
+{
+  "boundary": "Original known-DEV parent receipt only; no parent rerun, no new outcome or code read, secondary analysis not a success gate.",
+  "rank_plan_sha256": "4c22748699952da0b79bf862e1db5e785b7d2a9fb951bb26ee9c21be47ca3306",
+  "rows": [
+    {
+      "code_sha256": "739966e9cd4c6fa6e71fd8f4f4479959366462a61787256975c0096377008dd7",
+      "identified": true,
+      "parent_code_sha256": "2b5d993c2b63efa6e1bcc2e83e7115b988a59a77f6e9d4ef69a88d88de0acae3",
+      "parent_order": 0,
+      "parent_receipt_event_sha256": "69a85f4a78957bc610bd40dc4e01a05b1361c63a51cf1858b7d526ab9981f315",
+      "parent_score": 0.9997140306708787,
+      "program": 0,
+      "sign": 1,
+      "source_candidate": 0,
+      "source_episode": 4,
+      "source_events_sha256": "d13d067316d6352a8278bdfa3e73f558cd553e4ba53432537893b390be7487dc",
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "code_sha256": "f5e245514a0f72d5847bb4094295d42d0bb54d315b11798fb55ddd3fe59a0df2",
+      "identified": false,
+      "matches": 0,
+      "program": 1,
+      "reason": "parent_link_not_unique",
+      "source_candidate": 1,
+      "source_episode": 6,
+      "source_events_sha256": "d13d067316d6352a8278bdfa3e73f558cd553e4ba53432537893b390be7487dc",
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "code_sha256": "5aad5c89864704b394b621070b4c5749ce7c674352bd2fde97b7b5f0a60af72a",
+      "identified": true,
+      "parent_code_sha256": "4a4336cd087f97550da98636376e0b9f57d7a3893b10408dd38348715678e85d",
+      "parent_order": 0,
+      "parent_receipt_event_sha256": "968b7a01b66d228e399a2605a194a3f5bd5571a3497c494de2995db997b1ce6d",
+      "parent_score": 0.04551226514614451,
+      "program": 2,
+      "sign": -1,
+      "source_candidate": 0,
+      "source_episode": 3,
+      "source_events_sha256": "d13d067316d6352a8278bdfa3e73f558cd553e4ba53432537893b390be7487dc",
+      "task": "denoising-dirty-documents"
+    },
+    {
+      "code_sha256": "f4cac68aa33890787e58d035a01422fe21a1ab70f366e03d60372208839f4ae9",
+      "identified": true,
+      "parent_code_sha256": "4a4336cd087f97550da98636376e0b9f57d7a3893b10408dd38348715678e85d",
+      "parent_order": 0,
+      "parent_receipt_event_sha256": "63b04b1933b0f9f7ddc7da9f51b23a1e8de8a0909845b6eae56908fadb768c05",
+      "parent_score": 0.04551226514614451,
+      "program": 3,
+      "sign": -1,
+      "source_candidate": 0,
+      "source_episode": 5,
+      "source_events_sha256": "d13d067316d6352a8278bdfa3e73f558cd553e4ba53432537893b390be7487dc",
+      "task": "denoising-dirty-documents"
+    }
+  ]
+}

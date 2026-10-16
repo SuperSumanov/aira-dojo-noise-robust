@@ -39,6 +39,27 @@
       "difference_to_test": "Our fixed-code replay removes model generation and gives valid predictions in every case; quality can change without an execution-error flag. Not claiming concurrency harming success is new."
     },
     {
+      "title": "Winning by Peeking: Unenforced Budgets and Test-Set Selection Inflate Short-Budget AutoML Comparisons",
+      "url": "https://arxiv.org/html/2608.07303v1",
+      "scope_read": "Abstract, introduction, sections6.2-6.4 and7.1",
+      "overlap": "Already reports machine contention reducing trials and changing apparent AutoML comparisons, alongside unenforced budgets and test-selection defects. Contention changing a ranking is not generally new.",
+      "difference_to_test": "18812 holds one generated program and its input fixed and observes changed useful work and output, not merely fewer searched configurations. Any subsequent claim still needs decision relevance and equal-cost E2E gains; this distinction is not sufficient novelty."
+    },
+    {
+      "title": "Mosaic: GPU Sharing with Latency Guarantees through Kernel-Level Interference Prediction",
+      "url": "https://arxiv.org/html/2610.07504v1",
+      "scope_read": "Introduction and section5 admission control",
+      "overlap": "Kernel-level slowdown prediction and admission, including RTX3090 evaluation, already target latency SLOs and best-effort throughput. Do not claim adaptive interference admission is new.",
+      "difference_to_test": "Our current fixed-program output measurements are not a Mosaic reproduction. Successful self-timed execution duration alone does not identify the amount or quality of work produced."
+    },
+    {
+      "title": "Scheduling Real-time Deep Learning Services as Imprecise Computations",
+      "url": "https://arxiv.org/abs/2011.01112",
+      "scope_read": "Primary arXiv abstract only",
+      "overlap": "Mandatory/optional computation and data-dependent utility scheduling already maximize average output accuracy under deadlines. Quality-aware admission or skipped useful work cannot be claimed as new in general.",
+      "difference_to_test": "A generated black-box training program has no supplied mandatory/optional utility interface. An implementable beneficial decision mechanism remains to be demonstrated."
+    },
+    {
       "title": "Scheduling Contract Algorithms on Multiple Processors",
       "url": "https://all.cs.umass.edu/pubs/2002/bernstein_pzf_AAAI02.pdf",
       "scope_read": "Primary indexed abstract/introduction only",

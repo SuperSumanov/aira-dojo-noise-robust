@@ -20,7 +20,7 @@ import time
 import traceback
 
 D=Path('/research/d7/spc/yzyang4/scheduling-pooling-20261016-v3')
-R=D.parent/'clock-contention-20261016-v1'
+R=D.parent/'clock-contention-20261016-v2'
 PIN='a7cc9780c927cdeac3fc1effb214643a387353122e1fa542d3a40116b248d477'
 PY=D.parent/'venvs/aira/bin/python'
 NAME=Path(__file__).name
@@ -111,6 +111,7 @@ def prepare(commit):
     from dojo.config_dataclasses.run import RunConfig
     from dojo.config_dataclasses.interpreter import INTERPRETER_MAP
     from dojo.utils.config import build
+    from unittest.mock import patch
     port_hook('100',0)
     for row in schedule():
         ep=R/f"episode-{row['index']}";(ep/'work/input_cache').mkdir(parents=True)
@@ -127,9 +128,14 @@ def prepare(commit):
         assert not c.logger.write_env_vars and not c.logger.use_wandb
         port_hook('100',row['program'])
         factory=build(c.interpreter,INTERPRETER_MAP,data_dir=c.task.data_dir)
-        assert factory.factory and factory.instance.port==gateway_port('100',row['program'])
-        assert factory.instance.timeout==300
-        factory.close()
+        assert factory.factory
+        # Native constructor starts its server immediately. Substitute ONLY
+        # that external launcher in CPU preparation, never in production.
+        with patch('dojo.core.interpreters.jupyter.jupyter_interpreter.SingularityJupyterServer') as server:
+            assert factory.instance.port==gateway_port('100',row['program'])
+            assert factory.instance.timeout==300
+            assert server.call_args.kwargs['port']==gateway_port('100',row['program'])
+            factory.close()
     shim=f'#!{PY}\nimport sys\nsys.path.insert(0,{str(R)!r})\nfrom {Path(NAME).stem} import task_runtime\ntask_runtime()\n'
     (R/'bin/singularity').write_text(shim);os.chmod(R/'bin/singularity',0o700)
     (R/'run.sbatch').write_text(f'''#!/bin/bash
@@ -147,7 +153,7 @@ export SLURM_CONF=/opt1/slurm/gpu-slurm.conf
 exec srun --exclusive --ntasks=1 --cpus-per-task=4 --gres=gpu:1 {PY} -B {R/NAME} run
 ''')
     subprocess.run(['bash','-n',str(R/'run.sbatch')],check=True)
-    files={str(p.relative_to(R)):sha(p) for p in R.rglob('*') if p.is_file()}
+    files={str(p.relative_to(R)):sha(p) for p in R.rglob('*') if p.is_file() and not p.relative_to(R).parts[0].startswith('episode-')}
     write(R/'plan.json',dict(source_commit=commit,donor_plan_sha256=PIN,donor_files=old['files'],files=files,
         schedule=schedule(),programs=chosen,task_image=str(m.TASK_IMAGE),task_image_sha256=old['task_image_sha256'],
         allocation_seconds=CAP,gpus=1,node='gpu27',worker_seconds=380,execution_seconds=300,

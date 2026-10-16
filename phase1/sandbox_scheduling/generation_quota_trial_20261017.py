@@ -20,6 +20,7 @@ def schedule():
 
 def scientific_metadata():
     return dict(prior_failures=[],new_window_gpu_seconds_cap=36000,combined_gpu_seconds_cap=36000,
+        accounting_scope='The legacy new_window/combined cap fields bound this independent allocation only, NOT the entire six-hour user session. Session accounting separately sums closed18987, actual18997 and this batch including failures. No third GPU batch is planned in this window.',
         staging_note='Independent quota baseline, frozen before observing selective32quality. Both arms keep execution sharedFIFO cap1. Not reopening any closed experiment or recovering selective/pairing failures.',
         approval='User2026-10-17HK02:49 approves bounded autonomous six-hour experiments.32=2knownDEV tasks*4pairedseeds*2conditions*2reversepoolcomparisons;2service+4execution3090,<=6000s/10GPUh inclusive of preparation on allocation, service, failures, idle and cleanup. NoAPI/base training/retries; submit only after prior allocation closes and window permits.',
         primary='Task-pool best pristineDEV timely returned solution within1020s per trajectory including common incumbent; all32denominator, task/pool medians/sampleSD, native-selected separately. Not32independent treatment replicates.',

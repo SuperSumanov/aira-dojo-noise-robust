@@ -11,7 +11,7 @@ import clock_contention_20261016 as base
 from candidate_family_screen_20261018 import SECRET
 
 B=Path('/research/d7/spc/yzyang4')
-R=B/'page-headroom-20261018-v1'
+R=B/'page-headroom-20261018-v2'
 PUBLIC=B/'scheduling-image-live-2plus4-20261011-v1/dev-views/denoising-dirty-documents/public'
 TASK='denoising-dirty-documents'
 PY=B/'venvs/aira/bin/python'
@@ -70,10 +70,17 @@ def make_view(fold):
     groups=sorted(set(hashes.values()),key=lambda h:hashlib.sha256(('page-headroom-v1:'+h).encode()).digest())
     assert len(names)==92 and len(groups)==36
     query_groups=set(groups[fold*12:(fold+1)*12])
-    query=[n for n in names if hashes[n] in query_groups];train=[n for n in names if n not in query]
+    # Blind workload amendment after CLOSED v1: no valid prediction or quality value
+    # existed. Keep exactly the same source-page groups and all training renderings;
+    # choose one query rendering per held page by a fixed hash, never by performance.
+    train=[n for n in names if hashes[n] not in query_groups]
+    query=sorted(min((n for n in names if hashes[n]==g),
+        key=lambda n:hashlib.sha256(('page-headroom-render-v2:'+n).encode()).digest()) for g in query_groups)
+    unused=[n for n in names if n not in train and n not in query]
+    assert len(query)==12 and len(set(query))==12
     assert not {hashes[n] for n in train}&{hashes[n] for n in query}
     dims={};source={}
-    for n in names:
+    for n in train+query:
         for d in ('train','train_cleaned'):
             p=PUBLIC/d/n;source[str(p)]=sha(p)
             dest=(pub/d/n if n in train else pub/'test'/n if d=='train' else refs/n)
@@ -94,7 +101,9 @@ def make_view(fold):
         source_files=source,public_files={str(p.relative_to(pub)):sha(p) for p in pub.rglob('*') if p.is_file()},
         search_reference_files={p.name:sha(p) for p in refs.iterdir()},
         query_dimensions={n:dims[n] for n in query},not_confirmation=True,not_official_test=True,
-        reserved_content_not_copied=True,source_group_disjoint=True,train_groups=24,query_groups=12)
+        reserved_content_not_copied=True,source_group_disjoint=True,train_groups=24,query_groups=12,
+        query_renderings_per_page=1,unused_public_renderings=unused,
+        query_selection='Minimum SHA256(page-headroom-render-v2:+filename) within each fixed query page; no score-based selection.')
     write(root/'manifest.json',manifest)
     return dict(view=str(root),view_sha=sha(root/'manifest.json'),lower_is_better=True,metric_name='rmse')
 
@@ -175,6 +184,7 @@ exec srun --exclusive --ntasks=1 --cpus-per-task=2 --gres=gpu:1 {PY} -B {R/NAME}
                 'One task; public source groups re-used across folds, not independent tasks or a new protected cohort.',
                 'Historical code selection used oldDEV; training starts from scratch. All historical/init cost is a shared sunk asset, not free E2E generation.',
                 'Uniform per-rendering training sampling is identical in both pixel feature arms; no query labels in training.'],
+        blind_amendment='Closed19343 started1/assigned16,0valid scores,332GPU seconds; same page groups, training renderings, code, seeds and300s cap. Only query workload changes to one pre-hashed rendering per each of12held pages. New protocol/estimand, not old-batch rescue. No further repair batch.',
         stop='Missing/invalid candidate, isolation/cleanup/infrastructure failure stops qualification; retain all16 assigned denominator. No automatic retries/replacements. Old batches unchanged.'))
     print(json.dumps(dict(prepared=True,root=str(R),plan_sha256=sha(R/'plan.json'),runs=16,gpu_hours_cap=2,
                          cnn_sources=sources,view_counts=[{k:read(Path(s['view'])/'manifest.json')[k] for k in ('train_groups','query_groups')} for s in specs])))
@@ -187,6 +197,14 @@ def check():
 
 def preflight():
     p=check();runtime=setup()
+    old=B/'page-headroom-20261018-v1';before=read(old/'plan.json')
+    assert read(old/'readout/summary.json')['recomputed']==0
+    assert p['schedule']==before['schedule'] and p['programs']==before['programs']
+    for fold in (0,1):
+        a=read(Path(p['views'][fold]['view'])/'manifest.json')
+        b=read(Path(before['views'][fold]['view'])/'manifest.json')
+        assert a['train_ids']==b['train_ids'] and len(a['query_ids'])==12 and set(a['query_ids'])<=set(b['query_ids'])
+        assert {k:v for k,v in a['public_files'].items() if k.startswith(('train/','train_cleaned/'))}=={k:v for k,v in b['public_files'].items() if k.startswith(('train/','train_cleaned/'))}
     from unittest.mock import patch
     from dojo.config_dataclasses.run import RunConfig
     from dojo.config_dataclasses.interpreter import INTERPRETER_MAP
@@ -220,6 +238,7 @@ def preflight():
     ns['mode']='multiscale';b=ns['features'](x)
     assert a.shape==(30,9) and b.shape==(30,21) and np.array_equal(a,b[:,:9])
     checks=dict(actual_factory_configs=16,public_only_bind=True,source_page_overlap=0,
+        blind_amendment_same_programs_seeds_training_hashes=True,query_renderings_per_source_page=1,
         original_task_image_cpu_dependency_versions=versions,feature_columns=[9,21],same_patch_columns=True,
         n_tasks=1,n_source_folds=2,n_seeds=2,n_programs=4,gpu_hours_cap=2,
         planned_denominator=16,new_source_page_split=True,no_gpu_or_api_in_preflight=True,

@@ -1,0 +1,63 @@
+{
+  "cohorts": [
+    {
+      "admitted": 60,
+      "counts": {
+        "new_300to600": 6,
+        "new_600to900": 4,
+        "new_under300": 12,
+        "warm_300to600": 3,
+        "warm_600to900": 14,
+        "warm_atleast900": 20,
+        "warm_under300": 1
+      },
+      "job": 18770,
+      "proposal_sha256": "239068967985e3a3b6edacae54c0d6c41bb305a89679c986de2577eca933f322"
+    },
+    {
+      "admitted": 69,
+      "counts": {
+        "new_300to600": 12,
+        "new_600to900": 4,
+        "new_under300": 14,
+        "warm_300to600": 3,
+        "warm_600to900": 15,
+        "warm_atleast900": 19,
+        "warm_under300": 2
+      },
+      "job": 18807,
+      "proposal_sha256": "0be079dbf6a1e3d0d1773032b4725dc07cae59145e8b91b6f53d1c60ea934c83"
+    },
+    {
+      "admitted": 66,
+      "counts": {
+        "new_300to600": 8,
+        "new_600to900": 2,
+        "new_under300": 14,
+        "warm_300to600": 7,
+        "warm_600to900": 13,
+        "warm_atleast900": 21,
+        "warm_under300": 1
+      },
+      "job": 18997,
+      "proposal_sha256": "b207d27b0ae4f4083d5352c4ded9d6c867bde40267b06f826f8de4a11a686db0"
+    },
+    {
+      "admitted": 121,
+      "counts": {
+        "new_300to600": 16,
+        "new_600to900": 14,
+        "new_atleast900": 16,
+        "new_under300": 12,
+        "warm_600to900": 3,
+        "warm_atleast900": 60
+      },
+      "job": 18412,
+      "proposal_sha256": "2f5cfaea084579f5d467f38a8ad5738e9ac9ad0f4780e9c6a31aef3b80a14803"
+    }
+  ],
+  "passed": true,
+  "prior_attempt": "Remote Node entry unavailable (command not found); no installation performed; local Node aggregation separately passed.",
+  "reader_sha256": "07a016028be857a992cdc5fcd19d1845a99eba4ffa83bb6e6f40bdc0eeec9c5a",
+  "scope": "Independent raw admission counts/timing only; scores and ancestry NOT independently re-extracted."
+}

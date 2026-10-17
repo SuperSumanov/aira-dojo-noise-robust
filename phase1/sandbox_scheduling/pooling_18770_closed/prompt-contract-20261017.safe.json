@@ -1,0 +1,1452 @@
+{
+  "helper_sha256": "7ffa0aa8d316871293a436b875ab58496c7e32243687dc6129f3dc99db747230",
+  "job": 18770,
+  "limits": [
+    "Recorded client-side prompts, not server HTTP capture or a prompt intervention.",
+    "Template wording mismatch can coexist with fair identical treatment inputs; it does not invalidate all earlier comparisons.",
+    "No proof that instructions caused failure. Do not modify closed protocols or claim prompt fixes as method gains."
+  ],
+  "lineage_sha256": "ce2df3e9c801da6c1a8e407d542f963d61c47d9fcde807c52b15c2308e14e644",
+  "reader_sha256": "3ecc87503e055a668d8dae1fd2f00341630219f8331be2d0a73cc42c1f069eab",
+  "rows": [
+    {
+      "block": 0,
+      "candidate": 0,
+      "category": "improve_from_warm",
+      "claims_six_cpus": [
+        false,
+        false
+      ],
+      "claims_two_cpus": [
+        false,
+        false
+      ],
+      "explicit_five_fold": [
+        true,
+        false
+      ],
+      "explicit_five_minutes": [
+        true,
+        false
+      ],
+      "full_parent_in_all_prompts": false,
+      "index": 0,
+      "parent_characters": 9260,
+      "prompt_characters": [
+        20167,
+        17997
+      ],
+      "prompt_count": 2,
+      "status": "recorded",
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "block": 0,
+      "candidate": 0,
+      "category": "improve_from_warm",
+      "claims_six_cpus": [
+        false,
+        false
+      ],
+      "claims_two_cpus": [
+        false,
+        false
+      ],
+      "explicit_five_fold": [
+        true,
+        false
+      ],
+      "explicit_five_minutes": [
+        true,
+        false
+      ],
+      "full_parent_in_all_prompts": false,
+      "index": 1,
+      "parent_characters": 11859,
+      "prompt_characters": [
+        22377,
+        19383
+      ],
+      "prompt_count": 2,
+      "status": "recorded",
+      "task": "denoising-dirty-documents"
+    },
+    {
+      "block": 0,
+      "candidate": 0,
+      "category": "improve_from_warm",
+      "claims_six_cpus": [
+        false,
+        false
+      ],
+      "claims_two_cpus": [
+        false,
+        false
+      ],
+      "explicit_five_fold": [
+        true,
+        false
+      ],
+      "explicit_five_minutes": [
+        true,
+        false
+      ],
+      "full_parent_in_all_prompts": false,
+      "index": 2,
+      "parent_characters": 9260,
+      "prompt_characters": [
+        20167,
+        15662
+      ],
+      "prompt_count": 2,
+      "status": "recorded",
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "block": 0,
+      "candidate": 0,
+      "category": "improve_from_warm",
+      "claims_six_cpus": [
+        false,
+        false
+      ],
+      "claims_two_cpus": [
+        false,
+        false
+      ],
+      "explicit_five_fold": [
+        true,
+        false
+      ],
+      "explicit_five_minutes": [
+        true,
+        false
+      ],
+      "full_parent_in_all_prompts": false,
+      "index": 3,
+      "parent_characters": 11859,
+      "prompt_characters": [
+        22377,
+        18169
+      ],
+      "prompt_count": 2,
+      "status": "recorded",
+      "task": "denoising-dirty-documents"
+    },
+    {
+      "block": 0,
+      "candidate": 1,
+      "category": "improve_from_new",
+      "claims_six_cpus": [
+        false,
+        false
+      ],
+      "claims_two_cpus": [
+        false,
+        false
+      ],
+      "explicit_five_fold": [
+        true,
+        false
+      ],
+      "explicit_five_minutes": [
+        true,
+        false
+      ],
+      "full_parent_in_all_prompts": false,
+      "index": 3,
+      "parent_characters": 12962,
+      "prompt_characters": [
+        23353,
+        20475
+      ],
+      "prompt_count": 2,
+      "status": "recorded",
+      "task": "denoising-dirty-documents"
+    },
+    {
+      "block": 0,
+      "candidate": 0,
+      "category": "improve_from_warm",
+      "claims_six_cpus": [
+        false,
+        false
+      ],
+      "claims_two_cpus": [
+        false,
+        false
+      ],
+      "explicit_five_fold": [
+        true,
+        false
+      ],
+      "explicit_five_minutes": [
+        true,
+        false
+      ],
+      "full_parent_in_all_prompts": false,
+      "index": 4,
+      "parent_characters": 9260,
+      "prompt_characters": [
+        20167,
+        16076
+      ],
+      "prompt_count": 2,
+      "status": "recorded",
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "block": 0,
+      "candidate": 1,
+      "category": "improve_from_new",
+      "claims_six_cpus": [
+        false,
+        false
+      ],
+      "claims_two_cpus": [
+        false,
+        false
+      ],
+      "explicit_five_fold": [
+        true,
+        false
+      ],
+      "explicit_five_minutes": [
+        true,
+        false
+      ],
+      "full_parent_in_all_prompts": false,
+      "index": 4,
+      "parent_characters": 10561,
+      "prompt_characters": [
+        21769,
+        14060
+      ],
+      "prompt_count": 2,
+      "status": "recorded",
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "block": 0,
+      "candidate": 0,
+      "category": "improve_from_warm",
+      "claims_six_cpus": [
+        false,
+        false
+      ],
+      "claims_two_cpus": [
+        false,
+        false
+      ],
+      "explicit_five_fold": [
+        true,
+        false
+      ],
+      "explicit_five_minutes": [
+        true,
+        false
+      ],
+      "full_parent_in_all_prompts": false,
+      "index": 5,
+      "parent_characters": 11859,
+      "prompt_characters": [
+        22377,
+        16917
+      ],
+      "prompt_count": 2,
+      "status": "recorded",
+      "task": "denoising-dirty-documents"
+    },
+    {
+      "block": 0,
+      "candidate": 0,
+      "category": "improve_from_warm",
+      "claims_six_cpus": [
+        false,
+        false
+      ],
+      "claims_two_cpus": [
+        false,
+        false
+      ],
+      "explicit_five_fold": [
+        true,
+        false
+      ],
+      "explicit_five_minutes": [
+        true,
+        false
+      ],
+      "full_parent_in_all_prompts": false,
+      "index": 6,
+      "parent_characters": 9260,
+      "prompt_characters": [
+        20167,
+        17912
+      ],
+      "prompt_count": 2,
+      "status": "recorded",
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "block": 0,
+      "candidate": 0,
+      "category": "improve_from_warm",
+      "claims_six_cpus": [
+        false,
+        false
+      ],
+      "claims_two_cpus": [
+        false,
+        false
+      ],
+      "explicit_five_fold": [
+        true,
+        false
+      ],
+      "explicit_five_minutes": [
+        true,
+        false
+      ],
+      "full_parent_in_all_prompts": false,
+      "index": 7,
+      "parent_characters": 11859,
+      "prompt_characters": [
+        22377,
+        16743
+      ],
+      "prompt_count": 2,
+      "status": "recorded",
+      "task": "denoising-dirty-documents"
+    },
+    {
+      "block": 1,
+      "candidate": 0,
+      "category": "improve_from_warm",
+      "claims_six_cpus": [
+        false,
+        false
+      ],
+      "claims_two_cpus": [
+        false,
+        false
+      ],
+      "explicit_five_fold": [
+        true,
+        false
+      ],
+      "explicit_five_minutes": [
+        true,
+        false
+      ],
+      "full_parent_in_all_prompts": false,
+      "index": 8,
+      "parent_characters": 9260,
+      "prompt_characters": [
+        20167,
+        17144
+      ],
+      "prompt_count": 2,
+      "status": "recorded",
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "block": 1,
+      "candidate": 0,
+      "category": "improve_from_warm",
+      "claims_six_cpus": [
+        false,
+        false
+      ],
+      "claims_two_cpus": [
+        false,
+        false
+      ],
+      "explicit_five_fold": [
+        true,
+        false
+      ],
+      "explicit_five_minutes": [
+        true,
+        false
+      ],
+      "full_parent_in_all_prompts": false,
+      "index": 9,
+      "parent_characters": 11859,
+      "prompt_characters": [
+        22377,
+        20666
+      ],
+      "prompt_count": 2,
+      "status": "recorded",
+      "task": "denoising-dirty-documents"
+    },
+    {
+      "block": 1,
+      "candidate": 0,
+      "category": "improve_from_warm",
+      "claims_six_cpus": [
+        false,
+        false
+      ],
+      "claims_two_cpus": [
+        false,
+        false
+      ],
+      "explicit_five_fold": [
+        true,
+        false
+      ],
+      "explicit_five_minutes": [
+        true,
+        false
+      ],
+      "full_parent_in_all_prompts": false,
+      "index": 10,
+      "parent_characters": 9260,
+      "prompt_characters": [
+        20167,
+        14579
+      ],
+      "prompt_count": 2,
+      "status": "recorded",
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "block": 1,
+      "candidate": 0,
+      "category": "improve_from_warm",
+      "claims_six_cpus": [
+        false,
+        false
+      ],
+      "claims_two_cpus": [
+        false,
+        false
+      ],
+      "explicit_five_fold": [
+        true,
+        false
+      ],
+      "explicit_five_minutes": [
+        true,
+        false
+      ],
+      "full_parent_in_all_prompts": false,
+      "index": 11,
+      "parent_characters": 11859,
+      "prompt_characters": [
+        22377,
+        19215
+      ],
+      "prompt_count": 2,
+      "status": "recorded",
+      "task": "denoising-dirty-documents"
+    },
+    {
+      "block": 1,
+      "candidate": 0,
+      "category": "improve_from_warm",
+      "claims_six_cpus": [
+        false,
+        false
+      ],
+      "claims_two_cpus": [
+        false,
+        false
+      ],
+      "explicit_five_fold": [
+        true,
+        false
+      ],
+      "explicit_five_minutes": [
+        true,
+        false
+      ],
+      "full_parent_in_all_prompts": false,
+      "index": 12,
+      "parent_characters": 9260,
+      "prompt_characters": [
+        20167,
+        18269
+      ],
+      "prompt_count": 2,
+      "status": "recorded",
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "block": 1,
+      "candidate": 1,
+      "category": "improve_from_new",
+      "claims_six_cpus": [
+        false,
+        false
+      ],
+      "claims_two_cpus": [
+        false,
+        false
+      ],
+      "explicit_five_fold": [
+        true,
+        false
+      ],
+      "explicit_five_minutes": [
+        true,
+        false
+      ],
+      "full_parent_in_all_prompts": false,
+      "index": 12,
+      "parent_characters": 12707,
+      "prompt_characters": [
+        23962,
+        19015
+      ],
+      "prompt_count": 2,
+      "status": "recorded",
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "block": 1,
+      "candidate": 0,
+      "category": "improve_from_warm",
+      "claims_six_cpus": [
+        false,
+        false
+      ],
+      "claims_two_cpus": [
+        false,
+        false
+      ],
+      "explicit_five_fold": [
+        true,
+        false
+      ],
+      "explicit_five_minutes": [
+        true,
+        false
+      ],
+      "full_parent_in_all_prompts": false,
+      "index": 13,
+      "parent_characters": 11859,
+      "prompt_characters": [
+        22377,
+        16917
+      ],
+      "prompt_count": 2,
+      "status": "recorded",
+      "task": "denoising-dirty-documents"
+    },
+    {
+      "block": 1,
+      "candidate": 1,
+      "category": "improve_from_new",
+      "claims_six_cpus": [
+        false,
+        false
+      ],
+      "claims_two_cpus": [
+        false,
+        false
+      ],
+      "explicit_five_fold": [
+        true,
+        false
+      ],
+      "explicit_five_minutes": [
+        true,
+        false
+      ],
+      "full_parent_in_all_prompts": false,
+      "index": 13,
+      "parent_characters": 11583,
+      "prompt_characters": [
+        22101,
+        19722
+      ],
+      "prompt_count": 2,
+      "status": "recorded",
+      "task": "denoising-dirty-documents"
+    },
+    {
+      "block": 1,
+      "candidate": 0,
+      "category": "improve_from_warm",
+      "claims_six_cpus": [
+        false,
+        false
+      ],
+      "claims_two_cpus": [
+        false,
+        false
+      ],
+      "explicit_five_fold": [
+        true,
+        false
+      ],
+      "explicit_five_minutes": [
+        true,
+        false
+      ],
+      "full_parent_in_all_prompts": false,
+      "index": 14,
+      "parent_characters": 9260,
+      "prompt_characters": [
+        20167,
+        15550
+      ],
+      "prompt_count": 2,
+      "status": "recorded",
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "block": 1,
+      "candidate": 1,
+      "category": "improve_from_warm",
+      "claims_six_cpus": [
+        false,
+        false
+      ],
+      "claims_two_cpus": [
+        false,
+        false
+      ],
+      "explicit_five_fold": [
+        true,
+        false
+      ],
+      "explicit_five_minutes": [
+        true,
+        false
+      ],
+      "full_parent_in_all_prompts": false,
+      "index": 14,
+      "parent_characters": 9260,
+      "prompt_characters": [
+        20167,
+        17095
+      ],
+      "prompt_count": 2,
+      "status": "recorded",
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "block": 1,
+      "candidate": 0,
+      "category": "improve_from_warm",
+      "claims_six_cpus": [
+        false,
+        false
+      ],
+      "claims_two_cpus": [
+        false,
+        false
+      ],
+      "explicit_five_fold": [
+        true,
+        false
+      ],
+      "explicit_five_minutes": [
+        true,
+        false
+      ],
+      "full_parent_in_all_prompts": false,
+      "index": 15,
+      "parent_characters": 11859,
+      "prompt_characters": [
+        22377,
+        17618
+      ],
+      "prompt_count": 2,
+      "status": "recorded",
+      "task": "denoising-dirty-documents"
+    },
+    {
+      "block": 2,
+      "candidate": 0,
+      "category": "improve_from_warm",
+      "claims_six_cpus": [
+        false,
+        false
+      ],
+      "claims_two_cpus": [
+        false,
+        false
+      ],
+      "explicit_five_fold": [
+        true,
+        false
+      ],
+      "explicit_five_minutes": [
+        true,
+        false
+      ],
+      "full_parent_in_all_prompts": false,
+      "index": 16,
+      "parent_characters": 9260,
+      "prompt_characters": [
+        20167,
+        14161
+      ],
+      "prompt_count": 2,
+      "status": "recorded",
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "block": 2,
+      "candidate": 0,
+      "category": "improve_from_warm",
+      "claims_six_cpus": [
+        false,
+        false
+      ],
+      "claims_two_cpus": [
+        false,
+        false
+      ],
+      "explicit_five_fold": [
+        true,
+        false
+      ],
+      "explicit_five_minutes": [
+        true,
+        false
+      ],
+      "full_parent_in_all_prompts": false,
+      "index": 17,
+      "parent_characters": 11859,
+      "prompt_characters": [
+        22377,
+        19390
+      ],
+      "prompt_count": 2,
+      "status": "recorded",
+      "task": "denoising-dirty-documents"
+    },
+    {
+      "block": 2,
+      "candidate": 0,
+      "category": "improve_from_warm",
+      "claims_six_cpus": [
+        false,
+        false
+      ],
+      "claims_two_cpus": [
+        false,
+        false
+      ],
+      "explicit_five_fold": [
+        true,
+        false
+      ],
+      "explicit_five_minutes": [
+        true,
+        false
+      ],
+      "full_parent_in_all_prompts": false,
+      "index": 18,
+      "parent_characters": 9260,
+      "prompt_characters": [
+        20167,
+        15150
+      ],
+      "prompt_count": 2,
+      "status": "recorded",
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "block": 2,
+      "candidate": 1,
+      "category": "improve_from_new",
+      "claims_six_cpus": [
+        false,
+        false
+      ],
+      "claims_two_cpus": [
+        false,
+        false
+      ],
+      "explicit_five_fold": [
+        true,
+        false
+      ],
+      "explicit_five_minutes": [
+        true,
+        false
+      ],
+      "full_parent_in_all_prompts": false,
+      "index": 18,
+      "parent_characters": 9402,
+      "prompt_characters": [
+        20573,
+        14682
+      ],
+      "prompt_count": 2,
+      "status": "recorded",
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "block": 2,
+      "candidate": 0,
+      "category": "improve_from_warm",
+      "claims_six_cpus": [
+        false,
+        false
+      ],
+      "claims_two_cpus": [
+        false,
+        false
+      ],
+      "explicit_five_fold": [
+        true,
+        false
+      ],
+      "explicit_five_minutes": [
+        true,
+        false
+      ],
+      "full_parent_in_all_prompts": false,
+      "index": 19,
+      "parent_characters": 11859,
+      "prompt_characters": [
+        22377,
+        16516
+      ],
+      "prompt_count": 2,
+      "status": "recorded",
+      "task": "denoising-dirty-documents"
+    },
+    {
+      "block": 2,
+      "candidate": 1,
+      "category": "improve_from_new",
+      "claims_six_cpus": [
+        false,
+        false
+      ],
+      "claims_two_cpus": [
+        false,
+        false
+      ],
+      "explicit_five_fold": [
+        true,
+        false
+      ],
+      "explicit_five_minutes": [
+        true,
+        false
+      ],
+      "full_parent_in_all_prompts": false,
+      "index": 19,
+      "parent_characters": 11339,
+      "prompt_characters": [
+        21700,
+        17271
+      ],
+      "prompt_count": 2,
+      "status": "recorded",
+      "task": "denoising-dirty-documents"
+    },
+    {
+      "block": 2,
+      "candidate": 0,
+      "category": "improve_from_warm",
+      "claims_six_cpus": [
+        false,
+        false
+      ],
+      "claims_two_cpus": [
+        false,
+        false
+      ],
+      "explicit_five_fold": [
+        true,
+        false
+      ],
+      "explicit_five_minutes": [
+        true,
+        false
+      ],
+      "full_parent_in_all_prompts": false,
+      "index": 20,
+      "parent_characters": 9260,
+      "prompt_characters": [
+        20167,
+        14880
+      ],
+      "prompt_count": 2,
+      "status": "recorded",
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "block": 2,
+      "candidate": 1,
+      "category": "improve_from_new",
+      "claims_six_cpus": [
+        false,
+        false
+      ],
+      "claims_two_cpus": [
+        false,
+        false
+      ],
+      "explicit_five_fold": [
+        true,
+        false
+      ],
+      "explicit_five_minutes": [
+        true,
+        false
+      ],
+      "full_parent_in_all_prompts": false,
+      "index": 20,
+      "parent_characters": 9402,
+      "prompt_characters": [
+        20573,
+        15879
+      ],
+      "prompt_count": 2,
+      "status": "recorded",
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "block": 2,
+      "candidate": 0,
+      "category": "improve_from_warm",
+      "claims_six_cpus": [
+        false,
+        false
+      ],
+      "claims_two_cpus": [
+        false,
+        false
+      ],
+      "explicit_five_fold": [
+        true,
+        false
+      ],
+      "explicit_five_minutes": [
+        true,
+        false
+      ],
+      "full_parent_in_all_prompts": false,
+      "index": 21,
+      "parent_characters": 11859,
+      "prompt_characters": [
+        22377,
+        20802
+      ],
+      "prompt_count": 2,
+      "status": "recorded",
+      "task": "denoising-dirty-documents"
+    },
+    {
+      "block": 2,
+      "candidate": 0,
+      "category": "improve_from_warm",
+      "claims_six_cpus": [
+        false,
+        false
+      ],
+      "claims_two_cpus": [
+        false,
+        false
+      ],
+      "explicit_five_fold": [
+        true,
+        false
+      ],
+      "explicit_five_minutes": [
+        true,
+        false
+      ],
+      "full_parent_in_all_prompts": false,
+      "index": 22,
+      "parent_characters": 9260,
+      "prompt_characters": [
+        20167,
+        17946
+      ],
+      "prompt_count": 2,
+      "status": "recorded",
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "block": 2,
+      "candidate": 0,
+      "category": "improve_from_warm",
+      "claims_six_cpus": [
+        false,
+        false
+      ],
+      "claims_two_cpus": [
+        false,
+        false
+      ],
+      "explicit_five_fold": [
+        true,
+        false
+      ],
+      "explicit_five_minutes": [
+        true,
+        false
+      ],
+      "full_parent_in_all_prompts": false,
+      "index": 23,
+      "parent_characters": 11859,
+      "prompt_characters": [
+        22377,
+        16381
+      ],
+      "prompt_count": 2,
+      "status": "recorded",
+      "task": "denoising-dirty-documents"
+    },
+    {
+      "block": 2,
+      "candidate": 1,
+      "category": "improve_from_new",
+      "claims_six_cpus": [
+        false,
+        false
+      ],
+      "claims_two_cpus": [
+        false,
+        false
+      ],
+      "explicit_five_fold": [
+        true,
+        false
+      ],
+      "explicit_five_minutes": [
+        true,
+        false
+      ],
+      "full_parent_in_all_prompts": false,
+      "index": 23,
+      "parent_characters": 11271,
+      "prompt_characters": [
+        21565,
+        30612
+      ],
+      "prompt_count": 2,
+      "status": "recorded",
+      "task": "denoising-dirty-documents"
+    },
+    {
+      "block": 3,
+      "candidate": 0,
+      "category": "improve_from_warm",
+      "claims_six_cpus": [
+        false,
+        false
+      ],
+      "claims_two_cpus": [
+        false,
+        false
+      ],
+      "explicit_five_fold": [
+        true,
+        false
+      ],
+      "explicit_five_minutes": [
+        true,
+        false
+      ],
+      "full_parent_in_all_prompts": false,
+      "index": 24,
+      "parent_characters": 9260,
+      "prompt_characters": [
+        20167,
+        16249
+      ],
+      "prompt_count": 2,
+      "status": "recorded",
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "block": 3,
+      "candidate": 1,
+      "category": "improve_from_warm",
+      "claims_six_cpus": [
+        false,
+        false
+      ],
+      "claims_two_cpus": [
+        false,
+        false
+      ],
+      "explicit_five_fold": [
+        true,
+        false
+      ],
+      "explicit_five_minutes": [
+        true,
+        false
+      ],
+      "full_parent_in_all_prompts": false,
+      "index": 24,
+      "parent_characters": 9260,
+      "prompt_characters": [
+        20167,
+        16330
+      ],
+      "prompt_count": 2,
+      "status": "recorded",
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "block": 3,
+      "candidate": 0,
+      "category": "improve_from_warm",
+      "claims_six_cpus": [
+        false,
+        false
+      ],
+      "claims_two_cpus": [
+        false,
+        false
+      ],
+      "explicit_five_fold": [
+        true,
+        false
+      ],
+      "explicit_five_minutes": [
+        true,
+        false
+      ],
+      "full_parent_in_all_prompts": false,
+      "index": 25,
+      "parent_characters": 11859,
+      "prompt_characters": [
+        22377,
+        20571
+      ],
+      "prompt_count": 2,
+      "status": "recorded",
+      "task": "denoising-dirty-documents"
+    },
+    {
+      "block": 3,
+      "candidate": 0,
+      "category": "improve_from_warm",
+      "claims_six_cpus": [
+        false,
+        false
+      ],
+      "claims_two_cpus": [
+        false,
+        false
+      ],
+      "explicit_five_fold": [
+        true,
+        false
+      ],
+      "explicit_five_minutes": [
+        true,
+        false
+      ],
+      "full_parent_in_all_prompts": false,
+      "index": 26,
+      "parent_characters": 9260,
+      "prompt_characters": [
+        20167,
+        17486
+      ],
+      "prompt_count": 2,
+      "status": "recorded",
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "block": 3,
+      "candidate": 1,
+      "category": "improve_from_warm",
+      "claims_six_cpus": [
+        false,
+        false
+      ],
+      "claims_two_cpus": [
+        false,
+        false
+      ],
+      "explicit_five_fold": [
+        true,
+        false
+      ],
+      "explicit_five_minutes": [
+        true,
+        false
+      ],
+      "full_parent_in_all_prompts": false,
+      "index": 26,
+      "parent_characters": 9260,
+      "prompt_characters": [
+        20167,
+        15897
+      ],
+      "prompt_count": 2,
+      "status": "recorded",
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "block": 3,
+      "candidate": 0,
+      "category": "improve_from_warm",
+      "claims_six_cpus": [
+        false,
+        false
+      ],
+      "claims_two_cpus": [
+        false,
+        false
+      ],
+      "explicit_five_fold": [
+        true,
+        false
+      ],
+      "explicit_five_minutes": [
+        true,
+        false
+      ],
+      "full_parent_in_all_prompts": false,
+      "index": 27,
+      "parent_characters": 11859,
+      "prompt_characters": [
+        22377,
+        21058
+      ],
+      "prompt_count": 2,
+      "status": "recorded",
+      "task": "denoising-dirty-documents"
+    },
+    {
+      "block": 3,
+      "candidate": 0,
+      "category": "improve_from_warm",
+      "claims_six_cpus": [
+        false,
+        false
+      ],
+      "claims_two_cpus": [
+        false,
+        false
+      ],
+      "explicit_five_fold": [
+        true,
+        false
+      ],
+      "explicit_five_minutes": [
+        true,
+        false
+      ],
+      "full_parent_in_all_prompts": false,
+      "index": 28,
+      "parent_characters": 9260,
+      "prompt_characters": [
+        20167,
+        16040
+      ],
+      "prompt_count": 2,
+      "status": "recorded",
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "block": 3,
+      "candidate": 0,
+      "category": "improve_from_warm",
+      "claims_six_cpus": [
+        false,
+        false
+      ],
+      "claims_two_cpus": [
+        false,
+        false
+      ],
+      "explicit_five_fold": [
+        true,
+        false
+      ],
+      "explicit_five_minutes": [
+        true,
+        false
+      ],
+      "full_parent_in_all_prompts": false,
+      "index": 29,
+      "parent_characters": 11859,
+      "prompt_characters": [
+        22377,
+        18562
+      ],
+      "prompt_count": 2,
+      "status": "recorded",
+      "task": "denoising-dirty-documents"
+    },
+    {
+      "block": 3,
+      "candidate": 1,
+      "category": "improve_from_new",
+      "claims_six_cpus": [
+        false,
+        false
+      ],
+      "claims_two_cpus": [
+        false,
+        false
+      ],
+      "explicit_five_fold": [
+        true,
+        false
+      ],
+      "explicit_five_minutes": [
+        true,
+        false
+      ],
+      "full_parent_in_all_prompts": false,
+      "index": 29,
+      "parent_characters": 13226,
+      "prompt_characters": [
+        23746,
+        18967
+      ],
+      "prompt_count": 2,
+      "status": "recorded",
+      "task": "denoising-dirty-documents"
+    },
+    {
+      "block": 3,
+      "candidate": 0,
+      "category": "improve_from_warm",
+      "claims_six_cpus": [
+        false,
+        false
+      ],
+      "claims_two_cpus": [
+        false,
+        false
+      ],
+      "explicit_five_fold": [
+        true,
+        false
+      ],
+      "explicit_five_minutes": [
+        true,
+        false
+      ],
+      "full_parent_in_all_prompts": false,
+      "index": 30,
+      "parent_characters": 9260,
+      "prompt_characters": [
+        20167,
+        16428
+      ],
+      "prompt_count": 2,
+      "status": "recorded",
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "block": 3,
+      "candidate": 1,
+      "category": "improve_from_warm",
+      "claims_six_cpus": [
+        false,
+        false
+      ],
+      "claims_two_cpus": [
+        false,
+        false
+      ],
+      "explicit_five_fold": [
+        true,
+        false
+      ],
+      "explicit_five_minutes": [
+        true,
+        false
+      ],
+      "full_parent_in_all_prompts": false,
+      "index": 30,
+      "parent_characters": 9260,
+      "prompt_characters": [
+        20167,
+        14957
+      ],
+      "prompt_count": 2,
+      "status": "recorded",
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "block": 3,
+      "candidate": 0,
+      "category": "improve_from_warm",
+      "claims_six_cpus": [
+        false,
+        false
+      ],
+      "claims_two_cpus": [
+        false,
+        false
+      ],
+      "explicit_five_fold": [
+        true,
+        false
+      ],
+      "explicit_five_minutes": [
+        true,
+        false
+      ],
+      "full_parent_in_all_prompts": false,
+      "index": 31,
+      "parent_characters": 11859,
+      "prompt_characters": [
+        22377,
+        17792
+      ],
+      "prompt_count": 2,
+      "status": "recorded",
+      "task": "denoising-dirty-documents"
+    }
+  ],
+  "source_hashes": {
+    "episode-0/checkpoint/journal.jsonl": "925c698ebae6cf1fb6286a9ffdaa305f3e49f3bcb54edd3eed0c3b6ccec93f32",
+    "episode-1/checkpoint/journal.jsonl": "720b96bbe39bb9585b318e4cbf240df795d49802bd5d5a5430ac03e386b2b706",
+    "episode-10/checkpoint/journal.jsonl": "34c00868566755705970c674c36bc8160fc6b718d455925ea075052d110fbe49",
+    "episode-11/checkpoint/journal.jsonl": "682ec11d322d044d7d1cf36704c9c6c8786888ea16b778afa779cb36599e4a91",
+    "episode-12/checkpoint/journal.jsonl": "633bf1c87b3e4821bee3ae3a29ed836a3de897b73b2707ae8bd82c36b574d6d6",
+    "episode-13/checkpoint/journal.jsonl": "6b63628834feca3fe1a580df4e9d015a14cd2ad7e56772b0ce596e722e488d71",
+    "episode-14/checkpoint/journal.jsonl": "deb77b6b705b4f2ae31952061260ab3ae0f013187989dbe93a81b8ea637dcf86",
+    "episode-15/checkpoint/journal.jsonl": "1dbe267c9d9fe837372a59688331b54cba331a1bf1adc3a14eb48f3b2c055c48",
+    "episode-16/checkpoint/journal.jsonl": "6a848a4469af474eec9c0b8da0834d4de14e7c186d0636bb8bded22035efdf0a",
+    "episode-17/checkpoint/journal.jsonl": "8c2960ca0a6d99665e17b19964144e7d96190bdbfe86e881815b4f2237e37506",
+    "episode-18/checkpoint/journal.jsonl": "8174ee8252a1ff637bfc97cc385ab0ad08e6a54709c9e01a7fbe6ce966a7662a",
+    "episode-19/checkpoint/journal.jsonl": "66cc8d3f72429e5521b632c446fa2d4e4b6227e4e45c91e34fb63e7103c529ad",
+    "episode-2/checkpoint/journal.jsonl": "fafa48227b6d4587550b6a5665f708f6c9b988851dd69edaf15998eb892f36bb",
+    "episode-20/checkpoint/journal.jsonl": "768195adec10d4408bbd1666bcb30cb21f0956606b58722f9ef14f1303814741",
+    "episode-21/checkpoint/journal.jsonl": "0a1d4c0a1d86aeec577b24086ce682120b55eeedb30b3921b8ef9b19d8b9420e",
+    "episode-22/checkpoint/journal.jsonl": "f7b846109ecfa2cb06f3e98abf45526a11003b05116571bfd8fd76a0302592ca",
+    "episode-23/checkpoint/journal.jsonl": "91ab8de4b79050f332a3f262f013b1db87dace3fe8e16d7edf2da587c22cb4ac",
+    "episode-24/checkpoint/journal.jsonl": "adbe703ddce5690ab759586b0d3b13a6653f3237025e086fdde7fd30cc9aafbc",
+    "episode-25/checkpoint/journal.jsonl": "96fb568bb9ca5d1221373d53d53d6f185f1fae4ea0fe51f0412e46c8d438817f",
+    "episode-26/checkpoint/journal.jsonl": "9447e0852d7c5f9a75817b48860f3cf5a9d942b40f05482cab0703f17a5028f8",
+    "episode-27/checkpoint/journal.jsonl": "1d63ea45340e47319d79837e9e6c97726d025fff1258feb9d571d7d93a3053d6",
+    "episode-28/checkpoint/journal.jsonl": "d8feab2eba584aec7a097a243aede98b7edd476b8e9aeec5bf0955419b25cbc7",
+    "episode-29/checkpoint/journal.jsonl": "25ee280e9599f19e1740545dcbd487b8ed3fdc2a84291951998afa59ea5a1873",
+    "episode-3/checkpoint/journal.jsonl": "3a52f1e9f55efa4c77a5375bc4e7c3f1bc50418c202149b3121c1d22918441c4",
+    "episode-30/checkpoint/journal.jsonl": "e1b3e0f316528060ab9bc06f4c9812f8e6b24dde49b12d49d23e6d952bba5718",
+    "episode-31/checkpoint/journal.jsonl": "80e45f616ec02d34d1893f3825d4b58a8092e416c06b7045a24db330e1108f94",
+    "episode-4/checkpoint/journal.jsonl": "db105ab7117bb2788f566f8ba0d3be274d4233358bea59231a57c3c2bdb80ec1",
+    "episode-5/checkpoint/journal.jsonl": "6c696b6fbc2f828eea69c029b40cb2279a4553caa4479b726e1ef9f8500f442e",
+    "episode-6/checkpoint/journal.jsonl": "792dcebcd2eb332559219f42b14e31f3c0324ba82215c9cbee79dfbaac5e9366",
+    "episode-7/checkpoint/journal.jsonl": "3f73bc6c5b30640064891a0b28ba2a68544d9e6989fc40f39aa79cb8e20df731",
+    "episode-8/checkpoint/journal.jsonl": "a84ba5eb8a7502d9f31893c518b9106f2455b2cfc34e552d9d78fb025241217b",
+    "episode-9/checkpoint/journal.jsonl": "12afea91100e46ea359ce98d43b34bc9366434a15b356c66f1ae80657586cc57"
+  },
+  "summary": {
+    "claims_six_cpus": 0,
+    "claims_two_cpus": 0,
+    "eligible_returned_improve": 45,
+    "forced_five_fold": 45,
+    "full_parent_all": 0,
+    "statuses": {
+      "recorded": 45
+    }
+  }
+}

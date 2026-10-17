@@ -1,10 +1,12 @@
 // Independent aggregation only: original journal/code linkage is not re-extracted.
 const fs=require('fs'),crypto=require('crypto'),assert=require('assert/strict');
-const dir=process.argv[2];assert.ok(dir);const hashes={};
+function verify(dir,filename,pin,count,assigned=32){
+assert.ok(dir);const hashes={};
 const read=n=>{const b=fs.readFileSync(`${dir}/${n}`);hashes[n]=crypto.createHash('sha256').update(b).digest('hex');return JSON.parse(b);};
-const r=read('adaptation-lineage-20261017.safe.json'),runs=read('runs.json'),summary=read('summary.json');
-assert.equal(hashes['adaptation-lineage-20261017.safe.json'],'6ec665d244a8cd54820542b175526975d2a13ed24a0185ddd56a7d8dd2d19698');
-assert.equal(hashes['summary.json'],r.summary_sha256);assert.equal(r.candidates.length,76);assert.equal(runs.length,32);
+const r=read(filename),runs=read('runs.json'),summary=read('summary.json');
+assert.equal(hashes[filename],pin);
+assert.equal(hashes['summary.json'],r.summary_sha256);assert.equal(r.candidates.length,count);assert.equal(runs.length,assigned);
+assert.equal(r.assigned,assigned);assert.equal(r.groups.length,assigned/4);
 const tally=x=>x.reduce((a,c)=>(a[c.category]=(a[c.category]??0)+1,a),{});
 const checkMap=(a,b)=>assert.deepEqual(Object.entries(a).sort(),Object.entries(b).sort());
 let newParents=0,newParentValid=0,debugValid=0;const results=[];
@@ -30,10 +32,14 @@ for(const g of r.groups){
  results.push({block:g.block,task:g.task,valid:valid.length,record_events:increments.length,
    gain_after_first_attempts:g.oriented_gain_after_first_attempts,winning_categories:g.winning_categories});
 }
-const out={passed:true,hashes,assigned:32,returned:r.candidates.length,valid:r.candidates.filter(c=>c.valid).length,
+const out={passed:true,hashes,assigned,returned:r.candidates.length,valid:r.candidates.filter(c=>c.valid).length,
  unresolved:r.candidates.filter(c=>!c.lineage_resolved).length,new_parent_descendant_returns:newParents,
  new_parent_descendant_valid:newParentValid,debug_valid:debugValid,task_pools:r.groups.length,
  task_pools_gain_after_first_attempts:results.filter(x=>x.gain_after_first_attempts>1e-12).length,results,
  limitations:['Independent counts/chronological records/endpoints and transferSHA; not independent raw journal linkage.',
  'Observed first-attempt subset is not a new no-feedback strategy. No causal allocation gain or independent task generalization.']};
-console.log(JSON.stringify(out,null,2));
+return out;
+}
+module.exports={verify};
+if(require.main===module) console.log(JSON.stringify(verify(process.argv[2],
+ 'adaptation-lineage-20261017.safe.json','6ec665d244a8cd54820542b175526975d2a13ed24a0185ddd56a7d8dd2d19698',76),null,2));

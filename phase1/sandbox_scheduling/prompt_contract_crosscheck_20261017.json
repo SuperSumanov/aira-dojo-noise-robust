@@ -1,0 +1,40 @@
+{
+  "passed": true,
+  "total_returned_improve": 247,
+  "cohorts": [
+    {
+      "job": 18770,
+      "returned_improve": 45,
+      "complete_parent": 45,
+      "forced_five_fold": 45,
+      "sha256": "f743ad365376fd4f7271488b89fb732f60b2f515aa88a0402a9b19c43ff89985"
+    },
+    {
+      "job": 18807,
+      "returned_improve": 52,
+      "complete_parent": 52,
+      "forced_five_fold": 52,
+      "sha256": "7e2f0a32846c33a749527baf607b8ddb72a57e164a9797eee24ff7c847ab6f33"
+    },
+    {
+      "job": 18997,
+      "returned_improve": 51,
+      "complete_parent": 51,
+      "forced_five_fold": 51,
+      "sha256": "e84ae1aff509ba92e205769a7a7e75219a759371fcaf050920d1a7b5ebbc4e4b"
+    },
+    {
+      "job": 18412,
+      "returned_improve": 99,
+      "complete_parent": 99,
+      "forced_five_fold": 99,
+      "sha256": "227df27281df7c5d725cb84cfd9f3ba513932e6b68ca6f5e1d36220ac6ee1398"
+    }
+  ],
+  "finding": "All matched returned Improve prompts include the exact complete parent. No evidence here of missing parent input.",
+  "correction": "V1 inspected later Analyze prompts too. Its all-prompts flag is not a missing-parent measure; preserved and superseded by role-specific V2.",
+  "limits": [
+    "Recorded client prompts only, not all attempts/server capture. No inference that fixed five-fold wording caused failure.",
+    "No prompt intervention or revision of original comparison gates. Independent aggregation, not independent raw-journal extraction."
+  ]
+}

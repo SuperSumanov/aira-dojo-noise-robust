@@ -1,0 +1,128 @@
+{
+  "helper_sha256": "7ffa0aa8d316871293a436b875ab58496c7e32243687dc6129f3dc99db747230",
+  "limits": [
+    "Secondary direct-event evidence only; original journal-based unresolved status unchanged.",
+    "No debug ancestry is inferred from temporal proximity, numeric score, or a missing journal.",
+    "Exact child hash after Improve and earlier matching admission, not semantic proof of parent usage.",
+    "No new scores, GPU calls, repaired experiment, or changed primary gate."
+  ],
+  "lineage_pins": {
+    "18770": "ce2df3e9c801da6c1a8e407d542f963d61c47d9fcde807c52b15c2308e14e644",
+    "18807": "b47201384f5d3c385f471becba37bb2f546747de89a529f55d48f0ff9a264430",
+    "18997": "6ec665d244a8cd54820542b175526975d2a13ed24a0185ddd56a7d8dd2d19698"
+  },
+  "reader_sha256": "65231dc2973932c19d3c0b9768e0161579f4da25d6266c61b57b3ba2c786243e",
+  "rows": [
+    {
+      "block": 0,
+      "candidate": 1,
+      "exact_generated_child_events": 0,
+      "index": 1,
+      "job": 18770,
+      "native_matches": 0,
+      "resolved_by_direct_event": false,
+      "score": 0.014672638553735228,
+      "task": "denoising-dirty-documents",
+      "valid": true
+    },
+    {
+      "block": 0,
+      "candidate": 2,
+      "exact_generated_child_events": 0,
+      "index": 2,
+      "job": 18770,
+      "native_matches": 0,
+      "resolved_by_direct_event": false,
+      "score": null,
+      "task": "aerial-cactus-identification",
+      "valid": false
+    },
+    {
+      "block": 0,
+      "candidate": 0,
+      "exact_generated_child_events": 0,
+      "index": 7,
+      "job": 18807,
+      "native_matches": 1,
+      "resolved_by_direct_event": false,
+      "score": null,
+      "task": "denoising-dirty-documents",
+      "valid": false
+    },
+    {
+      "block": 1,
+      "candidate": 2,
+      "exact_generated_child_events": 0,
+      "index": 11,
+      "job": 18807,
+      "native_matches": 0,
+      "resolved_by_direct_event": false,
+      "score": 0.3077878780856877,
+      "task": "denoising-dirty-documents",
+      "valid": true
+    },
+    {
+      "block": 1,
+      "candidate": 3,
+      "exact_generated_child_events": 1,
+      "gain_vs_parent": null,
+      "index": 13,
+      "job": 18807,
+      "native_matches": 0,
+      "new_parent": false,
+      "parent_admitted_pool_elapsed": 801.4363262653351,
+      "parent_score": 0.04551226514614451,
+      "request_key": "13:6",
+      "resolved_by_direct_event": true,
+      "score": null,
+      "task": "denoising-dirty-documents",
+      "valid": false
+    },
+    {
+      "block": 3,
+      "candidate": 1,
+      "exact_generated_child_events": 1,
+      "gain_vs_parent": null,
+      "index": 26,
+      "job": 18807,
+      "native_matches": 0,
+      "new_parent": true,
+      "parent_admitted_pool_elapsed": 508.7334671020508,
+      "parent_score": 0.99981024465077,
+      "request_key": "26:2",
+      "resolved_by_direct_event": true,
+      "score": null,
+      "task": "aerial-cactus-identification",
+      "valid": false
+    },
+    {
+      "block": 1,
+      "candidate": 2,
+      "exact_generated_child_events": 1,
+      "gain_vs_parent": null,
+      "index": 11,
+      "job": 18997,
+      "native_matches": 0,
+      "new_parent": false,
+      "parent_admitted_pool_elapsed": 890.3371474742889,
+      "parent_score": 0.04551226514614451,
+      "request_key": "11:4",
+      "resolved_by_direct_event": true,
+      "score": null,
+      "task": "denoising-dirty-documents",
+      "valid": false
+    },
+    {
+      "block": 3,
+      "candidate": 2,
+      "exact_generated_child_events": 0,
+      "index": 29,
+      "job": 18997,
+      "native_matches": 0,
+      "resolved_by_direct_event": false,
+      "score": null,
+      "task": "denoising-dirty-documents",
+      "valid": false
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "fixture_root": "/research/d7/spc/yzyang4/pairing-source-20261017-GWteBV/quota-main-cpu-uix8f2mx",
+  "gpu_calls": 0,
+  "kernel_calls": 0,
+  "limitation": "Actual CPU gate main only. No worker search, live quota borrowing, CUDA qualification or quality comparison.",
+  "model_calls": 0,
+  "old_plan_sha256": "f08b3052fcecf467f500b5b9aa6638087c602321ca3a81bf22ef8b65a55b41f9",
+  "passed": true,
+  "production_cases": 10,
+  "production_gate_sha256": "6e2e193e25a8ce8cb88046a00b0c874988df2d45c4d932fa64dc80a4a83c03d8",
+  "runner_sha256": "42408bd472ba83aebce70363242090d1eef79f5a01015b198fec4705c514695e",
+  "source_hashes": {
+    "generation_quota_production_gate_20261017.py": "48ebd8cb11cf529a9c277864b26d9ba97a89a9bcbf6dc326d971d7d176a704ac",
+    "generation_quota_trial_20261017.py": "ec1b52590b7bda69cc6d651f53a3d9588e84a14cdae3764d0eb2d34eb31df2b6"
+  }
+}

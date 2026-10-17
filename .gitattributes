@@ -1108,3 +1108,12 @@ phase1/sandbox_scheduling/*_20261016.cjs -text
 phase1/sandbox_scheduling/pooling_guard_20261016_cpu/*.json -text
 phase1/sandbox_scheduling/pooling_18673_closed/*.json -text
 phase1/sandbox_scheduling/pooling_18673_closed/*.csv -text diff whitespace=cr-at-eol
+# Byte-bound October17 diagnostics and their exact source snapshots.
+phase1/sandbox_scheduling/*_20261017.py -text
+phase1/sandbox_scheduling/*_20261017.cjs -text
+phase1/sandbox_scheduling/*20261017*.json -text
+phase1/sandbox_scheduling/lineage_source_snapshots/*.py -text
+phase1/sandbox_scheduling/pooling_18770_closed/*.json -text
+phase1/sandbox_scheduling/colocation_18807_closed/*.json -text
+phase1/sandbox_scheduling/selective_18997_closed/*.json -text
+phase1/sandbox_scheduling/generation_quota_19004_closed/*.json -text

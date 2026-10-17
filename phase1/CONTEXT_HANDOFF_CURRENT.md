@@ -1,13 +1,13 @@
 # 当前短交接：只保留现场、方法边界和恢复动作
 
-最后核验：2026-10-17香港07:15；用户窗口02:49–08:49，同范围批次统一批准。
+最后核验：2026-10-17香港07:56；用户窗口02:49–08:49，同范围批次统一批准。
 本窗口GPU已全部闭合，无当前GPU作业；不启动第三GPU方案。继续会话内分析至08:49，再简报。
 整理前完整交接在Git3c0981b057befa2f9af5702831ef641fff81969a；不重复载入旧队列、审批或长日志。
 
 ## 本地和远端
 
 - 活跃checkout：C:/Research/New/my_project/MLEvolve/_codex_tmp/publication-feedback-20261001；detached HEAD有意。
-- 本轮fetch后公开HEAD为3c0981b057befa2f9af5702831ef641fff81969a；新收尾内容尚待提交/发布。
+- 07:54fetch后公开HEAD为2b4454e60db2f6fc396e721ca626e27c8108ac2b；后续谱系/全准入诊断待发布，不覆盖已发布收尾。
 - dojo-reproduce仍e4d478350e704e8c5927eba566b2847aaa6dcbab，未修改学长分支。
 - 学长95journals/5任务是其报告、非我方复现；selected改善不等于best-found，跨天硬件/负载未控制；senior_update_20261017.safe.json。
 - SSH linux5.cse.cuhk.edu.hk；备用137.189.88.148带HostKeyAlias及StrictHostKeyChecking=yes；网络断开不重投作业。
@@ -51,13 +51,23 @@
 - 独立诊断远端failure-audit-20261017-v1不替换原readout，不从分数救方法或重新命名成A/A实验。
 - 本地新hook修复shaec1b52590b7bda69cc6d651f53a3d9588e84a14cdae3764d0eb2d34eb31df2b6；未写回原root。
 - cpu-hook-regression.json：旧绕过2复现；新真实host绑定/selector/readiness/10信号场景通过，0GPU/0model。仅CPU修复，线上干预仍未验证。
-- 新production_gate源码改走actual host，但未独立运行其完整main；不能把回归脚本通过称整个生产批已验收。
+- 新目录真实production_gate main已运行10/10，0GPU/model/kernel；quota-gate-main-20261017.safe.json SHA1089bbac3faa3e44d1b185be6d086fece9fc392cf5fa715d92a94af458c89018。不是线上新干预验收。
+
+## 全准入分析：时间机会与模型能力不能混写
+
+- 三有效调度批195次Improve准入，76用新父：40余时<300s、26为300–600s、10为600–900s；已联结3次改善均最后组。195不是独立处理重复。
+- 8未解返回含2有效；不以未知补失败。原始时间由独立Python重建，原代码谱系join未独立重提取。admission-timing-independent SHA154d93f94fc15490b391ae2a31877614e228a947977a51dd98ca789abfa2436f。
+- 3次增益：去噪.000645643343539986，Aerial.00009086875878627776/.0002325171180705965；不能称值得执行成本，不能从相关性选择新阈值/延长旧批。
+- 247/247已返回Improve均含完整父代码。V1错混Analyze，V2纠正；不是所有尝试/HTTP抓包。metric18412新父3改善仅首重复，不救权重收益结论。
+- 全准入/parent delta/输入V2的独立本地聚合通过。MCPP/SwarmX/OpenMLE限制“反馈链”宽主张；近邻具体范围在ROUTE_DECISIONS。
+- 新父自身许可等待median .015124320983886719s/p90 12.740118503570557s，不是大多在该处排队。54次生成完成median108.86853349208832s。quota若有用须核上游Debug/Analyze与父可用时间，不把观测重放当收益；opportunity-latency SHA37b2e5e59e18effce67a33ee2bccfbf772d3ed2e8ff2b684c91e316ac600bee4。
 
 ## 继续工作而非新审批
 
-- 整理三短记忆、记录On the Clock近邻限制、审查修复/安全产物，显式清单提交并只向我方分支FF推送。
+- 更新三短记忆与长期教训；审查安全产物，显式清单提交并只向我方分支FF推送，不新增长报告。
 - 不开新GPU；窗口余时优先能改变研究判断的分析，不重复已通过测试填时间。
 - 下一轮quota若继续必须新root/原矩阵原门、真实worker干预回执先成立；统一批准有效，不反复索批。
+- 只保留一次quota有效资格对照；若干预生效而终分门仍false就停配方，不靠等待指标/新增seed续命。未解事件补查只定位3个无效，2个有效仍未知，原谱系表不覆盖。
 - 18819局部排序翻转仍成立，但18845/18987未确认；早期严重干扰可被廉价监测发现，未胜SchedMate。
 - 保工作量不保证保质量，Aerial是反例；shared服务/同seed不同提案限制纯执行因果归因。
 - 无API/底座训练；不读first960/Target300/522/D_val/officialtest/16560，不碰Held12535、学长分支或用户dirty。

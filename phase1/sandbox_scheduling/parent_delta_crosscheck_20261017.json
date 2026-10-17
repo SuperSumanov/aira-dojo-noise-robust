@@ -1,0 +1,797 @@
+{
+  "passed": true,
+  "cohorts": [
+    {
+      "job": 18770,
+      "parent_sha256": "7088b473147dfd8cda6ef806f71ae98eac21a366dcb2ae75c548a4711d30fb72",
+      "lineage": {
+        "passed": true,
+        "hashes": {
+          "adaptation-lineage-extension-20261017.safe.json": "ce2df3e9c801da6c1a8e407d542f963d61c47d9fcde807c52b15c2308e14e644",
+          "runs.json": "ce3a3677fb0f27094486945acf89e89d2f1919bba810227df6951257c01e8d59",
+          "summary.json": "bef23ec17e2fd3e561a690e2aa7328c3df592cb315070fbc293d69c4ce84def5"
+        },
+        "assigned": 32,
+        "returned": 75,
+        "valid": 29,
+        "unresolved": 2,
+        "new_parent_descendant_returns": 12,
+        "new_parent_descendant_valid": 4,
+        "debug_valid": 10,
+        "task_pools": 8,
+        "task_pools_gain_after_first_attempts": 3,
+        "results": [
+          {
+            "block": 0,
+            "task": "aerial-cactus-identification",
+            "valid": 4,
+            "record_events": 1,
+            "gain_after_first_attempts": 0,
+            "winning_categories": [
+              "debug_from_warm",
+              "improve_from_warm"
+            ]
+          },
+          {
+            "block": 0,
+            "task": "denoising-dirty-documents",
+            "valid": 4,
+            "record_events": 3,
+            "gain_after_first_attempts": 0.00039772323911245466,
+            "winning_categories": [
+              "unresolved"
+            ]
+          },
+          {
+            "block": 1,
+            "task": "aerial-cactus-identification",
+            "valid": 5,
+            "record_events": 1,
+            "gain_after_first_attempts": 0,
+            "winning_categories": [
+              "improve_from_warm"
+            ]
+          },
+          {
+            "block": 1,
+            "task": "denoising-dirty-documents",
+            "valid": 2,
+            "record_events": 1,
+            "gain_after_first_attempts": 0,
+            "winning_categories": [
+              "improve_from_warm"
+            ]
+          },
+          {
+            "block": 2,
+            "task": "aerial-cactus-identification",
+            "valid": 3,
+            "record_events": 1,
+            "gain_after_first_attempts": 0,
+            "winning_categories": [
+              "improve_from_warm"
+            ]
+          },
+          {
+            "block": 2,
+            "task": "denoising-dirty-documents",
+            "valid": 3,
+            "record_events": 2,
+            "gain_after_first_attempts": 0,
+            "winning_categories": [
+              "improve_from_warm"
+            ]
+          },
+          {
+            "block": 3,
+            "task": "aerial-cactus-identification",
+            "valid": 6,
+            "record_events": 1,
+            "gain_after_first_attempts": 0.00015501141204699032,
+            "winning_categories": [
+              "debug_from_warm"
+            ]
+          },
+          {
+            "block": 3,
+            "task": "denoising-dirty-documents",
+            "valid": 2,
+            "record_events": 2,
+            "gain_after_first_attempts": 0.000645643343539986,
+            "winning_categories": [
+              "improve_from_new"
+            ]
+          }
+        ],
+        "limitations": [
+          "Independent counts/chronological records/endpoints and transferSHA; not independent raw journal linkage.",
+          "Observed first-attempt subset is not a new no-feedback strategy. No causal allocation gain or independent task generalization."
+        ]
+      },
+      "new_parent_returned": 12,
+      "new_parent_relations": {
+        "invalid": 8,
+        "worse": 3,
+        "better": 1
+      }
+    },
+    {
+      "job": 18807,
+      "parent_sha256": "602b2034d27cd847bf9379ee457f4d4044c4f5a9a1f089ab33674905669680c3",
+      "lineage": {
+        "passed": true,
+        "hashes": {
+          "adaptation-lineage-extension-20261017.safe.json": "b47201384f5d3c385f471becba37bb2f546747de89a529f55d48f0ff9a264430",
+          "runs.json": "69da8a7954fc94a7888e14332079ee31f237e4ca3de5a3cb956151a42582aebf",
+          "summary.json": "c8c2f71009a39e9932ec59e388f9b052ce190730179119aed5d73e4fa38576a4"
+        },
+        "assigned": 32,
+        "returned": 78,
+        "valid": 38,
+        "unresolved": 4,
+        "new_parent_descendant_returns": 19,
+        "new_parent_descendant_valid": 7,
+        "debug_valid": 10,
+        "task_pools": 8,
+        "task_pools_gain_after_first_attempts": 4,
+        "results": [
+          {
+            "block": 0,
+            "task": "aerial-cactus-identification",
+            "valid": 5,
+            "record_events": 1,
+            "gain_after_first_attempts": 0.00016302924370470429,
+            "winning_categories": [
+              "improve_from_warm"
+            ]
+          },
+          {
+            "block": 0,
+            "task": "denoising-dirty-documents",
+            "valid": 2,
+            "record_events": 2,
+            "gain_after_first_attempts": 0,
+            "winning_categories": [
+              "improve_from_warm"
+            ]
+          },
+          {
+            "block": 1,
+            "task": "aerial-cactus-identification",
+            "valid": 7,
+            "record_events": 1,
+            "gain_after_first_attempts": 0,
+            "winning_categories": [
+              "improve_from_warm"
+            ]
+          },
+          {
+            "block": 1,
+            "task": "denoising-dirty-documents",
+            "valid": 4,
+            "record_events": 2,
+            "gain_after_first_attempts": 0.02829629407783234,
+            "winning_categories": [
+              "debug_from_warm"
+            ]
+          },
+          {
+            "block": 2,
+            "task": "aerial-cactus-identification",
+            "valid": 7,
+            "record_events": 1,
+            "gain_after_first_attempts": 0,
+            "winning_categories": [
+              "improve_from_warm"
+            ]
+          },
+          {
+            "block": 2,
+            "task": "denoising-dirty-documents",
+            "valid": 4,
+            "record_events": 1,
+            "gain_after_first_attempts": 0.024183945582903144,
+            "winning_categories": [
+              "debug_from_warm"
+            ]
+          },
+          {
+            "block": 3,
+            "task": "aerial-cactus-identification",
+            "valid": 6,
+            "record_events": 3,
+            "gain_after_first_attempts": 0.00002138088442038555,
+            "winning_categories": [
+              "improve_from_new"
+            ]
+          },
+          {
+            "block": 3,
+            "task": "denoising-dirty-documents",
+            "valid": 3,
+            "record_events": 2,
+            "gain_after_first_attempts": 0,
+            "winning_categories": [
+              "improve_from_warm"
+            ]
+          }
+        ],
+        "limitations": [
+          "Independent counts/chronological records/endpoints and transferSHA; not independent raw journal linkage.",
+          "Observed first-attempt subset is not a new no-feedback strategy. No causal allocation gain or independent task generalization."
+        ]
+      },
+      "new_parent_returned": 19,
+      "new_parent_relations": {
+        "invalid": 12,
+        "worse": 6,
+        "better": 1
+      }
+    },
+    {
+      "job": 18997,
+      "parent_sha256": "c8d759fa8377e8410df8c26f319ba9c3d4931a2b5a01505b774dde29c481746e",
+      "lineage": {
+        "passed": true,
+        "hashes": {
+          "adaptation-lineage-20261017.safe.json": "6ec665d244a8cd54820542b175526975d2a13ed24a0185ddd56a7d8dd2d19698",
+          "runs.json": "002cc948082e9907561002061f5d57373a9fe8f7300e18e69eab4aab7908637a",
+          "summary.json": "0bd972126ab1bb9427ea93e446be3d3e245955c8bd5aa7e08778b7afa05c3514"
+        },
+        "assigned": 32,
+        "returned": 76,
+        "valid": 34,
+        "unresolved": 2,
+        "new_parent_descendant_returns": 12,
+        "new_parent_descendant_valid": 3,
+        "debug_valid": 12,
+        "task_pools": 8,
+        "task_pools_gain_after_first_attempts": 4,
+        "results": [
+          {
+            "block": 0,
+            "task": "aerial-cactus-identification",
+            "valid": 6,
+            "record_events": 1,
+            "gain_after_first_attempts": 0,
+            "winning_categories": [
+              "improve_from_warm"
+            ]
+          },
+          {
+            "block": 0,
+            "task": "denoising-dirty-documents",
+            "valid": 2,
+            "record_events": 1,
+            "gain_after_first_attempts": 0,
+            "winning_categories": [
+              "improve_from_warm"
+            ]
+          },
+          {
+            "block": 1,
+            "task": "aerial-cactus-identification",
+            "valid": 7,
+            "record_events": 2,
+            "gain_after_first_attempts": 0.0002325171180705965,
+            "winning_categories": [
+              "improve_from_new"
+            ]
+          },
+          {
+            "block": 1,
+            "task": "denoising-dirty-documents",
+            "valid": 2,
+            "record_events": 0,
+            "gain_after_first_attempts": 0,
+            "winning_categories": [
+              "warm"
+            ]
+          },
+          {
+            "block": 2,
+            "task": "aerial-cactus-identification",
+            "valid": 6,
+            "record_events": 2,
+            "gain_after_first_attempts": 0.0001683744648096619,
+            "winning_categories": [
+              "improve_from_warm"
+            ]
+          },
+          {
+            "block": 2,
+            "task": "denoising-dirty-documents",
+            "valid": 3,
+            "record_events": 2,
+            "gain_after_first_attempts": 0.02992924050390073,
+            "winning_categories": [
+              "debug_from_warm"
+            ]
+          },
+          {
+            "block": 3,
+            "task": "aerial-cactus-identification",
+            "valid": 4,
+            "record_events": 1,
+            "gain_after_first_attempts": 0.00003207132663041179,
+            "winning_categories": [
+              "debug_from_warm"
+            ]
+          },
+          {
+            "block": 3,
+            "task": "denoising-dirty-documents",
+            "valid": 4,
+            "record_events": 1,
+            "gain_after_first_attempts": 0,
+            "winning_categories": [
+              "improve_from_warm"
+            ]
+          }
+        ],
+        "limitations": [
+          "Independent counts/chronological records/endpoints and transferSHA; not independent raw journal linkage.",
+          "Observed first-attempt subset is not a new no-feedback strategy. No causal allocation gain or independent task generalization."
+        ]
+      },
+      "new_parent_returned": 12,
+      "new_parent_relations": {
+        "invalid": 9,
+        "worse": 2,
+        "better": 1
+      }
+    },
+    {
+      "job": 18412,
+      "parent_sha256": "950bfd757a3502b3c195516297b2664e2fca5ff51083f79cfbbb636198aab918",
+      "lineage": {
+        "passed": true,
+        "hashes": {
+          "adaptation-lineage-20261017.safe.json": "45400a0d57b706268343287a9e0d438e4077b992f13c427e786c394416aba0cc",
+          "runs.json": "e38c35f5f4a8c1fe173ecd58b3b62b34df865488af0b90d86fc3e09a6750dfa1",
+          "summary.json": "c68e4c4caafb3b63ad22443c5e7e2f330a0f22a3ddd47887dc06b10820e366e9"
+        },
+        "assigned": 48,
+        "returned": 157,
+        "valid": 77,
+        "unresolved": 4,
+        "new_parent_descendant_returns": 47,
+        "new_parent_descendant_valid": 20,
+        "debug_valid": 23,
+        "task_pools": 12,
+        "task_pools_gain_after_first_attempts": 7,
+        "results": [
+          {
+            "block": 0,
+            "task": "aerial-cactus-identification",
+            "valid": 9,
+            "record_events": 1,
+            "gain_after_first_attempts": 0.00009354136933881207,
+            "winning_categories": [
+              "improve_from_warm"
+            ]
+          },
+          {
+            "block": 0,
+            "task": "denoising-dirty-documents",
+            "valid": 4,
+            "record_events": 2,
+            "gain_after_first_attempts": 0,
+            "winning_categories": [
+              "improve_from_warm"
+            ]
+          },
+          {
+            "block": 1,
+            "task": "aerial-cactus-identification",
+            "valid": 11,
+            "record_events": 2,
+            "gain_after_first_attempts": 0.00010423181154883832,
+            "winning_categories": [
+              "improve_from_warm"
+            ]
+          },
+          {
+            "block": 1,
+            "task": "denoising-dirty-documents",
+            "valid": 7,
+            "record_events": 1,
+            "gain_after_first_attempts": 0,
+            "winning_categories": [
+              "improve_from_warm"
+            ]
+          },
+          {
+            "block": 2,
+            "task": "aerial-cactus-identification",
+            "valid": 7,
+            "record_events": 3,
+            "gain_after_first_attempts": 0.0002351897286230198,
+            "winning_categories": [
+              "improve_from_new"
+            ]
+          },
+          {
+            "block": 2,
+            "task": "denoising-dirty-documents",
+            "valid": 3,
+            "record_events": 2,
+            "gain_after_first_attempts": 0.0022089533274928796,
+            "winning_categories": [
+              "improve_from_new"
+            ]
+          },
+          {
+            "block": 3,
+            "task": "aerial-cactus-identification",
+            "valid": 6,
+            "record_events": 1,
+            "gain_after_first_attempts": 0.00004543437939308337,
+            "winning_categories": [
+              "improve_from_warm"
+            ]
+          },
+          {
+            "block": 3,
+            "task": "denoising-dirty-documents",
+            "valid": 5,
+            "record_events": 1,
+            "gain_after_first_attempts": 0,
+            "winning_categories": [
+              "improve_from_warm"
+            ]
+          },
+          {
+            "block": 4,
+            "task": "aerial-cactus-identification",
+            "valid": 10,
+            "record_events": 3,
+            "gain_after_first_attempts": 0.00007750570602360618,
+            "winning_categories": [
+              "improve_from_new"
+            ]
+          },
+          {
+            "block": 4,
+            "task": "denoising-dirty-documents",
+            "valid": 6,
+            "record_events": 1,
+            "gain_after_first_attempts": 0,
+            "winning_categories": [
+              "improve_from_warm"
+            ]
+          },
+          {
+            "block": 5,
+            "task": "aerial-cactus-identification",
+            "valid": 6,
+            "record_events": 1,
+            "gain_after_first_attempts": 0,
+            "winning_categories": [
+              "improve_from_warm"
+            ]
+          },
+          {
+            "block": 5,
+            "task": "denoising-dirty-documents",
+            "valid": 3,
+            "record_events": 1,
+            "gain_after_first_attempts": 0.032124365718299776,
+            "winning_categories": [
+              "debug_from_warm"
+            ]
+          }
+        ],
+        "limitations": [
+          "Independent counts/chronological records/endpoints and transferSHA; not independent raw journal linkage.",
+          "Observed first-attempt subset is not a new no-feedback strategy. No causal allocation gain or independent task generalization."
+        ]
+      },
+      "new_parent_returned": 47,
+      "new_parent_relations": {
+        "invalid": 27,
+        "worse": 16,
+        "better": 4
+      }
+    }
+  ],
+  "scheduling_new_parent": {
+    "returned": 43,
+    "relations": {
+      "invalid": 29,
+      "worse": 11,
+      "better": 3
+    },
+    "by_task": [
+      {
+        "task": "denoising-dirty-documents",
+        "returned": 20,
+        "relations": {
+          "invalid": 18,
+          "better": 1,
+          "worse": 1
+        },
+        "valid_gain": {
+          "n": 2,
+          "median": 0.00003835440171880318,
+          "sample_sd": 0.0008588362578027222
+        }
+      },
+      {
+        "task": "aerial-cactus-identification",
+        "returned": 23,
+        "relations": {
+          "invalid": 11,
+          "worse": 10,
+          "better": 2
+        },
+        "valid_gain": {
+          "n": 12,
+          "median": -0.005022503380852306,
+          "sample_sd": 0.21011879577307485
+        }
+      }
+    ]
+  },
+  "metric_new_parent_by_arm": [
+    {
+      "arm": "old_fast",
+      "task": "aerial-cactus-identification",
+      "returned": 14,
+      "relations": {
+        "worse": 3,
+        "invalid": 11
+      },
+      "valid_gain": {
+        "n": 3,
+        "median": -0.0006601348064763091,
+        "sample_sd": 0.28830490057577285
+      },
+      "by_block": [
+        {
+          "block": 0,
+          "returned": 3,
+          "relations": {
+            "worse": 1,
+            "invalid": 2
+          },
+          "valid_gain": {
+            "n": 1,
+            "median": -0.00019510057033511607,
+            "sample_sd": null
+          }
+        },
+        {
+          "block": 5,
+          "returned": 11,
+          "relations": {
+            "invalid": 9,
+            "worse": 2
+          },
+          "valid_gain": {
+            "n": 2,
+            "median": -0.2502231629811367,
+            "sample_sd": 0.3529354191115036
+          }
+        }
+      ]
+    },
+    {
+      "arm": "old_fast",
+      "task": "denoising-dirty-documents",
+      "returned": 9,
+      "relations": {
+        "invalid": 9
+      },
+      "valid_gain": {
+        "n": 0,
+        "median": null,
+        "sample_sd": null
+      },
+      "by_block": [
+        {
+          "block": 0,
+          "returned": 7,
+          "relations": {
+            "invalid": 7
+          },
+          "valid_gain": {
+            "n": 0,
+            "median": null,
+            "sample_sd": null
+          }
+        },
+        {
+          "block": 5,
+          "returned": 2,
+          "relations": {
+            "invalid": 2
+          },
+          "valid_gain": {
+            "n": 0,
+            "median": null,
+            "sample_sd": null
+          }
+        }
+      ]
+    },
+    {
+      "arm": "old_medium",
+      "task": "aerial-cactus-identification",
+      "returned": 10,
+      "relations": {
+        "worse": 6,
+        "better": 1,
+        "invalid": 3
+      },
+      "valid_gain": {
+        "n": 7,
+        "median": -0.00010423181154883832,
+        "sample_sd": 0.034897231347507766
+      },
+      "by_block": [
+        {
+          "block": 1,
+          "returned": 2,
+          "relations": {
+            "worse": 2
+          },
+          "valid_gain": {
+            "n": 2,
+            "median": -0.00006948787436594772,
+            "sample_sd": 0.00004913534717428275
+          }
+        },
+        {
+          "block": 4,
+          "returned": 8,
+          "relations": {
+            "better": 1,
+            "worse": 4,
+            "invalid": 3
+          },
+          "valid_gain": {
+            "n": 5,
+            "median": -0.0010476633365938959,
+            "sample_sd": 0.04080907125390577
+          }
+        }
+      ]
+    },
+    {
+      "arm": "old_medium",
+      "task": "denoising-dirty-documents",
+      "returned": 7,
+      "relations": {
+        "invalid": 2,
+        "worse": 5
+      },
+      "valid_gain": {
+        "n": 5,
+        "median": -0.0039661826759714025,
+        "sample_sd": 0.12517817973138662
+      },
+      "by_block": [
+        {
+          "block": 1,
+          "returned": 3,
+          "relations": {
+            "invalid": 1,
+            "worse": 2
+          },
+          "valid_gain": {
+            "n": 2,
+            "median": -0.14709636320896927,
+            "sample_sd": 0.20425383164332747
+          }
+        },
+        {
+          "block": 4,
+          "returned": 4,
+          "relations": {
+            "worse": 3,
+            "invalid": 1
+          },
+          "valid_gain": {
+            "n": 3,
+            "median": -0.0039661826759714025,
+            "sample_sd": 0.03030946330596508
+          }
+        }
+      ]
+    },
+    {
+      "arm": "new_medium",
+      "task": "aerial-cactus-identification",
+      "returned": 4,
+      "relations": {
+        "better": 2,
+        "invalid": 1,
+        "worse": 1
+      },
+      "valid_gain": {
+        "n": 3,
+        "median": 0.00020579101254525334,
+        "sample_sd": 0.004227162877460727
+      },
+      "by_block": [
+        {
+          "block": 2,
+          "returned": 4,
+          "relations": {
+            "better": 2,
+            "invalid": 1,
+            "worse": 1
+          },
+          "valid_gain": {
+            "n": 3,
+            "median": 0.00020579101254525334,
+            "sample_sd": 0.004227162877460727
+          }
+        },
+        {
+          "block": 3,
+          "returned": 0,
+          "relations": {},
+          "valid_gain": {
+            "n": 0,
+            "median": null,
+            "sample_sd": null
+          }
+        }
+      ]
+    },
+    {
+      "arm": "new_medium",
+      "task": "denoising-dirty-documents",
+      "returned": 3,
+      "relations": {
+        "invalid": 1,
+        "better": 1,
+        "worse": 1
+      },
+      "valid_gain": {
+        "n": 2,
+        "median": 0.0004081265703632783,
+        "sample_sd": 0.002546753623417042
+      },
+      "by_block": [
+        {
+          "block": 2,
+          "returned": 2,
+          "relations": {
+            "invalid": 1,
+            "better": 1
+          },
+          "valid_gain": {
+            "n": 1,
+            "median": 0.0022089533274928796,
+            "sample_sd": null
+          }
+        },
+        {
+          "block": 3,
+          "returned": 1,
+          "relations": {
+            "worse": 1
+          },
+          "valid_gain": {
+            "n": 1,
+            "median": -0.001392700186766323,
+            "sample_sd": null
+          }
+        }
+      ]
+    }
+  ],
+  "observations": {
+    "scheduling_returned": 229,
+    "metric_returned": 157
+  },
+  "limits": [
+    "Actual admission parent matched to an earlier external DEV receipt in remote reader; numeric aggregation independent, raw linkage not re-extracted.",
+    "Post-treatment parent states and late admission differ. Do not call conditional yields model effects or pool them as independent replications.",
+    "Metric48 uses30minutes, other cohorts17minutes: no causal budget contrast, no combined rate. AUC/RMSE gains are never pooled.",
+    "Returned-only denominator retains invalid returns but omits censored attempts with no return. No main gate changes."
+  ]
+}

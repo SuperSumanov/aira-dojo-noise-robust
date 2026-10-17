@@ -23,7 +23,7 @@
 - 18997该配方32完整/35重评分、独立复核和12传输SHA通过；去噪两次best更差，Aerial两次略高，原质量门false。实际共置3/4次且保护延迟各7次，不能说策略没执行；停止，不补seed/延时，不推断所有自适应保护普遍无效。selective_18997_closed。
 - 18997补独立AUC（Mann-Whitney）/RMSE（逐像素ID）实现：35/35评分一致，maxerror1.1102230246251565e-16；不用生产scorer/pandas/sklearn。仅指标独立，不是源数据构建/最终选解溯源独立；independent-metrics-20261017.json。
 - 19004 quota32闭合但干预绕过：实际worker仍旧每任务2FIFO，4池借用0；名义pooled全局顺序违例12/7，旧每任务规则违例0。冻结读出失败，独立13SHA/事件重放确认；不算方法负结果或正式A/A研究。上层hook与真实host绑定不一致，原CPU门测错层；CPU修复2反例/10场景通过，不是线上效果。generation_quota_19004_closed。
-- 18997封存后首程序哈希诊断：16对首轮prompt/配置seed相同、均有程序尝试，仅3对raw/AST相同（去噪0/8）；32首程序均匹配原生journal代码、首日志成功Improve且adapter_attempts=1，故不是执行包装代码造成哈希差异。独立计数/传输SHA通过，原代码AST和journal提取未独立重做。首尝试不保证首transport响应，原因未分解，不指认为vLLM错误或否决原随机策略实验；配对seed不等于同提案，不以单轨迹归因纯执行干扰。first-program-pairing/origin回执。
+- 18997封存后首程序哈希诊断：16对首轮prompt/配置seed相同、均有程序尝试，仅3对raw/AST相同（去噪0/8）；32首程序均匹配原生journal代码、首日志成功Improve且adapter_attempts=1，故不是执行包装代码造成哈希差异。独立计数/传输SHA通过，原代码AST和journal提取未独立重做。首尝试不保证首transport响应，原因未分解，不指认为vLLM错误。原实验是固定反序ABBA配对seed，不是随机处理分配；配对seed不等于同提案，不以单轨迹归因纯执行干扰。first-program-pairing/origin回执。
 - 10/17核vLLM官方Reproducibility/Batch Invariance：默认在线结果不保证可复现，专门不变性会影响性能，已测模型列表不能替代本项目27B量化镜像验收。仅支持保留服务非确定性这个备选解释，不证明18997差异由它造成；不临时改已冻结镜像/开关，更不把已知复现问题当新颖发现。https://docs.vllm.ai/en/stable/usage/reproducibility/ / https://docs.vllm.ai/en/stable/features/batch_invariance/
 - 18997额外无网络CPU调用链：两任务×两条件4配置/12模拟末端调用均传递正确seed，配对prompt/采样参数一致（temperature=.6、top_p=.95）；4传输SHA及独立配对通过。排除已检查配置的客户端丢seed，不是线上HTTP抓包或服务确定性证明；seed-transport回执，不修改19004。
 - 18997角色/终分联结：去噪selective两池Debug调用9/7，高于配对shared的7/5，而Improve为6/7对6/8；原终分门仍false。8任务池/179调用全分母及PowerShell独立聚合通过。只说明更多周转未转成更多Improve或稳定终分；Debug不等于无价值、Improve不等于新想法，角色计数不能证明因果。role-yield回执。
@@ -32,6 +32,13 @@
 - 10/17只读18807发现每任务2个生成许可留下10.47%–24.33%的有队列/总active<4状态；独立积分通过。vLLM408采样最大Running4、Waiting0、KV13.3%，不证明硬件空闲。后续只测同总4许可的跨任务借用，执行仍单许可；这是work-conserving强基线资格，不是17675旧资源打分重命名，更不是新算法/MARS复现。
 - 同批余时独立核算：≥300秒余时下每池仍有约96/118/123/168秒借用机会，主要为analysis/debug；不是全部截止尾巴，也不是额外完成数。证据quota-slack-20261017-v1.safe.json及quota-slack-independent.json，原质量门不改。
 - 10/17只读“评分→共享归档”线索：原生_analyze先于parent wrapper发布；18807的38有效结果37发布/1截止前未发布，只有1次真实Improve准入处于更好有效父程序尚未发布窗口。仅源码+既有时间诊断，未独立复现原始join、未生成新子程序，不据此开早发布GPU新线或称收益。feedback-publication-20261017-v1.safe.json；本窗口两32条已闭合，不开第三GPU方案。
+- 10/17跨三调度批实际谱系：96条/229返回/101有效，24任务池中11池在首尝试后仍改善，Debug产32有效；43个新父后代返回中3好/11差/29无效。返回分母有截断，不能据此推断重启胜迭代；adaptation_three_cohorts/parent_delta_crosscheck_20261017.json。
+- 补全准入分母：195次Improve中76用新父，40次准入余时<300s、26次300–600s、10次600–900s；已联结3次改善都在最后组。保留8未解返回/其中2有效；独立原事件时间重建通过，但原代码谱系join未独立重做。父质量/剩余时间/选择存活混杂，不是时间因果效应、最优阈值或新方法；proposal_opportunities_crosscheck及admission-timing-independent回执。
+- 这3次增益：去噪.000645643343539986，Aerial.00009086875878627776/.0002325171180705965（父AUC>.9997）；不能只数正号就声称值得成本。18412新metric的新父改善3次均首重复，第二重复未复现；30分钟与上述17分钟不合并比较。
+- 输入诊断V1误把Analyze提示也要求含父代码，V2按operator角色分离后247/247返回Improve均含完整父代码；旧诊断保留并明确废除其“父代码缺失”解释，不改原批/原门。prompt_contract_crosscheck_20261017.json。
+- quota修复另在新CPU目录跑生产门实际main，10/10通过，0GPU/模型/kernel；只读依赖原19004，不重开原readout。quota-gate-main-20261017.safe.json；线上借用仍未验证。
+- 对195次准入进一步分时：76新父自身许可等待median .015124320983886719s、p90 12.740118503570557s，只有13次>1s；54次完成代码生成median108.86853349208832s。原始时间读取+独立代数/全分母核验通过，非第二次原始提取。结合18807可借用等待主要为Debug/Analyze，只能提出“上游更早闭合→父更早可用”的待验证路径，不称删除等待能节省这些时间。opportunity-latency及opportunity_latency_crosscheck_20261017。
+- 未解8返回另用精确child hash→parent_used→admitted串联：3个无效可定位Improve，2个有效仍未解；不靠时间邻近猜Debug父链，不覆盖原表或补失败。unresolved-parent-events-20261017.safe.json。
 
 ## R14已试机制及禁止偷换
 
@@ -98,6 +105,9 @@
 - When Agents Slow Down已有best-so-far/token及session分配；10/17核全文§6–7及附录E：拐点指导等额多会话，假设独立轨迹/共同Elo尺度，任务级拐点仍需测量。Polyomino正信号不能泛化到所有任务；MLS-Bench附录明确1/2/3会话统计不可区分。其前缀分析依赖agent不见总预算，我方显式墙钟预算轨迹不能照搬截断当反事实。不是我们的新方法，也不据此恢复旧停止/多保真线。
   https://arxiv.org/abs/2609.15309
 - On the Clock（10/7提交，10/17读§1–5及MLE动作时长附录）已有剩余时间/生成开销提示与clamp/refuse；守时改善不保证MLE终分。使用OpenCode及不同任务/模型，表2质量条件于有效且及时子集，不与我方全分母warm fallback直接比较；不能把“提醒剩余预算”或“吞吐≠质量”当创新，不引入其RL。https://arxiv.org/html/2610.10833v1
+- On Time and Within Budget/MCPP（10/17核§1–3.1）已有固定预给DAG的模型/并发组合与截止成功率规划；动态MLE程序和连续成绩是场景差别，尚非方法贡献。https://arxiv.org/html/2605.06110v1
+- SwarmX（10/17核§2.2、3.1–3.3）已有调用结构/分布时延预测及路由扩缩容；“预测反馈链后调度”本身不足以立新颖性，本轮未复现其完整实验。https://arxiv.org/html/2606.21401v1
+- Frontis-MA1/OpenMLE（10/17核§4–6.1、附录C）已有Draft/Improve/Debug/Crossover、父收益/成本信息、经验板和异步多GPU搜索；EvoMax还改变其他组件，不能拿其12h结果作我方17min纯调度参照。不引入底座训练。https://arxiv.org/html/2607.28568v1
 - TTT-Discover/AREX-2/Guidance-TTT覆盖本任务自举、轨迹训练、固定执行器学指导；我方不训练agent底座。
 - M-DESIGN/REHEARSE覆盖修改增益预测与检索；MLE-STAR/PatchFusion覆盖精修与编辑组合。
 - Centaur/LLaMEA-HPO/TIDE/HT-AA覆盖结构×数值优化分工/迁移；四格编辑相互作用不是新方法（GEVO）。

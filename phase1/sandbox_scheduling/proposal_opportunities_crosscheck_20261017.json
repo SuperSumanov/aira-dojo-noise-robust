@@ -1,0 +1,218 @@
+{
+  "passed": true,
+  "raw_admission_timing_checked": false,
+  "cohorts": [
+    {
+      "job": 18770,
+      "sha256": "239068967985e3a3b6edacae54c0d6c41bb305a89679c986de2577eca933f322",
+      "admitted": 60,
+      "unresolved_returns": 2,
+      "unresolved_valid_returns": 1,
+      "new_parent": {
+        "admitted": 22,
+        "generated": 14,
+        "with_linked_returns": 9,
+        "with_linked_valid_returns": 4,
+        "with_linked_improvement": 1,
+        "remaining": {
+          "n": 22,
+          "median": 285.1067739725113,
+          "sample_sd": 215.5862389722247
+        }
+      },
+      "raw_admission_timing_checked": false
+    },
+    {
+      "job": 18807,
+      "sha256": "0be079dbf6a1e3d0d1773032b4725dc07cae59145e8b91b6f53d1c60ea934c83",
+      "admitted": 69,
+      "unresolved_returns": 4,
+      "unresolved_valid_returns": 1,
+      "new_parent": {
+        "admitted": 30,
+        "generated": 21,
+        "with_linked_returns": 17,
+        "with_linked_valid_returns": 7,
+        "with_linked_improvement": 1,
+        "remaining": {
+          "n": 30,
+          "median": 346.1929210424423,
+          "sample_sd": 208.18069242684746
+        }
+      },
+      "raw_admission_timing_checked": false
+    },
+    {
+      "job": 18997,
+      "sha256": "b207d27b0ae4f4083d5352c4ded9d6c867bde40267b06f826f8de4a11a686db0",
+      "admitted": 66,
+      "unresolved_returns": 2,
+      "unresolved_valid_returns": 0,
+      "new_parent": {
+        "admitted": 24,
+        "generated": 19,
+        "with_linked_returns": 11,
+        "with_linked_valid_returns": 3,
+        "with_linked_improvement": 1,
+        "remaining": {
+          "n": 24,
+          "median": 233.86802649497986,
+          "sample_sd": 191.4920157144322
+        }
+      },
+      "raw_admission_timing_checked": false
+    },
+    {
+      "job": 18412,
+      "sha256": "2f5cfaea084579f5d467f38a8ad5738e9ac9ad0f4780e9c6a31aef3b80a14803",
+      "admitted": 121,
+      "unresolved_returns": 4,
+      "unresolved_valid_returns": 2,
+      "new_parent": {
+        "admitted": 58,
+        "generated": 49,
+        "with_linked_returns": 36,
+        "with_linked_valid_returns": 20,
+        "with_linked_improvement": 4,
+        "remaining": {
+          "n": 58,
+          "median": 613.1635051965714,
+          "sample_sd": 375.23152788725264
+        }
+      },
+      "raw_admission_timing_checked": false
+    }
+  ],
+  "scheduling": {
+    "all_admitted": 195,
+    "new_parent": {
+      "admitted": 76,
+      "generated": 54,
+      "with_linked_returns": 37,
+      "with_linked_valid_returns": 14,
+      "with_linked_improvement": 3,
+      "remaining": {
+        "n": 76,
+        "median": 289.24207413196564,
+        "sample_sd": 202.88223731056348
+      }
+    },
+    "unresolved_valid_returns": 2,
+    "by_remaining": [
+      {
+        "band": "under300",
+        "admitted": 40,
+        "generated": 18,
+        "with_linked_returns": 5,
+        "with_linked_valid_returns": 0,
+        "with_linked_improvement": 0,
+        "remaining": {
+          "n": 40,
+          "median": 120.4135411977768,
+          "sample_sd": 82.69950663164067
+        }
+      },
+      {
+        "band": "300to600",
+        "admitted": 26,
+        "generated": 26,
+        "with_linked_returns": 22,
+        "with_linked_valid_returns": 10,
+        "with_linked_improvement": 0,
+        "remaining": {
+          "n": 26,
+          "median": 469.85094714164734,
+          "sample_sd": 80.33451698102856
+        }
+      },
+      {
+        "band": "600to900",
+        "admitted": 10,
+        "generated": 10,
+        "with_linked_returns": 10,
+        "with_linked_valid_returns": 4,
+        "with_linked_improvement": 3,
+        "remaining": {
+          "n": 10,
+          "median": 616.9931838512421,
+          "sample_sd": 34.05269331261545
+        }
+      },
+      {
+        "band": "atleast900",
+        "admitted": 0,
+        "generated": 0,
+        "with_linked_returns": 0,
+        "with_linked_valid_returns": 0,
+        "with_linked_improvement": 0,
+        "remaining": {
+          "n": 0,
+          "median": null,
+          "sample_sd": null
+        }
+      }
+    ],
+    "by_task": [
+      {
+        "task": "aerial-cactus-identification",
+        "warm": {
+          "admitted": 66,
+          "generated": 66,
+          "with_linked_returns": 61,
+          "with_linked_valid_returns": 54,
+          "with_linked_improvement": 22,
+          "remaining": {
+            "n": 66,
+            "median": 895.5072485208511,
+            "sample_sd": 221.75371075645825
+          }
+        },
+        "new_parent": {
+          "admitted": 48,
+          "generated": 34,
+          "with_linked_returns": 21,
+          "with_linked_valid_returns": 12,
+          "with_linked_improvement": 2,
+          "remaining": {
+            "n": 48,
+            "median": 237.21926188468933,
+            "sample_sd": 203.55838087857936
+          }
+        }
+      },
+      {
+        "task": "denoising-dirty-documents",
+        "warm": {
+          "admitted": 53,
+          "generated": 53,
+          "with_linked_returns": 51,
+          "with_linked_valid_returns": 31,
+          "with_linked_improvement": 24,
+          "remaining": {
+            "n": 53,
+            "median": 901.5613603591919,
+            "sample_sd": 189.5642476863197
+          }
+        },
+        "new_parent": {
+          "admitted": 28,
+          "generated": 20,
+          "with_linked_returns": 16,
+          "with_linked_valid_returns": 2,
+          "with_linked_improvement": 1,
+          "remaining": {
+            "n": 28,
+            "median": 319.2115889787674,
+            "sample_sd": 202.39820596284096
+          }
+        }
+      }
+    ]
+  },
+  "limits": [
+    "Observed families, not independent treatment replications or adaptive/no-feedback causal contrast.",
+    "Warm/new parent quality, remaining time and survival differ. 300s is a bin edge, not a validated optimal admission threshold.",
+    "Outcome counts are LINKED observations. Unresolved valid returns may add successes; do not label all unmatched families as failures.",
+    "Raw-event mode independently reconstructs all admission denominators and remaining time, NOT raw code/ancestry linkage."
+  ]
+}

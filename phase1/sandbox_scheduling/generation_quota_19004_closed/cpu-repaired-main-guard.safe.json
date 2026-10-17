@@ -1,0 +1,263 @@
+{
+  "cases": [
+    {
+      "case": "success",
+      "deadline_propagated": false,
+      "events": [
+        "queued",
+        "admitted",
+        "released"
+      ],
+      "gpu_calls": 0,
+      "independent_queue_check": {
+        "admissions": 1,
+        "co_admissions": 0,
+        "migrations": 0,
+        "peak_device_leases": 1,
+        "wait_median": 0.008051395416259766,
+        "wait_total": 0.008051395416259766
+      },
+      "index": 0,
+      "kernel_calls": 0,
+      "manual_guard": false,
+      "mode": "shared",
+      "model_calls": 0,
+      "passed": true,
+      "production_install": true,
+      "signal_injections": 0
+    },
+    {
+      "case": "queue",
+      "deadline_propagated": true,
+      "events": [
+        "queued",
+        "queue_cancelled"
+      ],
+      "gpu_calls": 0,
+      "independent_queue_check": {
+        "admissions": 0,
+        "co_admissions": 0,
+        "migrations": 0,
+        "peak_device_leases": 0,
+        "wait_median": null,
+        "wait_total": 0
+      },
+      "index": 0,
+      "kernel_calls": 0,
+      "manual_guard": false,
+      "mode": "shared",
+      "model_calls": 0,
+      "passed": true,
+      "production_install": true,
+      "signal_injections": 1
+    },
+    {
+      "case": "admit",
+      "deadline_propagated": true,
+      "events": [
+        "queued",
+        "admitted",
+        "released"
+      ],
+      "gpu_calls": 0,
+      "independent_queue_check": {
+        "admissions": 1,
+        "co_admissions": 0,
+        "migrations": 0,
+        "peak_device_leases": 1,
+        "wait_median": 0.010960102081298828,
+        "wait_total": 0.010960102081298828
+      },
+      "index": 0,
+      "kernel_calls": 0,
+      "manual_guard": false,
+      "mode": "shared",
+      "model_calls": 0,
+      "passed": true,
+      "production_install": true,
+      "signal_injections": 1
+    },
+    {
+      "case": "cancel",
+      "deadline_propagated": true,
+      "events": [
+        "queued",
+        "queue_cancelled"
+      ],
+      "gpu_calls": 0,
+      "independent_queue_check": {
+        "admissions": 0,
+        "co_admissions": 0,
+        "migrations": 0,
+        "peak_device_leases": 0,
+        "wait_median": null,
+        "wait_total": 0
+      },
+      "index": 0,
+      "kernel_calls": 0,
+      "manual_guard": false,
+      "mode": "shared",
+      "model_calls": 0,
+      "passed": true,
+      "production_install": true,
+      "signal_injections": 1
+    },
+    {
+      "case": "release",
+      "deadline_propagated": true,
+      "events": [
+        "queued",
+        "admitted",
+        "released"
+      ],
+      "gpu_calls": 0,
+      "independent_queue_check": {
+        "admissions": 1,
+        "co_admissions": 0,
+        "migrations": 0,
+        "peak_device_leases": 1,
+        "wait_median": 0.004084587097167969,
+        "wait_total": 0.004084587097167969
+      },
+      "index": 0,
+      "kernel_calls": 0,
+      "manual_guard": false,
+      "mode": "shared",
+      "model_calls": 0,
+      "passed": true,
+      "production_install": true,
+      "signal_injections": 1
+    },
+    {
+      "case": "success",
+      "deadline_propagated": false,
+      "events": [
+        "queued",
+        "admitted",
+        "released"
+      ],
+      "gpu_calls": 0,
+      "independent_queue_check": {
+        "admissions": 1,
+        "co_admissions": 0,
+        "migrations": 0,
+        "peak_device_leases": 1,
+        "wait_median": 0.0028142929077148438,
+        "wait_total": 0.0028142929077148438
+      },
+      "index": 8,
+      "kernel_calls": 0,
+      "manual_guard": false,
+      "mode": "shared",
+      "model_calls": 0,
+      "passed": true,
+      "production_install": true,
+      "signal_injections": 0
+    },
+    {
+      "case": "queue",
+      "deadline_propagated": true,
+      "events": [
+        "queued",
+        "queue_cancelled"
+      ],
+      "gpu_calls": 0,
+      "independent_queue_check": {
+        "admissions": 0,
+        "co_admissions": 0,
+        "migrations": 0,
+        "peak_device_leases": 0,
+        "wait_median": null,
+        "wait_total": 0
+      },
+      "index": 8,
+      "kernel_calls": 0,
+      "manual_guard": false,
+      "mode": "shared",
+      "model_calls": 0,
+      "passed": true,
+      "production_install": true,
+      "signal_injections": 1
+    },
+    {
+      "case": "admit",
+      "deadline_propagated": true,
+      "events": [
+        "queued",
+        "admitted",
+        "released"
+      ],
+      "gpu_calls": 0,
+      "independent_queue_check": {
+        "admissions": 1,
+        "co_admissions": 0,
+        "migrations": 0,
+        "peak_device_leases": 1,
+        "wait_median": 0.011930704116821289,
+        "wait_total": 0.011930704116821289
+      },
+      "index": 8,
+      "kernel_calls": 0,
+      "manual_guard": false,
+      "mode": "shared",
+      "model_calls": 0,
+      "passed": true,
+      "production_install": true,
+      "signal_injections": 1
+    },
+    {
+      "case": "cancel",
+      "deadline_propagated": true,
+      "events": [
+        "queued",
+        "queue_cancelled"
+      ],
+      "gpu_calls": 0,
+      "independent_queue_check": {
+        "admissions": 0,
+        "co_admissions": 0,
+        "migrations": 0,
+        "peak_device_leases": 0,
+        "wait_median": null,
+        "wait_total": 0
+      },
+      "index": 8,
+      "kernel_calls": 0,
+      "manual_guard": false,
+      "mode": "shared",
+      "model_calls": 0,
+      "passed": true,
+      "production_install": true,
+      "signal_injections": 1
+    },
+    {
+      "case": "release",
+      "deadline_propagated": true,
+      "events": [
+        "queued",
+        "admitted",
+        "released"
+      ],
+      "gpu_calls": 0,
+      "independent_queue_check": {
+        "admissions": 1,
+        "co_admissions": 0,
+        "migrations": 0,
+        "peak_device_leases": 1,
+        "wait_median": 0.06981396675109863,
+        "wait_total": 0.06981396675109863
+      },
+      "index": 8,
+      "kernel_calls": 0,
+      "manual_guard": false,
+      "mode": "shared",
+      "model_calls": 0,
+      "passed": true,
+      "production_install": true,
+      "signal_injections": 1
+    }
+  ],
+  "interpretation": "CPU native-host dispatch/readiness/transaction tests only. Direct facade calls are insufficient; sealed19004 is not rerun or reclassified. No CUDA or search benefit.",
+  "passed": true,
+  "production_source_sha256": "ec1b52590b7bda69cc6d651f53a3d9588e84a14cdae3764d0eb2d34eb31df2b6"
+}

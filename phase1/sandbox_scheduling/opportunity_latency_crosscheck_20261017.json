@@ -1,0 +1,50 @@
+{
+  "passed": true,
+  "source_sha256": "37b2e5e59e18effce67a33ee2bccfbf772d3ed2e8ff2b684c91e316ac600bee4",
+  "assigned_admissions": 195,
+  "new_parent_admissions": 76,
+  "new_parent_wait": {
+    "n": 76,
+    "median": 0.015124320983886719,
+    "sample_sd": 14.178093555830475,
+    "p90_nearest_rank": 12.740118503570557,
+    "max": 89.58192372322083,
+    "above1second": 13,
+    "above30seconds": 3
+  },
+  "by_cohort": [
+    {
+      "job": 18770,
+      "new_parent_wait": {
+        "n": 22,
+        "median": 0.014199256896972656,
+        "sample_sd": 7.021852245694107
+      }
+    },
+    {
+      "job": 18807,
+      "new_parent_wait": {
+        "n": 30,
+        "median": 0.01789546012878418,
+        "sample_sd": 14.567821533068702
+      }
+    },
+    {
+      "job": 18997,
+      "new_parent_wait": {
+        "n": 24,
+        "median": 0.014701128005981445,
+        "sample_sd": 18.454173348566734
+      }
+    }
+  ],
+  "scope": "Independent counts/timing algebra only. Raw event extraction not repeated.",
+  "interpretation": "Observed own-request queue wait is usually small. Earlier upstream generation may still change parent availability, so this does not refute quota pooling or predict saved time/quality.",
+  "limitations": [
+    "Observed admitted requests only. Queue cancellations never admitted are outside this denominator.",
+    "Code completion is the parent_used client event, not exact server latency; release may follow generation failure/cancellation.",
+    "Return-time distributions condition on linked returns and include execution, waiting, and possible Debug descendants.",
+    "Parent is selected at admission. Deleting wait can change parent and later trajectory; no saved-time/quality counterfactual.",
+    "Warm/new parent comparisons also differ in quality and remaining time. No fitted threshold or original gate changes."
+  ]
+}

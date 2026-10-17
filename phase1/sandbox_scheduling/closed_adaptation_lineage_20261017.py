@@ -74,29 +74,33 @@ def summarize(candidates,runs,groups):
             if gain>1e-12:
                 increments.append({k:c[k] for k in ('index','candidate','category','first_attempt','pool_elapsed')}|dict(gain=gain,score=c['score']))
                 record=c['score']
-        output.append(dict(block=block,task=task,pool_mode=rr[0]['pool_mode'],assigned=4,returned=len(cc),valid=len(valid),
+        output.append(dict(block=block,task=task,pool_mode=rr[0].get('pool_mode',rr[0].get('arm')),assigned=4,returned=len(cc),valid=len(valid),
             first_attempt_valid=len(first),returned_categories=dict(Counter(c['category'] for c in cc)),
             valid_categories=dict(Counter(c['category'] for c in valid)),initial=initial,first_attempt_only_observed_best=initial_draw_best,
             final_best=best,oriented_gain_after_first_attempts=sign*(best-initial_draw_best),pool_record_events=increments,
             winning_categories=sorted({c['category'] for c in valid if abs(c['score']-best)<1e-12}) if sign*(best-initial)>1e-12 else ['warm']))
     return output
 
-def main():
-    assert sha(ROOT/'plan.json')==PIN and sha(ROOT/'readout-20261017-v1/summary.json')==SUMMARY
-    plan=load(ROOT/'plan.json');summary=load(ROOT/'readout-20261017-v1/summary.json');runs=load(ROOT/'readout-20261017-v1/runs.json')
-    assert load(ROOT/'closed.json')['complete']==summary['complete']==len(runs)==32
+def extract(root,plan_pin,summary_pin,readout,expected=32):
+    """Read a pinned, already closed DEV cohort. No scoring or artifact mutation."""
+    assert sha(root/'plan.json')==plan_pin and sha(root/readout/'summary.json')==summary_pin
+    plan=load(root/'plan.json');summary=load(root/readout/'summary.json');runs=load(root/readout/'runs.json')
+    assert expected in (32,48)
+    assert load(root/'closed.json')['complete']==summary['complete']==len(runs)==expected
+    assert {r['index'] for r in runs}==set(range(expected))
+    assert set(r['task'] for r in runs)=={'aerial-cactus-identification','denoising-dirty-documents'}
     hashes={};warm={};used={}
     def tracked(p,lines=False):
-        before=sha(p);v=load(p,lines);assert before==sha(p);hashes[str(p.relative_to(ROOT))]=before;return v
-    for block in range(4):
-        events=tracked(ROOT/f'generation-{block}/events.jsonl',True)
+        before=sha(p);v=load(p,lines);assert before==sha(p);hashes[str(p.relative_to(root))]=before;return v
+    for block in range(expected//8):
+        events=tracked(root/f'generation-{block}/events.jsonl',True)
         for e in events:
             if e['event']=='warm_start':warm[e['run']]=e['code_sha256']
             if e['event']=='parent_used':used.setdefault((e['run'],e['child']),set()).add(e['parent'])
     candidates=[]
     for r in runs:
-        ep=ROOT/f"episode-{r['index']}";nodes=tracked(ep/'checkpoint/journal.jsonl',True)
-        deadline=tracked(ep/'deadline.json');slot=tracked(ROOT/f"block-{r['block']}/budget-slot.json")
+        ep=root/f"episode-{r['index']}";nodes=tracked(ep/'checkpoint/journal.jsonl',True)
+        deadline=tracked(ep/'deadline.json');slot=tracked(root/f"block-{r['block']}/budget-slot.json")
         offset=datetime.fromisoformat(deadline['started_utc']).timestamp()-slot['start'];assert 0<=offset<60
         attempted=sorted(int(p.name.split('-')[1].split('.')[0]) for p in ep.glob('candidate-*.private.json'))
         assert attempted
@@ -114,7 +118,7 @@ def main():
                 native_matches=fact['matches'],debug_depth=fact.get('debug_depth'),valid=valid,
                 pool_elapsed=offset+c['elapsed_seconds'],score=c.get('score') if valid else None))
     groups=summarize(candidates,runs,summary['by_pool'])
-    out=dict(schema=1,plan_sha256=PIN,summary_sha256=SUMMARY,reader_sha256=sha(__file__),assigned=32,
+    out=dict(schema=1,plan_sha256=plan_pin,summary_sha256=summary_pin,reader_sha256=sha(__file__),assigned=expected,
         candidate_receipts=len(candidates),source_hashes=hashes,candidates=candidates,groups=groups,
         limits=['Post-closure descriptive lineage, not a new policy or causal mediation estimate.',
         'First-attempt-only observed best is an observed subset, NOT a no-feedback or restart counterfactual.',
@@ -122,8 +126,13 @@ def main():
         'Shared parents and repeated tasks mean trajectories are not independent treatment replications.',
         'Ambiguous or missing lineage remains unresolved; no candidate/label/prediction text exported.',
         'No primary gate changed; no GPU,model,scorer call or original artifact modification.'])
+    assert sha(root/'plan.json')==plan_pin and sha(root/readout/'summary.json')==summary_pin
+    return out
+
+def main():
+    out=extract(ROOT,PIN,SUMMARY,'readout-20261017-v1')
     path=ROOT/'adaptation-lineage-20261017.safe.json'
     with path.open('x') as f:json.dump(out,f,indent=2,sort_keys=True,allow_nan=False)
-    print(json.dumps(dict(sha256=sha(path),assigned=32,candidate_receipts=len(candidates),groups=groups),sort_keys=True))
+    print(json.dumps(dict(sha256=sha(path),assigned=32,candidate_receipts=out['candidate_receipts'],groups=out['groups']),sort_keys=True))
 
 if __name__=='__main__':main()

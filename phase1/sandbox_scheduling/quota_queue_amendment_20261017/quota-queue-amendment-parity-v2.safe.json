@@ -1,0 +1,403 @@
+{
+  "configs_identical_except_root_and_derived_scorer_hash": 32,
+  "matched_plan_fields": [
+    "planned",
+    "allocation_seconds",
+    "gpu_hours_cap",
+    "node",
+    "model_files",
+    "task_image_sha256",
+    "service_image_sha256",
+    "common_start_receipt_sha256",
+    "schedule",
+    "primary",
+    "single_change",
+    "common_execution_change",
+    "advance",
+    "stop",
+    "rationale",
+    "limitation",
+    "new_window_gpu_seconds_cap",
+    "combined_gpu_seconds_cap"
+  ],
+  "new_plan_sha256": "2736fb9326f62f3c83bc0cebc4854ba629991e5b5e4bb69e708aa91e24b74e7e",
+  "new_workers": 0,
+  "no_outcomes_read": true,
+  "old_plan_sha256": "8d4d402365257376ba3634d21929624031f349f971c314e2aa26786c42ea147b",
+  "old_workers": 0,
+  "passed": true,
+  "scope": "Pre-start administrative expiry/root/source change only; full configs, original matrix/budget/node/quality gate and all top-level nonentry Python source identical after root normalization.",
+  "scorer_sha256s": [
+    "e0aa00fdb8dcc5a0e6e79b4f0b513b1fb95f93c77058f76db628d0ca9f058a96",
+    "3d47c1d5b49c4c58436df60bbba8f7b882ce1d2557bc3c4976070fba6970e2b1"
+  ],
+  "scorer_source_identical_after_root_normalization": true,
+  "source_hashes": {
+    "bounded_readiness.py": [
+      "0fd8ead4c8eac2fc128b36d096ed15ceebeabc43a5fc5841d8c17e882ca381cd",
+      "0fd8ead4c8eac2fc128b36d096ed15ceebeabc43a5fc5841d8c17e882ca381cd"
+    ],
+    "clock_contention_20261016.py": [
+      "efabad9d6aa8040185eae119831867b47ed001155d8baa135e5b04edff52874b",
+      "efabad9d6aa8040185eae119831867b47ed001155d8baa135e5b04edff52874b"
+    ],
+    "clock_pairing_20261016.py": [
+      "7a8476beb3bfb75d258a3146e171dbac349e4c303d2fef9cc9afbb7c83067633",
+      "7a8476beb3bfb75d258a3146e171dbac349e4c303d2fef9cc9afbb7c83067633"
+    ],
+    "clock_rank_20261016.py": [
+      "5bbba85a913f50bad82f3c11c9f0698efd95c4585bf52eb62ab2b11f00dc45d6",
+      "5bbba85a913f50bad82f3c11c9f0698efd95c4585bf52eb62ab2b11f00dc45d6"
+    ],
+    "colocation_coexistence_20261016.py": [
+      "64d1356032cec3dbea58eba74e846774ab3cc89ba704e2cd610c673a6d8973ff",
+      "64d1356032cec3dbea58eba74e846774ab3cc89ba704e2cd610c673a6d8973ff"
+    ],
+    "colocation_pool_20261016.py": [
+      "f9493e3d566ba56ca1c5b8f5d9d8fa2a89e7334f0d22507902f675303d2d3cc4",
+      "f9493e3d566ba56ca1c5b8f5d9d8fa2a89e7334f0d22507902f675303d2d3cc4"
+    ],
+    "colocation_production_gate_20261016.py": [
+      "75cdb395f5aea02c466871a20d04ac363a05f050bf78008b5be5e35c2fa15a10",
+      "75cdb395f5aea02c466871a20d04ac363a05f050bf78008b5be5e35c2fa15a10"
+    ],
+    "colocation_readout_20261016.py": [
+      "5744414b9cea8c443e9db4cef421ddb57402a1138f197871ec344abdff174cea",
+      "5744414b9cea8c443e9db4cef421ddb57402a1138f197871ec344abdff174cea"
+    ],
+    "colocation_trial_20261016.py": [
+      "a911f74f279e0e58495eb6bc127bd416c6cff7c76689d09d2ce5dfa27b67ff01",
+      "a911f74f279e0e58495eb6bc127bd416c6cff7c76689d09d2ce5dfa27b67ff01"
+    ],
+    "deferred_alarm_transaction_20261012.py": [
+      "29956eb9c1d1c41e18d77bce3b30f74ca34849181ec9ecb9d560f99872cd4b67",
+      "29956eb9c1d1c41e18d77bce3b30f74ca34849181ec9ecb9d560f99872cd4b67"
+    ],
+    "feedback_effort_native_cpu_20261012.py": [
+      "6e2620ca7e31a39d544930f37f4b0715d1d46e5f64669ff4dded7ebe8deb11c3",
+      "6e2620ca7e31a39d544930f37f4b0715d1d46e5f64669ff4dded7ebe8deb11c3"
+    ],
+    "feedback_effort_policy_20261012.py": [
+      "2817e2591c2151b1163af5b94f4ddd91cdc54eaf2b10dceca43cf01ff6646bf5",
+      "2817e2591c2151b1163af5b94f4ddd91cdc54eaf2b10dceca43cf01ff6646bf5"
+    ],
+    "feedback_effort_readout_20261012.py": [
+      "a81d0b2a82ffd59c44257aa3d21a07021a013f5ef9e29dfacd10afd8d3e13380",
+      "a81d0b2a82ffd59c44257aa3d21a07021a013f5ef9e29dfacd10afd8d3e13380"
+    ],
+    "feedback_effort_trial_20261012.py": [
+      "74d73c8943b22b9d02a09a0f55c4a100ff9eff3f1de687d82c2b3ebc038b2da4",
+      "74d73c8943b22b9d02a09a0f55c4a100ff9eff3f1de687d82c2b3ebc038b2da4"
+    ],
+    "feedback_parent_policy_20261012.py": [
+      "ab5ffd2983dba6b13bdadfd17dbe4242d45a565f365ef553793bb46d85ce1cca",
+      "ab5ffd2983dba6b13bdadfd17dbe4242d45a565f365ef553793bb46d85ce1cca"
+    ],
+    "feedback_parent_readout_20261012.py": [
+      "f218d883364ee22b93c7ec3e9a447f0c58eb586ca67196b139831e6fce083893",
+      "f218d883364ee22b93c7ec3e9a447f0c58eb586ca67196b139831e6fce083893"
+    ],
+    "feedback_parent_trial_20261012.py": [
+      "40572e21b86dfffc6a408cf78851a4e7bf740e3cb6b7788692fdb6ce4d3e32cf",
+      "40572e21b86dfffc6a408cf78851a4e7bf740e3cb6b7788692fdb6ce4d3e32cf"
+    ],
+    "fixed_preview_cpu_matrix_20261014.py": [
+      "797e3cd9f4cd47259c4a1a7fe83dfcc84f7d1d2b2c6013749fe7c2da0a7d55d4",
+      "797e3cd9f4cd47259c4a1a7fe83dfcc84f7d1d2b2c6013749fe7c2da0a7d55d4"
+    ],
+    "fixed_preview_native_cpu_20261014.py": [
+      "12dd574c08608fe249d1163621297ddb72d82e6c2887fc03f18431e61a88fdaa",
+      "12dd574c08608fe249d1163621297ddb72d82e6c2887fc03f18431e61a88fdaa"
+    ],
+    "fixed_public_preview_20261014.py": [
+      "e03896da8c951c1b8b0e651c9b5d8617527008de1c3bab6cffdf72631f5065bb",
+      "e03896da8c951c1b8b0e651c9b5d8617527008de1c3bab6cffdf72631f5065bb"
+    ],
+    "forets_gpu_binding_20260911.py": [
+      "8f31fee796d89a63381810a8a6663d50e9ce988226885bf7b4498d17338c0d8d",
+      "8f31fee796d89a63381810a8a6663d50e9ce988226885bf7b4498d17338c0d8d"
+    ],
+    "forets_native_cuda_identity_20260911.py": [
+      "ae5c09ac759ac86b4a7ef403d451bf27ebbbe7d9875e5bac16546628d475c092",
+      "ae5c09ac759ac86b4a7ef403d451bf27ebbbe7d9875e5bac16546628d475c092"
+    ],
+    "forets_native_gpu_binding_20260911.py": [
+      "ac8a2acb35dee9af25be6ed3541e8af9bc3d84e45d07afdb12834642405fe92d",
+      "ac8a2acb35dee9af25be6ed3541e8af9bc3d84e45d07afdb12834642405fe92d"
+    ],
+    "forets_opencl_allowlist_20260911.py": [
+      "5f99d7142a2203f29a6abe706117ce8ea0748516845109cf309b872a359d13c4",
+      "5f99d7142a2203f29a6abe706117ce8ea0748516845109cf309b872a359d13c4"
+    ],
+    "forets_opencl_readonly_ab.py": [
+      "b0546c7a81b11eaa558c197cc05cf576adbe014ae5878eb5ba0782c212575b6c",
+      "b0546c7a81b11eaa558c197cc05cf576adbe014ae5878eb5ba0782c212575b6c"
+    ],
+    "freeze_image_live_20261011.py": [
+      "a5c407b12110bd2496998dbd6cce09d330d33ac8449abdc5db2b253df024f6a9",
+      "a5c407b12110bd2496998dbd6cce09d330d33ac8449abdc5db2b253df024f6a9"
+    ],
+    "generation_joint_trial_20261012.py": [
+      "204ac103977a2e91929a9c0d6f163938b0f55b3fbddc2479002242d7664f23a1",
+      "204ac103977a2e91929a9c0d6f163938b0f55b3fbddc2479002242d7664f23a1"
+    ],
+    "generation_quota_policy_20261017.py": [
+      "f2ecb36f3e5ee8dc5c26ab5274474d1f57f5af3e937803e89b823681eb4d1bd0",
+      "f2ecb36f3e5ee8dc5c26ab5274474d1f57f5af3e937803e89b823681eb4d1bd0"
+    ],
+    "generation_quota_production_gate_20261017.py": [
+      "48ebd8cb11cf529a9c277864b26d9ba97a89a9bcbf6dc326d971d7d176a704ac",
+      "48ebd8cb11cf529a9c277864b26d9ba97a89a9bcbf6dc326d971d7d176a704ac"
+    ],
+    "generation_quota_readout_20261017.py": [
+      "2a9b76f797ee21db1efbe26853d51ee5cbbbef295759c637d201ae6b43715b04",
+      "2a9b76f797ee21db1efbe26853d51ee5cbbbef295759c637d201ae6b43715b04"
+    ],
+    "image_cpu_partition_20261011.py": [
+      "b0b07c51f2ee23dcec68b3577811a396bd8fcb2121ce3108ad0c39b39afd0580",
+      "b0b07c51f2ee23dcec68b3577811a396bd8fcb2121ce3108ad0c39b39afd0580"
+    ],
+    "image_cuda_contract_20261011.py": [
+      "82fb4c3edc44d76f095f2c4e55ee7afef92fae8ee1eabb38bbadbbdd6da93272",
+      "82fb4c3edc44d76f095f2c4e55ee7afef92fae8ee1eabb38bbadbbdd6da93272"
+    ],
+    "image_deadline_readout_20261011.py": [
+      "2f8d59b1c85aea5bb6b6785e28cd9dde6115544da1b92fc96fdc192e2682ddfc",
+      "2f8d59b1c85aea5bb6b6785e28cd9dde6115544da1b92fc96fdc192e2682ddfc"
+    ],
+    "image_deadline_replication_20261012.py": [
+      "373afcfcfdbb5b834f2a5ba18d1ddfe36662c273f209f2eec62d7be962becc6e",
+      "373afcfcfdbb5b834f2a5ba18d1ddfe36662c273f209f2eec62d7be962becc6e"
+    ],
+    "image_deadline_replication_finish_20261012.py": [
+      "5c00e9434b804bfb8c4a05db3f0c268bdb615207cd759ea90a7bd4113b704712",
+      "5c00e9434b804bfb8c4a05db3f0c268bdb615207cd759ea90a7bd4113b704712"
+    ],
+    "image_deadline_replication_readout_20261012.py": [
+      "c62318d9eba7baa2a6247826b384db3a7db57f1175a882ab9ee32fe88b5bb959",
+      "c62318d9eba7baa2a6247826b384db3a7db57f1175a882ab9ee32fe88b5bb959"
+    ],
+    "image_deadline_replication_status_20261012.py": [
+      "1c0901f713d7cff9d714a63404ad5c56f3be546fdbba233c2b0dd3235bf37205",
+      "1c0901f713d7cff9d714a63404ad5c56f3be546fdbba233c2b0dd3235bf37205"
+    ],
+    "image_dev_data_20261011.py": [
+      "9729b574458994c3cbfd68120310fc74a65584d4cdadbcf271a6041235b6a6a5",
+      "9729b574458994c3cbfd68120310fc74a65584d4cdadbcf271a6041235b6a6a5"
+    ],
+    "image_generation_deadline_20261011.py": [
+      "b4e6750f535fb84a6422c592583c258f535c360777d1d2a3bf73eab53e0a2ff4",
+      "b4e6750f535fb84a6422c592583c258f535c360777d1d2a3bf73eab53e0a2ff4"
+    ],
+    "image_gpu_observation_20261011.py": [
+      "c6d3e9433acdcf320a5024274dbd78763c917cc9494bf194a5af2ebefce0dd87",
+      "c6d3e9433acdcf320a5024274dbd78763c917cc9494bf194a5af2ebefce0dd87"
+    ],
+    "image_live_2plus4_20261011.py": [
+      "9fecbb0b9cac124160360502ddadbc0c3031cc1db3a9ea6780bb414ed0a357db",
+      "9fecbb0b9cac124160360502ddadbc0c3031cc1db3a9ea6780bb414ed0a357db"
+    ],
+    "image_live_cpu_repair_20261011.py": [
+      "747d1dac85e630839cf2cd4ab7faef68c98b1a35fabd1edc6ca1734cf3863f8b",
+      "747d1dac85e630839cf2cd4ab7faef68c98b1a35fabd1edc6ca1734cf3863f8b"
+    ],
+    "image_live_identity_repair_20261011.py": [
+      "57e01aa964ca03ade2f089207fa342f39a06ab8b672044faa7268398011155f3",
+      "57e01aa964ca03ade2f089207fa342f39a06ab8b672044faa7268398011155f3"
+    ],
+    "image_live_readout_20261011.py": [
+      "4dd46901ee346afc83c30d652faff100771ada07ddb65bf1b9d2dd7b4edcbbb5",
+      "4dd46901ee346afc83c30d652faff100771ada07ddb65bf1b9d2dd7b4edcbbb5"
+    ],
+    "image_scorer.py": [
+      "e0aa00fdb8dcc5a0e6e79b4f0b513b1fb95f93c77058f76db628d0ca9f058a96",
+      "3d47c1d5b49c4c58436df60bbba8f7b882ce1d2557bc3c4976070fba6970e2b1"
+    ],
+    "joint_generation_policy_20261012.py": [
+      "2c3bb2e0961c6b9288e8c4b3a0642d811aee4256c0b5cc7b2713b28f18c29edc",
+      "2c3bb2e0961c6b9288e8c4b3a0642d811aee4256c0b5cc7b2713b28f18c29edc"
+    ],
+    "lifecycle_pilot.py": [
+      "cdcfbed92ef58f42cd95a13b5cfa21092beeec193a62af5e393ddc1ed1515101",
+      "cdcfbed92ef58f42cd95a13b5cfa21092beeec193a62af5e393ddc1ed1515101"
+    ],
+    "live_27b_trial.py": [
+      "71f3d8edb5fbf3236e5655a4899ee54bf672a119102d21e90bd144929cbb5658",
+      "71f3d8edb5fbf3236e5655a4899ee54bf672a119102d21e90bd144929cbb5658"
+    ],
+    "live_admission.py": [
+      "9d6a19ecb3c6bcfe9f43c426b0c046dbaf763d407ae69c8def121b0df1f882e6",
+      "9d6a19ecb3c6bcfe9f43c426b0c046dbaf763d407ae69c8def121b0df1f882e6"
+    ],
+    "live_identity.py": [
+      "a87003f606810484cfc95bbf2f0de8ad84aa1af35d46af5d16ded9f9d191a6d6",
+      "a87003f606810484cfc95bbf2f0de8ad84aa1af35d46af5d16ded9f9d191a6d6"
+    ],
+    "live_readout.py": [
+      "65730e45745ce5d596a93ea87643a2140df933211b93e2b081a8efa18fda1c5c",
+      "65730e45745ce5d596a93ea87643a2140df933211b93e2b081a8efa18fda1c5c"
+    ],
+    "live_runtime_hooks.py": [
+      "e36ec401ba40c12a5d8b98ba69621655fa9cdac4c2b9dffd1b38908a2d8251ed",
+      "e36ec401ba40c12a5d8b98ba69621655fa9cdac4c2b9dffd1b38908a2d8251ed"
+    ],
+    "live_search_trial_20261009.py": [
+      "548cf85260c65b099f9305ad0b73f4be93e64bb94e724c5c6917c15bd4055718",
+      "548cf85260c65b099f9305ad0b73f4be93e64bb94e724c5c6917c15bd4055718"
+    ],
+    "live_twochild_20261010.py": [
+      "7aff501f222958bebd6ae6771e73115199d211d526f0023e410ea5700884ad01",
+      "7aff501f222958bebd6ae6771e73115199d211d526f0023e410ea5700884ad01"
+    ],
+    "long_effort_native_cpu_20261013.py": [
+      "1b9ce937e0783bff9ed28421a6a3922c614e8ede1b2922f6ad825e8ffdc5c294",
+      "1b9ce937e0783bff9ed28421a6a3922c614e8ede1b2922f6ad825e8ffdc5c294"
+    ],
+    "long_effort_policy_20261013.py": [
+      "0a1c546fc2d830b21ac1ae3b5ff18391a1eab00189f9dcb0fc04d95f45bf4864",
+      "0a1c546fc2d830b21ac1ae3b5ff18391a1eab00189f9dcb0fc04d95f45bf4864"
+    ],
+    "long_effort_readout_20261013.py": [
+      "09b873a4496b8239191f2adc03df65f34db6faa7000efb387c6b6c917538b77c",
+      "09b873a4496b8239191f2adc03df65f34db6faa7000efb387c6b6c917538b77c"
+    ],
+    "long_effort_trial_20261013.py": [
+      "89fb2c485d0ccdcf0e3086b7c3d70cdda33cd82054865bc386be9663828606b8",
+      "89fb2c485d0ccdcf0e3086b7c3d70cdda33cd82054865bc386be9663828606b8"
+    ],
+    "metric_deployment_readout_20261015.py": [
+      "bea121ae777dd88fc6defbad3d6f640b2ce18d6d26242ead61569e391424d1df",
+      "bea121ae777dd88fc6defbad3d6f640b2ce18d6d26242ead61569e391424d1df"
+    ],
+    "metric_deployment_trial_20261015.py": [
+      "dff7ad6d7797581cabb107964b11ceed3cc3bcfb54479cc2934ad31a0840f453",
+      "dff7ad6d7797581cabb107964b11ceed3cc3bcfb54479cc2934ad31a0840f453"
+    ],
+    "pool_stop_contract_20261017.py": [
+      "d24f6daebdf36c1ee190f82b49a7debfa7737b011d8ab9a4f31aa8044724fed4",
+      "d24f6daebdf36c1ee190f82b49a7debfa7737b011d8ab9a4f31aa8044724fed4"
+    ],
+    "resource_gpu_identity.py": [
+      "dcd7cffefbdd74bffebd071fec2a39a6cb504d53dc5735c52f5154cf6aaec226",
+      "dcd7cffefbdd74bffebd071fec2a39a6cb504d53dc5735c52f5154cf6aaec226"
+    ],
+    "runtime.py": [
+      "b422a17094a6971218731054b53b56888505150b82f5309990b0b629577da4c9",
+      "b422a17094a6971218731054b53b56888505150b82f5309990b0b629577da4c9"
+    ],
+    "selective_pool_20261017.py": [
+      "e251ded2147e22afed3ab7400cd6afdb2d22bee1b6a6044a469160e575939b33",
+      "e251ded2147e22afed3ab7400cd6afdb2d22bee1b6a6044a469160e575939b33"
+    ],
+    "selective_production_gate_20261017.py": [
+      "41fa48d59865ac118e61abe2c79e7af1110813f7a56eb5b91e91d42909856892",
+      "41fa48d59865ac118e61abe2c79e7af1110813f7a56eb5b91e91d42909856892"
+    ],
+    "selective_readout_20261017.py": [
+      "d2ff78abe4a23f72b374bd480a9f4692fddcf97683e9de88a18e06728355c060",
+      "d2ff78abe4a23f72b374bd480a9f4692fddcf97683e9de88a18e06728355c060"
+    ],
+    "selective_trial_20261017.py": [
+      "7b0b7f40c4e809fba0f47114cb271b2d888b1be03b1d11b1ca77859ea02c4829",
+      "7b0b7f40c4e809fba0f47114cb271b2d888b1be03b1d11b1ca77859ea02c4829"
+    ],
+    "service_entry.py": [
+      "c43894e9fe430203f0accfd96d4788386d26dcddcfc7836ba99a459778ebc7dc",
+      "c43894e9fe430203f0accfd96d4788386d26dcddcfc7836ba99a459778ebc7dc"
+    ],
+    "test_deferred_alarm_transaction_20261012.py": [
+      "a9e61dd51d3d1dbcb756325bf73c0be45d312fe6f83bc77e298bd4df11572e9d",
+      "a9e61dd51d3d1dbcb756325bf73c0be45d312fe6f83bc77e298bd4df11572e9d"
+    ],
+    "test_feedback_effort_20261012.py": [
+      "0ea27a879f6804b90076256e4b6ea3bb4fdfaa116178a76b3423ff185c1d6bdc",
+      "0ea27a879f6804b90076256e4b6ea3bb4fdfaa116178a76b3423ff185c1d6bdc"
+    ],
+    "test_feedback_parent_20261012.py": [
+      "9687d2a2d43cd91ddf0235b42d2850fae23f40ca3fb90dfc23b61900b896f227",
+      "9687d2a2d43cd91ddf0235b42d2850fae23f40ca3fb90dfc23b61900b896f227"
+    ],
+    "test_fixed_public_preview_20261014.py": [
+      "7f0dd451fbba6f39bfd1f80c60a4760e3059e38bd7a33ae50f933e0784f967b8",
+      "7f0dd451fbba6f39bfd1f80c60a4760e3059e38bd7a33ae50f933e0784f967b8"
+    ],
+    "test_generation_quota_policy_20261017.py": [
+      "ac1aeae302a1ca5abea1264932bce1c3cda287294d1f15ad31325d718255f380",
+      "ac1aeae302a1ca5abea1264932bce1c3cda287294d1f15ad31325d718255f380"
+    ],
+    "test_image_cpu_partition_20261011.py": [
+      "ad827dfb2c460738548565367e85d1312c3ef4d9b46689bd00b7f746320927c7",
+      "ad827dfb2c460738548565367e85d1312c3ef4d9b46689bd00b7f746320927c7"
+    ],
+    "test_image_cuda_contract_20261011.py": [
+      "c995a97702e6fc3c12eb2f8792d8bf3ba7446a98aaeb8625cc5984c237a1bcb9",
+      "c995a97702e6fc3c12eb2f8792d8bf3ba7446a98aaeb8625cc5984c237a1bcb9"
+    ],
+    "test_image_live_20261011.py": [
+      "7185886914a6cb8ddb996bd2d2c47e7e2d07cc44bafe51a9955c5142ec430ebd",
+      "7185886914a6cb8ddb996bd2d2c47e7e2d07cc44bafe51a9955c5142ec430ebd"
+    ],
+    "test_joint_generation_20261012.py": [
+      "df8597f08408747a6bc14979b3030dc6adef62e1c65a9fde9bed3eba53eb2794",
+      "df8597f08408747a6bc14979b3030dc6adef62e1c65a9fde9bed3eba53eb2794"
+    ],
+    "test_live_twochild.py": [
+      "0fbf02a4442b22f97d046083f2801104bda764576bc80cdac93f30a3514ef220",
+      "0fbf02a4442b22f97d046083f2801104bda764576bc80cdac93f30a3514ef220"
+    ],
+    "test_long_effort_20261013.py": [
+      "a4bdf50cf33be4d353827dd5319f01638aaf085d9e19eb2415496b63ca132aa6",
+      "a4bdf50cf33be4d353827dd5319f01638aaf085d9e19eb2415496b63ca132aa6"
+    ],
+    "test_metric_deployment_20261015.py": [
+      "4adc44fc01119537f388f02519d2887f9610d86957b5b0598f6248ff8d33819a",
+      "4adc44fc01119537f388f02519d2887f9610d86957b5b0598f6248ff8d33819a"
+    ],
+    "test_pool_stop_contract_20261017.py": [
+      "a87689569d8020a3d75dae5fb7bd30c2c389109d18905651f3a4ca51e7bf21d0",
+      "a87689569d8020a3d75dae5fb7bd30c2c389109d18905651f3a4ca51e7bf21d0"
+    ],
+    "test_selective_pool_20261017.py": [
+      "7609140a998bb50ad7528586e8ebcd8a10a59968f0ba1b645c9b13cf1a89a2fd",
+      "7609140a998bb50ad7528586e8ebcd8a10a59968f0ba1b645c9b13cf1a89a2fd"
+    ],
+    "test_selective_readout_20261017.py": [
+      "601fccf7e24f1f84f0f5132afceb3b70c68561afffab1c308e2090052ad00c49",
+      "601fccf7e24f1f84f0f5132afceb3b70c68561afffab1c308e2090052ad00c49"
+    ],
+    "test_weight_confirmation_20261014.py": [
+      "f57d342542339148bbc068068963a0e7dc91b6a7cc64dab19880746120b8d879",
+      "f57d342542339148bbc068068963a0e7dc91b6a7cc64dab19880746120b8d879"
+    ],
+    "test_weight_effort_20261014.py": [
+      "13aba0eaf1874d997af689b6319338c3723b24364f5a986ff66fb8af7c1ac481",
+      "13aba0eaf1874d997af689b6319338c3723b24364f5a986ff66fb8af7c1ac481"
+    ],
+    "weight_confirmation_readout_20261014.py": [
+      "83d18a0646c57ed9e9879dae8ec7a1d8c612c856b22a69b2a9b0594930b62d0a",
+      "83d18a0646c57ed9e9879dae8ec7a1d8c612c856b22a69b2a9b0594930b62d0a"
+    ],
+    "weight_confirmation_trial_20261014.py": [
+      "c76f3311763196efc76e2cb9b74f6370ef4957620a9ba2fbb9a2fb26681310a9",
+      "c76f3311763196efc76e2cb9b74f6370ef4957620a9ba2fbb9a2fb26681310a9"
+    ],
+    "weight_effort_native_cpu_20261014.py": [
+      "63e1cb013242c8301de6e20df05b6aafe2f5b763898ddfa3987db57faa7a640e",
+      "63e1cb013242c8301de6e20df05b6aafe2f5b763898ddfa3987db57faa7a640e"
+    ],
+    "weight_effort_policy_20261014.py": [
+      "af662c1f4450e743dd4f13801e164e25dadba2fbc175fb7fe38a8c9283d9e331",
+      "af662c1f4450e743dd4f13801e164e25dadba2fbc175fb7fe38a8c9283d9e331"
+    ],
+    "weight_effort_readout_20261014.py": [
+      "1f2ae31840a8d72d084fb487058712c581fcdf18abfdf44b296599edbde0c6c5",
+      "1f2ae31840a8d72d084fb487058712c581fcdf18abfdf44b296599edbde0c6c5"
+    ],
+    "weight_effort_trial_20261014.py": [
+      "44175922366252015be59fbd90d2b1b1cb30f75deabff9b707af2e81d559d080",
+      "44175922366252015be59fbd90d2b1b1cb30f75deabff9b707af2e81d559d080"
+    ]
+  },
+  "supersedes": "v1 config checks passed but input_files contained no Python sources; its all-source scope was overstated. v2 explicitly enumerates both source directories and verifies nonentry code. No experiment or outcomes were read.",
+  "unchanged_nonentry_python_files_after_root_normalization": 91
+}

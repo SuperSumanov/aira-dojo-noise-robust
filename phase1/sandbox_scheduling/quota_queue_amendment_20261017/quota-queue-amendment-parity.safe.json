@@ -1,0 +1,36 @@
+{
+  "configs_identical_except_root_and_derived_scorer_hash": 32,
+  "matched_plan_fields": [
+    "planned",
+    "allocation_seconds",
+    "gpu_hours_cap",
+    "node",
+    "model_files",
+    "task_image_sha256",
+    "service_image_sha256",
+    "common_start_receipt_sha256",
+    "schedule",
+    "primary",
+    "single_change",
+    "common_execution_change",
+    "advance",
+    "stop",
+    "rationale",
+    "limitation",
+    "new_window_gpu_seconds_cap",
+    "combined_gpu_seconds_cap"
+  ],
+  "new_plan_sha256": "2736fb9326f62f3c83bc0cebc4854ba629991e5b5e4bb69e708aa91e24b74e7e",
+  "new_workers": 0,
+  "no_outcomes_read": true,
+  "old_plan_sha256": "8d4d402365257376ba3634d21929624031f349f971c314e2aa26786c42ea147b",
+  "old_workers": 0,
+  "passed": true,
+  "scope": "Pre-start administrative expiry/root/source change only; full configs, original matrix/budget/node/quality gate and all nonentry source unchanged.",
+  "scorer_sha256s": [
+    "e0aa00fdb8dcc5a0e6e79b4f0b513b1fb95f93c77058f76db628d0ca9f058a96",
+    "3d47c1d5b49c4c58436df60bbba8f7b882ce1d2557bc3c4976070fba6970e2b1"
+  ],
+  "scorer_source_identical_after_root_normalization": true,
+  "unchanged_nonentry_python_files": 0
+}

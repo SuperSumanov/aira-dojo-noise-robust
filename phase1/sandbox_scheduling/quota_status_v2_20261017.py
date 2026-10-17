@@ -3,8 +3,12 @@ import datetime
 import hashlib
 import json
 from pathlib import Path
+import sys
 
-ROOT = Path('/research/d7/spc/yzyang4/scheduling-generation-quota-20261017-v2')
+ROOT = Path(sys.argv[1]) if len(sys.argv) == 2 else Path('/research/d7/spc/yzyang4/scheduling-generation-quota-20261017-v3')
+assert len(sys.argv) <= 2 and str(ROOT) in (
+    '/research/d7/spc/yzyang4/scheduling-generation-quota-20261017-v2',
+    '/research/d7/spc/yzyang4/scheduling-generation-quota-20261017-v3')
 ORDER = ('partitioned', 'pooled', 'pooled', 'partitioned')
 
 

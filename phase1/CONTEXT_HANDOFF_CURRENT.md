@@ -1,13 +1,14 @@
 # 当前短交接：现场、方法边界和恢复动作
 
-最后观察：2026-10-17香港19:26；用户明确批准修复quota原矩阵/预算/终分门，三小时汇报HK21:28:03不变。
+最后观察：2026-10-17香港19:35；用户明确批准修复quota原矩阵/预算/终分门，三小时汇报HK21:28:03不变。
+19:32唯一实际配额批19136已提交，gpu3六卡Resources排队、0服务/worker；调度器估计10/18香港00:24:03启动，非承诺。19:35仍在本会话等待，不能把准备或排队称开跑。
 19118已在19:09:49零执行取消：elapsed0/AllocTRES空/None assigned/no steps/no服务worker。保留v2原root。取消记录器最初错误要求Start=Unknown；Slurm实际Start=End=取消时刻，独立sacct/scontrol核验后只读补回执，未重复取消。
 整理前完整交接与精确SHA在Git b1603f953f1e20e8080e075ec2ebb6e1a4cc802f；不重读全历史。
 
 ## 位置与最新引用
 
 - 活跃checkout C:/Research/New/my_project/MLEvolve/_codex_tmp/publication-feedback-20261001；有意detached HEAD。
-- 本轮发布与ls-remote核验：我方公开与v3实验source均6db9d7c62d3c1339884a96c7ca5803a39206c1da；学长dojo-reproduce仍e4d478350e704e8c5927eba566b2847aaa6dcbab。v2旧source dd859b450ea1515394eab83fabfecfa21c7c25a2保留。
+- 本轮发布与ls-remote核验：我方公开39fd78d2096005da9a42f5471ee5a63ac492804d，v3实验source6db9d7c62d3c1339884a96c7ca5803a39206c1da；学长dojo-reproduce仍e4d478350e704e8c5927eba566b2847aaa6dcbab。v2旧source dd859b45保留。
 - b160发布13文件：真实多进程CPU许可与78Analyze/107生成发布链；34e4fb0d发布53文件：195准入/谱系/247角色提示/时序。均安全扫描/显式清单/字节核验通过。
 - 学长95journals/5任务是其报告非我方复现；selected≠best-found、跨天硬件未控；senior_update_20261017.safe.json。
 - SSH yzyang4@linux5.cse.cuhk.edu.hk；备用137.189.88.148须HostKeyAlias及StrictHostKeyChecking=yes。
@@ -51,13 +52,14 @@
 - fit-only校准并选单模型12/12双向正、较差方向median .0005945351843063005；greedy对校准仅5/12、median−.0006450941008101707。不能把之前集成线索宣称胜强基线；无新任务/holdout/E2E证明，不扩GPU批、不改19118门。
 - 特别限制：去噪仅11张DEV图像、5/6整图划分；百万像素不是独立n，12池共享参考图。Aerial1417图；不把RMSE校准收益泛化到AUC。原CPU分析已完成，勿反复加配方救信号。
 - 信息契约补充：离线校准访问了已知DEV fit标签，不能称线上同信息强基线/直接部署。未来须train-OOF或全成本纯分数查询另立协议，禁止把这些标签给候选训练或改19118后继的公平契约；旧数值原件不改、不新增保留集读取。
+- 四闭合自有episode树未见OOF/训练验证预测文件名候选或checkpoint，无截断/符号链接遍历；只有元数据检查，非全盘缺失证明。closed-train-prediction-inventory.safe.json；不继续补离线配方或因此启动GPU。
 
 ## 唯一下一分支与禁止重做
 
 - 唯一实际quota资格保持原32矩阵/seeds，partitioned2+2 vs pooled4，同全局Analyze优先/FIFO，执行cap1；2服务+4执行，≤100min/10GPUh含全部成本。
 - v2/19118原plan8d4d402365257376ba3634d21929624031f349f971c314e2aa26786c42ea147b、source dd859b45封存为未执行；取消回执quota-v2-never-started-cancel.safe.json SHA77fbe0d905fb46ab4d6e9fa3f9050a761af639ac74ca5e95a44a9e076c343dba。0GPU秒，不重复提交v2。
 - v3根scheduling-generation-quota-20261017-v3：代理预启动行政裁决将排队有效期定UTC20:28:03，非新增资源批准；原100min/10GPUh/科学字段不变。汇报仍UTC13:28:03；无第二实际GPU批/补跑。source6db9d7c6/入口SHA722d9e1516221a2f054607228443444f73c27e0b6dab765303514ba19d2cb6a6。
-- prepare9780退出0，planSHA2736fb9326f62f3c83bc0cebc4854ba629991e5b5e4bb69e708aa91e24b74e7e。预启动32配置与91非入口源码核验通过（根路径/派生scorerSHA归一化；scorer算法逐字不变）。旧parity-v1无源码计数的过宽scope由v2更正，原件留存。submit会话3448在哈希中，只提交这一次，不能重调submit；不读质量或碰Held12535。
+- prepare9780/submit3448均退出0，job19136，planSHA2736fb9326f62f3c83bc0cebc4854ba629991e5b5e4bb69e708aa91e24b74e7e。预启动32配置/91非入口源码核验通过（根路径/派生scorerSHA归一化）；旧parity-v1无源码计数的过宽scope由v2更正，原件留存。不能重调prepare/submit；quota_status_v2脚本明确传v3root读结构；不读中途质量或碰Held12535。
 - 纯合成代数检查：RMSE三个评分可恢复仿射OLS（原预测已评分时额外2查询），但未调用真实接口/新标签/模型。见ROUTE；仅潜在合法参照，不是新方法或实测收益。CPU诊断已结束，不再补配方。
 - 先验证真实worker借用；有效干预但原终分门false则停配方，不靠等待下降/补seed/新规则扩大。当前无新算法阳性。
 - 公平契约/原质量门见CURRENT_DIRECTION；近邻与旧路线见ROUTE_DECISIONS。18819局部排序反转不等于新来源确认或胜SchedMate。

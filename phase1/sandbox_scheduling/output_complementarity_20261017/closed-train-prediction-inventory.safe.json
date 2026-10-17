@@ -1,0 +1,47 @@
+{
+  "limits": [
+    "Only four closed owned episode trees; no symlink traversal, file content, labels, predictions or checkpoint loaded.",
+    "Filename candidates are NOT verified OOF/validation provenance. Zero matches does not prove files absent outside this scope.",
+    "No current quota root, protected cohorts, D_val or official test accessed; no GPU/API/model calls or new prediction generation."
+  ],
+  "metadata_only": true,
+  "rows": [
+    {
+      "checkpoint_filename_count": 0,
+      "elapsed_seconds": 3.589864871930331,
+      "excluded_search_prediction_csv": 29,
+      "files_seen": 1065,
+      "named_train_or_validation_prediction_candidates": [],
+      "root": "/research/d7/spc/yzyang4/scheduling-pooling-20261016-v3",
+      "scope_truncated": false
+    },
+    {
+      "checkpoint_filename_count": 0,
+      "elapsed_seconds": 3.5305436118505895,
+      "excluded_search_prediction_csv": 38,
+      "files_seen": 1105,
+      "named_train_or_validation_prediction_candidates": [],
+      "root": "/research/d7/spc/yzyang4/scheduling-colocation-20261016-v1",
+      "scope_truncated": false
+    },
+    {
+      "checkpoint_filename_count": 0,
+      "elapsed_seconds": 1.9498188141733408,
+      "excluded_search_prediction_csv": 35,
+      "files_seen": 1088,
+      "named_train_or_validation_prediction_candidates": [],
+      "root": "/research/d7/spc/yzyang4/scheduling-selective-20261017-v1",
+      "scope_truncated": false
+    },
+    {
+      "checkpoint_filename_count": 0,
+      "elapsed_seconds": 4.766795102041215,
+      "excluded_search_prediction_csv": 20,
+      "files_seen": 883,
+      "named_train_or_validation_prediction_candidates": [],
+      "root": "/research/d7/spc/yzyang4/scheduling-image-live-2plus4-20261011-v3",
+      "scope_truncated": false
+    }
+  ],
+  "utc": "2026-10-17T11:34:15.279127+00:00"
+}

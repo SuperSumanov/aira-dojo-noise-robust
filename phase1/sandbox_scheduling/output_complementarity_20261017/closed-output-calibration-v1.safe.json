@@ -1,0 +1,743 @@
+{
+  "closed_batches": 3,
+  "denoise_assigned_runs": 48,
+  "elapsed_cpu_host_wall_seconds": 341.0026890458539,
+  "limits": [
+    "Reconstructed raw Denoise labels/IDs/predictions and eligibility from pinned original artifacts; independent quadratic greedy implementation.",
+    "Same known adaptively searched DEV references and same two image-group splits, NOT fresh holdout or causal confirmation.",
+    "Affine clipping and library-member selection use fit direction only. Both directions reported, no check-side selection.",
+    "Single-model calibration is a known cheap baseline, not a new search method. Extra CPU not charged to oldGPUbatches; no equal-budget E2E claim.",
+    "Only Denoise12pools; no excluded failed library/warm fallback, no newGPU/API/model/program, no invalid19004/currentquota read.",
+    ".001 is descriptive magnitude, not a new success criterion or replacement for frozen quota quality gates."
+  ],
+  "max_independent_difference": 2.4424906541753444e-14,
+  "original_receipt_sha256": "87480e08d6b41edfdf7dc73b7abba9ac351c3eeca50a036d85db2b8252266fd2",
+  "rows": [
+    {
+      "assigned_runs": 4,
+      "block": 0,
+      "folds": [
+        {
+          "calibrated_index": 1,
+          "calibration_gain": 4.0452517196145135e-05,
+          "calibration_parameters": [
+            0.9978518491147259,
+            0.0006250007421667592
+          ],
+          "check_rows": 1098360,
+          "fit_rows": 1046520,
+          "greedy_gain": 0.0012404195048773409,
+          "greedy_over_calibration": 0.0011999669876811957,
+          "greedy_weights": [
+            0.0,
+            0.5833333333333334,
+            0.3333333333333333,
+            0.08333333333333333,
+            0.0
+          ],
+          "raw_index": 1,
+          "values": {
+            "calibrated_single": 0.015521776102009648,
+            "greedy20": 0.014321809114328453,
+            "selected_single": 0.015562228619205793
+          }
+        },
+        {
+          "calibrated_index": 1,
+          "calibration_gain": 6.856299211091196e-05,
+          "calibration_parameters": [
+            0.9975103681433571,
+            0.001252181607150904
+          ],
+          "check_rows": 1046520,
+          "fit_rows": 1098360,
+          "greedy_gain": 0.0011047570847956423,
+          "greedy_over_calibration": 0.0010361940926847304,
+          "greedy_weights": [
+            0.0,
+            0.5454545454545454,
+            0.36363636363636365,
+            0.09090909090909091,
+            0.0
+          ],
+          "raw_index": 1,
+          "values": {
+            "calibrated_single": 0.013608327863847552,
+            "greedy20": 0.012572133771162822,
+            "selected_single": 0.013676890855958464
+          }
+        }
+      ],
+      "job": 18770,
+      "library_size": 5,
+      "max_independent_difference": 3.2612801348363973e-16,
+      "task": "denoising-dirty-documents"
+    },
+    {
+      "assigned_runs": 4,
+      "block": 1,
+      "folds": [
+        {
+          "calibrated_index": 2,
+          "calibration_gain": 0.0002607704993000722,
+          "calibration_parameters": [
+            1.0085849770777808,
+            -0.006464959802525372
+          ],
+          "check_rows": 1098360,
+          "fit_rows": 1046520,
+          "greedy_gain": 0.0005952246722796834,
+          "greedy_over_calibration": 0.0003344541729796112,
+          "greedy_weights": [
+            0.0,
+            0.46153846153846156,
+            0.5384615384615384
+          ],
+          "raw_index": 2,
+          "values": {
+            "calibrated_single": 0.015590570102822216,
+            "greedy20": 0.015256115929842605,
+            "selected_single": 0.015851340602122288
+          }
+        },
+        {
+          "calibrated_index": 2,
+          "calibration_gain": 0.0002573853738417984,
+          "calibration_parameters": [
+            1.0085124479167167,
+            -0.005736998109772573
+          ],
+          "check_rows": 1046520,
+          "fit_rows": 1098360,
+          "greedy_gain": 0.0009064546328294322,
+          "greedy_over_calibration": 0.0006490692589876338,
+          "greedy_weights": [
+            0.0,
+            0.35714285714285715,
+            0.6428571428571429
+          ],
+          "raw_index": 2,
+          "values": {
+            "calibrated_single": 0.013936820464270748,
+            "greedy20": 0.013287751205283114,
+            "selected_single": 0.014194205838112546
+          }
+        }
+      ],
+      "job": 18770,
+      "library_size": 3,
+      "max_independent_difference": 3.5388358909926865e-16,
+      "task": "denoising-dirty-documents"
+    },
+    {
+      "assigned_runs": 4,
+      "block": 2,
+      "folds": [
+        {
+          "calibrated_index": 1,
+          "calibration_gain": 0.0005707175549788859,
+          "calibration_parameters": [
+            1.0116813651874201,
+            -0.008521177078273823
+          ],
+          "check_rows": 1098360,
+          "fit_rows": 1046520,
+          "greedy_gain": -0.00012659151850945294,
+          "greedy_over_calibration": -0.0006973090734883388,
+          "greedy_weights": [
+            0.0,
+            0.5555555555555556,
+            0.0,
+            0.4444444444444444
+          ],
+          "raw_index": 1,
+          "values": {
+            "calibrated_single": 0.015614832699802945,
+            "greedy20": 0.016312141773291284,
+            "selected_single": 0.01618555025478183
+          }
+        },
+        {
+          "calibrated_index": 1,
+          "calibration_gain": 0.0006353004216136174,
+          "calibration_parameters": [
+            1.0117802516365717,
+            -0.00818232091359783
+          ],
+          "check_rows": 1046520,
+          "fit_rows": 1098360,
+          "greedy_gain": 0.0002008255745658983,
+          "greedy_over_calibration": -0.0004344748470477191,
+          "greedy_weights": [
+            0.0,
+            0.7894736842105263,
+            0.10526315789473684,
+            0.10526315789473684
+          ],
+          "raw_index": 1,
+          "values": {
+            "calibrated_single": 0.01369464053549785,
+            "greedy20": 0.01412911538254557,
+            "selected_single": 0.014329940957111468
+          }
+        }
+      ],
+      "job": 18770,
+      "library_size": 4,
+      "max_independent_difference": 6.938893903907228e-17,
+      "task": "denoising-dirty-documents"
+    },
+    {
+      "assigned_runs": 4,
+      "block": 3,
+      "folds": [
+        {
+          "calibrated_index": 1,
+          "calibration_gain": 0.001272546124846969,
+          "calibration_parameters": [
+            1.0211472696663284,
+            -0.013039890035018042
+          ],
+          "check_rows": 1098360,
+          "fit_rows": 1046520,
+          "greedy_gain": 0.00047406907240404514,
+          "greedy_over_calibration": -0.0007984770524429238,
+          "greedy_weights": [
+            0.0,
+            0.35714285714285715,
+            0.6428571428571429
+          ],
+          "raw_index": 2,
+          "values": {
+            "calibrated_single": 0.018853245537817503,
+            "greedy20": 0.019651722590260427,
+            "selected_single": 0.020125791662664472
+          }
+        },
+        {
+          "calibrated_index": 0,
+          "calibration_gain": 0.0008661789114530749,
+          "calibration_parameters": [
+            1.070510996958309,
+            -0.02190148504295597
+          ],
+          "check_rows": 1046520,
+          "fit_rows": 1098360,
+          "greedy_gain": 0.00034271439496362174,
+          "greedy_over_calibration": -0.0005234645164894532,
+          "greedy_weights": [
+            0.0,
+            0.4117647058823529,
+            0.5882352941176471
+          ],
+          "raw_index": 2,
+          "values": {
+            "calibrated_single": 0.01728238218877836,
+            "greedy20": 0.017805846705267813,
+            "selected_single": 0.018148561100231435
+          }
+        }
+      ],
+      "job": 18770,
+      "library_size": 3,
+      "max_independent_difference": 6.938893903907228e-17,
+      "task": "denoising-dirty-documents"
+    },
+    {
+      "assigned_runs": 4,
+      "block": 0,
+      "folds": [
+        {
+          "calibrated_index": 1,
+          "calibration_gain": 0.0012446882868555713,
+          "calibration_parameters": [
+            1.0162755045622032,
+            -0.010998332732632843
+          ],
+          "check_rows": 1098360,
+          "fit_rows": 1046520,
+          "greedy_gain": -6.480005004629377e-05,
+          "greedy_over_calibration": -0.001309488336901865,
+          "greedy_weights": [
+            0.0,
+            0.9411764705882353,
+            0.058823529411764705
+          ],
+          "raw_index": 1,
+          "values": {
+            "calibrated_single": 0.019622246074324418,
+            "greedy20": 0.020931734411226283,
+            "selected_single": 0.02086693436117999
+          }
+        },
+        {
+          "calibrated_index": 0,
+          "calibration_gain": 0.0007353777573629733,
+          "calibration_parameters": [
+            1.070510996958309,
+            -0.02190148504295597
+          ],
+          "check_rows": 1046520,
+          "fit_rows": 1098360,
+          "greedy_gain": 0.0,
+          "greedy_over_calibration": -0.0007353777573629733,
+          "greedy_weights": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "raw_index": 1,
+          "values": {
+            "calibrated_single": 0.01728238218877836,
+            "greedy20": 0.018017759946141333,
+            "selected_single": 0.018017759946141333
+          }
+        }
+      ],
+      "job": 18807,
+      "library_size": 3,
+      "max_independent_difference": 6.938893903907228e-17,
+      "task": "denoising-dirty-documents"
+    },
+    {
+      "assigned_runs": 4,
+      "block": 1,
+      "folds": [
+        {
+          "calibrated_index": 4,
+          "calibration_gain": 0.0013085515951483974,
+          "calibration_parameters": [
+            1.0195488340487453,
+            -0.01343524024341014
+          ],
+          "check_rows": 1098360,
+          "fit_rows": 1046520,
+          "greedy_gain": 2.0448716405632034e-05,
+          "greedy_over_calibration": -0.0012881028787427654,
+          "greedy_weights": [
+            0.0,
+            0.26666666666666666,
+            0.0,
+            0.0,
+            0.7333333333333333
+          ],
+          "raw_index": 4,
+          "values": {
+            "calibrated_single": 0.016647880296457595,
+            "greedy20": 0.01793598317520036,
+            "selected_single": 0.017956431891605992
+          }
+        },
+        {
+          "calibrated_index": 4,
+          "calibration_gain": 0.0013531555095031064,
+          "calibration_parameters": [
+            1.0193024128006822,
+            -0.012634586734600939
+          ],
+          "check_rows": 1046520,
+          "fit_rows": 1098360,
+          "greedy_gain": 0.0005632921269628326,
+          "greedy_over_calibration": -0.0007898633825402738,
+          "greedy_weights": [
+            0.0,
+            0.13333333333333333,
+            0.0,
+            0.0,
+            0.8666666666666667
+          ],
+          "raw_index": 4,
+          "values": {
+            "calibrated_single": 0.015049764312500076,
+            "greedy20": 0.01583962769504035,
+            "selected_single": 0.016402919822003183
+          }
+        }
+      ],
+      "job": 18807,
+      "library_size": 5,
+      "max_independent_difference": 1.3322676295501878e-15,
+      "task": "denoising-dirty-documents"
+    },
+    {
+      "assigned_runs": 4,
+      "block": 2,
+      "folds": [
+        {
+          "calibrated_index": 0,
+          "calibration_gain": 0.004515208418173072,
+          "calibration_parameters": [
+            1.0684426994190592,
+            -0.020344672436090505
+          ],
+          "check_rows": 1098360,
+          "fit_rows": 1046520,
+          "greedy_gain": 0.00017734538372865885,
+          "greedy_over_calibration": -0.004337863034444413,
+          "greedy_weights": [
+            0.0,
+            0.0,
+            0.6923076923076923,
+            0.3076923076923077,
+            0.0
+          ],
+          "raw_index": 2,
+          "values": {
+            "calibrated_single": 0.0188151565636526,
+            "greedy20": 0.023153019598097013,
+            "selected_single": 0.023330364981825672
+          }
+        },
+        {
+          "calibrated_index": 0,
+          "calibration_gain": 0.0017191857974062918,
+          "calibration_parameters": [
+            1.070510996958309,
+            -0.02190148504295597
+          ],
+          "check_rows": 1046520,
+          "fit_rows": 1098360,
+          "greedy_gain": 0.00016101160077000923,
+          "greedy_over_calibration": -0.0015581741966362826,
+          "greedy_weights": [
+            0.0,
+            0.0,
+            0.6666666666666666,
+            0.3333333333333333,
+            0.0
+          ],
+          "raw_index": 2,
+          "values": {
+            "calibrated_single": 0.01728238218877836,
+            "greedy20": 0.018840556385414643,
+            "selected_single": 0.019001567986184652
+          }
+        }
+      ],
+      "job": 18807,
+      "library_size": 5,
+      "max_independent_difference": 2.4424906541753444e-14,
+      "task": "denoising-dirty-documents"
+    },
+    {
+      "assigned_runs": 4,
+      "block": 3,
+      "folds": [
+        {
+          "calibrated_index": 1,
+          "calibration_gain": 9.545831060188761e-05,
+          "calibration_parameters": [
+            0.9940736572167935,
+            0.004199635340002561
+          ],
+          "check_rows": 1098360,
+          "fit_rows": 1046520,
+          "greedy_gain": 0.00029930187914788825,
+          "greedy_over_calibration": 0.00020384356854600064,
+          "greedy_weights": [
+            0.05,
+            0.85,
+            0.1,
+            0.0
+          ],
+          "raw_index": 1,
+          "values": {
+            "calibrated_single": 0.017586658505565143,
+            "greedy20": 0.017382814937019143,
+            "selected_single": 0.01768211681616703
+          }
+        },
+        {
+          "calibrated_index": 1,
+          "calibration_gain": 0.00012763500483749593,
+          "calibration_parameters": [
+            0.9945658323182061,
+            0.003718695874380562
+          ],
+          "check_rows": 1046520,
+          "fit_rows": 1098360,
+          "greedy_gain": 0.0003253063775953049,
+          "greedy_over_calibration": 0.00019767137275780895,
+          "greedy_weights": [
+            0.05555555555555555,
+            0.8888888888888888,
+            0.05555555555555555,
+            0.0
+          ],
+          "raw_index": 1,
+          "values": {
+            "calibrated_single": 0.014870346662492599,
+            "greedy20": 0.01467267528973479,
+            "selected_single": 0.014997981667330094
+          }
+        }
+      ],
+      "job": 18807,
+      "library_size": 4,
+      "max_independent_difference": 3.191891195797325e-16,
+      "task": "denoising-dirty-documents"
+    },
+    {
+      "assigned_runs": 4,
+      "block": 0,
+      "folds": [
+        {
+          "calibrated_index": 2,
+          "calibration_gain": 0.000618352813633715,
+          "calibration_parameters": [
+            1.0116101914758737,
+            -0.008650679132745642
+          ],
+          "check_rows": 1098360,
+          "fit_rows": 1046520,
+          "greedy_gain": 6.695347991842945e-05,
+          "greedy_over_calibration": -0.0005513993337152856,
+          "greedy_weights": [
+            0.0,
+            0.1,
+            0.9
+          ],
+          "raw_index": 2,
+          "values": {
+            "calibrated_single": 0.017885431278562902,
+            "greedy20": 0.018436830612278188,
+            "selected_single": 0.018503784092196617
+          }
+        },
+        {
+          "calibrated_index": 2,
+          "calibration_gain": 0.0006635614433510399,
+          "calibration_parameters": [
+            1.0136758079528057,
+            -0.009695716549119493
+          ],
+          "check_rows": 1046520,
+          "fit_rows": 1098360,
+          "greedy_gain": 7.068231521903737e-05,
+          "greedy_over_calibration": -0.0005928791281320026,
+          "greedy_weights": [
+            0.0,
+            0.09090909090909091,
+            0.9090909090909091
+          ],
+          "raw_index": 2,
+          "values": {
+            "calibrated_single": 0.015217754854191298,
+            "greedy20": 0.0158106339823233,
+            "selected_single": 0.015881316297542337
+          }
+        }
+      ],
+      "job": 18997,
+      "library_size": 3,
+      "max_independent_difference": 6.938893903907228e-17,
+      "task": "denoising-dirty-documents"
+    },
+    {
+      "assigned_runs": 4,
+      "block": 1,
+      "folds": [
+        {
+          "calibrated_index": 0,
+          "calibration_gain": 0.027143269680505667,
+          "calibration_parameters": [
+            1.0684426994190592,
+            -0.020344672436090505
+          ],
+          "check_rows": 1098360,
+          "fit_rows": 1046520,
+          "greedy_gain": 0.00421990834648938,
+          "greedy_over_calibration": -0.022923361334016287,
+          "greedy_weights": [
+            0.7142857142857143,
+            0.21428571428571427,
+            0.07142857142857142
+          ],
+          "raw_index": 0,
+          "values": {
+            "calibrated_single": 0.0188151565636526,
+            "greedy20": 0.041738517897668886,
+            "selected_single": 0.04595842624415827
+          }
+        },
+        {
+          "calibrated_index": 0,
+          "calibration_gain": 0.027756867735500422,
+          "calibration_parameters": [
+            1.070510996958309,
+            -0.02190148504295597
+          ],
+          "check_rows": 1046520,
+          "fit_rows": 1098360,
+          "greedy_gain": 0.004745170885878364,
+          "greedy_over_calibration": -0.02301169684962206,
+          "greedy_weights": [
+            0.7333333333333333,
+            0.2,
+            0.06666666666666667
+          ],
+          "raw_index": 0,
+          "values": {
+            "calibrated_single": 0.01728238218877836,
+            "greedy20": 0.04029407903840042,
+            "selected_single": 0.04503924992427878
+          }
+        }
+      ],
+      "job": 18997,
+      "library_size": 3,
+      "max_independent_difference": 3.1086244689504383e-15,
+      "task": "denoising-dirty-documents"
+    },
+    {
+      "assigned_runs": 4,
+      "block": 2,
+      "folds": [
+        {
+          "calibrated_index": 1,
+          "calibration_gain": 4.1739327503752255e-05,
+          "calibration_parameters": [
+            0.9962447822021911,
+            0.0021290376551530432
+          ],
+          "check_rows": 1098360,
+          "fit_rows": 1046520,
+          "greedy_gain": 0.00015930597769544738,
+          "greedy_over_calibration": 0.00011756665019169513,
+          "greedy_weights": [
+            0.05,
+            0.95,
+            0.0,
+            0.0
+          ],
+          "raw_index": 1,
+          "values": {
+            "calibrated_single": 0.01663715215395699,
+            "greedy20": 0.016519585503765293,
+            "selected_single": 0.01667889148146074
+          }
+        },
+        {
+          "calibrated_index": 1,
+          "calibration_gain": 8.381069464005741e-05,
+          "calibration_parameters": [
+            0.9971900030350331,
+            0.0015274474404851635
+          ],
+          "check_rows": 1046520,
+          "fit_rows": 1098360,
+          "greedy_gain": 0.00016869924030363075,
+          "greedy_over_calibration": 8.488854566357333e-05,
+          "greedy_weights": [
+            0.05,
+            0.95,
+            0.0,
+            0.0
+          ],
+          "raw_index": 1,
+          "values": {
+            "calibrated_single": 0.014259291249144554,
+            "greedy20": 0.014174402703480981,
+            "selected_single": 0.014343101943784612
+          }
+        }
+      ],
+      "job": 18997,
+      "library_size": 4,
+      "max_independent_difference": 3.3306690738754696e-16,
+      "task": "denoising-dirty-documents"
+    },
+    {
+      "assigned_runs": 4,
+      "block": 3,
+      "folds": [
+        {
+          "calibrated_index": 3,
+          "calibration_gain": 4.044500986421194e-05,
+          "calibration_parameters": [
+            0.9963528948091982,
+            0.0023014203385007814
+          ],
+          "check_rows": 1098360,
+          "fit_rows": 1046520,
+          "greedy_gain": 0.0004786412570569436,
+          "greedy_over_calibration": 0.00043819624719273163,
+          "greedy_weights": [
+            0.0,
+            0.3333333333333333,
+            0.0,
+            0.6666666666666666,
+            0.0
+          ],
+          "raw_index": 3,
+          "values": {
+            "calibrated_single": 0.014685735206491324,
+            "greedy20": 0.014247538959298593,
+            "selected_single": 0.014726180216355536
+          }
+        },
+        {
+          "calibrated_index": 3,
+          "calibration_gain": 7.273446214771731e-05,
+          "calibration_parameters": [
+            0.9971803319038254,
+            0.001682925207559971
+          ],
+          "check_rows": 1046520,
+          "fit_rows": 1098360,
+          "greedy_gain": 0.0004129426929743076,
+          "greedy_over_calibration": 0.0003402082308265903,
+          "greedy_weights": [
+            0.0,
+            0.35714285714285715,
+            0.0,
+            0.6428571428571429,
+            0.0
+          ],
+          "raw_index": 3,
+          "values": {
+            "calibrated_single": 0.012503518338426377,
+            "greedy20": 0.012163310107599787,
+            "selected_single": 0.012576252800574094
+          }
+        }
+      ],
+      "job": 18997,
+      "library_size": 5,
+      "max_independent_difference": 3.5388358909926865e-16,
+      "task": "denoising-dirty-documents"
+    }
+  ],
+  "schema": 1,
+  "source_sha256": "405a290017ad25a81703e9e7b48c98e1952f939765660bd5d39d1f233d8e86cd",
+  "summaries": {
+    "calibration_gain": {
+      "both_atleast_001": 3,
+      "both_positive": 12,
+      "max": 0.027143269680505667,
+      "median_worse_direction": 0.0005945351843063005,
+      "min": 4.044500986421194e-05,
+      "pools": 12,
+      "sample_sd_worse_direction": 0.007689038490565541
+    },
+    "greedy_gain": {
+      "both_atleast_001": 2,
+      "both_positive": 10,
+      "max": 0.00421990834648938,
+      "median_worse_direction": 0.00023015673995894874,
+      "min": -0.00012659151850945294,
+      "pools": 12,
+      "sample_sd_worse_direction": 0.0011880837438877094
+    },
+    "greedy_over_calibration": {
+      "both_atleast_001": 1,
+      "both_positive": 5,
+      "max": 0.0010361940926847304,
+      "median_worse_direction": -0.0006450941008101707,
+      "min": -0.02301169684962206,
+      "pools": 12,
+      "sample_sd_worse_direction": 0.006601239260406652
+    }
+  },
+  "task_pools": 12
+}

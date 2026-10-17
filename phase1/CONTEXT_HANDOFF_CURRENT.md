@@ -1,13 +1,13 @@
 # 当前短交接：现场、方法边界和恢复动作
 
-最后观察：2026-10-17香港18:51；新窗口18:28:03–21:28:03，用户明确批准修复quota原矩阵/预算/终分门。
-唯一新批19118已提交，gpu3六卡Resources排队；prepare32/32通过，哈希核验完成。submit会话31539退出0，不得重复submit。先前手写时间已按工具UTC纠正。
+最后观察：2026-10-17香港19:01；新窗口18:28:03–21:28:03，用户明确批准修复quota原矩阵/预算/终分门。
+唯一新批19118仍gpu3六卡Resources排队；prepare32/32与哈希通过，submit会话31539退出0，不重复submit。18:58原兼容gpu1/3/27/28/29均不足六卡，调度器预计启动晚于窗口，非保证时刻。
 整理前完整交接与精确SHA在Git b1603f953f1e20e8080e075ec2ebb6e1a4cc802f；不重读全历史。
 
 ## 位置与最新引用
 
 - 活跃checkout C:/Research/New/my_project/MLEvolve/_codex_tmp/publication-feedback-20261001；有意detached HEAD。
-- 本轮发布与ls-remote核验：我方公开bb1b4db18a15628ea2a7ed13e64be6d34f89227d；学长dojo-reproduce仍e4d478350e704e8c5927eba566b2847aaa6dcbab。实验冻结source另为dd859b450ea1515394eab83fabfecfa21c7c25a2。
+- 本轮发布与ls-remote核验：我方公开b4add29abcb8ae26b2e541e06c753298d80186b2；学长dojo-reproduce仍e4d478350e704e8c5927eba566b2847aaa6dcbab。实验冻结source另为dd859b450ea1515394eab83fabfecfa21c7c25a2。
 - b160发布13文件：真实多进程CPU许可与78Analyze/107生成发布链；34e4fb0d发布53文件：195准入/谱系/247角色提示/时序。均安全扫描/显式清单/字节核验通过。
 - 学长95journals/5任务是其报告非我方复现；selected≠best-found、跨天硬件未控；senior_update_20261017.safe.json。
 - SSH yzyang4@linux5.cse.cuhk.edu.hk；备用137.189.88.148须HostKeyAlias及StrictHostKeyChecking=yes。
@@ -46,7 +46,9 @@
 - 独立计数/时间/代数不等于原始谱系join独立提取。所有细节回执及旧完整说明在b1603f95；不重复分析凑进展。
 - 08:35服务端边界复查：三闭合批12间隔/21采样均Running/Waiting=0；只否定“日志已有跨池忙碌证据”，不证明持续空闲或缓存无影响。回执SHA9339b98d853488e7787238e31d36b2eac033c7e40a0dbf58d6f4f2b1e1eeef71及独立代数通过，无GPU/模型/评分。
 - CPU旧输出分析96条/24池：greedy20去噪10/12双向正，较差方向median .00023015673995906843；2/12双向≥.001，较大个例含弱warm池。Aerial2/12，非跨任务稳定。全均值去噪0/12。
-- output_complementarity_20261017回执SHA87480e08d6b41edfdf7dc73b7abba9ac351c3eeca50a036d85db2b8252266fd2；独立Node仅代数，原始预测独立复核待做。CPU438.077043838799s，不回填旧GPU预算；重划分非新holdout/确认，经典集成非创新。
+- output_complementarity_20261017回执SHA87480e08d6b41edfdf7dc73b7abba9ac351c3eeca50a036d85db2b8252266fd2；独立Node仅代数。CPU438.077043838799s，不回填旧GPU预算；重划分非新holdout/确认，经典集成非创新。
+- 新独立CPU原始图像/预测/资格+Gram复算去噪12池全通过，maxdiff2.4424906541753444e-14，341.002689045854s；calibration-v1.safe.json SHA721a883c79ff91a01bccc4e621f13a655e5ad045cb358df763804bcba396f98b。会话70707退出0。
+- fit-only校准并选单模型12/12双向正、较差方向median .0005945351843063005；greedy对校准仅5/12、median−.0006450941008101707。不能把之前集成线索宣称胜强基线；无新任务/holdout/E2E证明，不扩GPU批、不改19118门。
 
 ## 唯一下一分支与禁止重做
 

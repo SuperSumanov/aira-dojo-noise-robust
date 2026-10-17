@@ -55,6 +55,7 @@ for(let t=0;t<2;t++){
   selections.push({task:t,qualified:valid,selected});
 }
 for(let i=0;i<32;i++)for(const key of ['index','program','task','seed','mode','phase','slot','executed_sha256'])ensure(r[i][key]===p.schedule[i][key],'schedule '+key);
+for(let k=0;k<4;k++)ensure(r.filter(x=>x.program===k).every(x=>x.slot===k),'arm-invariant physical assignment');
 ensure(s.complete===r.filter(x=>x.complete).length&&s.qualified===r.filter(x=>x.qualified).length,'counts');
 ensure(s.structure===(!cl.error&&cl.cleanup_verified&&cl.records.length===32&&r.every(x=>x.qualified)),'structure');
 ensure(s.quality_gate===Boolean(gate),'final gate');

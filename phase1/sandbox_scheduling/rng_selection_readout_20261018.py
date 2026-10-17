@@ -79,14 +79,17 @@ def analyze(root,out,gpu_seconds):
         row=dict(s,source_commit=p['source_commit'],started=bool(started),complete=complete,
             valid=f.get('valid',False),exec_seconds=f.get('exec_seconds'),elapsed_seconds=f.get('elapsed_seconds'),
             steps=None,cuda_gradient_steps=None,score=None,prediction_sha256=None,
-            bindings_ok=bindings_ok,affinity_ok=affinity_ok,rng_applied=False,qualified=False)
+            bindings_ok=bindings_ok,affinity_ok=affinity_ok,rng_applied=False,unused_training_loaders=None,qualified=False)
         if complete:assert f['executed_sha256']==s['executed_sha256']
         if tr:
             row['steps']=tr['steps'];row['cuda_gradient_steps']=tr['cuda_gradient_steps']
             intervals=tr['host_step_intervals'];assert len(intervals)==tr['steps']
             assert sum(any(d.startswith('cuda:') for d in x['devices']) and x['gradient_parameters']>0 for x in intervals)==tr['cuda_gradient_steps']
             logs=tr.get('data_rng',[])
-            row['rng_applied']=bool(logs) and all(l['mode']==s['mode'] and l['epochs'] and l['samples']>0 for l in logs)
+            # A constructed but never iterated loader has no intervention event.
+            # Require actual training iterations, not every unused object to run.
+            row['rng_applied']=bool(logs) and all(l['mode']==s['mode'] and l['samples']>0 for l in logs) and any(l['epochs'] for l in logs)
+            row['unused_training_loaders']=sum(not l['epochs'] for l in logs)
             inputs[str(i)]=[dict(loader=l['loader'],input_multiset_sha256=l['input_multiset_sha256'],samples=l['samples'],epochs=l['epochs']) for l in logs]
         if (ep/'score.private.json').exists():
             receipt=read(ep/'score.private.json')

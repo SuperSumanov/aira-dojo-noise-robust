@@ -1,7 +1,9 @@
 """Read-only metadata/status. Does not read score or prediction files."""
-import json,os,subprocess
+import json,os,subprocess,sys
 from pathlib import Path
-R=Path('/research/d7/spc/yzyang4/rng-selection-20261018-v1')
+version=sys.argv[1] if len(sys.argv)>1 else 'v2'
+assert version in ('v1','v2')
+R=Path('/research/d7/spc/yzyang4/rng-selection-20261018-'+version)
 read=lambda p:json.loads(p.read_text())
 out={'root_exists':R.exists(),'plan':(R/'plan.json').exists(),'submitted':(R/'launch.json').exists()}
 if not out['submitted']:

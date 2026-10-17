@@ -24,7 +24,7 @@ import clock_contention_20261016 as base
 
 BASE=Path('/research/d7/spc/yzyang4')
 D=BASE/'scheduling-selective-20261017-v1'
-R=BASE/'rng-selection-20261018-v1'
+R=BASE/'rng-selection-20261018-v2'
 PY=BASE/'venvs/aira/bin/python'
 NAME=Path(__file__).name
 CAP=3600
@@ -42,7 +42,7 @@ def setup():
     return m
 
 def schedule():
-    return [dict(index=4*b+k,block=b,program=k,task=TASKS[k//2],slot=(k+b)%4,
+    return [dict(index=4*b+k,block=b,program=k,task=TASKS[k//2],slot=k,
                  phase=phase,mode=mode,seed=seed)
             for b,(phase,mode,seed) in enumerate(BLOCKS) for k in range(4)]
 
@@ -90,6 +90,8 @@ def selected():
 
 def qualify():
     runtime=setup();chosen=selected()
+    assert len(schedule())==32
+    assert all({r['slot'] for r in schedule() if r['program']==k}=={k} for k in range(4))
     from dojo.config_dataclasses.run import RunConfig
     from dojo.config_dataclasses.interpreter import INTERPRETER_MAP
     from dojo.utils.config import build
@@ -204,6 +206,8 @@ exec srun --exclusive --ntasks=1 --cpus-per-task=8 --gres=gpu:4 {PY} -B {R/NAME}
         policy='For each task and mode, select program by mean oriented DEV score across4101/4102; tie lowest program index. Any missing selection score makes that task comparison unqualified; no imputation. Seal selections before reading4103/4104.',
         primary='After complete32 and all integrity gates, compare each chosen program on COMMON original-global deployment seeds4103/4104. Addressed must beat BOTH global and sampler by >=.001 RMSE on Denoise in BOTH deployment seeds, with no Aerial AUC decline in either. Otherwise do not expand this recipe.',
         cost='24 actual selection executions plus8 common deployment audit executions, all allocation startup/failures/idle/cleanup <=3600s*4=4GPUh. Each policy has same4 selection evaluations/task. Common full-library audit is measurement overhead, not free online compute or independent E2E search.',
+        previous_batch='19245/v1 canceled in first global block before any treatment or score inspection, due to program-by-arm GPU assignment confounding. Its full cost is separate; this window incl v1 <=5GPUh. No reuse of its scores, no further repair batch.',
+        hardware_assignment='Each of the four programs uses its own fixed GPU UUID and two physical CPUs across all arms, selection seeds and deployment. Same allocated node/image. Not hardware-generalization evidence.',
         novelty='CRN and synchronized streams are classical. No claim of inventing them; potential contribution would require automatic free-form edit alignment AND quality beyond generator-only baseline. This pilot cannot establish broad novelty.',
         limits=['Fixed2-program libraries,2knownDEV tasks,2selection+2deployment seeds; not generated adaptive search.',
                 'DEV images are already used; independent RNG seeds are not new held-out tasks or data.',

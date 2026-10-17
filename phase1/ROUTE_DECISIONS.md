@@ -117,6 +117,7 @@ quota已停止；矩阵、原门、边界见CURRENT_DIRECTION。不补救旧配�
 - PyTorch官方显式generator/worker_init_fn是便宜强参照；此处num_workers=0。https://docs.pytorch.org/docs/stable/notes/randomness.html
 - Net2Net/LEMONADE已有权重继承，HELIX已有工作流缓存；因此本轮未选择泛化“从父程序状态继续训练”作为新主张。https://arxiv.org/abs/1511.05641 / https://arxiv.org/abs/1804.09081 / https://arxiv.org/abs/1812.05762
 - 潜在贡献必须另证自由代码修改下可自动对齐、胜标准隔离随机源及真实搜索终分；本小库试验不可能单独满足。无选解变化/不胜两强参照则停，不增加调度补丁。
+- 19245仅首global块启动即盲态中止：轮转设备导致program×arm混杂，未读分数；不是CRN效果反证。独立v2固定每程序设备，原终分门/矩阵不变；unused loader单记。窗口含中止≤5GPUh，不再新增修复批。
 
 1. 对应旧路线与原结果；未在当前窗口看到不等于没做过。
 2. 实质改变哪个决策、信息或行动，而非模型/seed/名字微调。

@@ -1,0 +1,144 @@
+{
+  "choices": [
+    {
+      "by_mode": {
+        "addressed": {
+          "oriented_means": {
+            "0": 0.9999144764623189,
+            "1": 0.9994908676897419
+          },
+          "program": 0
+        },
+        "global": {
+          "oriented_means": {
+            "0": 0.9998409796721242,
+            "1": 0.9997327389447465
+          },
+          "program": 0
+        },
+        "sampler": {
+          "oriented_means": {
+            "0": 0.9998463248932292,
+            "1": 0.9996846319548007
+          },
+          "program": 0
+        }
+      },
+      "qualified": true,
+      "task_index": 0
+    },
+    {
+      "by_mode": {
+        "addressed": {
+          "oriented_means": {
+            "2": -0.024352985088892054,
+            "3": -0.018100808795871816
+          },
+          "program": 3
+        },
+        "global": {
+          "oriented_means": {
+            "2": -0.025154066602281932,
+            "3": -0.018018035958946677
+          },
+          "program": 3
+        },
+        "sampler": {
+          "oriented_means": {
+            "2": -0.02357539231308052,
+            "3": -0.017676506157651532
+          },
+          "program": 3
+        }
+      },
+      "qualified": true,
+      "task_index": 1
+    }
+  ],
+  "claim": "Only fixed-library selection and seed transfer. Classical CRN, no novelty or adaptive-search/generalization proof.",
+  "complete": 32,
+  "effects": [
+    {
+      "chosen_programs": {
+        "addressed": 0,
+        "global": 0,
+        "sampler": 0
+      },
+      "contrasts": [
+        {
+          "median": 0.0,
+          "oriented_deltas": [
+            0.0,
+            0.0
+          ],
+          "pass_gate": true,
+          "reference": "global",
+          "sample_sd": 0.0
+        },
+        {
+          "median": 0.0,
+          "oriented_deltas": [
+            0.0,
+            0.0
+          ],
+          "pass_gate": true,
+          "reference": "sampler",
+          "sample_sd": 0.0
+        }
+      ],
+      "qualified": true,
+      "task_index": 0
+    },
+    {
+      "chosen_programs": {
+        "addressed": 3,
+        "global": 3,
+        "sampler": 3
+      },
+      "contrasts": [
+        {
+          "median": -0.0,
+          "oriented_deltas": [
+            -0.0,
+            -0.0
+          ],
+          "pass_gate": false,
+          "reference": "global",
+          "sample_sd": 0.0
+        },
+        {
+          "median": -0.0,
+          "oriented_deltas": [
+            -0.0,
+            -0.0
+          ],
+          "pass_gate": false,
+          "reference": "sampler",
+          "sample_sd": 0.0
+        }
+      ],
+      "qualified": true,
+      "task_index": 1
+    }
+  ],
+  "gpu_hours": 3.473333333333333,
+  "gpu_seconds": 12504,
+  "limitations": [
+    "Fixed2-program libraries,2knownDEV tasks,2selection+2deployment seeds; not generated adaptive search.",
+    "DEV images are already used; independent RNG seeds are not new held-out tasks or data.",
+    "Shared identity-hash instrumentation cost is included in all arms; no throughput benefit claim.",
+    "Only CPU torch dataset randomness is addressed. Model/dropout/CUDA randomness and wall-clock work remain uncontrolled between different programs.",
+    "Removing augmentation consumption from the global stream can shift later model initialization; not a pure variance-only causal decomposition.",
+    "Two seeds estimate neither reliable covariance nor significance; no claim of variance reduction unless supported separately."
+  ],
+  "plan_sha256": "9e1bf0caa8964e6baaf9ccd8be247f9ddc802bfd6be137f88fc535a494082756",
+  "planned": 32,
+  "qualified": 32,
+  "quality_gate": false,
+  "reader_sha256": "968ad8d1aa2b87979c141e7fcfec66fb3562a8305259b6bfaa635727882229a4",
+  "recomputed": 32,
+  "selection_seal_sha256": "cb3dfeca1180fbe90696813013b334bb116caf6d80e0ac2a76e75a0b146ecd16",
+  "source_commit": "7632bba196426ae1689e89a1d62671609d1d5296",
+  "started": 32,
+  "structure": true
+}

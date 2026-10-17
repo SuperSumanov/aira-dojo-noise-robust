@@ -1,0 +1,254 @@
+{
+  "recorded_utc": "2026-10-17T18:03:56Z",
+  "independent_alignment": {"checked_rows": 12, "scores_used": false, "passed": true, "boundary": "PowerShell independently recomputed pre-outcome order-hash counts from exported traces; not raw-input re-extraction."},
+  "verifier": "phase1/sandbox_scheduling/verify_rng_selection_20261018.mjs",
+  "source_commit": "7632bba196426ae1689e89a1d62671609d1d5296",
+  "results": [
+    {
+      "independent": true,
+      "transfer_files": 10,
+      "planned": 32,
+      "complete": 32,
+      "qualified": 32,
+      "quality_gate": false,
+      "gpu_seconds": 12504,
+      "selections": [
+        {
+          "task": 0,
+          "qualified": true,
+          "selected": {
+            "global": 0,
+            "sampler": 0,
+            "addressed": 0
+          }
+        },
+        {
+          "task": 1,
+          "qualified": true,
+          "selected": {
+            "global": 3,
+            "sampler": 3,
+            "addressed": 3
+          }
+        }
+      ],
+      "boundary": "Recomputes decisions/arithmetic and transfer identity, not a second label rescore or independent task replication."
+    },
+    {
+      "descriptive_observed_library_headroom": [
+        {
+          "task": 0,
+          "by_seed": [
+            {
+              "seed": 4103,
+              "oriented_program_difference": -0.00003741654773548042,
+              "observed_library_regret": {
+                "global": 0,
+                "sampler": 0,
+                "addressed": 0
+              }
+            },
+            {
+              "seed": 4104,
+              "oriented_program_difference": -0.0004944329522191815,
+              "observed_library_regret": {
+                "global": 0,
+                "sampler": 0,
+                "addressed": 0
+              }
+            }
+          ]
+        },
+        {
+          "task": 1,
+          "by_seed": [
+            {
+              "seed": 4103,
+              "oriented_program_difference": 0.0067386413852812445,
+              "observed_library_regret": {
+                "global": 0,
+                "sampler": 0,
+                "addressed": 0
+              }
+            },
+            {
+              "seed": 4104,
+              "oriented_program_difference": 0.006230520362543179,
+              "observed_library_regret": {
+                "global": 0,
+                "sampler": 0,
+                "addressed": 0
+              }
+            }
+          ]
+        }
+      ],
+      "boundary": "Oracle over these two already-executed programs only, not an achievable seed-blind policy or an upper bound on new candidate generation."
+    },
+    {
+      "secondary_retained_artifact_diagnostic": [
+        {
+          "task": 0,
+          "arms": {
+            "global": {
+              "qualified": true,
+              "executions": 4,
+              "best": 0.9999064586306612,
+              "by_seed": [
+                {
+                  "seed": 4101,
+                  "best": 0.9999064586306612
+                },
+                {
+                  "seed": 4102,
+                  "best": 0.999775500713587
+                }
+              ]
+            },
+            "sampler": {
+              "qualified": true,
+              "executions": 4,
+              "best": 0.9999091312412137,
+              "by_seed": [
+                {
+                  "seed": 4101,
+                  "best": 0.9997835185452446
+                },
+                {
+                  "seed": 4102,
+                  "best": 0.9999091312412137
+                }
+              ]
+            },
+            "addressed": {
+              "qualified": true,
+              "executions": 4,
+              "best": 0.9999358573467392,
+              "by_seed": [
+                {
+                  "seed": 4101,
+                  "best": 0.9999358573467392
+                },
+                {
+                  "seed": 4102,
+                  "best": 0.9998930955778985
+                }
+              ]
+            }
+          },
+          "contrasts": [
+            {
+              "reference": "global",
+              "oriented_deltas_by_seed": [
+                {
+                  "seed": 4101,
+                  "delta": 0.000029398716077988496
+                },
+                {
+                  "seed": 4102,
+                  "delta": 0.0001175948643115099
+                }
+              ],
+              "oriented_all4_best_delta": 0.000029398716077988496
+            },
+            {
+              "reference": "sampler",
+              "oriented_deltas_by_seed": [
+                {
+                  "seed": 4101,
+                  "delta": 0.00015233880149456702
+                },
+                {
+                  "seed": 4102,
+                  "delta": -0.000016035663315205895
+                }
+              ],
+              "oriented_all4_best_delta": 0.00002672610552545418
+            }
+          ]
+        },
+        {
+          "task": 1,
+          "arms": {
+            "global": {
+              "qualified": true,
+              "executions": 4,
+              "best": 0.017415579264335714,
+              "by_seed": [
+                {
+                  "seed": 4101,
+                  "best": 0.01862049265355764
+                },
+                {
+                  "seed": 4102,
+                  "best": 0.017415579264335714
+                }
+              ]
+            },
+            "sampler": {
+              "qualified": true,
+              "executions": 4,
+              "best": 0.01743975156706539,
+              "by_seed": [
+                {
+                  "seed": 4101,
+                  "best": 0.01743975156706539
+                },
+                {
+                  "seed": 4102,
+                  "best": 0.017913260748237677
+                }
+              ]
+            },
+            "addressed": {
+              "qualified": true,
+              "executions": 4,
+              "best": 0.017758409998876772,
+              "by_seed": [
+                {
+                  "seed": 4101,
+                  "best": 0.018443207592866863
+                },
+                {
+                  "seed": 4102,
+                  "best": 0.017758409998876772
+                }
+              ]
+            }
+          },
+          "contrasts": [
+            {
+              "reference": "global",
+              "oriented_deltas_by_seed": [
+                {
+                  "seed": 4101,
+                  "delta": 0.00017728506069077804
+                },
+                {
+                  "seed": 4102,
+                  "delta": -0.00034283073454105875
+                }
+              ],
+              "oriented_all4_best_delta": -0.00034283073454105875
+            },
+            {
+              "reference": "sampler",
+              "oriented_deltas_by_seed": [
+                {
+                  "seed": 4101,
+                  "delta": -0.0010034560258014719
+                },
+                {
+                  "seed": 4102,
+                  "delta": 0.0001548507493609047
+                }
+              ],
+              "oriented_all4_best_delta": -0.00031865843181138123
+            }
+          ]
+        }
+      ],
+      "boundary": "Equal4 selection executions/task/arm, already-used DEV, no independent held-out quality. Best-of-realized-artifacts differs from expected retrained-program quality. Descriptive only, not a replacement gate or full agent search."
+    }
+  ]
+}

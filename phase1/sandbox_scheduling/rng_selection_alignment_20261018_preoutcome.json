@@ -1,0 +1,165 @@
+{
+  "read_scores": false,
+  "rows": [
+    {
+      "task": 0,
+      "mode": "global",
+      "seed": 4101,
+      "loaders": [
+        10,
+        5
+      ],
+      "exact_input_multiset_matches": 10,
+      "comparable_full_epochs": 38,
+      "same_order_full_epochs": 0,
+      "addressed_alignment_holds": null
+    },
+    {
+      "task": 1,
+      "mode": "global",
+      "seed": 4101,
+      "loaders": [
+        3,
+        3
+      ],
+      "exact_input_multiset_matches": 0,
+      "comparable_full_epochs": 0,
+      "same_order_full_epochs": 0,
+      "addressed_alignment_holds": null
+    },
+    {
+      "task": 0,
+      "mode": "sampler",
+      "seed": 4101,
+      "loaders": [
+        10,
+        5
+      ],
+      "exact_input_multiset_matches": 10,
+      "comparable_full_epochs": 39,
+      "same_order_full_epochs": 18,
+      "addressed_alignment_holds": null
+    },
+    {
+      "task": 1,
+      "mode": "sampler",
+      "seed": 4101,
+      "loaders": [
+        3,
+        3
+      ],
+      "exact_input_multiset_matches": 0,
+      "comparable_full_epochs": 0,
+      "same_order_full_epochs": 0,
+      "addressed_alignment_holds": null
+    },
+    {
+      "task": 0,
+      "mode": "addressed",
+      "seed": 4101,
+      "loaders": [
+        10,
+        5
+      ],
+      "exact_input_multiset_matches": 10,
+      "comparable_full_epochs": 36,
+      "same_order_full_epochs": 36,
+      "addressed_alignment_holds": true
+    },
+    {
+      "task": 1,
+      "mode": "addressed",
+      "seed": 4101,
+      "loaders": [
+        3,
+        3
+      ],
+      "exact_input_multiset_matches": 0,
+      "comparable_full_epochs": 0,
+      "same_order_full_epochs": 0,
+      "addressed_alignment_holds": null
+    },
+    {
+      "task": 0,
+      "mode": "addressed",
+      "seed": 4102,
+      "loaders": [
+        10,
+        5
+      ],
+      "exact_input_multiset_matches": 10,
+      "comparable_full_epochs": 36,
+      "same_order_full_epochs": 36,
+      "addressed_alignment_holds": true
+    },
+    {
+      "task": 1,
+      "mode": "addressed",
+      "seed": 4102,
+      "loaders": [
+        3,
+        3
+      ],
+      "exact_input_multiset_matches": 0,
+      "comparable_full_epochs": 0,
+      "same_order_full_epochs": 0,
+      "addressed_alignment_holds": null
+    },
+    {
+      "task": 0,
+      "mode": "sampler",
+      "seed": 4102,
+      "loaders": [
+        10,
+        5
+      ],
+      "exact_input_multiset_matches": 10,
+      "comparable_full_epochs": 38,
+      "same_order_full_epochs": 18,
+      "addressed_alignment_holds": null
+    },
+    {
+      "task": 1,
+      "mode": "sampler",
+      "seed": 4102,
+      "loaders": [
+        3,
+        3
+      ],
+      "exact_input_multiset_matches": 0,
+      "comparable_full_epochs": 0,
+      "same_order_full_epochs": 0,
+      "addressed_alignment_holds": null
+    },
+    {
+      "task": 0,
+      "mode": "global",
+      "seed": 4102,
+      "loaders": [
+        10,
+        5
+      ],
+      "exact_input_multiset_matches": 10,
+      "comparable_full_epochs": 38,
+      "same_order_full_epochs": 0,
+      "addressed_alignment_holds": null
+    },
+    {
+      "task": 1,
+      "mode": "global",
+      "seed": 4102,
+      "loaders": [
+        3,
+        3
+      ],
+      "exact_input_multiset_matches": 0,
+      "comparable_full_epochs": 0,
+      "same_order_full_epochs": 0,
+      "addressed_alignment_holds": null
+    }
+  ],
+  "boundary": "Input and order identities only; no exact multiset match does not mean no shared samples. No quality, augmentation-equality, variance or independent-replicate claim.",
+  "observed_utc": "2026-10-17T17:49:47Z",
+  "job": "19249",
+  "plan_sha256": "9e1bf0caa8964e6baaf9ccd8be247f9ddc802bfd6be137f88fc535a494082756"
+}

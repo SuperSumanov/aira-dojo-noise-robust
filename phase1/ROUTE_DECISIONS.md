@@ -1,6 +1,6 @@
 # 路线与机制索引：先查旧证据，再提新方向
 
-2026-10-18 R15有限资格完整闭合后停止。方向/授权只读CURRENT_DIRECTION，现场只读CONTEXT_HANDOFF_CURRENT。
+2026-10-18 R15停止；当前先做源页面隔离的候选机会检查。方向/授权只读CURRENT_DIRECTION，现场只读CONTEXT_HANDOFF_CURRENT。
 本次压缩前全文在Git b1603f953f1e20e8080e075ec2ebb6e1a4cc802f:phase1/ROUTE_DECISIONS.md。
 旧细节在6c47086a603b4c7afcc25a3e80f9d5648c3bee63；更早R1–13在246e66a56151ebfb7b74b5808eeeec82b9de0d8c。
 原结果/撤回/限制均留存；按机制检索历史，不每次全读。停止配方≠证明普遍无效。
@@ -106,6 +106,10 @@ quota已停止；矩阵、原门、边界见CURRENT_DIRECTION。不补救旧配�
 - 未读/未复现不说不存在；新颖性定稿重核原文。场景不同、旧机制新名字或局部阳性都不自动成为方法贡献。
 
 ## 新提案只需四项
+
+- 10/18新增事实：旧去噪92train/36清页，11DEV参考全在train；四个只用public的模板检索均RMSE0，独立复算通过。旧提示强制CUDA，不能叫模板胜旧公平臂，或把CNN集中称生成器自由搜索缺陷。新grouped-public参照只问去除捷径后是否有候选空间，非创新/旧R12改名。
+- Noise-Transfer2Clean已有背景噪声迁移，Noise-Space Domain Adaptation已有residual swap，未选择简单噪声转移增强为创新。https://pmc.ncbi.nlm.nih.gov/articles/PMC8963287/ / https://arxiv.org/abs/2406.18516
+- CCTS用高低分概念对比引导父选择/编辑（§4），MLE-InsightForge组装任务/领域/改进经验并控制来源（§2–4）；不把“从差异提炼经验/概念”称空白。https://arxiv.org/html/2602.03132 / https://arxiv.org/html/2610.04927v1
 
 ### R15：输入身份寻址的数据随机流（已闭合停止，不预认创新）
 

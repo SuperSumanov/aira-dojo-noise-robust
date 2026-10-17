@@ -1,0 +1,112 @@
+{
+  "passed": true,
+  "receipt_sha256": "9339b98d853488e7787238e31d36b2eac033c7e40a0dbf58d6f4f2b1e1eeef71",
+  "verifier_sha256": "98171b3459f2fe44c30d3c5d498c0e87aeb797f568a9ba0d7d077a7952fb4041",
+  "telemetry_samples": 1185,
+  "gaps": 12,
+  "zero_samples": 21,
+  "busy_samples": 0,
+  "by_gap": [
+    {
+      "job": "18807",
+      "block": 0,
+      "gap_seconds": 178.52885937690735,
+      "samples": 2,
+      "zero": 2,
+      "busy": 0
+    },
+    {
+      "job": "18807",
+      "block": 1,
+      "gap_seconds": 175.60801362991333,
+      "samples": 2,
+      "zero": 2,
+      "busy": 0
+    },
+    {
+      "job": "18807",
+      "block": 2,
+      "gap_seconds": 175.36504316329956,
+      "samples": 2,
+      "zero": 2,
+      "busy": 0
+    },
+    {
+      "job": "18807",
+      "block": 3,
+      "gap_seconds": 154.92665004730225,
+      "samples": 2,
+      "zero": 2,
+      "busy": 0
+    },
+    {
+      "job": "18997",
+      "block": 0,
+      "gap_seconds": 178.5289273262024,
+      "samples": 2,
+      "zero": 2,
+      "busy": 0
+    },
+    {
+      "job": "18997",
+      "block": 1,
+      "gap_seconds": 175.0743486881256,
+      "samples": 1,
+      "zero": 1,
+      "busy": 0
+    },
+    {
+      "job": "18997",
+      "block": 2,
+      "gap_seconds": 176.2880163192749,
+      "samples": 1,
+      "zero": 1,
+      "busy": 0
+    },
+    {
+      "job": "18997",
+      "block": 3,
+      "gap_seconds": 154.83150434494019,
+      "samples": 1,
+      "zero": 1,
+      "busy": 0
+    },
+    {
+      "job": "19004",
+      "block": 0,
+      "gap_seconds": 178.53645539283752,
+      "samples": 2,
+      "zero": 2,
+      "busy": 0
+    },
+    {
+      "job": "19004",
+      "block": 1,
+      "gap_seconds": 173.67862105369568,
+      "samples": 2,
+      "zero": 2,
+      "busy": 0
+    },
+    {
+      "job": "19004",
+      "block": 2,
+      "gap_seconds": 170.48672914505005,
+      "samples": 2,
+      "zero": 2,
+      "busy": 0
+    },
+    {
+      "job": "19004",
+      "block": 3,
+      "gap_seconds": 154.93488073349,
+      "samples": 2,
+      "zero": 2,
+      "busy": 0
+    }
+  ],
+  "limits": [
+    "Independent arithmetic/source/transfer verification, not a second extraction of private service logs.",
+    "All sampled gaps idle does not prove continuous idle, request-ID cancellation, cache neutrality or causal quality effects.",
+    "No change to sealed primary readouts or invalid19004 status."
+  ]
+}

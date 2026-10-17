@@ -8,7 +8,7 @@ from pathlib import Path
 import selective_trial_20261017 as common
 import generation_quota_policy_20261017 as quota
 
-R=Path('/research/d7/spc/yzyang4/scheduling-generation-quota-20261017-v2')
+R=Path('/research/d7/spc/yzyang4/scheduling-generation-quota-20261017-v3')
 ORDER=('partitioned','pooled','pooled','partitioned')
 NAME=Path(__file__).name
 read,write,sha=common.read,common.write,common.sha
@@ -20,9 +20,11 @@ def schedule():
 
 def scientific_metadata():
     return dict(prior_failures=[],new_window_gpu_seconds_cap=36000,combined_gpu_seconds_cap=36000,
-        accounting_scope='This independent allocation alone is capped at36000GPUseconds. The closed previous window61849GPUseconds is NOT reused. New research window2026-10-17UTC10:28:03 to13:28:03; no second GPU batch or automatic retry in this window.',
-        staging_note='One independent repaired quota qualification after sealed19004 invalid intervention. New root/source/window; same original32matrix,seeds,budgets,arbitration and final-quality gate. Only the previously repaired native-worker hook reaches the intended selector; no changes based on19004scores.',
-        approval='User2026-10-17HK18:28 explicitly requests completing the repaired quota contrast under unchanged budget/final-quality gate and stopping the recipe if no benefit.32=2knownDEV tasks*4pairedseeds*2conditions*2reversepoolcomparisons;2service+4execution3090,<=6000s/10GPUh inclusive of startup, failures, idle and cleanup. NoAPI/base training/retries. Refuse start without CAP+600seconds left in the three-hour window.',
+        accounting_scope='One actual independent allocation capped at36000GPUseconds. The closed previous window61849GPUseconds is NOT reused. Pending administrative predecessor19118 was cancelled with0elapsed/0allocatedTRES/no node/no steps/no workers. Report due2026-10-17UTC13:28:03; queue validity separately ends20:28:03. No second actual GPU allocation or automatic retry.',
+        staging_note='Pre-start administrative supersession of never-executed19118: only root/source and queue expiry/report-time separation changed. Same original32matrix,seeds,node,hardware,budgets,arbitration and final-quality gate. One repaired quota qualification after sealed19004; no changes based on19004scores or any successor outcome.',
+        approval='User2026-10-17HK18:28 explicitly requests completing the repaired quota contrast under unchanged budget/final-quality gate and stopping the recipe if no benefit; earlier user says obtain six known-compatible GPUs and finish.32=2knownDEV tasks*4pairedseeds*2conditions*2reversepoolcomparisons;2service+4execution3090,<=6000s/10GPUh inclusive of startup, failures, idle and cleanup. NoAPI/base training/retries. Three-hour reporting is NOT an allocation/queue deadline. Refuse start without CAP+600seconds before the separate20:28:03UTC queue-validity end; still report actual progress at13:28:03UTC.',
+        queue_only_predecessor=dict(job='19118',root='/research/d7/spc/yzyang4/scheduling-generation-quota-20261017-v2',state='CANCELLED',gpu_seconds=0,workers_started=0,outcomes_read=False,
+            receipt_sha256='77fbe0d905fb46ab4d6e9fa3f9050a761af639ac74ca5e95a44a9e076c343dba',original_plan_sha256='8d4d402365257376ba3634d21929624031f349f971c314e2aa26786c42ea147b'),
         primary='Task-pool best pristineDEV timely returned solution within1020s per trajectory including common incumbent; all32denominator, task/pool medians/sampleSD, native-selected separately. Not32independent treatment replicates.',
         single_change='Generation eligibility: partitioned two permits per task versus pooled four permits total. SAME global completion-first/FIFO arbitration among eligible requests in BOTH arms. Maximum4 concurrent model requests, same2service+4execution cards, model/effort/token caps/start/history/CPU/images/time remain fixed. Both execution pools are cap1 sharedFIFO; no selective/dualGPUsharing.',
         common_execution_change='Same original-image CUDA/device qualification, fixedCPU, fatal-readiness propagation and worker closure stop as selective32. New common global request arbiter removes cross-task process-race tie-breaking in BOTH arms, so neither condition is an exact replay of older independently arbitrated per-task quotas.',
@@ -58,7 +60,7 @@ def preflight():
     print(json.dumps(read(R/'preflight.json')))
 
 def configure():
-    common.WINDOW_END=int(common.datetime(2026,10,17,13,28,3,tzinfo=common.timezone.utc).timestamp())
+    common.WINDOW_END=int(common.datetime(2026,10,17,20,28,3,tzinfo=common.timezone.utc).timestamp())
     common.R=R;common.NAME=NAME;common.__file__=__file__;common.ORDER=('shared',)*4
     common.schedule=schedule;common.scientific_metadata=scientific_metadata;common.preflight=preflight
     common.configure()

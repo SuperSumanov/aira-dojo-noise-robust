@@ -1,0 +1,21 @@
+{
+  "allocated_tres": "",
+  "elapsed_seconds": 0,
+  "end": "2026-10-17T19:09:49",
+  "final_state": "CANCELLED by 7542",
+  "gpu_seconds": 0,
+  "job": "19118",
+  "job_steps": 0,
+  "node_list": "None assigned",
+  "plan_sha256": "8d4d402365257376ba3634d21929624031f349f971c314e2aa26786c42ea147b",
+  "prior_state": "",
+  "read_outcomes": false,
+  "reason": "Three-hour reporting deadline was incorrectly also a launch cutoff. Replace never-started job with bounded queue validity while keeping reporting deadline and total allocation cap.",
+  "recorder_note": "Initial cancellation succeeded but first recorder rejected Slurm filling Start=End=cancel timestamp. Read-only sacct/scontrol confirmed elapsed0, no allocatedTRES, no node/steps/service/workers. Finalize-only does not repeat cancellation.",
+  "root": "/research/d7/spc/yzyang4/scheduling-generation-quota-20261017-v2",
+  "scope": "Administrative pre-start queue-expiry correction, not retry of an executed experiment. Original32matrix/seeds/hardware/100min/10GPUh/quality gates unchanged. Preserve originalroot/plan; no second actual GPU allocation.",
+  "service_started": false,
+  "start": "2026-10-17T19:09:49",
+  "utc": "2026-10-17T11:10:47.147020+00:00",
+  "workers_started": 0
+}

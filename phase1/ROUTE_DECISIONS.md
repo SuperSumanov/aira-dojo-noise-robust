@@ -52,7 +52,7 @@
 - 长Debug借用wait主要无效92.26139163970947/未联结211.08816409111023请求秒；提前可否救活未知，不能用原结局当反事实。quota预期下降，不凭总等待扩跑。
 - 19004修复过三层CPU门：selector、真实hook/事务、真实wrapper多进程竞争；8进程/条件，峰值4/4、借用0/4、全释放。模型body是stub，线上干预/终分未验。
 - 上述入口：proposal_opportunities_crosscheck、admission-timing-independent、prompt_contract_crosscheck、opportunity_latency_crosscheck、quota-feedback-links-independent、quota-multiprocess-independent（均20261017）。精确SHA/长限制在原件及b1603f95。
-- 不从无效19004分数追选策略，不重复原读出；唯一新root quota-v2/19118原32矩阵/原门/≤10GPUh。新三小时窗口仅此GPU批。
+- 不从无效19004分数追选策略，不重复原读出；唯一实际quota批原32矩阵/原门/≤10GPUh。19118从未分配/执行已取消；v3只修排队有效期，汇报时刻不再误作启动截止，所有科学字段保持。
 - 共享服务边界只读核验：18807/18997/19004共1185数值遥测，12个尾部间隔21采样均Running/Waiting=0；未观测到跨池持续忙碌。独立哈希/代数通过，非第二次原日志提取；不证明连续空闲/取消/缓存中性，不救19004。service-boundaries-independent-20261017.json。
 - 已有输出互补性：18770/18807/18997全96条/24池，warm和及时有效CSV按字节去重；两向整图像重划分，经典greedy20去噪10/12双向正，较差方向median .00023015673995906843，仅2/12双向≥.001；Aerial2/12。全均值去噪0/12。不是新holdout/独立重复/同预算收益；extraCPU单记。独立Node只核代数，不是原始预测复提取。output_complementarity_20261017。
 - 后续独立原始12去噪池+Gram实现复算maxdiff2.4424906541753444e-14；fit-only仿射校准并选单模型12/12双向正，greedy胜校准仅5/12。原“集成10/12”不可当胜廉价强参照；勿把校准/集成改名成新方法。校准后结构优化与R12/LLaMEA-HPO等旧机制重叠，不能仅据这一旧DEV诊断自动恢复路线。

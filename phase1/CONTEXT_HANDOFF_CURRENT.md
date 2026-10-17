@@ -1,7 +1,7 @@
 # 当前短交接：现场、方法边界和恢复动作
 
-最后观察：2026-10-17香港19:01；新窗口18:28:03–21:28:03，用户明确批准修复quota原矩阵/预算/终分门。
-唯一新批19118仍gpu3六卡Resources排队；prepare32/32与哈希通过，submit会话31539退出0，不重复submit。18:58原兼容gpu1/3/27/28/29均不足六卡，调度器预计启动晚于窗口，非保证时刻。
+最后观察：2026-10-17香港19:10；用户明确批准修复quota原矩阵/预算/终分门，三小时汇报HK21:28:03不变。
+19118已在19:09:49零执行取消：elapsed0/AllocTRES空/None assigned/no steps/no服务worker。保留v2原root。取消记录器最初错误要求Start=Unknown；Slurm实际Start=End=取消时刻，独立sacct/scontrol核验后只读补回执，未重复取消。
 整理前完整交接与精确SHA在Git b1603f953f1e20e8080e075ec2ebb6e1a4cc802f；不重读全历史。
 
 ## 位置与最新引用
@@ -49,12 +49,13 @@
 - output_complementarity_20261017回执SHA87480e08d6b41edfdf7dc73b7abba9ac351c3eeca50a036d85db2b8252266fd2；独立Node仅代数。CPU438.077043838799s，不回填旧GPU预算；重划分非新holdout/确认，经典集成非创新。
 - 新独立CPU原始图像/预测/资格+Gram复算去噪12池全通过，maxdiff2.4424906541753444e-14，341.002689045854s；calibration-v1.safe.json SHA721a883c79ff91a01bccc4e621f13a655e5ad045cb358df763804bcba396f98b。会话70707退出0。
 - fit-only校准并选单模型12/12双向正、较差方向median .0005945351843063005；greedy对校准仅5/12、median−.0006450941008101707。不能把之前集成线索宣称胜强基线；无新任务/holdout/E2E证明，不扩GPU批、不改19118门。
+- 特别限制：去噪仅11张DEV图像、5/6整图划分；百万像素不是独立n，12池共享参考图。Aerial1417图；不把RMSE校准收益泛化到AUC。原CPU分析已完成，勿反复加配方救信号。
 
 ## 唯一下一分支与禁止重做
 
-- 当前19118是唯一quota资格：原32矩阵/seeds，partitioned2+2 vs pooled4，同全局Analyze优先/FIFO，执行cap1；2服务+4执行，≤100min/10GPUh含全部成本。
-- 根scheduling-generation-quota-20261017-v2，planSHA8d4d402365257376ba3634d21929624031f349f971c314e2aa26786c42ea147b；source dd859b45，entrySHA63edd0b9abb7996028d5bade07f8be44c853ab949ffc5e690f8b8d777a483c46。旧v1/19004不修改；不得重复prepare/submit。
-- 窗口UTC13:28:03硬限；控制器要求开跑时余≥6600s。若UTC11:38前仍排队，只取消本次19118并保留未执行回执，不改窗口救跑；不碰Held12535。quota_status_v2_20261017.py只读结构，不看中途质量。
+- 唯一实际quota资格保持原32矩阵/seeds，partitioned2+2 vs pooled4，同全局Analyze优先/FIFO，执行cap1；2服务+4执行，≤100min/10GPUh含全部成本。
+- v2/19118原plan8d4d402365257376ba3634d21929624031f349f971c314e2aa26786c42ea147b、source dd859b45封存为未执行；取消回执quota-v2-never-started-cancel.safe.json SHA77fbe0d905fb46ab4d6e9fa3f9050a761af639ac74ca5e95a44a9e076c343dba。0GPU秒，不重复提交v2。
+- v3根scheduling-generation-quota-20261017-v3：仅预启动行政修改排队有效期UTC20:28:03，原100min/10GPUh/科学字段全不变。汇报仍UTC13:28:03，不把排队叫开跑；无第二实际GPU批/补跑。新source/plan冻结准备中；不读当前质量，不碰Held12535。
 - 先验证真实worker借用；有效干预但原终分门false则停配方，不靠等待下降/补seed/新规则扩大。当前无新算法阳性。
 - 公平契约/原质量门见CURRENT_DIRECTION；近邻与旧路线见ROUTE_DECISIONS。18819局部排序反转不等于新来源确认或胜SchedMate。
 - 无API/底座训练；不读first960/Target300/522/D_val/officialtest/16560；不碰Held12535、学长分支或用户dirty。

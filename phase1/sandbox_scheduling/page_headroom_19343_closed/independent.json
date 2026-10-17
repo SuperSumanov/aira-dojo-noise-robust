@@ -1,0 +1,39 @@
+{
+  "independent_streaming_score_verified": true,
+  "planned": 16,
+  "recomputed": 0,
+  "maximum_score_difference": null,
+  "pixel_counts": [],
+  "cells": [
+    {
+      "fold": 0,
+      "seed": 5221,
+      "qualified": false,
+      "pass_gate": false
+    },
+    {
+      "fold": 0,
+      "seed": 5222,
+      "qualified": false,
+      "pass_gate": false
+    },
+    {
+      "fold": 1,
+      "seed": 5221,
+      "qualified": false,
+      "pass_gate": false
+    },
+    {
+      "fold": 1,
+      "seed": 5222,
+      "qualified": false,
+      "pass_gate": false
+    }
+  ],
+  "opportunity_gate": false,
+  "summary_sha256": "0038cd86bce6c5c56f30b5711e803108fab6f89c641c668bbb90c800ef2aea05",
+  "runs_sha256": "0a34d83230d2f66e7cb8c46c9e2eef9d01dd0ad073dc4eff2687032f12721cad",
+  "verifier_sha256": "0b83524def0caab8e6d1f59744031b54ace9faa3db0e75c68f3dfb4d604c3b09",
+  "seconds": 0.006357055623084307,
+  "limit": "Independent ID/pixel/SSE implementation and arithmetic, not independent data or repetitions; runtime qualification rests on recorded receipts."
+}

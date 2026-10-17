@@ -1,0 +1,18 @@
+{
+  "cleanup_verified": true,
+  "elapsed_seconds": 328.9167049890384,
+  "error": {
+    "completed": 1,
+    "type": "AssertionError"
+  },
+  "planned": 16,
+  "records": [
+    {
+      "cleanup": true,
+      "elapsed_seconds": 328.61844244995154,
+      "index": 0,
+      "returncode": 0,
+      "valid": false
+    }
+  ]
+}

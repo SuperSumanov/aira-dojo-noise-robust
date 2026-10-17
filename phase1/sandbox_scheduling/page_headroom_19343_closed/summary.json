@@ -1,0 +1,109 @@
+{
+  "claim": "Single-task classical candidate-family headroom only. No new method, generated-policy benefit, or independent multi-task confirmation.",
+  "complete": 1,
+  "contrasts": [
+    {
+      "fold": 0,
+      "gains": {},
+      "pass_gate": false,
+      "qualified": false,
+      "seed": 5221
+    },
+    {
+      "fold": 0,
+      "gains": {},
+      "pass_gate": false,
+      "qualified": false,
+      "seed": 5222
+    },
+    {
+      "fold": 1,
+      "gains": {},
+      "pass_gate": false,
+      "qualified": false,
+      "seed": 5221
+    },
+    {
+      "fold": 1,
+      "gains": {},
+      "pass_gate": false,
+      "qualified": false,
+      "seed": 5222
+    }
+  ],
+  "gpu_hours": 0.09222222222222222,
+  "gpu_seconds": 332,
+  "groups": [
+    {
+      "fold": 0,
+      "median": null,
+      "mode": "cnn0",
+      "n": 0,
+      "sample_sd": null
+    },
+    {
+      "fold": 0,
+      "median": null,
+      "mode": "cnn1",
+      "n": 0,
+      "sample_sd": null
+    },
+    {
+      "fold": 0,
+      "median": null,
+      "mode": "patch",
+      "n": 0,
+      "sample_sd": null
+    },
+    {
+      "fold": 0,
+      "median": null,
+      "mode": "multiscale",
+      "n": 0,
+      "sample_sd": null
+    },
+    {
+      "fold": 1,
+      "median": null,
+      "mode": "cnn0",
+      "n": 0,
+      "sample_sd": null
+    },
+    {
+      "fold": 1,
+      "median": null,
+      "mode": "cnn1",
+      "n": 0,
+      "sample_sd": null
+    },
+    {
+      "fold": 1,
+      "median": null,
+      "mode": "patch",
+      "n": 0,
+      "sample_sd": null
+    },
+    {
+      "fold": 1,
+      "median": null,
+      "mode": "multiscale",
+      "n": 0,
+      "sample_sd": null
+    }
+  ],
+  "limits": [
+    "Classical model/feature controls, not an invented method or automated generation gain.",
+    "One task; public source groups re-used across folds, not independent tasks or a new protected cohort.",
+    "Historical code selection used oldDEV; training starts from scratch. All historical/init cost is a shared sunk asset, not free E2E generation.",
+    "Uniform per-rendering training sampling is identical in both pixel feature arms; no query labels in training."
+  ],
+  "opportunity_gate": false,
+  "plan_sha256": "d101cde6a0d9409f56eb372cf3e0c0db9e5a5888992d62a8da5c94539d1f1fcb",
+  "planned": 16,
+  "qualified": 0,
+  "reader_sha256": "7a8da1299c9d41acd57b2bc3fb8818991939f936d4ad2975a8f205f1b5d4b999",
+  "recomputed": 0,
+  "source_commit": "2b4972434e5bf6b009b00be20499ebdb8101b5a5",
+  "started": 1,
+  "structure": false
+}

@@ -1,0 +1,17 @@
+block,executed_sha256,fold,index,mode,program,seed,slot,task,source_commit,budget_seconds,started,complete,qualified,score,prediction_sha256,exec_seconds,elapsed_seconds,cuda_steps,feature_columns,fit_seconds,binding_ok,affinity_ok,method_ok
+0,8f340db6e78d59463703a62e693cf84bb18a184da3b893c0907ab3123e713b32,0,0,cnn0,0,5221,0,denoising-dirty-documents,2b4972434e5bf6b009b00be20499ebdb8101b5a5,300,True,True,False,,,311.54585458990186,319.51758424704894,,,,True,True,False
+0,e1903db2747737e7fb637666ae9abe6141c746957d43c9b767ce6bbd7567b271,0,1,cnn1,1,5221,0,denoising-dirty-documents,2b4972434e5bf6b009b00be20499ebdb8101b5a5,300,False,False,False,,,,,,,,False,False,False
+0,9e3b14aa337143703efce4d9f1bf9c60ae42f14b44d148c54561561179c9e149,0,2,patch,2,5221,0,denoising-dirty-documents,2b4972434e5bf6b009b00be20499ebdb8101b5a5,300,False,False,False,,,,,,,,False,False,False
+0,9e3b14aa337143703efce4d9f1bf9c60ae42f14b44d148c54561561179c9e149,0,3,multiscale,3,5221,0,denoising-dirty-documents,2b4972434e5bf6b009b00be20499ebdb8101b5a5,300,False,False,False,,,,,,,,False,False,False
+1,ec8852af70a8a008a3dd950c6c8de0dd48a4b82a992dde48d2d3ddf0a2a15a68,0,4,multiscale,3,5222,0,denoising-dirty-documents,2b4972434e5bf6b009b00be20499ebdb8101b5a5,300,False,False,False,,,,,,,,False,False,False
+1,ec8852af70a8a008a3dd950c6c8de0dd48a4b82a992dde48d2d3ddf0a2a15a68,0,5,patch,2,5222,0,denoising-dirty-documents,2b4972434e5bf6b009b00be20499ebdb8101b5a5,300,False,False,False,,,,,,,,False,False,False
+1,51d1f872cf09c80b75ece2cca54bd7219467872162e45146cf4da7b8ae26bfb5,0,6,cnn1,1,5222,0,denoising-dirty-documents,2b4972434e5bf6b009b00be20499ebdb8101b5a5,300,False,False,False,,,,,,,,False,False,False
+1,90e003e65c86d30b181a082a439684a24301e17ddf16b03c284e952846ccc41c,0,7,cnn0,0,5222,0,denoising-dirty-documents,2b4972434e5bf6b009b00be20499ebdb8101b5a5,300,False,False,False,,,,,,,,False,False,False
+2,e1903db2747737e7fb637666ae9abe6141c746957d43c9b767ce6bbd7567b271,1,8,cnn1,1,5221,0,denoising-dirty-documents,2b4972434e5bf6b009b00be20499ebdb8101b5a5,300,False,False,False,,,,,,,,False,False,False
+2,8f340db6e78d59463703a62e693cf84bb18a184da3b893c0907ab3123e713b32,1,9,cnn0,0,5221,0,denoising-dirty-documents,2b4972434e5bf6b009b00be20499ebdb8101b5a5,300,False,False,False,,,,,,,,False,False,False
+2,9e3b14aa337143703efce4d9f1bf9c60ae42f14b44d148c54561561179c9e149,1,10,multiscale,3,5221,0,denoising-dirty-documents,2b4972434e5bf6b009b00be20499ebdb8101b5a5,300,False,False,False,,,,,,,,False,False,False
+2,9e3b14aa337143703efce4d9f1bf9c60ae42f14b44d148c54561561179c9e149,1,11,patch,2,5221,0,denoising-dirty-documents,2b4972434e5bf6b009b00be20499ebdb8101b5a5,300,False,False,False,,,,,,,,False,False,False
+3,ec8852af70a8a008a3dd950c6c8de0dd48a4b82a992dde48d2d3ddf0a2a15a68,1,12,patch,2,5222,0,denoising-dirty-documents,2b4972434e5bf6b009b00be20499ebdb8101b5a5,300,False,False,False,,,,,,,,False,False,False
+3,ec8852af70a8a008a3dd950c6c8de0dd48a4b82a992dde48d2d3ddf0a2a15a68,1,13,multiscale,3,5222,0,denoising-dirty-documents,2b4972434e5bf6b009b00be20499ebdb8101b5a5,300,False,False,False,,,,,,,,False,False,False
+3,90e003e65c86d30b181a082a439684a24301e17ddf16b03c284e952846ccc41c,1,14,cnn0,0,5222,0,denoising-dirty-documents,2b4972434e5bf6b009b00be20499ebdb8101b5a5,300,False,False,False,,,,,,,,False,False,False
+3,51d1f872cf09c80b75ece2cca54bd7219467872162e45146cf4da7b8ae26bfb5,1,15,cnn1,1,5222,0,denoising-dirty-documents,2b4972434e5bf6b009b00be20499ebdb8101b5a5,300,False,False,False,,,,,,,,False,False,False

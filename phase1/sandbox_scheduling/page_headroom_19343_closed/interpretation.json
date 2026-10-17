@@ -1,0 +1,13 @@
+{
+  "status": "CLOSED_INCOMPLETE_NO_QUALITY_COMPARISON",
+  "job": "19343",
+  "assigned": 16,
+  "started": 1,
+  "qualified": 0,
+  "scored": 0,
+  "gpu_seconds": 332,
+  "old_receipts_unchanged": true,
+  "clarification": "The old independent.json flag independent_streaming_score_verified=true was vacuous because recomputed=0. Only denominator, gate arithmetic and receipt hashes were checked. No quality score was independently verified; this is not a method win or confirmed negative result.",
+  "stopping_decision": "Do not rerun, replace programs, add seeds, extend time or reuse unused budget. A separately frozen blind v2 amendment changes only query-rendering workload; it cannot rescue this original gate.",
+  "summary_sha256": "0038cd86bce6c5c56f30b5711e803108fab6f89c641c668bbb90c800ef2aea05"
+}

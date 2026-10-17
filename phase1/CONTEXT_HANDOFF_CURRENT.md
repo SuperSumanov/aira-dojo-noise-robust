@@ -1,6 +1,6 @@
 # 当前短交接：现场、边界和恢复动作
 
-最后观察2026-10-18香港00:51；新用户窗口至HK03:30/UTC19:30。停止quota，选择R15小规模随机流选解资格。尚未提交GPU。
+最后观察2026-10-18香港00:57；新用户窗口至HK03:30/UTC19:30。停止quota；R15 job19245已在gpu3四卡实际开跑，前4条started。
 完整上一交接在Git d9ddd4951be9fe8b7b9f6b352fb00d315559eb37；原件不重读覆盖。
 
 ## 当前位置与授权
@@ -9,9 +9,9 @@
 - 本次已fetch：myfork/phase1-value-critic=d9ddd4951be9fe8b7b9f6b352fb00d315559eb37；学长dojo-reproduce=e4d478350e704e8c5927eba566b2847aaa6dcbab，无新提交。
 - 用户已统一批准限定实验，不重复索权；旧批不重开、失败不自动重试、无界试错不允许。新矩阵/成本/门已在会话给出。
 - SSH yzyang4@linux5.cse.cuhk.edu.hk；PY=/research/d7/spc/yzyang4/venvs/aira/bin/python；SLURM_CONF=/opt1/slurm/gpu-slurm.conf。
-- stage=/research/d7/spc/yzyang4/quota-queue-source-20261017-ymOz45；新root计划rng-selection-20261018-v1，尚未prepare。
+- stage=/research/d7/spc/yzyang4/quota-queue-source-20261017-ymOz45；新root=/research/d7/spc/yzyang4/rng-selection-20261018-v1，prepare已完成不可重复。
 - 本地Python=C:/Users/yanze/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe；本机无torch，用远端CPU做新hook测试。
-- 最后队列16:44UTC仅Held12535，本人无活动GPU；gpu3 idle，gpu1/27/29 mix。勿把旧状态当实时，不碰Held。
+- job19245 RUNNING/gpu3/4GPU+8CPU，第一次结构观察elapsed20s、index0–3 started/0finished。不读中途分数，不碰Held12535。
 
 ## 本窗口已完成和待做
 
@@ -28,7 +28,8 @@
 - 三臂global/sampler/addressed，反序选解块；源码、镜像、300s、2CPU、独占GPU固定。寻址只干预数据RNG，不把模型初始化/墙钟轨迹当完全受控。
 - 门：完整32、CUDA/隔离/输入/干预/成本过；addressed在两个部署seed均比global/sampler去噪RMSE至少好.001且Aerial均不退。否则停此配方，不补seed/换源/重投。
 - 固定库、新RNG但同DEV，仅探索资格；经典CRN非新颖，同库部署不是自适应LLM搜索。不能作顶会主张或泛化确认。
-- 下一步完成资格及冻结source/plan，再一次提交；只读结构监视，结束后唯一读出+独立统计。当前无结果，不提前解读。
+- source a28aae1677b22460dff2d840ae2c7df31d6393cb；plan b0f074e902c947338fdd54344e8acf248cac51c2fa68bfc8a8fdaee32c5b4290。三核心文件本地/远端SHA一致；提交会话80428只执行一次，不重复prepare/submit。
+- 下一步只读本批结构监视，结束后一次运行冻结rng_selection_readout_20261018.py，再独立verify_rng_selection_20261018.mjs核传输/选择/阈值；实际cost取sacct，不把cap当实耗。当前无结果，不提前解读。
 
 ## 必须保留的关闭事实
 

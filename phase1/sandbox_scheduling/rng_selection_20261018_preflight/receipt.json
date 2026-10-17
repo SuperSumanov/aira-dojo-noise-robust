@@ -1,0 +1,39 @@
+{
+  "observed_utc": "2026-10-17T16:53:43Z",
+  "source_commit": "a28aae1677b22460dff2d840ae2c7df31d6393cb",
+  "plan_sha256": "b0f074e902c947338fdd54344e8acf248cac51c2fa68bfc8a8fdaee32c5b4290",
+  "root": "/research/d7/spc/yzyang4/rng-selection-20261018-v1",
+  "status_at_observation": "PREPARED; submit process checking image/runtime hashes; no launch receipt yet",
+  "checks": {
+    "question": "Fixed-library decision transfer, not throughput or adaptive LLM search",
+    "scope": "Four chronological valid-CUDA source programs from closed owned DEV batch 18997; no score ranking or replacement",
+    "matrix": "24 selection executions and 8 common deployment audits; every arm 4 selection executions per task",
+    "budget": "4 RTX3090 x <=3600 allocation seconds; startup, idle, failures and cleanup included; no paid API",
+    "versions": "Original task SIF and complete frozen AIRA runtime file manifest; no package upgrade or CPU fallback",
+    "seeds": "Selection4101/4102; common original-global deployment4103/4104; original program0 retains its TTA torch.manual_seed(1000+k)",
+    "information": "Existing public-train development views only; hidden search references remain external; reserved content not copied; private task directory absent",
+    "fairness": "Original source/input/time300s/2physicalCPU/oneGPU fixed; only data RNG policy varies; common instrumentation overhead counted",
+    "verification": "Actual factory32 configs and four historical CUDA receipts passed; host and actual SIF CPU hook selftests passed; global instrumented output unchanged in synthetic test",
+    "readout": "Seal choice from24 before opening8 deployment scores; all32 retained; original selection gate and missingness tests passed",
+    "stop": "Infrastructure/isolation/cleanup failure stops; no automatic retries, source replacements or extension; quota and all old batches remain closed"
+  },
+  "synthetic_hook_result": {
+    "global": {"order_equal": false, "samples_equal": false},
+    "sampler": {"order_equal": true, "samples_equal": false},
+    "addressed": {"order_equal": true, "samples_equal": true},
+    "epochs_differ": true
+  },
+  "core_file_sha256": {
+    "data_rng_coupling_20261018.py": "3b056e177c6bd28398370a3febd3b7931b2218030332fded26e0dc87344dd0e4",
+    "rng_selection_pilot_20261018.py": "a60dc86aecb59b9baf4e20fcaf611b2529eb93e164f89f2185257e87669b2722",
+    "rng_selection_readout_20261018.py": "7cf2836df88830249ba6125f90a2d27c66bac9ac828b13b4368159d2debe31f5"
+  },
+  "limitations": [
+    "Classical common random numbers and synchronized streams; not claimed novel",
+    "Two fixed programs per task and two audit seeds do not establish significance or broad generalization",
+    "DEV data already used; new seeds are not new held-out data",
+    "CPU data stream coupling does not align different augmentation operators, model parameters, CUDA kernels or wall-clock stopping",
+    "Removing global augmentation draws may shift subsequent model initialization; not a pure variance-only decomposition",
+    "Changing source-specific fold or probe iteration counts can change event alignment; actual traces must be examined"
+  ]
+}

@@ -1,13 +1,13 @@
 # 路线与机制索引：先查旧证据，再提新方向
 
-2026-10-17收束。方向/授权只读CURRENT_DIRECTION，现场只读CONTEXT_HANDOFF_CURRENT。
+2026-10-18新增R15有限资格。方向/授权只读CURRENT_DIRECTION，现场只读CONTEXT_HANDOFF_CURRENT。
 本次压缩前全文在Git b1603f953f1e20e8080e075ec2ebb6e1a4cc802f:phase1/ROUTE_DECISIONS.md。
 旧细节在6c47086a603b4c7afcc25a3e80f9d5648c3bee63；更早R1–13在246e66a56151ebfb7b74b5808eeeec82b9de0d8c。
 原结果/撤回/限制均留存；按机制检索历史，不每次全读。停止配方≠证明普遍无效。
 
 ## R14：同预算终分，非吞吐主张
 
-当前只保留一次quota强基线资格问题；矩阵、原门、边界见CURRENT_DIRECTION。
+quota已停止；矩阵、原门、边界见CURRENT_DIRECTION。不补救旧配方。
 证据根目录phase1/sandbox_scheduling；表内目录与固定批次可直接检索。
 
 | 机制 / 批次 | 证据与结论 | 恢复限制 |
@@ -106,6 +106,17 @@
 - 未读/未复现不说不存在；新颖性定稿重核原文。场景不同、旧机制新名字或局部阳性都不自动成为方法贡献。
 
 ## 新提案只需四项
+
+### R15：输入身份寻址的数据随机流（仅资格，不预认创新）
+
+- 相比R14改资源排队，本轮改训练数据比较的随机耦合；不更新模型、不复用权重，不是R4缓存。2任务×2已知程序的固定库，24选解+8共同部署执行，≤4GPUh。
+- 101有效返回均见DataLoader且explicit-generator为0（有重复、仅固定AST拼写）；不是运行时噪声证明。CPU合成确认global与sampler/addressed的机制区别，尚无真实效果。
+- 原代码/图像/300s/每程序2CPU+1GPU一致；global/sampler/addressed反序两选解seed。先封存选解再看新seed同库部署；完整分母及两个强参照，详CURRENT_DIRECTION。
+- CRN经典：Pearce等KG-CRN已联合选择配置和seed、利用噪声相关性作昂贵优化；不是本项目首创。https://arxiv.org/html/1910.09259
+- 事件/个体同步随机流已有医学模拟先例，不能仅换成样本/epoch称新方法。https://pmc.ncbi.nlm.nih.gov/articles/PMC2761656/
+- PyTorch官方显式generator/worker_init_fn是便宜强参照；此处num_workers=0。https://docs.pytorch.org/docs/stable/notes/randomness.html
+- Net2Net/LEMONADE已有权重继承，HELIX已有工作流缓存；因此本轮未选择泛化“从父程序状态继续训练”作为新主张。https://arxiv.org/abs/1511.05641 / https://arxiv.org/abs/1804.09081 / https://arxiv.org/abs/1812.05762
+- 潜在贡献必须另证自由代码修改下可自动对齐、胜标准隔离随机源及真实搜索终分；本小库试验不可能单独满足。无选解变化/不胜两强参照则停，不增加调度补丁。
 
 1. 对应旧路线与原结果；未在当前窗口看到不等于没做过。
 2. 实质改变哪个决策、信息或行动，而非模型/seed/名字微调。

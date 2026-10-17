@@ -110,6 +110,8 @@ quota已停止；矩阵、原门、边界见CURRENT_DIRECTION。不补救旧配�
 - 10/18新增事实：旧去噪92train/36清页，11DEV参考全在train；四个只用public的模板检索均RMSE0，独立复算通过。旧提示强制CUDA，不能叫模板胜旧公平臂，或把CNN集中称生成器自由搜索缺陷。新grouped-public参照只问去除捷径后是否有候选空间，非创新/旧R12改名。
 - Noise-Transfer2Clean已有背景噪声迁移，Noise-Space Domain Adaptation已有residual swap，未选择简单噪声转移增强为创新。https://pmc.ncbi.nlm.nih.gov/articles/PMC8963287/ / https://arxiv.org/abs/2406.18516
 - CCTS用高低分概念对比引导父选择/编辑（§4），MLE-InsightForge组装任务/领域/改进经验并控制来源（§2–4）；不把“从差异提炼经验/概念”称空白。https://arxiv.org/html/2602.03132 / https://arxiv.org/html/2610.04927v1
+- 10/18核CoMind v3附录J：去噪案例已使用公开pixel-patch/多尺度滤波特征、RF/XGBoost方案及社区讨论；换经典模型或给生成器这些知识不是新颖性。当前两种LightGBM只作机会参照，非复现其资源设置。https://arxiv.org/html/2506.20640v3
+- Silent Failures §4.2–4.3已讨论高分与泄漏/方法错误并存，显式提示和专家差距；MLToolBench已有诊断观察干预，POPPER已有主动证伪。故不把本次重复页发现扩张成首个完整性审计/通用诊断方法；其发现只经本项目数据独立验证。https://arxiv.org/html/2610.14115 / https://arxiv.org/html/2609.36679 / https://proceedings.mlr.press/v267/huang25n.html
 
 ### R15：输入身份寻址的数据随机流（已闭合停止，不预认创新）
 

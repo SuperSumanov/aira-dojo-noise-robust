@@ -47,7 +47,16 @@ def verify(root,readout,out):
     assert summary['plan_sha256']==digest(root/'plan.json')
     assert summary['source_commit']==p['source_commit']
     assert all(all(r[k]==s[k] for k in ('index','mode','fold','seed','program')) for r,s in zip(rows,p['schedule']))
-    differences=[];counts=[]
+    differences=[];counts=[];group_checks=[]
+    for spec in p['views']:
+        view=Path(spec['view']);m=read(view/'manifest.json')
+        def pixel_group(path):
+            a=np.array(Image.open(path).convert('L'),dtype=np.uint8)
+            return (a.shape,hashlib.sha256(a.tobytes()).hexdigest())
+        train={pixel_group(view/'public/train_cleaned'/n) for n in m['train_ids']}
+        query={pixel_group(view/'search-reference'/n) for n in m['query_ids']}
+        assert len(train)==24 and len(query)==12 and not train&query
+        group_checks.append(dict(train_source_pages=24,query_source_pages=12,overlap=0,query_images=len(m['query_ids'])))
     for row in rows:
         if row['score'] is None:continue
         pred=root/f"episode-{row['index']}/prediction.private.csv"
@@ -69,7 +78,9 @@ def verify(root,readout,out):
     assert summary['complete']==sum(r['complete'] for r in rows)
     assert summary['qualified']==sum(r['qualified'] for r in rows)
     assert math.isclose(summary['gpu_hours'],summary['gpu_seconds']/3600,abs_tol=1e-12)
-    result=dict(independent_streaming_score_verified=True,planned=16,recomputed=len(differences),
+    result=dict(independent_streaming_score_verified=len(differences)==16,
+        gate_arithmetic_verified=True,score_verification_status='ALL16_VERIFIED' if len(differences)==16 else 'PARTIAL' if differences else 'NO_SCORES_TO_VERIFY',
+        group_checks=group_checks,planned=16,recomputed=len(differences),
         maximum_score_difference=max(differences,default=None),pixel_counts=counts,
         cells=cells,opportunity_gate=summary['opportunity_gate'],
         summary_sha256=digest(readout/'summary.json'),runs_sha256=digest(readout/'runs.json'),

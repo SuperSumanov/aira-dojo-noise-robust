@@ -1,7 +1,7 @@
 # 当前短交接：现场、方法边界和恢复动作
 
-最后整理：2026-10-17香港18:38；新窗口18:28:03–21:28:03，用户明确批准修复quota原矩阵/预算/终分门。
-18:34队列只见旧Held12535；新quota-v2入口准备中，尚未创建远端root/提交，无自动跟进/goal。
+最后整理：2026-10-17香港18:34；新窗口18:28:03–21:28:03，用户明确批准修复quota原矩阵/预算/终分门。
+18:31队列只见旧Held12535；源dd859b450ea1515394eab83fabfecfa21c7c25a2的新quota-v2远端prepare进行中，未提交。先前18:38/18:34观察时间为人工误写，已按工具UTC纠正。
 整理前完整交接与精确SHA在Git b1603f953f1e20e8080e075ec2ebb6e1a4cc802f；不重读全历史。
 
 ## 位置与最新引用
@@ -49,7 +49,7 @@
 ## 唯一下一分支与禁止重做
 
 - 未来仅一次quota资格：原32矩阵/seeds，partitioned2+2 vs pooled4，同全局Analyze优先/FIFO，执行cap1；2服务+4执行，≤100min/10GPUh含全部成本。
-- 新入口R已改为scheduling-generation-quota-20261017-v2，窗口硬限UTC13:28:03；源冻结/远端准备进行中。旧v1/19004不修改。优先已跑通gpu3，检查必要源/实际hook及相同输入，不重复问批准。
+- 新入口R为scheduling-generation-quota-20261017-v2，窗口硬限UTC13:28:03；source dd859b45，entrySHA63edd0b9abb7996028d5bade07f8be44c853ab949ffc5e690f8b8d777a483c46，stage quota-source-20261017-ARL8L2。旧v1/19004不修改；先等prepare退出0，再submit一次。
 - 先验证真实worker借用；有效干预但原终分门false则停配方，不靠等待下降/补seed/新规则扩大。当前无新算法阳性。
 - 公平契约/原质量门见CURRENT_DIRECTION；近邻与旧路线见ROUTE_DECISIONS。18819局部排序反转不等于新来源确认或胜SchedMate。
 - 无API/底座训练；不读first960/Target300/522/D_val/officialtest/16560；不碰Held12535、学长分支或用户dirty。

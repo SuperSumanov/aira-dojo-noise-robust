@@ -61,6 +61,7 @@
 - v3根scheduling-generation-quota-20261017-v3：代理预启动行政裁决将排队有效期定UTC20:28:03，非新增资源批准；原100min/10GPUh/科学字段不变。汇报仍UTC13:28:03；无第二实际GPU批/补跑。source6db9d7c6/入口SHA722d9e1516221a2f054607228443444f73c27e0b6dab765303514ba19d2cb6a6。
 - prepare9780/submit3448均退出0，job19136，planSHA2736fb9326f62f3c83bc0cebc4854ba629991e5b5e4bb69e708aa91e24b74e7e。预启动32配置/91非入口源码核验通过（根路径/派生scorerSHA归一化）；旧parity-v1无源码计数的过宽scope由v2更正，原件留存。不能重调prepare/submit；quota_status_v2脚本明确传v3root读结构；不读中途质量或碰Held12535。
 - 纯合成代数检查：RMSE三个评分可恢复仿射OLS（原预测已评分时额外2查询），但未调用真实接口/新标签/模型。见ROUTE；仅潜在合法参照，不是新方法或实测收益。CPU诊断已结束，不再补配方。
+- 19:42核经典歧义分解：同样本MSE原单分数+预测差异足以计算凸组合损失，无须额外常量查询；4纯合成例maxerror1.5449880957918438e-18。Krogh–Vedelsby1994已有，非新方法/线上收益；仅候选凸包、非未来搜索上界。适用/信息/成本限制见ROUTE，不接当前批次，不再用旧DEV拟合救信号。
 - 先验证真实worker借用；有效干预但原终分门false则停配方，不靠等待下降/补seed/新规则扩大。当前无新算法阳性。
 - 公平契约/原质量门见CURRENT_DIRECTION；近邻与旧路线见ROUTE_DECISIONS。18819局部排序反转不等于新来源确认或胜SchedMate。
 - 无API/底座训练；不读first960/Target300/522/D_val/officialtest/16560；不碰Held12535、学长分支或用户dirty。

@@ -52,8 +52,9 @@
 - 长Debug借用wait主要无效92.26139163970947/未联结211.08816409111023请求秒；提前可否救活未知，不能用原结局当反事实。quota预期下降，不凭总等待扩跑。
 - 19004修复过三层CPU门：selector、真实hook/事务、真实wrapper多进程竞争；8进程/条件，峰值4/4、借用0/4、全释放。模型body是stub，线上干预/终分未验。
 - 上述入口：proposal_opportunities_crosscheck、admission-timing-independent、prompt_contract_crosscheck、opportunity_latency_crosscheck、quota-feedback-links-independent、quota-multiprocess-independent（均20261017）。精确SHA/长限制在原件及b1603f95。
-- 不从无效19004分数追选策略，不重复原读出；未来只一次新root/原32矩阵/原门/≤10GPUh，当前未创建。本窗口无第三GPU批。
+- 不从无效19004分数追选策略，不重复原读出；唯一新root quota-v2/19118原32矩阵/原门/≤10GPUh。新三小时窗口仅此GPU批。
 - 共享服务边界只读核验：18807/18997/19004共1185数值遥测，12个尾部间隔21采样均Running/Waiting=0；未观测到跨池持续忙碌。独立哈希/代数通过，非第二次原日志提取；不证明连续空闲/取消/缓存中性，不救19004。service-boundaries-independent-20261017.json。
+- 已有输出互补性：18770/18807/18997全96条/24池，warm和及时有效CSV按字节去重；两向整图像重划分，经典greedy20去噪10/12双向正，较差方向median .00023015673995906843，仅2/12双向≥.001；Aerial2/12。全均值去噪0/12。不是新holdout/独立重复/同预算收益；extraCPU单记。独立Node只核代数，不是原始预测复提取。output_complementarity_20261017。
 
 ## R1–13：历史机制，不自动恢复
 
@@ -92,6 +93,7 @@
 - CoT-retry已有失败后推理；Ares/LASER/InfraMind已有推理预算分配。https://arxiv.org/html/2410.08105v1 / https://arxiv.org/html/2603.07915v1
 - Synergy/TGS/Salus/ElastiCo/DetShare/Pollux覆盖互补共置；Scepsy/PASTE/BAVT/ZEBRA/PeakBench限制资源分配宽主张；细节pooling_research_boundary_20261015.json。
 - TTT-Discover/AREX-2/Guidance-TTT覆盖任务自举训练；M-DESIGN/REHEARSE覆盖收益预测/检索；MLE-STAR/PatchFusion覆盖精修/组合。
+- MLE-STAR §3.3已有利用次优候选互补性及集成计划；DivBO已有性能/多样性代理与联合acquisition；Q(D)O-ES已有质量多样性集成选择且提醒过拟合。“为集成搜索互补候选”不是空白。https://arxiv.org/html/2506.15692v3 / https://arxiv.org/abs/2302.03255 / https://proceedings.mlr.press/v224/purucker23b.html
 - Centaur/LLaMEA-HPO/TIDE/HT-AA覆盖结构×数值分工；GEVO已有编辑交互；GOME/Iris/AgentX/NSR-Boost/Beneath the Diff/RIPPLE覆盖反馈/残差/重复。原文与范围在旧Git。
 - 未读/未复现不说不存在；新颖性定稿重核原文。场景不同、旧机制新名字或局部阳性都不自动成为方法贡献。
 

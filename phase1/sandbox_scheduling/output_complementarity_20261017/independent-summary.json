@@ -1,0 +1,117 @@
+{
+  "passed": true,
+  "receipt_sha256": "87480e08d6b41edfdf7dc73b7abba9ac351c3eeca50a036d85db2b8252266fd2",
+  "assigned_runs": 96,
+  "task_pools": 24,
+  "cpu_host_wall_seconds": 438.077043838799,
+  "raw_prediction_recomputation": false,
+  "groups": [
+    {
+      "task": "aerial-cactus-identification",
+      "pools": 12,
+      "methods": {
+        "uniform": {
+          "both_directions_positive": 3,
+          "both_directions_nonnegative": 3,
+          "both_directions_gain_atleast_001": 0,
+          "worse_direction_gain": {
+            "n": 12,
+            "median": -0.000025523747294475818,
+            "sample_sd": 0.00017249199058000028,
+            "min": -0.000574098046940974,
+            "max": 0.0000816759913422338
+          }
+        },
+        "top2": {
+          "both_directions_positive": 1,
+          "both_directions_nonnegative": 2,
+          "both_directions_gain_atleast_001": 0,
+          "worse_direction_gain": {
+            "n": 12,
+            "median": -0.0000408379956711169,
+            "sample_sd": 0.00008712152051211637,
+            "min": -0.00029267743569549864,
+            "max": 0.00006125699350678637
+          }
+        },
+        "greedy20": {
+          "both_directions_positive": 2,
+          "both_directions_nonnegative": 8,
+          "both_directions_gain_atleast_001": 0,
+          "worse_direction_gain": {
+            "n": 12,
+            "median": 0,
+            "sample_sd": 0.00004031506856442427,
+            "min": -0.00007146649242451009,
+            "max": 0.0000816759913422338
+          }
+        }
+      },
+      "full_development_uniform_positive": 4,
+      "full_development_oracle_equal_pair_positive": 8,
+      "full_development_oracle_equal_pair_gain": {
+        "n": 12,
+        "median": 0.000008017831657658459,
+        "sample_sd": 0.000019527342575395878,
+        "min": -0.000018708273867851233,
+        "max": 0.00004543437939308337
+      }
+    },
+    {
+      "task": "denoising-dirty-documents",
+      "pools": 12,
+      "methods": {
+        "uniform": {
+          "both_directions_positive": 0,
+          "both_directions_nonnegative": 0,
+          "both_directions_gain_atleast_001": 0,
+          "worse_direction_gain": {
+            "n": 12,
+            "median": -0.006253366430344026,
+            "sample_sd": 0.04960299921207108,
+            "min": -0.17566431708456068,
+            "max": -0.0043064230854907015
+          }
+        },
+        "top2": {
+          "both_directions_positive": 5,
+          "both_directions_nonnegative": 5,
+          "both_directions_gain_atleast_001": 0,
+          "worse_direction_gain": {
+            "n": 12,
+            "median": -0.000672371731803104,
+            "sample_sd": 0.0010050779630407939,
+            "min": -0.0021918498040851067,
+            "max": 0.0007572001716757582
+          }
+        },
+        "greedy20": {
+          "both_directions_positive": 10,
+          "both_directions_nonnegative": 10,
+          "both_directions_gain_atleast_001": 2,
+          "worse_direction_gain": {
+            "n": 12,
+            "median": 0.00023015673995906843,
+            "sample_sd": 0.001188083743887681,
+            "min": -0.0001265915185094564,
+            "max": 0.004219908346489318
+          }
+        }
+      },
+      "full_development_uniform_positive": 0,
+      "full_development_oracle_equal_pair_positive": 6,
+      "full_development_oracle_equal_pair_gain": {
+        "n": 12,
+        "median": -0.00033407581895159456,
+        "sample_sd": 0.0009141377959839156,
+        "min": -0.001667795413478973,
+        "max": 0.0011020196540009984
+      }
+    }
+  ],
+  "limits": [
+    "Independent denominator/algebra check, not independent raw prediction/reference extraction.",
+    "Two directions share adaptively searched data; not independent repetitions or fresh holdout.",
+    ".001 is a descriptive magnitude bin, not a new predeclared success gate; AUC/RMSE never pooled."
+  ]
+}

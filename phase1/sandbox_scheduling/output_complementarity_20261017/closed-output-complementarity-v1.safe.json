@@ -1,0 +1,1634 @@
+{
+  "assigned_runs": 96,
+  "elapsed_cpu_host_wall_seconds": 438.077043838799,
+  "limits": [
+    "All three closed valid DEV batches and all24task-pools; not cherry-picked winners.",
+    "No cross-pool libraries. Duplicated prediction bytes deduplicated; warm included and common sunk cost remains.",
+    "Existing search used D_search adaptively. Image-group resplit is sensitivity, NOT fresh generalization or confirmation.",
+    "Equal-pair oracle is post-hoc observed-library potential, NOT a global upper bound or deployable policy.",
+    "Extra CPU aggregation/selection cost measured, NOT charged to closed batches retroactively; no same-budget E2E claim.",
+    "Classic ensemble baselines are prior art, not method novelty. No labels or predictions exported.",
+    "New quota batch and invalid19004 not read; original frozen quality gates unchanged."
+  ],
+  "methods": [
+    "best_single",
+    "uniform",
+    "top2",
+    "classic_greedy20",
+    "observed_oracle_equal_pair"
+  ],
+  "rows": [
+    {
+      "assigned_runs": 4,
+      "block": 0,
+      "full_development": {
+        "best_single": 0.9997380841658515,
+        "oracle_equal_pair": 0.9997380841658515,
+        "oracle_pair_gain": 0.0,
+        "uniform": 0.999706012839221,
+        "uniform_gain": -3.207132663052281e-05
+      },
+      "job": 18770,
+      "library_size": 4,
+      "post_adaptive_resplit_sensitivity": [
+        {
+          "check_rows": 709,
+          "fit_rows": 708,
+          "gains": {
+            "greedy20": 0.0,
+            "top2": 9.188549026006854e-05,
+            "uniform": 9.188549026006854e-05
+          },
+          "values": {
+            "greedy20": 0.9998774860129865,
+            "selected_single": 0.9998774860129865,
+            "top2": 0.9999693715032466,
+            "uniform": 0.9999693715032466
+          }
+        },
+        {
+          "check_rows": 708,
+          "fit_rows": 709,
+          "gains": {
+            "greedy20": 0.0,
+            "top2": -0.00012382506894814682,
+            "uniform": -0.00012382506894814682
+          },
+          "values": {
+            "greedy20": 0.999560983846457,
+            "selected_single": 0.999560983846457,
+            "top2": 0.9994371587775088,
+            "uniform": 0.9994371587775088
+          }
+        }
+      ],
+      "prediction_hashes": [
+        "d6131559128a501b0596edd594bb7d02dac767371d72289b4341f9e543a450c9",
+        "05371140bceab209d6cbe013cc662101bed0f646f1f0c7a9daa907f458175678",
+        "626a12d4708cd0f91c7e4e6f31879b20fc3f54930644f468fdacc3f95effa853",
+        "b4aee081d632d72ac8821ee05815f924faa64fbd0f95ab604638b7fc9d2cc748"
+      ],
+      "query_groups": 1417,
+      "single_scores": [
+        0.9997140306708787,
+        0.5,
+        0.9997380841658515,
+        0.9997380841658515
+      ],
+      "split_group_counts": [
+        708,
+        709
+      ],
+      "task": "aerial-cactus-identification",
+      "timely_valid_candidates": 4
+    },
+    {
+      "assigned_runs": 4,
+      "block": 1,
+      "full_development": {
+        "best_single": 0.9999224942939764,
+        "oracle_equal_pair": 0.9999331847361866,
+        "oracle_pair_gain": 1.0690442210248285e-05,
+        "uniform": 0.9998449885879529,
+        "uniform_gain": -7.750570602349516e-05
+      },
+      "job": 18770,
+      "library_size": 6,
+      "post_adaptive_resplit_sensitivity": [
+        {
+          "check_rows": 709,
+          "fit_rows": 708,
+          "gains": {
+            "greedy20": -4.08379956711169e-05,
+            "top2": -4.08379956711169e-05,
+            "uniform": -6.125699350678637e-05
+          },
+          "values": {
+            "greedy20": 0.9999591620043289,
+            "selected_single": 1.0,
+            "top2": 0.9999591620043289,
+            "uniform": 0.9999387430064932
+          }
+        },
+        {
+          "check_rows": 708,
+          "fit_rows": 709,
+          "gains": {
+            "greedy20": 0.0,
+            "top2": -3.377047334940375e-05,
+            "uniform": -6.754094669891852e-05
+          },
+          "values": {
+            "greedy20": 0.9998311476332526,
+            "selected_single": 0.9998311476332526,
+            "top2": 0.9997973771599032,
+            "uniform": 0.9997636066865537
+          }
+        }
+      ],
+      "prediction_hashes": [
+        "d6131559128a501b0596edd594bb7d02dac767371d72289b4341f9e543a450c9",
+        "09a2dad9bdee6cdb2b09c66971a0096f0a374dbf5f950ce1f2847bb431c30fae",
+        "eae946e98253723d232e66a6fbc1b60f080ed35f0335fa94db1cf6613a8577b1",
+        "e3144fcce1664fd81fe1f1eff9255f6dc7a554a2f83e629d6a1b6a8886d44201",
+        "c62831b337dd1339888bcdf5ecfba6e9db470a913c3c2756cec0d94c581c28a6",
+        "22127e2f7664de0792a93d1ef2565a0f75e40ef398158ac5603e00d771631b08"
+      ],
+      "query_groups": 1417,
+      "single_scores": [
+        0.9997140306708787,
+        0.9995750549221469,
+        0.9988694857362775,
+        0.9999224942939764,
+        0.9997380841658515,
+        0.9994440970050724
+      ],
+      "split_group_counts": [
+        708,
+        709
+      ],
+      "task": "aerial-cactus-identification",
+      "timely_valid_candidates": 5
+    },
+    {
+      "assigned_runs": 4,
+      "block": 2,
+      "full_development": {
+        "best_single": 0.999770155492482,
+        "oracle_equal_pair": 0.9998022268191123,
+        "oracle_pair_gain": 3.207132663030077e-05,
+        "uniform": 0.9998022268191123,
+        "uniform_gain": 3.207132663030077e-05
+      },
+      "job": 18770,
+      "library_size": 4,
+      "post_adaptive_resplit_sensitivity": [
+        {
+          "check_rows": 709,
+          "fit_rows": 708,
+          "gains": {
+            "greedy20": 8.16759913422338e-05,
+            "top2": 6.125699350678637e-05,
+            "uniform": 8.16759913422338e-05
+          },
+          "values": {
+            "greedy20": 0.9999795810021643,
+            "selected_single": 0.9998979050108221,
+            "top2": 0.9999591620043289,
+            "uniform": 0.9999795810021643
+          }
+        },
+        {
+          "check_rows": 708,
+          "fit_rows": 709,
+          "gains": {
+            "greedy20": 0.00015759554229755057,
+            "top2": 0.00013508189339783705,
+            "uniform": 0.0001688523667472408
+          },
+          "values": {
+            "greedy20": 0.9996735520909552,
+            "selected_single": 0.9995159565486577,
+            "top2": 0.9996510384420555,
+            "uniform": 0.9996848089154049
+          }
+        }
+      ],
+      "prediction_hashes": [
+        "d6131559128a501b0596edd594bb7d02dac767371d72289b4341f9e543a450c9",
+        "70bb5a1a62cacddb2db662db3905398f64b31298fe238d18c04343be38d4da7d",
+        "bf2ee92214677167439d866047a33c00a2b1600fa30b820819fc66d424cf9b96",
+        "a9a5e45714cc4d6cae3ee6342e2ccf8499c46f790f28e9f89ee34667b4c4424c"
+      ],
+      "query_groups": 1417,
+      "single_scores": [
+        0.9997140306708787,
+        0.9996659236809331,
+        0.999770155492482,
+        0.545690950006147
+      ],
+      "split_group_counts": [
+        708,
+        709
+      ],
+      "task": "aerial-cactus-identification",
+      "timely_valid_candidates": 3
+    },
+    {
+      "assigned_runs": 4,
+      "block": 3,
+      "full_development": {
+        "best_single": 0.9998690420829257,
+        "oracle_equal_pair": 0.9998930955778986,
+        "oracle_pair_gain": 2.4053494972919864e-05,
+        "uniform": 0.9998717146934782,
+        "uniform_gain": 2.6726105525343158e-06
+      },
+      "job": 18770,
+      "library_size": 7,
+      "post_adaptive_resplit_sensitivity": [
+        {
+          "check_rows": 709,
+          "fit_rows": 708,
+          "gains": {
+            "greedy20": -3.0628496753393186e-05,
+            "top2": -1.1102230246251565e-16,
+            "uniform": -1.0209498917834736e-05
+          },
+          "values": {
+            "greedy20": 0.999948952505411,
+            "selected_single": 0.9999795810021644,
+            "top2": 0.9999795810021643,
+            "uniform": 0.9999693715032466
+          }
+        },
+        {
+          "check_rows": 708,
+          "fit_rows": 709,
+          "gains": {
+            "greedy20": 1.1256824449912273e-05,
+            "top2": 0.0,
+            "uniform": 4.5027297799316024e-05
+          },
+          "values": {
+            "greedy20": 0.9997861203354534,
+            "selected_single": 0.9997748635110035,
+            "top2": 0.9997748635110035,
+            "uniform": 0.9998198908088028
+          }
+        }
+      ],
+      "prediction_hashes": [
+        "d6131559128a501b0596edd594bb7d02dac767371d72289b4341f9e543a450c9",
+        "08a4cccb0fb86c31ddaeb7023fa3ce7934770885525c206bef4cef3babf2f06f",
+        "0ae7a96efaeaec2b86fad822d7ad835b47efb72beb47b176d1369ad304a756ee",
+        "d1e61b22cfcebe0af23a83487f678e4239d440b4831db9c986fa6c67ffab32d6",
+        "065ca6967f7b1b0d71a8d32fc44240ebb33a7107d74046ef2ba65511bea72f99",
+        "7d40fbc13bdce16bcdbff290a1f776b03e4821040bed9b9886d9ee3d706da37f",
+        "85565bee6afa52400ad61a7525573bba7051ae5fabff33c3c8e3c5f5c09e0228"
+      ],
+      "query_groups": 1417,
+      "single_scores": [
+        0.9997140306708787,
+        0.9977697064939091,
+        0.9995536740377265,
+        0.9998690420829257,
+        0.9995697097010418,
+        0.9996365249648551,
+        0.9910561087859401
+      ],
+      "split_group_counts": [
+        708,
+        709
+      ],
+      "task": "aerial-cactus-identification",
+      "timely_valid_candidates": 6
+    },
+    {
+      "assigned_runs": 4,
+      "block": 0,
+      "full_development": {
+        "best_single": 0.014672638553735228,
+        "oracle_equal_pair": 0.01357061889973423,
+        "oracle_pair_gain": 0.0011020196540009984,
+        "uniform": 0.018926379166122564,
+        "uniform_gain": -0.004253740612387336
+      },
+      "job": 18770,
+      "library_size": 5,
+      "post_adaptive_resplit_sensitivity": [
+        {
+          "check_rows": 1098360,
+          "fit_rows": 1046520,
+          "gains": {
+            "greedy20": 0.0012404195048774935,
+            "top2": 0.0008812207024566487,
+            "uniform": -0.004332450822106546
+          },
+          "values": {
+            "greedy20": 0.01432180911432846,
+            "selected_single": 0.015562228619205953,
+            "top2": 0.014681007916749304,
+            "uniform": 0.0198946794413125
+          }
+        },
+        {
+          "check_rows": 1046520,
+          "fit_rows": 1098360,
+          "gains": {
+            "greedy20": 0.0011047570847957395,
+            "top2": 0.0007572001716757582,
+            "uniform": -0.004176829243279674
+          },
+          "values": {
+            "greedy20": 0.012572133771162822,
+            "selected_single": 0.013676890855958562,
+            "top2": 0.012919690684282803,
+            "uniform": 0.017853720099238236
+          }
+        }
+      ],
+      "prediction_hashes": [
+        "3be9254ca52ce07890f737904466cd5ef8e3d834b7d0703ed618d00ebe8fac65",
+        "ecebe45de29ab74cd18bc90316a7a3acd5cd3fe36a7ee12b2c7d6eafed34c3fd",
+        "a4346b3eebd44d92036cab9e667c4387f91081d2e10c3463d9bce294830fc5c7",
+        "c367534f164e2354c3c4d946d53be28fb0360fa054c94012cf8eddab21b757a8",
+        "52587768e532ad594b3244250fef754470128cb0ee7b973177f50abedd6641d9"
+      ],
+      "query_groups": 11,
+      "single_scores": [
+        0.04551226514614451,
+        0.014672638553735228,
+        0.01592905415462499,
+        0.015070361792847682,
+        0.02869150861323785
+      ],
+      "split_group_counts": [
+        5,
+        6
+      ],
+      "task": "denoising-dirty-documents",
+      "timely_valid_candidates": 4
+    },
+    {
+      "assigned_runs": 4,
+      "block": 1,
+      "full_development": {
+        "best_single": 0.015065587448419392,
+        "oracle_equal_pair": 0.014334389037121188,
+        "oracle_pair_gain": 0.0007311984112982044,
+        "uniform": 0.020530981396181307,
+        "uniform_gain": -0.005465393947761915
+      },
+      "job": 18770,
+      "library_size": 3,
+      "post_adaptive_resplit_sensitivity": [
+        {
+          "check_rows": 1098360,
+          "fit_rows": 1046520,
+          "gains": {
+            "greedy20": 0.0005952246722796921,
+            "top2": 0.0005477453017633752,
+            "uniform": -0.005461586014047035
+          },
+          "values": {
+            "greedy20": 0.01525611592984262,
+            "selected_single": 0.015851340602122312,
+            "top2": 0.015303595300358937,
+            "uniform": 0.021312926616169348
+          }
+        },
+        {
+          "check_rows": 1046520,
+          "fit_rows": 1098360,
+          "gains": {
+            "greedy20": 0.0009064546328294409,
+            "top2": 0.0009531158925173647,
+            "uniform": -0.0054827036225400475
+          },
+          "values": {
+            "greedy20": 0.013287751205283114,
+            "selected_single": 0.014194205838112555,
+            "top2": 0.01324108994559519,
+            "uniform": 0.019676909460652602
+          }
+        }
+      ],
+      "prediction_hashes": [
+        "3be9254ca52ce07890f737904466cd5ef8e3d834b7d0703ed618d00ebe8fac65",
+        "1d380911e1c5c81f06adc6571e78a51678a37e47111f25261c01a1d74089bded",
+        "629e08955a4dd853115bb76ce1e124438ac69b7855b2320e84043278cf9dea25"
+      ],
+      "query_groups": 11,
+      "single_scores": [
+        0.04551226514614451,
+        0.015926217343695922,
+        0.015065587448419392
+      ],
+      "split_group_counts": [
+        5,
+        6
+      ],
+      "task": "denoising-dirty-documents",
+      "timely_valid_candidates": 2
+    },
+    {
+      "assigned_runs": 4,
+      "block": 2,
+      "full_development": {
+        "best_single": 0.015308295476915064,
+        "oracle_equal_pair": 0.015259037122899995,
+        "oracle_pair_gain": 4.9258354015068936e-05,
+        "uniform": 0.019587071709464724,
+        "uniform_gain": -0.00427877623254966
+      },
+      "job": 18770,
+      "library_size": 4,
+      "post_adaptive_resplit_sensitivity": [
+        {
+          "check_rows": 1098360,
+          "fit_rows": 1046520,
+          "gains": {
+            "greedy20": -0.0001265915185094564,
+            "top2": -0.00021926559897519557,
+            "uniform": -0.0043064230854907015
+          },
+          "values": {
+            "greedy20": 0.016312141773291298,
+            "selected_single": 0.01618555025478184,
+            "top2": 0.016404815853757037,
+            "uniform": 0.020491973340272543
+          }
+        },
+        {
+          "check_rows": 1046520,
+          "fit_rows": 1098360,
+          "gains": {
+            "greedy20": 0.00020082557456590176,
+            "top2": 0.0003742502050710292,
+            "uniform": -0.0042600899142777315
+          },
+          "values": {
+            "greedy20": 0.014129115382545568,
+            "selected_single": 0.01432994095711147,
+            "top2": 0.01395569075204044,
+            "uniform": 0.0185900308713892
+          }
+        }
+      ],
+      "prediction_hashes": [
+        "3be9254ca52ce07890f737904466cd5ef8e3d834b7d0703ed618d00ebe8fac65",
+        "fa39805be852bd07c733aa896179a6e8bf1011aad75457ec6a57c13c88c824ae",
+        "1b69da0bf285c570deaa6203df46226f2c344519778c3ccb1f0c0a002b08951b",
+        "78e846c29b25146a086b2c20d8a7b1f66efa1429caaf59b0079ffc49ea0f667e"
+      ],
+      "query_groups": 11,
+      "single_scores": [
+        0.04551226514614451,
+        0.015308295476915064,
+        0.01750013020737846,
+        0.01637069297047573
+      ],
+      "split_group_counts": [
+        5,
+        6
+      ],
+      "task": "denoising-dirty-documents",
+      "timely_valid_candidates": 3
+    },
+    {
+      "assigned_runs": 4,
+      "block": 3,
+      "full_development": {
+        "best_single": 0.0191865423765659,
+        "oracle_equal_pair": 0.018806756490265537,
+        "oracle_pair_gain": 0.0003797858863003635,
+        "uniform": 0.024835769146319523,
+        "uniform_gain": -0.005649226769753622
+      },
+      "job": 18770,
+      "library_size": 3,
+      "post_adaptive_resplit_sensitivity": [
+        {
+          "check_rows": 1098360,
+          "fit_rows": 1046520,
+          "gains": {
+            "greedy20": 0.0004740690724040382,
+            "top2": 0.00045533931111276654,
+            "uniform": -0.0054529978395865715
+          },
+          "values": {
+            "greedy20": 0.01965172259026047,
+            "selected_single": 0.020125791662664507,
+            "top2": 0.01967045235155174,
+            "uniform": 0.02557878950225108
+          }
+        },
+        {
+          "check_rows": 1046520,
+          "fit_rows": 1098360,
+          "gains": {
+            "greedy20": 0.00034271439496364603,
+            "top2": 0.000293161736149114,
+            "uniform": -0.005882685838973976
+          },
+          "values": {
+            "greedy20": 0.017805846705267803,
+            "selected_single": 0.01814856110023145,
+            "top2": 0.017855399364082335,
+            "uniform": 0.024031246939205424
+          }
+        }
+      ],
+      "prediction_hashes": [
+        "3be9254ca52ce07890f737904466cd5ef8e3d834b7d0703ed618d00ebe8fac65",
+        "8805c4fb85a50ac75099710d6037c30e9737c9410b8e9eab9acf3606a9c5af32",
+        "7a59506a0a1fe997fcc0cc20f0e7cdba8c8f4dc80dc43e8af42b95fdeb6c0c2e"
+      ],
+      "query_groups": 11,
+      "single_scores": [
+        0.04551226514614451,
+        0.019832185720105887,
+        0.0191865423765659
+      ],
+      "split_group_counts": [
+        5,
+        6
+      ],
+      "task": "denoising-dirty-documents",
+      "timely_valid_candidates": 2
+    },
+    {
+      "assigned_runs": 4,
+      "block": 0,
+      "full_development": {
+        "best_single": 0.9998770599145834,
+        "oracle_equal_pair": 0.9998583516407156,
+        "oracle_pair_gain": -1.8708273867851233e-05,
+        "uniform": 0.9996204893015399,
+        "uniform_gain": -0.00025657061304351636
+      },
+      "job": 18807,
+      "library_size": 6,
+      "post_adaptive_resplit_sensitivity": [
+        {
+          "check_rows": 709,
+          "fit_rows": 708,
+          "gains": {
+            "greedy20": 0.0,
+            "top2": 0.0,
+            "uniform": -6.125699350678637e-05
+          },
+          "values": {
+            "greedy20": 1.0,
+            "selected_single": 1.0,
+            "top2": 1.0,
+            "uniform": 0.9999387430064932
+          }
+        },
+        {
+          "check_rows": 708,
+          "fit_rows": 709,
+          "gains": {
+            "greedy20": 0.0,
+            "top2": -0.00029267743569549864,
+            "uniform": -0.000574098046940974
+          },
+          "values": {
+            "greedy20": 0.9997973771599032,
+            "selected_single": 0.9997973771599032,
+            "top2": 0.9995046997242077,
+            "uniform": 0.9992232791129623
+          }
+        }
+      ],
+      "prediction_hashes": [
+        "d6131559128a501b0596edd594bb7d02dac767371d72289b4341f9e543a450c9",
+        "436fabb29803af383f0b52ee4c29514b91cb633eeb9f26148abd96a46ddbfe2a",
+        "8ea1de875d0371c426f48082ff9181746ef3f0a2b30694701c032ce0016aa393",
+        "3f4c155c58ee7c2975fac747ed8447b5ee9477e7a8dc4d18d6fe5905a95dcba3",
+        "6aadc51c5897bbdded7fefd164091ca29a3338cd01e7aa431cdd91d44b3a7eef",
+        "f242a31a2f6258b49cd5e16a0cd10ecddadbc776cc150315988c9e0cfe2272d5"
+      ],
+      "query_groups": 1417,
+      "single_scores": [
+        0.9997140306708787,
+        0.9996592421545518,
+        0.9998770599145834,
+        0.9997461019975091,
+        0.4816351565882523,
+        0.9996579058492755
+      ],
+      "split_group_counts": [
+        708,
+        709
+      ],
+      "task": "aerial-cactus-identification",
+      "timely_valid_candidates": 5
+    },
+    {
+      "assigned_runs": 4,
+      "block": 1,
+      "full_development": {
+        "best_single": 0.9999011134095561,
+        "oracle_equal_pair": 0.9999077949359376,
+        "oracle_pair_gain": 6.681526381502323e-06,
+        "uniform": 0.9997942089874547,
+        "uniform_gain": -0.00010690442210137263
+      },
+      "job": 18807,
+      "library_size": 8,
+      "post_adaptive_resplit_sensitivity": [
+        {
+          "check_rows": 709,
+          "fit_rows": 708,
+          "gains": {
+            "greedy20": 2.0418997835669472e-05,
+            "top2": -4.08379956711169e-05,
+            "uniform": -3.0628496753282164e-05
+          },
+          "values": {
+            "greedy20": 0.9999795810021644,
+            "selected_single": 0.9999591620043288,
+            "top2": 0.9999183240086577,
+            "uniform": 0.9999285335075755
+          }
+        },
+        {
+          "check_rows": 708,
+          "fit_rows": 709,
+          "gains": {
+            "greedy20": 0.0,
+            "top2": 0.00011256824449823455,
+            "uniform": 0.00019136601564695432
+          },
+          "values": {
+            "greedy20": 0.9995159565486577,
+            "selected_single": 0.9995159565486577,
+            "top2": 0.9996285247931559,
+            "uniform": 0.9997073225643046
+          }
+        }
+      ],
+      "prediction_hashes": [
+        "d6131559128a501b0596edd594bb7d02dac767371d72289b4341f9e543a450c9",
+        "cbecef191b57bbcc16061f8d1668cd747cce7775db98a15c032961d0c863731c",
+        "43fcf841bd4b36fa66f86da4661c02c4e4b9952a765918376f4bb235d3e302c2",
+        "cc589a740ae8d2ab77e4c34762d737f9c4a0d5f40858217793038740dd76d810",
+        "f9dd746768aee720171086c34e37d35040e590233c7d75a0326ade4ab16f59e6",
+        "858e4fda8793cb8da8c166ec7df7a1cb3807501944565b1f19f0de0a2f561e4e",
+        "0707e37011c07de9a357a073528a73b8bf1a06e29cb5b91e1874a8af07c1c1a7",
+        "875173ebc0386a268e561dc56e70e114ac418b311911db0793561b4fed58c25f"
+      ],
+      "query_groups": 1417,
+      "single_scores": [
+        0.9997140306708787,
+        0.9997273937236414,
+        0.99963117974375,
+        0.9894872863916016,
+        0.9997567924397193,
+        0.9999011134095561,
+        0.9910347279015196,
+        0.5353025127884415
+      ],
+      "split_group_counts": [
+        708,
+        709
+      ],
+      "task": "aerial-cactus-identification",
+      "timely_valid_candidates": 7
+    },
+    {
+      "assigned_runs": 4,
+      "block": 2,
+      "full_development": {
+        "best_single": 0.999815589871875,
+        "oracle_equal_pair": 0.9998236077035327,
+        "oracle_pair_gain": 8.01783165771397e-06,
+        "uniform": 0.9998022268191123,
+        "uniform_gain": -1.3363052762671579e-05
+      },
+      "job": 18807,
+      "library_size": 8,
+      "post_adaptive_resplit_sensitivity": [
+        {
+          "check_rows": 709,
+          "fit_rows": 708,
+          "gains": {
+            "greedy20": -7.146649242451009e-05,
+            "top2": -3.0628496753393186e-05,
+            "uniform": -9.188549026006854e-05
+          },
+          "values": {
+            "greedy20": 0.9999285335075755,
+            "selected_single": 1.0,
+            "top2": 0.9999693715032466,
+            "uniform": 0.9999081145097399
+          }
+        },
+        {
+          "check_rows": 708,
+          "fit_rows": 709,
+          "gains": {
+            "greedy20": 0.0,
+            "top2": -9.005459559863205e-05,
+            "uniform": 7.879777114871978e-05
+          },
+          "values": {
+            "greedy20": 0.9996622952665053,
+            "selected_single": 0.9996622952665053,
+            "top2": 0.9995722406709067,
+            "uniform": 0.999741093037654
+          }
+        }
+      ],
+      "prediction_hashes": [
+        "d6131559128a501b0596edd594bb7d02dac767371d72289b4341f9e543a450c9",
+        "7b7474d00927ff626b29d14c608376839cd31e8f9651f0b8440b8042a09c9dc7",
+        "9bfd37a76de7160d8c3d4d61fa8d8f0540d0c72ff49e4e7f014401d2f72cf4d9",
+        "9ad7644bac7471b9ab95185fa2930778adba597e20ec20d49474e48bafc22e3a",
+        "25140724c75138ebb00236c9757b9654d1d15b002ad45300772ba248601f4e1b",
+        "10d70b96b738d1c74af4ea46fbb21b8ea472e02111e73bd877f19ed15d8a25cc",
+        "98ad3ab9a20ce0d25f83a674ee5f5cd99b2e43266c6e8a29861cf66ed932b410",
+        "0d773ca2c78ec282fcd0eb6e67510598b3542b2447c6433f54168ecc9e2e792e"
+      ],
+      "query_groups": 1417,
+      "single_scores": [
+        0.9997140306708787,
+        0.9997273937236414,
+        0.9991527824548463,
+        0.998497992869475,
+        0.9176274701603031,
+        0.9992623594875002,
+        0.9997060128392211,
+        0.999815589871875
+      ],
+      "split_group_counts": [
+        708,
+        709
+      ],
+      "task": "aerial-cactus-identification",
+      "timely_valid_candidates": 7
+    },
+    {
+      "assigned_runs": 4,
+      "block": 3,
+      "full_development": {
+        "best_single": 0.9998316255351903,
+        "oracle_equal_pair": 0.9998770599145833,
+        "oracle_pair_gain": 4.5434379392972346e-05,
+        "uniform": 0.9998236077035327,
+        "uniform_gain": -8.017831657602947e-06
+      },
+      "job": 18807,
+      "library_size": 7,
+      "post_adaptive_resplit_sensitivity": [
+        {
+          "check_rows": 709,
+          "fit_rows": 708,
+          "gains": {
+            "greedy20": 1.0209498917723714e-05,
+            "top2": 1.0209498917723714e-05,
+            "uniform": -2.041899783555845e-05
+          },
+          "values": {
+            "greedy20": 0.9999693715032466,
+            "selected_single": 0.9999591620043289,
+            "top2": 0.9999693715032466,
+            "uniform": 0.9999387430064933
+          }
+        },
+        {
+          "check_rows": 708,
+          "fit_rows": 709,
+          "gains": {
+            "greedy20": 7.879777114871978e-05,
+            "top2": -2.2513648899713523e-05,
+            "uniform": 0.00011256824449823455
+          },
+          "values": {
+            "greedy20": 0.9997185793887544,
+            "selected_single": 0.9996397816176057,
+            "top2": 0.999617267968706,
+            "uniform": 0.9997523498621039
+          }
+        }
+      ],
+      "prediction_hashes": [
+        "d6131559128a501b0596edd594bb7d02dac767371d72289b4341f9e543a450c9",
+        "acdacb51466a1e94227e1a34384ddbec956e18c86c0d0e6c1bbbb36cdd5952f7",
+        "52be49dd81c5efd78ea7b436955afb0d731cf2b1b9994724237df59a331ce89c",
+        "abe49c33ce4196c547a1fcc058f41f764bef4de4491f0e1dbbf3395cd48236ec",
+        "8928940b88360d48a93b752ebaf78b2f7d643b2ae1b9a23056db5d3ffd6b79e8",
+        "9a5dd3df390a6bd7b62eae20b6c69336230fa961fa51b6cbe868a4801180b97d",
+        "f689b8c1fe46da905c9ccc64c6753926b8073e0031af3c518d34a5ee4b20c898"
+      ],
+      "query_groups": 1417,
+      "single_scores": [
+        0.9997140306708787,
+        0.9997648102713769,
+        0.99981024465077,
+        0.9992650320980527,
+        0.9997193758919838,
+        0.9997407567764041,
+        0.9998316255351903
+      ],
+      "split_group_counts": [
+        708,
+        709
+      ],
+      "task": "aerial-cactus-identification",
+      "timely_valid_candidates": 6
+    },
+    {
+      "assigned_runs": 4,
+      "block": 0,
+      "full_development": {
+        "best_single": 0.019528777605669127,
+        "oracle_equal_pair": 0.020342426471457904,
+        "oracle_pair_gain": -0.0008136488657887776,
+        "uniform": 0.024928477115048895,
+        "uniform_gain": -0.005399699509379768
+      },
+      "job": 18807,
+      "library_size": 3,
+      "post_adaptive_resplit_sensitivity": [
+        {
+          "check_rows": 1098360,
+          "fit_rows": 1046520,
+          "gains": {
+            "greedy20": -6.480005004629377e-05,
+            "top2": -0.0011254778646310123,
+            "uniform": -0.005207099194309936
+          },
+          "values": {
+            "greedy20": 0.020931734411226297,
+            "selected_single": 0.020866934361180003,
+            "top2": 0.021992412225811015,
+            "uniform": 0.02607403355548994
+          }
+        },
+        {
+          "check_rows": 1046520,
+          "fit_rows": 1098360,
+          "gains": {
+            "greedy20": -0.0,
+            "top2": -0.0004349438909414041,
+            "uniform": -0.005648852335824878
+          },
+          "values": {
+            "greedy20": 0.01801775994614135,
+            "selected_single": 0.01801775994614135,
+            "top2": 0.018452703837082755,
+            "uniform": 0.023666612281966228
+          }
+        }
+      ],
+      "prediction_hashes": [
+        "3be9254ca52ce07890f737904466cd5ef8e3d834b7d0703ed618d00ebe8fac65",
+        "a7d9ccc2320d2299de17d4a851cc1d8b848db8fc175bb2aa0ea25f7a1423b357",
+        "8de9360d2d22832f3c2ae1754cff949b2df0260ac8b7ab13adbfaf3ec43be314"
+      ],
+      "query_groups": 11,
+      "single_scores": [
+        0.04551226514614451,
+        0.019528777605669127,
+        0.02226870089670234
+      ],
+      "split_group_counts": [
+        5,
+        6
+      ],
+      "task": "denoising-dirty-documents",
+      "timely_valid_candidates": 2
+    },
+    {
+      "assigned_runs": 4,
+      "block": 1,
+      "full_development": {
+        "best_single": 0.01721597106831217,
+        "oracle_equal_pair": 0.017933381060230427,
+        "oracle_pair_gain": -0.000717409991918258,
+        "uniform": 0.07951320494160849,
+        "uniform_gain": -0.06229723387329632
+      },
+      "job": 18807,
+      "library_size": 5,
+      "post_adaptive_resplit_sensitivity": [
+        {
+          "check_rows": 1098360,
+          "fit_rows": 1046520,
+          "gains": {
+            "greedy20": 2.0448716405632034e-05,
+            "top2": -0.0014631410658609081,
+            "uniform": -0.059995764035757494
+          },
+          "values": {
+            "greedy20": 0.017935983175200326,
+            "selected_single": 0.017956431891605958,
+            "top2": 0.019419572957466866,
+            "uniform": 0.07795219592736345
+          }
+        },
+        {
+          "check_rows": 1046520,
+          "fit_rows": 1098360,
+          "gains": {
+            "greedy20": 0.0005632921269628083,
+            "top2": 0.00017508582886402446,
+            "uniform": -0.06471631812373163
+          },
+          "values": {
+            "greedy20": 0.01583962769504037,
+            "selected_single": 0.01640291982200318,
+            "top2": 0.016227833993139155,
+            "uniform": 0.0811192379457348
+          }
+        }
+      ],
+      "prediction_hashes": [
+        "3be9254ca52ce07890f737904466cd5ef8e3d834b7d0703ed618d00ebe8fac65",
+        "8d3c50fabafc50ffe378ca7da5cc31e0700c86507e74bc594a80b8521e8457a7",
+        "a1933475ed6f3737777a3b7dd4add4a7d8c39dceaa13bd7884f249a92aec4d09",
+        "a533f2b43406ada0e1679ccd5cb87958e4fe8a9b705417d62e7dc4ab6d2c172a",
+        "33932cce74e759dfccd467359f09d06484a473b77a0c2da66e4c30f1f6c26e68"
+      ],
+      "query_groups": 11,
+      "single_scores": [
+        0.04551226514614451,
+        0.023513545541990064,
+        0.3077878780856877,
+        0.08208648832118522,
+        0.01721597106831217
+      ],
+      "split_group_counts": [
+        5,
+        6
+      ],
+      "task": "denoising-dirty-documents",
+      "timely_valid_candidates": 4
+    },
+    {
+      "assigned_runs": 4,
+      "block": 2,
+      "full_development": {
+        "best_single": 0.021328319563241365,
+        "oracle_equal_pair": 0.02120939527873472,
+        "oracle_pair_gain": 0.00011892428450664683,
+        "uniform": 0.19473119179098425,
+        "uniform_gain": -0.1734028722277429
+      },
+      "job": 18807,
+      "library_size": 5,
+      "post_adaptive_resplit_sensitivity": [
+        {
+          "check_rows": 1098360,
+          "fit_rows": 1046520,
+          "gains": {
+            "greedy20": 0.00017734538372870048,
+            "top2": 0.00013829288755402847,
+            "uniform": -0.1714630308371819
+          },
+          "values": {
+            "greedy20": 0.023153019598097006,
+            "selected_single": 0.023330364981825707,
+            "top2": 0.02319207209427168,
+            "uniform": 0.1947933958190076
+          }
+        },
+        {
+          "check_rows": 1046520,
+          "fit_rows": 1098360,
+          "gains": {
+            "greedy20": 0.00016101160077001617,
+            "top2": 9.538162543031026e-05,
+            "uniform": -0.17566431708456068
+          },
+          "values": {
+            "greedy20": 0.01884055638541465,
+            "selected_single": 0.019001567986184666,
+            "top2": 0.018906186360754355,
+            "uniform": 0.19466588507074534
+          }
+        }
+      ],
+      "prediction_hashes": [
+        "3be9254ca52ce07890f737904466cd5ef8e3d834b7d0703ed618d00ebe8fac65",
+        "51219159a0105a44898783a2cd008165a25c3d0123882b9c8dfc1d5708138e5c",
+        "1be888ce816e53031569070fdc8ea53fce294d78380bdc2ea5c35afe00620dae",
+        "a7756bd93da1cdf4988208f88ee4fb7a4c598cbab245f0f7f2eb0ba567b83bef",
+        "aac3052d265ada2d2825d36d004fe65370e5579b0a5fed568552c355fb3016f8"
+      ],
+      "query_groups": 11,
+      "single_scores": [
+        0.04551226514614451,
+        0.8865934096554753,
+        0.021328319563241365,
+        0.021897254103343745,
+        0.09777241995509811
+      ],
+      "split_group_counts": [
+        5,
+        6
+      ],
+      "task": "denoising-dirty-documents",
+      "timely_valid_candidates": 4
+    },
+    {
+      "assigned_runs": 4,
+      "block": 3,
+      "full_development": {
+        "best_single": 0.016427367057629972,
+        "oracle_equal_pair": 0.017902857832710076,
+        "oracle_pair_gain": -0.0014754907750801037,
+        "uniform": 0.02223964536017025,
+        "uniform_gain": -0.005812278302540278
+      },
+      "job": 18807,
+      "library_size": 4,
+      "post_adaptive_resplit_sensitivity": [
+        {
+          "check_rows": 1098360,
+          "fit_rows": 1046520,
+          "gains": {
+            "greedy20": 0.0002993018791481207,
+            "top2": -0.0017489461781430987,
+            "uniform": -0.005904826766315301
+          },
+          "values": {
+            "greedy20": 0.017382814937019136,
+            "selected_single": 0.017682116816167257,
+            "top2": 0.019431062994310355,
+            "uniform": 0.023586943582482558
+          }
+        },
+        {
+          "check_rows": 1046520,
+          "fit_rows": 1098360,
+          "gains": {
+            "greedy20": 0.0003253063775954263,
+            "top2": -0.0011461265197718618,
+            "uniform": -0.0057336683545959125
+          },
+          "values": {
+            "greedy20": 0.014672675289734786,
+            "selected_single": 0.014997981667330212,
+            "top2": 0.016144108187102074,
+            "uniform": 0.020731650021926125
+          }
+        }
+      ],
+      "prediction_hashes": [
+        "3be9254ca52ce07890f737904466cd5ef8e3d834b7d0703ed618d00ebe8fac65",
+        "1dfcf9f0afb0f4d79e345f7b1ac8a5f4d938d3a301e51873c71b59282f9f9393",
+        "8f53947de1e625b741180f5f605aa7b2af82a869c06f2622885439b01d519a73",
+        "9c279d149d76bd88ab056cc210fdd9e52e40319c43de87a4a5402bae748ac608"
+      ],
+      "query_groups": 11,
+      "single_scores": [
+        0.04551226514614451,
+        0.016427367057629972,
+        0.024101071425081364,
+        0.025233436089183523
+      ],
+      "split_group_counts": [
+        5,
+        6
+      ],
+      "task": "denoising-dirty-documents",
+      "timely_valid_candidates": 3
+    },
+    {
+      "assigned_runs": 4,
+      "block": 0,
+      "full_development": {
+        "best_single": 0.9998530064196105,
+        "oracle_equal_pair": 0.9998530064196106,
+        "oracle_pair_gain": 1.1102230246251565e-16,
+        "uniform": 0.999775500713587,
+        "uniform_gain": -7.750570602349516e-05
+      },
+      "job": 18997,
+      "library_size": 7,
+      "post_adaptive_resplit_sensitivity": [
+        {
+          "check_rows": 709,
+          "fit_rows": 708,
+          "gains": {
+            "greedy20": 0.0,
+            "top2": -5.1047494588951636e-05,
+            "uniform": 4.08379956711169e-05
+          },
+          "values": {
+            "greedy20": 0.9999285335075755,
+            "selected_single": 0.9999285335075755,
+            "top2": 0.9998774860129865,
+            "uniform": 0.9999693715032466
+          }
+        },
+        {
+          "check_rows": 708,
+          "fit_rows": 709,
+          "gains": {
+            "greedy20": 0.00021387966454666785,
+            "top2": 0.00043901615354313694,
+            "uniform": 0.0004502729779930492
+          },
+          "values": {
+            "greedy20": 0.9993696178308099,
+            "selected_single": 0.9991557381662632,
+            "top2": 0.9995947543198064,
+            "uniform": 0.9996060111442563
+          }
+        }
+      ],
+      "prediction_hashes": [
+        "d6131559128a501b0596edd594bb7d02dac767371d72289b4341f9e543a450c9",
+        "5e3a567fb46270be2de79ee3e3f6b6e6960669ca054ebd0bace4d1cda9e9d3bc",
+        "8bc4f43f8bf2cda3bb523ac9f39ecaf246c51d7b807d60dd1b1508131e719579",
+        "a11eae15249720a05142f6f2510cb18268803b399c13ec9ab83a3364198c146b",
+        "2063bb9585f26d6b54f5cb20bbcbb6b293bf342f4d8e02d5204e31dc9763b266",
+        "678bd574193a9264dc99ba2417b11c31e013154755f8c90307179f30c91762ac",
+        "3e6bd8694f1355a72f2e803041d323c0f2366121928eaa0f7faae947af8ad943"
+      ],
+      "query_groups": 1417,
+      "single_scores": [
+        0.9997140306708787,
+        0.9998530064196105,
+        0.9996873045653534,
+        0.9997113580603261,
+        0.9995296205427537,
+        0.9996792867336958,
+        0.9994200435100997
+      ],
+      "split_group_counts": [
+        708,
+        709
+      ],
+      "task": "aerial-cactus-identification",
+      "timely_valid_candidates": 6
+    },
+    {
+      "assigned_runs": 4,
+      "block": 1,
+      "full_development": {
+        "best_single": 0.9999812917261323,
+        "oracle_equal_pair": 0.9999893095577899,
+        "oracle_pair_gain": 8.017831657602947e-06,
+        "uniform": 0.9998717146934782,
+        "uniform_gain": -0.00010957703265401797
+      },
+      "job": 18997,
+      "library_size": 8,
+      "post_adaptive_resplit_sensitivity": [
+        {
+          "check_rows": 709,
+          "fit_rows": 708,
+          "gains": {
+            "greedy20": 0.0,
+            "top2": 0.0,
+            "uniform": -3.0628496753393186e-05
+          },
+          "values": {
+            "greedy20": 1.0,
+            "selected_single": 1.0,
+            "top2": 1.0,
+            "uniform": 0.9999693715032466
+          }
+        },
+        {
+          "check_rows": 708,
+          "fit_rows": 709,
+          "gains": {
+            "greedy20": 0.0,
+            "top2": -3.3770473349625796e-05,
+            "uniform": -0.0001575955422976616
+          },
+          "values": {
+            "greedy20": 0.9999549727022008,
+            "selected_single": 0.9999549727022008,
+            "top2": 0.9999212022288512,
+            "uniform": 0.9997973771599031
+          }
+        }
+      ],
+      "prediction_hashes": [
+        "d6131559128a501b0596edd594bb7d02dac767371d72289b4341f9e543a450c9",
+        "fafb4e7eee7955ea46053c5f8c56b92361fd1fc685f32fbd76cccbf3dc9d8c10",
+        "5aae1f0ccef8100a46be677403fb799a8b17f384c8c6b3874084732957df28f6",
+        "4580711ebda94a478e5e144a2cdab86da5c1b1111c361c1d7853d9ed78816106",
+        "ad50fed3a2bf20df0dafc2580c4118f7cb9c2b8c52d56f8658f2d89cd147aaca",
+        "d249206608d294544e6b0236b24b578e5ca15de3dc5072015abd585344d52ade",
+        "93342ca9dd6f34baf32f558aa5da96a75d22b556aed91b55b2db521f660578f8",
+        "780b7a0d2f5f69a431a0452a1dd157c3c542439d2f5643ee95038ec8c94e4001"
+      ],
+      "query_groups": 1417,
+      "single_scores": [
+        0.9997140306708787,
+        0.9994815135528081,
+        0.9985701533543936,
+        0.9996472154070652,
+        0.999206234665897,
+        0.9996097988593298,
+        0.9999812917261323,
+        0.9997487746080617
+      ],
+      "split_group_counts": [
+        708,
+        709
+      ],
+      "task": "aerial-cactus-identification",
+      "timely_valid_candidates": 7
+    },
+    {
+      "assigned_runs": 4,
+      "block": 2,
+      "full_development": {
+        "best_single": 0.9998824051356884,
+        "oracle_equal_pair": 0.9998824051356884,
+        "oracle_pair_gain": 0.0,
+        "uniform": 0.9999171490728714,
+        "uniform_gain": 3.474393718305713e-05
+      },
+      "job": 18997,
+      "library_size": 7,
+      "post_adaptive_resplit_sensitivity": [
+        {
+          "check_rows": 709,
+          "fit_rows": 708,
+          "gains": {
+            "greedy20": 0.0,
+            "top2": -2.0418997835669472e-05,
+            "uniform": -2.0418997835669472e-05
+          },
+          "values": {
+            "greedy20": 1.0,
+            "selected_single": 1.0,
+            "top2": 0.9999795810021643,
+            "uniform": 0.9999795810021643
+          }
+        },
+        {
+          "check_rows": 708,
+          "fit_rows": 709,
+          "gains": {
+            "greedy20": 0.0,
+            "top2": 0.0007091799403387,
+            "uniform": 0.0007879777114874198
+          },
+          "values": {
+            "greedy20": 0.999054426746215,
+            "selected_single": 0.999054426746215,
+            "top2": 0.9997636066865537,
+            "uniform": 0.9998424044577024
+          }
+        }
+      ],
+      "prediction_hashes": [
+        "d6131559128a501b0596edd594bb7d02dac767371d72289b4341f9e543a450c9",
+        "961a435a24a9cfd2c691ba605ef02281c320cdc18e3a9d1cf0722d04181f1545",
+        "6fb48ceceb44e7561ced5e6a68758828fa33541f3582daf0626faa22ce86ecad",
+        "489e72f194339c8dd4fa145e0d2e823f4d94c284d85330a255acb6db21ca8959",
+        "176fd4bb9d33296d36caee1e97e6108af483da9acb578adc08843adfc3dc344d",
+        "246be9c76d85e80ea8d16290d7e4ea3d4d81078569226beaef27cad4d8166480",
+        "22d6bb2b408a20dd7446e6af7ea9d5167c4601b7c6a9383bec8f123d6edf9cbd"
+      ],
+      "query_groups": 1417,
+      "single_scores": [
+        0.9997140306708787,
+        0.9995162574899911,
+        0.9998824051356884,
+        0.9891358381039431,
+        0.999735411555299,
+        0.9996846319548007,
+        0.999775500713587
+      ],
+      "split_group_counts": [
+        708,
+        709
+      ],
+      "task": "aerial-cactus-identification",
+      "timely_valid_candidates": 6
+    },
+    {
+      "assigned_runs": 4,
+      "block": 3,
+      "full_development": {
+        "best_single": 0.9997461019975091,
+        "oracle_equal_pair": 0.9997915363769022,
+        "oracle_pair_gain": 4.543437939308337e-05,
+        "uniform": 0.9997621376608243,
+        "uniform_gain": 1.6035663315205895e-05
+      },
+      "job": 18997,
+      "library_size": 5,
+      "post_adaptive_resplit_sensitivity": [
+        {
+          "check_rows": 709,
+          "fit_rows": 708,
+          "gains": {
+            "greedy20": 0.0,
+            "top2": 1.0209498917723714e-05,
+            "uniform": 6.125699350667535e-05
+          },
+          "values": {
+            "greedy20": 0.9998774860129865,
+            "selected_single": 0.9998774860129865,
+            "top2": 0.9998876955119043,
+            "uniform": 0.9999387430064932
+          }
+        },
+        {
+          "check_rows": 708,
+          "fit_rows": 709,
+          "gains": {
+            "greedy20": -6.754094669902955e-05,
+            "top2": -0.00010131142004832228,
+            "uniform": 0.00013508189339783705
+          },
+          "values": {
+            "greedy20": 0.9994033883041593,
+            "selected_single": 0.9994709292508583,
+            "top2": 0.99936961783081,
+            "uniform": 0.9996060111442562
+          }
+        }
+      ],
+      "prediction_hashes": [
+        "d6131559128a501b0596edd594bb7d02dac767371d72289b4341f9e543a450c9",
+        "0519eb0f76dc7db41bec3ea0b500646a946d604b6e5fea8e2691a33dc109afe6",
+        "97f3e771082b8cac3b1623c2265c4f24404f65838b5d81dd3a31caedc0189677",
+        "3a3b6837f46dfac31b2db75f5469aed21a21208fe258e90079ab927287791b64",
+        "0dd548e8a3b4f3322c41d878d832afb06cf9be39c74b9eda5c6f5c9baaaeb41c"
+      ],
+      "query_groups": 1417,
+      "single_scores": [
+        0.9997140306708787,
+        0.9997461019975091,
+        0.9996979950075635,
+        0.5,
+        0.9996151440804348
+      ],
+      "split_group_counts": [
+        708,
+        709
+      ],
+      "task": "aerial-cactus-identification",
+      "timely_valid_candidates": 4
+    },
+    {
+      "assigned_runs": 4,
+      "block": 0,
+      "full_development": {
+        "best_single": 0.017274050780114816,
+        "oracle_equal_pair": 0.018413438484497766,
+        "oracle_pair_gain": -0.00113938770438295,
+        "uniform": 0.023574337894307292,
+        "uniform_gain": -0.0063002871141924766
+      },
+      "job": 18997,
+      "library_size": 3,
+      "post_adaptive_resplit_sensitivity": [
+        {
+          "check_rows": 1098360,
+          "fit_rows": 1046520,
+          "gains": {
+            "greedy20": 6.695347991846762e-05,
+            "top2": -0.0011767369065650395,
+            "uniform": -0.006065132233282068
+          },
+          "values": {
+            "greedy20": 0.01843683061227819,
+            "selected_single": 0.01850378409219666,
+            "top2": 0.0196805209987617,
+            "uniform": 0.024568916325478727
+          }
+        },
+        {
+          "check_rows": 1046520,
+          "fit_rows": 1098360,
+          "gains": {
+            "greedy20": 7.068231521904778e-05,
+            "top2": -0.0011008959532848132,
+            "uniform": -0.00660190609437275
+          },
+          "values": {
+            "greedy20": 0.015810633982323307,
+            "selected_single": 0.015881316297542355,
+            "top2": 0.016982212250827168,
+            "uniform": 0.022483222391915105
+          }
+        }
+      ],
+      "prediction_hashes": [
+        "3be9254ca52ce07890f737904466cd5ef8e3d834b7d0703ed618d00ebe8fac65",
+        "56074d570406d9f1052d360e2d44938ac39f9e16f583bb7aa4ffc749181c795c",
+        "8a7caf75198873cf2947295e068740bbed78303fce8505779c6eff9806512395"
+      ],
+      "query_groups": 11,
+      "single_scores": [
+        0.04551226514614451,
+        0.022603464784572792,
+        0.017274050780114816
+      ],
+      "split_group_counts": [
+        5,
+        6
+      ],
+      "task": "denoising-dirty-documents",
+      "timely_valid_candidates": 2
+    },
+    {
+      "assigned_runs": 4,
+      "block": 1,
+      "full_development": {
+        "best_single": 0.04551226514614451,
+        "oracle_equal_pair": 0.04718006055962348,
+        "oracle_pair_gain": -0.001667795413478973,
+        "uniform": 0.06176523543015658,
+        "uniform_gain": -0.01625297028401207
+      },
+      "job": 18997,
+      "library_size": 3,
+      "post_adaptive_resplit_sensitivity": [
+        {
+          "check_rows": 1098360,
+          "fit_rows": 1046520,
+          "gains": {
+            "greedy20": 0.004219908346489318,
+            "top2": -0.0021918498040851067,
+            "uniform": -0.017402737618695138
+          },
+          "values": {
+            "greedy20": 0.041738517897668886,
+            "selected_single": 0.045958426244158204,
+            "top2": 0.04815027604824331,
+            "uniform": 0.06336116386285334
+          }
+        },
+        {
+          "check_rows": 1046520,
+          "fit_rows": 1098360,
+          "gains": {
+            "greedy20": 0.004745170885878364,
+            "top2": -0.0011005978139211545,
+            "uniform": -0.015005397023627583
+          },
+          "values": {
+            "greedy20": 0.040294079038400356,
+            "selected_single": 0.04503924992427872,
+            "top2": 0.046139847738199874,
+            "uniform": 0.0600446469479063
+          }
+        }
+      ],
+      "prediction_hashes": [
+        "3be9254ca52ce07890f737904466cd5ef8e3d834b7d0703ed618d00ebe8fac65",
+        "a88f5380c47848619373c5191dd26429f3b98e78bb98cb3763a66c8df7656e56",
+        "0bffaeb0c4afe56b1725298e135bd3484031c06ff734b2b65e0f399a8772971e"
+      ],
+      "query_groups": 11,
+      "single_scores": [
+        0.04551226514614451,
+        0.07168235848955515,
+        0.15855306416110163
+      ],
+      "split_group_counts": [
+        5,
+        6
+      ],
+      "task": "denoising-dirty-documents",
+      "timely_valid_candidates": 2
+    },
+    {
+      "assigned_runs": 4,
+      "block": 2,
+      "full_development": {
+        "best_single": 0.015583024642243782,
+        "oracle_equal_pair": 0.016652089874573228,
+        "oracle_pair_gain": -0.0010690652323294466,
+        "uniform": 0.03589096431012954,
+        "uniform_gain": -0.020307939667885758
+      },
+      "job": 18997,
+      "library_size": 4,
+      "post_adaptive_resplit_sensitivity": [
+        {
+          "check_rows": 1098360,
+          "fit_rows": 1046520,
+          "gains": {
+            "greedy20": 0.00015930597769565555,
+            "top2": -0.0012942471737138715,
+            "uniform": -0.019969208694028854
+          },
+          "values": {
+            "greedy20": 0.016519585503765283,
+            "selected_single": 0.01667889148146094,
+            "top2": 0.01797313865517481,
+            "uniform": 0.03664810017548979
+          }
+        },
+        {
+          "check_rows": 1046520,
+          "fit_rows": 1098360,
+          "gains": {
+            "greedy20": 0.00016869924030375044,
+            "top2": -0.0007990459455909666,
+            "uniform": -0.02073564947242426
+          },
+          "values": {
+            "greedy20": 0.014174402703480969,
+            "selected_single": 0.01434310194378472,
+            "top2": 0.015142147889375686,
+            "uniform": 0.03507875141620898
+          }
+        }
+      ],
+      "prediction_hashes": [
+        "3be9254ca52ce07890f737904466cd5ef8e3d834b7d0703ed618d00ebe8fac65",
+        "fd103be94a4ca15a28c6f1020626ec6b68224e6be4def6761d3bced6f00747ae",
+        "549b77b906cd6793881aeea3fdd9fb67aadaed9d142fb188e6abd7579718ec01",
+        "b7e0352d9dde28e9d786cc143bfd6f6d1edfaf75ea9084a59bfe71b1de3bac78"
+      ],
+      "query_groups": 11,
+      "single_scores": [
+        0.04551226514614451,
+        0.015583024642243782,
+        0.019061580906340702,
+        0.09093238955202793
+      ],
+      "split_group_counts": [
+        5,
+        6
+      ],
+      "task": "denoising-dirty-documents",
+      "timely_valid_candidates": 3
+    },
+    {
+      "assigned_runs": 4,
+      "block": 3,
+      "full_development": {
+        "best_single": 0.013719351425494153,
+        "oracle_equal_pair": 0.013355381569607595,
+        "oracle_pair_gain": 0.00036396985588655825,
+        "uniform": 0.02782283758986252,
+        "uniform_gain": -0.014103486164368366
+      },
+      "job": 18997,
+      "library_size": 5,
+      "post_adaptive_resplit_sensitivity": [
+        {
+          "check_rows": 1098360,
+          "fit_rows": 1046520,
+          "gains": {
+            "greedy20": 0.0004786412570570598,
+            "top2": 0.00040613210005871307,
+            "uniform": -0.013906772850215722
+          },
+          "values": {
+            "greedy20": 0.014247538959298622,
+            "selected_single": 0.014726180216355682,
+            "top2": 0.014320048116296969,
+            "uniform": 0.028632953066571404
+          }
+        },
+        {
+          "check_rows": 1046520,
+          "fit_rows": 1098360,
+          "gains": {
+            "greedy20": 0.0004129426929743354,
+            "top2": 0.0003146796602453289,
+            "uniform": -0.01437015764306229
+          },
+          "values": {
+            "greedy20": 0.012163310107599804,
+            "selected_single": 0.01257625280057414,
+            "top2": 0.01226157314032881,
+            "uniform": 0.02694641044363643
+          }
+        }
+      ],
+      "prediction_hashes": [
+        "3be9254ca52ce07890f737904466cd5ef8e3d834b7d0703ed618d00ebe8fac65",
+        "106c317efa2087bd89fcae380dcade3108463fcd12043672f168a4fbba33ccc4",
+        "22cef367aabab3ce3eb836403b05150a5a031fc85eb37b078811302b10b3c158",
+        "e013f34793822e40984cefc7259c1cac8eecd1840885612d9601fbcabff7de29",
+        "3c77f3ce4ff452efc4c191bc305b94bc3dbf56098a7dcb0be150d8e1e0673f73"
+      ],
+      "query_groups": 11,
+      "single_scores": [
+        0.04551226514614451,
+        0.014776163200654955,
+        0.028224847552805254,
+        0.013719351425494153,
+        0.06778699015314366
+      ],
+      "split_group_counts": [
+        5,
+        6
+      ],
+      "task": "denoising-dirty-documents",
+      "timely_valid_candidates": 4
+    }
+  ],
+  "schema": 1,
+  "source_hashes": {
+    "scheduling-colocation-20261016-v1": {
+      "lineage": "b47201384f5d3c385f471becba37bb2f546747de89a529f55d48f0ff9a264430",
+      "plan": "36ce5852b26de2299755c19a8b9711a1f4161d68abd25a3de6cc7687cdde8560",
+      "warm": "917752fd0980bfb7191fc2f5299ef0452b23c47f5815d8e5b389dffd6acac5ab"
+    },
+    "scheduling-pooling-20261016-v3": {
+      "lineage": "ce2df3e9c801da6c1a8e407d542f963d61c47d9fcde807c52b15c2308e14e644",
+      "plan": "a7cc9780c927cdeac3fc1effb214643a387353122e1fa542d3a40116b248d477",
+      "warm": "917752fd0980bfb7191fc2f5299ef0452b23c47f5815d8e5b389dffd6acac5ab"
+    },
+    "scheduling-selective-20261017-v1": {
+      "lineage": "6ec665d244a8cd54820542b175526975d2a13ed24a0185ddd56a7d8dd2d19698",
+      "plan": "1783555a7c680021b2a1bae874798f1042c0bfe79d0b11af70fa7f2a75d26e32",
+      "warm": "917752fd0980bfb7191fc2f5299ef0452b23c47f5815d8e5b389dffd6acac5ab"
+    }
+  },
+  "source_sha256": "85d8fdc8b81ba56981f8c8620fe25c523f9fbf069f16dab3f9551d6d3a346c36",
+  "task_pools": 24
+}

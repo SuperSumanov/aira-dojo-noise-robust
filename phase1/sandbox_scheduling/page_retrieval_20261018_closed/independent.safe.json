@@ -1,0 +1,52 @@
+{
+  "status": "INDEPENDENT_PUBLIC_SELECTION_AND_DEV_SCORE_VERIFIED",
+  "groups": [
+    {
+      "mode": "clean_raw",
+      "images": 11,
+      "exact_images": 11,
+      "rmse": 0.0,
+      "integer_sse": 0,
+      "pixels": 2144880
+    },
+    {
+      "mode": "clean_highpass",
+      "images": 11,
+      "exact_images": 11,
+      "rmse": 0.0,
+      "integer_sse": 0,
+      "pixels": 2144880
+    },
+    {
+      "mode": "noisy_raw",
+      "images": 11,
+      "exact_images": 11,
+      "rmse": 0.0,
+      "integer_sse": 0,
+      "pixels": 2144880
+    },
+    {
+      "mode": "noisy_highpass",
+      "images": 11,
+      "exact_images": 11,
+      "rmse": 0.0,
+      "integer_sse": 0,
+      "pixels": 2144880
+    }
+  ],
+  "manifest_sha256": "31698d35766aa5fc99ec2b56ee00cbcf21e994eeaf0ab59aaa1e9962a59c2acb",
+  "prediction_seal_sha256": "b79f227f277a2f06a7c387505f3e439b43332f66d57f8532ccacb2b5e582faba",
+  "verifier_sha256": "f7f8c6a7a31fc2144962f1da39226cd3bd62e924889b5e467fc625397685a8a7",
+  "summary_sha256": "9c73d9b7dc5a75492cc87be23301691c0b0d6351a2426c22f35a7a28939f352b",
+  "public_clean_images": 92,
+  "public_clean_unique_bytes": 36,
+  "dev_reference_matches": 11,
+  "old_cuda_requirement": true,
+  "seconds": 23.325626929756254,
+  "gpu_seconds": 0,
+  "paid_api": 0,
+  "limits": [
+    "Not a legal R14 arm or unseen-page generalization test.",
+    "Independent algorithm/score recomputation, not independent data or seeds."
+  ]
+}

@@ -1,0 +1,104 @@
+{
+  "audit_seconds": 0.512670542113483,
+  "gpu_seconds": 0,
+  "groups": [
+    {
+      "exact_images": 11,
+      "images": 11,
+      "mode": "clean_raw",
+      "pixels": 2144880,
+      "public_controls": [
+        {
+          "exact_images": 88,
+          "exclusion": "leave_rendering_out",
+          "images": 92,
+          "rmse": 0.06098140699960594
+        },
+        {
+          "exact_images": 0,
+          "exclusion": "leave_page_out",
+          "images": 92,
+          "rmse": 0.2845781808799508
+        }
+      ],
+      "rmse": 0.0
+    },
+    {
+      "exact_images": 11,
+      "images": 11,
+      "mode": "clean_highpass",
+      "pixels": 2144880,
+      "public_controls": [
+        {
+          "exact_images": 88,
+          "exclusion": "leave_rendering_out",
+          "images": 92,
+          "rmse": 0.06201324053956423
+        },
+        {
+          "exact_images": 0,
+          "exclusion": "leave_page_out",
+          "images": 92,
+          "rmse": 0.2909733140008264
+        }
+      ],
+      "rmse": 0.0
+    },
+    {
+      "exact_images": 11,
+      "images": 11,
+      "mode": "noisy_raw",
+      "pixels": 2144880,
+      "public_controls": [
+        {
+          "exact_images": 88,
+          "exclusion": "leave_rendering_out",
+          "images": 92,
+          "rmse": 0.06161423286129384
+        },
+        {
+          "exact_images": 0,
+          "exclusion": "leave_page_out",
+          "images": 92,
+          "rmse": 0.2863832555140498
+        }
+      ],
+      "rmse": 0.0
+    },
+    {
+      "exact_images": 11,
+      "images": 11,
+      "mode": "noisy_highpass",
+      "pixels": 2144880,
+      "public_controls": [
+        {
+          "exact_images": 88,
+          "exclusion": "leave_rendering_out",
+          "images": 92,
+          "rmse": 0.06322614035876782
+        },
+        {
+          "exact_images": 0,
+          "exclusion": "leave_page_out",
+          "images": 92,
+          "rmse": 0.29236560472515516
+        }
+      ],
+      "rmse": 0.0
+    }
+  ],
+  "limits": [
+    "CPU diagnostic violates old R14 CUDA-trained-model requirement; NOT a fair arm in that experiment.",
+    "Controls change retrieval representation/prototype source, not a novel algorithm.",
+    "Public LOO folds overlap; no independent sample-count or generalization claim.",
+    "Known reused DEV; not a new generalization set.",
+    "Template retrieval can exploit the observed training/reference page dependency; no general MLE improvement claim."
+  ],
+  "paid_api": 0,
+  "predict_seconds": 12.855392607394606,
+  "prediction_seal_sha256": "b79f227f277a2f06a7c387505f3e439b43332f66d57f8532ccacb2b5e582faba",
+  "source_sha256": "0ed738caffd7087a5003650865f2363b0c66fa15a7163171f3aa1bd2f12ea814",
+  "status": "CLOSED_DIAGNOSTIC_NOT_E2E",
+  "training_data": "only public train/noisy and train_cleaned",
+  "view_sha256": "31698d35766aa5fc99ec2b56ee00cbcf21e994eeaf0ab59aaa1e9962a59c2acb"
+}

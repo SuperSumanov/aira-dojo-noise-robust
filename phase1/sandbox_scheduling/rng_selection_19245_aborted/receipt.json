@@ -1,0 +1,32 @@
+{
+  "job": "19245",
+  "root": "/research/d7/spc/yzyang4/rng-selection-20261018-v1",
+  "source_commit": "a28aae1677b22460dff2d840ae2c7df31d6393cb",
+  "plan_sha256": "b0f074e902c947338fdd54344e8acf248cac51c2fa68bfc8a8fdaee32c5b4290",
+  "decision": "Administrative design abort before treatment exposure or any score inspection",
+  "reason": "slot=(program+block)%4 confounded arm and GPU for the same program. The independent v2 fixes each program's GPU and CPU pair across all arms and deployment.",
+  "state": "CANCELLED by 7542",
+  "node": "gpu3",
+  "gpus": 4,
+  "allocation_seconds": 212,
+  "allocation_gpu_seconds": 848,
+  "maximum_step_elapsed_seconds": 214,
+  "conservative_cleanup_inclusive_gpu_seconds": 856,
+  "conservative_gpu_hours": 0.23777777777777778,
+  "started": [0,1,2,3],
+  "finished": [],
+  "training_receipts": 0,
+  "any_scores_read": false,
+  "queue_empty": true,
+  "gpu_cleanup_independently_observed": false,
+  "original_files_retained": true,
+  "reuse_results": false,
+  "method_result": null,
+  "next_batch": "One independent v2 only; no further repair batch in this window. Total window <=5 GPU hours; v2 itself <=4 GPU hours.",
+  "accounting": [
+    "19245|CANCELLED by 7542|0:0|212|billing=8,cpu=8,gres/gpu=4,node=1|gpu3",
+    "19245.batch|FAILED|15:0|214|cpu=8,mem=0,node=1|gpu3",
+    "19245.extern|COMPLETED|0:0|212|billing=8,cpu=8,gres/gpu=4,node=1|gpu3",
+    "19245.0|CANCELLED|0:15|213|cpu=8,gres/gpu=4,mem=0,node=1|gpu3"
+  ]
+}

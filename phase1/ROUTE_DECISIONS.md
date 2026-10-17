@@ -114,10 +114,14 @@ quota已停止；矩阵、原门、边界见CURRENT_DIRECTION。不补救旧配�
 - 原代码/图像/300s/每程序2CPU+1GPU一致；global/sampler/addressed反序两选解seed。先封存选解再看新seed同库部署；完整分母及两个强参照，详CURRENT_DIRECTION。
 - CRN经典：Pearce等KG-CRN已联合选择配置和seed、利用噪声相关性作昂贵优化；不是本项目首创。https://arxiv.org/html/1910.09259
 - 事件/个体同步随机流已有医学模拟先例，不能仅换成样本/epoch称新方法。https://pmc.ncbi.nlm.nih.gov/articles/PMC2761656/
+- 10/18香港01:11补核直接近邻：Buffalo/Pearson/Klein, Realizing Common Random Numbers（arXiv2603.11084，3/11），已读§2.3、3、4、5：stable event identity→hash/counter RNG、条件控制流不再错位、各event-class独立stream参照均已有。故R15不是新的随机数方法；只可能作为既有方法在自由MLE代码选解中的适用性检验。其事件身份需模型假设，我方raw-input+epoch也不是任意代码语义对齐证明。https://arxiv.org/html/2603.11084v1
+- MetaFlow原文§4.2.2也用共享problem instances的CRN降低组内比较噪声（训练workflow policy，不是我方数据增强耦合；不引入底座训练），不能泛称“agent比较+CRN”创新。https://arxiv.org/html/2606.30704v1 。另只读核过旧tools/regrade_worker.py：原噪声实验确实重执行代码，不能误写为仅重评同一预测，更不能将重跑波动称本轮首次发现；未读取旧label/outcome文件。
 - PyTorch官方显式generator/worker_init_fn是便宜强参照；此处num_workers=0。https://docs.pytorch.org/docs/stable/notes/randomness.html
 - Net2Net/LEMONADE已有权重继承，HELIX已有工作流缓存；因此本轮未选择泛化“从父程序状态继续训练”作为新主张。https://arxiv.org/abs/1511.05641 / https://arxiv.org/abs/1804.09081 / https://arxiv.org/abs/1812.05762
 - 潜在贡献必须另证自由代码修改下可自动对齐、胜标准隔离随机源及真实搜索终分；本小库试验不可能单独满足。无选解变化/不胜两强参照则停，不增加调度补丁。
 - 19245仅首global块启动即盲态中止：轮转设备导致program×arm混杂，未读分数；不是CRN效果反证。独立v2固定每程序设备，原终分门/矩阵不变；unused loader单记。窗口含中止≤5GPUh，不再新增修复批。
+- 事前解释边界：二候选库若global/sampler选不同，addressed必与其中一个相同，不可能严格胜两者；不因此临时扩库。通过也只筛资格：尚需“采样+增强各自独立stream”更强参照，才能区分普通随机源隔离与按样本寻址的价值；未执行、不由此救失败。
+- 等执行数的高斯反例表明，降低排序差异噪声可提高所选程序新运行的均值，却降低已保留产物的期望max；假定随机性是产物真实质量差异，不是验证测量误差。纯CPU代数不构成实际MLE收益。MaxUCB已在AutoML讨论max而非mean（§1–2），故此目标区别不是新颖性，只用于避免错优化。https://arxiv.org/html/2505.05226v2
 
 1. 对应旧路线与原结果；未在当前窗口看到不等于没做过。
 2. 实质改变哪个决策、信息或行动，而非模型/seed/名字微调。

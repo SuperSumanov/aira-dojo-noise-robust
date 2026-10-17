@@ -1,6 +1,6 @@
 # 当前短交接：现场、边界和恢复动作
 
-最后观察2026-10-18香港01:02；窗口至HK03:30/UTC19:30。quota保持停止；19245盲态设计中止，独立v2准备中，本窗口不再增加修复批。
+最后观察2026-10-18香港01:07；窗口至HK03:30/UTC19:30。quota保持停止；19245盲态设计中止，独立v2/job19249正在gpu3四卡执行，不再增加修复批。
 完整上一交接在Git d9ddd4951be9fe8b7b9f6b352fb00d315559eb37；原件不重读覆盖。
 
 ## 当前位置与授权
@@ -9,7 +9,7 @@
 - 本次已fetch：myfork/phase1-value-critic=d9ddd4951be9fe8b7b9f6b352fb00d315559eb37；学长dojo-reproduce=e4d478350e704e8c5927eba566b2847aaa6dcbab，无新提交。
 - 用户已统一批准限定实验，不重复索权；旧批不重开、失败不自动重试、无界试错不允许。新矩阵/成本/门已在会话给出。
 - SSH yzyang4@linux5.cse.cuhk.edu.hk；PY=/research/d7/spc/yzyang4/venvs/aira/bin/python；SLURM_CONF=/opt1/slurm/gpu-slurm.conf。
-- stage=/research/d7/spc/yzyang4/quota-queue-source-20261017-ymOz45；v1 root rng-selection-20261018-v1封存；新root rng-selection-20261018-v2待prepare。
+- stage=/research/d7/spc/yzyang4/quota-queue-source-20261017-ymOz45；v1 root rng-selection-20261018-v1封存；v2 root rng-selection-20261018-v2已prepare/submit，不可重复。
 - 本地Python=C:/Users/yanze/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe；本机无torch，用远端CPU做新hook测试。
 - job19245 CANCELLED by7542；gpu3/4GPU，allocation212s、batch214s（清理尾部），仅index0–3 started、0finished/0训练回执；没有任何分数检查。队列已空，不碰Held12535；不能说已独立验证物理GPU全清理。
 
@@ -32,7 +32,13 @@
 - 中止原因：原slot=(k+b)%4使addressed的GPU对与global/sampler不同。在只有global首块时主动停止，没看任何分数，非结果驱动。v2改slot=k；CPU核也固定；32矩阵/300s/种子/选解/终分门不改。
 - 读出提前修正：只构造但没迭代的loader记unused，不要求它“产生干预”；所有日志mode必须正确且确有迭代/CUDA训练。旧v1读出原件保留；v2修改在读任何质量前完成。
 - v2源码已上传stage，本地32行设备不变断言和读出缺失/同选择/方向检查通过；任务镜像/模型环境无变化，原image CPU hook测试仍适用。总窗口含v1≤5GPUh，不再追加修复批。
+- v2 source7632bba196426ae1689e89a1d62671609d1d5296；plan9e1bf0caa8964e6baaf9ccd8be247f9ddc802bfd6be137f88fc535a494082756；两改变核心文件本地/远端SHA一致。提交会话28805退出0，job19249，HK01:06:56观察RUNNING29s/前4started，0finished。
+- v1保守清理尾部计856GPU秒=.23777777777777778GPUh，Slurm allocation本体848GPU秒；v2满额时窗口≤4.237777777777778GPUh。v1没有独立GPU清理观察，不伪写true；原安全中止回执rng_selection_19245_aborted。
 - 下一步只读本批结构监视，结束后一次运行冻结rng_selection_readout_20261018.py，再独立verify_rng_selection_20261018.mjs核传输/选择/阈值；实际cost取sacct，不把cap当实耗。当前无结果，不提前解读。
+- 10/18香港01:11已读直接近邻arXiv2603.11084§2.3/3/4/5，event-keyed RNG核心已被覆盖；R15降为已有机制适用性检验，不称方法创新。未改运行源码/终分门；阳性也不能跳过独立采样+增强stream更强参照。19249最后01:10运行3:34、4started/0finished，无分数检查。
+- 已重读学长e4d478的1016报告/online流程：跨日硬件/有效分母变化，部分选解损失和接受状态问题，不当作我方新发现或新旧权重纯收益。首次本地凭据扫描漏URL accessToken，原链接曾进入工具输出；没有访问、使用或转存令牌，已告知用户撤销分享令牌。以后扫描必须覆盖URL query凭据；新导出器加此门，未更改运行批源码。不得在交接或提交复制链接值。
+- HK01:27首seed12次均有真实训练回执；只读rng_selection_alignment显示Aerial exact-input loader匹配10对，完整epoch同顺序global0/38、sampler18/39、addressed36/36。不是独立样本/增强一致性/质量证据。去噪exact-multiset匹配0，不等于输入完全无交集，暂不声称其跨程序对齐已证。当前仍未读分数；批次预计HK02:00闭合。
+- HK01:29、未读任何本批分数前，独立Node新增仅描述性的目标一致性诊断：各task/arm相同4次selection执行的实际best、两seed各best及全量差；缺失不填。与原新seed选解门分开，不新增放行标准、不救失败、不称独立holdout/E2E。高斯目标反例仅说明这种区分必要。
 
 ## 必须保留的关闭事实
 

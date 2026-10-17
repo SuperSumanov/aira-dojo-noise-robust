@@ -8,7 +8,7 @@ from pathlib import Path
 import selective_trial_20261017 as common
 import generation_quota_policy_20261017 as quota
 
-R=Path('/research/d7/spc/yzyang4/scheduling-generation-quota-20261017-v1')
+R=Path('/research/d7/spc/yzyang4/scheduling-generation-quota-20261017-v2')
 ORDER=('partitioned','pooled','pooled','partitioned')
 NAME=Path(__file__).name
 read,write,sha=common.read,common.write,common.sha
@@ -20,18 +20,19 @@ def schedule():
 
 def scientific_metadata():
     return dict(prior_failures=[],new_window_gpu_seconds_cap=36000,combined_gpu_seconds_cap=36000,
-        accounting_scope='The legacy new_window/combined cap fields bound this independent allocation only, NOT the entire six-hour user session. Session accounting separately sums closed18987, actual18997 and this batch including failures. No third GPU batch is planned in this window.',
-        staging_note='Independent quota baseline, frozen before observing selective32quality. Both arms keep execution sharedFIFO cap1. Not reopening any closed experiment or recovering selective/pairing failures.',
-        approval='User2026-10-17HK02:49 approves bounded autonomous six-hour experiments.32=2knownDEV tasks*4pairedseeds*2conditions*2reversepoolcomparisons;2service+4execution3090,<=6000s/10GPUh inclusive of preparation on allocation, service, failures, idle and cleanup. NoAPI/base training/retries; submit only after prior allocation closes and window permits.',
+        accounting_scope='This independent allocation alone is capped at36000GPUseconds. The closed previous window61849GPUseconds is NOT reused. New research window2026-10-17UTC10:28:03 to13:28:03; no second GPU batch or automatic retry in this window.',
+        staging_note='One independent repaired quota qualification after sealed19004 invalid intervention. New root/source/window; same original32matrix,seeds,budgets,arbitration and final-quality gate. Only the previously repaired native-worker hook reaches the intended selector; no changes based on19004scores.',
+        approval='User2026-10-17HK18:28 explicitly requests completing the repaired quota contrast under unchanged budget/final-quality gate and stopping the recipe if no benefit.32=2knownDEV tasks*4pairedseeds*2conditions*2reversepoolcomparisons;2service+4execution3090,<=6000s/10GPUh inclusive of startup, failures, idle and cleanup. NoAPI/base training/retries. Refuse start without CAP+600seconds left in the three-hour window.',
         primary='Task-pool best pristineDEV timely returned solution within1020s per trajectory including common incumbent; all32denominator, task/pool medians/sampleSD, native-selected separately. Not32independent treatment replicates.',
         single_change='Generation eligibility: partitioned two permits per task versus pooled four permits total. SAME global completion-first/FIFO arbitration among eligible requests in BOTH arms. Maximum4 concurrent model requests, same2service+4execution cards, model/effort/token caps/start/history/CPU/images/time remain fixed. Both execution pools are cap1 sharedFIFO; no selective/dualGPUsharing.',
         common_execution_change='Same original-image CUDA/device qualification, fixedCPU, fatal-readiness propagation and worker closure stop as selective32. New common global request arbiter removes cross-task process-race tie-breaking in BOTH arms, so neither condition is an exact replay of older independently arbitrated per-task quotas.',
         advance='All32complete and exactinput/isolation/queue/cleanup/wholecost pass; pooled actual borrows in BOTH pools, no model concurrency above4. Pooled Denoise task-pool best improves partitioned by>=.001 in BOTH reverse comparisons; Aerial best nondeclines BOTH. No pooled rescue, replacement or newseed follow-up if false.',
         stop='Fixed32 only. Ordinary candidate failure remains within completed searches. Infrastructure/worker/input/namespace/cleanup failure stops later pools. No retry/oldroot reopening or old budget reuse.',
-        rationale='Closed18807 independent observed-state integration found123.56-287.05seconds per1180s pool with queued requests blocked by per-task2while totalactive<4.408vLLM telemetry samples had maxRunning4,Waiting0,KVcache<=13.3percent. Observational eligibility opportunity, not proof of spare compute, saved time or quality. New comparison keeps total4, so no proposed8request-capacity extrapolation.',
+        rationale='18807 observed quota-blocked intervals support testing eligibility, not spare compute or quality. Subsequent publication-chain audit found only two new-best Analyze requests with borrowable waits, both below1second; expected utility is weak. This final bounded strong-baseline qualification tests the censored counterfactual without changing thresholds or selecting new seeds.',
         limitation='Work-conserving quota pooling is an established baseline, NOT algorithm novelty or MARS/SchedMate reproduction. Two reusedDEVtasks, two reverse comparisons share one service. Task service allocation can shift; report both task results and preserve per-run wall budget. Warm construction is sunk/common, not from-scratch savings. Do not combine effects with selective-sharing batch.',
-        independent_predecessor=dict(root='/research/d7/spc/yzyang4/scheduling-colocation-20261016-v1',job='18807',sealed=True,budget_reused=False,
-            quota_evidence_sha256='77952b1eb54995f4aa19e8e81ef0278e6b60a760f60bb167b8a1506145bee096'))
+        independent_predecessor=dict(root='/research/d7/spc/yzyang4/scheduling-generation-quota-20261017-v1',job='19004',sealed=True,budget_reused=False,
+            qualification='Invalid intervention; all four pools retained old per-task2selector. No quality rescue or old readout overwrite.',
+            closure_sha256='ce69cc04504d7160c2d85024ad34b519047e09aeb5934f779c14b2432dbcd43b'))
 
 def preflight():
     p=common.original.base.c.trial.check()
@@ -57,6 +58,7 @@ def preflight():
     print(json.dumps(read(R/'preflight.json')))
 
 def configure():
+    common.WINDOW_END=int(common.datetime(2026,10,17,13,28,3,tzinfo=common.timezone.utc).timestamp())
     common.R=R;common.NAME=NAME;common.__file__=__file__;common.ORDER=('shared',)*4
     common.schedule=schedule;common.scientific_metadata=scientific_metadata;common.preflight=preflight
     common.configure()

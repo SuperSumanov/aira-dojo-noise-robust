@@ -1,0 +1,61 @@
+{
+  "directory": "/research/d7/spc/yzyang4/scheduling-generation-quota-20261017-v3/closure-evidence-20261018-v1",
+  "files": {
+    "closure.json": {
+      "bytes": 29807,
+      "sha256": "9cfd625603a141d89cbaa31c7a1d4de28a68e32e861321e52faec611f6c729e2"
+    },
+    "effort.json": {
+      "bytes": 95437,
+      "sha256": "b44751eefdc67cf9ac98dc51fb1ab84ea9c3d6ca29d3d6febf2098e19ad3da81"
+    },
+    "generation-0.json": {
+      "bytes": 18964,
+      "sha256": "3dab1e959d9975591d088c5ad327e9bbd0a3b54cbe6661048171f70c53a61676"
+    },
+    "generation-1.json": {
+      "bytes": 17506,
+      "sha256": "c7086e3bd21019ece3a8c929a1492b16c8c0aa623bb83f3aab125351c4ecf155"
+    },
+    "generation-2.json": {
+      "bytes": 17552,
+      "sha256": "6d1678a53181d5562f04bd7494740fae4434677fdc0e922a0a8121bb85272932"
+    },
+    "generation-3.json": {
+      "bytes": 17770,
+      "sha256": "3e25cca1c74486b766a06997d4fcaa9f72c46ee81041e7aa9641ae40aac8fcd9"
+    },
+    "queue-0.json": {
+      "bytes": 11348,
+      "sha256": "9b5b6e1a53ddf91f77af54561b1206d044fda1c24435f053984feb1119789410"
+    },
+    "queue-1.json": {
+      "bytes": 8990,
+      "sha256": "90df45877693362a4bdabefbca013db58c6b22b9be5f5c7fe32d316569004a5c"
+    },
+    "queue-2.json": {
+      "bytes": 9903,
+      "sha256": "01c6174e7884d5d15f5374780e5439a9b63b85c08a83f5e128aec2bdd489b5a1"
+    },
+    "queue-3.json": {
+      "bytes": 9455,
+      "sha256": "5511795f44854bb1234281513bb0920e85fecb4e9590aa3194e70c9c2a618f55"
+    },
+    "runs.csv": {
+      "bytes": 6607,
+      "sha256": "aee3fd4506c24e4603dee7db102eb714f30f8371bb1f49b134fcf76be859b282"
+    },
+    "runs.json": {
+      "bytes": 18794,
+      "sha256": "5f200dc5a3b9eafaf1db7d8beeae0031d1c85254829cef7db227ae45aa6b8f83"
+    },
+    "summary.json": {
+      "bytes": 864,
+      "sha256": "07e323ab6cef4825603bf7efac405e9c679261c7baee7e95c2ef6cd491dc2fee"
+    },
+    "worker-closure.json": {
+      "bytes": 25519,
+      "sha256": "d59a0522dac9b5c048fefce99d43e8df42c693a589aaef73e00be083aea237f4"
+    }
+  }
+}

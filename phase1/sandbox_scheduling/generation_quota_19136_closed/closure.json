@@ -1,0 +1,1087 @@
+{
+  "assigned": 32,
+  "automatic_retry": false,
+  "blocks": [
+    {
+      "block": 0,
+      "budget_slot_exists": true,
+      "execution_closed": {
+        "gpu_clean": true,
+        "telemetry_errors": []
+      },
+      "steps": {
+        "returncodes": [
+          0
+        ]
+      }
+    },
+    {
+      "block": 1,
+      "budget_slot_exists": true,
+      "execution_closed": {
+        "gpu_clean": true,
+        "telemetry_errors": []
+      },
+      "steps": {
+        "returncodes": [
+          0
+        ]
+      }
+    },
+    {
+      "block": 2,
+      "budget_slot_exists": true,
+      "execution_closed": {
+        "gpu_clean": true,
+        "telemetry_errors": []
+      },
+      "steps": {
+        "returncodes": [
+          0
+        ]
+      }
+    },
+    {
+      "block": 3,
+      "budget_slot_exists": false,
+      "execution_closed": {
+        "gpu_clean": true,
+        "telemetry_errors": []
+      },
+      "steps": {
+        "returncodes": [
+          1
+        ]
+      }
+    }
+  ],
+  "complete": 31,
+  "controller_error": {
+    "frames": [
+      {
+        "file": "colocation_trial_20261016.py",
+        "function": "controller",
+        "line": 276
+      }
+    ],
+    "type": "AssertionError"
+  },
+  "elapsed_seconds": 4946,
+  "end_hk": "2026-10-17T22:59:02",
+  "gpu_hours": 8.243333333333334,
+  "gpu_seconds": 29676,
+  "gpus": 6,
+  "job": "19136",
+  "limitation": "Intervention metadata can pass while the complete32 quality contrast remains invalid. Missing outcome is not imputed; no patch/rerun or filtered comparison.",
+  "node": "gpu3",
+  "original_readout_hashes": {
+    "effort.json": "b44751eefdc67cf9ac98dc51fb1ab84ea9c3d6ca29d3d6febf2098e19ad3da81",
+    "runs.csv": "aee3fd4506c24e4603dee7db102eb714f30f8371bb1f49b134fcf76be859b282",
+    "runs.json": "5f200dc5a3b9eafaf1db7d8beeae0031d1c85254829cef7db227ae45aa6b8f83",
+    "summary.json": "07e323ab6cef4825603bf7efac405e9c679261c7baee7e95c2ef6cd491dc2fee"
+  },
+  "original_success_gate_met": false,
+  "plan_sha256": "2736fb9326f62f3c83bc0cebc4854ba629991e5b5e4bb69e708aa91e24b74e7e",
+  "quality_comparison_valid": false,
+  "rows": [
+    {
+      "block": 0,
+      "cleanup_verified": true,
+      "closed_error": null,
+      "closed_keys": [
+        "cleanup_verified",
+        "end",
+        "finished",
+        "index",
+        "returncode",
+        "start"
+      ],
+      "closed_sha256": "1e45d1852c4d358fecd635ef6c52078620f676d1bb857624cdba2a201e691dca",
+      "complete": true,
+      "error": null,
+      "finished_keys": [
+        "elapsed_seconds",
+        "external_valid_submissions",
+        "native_selected_code_sha256",
+        "native_selected_score",
+        "native_selected_valid",
+        "status",
+        "utc"
+      ],
+      "finished_sha256": "9cf7222eb0e401d6c3fb95f086b15baf74b37fbfcdfd7b2b0214f33e044e5976",
+      "index": 0,
+      "quota_mode": "partitioned",
+      "returncode": 0,
+      "status": "budget_exhausted",
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "block": 0,
+      "cleanup_verified": true,
+      "closed_error": null,
+      "closed_keys": [
+        "cleanup_verified",
+        "end",
+        "finished",
+        "index",
+        "returncode",
+        "start"
+      ],
+      "closed_sha256": "67cb5649ee353dd7e0b77e5d201334a498fc4c3c16a3f187fbc396b4771cec9c",
+      "complete": true,
+      "error": null,
+      "finished_keys": [
+        "elapsed_seconds",
+        "external_valid_submissions",
+        "native_selected_code_sha256",
+        "native_selected_score",
+        "native_selected_valid",
+        "status",
+        "utc"
+      ],
+      "finished_sha256": "7dcf8ee5791c8972a099449c090f11a0952f06ec0198359034998070286aa988",
+      "index": 1,
+      "quota_mode": "partitioned",
+      "returncode": 0,
+      "status": "budget_exhausted",
+      "task": "denoising-dirty-documents"
+    },
+    {
+      "block": 0,
+      "cleanup_verified": true,
+      "closed_error": null,
+      "closed_keys": [
+        "cleanup_verified",
+        "end",
+        "finished",
+        "index",
+        "returncode",
+        "start"
+      ],
+      "closed_sha256": "7a808650e6fa3325419d5c5bf2e177f74dacfc78cd57e50d7524a0681f6ce9dc",
+      "complete": true,
+      "error": null,
+      "finished_keys": [
+        "elapsed_seconds",
+        "external_valid_submissions",
+        "native_selected_code_sha256",
+        "native_selected_score",
+        "native_selected_valid",
+        "status",
+        "utc"
+      ],
+      "finished_sha256": "6cac5d4ce75658851c7b731584d6fffdb3dff156d02513a745e177a09ec73ac2",
+      "index": 2,
+      "quota_mode": "partitioned",
+      "returncode": 0,
+      "status": "budget_exhausted",
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "block": 0,
+      "cleanup_verified": true,
+      "closed_error": null,
+      "closed_keys": [
+        "cleanup_verified",
+        "end",
+        "finished",
+        "index",
+        "returncode",
+        "start"
+      ],
+      "closed_sha256": "062915bb7d70fdcb2447481709c18bc9f68acf68a9b594f2c5aea1f60e2fe248",
+      "complete": true,
+      "error": null,
+      "finished_keys": [
+        "elapsed_seconds",
+        "external_valid_submissions",
+        "native_selected_code_sha256",
+        "native_selected_score",
+        "native_selected_valid",
+        "status",
+        "utc"
+      ],
+      "finished_sha256": "81335242f82e70d84355f4b000bcc1fe7f8f63538c0274e08d9ad28a349ade11",
+      "index": 3,
+      "quota_mode": "partitioned",
+      "returncode": 0,
+      "status": "budget_exhausted",
+      "task": "denoising-dirty-documents"
+    },
+    {
+      "block": 0,
+      "cleanup_verified": true,
+      "closed_error": null,
+      "closed_keys": [
+        "cleanup_verified",
+        "end",
+        "finished",
+        "index",
+        "returncode",
+        "start"
+      ],
+      "closed_sha256": "08fdf589018e73b4a7b58b46a18a22f28a0201748f7c8316a0af87b52bbaf17c",
+      "complete": true,
+      "error": null,
+      "finished_keys": [
+        "elapsed_seconds",
+        "external_valid_submissions",
+        "native_selected_code_sha256",
+        "native_selected_score",
+        "native_selected_valid",
+        "status",
+        "utc"
+      ],
+      "finished_sha256": "d764c5778013873d2ce462549d40e1339eb484037c1c7b3d1e649c7f919add54",
+      "index": 4,
+      "quota_mode": "partitioned",
+      "returncode": 0,
+      "status": "budget_exhausted",
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "block": 0,
+      "cleanup_verified": true,
+      "closed_error": null,
+      "closed_keys": [
+        "cleanup_verified",
+        "end",
+        "finished",
+        "index",
+        "returncode",
+        "start"
+      ],
+      "closed_sha256": "d05f7b0b2ded2409a6e59f1f6f8ac9d93848b9ee862944eadb425ebf4fcc0e71",
+      "complete": true,
+      "error": null,
+      "finished_keys": [
+        "elapsed_seconds",
+        "external_valid_submissions",
+        "native_selected_code_sha256",
+        "native_selected_score",
+        "native_selected_valid",
+        "status",
+        "utc"
+      ],
+      "finished_sha256": "49f74187f24441d860621d8379dc67f812f3be4a14324787de093fe3227a760f",
+      "index": 5,
+      "quota_mode": "partitioned",
+      "returncode": 0,
+      "status": "budget_exhausted",
+      "task": "denoising-dirty-documents"
+    },
+    {
+      "block": 0,
+      "cleanup_verified": true,
+      "closed_error": null,
+      "closed_keys": [
+        "cleanup_verified",
+        "end",
+        "finished",
+        "index",
+        "returncode",
+        "start"
+      ],
+      "closed_sha256": "97d2d33053f85b9ee05ca0ad21bfb7078149eb00267b434b53d2c47a9a4033c9",
+      "complete": true,
+      "error": null,
+      "finished_keys": [
+        "elapsed_seconds",
+        "external_valid_submissions",
+        "native_selected_code_sha256",
+        "native_selected_score",
+        "native_selected_valid",
+        "status",
+        "utc"
+      ],
+      "finished_sha256": "6ae81b1ca8ab98c4202fecee7b89d844ec97c730f8c5fd6b36605afa62ad2b58",
+      "index": 6,
+      "quota_mode": "partitioned",
+      "returncode": 0,
+      "status": "budget_exhausted",
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "block": 0,
+      "cleanup_verified": true,
+      "closed_error": null,
+      "closed_keys": [
+        "cleanup_verified",
+        "end",
+        "finished",
+        "index",
+        "returncode",
+        "start"
+      ],
+      "closed_sha256": "f99bcfe0943bc7c1bd31ddceabfdd422a23e933b4a3cd2bee1d7933dbf8c0a15",
+      "complete": true,
+      "error": null,
+      "finished_keys": [
+        "elapsed_seconds",
+        "external_valid_submissions",
+        "native_selected_code_sha256",
+        "native_selected_score",
+        "native_selected_valid",
+        "status",
+        "utc"
+      ],
+      "finished_sha256": "cc8eb9187920802fbe134ed89f941d4ee8330dd2179a12bbeefb5a5353098bfa",
+      "index": 7,
+      "quota_mode": "partitioned",
+      "returncode": 0,
+      "status": "budget_exhausted",
+      "task": "denoising-dirty-documents"
+    },
+    {
+      "block": 1,
+      "cleanup_verified": true,
+      "closed_error": null,
+      "closed_keys": [
+        "cleanup_verified",
+        "end",
+        "finished",
+        "index",
+        "returncode",
+        "start"
+      ],
+      "closed_sha256": "ca10dcea210ce84e73194c4c2f24626d682e839bce1fd6137827efdb17c72065",
+      "complete": true,
+      "error": null,
+      "finished_keys": [
+        "elapsed_seconds",
+        "external_valid_submissions",
+        "native_selected_code_sha256",
+        "native_selected_score",
+        "native_selected_valid",
+        "status",
+        "utc"
+      ],
+      "finished_sha256": "d4735479bb8d545e9e2ceac87cbbc87075b4002fbba3fd677166f3fa644445e7",
+      "index": 8,
+      "quota_mode": "pooled",
+      "returncode": 0,
+      "status": "budget_exhausted",
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "block": 1,
+      "cleanup_verified": true,
+      "closed_error": null,
+      "closed_keys": [
+        "cleanup_verified",
+        "end",
+        "finished",
+        "index",
+        "returncode",
+        "start"
+      ],
+      "closed_sha256": "2b6951d7b844ea49fab69dc7220570df6ab0e971aac2fc5a2954f464453fc1e3",
+      "complete": true,
+      "error": null,
+      "finished_keys": [
+        "elapsed_seconds",
+        "external_valid_submissions",
+        "native_selected_code_sha256",
+        "native_selected_score",
+        "native_selected_valid",
+        "status",
+        "utc"
+      ],
+      "finished_sha256": "ecf355545dc1c0d5d40727ccffb965fcbc83d852ebb00f9ba9cb94a4c4e33b9e",
+      "index": 9,
+      "quota_mode": "pooled",
+      "returncode": 0,
+      "status": "budget_exhausted",
+      "task": "denoising-dirty-documents"
+    },
+    {
+      "block": 1,
+      "cleanup_verified": true,
+      "closed_error": null,
+      "closed_keys": [
+        "cleanup_verified",
+        "end",
+        "finished",
+        "index",
+        "returncode",
+        "start"
+      ],
+      "closed_sha256": "d314eaf50a133b267c4a9da3ae8284309b633f7aa3956a6aadefe11266043426",
+      "complete": true,
+      "error": null,
+      "finished_keys": [
+        "elapsed_seconds",
+        "external_valid_submissions",
+        "native_selected_code_sha256",
+        "native_selected_score",
+        "native_selected_valid",
+        "status",
+        "utc"
+      ],
+      "finished_sha256": "44d4bc8ebaa651fe1b7aa2d9b7521a9f81c686e6b40a90d6b711f7e9c08e9bb8",
+      "index": 10,
+      "quota_mode": "pooled",
+      "returncode": 0,
+      "status": "budget_exhausted",
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "block": 1,
+      "cleanup_verified": true,
+      "closed_error": null,
+      "closed_keys": [
+        "cleanup_verified",
+        "end",
+        "finished",
+        "index",
+        "returncode",
+        "start"
+      ],
+      "closed_sha256": "7a719b5b04e255f31f4f39c1f1ddfc1207ea8d7381c9ee28ea0833c6315def48",
+      "complete": true,
+      "error": null,
+      "finished_keys": [
+        "elapsed_seconds",
+        "external_valid_submissions",
+        "native_selected_code_sha256",
+        "native_selected_score",
+        "native_selected_valid",
+        "status",
+        "utc"
+      ],
+      "finished_sha256": "76b47a46153604858efa4c33c9fa4365351c0b306b111b6ada25ec99ca6a040b",
+      "index": 11,
+      "quota_mode": "pooled",
+      "returncode": 0,
+      "status": "budget_exhausted",
+      "task": "denoising-dirty-documents"
+    },
+    {
+      "block": 1,
+      "cleanup_verified": true,
+      "closed_error": null,
+      "closed_keys": [
+        "cleanup_verified",
+        "end",
+        "finished",
+        "index",
+        "returncode",
+        "start"
+      ],
+      "closed_sha256": "d33a228ecfe6d31e3b239ddd9e638d5d16d72779c0b0fa9b2bd7262741ab9164",
+      "complete": true,
+      "error": null,
+      "finished_keys": [
+        "elapsed_seconds",
+        "external_valid_submissions",
+        "native_selected_code_sha256",
+        "native_selected_score",
+        "native_selected_valid",
+        "status",
+        "utc"
+      ],
+      "finished_sha256": "9cd53e9727411598df3c6abd545bde0dc469909a18b5f9416b230349e65bbc65",
+      "index": 12,
+      "quota_mode": "pooled",
+      "returncode": 0,
+      "status": "budget_exhausted",
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "block": 1,
+      "cleanup_verified": true,
+      "closed_error": null,
+      "closed_keys": [
+        "cleanup_verified",
+        "end",
+        "finished",
+        "index",
+        "returncode",
+        "start"
+      ],
+      "closed_sha256": "d68fd31c9b1f3edfe1168d2a20ae351d581f88193fd868cb74a5f73963d7540a",
+      "complete": true,
+      "error": null,
+      "finished_keys": [
+        "elapsed_seconds",
+        "external_valid_submissions",
+        "native_selected_code_sha256",
+        "native_selected_score",
+        "native_selected_valid",
+        "status",
+        "utc"
+      ],
+      "finished_sha256": "3fa75f1c00a7f8b72b3bb9bc9a90904ffe86cdd37ebd54f8f0003ec155b8aaa5",
+      "index": 13,
+      "quota_mode": "pooled",
+      "returncode": 0,
+      "status": "budget_exhausted",
+      "task": "denoising-dirty-documents"
+    },
+    {
+      "block": 1,
+      "cleanup_verified": true,
+      "closed_error": null,
+      "closed_keys": [
+        "cleanup_verified",
+        "end",
+        "finished",
+        "index",
+        "returncode",
+        "start"
+      ],
+      "closed_sha256": "3e1228ea3ccaa7063e831b6db9ff289f0caf15210cceed0613ed386d14da9887",
+      "complete": true,
+      "error": null,
+      "finished_keys": [
+        "elapsed_seconds",
+        "external_valid_submissions",
+        "native_selected_code_sha256",
+        "native_selected_score",
+        "native_selected_valid",
+        "status",
+        "utc"
+      ],
+      "finished_sha256": "39b6a9eb559a5eaaffdd23857dddd47ccdeb953f61ae48cc1f3b9eb2fdf6cc9a",
+      "index": 14,
+      "quota_mode": "pooled",
+      "returncode": 0,
+      "status": "budget_exhausted",
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "block": 1,
+      "cleanup_verified": true,
+      "closed_error": null,
+      "closed_keys": [
+        "cleanup_verified",
+        "end",
+        "finished",
+        "index",
+        "returncode",
+        "start"
+      ],
+      "closed_sha256": "3d5ae2adb690d78620b5bb903f7b0708fae7d65867cb691907b1c8fa600868ca",
+      "complete": true,
+      "error": null,
+      "finished_keys": [
+        "elapsed_seconds",
+        "external_valid_submissions",
+        "native_selected_code_sha256",
+        "native_selected_score",
+        "native_selected_valid",
+        "status",
+        "utc"
+      ],
+      "finished_sha256": "71cbb83089984f3bb51214a8bf3d3d60da579ff4e2b1c7cf2ab61619a8d3f676",
+      "index": 15,
+      "quota_mode": "pooled",
+      "returncode": 0,
+      "status": "budget_exhausted",
+      "task": "denoising-dirty-documents"
+    },
+    {
+      "block": 2,
+      "cleanup_verified": true,
+      "closed_error": null,
+      "closed_keys": [
+        "cleanup_verified",
+        "end",
+        "finished",
+        "index",
+        "returncode",
+        "start"
+      ],
+      "closed_sha256": "6c5e38e2b5c63f0d97977e4f94334b37684ddf4b0af02afa49b625c66af2a874",
+      "complete": true,
+      "error": null,
+      "finished_keys": [
+        "elapsed_seconds",
+        "external_valid_submissions",
+        "native_selected_code_sha256",
+        "native_selected_score",
+        "native_selected_valid",
+        "status",
+        "utc"
+      ],
+      "finished_sha256": "793ec11a3f17ede4d0bd69926ace60d70c69c47e96fca707a820a2754ff8e541",
+      "index": 16,
+      "quota_mode": "pooled",
+      "returncode": 0,
+      "status": "budget_exhausted",
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "block": 2,
+      "cleanup_verified": true,
+      "closed_error": null,
+      "closed_keys": [
+        "cleanup_verified",
+        "end",
+        "finished",
+        "index",
+        "returncode",
+        "start"
+      ],
+      "closed_sha256": "8a4667651fa5d7c1190f9a5620243d858f2b172514ea095a079526fd967b8fba",
+      "complete": true,
+      "error": null,
+      "finished_keys": [
+        "elapsed_seconds",
+        "external_valid_submissions",
+        "native_selected_code_sha256",
+        "native_selected_score",
+        "native_selected_valid",
+        "status",
+        "utc"
+      ],
+      "finished_sha256": "06e3b2f3656b221367c44f920277aca888f1b7ad069c499346861e58f80b6fa0",
+      "index": 17,
+      "quota_mode": "pooled",
+      "returncode": 0,
+      "status": "budget_exhausted",
+      "task": "denoising-dirty-documents"
+    },
+    {
+      "block": 2,
+      "cleanup_verified": true,
+      "closed_error": null,
+      "closed_keys": [
+        "cleanup_verified",
+        "end",
+        "finished",
+        "index",
+        "returncode",
+        "start"
+      ],
+      "closed_sha256": "402fcad39774aeeff39203b1e3127a705ccb421cb931044d2d1cc5196ccb385a",
+      "complete": true,
+      "error": null,
+      "finished_keys": [
+        "elapsed_seconds",
+        "external_valid_submissions",
+        "native_selected_code_sha256",
+        "native_selected_score",
+        "native_selected_valid",
+        "status",
+        "utc"
+      ],
+      "finished_sha256": "9ac4677043c7f00d7b70131cd0181e3b240a8d84f7bbfa25c8e4e3669d635140",
+      "index": 18,
+      "quota_mode": "pooled",
+      "returncode": 0,
+      "status": "budget_exhausted",
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "block": 2,
+      "cleanup_verified": true,
+      "closed_error": null,
+      "closed_keys": [
+        "cleanup_verified",
+        "end",
+        "finished",
+        "index",
+        "returncode",
+        "start"
+      ],
+      "closed_sha256": "ac0c38bd8fa5f94f18e4eb7f44dc3ef033ec5603f044f7bdca0663c1f88b9e31",
+      "complete": true,
+      "error": null,
+      "finished_keys": [
+        "elapsed_seconds",
+        "external_valid_submissions",
+        "native_selected_code_sha256",
+        "native_selected_score",
+        "native_selected_valid",
+        "status",
+        "utc"
+      ],
+      "finished_sha256": "67d255abf7f4505b0dda9e9082627d82ab717b1b5bc82be66af50c22b44759de",
+      "index": 19,
+      "quota_mode": "pooled",
+      "returncode": 0,
+      "status": "budget_exhausted",
+      "task": "denoising-dirty-documents"
+    },
+    {
+      "block": 2,
+      "cleanup_verified": true,
+      "closed_error": null,
+      "closed_keys": [
+        "cleanup_verified",
+        "end",
+        "finished",
+        "index",
+        "returncode",
+        "start"
+      ],
+      "closed_sha256": "7e21698aaa74194211d8edca8d8adac14dc8582ddeb73447b1e547388f19acad",
+      "complete": true,
+      "error": null,
+      "finished_keys": [
+        "elapsed_seconds",
+        "external_valid_submissions",
+        "native_selected_code_sha256",
+        "native_selected_score",
+        "native_selected_valid",
+        "status",
+        "utc"
+      ],
+      "finished_sha256": "b9e04964dd5ad29003e6944637ed575bf8f5bbb34fb4099206fda5b508eb8080",
+      "index": 20,
+      "quota_mode": "pooled",
+      "returncode": 0,
+      "status": "budget_exhausted",
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "block": 2,
+      "cleanup_verified": true,
+      "closed_error": null,
+      "closed_keys": [
+        "cleanup_verified",
+        "end",
+        "finished",
+        "index",
+        "returncode",
+        "start"
+      ],
+      "closed_sha256": "e7dd3bef1ef4122bf12a5c8d18eb75a06cd07716b435f8a18e8081a3375d1f4e",
+      "complete": true,
+      "error": null,
+      "finished_keys": [
+        "elapsed_seconds",
+        "external_valid_submissions",
+        "native_selected_code_sha256",
+        "native_selected_score",
+        "native_selected_valid",
+        "status",
+        "utc"
+      ],
+      "finished_sha256": "02dd8e49b8251e4c9fa96a8f35c40d68343c248118e16b8b07216437625544ee",
+      "index": 21,
+      "quota_mode": "pooled",
+      "returncode": 0,
+      "status": "budget_exhausted",
+      "task": "denoising-dirty-documents"
+    },
+    {
+      "block": 2,
+      "cleanup_verified": true,
+      "closed_error": null,
+      "closed_keys": [
+        "cleanup_verified",
+        "end",
+        "finished",
+        "index",
+        "returncode",
+        "start"
+      ],
+      "closed_sha256": "963d9a9ac93842c7f857a0ecc6ce39231966e76609d6cea01b506307542acd72",
+      "complete": true,
+      "error": null,
+      "finished_keys": [
+        "elapsed_seconds",
+        "external_valid_submissions",
+        "native_selected_code_sha256",
+        "native_selected_score",
+        "native_selected_valid",
+        "status",
+        "utc"
+      ],
+      "finished_sha256": "f3f74d450870cdcb69d82fabea37a281dda4dd8d1373f4ceef0e7a86f17baf22",
+      "index": 22,
+      "quota_mode": "pooled",
+      "returncode": 0,
+      "status": "budget_exhausted",
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "block": 2,
+      "cleanup_verified": true,
+      "closed_error": null,
+      "closed_keys": [
+        "cleanup_verified",
+        "end",
+        "finished",
+        "index",
+        "returncode",
+        "start"
+      ],
+      "closed_sha256": "93f00f190e89e1a49d1ec3cb08b67da4182282c9795825d5a783ea144a0186d7",
+      "complete": true,
+      "error": null,
+      "finished_keys": [
+        "elapsed_seconds",
+        "external_valid_submissions",
+        "native_selected_code_sha256",
+        "native_selected_score",
+        "native_selected_valid",
+        "status",
+        "utc"
+      ],
+      "finished_sha256": "9e509151b4a5f67f4d182e7715bfefe58a9ac9452c337579b2c4efe47857e75b",
+      "index": 23,
+      "quota_mode": "pooled",
+      "returncode": 0,
+      "status": "budget_exhausted",
+      "task": "denoising-dirty-documents"
+    },
+    {
+      "block": 3,
+      "cleanup_verified": true,
+      "closed_error": null,
+      "closed_keys": [
+        "cleanup_verified",
+        "end",
+        "finished",
+        "index",
+        "returncode",
+        "start"
+      ],
+      "closed_sha256": "986c6a6084e15fa670c6800c9787f77d95ac385946c872f2ea8a2cefb6ad5c08",
+      "complete": true,
+      "error": null,
+      "finished_keys": [
+        "elapsed_seconds",
+        "external_valid_submissions",
+        "native_selected_code_sha256",
+        "native_selected_score",
+        "native_selected_valid",
+        "status",
+        "utc"
+      ],
+      "finished_sha256": "0851d743d661ec0bdcf90116a1431831c75d64b0eadc646ece604fd9905cd45f",
+      "index": 24,
+      "quota_mode": "partitioned",
+      "returncode": 0,
+      "status": "budget_exhausted",
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "block": 3,
+      "cleanup_verified": true,
+      "closed_error": null,
+      "closed_keys": [
+        "cleanup_verified",
+        "end",
+        "finished",
+        "index",
+        "returncode",
+        "start"
+      ],
+      "closed_sha256": "4b61e98334bbc35c2d5e831c8bac6db3768a5a5e4819505fc817aba63ff47d83",
+      "complete": true,
+      "error": null,
+      "finished_keys": [
+        "elapsed_seconds",
+        "external_valid_submissions",
+        "native_selected_code_sha256",
+        "native_selected_score",
+        "native_selected_valid",
+        "status",
+        "utc"
+      ],
+      "finished_sha256": "9454d36143563cc14bfaf7ee6295fa59d2685ed6c27c833a1988bc725982c8d1",
+      "index": 25,
+      "quota_mode": "partitioned",
+      "returncode": 0,
+      "status": "budget_exhausted",
+      "task": "denoising-dirty-documents"
+    },
+    {
+      "block": 3,
+      "cleanup_verified": true,
+      "closed_error": null,
+      "closed_keys": [
+        "cleanup_verified",
+        "end",
+        "finished",
+        "index",
+        "returncode",
+        "start"
+      ],
+      "closed_sha256": "2ff4a8c8e883cd98b9975ea839434547e807abe200096e65967c9787887af8d7",
+      "complete": false,
+      "error": null,
+      "finished_keys": [
+        "elapsed_seconds",
+        "external_valid_submissions",
+        "native_selected_code_sha256",
+        "native_selected_score",
+        "native_selected_valid",
+        "status",
+        "utc"
+      ],
+      "finished_sha256": "e3b5df947e251779bd66d0b8634b6f10cb683591141b744cb51156987746e5bb",
+      "index": 26,
+      "quota_mode": "partitioned",
+      "returncode": 1,
+      "status": "failed",
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "block": 3,
+      "cleanup_verified": true,
+      "closed_error": null,
+      "closed_keys": [
+        "cleanup_verified",
+        "end",
+        "finished",
+        "index",
+        "returncode",
+        "start"
+      ],
+      "closed_sha256": "b4b6ae9d0197ffbdfed310e9662e16a1df83c56c27d02b7224a6d9fa6ad6df77",
+      "complete": true,
+      "error": null,
+      "finished_keys": [
+        "elapsed_seconds",
+        "external_valid_submissions",
+        "native_selected_code_sha256",
+        "native_selected_score",
+        "native_selected_valid",
+        "status",
+        "utc"
+      ],
+      "finished_sha256": "382a6d5a3e7fddbfe13302825524eda96ccf529bfbabba871fad45650cbe7011",
+      "index": 27,
+      "quota_mode": "partitioned",
+      "returncode": 0,
+      "status": "budget_exhausted",
+      "task": "denoising-dirty-documents"
+    },
+    {
+      "block": 3,
+      "cleanup_verified": true,
+      "closed_error": null,
+      "closed_keys": [
+        "cleanup_verified",
+        "end",
+        "finished",
+        "index",
+        "returncode",
+        "start"
+      ],
+      "closed_sha256": "6db4c641c78a40f2ef4c6919254ac02b81d54ba1f41f6c24ae86c2e7bcc82552",
+      "complete": true,
+      "error": null,
+      "finished_keys": [
+        "elapsed_seconds",
+        "external_valid_submissions",
+        "native_selected_code_sha256",
+        "native_selected_score",
+        "native_selected_valid",
+        "status",
+        "utc"
+      ],
+      "finished_sha256": "ad29f14e4581418747132e38646e3788fb227f5201803dbb77f350986417785f",
+      "index": 28,
+      "quota_mode": "partitioned",
+      "returncode": 0,
+      "status": "budget_exhausted",
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "block": 3,
+      "cleanup_verified": true,
+      "closed_error": null,
+      "closed_keys": [
+        "cleanup_verified",
+        "end",
+        "finished",
+        "index",
+        "returncode",
+        "start"
+      ],
+      "closed_sha256": "11ee1155c1f54f55479c34674d5f4c8a8c8ca9b7897b5ac6eaf1bc9f66ad42c3",
+      "complete": true,
+      "error": null,
+      "finished_keys": [
+        "elapsed_seconds",
+        "external_valid_submissions",
+        "native_selected_code_sha256",
+        "native_selected_score",
+        "native_selected_valid",
+        "status",
+        "utc"
+      ],
+      "finished_sha256": "4190fcd8bf0b580c064a28c5da98d51db3697037e7423addb44f692390c8c231",
+      "index": 29,
+      "quota_mode": "partitioned",
+      "returncode": 0,
+      "status": "budget_exhausted",
+      "task": "denoising-dirty-documents"
+    },
+    {
+      "block": 3,
+      "cleanup_verified": true,
+      "closed_error": null,
+      "closed_keys": [
+        "cleanup_verified",
+        "end",
+        "finished",
+        "index",
+        "returncode",
+        "start"
+      ],
+      "closed_sha256": "35e38152562a8ecd9021ac349057f9ac5d21343b55410578aa19da68ad1652b1",
+      "complete": true,
+      "error": null,
+      "finished_keys": [
+        "elapsed_seconds",
+        "external_valid_submissions",
+        "native_selected_code_sha256",
+        "native_selected_score",
+        "native_selected_valid",
+        "status",
+        "utc"
+      ],
+      "finished_sha256": "4e750bd7a17faf981d7a2289c6bf2edbcd32cfbd0adf3bc0dbfa5a178acc5aae",
+      "index": 30,
+      "quota_mode": "partitioned",
+      "returncode": 0,
+      "status": "budget_exhausted",
+      "task": "aerial-cactus-identification"
+    },
+    {
+      "block": 3,
+      "cleanup_verified": true,
+      "closed_error": null,
+      "closed_keys": [
+        "cleanup_verified",
+        "end",
+        "finished",
+        "index",
+        "returncode",
+        "start"
+      ],
+      "closed_sha256": "c1787f4a1232230a78bfca01cc547798b3a82ce212147577a535f417b98de08b",
+      "complete": true,
+      "error": null,
+      "finished_keys": [
+        "elapsed_seconds",
+        "external_valid_submissions",
+        "native_selected_code_sha256",
+        "native_selected_score",
+        "native_selected_valid",
+        "status",
+        "utc"
+      ],
+      "finished_sha256": "ab3425ed8f931ece0c15b8a85b57b1d080ffe5224822d57b7fc69845270a5bd5",
+      "index": 31,
+      "quota_mode": "partitioned",
+      "returncode": 0,
+      "status": "budget_exhausted",
+      "task": "denoising-dirty-documents"
+    }
+  ],
+  "service_cleanup": {
+    "gpu_clean": true,
+    "returncode": 137
+  },
+  "source_commit": "6db9d7c62d3c1339884a96c7ca5803a39206c1da",
+  "start_hk": "2026-10-17T21:36:36",
+  "state": "FAILED"
+}

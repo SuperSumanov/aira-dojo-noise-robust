@@ -1,0 +1,97 @@
+{
+  "index": 26,
+  "job": "19136",
+  "logs": {
+    "block-3/executor.private.log": {
+      "bounded_error_types": [],
+      "bytes": 680,
+      "compiling": false,
+      "exception_types": [
+        "RuntimeError"
+      ],
+      "graph_capture": false,
+      "known_messages": [],
+      "kv_initialized": false,
+      "oom": false,
+      "ready": false,
+      "sha256": "cd6c78a68b7d032977e646daeabca7e9e539671391a667d09d2413225c1c8840",
+      "step_wait": false,
+      "trace_frames": [
+        {
+          "file": "selective-executor",
+          "function": "executor",
+          "line": 39
+        },
+        {
+          "file": "pool_stop_contract_20261017.py",
+          "function": "require_completed_workers",
+          "line": 16
+        }
+      ],
+      "traceback": true,
+      "weights_loaded": false,
+      "weights_loading": false
+    },
+    "episode-26/worker.private.log": {
+      "bounded_error_types": [],
+      "bytes": 195296,
+      "compiling": false,
+      "exception_types": [
+        "clock_pairing_20261016.InfrastructureReadinessError"
+      ],
+      "graph_capture": false,
+      "known_messages": [],
+      "kv_initialized": false,
+      "oom": false,
+      "ready": false,
+      "sha256": "a5fda7b6ca52e68c4e8a4643e5fc41b1e4a470c932cafc5885e14235b8004e18",
+      "step_wait": false,
+      "trace_frames": [
+        {
+          "file": "task.py",
+          "function": "step_task",
+          "line": 157
+        },
+        {
+          "file": "task.py",
+          "function": "_step_search_only_dev",
+          "line": 252
+        },
+        {
+          "file": "jupyter_interpreter.py",
+          "function": "run",
+          "line": 257
+        },
+        {
+          "file": "jupyter_interpreter.py",
+          "function": "run",
+          "line": 162
+        },
+        {
+          "file": "shared-execution-common-hooks",
+          "function": "execute_code",
+          "line": 82
+        },
+        {
+          "file": "jupyter_code_executor.py",
+          "function": "execute_code",
+          "line": 103
+        },
+        {
+          "file": "selective_trial_20261017.py",
+          "function": "guarded",
+          "line": 89
+        },
+        {
+          "file": "clock_pairing_20261016.py",
+          "function": "require_ready",
+          "line": 37
+        }
+      ],
+      "traceback": true,
+      "weights_loaded": false,
+      "weights_loading": false
+    }
+  },
+  "scope": "bounded tail syntax hints, not causal proof"
+}

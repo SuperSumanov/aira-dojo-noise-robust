@@ -1,0 +1,176 @@
+{
+  "passed": true,
+  "assigned": 32,
+  "complete": 31,
+  "failed_indices": [
+    26
+  ],
+  "transport_hashes_verified": 14,
+  "gpu_seconds": 29676,
+  "gpu_hours": 8.243333333333334,
+  "intervention_verified": true,
+  "generations": [
+    {
+      "block": 0,
+      "requests": 48,
+      "borrowed_admissions": 0,
+      "peak_active": 4
+    },
+    {
+      "block": 1,
+      "requests": 44,
+      "borrowed_admissions": 11,
+      "peak_active": 4
+    },
+    {
+      "block": 2,
+      "requests": 44,
+      "borrowed_admissions": 9,
+      "peak_active": 4
+    },
+    {
+      "block": 3,
+      "requests": 45,
+      "borrowed_admissions": 0,
+      "peak_active": 4
+    }
+  ],
+  "executions": [
+    {
+      "block": 0,
+      "admissions": 24,
+      "migrations": 18,
+      "wait_total": 600.5071892738342
+    },
+    {
+      "block": 1,
+      "admissions": 20,
+      "migrations": 15,
+      "wait_total": 1375.6349668502808
+    },
+    {
+      "block": 2,
+      "admissions": 22,
+      "migrations": 18,
+      "wait_total": 1226.862368106842
+    },
+    {
+      "block": 3,
+      "admissions": 21,
+      "migrations": 16,
+      "wait_total": 690.8198854923248
+    }
+  ],
+  "quality_comparison_valid": false,
+  "original_success_gate_met": false,
+  "descriptive_only_complete_task_pools": [
+    {
+      "block": 0,
+      "task": "aerial-cactus-identification",
+      "assigned": 4,
+      "complete": 4,
+      "best": 0.9998342981457428,
+      "median": 0.9997567924397193,
+      "sample_sd": 0.00005016042178903686
+    },
+    {
+      "block": 0,
+      "task": "denoising-dirty-documents",
+      "assigned": 4,
+      "complete": 4,
+      "best": 0.02346984056535214,
+      "median": 0.04551226514614451,
+      "sample_sd": 0.011021212290396185
+    },
+    {
+      "block": 1,
+      "task": "aerial-cactus-identification",
+      "assigned": 4,
+      "complete": 4,
+      "best": 0.9997140306708787,
+      "median": 0.9997140306708787,
+      "sample_sd": 0
+    },
+    {
+      "block": 1,
+      "task": "denoising-dirty-documents",
+      "assigned": 4,
+      "complete": 4,
+      "best": 0.015564817066160778,
+      "median": 0.03812655092379992,
+      "sample_sd": 0.014318988155507105
+    },
+    {
+      "block": 2,
+      "task": "aerial-cactus-identification",
+      "assigned": 4,
+      "complete": 4,
+      "best": 0.9999919821683424,
+      "median": 0.9998997771042799,
+      "sample_sd": 0.0001166470257360195
+    },
+    {
+      "block": 2,
+      "task": "denoising-dirty-documents",
+      "assigned": 4,
+      "complete": 4,
+      "best": 0.013978085720857769,
+      "median": 0.02219063400748022,
+      "sample_sd": 0.013621152120294529
+    },
+    {
+      "block": 3,
+      "task": "aerial-cactus-identification",
+      "assigned": 4,
+      "complete": 3,
+      "best": null,
+      "median": null,
+      "sample_sd": null
+    },
+    {
+      "block": 3,
+      "task": "denoising-dirty-documents",
+      "assigned": 4,
+      "complete": 4,
+      "best": 0.013304094484265406,
+      "median": 0.02395623197406235,
+      "sample_sd": 0.015708906025151546
+    }
+  ],
+  "descriptive_only_contrasts": [
+    {
+      "repeat": 0,
+      "task": "aerial-cactus-identification",
+      "complete_pair": true,
+      "partitioned_best": 0.9998342981457428,
+      "pooled_best": 0.9997140306708787,
+      "oriented_delta": -0.00012026747486404421
+    },
+    {
+      "repeat": 0,
+      "task": "denoising-dirty-documents",
+      "complete_pair": true,
+      "partitioned_best": 0.02346984056535214,
+      "pooled_best": 0.015564817066160778,
+      "oriented_delta": 0.00790502349919136
+    },
+    {
+      "repeat": 1,
+      "task": "aerial-cactus-identification",
+      "complete_pair": false,
+      "partitioned_best": null,
+      "pooled_best": 0.9999919821683424,
+      "oriented_delta": null
+    },
+    {
+      "repeat": 1,
+      "task": "denoising-dirty-documents",
+      "complete_pair": true,
+      "partitioned_best": 0.013304094484265406,
+      "pooled_best": 0.013978085720857769,
+      "oriented_delta": -0.0006739912365923625
+    }
+  ],
+  "any_complete_denoise_contrast_fails_original_threshold": true,
+  "limitation": "Frozen global32 gate remains failed/incomplete. Complete task-pair diagnostics do not convert this into a valid controlled comparison; no missing-row or empty-pool imputation."
+}

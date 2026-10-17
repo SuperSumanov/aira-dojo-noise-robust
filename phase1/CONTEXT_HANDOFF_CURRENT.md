@@ -1,14 +1,14 @@
 # 当前短交接：现场、方法边界和恢复动作
 
-最后观察：2026-10-17香港19:35；用户明确批准修复quota原矩阵/预算/终分门，三小时汇报HK21:28:03不变。
-19:32唯一实际配额批19136已提交，gpu3六卡Resources排队、0服务/worker；调度器估计10/18香港00:24:03启动，非承诺。19:35仍在本会话等待，不能把准备或排队称开跑。
+最后观察：2026-10-18香港00:29；19136已执行闭合，停止quota配方，不重开/补seed/改门。会话曾被用户中断；旧wait cell767已不存在。
+19136实际10/17香港21:36:36–22:59:02在gpu3六卡执行；32启动/31完整，FAILED1:0，29676GPU秒=8.243333333333334GPUh。四执行池/服务清理全true，无本批活动GPU。
 19118已在19:09:49零执行取消：elapsed0/AllocTRES空/None assigned/no steps/no服务worker。保留v2原root。取消记录器最初错误要求Start=Unknown；Slurm实际Start=End=取消时刻，独立sacct/scontrol核验后只读补回执，未重复取消。
 整理前完整交接与精确SHA在Git b1603f953f1e20e8080e075ec2ebb6e1a4cc802f；不重读全历史。
 
 ## 位置与最新引用
 
 - 活跃checkout C:/Research/New/my_project/MLEvolve/_codex_tmp/publication-feedback-20261001；有意detached HEAD。
-- 本轮发布与ls-remote核验：我方公开39fd78d2096005da9a42f5471ee5a63ac492804d，v3实验source6db9d7c62d3c1339884a96c7ca5803a39206c1da；学长dojo-reproduce仍e4d478350e704e8c5927eba566b2847aaa6dcbab。v2旧source dd859b45保留。
+- 恢复fetch核验：我方公开3ac63d9643e4a4e07a26e6881150c08debdf66cb，本地674e8929另含经典公式边界；本次封存提交见git。v3实验source6db9d7c62d3c1339884a96c7ca5803a39206c1da；学长dojo-reproduce仍e4d478350e704e8c5927eba566b2847aaa6dcbab。v2旧source dd859b45保留。
 - b160发布13文件：真实多进程CPU许可与78Analyze/107生成发布链；34e4fb0d发布53文件：195准入/谱系/247角色提示/时序。均安全扫描/显式清单/字节核验通过。
 - 学长95journals/5任务是其报告非我方复现；selected≠best-found、跨天硬件未控；senior_update_20261017.safe.json。
 - SSH yzyang4@linux5.cse.cuhk.edu.hk；备用137.189.88.148须HostKeyAlias及StrictHostKeyChecking=yes。
@@ -26,6 +26,7 @@
 |18987 clock-pairing-20261017-v2|4wrapper/3有效后原门停止，无完整比较|733|
 |18997 scheduling-selective-20261017-v1|32完整/35评分，策略有效，质量false|30540|
 |19004 scheduling-generation-quota-20261017-v1|32闭合，干预绕过，唯一冻结读出失败|30576|
+|19136 scheduling-generation-quota-20261017-v3|32启动31完整，真实借用0/11/9/0，原门false/incomplete|29676（独立新窗口）|
 
 - 合计61849GPU秒=17.18027777777778GPUh；含启动、服务、失败、空闲、清理；window_20261017_allocation_receipt.json。旧窗口另账。
 - 08:40 sacct复核：18987 FAILED1:0/gpu27/733s×1；18997 COMPLETED0:0/gpu3/5090s×6；19004 COMPLETED0:0/gpu3/5096s×6。本轮无未闭合作业；Slurm完成不等于干预有效。
@@ -54,7 +55,7 @@
 - 信息契约补充：离线校准访问了已知DEV fit标签，不能称线上同信息强基线/直接部署。未来须train-OOF或全成本纯分数查询另立协议，禁止把这些标签给候选训练或改19118后继的公平契约；旧数值原件不改、不新增保留集读取。
 - 四闭合自有episode树未见OOF/训练验证预测文件名候选或checkpoint，无截断/符号链接遍历；只有元数据检查，非全盘缺失证明。closed-train-prediction-inventory.safe.json；不继续补离线配方或因此启动GPU。
 
-## 唯一下一分支与禁止重做
+## 本次封存与禁止重做
 
 - 唯一实际quota资格保持原32矩阵/seeds，partitioned2+2 vs pooled4，同全局Analyze优先/FIFO，执行cap1；2服务+4执行，≤100min/10GPUh含全部成本。
 - v2/19118原plan8d4d402365257376ba3634d21929624031f349f971c314e2aa26786c42ea147b、source dd859b45封存为未执行；取消回执quota-v2-never-started-cancel.safe.json SHA77fbe0d905fb46ab4d6e9fa3f9050a761af639ac74ca5e95a44a9e076c343dba。0GPU秒，不重复提交v2。
@@ -62,7 +63,9 @@
 - prepare9780/submit3448均退出0，job19136，planSHA2736fb9326f62f3c83bc0cebc4854ba629991e5b5e4bb69e708aa91e24b74e7e。预启动32配置/91非入口源码核验通过（根路径/派生scorerSHA归一化）；旧parity-v1无源码计数的过宽scope由v2更正，原件留存。不能重调prepare/submit；quota_status_v2脚本明确传v3root读结构；不读中途质量或碰Held12535。
 - 纯合成代数检查：RMSE三个评分可恢复仿射OLS（原预测已评分时额外2查询），但未调用真实接口/新标签/模型。见ROUTE；仅潜在合法参照，不是新方法或实测收益。CPU诊断已结束，不再补配方。
 - 19:42核经典歧义分解：同样本MSE原单分数+预测差异足以计算凸组合损失，无须额外常量查询；4纯合成例maxerror1.5449880957918438e-18。Krogh–Vedelsby1994已有，非新方法/线上收益；仅候选凸包、非未来搜索上界。适用/信息/成本限制见ROUTE，不接当前批次，不再用旧DEV拟合救信号。
-- 先验证真实worker借用；有效干预但原终分门false则停配方，不靠等待下降/补seed/新规则扩大。当前无新算法阳性。
+- 冻结readout-20261018-v1会话62459退出0，33重评分、原门false/incomplete；不可重读覆盖。证据目录generation_quota_19136_closed，closureSHA9cfd625603a141d89cbaa31c7a1d4de28a68e32e861321e52faec611f6c729e2，summarySHA07e323ab6cef4825603bf7efac405e9c679261c7baee7e95c2ef6cd491dc2fee。SCP31559退出0。
+- 独立Node14文件传输SHA/32分母seed/成本/四池次序租约通过；borrow0/11/9/0、peak全4。全16去噪描述性差+.00790502349919136/−.0006739912365923625；Aerial第一轮−.00012026747486404421、第二轮缺index26，不填值/删条。
+- index26 finished=failed/rc1/cleanuptrue；远端只输出栈位置识别InfrastructureReadinessError(require_ready)，未定位底层原因。诊断脚本初次缺live_status，在无输出前失败，补只读依赖后成功；没有改实验/补跑。停止此配方，不把不完整比较说成确认性负结果；当前无新算法阳性。
 - 公平契约/原质量门见CURRENT_DIRECTION；近邻与旧路线见ROUTE_DECISIONS。18819局部排序反转不等于新来源确认或胜SchedMate。
 - 无API/底座训练；不读first960/Target300/522/D_val/officialtest/16560；不碰Held12535、学长分支或用户dirty。
 - 未跟踪用户报告、_codex_tmp、pooling_host_compat_20261016.sh保留；旧checkout只改明确记忆主题。

@@ -1,0 +1,15 @@
+{
+  "assigned": 32,
+  "complete": 31,
+  "gpu_hours": 8.243333333333334,
+  "gpu_seconds": 29676,
+  "incomplete": true,
+  "limitation": "Work-conserving quota pooling is an established baseline, NOT algorithm novelty or MARS/SchedMate reproduction. Two reusedDEVtasks, two reverse comparisons share one service. Task service allocation can shift; report both task results and preserve per-run wall budget. Warm construction is sunk/common, not from-scratch savings. Do not combine effects with selective-sharing batch.",
+  "plan_sha256": "2736fb9326f62f3c83bc0cebc4854ba629991e5b5e4bb69e708aa91e24b74e7e",
+  "predeclared_success_gate_met": false,
+  "quality_gate": false,
+  "reader_sha256": "2a9b76f797ee21db1efbe26853d51ee5cbbbef295759c637d201ae6b43715b04",
+  "scores_recomputed": 33,
+  "source_commit": "6db9d7c62d3c1339884a96c7ca5803a39206c1da",
+  "started": 32
+}

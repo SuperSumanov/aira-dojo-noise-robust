@@ -22,6 +22,7 @@
 |18987独立固定搭档|4wrapper/3有效，去噪原300s超时，733GPU秒|无完整比较，条件diverse不submit|
 |18997静态任务准入|32完整、35评分；仅Aerial可共置，去噪两臂都独占；终分false|停止；selective_18997_closed|
 |19004跨任务生成许可|32闭合但深层hook绕过，借用0；读出失败|无效干预不是方法负结果；generation_quota_19004_closed|
+|19136修复配额|32启动31完整，借用0/11/9/0、峰值4；29676GPU秒；完整去噪差+.00790502349919136/−.0006739912365923625|原门false/incomplete，停止；generation_quota_19136_closed；不补缺失/改门/继续配方|
 |18269 score step30|32完整，去噪两次best/median更差，Aerial一正一负|停该配方；weight_confirmation_18269_closed|
 |18412 metric step30|48完整，两重复去噪未胜旧fast/medium|停配方，非纯reward消融；metric_deployment_18412_closed|
 |18253新旧×effort|32完整但首提示漂移；质量也false|不归一化救门；weight_effort_18253_closed|
@@ -61,6 +62,7 @@
 - 上式是已知二次损失恒等式，不是创新/真实接口验证；查询精度、常量预测可受理性、全查询/后处理成本、公开train-OOF及最终独立检验均未资格。没有在真实评分接口发常量预测，没有当前批次接线/额外GPU；不能因代数可行就把旧离线校准称线上收益。
 - 更小信息的经典参照：相同样本/权重上的MSE单模型分数L_i与无标签预测差异D_ij即可确定凸组合损失：L(w)=sum(w_i L_i)−0.5 sum(w_i w_j D_ij)，sum(w)=1、w>=0；RMSE先平方，不能直接平均RMSE，也不能用于AUC/异样本评分。只需原分数，不需额外常量查询；是否可取全精度分数/预测及后处理成本仍须独立协议，不接入19136。
 - 这是Krogh–Vedelsby NIPS1994的ambiguity decomposition/§4式14，不是新方法；纯合成4例二候选最优权重与直接平方误差最大差1.5449880957918438e-18，没有真实数据/接口查询。它只刻画已观测预测凸包，不能上界未生成候选的价值；同DEV优化不保证泛化，不能用于救旧质量门。原文https://papers.nips.cc/paper_files/paper/1994/hash/b8c37e33defde51cf91e1e03e51657da-Abstract.html 。
+- 19136闭合：index26最后partitioned池Aerial在kernel readiness guard退出；四执行池与服务GPU全清理，底层ready失败原因未归因。原冻结读出33重评分、31/32完整，独立四池重放确认quota已生效；全16去噪结果仍反向一次，首轮Aerial也退。global质量比较无效，不删失败条作确认；明确停止配方，不把诊断脚本缺live_status依赖的补齐误写为实验修复/补跑。
 
 ## R1–13：历史机制，不自动恢复
 

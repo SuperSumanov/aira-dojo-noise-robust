@@ -1,0 +1,960 @@
+{
+  "cases": [
+    {
+      "audit": {
+        "borrowed_admissions": 0,
+        "closed": true,
+        "peak_active": 4,
+        "requests": 8
+      },
+      "events": [
+        {
+          "event": "queued",
+          "request": {
+            "key": "4:0",
+            "requested": 1792195834.5217898,
+            "role": "analyze",
+            "run": 4,
+            "task": "aerial-cactus-identification"
+          },
+          "run": 4,
+          "time": 1792195834.5229707
+        },
+        {
+          "alternatives": {},
+          "event": "admitted",
+          "key": "4:0",
+          "parent": null,
+          "role": "analyze",
+          "run": 4,
+          "snapshot": {
+            "archive": {
+              "aerial-cactus-identification": {
+                "79c549e885823ff248c9e99942c46e0089bd7a62c0cf16730ab8dfb02c147f02": {
+                  "metric": 0.0,
+                  "order": 0,
+                  "total": 0.0,
+                  "visits": 1
+                }
+              },
+              "denoising-dirty-documents": {
+                "8b83459e5457287bfa09e0a1894090f30860badf64dc1c6e0a8e07b5a90afb6b": {
+                  "metric": 0.0,
+                  "order": 0,
+                  "total": 0.0,
+                  "visits": 1
+                }
+              }
+            },
+            "pending": {},
+            "sign": {
+              "aerial-cactus-identification": 1,
+              "denoising-dirty-documents": 1
+            }
+          },
+          "time": 1792195834.5315666,
+          "withheld": false
+        },
+        {
+          "event": "queued",
+          "request": {
+            "key": "2:0",
+            "requested": 1792195834.5316994,
+            "role": "analyze",
+            "run": 2,
+            "task": "aerial-cactus-identification"
+          },
+          "run": 2,
+          "time": 1792195834.5382152
+        },
+        {
+          "event": "queued",
+          "request": {
+            "key": "6:0",
+            "requested": 1792195834.5373092,
+            "role": "analyze",
+            "run": 6,
+            "task": "aerial-cactus-identification"
+          },
+          "run": 6,
+          "time": 1792195834.5449817
+        },
+        {
+          "alternatives": {},
+          "event": "admitted",
+          "key": "2:0",
+          "parent": null,
+          "role": "analyze",
+          "run": 2,
+          "snapshot": {
+            "archive": {
+              "aerial-cactus-identification": {
+                "79c549e885823ff248c9e99942c46e0089bd7a62c0cf16730ab8dfb02c147f02": {
+                  "metric": 0.0,
+                  "order": 0,
+                  "total": 0.0,
+                  "visits": 1
+                }
+              },
+              "denoising-dirty-documents": {
+                "8b83459e5457287bfa09e0a1894090f30860badf64dc1c6e0a8e07b5a90afb6b": {
+                  "metric": 0.0,
+                  "order": 0,
+                  "total": 0.0,
+                  "visits": 1
+                }
+              }
+            },
+            "pending": {},
+            "sign": {
+              "aerial-cactus-identification": 1,
+              "denoising-dirty-documents": 1
+            }
+          },
+          "time": 1792195834.5519526,
+          "withheld": false
+        },
+        {
+          "event": "queued",
+          "request": {
+            "key": "0:0",
+            "requested": 1792195834.5407903,
+            "role": "analyze",
+            "run": 0,
+            "task": "aerial-cactus-identification"
+          },
+          "run": 0,
+          "time": 1792195834.5586758
+        },
+        {
+          "event": "queued",
+          "request": {
+            "key": "1:0",
+            "requested": 1792195834.5923104,
+            "role": "analyze",
+            "run": 1,
+            "task": "denoising-dirty-documents"
+          },
+          "run": 1,
+          "time": 1792195834.594231
+        },
+        {
+          "event": "queued",
+          "request": {
+            "key": "7:0",
+            "requested": 1792195834.5942194,
+            "role": "analyze",
+            "run": 7,
+            "task": "denoising-dirty-documents"
+          },
+          "run": 7,
+          "time": 1792195834.6002862
+        },
+        {
+          "event": "queued",
+          "request": {
+            "key": "5:0",
+            "requested": 1792195834.6002383,
+            "role": "analyze",
+            "run": 5,
+            "task": "denoising-dirty-documents"
+          },
+          "run": 5,
+          "time": 1792195834.6058302
+        },
+        {
+          "alternatives": {},
+          "event": "admitted",
+          "key": "1:0",
+          "parent": null,
+          "role": "analyze",
+          "run": 1,
+          "snapshot": {
+            "archive": {
+              "aerial-cactus-identification": {
+                "79c549e885823ff248c9e99942c46e0089bd7a62c0cf16730ab8dfb02c147f02": {
+                  "metric": 0.0,
+                  "order": 0,
+                  "total": 0.0,
+                  "visits": 1
+                }
+              },
+              "denoising-dirty-documents": {
+                "8b83459e5457287bfa09e0a1894090f30860badf64dc1c6e0a8e07b5a90afb6b": {
+                  "metric": 0.0,
+                  "order": 0,
+                  "total": 0.0,
+                  "visits": 1
+                }
+              }
+            },
+            "pending": {},
+            "sign": {
+              "aerial-cactus-identification": 1,
+              "denoising-dirty-documents": 1
+            }
+          },
+          "time": 1792195834.6114678,
+          "withheld": false
+        },
+        {
+          "event": "queued",
+          "request": {
+            "key": "3:0",
+            "requested": 1792195834.6038423,
+            "role": "analyze",
+            "run": 3,
+            "task": "denoising-dirty-documents"
+          },
+          "run": 3,
+          "time": 1792195834.6211386
+        },
+        {
+          "alternatives": {},
+          "event": "admitted",
+          "key": "7:0",
+          "parent": null,
+          "role": "analyze",
+          "run": 7,
+          "snapshot": {
+            "archive": {
+              "aerial-cactus-identification": {
+                "79c549e885823ff248c9e99942c46e0089bd7a62c0cf16730ab8dfb02c147f02": {
+                  "metric": 0.0,
+                  "order": 0,
+                  "total": 0.0,
+                  "visits": 1
+                }
+              },
+              "denoising-dirty-documents": {
+                "8b83459e5457287bfa09e0a1894090f30860badf64dc1c6e0a8e07b5a90afb6b": {
+                  "metric": 0.0,
+                  "order": 0,
+                  "total": 0.0,
+                  "visits": 1
+                }
+              }
+            },
+            "pending": {},
+            "sign": {
+              "aerial-cactus-identification": 1,
+              "denoising-dirty-documents": 1
+            }
+          },
+          "time": 1792195834.6372666,
+          "withheld": false
+        },
+        {
+          "event": "released",
+          "key": "2:0",
+          "run": 2,
+          "time": 1792195834.6878529
+        },
+        {
+          "event": "released",
+          "key": "4:0",
+          "run": 4,
+          "time": 1792195834.7045555
+        },
+        {
+          "alternatives": {},
+          "event": "admitted",
+          "key": "6:0",
+          "parent": null,
+          "role": "analyze",
+          "run": 6,
+          "snapshot": {
+            "archive": {
+              "aerial-cactus-identification": {
+                "79c549e885823ff248c9e99942c46e0089bd7a62c0cf16730ab8dfb02c147f02": {
+                  "metric": 0.0,
+                  "order": 0,
+                  "total": 0.0,
+                  "visits": 1
+                }
+              },
+              "denoising-dirty-documents": {
+                "8b83459e5457287bfa09e0a1894090f30860badf64dc1c6e0a8e07b5a90afb6b": {
+                  "metric": 0.0,
+                  "order": 0,
+                  "total": 0.0,
+                  "visits": 1
+                }
+              }
+            },
+            "pending": {},
+            "sign": {
+              "aerial-cactus-identification": 1,
+              "denoising-dirty-documents": 1
+            }
+          },
+          "time": 1792195834.7377434,
+          "withheld": false
+        },
+        {
+          "event": "released",
+          "key": "6:0",
+          "run": 6,
+          "time": 1792195834.7476404
+        },
+        {
+          "alternatives": {},
+          "event": "admitted",
+          "key": "0:0",
+          "parent": null,
+          "role": "analyze",
+          "run": 0,
+          "snapshot": {
+            "archive": {
+              "aerial-cactus-identification": {
+                "79c549e885823ff248c9e99942c46e0089bd7a62c0cf16730ab8dfb02c147f02": {
+                  "metric": 0.0,
+                  "order": 0,
+                  "total": 0.0,
+                  "visits": 1
+                }
+              },
+              "denoising-dirty-documents": {
+                "8b83459e5457287bfa09e0a1894090f30860badf64dc1c6e0a8e07b5a90afb6b": {
+                  "metric": 0.0,
+                  "order": 0,
+                  "total": 0.0,
+                  "visits": 1
+                }
+              }
+            },
+            "pending": {},
+            "sign": {
+              "aerial-cactus-identification": 1,
+              "denoising-dirty-documents": 1
+            }
+          },
+          "time": 1792195834.753168,
+          "withheld": false
+        },
+        {
+          "event": "released",
+          "key": "0:0",
+          "run": 0,
+          "time": 1792195834.7636518
+        },
+        {
+          "event": "released",
+          "key": "1:0",
+          "run": 1,
+          "time": 1792195834.7954507
+        },
+        {
+          "event": "released",
+          "key": "7:0",
+          "run": 7,
+          "time": 1792195834.8009887
+        },
+        {
+          "alternatives": {},
+          "event": "admitted",
+          "key": "5:0",
+          "parent": null,
+          "role": "analyze",
+          "run": 5,
+          "snapshot": {
+            "archive": {
+              "aerial-cactus-identification": {
+                "79c549e885823ff248c9e99942c46e0089bd7a62c0cf16730ab8dfb02c147f02": {
+                  "metric": 0.0,
+                  "order": 0,
+                  "total": 0.0,
+                  "visits": 1
+                }
+              },
+              "denoising-dirty-documents": {
+                "8b83459e5457287bfa09e0a1894090f30860badf64dc1c6e0a8e07b5a90afb6b": {
+                  "metric": 0.0,
+                  "order": 0,
+                  "total": 0.0,
+                  "visits": 1
+                }
+              }
+            },
+            "pending": {},
+            "sign": {
+              "aerial-cactus-identification": 1,
+              "denoising-dirty-documents": 1
+            }
+          },
+          "time": 1792195834.8401556,
+          "withheld": false
+        },
+        {
+          "event": "released",
+          "key": "5:0",
+          "run": 5,
+          "time": 1792195834.8501296
+        },
+        {
+          "alternatives": {},
+          "event": "admitted",
+          "key": "3:0",
+          "parent": null,
+          "role": "analyze",
+          "run": 3,
+          "snapshot": {
+            "archive": {
+              "aerial-cactus-identification": {
+                "79c549e885823ff248c9e99942c46e0089bd7a62c0cf16730ab8dfb02c147f02": {
+                  "metric": 0.0,
+                  "order": 0,
+                  "total": 0.0,
+                  "visits": 1
+                }
+              },
+              "denoising-dirty-documents": {
+                "8b83459e5457287bfa09e0a1894090f30860badf64dc1c6e0a8e07b5a90afb6b": {
+                  "metric": 0.0,
+                  "order": 0,
+                  "total": 0.0,
+                  "visits": 1
+                }
+              }
+            },
+            "pending": {},
+            "sign": {
+              "aerial-cactus-identification": 1,
+              "denoising-dirty-documents": 1
+            }
+          },
+          "time": 1792195834.870905,
+          "withheld": false
+        },
+        {
+          "event": "released",
+          "key": "3:0",
+          "run": 3,
+          "time": 1792195834.879867
+        }
+      ],
+      "events_sha256": "f486d2feef3362c2d8f649f5b5b47ee3df2c85dcdf997fa6c4ec55387335edb4",
+      "fixture": "/research/d7/spc/yzyang4/pairing-source-20261017-GWteBV/quota-concurrent-partitioned-iouj1hlx",
+      "gpu_calls": 0,
+      "kernel_calls": 0,
+      "mode": "partitioned",
+      "model_calls": 0,
+      "passed": true,
+      "snapshots": [
+        {
+          "active_a": 2,
+          "active_b": 0,
+          "stage": "only_task_a_requested",
+          "waiting_a": 2,
+          "waiting_b": 0
+        },
+        {
+          "active_a": 2,
+          "active_b": 2,
+          "stage": "both_tasks_requested",
+          "waiting_a": 2,
+          "waiting_b": 2
+        },
+        {
+          "active_a": 0,
+          "active_b": 2,
+          "stage": "task_a_released",
+          "waiting_a": 0,
+          "waiting_b": 2
+        }
+      ],
+      "worker_indices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ]
+    },
+    {
+      "audit": {
+        "borrowed_admissions": 4,
+        "closed": true,
+        "peak_active": 4,
+        "requests": 8
+      },
+      "events": [
+        {
+          "event": "queued",
+          "request": {
+            "key": "14:0",
+            "requested": 1792195851.4256804,
+            "role": "analyze",
+            "run": 14,
+            "task": "aerial-cactus-identification"
+          },
+          "run": 14,
+          "time": 1792195851.427595
+        },
+        {
+          "alternatives": {},
+          "event": "admitted",
+          "key": "14:0",
+          "parent": null,
+          "role": "analyze",
+          "run": 14,
+          "snapshot": {
+            "archive": {
+              "aerial-cactus-identification": {
+                "79c549e885823ff248c9e99942c46e0089bd7a62c0cf16730ab8dfb02c147f02": {
+                  "metric": 0.0,
+                  "order": 0,
+                  "total": 0.0,
+                  "visits": 1
+                }
+              },
+              "denoising-dirty-documents": {
+                "8b83459e5457287bfa09e0a1894090f30860badf64dc1c6e0a8e07b5a90afb6b": {
+                  "metric": 0.0,
+                  "order": 0,
+                  "total": 0.0,
+                  "visits": 1
+                }
+              }
+            },
+            "pending": {},
+            "sign": {
+              "aerial-cactus-identification": 1,
+              "denoising-dirty-documents": 1
+            }
+          },
+          "time": 1792195851.4367929,
+          "withheld": false
+        },
+        {
+          "event": "queued",
+          "request": {
+            "key": "12:0",
+            "requested": 1792195851.4343905,
+            "role": "analyze",
+            "run": 12,
+            "task": "aerial-cactus-identification"
+          },
+          "run": 12,
+          "time": 1792195851.4435
+        },
+        {
+          "event": "queued",
+          "request": {
+            "key": "8:0",
+            "requested": 1792195851.4346395,
+            "role": "analyze",
+            "run": 8,
+            "task": "aerial-cactus-identification"
+          },
+          "run": 8,
+          "time": 1792195851.4514794
+        },
+        {
+          "alternatives": {},
+          "event": "admitted",
+          "key": "12:0",
+          "parent": null,
+          "role": "analyze",
+          "run": 12,
+          "snapshot": {
+            "archive": {
+              "aerial-cactus-identification": {
+                "79c549e885823ff248c9e99942c46e0089bd7a62c0cf16730ab8dfb02c147f02": {
+                  "metric": 0.0,
+                  "order": 0,
+                  "total": 0.0,
+                  "visits": 1
+                }
+              },
+              "denoising-dirty-documents": {
+                "8b83459e5457287bfa09e0a1894090f30860badf64dc1c6e0a8e07b5a90afb6b": {
+                  "metric": 0.0,
+                  "order": 0,
+                  "total": 0.0,
+                  "visits": 1
+                }
+              }
+            },
+            "pending": {},
+            "sign": {
+              "aerial-cactus-identification": 1,
+              "denoising-dirty-documents": 1
+            }
+          },
+          "time": 1792195851.4590008,
+          "withheld": false
+        },
+        {
+          "event": "queued",
+          "request": {
+            "key": "10:0",
+            "requested": 1792195851.4351547,
+            "role": "analyze",
+            "run": 10,
+            "task": "aerial-cactus-identification"
+          },
+          "run": 10,
+          "time": 1792195851.4657876
+        },
+        {
+          "alternatives": {},
+          "event": "admitted",
+          "key": "8:0",
+          "parent": null,
+          "role": "analyze",
+          "run": 8,
+          "snapshot": {
+            "archive": {
+              "aerial-cactus-identification": {
+                "79c549e885823ff248c9e99942c46e0089bd7a62c0cf16730ab8dfb02c147f02": {
+                  "metric": 0.0,
+                  "order": 0,
+                  "total": 0.0,
+                  "visits": 1
+                }
+              },
+              "denoising-dirty-documents": {
+                "8b83459e5457287bfa09e0a1894090f30860badf64dc1c6e0a8e07b5a90afb6b": {
+                  "metric": 0.0,
+                  "order": 0,
+                  "total": 0.0,
+                  "visits": 1
+                }
+              }
+            },
+            "pending": {},
+            "sign": {
+              "aerial-cactus-identification": 1,
+              "denoising-dirty-documents": 1
+            }
+          },
+          "time": 1792195851.4730368,
+          "withheld": false
+        },
+        {
+          "alternatives": {},
+          "event": "admitted",
+          "key": "10:0",
+          "parent": null,
+          "role": "analyze",
+          "run": 10,
+          "snapshot": {
+            "archive": {
+              "aerial-cactus-identification": {
+                "79c549e885823ff248c9e99942c46e0089bd7a62c0cf16730ab8dfb02c147f02": {
+                  "metric": 0.0,
+                  "order": 0,
+                  "total": 0.0,
+                  "visits": 1
+                }
+              },
+              "denoising-dirty-documents": {
+                "8b83459e5457287bfa09e0a1894090f30860badf64dc1c6e0a8e07b5a90afb6b": {
+                  "metric": 0.0,
+                  "order": 0,
+                  "total": 0.0,
+                  "visits": 1
+                }
+              }
+            },
+            "pending": {},
+            "sign": {
+              "aerial-cactus-identification": 1,
+              "denoising-dirty-documents": 1
+            }
+          },
+          "time": 1792195851.4806776,
+          "withheld": false
+        },
+        {
+          "event": "queued",
+          "request": {
+            "key": "11:0",
+            "requested": 1792195851.5121112,
+            "role": "analyze",
+            "run": 11,
+            "task": "denoising-dirty-documents"
+          },
+          "run": 11,
+          "time": 1792195851.5141673
+        },
+        {
+          "event": "queued",
+          "request": {
+            "key": "9:0",
+            "requested": 1792195851.5200963,
+            "role": "analyze",
+            "run": 9,
+            "task": "denoising-dirty-documents"
+          },
+          "run": 9,
+          "time": 1792195851.5233853
+        },
+        {
+          "event": "queued",
+          "request": {
+            "key": "15:0",
+            "requested": 1792195851.5256596,
+            "role": "analyze",
+            "run": 15,
+            "task": "denoising-dirty-documents"
+          },
+          "run": 15,
+          "time": 1792195851.5429358
+        },
+        {
+          "event": "queued",
+          "request": {
+            "key": "13:0",
+            "requested": 1792195851.526648,
+            "role": "analyze",
+            "run": 13,
+            "task": "denoising-dirty-documents"
+          },
+          "run": 13,
+          "time": 1792195851.5518382
+        },
+        {
+          "event": "released",
+          "key": "8:0",
+          "run": 8,
+          "time": 1792195851.5840356
+        },
+        {
+          "alternatives": {},
+          "event": "admitted",
+          "key": "11:0",
+          "parent": null,
+          "role": "analyze",
+          "run": 11,
+          "snapshot": {
+            "archive": {
+              "aerial-cactus-identification": {
+                "79c549e885823ff248c9e99942c46e0089bd7a62c0cf16730ab8dfb02c147f02": {
+                  "metric": 0.0,
+                  "order": 0,
+                  "total": 0.0,
+                  "visits": 1
+                }
+              },
+              "denoising-dirty-documents": {
+                "8b83459e5457287bfa09e0a1894090f30860badf64dc1c6e0a8e07b5a90afb6b": {
+                  "metric": 0.0,
+                  "order": 0,
+                  "total": 0.0,
+                  "visits": 1
+                }
+              }
+            },
+            "pending": {},
+            "sign": {
+              "aerial-cactus-identification": 1,
+              "denoising-dirty-documents": 1
+            }
+          },
+          "time": 1792195851.591816,
+          "withheld": false
+        },
+        {
+          "event": "released",
+          "key": "10:0",
+          "run": 10,
+          "time": 1792195851.6033344
+        },
+        {
+          "event": "released",
+          "key": "14:0",
+          "run": 14,
+          "time": 1792195851.609751
+        },
+        {
+          "event": "released",
+          "key": "12:0",
+          "run": 12,
+          "time": 1792195851.6171973
+        },
+        {
+          "alternatives": {},
+          "event": "admitted",
+          "key": "9:0",
+          "parent": null,
+          "role": "analyze",
+          "run": 9,
+          "snapshot": {
+            "archive": {
+              "aerial-cactus-identification": {
+                "79c549e885823ff248c9e99942c46e0089bd7a62c0cf16730ab8dfb02c147f02": {
+                  "metric": 0.0,
+                  "order": 0,
+                  "total": 0.0,
+                  "visits": 1
+                }
+              },
+              "denoising-dirty-documents": {
+                "8b83459e5457287bfa09e0a1894090f30860badf64dc1c6e0a8e07b5a90afb6b": {
+                  "metric": 0.0,
+                  "order": 0,
+                  "total": 0.0,
+                  "visits": 1
+                }
+              }
+            },
+            "pending": {},
+            "sign": {
+              "aerial-cactus-identification": 1,
+              "denoising-dirty-documents": 1
+            }
+          },
+          "time": 1792195851.6549425,
+          "withheld": false
+        },
+        {
+          "alternatives": {},
+          "event": "admitted",
+          "key": "15:0",
+          "parent": null,
+          "role": "analyze",
+          "run": 15,
+          "snapshot": {
+            "archive": {
+              "aerial-cactus-identification": {
+                "79c549e885823ff248c9e99942c46e0089bd7a62c0cf16730ab8dfb02c147f02": {
+                  "metric": 0.0,
+                  "order": 0,
+                  "total": 0.0,
+                  "visits": 1
+                }
+              },
+              "denoising-dirty-documents": {
+                "8b83459e5457287bfa09e0a1894090f30860badf64dc1c6e0a8e07b5a90afb6b": {
+                  "metric": 0.0,
+                  "order": 0,
+                  "total": 0.0,
+                  "visits": 1
+                }
+              }
+            },
+            "pending": {},
+            "sign": {
+              "aerial-cactus-identification": 1,
+              "denoising-dirty-documents": 1
+            }
+          },
+          "time": 1792195851.678993,
+          "withheld": false
+        },
+        {
+          "alternatives": {},
+          "event": "admitted",
+          "key": "13:0",
+          "parent": null,
+          "role": "analyze",
+          "run": 13,
+          "snapshot": {
+            "archive": {
+              "aerial-cactus-identification": {
+                "79c549e885823ff248c9e99942c46e0089bd7a62c0cf16730ab8dfb02c147f02": {
+                  "metric": 0.0,
+                  "order": 0,
+                  "total": 0.0,
+                  "visits": 1
+                }
+              },
+              "denoising-dirty-documents": {
+                "8b83459e5457287bfa09e0a1894090f30860badf64dc1c6e0a8e07b5a90afb6b": {
+                  "metric": 0.0,
+                  "order": 0,
+                  "total": 0.0,
+                  "visits": 1
+                }
+              }
+            },
+            "pending": {},
+            "sign": {
+              "aerial-cactus-identification": 1,
+              "denoising-dirty-documents": 1
+            }
+          },
+          "time": 1792195851.685706,
+          "withheld": false
+        },
+        {
+          "event": "released",
+          "key": "11:0",
+          "run": 11,
+          "time": 1792195851.7275662
+        },
+        {
+          "event": "released",
+          "key": "15:0",
+          "run": 15,
+          "time": 1792195851.7387087
+        },
+        {
+          "event": "released",
+          "key": "9:0",
+          "run": 9,
+          "time": 1792195851.745682
+        },
+        {
+          "event": "released",
+          "key": "13:0",
+          "run": 13,
+          "time": 1792195851.7526138
+        }
+      ],
+      "events_sha256": "9ed2362cbc2cb66f38cbaf5e5ff868dab1b747cea1df59c487f88720403ca0f9",
+      "fixture": "/research/d7/spc/yzyang4/pairing-source-20261017-GWteBV/quota-concurrent-pooled-6etj5qls",
+      "gpu_calls": 0,
+      "kernel_calls": 0,
+      "mode": "pooled",
+      "model_calls": 0,
+      "passed": true,
+      "snapshots": [
+        {
+          "active_a": 4,
+          "active_b": 0,
+          "stage": "only_task_a_requested",
+          "waiting_a": 0,
+          "waiting_b": 0
+        },
+        {
+          "active_a": 4,
+          "active_b": 0,
+          "stage": "both_tasks_requested",
+          "waiting_a": 0,
+          "waiting_b": 4
+        },
+        {
+          "active_a": 0,
+          "active_b": 4,
+          "stage": "task_a_released",
+          "waiting_a": 0,
+          "waiting_b": 0
+        }
+      ],
+      "worker_indices": [
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ]
+    }
+  ],
+  "entry_sha256": "ec1b52590b7bda69cc6d651f53a3d9588e84a14cdae3764d0eb2d34eb31df2b6",
+  "limitations": [
+    "CPU-only real installed generation permits; model body is a blocking stub.",
+    "No live vLLM capacity, GPU isolation, search, or final-quality result.",
+    "Closed19004 remains invalid and untouched; no old gate/readout is rerun."
+  ],
+  "old_plan_sha256": "f08b3052fcecf467f500b5b9aa6638087c602321ca3a81bf22ef8b65a55b41f9",
+  "reader_sha256": "9368695adbcb88a91cbddce1e21995ff92d3643d5d01435c6ff7ad5ef07c6df1"
+}

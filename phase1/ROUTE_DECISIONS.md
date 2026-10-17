@@ -37,8 +37,10 @@
 - 这3次增益：去噪.000645643343539986，Aerial.00009086875878627776/.0002325171180705965（父AUC>.9997）；不能只数正号就声称值得成本。18412新metric的新父改善3次均首重复，第二重复未复现；30分钟与上述17分钟不合并比较。
 - 输入诊断V1误把Analyze提示也要求含父代码，V2按operator角色分离后247/247返回Improve均含完整父代码；旧诊断保留并明确废除其“父代码缺失”解释，不改原批/原门。prompt_contract_crosscheck_20261017.json。
 - quota修复另在新CPU目录跑生产门实际main，10/10通过，0GPU/模型/kernel；只读依赖原19004，不重开原readout。quota-gate-main-20261017.safe.json；线上借用仍未验证。
+- 另补两条件各8进程真实安装后的MCTS._analyze许可竞争：峰值4/4、借用0/4、16请求全部释放，独立Node逐事件重建。仅阻塞model-body stub、非真实模型服务；quota-multiprocess-20261017.safe.json。与单次selector/执行信号测试覆盖不同，不重复旧绿色测试冒充进展。
 - 对195次准入进一步分时：76新父自身许可等待median .015124320983886719s、p90 12.740118503570557s，只有13次>1s；54次完成代码生成median108.86853349208832s。原始时间读取+独立代数/全分母核验通过，非第二次原始提取。结合18807可借用等待主要为Debug/Analyze，只能提出“上游更早闭合→父更早可用”的待验证路径，不称删除等待能节省这些时间。opportunity-latency及opportunity_latency_crosscheck_20261017。
 - 未解8返回另用精确child hash→parent_used→admitted串联：3个无效可定位Improve，2个有效仍未解；不靠时间邻近猜Debug父链，不覆盖原表或补失败。unresolved-parent-events-20261017.safe.json。
+- 18807上游发布进一步收窄：78Analyze、107生成请求、74生成→发布有精确journal角色支持；37有效发布/13新best。新best的Analyze仅2次可借用等待（.6892881393432617/.05634474754333496s），Debug新best仅1次9.184827327728271s。长Debug等待主要无效92.26139163970947/未联结211.08816409111023请求秒；未知不能记失败，提前救活尚未被实测。quota-feedback-links-independent-20261017.json；降低quota预期，原资格门/一次限定投入不变。
 
 ## R14已试机制及禁止偷换
 
@@ -94,6 +96,8 @@
 - Winning by Peeking已有机器争用改变AutoML比较/有限墙钟内trial数；Mosaic已有kernel干扰准入；RTCSA2020已有mandatory/optional质量调度。不能把“争用改变排序”或“质量感知”本身称首创；原文阅读范围见clock_scheduling_neighbors_20261016.json。
 - MARS已有session准入、续轮优先、timeout/任务完成分析；我方执行许可不同不构成创新。
   https://arxiv.org/html/2604.26963v1
+- 注意另一个同名MARS（Modular Agent with Reflective Search，ICML2026，非上一行调度MARS）：§4.4已有历史min-max分数×执行时间比惩罚，§4.2–4.3已有模块化构造/跨分支经验；“收益/成本搜树”不新。24h/A100/Gemini设置不与我方17min直接拼数字。本轮核§3–6.1/附录C，未复现。https://arxiv.org/html/2602.02660v1 / https://proceedings.mlr.press/v306/chen26r.html
+- Inference-Time Budget Control for LLM Search Agents（核§3–4.1、5.4–6）已有剩余预算、动作成本和固定价值代理控制，任务为搜索问答；不能把“价值/成本+余时门”单独称创新，也不从任务不同推出我方已填补其空白。https://arxiv.org/html/2605.05701v1
 - Scepsy/PASTE/BAVT/ZEBRA/PeakBench等限制资源分配/端到端服务宽主张；详见pooling_research_boundary_20261015.json。
 - Synergy/TGS/Salus/ElastiCo/DetShare/Pollux覆盖互补共置；GPU驻留PID、host optimizer包络不等于kernel并行。
 - CostAda v4已用global-best收益/成本分配与预算预留；旧我方简化参照不是完整复现。

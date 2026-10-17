@@ -1,0 +1,87 @@
+{
+  "passed": true,
+  "verifier_sha256": "60377f6eafe72e62174d77bd9b396d69464cd6fc2343c62a064c13f4d7166f96",
+  "analyze_requests": 78,
+  "generation_requests": 107,
+  "linked_generation_publications": 74,
+  "debug_valid": 10,
+  "debug_new_best": 3,
+  "blocked_best_analyze_wait_seconds": [
+    0.6892881393432617,
+    0.05634474754333496
+  ],
+  "blocked_best_debug_wait_seconds": [
+    9.184827327728271
+  ],
+  "generation_wait_by_observed_publication": [
+    {
+      "role": "improve",
+      "category": "published_invalid",
+      "requests": 25,
+      "exposed_requests": 3,
+      "observed_borrowable_request_seconds": 0.04864621162414551
+    },
+    {
+      "role": "improve",
+      "category": "no_linked_publication",
+      "requests": 17,
+      "exposed_requests": 3,
+      "observed_borrowable_request_seconds": 0.12755799293518066
+    },
+    {
+      "role": "improve",
+      "category": "published_new_best",
+      "requests": 10,
+      "exposed_requests": 3,
+      "observed_borrowable_request_seconds": 0.1596691608428955
+    },
+    {
+      "role": "improve",
+      "category": "published_valid_other",
+      "requests": 17,
+      "exposed_requests": 6,
+      "observed_borrowable_request_seconds": 0.31206846237182617
+    },
+    {
+      "role": "debug",
+      "category": "published_valid_other",
+      "requests": 7,
+      "exposed_requests": 0,
+      "observed_borrowable_request_seconds": 0
+    },
+    {
+      "role": "debug",
+      "category": "published_invalid",
+      "requests": 12,
+      "exposed_requests": 1,
+      "observed_borrowable_request_seconds": 92.26139163970947
+    },
+    {
+      "role": "debug",
+      "category": "no_linked_publication",
+      "requests": 16,
+      "exposed_requests": 5,
+      "observed_borrowable_request_seconds": 211.08816409111023
+    },
+    {
+      "role": "debug",
+      "category": "published_new_best",
+      "requests": 3,
+      "exposed_requests": 1,
+      "observed_borrowable_request_seconds": 9.184827327728271
+    }
+  ],
+  "deadline_tail_accounting": [
+    {
+      "block": 1,
+      "role": "analyze",
+      "raw_minus_predeadline_seconds": 0.01893925666809082
+    }
+  ],
+  "verifier_correction": "Initial comparison incorrectly equated raw waiting with prior deadline-clipped horizon0; strict raw-segment integration fixes the estimand mismatch, without changing input data, tolerance or any experiment gate.",
+  "limits": [
+    "Independent arithmetic, exact receipt/source SHA and phase cross-check; not an independent raw journal/event extraction.",
+    "Observed outcomes after waiting are post-treatment/censored; do not call unknown/invalid requests inherently worthless or infer saved time.",
+    "No real pooled-quota result, no original endpoint or gate change."
+  ]
+}

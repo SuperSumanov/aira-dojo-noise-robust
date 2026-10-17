@@ -1,13 +1,13 @@
 # 当前短交接：只保留现场、方法边界和恢复动作
 
-最后核验：2026-10-17香港07:56；用户窗口02:49–08:49，同范围批次统一批准。
+最后核验：2026-10-17香港08:18；用户窗口02:49–08:49，同范围批次统一批准。
 本窗口GPU已全部闭合，无当前GPU作业；不启动第三GPU方案。继续会话内分析至08:49，再简报。
 整理前完整交接在Git3c0981b057befa2f9af5702831ef641fff81969a；不重复载入旧队列、审批或长日志。
 
 ## 本地和远端
 
 - 活跃checkout：C:/Research/New/my_project/MLEvolve/_codex_tmp/publication-feedback-20261001；detached HEAD有意。
-- 07:54fetch后公开HEAD为2b4454e60db2f6fc396e721ca626e27c8108ac2b；后续谱系/全准入诊断待发布，不覆盖已发布收尾。
+- 08:12最后观察公开HEAD为34e4fb0d220f2c53fbddeab2d04ba2e10406eefa（53文件，全准入/谱系/角色提示/时序）；再次fetch未见学长更新。发布前凭据/敏感文件名均0、暂存blob一致。
 - dojo-reproduce仍e4d478350e704e8c5927eba566b2847aaa6dcbab，未修改学长分支。
 - 学长95journals/5任务是其报告、非我方复现；selected改善不等于best-found，跨天硬件/负载未控制；senior_update_20261017.safe.json。
 - SSH linux5.cse.cuhk.edu.hk；备用137.189.88.148带HostKeyAlias及StrictHostKeyChecking=yes；网络断开不重投作业。
@@ -52,6 +52,7 @@
 - 本地新hook修复shaec1b52590b7bda69cc6d651f53a3d9588e84a14cdae3764d0eb2d34eb31df2b6；未写回原root。
 - cpu-hook-regression.json：旧绕过2复现；新真实host绑定/selector/readiness/10信号场景通过，0GPU/0model。仅CPU修复，线上干预仍未验证。
 - 新目录真实production_gate main已运行10/10，0GPU/model/kernel；quota-gate-main-20261017.safe.json SHA1089bbac3faa3e44d1b185be6d086fece9fc392cf5fa715d92a94af458c89018。不是线上新干预验收。
+- 新多进程CPU门走实际安装后的MCTS._analyze许可：两条件各8进程/8请求，峰值都4；partitioned借用0、pooled借用4，全部释放。独立Node事件重建通过；model body是阻塞stub，不是线上服务/搜索。quota-multiprocess回执SHAa71e3d1ca428dae445528442343a765f7eadfa72a167c4bb78d735ab45dc6757。
 
 ## 全准入分析：时间机会与模型能力不能混写
 
@@ -61,12 +62,13 @@
 - 247/247已返回Improve均含完整父代码。V1错混Analyze，V2纠正；不是所有尝试/HTTP抓包。metric18412新父3改善仅首重复，不救权重收益结论。
 - 全准入/parent delta/输入V2的独立本地聚合通过。MCPP/SwarmX/OpenMLE限制“反馈链”宽主张；近邻具体范围在ROUTE_DECISIONS。
 - 新父自身许可等待median .015124320983886719s/p90 12.740118503570557s，不是大多在该处排队。54次生成完成median108.86853349208832s。quota若有用须核上游Debug/Analyze与父可用时间，不把观测重放当收益；opportunity-latency SHA37b2e5e59e18effce67a33ee2bccfbf772d3ed2e8ff2b684c91e316ac600bee4。
+- 新18807阶段联结：78Analyze/107生成请求/74有journal角色支持的生成→发布；13新best发布中相关Analyze可借用等待仅.6892881393432617/.05634474754333496s两次，Debug新best受阻1次9.184827327728271s。长Debug等待主要无效/未联结，不能把删失补失败。独立聚合通过；quota-feedback-links-independent-20261017.json。
 
 ## 继续工作而非新审批
 
 - 更新三短记忆与长期教训；审查安全产物，显式清单提交并只向我方分支FF推送，不新增长报告。
 - 不开新GPU；窗口余时优先能改变研究判断的分析，不重复已通过测试填时间。
-- 下一轮quota若继续必须新root/原矩阵原门、真实worker干预回执先成立；统一批准有效，不反复索批。
+- 下一轮quota若继续必须新root/source/窗口硬限、原32矩阵/seeds/原门/≤10GPUh、真实worker干预回执先成立；该新root尚未创建/未提交。统一批准有效，不反复索批。
 - 只保留一次quota有效资格对照；若干预生效而终分门仍false就停配方，不靠等待指标/新增seed续命。未解事件补查只定位3个无效，2个有效仍未知，原谱系表不覆盖。
 - 18819局部排序翻转仍成立，但18845/18987未确认；早期严重干扰可被廉价监测发现，未胜SchedMate。
 - 保工作量不保证保质量，Aerial是反例；shared服务/同seed不同提案限制纯执行因果归因。

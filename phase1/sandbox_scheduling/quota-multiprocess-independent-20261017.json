@@ -1,0 +1,22 @@
+{
+  "passed": true,
+  "receipt_sha256": "a71e3d1ca428dae445528442343a765f7eadfa72a167c4bb78d735ab45dc6757",
+  "verifier_sha256": "8fde1f17d5fc3477d065e4a5fa7ee990a47fc66fd7a6b46a4b387e7c8ec97616",
+  "results": [
+    {
+      "mode": "partitioned",
+      "requests": 8,
+      "released": 8,
+      "peak_active": 4,
+      "borrowed": 0
+    },
+    {
+      "mode": "pooled",
+      "requests": 8,
+      "released": 8,
+      "peak_active": 4,
+      "borrowed": 4
+    }
+  ],
+  "interpretation": "Actual CPU multiprocess installed generation permits only; no live model/GPU/search improvement."
+}

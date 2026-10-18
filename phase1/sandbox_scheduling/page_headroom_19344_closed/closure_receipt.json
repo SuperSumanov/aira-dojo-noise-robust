@@ -1,0 +1,42 @@
+{
+  "schema": "page-headroom-closure-v1",
+  "job_id": 19344,
+  "node": "gpu3",
+  "state": "COMPLETED",
+  "exit_code": "0:0",
+  "allocation_elapsed_seconds": 2423,
+  "allocated_gpus": 1,
+  "allocated_cpus": 2,
+  "gpu_seconds": 2423,
+  "gpu_hours": 0.6730555555555555,
+  "previous_closed_failure_job": 19343,
+  "previous_failure_gpu_seconds": 332,
+  "window_gpu_seconds": 2755,
+  "window_gpu_hours": 0.7652777777777777,
+  "accounting": "Top-level Slurm allocation only; batch/extern/step entries are not added again. Startup, failures, idle reservation and cleanup included. CPU-only posthoc verification is not an online policy benefit.",
+  "source_commit": "dfe380b1a54b66d4f6cadc74ff955b5833a85aa1",
+  "plan_sha256": "28dee86b361df8ada6b65f18f6f6a12154b6c3aca4f452bd74d881775cea871f",
+  "reader_sha256": "7a8da1299c9d41acd57b2bc3fb8818991939f936d4ad2975a8f205f1b5d4b999",
+  "verifier_sha256": "b9c3445b7ea2afd28b750bfd431c2b62ea51e0d1296d31d263847743a40f7a90",
+  "remote_to_local_sha256": {
+    "summary.json": "2d21c52e601270d739c188b4157822392ada837f14f849722281813e8836b28b",
+    "runs.json": "85110b9a0963766d26b5adb21292274faaec88db4ba4421456acc19df7e2c0fb",
+    "runs.csv": "ff80de32a1e738f369a53dc8b78bb444176ace8c6889762295e548c73c9ddfeb",
+    "closed.json": "93f0d36ad4caa71bab4da550425eee1634f7f3beceef8033bc554adc81d665c9",
+    "independent.json": "b06e0f977bd7bc5ee42d702386620d1b537b62a1426af13dc78bd3705b50dcdd"
+  },
+  "assigned": 16,
+  "qualified": 16,
+  "independently_recomputed_scores": 16,
+  "maximum_independent_score_error": 1.0408340855860843e-17,
+  "opportunity_gate": false,
+  "decision": "STOP this fixed patch/multiscale recipe. Do not add features, trees, seeds, time or weaker sources to rescue the gate.",
+  "interpretation": [
+    "All four fold-by-seed cells rank CNN0 < CNN1 < multiscale < patch by RMSE. Winning over patch is not winning over both strong CNN controls.",
+    "The historically selected strongest CNN, retrained from scratch, still wins against these three controls on the clean-pixel-hash-grouped query views. This does not establish global optimality or multi-task generalization.",
+    "One task, two overlapping-training folds, two training seeds. Not a new independent test cohort, original method, or generated-search improvement.",
+    "V2 was a separate blind query-workload amendment after V1 had zero quality scores. It does not erase the failed V1 denominator or validate its original workload.",
+    "Exact clean-pixel-hash separation is verified, not exhaustive semantic near-duplicate removal. Official test and protected cohorts were not accessed.",
+    "Independent pixel scoring and gate arithmetic are verified; runtime qualification relies on the recorded execution receipts. No fresh experiment was launched after observing this result."
+  ]
+}

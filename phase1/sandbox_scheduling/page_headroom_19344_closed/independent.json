@@ -1,0 +1,72 @@
+{
+  "independent_streaming_score_verified": true,
+  "gate_arithmetic_verified": true,
+  "score_verification_status": "ALL16_VERIFIED",
+  "group_checks": [
+    {
+      "train_source_pages": 24,
+      "query_source_pages": 12,
+      "overlap": 0,
+      "query_images": 12
+    },
+    {
+      "train_source_pages": 24,
+      "query_source_pages": 12,
+      "overlap": 0,
+      "query_images": 12
+    }
+  ],
+  "planned": 16,
+  "recomputed": 16,
+  "maximum_score_difference": 1.0408340855860843e-17,
+  "pixel_counts": [
+    2459160,
+    2459160,
+    2459160,
+    2459160,
+    2459160,
+    2459160,
+    2459160,
+    2459160,
+    2284200,
+    2284200,
+    2284200,
+    2284200,
+    2284200,
+    2284200,
+    2284200,
+    2284200
+  ],
+  "cells": [
+    {
+      "fold": 0,
+      "seed": 5221,
+      "qualified": true,
+      "pass_gate": false
+    },
+    {
+      "fold": 0,
+      "seed": 5222,
+      "qualified": true,
+      "pass_gate": false
+    },
+    {
+      "fold": 1,
+      "seed": 5221,
+      "qualified": true,
+      "pass_gate": false
+    },
+    {
+      "fold": 1,
+      "seed": 5222,
+      "qualified": true,
+      "pass_gate": false
+    }
+  ],
+  "opportunity_gate": false,
+  "summary_sha256": "2d21c52e601270d739c188b4157822392ada837f14f849722281813e8836b28b",
+  "runs_sha256": "85110b9a0963766d26b5adb21292274faaec88db4ba4421456acc19df7e2c0fb",
+  "verifier_sha256": "b9c3445b7ea2afd28b750bfd431c2b62ea51e0d1296d31d263847743a40f7a90",
+  "seconds": 136.27605038601905,
+  "limit": "Independent ID/pixel/SSE implementation and arithmetic, not independent data or repetitions; runtime qualification rests on recorded receipts."
+}

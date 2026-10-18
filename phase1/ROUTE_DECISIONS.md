@@ -1,6 +1,6 @@
 # 路线与机制索引：先查旧证据，再提新方向
 
-2026-10-18 R15停止；当前先做源页面隔离的候选机会检查。方向/授权只读CURRENT_DIRECTION，现场只读CONTEXT_HANDOFF_CURRENT。
+2026-10-18 R15停止；源页面机会检查19344完整而原门false，停止该特征配方。方向/授权只读CURRENT_DIRECTION，现场只读CONTEXT_HANDOFF_CURRENT。
 本次压缩前全文在Git b1603f953f1e20e8080e075ec2ebb6e1a4cc802f:phase1/ROUTE_DECISIONS.md。
 旧细节在6c47086a603b4c7afcc25a3e80f9d5648c3bee63；更早R1–13在246e66a56151ebfb7b74b5808eeeec82b9de0d8c。
 原结果/撤回/限制均留存；按机制检索历史，不每次全读。停止配方≠证明普遍无效。
@@ -112,6 +112,7 @@ quota已停止；矩阵、原门、边界见CURRENT_DIRECTION。不补救旧配�
 - CCTS用高低分概念对比引导父选择/编辑（§4），MLE-InsightForge组装任务/领域/改进经验并控制来源（§2–4）；不把“从差异提炼经验/概念”称空白。https://arxiv.org/html/2602.03132 / https://arxiv.org/html/2610.04927v1
 - 10/18核CoMind v3附录J：去噪案例已使用公开pixel-patch/多尺度滤波特征、RF/XGBoost方案及社区讨论；换经典模型或给生成器这些知识不是新颖性。当前两种LightGBM只作机会参照，非复现其资源设置。https://arxiv.org/html/2506.20640v3
 - Silent Failures §4.2–4.3已讨论高分与泄漏/方法错误并存，显式提示和专家差距；MLToolBench已有诊断观察干预，POPPER已有主动证伪。故不把本次重复页发现扩张成首个完整性审计/通用诊断方法；其发现只经本项目数据独立验证。https://arxiv.org/html/2610.14115 / https://arxiv.org/html/2609.36679 / https://proceedings.mlr.press/v267/huang25n.html
+- 19344：2清页隔离fold×2seed×4程序，16合格/独立重评分16，四格CNN0<CNN1<multiscale<patch（RMSE）；多尺度未胜任一CNN，原机会门false。2423GPU秒，含19343失败总2755；不追加特征/调参/seed救门。旧CNN在新分组仍胜这三参照是资产事实，非新生成机制或跨任务确认；page_headroom_19344_closed。
 
 ### R15：输入身份寻址的数据随机流（已闭合停止，不预认创新）
 

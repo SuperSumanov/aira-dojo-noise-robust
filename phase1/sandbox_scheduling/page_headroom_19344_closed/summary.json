@@ -1,0 +1,125 @@
+{
+  "claim": "Single-task classical candidate-family headroom only. No new method, generated-policy benefit, or independent multi-task confirmation.",
+  "complete": 16,
+  "contrasts": [
+    {
+      "fold": 0,
+      "gains": {
+        "cnn0": -0.004465505702541206,
+        "cnn1": -0.0010253604637117109,
+        "patch": 0.005843365757153586
+      },
+      "pass_gate": false,
+      "qualified": true,
+      "seed": 5221
+    },
+    {
+      "fold": 0,
+      "gains": {
+        "cnn0": -0.00464007996342624,
+        "cnn1": -0.0015428167535354483,
+        "patch": 0.005588793548205028
+      },
+      "pass_gate": false,
+      "qualified": true,
+      "seed": 5222
+    },
+    {
+      "fold": 1,
+      "gains": {
+        "cnn0": -0.003996403268256926,
+        "cnn1": -0.0010818846870193771,
+        "patch": 0.004734867717836051
+      },
+      "pass_gate": false,
+      "qualified": true,
+      "seed": 5221
+    },
+    {
+      "fold": 1,
+      "gains": {
+        "cnn0": -0.003876972852443431,
+        "cnn1": -0.001327383457135508,
+        "patch": 0.004609528801518107
+      },
+      "pass_gate": false,
+      "qualified": true,
+      "seed": 5222
+    }
+  ],
+  "gpu_hours": 0.6730555555555555,
+  "gpu_seconds": 2423,
+  "groups": [
+    {
+      "fold": 0,
+      "median": 0.014866822127879875,
+      "mode": "cnn0",
+      "n": 2,
+      "sample_sd": 2.0751369756865363e-05
+    },
+    {
+      "fold": 0,
+      "median": 0.018135526352240017,
+      "mode": "cnn1",
+      "n": 2,
+      "sample_sd": 0.00022170283805269362
+    },
+    {
+      "fold": 0,
+      "median": 0.025135694613542904,
+      "mode": "patch",
+      "n": 2,
+      "sample_sd": 3.58157217998614e-05
+    },
+    {
+      "fold": 0,
+      "median": 0.0194196149608636,
+      "mode": "multiscale",
+      "n": 2,
+      "sample_sd": 0.0001441940134493026
+    },
+    {
+      "fold": 1,
+      "median": 0.016923222868550872,
+      "mode": "cnn0",
+      "n": 2,
+      "sample_sd": 0.00011185412415769192
+    },
+    {
+      "fold": 1,
+      "median": 0.01965527685682361,
+      "mode": "cnn1",
+      "n": 2,
+      "sample_sd": 0.00014618977786603292
+    },
+    {
+      "fold": 1,
+      "median": 0.02553210918857813,
+      "mode": "patch",
+      "n": 2,
+      "sample_sd": 6.122393041895108e-05
+    },
+    {
+      "fold": 1,
+      "median": 0.020859910928901052,
+      "mode": "multiscale",
+      "n": 2,
+      "sample_sd": 2.7404067256040537e-05
+    }
+  ],
+  "limits": [
+    "Classical model/feature controls, not an invented method or automated generation gain.",
+    "One task; public source groups re-used across folds, not independent tasks or a new protected cohort.",
+    "Historical code selection used oldDEV; training starts from scratch. All historical/init cost is a shared sunk asset, not free E2E generation.",
+    "Uniform per-rendering training sampling is identical in both pixel feature arms; no query labels in training."
+  ],
+  "opportunity_gate": false,
+  "plan_sha256": "28dee86b361df8ada6b65f18f6f6a12154b6c3aca4f452bd74d881775cea871f",
+  "planned": 16,
+  "qualified": 16,
+  "reader_sha256": "7a8da1299c9d41acd57b2bc3fb8818991939f936d4ad2975a8f205f1b5d4b999",
+  "recomputed": 16,
+  "source_commit": "dfe380b1a54b66d4f6cadc74ff955b5833a85aa1",
+  "started": 16,
+  "structure": true
+}

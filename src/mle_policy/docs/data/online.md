@@ -62,9 +62,9 @@ python my_recipes/mle_policy/src/dataset/build_grpo_parquet.py \
 
 ```bash
 source /research/d2/gds/zzchen2/anaconda/bin/activate aira-dojo
-OUT_ROOT=data/mle_policy/online_score_day2
+OUT_ROOT=data/mle_policy/online_score_day3
 mkdir -p $OUT_ROOT
-bash src/mle_policy/scripts/data/build_all_batches_bigjournal.sh data/augmented_mle_critic/raw_journal/comparison/1015 "$OUT_ROOT"
+bash src/mle_policy/scripts/data/build_all_batches_bigjournal.sh data/augmented_mle_critic/raw_journal/comparison/1017 "$OUT_ROOT"
 bash src/mle_policy/scripts/data/aggregate_batches.sh "$OUT_ROOT"
 bash src/mle_policy/scripts/data/assign_splits.sh "$OUT_ROOT" run 0.1
 bash src/mle_policy/scripts/data/to_grpo.sh "$OUT_ROOT"
@@ -80,9 +80,9 @@ python my_recipes/mle_policy/src/dataset/build_grpo_parquet.py \
 
 ```bash
 source /research/d2/gds/zzchen2/anaconda/bin/activate aira-dojo
-OUT_ROOT=data/mle_policy/online_metric_day1
+OUT_ROOT=data/mle_policy/online_metric_day3
 mkdir -p $OUT_ROOT
-bash src/mle_policy/scripts/data/build_all_batches_bigjournal.sh data/augmented_mle_critic/raw_journal/comparison/1014 "$OUT_ROOT"
+bash src/mle_policy/scripts/data/build_all_batches_bigjournal.sh data/augmented_mle_critic/raw_journal/comparison/1018 "$OUT_ROOT"
 bash src/mle_policy/scripts/data/aggregate_batches.sh "$OUT_ROOT"
 bash src/mle_policy/scripts/data/assign_splits.sh "$OUT_ROOT" run 0.1
 bash src/mle_policy/scripts/data/to_grpo_metric.sh "$OUT_ROOT"

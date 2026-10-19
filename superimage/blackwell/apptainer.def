@@ -1,0 +1,88 @@
+Bootstrap: docker
+From: nvidia/cuda:12.8.1-devel-ubuntu22.04
+
+%labels
+    Description "MLEBench agent environment for RTX PRO 6000 Blackwell (sm_120)"
+    Torch "2.7.1+cu128"
+
+%environment
+    export CONDAHOME=/opt/conda
+    export PATH=$CONDAHOME/bin:$PATH
+    export TQDM_DISABLE=1
+    export PYTHONWARNINGS="ignore"
+    export PIP_CONSTRAINT=/opt/blackwell/constraints.txt
+
+%files
+    ../build-openssh.sh /opt/build-openssh.sh
+    constraints.txt /opt/blackwell/constraints.txt
+    pip.requirements.txt /opt/blackwell/pip.requirements.txt
+    build-faiss.sh /opt/blackwell/build-faiss.sh
+    verify.py /opt/blackwell/verify.py
+
+%post
+    set -eu
+    chmod 755 /opt/blackwell
+    chmod 644 /opt/blackwell/*.txt /opt/blackwell/*.py /opt/blackwell/*.sh
+    apt-get update
+    apt-get install -y --no-install-recommends \
+        ca-certificates wget zsh vim tmux htop git build-essential \
+        openssl libssl-dev libpam0g-dev libwrap0-dev libselinux1-dev pkg-config
+    apt-get clean
+    rm -rf /var/lib/apt/lists/*
+
+    export HOME=/root
+    export CONDAHOME=/opt/conda
+    export PATH="$CONDAHOME/bin:$PATH"
+    export MAMBA_CONCURRENT_DOWNLOADS=1
+    export CONDA_OVERRIDE_CUDA=12.8
+    export PIP_CONSTRAINT=/opt/blackwell/constraints.txt
+    mkdir -p "$HOME/.ssh"
+
+    wget -O /tmp/miniforge.sh https://github.com/conda-forge/miniforge/releases/download/25.1.1-0/Miniforge3-25.1.1-0-Linux-x86_64.sh
+    bash /tmp/miniforge.sh -b -p "$CONDAHOME"
+    rm /tmp/miniforge.sh
+
+    mamba install -y --override-channels -c rapidsai -c conda-forge -c nvidia \
+        python=3.11 cuda-version=12.8 cuda-python=12.8 \
+        cudf=25.04 cuml=25.04 cugraph=25.04 \
+        cucim=25.04 cudf-polars=25.04 cuproj=25.04 cuspatial=25.04 \
+        custreamz=25.04 cuvs=25.04 cuxfilter=25.04 dask-cuda=25.04 nx-cugraph=25.04 \
+        cupy=13.6.0 numba=0.60.0 numba-cuda=0.4.0 pyarrow=19.0.1 \
+        implicit=0.7.2 "implicit-proc=*=gpu" \
+        numpy=1.26.4 pandas=2.1.4 scipy=1.11.4 \
+        xarray=2024.11.0 mapclassify=2.8.1 xorg-libx11 \
+        "cmake>=3.24,<4" swig libopenblas
+    conda clean --all -y
+
+    python -m pip install --upgrade pip setuptools wheel
+    python -m pip install --index-url https://download.pytorch.org/whl/cu128 \
+        torch==2.7.1+cu128 torchvision==0.22.1+cu128
+    bash /opt/blackwell/build-faiss.sh
+    python -m pip install -r /opt/blackwell/pip.requirements.txt
+    python /opt/blackwell/verify.py
+
+    mkdir -p /custom
+    cd /custom
+    bash /opt/build-openssh.sh
+    cd /root
+
+    ssh-keygen -t rsa -N "" -f "$HOME/.ssh/id_rsa"
+    cat "$HOME/.ssh/id_rsa.pub" >> "$HOME/.ssh/authorized_keys"
+    chmod 600 "$HOME/.ssh/authorized_keys"
+    printf "%s\n" \
+        "UsePrivilegeSeparation no" \
+        "Port 17022" \
+        "PidFile /tmp/sshd.pid" \
+        "AuthorizedKeysFile .ssh/authorized_keys" \
+        "PasswordAuthentication no" \
+        "HostKey /root/.ssh/id_rsa" \
+        "PermitRootLogin yes" > /etc/sshd_config
+    mkdir -p /inputs /outputs
+
+    python /opt/blackwell/verify.py
+    mkdir -p /opt/blackwell/manifest
+    conda list --json > /opt/blackwell/manifest/conda.json
+    python -m pip freeze > /opt/blackwell/manifest/pip-freeze.txt
+
+%test
+    /opt/conda/bin/python /opt/blackwell/verify.py

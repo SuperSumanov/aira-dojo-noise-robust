@@ -57,7 +57,7 @@ def create_snapshot() -> Path:
         os.chdir(git_root)
         included_src = [
             p for p in glob.glob("./src/**", recursive=True)
-            if not p.startswith("./src/verl")
+            if not p.startswith("./src/verl") and not p.startswith("./src/sharedsandbox")
         ]
         with RsyncSnapshot(
             snapshot_dir=snapshot_path,
@@ -68,6 +68,8 @@ def create_snapshot() -> Path:
                 "*.mypy_cache",
                 "src/verl/**",
                 "src/verl",
+                "src/sharedsandbox/**",
+                "src/sharedsandbox",
                 "data/**",
                 "data"
             ],

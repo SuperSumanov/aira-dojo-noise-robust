@@ -1,4 +1,6 @@
 python src/dojo/analysis_utils/journal_to_fig.py \
+  data/augmented_mle_critic/raw_journal/comparison/1025/chaii-hindi-and-tamil-question-answering/7200/qwen-medium/online-grpo-metric-day5-step66-lora-1 \
+  data/augmented_mle_critic/raw_journal/comparison/1025/chaii-hindi-and-tamil-question-answering/7200/qwen-medium/online-grpo-metric-day5-step66-lora \
   data/augmented_mle_critic/raw_journal/comparison/1022/chaii-hindi-and-tamil-question-answering/7200/qwen-medium/online-grpo-score-day5-step66-lora \
   data/augmented_mle_critic/raw_journal/comparison/1021/chaii-hindi-and-tamil-question-answering/7200/qwen-medium/online-grpo-metric-day4-step66-lora \
   data/augmented_mle_critic/raw_journal/comparison/1020/chaii-hindi-and-tamil-question-answering/7200/qwen-medium/online-grpo-score-day4-step66-lora-1 \
@@ -16,6 +18,8 @@ python src/dojo/analysis_utils/journal_to_fig.py \
   --text > tmp/chaii.txt
 
 python src/dojo/analysis_utils/journal_to_fig.py \
+  data/augmented_mle_critic/raw_journal/comparison/1025/tgs-salt-identification-challenge/7200/qwen-medium/online-grpo-metric-day5-step66-lora-1 \
+  data/augmented_mle_critic/raw_journal/comparison/1025/tgs-salt-identification-challenge/7200/qwen-medium/online-grpo-metric-day5-step66-lora \
   data/augmented_mle_critic/raw_journal/comparison/1023/tgs-salt-identification-challenge/7200/qwen-medium/online-grpo-metric-day4-step66-lora-1 \
   data/augmented_mle_critic/raw_journal/comparison/1022/tgs-salt-identification-challenge/7200/qwen-medium/online-grpo-score-day5-step66-lora \
   data/augmented_mle_critic/raw_journal/comparison/1021/tgs-salt-identification-challenge/7200/qwen-medium/online-grpo-metric-day4-step66-lora \
@@ -34,6 +38,8 @@ python src/dojo/analysis_utils/journal_to_fig.py \
   --text > tmp/tgs.txt
 
 python src/dojo/analysis_utils/journal_to_fig.py \
+  data/augmented_mle_critic/raw_journal/comparison/1025/dog-breed-identification/7200/qwen-medium/online-grpo-metric-day5-step66-lora-1 \
+  data/augmented_mle_critic/raw_journal/comparison/1025/dog-breed-identification/7200/qwen-medium/online-grpo-metric-day5-step66-lora \
   data/augmented_mle_critic/raw_journal/comparison/1023/dog-breed-identification/7200/qwen-medium/online-grpo-metric-day4-step66-lora-1 \
   data/augmented_mle_critic/raw_journal/comparison/1022/dog-breed-identification/7200/qwen-medium/online-grpo-score-day5-step66-lora \
   data/augmented_mle_critic/raw_journal/comparison/1021/dog-breed-identification/7200/qwen-medium/online-grpo-metric-day4-step66-lora \
@@ -52,6 +58,8 @@ python src/dojo/analysis_utils/journal_to_fig.py \
   --text > tmp/dog-breed.txt
 
 python src/dojo/analysis_utils/journal_to_fig.py \
+  data/augmented_mle_critic/raw_journal/comparison/1025/bms-molecular-translation/7200/qwen-medium/online-grpo-metric-day5-step66-lora-1 \
+  data/augmented_mle_critic/raw_journal/comparison/1025/bms-molecular-translation/7200/qwen-medium/online-grpo-metric-day5-step66-lora \
   data/augmented_mle_critic/raw_journal/comparison/1023/bms-molecular-translation/7200/qwen-medium/online-grpo-metric-day4-step66-lora-1 \
   data/augmented_mle_critic/raw_journal/comparison/1022/bms-molecular-translation/7200/qwen-medium/online-grpo-score-day5-step66-lora \
   data/augmented_mle_critic/raw_journal/comparison/1021/bms-molecular-translation/7200/qwen-medium/online-grpo-metric-day4-step66-lora \
@@ -70,6 +78,8 @@ python src/dojo/analysis_utils/journal_to_fig.py \
   --text > tmp/bms.txt
 
 python src/dojo/analysis_utils/journal_to_fig.py \
+  data/augmented_mle_critic/raw_journal/comparison/1025/champs-scalar-coupling/7200/qwen-medium/online-grpo-metric-day5-step66-lora-1 \
+  data/augmented_mle_critic/raw_journal/comparison/1025/champs-scalar-coupling/7200/qwen-medium/online-grpo-metric-day5-step66-lora \
   data/augmented_mle_critic/raw_journal/comparison/1023/champs-scalar-coupling/7200/qwen-medium/online-grpo-metric-day4-step66-lora-1 \
   data/augmented_mle_critic/raw_journal/comparison/1022/champs-scalar-coupling/7200/qwen-medium/online-grpo-score-day5-step66-lora \
   data/augmented_mle_critic/raw_journal/comparison/1021/champs-scalar-coupling/7200/qwen-medium/online-grpo-metric-day4-step66-lora \

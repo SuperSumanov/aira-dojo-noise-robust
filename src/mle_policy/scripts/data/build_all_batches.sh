@@ -16,12 +16,18 @@
 #   non_thinking  every run used a plain completion model
 #   other         anything else, including mixed batches
 #
-# Usage: bash src/mle_policy/scripts/data/build_all_batches.sh BATCH_ROOT OUT_ROOT
+# Usage: bash src/mle_policy/scripts/data/build_all_batches.sh BATCH_ROOT OUT_ROOT [--print]
 set -euo pipefail
 
 BATCH_ROOT=${1:?expected the directory whose immediate subdirectories are batches}
 OUT_ROOT=${2:?expected the output root}
-PRINT_ONLY=${3:-}
+PRINT_ONLY=
+for option in "${@:3}"; do
+    case "$option" in
+        --print) PRINT_ONLY=--print ;;
+        *) echo "unknown option: $option" >&2; exit 2 ;;
+    esac
+done
 
 THINKING_PROVIDERS=${THINKING_PROVIDERS:-selfhosted}
 NON_THINKING_PROVIDERS=${NON_THINKING_PROVIDERS:-openai}
@@ -51,7 +57,8 @@ def run_dir(journal):
     raise SystemExit(f"no dojo_config.json above {journal}")
 
 
-batches = {run_dir(journal).parent for journal in root.rglob("journal.jsonl")}
+journals = root.rglob("journal.jsonl")
+batches = {run_dir(journal).parent for journal in journals}
 print("\n".join(str(batch) for batch in sorted(batches)))
 PY
 )

@@ -16,7 +16,7 @@
 #   non_thinking  every run used a plain completion model
 #   other         anything else, including mixed batches
 #
-# Usage: bash src/mle_policy/scripts/data/build_all_batches.sh BATCH_ROOT OUT_ROOT
+# Usage: bash src/mle_policy/scripts/data/build_all_batches_bigjournal.sh BATCH_ROOT OUT_ROOT
 set -euo pipefail
 
 BATCH_ROOT=${1:?expected the directory whose immediate subdirectories are batches}

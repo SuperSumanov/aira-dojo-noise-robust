@@ -36,29 +36,35 @@ def build_batch(
     max_journals: int | None = None,
     verbose: bool = True,
     use_big_journal: bool = False,
+    run_level: bool = False,
 ) -> dict[str, Any]:
-    if use_big_journal:
-        from .big_journal import (
-            DEFAULT_JOURNAL_GLOB,
-            iter_episodes
-        )
+    if use_big_journal and run_level:
+        raise ValueError("use_big_journal and run_level are mutually exclusive")
+    if run_level:
+        from .run_level.big_journal import iter_episodes, iter_journal_paths
+        journal_glob = None
+    elif use_big_journal:
+        from .big_journal import DEFAULT_JOURNAL_GLOB, iter_episodes, iter_journal_paths
+        journal_glob = DEFAULT_JOURNAL_GLOB
     else:
-        from .journal import (
-            DEFAULT_JOURNAL_GLOB,
-            iter_episodes
-        )
-    journal_glob = DEFAULT_JOURNAL_GLOB
+        from .journal import DEFAULT_JOURNAL_GLOB, iter_episodes, iter_journal_paths
+        journal_glob = DEFAULT_JOURNAL_GLOB
     """Group every journal below *batch_dir* and write a dataset directory."""
     batch_dir = Path(batch_dir).resolve()
     output_dir = Path(output_dir).resolve()
     output_dir.mkdir(parents=True, exist_ok=True)
     batch_key = batch_key or batch_dir.name
 
-    journals = list(iter_journal_paths(batch_dir, journal_glob))
+    journals = list(
+        iter_journal_paths(batch_dir)
+        if run_level
+        else iter_journal_paths(batch_dir, journal_glob)
+    )
     if max_journals is not None:
         journals = journals[:max_journals]
     if not journals:
-        raise ValueError(f"No journals matching {journal_glob!r} below {batch_dir}")
+        source = "journals" if run_level else f"journals matching {journal_glob!r}"
+        raise ValueError(f"No {source} below {batch_dir}")
 
     group_members: dict[str, list[dict[str, Any]]] = defaultdict(list)
     group_tasks: dict[str, str] = {}
@@ -171,6 +177,8 @@ def build_batch(
     ]
     manifest: dict[str, Any] = {
         "kind": "batch",
+        "episode_unit": "journal" if run_level else "debug_episode",
+        "reward_selection": "best_validation_metric" if run_level else "episode_terminal",
         "batch": batch_key,
         "batch_dir": str(batch_dir),
         "journals": len(journals),
@@ -216,7 +224,16 @@ def main() -> None:
         action="store_false",
         help="Hash prompts exactly, without sorting the shuffled package list.",
     )
-    parser.add_argument("--use-big-journal", action="store_true", help="Use the JOURNAL.jsonl instead of journal.jsonl (default: false).")
+    parser.add_argument(
+        "--use-big-journal",
+        action="store_true",
+        help="Use the legacy big-journal reader and JOURNAL.jsonl files.",
+    )
+    parser.add_argument(
+        "--run-level",
+        action="store_true",
+        help="Treat each complete journal as one episode and use run_level.big_journal.",
+    )
     args = parser.parse_args()
 
     build_batch(
@@ -226,6 +243,7 @@ def main() -> None:
         normalize_packages=args.normalize_packages,
         max_journals=args.max_journals,
         use_big_journal=args.use_big_journal,
+        run_level=args.run_level,
     )
 
 

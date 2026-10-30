@@ -45,17 +45,6 @@ group 的定义没变：**同一套环境下、root prompt 相同的那些 episo
 | 只有 1 个成员 | 组内均值/方差没意义 |
 | 一个都没跑通 | 所有 reward 都是同一个地板值 |
 | reward 全相同 | std = 0，advantage 恒为 0 |
-
-### 实测
-
-| 桶 | aggregated group | 出 GRPO 的 group | 训练行数 | 丢掉：单成员 / 全没跑通 / 无落差 |
-| --- | ---: | ---: | ---: | --- |
-| `non_thinking`（限定 provider 后） | 7,009 | 5,525 | 50,246 | 44 / 1,271 / 169 |
-| `thinking`（selfhosted qwen3.8-27b） | 867 | 856 | 10,523 | 0 / 8 / 3 |
-
-对比 SFT：`non_thinking` 的 `sft.jsonl` 是 19,047 行，GRPO 是 50,246 行——
-因为 SFT 每组只留一个 episode，GRPO 要组里每个 episode 的每个 operation。
-
 ### reward 的长尾（要不要裁）
 
 `reward = (score - 中位数门槛) / (金牌门槛 - 中位数门槛)`，有些竞赛的金牌门槛
@@ -89,10 +78,10 @@ my_recipes/mle_policy/
 | 覆盖 | 原来干什么 | 现在干什么 |
 | --- | --- | --- |
 | `init_workers` | 建 actor、ref、reward loop、LLM server、agent loop、checkpoint engine | 只建 policy 的 worker group（LoRA 时 ref 就是不带 adapter 的 actor）；离线不生成，vLLM 一个进程都不起 |
-| `fit` | 用 vLLM 采样 → 算 reward → 估 advantage → actor update | 直接读数据里的 advantage（`_build_batch` 把它广播到该行的 response token 上，形状和 verl 自己算出来的完全一致）→ old logprob → ref logprob → actor update |
+| `fit` | 用 vLLM 采样 → 算 reward → 估 advantage → actor update | 直接读数据里的 advantage（`_build_batch` 把它广播到该行的 response token 上，形状和 verl 自己算出来的完全一致）→ 缓存中的 old logprob → ref logprob → actor update |
 | `_validate` | 生成、打分、按数据源统计 | 数据里的 reward 是固定的，报它没意义；改成报**当前策略给这些 val 回答的平均 logprob**、entropy 和平均 reward |
 
-`old_log_prob` / `_compute_ref_log_prob` / `_update_actor` / `_save_checkpoint` /
+`_compute_old_log_prob`（仅预计算和验证调用）/ `_compute_ref_log_prob` / `_update_actor` / `_save_checkpoint` /
 `_load_checkpoint` / `_balance_batch` 全是父类的方法，没抄。
 
 数据流：
@@ -107,50 +96,38 @@ DataLoader（普通 shuffle，行之间没有依赖）
 MleOfflineRayPPOTrainer._build_batch
   │ advantage * response_mask；reward 留在 token_level_scores 供日志
   ▼
-old logprob → ref logprob → KL → PPO clip → actor update
+查初始策略 logprob 缓存 → ref logprob → KL → PPO clip → actor update
 ```
 
 行之间没有"必须同组"的约束（advantage 已经算好），所以 batch 随便切、随便 shuffle。
 
-### PPO 的 ratio / clip 在这份配置下其实是不生效的
+### PPO 的 ratio：固定训练初始策略作为分母
 
-循环顺序就是 verl 原来的，一点没改：
+训练前用初始 actor 遍历全部训练样本，按 **`sample_id`**
+在 trainer 的 CPU 内存里缓存每个 response token 的 `old_log_probs`。
+缓存不保存 padding；正式训练按当前 batch 的顺序和 response 宽度取回、补零。
+独立的预计算 DataLoader 不 shuffle、不丢尾批， 也不推进训练 DataLoader 的游标。
+重复 sample id、非有限 logprob 会直接报错。
 
 ```text
-一个 train batch (data.train_batch_size 行)
-  ├─ _compute_old_log_prob  整个 batch 一次：当前策略给这些动作的 logprob
-  ├─ _compute_ref_log_prob  整个 batch 一次：reference 的 logprob（进 KL loss）
-  └─ _update_actor          worker 里按 ppo_mini_batch_size 切 mini-batch，
-                            跑 ppo_epochs 遍，每遍一个优化器 step
+初始 actor → 全训练集预计算 → sample_id: response token logprobs（CPU float32）
+训练循环：查缓存 → ref logprob → PPO clip loss → actor update
 ```
 
-三个相关量的定义（都在 `verl/trainer/ppo/core_algos.py::compute_policy_loss_vanilla`）：
+因此 `ratio = exp(logπ_current − logπ_initial)`：第一步通常接近 1，
+后续即使 `TRAIN_BATCH_SIZE == PPO_MINI_BATCH_SIZE`、`ppo_epochs=1`，ratio 也能变化，
+clip 始终限制相对于训练起点的变化。它不会每个 batch 或每个 epoch 重置。
+但初始 actor 只有与数据生成策略一致时才是行为策略；否则这个 ratio
+仍不是对数据来源的精确 importance sampling correction。
 
-* `ratio = exp(logπ_new − logπ_old)`，`logπ_old` 是更新前那一份，在 loss 里当常数；
-* `actor/ppo_kl = mean_response_tokens(logπ_old − logπ_new)`，也就是 KL(π_old‖π_new) 的单样本估计；
-* `actor/pg_clipfrac` = 被 clip 的 token 比例。
+恢复训练时先用本次运行配置的初始 model/adapter 重建缓存，再加载训练 checkpoint，
+所以必须保持初始模型、adapter、temperature 和训练数据不变。缓存不写入 checkpoint。
+如果要以某个 checkpoint **作为新一轮训练起点**，应将它作为初始 model/adapter 加载，
+并使用新的训练目录。
 
-**脚本默认 `TRAIN_BATCH_SIZE == PPO_MINI_BATCH_SIZE`（都是 32）、`ppo_epochs=1`，所以一个数据 batch
-只做一次梯度更新**，而这一次更新用的策略和算 `logπ_old` 时是同一个 → `ratio ≡ 1`，
-`ppo_kl ≡ 0`、`pg_clipfrac ≡ 0`（20261009 那份 9B log 全程就是这样）。
-此时梯度正好是 `−A·∇logπ`（因为 `d ratio/dθ = ratio·∇logπ_new`，ratio=1）：
-**`old_log_prob` 不进梯度**，它只是让 loss 的形状和 verl 一致，并顺手提供 entropy / ppo_kl 这两个诊断。
-
-这在这个任务里是合理的选择，不是漏配：这些动作是**别的模型**（glm / kimi / minimax …）生成的，
-`π_old` 根本不是行为策略，ratio 在这里不是"重要性纠正"而是纯记账；一个 batch 走一步
-= 最干净的 offline policy gradient（等于 RAFT / rejection sampling 再乘 advantage）。
-
-想让 ratio/clip 真的起作用，就让一个数据 batch 出多个梯度步：
-
-```bash
-PPO_MINI_BATCH_SIZE=8     # 32 行 → 4 次梯度更新；第 2 次起 ratio ≠ 1
-# 或者 actor_rollout_ref.actor.ppo_epochs=2
-```
-
-这时 `pg_clipfrac` / `ppo_kl` 才有意义（trust region 在起作用），而且每个 batch 的
-old/ref 两次前向（参考 log：约 15s + 13s）会摊到更多次梯度更新上，单步墙钟更快。
-但别指望它能修正分布漂移：mini-batch 内的 ratio 只保证"别离更新前的自己太远"，
-和"数据是别的模型产的"这件事无关。
+训练步只保留 `old_policy/advantage_weighted_log_prob/mean` 作为固定起点的诊断，
+不再将缓存值标成当前 actor 的 logprob 或 entropy；当前策略的表现仍看 `val/*`。
+`timing_s/cached_old_log_prob` 记录查缓存耗时；预计算进度与缓存大小单独打印。
 
 ### parquet 转换
 
@@ -229,10 +206,14 @@ MODEL_PATH=Qwen/Qwen3.5-9B       # thinking 桶的数据来自 27B，换 27B 时
 实测例子：`critic/rewards/mean` 在 step 1 是 -3.39、step 8 是 -2.56e5、step 19 是 -5.48。
 这不是退化，是那一步抽到的行里撞上了 reward 长尾（第 1 节「reward 的长尾」说的某些竞赛门槛极窄）。
 
-一个能当**一致性自检**用的小性质：第一步 `ratio ≡ 1`，所以
-`actor/pg_loss ≈ -critic/advantages/mean`。这份 log 里 step 1 是
-`adv = -0.005113` / `pg_loss = +0.005113`，对上就说明 advantage 是原样喂进去的，
-后面两者分叉是因为 ratio 不再等于 1。
+理想精度下，第一步 `ratio ≈ 1`，所以
+`actor/pg_loss ≈ -critic/advantages/mean`。历史 log 里 step 1 是
+`adv = -0.005113` / `pg_loss = +0.005113`。缓存版预计算和训练的 batch 组成不同，
+且推理、训练前向路径不同，实际不保证第一步严格等于 1；本次 27B bf16 验证中，
+第一步 `ppo_kl≈0.0024`、`pg_clipfrac≈0.0021`，actor 对 reference 的 KL loss 也非零。
+额外逐 token 对照确认第一步缓存与重新推理的 logprob 最大差值为 0，
+因此这项初始偏差来自推理与训练前向的差异，具体数值来源尚未深查。
+因此不能只靠“第一步是否精确为零”判断缓存正确性。
 
 ### 4.1 真正会动、能说明"在学"的数
 
@@ -248,8 +229,8 @@ GRPO 在做的事情是：**把 advantage 为正的回答抬上去，把 advanta
 | `val/entropy/mean` | 模型在这些回答上的平均 token 熵（nats） | 缓慢下降正常，掉到接近 0 就是开始坍缩 |
 | `val/rows` | val 集行数 | 固定，用来确认喂进去的是哪个 val 集 |
 
-训练行上对应的是 `actor/advantage_weighted_log_prob/mean`（每步都打），
-意义一样，但**每一步抽的数据不同**，所以噪声很大，只能看长期趋势。
+训练步中的 `old_policy/advantage_weighted_log_prob/mean` 使用缓存的初始策略，
+只反映这一步的数据，不再用它判断当前策略是否在学。
 
 ### 4.2 训练步里的每个数（在这份 log 里的实际取值）
 
@@ -262,14 +243,14 @@ GRPO 在做的事情是：**把 advantage 为正的回答抬上去，把 advanta
 | `actor/pg_clipfrac` / `pg_clipfrac_lower` / `ppo_kl` | 被 clip 的 token 比例 / 正负方向各自的 clip 比例 / 新旧策略的近似 KL | 初始几步 **全程 0**：ratio 一直在 1 附近，也就是每步只挪了一点点。开始出现 0.1+ 说明单步移动过猛 |
 | `actor/grad_norm` | 梯度范数 | 稳定在 0.18~0.34 = 健康；突然几十上百或 NaN = 炸了 |
 | `actor/lr` | 当前学习率 | step 1 = 4.8e-9，step 19 = 9.1e-8，而目标是 1e-6 → **19 步还在 warmup 头一段**（`lr_warmup_steps_ratio=0.05`）。warmup 结束前不要指望看到变化 |
-| `actor/entropy` | response token 的平均熵 | 0.17~0.29 上下晃，没有系统性下降 = 还没坍缩 |
-| `actor/advantage_weighted_log_prob/mean` | 见 4.1 | 逐步噪声大，看趋势 |
+| `val/entropy/mean` | 当前策略在验证集 response token 上的平均熵 | 缓存版不再输出原先训练前向中的 `actor/entropy`，改看验证集 |
+| `old_policy/advantage_weighted_log_prob/mean` | 这一步样本在初始策略下的 advantage 加权 logprob | 固定策略的诊断，不反映训练进展 |
 | `actor/perf/max_memory_allocated_gb` / `max_memory_reserved_gb` / `cpu_memory_used_gb` | 显存/内存峰值 | 逼近上限就调小 `MAX_TOKEN_LEN_PER_GPU` |
 | `perf/mfu/*` | MFU | 恒为 0.0 = **没接 profiling，不是性能问题** |
 | `global_seqlen/*` | 一步里各数据并行 rank 的 token 数（`balanced_*` 是 `trainer.balance_batch` 重排之后的） | 只反映负载均衡，和训练好坏无关 |
 | `response_length/clip_ratio`、`prompt_length/clip_ratio` | **不是被截断的比例**，而是"长度等于本 batch 最长那一行"的行占比 | 0.03125 = 1/32，因为 batch 里总有一行是最长的。数据在转换时已按 65536 过滤，训练里不会有截断 |
 | `response/aborted_ratio` | 生成得到空回答的比例 | 离线数据里应该恒为 0 |
-| `timing_s/old_log_prob` / `timing_s/ref` / `timing_s/update_actor` / `timing_s/step` / `perf/throughput` | 各段耗时和吞吐 | step ≈ 70~106s，其中 `update_actor` 45~65s、`old_log_prob` 14~17s、`ref` 12~14s；吞吐 ≈ 2200~2500 token/s（2 卡 9B LoRA）。算 pacing 用它 |
+| `timing_s/cached_old_log_prob` / `timing_s/ref` / `timing_s/update_actor` / `timing_s/step` / `perf/throughput` | 各段耗时和吞吐 | old logprob 的模型前向已移到训练前，训练步只记录查缓存耗时；历史单步耗时不再适用 |
 
 ### 4.3 一套检查清单
 
@@ -296,3 +277,58 @@ GRPO 在做的事情是：**把 advantage 为正的回答抬上去，把 advanta
    → 要么 lr 太小（本来就没动），要么 advantage 本身有问题（回第 1 节的「reward 的长尾」小节查 reward）。
 8. 显存峰值贴着卡上限 → 调小 `MAX_TOKEN_LEN_PER_GPU`（并把转换时的 `--max-length` 保持一致地放小，
    但那等于砍上下文，所以优先考虑减 `TRAIN_BATCH_SIZE`）。
+
+## 5. 导出 checkpoint，并将 LoRA 合入模型权重
+
+FSDP checkpoint 的 `actor/model_world_size_*_rank_*.pt` 同时保存底座和
+LoRA 参数，`actor/huggingface/` 主要是配置、tokenizer 和 processor，不能
+直接拿这个子目录当完整模型加载。导出只需要模型分片、配置和
+`lora_train_meta.json`，不需要 optimizer 或 `data.pt`。
+
+需要两步：verl 自带的 `verl.model_merger` 先拼回 FSDP 分片，输出底座权重和
+`lora_adapter/`；然后用 PEFT 的 `merge_and_unload(safe_merge=True)` 将
+`W + (alpha/r) × B @ A` 写入底座，保存为独立模型。
+**第一步名字里的 merge 指拼接分片，不代表 LoRA 已经合入权重。**
+
+以下命令在训练用的 Singularity 容器内、`/workspace/verl` 下执行，使用与训练
+相同的 PyTorch、Transformers、PEFT 和用户包路径。整个导出过程走 CPU，
+不需要 GPU、torchrun 或 Ray；27B 模型需预留足够的主机内存和磁盘空间，
+中间目录和最终目录各约 55 GB。`/tmp` 按本文档环境映射到宿主 SSD。
+
+下面示例的来源是宿主机
+`/auxstore/cse/ssd/s1155173938/GRPO-mle-policy-offline/GRPO-offline-Qwen3.8-27B-thinking-bsz72-lr1e-6/global_step_18`，
+最终模型位于仓库的 `outputs/seqsup-score-day1/`。
+
+```bash
+cd /workspace/verl
+export CUDA_VISIBLE_DEVICES=""
+export OMP_NUM_THREADS=8
+
+ACTOR_DIR=/tmp/GRPO-mle-policy-offline/GRPO-offline-Qwen3.8-27B-thinking-bsz64-lr2e-5/global_step_9/actor
+EXPORT_DIR=/tmp/grpo-step9-hf-unmerged
+MERGED_DIR=/auxstore/cse/d10/data/s1155173938/aira-dojo-noise-robust/outputs/seqsup-score-day2
+
+# 1. 使用 checkpoint 自带的底座，拼回分片并导出 adapter。
+python3 -m verl.model_merger merge \
+  --backend fsdp \
+  --local_dir "$ACTOR_DIR" \
+  --target_dir "$EXPORT_DIR"
+
+# 2. 将 adapter 合入底座，写出独立的 HF 模型。
+python3 -m my_recipes.mle_policy.merge_lora \
+  --model-dir "$EXPORT_DIR" \
+  --output-dir "$MERGED_DIR"
+```
+
+`--local_dir` 必须指向 `global_step_18/actor`，并保留该目录下的
+`lora_train_meta.json`。本次为 FSDP2、world_size=3、LoRA rank128、alpha256；
+adapter 缩放系数为 2。缺失 alpha 元数据时 verl 可能导出 alpha=0 的 adapter，
+这会令合并无效；第二步脚本会拒绝这样的输入。不要手工把 alpha 当成 rank。
+
+第二步脚本为 `src/verl/my_recipes/mle_policy/merge_lora.py`，要求输出目录为空，
+并检查前后两个适配层的合并公式、移除 adapter 包装及参数名，再保存 BF16
+safetensors 分片、配置、tokenizer、processor 和聊天模板。
+Qwen3.8-27B 在配置中是 `Qwen3_5ForConditionalGeneration`，因此使用
+`AutoModelForImageTextToText` 加载完整模型，不能只按名称把它当成普通
+`AutoModelForCausalLM`。推理时直接指定 `MERGED_DIR`，无需再加载 LoRA；
+训练恢复则仍应使用原 FSDP checkpoint，导出目录不含 optimizer 状态。

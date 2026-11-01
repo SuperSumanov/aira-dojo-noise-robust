@@ -5,6 +5,11 @@
 
 拿这份数据去训练见另一篇：`src/mle_policy/docs/train/SFT_TRAINING.md`。
 
+利用完整搜索结果提炼 hint，再重新生成同父节点的完整训练 episode，见 `hindsight.md`。
+该流程单独输出 hindsight 数据，节点带原轨迹引用，方便和原始数据分别处理。
+hindsight 使用继承的 metric 单独计算 advantage，经 `advantage > 0` 筛选后再与原始训练行合并。
+各阶段命令、journal 格式和运行规模示例见 `hindsight.md`，方案演变见 `hindsight_history.md`。
+
 ## 0. 这套东西要解决什么
 
 这个仓库原来做的是 critic（看两条 solution 判断哪条分数高），那条线停了，改成
@@ -42,6 +47,9 @@ bash src/mle_policy/scripts/data/assign_splits.sh "$OUT_ROOT" run 0.1
 bash src/mle_policy/scripts/data/to_sft.sh "$OUT_ROOT"
 bash src/mle_policy/scripts/data/to_grpo.sh "$OUT_ROOT"
 ```
+
+原始目录只有大写 journal、或部分 run 缺少小写 checkpoint 时，使用
+`build_all_batches_bigjournal.sh`，发现和读取都使用 `JOURNAL.jsonl`。
 
 `aggregate_batches.sh` 还能在归总时筛掉一些 run，多出来的参数直接透传给
 `aggregate_groups.py`（这些 filter 和 `mle_critic` 的 `build_cards` 一致，多了一个

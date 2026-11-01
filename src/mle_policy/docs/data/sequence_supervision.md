@@ -106,7 +106,7 @@ source /research/d2/gds/zzchen2/anaconda/bin/activate aira-dojo
 INPUT_ROOT=data/augmented_mle_critic/raw_journal/seqsup/1027
 OUT_ROOT=data/mle_policy/dataset/seqsup/1027
 
-bash src/mle_policy/scripts/data/build_all_batches_run_level.sh "$INPUT_ROOT" "$OUT_ROOT"
+bash src/mle_policy/scripts/data/run_level/build_all_batches_run_level.sh "$INPUT_ROOT" "$OUT_ROOT"
 ```
 
 `build_all_batches_run_level.sh` 让公共的 `src/mle_policy/src/data/build_batch_groups.py` 从
@@ -138,6 +138,15 @@ PYTHONPATH=src/mle_policy python -m src.data.to_grpo \
   --dataset "$OUT_ROOT/thinking" \
   --output-dir "$OUT_ROOT/thinking/grpo_metric" \
   --use-metric-reward
+
+# GRPO：最后转换成verl所需的parquet格式
+python my_recipes/mle_policy/src/dataset/build_grpo_parquet.py \
+  --input  ../../$OUT_ROOT/thinking/grpo.jsonl \
+  --output-dir data/mle_policy_grpo/thinking \
+  --model-path Qwen/Qwen3.8-27B \
+  --max-length 65536 \
+  --enable-thinking true \
+  --reasoning-effort medium
 ```
 
 SFT 和 score GRPO 分别写到 `$OUT_ROOT/thinking/sft.jsonl`、

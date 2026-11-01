@@ -17,7 +17,7 @@ NON_THINKING_PROVIDERS=${NON_THINKING_PROVIDERS:-openai}
 [[ -d $BATCH_ROOT ]] || { echo "not a directory: $BATCH_ROOT" >&2; exit 2; }
 
 SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
-REPO_ROOT=$(cd "$SCRIPT_DIR/../../../.." && pwd)
+REPO_ROOT=$(cd "$SCRIPT_DIR/../../../../.." && pwd)
 export PYTHONPATH="$REPO_ROOT/src/mle_policy${PYTHONPATH:+:$PYTHONPATH}"
 cd "$REPO_ROOT"
 BATCH_ROOT=$(cd "$BATCH_ROOT" && pwd)

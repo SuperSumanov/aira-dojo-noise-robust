@@ -1,0 +1,52 @@
+{
+  "id": "hindsight-example",
+  "task": {
+    "name": "iris-example"
+  },
+  "metadata": {
+    "seed": 42
+  },
+  "solver": {
+    "operators": {
+      "draft": {
+        "llm": {
+          "client": {
+            "provider": "selfhosted",
+            "model_id": "qwen3.8-27b",
+            "base_url": "http://127.0.0.1:8000/v1"
+          },
+          "generation_kwargs": {
+            "temperature": 0.6,
+            "top_p": 0.95
+          }
+        }
+      },
+      "debug": {
+        "llm": {
+          "client": {
+            "provider": "selfhosted",
+            "model_id": "qwen3.8-27b",
+            "base_url": "http://127.0.0.1:8000/v1"
+          },
+          "generation_kwargs": {
+            "temperature": 0.6,
+            "top_p": 0.95
+          }
+        }
+      },
+      "improve": {
+        "llm": {
+          "client": {
+            "provider": "selfhosted",
+            "model_id": "qwen3.8-27b",
+            "base_url": "http://127.0.0.1:8000/v1"
+          },
+          "generation_kwargs": {
+            "temperature": 0.6,
+            "top_p": 0.95
+          }
+        }
+      }
+    }
+  }
+}

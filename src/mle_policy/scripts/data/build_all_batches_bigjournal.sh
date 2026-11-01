@@ -51,7 +51,7 @@ def run_dir(journal):
     raise SystemExit(f"no dojo_config.json above {journal}")
 
 
-batches = {run_dir(journal).parent for journal in root.rglob("journal.jsonl")}
+batches = {run_dir(journal).parent for journal in root.rglob("JOURNAL.jsonl")}
 print("\n".join(str(batch) for batch in sorted(batches)))
 PY
 )

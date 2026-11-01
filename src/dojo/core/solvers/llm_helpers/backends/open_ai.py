@@ -59,27 +59,40 @@ class OpenAIClient:
     FunctionCallType = Dict[str, Any]
     OutputType = Union[str, FunctionCallType]
 
-    def __init__(self, client_cfg):
+    def __init__(self, client_cfg, *, api_key: Optional[str] = None, http_client=None, max_retries: int = 3):
         """
         Initialize the OpenAI client with any desired default arguments or configuration.
         """
         self.model = client_cfg.model_id
         self.base_url = client_cfg.base_url
-        self.api_key = os.getenv("PRIMARY_KEY", "")
+        self.api_key = os.getenv("PRIMARY_KEY", "") if api_key is None else api_key
         self.use_azure_client = client_cfg.use_azure_client
 
         if self.use_azure_client:
             self._client = openai.AzureOpenAI(
-                max_retries=3, api_key=self.api_key, api_version="2024-10-21", azure_endpoint=self.base_url
+                max_retries=max_retries,
+                api_key=self.api_key,
+                api_version="2024-10-21",
+                azure_endpoint=self.base_url,
+                http_client=http_client,
             )
         else:
-            self._client = openai.OpenAI(max_retries=3, base_url=self.base_url, api_key=self.api_key)
+            self._client = openai.OpenAI(
+                max_retries=max_retries, base_url=self.base_url, api_key=self.api_key, http_client=http_client
+            )
 
         logging.getLogger("httpx").setLevel(logging.WARNING)
 
     @property
     def client_content_key(self):
         return "content"
+
+    def query_raw(self, messages: List[Dict[str, str]], **model_kwargs):
+        model_kwargs.setdefault("model", self.model)
+        return self._client.chat.completions.create(messages=messages, **model_kwargs)
+
+    def close(self):
+        self._client.close()
 
     def _query_client(
         self,
@@ -104,7 +117,7 @@ class OpenAIClient:
         completion = None
         start_time = time.monotonic()
         try:
-            completion = self._client.chat.completions.create(messages=messages, **filtered_kwargs)
+            completion = self.query_raw(messages, **filtered_kwargs)
         except openai.BadRequestError as e:
             # Check if function calling is not supported
             if "function calling" in str(e).lower() or "functions" in str(e).lower():
@@ -117,7 +130,7 @@ class OpenAIClient:
                 filtered_kwargs.pop("function_call", None)
 
                 # Retry without function calling
-                completion = self._client.chat.completions.create(messages=messages, **filtered_kwargs)
+                completion = self.query_raw(messages, **filtered_kwargs)
             else:
                 # Re-raise other exceptions
                 raise

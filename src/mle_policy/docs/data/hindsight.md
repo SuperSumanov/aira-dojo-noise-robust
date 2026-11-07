@@ -7,6 +7,8 @@
 新代码未经执行。metric 继承提供经验的最终跑通节点，用来区分来源质量。
 hindsight 单独分组、计算 advantage，严格筛 `advantage > 0` 后再合并训练行。
 
+重写代码的实际执行、自动 debug 与官方测试评分见 [hindsight_eval.md](hindsight_eval.md)。
+
 ## 1. 三步处理与代码对应关系
 
 代码在 `src/mle_policy/src/data/hindsight/`。

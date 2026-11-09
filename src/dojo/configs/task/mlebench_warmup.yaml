@@ -1,0 +1,10 @@
+# @package task
+_target_: dojo.config_dataclasses.task.mlebench_warmup.MLEBenchTaskWarmupConfig
+name: ???
+benchmark: mlebench
+cache_dir: ${get_mlebench_data_dir:}
+warmup_dir: ???
+public_dir: ${task.warmup_dir}/public
+data_dir: ${task.public_dir}
+private_dir: ${task.cache_dir}/${task.name}/prepared/private
+submission_fname: submission.csv

@@ -6,4 +6,7 @@
 
 from dojo.utils.config import LazyFactory
 
-TASK_MAP = {"MLEBenchTaskConfig": LazyFactory("dojo.tasks.mlebench.task", "MLEBenchTask")}
+TASK_MAP = {
+    "MLEBenchTaskConfig": LazyFactory("dojo.tasks.mlebench.task", "MLEBenchTask"),
+    "MLEBenchTaskWarmupConfig": LazyFactory("dojo.tasks.mlebench.task_warmup", "MLEBenchTaskWarmup"),
+}

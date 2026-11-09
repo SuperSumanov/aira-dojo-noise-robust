@@ -1,0 +1,10 @@
+_target_: dojo.config_dataclasses.benchmark_warmup.WarmupBenchmarkConfig
+
+name: mlebench
+warmup_root: ???
+warmup_version: v1
+tasks:
+  - chaii-hindi-and-tamil-question-answering
+  - tgs-salt-identification-challenge
+  - dog-breed-identification
+  - tensorflow2-question-answering

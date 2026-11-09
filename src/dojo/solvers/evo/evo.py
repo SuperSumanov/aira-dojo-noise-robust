@@ -14,6 +14,7 @@
 # See THIRD_PARTY_LICENSES.md for the full licence text.
 # https://github.com/google-deepmind/funsearch/blob/main/LICENSE
 
+import asyncio
 import json
 import random
 import sys
@@ -28,6 +29,8 @@ import time
 import dojo.core.solvers.utils.search_utils as utils
 from dojo.core.solvers.base import Solver
 from dojo.core.solvers.operators.analyze import analyze_op
+from dojo.core.solvers.operators.analyze_warmup import analyze_warmup_op
+from dojo.config_dataclasses.operators.analyze_warmup import WarmupAnalyzeOperatorConfig
 from dojo.core.solvers.operators.core import execute_op_plan_code
 from dojo.core.solvers.operators.crossover import crossover_op
 from dojo.core.solvers.operators.draft import draft_op
@@ -618,7 +621,12 @@ class Evolutionary(Solver):
         self.draft_fn = partial(draft_op, draft_llm, self.cfg, self.memory_op)
         self.improve_fn = partial(improve_op, improve_llm, self.cfg, self.memory_op)
         self.debug_fn = partial(debug_op, debug_llm, self.cfg, self.debug_memory_op)
-        self.analyze_fn = partial(analyze_op, analyze_llm, self.cfg)
+        warmup_analysis = isinstance(self.cfg.operators["analyze"], WarmupAnalyzeOperatorConfig)
+        if warmup_analysis != bool(self.task_info.get("warmup", False)):
+            raise ValueError("Warmup task and analysis operator must be enabled together")
+        if warmup_analysis and self.cfg.use_test_score:
+            raise ValueError("Warmup runs require use_test_score=false")
+        self.analyze_fn = partial(analyze_warmup_op if warmup_analysis else analyze_op, analyze_llm, self.cfg)
         self.crossover_fn = partial(crossover_op, crossover_llm, self.cfg)
 
     def _draft(self) -> Node:
@@ -721,7 +729,7 @@ class Evolutionary(Solver):
         Returns:
             Union[str, dict]: Analysis results, either as a string or dictionary
         """
-        analysis, metrics = self.analyze_fn(self.task_desc, node)
+        analysis, metrics = asyncio.run(self.analyze_fn(self.task_desc, node))
         node.operators_used.append("analysis")
         node.operators_metrics.append(metrics)
         self.logger.info(f"Node Analysis Performed - Metrics: {metrics}")

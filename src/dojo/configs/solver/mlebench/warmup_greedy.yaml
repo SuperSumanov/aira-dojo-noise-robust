@@ -1,0 +1,19 @@
+defaults:
+  - greedy
+  - /solver/operators/mlebench@operators:
+    - aira_operators/debug
+    - aira_operators/draft
+    - aira_operators/improve
+    - warmup_operators/analyze
+  - override /solver/client@operators.draft.llm.client: litellm_minimax-m3.1-flash
+  - override /solver/client@operators.improve.llm.client: litellm_minimax-m3.1-flash
+  - override /solver/client@operators.debug.llm.client: litellm_minimax-m3.1-flash
+
+_convert_: object
+
+num_drafts: 1
+improvement_steps: 1
+max_debug_depth: 1
+debug_prob: 1.0
+data_preview: true
+use_test_score: false

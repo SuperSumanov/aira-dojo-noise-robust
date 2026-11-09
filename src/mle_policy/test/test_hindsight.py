@@ -9,14 +9,13 @@ from types import SimpleNamespace
 import httpx
 import pytest
 
-from src.mle_policy.src.data.hindsight import prompts
 from src.mle_policy.src.data.hindsight.__main__ import rewrite, run
 from src.mle_policy.src.data.hindsight.helper import VERSION, atomic_json, parts
-from src.mle_policy.src.data.hindsight.client import AUDIT_CACHE_VERSION, ModelClient, validate_audit, validate_hint
+from src.mle_policy.src.data.hindsight.client import ModelClient, validate_hint
 from src.mle_policy.src.data.helper.filter_positive import filter_positive
 from src.mle_policy.src.data.helper.align_splits import align_splits
 from src.mle_policy.src.data.helper.merge import merge
-from src.mle_policy.src.data.hindsight.regenerate import extract_hint, generation_options, inject_hint
+from src.mle_policy.src.data.hindsight.regenerate import extract_hint, generation_options, hint_messages, inject_hint
 from src.mle_policy.src.data.hindsight.tree import better, episodes, validate
 from src.mle_policy.test.verify_hindsight import verify_all
 from src.mle_policy.src.data.build_batch_groups import build_batch
@@ -34,8 +33,17 @@ def test_bigjournal_script_discovers_fixture_without_checkpoint(tmp_path):
     repo = Path(__file__).resolve().parents[3]
     fixture = repo / "src/mle_policy/test/fixtures/hindsight"
     result = subprocess.run(
-        ["bash", "src/mle_policy/scripts/data/build_all_batches_bigjournal.sh", str(fixture), str(tmp_path), "--print"],
-        cwd=repo, capture_output=True, text=True, check=True,
+        [
+            "bash",
+            "src/mle_policy/scripts/data/build_all_batches_bigjournal.sh",
+            str(fixture),
+            str(tmp_path),
+            "--print",
+        ],
+        cwd=repo,
+        capture_output=True,
+        text=True,
+        check=True,
     )
     assert result.stdout.strip() == str(fixture)
 
@@ -56,8 +64,13 @@ def test_experiment_fixture_compares_both_inputs_with_shared_hint(tmp_path, monk
     fixture = Path(__file__).parent / "fixtures/hindsight/run/json/JOURNAL.jsonl"
     monkeypatch.setattr(experiment, "ModelClient", ExperimentClient)
     args = SimpleNamespace(
-        journal=fixture, output=tmp_path, case=["debug:1:1", "improve:1:3"],
-        base_url="http://unused", api_key="", model="fake", concurrency=2,
+        journal=fixture,
+        output=tmp_path,
+        case=["debug:1:1", "improve:1:3"],
+        base_url="http://unused",
+        api_key="",
+        model="fake",
+        concurrency=2,
     )
     asyncio.run(experiment.compare(args))
     summary = json.loads((tmp_path / "summary.json").read_text())
@@ -79,14 +92,21 @@ def test_experiment_fixture_compares_both_inputs_with_shared_hint(tmp_path, monk
             assert ("regenerate", rewrite_trace["messages"]) in client.requests
             assert "Preserve tensor dimensions" in str(rewrite_trace["messages"])
             assert rewrite_trace["result"]["completion"] + "\n" == (directory / "generated.md").read_text()
-            assert rewrite_trace["generation"] == json.loads((directory / "diagnostics.json").read_text())["generation"]
+            assert (
+                rewrite_trace["generation"] == json.loads((directory / "diagnostics.json").read_text())["generation"]
+            )
             nodes = json.loads((directory / "nodes.json").read_text())
             validate(nodes)
             rewritten = rewrites(nodes)[0]
-            assert rewritten["operators_metrics"][0]["completion_text"] + "\n" == (directory / "generated.md").read_text()
+            assert (
+                rewritten["operators_metrics"][0]["completion_text"] + "\n" == (directory / "generated.md").read_text()
+            )
             assert rewritten["parents"] == [0]
             assert "Preserve tensor dimensions" not in str(rewritten["operators_metrics"][0]["prompt_messages"])
-            assert json.loads((directory / "original_prompt.json").read_text()) == rewritten["operators_metrics"][0]["prompt_messages"]
+            assert (
+                json.loads((directory / "original_prompt.json").read_text())
+                == rewritten["operators_metrics"][0]["prompt_messages"]
+            )
             assert rewritten["hindsight"]["metric_source"]["step"] == (2 if case.startswith("debug") else 3)
 
 
@@ -126,16 +146,8 @@ def make_node(step, operation, parent=None, *, buggy=False, metric=0.5, maximize
 
 
 class FakeClient:
-    def __init__(self, rejected=(), reviewed=None):
-        self.rejected = set(rejected)
-        self.reviewed = self.rejected if reviewed is None else set(reviewed)
+    def __init__(self):
         self.requests = []
-
-    async def audit(self, messages):
-        return await self._result("audit", messages)
-
-    async def audit_review(self, messages):
-        return await self._result("audit_review", messages)
 
     async def debug_hint(self, messages, *, part=False):
         return await self._result("debug_hint_part" if part else "debug_hint", messages)
@@ -146,9 +158,6 @@ class FakeClient:
     async def _result(self, stage, messages):
         payload = json.loads(messages[1]["content"])
         self.requests.append((stage, payload))
-        if stage in ("audit", "audit_review"):
-            rejected = self.rejected if stage == "audit" else self.reviewed
-            return {"untrustworthy": payload["final_code"] in rejected, "reason": "inspection"}
         return {"hint": "Preserve tensor dimensions and use the fast tokenizer."}
 
     async def generate(self, messages, generation):
@@ -179,7 +188,8 @@ def test_long_hint_reads_all_steps_before_synthesis():
     assert fragments[0]["target_trajectory"][0]["plan"] == nodes[1]["plan"]
     assert all(
         "response" not in entry and "executed_code" not in entry
-        for payload in fragments for entry in payload["target_trajectory"]
+        for payload in fragments
+        for entry in payload["target_trajectory"]
     )
     stage, combined = client.requests[-1]
     assert stage == "debug_hint"
@@ -187,7 +197,9 @@ def test_long_hint_reads_all_steps_before_synthesis():
     assert not combined["target_trajectory"]
     assert combined["final_code"] == nodes[2]["code"]
     assert [entry["stage"] for entry in trace] == ["debug_hint_part", "debug_hint_part", "debug_hint"]
-    assert [json.loads(entry["messages"][1]["content"]) for entry in trace] == [payload for _, payload in client.requests]
+    assert [json.loads(entry["messages"][1]["content"]) for entry in trace] == [
+        payload for _, payload in client.requests
+    ]
     assert all(entry["result"]["hint"] == hint for entry in trace)
 
 
@@ -205,10 +217,16 @@ def test_align_splits_inherits_original_groups(tmp_path):
 
 
 def test_merge_keeps_full_rows_and_rejects_invalid_hindsight(tmp_path):
-    original, synthetic, destination = tmp_path / "original.jsonl", tmp_path / "positive.jsonl", tmp_path / "merged.jsonl"
+    original, synthetic, destination = (
+        tmp_path / "original.jsonl",
+        tmp_path / "positive.jsonl",
+        tmp_path / "merged.jsonl",
+    )
     baseline = {"sample_id": "original", "group_id": "group", "split": "train", "advantage": -1}
     regenerated = {
-        **baseline, "sample_id": "synthetic", "advantage": 1,
+        **baseline,
+        "sample_id": "synthetic",
+        "advantage": 1,
     }
     original.write_text(json.dumps(baseline) + "\n")
     synthetic.write_text(json.dumps(regenerated) + "\n")
@@ -325,7 +343,8 @@ def test_improve_can_rewrite_an_implement_episode_that_needed_debugging():
     assert report["rewrites_by_target_operator"]["improve"] == {"draft": 1}
 
 
-def test_audit_review_can_retain_and_pruning_removes_descendants():
+@pytest.mark.parametrize("mode, improve_count", [("debug", 0), ("debug-improve", 1)])
+def test_rewrite_modes_keep_all_resolved_debug_trajectories(mode, improve_count):
     nodes = [
         make_node(0, None),
         make_node(1, "draft", 0, buggy=True),
@@ -334,12 +353,21 @@ def test_audit_review_can_retain_and_pruning_removes_descendants():
         make_node(4, "draft", 0, buggy=True),
         make_node(5, "debug", 4),
     ]
-    client = FakeClient({nodes[2]["code"], nodes[5]["code"]}, reviewed={nodes[2]["code"]})
-    result, report = asyncio.run(rewrite(nodes, client))
-    assert report["pruned_steps"] == [1, 2, 3]
-    assert len(rewrites(result)) == 1
-    assert rewrites(result)[0]["hindsight"]["prompt_source"]["step"] == 4
-    assert len([stage for stage, _ in client.requests if stage == "audit_review"]) == 2
+    original = copy.deepcopy(nodes)
+    client = FakeClient()
+    result, report = asyncio.run(rewrite(nodes, client, mode=mode))
+    assert nodes == original
+    assert report["mode"] == mode
+    assert {item["root"] for item in report["debug_rewrites"]} == {1, 4}
+    assert len(report["improve_rewrites"]) == improve_count
+    assert len(rewrites(result)) == 2 + improve_count
+    assert sum(stage == "improve_hint" for stage, _ in client.requests) == improve_count
+    assert {stage for stage, _ in client.requests} <= {"debug_hint", "improve_hint", "regenerate"}
+
+
+def test_rewrite_rejects_unknown_mode():
+    with pytest.raises(ValueError, match="Unknown hindsight mode"):
+        asyncio.run(rewrite([], FakeClient(), mode="improve"))
 
 
 def test_no_rewrite_produces_empty_journal():
@@ -424,7 +452,9 @@ def test_hint_schema_and_trajectory_payload():
         validate_hint({"thinking": "summary"})
     nodes = [make_node(0, None), make_node(1, "draft", 0, buggy=True), make_node(2, "debug", 1)]
     episode = episodes(nodes)[0]
-    payload = json.loads(prompts.hint(episode, episode, {node["step"]: node for node in nodes}, "debug")[1]["content"])
+    payload = json.loads(
+        hint_messages(episode, episode, {node["step"]: node for node in nodes}, "debug")[1]["content"]
+    )
     assert len(payload["target_trajectory"]) == 2
     assert payload["final_code"] == "print(2)"
 
@@ -459,55 +489,22 @@ def test_generation_native_reasoning_cache_and_unconstrained_request(tmp_path, s
     assert calls[0]["temperature"] == 0.6
 
 
-def test_audit_review_is_reasoning_enabled_without_json_grammar(tmp_path):
-    calls = []
-
-    def respond(request):
-        calls.append(json.loads(request.content))
-        return httpx.Response(
-            200,
-            json={
-                "choices": [
-                    {
-                        "finish_reason": "stop",
-                        "message": {
-                            "content": 'Review reasoning.\n</think>\n{"reason": "code evidence", "untrustworthy": false}'
-                        },
-                    }
-                ]
-            },
-        )
-
-    async def exercise():
-        client = ModelClient("http://localhost/v1", "key", "model", tmp_path)
-        client.backend._client = client.backend._client.with_options(
-            http_client=httpx.Client(transport=httpx.MockTransport(respond))
-        )
-        assert not (await client.audit_review([{"role": "user", "content": "input"}]))["untrustworthy"]
-        await client.close()
-
-    asyncio.run(exercise())
-    assert "response_format" not in calls[0]
-    assert calls[0]["chat_template_kwargs"] == {"enable_thinking": True, "reasoning_effort": "medium"}
-
-
-@pytest.mark.parametrize("method, part, stage", [
-    ("audit", None, "audit"),
-    ("audit_review", None, "audit_review"),
-    ("debug_hint", False, "debug_hint"),
-    ("debug_hint", True, "debug_hint_part"),
-    ("improve_hint", False, "improve_hint"),
-    ("improve_hint", True, "improve_hint_part"),
-])
+@pytest.mark.parametrize(
+    "method, part, stage",
+    [
+        ("debug_hint", False, "debug_hint"),
+        ("debug_hint", True, "debug_hint_part"),
+        ("improve_hint", False, "improve_hint"),
+        ("improve_hint", True, "improve_hint_part"),
+    ],
+)
 def test_stage_entries_retry_validate_and_cache(tmp_path, monkeypatch, method, part, stage):
     calls = []
-    expected = {"reason": "checked", "untrustworthy": False} if method.startswith("audit") else {"hint": "advice"}
+    expected = {"hint": "advice"}
 
     def respond(request):
         calls.append(json.loads(request.content))
         content = "invalid JSON" if len(calls) == 1 else json.dumps(expected)
-        if method.startswith("audit"):
-            content = "reasoning\n</think>\n" + content
         return httpx.Response(200, json={"choices": [{"finish_reason": "stop", "message": {"content": content}}]})
 
     async def no_sleep(delay):
@@ -516,7 +513,7 @@ def test_stage_entries_retry_validate_and_cache(tmp_path, monkeypatch, method, p
     monkeypatch.setattr("src.mle_policy.src.data.hindsight.client.asyncio.sleep", no_sleep)
 
     async def exercise():
-        client = ModelClient("http://localhost/v1", "", "model", tmp_path / "cache", audit_cache=tmp_path / "audit")
+        client = ModelClient("http://localhost/v1", "", "model", tmp_path / "cache")
         client.backend._client = client.backend._client.with_options(
             http_client=httpx.Client(transport=httpx.MockTransport(respond))
         )
@@ -531,28 +528,16 @@ def test_stage_entries_retry_validate_and_cache(tmp_path, monkeypatch, method, p
 
     asyncio.run(exercise())
     assert len(calls) == 2
-    if method.startswith("audit"):
-        assert "max_tokens" not in calls[0]
-    else:
-        assert calls[0]["max_tokens"] == 8192
-    assert calls[0]["chat_template_kwargs"]["enable_thinking"] == method.startswith("audit")
-    if method.startswith("audit"):
-        assert all("response_format" not in call for call in calls)
-    else:
-        assert calls[0]["response_format"]["type"] == "json_object"
-        schema = calls[1]["response_format"]["json_schema"]["schema"]
-        assert set(schema["required"]) == set(expected)
-    root = tmp_path / ("audit" if method.startswith("audit") else "cache")
-    cached = json.loads(next((root / stage).glob("*.json")).read_text())
-    assert cached["identity"] == {"stage": stage, "version": AUDIT_CACHE_VERSION if method.startswith("audit") else VERSION, "request": calls[0]}
+    assert calls[0]["max_tokens"] == 8192
+    assert calls[0]["chat_template_kwargs"]["enable_thinking"] is False
+    assert calls[0]["response_format"]["type"] == "json_object"
+    schema = calls[1]["response_format"]["json_schema"]["schema"]
+    assert set(schema["required"]) == set(expected)
+    assert schema["properties"] == {"hint": {"type": "string", "minLength": 1}}
+    cached = json.loads(next((tmp_path / "cache" / stage).glob("*.json")).read_text())
+    assert cached["identity"] == {"stage": stage, "version": VERSION, "request": calls[0]}
     assert cached["attempt_request"] == calls[1]
     assert cached["result"] == expected
-
-
-@pytest.mark.parametrize("result", [None, {}, {"reason": "", "untrustworthy": False}, {"reason": "ok", "untrustworthy": 1}])
-def test_audit_validation_rejects_invalid_results(result):
-    with pytest.raises(ValueError):
-        validate_audit(result)
 
 
 def test_generation_retries_truncation_without_changing_prompt(tmp_path, monkeypatch):
@@ -592,79 +577,6 @@ def test_generation_retries_truncation_without_changing_prompt(tmp_path, monkeyp
     assert len(list((tmp_path / "errors").glob("*.json"))) == 1
 
 
-def test_existing_audit_cache_can_be_reused_in_new_output(tmp_path):
-    calls = []
-
-    def respond(request):
-        calls.append(request)
-        return httpx.Response(
-            200,
-            json={
-                "choices": [
-                    {"finish_reason": "stop", "message": {"content": '{"reason": "checked", "untrustworthy": false}'}}
-                ]
-            },
-        )
-
-    async def exercise():
-        messages = [{"role": "user", "content": "audit input"}]
-        old = ModelClient("http://localhost/v1", "", "model", tmp_path / "old")
-        old.backend._client = old.backend._client.with_options(
-            http_client=httpx.Client(transport=httpx.MockTransport(respond))
-        )
-        expected = await old.audit(messages)
-        await old.close()
-        new = ModelClient("http://localhost/v1", "", "model", tmp_path / "new", audit_cache=tmp_path / "old")
-        new.backend._client = new.backend._client.with_options(
-            http_client=httpx.Client(transport=httpx.MockTransport(respond))
-        )
-        assert await new.audit(messages) == expected
-        await new.close()
-
-    asyncio.run(exercise())
-    assert len(calls) == 1
-
-
-@pytest.mark.parametrize("method", ["audit", "audit_review"])
-def test_old_audit_cache_is_not_reused(tmp_path, method):
-    messages = [{"role": "user", "content": "audit input"}]
-    request = {
-        "model": "model", "messages": messages, "temperature": 0.2,
-        "max_tokens": 4096 if method == "audit" else 8192,
-        "chat_template_kwargs": (
-            {"enable_thinking": False} if method == "audit"
-            else {"enable_thinking": True, "reasoning_effort": "medium"}
-        ),
-    }
-    if method == "audit":
-        request["response_format"] = {"type": "json_object"}
-    identity = {"version": 3, "stage": method, "request": request}
-    digest = hashlib.sha256(json.dumps(identity, sort_keys=True).encode()).hexdigest()
-    stale = {"reason": "old rejection", "untrustworthy": True}
-    atomic_json(tmp_path / method / f"{digest}.json", {"identity": identity, "result": stale})
-    calls = []
-
-    def respond(request):
-        calls.append(json.loads(request.content))
-        return httpx.Response(200, json={"choices": [{
-            "finish_reason": "stop", "message": {"content": '{"reason": "new audit", "untrustworthy": false}'},
-        }]})
-
-    async def exercise():
-        client = ModelClient("http://localhost/v1", "", "model", tmp_path)
-        client.backend._client = client.backend._client.with_options(
-            http_client=httpx.Client(transport=httpx.MockTransport(respond))
-        )
-        try:
-            assert not (await getattr(client, method)(messages))["untrustworthy"]
-        finally:
-            await client.close()
-
-    asyncio.run(exercise())
-    assert len(calls) == 1
-    assert len(list((tmp_path / method).glob("*.json"))) == 2
-
-
 def test_atomic_json_keeps_existing_file_when_serialization_fails(tmp_path):
     destination = tmp_path / "result.json"
     atomic_json(destination, {"result": "complete"})
@@ -675,8 +587,8 @@ def test_atomic_json_keeps_existing_file_when_serialization_fails(tmp_path):
     assert json.loads(destination.read_text()) == {"result": "updated"}
 
 
-@pytest.mark.parametrize("reject_donor", [False, True])
-def test_cli_hindsight_only_roundtrip_verifier_and_downstream(tmp_path, monkeypatch, run_writer, reject_donor):
+@pytest.mark.parametrize("mode", ["debug", "debug-improve"])
+def test_cli_hindsight_only_roundtrip_verifier_and_downstream(tmp_path, monkeypatch, run_writer, mode):
     import src.mle_policy.src.data.hindsight.__main__ as cli
 
     source, output = tmp_path / "source", tmp_path / "output"
@@ -696,7 +608,7 @@ def test_cli_hindsight_only_roundtrip_verifier_and_downstream(tmp_path, monkeypa
 
     class CliClient(FakeClient):
         def __init__(self, *args):
-            super().__init__({nodes[3]["code"]} if reject_donor else ())
+            super().__init__()
             self.cache = args[3]
 
         async def generate(self, messages, generation):
@@ -724,30 +636,39 @@ def test_cli_hindsight_only_roundtrip_verifier_and_downstream(tmp_path, monkeypa
         concurrency=2,
         journal_workers=2,
         hint_code="include",
-        audit_cache=None,
+        mode=mode,
     )
     asyncio.run(run(args))
     asyncio.run(run(args))
     summary = json.loads((output / "_hindsight/summary.json").read_text())
     assert summary["journals"][0]["status"] == "cached"
     verified = verify_all(source, output)
-    assert verified["totals"]["improve_episodes_added"] == (1 if reject_donor else 2)
-    assert verified["totals"]["downstream_samples"] == (1 if reject_donor else 3)
+    assert verified["totals"]["improve_episodes_added"] == (0 if mode == "debug" else 2)
+    assert verified["totals"]["downstream_samples"] == (1 if mode == "debug" else 3)
     samples = list(iter_samples(output / "run-a/checkpoint/journal.jsonl", read_run_meta(output / "run-a"), "batch"))
-    assert len(samples) == (1 if reject_donor else 3)
+    assert len(samples) == (1 if mode == "debug" else 3)
     if samples:
-        assert {sample["episode_metric"] for sample in samples} == ({0.6} if reject_donor else {0.6, 0.8})
+        assert {sample["episode_metric"] for sample in samples} == ({0.8} if mode == "debug" else {0.6, 0.8})
         assert all(sample["node_step"] == sample["episode_terminal_step"] for sample in samples)
         assert all(not sample["node_has_result"] and sample["exit_code"] is None for sample in samples)
         build_batch(output, tmp_path / "batch", verbose=False)
         exported = to_grpo(tmp_path / "batch", tmp_path / "grpo", use_metric_reward=True, verbose=False)
-        assert exported["rows"] == (0 if reject_donor else 2)
+        assert exported["rows"] == (0 if mode == "debug" else 2)
         filtered = filter_positive(tmp_path / "grpo/grpo.jsonl", tmp_path / "positive.jsonl")
-        assert filtered["positive_rows"] == (0 if reject_donor else 1)
+        assert filtered["positive_rows"] == (0 if mode == "debug" else 1)
         positives = [json.loads(line) for line in (tmp_path / "positive.jsonl").read_text().splitlines()]
         if positives:
             assert positives[0]["advantage"] > 0
             assert "hindsight" not in positives[0]
+    args.mode = "debug-improve" if mode == "debug" else "debug"
+    asyncio.run(run(args))
+    summary = json.loads((output / "_hindsight/summary.json").read_text())
+    assert summary["journals"][0]["status"] == "written"
+    assert summary["mode"] == args.mode
+    verified = verify_all(source, output)
+    assert verified["totals"]["improve_episodes_added"] == (0 if args.mode == "debug" else 2)
+    asyncio.run(run(args))
+    assert json.loads((output / "_hindsight/summary.json").read_text())["journals"][0]["status"] == "cached"
     rewritten = output / "run-a/json/JOURNAL.jsonl"
     rewritten.write_text(rewritten.read_text() + "\n")
     with pytest.raises(ValueError, match="Artifact changed"):

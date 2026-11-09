@@ -11,7 +11,7 @@ from src.mle_policy.src.data.big_journal import iter_samples as iter_big_samples
 from src.mle_policy.src.data.journal import iter_samples, read_nodes, read_run_meta
 from src.mle_policy.src.data.hindsight.helper import VERSION, atomic_json, parts
 from src.mle_policy.src.data.hindsight.regenerate import inject_hint
-from src.mle_policy.src.data.hindsight.tree import better, episodes, prune, validate
+from src.mle_policy.src.data.hindsight.tree import better, episodes, validate
 
 
 def require(condition: bool, message: str) -> None:
@@ -36,20 +36,13 @@ def verify_journal(source: Path, output: Path, relative: Path) -> dict:
         require(hashlib.sha256((output / name).read_bytes()).hexdigest() == digest, f"Artifact changed: {name}")
     require(all(row["step"] == row["data"]["step"] for row in rows), "Envelope step mismatch")
     resolved = {episode.root: episode for episode in episodes(list(original.values())) if episode.terminal is not None}
-    require({item["root"] for item in report["audits"]} == set(resolved), "Audit coverage mismatch")
-    for item in report["audits"]:
-        require(item["reviewed"] == item["initial_audit"]["untrustworthy"], "Missing independent review")
-        require(not item["untrustworthy"] or item["reviewed"], "Unreviewed rejection")
-    trusted, removed = prune(
-        list(original.values()), {item["root"] for item in report["audits"] if item["untrustworthy"]}
-    )
-    require(removed == set(report["pruned_steps"]), "Pruning mismatch")
-    surviving = [episode for episode in episodes(trusted) if episode.terminal is not None]
+    require(report["mode"] in ("debug", "debug-improve"), "Unknown hindsight mode")
+    surviving = list(resolved.values())
     expected_debug = {episode.root for episode in surviving if len(episode.steps) > 1}
     require({item["root"] for item in report["debug_rewrites"]} == expected_debug, "Debug coverage mismatch")
     terminals = {episode.terminal: episode for episode in surviving}
     expected_improve = set()
-    for donor in surviving:
+    for donor in surviving if report["mode"] == "debug-improve" else ():
         root = original[donor.root]
         parent = next(iter(root.get("parents", [])), None)
         if root["operators_used"][0] == "improve" and parent in terminals:
@@ -139,9 +132,7 @@ def verify_journal(source: Path, output: Path, relative: Path) -> dict:
     require(set(by_step) == additions | required_context, "Output contains originals or unused anchors")
     for step in required_context:
         node = by_step[step]
-        require(
-            not node["operators_used"] and not node["operators_metrics"], "Anchor has calls"
-        )
+        require(not node["operators_used"] and not node["operators_metrics"], "Anchor has calls")
         require(node["parents"] == original[step].get("parents", []), "Ancestor topology changed")
         require(node["code"] == "" and node["hindsight"]["kind"] == "context", "Anchor contains original code")
         require(
@@ -201,7 +192,6 @@ def verify_journal(source: Path, output: Path, relative: Path) -> dict:
         "journal": str(relative),
         "input_nodes": len(original),
         "output_nodes": len(nodes),
-        "pruned_nodes": len(removed),
         "added_nodes": len(additions),
         "context_nodes": len(required_context),
         "debug_episodes_added": len(report["debug_rewrites"]),

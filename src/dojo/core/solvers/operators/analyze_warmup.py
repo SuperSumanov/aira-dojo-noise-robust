@@ -26,10 +26,11 @@ def analyze_warmup_op(analyze_llm, cfg, task_description, input_node, fetch_metr
         raise ValueError("Unexpected fields in public warmup feedback")
     schema = json.loads(analyze_schema_with_eval if fetch_metric else analyze_schema_without_eval)
     schema["properties"]["summary"]["description"] = (
-        "If there is a clear bug and no cross validaiton (CV) result, propose a fix. Otherwise, write a short summary (2-3 sentences) describing the empirical findings. DO NOT suggest fixes or improvements."
-        "If there is CV and warmup grading, compare script CV and independent warmup grading; Detect potential bugs in generated test output or severe overfitting issue in CV, "
+        "If there is a clear bug and no cross validaiton (CV) result, propose a fix. If there is CV and warmup grading, "
+        "compare script CV and independent warmup grading; Detect potential bugs in generated test output or severe overfitting issue in CV, "
         "and propose fixes when supported by the code. Never treat the warmup score as golden; it is only a small set for debugging."
         "Some differences between the CV and warmup scores are expected, but large differences (eg. warmup score -> 0 while CV score is high) may indicate a problem."
+        "If there is no bug and severe overfitting, write a short summary (2-3 sentences) describing the empirical findings. DO NOT suggest fixes or improvements."
     )
     if fetch_metric:
         schema["properties"]["metric"][

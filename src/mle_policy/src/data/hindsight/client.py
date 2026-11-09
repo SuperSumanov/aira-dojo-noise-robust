@@ -15,19 +15,7 @@ from dojo.core.solvers.llm_helpers.backends.open_ai import OpenAIClient
 
 from .helper import VERSION, atomic_json, parts
 
-
-AUDIT_CACHE_VERSION = 4
 HINT_PROPERTIES = {"hint": {"type": "string", "minLength": 1}}
-
-
-def validate_audit(result: dict) -> None:
-    """Require a boolean audit decision and a nonempty reason in the parsed result."""
-    if not isinstance(result, dict):
-        raise ValueError("Expected a JSON object")
-    if type(result.get("untrustworthy")) is not bool or not isinstance(result.get("reason"), str):
-        raise ValueError("Audit requires boolean untrustworthy and string reason")
-    if not result["reason"].strip():
-        raise ValueError("Audit reason must be nonempty")
 
 
 def validate_hint(result: dict) -> None:
@@ -47,12 +35,10 @@ class ModelClient:
         model: str,
         cache: Path,
         concurrency: int = 24,
-        audit_cache: Path | None = None,
     ):
-        """Configure the dojo client, request concurrency, and separate audit and generation cache locations."""
+        """Configure the dojo client, request concurrency, and a shared result cache."""
         self.model = model
         self.cache = cache
-        self.audit_cache = audit_cache if audit_cache is not None else cache
         self.semaphore = asyncio.Semaphore(concurrency)
         self.backend = OpenAIClient(
             SimpleNamespace(model_id=model, base_url=base_url, use_azure_client=False),
@@ -77,28 +63,6 @@ class ModelClient:
         response = await asyncio.to_thread(self.backend.query_raw, **parameters)
         return response.model_dump()
 
-    async def audit(self, messages: list[dict]) -> dict:
-        """Run a reasoning-enabled initial audit without an explicit output limit or JSON grammar."""
-        request = {
-            "model": self.model, "messages": messages, "temperature": 0.2,
-            "chat_template_kwargs": {"enable_thinking": True, "reasoning_effort": "medium"},
-        }
-        return await self._json_result(
-            "audit", request, cache=self.audit_cache, version=AUDIT_CACHE_VERSION,
-            validate=validate_audit, properties=None, strip_thinking=True,
-        )
-
-    async def audit_review(self, messages: list[dict]) -> dict:
-        """Review a proposed rejection with reasoning, using a cache separate from the initial audit."""
-        request = {
-            "model": self.model, "messages": messages, "temperature": 0.2,
-            "chat_template_kwargs": {"enable_thinking": True, "reasoning_effort": "medium"},
-        }
-        return await self._json_result(
-            "audit_review", request, cache=self.audit_cache, version=AUDIT_CACHE_VERSION,
-            validate=validate_audit, properties=None, strip_thinking=True,
-        )
-
     async def debug_hint(self, messages: list[dict], *, part: bool = False) -> dict:
         """Extract debugging guidance, with a separate cache stage for trajectory parts."""
         return await self._hint("debug_hint_part" if part else "debug_hint", messages)
@@ -117,20 +81,16 @@ class ModelClient:
             "response_format": {"type": "json_object"},
             "chat_template_kwargs": {"enable_thinking": False},
         }
-        return await self._json_result(
-            stage, request, cache=self.cache, version=VERSION, validate=validate_hint, properties=HINT_PROPERTIES,
-        )
+        return await self._json_result(stage, request)
 
-    async def _json_result(
-        self, stage, request, *, cache, version, validate, properties, strip_thinking=False,
-    ) -> dict:
+    async def _json_result(self, stage: str, request: dict) -> dict:
         """Load a validated cached result or request JSON with up to three attempts and format repair as configured."""
-        identity = {"version": version, "stage": stage, "request": request}
+        identity = {"version": VERSION, "stage": stage, "request": request}
         digest = hashlib.sha256(json.dumps(identity, sort_keys=True).encode()).hexdigest()
-        path = cache / stage / f"{digest}.json"
+        path = self.cache / stage / f"{digest}.json"
         if path.exists():
             result = json.loads(path.read_text(encoding="utf-8"))["result"]
-            validate(result)
+            validate_hint(result)
             return result
         async with self.semaphore:
             attempt_request = dict(request)
@@ -142,10 +102,8 @@ class ModelClient:
                     if choice.get("finish_reason") != "stop":
                         raise ValueError(f"Incomplete generation: {choice.get('finish_reason')}")
                     content = choice["message"]["content"]
-                    if strip_thinking and "</think>" in content:
-                        content = content.split("</think>", 1)[1].strip()
                     result = json.loads(content)
-                    validate(result)
+                    validate_hint(result)
                     atomic_json(
                         path,
                         {"identity": identity, "attempt_request": attempt_request, "result": result, "response": raw},
@@ -175,20 +133,19 @@ class ModelClient:
                                 }
                             ],
                         }
-                        if properties is not None:
-                            attempt_request["response_format"] = {
-                                "type": "json_schema",
-                                "json_schema": {
-                                    "name": stage,
-                                    "strict": True,
-                                    "schema": {
-                                        "type": "object",
-                                        "properties": properties,
-                                        "required": list(properties),
-                                        "additionalProperties": False,
-                                    },
+                        attempt_request["response_format"] = {
+                            "type": "json_schema",
+                            "json_schema": {
+                                "name": stage,
+                                "strict": True,
+                                "schema": {
+                                    "type": "object",
+                                    "properties": HINT_PROPERTIES,
+                                    "required": list(HINT_PROPERTIES),
+                                    "additionalProperties": False,
                                 },
-                            }
+                            },
+                        }
                     if attempt == 2:
                         raise
                     await asyncio.sleep(2**attempt)

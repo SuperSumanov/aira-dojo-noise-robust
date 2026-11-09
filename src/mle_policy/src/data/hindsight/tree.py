@@ -82,15 +82,6 @@ def episodes(nodes: list[dict]) -> list[Episode]:
     return result
 
 
-def prune(nodes: list[dict], roots: set[int]) -> tuple[list[dict], set[int]]:
-    """Remove selected roots and their descendants, returning copied survivors and the removed steps."""
-    removed = set(roots)
-    for node in sorted(nodes, key=lambda item: item["step"]):
-        if any(parent in removed for parent in node.get("parents", [])):
-            removed.add(node["step"])
-    return [copy.deepcopy(node) for node in nodes if node["step"] not in removed], removed
-
-
 def synthetic_id(*parts: str) -> str:
     """Derive a stable synthetic identifier from source references."""
     return hashlib.blake2b(":".join(("hindsight", *parts)).encode(), digest_size=16).hexdigest()

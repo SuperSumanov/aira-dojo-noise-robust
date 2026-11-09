@@ -5,14 +5,14 @@
 ## 1. Model client
 
 实现文件：`src/mle_policy/src/data/hindsight/client.py`。
-客户端负责模型通信、请求参数、返回格式校验、重试与缓存；episode 选择、提示词
-内容和是否剪枝由 `__main__.py`、`regenerate.py`、`prompts.py` 负责。
+客户端负责模型通信、请求参数、返回格式校验、重试与缓存；episode 选择和提示词
+内容由 `__main__.py` 和 `regenerate.py` 负责。
 
-按处理目标组织代码：`__main__.py` 放单树审查重写与批量读写入口，`regenerate.py`
-放一次回答的 hint 提炼、完整生成和节点构造。`experiment.py` 复用同一套回答生成
+按处理目标组织代码：`__main__.py` 放单树重写与批量读写入口，`regenerate.py`
+放一次回答的提示词构造、hint 提炼、完整生成和节点构造。`experiment.py` 复用同一套回答生成
 函数做对照。`hindsight/helper.py` 保存回答解析 `parts`、缓存版本及 `atomic_json`，
 hint 注入 `inject_hint` 与生成逻辑放在 `regenerate.py`。
-树操作、模型通信和提示词各自保留独立模块。通用数据工具放在 `data/helper/`：
+树操作和模型通信保留独立模块。通用数据工具放在 `data/helper/`：
 `align_splits.py` 对齐分组切分，`filter_positive.py` 筛选正 advantage，`merge.py`
 合并数据。这些工具直接写结果文件，JSON 报告使用普通 `json.dump`，不依赖 hindsight
 核心模块。
@@ -23,27 +23,25 @@ hint 注入 `inject_hint` 与生成逻辑放在 `regenerate.py`。
 
 | 方法 | 调用位置 | thinking | 输出上限 | 返回结构 |
 | --- | --- | --- | ---: | --- |
-| `audit(messages)` | `__main__.rewrite` 的初轮审查 | 开启，medium | 不指定 | `reason`、`untrustworthy` |
-| `audit_review(messages)` | `__main__.rewrite` 对初轮拟拒绝项复核 | 开启，medium | 不指定 | `reason`、`untrustworthy` |
 | `debug_hint(messages, part=False)` | `regenerate.extract_hint` 提炼调试经验 | 关闭 | 8192 | `hint` |
 | `improve_hint(messages, part=False)` | `regenerate.extract_hint` 提炼更好方案的经验 | 关闭 | 8192 | `hint` |
 | `generate(messages, generation)` | `regenerate.regenerate` 生成完整 policy 回答 | 由 generation 指定 | 无默认值，继承原 operator 显式设置 | 完整回答、usage、缓存键、model |
 
-前四个入口温度为 0.2。hint 的 `part=True` 表示长轨迹的分段提炼，使用独立缓存
+两个 hint 入口温度为 0.2。hint 的 `part=True` 表示长轨迹的分段提炼，使用独立缓存
 阶段 `debug_hint_part` / `improve_hint_part`；最终汇总使用不带 `_part` 的阶段。
 debug 与 improve 的任务内容由各自提示词输入区分，目前共享相同的 hint 请求参数。
 
 公开入口各自确定请求设置，再交给内部 `_json_result` 处理通用机制。
-这个内部方法接收明确的校验函数、缓存目录、版本和可选 schema，不根据 stage
-猜测业务类型。`_hint` 复用两种 hint 共有的请求设置。
+这个内部方法统一使用 `validate_hint`、客户端缓存目录、`VERSION` 和
+`HINT_PROPERTIES`。`_hint` 复用两种 hint 共有的请求设置。
 `generate` 单独校验完整回答，不经过 JSON 结果通道。
 
 `max_tokens` 直接传给服务端；客户端不另设 thinking budget，也不根据
 `reasoning_effort` 计算 token 数。对于本流程预期的 Qwen/vLLM 服务，生成预算
 由思考和最终回答共同使用，输入 prompt 另外占上下文窗口。
-审查和复核不主动设置输出上限；完整生成只保留原 operator 已记录的显式上限。
+完整生成只保留原 operator 已记录的显式上限。
 省略字段后仍由服务端的默认生成设置及剩余上下文空间决定可用输出预算。
-hint 提炼仍保留原有 8192 上限及关闭 thinking 的设置，本次调整针对审查和完整生成。
+hint 提炼保留 8192 上限及关闭 thinking 的设置。
 
 ### 1.2 复用 dojo 的通信实现
 
@@ -57,17 +55,12 @@ hint 提炼仍保留原有 8192 上限及关闭 thinking 的设置，本次调�
 
 ### 1.3 校验与重试
 
-`validate_audit` 检查返回对象包含非空字符串 `reason` 和真正的布尔值
-`untrustworthy`；`validate_hint` 检查非空字符串 `hint`。这两个校验器不检查
-事实正确性，也不判断审查理由与布尔决定是否一致。
+`validate_hint` 检查返回对象中非空字符串 `hint`。
 
 hint 首次请求使用 `json_object`。若返回不完整、JSON 解析失败或字段
 校验失败，保存错误记录，再附加一条格式修正指令，并启用严格 JSON Schema。
 `HINT_PROPERTIES` 描述这种重试所需的字段类型和必填项。
 它们不是每次调用从一开始就启用的 schema。
-
-初轮审查和复核从首次到重试都不加 JSON grammar；返回正文含 `</think>` 时，去掉
-此前思考再解析 JSON。若服务端分开返回 `reasoning_content`，仅解析正文中的 JSON。
 
 每次最多请求三次，重试前等待 1 秒、2 秒；HTTP 400/401/403/404 直接报错。
 `finish_reason` 必须是 `stop`，`length` 也算失败。目前重试不增加输出上限。
@@ -83,17 +76,17 @@ hint 首次请求使用 `json_object`。若返回不完整、JSON 解析失败�
 SHA-256，保存在 `<cache>/<stage>/<digest>.json`。身份包含模型、完整消息和生成
 参数，但不包含服务地址；因此同名模型服务换了权重时，应更换缓存目录或模型名。
 
-审查两入口使用 `audit_cache`（未指定则使用普通 cache）及独立常量
-`AUDIT_CACHE_VERSION=4`；hint 和完整生成使用 `helper.VERSION=8`。开启初轮审查
-thinking、取消审查上限及完整生成默认上限后，更新两个版本，使旧审查缓存和旧
-整树完成报告失效。同目录重跑会按新设置处理，已有数据不会在修改代码时自动重写。
+hint 和完整生成统一使用 `helper.VERSION=9`。批量处理的完成报告还匹配输入
+journal 哈希、模型名、hint 配置、`mode` 和 run 元数据哈希，并检查输出文件哈希。
+同一模式重跑可直接复用完整输出；切换模式后重建整树，具体请求仍可命中相同缓存。
+版本更新后，旧版整树报告与模型请求缓存失效；已有产物在再次运行时更新。
 
 JSON 缓存保存 `identity`、成功尝试的 `attempt_request`、解析后的 `result` 与
 原始 `response`。缓存键按最初请求计算，修正格式后的请求记录在 `attempt_request`。
 完整生成缓存保存 `identity`、规范化后的 `result` 和原始 `response`。
 命中缓存后重新做相应校验，不再调用模型。
 
-失败记录在普通缓存目录的 `errors/`，不随 `audit_cache` 改变。
+失败记录在缓存目录的 `errors/`。
 hindsight 的缓存与报告使用 `hindsight.helper.atomic_json`：先在目标目录写临时文件，
 写完并关闭后再替换目标。通用 `data/helper/` 工具使用普通文件写入。
 即使只有一个写入者，进程中断或序列化失败也不会把原来的完整缓存截成半份 JSON；
@@ -106,9 +99,23 @@ hindsight 的缓存与报告使用 `hindsight.helper.atomic_json`：先在目标
 ### 1.5 测试和检查输出
 
 `test/test_hindsight.py` 用 HTTP mock 覆盖全部入口及 hint 分段模式的参数、格式
-失败后的重试、schema 差异、缓存阶段与命中，以及跨输出目录复用审查缓存。
-主流程和 experiment 的离线测试检查调用链及来源节点，完整生成另测截断重试。
+失败后的重试、JSON Schema、缓存阶段与命中。
+主流程测试覆盖两种模式、模式切换后的重建与续跑；experiment 测试检查调用链及
+来源节点，完整生成另测截断重试。
 
 experiment 的 `hint_trace.json` 和 `rewrite_trace.json` 便于查看逻辑输入输出；
 其中的输入不一定等于格式修正后的重试请求。需要核对实际成功发送的 JSON 请求时，
 查看对应缓存的 `attempt_request`，失败过程查看 `errors/`。
+
+## 2. 候选选择与运行模式
+
+`rewrite(..., mode="debug-improve")` 和命令行 `--mode` 使用相同的两个取值：
+
+- `debug`：从原树选择起点后经过 debug 跑通的 episode，只提炼这段调试经验。
+- `debug-improve`：先生成上述结果，再选择 CV 严格优于其前一个 episode 的
+  improve 来源，将经验带回前一个 episode 的原 prompt。
+
+两类候选均从原树读取。debug hindsight 的起点可以是 draft，也可以是 improve；
+它与 improve hindsight 的区别在经验来自调试轨迹，还是来自后继更优方案。
+mode 控制生成阶段，不改变原树，也不把生成结果作为下一阶段的输入。
+report 和 summary 均写入 mode，便于确认产物采用的模式。

@@ -9,24 +9,23 @@ hindsight 单独分组、计算 advantage，严格筛 `advantage > 0` 后再合�
 
 重写代码的实际执行、自动 debug 与官方测试评分见 [hindsight_eval.md](hindsight_eval.md)。
 
-## 1. 三步处理与代码对应关系
+## 1. 两类重写与代码对应关系
 
 代码在 `src/mle_policy/src/data/hindsight/`。
 
 | 步骤 | 代码入口 | 处理内容 |
 | --- | --- | --- |
-| 审查 CV | `__main__.rewrite`、`prompts.audit/review` | 审查跑通 episode 的评估是否虚高；拟拒绝项独立复核，确认后剪掉该起点和后代 |
 | 吸收 debug 经验 | `tree.episodes`、`__main__.rewrite` | 选择 implement/improve 后经过 debug 跑通的 episode，重新回答它最初的 prompt |
 | 吸收 improve 经验 | `tree.better`、`__main__.rewrite` | 后继 improve 的 CV 严格更好时，将其经验带回前一个 episode 的最初 prompt |
 
-第三步的目标既可以是 implement，也可以是 improve。journal 中 implement 的操作名
-是 `draft`。第二、三步都从审查后的原树选候选，第二步的新回答不会成为第三步输入。
+两类重写的目标都可以是 implement，也可以是 improve。journal 中 implement 的操作名
+是 `draft`。两类都从原树选候选，debug 阶段的新回答不会成为 improve 阶段输入。
 比较使用 agent CV 和 `metric_maximize`，不用官方测试集分数，同分不生成。
 
 一次重生成的调用链：
 
 ```text
-prompts.hint / regenerate.extract_hint：原 prompt、轨迹中的 plan/日志/分析、来源终点代码 → 详细工程建议
+regenerate.hint_messages / regenerate.extract_hint：原 prompt、轨迹中的 plan/日志/分析、来源终点代码 → 详细工程建议
   → regenerate.inject_hint：临时放到原 user prompt 前面
   → client.ModelClient.generate：policy 原生 thinking 完整生成
   → helper.parts：检查 think、plan、Python，解析代码 AST
@@ -43,9 +42,8 @@ prompts.hint / regenerate.extract_hint：原 prompt、轨迹中的 plan/日志/�
 格式检查和有限重试，网络请求由 dojo client 发出。同步 client 通过线程执行。
 
 生成沿用原 run 的 temperature、top_p 和 reasoning 配置；模型由 `--model` 指定。
-完整回答与两轮审查均不加 JSON grammar；审查在生成后解析 JSON，hint 提炼使用
-JSON 输出约束。两轮审查均开启 thinking，且不主动设置输出 token 上限；完整回答
-只继承原 operator 显式记录的上限。格式检查不执行新代码。
+完整回答使用原生 thinking，hint 提炼使用 JSON 输出约束并关闭 thinking。
+完整回答只继承原 operator 显式记录的输出上限。格式检查不执行新代码。
 
 ## 2. 输出树与 journal 每行的格式
 
@@ -199,7 +197,7 @@ bash src/mle_policy/scripts/data/to_grpo.sh "$ORIGINAL"
 
 ```bash
 bash src/mle_policy/scripts/data/hindsight/generate.sh \
-  --input "$RAW" --output "$TREE" --hint-code omit \
+  --input "$RAW" --output "$TREE" --mode debug-improve --hint-code omit \
   --model qwen3.8-27b --concurrency 12 --journal-workers 4
 bash src/mle_policy/scripts/data/hindsight/verify.sh --input "$RAW" --output "$TREE"
 ```
@@ -207,8 +205,13 @@ bash src/mle_policy/scripts/data/hindsight/verify.sh --input "$RAW" --output "$T
 `verify.sh` 调用测试目录的 `src/mle_policy/test/verify_hindsight.py`，对已经生成的
 整批数据做离线验收；生成主流程不依赖这个验证工具。
 
-默认服务是 `http://127.0.0.1:8000/v1`。有已有审查缓存时给生成命令加
-`--audit-cache "$AUDIT_CACHE"`。同目录重跑会校验并复用完成请求；无需重生成全部回答。
+`--mode debug` 只生成 debug hindsight；`--mode debug-improve` 同时生成两类，
+也是默认值。debug 模式仍处理以 improve 为起点、经过 debug 跑通的轨迹，
+跳过的是“后继更好方案带回前一个 episode”的 improve hindsight。
+
+默认服务是 `http://127.0.0.1:8000/v1`。同目录、同模式重跑会校验并复用完成结果。
+切换模式时重建输出树，相同的 hint 和完整生成请求仍可复用缓存。
+当前版本为 9，旧版完成报告和请求缓存会在重跑时失效。
 `--hint-code include` 可让 policy 额外参考来源完整代码，仍原样保留新回答。
 
 ### 4.3 hindsight：共享分组与 advantage，再筛选
@@ -328,6 +331,6 @@ plan/code、metric 继承、执行字段清空、大小写读取器的 metric re
 | 正 advantage 保留 | 127 |
 | 与原始训练行合并 | 1586 + 127 = 1713 |
 
-这次复用审查缓存，生成约 3 小时 21 分钟，平均约 82 条/小时。主要耗时是长轨迹
+以下为移除模型审查前的历史运行统计：当时复用审查缓存，生成约 3 小时 21 分钟，平均约 82 条/小时。主要耗时是长轨迹
 hint 提炼和 policy 完整思考。该数值用于估算规模，不代表其他模型和轨迹长度的速度。
 合成来源树保留 276 个新回答及必要祖先，原样本和合成数据始终分开处理。

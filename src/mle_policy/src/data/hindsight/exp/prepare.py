@@ -1,17 +1,32 @@
-"""Collect hindsight rewrites and their controls into a resumable execution manifest."""
+"""Prepare selected experiment cases and historical controls for GPU evaluation.
+
+Input --generation: experiment.py output with */metadata.json and */nodes.json.
+Output --output: manifest.json listing source files and every run's artifact
+paths, plus runs/<name>/solution.py and runs/<name>/metadata.json. evaluate.py
+consumes manifest.json; it never calls prepare.
+"""
 
 import argparse
-import hashlib
 import json
 from pathlib import Path
 
-from ..helper import atomic_json
+from ..helper import write_json
 from ..tree import episodes
 
 
-def prepare(output: Path) -> None:
-    """Prepare debug and improve cases without depending on experiment-specific seeds."""
-    source = json.loads((output / "source.json").read_text())
+def prepare(generation: Path, output: Path) -> None:
+    """Collect generated cases, add their controls, and write an execution manifest."""
+    candidates = []
+    paths = sorted(generation.glob("*/metadata.json"))
+    first = json.loads(paths[0].read_text())
+    source = {"journal": first["source_journal"], "config": first["source_config"]}
+    for path in paths:
+        metadata = json.loads(path.read_text())
+        if metadata["source_journal"] != source["journal"] or metadata["source_config"] != source["config"]:
+            raise ValueError("An experiment must use one source journal and config")
+        stage, target, donor = metadata["case"].split(":")
+        rewritten = json.loads((path.parent / "nodes.json").read_text())[-1]
+        candidates.append((path.parent.name, stage, int(target), int(donor), metadata["include_code"], rewritten))
     nodes = {
         row["data"]["step"]: row["data"] for row in map(json.loads, Path(source["journal"]).read_text().splitlines())
     }
@@ -20,18 +35,14 @@ def prepare(output: Path) -> None:
     roots = set()
     debug_roots = set()
     donors = {}
-    for directory in sorted((output / "generation").glob("*/diagnostics.json")):
-        diagnostics = json.loads(directory.read_text())
-        stage, target, donor = diagnostics["case"].split(":")
-        target, donor = int(target), int(donor)
-        rewritten = json.loads((directory.parent / "nodes.json").read_text())[-1]
+    for name, stage, target, donor, include_code, rewritten in candidates:
         records.append(
             {
-                "name": directory.parent.name,
+                "name": name,
                 "stage": stage,
                 "target_root": target,
                 "donor_root": donor,
-                "variant": "with-code" if diagnostics["include_code"] else "hint-only",
+                "variant": "with-code" if include_code else "hint-only",
                 "code": rewritten["code"],
                 "plan": rewritten["plan"],
                 "historical_debug_calls": len(episode_map[target].steps) - 1,
@@ -94,17 +105,19 @@ def prepare(output: Path) -> None:
         )
         directory = output / "runs" / record["name"]
         directory.mkdir(parents=True, exist_ok=True)
-        code_path = directory / "attempt-0.py"
-        if code_path.exists() and code_path.read_text() != record["code"]:
-            raise ValueError(f"Refusing to overwrite different code: {code_path}")
-        code_path.write_text(record.pop("code"), encoding="utf-8")
-        record["code_sha256"] = hashlib.sha256(code_path.read_bytes()).hexdigest()
-        atomic_json(directory / "metadata.json", record)
-    atomic_json(output / "manifest.json", {"source": source, "runs": records})
+        record["solution"] = f"runs/{record['name']}/solution.py"
+        record["metadata"] = f"runs/{record['name']}/metadata.json"
+        record["result"] = f"runs/{record['name']}/result.json"
+        record["worker_log"] = f"runs/{record['name']}/worker-0.log"
+        (output / record["solution"]).write_text(record.pop("code"), encoding="utf-8")
+        write_json(output / record["metadata"], record)
+    write_json(output / "manifest.json", {"source": source, "runs": records})
     print(f"Prepared {len(records)} solutions in {output / 'runs'}")
 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--output", type=Path, default=Path("tmp/examples/hindsight/exp"))
-    prepare(parser.parse_args().output)
+    parser.add_argument("--generation", type=Path, required=True, help="experiment.py output directory")
+    parser.add_argument("--output", type=Path, required=True, help="Write manifest.json and runs/ here")
+    args = parser.parse_args()
+    prepare(args.generation, args.output)

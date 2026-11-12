@@ -1,4 +1,8 @@
-"""Tree operations and response editing, without model calls."""
+"""In-memory episode selection, source references, and output tree links.
+
+Input: node dictionaries read from a big journal's data fields.
+Output: Episode objects or rebuilt node lists. No filesystem input/output.
+"""
 
 from __future__ import annotations
 

@@ -1,6 +1,5 @@
 import asyncio
 import copy
-import hashlib
 import json
 from pathlib import Path
 import subprocess
@@ -10,7 +9,7 @@ import httpx
 import pytest
 
 from src.mle_policy.src.data.hindsight.__main__ import rewrite, run
-from src.mle_policy.src.data.hindsight.helper import VERSION, atomic_json, parts
+from src.mle_policy.src.data.hindsight.helper import write_json, parts
 from src.mle_policy.src.data.hindsight.client import ModelClient, validate_hint
 from src.mle_policy.src.data.helper.filter_positive import filter_positive
 from src.mle_policy.src.data.helper.align_splits import align_splits
@@ -21,6 +20,11 @@ from src.mle_policy.test.verify_hindsight import verify_all
 from src.mle_policy.src.data.build_batch_groups import build_batch
 from src.mle_policy.src.data.to_grpo import to_grpo
 from src.mle_policy.src.data.journal import has_training_outcome, iter_samples, read_run_meta
+
+
+@pytest.fixture(autouse=True)
+def model_credentials(monkeypatch):
+    monkeypatch.setenv("PRIMARY_KEY", "test-key")
 
 
 @pytest.mark.parametrize("metric, expected", [(0.4, True), (None, False), (True, False), (float("nan"), False)])
@@ -54,8 +58,10 @@ def test_experiment_fixture_compares_both_inputs_with_shared_hint(tmp_path, monk
     clients = []
 
     class ExperimentClient(FakeClient):
-        def __init__(self, *args):
+        def __init__(self, config, semaphore):
             super().__init__()
+            self.config = config
+            self.semaphore = semaphore
             clients.append(self)
 
         async def close(self):
@@ -67,47 +73,37 @@ def test_experiment_fixture_compares_both_inputs_with_shared_hint(tmp_path, monk
         journal=fixture,
         output=tmp_path,
         case=["debug:1:1", "improve:1:3"],
-        base_url="http://unused",
-        api_key="",
-        model="fake",
         concurrency=2,
     )
     asyncio.run(experiment.compare(args))
-    summary = json.loads((tmp_path / "summary.json").read_text())
-    assert len(summary) == 4
+    assert {path.name for path in tmp_path.iterdir()} == {
+        case.replace(":", "-") + suffix for case in args.case for suffix in ("-hint-only", "-with-code")
+    }
+    source_operators = json.loads((fixture.parent.parent / "dojo_config.json").read_text())["solver"]["operators"]
+    assert [client.config for client in clients] == [
+        settings["llm"]["client"] for settings in source_operators.values()
+    ]
+    assert all(client.semaphore is clients[0].semaphore for client in clients)
     client = clients[0]
     assert sum(stage.endswith("_hint") for stage, _ in client.requests) == 2
     assert sum(stage == "regenerate" for stage, _ in client.requests) == 4
     for case in args.case:
-        directories = [tmp_path / (case.replace(":", "-") + suffix) for suffix in ("-hint-only", "-with-code")]
-        assert (directories[0] / "hint.md").read_text() == (directories[1] / "hint.md").read_text()
-        assert (directories[0] / "hint_trace.json").read_text() == (directories[1] / "hint_trace.json").read_text()
-        for directory in directories:
-            hint_trace = json.loads((directory / "hint_trace.json").read_text())
-            assert hint_trace[-1]["stage"] == case.split(":")[0] + "_hint"
-            assert hint_trace[-1]["result"]["hint"] + "\n" == (directory / "hint.md").read_text()
-            assert hint_trace[-1]["messages"][0]["role"] == "system"
-            assert json.loads(hint_trace[-1]["messages"][1]["content"])["target_trajectory"]
-            rewrite_trace = json.loads((directory / "rewrite_trace.json").read_text())
-            assert ("regenerate", rewrite_trace["messages"]) in client.requests
-            assert "Preserve tensor dimensions" in str(rewrite_trace["messages"])
-            assert rewrite_trace["result"]["completion"] + "\n" == (directory / "generated.md").read_text()
-            assert (
-                rewrite_trace["generation"] == json.loads((directory / "diagnostics.json").read_text())["generation"]
-            )
+        traces = []
+        for suffix in ("-hint-only", "-with-code"):
+            directory = tmp_path / (case.replace(":", "-") + suffix)
+            assert {path.name for path in directory.iterdir()} == {"trace.json", "nodes.json", "metadata.json"}
+            trace = json.loads((directory / "trace.json").read_text())
+            traces.append(trace)
+            assert trace["hint"][-1]["stage"] == case.split(":")[0] + "_hint"
+            assert ("regenerate", trace["rewrite"]["messages"]) in client.requests
             nodes = json.loads((directory / "nodes.json").read_text())
             validate(nodes)
             rewritten = rewrites(nodes)[0]
-            assert (
-                rewritten["operators_metrics"][0]["completion_text"] + "\n" == (directory / "generated.md").read_text()
-            )
+            assert rewritten["operators_metrics"][0]["completion_text"] == trace["rewrite"]["result"]["completion"]
             assert rewritten["parents"] == [0]
             assert "Preserve tensor dimensions" not in str(rewritten["operators_metrics"][0]["prompt_messages"])
-            assert (
-                json.loads((directory / "original_prompt.json").read_text())
-                == rewritten["operators_metrics"][0]["prompt_messages"]
-            )
             assert rewritten["hindsight"]["metric_source"]["step"] == (2 if case.startswith("debug") else 3)
+        assert traces[0]["hint"] == traces[1]["hint"]
 
 
 def make_node(step, operation, parent=None, *, buggy=False, metric=0.5, maximize=True):
@@ -165,7 +161,6 @@ class FakeClient:
         return {
             "completion": "Let me work through tokenization.\n</think>\n\nI will train and validate.\n```python\nprint('new')\n```",
             "usage": {"completion_tokens": 20},
-            "cache_key": "test-cache",
             "model": "fake-policy",
         }
 
@@ -249,7 +244,7 @@ def test_preserves_ancestor_tree_without_original_training_calls():
         make_node(2, "improve", 1, buggy=True),
         make_node(3, "debug", 2, metric=0.4),
     ]
-    output, _ = asyncio.run(rewrite(nodes, FakeClient()))
+    output = asyncio.run(rewrite(nodes, dict.fromkeys(("draft", "improve"), FakeClient())))
     by_step = {node["step"]: node for node in output}
     assert by_step[1]["parents"] == [0]
     assert by_step[0]["children"] == [1]
@@ -264,8 +259,13 @@ def test_debug_hint_then_full_generation_with_clean_stored_prompt(include_code):
     nodes = [make_node(0, None), make_node(1, "draft", 0, buggy=True), make_node(2, "debug", 1)]
     original = copy.deepcopy(nodes)
     client = FakeClient()
-    output, report = asyncio.run(
-        rewrite(nodes, client, include_code=include_code, source_journal="run/json/JOURNAL.jsonl")
+    output = asyncio.run(
+        rewrite(
+            nodes,
+            dict.fromkeys(("draft", "improve"), client),
+            include_code=include_code,
+            source_journal="run/json/JOURNAL.jsonl",
+        )
     )
     assert nodes == original
     assert len(output) == 2
@@ -303,7 +303,7 @@ def test_debug_hint_then_full_generation_with_clean_stored_prompt(include_code):
     assert ("print(2)" in augmented[-1]["content"]) == include_code
     hint_payload = next(payload for stage, payload in client.requests if stage == "debug_hint")
     assert hint_payload["target_trajectory"][0]["execution_output"] == "traceback"
-    assert report["debug_rewrites"][0]["added_steps"] == [3]
+    assert added["step"] == 3
     assert len(episodes(output)) == 1
 
 
@@ -314,8 +314,8 @@ def test_improve_inherits_donor_metric_and_keeps_generated_code():
         make_node(2, "improve", 1, buggy=True),
         make_node(3, "debug", 2, metric=0.8),
     ]
-    result, report = asyncio.run(rewrite(nodes, FakeClient()))
-    assert len(report["debug_rewrites"]) == len(report["improve_rewrites"]) == 1
+    result = asyncio.run(rewrite(nodes, dict.fromkeys(("draft", "improve"), FakeClient())))
+    assert sorted(node["hindsight"]["stage"] for node in rewrites(result)) == ["debug", "improve"]
     added = next(node for node in rewrites(result) if node["hindsight"]["stage"] == "improve")
     assert added["code"] == "print('new')"
     assert added["metric"] == 0.8 and added["operators_used"] == ["draft"]
@@ -324,7 +324,9 @@ def test_improve_inherits_donor_metric_and_keeps_generated_code():
     assert added["hindsight"]["donor_trajectory"] == [{"step": 2, "id": "node-2"}, {"step": 3, "id": "node-3"}]
     assert all(node["operators_used"] != ["debug"] for node in result)
     assert all(len(episode.steps) == 1 for episode in episodes(result))
-    assert report["rewrites_by_target_operator"]["improve"] == {"draft": 1}
+    assert [node["operators_used"] for node in rewrites(result) if node["hindsight"]["stage"] == "improve"] == [
+        ["draft"]
+    ]
 
 
 def test_improve_can_rewrite_an_implement_episode_that_needed_debugging():
@@ -334,13 +336,15 @@ def test_improve_can_rewrite_an_implement_episode_that_needed_debugging():
         make_node(2, "debug", 1, metric=0.2),
         make_node(3, "improve", 2, metric=0.8),
     ]
-    result, report = asyncio.run(rewrite(nodes, FakeClient()))
+    result = asyncio.run(rewrite(nodes, dict.fromkeys(("draft", "improve"), FakeClient())))
     added = next(node for node in rewrites(result) if node["hindsight"]["stage"] == "improve")
     assert added["operators_used"] == ["draft"]
     assert added["hindsight"]["prompt_source"]["step"] == 1
     assert added["hindsight"]["target_trajectory"] == [{"step": 1, "id": "node-1"}, {"step": 2, "id": "node-2"}]
     assert added["code"] == "print('new')" and added["parents"] == [0]
-    assert report["rewrites_by_target_operator"]["improve"] == {"draft": 1}
+    assert [node["operators_used"] for node in rewrites(result) if node["hindsight"]["stage"] == "improve"] == [
+        ["draft"]
+    ]
 
 
 @pytest.mark.parametrize("mode, improve_count", [("debug", 0), ("debug-improve", 1)])
@@ -355,11 +359,14 @@ def test_rewrite_modes_keep_all_resolved_debug_trajectories(mode, improve_count)
     ]
     original = copy.deepcopy(nodes)
     client = FakeClient()
-    result, report = asyncio.run(rewrite(nodes, client, mode=mode))
+    result = asyncio.run(rewrite(nodes, dict.fromkeys(("draft", "improve"), client), mode=mode))
     assert nodes == original
-    assert report["mode"] == mode
-    assert {item["root"] for item in report["debug_rewrites"]} == {1, 4}
-    assert len(report["improve_rewrites"]) == improve_count
+    assert {
+        node["hindsight"]["prompt_source"]["step"]
+        for node in rewrites(result)
+        if node["hindsight"]["stage"] == "debug"
+    } == {1, 4}
+    assert sum(node["hindsight"]["stage"] == "improve" for node in rewrites(result)) == improve_count
     assert len(rewrites(result)) == 2 + improve_count
     assert sum(stage == "improve_hint" for stage, _ in client.requests) == improve_count
     assert {stage for stage, _ in client.requests} <= {"debug_hint", "improve_hint", "regenerate"}
@@ -367,12 +374,14 @@ def test_rewrite_modes_keep_all_resolved_debug_trajectories(mode, improve_count)
 
 def test_rewrite_rejects_unknown_mode():
     with pytest.raises(ValueError, match="Unknown hindsight mode"):
-        asyncio.run(rewrite([], FakeClient(), mode="improve"))
+        asyncio.run(rewrite([], dict.fromkeys(("draft", "improve"), FakeClient()), mode="improve"))
 
 
 def test_no_rewrite_produces_empty_journal():
-    result, report = asyncio.run(rewrite([make_node(0, None), make_node(1, "draft", 0)], FakeClient()))
-    assert result == [] and report["output_nodes"] == 0
+    result = asyncio.run(
+        rewrite([make_node(0, None), make_node(1, "draft", 0)], dict.fromkeys(("draft", "improve"), FakeClient()))
+    )
+    assert result == []
 
 
 @pytest.mark.parametrize("maximize", [True, False])
@@ -383,8 +392,8 @@ def test_improvement_uses_cv_direction_not_official_score(maximize):
         make_node(2, "improve", 1, metric=0.8 if maximize else 0.2, maximize=maximize),
     ]
     nodes[2]["metric_info/score"] = 0
-    result, report = asyncio.run(rewrite(nodes, FakeClient()))
-    assert len(report["improve_rewrites"]) == 1
+    result = asyncio.run(rewrite(nodes, dict.fromkeys(("draft", "improve"), FakeClient())))
+    assert sum(node["hindsight"]["stage"] == "improve" for node in rewrites(result)) == 1
     assert "metric_info/score" not in rewrites(result)[0]
 
 
@@ -395,8 +404,8 @@ def test_unresolved_and_tied_episodes_have_no_improvement():
         make_node(2, "improve", 1),
         make_node(3, "improve", 2, buggy=True),
     ]
-    result, report = asyncio.run(rewrite(nodes, FakeClient()))
-    assert result == [] and not report["improve_rewrites"]
+    result = asyncio.run(rewrite(nodes, dict.fromkeys(("draft", "improve"), FakeClient())))
+    assert result == []
     assert not better(make_node(5, "draft", metric=float("nan")), nodes[1])
 
 
@@ -460,7 +469,7 @@ def test_hint_schema_and_trajectory_payload():
 
 
 @pytest.mark.parametrize("separate_reasoning", [False, True])
-def test_generation_native_reasoning_cache_and_unconstrained_request(tmp_path, separate_reasoning):
+def test_generation_native_reasoning_and_unconstrained_request(tmp_path, separate_reasoning):
     calls = []
 
     def respond(request):
@@ -473,7 +482,7 @@ def test_generation_native_reasoning_cache_and_unconstrained_request(tmp_path, s
         return httpx.Response(200, json={"choices": [{"finish_reason": "stop", "message": message}], "usage": {}})
 
     async def exercise():
-        client = ModelClient("http://localhost/v1", "key", "model", tmp_path)
+        client = ModelClient({"base_url": "http://localhost/v1", "model_id": "model"}, asyncio.Semaphore(24))
         client.backend._client = client.backend._client.with_options(
             http_client=httpx.Client(transport=httpx.MockTransport(respond))
         )
@@ -483,7 +492,8 @@ def test_generation_native_reasoning_cache_and_unconstrained_request(tmp_path, s
         await client.close()
 
     asyncio.run(exercise())
-    assert len(calls) == 1
+    assert len(calls) == 2
+    assert not list(tmp_path.iterdir())
     assert "response_format" not in calls[0]
     assert calls[0]["chat_template_kwargs"]["enable_thinking"] is True
     assert calls[0]["temperature"] == 0.6
@@ -498,7 +508,7 @@ def test_generation_native_reasoning_cache_and_unconstrained_request(tmp_path, s
         ("improve_hint", True, "improve_hint_part"),
     ],
 )
-def test_stage_entries_retry_validate_and_cache(tmp_path, monkeypatch, method, part, stage):
+def test_hint_entries_retry_without_writing_files(tmp_path, monkeypatch, method, part, stage):
     calls = []
     expected = {"hint": "advice"}
 
@@ -513,7 +523,7 @@ def test_stage_entries_retry_validate_and_cache(tmp_path, monkeypatch, method, p
     monkeypatch.setattr("src.mle_policy.src.data.hindsight.client.asyncio.sleep", no_sleep)
 
     async def exercise():
-        client = ModelClient("http://localhost/v1", "", "model", tmp_path / "cache")
+        client = ModelClient({"base_url": "http://localhost/v1", "model_id": "model"}, asyncio.Semaphore(24))
         client.backend._client = client.backend._client.with_options(
             http_client=httpx.Client(transport=httpx.MockTransport(respond))
         )
@@ -527,17 +537,14 @@ def test_stage_entries_retry_validate_and_cache(tmp_path, monkeypatch, method, p
         assert messages == [{"role": "user", "content": "input"}]
 
     asyncio.run(exercise())
-    assert len(calls) == 2
+    assert len(calls) == 3
+    assert not list(tmp_path.iterdir())
     assert calls[0]["max_tokens"] == 8192
     assert calls[0]["chat_template_kwargs"]["enable_thinking"] is False
     assert calls[0]["response_format"]["type"] == "json_object"
     schema = calls[1]["response_format"]["json_schema"]["schema"]
     assert set(schema["required"]) == set(expected)
     assert schema["properties"] == {"hint": {"type": "string", "minLength": 1}}
-    cached = json.loads(next((tmp_path / "cache" / stage).glob("*.json")).read_text())
-    assert cached["identity"] == {"stage": stage, "version": VERSION, "request": calls[0]}
-    assert cached["attempt_request"] == calls[1]
-    assert cached["result"] == expected
 
 
 def test_generation_retries_truncation_without_changing_prompt(tmp_path, monkeypatch):
@@ -563,7 +570,7 @@ def test_generation_retries_truncation_without_changing_prompt(tmp_path, monkeyp
     monkeypatch.setattr("src.mle_policy.src.data.hindsight.client.asyncio.sleep", no_sleep)
 
     async def exercise():
-        client = ModelClient("http://localhost/v1", "", "model", tmp_path)
+        client = ModelClient({"base_url": "http://localhost/v1", "model_id": "model"}, asyncio.Semaphore(24))
         client.backend._client = client.backend._client.with_options(
             http_client=httpx.Client(transport=httpx.MockTransport(respond))
         )
@@ -574,17 +581,14 @@ def test_generation_retries_truncation_without_changing_prompt(tmp_path, monkeyp
     asyncio.run(exercise())
     assert len(requests) == 2 and requests[0] == requests[1]
     assert "max_tokens" not in requests[0]
-    assert len(list((tmp_path / "errors").glob("*.json"))) == 1
+    assert not list(tmp_path.iterdir())
 
 
-def test_atomic_json_keeps_existing_file_when_serialization_fails(tmp_path):
-    destination = tmp_path / "result.json"
-    atomic_json(destination, {"result": "complete"})
-    with pytest.raises(TypeError):
-        atomic_json(destination, {"result": object()})
-    assert json.loads(destination.read_text()) == {"result": "complete"}
-    atomic_json(destination, {"result": "updated"})
-    assert json.loads(destination.read_text()) == {"result": "updated"}
+def test_write_json_creates_readable_artifact(tmp_path):
+    path = tmp_path / "nested/result.json"
+    write_json(path, {"hint": "advice"})
+    assert json.loads(path.read_text()) == {"hint": "advice"}
+    assert list(path.parent.iterdir()) == [path]
 
 
 @pytest.mark.parametrize("mode", ["debug", "debug-improve"])
@@ -600,6 +604,10 @@ def test_cli_hindsight_only_roundtrip_verifier_and_downstream(tmp_path, monkeypa
         make_node(4, "improve", 1, metric=0.6),
     ]
     run_dir = run_writer(source, "run-a", nodes)
+    config_path = run_dir / "dojo_config.json"
+    config = json.loads(config_path.read_text())
+    config["solver"]["operators"]["improve"] = copy.deepcopy(config["solver"]["operators"]["draft"])
+    config_path.write_text(json.dumps(config))
     journal = run_dir / "json/JOURNAL.jsonl"
     journal.parent.mkdir()
     journal.write_text(
@@ -609,19 +617,6 @@ def test_cli_hindsight_only_roundtrip_verifier_and_downstream(tmp_path, monkeypa
     class CliClient(FakeClient):
         def __init__(self, *args):
             super().__init__()
-            self.cache = args[3]
-
-        async def generate(self, messages, generation):
-            result = await super().generate(messages, generation)
-            identity = {
-                "version": VERSION,
-                "stage": "regenerate",
-                "request": {"model": "fake-policy", "messages": messages, **generation},
-            }
-            digest = hashlib.sha256(json.dumps(identity, sort_keys=True).encode()).hexdigest()
-            result["cache_key"] = digest
-            atomic_json(self.cache / "regenerate" / f"{digest}.json", {"identity": identity, "result": result})
-            return result
 
         async def close(self):
             pass
@@ -630,9 +625,6 @@ def test_cli_hindsight_only_roundtrip_verifier_and_downstream(tmp_path, monkeypa
     args = SimpleNamespace(
         input=source,
         output=output,
-        base_url="unused",
-        api_key="unused",
-        model="fake",
         concurrency=2,
         journal_workers=2,
         hint_code="include",
@@ -640,9 +632,8 @@ def test_cli_hindsight_only_roundtrip_verifier_and_downstream(tmp_path, monkeypa
     )
     asyncio.run(run(args))
     asyncio.run(run(args))
-    summary = json.loads((output / "_hindsight/summary.json").read_text())
-    assert summary["journals"][0]["status"] == "cached"
-    verified = verify_all(source, output)
+    assert not (output / "_hindsight").exists()
+    verified = verify_all(source, output, mode)
     assert verified["totals"]["improve_episodes_added"] == (0 if mode == "debug" else 2)
     assert verified["totals"]["downstream_samples"] == (1 if mode == "debug" else 3)
     samples = list(iter_samples(output / "run-a/checkpoint/journal.jsonl", read_run_meta(output / "run-a"), "batch"))
@@ -662,17 +653,15 @@ def test_cli_hindsight_only_roundtrip_verifier_and_downstream(tmp_path, monkeypa
             assert "hindsight" not in positives[0]
     args.mode = "debug-improve" if mode == "debug" else "debug"
     asyncio.run(run(args))
-    summary = json.loads((output / "_hindsight/summary.json").read_text())
-    assert summary["journals"][0]["status"] == "written"
-    assert summary["mode"] == args.mode
-    verified = verify_all(source, output)
+    verified = verify_all(source, output, args.mode)
     assert verified["totals"]["improve_episodes_added"] == (0 if args.mode == "debug" else 2)
-    asyncio.run(run(args))
-    assert json.loads((output / "_hindsight/summary.json").read_text())["journals"][0]["status"] == "cached"
+    assert not (output / "_hindsight").exists()
     rewritten = output / "run-a/json/JOURNAL.jsonl"
-    rewritten.write_text(rewritten.read_text() + "\n")
-    with pytest.raises(ValueError, match="Artifact changed"):
-        verify_all(source, output)
+    rows = [json.loads(line) for line in rewritten.read_text().splitlines()]
+    rows[-1]["data"]["code"] = "changed"
+    rewritten.write_text("\n".join(json.dumps(row) for row in rows))
+    with pytest.raises(ValueError, match="Generated code mismatch"):
+        verify_all(source, output, args.mode)
 
 
 def test_tree_validation_rejects_branching_debug_and_missing_parent():
@@ -707,3 +696,121 @@ def test_positive_filter_is_strict_without_tree_metadata(tmp_path):
     assert json.loads((tmp_path / "output.jsonl").read_text()) == rows[2]
     source.write_text(json.dumps({"advantage": 1}) + "\n")
     assert filter_positive(source, tmp_path / "plain.jsonl")["positive_rows"] == 1
+
+
+def test_model_concurrency_is_shared_by_hints_and_full_generation():
+    async def exercise():
+        client = ModelClient({"base_url": "http://localhost/v1", "model_id": "model"}, asyncio.Semaphore(2))
+        active = 0
+        maximum = 0
+
+        async def request(parameters):
+            nonlocal active, maximum
+            active += 1
+            maximum = max(maximum, active)
+            await asyncio.sleep(0)
+            active -= 1
+            content = (
+                '{"hint": "advice"}'
+                if "response_format" in parameters
+                else "thinking\n</think>\nplan\n```python\nprint(1)\n```"
+            )
+            return {"choices": [{"finish_reason": "stop", "message": {"content": content}}]}
+
+        client.request = request
+        messages = [{"role": "user", "content": "task"}]
+        try:
+            await asyncio.gather(
+                *(
+                    client.debug_hint(messages) if index % 2 else client.generate(messages, generation_options())
+                    for index in range(8)
+                )
+            )
+        finally:
+            await client.close()
+        assert maximum == 2
+
+    asyncio.run(exercise())
+
+
+def test_model_exhausted_attempts_raise_without_writing_files(tmp_path, monkeypatch):
+    calls = []
+
+    async def no_sleep(delay):
+        pass
+
+    monkeypatch.setattr("src.mle_policy.src.data.hindsight.client.asyncio.sleep", no_sleep)
+
+    async def exercise():
+        client = ModelClient({"base_url": "http://localhost/v1", "model_id": "model"}, asyncio.Semaphore(24))
+
+        async def truncated(request):
+            calls.append(request)
+            return {"choices": [{"finish_reason": "length"}]}
+
+        client.request = truncated
+        try:
+            with pytest.raises(ValueError, match="Incomplete generation"):
+                await client.generate([{"role": "user", "content": "task"}], generation_options())
+        finally:
+            await client.close()
+
+    asyncio.run(exercise())
+    assert len(calls) == 3
+    assert not list(tmp_path.iterdir())
+
+
+@pytest.mark.parametrize("model_key", [False, True])
+def test_model_client_reads_existing_dotenv_credentials(tmp_path, monkeypatch, model_key):
+    import src.mle_policy.src.data.hindsight.client as client_module
+    from dotenv import load_dotenv
+
+    path = tmp_path / ".env"
+    path.write_text("PRIMARY_KEY=dotenv-key\n" + ("PRIMARY_KEY_FIXTURE_MODEL=dotenv-model-key\n" if model_key else ""))
+    monkeypatch.delenv("PRIMARY_KEY")
+    monkeypatch.delenv("PRIMARY_KEY_FIXTURE_MODEL", raising=False)
+    monkeypatch.setattr(client_module, "load_dotenv", lambda: load_dotenv(path))
+
+    async def exercise():
+        semaphore = asyncio.Semaphore(2)
+        client = ModelClient({"base_url": "http://source/v1", "model_id": "fixture-model"}, semaphore)
+        try:
+            assert client.model == "fixture-model"
+            assert client.backend.base_url == "http://source/v1"
+            assert client.backend.api_key == ("dotenv-model-key" if model_key else "dotenv-key")
+            assert client.semaphore is semaphore
+        finally:
+            await client.close()
+
+    asyncio.run(exercise())
+
+
+def test_rewrite_selects_target_operator_client():
+    nodes = [
+        make_node(0, None),
+        make_node(1, "draft", 0, buggy=True),
+        make_node(2, "debug", 1, metric=0.2),
+        make_node(3, "improve", 2, buggy=True),
+        make_node(4, "debug", 3, metric=0.8),
+    ]
+    draft, improve = FakeClient(), FakeClient()
+    asyncio.run(rewrite(nodes, {"draft": draft, "improve": improve}))
+    assert [stage for stage, _ in draft.requests] == ["debug_hint", "regenerate", "improve_hint", "regenerate"]
+    assert [stage for stage, _ in improve.requests] == ["debug_hint", "regenerate"]
+
+
+@pytest.mark.parametrize(
+    "module",
+    [
+        "mle_policy.src.data.hindsight",
+        "mle_policy.src.data.hindsight.experiment",
+        "mle_policy.src.data.hindsight.exp.evaluate",
+    ],
+)
+def test_cli_has_no_model_or_credential_overrides(module):
+    import sys
+
+    result = subprocess.run([sys.executable, "-m", module, "--help"], capture_output=True, text=True, check=True)
+    assert "--base-url" not in result.stdout
+    assert "--api-key" not in result.stdout
+    assert "--model" not in result.stdout

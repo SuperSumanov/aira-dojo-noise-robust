@@ -1,19 +1,24 @@
-"""Bounded asynchronous model calls, with content-addressed resumable results."""
+"""Model requests with bounded concurrency and three attempts per call.
+
+Input: source operator client config, shared semaphore, messages and generation settings.
+Credentials: existing PRIMARY_KEY_<MODEL> or PRIMARY_KEY loaded from .env.
+Output: parsed hint or complete response dictionaries. No filesystem input/output.
+"""
 
 from __future__ import annotations
 
 import asyncio
-import hashlib
 import json
-from pathlib import Path
+import os
 from types import SimpleNamespace
 
+from dotenv import load_dotenv
 import httpx
 import openai
 
 from dojo.core.solvers.llm_helpers.backends.open_ai import OpenAIClient
 
-from .helper import VERSION, atomic_json, parts
+from .helper import parts
 
 HINT_PROPERTIES = {"hint": {"type": "string", "minLength": 1}}
 
@@ -28,21 +33,15 @@ def validate_hint(result: dict) -> None:
 
 
 class ModelClient:
-    def __init__(
-        self,
-        base_url: str,
-        api_key: str,
-        model: str,
-        cache: Path,
-        concurrency: int = 24,
-    ):
-        """Configure the dojo client, request concurrency, and a shared result cache."""
-        self.model = model
-        self.cache = cache
-        self.semaphore = asyncio.Semaphore(concurrency)
+    def __init__(self, client_config: dict, semaphore: asyncio.Semaphore):
+        """Use the source operator's model/endpoint and existing PRIMARY_KEY settings from .env."""
+        load_dotenv()
+        self.model = client_config["model_id"]
+        self.semaphore = semaphore
+        key_name = "PRIMARY_KEY_" + self.model.replace("-", "_").replace(".", "_").upper()
         self.backend = OpenAIClient(
-            SimpleNamespace(model_id=model, base_url=base_url, use_azure_client=False),
-            api_key=api_key or "unused",
+            SimpleNamespace(**{**client_config, "use_azure_client": client_config.get("use_azure_client", False)}),
+            api_key=os.environ.get(key_name) or os.environ["PRIMARY_KEY"],
             max_retries=0,
             http_client=httpx.Client(trust_env=False, timeout=1800),
         )
@@ -64,11 +63,11 @@ class ModelClient:
         return response.model_dump()
 
     async def debug_hint(self, messages: list[dict], *, part: bool = False) -> dict:
-        """Extract debugging guidance, with a separate cache stage for trajectory parts."""
+        """Extract guidance from a debugging trajectory or one trajectory part."""
         return await self._hint("debug_hint_part" if part else "debug_hint", messages)
 
     async def improve_hint(self, messages: list[dict], *, part: bool = False) -> dict:
-        """Extract improvement guidance, with a separate cache stage for trajectory parts."""
+        """Extract guidance from an improvement trajectory or one trajectory part."""
         return await self._hint("improve_hint_part" if part else "improve_hint", messages)
 
     async def _hint(self, stage: str, messages: list[dict]) -> dict:
@@ -84,14 +83,7 @@ class ModelClient:
         return await self._json_result(stage, request)
 
     async def _json_result(self, stage: str, request: dict) -> dict:
-        """Load a validated cached result or request JSON with up to three attempts and format repair as configured."""
-        identity = {"version": VERSION, "stage": stage, "request": request}
-        digest = hashlib.sha256(json.dumps(identity, sort_keys=True).encode()).hexdigest()
-        path = self.cache / stage / f"{digest}.json"
-        if path.exists():
-            result = json.loads(path.read_text(encoding="utf-8"))["result"]
-            validate_hint(result)
-            return result
+        """Request and validate a JSON hint, retrying at most three times."""
         async with self.semaphore:
             attempt_request = dict(request)
             for attempt in range(3):
@@ -104,24 +96,11 @@ class ModelClient:
                     content = choice["message"]["content"]
                     result = json.loads(content)
                     validate_hint(result)
-                    atomic_json(
-                        path,
-                        {"identity": identity, "attempt_request": attempt_request, "result": result, "response": raw},
-                    )
                     return result
                 except (openai.APIError, ValueError, KeyError, TypeError) as error:
                     if isinstance(error, openai.APIStatusError) and error.status_code in (400, 401, 403, 404):
                         raise RuntimeError(f"Model request rejected: {error.response.text}") from error
                     if raw is not None:
-                        atomic_json(
-                            self.cache / "errors" / f"{digest}-{attempt}.json",
-                            {
-                                "identity": identity,
-                                "attempt_request": attempt_request,
-                                "error": str(error),
-                                "response": raw,
-                            },
-                        )
                         attempt_request = {
                             **request,
                             "messages": request["messages"]
@@ -152,15 +131,8 @@ class ModelClient:
         raise RuntimeError("Unreachable model request state")
 
     async def generate(self, messages: list[dict], generation: dict) -> dict:
-        """Generate and validate full thinking, plan, and code, merge separate reasoning, and cache the response."""
+        """Generate native thinking, plan, and code, retrying at most three times."""
         request = {"model": self.model, "messages": messages, **generation}
-        identity = {"version": VERSION, "stage": "regenerate", "request": request}
-        digest = hashlib.sha256(json.dumps(identity, sort_keys=True).encode()).hexdigest()
-        path = self.cache / "regenerate" / f"{digest}.json"
-        if path.exists():
-            result = json.loads(path.read_text(encoding="utf-8"))["result"]
-            parts(result["completion"])
-            return result
         async with self.semaphore:
             for attempt in range(3):
                 raw = None
@@ -178,18 +150,12 @@ class ModelClient:
                     result = {
                         "completion": content,
                         "usage": raw.get("usage", {}),
-                        "cache_key": digest,
                         "model": self.model,
                     }
-                    atomic_json(path, {"identity": identity, "result": result, "response": raw})
                     return result
                 except (openai.APIError, ValueError, KeyError, TypeError, SyntaxError) as error:
                     if isinstance(error, openai.APIStatusError) and error.status_code in (400, 401, 403, 404):
                         raise RuntimeError(f"Model request rejected: {error.response.text}") from error
-                    atomic_json(
-                        self.cache / "errors" / f"{digest}-{attempt}.json",
-                        {"identity": identity, "error": str(error), "response": raw},
-                    )
                     if attempt == 2:
                         raise
                     await asyncio.sleep(2**attempt)

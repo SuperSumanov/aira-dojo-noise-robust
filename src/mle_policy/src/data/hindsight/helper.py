@@ -1,21 +1,19 @@
-"""Response parsing, cache version, and atomic JSON output for hindsight generation."""
+"""Parse in-memory responses and write explicitly requested JSON artifacts.
+
+parts reads response text and returns thinking, answer, and a Python block.
+write_json writes its value to the given file, creating its parent directory.
+"""
 
 import ast
 import json
 from pathlib import Path
 import re
-import tempfile
-
-VERSION = 9
 
 
-def atomic_json(path: Path, value: object) -> None:
-    """Write JSON to a sibling temporary file, then replace the destination to preserve complete cache entries."""
+def write_json(path: Path, value: object) -> None:
+    """Write a readable JSON file at the supplied destination."""
     path.parent.mkdir(parents=True, exist_ok=True)
-    with tempfile.NamedTemporaryFile(mode="w", encoding="utf-8", dir=path.parent, delete=False) as handle:
-        temporary = Path(handle.name)
-        handle.write(json.dumps(value, ensure_ascii=False, indent=2) + "\n")
-    temporary.replace(path)
+    path.write_text(json.dumps(value, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 
 def parts(text: str) -> tuple[str, str, re.Match]:

@@ -1,67 +1,40 @@
-"""Report observed execution results, keeping unfinished debug chains explicit."""
+"""Collect measured execution results from a prepared experiment.
+
+Input --output: manifest.json and runs/<name>/result.json from evaluate.py.
+Output: results.json in the same directory, one row per manifest run.
+Historical CV/test labels and measured scores remain separate columns.
+"""
 
 import argparse
 import json
 from pathlib import Path
 
-from ..helper import atomic_json
+from ..helper import write_json
 
 
 def summarize(output: Path) -> None:
+    """Read completed runs and write their execution counts and measured scores."""
     manifest = json.loads((output / "manifest.json").read_text())
     rows = []
     for record in manifest["runs"]:
-        directory = output / "runs" / record["name"]
-        attempts = []
-        attempt = 0
-        while (directory / f"attempt-{attempt}.json").exists():
-            result = json.loads((directory / f"attempt-{attempt}.json").read_text())
-            attempts.append(result)
-            if result["valid"]:
-                break
-            attempt += 1
-        terminal = next((result for result in attempts if result["valid"]), None)
-        if terminal:
-            status = "resolved"
-        elif not attempts:
-            status = "not_run"
-        elif record["variant"] in ("terminal-reference", "donor-reference"):
-            status = "reference_failed"
-        elif len(attempts) >= 5:
-            status = "repair_budget_exhausted"
-        elif (directory / f"attempt-{len(attempts)}.py").exists():
-            status = "repair_ready"
-        else:
-            status = "needs_repair"
+        attempts = json.loads((output / record["result"]).read_text())["attempts"]
+        terminal = attempts[-1]
         rows.append(
             {
                 **record,
                 "executed_attempts": len(attempts),
-                "first_attempt_valid": attempts[0]["valid"] if attempts else None,
-                "resolved": terminal is not None,
-                "status": status,
-                "debug_calls_to_success": terminal["attempt"] if terminal else None,
-                "observed_failed_attempts": sum(not result["valid"] for result in attempts),
-                "test_score": terminal["test_score"] if terminal else None,
+                "first_attempt_valid": attempts[0]["valid"],
+                "resolved": terminal["valid"],
+                "debug_calls_to_success": terminal["attempt"] if terminal["valid"] else None,
+                "test_score": terminal["test_score"] if terminal["valid"] else None,
                 "execution_seconds": sum(result["execution"]["exec_time"] for result in attempts),
             }
         )
-    atomic_json(output / "results.json", rows)
-    header = "| Solution | Status | Attempts run | Debug calls to success | Test score | Historical debug calls | Historical test |"
-    lines = [header, "|---|---|---:|---:|---:|---:|---:|"]
-    for row in rows:
-        debug = row["debug_calls_to_success"] if row["resolved"] else "unresolved"
-        score = f"{row['test_score']:.5f}" if row["test_score"] is not None else "—"
-        lines.append(
-            f"| {row['name']} | {row['status']} | {row['executed_attempts']} | {debug} | {score} | "
-            f"{row['historical_debug_calls']} | {row['historical_test']} |"
-        )
-    text = "\n".join(lines) + "\n"
-    (output / "results.md").write_text(text, encoding="utf-8")
-    print(text)
+    write_json(output / "results.json", rows)
+    print(f"Evaluated {len(rows)} solutions: {sum(row['resolved'] for row in rows)} valid", flush=True)
 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--output", type=Path, default=Path("tmp/examples/hindsight/exp"))
+    parser.add_argument("--output", type=Path, required=True, help="Completed evaluation directory")
     summarize(parser.parse_args().output)

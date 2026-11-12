@@ -1,4 +1,9 @@
-"""Extract private hints, regenerate full policy responses, and attach provenance."""
+"""Extract hints and construct rewritten nodes from in-memory journal episodes.
+
+Input: source node dictionaries, target/donor episodes, and a ModelClient.
+Output: rewritten nodes with original prompts, generated responses, and source
+references; optional trace dictionaries for experiment.py. No filesystem I/O.
+"""
 
 import asyncio
 import copy
@@ -77,12 +82,12 @@ def inject_hint(messages: list[dict], hint: str, code: str | None = None) -> lis
     if code is not None:
         advice += "\n\nImplementation example to learn from:\n```python\n" + code.rstrip() + "\n```"
     user["content"] = (
-        "\n\n<hindsight_notes>\n"
+        "\n\n<experience>\n"
         + advice
-        + "\nUse these hindsight notes as useful experience while solving the original task."
+        + "\nUse these valuable experience while solving the original task."
         " Choose and develop your own coherent approach; adapt the suggestions where appropriate."
-        " Return a complete standalone answer in the original task's requested format without explicitly mentioning the hindsight."
-        "\n</hindsight_notes>"
+        " Return a complete standalone answer in the original task's requested format without explicitly mentioning the experience."
+        "\n</experience>"
     ) + user["content"]
     return augmented
 
@@ -218,7 +223,7 @@ def append_rewrite(output, stage, target: Episode, donor: Episode, original, res
             key: copy.deepcopy(value) for key, value in executed["metric_info"].items() if key in reward_fields
         }
     added["step"] = max([*original, *(node["step"] for node in output)]) + 1
-    added["id"] = synthetic_id(stage, root["id"], executed["id"], result["cache_key"])
+    added["id"] = synthetic_id(stage, root["id"], executed["id"], result["completion"])
     added["parents"] = root.get("parents", []).copy()
     added["children"] = []
     call = copy.deepcopy(root["operators_metrics"][0])
@@ -239,17 +244,7 @@ def append_rewrite(output, stage, target: Episode, donor: Episode, original, res
         "metric_origin": "inherited",
         "metric_source": reference(executed),
         "hint_includes_code": result["include_code"],
-        "generation_cache_key": result["cache_key"],
         "generation": result["generation"],
         "generation_model": result["model"],
     }
     output.append(added)
-    return {
-        "root": target.root,
-        "terminal": target.terminal,
-        "donor_root": donor.root,
-        "donor_terminal": donor.terminal,
-        "added_steps": [added["step"]],
-        "hint": result["hint"],
-        "generation_cache_key": result["cache_key"],
-    }

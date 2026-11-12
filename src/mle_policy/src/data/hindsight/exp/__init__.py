@@ -1,1 +1,1 @@
-"""Execution experiments for hindsight-rewritten policy solutions."""
+"""Selected-case evaluation package. No I/O on import; prepare/evaluate describe their file layouts."""

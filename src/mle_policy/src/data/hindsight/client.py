@@ -60,7 +60,7 @@ class ModelClient:
                 function_name=stage,
                 function_description="Extract engineering guidance from the supplied trajectory.",
                 temperature=0.2,
-                max_tokens=8192,
+                max_tokens=16384,
             )
         validate_hint(result)
         return result
@@ -68,6 +68,14 @@ class ModelClient:
     async def generate(self, messages: list[dict], generation: dict) -> dict:
         """Generate a full policy response while preserving native thinking for training."""
         async with self.semaphore:
-            content, usage = await self.backend.query(messages, include_reasoning=True, **generation)
-        parts(content)
+            attempt = 0
+            while attempt < 3:
+                try:
+                    content, usage = await self.backend.query(messages, include_reasoning=True, **generation)
+                    parts(content)
+                    break
+                except Exception as e:
+                    attempt += 1
+                    if attempt >= 3:
+                        raise e
         return {"completion": content, "usage": usage, "model": self.model}

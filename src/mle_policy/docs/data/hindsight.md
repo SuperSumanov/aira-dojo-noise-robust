@@ -69,13 +69,13 @@ CV 是 agent 自己产生的交叉验证分数。方案优劣按原节点的 `me
 从仓库根目录执行。下面的四步分别产生原数据、重写树、合成训练行和合并训练行。
 
 ```bash
-source /research/d2/gds/zzchen2/anaconda/bin/activate aira-dojo
+conda activate aira-dojo
 export PYTHONPATH="$PWD/src:$PWD${PYTHONPATH:+:$PYTHONPATH}"
-RAW=data/augmented_mle_critic/raw_journal/hindsight/1028
-TREE=data/augmented_mle_critic/raw_journal/hindsight/1028_hindsight
-ORIGINAL=data/mle_policy/dataset/hindsight_example/original
-SYNTHETIC=data/mle_policy/dataset/hindsight_example/synthetic
-MERGED=data/mle_policy/dataset/hindsight_example/merged
+RAW=data/augmented_mle_critic/raw_journal/wh/1112
+TREE=data/augmented_mle_critic/raw_journal/wh/1112_hindsight
+ORIGINAL=data/mle_policy/wh/1112/original
+SYNTHETIC=data/mle_policy/wh/1112/synthetic
+MERGED=data/mle_policy/wh/1112/merged
 ```
 
 ### 第一步：准备原数据与切分
@@ -83,8 +83,8 @@ MERGED=data/mle_policy/dataset/hindsight_example/merged
 ```bash
 bash src/mle_policy/scripts/data/build_all_batches_bigjournal.sh "$RAW" "$ORIGINAL"
 bash src/mle_policy/scripts/data/aggregate_batches.sh "$ORIGINAL"
-bash src/mle_policy/scripts/data/assign_splits.sh "$ORIGINAL" task 0.1
-bash src/mle_policy/scripts/data/to_grpo.sh "$ORIGINAL"
+bash src/mle_policy/scripts/data/assign_splits.sh "$ORIGINAL" run 0.1
+bash src/mle_policy/scripts/data/to_grpo_metric.sh "$ORIGINAL"
 ```
 
 已有中间数据和切分时从对应步骤继续。原始数据只有小 journal 时使用
@@ -100,7 +100,7 @@ bash src/mle_policy/scripts/data/to_grpo.sh "$ORIGINAL"
 bash src/mle_policy/scripts/data/hindsight/generate.sh \
   --input "$RAW" --output "$TREE" \
   --mode debug-improve --hint-code omit \
-  --concurrency 12 --journal-workers 4
+  --concurrency 16 --journal-workers 4
 ```
 
 `--concurrency` 限制全部 journal 合计同时发出的模型请求数；

@@ -11,7 +11,6 @@ import argparse
 import asyncio
 import json
 from pathlib import Path
-from contextlib import AsyncExitStack
 import shutil
 
 from .client import ModelClient
@@ -107,20 +106,18 @@ async def run(args: argparse.Namespace) -> None:
                 for name, settings in config["solver"]["operators"].items()
             }
             rows = [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines() if line.strip()]
-            async with AsyncExitStack() as stack:
-                clients = {}
-                for name, settings in config["solver"]["operators"].items():
-                    client = ModelClient(settings["llm"]["client"], requests)
-                    stack.push_async_callback(client.close)
-                    clients[name] = client
-                rewritten = await rewrite(
-                    [row["data"] for row in rows],
-                    clients,
-                    include_code=args.hint_code == "include",
-                    source_journal=str(relative),
-                    generations=generations,
-                    mode=args.mode,
-                )
+            clients = {
+                name: ModelClient(settings["llm"]["client"], requests)
+                for name, settings in config["solver"]["operators"].items()
+            }
+            rewritten = await rewrite(
+                [row["data"] for row in rows],
+                clients,
+                include_code=args.hint_code == "include",
+                source_journal=str(relative),
+                generations=generations,
+                mode=args.mode,
+            )
             target_run = output / run_dir.relative_to(source)
             target_run.mkdir(parents=True, exist_ok=True)
             shutil.copy2(run_dir / "dojo_config.json", target_run / "dojo_config.json")

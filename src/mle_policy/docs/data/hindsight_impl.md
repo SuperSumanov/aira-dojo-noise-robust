@@ -40,30 +40,31 @@
 
 ## 3. 模型调用
 
-`ModelClient` 复用 dojo 的 `OpenAIClient.query_raw`，同步请求放到线程中，
-每个 run 的各 operator 按输入配置创建客户端，所有客户端
-共享一个 semaphore 限制同时发出的请求。模型和地址来自 `llm.client`，
-密钥从现有 `.env` 的 `PRIMARY_KEY_<MODEL>` 或 `PRIMARY_KEY` 读取，模型专用密钥优先。
-HTTP 超时 1800 秒，关闭环境代理读取，
-SDK 自带重试次数为 0。
+`ModelClient` 直接调用 dojo 的 `LiteLLMClient.query`，与搜索实验共用通信、
+密钥选择、请求重试、JSON 格式和解析机制。每个 run 的各 operator 按输入配置创建
+客户端，全部客户端共享一个 semaphore，限制同时执行的请求。
+模型、地址、provider 和 Azure 设置来自 `llm.client`；现有 `.env` 中的
+`PRIMARY_KEY_<MODEL>` / `PRIMARY_KEY` 也交给 dojo backend 读取。
 
 | 调用 | 参数和返回 |
 |---|---|
-| `debug_hint` / `improve_hint` | temperature 0.2，max_tokens 8192，关闭 thinking，JSON hint |
-| `generate` | 沿用目标 operator 记录的采样参数，返回 completion、usage、model |
+| `debug_hint` / `improve_hint` | temperature 0.2，max_tokens 8192，JSON Schema 描述非空 hint，thinking 使用服务默认行为 |
+| `generate` | 沿用目标 operator 采样参数，返回完整 completion、usage、model |
 
-长轨迹的 `part=True` 调用与最终 hint 调用使用相同的生成参数。
+hint 使用 backend 已有的结构化输出通道：默认 JSON mode，按 schema 校验并重试；
+服务不支持 JSON mode 时使用 backend 已有的 tools 通道。JSON 内容前的
+`<think>...</think>` 由共享 backend 去掉，再交给 dojo 的 JSON parser。
+hindsight 额外检查 hint 包含实际文字，长轨迹的分段调用也使用相同接口。
+
 完整生成的默认值是 temperature 0.6、top_p 0.95、开启 thinking、reasoning_effort medium；
 原配置中显式记录的字段覆盖这些值，输出上限也来自原配置。
+完整回答调用共享 backend 的 `include_reasoning=True`：服务单独返回
+`reasoning_content` 时拼回 `thinking + </think> + answer`，已有内联 thinking 时原样保留。
+这个选项只影响调用方需要的返回文本，搜索实验原来的普通文本返回保持不变。
 
-provider 特有的 `chat_template_kwargs`、`top_k`、`min_p`、`repetition_penalty`
-放入 SDK 的 `extra_body`。若服务将 reasoning 与 content 分开返回，客户端拼成
-`thinking + </think> + answer`，保留原生思考内容。
-
-每次调用最多三次尝试，间隔一秒、两秒。hint 校验 JSON 中有非空字符串 `hint`；
-首次返回格式错误时，后续尝试附带校验错误并使用 JSON Schema 约束。
-完整回答检查 `finish_reason=stop`、思考结束标记、代码前的计划、唯一 Python 代码块
-及 Python 语法。HTTP 400/401/403/404 直接报错，其余最终错误原样抛出。
+请求超时和网络重试沿用 LiteLLM backend 的统一设置。hindsight 自身只校验
+完整回答的结束状态、思考标记、代码前的计划、唯一 Python 代码块和语法；
+校验失败直接抛出，避免再叠一层重试流程。
 
 ## 4. 评测与测试
 
@@ -80,6 +81,6 @@ export PYTHONPATH="$PWD/src:$PWD${PYTHONPATH:+:$PYTHONPATH}"
 pytest -q src/mle_policy/test/test_hindsight.py src/mle_policy/test/test_hindsight_eval.py
 ```
 
-测试使用伪模型、模拟 HTTP 响应和模拟执行器，覆盖轨迹选择、重试、最小文件集合、
+测试使用伪模型、模拟 LiteLLM 响应和模拟执行器，覆盖轨迹选择、重试、最小文件集合、
 显式 prepare、debug 次数，以及大/小 journal 到 GRPO 和合并数据的读取流程。
 真实训练耗时与模型输出质量通过实际 allocation 中的实验检查。

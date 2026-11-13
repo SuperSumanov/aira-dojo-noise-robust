@@ -10,7 +10,6 @@ import argparse
 import asyncio
 import json
 from pathlib import Path
-from contextlib import AsyncExitStack
 
 from .helper import write_json
 from .client import ModelClient
@@ -78,13 +77,8 @@ async def compare(args):
         hint = await extract_hint(stage, target, donor, nodes, client, trace=hint_trace)
         await asyncio.gather(*(one(case, include, hint, hint_trace, client) for include in (False, True)))
 
-    async with AsyncExitStack() as stack:
-        clients = {}
-        for name, settings in operators.items():
-            client = ModelClient(settings["llm"]["client"], requests)
-            stack.push_async_callback(client.close)
-            clients[name] = client
-        await asyncio.gather(*(pair(case) for case in args.case))
+    clients = {name: ModelClient(settings["llm"]["client"], requests) for name, settings in operators.items()}
+    await asyncio.gather(*(pair(case) for case in args.case))
 
 
 def main():

@@ -5,7 +5,6 @@ from pathlib import Path
 import subprocess
 from types import SimpleNamespace
 
-import httpx
 import pytest
 
 from src.mle_policy.src.data.hindsight.__main__ import rewrite, run
@@ -282,7 +281,7 @@ def test_debug_hint_then_full_generation_with_clean_stored_prompt(include_code):
         call["completion_text"]
         == "Let me work through tokenization.\n</think>\n\nI will train and validate.\n```python\nprint('new')\n```"
     )
-    assert "hindsight_notes" not in json.dumps(output)
+    assert "experience" not in json.dumps(output)
     assert all(node["id"] not in {source["id"] for source in nodes} for node in output)
     assert output[0]["operators_metrics"] == [] and output[0]["code"] == ""
     provenance = added["hindsight"]
@@ -296,9 +295,9 @@ def test_debug_hint_then_full_generation_with_clean_stored_prompt(include_code):
     assert provenance["source_journal"] == "run/json/JOURNAL.jsonl"
     assert provenance["hint_includes_code"] == include_code
     augmented = next(payload for stage, payload in client.requests if stage == "regenerate")
-    assert augmented[-1]["content"].startswith("\n\n<hindsight_notes>")
+    assert augmented[-1]["content"].startswith("\n\n<experience>")
     assert augmented[-1]["content"].endswith(
-        "</hindsight_notes>" + nodes[1]["operators_metrics"][0]["prompt_messages"][-1]["content"]
+        "</experience>" + nodes[1]["operators_metrics"][0]["prompt_messages"][-1]["content"]
     )
     assert ("print(2)" in augmented[-1]["content"]) == include_code
     hint_payload = next(payload for stage, payload in client.requests if stage == "debug_hint")
@@ -468,120 +467,110 @@ def test_hint_schema_and_trajectory_payload():
     assert payload["final_code"] == "print(2)"
 
 
+class Completion:
+    def __init__(self, content, *, reasoning=None, finish_reason="stop"):
+        self.choices = [
+            SimpleNamespace(
+                message=SimpleNamespace(content=content, reasoning_content=reasoning),
+                finish_reason=finish_reason,
+            )
+        ]
+
+    def to_dict(self):
+        return {"usage": {"prompt_tokens": 10, "completion_tokens": 5}}
+
+
+@pytest.fixture
+def client_config():
+    return {
+        "base_url": "http://source/v1",
+        "model_id": "fixture-model",
+        "provider": "selfhosted",
+        "use_azure_client": False,
+    }
+
+
 @pytest.mark.parametrize("separate_reasoning", [False, True])
-def test_generation_native_reasoning_and_unconstrained_request(tmp_path, separate_reasoning):
+def test_generation_native_reasoning_through_litellm(tmp_path, monkeypatch, client_config, separate_reasoning):
+    import dojo.core.solvers.llm_helpers.backends.lite_llm as backend
+
     calls = []
 
-    def respond(request):
-        calls.append(json.loads(request.content))
-        message = {"content": "plan\n```python\nprint(1)\n```"}
-        if separate_reasoning:
-            message["reasoning_content"] = "Let me think."
-        else:
-            message["content"] = "Let me think.\n</think>\n\n" + message["content"]
-        return httpx.Response(200, json={"choices": [{"finish_reason": "stop", "message": message}], "usage": {}})
-
-    async def exercise():
-        client = ModelClient({"base_url": "http://localhost/v1", "model_id": "model"}, asyncio.Semaphore(24))
-        client.backend._client = client.backend._client.with_options(
-            http_client=httpx.Client(transport=httpx.MockTransport(respond))
+    async def respond(**request):
+        calls.append(request)
+        answer = "plan\n```python\nprint(1)\n```"
+        return Completion(
+            answer if separate_reasoning else "Let me think.\n</think>\n\n" + answer,
+            reasoning="Let me think." if separate_reasoning else None,
         )
-        first = await client.generate([{"role": "user", "content": "task"}], generation_options())
-        assert "Let me think." in first["completion"]
-        assert await client.generate([{"role": "user", "content": "task"}], generation_options()) == first
-        await client.close()
 
-    asyncio.run(exercise())
-    assert len(calls) == 2
-    assert not list(tmp_path.iterdir())
+    monkeypatch.setattr(backend, "completion_fn", respond)
+    client = ModelClient(client_config, asyncio.Semaphore(2))
+    result = asyncio.run(client.generate([{"role": "user", "content": "task"}], generation_options()))
+    assert result["completion"].startswith("Let me think.\n</think>")
+    assert result["model"] == "fixture-model"
+    assert result["usage"]["total_tokens"] == 15
+    assert len(calls) == 1
+    assert calls[0]["model"] == "openai/fixture-model"
+    assert calls[0]["base_url"] == "http://source/v1"
+    assert calls[0]["api_key"] == "test-key"
+    assert "include_reasoning" not in calls[0]
     assert "response_format" not in calls[0]
     assert calls[0]["chat_template_kwargs"]["enable_thinking"] is True
-    assert calls[0]["temperature"] == 0.6
+    assert calls[0]["max_retries"] == backend.NUM_RETRIES
+    assert not list(tmp_path.iterdir())
 
 
 @pytest.mark.parametrize(
-    "method, part, stage",
-    [
-        ("debug_hint", False, "debug_hint"),
-        ("debug_hint", True, "debug_hint_part"),
-        ("improve_hint", False, "improve_hint"),
-        ("improve_hint", True, "improve_hint_part"),
-    ],
+    "method,part", [("debug_hint", False), ("debug_hint", True), ("improve_hint", False), ("improve_hint", True)]
 )
-def test_hint_entries_retry_without_writing_files(tmp_path, monkeypatch, method, part, stage):
+def test_hint_reuses_litellm_schema_retries_and_thinking_parser(tmp_path, monkeypatch, client_config, method, part):
+    import dojo.core.solvers.llm_helpers.backends.lite_llm as backend
+
     calls = []
-    expected = {"hint": "advice"}
+    messages = [{"role": "user", "content": "input"}]
 
-    def respond(request):
-        calls.append(json.loads(request.content))
-        content = "invalid JSON" if len(calls) == 1 else json.dumps(expected)
-        return httpx.Response(200, json={"choices": [{"finish_reason": "stop", "message": {"content": content}}]})
+    async def respond(**request):
+        calls.append(request)
+        content = '{"hint": 3}' if len(calls) == 1 else '<think>reasoning</think>\n```json\n{"hint": "advice"}\n```'
+        return Completion(content)
 
-    async def no_sleep(delay):
-        pass
-
-    monkeypatch.setattr("src.mle_policy.src.data.hindsight.client.asyncio.sleep", no_sleep)
-
-    async def exercise():
-        client = ModelClient({"base_url": "http://localhost/v1", "model_id": "model"}, asyncio.Semaphore(24))
-        client.backend._client = client.backend._client.with_options(
-            http_client=httpx.Client(transport=httpx.MockTransport(respond))
-        )
-        messages = [{"role": "user", "content": "input"}]
-        options = {} if part is None else {"part": part}
-        try:
-            assert await getattr(client, method)(messages, **options) == expected
-            assert await getattr(client, method)(messages, **options) == expected
-        finally:
-            await client.close()
-        assert messages == [{"role": "user", "content": "input"}]
-
-    asyncio.run(exercise())
-    assert len(calls) == 3
-    assert not list(tmp_path.iterdir())
+    monkeypatch.setattr(backend, "completion_fn", respond)
+    client = ModelClient(client_config, asyncio.Semaphore(2))
+    result = asyncio.run(getattr(client, method)(messages, part=part))
+    assert result == {"hint": "advice"}
+    assert len(calls) == 2
+    assert messages == [{"role": "user", "content": "input"}]
+    assert calls[0]["response_format"] == {"type": "json_object"}
+    assert "JSON Schema" in calls[0]["messages"][0]["content"]
+    assert "chat_template_kwargs" not in calls[0]
     assert calls[0]["max_tokens"] == 8192
-    assert calls[0]["chat_template_kwargs"]["enable_thinking"] is False
-    assert calls[0]["response_format"]["type"] == "json_object"
-    schema = calls[1]["response_format"]["json_schema"]["schema"]
-    assert set(schema["required"]) == set(expected)
-    assert schema["properties"] == {"hint": {"type": "string", "minLength": 1}}
-
-
-def test_generation_retries_truncation_without_changing_prompt(tmp_path, monkeypatch):
-    requests = []
-
-    def respond(request):
-        requests.append(json.loads(request.content))
-        return httpx.Response(
-            200,
-            json={
-                "choices": [
-                    {
-                        "finish_reason": "length" if len(requests) == 1 else "stop",
-                        "message": {"content": "thinking\n</think>\nplan\n```python\nprint(1)\n```"},
-                    }
-                ]
-            },
-        )
-
-    async def no_sleep(delay):
-        pass
-
-    monkeypatch.setattr("src.mle_policy.src.data.hindsight.client.asyncio.sleep", no_sleep)
-
-    async def exercise():
-        client = ModelClient({"base_url": "http://localhost/v1", "model_id": "model"}, asyncio.Semaphore(24))
-        client.backend._client = client.backend._client.with_options(
-            http_client=httpx.Client(transport=httpx.MockTransport(respond))
-        )
-        result = await client.generate([{"role": "user", "content": "task"}], generation_options())
-        assert result["model"] == "model"
-        await client.close()
-
-    asyncio.run(exercise())
-    assert len(requests) == 2 and requests[0] == requests[1]
-    assert "max_tokens" not in requests[0]
     assert not list(tmp_path.iterdir())
+
+
+@pytest.mark.parametrize("finish_reason", ["length", "content_filter"])
+def test_generation_rejects_incomplete_response(monkeypatch, client_config, finish_reason):
+    import dojo.core.solvers.llm_helpers.backends.lite_llm as backend
+
+    async def respond(**request):
+        return Completion("thinking\n</think>\nplan\n```python\nprint(1)\n```", finish_reason=finish_reason)
+
+    monkeypatch.setattr(backend, "completion_fn", respond)
+    client = ModelClient(client_config, asyncio.Semaphore(2))
+    with pytest.raises(ValueError, match="Incomplete generation"):
+        asyncio.run(client.generate([{"role": "user", "content": "task"}], generation_options()))
+
+
+def test_shared_litellm_plain_response_still_omits_separate_reasoning(monkeypatch, client_config):
+    import dojo.core.solvers.llm_helpers.backends.lite_llm as backend
+
+    async def respond(**request):
+        return Completion("answer", reasoning="thinking")
+
+    monkeypatch.setattr(backend, "completion_fn", respond)
+    client = backend.LiteLLMClient(SimpleNamespace(**client_config))
+    output, _ = asyncio.run(client.query([{"role": "user", "content": "task"}]))
+    assert output == "answer"
 
 
 def test_write_json_creates_readable_artifact(tmp_path):
@@ -698,70 +687,58 @@ def test_positive_filter_is_strict_without_tree_metadata(tmp_path):
     assert filter_positive(source, tmp_path / "plain.jsonl")["positive_rows"] == 1
 
 
-def test_model_concurrency_is_shared_by_hints_and_full_generation():
+def test_model_concurrency_is_shared_by_hints_and_full_generation(monkeypatch, client_config):
+    import dojo.core.solvers.llm_helpers.backends.lite_llm as backend
+
     async def exercise():
-        client = ModelClient({"base_url": "http://localhost/v1", "model_id": "model"}, asyncio.Semaphore(2))
+        client = ModelClient(client_config, asyncio.Semaphore(2))
         active = 0
         maximum = 0
 
-        async def request(parameters):
+        async def respond(**request):
             nonlocal active, maximum
             active += 1
             maximum = max(maximum, active)
             await asyncio.sleep(0)
             active -= 1
-            content = (
+            return Completion(
                 '{"hint": "advice"}'
-                if "response_format" in parameters
+                if "response_format" in request
                 else "thinking\n</think>\nplan\n```python\nprint(1)\n```"
             )
-            return {"choices": [{"finish_reason": "stop", "message": {"content": content}}]}
 
-        client.request = request
+        monkeypatch.setattr(backend, "completion_fn", respond)
         messages = [{"role": "user", "content": "task"}]
-        try:
-            await asyncio.gather(
-                *(
-                    client.debug_hint(messages) if index % 2 else client.generate(messages, generation_options())
-                    for index in range(8)
-                )
+        await asyncio.gather(
+            *(
+                client.debug_hint(messages) if index % 2 else client.generate(messages, generation_options())
+                for index in range(8)
             )
-        finally:
-            await client.close()
+        )
         assert maximum == 2
 
     asyncio.run(exercise())
 
 
-def test_model_exhausted_attempts_raise_without_writing_files(tmp_path, monkeypatch):
+def test_hint_exhausts_shared_structured_output_attempts(tmp_path, monkeypatch, client_config):
+    import dojo.core.solvers.llm_helpers.backends.lite_llm as backend
+
     calls = []
 
-    async def no_sleep(delay):
-        pass
+    async def respond(**request):
+        calls.append(request)
+        return Completion('{"hint": 3}')
 
-    monkeypatch.setattr("src.mle_policy.src.data.hindsight.client.asyncio.sleep", no_sleep)
-
-    async def exercise():
-        client = ModelClient({"base_url": "http://localhost/v1", "model_id": "model"}, asyncio.Semaphore(24))
-
-        async def truncated(request):
-            calls.append(request)
-            return {"choices": [{"finish_reason": "length"}]}
-
-        client.request = truncated
-        try:
-            with pytest.raises(ValueError, match="Incomplete generation"):
-                await client.generate([{"role": "user", "content": "task"}], generation_options())
-        finally:
-            await client.close()
-
-    asyncio.run(exercise())
-    assert len(calls) == 3
+    monkeypatch.setattr(backend, "completion_fn", respond)
+    client = ModelClient(client_config, asyncio.Semaphore(2))
+    with pytest.raises(ValueError, match="Invalid structured output after 3 attempt"):
+        asyncio.run(client.debug_hint([{"role": "user", "content": "task"}]))
+    assert len(calls) == backend.STRUCTURED_OUTPUT_RETRIES + 1
     assert not list(tmp_path.iterdir())
 
 
 @pytest.mark.parametrize("model_key", [False, True])
-def test_model_client_reads_existing_dotenv_credentials(tmp_path, monkeypatch, model_key):
+def test_model_client_reads_existing_dotenv_credentials(tmp_path, monkeypatch, model_key, client_config):
     import src.mle_policy.src.data.hindsight.client as client_module
     from dotenv import load_dotenv
 
@@ -771,18 +748,10 @@ def test_model_client_reads_existing_dotenv_credentials(tmp_path, monkeypatch, m
     monkeypatch.delenv("PRIMARY_KEY_FIXTURE_MODEL", raising=False)
     monkeypatch.setattr(client_module, "load_dotenv", lambda: load_dotenv(path))
 
-    async def exercise():
-        semaphore = asyncio.Semaphore(2)
-        client = ModelClient({"base_url": "http://source/v1", "model_id": "fixture-model"}, semaphore)
-        try:
-            assert client.model == "fixture-model"
-            assert client.backend.base_url == "http://source/v1"
-            assert client.backend.api_key == ("dotenv-model-key" if model_key else "dotenv-key")
-            assert client.semaphore is semaphore
-        finally:
-            await client.close()
-
-    asyncio.run(exercise())
+    client = ModelClient(client_config, asyncio.Semaphore(2))
+    assert client.model == "fixture-model"
+    assert client.backend.base_url == "http://source/v1"
+    assert client.backend.api_key == ("dotenv-model-key" if model_key else "dotenv-key")
 
 
 def test_rewrite_selects_target_operator_client():
@@ -814,3 +783,52 @@ def test_cli_has_no_model_or_credential_overrides(module):
     assert "--base-url" not in result.stdout
     assert "--api-key" not in result.stdout
     assert "--model" not in result.stdout
+
+
+@pytest.mark.parametrize(
+    "content",
+    [
+        "<think>reasoning</think>\nplan\n```python\nprint(1)\n```",
+        "plan\n```python\nprint(1)\n```",
+    ],
+)
+def test_full_response_keeps_inline_thinking_without_duplication(monkeypatch, client_config, content):
+    import dojo.core.solvers.llm_helpers.backends.lite_llm as backend
+
+    async def respond(**request):
+        return Completion(content, reasoning="separate reasoning")
+
+    monkeypatch.setattr(backend, "completion_fn", respond)
+    client = ModelClient(client_config, asyncio.Semaphore(2))
+    result = asyncio.run(client.generate([{"role": "user", "content": "task"}], generation_options()))
+    assert result["completion"].count("</think>") == 1
+    if "</think>" in content:
+        assert result["completion"] == content
+
+
+def test_hint_reuses_shared_tools_transport_when_json_mode_is_unsupported(monkeypatch, client_config):
+    import dojo.core.solvers.llm_helpers.backends.lite_llm as backend
+
+    calls = []
+
+    async def respond(**request):
+        calls.append(request)
+        if "response_format" in request:
+            raise backend.litellm.BadRequestError(
+                message="response_format json_object unsupported",
+                model="fixture-model",
+                llm_provider="openai",
+            )
+        completion = Completion(None)
+        completion.choices[0].message.tool_calls = [
+            SimpleNamespace(
+                function=SimpleNamespace(name="debug_hint", arguments='{"hint": "advice"}'),
+            )
+        ]
+        return completion
+
+    monkeypatch.setattr(backend, "completion_fn", respond)
+    client = ModelClient(client_config, asyncio.Semaphore(2))
+    assert asyncio.run(client.debug_hint([{"role": "user", "content": "task"}])) == {"hint": "advice"}
+    assert len(calls) == 2
+    assert calls[1]["tool_choice"]["function"]["name"] == "debug_hint"

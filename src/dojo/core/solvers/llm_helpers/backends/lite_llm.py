@@ -242,6 +242,7 @@ class LiteLLMClient:
         function_description: Optional[str] = None,
     ) -> Tuple[OutputType, Dict[str, Any]]:
         model_kwargs = dict(model_kwargs or {})
+        include_reasoning = model_kwargs.pop("include_reasoning", False)
 
         # Prepare function specifications if provided
         func_spec = None
@@ -366,6 +367,12 @@ class LiteLLMClient:
 
         if func_spec is None:
             output = choice.message.content
+            if include_reasoning:
+                if choice.finish_reason != "stop":
+                    raise ValueError(f"Incomplete generation: {choice.finish_reason}")
+                reasoning = self._field(choice.message, "reasoning_content")
+                if reasoning and "</think>" not in (output or ""):
+                    output = reasoning + "\n</think>\n\n" + (output or "")
 
         return output, usage_stats
 
@@ -388,7 +395,9 @@ class LiteLLMClient:
             temperature (float | None, optional): Sampling temperature.
             max_tokens (int | None, optional): Maximum number of tokens to generate.
             func_spec (FunctionSpec | None, optional): Optional FunctionSpec for function calling.
-            **model_kwargs: Additional keyword arguments for the model.
+            **model_kwargs: Additional keyword arguments for the model. include_reasoning=True
+                preserves separate reasoning_content in the returned text and requires a complete
+                response; it is consumed locally rather than forwarded to the model service.
 
         Returns:
             OutputType: A string completion or a dict with function call details.

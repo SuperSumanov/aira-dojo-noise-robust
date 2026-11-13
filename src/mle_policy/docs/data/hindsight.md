@@ -105,7 +105,7 @@ bash src/mle_policy/scripts/data/hindsight/generate.sh \
 
 `--concurrency` 限制全部 journal 合计同时发出的模型请求数；
 `--journal-workers` 限制同时处理的 journal 数。二者按服务吞吐和 allocation 调整。
-每次运行从头生成，直接写入目标目录；请求最多尝试三次，最终异常直接抛出。
+每次运行从头生成，直接写入目标目录；请求重试沿用 dojo 的 LiteLLM backend，最终异常直接抛出。
 控制台只打印完成的 journal 及输入、输出节点数量。
 
 可选的离线格式检查只读两棵树，在终端打印结果：

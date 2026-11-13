@@ -92,9 +92,12 @@ bash src/mle_policy/scripts/data/to_grpo_metric.sh "$ORIGINAL"
 
 ### 第二步：完成整批重写
 
-模型、服务地址沿用每个输入 run 的目标 operator 的 `llm.client` 配置。
+模型、服务地址默认沿用每个输入 run 的目标 operator 的 `llm.client` 配置。
+聚合多个来源后，可用 `--base-url http://localhost:8000/v1 --model-id <served-model>`
+统一覆盖所有 run 和 operator；两个参数也可单独使用。其余配置沿用输入任务。
 密钥从现有 `.env` 的 `PRIMARY_KEY_<MODEL>` 或 `PRIMARY_KEY` 读取；模型专用密钥优先，
-`<MODEL>` 为 model_id 转大写并将 `-`、`.` 替换成 `_`。先启动对应服务，再运行：
+`<MODEL>` 为实际使用的 model_id（含命令行覆盖）转大写并将 `-`、`.` 替换成 `_`。
+输出中复制的 `dojo_config.json` 保留来源配置。先启动对应服务，再运行：
 
 ```bash
 bash src/mle_policy/scripts/data/hindsight/generate.sh \

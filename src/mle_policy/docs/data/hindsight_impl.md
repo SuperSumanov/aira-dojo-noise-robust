@@ -43,7 +43,9 @@
 `ModelClient` 直接调用 dojo 的 `LiteLLMClient.query`，与搜索实验共用通信、
 密钥选择、请求重试、JSON 格式和解析机制。每个 run 的各 operator 按输入配置创建
 客户端，全部客户端共享一个 semaphore，限制同时执行的请求。
-模型、地址、provider 和 Azure 设置来自 `llm.client`；现有 `.env` 中的
+模型、地址默认来自 `llm.client`，主入口的 `--base-url` / `--model-id` 可分别覆盖全部
+run 和 operator；provider 和 Azure 设置仍来自来源配置。评测入口的同名参数用于 debug，
+并传递给各 worker。现有 `.env` 中的
 `PRIMARY_KEY_<MODEL>` / `PRIMARY_KEY` 也交给 dojo backend 读取。
 
 | 调用 | 参数和返回 |

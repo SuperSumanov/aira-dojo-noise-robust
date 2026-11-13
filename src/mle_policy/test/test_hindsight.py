@@ -581,7 +581,12 @@ def test_write_json_creates_readable_artifact(tmp_path):
 
 
 @pytest.mark.parametrize("mode", ["debug", "debug-improve"])
-def test_cli_hindsight_only_roundtrip_verifier_and_downstream(tmp_path, monkeypatch, run_writer, mode):
+@pytest.mark.parametrize(
+    "overrides",
+    [{}, {"base_url": "http://local/v1"}, {"model_id": "local-model"},
+     {"base_url": "http://local/v1", "model_id": "local-model"}],
+)
+def test_cli_hindsight_only_roundtrip_verifier_and_downstream(tmp_path, monkeypatch, run_writer, mode, overrides):
     import src.mle_policy.src.data.hindsight.__main__ as cli
 
     source, output = tmp_path / "source", tmp_path / "output"
@@ -604,8 +609,10 @@ def test_cli_hindsight_only_roundtrip_verifier_and_downstream(tmp_path, monkeypa
     )
 
     class CliClient(FakeClient):
-        def __init__(self, *args):
+        def __init__(self, client_config, semaphore):
             super().__init__()
+            expected = {**config["solver"]["operators"]["draft"]["llm"]["client"], **overrides}
+            assert client_config == expected
 
         async def close(self):
             pass
@@ -618,6 +625,8 @@ def test_cli_hindsight_only_roundtrip_verifier_and_downstream(tmp_path, monkeypa
         journal_workers=2,
         hint_code="include",
         mode=mode,
+        base_url=overrides.get("base_url"),
+        model_id=overrides.get("model_id"),
     )
     asyncio.run(run(args))
     asyncio.run(run(args))
@@ -776,13 +785,17 @@ def test_rewrite_selects_target_operator_client():
         "mle_policy.src.data.hindsight.exp.evaluate",
     ],
 )
-def test_cli_has_no_model_or_credential_overrides(module):
+def test_cli_model_overrides_and_no_credential_override(module):
     import sys
 
     result = subprocess.run([sys.executable, "-m", module, "--help"], capture_output=True, text=True, check=True)
-    assert "--base-url" not in result.stdout
     assert "--api-key" not in result.stdout
-    assert "--model" not in result.stdout
+    if module.endswith("experiment"):
+        assert "--base-url" not in result.stdout
+        assert "--model-id" not in result.stdout
+    else:
+        assert "--base-url" in result.stdout
+        assert "--model-id" in result.stdout
 
 
 @pytest.mark.parametrize(

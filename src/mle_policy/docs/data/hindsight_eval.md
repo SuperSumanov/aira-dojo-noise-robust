@@ -94,8 +94,10 @@ step。每个 worker 使用一张 GPU，负责一个方案从首次执行到 deb
 `--workers` 控制同时运行的方案数，`--timeout` 是每次程序执行的秒数。
 `--max-debug-calls 0` 可以只执行生成的程序及对照。
 
-debug 沿用来源 dojo config 的模型、提示模板、memory 和采样参数；
-服务地址直接沿用配置，密钥使用现有 `.env` 中的 `PRIMARY_KEY` / 按模型命名的密钥。
+debug 默认沿用来源 dojo config 的模型、服务地址、提示模板、memory 和采样参数。
+可用 `--base-url http://<host>:8000/v1 --model-id <served-model>` 统一覆盖所有方案的
+debug 服务地址和模型；两个参数也可单独使用，并自动传给各 worker。
+其余配置沿用来源任务，密钥使用现有 `.env` 中的 `PRIMARY_KEY` / 按实际模型命名的密钥。
 模型服务使用独立资源，并确保各执行节点均可访问。
 `HARDWARE` 描述单个方案实际可用的硬件，CPU 线程数由 `--cpus-per-task` 设置。
 

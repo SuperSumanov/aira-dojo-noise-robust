@@ -128,6 +128,8 @@ def chain(experiment, monkeypatch):
         timeout=7200,
         cpus_per_task=8,
         max_debug_calls=4,
+        base_url=None,
+        model_id=None,
     )
     events = []
     outcomes = [False, True]
@@ -226,8 +228,14 @@ def test_evaluate_requires_explicit_prepare(experiment):
     assert not (experiment / "runs").exists()
 
 
-def test_evaluate_dispatches_manifest_records_and_keeps_only_worker_log(chain, monkeypatch):
+@pytest.mark.parametrize(
+    "overrides",
+    [{}, {"base_url": "http://local/v1"}, {"model_id": "local-model"},
+     {"base_url": "http://local/v1", "model_id": "local-model"}],
+)
+def test_evaluate_dispatches_manifest_records_and_keeps_only_worker_log(chain, monkeypatch, overrides):
     args, _, _ = chain
+    vars(args).update(overrides)
     output = args.output
     args.output = [output]
     args.local = True
@@ -239,6 +247,12 @@ def test_evaluate_dispatches_manifest_records_and_keeps_only_worker_log(chain, m
         assert check
         assert stderr == subprocess.STDOUT
         assert stdout.name.endswith("worker-0.log")
+        for key in ("base_url", "model_id"):
+            flag = "--" + key.replace("_", "-")
+            if key in overrides:
+                assert command[command.index(flag) + 1] == overrides[key]
+            else:
+                assert flag not in command
         name = command[command.index("--name") + 1]
         worker = SimpleNamespace(**{**vars(args), "output": output, "name": name})
         evaluation.evaluate_chain(worker)
@@ -347,8 +361,12 @@ def test_failed_execution_does_not_resolve_chain(runtime, exit_code, timed_out):
     assert not evaluation.execute_attempt(args, source, record, "print(43)")["valid"]
 
 
-def test_dojo_debug_uses_in_memory_ancestral_history(runtime, monkeypatch):
+@pytest.mark.parametrize("base_url", [None, "http://local/v1"])
+@pytest.mark.parametrize("model_id", [None, "local-model"])
+def test_dojo_debug_uses_in_memory_ancestral_history(runtime, monkeypatch, base_url, model_id):
     args, state, source, record = runtime
+    args.base_url = base_url
+    args.model_id = model_id
     config_path = args.output / "config.json"
     config = json.loads(config_path.read_text())
     config["solver"] = {
@@ -364,8 +382,8 @@ def test_dojo_debug_uses_in_memory_ancestral_history(runtime, monkeypatch):
     calls = []
 
     def execute_debug(operator, client, cfg, memory, task, journal, parent, step, remaining, preview, **kwargs):
-        assert cfg.operators.debug.llm.client.base_url == "http://original"
-        assert cfg.operators.debug.llm.client.model_id == "fixture-model"
+        assert cfg.operators.debug.llm.client.base_url == (base_url or "http://original")
+        assert cfg.operators.debug.llm.client.model_id == (model_id or "fixture-model")
         assert "Task description" in task
         calls.append((list(journal), parent, step))
         return f"Repair plan {step}", f"print({step})", {}

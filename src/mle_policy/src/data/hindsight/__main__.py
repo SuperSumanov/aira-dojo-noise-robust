@@ -94,6 +94,11 @@ async def run(args: argparse.Namespace) -> None:
     source, output = args.input.resolve(), args.output.resolve()
     requests = asyncio.Semaphore(args.concurrency)
     semaphore = asyncio.Semaphore(args.journal_workers)
+    overrides = {
+        key: value
+        for key, value in {"base_url": args.base_url, "model_id": args.model_id}.items()
+        if value is not None
+    }
 
     async def process(path: Path) -> None:
         async with semaphore:
@@ -107,7 +112,7 @@ async def run(args: argparse.Namespace) -> None:
             }
             rows = [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines() if line.strip()]
             clients = {
-                name: ModelClient(settings["llm"]["client"], requests)
+                name: ModelClient({**settings["llm"]["client"], **overrides}, requests)
                 for name, settings in config["solver"]["operators"].items()
             }
             rewritten = await rewrite(
@@ -143,6 +148,8 @@ def main() -> None:
     parser.add_argument(
         "--output", type=Path, default=Path("data/augmented_mle_critic/raw_journal/hindsight/1028_hindsight_v3")
     )
+    parser.add_argument("--base-url", help="Override the model service URL for all input runs and operators")
+    parser.add_argument("--model-id", help="Override the model ID for all input runs and operators")
     parser.add_argument(
         "--concurrency", type=int, default=24, help="Maximum simultaneous model requests across all journals"
     )

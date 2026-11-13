@@ -94,6 +94,10 @@ def repair(args, source, attempts):
 
     config = json.loads(Path(source["config"]).read_text())
     cfg = OmegaConf.create(config["solver"])
+    if args.base_url is not None:
+        cfg.operators.debug.llm.client.base_url = args.base_url
+    if args.model_id is not None:
+        cfg.operators.debug.llm.client.model_id = args.model_id
     load_dotenv()
     journal = Journal()
     parent = None
@@ -193,6 +197,10 @@ def evaluate(args):
                 str(args.max_debug_calls),
             ]
         )
+        if args.base_url is not None:
+            command.extend(["--base-url", args.base_url])
+        if args.model_id is not None:
+            command.extend(["--model-id", args.model_id])
         with (output / record["worker_log"]).open("w") as stream:
             subprocess.run(command, stdout=stream, stderr=subprocess.STDOUT, check=True)
         print(f"DONE {output}/{record['name']}", flush=True)
@@ -212,6 +220,8 @@ def main():
     parser.add_argument("--workers", type=int, default=2, help="Concurrent single-GPU Slurm workers")
     parser.add_argument("--cpus-per-task", type=int, default=8, help="CPU threads per GPU worker")
     parser.add_argument("--max-debug-calls", type=int, default=4, help="Repairs after a failed initial execution")
+    parser.add_argument("--base-url", help="Override the debug model service URL for all prepared runs")
+    parser.add_argument("--model-id", help="Override the debug model ID for all prepared runs")
     parser.add_argument("--local", action="store_true", help="Execute on the current GPU; use --workers 1")
     parser.add_argument("--name", help=argparse.SUPPRESS)
     args = parser.parse_args()

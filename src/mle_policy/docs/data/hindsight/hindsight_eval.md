@@ -99,6 +99,7 @@ debug 默认沿用来源 dojo config 的模型、服务地址、提示模板、m
 debug 服务地址和模型；两个参数也可单独使用，并自动传给各 worker。
 其余配置沿用来源任务，密钥使用现有 `.env` 中的 `PRIMARY_KEY` / 按实际模型命名的密钥。
 模型服务使用独立资源，并确保各执行节点均可访问。
+多个模型副本可共用一个路由入口，启动脚本及 `--base-url` 示例见 `hindsight.md` 第二步。
 `HARDWARE` 描述单个方案实际可用的硬件，CPU 线程数由 `--cpus-per-task` 设置。
 
 本机串行执行使用 `--local --workers 1`；`--output` 也可传多个已准备的评测目录。

@@ -13,6 +13,7 @@
 | `tree.py` | journal 的节点字典列表 | 内存中的 episode、重建的节点列表 |
 | `regenerate.py` | 原节点、目标 episode、来源 episode、模型客户端和采样参数 | 内存中的 hint、新回答和新节点；实验模式可填充 trace |
 | `client.py` | 消息列表及采样参数 | hint 字典或完整回答字典 |
+| `router.py` | `--backends` 指定的 vLLM 服务根地址、客户端 `/v1/*` HTTP 请求 | 转发 HTTP 响应，`/health` 返回各副本在途请求数；无文件读写 |
 | `helper.py` | 回答文本或指定的 JSON 文件路径和值 | 解析后的思考/计划/代码，或写入该路径的 JSON 文件 |
 | `experiment.py` | `--journal <run>/json/JOURNAL.jsonl`，同 run 的配置 | `--output/<case>-<variant>/metadata.json`、`trace.json`、`nodes.json` |
 | `exp/prepare.py` | `--generation` 下各案例的 `metadata.json`、`nodes.json`，其中引用的原 journal | `--output/manifest.json` 和 `runs/<name>/solution.py`、`metadata.json` |
@@ -68,7 +69,21 @@ hindsight 额外检查 hint 包含实际文字，长轨迹的分段调用也使�
 完整回答的结束状态、思考标记、代码前的计划、唯一 Python 代码块和语法；
 校验失败直接抛出，避免再叠一层重试流程。
 
-## 4. 评测与测试
+## 4. 多实例路由
+
+`router.py` 用一个进程维护各实例的在途请求数，选择计数最少的实例，同负载时轮转。
+计数从转发开始，持续到完整响应结束或客户端断开，包含实例内排队的请求；长短请求各算一个。
+请求方法、路径、认证、模型参数及响应状态和 body 透传，支持 JSON 和 SSE。
+连接失败返回 502，重试沿用客户端的 LiteLLM backend。
+`GET /health` 返回路由本地的各实例计数，所有状态在内存中，无文件读写。
+
+`scripts/data/hindsight/vllm_router.sh` 按 instance 数量和 TP 大小分配连续 GPU 组，
+启动全部实例并轮询各端口的 `/health`，全部就绪后把地址列表传给路由。
+输入为参数、`build/vllm/vllm.sif` 和本地模型缓存，输出日志为
+`tmp/hindsight_instance_<index>.log` 和 `tmp/hindsight_router.log`。
+操作命令见 `hindsight.md` 第二步。
+
+## 5. 评测与测试
 
 案例生成、prepare、evaluate 是三个独立命令。prepare 集中描述所有评测输入、
 每个方案的路径及历史指标；evaluate 按清单启动每个 GPU worker。

@@ -100,14 +100,15 @@ bash src/mle_policy/scripts/data/hindsight/vllm_router.sh --instances 2 --tp 1
 
 默认两个实例、每实例一张卡；总共使用 `instances × tp` 张 GPU，从 GPU 0 连续分组。
 例如 `--instances 2 --tp 2` 使用 GPU `0,1` 和 `2,3`，实例端口从 8000 依次递增。
-脚本每 5 秒检查所有实例的 `/health`，全部 ready 后启动 `127.0.0.1:7999` 的路由。
+脚本每 5 秒检查所有实例的 `/health`，全部 ready 后启动 `0.0.0.0:7999` 的路由，
+路由自身 `/health` 通过后打印 `Router ready`。Python 使用无缓冲输出，启动日志立即写入文件。
 每个实例日志在 `tmp/hindsight_instance_<index>.log`，路由日志在 `tmp/hindsight_router.log`；
 脚本退出时关闭它启动的进程。模型和服务参数直接在脚本中修改。
 
 所有实例使用相同模型名和 key；在现有 `.env` 中设置
 `PRIMARY_KEY_QWEN3_8_27B=sk-local-vllm`，或使用现有 `PRIMARY_KEY`。
 生成命令加 `--base-url http://127.0.0.1:7999/v1 --model-id qwen3.8-27b` 即可使用路由。
-跨节点评测时把脚本的 router host 改为 `0.0.0.0`，客户端填写路由节点主机名。
+跨节点评测时客户端填写路由节点主机名；本机使用 `127.0.0.1`。
 
 模型、服务地址默认沿用每个输入 run 的目标 operator 的 `llm.client` 配置。
 聚合多个来源后，可用 `--base-url http://localhost:8000/v1 --model-id <served-model>`

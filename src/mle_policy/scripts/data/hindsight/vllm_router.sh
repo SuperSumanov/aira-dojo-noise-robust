@@ -50,12 +50,12 @@ for ((instance=0; instance<instances; instance++)); do
       --served-model-name qwen3.8-27b \
       --host 0.0.0.0 \
       --port "$port" \
-      --api-key sk-local-vllm \
+      --api-key sk-vllm-gpu27-qwen38-27b \
       --tensor-parallel-size "$tp" \
       --max-model-len 131072 \
       --gpu-memory-utilization 0.95 \
       --limit-mm-per-prompt '{"image":0,"video":0}' \
-      --max-num-seqs 8 > "tmp/hindsight_instance_${instance}.log" 2>&1 &
+      --max-num-seqs 16 > "tmp/hindsight_instance_${instance}.log" 2>&1 &
   pids+=("$!")
   echo "Starting instance $instance: GPUs $devices, port $port"
 done
@@ -80,9 +80,19 @@ echo "All instances ready; starting router on port 7999"
 source /research/d2/gds/zzchen2/anaconda/bin/activate aira-dojo
 export PYTHONPATH="$PWD/src:$PWD${PYTHONPATH:+:$PYTHONPATH}"
 
-python -m mle_policy.src.data.hindsight.router \
+python -u -m mle_policy.src.data.hindsight.router \
   --backends "${backends[@]}" \
-  --host 127.0.0.1 --port 7999 > tmp/hindsight_router.log 2>&1 &
+  --host 0.0.0.0 --port 7999 > tmp/hindsight_router.log 2>&1 &
 pids+=("$!")
+
+until curl --fail --silent --output /dev/null --noproxy '*' \
+  --connect-timeout 2 --max-time 5 http://127.0.0.1:7999/health; do
+  if ! kill -0 "${pids[instances]}" 2>/dev/null; then
+    cat tmp/hindsight_router.log >&2
+    exit 1
+  fi
+  sleep 1
+done
+echo "Router ready: port 7999; see tmp/hindsight_router.log"
 
 wait "${pids[instances]}"

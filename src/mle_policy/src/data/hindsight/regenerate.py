@@ -78,17 +78,17 @@ def inject_hint(messages: list[dict], hint: str, code: str | None = None) -> lis
     user = next((message for message in reversed(augmented) if message["role"] == "user"), None)
     if user is None or not isinstance(user.get("content"), str):
         raise ValueError("Expected an original text user prompt")
-    advice = hint
+    advice =  (
+        "\n<experience>\n"
+        + hint
+        + "\nInternalizing above domain insights above while solving the original task."
+        " Choose and develop your own coherent approach; adapt the suggestions where appropriate."
+        " Return a complete standalone answer in the original task's requested format without mention, quote, or refer to the reference notes in your thought process."
+        "\n</experience>"
+    )
     if code is not None:
         advice += "\n\nImplementation example to learn from:\n```python\n" + code.rstrip() + "\n```"
-    user["content"] = (
-        "\n\n<experience>\n"
-        + advice
-        + "\nUse these valuable experience while solving the original task."
-        " Choose and develop your own coherent approach; adapt the suggestions where appropriate."
-        " Return a complete standalone answer in the original task's requested format without explicitly mentioning the experience."
-        "\n</experience>"
-    ) + user["content"]
+    user["content"] = user["content"].replace("**RESPONSE FORMAT FOR IMPLEMENTATION**", advice + "\n\n**RESPONSE FORMAT FOR IMPLEMENTATION**")
     return augmented
 
 

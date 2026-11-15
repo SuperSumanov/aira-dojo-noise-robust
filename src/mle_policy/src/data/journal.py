@@ -247,6 +247,8 @@ def resolve_episodes(nodes: list[dict[str, Any]]) -> dict[int, dict[str, Any]]:
     by_step: dict[int, dict[str, Any]] = {}
     for node in nodes:
         if node.get("step") is not None:
+            if node["step"] in by_step:
+                raise ValueError(f"Duplicate step {node['step']} in journal")
             by_step[node["step"]] = node
     debug_child: dict[int, int] = {}
     for step in sorted(by_step):

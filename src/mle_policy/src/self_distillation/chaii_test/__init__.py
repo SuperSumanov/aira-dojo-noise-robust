@@ -1,1 +1,1 @@
-"""Replay a CHAIi draft prompt and measure explicit fast-tokenizer usage."""
+"""Replay CHAIi prompts and measure thinking knowledge, final code and completeness."""

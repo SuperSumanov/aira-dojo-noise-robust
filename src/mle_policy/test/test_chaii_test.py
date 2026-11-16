@@ -7,13 +7,12 @@ from argparse import Namespace
 import httpx
 import pytest
 
-from src.mle_policy.src.self_distillation.chaii_test.__main__ import (
-    indicators,
-    proportion,
+from mle_policy.src.self_distillation.chaii_test.__main__ import (
     read_step_one,
     sample,
-    summarize,
 )
+
+from mle_policy.src.self_distillation.chaii_test.inspect import inspect_run
 
 
 @pytest.fixture(params=[False, True])
@@ -57,45 +56,6 @@ def test_missing_step_one_fails(journal):
         read_step_one(path)
 
 
-@pytest.mark.parametrize("text,reasoning,expected", [
-    ("```python\ntok = AutoTokenizer.from_pretrained(name, use_fast = True)\n```", "", (True, True, True)),
-    ("```python\ntok = AutoTokenizer.from_pretrained(name, use_fast=False)\n```", "", (True, True, False)),
-    ("```python\nkwargs = {'use_fast': True}\n```", "", (True, True, True)),
-    ("<think>use_fast=True</think>\n```python\nprint(1)\n```", "", (True, False, False)),
-    ("```python\nprint(1)\n```", "use_fast=True", (True, False, False)),
-    ("<think>use_fast=True", "", (True, False, False)),
-    ("```python\nBertTokenizerFast.from_pretrained(name)\n```", "", (False, False, False)),
-    ("abuse_fast=True", "", (False, False, False)),
-])
-def test_indicators_separate_thoughts_from_code(text, reasoning, expected):
-    result = indicators(text, reasoning)
-    assert (result["use_fast"], result["code_use_fast"], result["code_use_fast_true"]) == expected
-
-
-def test_fast_class_and_notes():
-    result = indicators("However, the engineering notes suggest...\n```python\nBertTokenizerFast()\n```")
-    assert result["code_fast_tokenizer_class"]
-    assert result["mentions_engineering_notes"]
-
-
-def test_wilson_interval_and_no_samples():
-    assert proportion(0, 0)["rate"] is None
-    result = proportion(5, 10)
-    assert result["rate"] == 0.5
-    assert result["wilson_95"] == pytest.approx([0.236593, 0.763407], abs=1e-6)
-
-
-def test_failures_and_truncations_are_explicit():
-    summary = summarize([
-        {"finish_reason": "length", "indicators": indicators("use_fast")},
-        {"finish_reason": "stop", "indicators": indicators("")},
-        {"error": "test failure"},
-    ])
-    assert (summary["failed"], summary["truncated"]) == (1, 1)
-    assert summary["metrics"]["use_fast"]["rate"] == 0.5
-    assert summary["stop_only_metrics"]["use_fast"]["rate"] == 0
-
-
 @pytest.mark.parametrize("extra_settings", [{}, {
     "seed": 42, "chat_template_kwargs": {"enable_thinking": False}, "max_tokens": 1234,
 }])
@@ -120,7 +80,7 @@ def test_sampling_uses_recorded_settings(journal, tmp_path, extra_settings):
 
     args = Namespace(
         journal=path, model_id="qwen3.8-27b-mle-lora", base_url="http://test/v1/",
-        output_dir=tmp_path / "samples", n=3, concurrency=2,
+        output_dir=tmp_path / "samples", n=3, concurrency=2, response_mode="auto",
     )
 
     async def run():
@@ -134,9 +94,13 @@ def test_sampling_uses_recorded_settings(journal, tmp_path, extra_settings):
     assert result["failed"] == 1
     assert result["completed"] == 3
     assert result["unfinished"] == 0
-    assert result["metrics"]["code_use_fast_true"]["rate"] == 1
+    assert result["metrics"]["final_code_explicit_identifier"]["rate"] == 1
     records = [json.loads(line) for line in (args.output_dir / "responses.jsonl").read_text().splitlines()]
     assert len(records) == 3
+    inspected = inspect_run(args.output_dir / "responses.jsonl")
+    assert result["metrics"] == inspected["metrics"]
+    assert result["lengths"] == inspected["lengths"]
+    assert result["schema_version"] == 2
     assert (args.output_dir / "summary.json").exists()
     assert (args.output_dir / "request.json").exists()
     with pytest.raises(FileExistsError):
@@ -157,7 +121,7 @@ def test_cancellation_keeps_partial_summary(journal, tmp_path):
 
     args = Namespace(
         journal=path, model_id="qwen3.8-27b", base_url="http://test/v1",
-        output_dir=tmp_path / "partial", n=3, concurrency=2,
+        output_dir=tmp_path / "partial", n=3, concurrency=2, response_mode="auto",
     )
 
     async def run():
@@ -172,5 +136,7 @@ def test_cancellation_keeps_partial_summary(journal, tmp_path):
     asyncio.run(run())
     result = json.loads((args.output_dir / "summary.json").read_text())
     assert (result["requested"], result["completed"], result["unfinished"]) == (3, 1, 2)
-    assert result["metrics"]["use_fast"]["rate"] == 1
+    assert result["metrics"]["has_final_answer"]["rate"] == 0
+    assert result["metrics"]["thinking_explicit_identifier"]["rate"] == 1
+    assert result["lengths"]["completion_tokens"]["count"] == 0
     assert len((args.output_dir / "responses.jsonl").read_text().splitlines()) == 1

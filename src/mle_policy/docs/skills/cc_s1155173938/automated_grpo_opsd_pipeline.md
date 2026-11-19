@@ -12,7 +12,7 @@ description: 在 cc_s1155173938 的训练环境中，用已收集的 MLE journal
 ## 1. 确定这一轮的参数和状态
 
 从仓库根目录开始，读取根目录 `AGENTS.md` 和将使用的脚本。下面的路径以实际脚本为准，
-运行时确认版本；本文记录的是 2026-11-16 核对过的行为。
+运行时确认版本；本文记录的是 2026-11-19 核对过的行为。
 
 ```bash
 REPO=/auxstore/cse/d10/data/s1155173938/aira-dojo-noise-robust
@@ -58,7 +58,7 @@ hindsight 提炼始终使用原始 `Qwen/Qwen3.8-27B`，每轮相同。
 ## 2. 准备 GRPO 数据（宿主机，aira-dojo）
 
 ```bash
-source /research/d2/gds/zzchen2/anaconda/bin/activate aira-dojo
+source /auxstore/cse/d10/data/s1155173938/miniconda3/bin/activate aira-dojo
 cd "$REPO"
 mkdir -p "$OUT_ROOT"
 bash src/mle_policy/scripts/data/build_all_batches_bigjournal.sh "$INPUT_ROOT" "$OUT_ROOT"
@@ -84,7 +84,7 @@ python my_recipes/mle_policy/src/dataset/build_grpo_parquet.py \
 
 - `build_all_batches_bigjournal.sh` 通过 `JOURNAL.jsonl` 上溯到含 `dojo_config.json` 的 run，
   再以其父目录为 batch。它遇到单个 batch 失败会打印 `FAILED` 并继续，最终仍可能返回 0。
-  核对发现的 batch、成功的 manifest 和 `$OUT_ROOT/.staging/*.log.json`；脚本清除 staging 目录后这些日志仍保留。
+  核对发现的 batch、成功的 manifest 和 `$OUT_ROOT/.staging/*.log.json`；脚本已改为保留排错日志。
   解决失败并补齐 batch 后再聚合。发现 journal/config 损坏时定位到具体来源；无法修复的输入交用户处理。
 - 若出现 `Duplicate step N in journal`，按该 journal 的原始行顺序保留每个 step 首次出现的 node，
   直接删除后面相同 step 的重复 node。这是用户授权的重试数据清理规则；按文件分别去重，
@@ -132,6 +132,7 @@ singularity shell --nv --cleanenv \
 `VLLM_WORKER_MULTIPROC_METHOD=spawn` 等环境。密钥从现有配置读取，在关闭命令回显时注入；
 运行记录只保存变量名。示例训练脚本带 `set -x`，避免通过命令参数输出凭据。
 需要访问 Hugging Face 时显式传入容器所需的现有 token；`--cleanenv` 会清除宿主机环境。
+离线 vLLM 若报 `IncompleteSnapshotError` 且只缺 README/LICENSE 等元数据，核对底模 config/权重完整后，直接将 MODEL_PATH 指向同一 HF snapshot 绝对目录；hindsight 服务与 OPSD rollout 都要应用，避免只修复前者。
 
 容器内从 `$REPO/src/verl` 运行训练，使用仓库绝对路径可减少工作目录差异。
 检查当前 `transformers`/`peft` 组合。continue 脚本注明 Transformers 5.18.0 overlay
@@ -154,7 +155,7 @@ singularity shell --nv --cleanenv \
 cd "$REPO/src/verl"
 export MODEL_PATH=Qwen/Qwen3.8-27B
 export NPROC_PER_NODE=2                # 使用实际分配的 2 或 4
-export TRAIN_BATCH_SIZE=128 PPO_MINI_BATCH_SIZE=128
+export TRAIN_BATCH_SIZE=128 PPO_MINI_BATCH_SIZE=128 MICRO_BATCH_SIZE_PER_GPU=2
 export TOTAL_EPOCHS=1 SP_SIZE=1 FSDP_SIZE=-1
 export CKPTS_DIR=/tmp/GRPO-mle-policy-offline/current
 export EXPERIMENT_NAME=GRPO-offline-Qwen3.8-27B-thinking
@@ -178,16 +179,16 @@ checkpoint/dataloader 状态和原始输入，满足恢复条件才用 auto；�
 
 | 场景 | 调整原则 |
 | --- | --- |
-| 2 张 H200 | 采用上面的 2xh200 脚本，microbatch=1，保留脚本 offload 设置 |
-| 4 张 H200 | 沿用同一脚本并设 `NPROC_PER_NODE=4`、`FSDP_SIZE=-1`，先保持全局 batch=128、1 epoch；根据实测逐步减少 offload 开销 |
-| Pro6000 等较小显存卡 | 核查对应硬件脚本和当前 GPU 架构支持；保持 microbatch=1、offload，长序列先验证显存 |
+| 2 张 H200 | microbatch=2，offload_policy=True，param/optimizer offload 保留；27B 长序列关闭 policy 后曾在首步 backward OOM |
+| 4 张 H200 | microbatch=2，offload_policy=False；设 `NPROC_PER_NODE=4`、`FSDP_SIZE=-1`，全局 batch=128、1 epoch |
+| Pro6000 等较小显存卡 | 默认 microbatch=2，保留原有 offload_policy=True 及 param/optimizer offload；实际长序列显存以完整更新为准 |
 
 当前 `4xh200` GRPO 首轮脚本默认模型是旧的 `outputs/seqsup-score-day6`，batch=64、3 epochs。
 优先用用户指定的 2xh200 脚本配环境覆盖，避免继承旧实验设置。
 多卡首先增加并行吞吐，保持 LR、全局 batch、epoch 和 LoRA 结构。
-需要关闭 offload 时，用脚本末尾的 Hydra 参数覆盖实际 actor/ref 配置，观察至少一个完整更新再决定保留。
+2xh200 保留 policy offload；4xh200 关闭 policy offload，param/optimizer offload 按硬件脚本保留。
 更小 batch 只解决数据不足或内存问题，记录其带来的步数变化。
-GRPO 和 OPSD 保持 `use_remove_padding=False`、动态打包关闭、每卡 microbatch=1。
+GRPO 和 OPSD 保持 `use_remove_padding=False`、动态打包/sequence packing 关闭（Qwen3.5 linear attention 存在 packing bug），默认每卡 microbatch=2；actor/ref/log-prob 同步设置。
 OOM 时先检查计算中间量、checkpoint 和并行配置，实测这些优化后才考虑缩短上下文。
 activation offload 默认关闭；仅在其他优化不足且接受速度损失时考虑启用。
 
@@ -195,6 +196,7 @@ activation offload 默认关闭；仅在其他优化不足且接受速度损失�
 
 先守到模型加载、GRPO 初始策略 log-probability 缓存结束，且至少一个 optimizer step 成功。
 缓存阶段也可能很长，结合其进度而非“尚无训练 step”判断停滞。
+GRPO 初始策略 log-prob 缓存仅在进程内；重启会重算，1113 约耗时 50 分钟。直接运行完整训练，不为显存测量反复做完整缓存；OOM 先按硬件的 offload_policy 配置修复。
 记录实际总步数和每步时间，用最近几步估算剩余训练时间，并加上验证、保存耗时。
 OPSD 另计每步生成时间。小样本和长序列的耗时差别很大，以实时日志为准。
 
@@ -204,7 +206,7 @@ OPSD 另计每步生成时间。小样本和长序列的耗时差别很大，以
 异常时先保存 traceback 和关键配置，定位 OOM、NCCL、版本、长度或磁盘问题，
 进行对应修复；同一错误在相同修复后再次出现则停止重复启动并报告具体阻塞。
 
-以日志中的总步数、正常退出码和最终 checkpoint 三者确认训练完成。
+以日志中的总步数、正常退出码和最终 checkpoint 三者确认训练完成。W&B 退出清理出现 BrokenPipe/closed transport 时，结合这三项判断；不要因清理日志单独重跑已完成训练。
 `global_step_13` 仅是例子；从本轮实际目录读取数字步数和
 `latest_checkpointed_iteration.txt`，按数字选择最终步，核对 actor 的 `fsdp_config.json`、
 应有的 model rank 分片、HF 配置与 `lora_train_meta.json`。训练退出且保存完成后再合并。
@@ -272,7 +274,7 @@ bash src/mle_policy/scripts/data/hindsight/vllm_router.sh &
 生成在宿主机 `aira-dojo` 环境、仓库根目录执行：
 
 ```bash
-source /research/d2/gds/zzchen2/anaconda/bin/activate aira-dojo
+source /auxstore/cse/d10/data/s1155173938/miniconda3/bin/activate aira-dojo
 cd "$REPO"
 export PYTHONPATH="$PWD/src:$PWD/src/verl${PYTHONPATH:+:$PYTHONPATH}"
 export NO_PROXY=127.0.0.1,localhost no_proxy=127.0.0.1,localhost
@@ -294,7 +296,7 @@ KV cache 不足时先降低服务并发/`max-num-seqs`；确需减少 131072 上
 `pairs.jsonl` 是追加式断点缓存，以 sample_id 跳过已完成项；故障后沿用同一路径重跑。
 sample_id 包含 journal 的绝对路径，同一轮继续使用同一个宿主机路径。
 检查输出 JSON 完整、ID 唯一、prompt 合法、`hindsight_context` 非空、hint_model 为指定底模。
-异常退出留下尾部不完整行时，只修复该尾行后继续；正常数据保留。
+异常退出留下尾部不完整行时，只修复该尾行后继续；正常数据保留。若单个 hint 在结构校验重试后仍失败，沿用原文件重跑缺失项；1115 的 444/445 缓存经一次续跑补齐。
 完整运行退出成功后，同样命令再跑应为 `extracting 0 hints`，这是候选项已经生成完的核对。
 记录初始候选总量、最终有效行数和耗时。生成数为零时检查输入树是否有合格节点。
 
@@ -336,7 +338,7 @@ MODEL_PATH=Qwen/Qwen3.8-27B \
 TEACHER_MIX_COEF=0.01 \
 LORA_ADAPTER_PATH="$OUTPUT_ROOT/basic/lora_adapter" \
 NPROC_PER_NODE="$NPROC_PER_NODE" \
-TRAIN_BATCH_SIZE=128 \
+TRAIN_BATCH_SIZE=128 MICRO_BATCH_SIZE_PER_GPU=2 \
 TOTAL_EPOCHS=1 \
 MAX_PROMPT_LENGTH=24566 TEACHER_MAX_PROMPT_LENGTH=24566 \
 MAX_RESPONSE_LENGTH=32768 MAX_TEACHER_LENGTH=57334 \
@@ -351,14 +353,16 @@ bash my_scripts/train/mle_opsd/pro6000/run_qwen3_8_27b_opsd_fsdp_lora.sh
 
 默认 OPSD rollout TP=1；27B 在目标显存上无法容纳时设 `ROLLOUT_TP=2`，
 四卡可比较 TP=2 的两组与 TP=4 的一组吞吐，并确保整除 GPU 数。
-H200 可对比 `mle_opsd/2xh200` 配置，先核对差异再采用。
+H200 使用 `mle_opsd/2xh200` 配置；核对其 rollout 设置，训练 microbatch 与 vLLM 调度 token 数分别调整。
 优先保留 batch、LR、epoch 和 teacher 系数，调整并行和显存配置以适配 allocation。
 
 按第 4 节持续监控；另看 `metrics.jsonl` 中的 step、损失/梯度有限性、teacher score gap、
 回答长度与截断比例，确认从 basic adapter 加载并发生有效更新。
 `responses.jsonl` 和 `token_scores/` 会额外占空间，纳入 `/tmp` 容量监控。
+若 vLLM 在更新后的下一批生成时报 `sample_tokens` RPC timeout（默认 300 秒），先保留 traceback；1113 将 `rollout.max_num_batched_tokens` 从 32768 降为 8192，并在容器内启动 Ray 前设置 `VLLM_EXECUTE_MODEL_TIMEOUT_SECONDS=1800` 后完成余下 4 步。该调整不改变训练 microbatch/上下文上限。
+
 默认 `resume_mode=disable`；故障恢复前检查当前 trainer 如何恢复步数和 dataloader，
-确认恢复语义正确再覆盖配置；否则从本轮 basic adapter 清理重跑并记录。
+确认恢复语义正确再覆盖配置；否则从本轮 basic adapter 清理重跑并记录。1113 已验证同轮 `resume_mode=auto` 可恢复完整 actor/optimizer、global_steps 与中途保存的 `data.pt`；恢复时核对四者和实际 sample 进度，metrics 日志会追加。
 
 ## 7. 导出、整理、打包
 

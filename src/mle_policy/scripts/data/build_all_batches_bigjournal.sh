@@ -109,5 +109,5 @@ for batch_dir in "${batch_dirs[@]}"; do
     echo "[build_all_batches]   -> $bucket/$batch_key"
 done
 
-rm -rf "$OUT_ROOT/.staging"
+# Keep per-batch diagnostics, including failures, for review.
 echo "[build_all_batches] done; batches under $OUT_ROOT/batches"
